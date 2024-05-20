@@ -12,11 +12,12 @@ Examples rely on following environment variables:
 | ---- | ----------- | ------- |
 | **USERNAME** | The Domain\Username | `"MSAD2.COM\User"` |
 | **PASSWORD** | The password | `"password"` |
+| **PASSWORD_MD4** | The password hash (use [go run examples/helpers/nt_hash.go -d $PASSWORD](./examples/helpers/nt_hash.go) to generate the hash) | `"f077ca4b7d73486a45e75dcdd74cd5bd"` |
 | **WORKSTATION** | The workstation name | `"Ubuntu"` |
 | **SERVER** | The server FQDN or IP | `"192.168.0.22"` |
 | **SERVER_NAME** | The server NetBIOS name | `"WIN2019"` |
 | **SERVER_HOST** | The server FQDN | `"my-server.win2019.com"` |
-| **SAM_USERNAME** | The machine account name (see [examples/netlogon_sec_channel.go](./examples/netlogon_sec_channel.go)) | "COMPUTER$" |
+| **SAM_USERNAME** | The machine account name (see [examples/netlogon_sec_channel.go](./examples/netlogon_sec_channel.go)) | `"COMPUTER$"` |
 | **SAM_PASSWORD** | The machine account password (see [examples/netlogon_sec_channel.go](./examples/netlogon_sec_channel.go)) | `"password"` |
 | **SAM_WORKSTATION** | The machine account workstation name | `"COMPUTER"` |
 | **TARGET** | The target name (SPN) for kerberos. | `"host/my-server.win2019.com"` |
@@ -232,6 +233,8 @@ this or that field.
  * Static strings
 
  * Handle anonymous structures inside union arms
+
+ * Kerberos HMAC-RC4 NT Hash support via Keytab.
 
 # References
 

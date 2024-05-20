@@ -43,10 +43,9 @@ func init() {
 
 func init() {
 	// add credentials.
-	gssapi.AddCredential(credential.NewFromPassword(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
+	gssapi.AddCredential(credential.NewFromNTHash(os.Getenv("USERNAME"), os.Getenv("PASSWORD_MD4")))
 	// add mechanism.
 	gssapi.AddMechanism(ssp.SPNEGO)
-	gssapi.AddMechanism(ssp.KRB5)
 	gssapi.AddMechanism(ssp.NTLM)
 }
 
@@ -70,7 +69,7 @@ func main() {
 	}
 	defer cc.Close(ctx)
 
-	cli, err := epm.NewEpmClient(ctx, cc, dcerpc.WithConnect(), dcerpc.WithTargetName(os.Getenv("TARGET")), dcerpc.WithVerifyBitMask(true), dcerpc.WithVerifyPresenetation(true), dcerpc.WithVerifyHeader2(true), dcerpc.WithLogger(zerolog.New(os.Stdout)))
+	cli, err := epm.NewEpmClient(ctx, cc, dcerpc.WithSeal(), dcerpc.WithTargetName(os.Getenv("TARGET")), dcerpc.WithVerifyBitMask(true), dcerpc.WithVerifyPresenetation(true), dcerpc.WithVerifyHeader2(true), dcerpc.WithLogger(zerolog.New(os.Stdout)))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return

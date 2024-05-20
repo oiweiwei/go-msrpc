@@ -22,7 +22,7 @@ var (
 )
 
 // Use password credential.
-type Credential = credential.Password
+type Credential = credential.Credential
 
 // The NTLM authentification version.
 type NTLMVersion interface {

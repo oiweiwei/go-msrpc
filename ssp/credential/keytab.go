@@ -28,6 +28,10 @@ func (kt *kt) DomainName() string {
 	return ""
 }
 
+func (kt *kt) Workstation() string {
+	return ""
+}
+
 func (kt *kt) Keytab() *keytab.Keytab {
 	if kt != nil && kt.kt != nil {
 		kkt := *kt.kt

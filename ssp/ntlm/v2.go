@@ -8,6 +8,7 @@ import (
 
 	"strings"
 
+	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/crypto"
 	"github.com/oiweiwei/go-msrpc/ssp/ntlm/internal"
 	"github.com/oiweiwei/go-msrpc/text/encoding/utf16le"
@@ -202,14 +203,26 @@ func (v2 *V2) NTOWF(ctx context.Context, cred Credential) ([]byte, error) {
 		return nil, nil
 	}
 
-	pass, err := utf16le.Encode(cred.Password())
-	if err != nil {
-		return nil, fmt.Errorf("v2: ntowf: encode password: %w", err)
+	var (
+		k   []byte
+		err error
+	)
+
+	if cred, ok := cred.(credential.Password); ok {
+
+		pass, err := utf16le.Encode(cred.Password())
+		if err != nil {
+			return nil, fmt.Errorf("v2: ntowf: encode password: %w", err)
+		}
+
+		k, err = crypto.MD4(pass)
+		if err != nil {
+			return nil, fmt.Errorf("v2: ntowf: md4 password: %w", err)
+		}
 	}
 
-	k, err := crypto.MD4(pass)
-	if err != nil {
-		return nil, fmt.Errorf("v2: ntowf: md4 password: %w", err)
+	if cred, ok := cred.(credential.NTHash); ok {
+		k = cred.NTHash()
 	}
 
 	user, err := utf16le.Encode(strings.ToUpper(cred.UserName()) + cred.DomainName())
@@ -238,7 +251,7 @@ func (v2 *V2) ChallengeResponse(ctx context.Context, cred Credential, c *Challen
 		return nil, fmt.Errorf("v2: %w", ErrLogonFailure)
 	}
 
-	if cred == nil || (cred.UserName() == "" && cred.Password() == "") {
+	if cred == nil || (cred.UserName() == "" && IsCredentialEmpty(cred)) {
 		// anonymous case.
 		return &ChallengeResponse{LM: []byte{0}, IsAnonymous: true}, nil
 	}

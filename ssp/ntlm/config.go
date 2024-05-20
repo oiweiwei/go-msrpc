@@ -4,6 +4,8 @@ import (
 	"context"
 	"errors"
 	"time"
+
+	"github.com/oiweiwei/go-msrpc/ssp/credential"
 )
 
 const (
@@ -115,6 +117,27 @@ type Config struct {
 	// The flag that indicates whether all the input buffers must be used to
 	// build a signature. (DO NOT USE IT).
 	NoSignAllBuffers bool
+}
+
+func IsCredentialEmpty(cred any) bool {
+
+	if cred, ok := cred.(credential.Password); ok {
+		return cred.Password() == ""
+	}
+
+	if cred, ok := cred.(credential.NTHash); ok {
+		return len(cred.NTHash()) == 0
+	}
+
+	return true
+}
+
+func IsValidCredential(cred any) bool {
+	if _, ok := cred.(credential.Password); !ok {
+		_, ok = cred.(credential.NTHash)
+		return ok
+	}
+	return true
 }
 
 func (c *Config) NewNTLMVersion(ctx context.Context, cfg *Config, sess *SecurityParameters) NTLMVersion {

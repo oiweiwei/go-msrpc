@@ -10,8 +10,6 @@ type Password interface {
 	Credential
 	// Password.
 	Password() string
-	// Workstation.
-	Workstation() string
 }
 
 // Password implementation.
@@ -63,36 +61,9 @@ func NewFromString(s string) Password {
 
 // NewFromPassword function returns the username/password credential.
 func NewFromPassword(un, passwd string, workstation ...string) Password {
-
-	wkst := ""
-	if len(workstation) != 0 {
-		wkst = workstation[0]
-	}
-
-	// down-level logon name.
-	if strings.Contains(un, "\\") {
-		un := strings.SplitN(un, "\\", 2)
-		return &password{
-			// domainName:  strings.ToUpper(un[0]),
-			domainName:  un[0],
-			userName:    un[1],
-			password:    passwd,
-			workstation: wkst,
-		}
-	}
-
-	// UPN.
-	if strings.Contains(un, "@") {
-		un := strings.SplitN(un, "@", 2)
-		return &password{
-			domainName:  un[1], //strings.ToLower(un[1]),
-			userName:    un[0],
-			password:    passwd,
-			workstation: wkst,
-		}
-	}
-
+	dn, un, wkst := parseDomainUserWorkstation(un, workstation...)
 	return &password{
+		domainName:  dn,
 		userName:    un,
 		password:    passwd,
 		workstation: wkst,
