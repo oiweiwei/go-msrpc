@@ -101,10 +101,11 @@ func main() {
 
 	// activate the WMI interface.
 	act, err := iact.RemoteActivation(ctx, &iactivation.RemoteActivationRequest{
-		ORPCThis:                   &dcom.ORPCThis{Version: srv.COMVersion},
-		ClassID:                    wmi.Level1LoginClassID.GUID(),
-		IIDs:                       []*dcom.IID{iwbemlevel1login.Level1LoginIID},
-		RequestedProtocolSequences: []uint16{7},
+		ORPCThis: &dcom.ORPCThis{Version: srv.COMVersion},
+		ClassID:  wmi.Level1LoginClassID.GUID(),
+		IIDs:     []*dcom.IID{iwbemlevel1login.Level1LoginIID},
+		// for TCP/IP it must be []uint16{7} / for named pipes: []uint16{15}.
+		RequestedProtocolSequences: []uint16{7, 15},
 	})
 
 	if err != nil {
@@ -132,8 +133,8 @@ func main() {
 
 	std := act.InterfaceData[0].GetStandardObjectReference().Std
 
-	// dial WMI using OXID bindings.
-	wcc, err := dcerpc.Dial(ctx, os.Getenv("SERVER"), act.OXIDBindings.Endpoints()...)
+	// dial WMI using OXID bindings. (use ncacn_tcp_ip).
+	wcc, err := dcerpc.Dial(ctx, os.Getenv("SERVER"), act.OXIDBindings.EndpointsByProtocol("ncacn_ip_tcp")...)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "dial_wmi_endpoint", err)
 		return
