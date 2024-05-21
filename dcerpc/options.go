@@ -82,7 +82,7 @@ func (SecurityContextOption) is_rpcOption() {}
 //	import "github.com/oiweiwei/go-msrpc/ssp"
 //
 //	cli, err := winreg.NewWinregClient(ctx, conn, dcerpc.WithSeal(), dcerpc.WithMechanism(ssp.NTLM))
-func WithMechanism(m gssapi.Mechanism) SecurityContextOption {
+func WithMechanism(m gssapi.MechanismFactory) SecurityContextOption {
 	return SecurityContextOption(func(o *option) {
 		o.SecurityOptions = append(o.SecurityOptions, m)
 	})
@@ -99,9 +99,18 @@ func WithMechanism(m gssapi.Mechanism) SecurityContextOption {
 //	creds := credential.NewFromPassword(os.Getenv("USERNAME"), os.Getenv("PASSWORD"))
 //
 //	cli, err := winreg.NewWinregClient(ctx, conn, dcerpc.WithSeal(), dcerpc.WithCredentials(creds))
-func WithCredentials(creds gssapi.Credential) SecurityContextOption {
+//
+// Alternatively, you can use gssapi.Credential wrapping for more granular configuration:
+//
+//	// creds := gssapi.NewCredential("spn/my-spn", []gssapi.OID{ssp.NTLM}, gssapi.Initiate, credential.NewFromPassword(...))
+func WithCredentials(creds any) SecurityContextOption {
 	return SecurityContextOption(func(o *option) {
-		o.SecurityOptions = append(o.SecurityOptions, creds)
+		switch creds.(type) {
+		case gssapi.Credential:
+			o.SecurityOptions = append(o.SecurityOptions, creds)
+		default:
+			o.SecurityOptions = append(o.SecurityOptions, gssapi.NewCredential("", nil, gssapi.InitiateAndAccept, creds))
+		}
 	})
 }
 

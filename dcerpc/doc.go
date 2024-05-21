@@ -126,9 +126,63 @@
 //
 // Or by combination of both approaches (specify mechanisms globally, and credentials locally and so on).
 //
+//	ctx := gssapi.NewSecurityContext(ctx, ssp.NTLM)
+//
+//	cli, err := epm.NewClient(ctx, conn, dcerpc.WithCredential(creds), ...)
+//
 // Security context can be altered by client:
 //
 //	cli.AlterContext(ctx, dcerpc.WithMechanism(ssp.KRB5), dcerpc.WithSeal())
+//
+// ## Security Context Use-Cases
+//
+// As you may have noticed, the security can be configured on many levels, so
+// to summarize following is a set of use-cases and proposed approach:
+//
+// ### Global Configuration
+//
+// Use init function to establish the mechanism / credentials once and for all connections:
+//
+//	func init() {
+//		gssapi.AddCredential(credential.NewFromPassword(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
+//		gssapi.AddMechanism(ssp.NTLM)
+//	}
+//
+// Note, that you cannot add mechanism to the global configuration more than once, as it is not allowed
+// by GSSAPI package. If you want to have a freedom of choice for the configuration, use dcerpc.WithMechanism
+// per-client options, or NewSecurityContext's gssapi.Option for Reusable Configuration scenario.
+//
+// ### Reusable Configuration
+//
+// When you're creating multiple clients over the same endpoint (same named pipe, or TCP port)
+// it may be desired to not establish a new security context every time you instantinate the client.
+//
+// To achieve this, you can define credentials / SSP mechanisms per security context:
+//
+//	ctx := gssapi.NewSecurityContext(ctx, ssp.NTLM, yourCreds)
+//
+//	cli1, err := epm.NewEpmClient(
+//		ctx, // this context contains NTLM SSP and yourCreds
+//		dcerpc.WithSign(), // MUST specify for the initial context establishment.
+//		dcerpc.WithEndpoint(":135"))
+//
+//	cli2, err := iobjectexporter.NewObjectExporterClient(
+//		ctx, // this contains already established context.
+//		// dcerpc.WithSign(): DON'T specify it, as you are going to use same TCP connection / and context.
+//		dcerpc.WithEndpoint(":135"))
+//
+// As an effect, both cli1 and cli2 will use same security context identifier.
+//
+// # Per-Client Configuration
+//
+// When you wish for each client to have different security context / credentials / mechanism
+// you should use dcerpc.WithMechanism and dcerpc.WithCredential:
+//
+//	cli, err := epm.NewClient(ctx, conn,
+//		dcerpc.WithMechanism(ssp.NTLM),
+//		dcerpc.WithCredential(creds),
+//		dcerpc.WithSeal(),
+//		dcerpc.WithEndpoint(":135"))
 //
 // ## Kerberos
 //
