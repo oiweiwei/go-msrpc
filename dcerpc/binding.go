@@ -124,15 +124,31 @@ func (s StringBinding) URLWithSyntax(syntax SyntaxID, uConvs ...ConvertUUID) *ur
 	return u
 }
 
-func afterSlash(s string) string {
-	return s[strings.LastIndex(s, "\\")+1:]
-}
+func afterSym(s string, sym string) string { return s[strings.LastIndex(s, sym)+1:] }
+
+func afterSlash(s string) string { return afterSym(s, "\\") }
 
 func (s StringBinding) ShareName() string {
 	if s.ComputerName != "" {
 		return "\\\\" + strings.TrimLeft(s.ComputerName, "\\") + "\\IPC$"
 	}
 	return "IPC$"
+}
+
+// MatchTarget function returns true if the target name of the string binding
+// matches the provided target name n.
+func (s StringBinding) MatchTarget(n string) bool {
+	if target := s.TargetName(); target != "" && n != "" {
+		return strings.Contains(strings.ToLower(n), strings.ToLower(target))
+	}
+	return false
+}
+
+func (s StringBinding) TargetName() string {
+	if s.ComputerName != "" {
+		return afterSlash(s.ComputerName)
+	}
+	return s.NetworkAddress
 }
 
 func (s StringBinding) NamedPipe() string {

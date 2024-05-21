@@ -254,7 +254,20 @@ func (t *conn) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		}
 	}
 
-	t.logger.Debug().Interface("bindings", bindings).Msgf("found %d bindings", len(bindings))
+	target := o.TargetBinding()
+	if target == "" {
+		target = t.serverAddr
+	}
+
+	for i, j := 0, 0; i < len(bindings); i++ {
+		// bubble-sort round to prioritize matching target names.
+		if bindings[i].MatchTarget(target) {
+			bindings[i], bindings[j] = bindings[j], bindings[i]
+			j++
+		}
+	}
+
+	t.logger.Debug().Str("target_name", target).Interface("bindings", bindings).Msgf("found %d bindings", len(bindings))
 
 	var selected []*transport
 

@@ -45,6 +45,15 @@ type option struct {
 	Bindings []string
 }
 
+// TargetBinding returns the string representation without any trailing slashes or
+// principal types, like "host/127.0.0.1" -> "127.0.0.1"
+func (o *option) TargetBinding() string {
+	if o == nil || o.Security == nil {
+		return ""
+	}
+	return afterSym(afterSym(o.Security.TargetName, "\\"), "/")
+}
+
 // HasObjectUUID function returns `true` if set of options
 // contains the ObjectUUID option.
 func HasObjectUUID(opts any) (*uuid.UUID, bool) {
