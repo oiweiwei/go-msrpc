@@ -391,16 +391,25 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 
 		if dialer = t.settings.SMBDialer; dialer == nil {
 			// extract credentials.
-			creds, ok := gssapi.GetCredentialValue(ctx, "", nil, gssapi.InitiateOnly).(credential.Password)
-			if !ok {
+			switch creds := gssapi.GetCredentialValue(ctx, "", nil, gssapi.InitiateOnly).(type) {
+			case credential.Password:
+				// setup dialer using password.
+				dialer = &smb2.Dialer{
+					Initiator: &smb2.NTLMInitiator{
+						User:     creds.UserName(),
+						Password: creds.Password(),
+					},
+				}
+			case credential.NTHash:
+				// setup dialer using hash.
+				dialer = &smb2.Dialer{
+					Initiator: &smb2.NTLMInitiator{
+						User: creds.UserName(),
+						Hash: creds.NTHash(),
+					},
+				}
+			default:
 				return nil, fmt.Errorf("ncacn_np: no credentials")
-			}
-			// setup dialer.
-			dialer = &smb2.Dialer{
-				Initiator: &smb2.NTLMInitiator{
-					User:     creds.UserName(),
-					Password: creds.Password(),
-				},
 			}
 		}
 
