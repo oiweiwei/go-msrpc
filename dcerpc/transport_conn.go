@@ -190,6 +190,9 @@ func (t *transport) recv(ctx context.Context, call *call) error {
 		defer close(call.done)
 	}
 
+	// close output query for preventing the deadlock.
+	defer close(call.outQ)
+
 	if err := t.HasErr(); err != nil {
 		return err
 	}
@@ -217,11 +220,7 @@ func (t *transport) recv(ctx context.Context, call *call) error {
 		select {
 		case call.outQ <- hdr:
 		case <-deadline.C:
-			err = fmt.Errorf("caller-receiver timer expired")
-		}
-
-		if err != nil {
-			return t.WithErr(err)
+			return t.WithErr(fmt.Errorf("caller-receiver timer expired"))
 		}
 
 		// wait for buffer copy.
@@ -229,11 +228,7 @@ func (t *transport) recv(ctx context.Context, call *call) error {
 		select {
 		case <-call.inQ:
 		case <-deadline.C:
-			err = fmt.Errorf("caller-ready timer expired")
-		}
-
-		if err != nil {
-			return t.WithErr(err)
+			return t.WithErr(fmt.Errorf("caller-ready timer expired"))
 		}
 
 		// remove caller from the wait queue.
