@@ -20,6 +20,16 @@ func (g *GUID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(g.String())
 }
 
+func GUIDFromBytes(b []byte) (*GUID, error) {
+
+	u := &uuid.UUID{}
+	if err := u.DecodeBinary(b); err != nil {
+		return nil, err
+	}
+
+	return GUIDFromUUID(u), nil
+}
+
 func GUIDFromUUID(u *uuid.UUID) *GUID {
 	return &GUID{
 		Data1: u.TimeLow,
@@ -30,12 +40,18 @@ func GUIDFromUUID(u *uuid.UUID) *GUID {
 }
 
 func (o *GUID) UUID() *uuid.UUID {
+
+	data4 := o.Data4
+	if len(data4) < 8 {
+		data4 = make([]byte, 8)
+	}
+
 	return &uuid.UUID{
 		TimeLow:               o.Data1,
 		TimeMid:               o.Data2,
 		TimeHiAndVersion:      o.Data3,
-		ClockSeqHiAndReserved: o.Data4[0],
-		ClockSeqLow:           o.Data4[1],
-		Node:                  [6]byte{o.Data4[2], o.Data4[3], o.Data4[4], o.Data4[5], o.Data4[6], o.Data4[7]},
+		ClockSeqHiAndReserved: data4[0],
+		ClockSeqLow:           data4[1],
+		Node:                  [6]byte{data4[2], data4[3], data4[4], data4[5], data4[6], data4[7]},
 	}
 }
