@@ -11,7 +11,7 @@ func (o *InterfacePointer) IPID() *IPID {
 
 func (o *InterfacePointer) GetObjectReference() *ObjectReference {
 	ref := &ObjectReference{}
-	if len(o.Data) > 0 {
+	if o != nil && len(o.Data) > 0 {
 		ndr.Unmarshal(o.Data, ref, ndr.Opaque)
 	}
 	return ref

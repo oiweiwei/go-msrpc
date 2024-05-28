@@ -288,7 +288,6 @@ func (c *WaitChunk) Write(p []byte) (int, error) {
 	for n < len(p) {
 		c.out <- struct{}{}
 		if c.bAndFormat, ok = <-c.in; !ok {
-			c.bAndFormat.maxLen -= n
 			return n, nil
 		}
 		actual := copy(c.bAndFormat.b, p[n:])
@@ -325,7 +324,6 @@ func (c *WaitChunk) Read(p []byte) (int, error) {
 	for n < len(p) {
 		c.out <- struct{}{}
 		if c.bAndFormat, ok = <-c.in; !ok {
-			c.bAndFormat.maxLen -= n
 			return n, nil
 		}
 		actual := copy(p[n:], c.bAndFormat.b)

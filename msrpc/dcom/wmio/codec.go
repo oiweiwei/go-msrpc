@@ -60,6 +60,11 @@ func (c *Codec) clone() *Codec {
 	return &Codec{err: c.err, ctx: c.ctx, buf: c.buf, refs: c.refs}
 }
 
+// Bytes.
+func (c *Codec) Bytes() []byte {
+	return c.buf.Bytes()
+}
+
 // withBytes function sets the buffer bytes to the value `b`.
 func (c *Codec) withBytes(b []byte) *Codec { c.buf = bytes.NewBuffer(b); return c }
 

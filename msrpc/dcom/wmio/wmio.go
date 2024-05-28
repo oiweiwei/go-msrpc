@@ -25,6 +25,11 @@ func Unmarshal(b []byte) (*Object, error) {
 	return obj, obj.Decode(NewCodec(b[4:]))
 }
 
+func UnmarshalWithClass(b []byte, cls Class) (*Object, error) {
+	obj := &Object{}
+	return obj, obj.DecodeWithClass(NewCodec(b), cls)
+}
+
 type Decoration struct {
 	ServerName string `json:"server_name,omitempty"`
 	Namespace  string `json:"namespace,omitempty"`
@@ -95,6 +100,33 @@ type Object struct {
 	Decoration *Decoration  `json:"decoration,omitempty"`
 	Class      *ObjectClass `json:"class,omitempty"`
 	Instance   *Instance    `json:"instance,omitempty"`
+	Partial    bool         `json:"partial,omitempty"`
+	IsQuery    bool         `json:"is_query,omitempty"`
+}
+
+func (o *Object) Properties() Values {
+
+	var values = make(Values)
+
+	values["_CurrentClass"] = o.Class.CurrentClass.Name
+	values["_BaseClass"] = o.Class.ParentClass.Name
+
+	for _, prop := range o.Class.CurrentClass.Properties {
+		values[prop.Name] = prop.Value.Type.String()
+	}
+
+	return values
+}
+
+func (o *Object) Values() Values {
+
+	var values = make(Values)
+
+	for _, prop := range o.Instance.Properties {
+		values[prop.Name] = prop.Value.Value
+	}
+
+	return values
 }
 
 func (o *Object) Method(n string) (*Object, *Object, error) {
@@ -171,29 +203,38 @@ func (o *Object) Decode(r *Codec) error {
 	sz := uint32(0)
 	r.ReadData(&sz)
 	r.DecodeWithSize32(sz, func(r *Codec) error {
-		r.Begin("cim")
-		var flags uint8
-		r.ReadData(&flags)
-		if flags & ^uint8(0x07) != 0 {
-			return fmt.Errorf("invalid object flags 0x%02x", flags)
-		}
-		if flags&0x04 != 0 {
-			dcr := Decoration{}
-			r.ReadData(&dcr)
-			o.Decoration = &dcr
-		}
-		if flags&0x01 != 0 {
-			cls := ObjectClass{}
-			r.ReadData(&cls)
-			o.Class = &cls
-		}
-		if flags&0x02 != 0 {
-			ins := Instance{}
-			r.ReadData(&ins)
-			o.Instance = &ins
-		}
-		return r.Done()
+		return o.DecodeWithClass(r, Class{})
 	})
+	return r.Done()
+}
+
+func (o *Object) DecodeWithClass(r *Codec, cls Class) error {
+	r.Begin("object")
+	var flags ObjectFlag
+	r.ReadData((*uint8)(&flags))
+	if flags & ^(ObjectFlagMask) != 0 {
+		return fmt.Errorf("invalid object flags 0x%02x", flags)
+	}
+
+	o.IsQuery = flags&ObjectFlagQuery != 0
+
+	o.Partial = flags&ObjectFlagPartial != 0
+
+	if flags&ObjectFlagDecoration != 0 {
+		dcr := Decoration{}
+		r.ReadData(&dcr)
+		o.Decoration = &dcr
+	}
+	if flags&ObjectFlagClass != 0 {
+		cls := ObjectClass{}
+		r.ReadData(&cls)
+		o.Class = &cls
+	}
+	if flags&ObjectFlagInstance != 0 {
+		ins := Instance{CurrentClass: cls}
+		r.ReadData(&ins)
+		o.Instance = &ins
+	}
 	return r.Done()
 }
 
@@ -241,12 +282,13 @@ type Instance struct {
 	Qualifiers   []*Qualifier `json:"qualifiers,omitempty"`
 }
 
-func (o *Instance) Decode(r *Codec) error {
+func (o *Instance) DecodeInstanceNoClass(r *Codec) error {
 
-	r.Begin("instance")
+	if o.CurrentClass.Name == "" {
+		return fmt.Errorf("instance current_class is missing")
+	}
 
-	r.ReadData(&o.CurrentClass)
-	r.DecodeWithLength32(func(r *Codec) error {
+	return r.DecodeWithLength32(func(r *Codec) error {
 
 		r.Begin("body")
 
@@ -260,13 +302,13 @@ func (o *Instance) Decode(r *Codec) error {
 		o.Properties = make([]*Property, pSz)
 		for i := range o.Properties {
 			cp := o.CurrentClass.Properties[i]
-			o.Properties[i] = &Property{Name: cp.Name, Value: cp.Value}
+			o.Properties[cp.Order] = &Property{Name: cp.Name, Value: cp.Value, Offset: cp.Offset, Order: cp.Order}
 		}
 
 		r.DecodeWithSize32(o.CurrentClass.NDValueSize, func(r *Codec) error {
 			r.Begin("nd_value_table")
 			cur := uint8(0)
-			for i := range o.Properties {
+			for i := 0; i < len(o.Properties); i++ {
 				if i%4 == 0 {
 					r.ReadData(&cur)
 				}
@@ -284,7 +326,7 @@ func (o *Instance) Decode(r *Codec) error {
 
 			for i := range o.Properties {
 				if !o.Properties[i].Nullable && !o.Properties[i].InheritDefault {
-					r.DecodeWithBytes(vT[o.CurrentClass.Properties[i].Offset:], &o.Properties[i].Value)
+					r.DecodeWithBytes(vT[o.Properties[i].Offset:], &o.Properties[i].Value)
 				}
 			}
 
@@ -313,6 +355,19 @@ func (o *Instance) Decode(r *Codec) error {
 
 		return r.Done()
 	})
+}
+
+func (o *Instance) Decode(r *Codec) error {
+
+	r.Begin("instance")
+
+	if o.CurrentClass.Name == "" {
+		// read current class if not provided.
+		r.ReadData(&o.CurrentClass)
+	}
+
+	// decode instance without class.
+	o.DecodeInstanceNoClass(r)
 
 	return r.Done()
 }
@@ -786,9 +841,20 @@ func (o *Qualifier) Encode(r *Codec) error {
 type ObjectFlag uint8
 
 const (
-	ObjectFlagClass      ObjectFlag = 0x01
-	ObjectFlagInstance   ObjectFlag = 0x02
+	// The object is a CIM class. This flag is mutually exclusive with 0x02.
+	ObjectFlagClass ObjectFlag = 0x01
+	// The object is a CIM instance. This flag is mutually exclusive with 0x01.
+	ObjectFlagInstance ObjectFlag = 0x02
+	// If this flag is set, the object has a Decoration block.
 	ObjectFlagDecoration ObjectFlag = 0x04
+	// If this flag is set, the object is a prototype of the result
+	// object for the query
+	ObjectFlagQuery ObjectFlag = 0x40
+	// If this flag is set, one or more key properties of the class are
+	// not present in the Prototype Result Object.
+	ObjectFlagPartial ObjectFlag = 0x10
+	// Mask.
+	ObjectFlagMask = ObjectFlagClass | ObjectFlagInstance | ObjectFlagDecoration | ObjectFlagQuery | ObjectFlagPartial
 )
 
 var cimDictionary = [...]string{

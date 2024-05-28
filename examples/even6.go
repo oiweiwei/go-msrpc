@@ -3,6 +3,8 @@
 // even6.go runs various eventlog6 commands. dump will dump the event log,
 // chan will list the log channels, publ will list the log publishers and meta will print
 // all the templates for the given publisher.
+//
+// useful links: https://docs.nxlog.co/integrate/windows-eventlog.html
 package main
 
 import (
