@@ -1,12 +1,27 @@
-//go:build exclude
+//go:build ignore
 
-// dcom.go script executes the calc.exe on the remote machine.
+// wmiexec.go is a sample for executing arbitrary WMI class method on the remote machine, examples:
+
+// (1) enumerate sub keys on the remote machine, where 2147483650 is HKEY_LOCAL_MACHINE
+// (see https://learn.microsoft.com/en-us/previous-versions/windows/desktop/regprov/enumkey-method-in-class-stdregprov)
+//
+//		go run wmiexec.go \
+//	         --debug \
+//				--class StdRegProv \
+//				--method EnumKey \
+//				--args '{"hDefKey": 2147483650, "sSubKeyName": "SYSTEM\\CurrentControlSet\\Services"}'
+//
+// (2) cerate a process on the remote machine:
+//
+//	go run wmiexec.go --class Win32Process --method Create --args '{"CommandLine": "calc.exe", "CurrentDirectory": "C:\\"}'
 package main
 
 import (
 	"context"
 	"encoding/json"
+	"flag"
 	"fmt"
+	"io"
 	"net"
 	"os"
 
@@ -35,6 +50,32 @@ import (
 
 var j = func(data any) string { b, _ := json.MarshalIndent(data, "", "  "); return string(b) }
 
+var (
+	class    string
+	method   string
+	arg      string
+	resource string
+	debug    bool
+	args     wmio.Values
+)
+
+func init() {
+
+	flag.StringVar(&class, "class", "Win32_Process", "class name")
+	flag.StringVar(&method, "method", "Create", "method name")
+	flag.StringVar(&arg, "args", `{"CommandLine":"calc.exe","CurrentDirectory":"C:\\"}`, "method args")
+	flag.StringVar(&resource, "resource", "//./root/cimv2", "resource name, ie root/default, or root/cimv2")
+	flag.BoolVar(&debug, "debug", false, "debug")
+
+	flag.Parse()
+
+	if err := json.Unmarshal([]byte(arg), &args); err != nil {
+		fmt.Fprintln(os.Stderr, "parse_args", err)
+		os.Exit(1)
+	}
+
+}
+
 func init() {
 	// add credentials.
 	gssapi.AddCredential(credential.NewFromPassword(os.Getenv("USERNAME"), os.Getenv("PASSWORD")))
@@ -45,6 +86,14 @@ func init() {
 }
 
 func main() {
+
+	log := zerolog.New(os.Stderr)
+
+	if !debug {
+		log = zerolog.New(io.Discard)
+	}
+
+	log.Info().Str("class", class).Str("method", method).Str("args", fmt.Sprintf("%+v", args)).Msg("execute")
 
 	ctx := gssapi.NewSecurityContext(context.Background())
 
@@ -73,17 +122,19 @@ func main() {
 		return
 	}
 
-	fmt.Println("-----------------------")
-	fmt.Println("OBJECT RESOLVER STRING BINDINGS")
-	fmt.Println("-----------------------")
+	if debug {
+		fmt.Println("-----------------------")
+		fmt.Println("OBJECT RESOLVER STRING BINDINGS")
+		fmt.Println("-----------------------")
 
-	fmt.Println(j(srv.ObjectResolverBindings.GetStringBindings()))
+		fmt.Println(j(srv.ObjectResolverBindings.GetStringBindings()))
 
-	fmt.Println("-----------------------")
-	fmt.Println("OBJECT RESOLVER SECURITY BINDINGS")
-	fmt.Println("-----------------------")
+		fmt.Println("-----------------------")
+		fmt.Println("OBJECT RESOLVER SECURITY BINDINGS")
+		fmt.Println("-----------------------")
 
-	fmt.Println(j(srv.ObjectResolverBindings.GetSecurityBindings()))
+		fmt.Println(j(srv.ObjectResolverBindings.GetSecurityBindings()))
+	}
 
 	// dial activation client.
 	// cc, err = dcerpc.Dial(ctx, net.JoinHostPort(os.Getenv("SERVER"), "135"))
@@ -118,17 +169,19 @@ func main() {
 		return
 	}
 
-	fmt.Println("-----------------------")
-	fmt.Println("REMOTE ACTIVATION")
-	fmt.Println("-----------------------")
-
-	fmt.Println(j(act))
-
-	for i, ifd := range act.InterfaceData {
+	if debug {
 		fmt.Println("-----------------------")
-		fmt.Println(i, "REMOTE ACTIVATION INTERFACE")
+		fmt.Println("REMOTE ACTIVATION")
 		fmt.Println("-----------------------")
-		fmt.Println(j(ifd.GetObjectReference()))
+
+		fmt.Println(j(act))
+
+		for i, ifd := range act.InterfaceData {
+			fmt.Println("-----------------------")
+			fmt.Println(i, "REMOTE ACTIVATION INTERFACE")
+			fmt.Println("-----------------------")
+			fmt.Println(j(ifd.GetObjectReference()))
+		}
 	}
 
 	std := act.InterfaceData[0].GetStandardObjectReference().Std
@@ -149,7 +202,7 @@ func main() {
 	l1login, err := iwbemlevel1login.NewLevel1LoginClient(ctx, wcc,
 		dcom.WithIPID(std.IPID),
 		dcerpc.WithSign(),
-		dcerpc.WithTargetName(os.Getenv("TARGET")), dcerpc.WithLogger(zerolog.New(os.Stdout)))
+		dcerpc.WithTargetName(os.Getenv("TARGET")), dcerpc.WithLogger(log))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
@@ -164,12 +217,14 @@ func main() {
 		return
 	}
 
-	fmt.Println(j(pos))
+	if debug {
+		fmt.Println(j(pos))
+	}
 
 	// login to WMI.
 	login, err := l1login.NTLMLogin(ctx, &iwbemlevel1login.NTLMLoginRequest{
 		This:            &dcom.ORPCThis{Version: srv.COMVersion},
-		NetworkResource: "//./root/cimv2",
+		NetworkResource: resource,
 	})
 
 	if err != nil {
@@ -177,7 +232,9 @@ func main() {
 		return
 	}
 
-	fmt.Println(j(login))
+	if debug {
+		fmt.Println(j(login))
+	}
 
 	ns := login.Namespace
 
@@ -190,17 +247,17 @@ func main() {
 
 	builder := query.NewBuilder(ctx, svcs, srv.COMVersion)
 
-	in := wmio.Values{
-		"CommandLine":      "cmd.exe /Q /c calc.exe",
-		"CurrentDirectory": "C:\\",
+	if debug {
+		obj, _ := builder.Spawn(class).Method(method).Values(args, wmio.JSONValueToType).Object()
+		fmt.Println(j(obj))
 	}
 
 	// use simple query builder to execute the Create static method of the Win32_Process.
-	out, err := builder.Spawn("Win32_Process").Method("Create").Values(in).Exec().Object()
+	out, err := builder.Spawn(class).Method(method).Values(args, wmio.JSONValueToType).Exec().Object()
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "svcs_exec_method", err)
 		return
 	}
 
-	fmt.Println(j(out))
+	fmt.Println(j(out.Values()))
 }

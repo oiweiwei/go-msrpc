@@ -78,7 +78,7 @@ func (b *builder) Spawn(cls string) *builder {
 
 	obj, err := b.wmi.GetObject(b.ctx, &iwbemservices.GetObjectRequest{
 		This:       &dcom.ORPCThis{Version: b.ver},
-		ObjectPath: &oaut.String{Data: "Win32_Process"},
+		ObjectPath: &oaut.String{Data: cls},
 		Object:     &wmi.ClassObject{},
 	})
 
@@ -109,13 +109,13 @@ func (b *builder) Method(m string) *builder {
 }
 
 // Values function sets the parameters for the object.
-func (b *builder) Values(values wmio.Values) *builder {
+func (b *builder) Values(values wmio.Values, convert ...func(any, wmio.CIMType) (any, bool)) *builder {
 
 	if b.obj == nil {
 		return b.withErrf("Values: object is nil")
 	}
 
-	params, err := b.obj.New(values)
+	params, err := b.obj.New(values, convert...)
 	if err != nil {
 		return b.withErrf("Values: %v", params)
 	}

@@ -147,7 +147,7 @@ func (o *Object) Method(n string) (*Object, *Object, error) {
 
 type Values map[string]any
 
-func (o *Object) New(values Values) (*Object, error) {
+func (o *Object) New(values Values, convert ...func(any, CIMType) (any, bool)) (*Object, error) {
 
 	if values == nil {
 		values = make(map[string]any)
@@ -187,12 +187,21 @@ func (o *Object) New(values Values) (*Object, error) {
 			continue
 		}
 
-		typ, err := ValueType(value)
-		if err != nil {
-			return nil, fmt.Errorf("%s: %v", inst.CurrentClass.Properties[i].Name, err)
+		var typeOk bool
+
+		if len(convert) > 0 {
+			value, typeOk = convert[0](value, inst.CurrentClass.Properties[i].Value.Type)
+			inst.Properties[i] = &Property{Value: Value{Type: inst.CurrentClass.Properties[i].Value.Type, Value: value}}
 		}
 
-		inst.Properties[i] = &Property{Value: Value{Type: typ, Value: value}}
+		if !typeOk {
+			typ, err := ValueType(value)
+			if err != nil {
+				return nil, fmt.Errorf("%s: %v", inst.CurrentClass.Properties[i].Name, err)
+			}
+			inst.Properties[i] = &Property{Value: Value{Type: typ, Value: value}}
+		}
+
 	}
 
 	return &Object{Instance: inst}, nil

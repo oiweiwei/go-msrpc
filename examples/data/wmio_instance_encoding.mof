@@ -14,8 +14,8 @@ class MyClass : Base {
 };
 
 instance of MyClass {
-  Array = {1, 2, 3};
+  Id = 123;
   Data1 = "StringField";
   Data2 = "defaultValue";
-  Id = 123;
+  Array = {1, 2, 3};
 };
