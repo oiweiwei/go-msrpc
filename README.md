@@ -1,6 +1,9 @@
-# MS-RPC IDL Parser/Codegen for Go
+# MS-RPC IDL Parser/Codegen for Go / MS-RPC/DCOM Client
 
 The IDL parser for the [Microsoft Extension](https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-rpce/290c38b1-92fe-4229-91e6-4fc376610c15) of the [C706: DCE/RPC 1.1](http://www.dcerpc.org/documentation/).
+
+The client stub generator for many [MSRPC](./msrpc) / [DCOM](./msrpc/dcom) services including (but not limited to - see complete list below)
+[Netlogon](./msrpc/nrpc), [Windows Registry](./msrpc/rrp), [Eventlog](./msrpc/even6), [DCOM (OXID resolver)](./msrpc/dcom), [WMI](./msrpc/dcom/wmi) ([query](./examples/wmic.go) and [method exec](./examples/wmiexec.go)) support.
 
 ## Usage
 
