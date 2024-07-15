@@ -13,6 +13,8 @@ type Config struct {
 	Capabilities gssapi.Cap
 	// The list of negotiated mechanisms.
 	MechanismsList []gssapi.MechanismFactory
+	// Require mechanism list MIC.
+	RequireMechanismListMIC bool
 }
 
 type Authentifier struct {
@@ -22,8 +24,6 @@ type Authentifier struct {
 	Mechanism gssapi.Mechanism
 	// The retrieved Mechanism List.
 	RetrievedMechanismList []asn1.ObjectIdentifier
-	// Require mechanism list MIC.
-	RequireMechanismListMIC bool
 }
 
 func (a *Authentifier) Negotiate(ctx context.Context) ([]byte, error) {
@@ -108,7 +108,7 @@ func (a *Authentifier) Respond(ctx context.Context, b []byte) ([]byte, error) {
 				return nil, fmt.Errorf("spnego: init: marshal mech list: %w", err)
 			}
 
-			if len(resp.MechListMIC) > 0 || a.RequireMechanismListMIC {
+			if len(resp.MechListMIC) > 0 || a.Config.RequireMechanismListMIC {
 				err = a.Mechanism.VerifySignature(ctx, &gssapi.MessageToken{Payload: b, Signature: resp.MechListMIC})
 				if err != nil {
 					return nil, fmt.Errorf("spnego: init: verify mech list mic: %w", err)
