@@ -124,7 +124,11 @@ func (v1 *V1) ChallengeResponse(ctx context.Context, cred Credential,
 
 	if cred == nil || (cred.UserName() == "" && IsCredentialEmpty(cred)) {
 		// anonymous case.
-		return &ChallengeResponse{LM: []byte{0}, IsAnonymous: true}, nil
+		return &ChallengeResponse{
+			LM:             []byte{0},
+			IsAnonymous:    true,
+			SessionBaseKey: make([]byte, 16),
+		}, nil
 	}
 
 	var (

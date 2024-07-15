@@ -69,3 +69,8 @@ func NewFromPassword(un, passwd string, workstation ...string) Password {
 		workstation: wkst,
 	}
 }
+
+// Anonymous function returns the anonymous password credentials.
+func Anonymous() Password {
+	return &password{}
+}
