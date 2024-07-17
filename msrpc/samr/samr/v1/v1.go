@@ -317,6 +317,2276 @@ type SamrClient interface {
 	AlterContext(context.Context, ...dcerpc.Option) error
 }
 
+// NTLMStrongNTOWF structure represents NTLM_STRONG_NTOWF RPC structure.
+type NTLMStrongNTOWF struct {
+	NTLMStrongNTOWF []byte `idl:"name:NTLMStrongNTOWF" json:"ntlm_strong_ntowf"`
+}
+
+func (o *NTLMStrongNTOWF) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *NTLMStrongNTOWF) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	if o.NTLMStrongNTOWF != nil {
+		_ptr_NTLMStrongNTOWF := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.NTLMStrongNTOWF {
+				i1 := i1
+				if uint64(i1) >= 16 {
+					break
+				}
+				if err := w.WriteData(o.NTLMStrongNTOWF[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.NTLMStrongNTOWF); uint64(i1) < 16; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.NTLMStrongNTOWF, _ptr_NTLMStrongNTOWF); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *NTLMStrongNTOWF) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_NTLMStrongNTOWF := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		o.NTLMStrongNTOWF = make([]byte, 16)
+		for i1 := range o.NTLMStrongNTOWF {
+			i1 := i1
+			if err := w.ReadData(&o.NTLMStrongNTOWF[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_NTLMStrongNTOWF := func(ptr interface{}) { o.NTLMStrongNTOWF = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.NTLMStrongNTOWF, _s_NTLMStrongNTOWF, _ptr_NTLMStrongNTOWF); err != nil {
+		return err
+	}
+	return nil
+}
+
+// PackagesCredentials structure represents PACKAGES_CREDENTIALS RPC structure.
+type PackagesCredentials struct {
+	Packages []string `idl:"name:Packages" json:"packages"`
+}
+
+func (o *PackagesCredentials) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *PackagesCredentials) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	if o.Packages != nil {
+		_ptr_Packages := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			var _Packages_buf []uint16
+			for i1 := range o.Packages {
+				_Packages_buf = append(_Packages_buf, utf16.Encode([]rune(o.Packages[i1]))...)
+				_Packages_buf = append(_Packages_buf, uint16(0))
+			}
+			_Packages_buf = append(_Packages_buf, uint16(0))
+			for i1 := range _Packages_buf {
+				i1 := i1
+				if err := w.WriteData(_Packages_buf[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Packages, _ptr_Packages); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *PackagesCredentials) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_Packages := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		var _Packages_buf []uint16
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			_Packages_buf = append(_Packages_buf, uint16(0))
+			if err := w.ReadData(&_Packages_buf[i1]); err != nil {
+				return err
+			}
+		}
+		_tmp_Packages_buf := string(utf16.Decode(_Packages_buf))
+		if _tmp_Packages_buf = strings.TrimRight(_tmp_Packages_buf, ndr.ZeroString); _tmp_Packages_buf != "" {
+			o.Packages = strings.Split(_tmp_Packages_buf, ndr.ZeroString)
+		}
+		return nil
+	})
+	_s_Packages := func(ptr interface{}) { o.Packages = *ptr.(*[]string) }
+	if err := w.ReadPointer(&o.Packages, _s_Packages, _ptr_Packages); err != nil {
+		return err
+	}
+	return nil
+}
+
+// WdigestCredentials structure represents WDIGEST_CREDENTIALS RPC structure.
+//
+// The WDIGEST_CREDENTIALS structure defines the format of the Primary:WDigest property
+// within the supplementalCredentials attribute. This structure is stored as a property
+// value in a USER_PROPERTY structure.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved1                     | Reserved2                     | Version                       | NumberOfHashes                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved3                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash1 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash2 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash3 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash4 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash5 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash6 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash7 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash8 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash9 (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash10 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash11 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash12 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash13 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash14 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash15 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash16 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash17 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash18 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash19 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash20 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash21 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash22 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash23 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash24 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash25 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash26 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash27 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash28 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Hash29 (16 bytes)                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type WdigestCredentials struct {
+	// Reserved1 (1 byte): This value MUST be ignored by the recipient and MAY<25> be set
+	// to arbitrary values upon an update to the supplementalCredentials attribute.
+	_ uint8 `idl:"name:Reserved1"`
+	// Reserved2 (1 byte): This value MUST be ignored by the recipient and MUST be set to
+	// zero.
+	_ uint8 `idl:"name:Reserved2"`
+	// Version (1 byte): This value MUST be set to 1.
+	Version uint8 `idl:"name:Version" json:"version"`
+	// NumberOfHashes (1 byte): This value MUST be set to 29 because there are 29 hashes
+	// in the array.
+	NumberOfHashes uint8 `idl:"name:NumberOfHashes" json:"number_of_hashes"`
+	// Reserved3 (12 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	//
+	// For information on the Hash fields, see section 3.1.1.8.11.
+	_      []byte   `idl:"name:Reserved3"`
+	Hashes [][]byte `idl:"name:Hashes" json:"hashes"`
+}
+
+func (o *WdigestCredentials) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *WdigestCredentials) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	if err := w.WriteData(uint8(0)); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	if err := w.WriteData(uint8(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Version); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NumberOfHashes); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	for i1 := 0; uint64(i1) < 12; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.Hashes {
+		i1 := i1
+		if uint64(i1) >= 29 {
+			break
+		}
+		for i2 := range o.Hashes[i1] {
+			i2 := i2
+			if uint64(i2) >= 16 {
+				break
+			}
+			if err := w.WriteData(o.Hashes[i1][i2]); err != nil {
+				return err
+			}
+		}
+		for i2 := len(o.Hashes[i1]); uint64(i2) < 16; i2++ {
+			if err := w.WriteData(uint8(0)); err != nil {
+				return err
+			}
+		}
+	}
+	for i1 := len(o.Hashes); uint64(i1) < 29; i1++ {
+		for i2 := 0; uint64(i2) < 16; i2++ {
+			if err := w.WriteData(uint8(0)); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+func (o *WdigestCredentials) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	// reserved Reserved1
+	var _Reserved1 uint8
+	if err := w.ReadData(&_Reserved1); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	var _Reserved2 uint8
+	if err := w.ReadData(&_Reserved2); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Version); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NumberOfHashes); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	var _Reserved3 []byte
+	_Reserved3 = make([]byte, 12)
+	for i1 := range _Reserved3 {
+		i1 := i1
+		if err := w.ReadData(&_Reserved3[i1]); err != nil {
+			return err
+		}
+	}
+	o.Hashes = make([][]byte, 29)
+	for i1 := range o.Hashes {
+		i1 := i1
+		o.Hashes[i1] = make([]byte, 16)
+		for i2 := range o.Hashes[i1] {
+			i2 := i2
+			if err := w.ReadData(&o.Hashes[i1][i2]); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+// KerberosKeyData structure represents KERB_KEY_DATA RPC structure.
+//
+// The KERB_KEY_DATA structure holds a cryptographic key. This structure is used in
+// conjunction with KERB_STORED_CREDENTIAL. For more information, see section 3.1.1.8.11.4.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved1                                                     | Reserved2                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved3                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyType                                                                                                                       |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyLength                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyOffset                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type KerberosKeyData struct {
+	// Reserved1 (2 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	_ uint16 `idl:"name:Reserved1"`
+	// Reserved2 (2 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	_ uint16 `idl:"name:Reserved2"`
+	// Reserved3 (4 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	_ uint32 `idl:"name:Reserved3"`
+	// KeyType (4 bytes): Indicates the type of key, stored as a 32-bit unsigned integer
+	// in little-endian byte order. This MUST be set to one of the following values, which
+	// are defined in section 2.2.10.8.
+	//
+	//	+-------+-------------+
+	//	|       |             |
+	//	| VALUE |   MEANING   |
+	//	|       |             |
+	//	+-------+-------------+
+	//	+-------+-------------+
+	//	|     1 | dec-cbc-crc |
+	//	+-------+-------------+
+	//	|     3 | des-cbc-md5 |
+	//	+-------+-------------+
+	KeyType   uint32 `idl:"name:KeyType" json:"key_type"`
+	KeyLenght uint32 `idl:"name:KeyLenght" json:"key_lenght"`
+	// KeyOffset (4 bytes): An offset, in little-endian byte order, from the beginning of
+	// the property value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL)
+	// to where the key value starts. The key value is the hash value specified according
+	// to the KeyType.
+	KeyOffset uint32 `idl:"name:KeyOffset" json:"key_offset"`
+	KeyData   []byte `idl:"name:KeyData" json:"key_data"`
+}
+
+func (o *KerberosKeyData) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *KerberosKeyData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KeyType); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KeyLenght); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KeyOffset); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	var _Reserved1 uint16
+	if err := w.ReadData(&_Reserved1); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	var _Reserved2 uint16
+	if err := w.ReadData(&_Reserved2); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	var _Reserved3 uint32
+	if err := w.ReadData(&_Reserved3); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KeyType); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KeyLenght); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KeyOffset); err != nil {
+		return err
+	}
+	return nil
+}
+
+// KerberosStoredCredential structure represents KERB_STORED_CREDENTIAL RPC structure.
+//
+// The KERB_STORED_CREDENTIAL structure is a variable-length structure that defines
+// the format of the Primary:Kerberos property within the supplementalCredentials attribute.
+// For information on how this structure is created, see section 3.1.1.8.11.4.
+//
+// This structure is stored as a property value in a USER_PROPERTY structure.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Revision                                                      | Flags                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| CredentialCount                                               | OldCredentialCount                                            |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultSaltLength                                             | DefaultSaltMaximumLength                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultSaltOffset                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Credentials (variable)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| OldCredentials (variable)                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultSalt (variable)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyValues (variable)                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type KerberosStoredCredential struct {
+	// Revision (2 bytes): This value MUST be set to 3.
+	Revision uint16 `idl:"name:Revision" json:"revision"`
+	// Flags (2 bytes): This value MUST be zero and ignored on read.
+	Flags uint16 `idl:"name:Flags" json:"flags"`
+	// CredentialCount (2 bytes): This is the count of elements in the Credentials array.
+	// This value MUST be set to 2.
+	CredentialCount uint16 `idl:"name:CredentialCount" json:"credential_count"`
+	// OldCredentialCount (2 bytes): This is the count of elements in the OldCredentials
+	// array that contain the keys for the previous password. This value MUST be set to
+	// 0 or 2.
+	OldCredentialCount uint16 `idl:"name:OldCredentialCount" json:"old_credential_count"`
+	// DefaultSaltLength (2 bytes): The length, in bytes, of a salt value.
+	DefaultSaltLength uint16 `idl:"name:DefaultSaltLength" json:"default_salt_length"`
+	// DefaultSaltMaximumLength (2 bytes): The length, in bytes, of the buffer containing
+	// the salt value.
+	DefaultSaltMaximumLength uint16 `idl:"name:DefaultSaltMaximumLength" json:"default_salt_maximum_length"`
+	// DefaultSaltOffset (4 bytes): An offset, in little-endian byte order, from the beginning
+	// of the attribute value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL)
+	// to where the salt value starts. This value SHOULD be ignored on read.
+	DefaultSaltOffset uint32 `idl:"name:DefaultSaltOffset" json:"default_salt_offset"`
+	// Credentials (variable): An array of CredentialCount KERB_KEY_DATA (section 2.2.10.5)
+	// elements.
+	Credentials []*KerberosKeyData `idl:"name:Credentials;size_is:(CredentialCount)" json:"credentials"`
+	// OldCredentials (variable): An array of OldCredentialCount KERB_KEY_DATA elements.
+	OldCredentials []*KerberosKeyData `idl:"name:OldCredentials;size_is:(OldCredentialCount)" json:"old_credentials"`
+	// DefaultSalt (variable): The default salt value.
+	DefaultSalt []byte `idl:"name:DefaultSalt;size_is:(DefaultSaltMaximumLength)" json:"default_salt"`
+	// KeyValues (variable): An array of CredentialCount + OldCredentialCount key values.
+	// Each key value MUST be located at the offset specified by the corresponding KeyOffset
+	// values specified in Credentials and OldCredentials.
+	KeyValues []byte `idl:"name:KeyValues" json:"key_values"`
+}
+
+func (o *KerberosStoredCredential) xxx_PreparePayload(ctx context.Context) error {
+	if o.Credentials != nil && o.CredentialCount == 0 {
+		o.CredentialCount = uint16(len(o.Credentials))
+	}
+	if o.OldCredentials != nil && o.OldCredentialCount == 0 {
+		o.OldCredentialCount = uint16(len(o.OldCredentials))
+	}
+	if o.DefaultSalt != nil && o.DefaultSaltMaximumLength == 0 {
+		o.DefaultSaltMaximumLength = uint16(len(o.DefaultSalt))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *KerberosStoredCredential) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Revision); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.CredentialCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.OldCredentialCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultSaltLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultSaltMaximumLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultSaltOffset); err != nil {
+		return err
+	}
+	if o.Credentials != nil || o.CredentialCount > 0 {
+		_ptr_Credentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.CredentialCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Credentials {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Credentials[i1] != nil {
+					_ptr_Credentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.Credentials[i1] != nil {
+							if err := o.Credentials[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&KerberosKeyData{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.Credentials[i1], _ptr_Credentials); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Credentials); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Credentials, _ptr_Credentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.OldCredentials != nil || o.OldCredentialCount > 0 {
+		_ptr_OldCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.OldCredentialCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.OldCredentials {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.OldCredentials[i1] != nil {
+					_ptr_OldCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.OldCredentials[i1] != nil {
+							if err := o.OldCredentials[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&KerberosKeyData{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.OldCredentials[i1], _ptr_OldCredentials); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.OldCredentials); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.OldCredentials, _ptr_OldCredentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.DefaultSalt != nil || o.DefaultSaltMaximumLength > 0 {
+		_ptr_DefaultSalt := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.DefaultSaltMaximumLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.DefaultSalt {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.DefaultSalt[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.DefaultSalt); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.DefaultSalt, _ptr_DefaultSalt); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.KeyValues != nil {
+		_ptr_KeyValues := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.KeyValues {
+				i1 := i1
+				if err := w.WriteData(o.KeyValues[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.KeyValues, _ptr_KeyValues); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *KerberosStoredCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Revision); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.CredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.OldCredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultSaltLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultSaltMaximumLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultSaltOffset); err != nil {
+		return err
+	}
+	_ptr_Credentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.CredentialCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.CredentialCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Credentials", sizeInfo[0])
+		}
+		o.Credentials = make([]*KerberosKeyData, sizeInfo[0])
+		for i1 := range o.Credentials {
+			i1 := i1
+			_ptr_Credentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.Credentials[i1] == nil {
+					o.Credentials[i1] = &KerberosKeyData{}
+				}
+				if err := o.Credentials[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_Credentials := func(ptr interface{}) { o.Credentials[i1] = *ptr.(**KerberosKeyData) }
+			if err := w.ReadPointer(&o.Credentials[i1], _s_Credentials, _ptr_Credentials); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Credentials := func(ptr interface{}) { o.Credentials = *ptr.(*[]*KerberosKeyData) }
+	if err := w.ReadPointer(&o.Credentials, _s_Credentials, _ptr_Credentials); err != nil {
+		return err
+	}
+	_ptr_OldCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.OldCredentialCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.OldCredentialCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.OldCredentials", sizeInfo[0])
+		}
+		o.OldCredentials = make([]*KerberosKeyData, sizeInfo[0])
+		for i1 := range o.OldCredentials {
+			i1 := i1
+			_ptr_OldCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.OldCredentials[i1] == nil {
+					o.OldCredentials[i1] = &KerberosKeyData{}
+				}
+				if err := o.OldCredentials[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_OldCredentials := func(ptr interface{}) { o.OldCredentials[i1] = *ptr.(**KerberosKeyData) }
+			if err := w.ReadPointer(&o.OldCredentials[i1], _s_OldCredentials, _ptr_OldCredentials); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_OldCredentials := func(ptr interface{}) { o.OldCredentials = *ptr.(*[]*KerberosKeyData) }
+	if err := w.ReadPointer(&o.OldCredentials, _s_OldCredentials, _ptr_OldCredentials); err != nil {
+		return err
+	}
+	_ptr_DefaultSalt := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.DefaultSaltMaximumLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.DefaultSaltMaximumLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.DefaultSalt", sizeInfo[0])
+		}
+		o.DefaultSalt = make([]byte, sizeInfo[0])
+		for i1 := range o.DefaultSalt {
+			i1 := i1
+			if err := w.ReadData(&o.DefaultSalt[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_DefaultSalt := func(ptr interface{}) { o.DefaultSalt = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.DefaultSalt, _s_DefaultSalt, _ptr_DefaultSalt); err != nil {
+		return err
+	}
+	_ptr_KeyValues := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.KeyValues = append(o.KeyValues, uint8(0))
+			if err := w.ReadData(&o.KeyValues[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_KeyValues := func(ptr interface{}) { o.KeyValues = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.KeyValues, _s_KeyValues, _ptr_KeyValues); err != nil {
+		return err
+	}
+	return nil
+}
+
+// KerberosKeyDataNew structure represents KERB_KEY_DATA_NEW RPC structure.
+//
+// The KERB_KEY_DATA_NEW structure holds a cryptographic key. This structure is used
+// in conjunction with KERB_STORED_CREDENTIAL_NEW. For more information, see section
+// 3.1.1.8.11.6.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved1                                                     | Reserved2                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved3                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| IterationCount                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyType                                                                                                                       |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyLength                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyOffset                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type KerberosKeyDataNew struct {
+	// Reserved1 (2 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	_ uint16 `idl:"name:Reserved1"`
+	// Reserved2 (2 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	_ uint16 `idl:"name:Reserved2"`
+	// Reserved3 (4 bytes): This value MUST be ignored by the recipient and MUST be set
+	// to zero.
+	_ uint32 `idl:"name:Reserved3"`
+	// IterationCount (4 bytes):  Indicates the iteration count used to calculate the password
+	// hashes.
+	IterationCount uint32 `idl:"name:IterationCount" json:"iteration_count"`
+	// KeyType (4 bytes): Indicates the type of key, stored as a 32-bit unsigned integer
+	// in little-endian byte order. This MUST be one of the values listed in section 2.2.10.8.
+	KeyType   uint32 `idl:"name:KeyType" json:"key_type"`
+	KeyLenght uint32 `idl:"name:KeyLenght" json:"key_lenght"`
+	// KeyOffset (4 bytes): An offset, in little-endian byte order, from the beginning of
+	// the property value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL_NEW)
+	// to where the key value starts.
+	KeyOffset uint32 `idl:"name:KeyOffset" json:"key_offset"`
+	KeyData   []byte `idl:"name:KeyData" json:"key_data"`
+}
+
+func (o *KerberosKeyDataNew) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *KerberosKeyDataNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.IterationCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KeyType); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KeyLenght); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.KeyOffset); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	var _Reserved1 uint16
+	if err := w.ReadData(&_Reserved1); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	var _Reserved2 uint16
+	if err := w.ReadData(&_Reserved2); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	var _Reserved3 uint32
+	if err := w.ReadData(&_Reserved3); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.IterationCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KeyType); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KeyLenght); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.KeyOffset); err != nil {
+		return err
+	}
+	return nil
+}
+
+// KerberosStoredCredentialNew structure represents KERB_STORED_CREDENTIAL_NEW RPC structure.
+//
+// The KERB_STORED_CREDENTIAL_NEW structure is a variable-length structure that defines
+// the format of the Primary:Kerberos-Newer-Keys property within the supplementalCredentials
+// attribute. For information on how this structure is created, see section 3.1.1.8.11.6.
+//
+// This structure is stored as a property value in a USER_PROPERTY structure.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Revision                                                      | Flags                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| CredentialCount                                               | ServiceCredentialCount                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| OldCredentialCount                                            | OlderCredentialCount                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultSaltLength                                             | DefaultSaltMaximumLength                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultSaltOffset                                                                                                             |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultIterationCount                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Credentials (variable)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ServiceCredentials (variable)                                                                                                 |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| OldCredentials (variable)                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| OlderCredentials (variable)                                                                                                   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| DefaultSalt (variable)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| KeyValues (variable)                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type KerberosStoredCredentialNew struct {
+	// Revision (2 bytes): This value MUST be set to 4.
+	Revision uint16 `idl:"name:Revision" json:"revision"`
+	// Flags (2 bytes): This value MUST be zero and ignored on read.
+	Flags uint16 `idl:"name:Flags" json:"flags"`
+	// CredentialCount (2 bytes): This is the count of elements in the Credentials field.
+	CredentialCount uint16 `idl:"name:CredentialCount" json:"credential_count"`
+	// ServiceCredentialCount (2 bytes):  This is the count of elements in the ServiceCredentials
+	// field. It MUST be zero.
+	ServiceCredentialCount uint16 `idl:"name:ServiceCredentialCount" json:"service_credential_count"`
+	// OldCredentialCount (2 bytes): This is the count of elements in the OldCredentials
+	// field that contain the keys for the previous password.
+	OldCredentialCount uint16 `idl:"name:OldCredentialCount" json:"old_credential_count"`
+	// OlderCredentialCount (2 bytes):  This is the count of elements in the OlderCredentials
+	// field that contain the keys for the previous password.
+	OlderCredentialCount uint16 `idl:"name:OlderCredentialCount" json:"older_credential_count"`
+	// DefaultSaltLength (2 bytes): The length, in bytes, of a salt value.
+	DefaultSaltLength uint16 `idl:"name:DefaultSaltLength" json:"default_salt_length"`
+	// DefaultSaltMaximumLength (2 bytes): The length, in bytes, of the buffer containing
+	// the salt value.
+	DefaultSaltMaximumLength uint16 `idl:"name:DefaultSaltMaximumLength" json:"default_salt_maximum_length"`
+	// DefaultSaltOffset (4 bytes): An offset, in little-endian byte order, from the beginning
+	// of the attribute value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL)
+	// to where DefaultSalt starts. This value SHOULD be ignored on read.
+	DefaultSaltOffset uint32 `idl:"name:DefaultSaltOffset" json:"default_salt_offset"`
+	// DefaultIterationCount (4 bytes): The default iteration count used to calculate the
+	// password hashes.
+	DefaultIterationCount uint32 `idl:"name:DefaultIterationCount" json:"default_iteration_count"`
+	// Credentials (variable): An array of CredentialCount KERB_KEY_DATA_NEW (section 2.2.10.7)
+	// elements.
+	Credentials []*KerberosKeyDataNew `idl:"name:Credentials;size_is:(CredentialCount)" json:"credentials"`
+	// ServiceCredentials (variable): (This field is optional.) An array of ServiceCredentialCount
+	// KERB_KEY_DATA_NEW elements.
+	ServiceCredentials []*KerberosKeyDataNew `idl:"name:ServiceCredentials;size_is:(ServiceCredentialCount)" json:"service_credentials"`
+	// OldCredentials (variable): (This field is optional.) An array of OldCredentialCount
+	// KERB_KEY_DATA_NEW elements.
+	OldCredentials []*KerberosKeyDataNew `idl:"name:OldCredentials;size_is:(OldCredentialCount)" json:"old_credentials"`
+	// OlderCredentials (variable): (This field is optional.) An array of OlderCredentialCount
+	// KERB_KEY_DATA_NEW elements.
+	OlderCredentials []*KerberosKeyDataNew `idl:"name:OlderCredentials;size_is:(OlderCredentialCount)" json:"older_credentials"`
+	// DefaultSalt (variable): The default salt value.
+	DefaultSalt []byte `idl:"name:DefaultSalt;size_is:(DefaultSaltMaximumLength)" json:"default_salt"`
+	// KeyValues (variable): An array of CredentialCount + ServiceCredentialCount + OldCredentialCount
+	// + OlderCredentialCount key values. Each key value MUST be located at the offset specified
+	// by the corresponding KeyOffset values specified in Credentials, ServiceCredentials,
+	// OldCredentials, and OlderCredentials.
+	KeyValues []byte `idl:"name:KeyValues" json:"key_values"`
+}
+
+func (o *KerberosStoredCredentialNew) xxx_PreparePayload(ctx context.Context) error {
+	if o.Credentials != nil && o.CredentialCount == 0 {
+		o.CredentialCount = uint16(len(o.Credentials))
+	}
+	if o.ServiceCredentials != nil && o.ServiceCredentialCount == 0 {
+		o.ServiceCredentialCount = uint16(len(o.ServiceCredentials))
+	}
+	if o.OldCredentials != nil && o.OldCredentialCount == 0 {
+		o.OldCredentialCount = uint16(len(o.OldCredentials))
+	}
+	if o.OlderCredentials != nil && o.OlderCredentialCount == 0 {
+		o.OlderCredentialCount = uint16(len(o.OlderCredentials))
+	}
+	if o.DefaultSalt != nil && o.DefaultSaltMaximumLength == 0 {
+		o.DefaultSaltMaximumLength = uint16(len(o.DefaultSalt))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *KerberosStoredCredentialNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Revision); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.CredentialCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ServiceCredentialCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.OldCredentialCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.OlderCredentialCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultSaltLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultSaltMaximumLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultSaltOffset); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.DefaultIterationCount); err != nil {
+		return err
+	}
+	if o.Credentials != nil || o.CredentialCount > 0 {
+		_ptr_Credentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.CredentialCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Credentials {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Credentials[i1] != nil {
+					_ptr_Credentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.Credentials[i1] != nil {
+							if err := o.Credentials[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&KerberosKeyDataNew{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.Credentials[i1], _ptr_Credentials); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Credentials); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Credentials, _ptr_Credentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ServiceCredentials != nil || o.ServiceCredentialCount > 0 {
+		_ptr_ServiceCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ServiceCredentialCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.ServiceCredentials {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.ServiceCredentials[i1] != nil {
+					_ptr_ServiceCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.ServiceCredentials[i1] != nil {
+							if err := o.ServiceCredentials[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&KerberosKeyDataNew{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.ServiceCredentials[i1], _ptr_ServiceCredentials); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.ServiceCredentials); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ServiceCredentials, _ptr_ServiceCredentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.OldCredentials != nil || o.OldCredentialCount > 0 {
+		_ptr_OldCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.OldCredentialCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.OldCredentials {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.OldCredentials[i1] != nil {
+					_ptr_OldCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.OldCredentials[i1] != nil {
+							if err := o.OldCredentials[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&KerberosKeyDataNew{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.OldCredentials[i1], _ptr_OldCredentials); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.OldCredentials); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.OldCredentials, _ptr_OldCredentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.OlderCredentials != nil || o.OlderCredentialCount > 0 {
+		_ptr_OlderCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.OlderCredentialCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.OlderCredentials {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.OlderCredentials[i1] != nil {
+					_ptr_OlderCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if o.OlderCredentials[i1] != nil {
+							if err := o.OlderCredentials[i1].MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						} else {
+							if err := (&KerberosKeyDataNew{}).MarshalNDR(ctx, w); err != nil {
+								return err
+							}
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.OlderCredentials[i1], _ptr_OlderCredentials); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.OlderCredentials); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.OlderCredentials, _ptr_OlderCredentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.DefaultSalt != nil || o.DefaultSaltMaximumLength > 0 {
+		_ptr_DefaultSalt := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.DefaultSaltMaximumLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.DefaultSalt {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.DefaultSalt[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.DefaultSalt); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.DefaultSalt, _ptr_DefaultSalt); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.KeyValues != nil {
+		_ptr_KeyValues := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.KeyValues {
+				i1 := i1
+				if err := w.WriteData(o.KeyValues[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.KeyValues, _ptr_KeyValues); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *KerberosStoredCredentialNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Revision); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.CredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ServiceCredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.OldCredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.OlderCredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultSaltLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultSaltMaximumLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultSaltOffset); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.DefaultIterationCount); err != nil {
+		return err
+	}
+	_ptr_Credentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.CredentialCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.CredentialCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Credentials", sizeInfo[0])
+		}
+		o.Credentials = make([]*KerberosKeyDataNew, sizeInfo[0])
+		for i1 := range o.Credentials {
+			i1 := i1
+			_ptr_Credentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.Credentials[i1] == nil {
+					o.Credentials[i1] = &KerberosKeyDataNew{}
+				}
+				if err := o.Credentials[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_Credentials := func(ptr interface{}) { o.Credentials[i1] = *ptr.(**KerberosKeyDataNew) }
+			if err := w.ReadPointer(&o.Credentials[i1], _s_Credentials, _ptr_Credentials); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Credentials := func(ptr interface{}) { o.Credentials = *ptr.(*[]*KerberosKeyDataNew) }
+	if err := w.ReadPointer(&o.Credentials, _s_Credentials, _ptr_Credentials); err != nil {
+		return err
+	}
+	_ptr_ServiceCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ServiceCredentialCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ServiceCredentialCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.ServiceCredentials", sizeInfo[0])
+		}
+		o.ServiceCredentials = make([]*KerberosKeyDataNew, sizeInfo[0])
+		for i1 := range o.ServiceCredentials {
+			i1 := i1
+			_ptr_ServiceCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.ServiceCredentials[i1] == nil {
+					o.ServiceCredentials[i1] = &KerberosKeyDataNew{}
+				}
+				if err := o.ServiceCredentials[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_ServiceCredentials := func(ptr interface{}) { o.ServiceCredentials[i1] = *ptr.(**KerberosKeyDataNew) }
+			if err := w.ReadPointer(&o.ServiceCredentials[i1], _s_ServiceCredentials, _ptr_ServiceCredentials); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ServiceCredentials := func(ptr interface{}) { o.ServiceCredentials = *ptr.(*[]*KerberosKeyDataNew) }
+	if err := w.ReadPointer(&o.ServiceCredentials, _s_ServiceCredentials, _ptr_ServiceCredentials); err != nil {
+		return err
+	}
+	_ptr_OldCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.OldCredentialCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.OldCredentialCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.OldCredentials", sizeInfo[0])
+		}
+		o.OldCredentials = make([]*KerberosKeyDataNew, sizeInfo[0])
+		for i1 := range o.OldCredentials {
+			i1 := i1
+			_ptr_OldCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.OldCredentials[i1] == nil {
+					o.OldCredentials[i1] = &KerberosKeyDataNew{}
+				}
+				if err := o.OldCredentials[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_OldCredentials := func(ptr interface{}) { o.OldCredentials[i1] = *ptr.(**KerberosKeyDataNew) }
+			if err := w.ReadPointer(&o.OldCredentials[i1], _s_OldCredentials, _ptr_OldCredentials); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_OldCredentials := func(ptr interface{}) { o.OldCredentials = *ptr.(*[]*KerberosKeyDataNew) }
+	if err := w.ReadPointer(&o.OldCredentials, _s_OldCredentials, _ptr_OldCredentials); err != nil {
+		return err
+	}
+	_ptr_OlderCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.OlderCredentialCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.OlderCredentialCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.OlderCredentials", sizeInfo[0])
+		}
+		o.OlderCredentials = make([]*KerberosKeyDataNew, sizeInfo[0])
+		for i1 := range o.OlderCredentials {
+			i1 := i1
+			_ptr_OlderCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.OlderCredentials[i1] == nil {
+					o.OlderCredentials[i1] = &KerberosKeyDataNew{}
+				}
+				if err := o.OlderCredentials[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_OlderCredentials := func(ptr interface{}) { o.OlderCredentials[i1] = *ptr.(**KerberosKeyDataNew) }
+			if err := w.ReadPointer(&o.OlderCredentials[i1], _s_OlderCredentials, _ptr_OlderCredentials); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_OlderCredentials := func(ptr interface{}) { o.OlderCredentials = *ptr.(*[]*KerberosKeyDataNew) }
+	if err := w.ReadPointer(&o.OlderCredentials, _s_OlderCredentials, _ptr_OlderCredentials); err != nil {
+		return err
+	}
+	_ptr_DefaultSalt := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.DefaultSaltMaximumLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.DefaultSaltMaximumLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.DefaultSalt", sizeInfo[0])
+		}
+		o.DefaultSalt = make([]byte, sizeInfo[0])
+		for i1 := range o.DefaultSalt {
+			i1 := i1
+			if err := w.ReadData(&o.DefaultSalt[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_DefaultSalt := func(ptr interface{}) { o.DefaultSalt = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.DefaultSalt, _s_DefaultSalt, _ptr_DefaultSalt); err != nil {
+		return err
+	}
+	_ptr_KeyValues := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.KeyValues = append(o.KeyValues, uint8(0))
+			if err := w.ReadData(&o.KeyValues[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_KeyValues := func(ptr interface{}) { o.KeyValues = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.KeyValues, _s_KeyValues, _ptr_KeyValues); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty structure represents USER_PROPERTY RPC structure.
+//
+// The USER_PROPERTY structure defines an array element that contains a single property
+// name and value for the supplementalCredentials attribute.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| NameLength                                                    | ValueLength                                                   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved                                                      | PropertyName (variable)                                       |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| PropertyValue (variable)                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type UserProperty struct {
+	// NameLength (2 bytes): The number of bytes, in little-endian byte order, of PropertyName.
+	// The property name is located at an offset of zero bytes just following the Reserved
+	// field. For more information, see the message processing section for supplementalCredentials
+	// (section 3.1.1.8.11).
+	NameLength uint16 `idl:"name:NameLength" json:"name_length"`
+	// ValueLength (2 bytes): The number of bytes contained in PropertyValue.
+	ValueLength uint16 `idl:"name:ValueLength" json:"value_length"`
+	// Reserved (2 bytes): This value MUST be ignored by the recipient and MAY<24> be set
+	// to arbitrary values on update.
+	_ uint16 `idl:"name:Reserved"`
+	// PropertyName (variable): The name of this property as a UTF-16 encoded string.
+	PropertyName string `idl:"name:PropertyName;size_is:((NameLength/2))" json:"property_name"`
+	// PropertyValue (variable): The value of this property. The value MUST be hexadecimal-encoded
+	// using an 8-bit character size, and the values '0' through '9' inclusive and 'a' through
+	// 'f' inclusive (the specification of 'a' through 'f' is case-sensitive).
+	PropertyValue []byte `idl:"name:PropertyValue;size_is:(ValueLength)" json:"property_value"`
+}
+
+func (o *UserProperty) xxx_PreparePayload(ctx context.Context) error {
+	if o.PropertyName != "" && o.NameLength == 0 {
+		o.NameLength = uint16((len(o.PropertyName) * 2))
+	}
+	if o.PropertyValue != nil && o.ValueLength == 0 {
+		o.ValueLength = uint16(len(o.PropertyValue))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.NameLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ValueLength); err != nil {
+		return err
+	}
+	// reserved Reserved
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	if o.PropertyName != "" || (o.NameLength/2) > 0 {
+		_ptr_PropertyName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64((o.NameLength / 2))
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			_PropertyName_buf := utf16.Encode([]rune(o.PropertyName))
+			if uint64(len(_PropertyName_buf)) > sizeInfo[0] {
+				_PropertyName_buf = _PropertyName_buf[:sizeInfo[0]]
+			}
+			for i1 := range _PropertyName_buf {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(_PropertyName_buf[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(_PropertyName_buf); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint16(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PropertyName, _ptr_PropertyName); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PropertyValue != nil || o.ValueLength > 0 {
+		_ptr_PropertyValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ValueLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.PropertyValue {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.PropertyValue[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.PropertyValue); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PropertyValue, _ptr_PropertyValue); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.NameLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ValueLength); err != nil {
+		return err
+	}
+	// reserved Reserved
+	var _Reserved uint16
+	if err := w.ReadData(&_Reserved); err != nil {
+		return err
+	}
+	_ptr_PropertyName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if (o.NameLength/2) > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64((o.NameLength / 2))
+		}
+		var _PropertyName_buf []uint16
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array _PropertyName_buf", sizeInfo[0])
+		}
+		_PropertyName_buf = make([]uint16, sizeInfo[0])
+		for i1 := range _PropertyName_buf {
+			i1 := i1
+			if err := w.ReadData(&_PropertyName_buf[i1]); err != nil {
+				return err
+			}
+		}
+		o.PropertyName = strings.TrimRight(string(utf16.Decode(_PropertyName_buf)), ndr.ZeroString)
+		return nil
+	})
+	_s_PropertyName := func(ptr interface{}) { o.PropertyName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.PropertyName, _s_PropertyName, _ptr_PropertyName); err != nil {
+		return err
+	}
+	_ptr_PropertyValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ValueLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ValueLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.PropertyValue", sizeInfo[0])
+		}
+		o.PropertyValue = make([]byte, sizeInfo[0])
+		for i1 := range o.PropertyValue {
+			i1 := i1
+			if err := w.ReadData(&o.PropertyValue[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_PropertyValue := func(ptr interface{}) { o.PropertyValue = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.PropertyValue, _s_PropertyValue, _ptr_PropertyValue); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperties structure represents USER_PROPERTIES RPC structure.
+//
+// The USER_PROPERTIES structure defines the format of the supplementalCredentials attribute.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved1                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Length                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved2                                                     | Reserved3                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved4 (96 bytes)                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| PropertySignature                                             | PropertyCount (optional)                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| UserProperties (variable)                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved5                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type UserProperties struct {
+	// Reserved1 (4 bytes): This value MUST be set to zero and MUST be ignored by the recipient.
+	_ uint32 `idl:"name:Reserved1"`
+	// Length (4 bytes): This value MUST be set to the length, in bytes, of the entire structure,
+	// starting from the Reserved4 field.
+	Length uint32 `idl:"name:Length" json:"length"`
+	// Reserved2 (2 bytes): This value MUST be set to zero and MUST be ignored by the recipient.
+	_ uint16 `idl:"name:Reserved2"`
+	// Reserved3 (2 bytes): This value MUST be set to zero and MUST be ignored by the recipient.
+	_ uint16 `idl:"name:Reserved3"`
+	// Reserved4 (96 bytes): This value MUST be ignored by the recipient and MAY<22> contain
+	// arbitrary values.
+	_ []byte `idl:"name:Reserved4"`
+	// PropertySignature (2 bytes): This field MUST be the value 0x50, in little-endian
+	// byte order. This is an arbitrary value used to indicate whether the structure is
+	// corrupt. That is, if this value is not 0x50 on read, the structure is considered
+	// corrupt, processing MUST be aborted, and an error code MUST be returned.
+	PropertySignature []byte `idl:"name:PropertySignature" json:"property_signature"`
+	// PropertyCount (2 bytes): The number of USER_PROPERTY elements in the UserProperties
+	// field. When there are zero USER_PROPERTY elements in the UserProperties field, this
+	// field MUST be omitted; the resultant USER_PROPERTIES structure has a constant size
+	// of 0x6F bytes.
+	PropertyCount     uint16 `idl:"name:PropertyCount" json:"property_count"`
+	UserPropertiesRaw []byte `idl:"name:UserPropertiesRaw;size_is:((Length-100))" json:"user_properties_raw"`
+	// UserProperties (variable): An array of PropertyCount USER_PROPERTY elements.
+	UserProperties []*UserProperty `idl:"name:UserProperties;size_is:(PropertyCount)" json:"user_properties"`
+	// Reserved5 (1 byte): This value SHOULD<23> be set to zero and MUST be ignored by the
+	// recipient.
+	_ uint8 `idl:"name:Reserved5"`
+}
+
+func (o *UserProperties) xxx_PreparePayload(ctx context.Context) error {
+	if o.UserPropertiesRaw != nil && o.Length == 0 {
+		o.Length = uint32((len(o.UserPropertiesRaw) + 100))
+	}
+	if o.Length < 100 {
+		o.Length = 100
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	if err := w.WriteData(uint16(0)); err != nil {
+		return err
+	}
+	// reserved Reserved4
+	for i1 := 0; uint64(i1) < 96; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	for i1 := range o.PropertySignature {
+		i1 := i1
+		if uint64(i1) >= 2 {
+			break
+		}
+		if err := w.WriteData(o.PropertySignature[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.PropertySignature); uint64(i1) < 2; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.PropertyCount); err != nil {
+		return err
+	}
+	if o.UserPropertiesRaw != nil || (o.Length-100) > 0 {
+		_ptr_UserPropertiesRaw := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64((o.Length - 100))
+			if o.Length < 100 {
+				dimSize1 = uint64(0)
+			}
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.UserPropertiesRaw {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.UserPropertiesRaw[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.UserPropertiesRaw); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.UserPropertiesRaw, _ptr_UserPropertiesRaw); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	// reserved Reserved5
+	if err := w.WriteData(uint8(0)); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	// reserved Reserved1
+	var _Reserved1 uint32
+	if err := w.ReadData(&_Reserved1); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	// reserved Reserved2
+	var _Reserved2 uint16
+	if err := w.ReadData(&_Reserved2); err != nil {
+		return err
+	}
+	// reserved Reserved3
+	var _Reserved3 uint16
+	if err := w.ReadData(&_Reserved3); err != nil {
+		return err
+	}
+	// reserved Reserved4
+	var _Reserved4 []byte
+	_Reserved4 = make([]byte, 96)
+	for i1 := range _Reserved4 {
+		i1 := i1
+		if err := w.ReadData(&_Reserved4[i1]); err != nil {
+			return err
+		}
+	}
+	o.PropertySignature = make([]byte, 2)
+	for i1 := range o.PropertySignature {
+		i1 := i1
+		if err := w.ReadData(&o.PropertySignature[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.PropertyCount); err != nil {
+		return err
+	}
+	_ptr_UserPropertiesRaw := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Length > 100 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64((o.Length - 100))
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.UserPropertiesRaw", sizeInfo[0])
+		}
+		o.UserPropertiesRaw = make([]byte, sizeInfo[0])
+		for i1 := range o.UserPropertiesRaw {
+			i1 := i1
+			if err := w.ReadData(&o.UserPropertiesRaw[i1]); err != nil {
+				return err
+			}
+		}
+		_layout_UserProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
+			}
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
+			}
+			// XXX: for opaque unmarshaling
+			if o.PropertyCount > 0 && sizeInfo[0] == 0 {
+				sizeInfo[0] = uint64(o.PropertyCount)
+			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.UserProperties", sizeInfo[0])
+			}
+			o.UserProperties = make([]*UserProperty, sizeInfo[0])
+			for i1 := range o.UserProperties {
+				i1 := i1
+				_ptr_UserProperties := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+					if o.UserProperties[i1] == nil {
+						o.UserProperties[i1] = &UserProperty{}
+					}
+					if err := o.UserProperties[i1].UnmarshalNDR(ctx, w); err != nil {
+						return err
+					}
+					return nil
+				})
+				_s_UserProperties := func(ptr interface{}) { o.UserProperties[i1] = *ptr.(**UserProperty) }
+				if err := w.ReadPointer(&o.UserProperties[i1], _s_UserProperties, _ptr_UserProperties); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if len(o.UserPropertiesRaw) > 0 {
+			if err := w.WithBytes(o.UserPropertiesRaw).Unmarshal(ctx, _layout_UserProperties); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_UserPropertiesRaw := func(ptr interface{}) { o.UserPropertiesRaw = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.UserPropertiesRaw, _s_UserPropertiesRaw, _ptr_UserPropertiesRaw); err != nil {
+		return err
+	}
+	// reserved Reserved5
+	var _Reserved5 uint8
+	if err := w.ReadData(&_Reserved5); err != nil {
+		return err
+	}
+	return nil
+}
+
 // String structure represents RPC_STRING RPC structure.
 //
 // The RPC_STRING structure holds a counted string encoded in the OEM code page.

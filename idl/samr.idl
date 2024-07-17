@@ -8,6 +8,100 @@ import "ms-dtyp.idl";
 ]
  
 interface samr{
+
+typedef struct _NTLM_STRONG_NTOWF {
+    BYTE * NTLMStrongNTOWF[16];
+} NTLM_STRONG_NTOWF, *PNTLM_STRONG_NTOWF;
+
+typedef struct _PACKAGES_CREDENTIALS {
+    [size_is(*), format(multi_size)] WCHAR * Packages[];
+} PACKAGES_CREDENTIALS, *PPACKAGES_CREDENTIALS;
+
+typedef struct _WDIGEST_CREDENTIALS {
+    BYTE Reserved1;
+    BYTE Reserved2;
+    BYTE Version;
+    BYTE NumberOfHashes;
+    BYTE Reserved3[12];
+    BYTE Hashes[29][16];
+} WDIGEST_CREDENTIALS, *PWDIGEST_CREDENTIALS;
+
+typedef struct _KERB_KEY_DATA {
+    unsigned short Reserved1;
+    unsigned short Reserved2;
+    unsigned long Reserved3;
+    unsigned long KeyType;
+    unsigned long KeyLenght;
+    unsigned long KeyOffset;
+    [ignore] BYTE * KeyData[];
+} KERB_KEY_DATA, *PKERB_KEY_DATA;
+
+typedef struct _KERB_STORED_CREDENTIAL {
+    unsigned short Revision;
+    unsigned short Flags;
+    unsigned short CredentialCount;
+    unsigned short OldCredentialCount;
+    unsigned short DefaultSaltLength;
+    unsigned short DefaultSaltMaximumLength;
+    unsigned long DefaultSaltOffset;
+    [size_is(CredentialCount)] PKERB_KEY_DATA * Credentials[];
+    [size_is(OldCredentialCount)] PKERB_KEY_DATA * OldCredentials[];
+    [size_is(DefaultSaltMaximumLength)] BYTE * DefaultSalt[];
+    [size_is(*)] BYTE * KeyValues[];
+} KERB_STORED_CREDENTIAL, *PKERB_STORED_CREDENTIAL;
+
+typedef struct _KERB_KEY_DATA_NEW {
+    unsigned short Reserved1;
+    unsigned short Reserved2;
+    unsigned long Reserved3;
+    unsigned long IterationCount;
+    unsigned long KeyType;
+    unsigned long KeyLenght;
+    unsigned long KeyOffset;
+    [ignore] BYTE * KeyData[];
+} KERB_KEY_DATA_NEW, *PKERB_KEY_DATA_NEW;
+
+typedef struct _KERB_STORED_CREDENTIAL_NEW {
+    unsigned short Revision;
+    unsigned short Flags;
+    unsigned short CredentialCount;
+    unsigned short ServiceCredentialCount;
+    unsigned short OldCredentialCount;
+    unsigned short OlderCredentialCount;
+    unsigned short DefaultSaltLength;
+    unsigned short DefaultSaltMaximumLength;
+    unsigned long DefaultSaltOffset;
+    unsigned long DefaultIterationCount;
+    [size_is(CredentialCount)] PKERB_KEY_DATA_NEW * Credentials[];
+    [size_is(ServiceCredentialCount)] PKERB_KEY_DATA_NEW * ServiceCredentials[];
+    [size_is(OldCredentialCount)] PKERB_KEY_DATA_NEW * OldCredentials[];
+    [size_is(OlderCredentialCount)] PKERB_KEY_DATA_NEW * OlderCredentials[];
+    [size_is(DefaultSaltMaximumLength)] BYTE * DefaultSalt[];
+    [size_is(*)] BYTE * KeyValues[];
+} KERB_STORED_CREDENTIAL_NEW, *PKERB_STORED_CREDENTIAL_NEW;
+
+typedef struct _USER_PROPERTY {
+    unsigned short NameLength;
+    unsigned short ValueLength;
+    unsigned short Reserved;
+    [size_is(NameLength/2)] WCHAR * PropertyName;
+    [size_is(ValueLength)] CHAR * PropertyValue;
+} USER_PROPERTY, *PUSER_PROPERTY;
+
+typedef struct _USER_PROPERTIES {
+    unsigned long Reserved1;
+    unsigned long Length;
+    unsigned short Reserved2;
+    unsigned short Reserved3;
+    BYTE Reserved4[96];
+    BYTE PropertySignature[2];
+    unsigned short PropertyCount;
+    [goext_layout(
+        [size_is(PropertyCount)] PUSER_PROPERTY UserProperties[]
+    )]
+    [size_is(Length-100)] BYTE *UserPropertiesRaw[];
+    BYTE Reserved5;
+} USER_PROPERTIES, *PUSER_PROPERTIES;
  
 typedef struct _RPC_STRING {
     unsigned short Length;
