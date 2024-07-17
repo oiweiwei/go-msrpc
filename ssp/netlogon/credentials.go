@@ -5,13 +5,30 @@ import (
 	"encoding/binary"
 	"fmt"
 
+	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/crypto"
 	"github.com/oiweiwei/go-msrpc/text/encoding/utf16le"
 )
 
+func IsValidCredential(cred any) bool {
+	if _, ok := cred.(credential.Password); !ok {
+		_, ok = cred.(credential.NTHash)
+		return ok
+	}
+	return true
+}
+
 func DeriveKey(ctx context.Context, cred Credential) ([]byte, error) {
 
-	b, err := utf16le.Encode(cred.Password())
+	if cred, ok := cred.(credential.NTHash); ok {
+		return cred.NTHash(), nil
+	}
+
+	if _, ok := cred.(credential.Password); !ok {
+		return nil, fmt.Errorf("invalid credential type %T", cred)
+	}
+
+	b, err := utf16le.Encode(cred.(credential.Password).Password())
 	if err != nil {
 		return nil, err
 	}

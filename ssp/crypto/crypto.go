@@ -145,7 +145,7 @@ func DES(k []byte, d []byte) []byte {
 	return res
 }
 
-func DES_ECB(k []byte, d []byte) []byte {
+func DES_ECB(k []byte, d []byte, encrypt bool) []byte {
 
 	var (
 		res = make([]byte, 8)
@@ -159,7 +159,11 @@ func DES_ECB(k []byte, d []byte) []byte {
 		panic(err)
 	}
 
-	block.Encrypt(res, d)
+	if encrypt {
+		block.Encrypt(res, d)
+	} else {
+		block.Decrypt(res, d)
+	}
 
 	return res
 }

@@ -66,5 +66,5 @@ func (a *SecureCredential) Encrypt(ctx context.Context, cred []byte) ([]byte, er
 		return crypto.AES_CFB(a.key, make([]byte, 16), cred, false), nil
 	}
 
-	return crypto.DES_ECB(a.key[7:14], crypto.DES_ECB(a.key[:7], cred)), nil
+	return crypto.DES_ECB(a.key[7:14], crypto.DES_ECB(a.key[:7], cred, true), true), nil
 }

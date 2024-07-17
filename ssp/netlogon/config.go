@@ -3,7 +3,7 @@ package netlogon
 import "github.com/oiweiwei/go-msrpc/ssp/credential"
 
 // The generic credential.
-type Credential = credential.Password
+type Credential = credential.Credential
 
 type Config struct {
 	ServerName      string
