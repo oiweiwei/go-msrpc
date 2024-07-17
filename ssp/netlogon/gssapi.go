@@ -50,7 +50,7 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 	c.IsServer = cc.IsServer
 
 	if cc.Credential != nil {
-		if c.Credential, ok = cc.Credential.Value().(Credential); !ok {
+		if c.Credential, ok = cc.Credential.Value().(Credential); !ok || !IsValidCredential(c.Credential) {
 			return nil, gssapi.ContextError(ctx, gssapi.DefectiveCredential, gssapi.ErrDefectiveCredential)
 		}
 	} else {
