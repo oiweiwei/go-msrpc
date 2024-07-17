@@ -165,6 +165,7 @@ func (w *ndr20) ReadAlign(sz int) error {
 func (w *ndr20) ReadSize(sz *uint64) error {
 
 	if w.err != nil || w.opaque {
+		*sz = 0 // clear size_info.
 		return w.err
 	}
 
