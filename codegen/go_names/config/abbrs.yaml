@@ -344,6 +344,7 @@ abbr:
   ntds: NTDS
   ntfs: NTFS
   ntlm: NTLM
+  ntowf: NTOWF
   ntp: NTP
   nup: NUp
   nxt: Next
