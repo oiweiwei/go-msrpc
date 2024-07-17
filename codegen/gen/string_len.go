@@ -46,9 +46,9 @@ func (p *Generator) DataLen(ctx context.Context, field *midl.Field, scopes *Scop
 
 		switch scopes.Next().Kind() {
 		case midl.TypeChar, midl.TypeUChar, midl.TypeUint8, midl.TypeInt8:
-			return p.ByteLen(ctx, n, dim.IsNullTerminated)
+			return p.ByteLen(ctx, n, dim.IsNullTerminated || field.Attrs.Format.NullTerminated)
 		case midl.TypeWChar, midl.TypeUint16, midl.TypeInt16:
-			return p.UTF16Len(ctx, n, dim.IsNullTerminated)
+			return p.UTF16Len(ctx, n, dim.IsNullTerminated || field.Attrs.Format.NullTerminated)
 		}
 	}
 
