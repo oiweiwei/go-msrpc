@@ -9,6 +9,12 @@ interface drsuapi
 typedef LONGLONG DSTIME;
  
 typedef [context_handle] void * DRS_HANDLE;
+
+ typedef struct {
+    UCHAR Salt[16];
+    ULONG CheckSum;
+    [size_is(*)] UCHAR EncryptedData[];
+ } ENCRYPTED_PAYLOAD;
  
 typedef struct {
     char Data[28];
@@ -20,8 +26,9 @@ typedef struct {
     GUID Guid;
     NT4SID Sid;
     unsigned long NameLen;
-    [range(0, 10485761)] [size_is(NameLen + 1)] WCHAR StringName[];
+    [range(0, 10485761)] [size_is(NameLen + 1)] [format(null_terminated)] WCHAR StringName[];
 } DSNAME;
+
  
 typedef LONGLONG USN;
  
@@ -509,6 +516,20 @@ typedef struct {
     DWORD dwEnumerationContext;
     [size_is(cNumEntries)] DS_REPL_VALUE_META_DATA_2 rgMetaData[];
 } DS_REPL_ATTR_VALUE_META_DATA_2;
+
+typedef struct {
+    // Since both DRS_EXTENSIONS and DRS_EXTENSIONS_INT begin with a
+    // DWORD cb, a field in DRS_EXTENSIONS_INT is at the same offset
+    // in DRS_EXTENSIONS as it is in DRS_EXTENSIONS_INT.
+    [ignore] unsigned long cb;
+    unsigned long dwFlags;
+    GUID SiteObjGuid;
+    long Pid;
+    unsigned long dwReplEpoch;
+    unsigned long dwFlagsExt;
+    GUID ConfigObjGUID;
+    unsigned long dwExtCaps;
+} DRS_EXTENSIONS_INT;
  
 typedef struct {
     [range(1,10000)] DWORD cb;

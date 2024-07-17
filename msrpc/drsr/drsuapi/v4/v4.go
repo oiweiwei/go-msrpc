@@ -393,6 +393,102 @@ func (o *Handle) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
+// EncryptedPayload structure represents ENCRYPTED_PAYLOAD RPC structure.
+//
+// The ENCRYPTED_PAYLOAD packet is the concrete type for a value of an encrypted attribute.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Salt (16 bytes)                                                                                                               |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| CheckSum                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| EncryptedData (variable)                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type EncryptedPayload struct {
+	// Salt (16 bytes): A 128-bit randomly generated value.
+	Salt []byte `idl:"name:Salt" json:"salt"`
+	// CheckSum (4 bytes): A 32-bit CRC32 checksum of the data that is encrypted along with
+	// the data.
+	CheckSum uint32 `idl:"name:CheckSum" json:"check_sum"`
+	// EncryptedData (variable): A variable-length byte array that represents the encrypted
+	// value.
+	EncryptedData []byte `idl:"name:EncryptedData" json:"encrypted_data"`
+}
+
+func (o *EncryptedPayload) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *EncryptedPayload) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	for i1 := range o.Salt {
+		i1 := i1
+		if uint64(i1) >= 16 {
+			break
+		}
+		if err := w.WriteData(o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Salt); uint64(i1) < 16; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.CheckSum); err != nil {
+		return err
+	}
+	for i1 := range o.EncryptedData {
+		i1 := i1
+		if err := w.WriteData(o.EncryptedData[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *EncryptedPayload) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	o.Salt = make([]byte, 16)
+	for i1 := range o.Salt {
+		i1 := i1
+		if err := w.ReadData(&o.Salt[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.CheckSum); err != nil {
+		return err
+	}
+	for i1 := 0; w.Len() > 0; i1++ {
+		i1 := i1
+		o.EncryptedData = append(o.EncryptedData, uint8(0))
+		if err := w.ReadData(&o.EncryptedData[i1]); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
 // NT4SID structure represents NT4SID RPC structure.
 //
 // The NT4SID structure defines a concrete type for a SID.
@@ -520,8 +616,8 @@ type DSName struct {
 
 func (o *DSName) xxx_PreparePayload(ctx context.Context) error {
 	if o.StringName != "" && o.NameLength == 0 {
-		o.NameLength = uint32((ndr.UTF16Len(o.StringName) - 1))
-		if ndr.UTF16Len(o.StringName) < 1 {
+		o.NameLength = uint32((ndr.UTF16NLen(o.StringName) - 1))
+		if ndr.UTF16NLen(o.StringName) < 1 {
 			o.NameLength = uint32(0)
 		}
 	}
@@ -8667,6 +8763,299 @@ func (o *DSReplicationAttributeValueMetadata2) UnmarshalNDR(ctx context.Context,
 		if err := o.Metadata[i1].UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
+	}
+	return nil
+}
+
+// ExtensionsInt structure represents DRS_EXTENSIONS_INT RPC structure.
+//
+// The DRS_EXTENSIONS_INT structure is a concrete type for structured capabilities information
+// used in version negotiation.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cb                                                                                                                            |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwFlags                                                                                                                       |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| SiteObjGuid (16 bytes)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Pid                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwReplEpoch                                                                                                                   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwFlagsExt                                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ConfigObjGUID (16 bytes)                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwExtCaps                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type ExtensionsInt struct {
+	// cb (4 bytes): The count of bytes in the fields dwFlags through dwExtCaps, inclusive.<38><39><40>
+	// This field allows the DRS_EXTENSIONS_INT structure to be extended by including new
+	// fields at the end of the structure.
+	Length uint32 `idl:"name:cb" json:"length"`
+	// dwFlags (4 bytes): The dwFlags field contains individual bit flags that describe
+	// the capabilities of the DC that produced the DRS_EXTENSIONS_INT structure.<41>
+	//
+	// The following table lists the bit flags, which are presented in little-endian byte
+	// order.
+	//
+	//	+-----+-----+-----+-----+-----+-----+-----+-------+-----+-------+-----+-------+-------+-------+-------+-----+-------+-------+-------+-------+-------+-----+-----+-------+-----+-----+--------+-------+-------+-------+-------+-------+
+	//	|  0  |  1  |  2  |  3  |  4  |  5  |  6  |   7   |  8  |   9   |  1  |   1   |   2   |   3   |   4   |  5  |   6   |   7   |   8   |   9   |   2   |  1  |  2  |   3   |  4  |  5  |   6    |   7   |   8   |   9   |   3   |   1   |
+	//	|     |     |     |     |     |     |     |       |     |       |  0  |       |       |       |       |     |       |       |       |       |   0   |     |     |       |     |     |        |       |       |       |   0   |       |
+	//	+-----+-----+-----+-----+-----+-----+-----+-------+-----+-------+-----+-------+-------+-------+-------+-----+-------+-------+-------+-------+-------+-----+-----+-------+-----+-----+--------+-------+-------+-------+-------+-------+
+	//	+-----+-----+-----+-----+-----+-----+-----+-------+-----+-------+-----+-------+-------+-------+-------+-----+-------+-------+-------+-------+-------+-----+-----+-------+-----+-----+--------+-------+-------+-------+-------+-------+
+	//	| A E | U O | D C | D F | M V | R M | A S | B A S | S E | G R I | C B | I N R | D C 2 | L V R | A E 2 | K E | A N C | G C 6 | G M 2 | G C 5 | P B 3 | S H | T M | D C F | R 3 | R 2 | G C 10 | D F 2 | W B 3 | G R 6 | G R 5 | G C 8 |
+	//	+-----+-----+-----+-----+-----+-----+-----+-------+-----+-------+-----+-------+-------+-------+-------+-----+-------+-------+-------+-------+-------+-----+-----+-------+-----+-----+--------+-------+-------+-------+-------+-------+
+	//
+	// BAS (DRS_EXT_BASE, 0x00000001): Unused. SHOULD be 1 and MUST be ignored.
+	//
+	// AS (DRS_EXT_ASYNCREPL, 0x00000002): If present, signifies that the DC supports DRS_MSG_REPADD_V2.
+	//
+	// RM (DRS_EXT_REMOVEAPI, 0x00000004): If present, signifies that the DC supports IDL_DRSRemoveDsServer
+	// and IDL_DRSRemoveDsDomain.
+	//
+	// MV (DRS_EXT_MOVEREQ_V2, 0x00000008): If present, signifies that the DC supports DRS_MSG_MOVEREQ_V2.
+	//
+	// DF (DRS_EXT_GETCHG_DEFLATE, 0x00000010): If present, signifies that the DC supports
+	// DRS_MSG_GETCHGREPLY_V2.
+	//
+	// DC (DRS_EXT_DCINFO_V1, 0x00000020): If present, signifies that the DC supports IDL_DRSDomainControllerInfo.
+	//
+	// UO (DRS_EXT_RESTORE_USN_OPTIMIZATION, 0x00000040): Unused. SHOULD be 1 and MUST be
+	// ignored.
+	//
+	// AE (DRS_EXT_ADDENTRY, 0x00000080): If present, signifies that the DC supports IDL_DRSAddEntry.
+	//
+	// KE (DRS_EXT_KCC_EXECUTE, 0x00000100): If present, signifies that the DC supports
+	// IDL_DRSExecuteKCC.
+	//
+	// AE2 (DRS_EXT_ADDENTRY_V2, 0x00000200): If present, signifies that the DC supports
+	// DRS_MSG_ADDENTRYREQ_V2.
+	//
+	// LVR (DRS_EXT_LINKED_VALUE_REPLICATION, 0x00000400): If present, signifies that the
+	// DC supports link value replication, and this support is enabled.
+	//
+	// DC2 (DRS_EXT_DCINFO_V2, 0x00000800): If present, signifies that the DC supports DRS_MSG_DCINFOREPLY_V2.
+	//
+	// INR (DRS_EXT_INSTANCE_TYPE_NOT_REQ_ON_MOD, 0x00001000): Unused. SHOULD be 1 and MUST
+	// be ignored.
+	//
+	// CB (DRS_EXT_CRYPTO_BIND, 0x00002000): A client-only flag. If present, it indicates
+	// that the security provider used for the connection supports session keys through
+	// RPC (example, Kerberos connections with mutual authentication enable RPC to expose
+	// session keys, but NTLM connections do not enable RPC to expose session keys).
+	//
+	// GRI (DRS_EXT_GET_REPL_INFO, 0x00004000): If present, signifies that the DC supports
+	// IDL_DRSGetReplInfo.
+	//
+	// SE (DRS_EXT_STRONG_ENCRYPTION, 0x00008000): If present, signifies that the DC supports
+	// additional 128-bit encryption for passwords over the wire. DCs MUST NOT replicate
+	// passwords to other DCs that do not support this extension.
+	//
+	// DCF (DRS_EXT_DCINFO_VFFFFFFFF, 0x00010000): If present, signifies that the DC supports
+	// DRS_MSG_DCINFOREPLY_VFFFFFFFF.
+	//
+	// TM (DRS_EXT_TRANSITIVE_MEMBERSHIP, 0x00020000): If present, signifies that the DC
+	// supports IDL_DRSGetMemberships.
+	//
+	// SH (DRS_EXT_ADD_SID_HISTORY, 0x00040000): If present, signifies that the DC supports
+	// IDL_DRSAddSidHistory.
+	//
+	// PB3 (DRS_EXT_POST_BETA3, 0x00080000): Reserved. MUST be set to 1 and ignored.
+	//
+	// GC5 (DRS_EXT_GETCHGREQ_V5, 0x00100000): If present, signifies that the DC supports
+	// DRS_MSG_GETCHGREQ_V5.
+	//
+	// GM2(DRS_EXT_GETMEMBERSHIPS2, 0x00200000): If present, signifies that the DC supports
+	// IDL_DRSGetMemberships2.
+	//
+	// GC6 (DRS_EXT_GETCHGREQ_V6, 0x00400000): Unused. This bit was used for a pre-release
+	// version of Windows. No released version of Windows references it. This bit can be
+	// set or unset with no change in behavior.
+	//
+	// ANC (DRS_EXT_NONDOMAIN_NCS, 0x00800000): If present, signifies that the DC supports
+	// application NCs.
+	//
+	// GC8 (DRS_EXT_GETCHGREQ_V8, 0x01000000): If present, signifies that the DC supports
+	// DRS_MSG_GETCHGREQ_V8.
+	//
+	// GR5 (DRS_EXT_GETCHGREPLY_V5, 0x02000000): Unused. SHOULD be 1 and MUST be ignored.
+	//
+	// GR6 (DRS_EXT_GETCHGREPLY_V6, 0x04000000): If present, signifies that the DC supports
+	// DRS_MSG_GETCHGREPLY_V6.
+	//
+	// WB3 (DRS_EXT_WHISTLER_BETA3, 0x08000000): If present, signifies that the DC supports
+	// DRS_MSG_ADDENTRYREPLY_V3, DRS_MSG_REPVERIFYOBJ, DRS_MSG_GETCHGREPLY_V7, and DRS_MSG_QUERYSITESREQ_V1.
+	//
+	// DF2 (DRS_EXT_W2K3_DEFLATE, 0x10000000): If present, signifies that the DC supports
+	// the W2K3 AD deflation library.
+	//
+	// GC10 (DRS_EXT_GETCHGREQ_V10, 0x20000000): If present, signifies that the DC supports
+	// DRS_MSG_GETCHGREQ_V10.
+	//
+	// R2 (DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART2, 0x40000000): Unused. MUST be 0 and
+	// ignored.
+	Flags uint32 `idl:"name:dwFlags" json:"flags"`
+	// SiteObjGuid (16 bytes): A GUID. The objectGUID of the site object of which the DC's
+	// DSA object is a descendant. For non-DC client callers, this field SHOULD be set to
+	// zero.
+	SiteObjectGUID *dtyp.GUID `idl:"name:SiteObjGuid" json:"site_object_guid"`
+	// Pid (4 bytes): A 32-bit, signed integer value that specifies a process identifier.
+	// The client sets the Pid field to the current client process, or the server sets the
+	// Pid to the current server process. This is for informational and debugging purposes
+	// only. The assignment of this field is implementation-specific.<42>
+	PID int32 `idl:"name:Pid" json:"pid"`
+	// dwReplEpoch (4 bytes): A 32-bit, unsigned integer value that specifies the replication
+	// epoch. This value is set to zero by all client callers. The server sets this value
+	// by assigning the value of msDS-ReplicationEpoch from its nTDSDSA object. If dwReplEpoch
+	// is not included in DRS_EXTENSIONS_INT, the value is considered to be zero.<43>
+	ReplicationEpoch uint32 `idl:"name:dwReplEpoch" json:"replication_epoch"`
+	// dwFlagsExt (4 bytes): An extension of the dwFlags field that contains individual
+	// bit flags. These bit flags determine which extended capabilities are enabled in the
+	// DC that produced the DRS_EXTENSIONS_INT structure. For non-DC client callers, no
+	// bits SHOULD be set. If dwFlagsExt is not included in DRS_EXTENSIONS_INT, all bit
+	// flags are considered unset.
+	//
+	// The following table lists the bit flags, which are presented in little-endian byte
+	// order.<44>
+	//
+	//	+---+---+---+---+---+-----+-----+-----+---+---+---+---+---+-----+---+-------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//	| 0 | 1 | 2 | 3 | 4 |  5  |  6  |  7  | 8 | 9 | 1 | 1 | 2 |  3  | 4 |   5   | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+	//	|   |   |   |   |   |     |     |     |   |   | 0 |   |   |     |   |       |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+	//	+---+---+---+---+---+-----+-----+-----+---+---+---+---+---+-----+---+-------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//	+---+---+---+---+---+-----+-----+-----+---+---+---+---+---+-----+---+-------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//	| X | X | X | X | X | R B | L H | D A | X | X | X | X | X | CID | X | G R 9 | X | X | X | X | X | X | X | X | X | X | X | X | X | X | X | X |
+	//	+---+---+---+---+---+-----+-----+-----+---+---+---+---+---+-----+---+-------+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+	//
+	// DA (DRS_EXT_ADAM, 0x00000001): If present, signifies that the DC supports DRS_MSG_REPSYNC_V1,
+	// DRS_MSG_UPDREFS_V1, DRS_MSG_INIT_DEMOTIONREQ_V1, DRS_MSG_REPLICA_DEMOTIONREQ_V1,
+	// and DRS_MSG_FINISH_DEMOTIONREQ_V1.
+	//
+	// LH (DRS_EXT_LH_BETA2, 0x00000002): If present, signifies that the DC supports the
+	// DRS_SPECIAL_SECRET_PROCESSING and DRS_GET_ALL_GROUP_MEMBERSHIP flags as well as InfoLevel
+	// 3 in DRS_MSG_DCINFOREQ_V1.
+	//
+	// RB (DRS_EXT_RECYCLE_BIN, 0x00000004): If present, signifies that the DC has enabled
+	// the Recycle Bin optional feature.
+	//
+	// GR9 (DRS_EXT_GETCHGREPLY_V9, 0x00000100): If present, signifies that the DC supports
+	// DRS_MSG_GETCHGREPLY_V9.
+	FlagsExt uint32 `idl:"name:dwFlagsExt" json:"flags_ext"`
+	// ConfigObjGUID (16 bytes): A GUID. This field is set to zero by all client callers.
+	// The server sets this field by assigning it the value of the objectGUID of the config
+	// NC object. If ConfigObjGUID is not included in DRS_EXTENSIONS_INT, the value is considered
+	// to be the NULL GUID value.<45>
+	ConfigObjectGUID *dtyp.GUID `idl:"name:ConfigObjGUID" json:"config_object_guid"`
+	// dwExtCaps (4 bytes): A mask for the dwFlagsExt field that contains individual bit
+	// flags. These bit flags describe the potential extended capabilities of the DC that
+	// produced the DRS_EXTENSIONS_INT structure. For non-DC client callers, no bits SHOULD
+	// be set. If neither dwFlagsExt nor dwExtCaps is included in DRS_EXTENSIONS_INT, all
+	// bits in dwExtCaps are considered unset. If dwFlagsExt is included in DRS_EXTENSIONS_INT
+	// but dwExtCaps is not, all relevant bits in dwExtCaps (as explained below) are implicitly
+	// set.<46>
+	//
+	// Each bit in dwExtCaps corresponds exactly to each bit in dwFlagsExt. If the DC that
+	// produced the DRS_EXTENSIONS_INT structure supports a capability described by a bit
+	// in the dwFlagsExt field (that is, the bit either is or could potentially be set),
+	// then the corresponding bit in dwExtCaps MUST be set. If a bit in dwExtCaps is not
+	// set, it is assumed that the corresponding bit in dwFlagsExt will not and cannot be
+	// set.
+	ExtCaps uint32 `idl:"name:dwExtCaps" json:"ext_caps"`
+}
+
+func (o *ExtensionsInt) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ExtensionsInt) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.SiteObjectGUID != nil {
+		if err := o.SiteObjectGUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.PID); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ReplicationEpoch); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.FlagsExt); err != nil {
+		return err
+	}
+	if o.ConfigObjectGUID != nil {
+		if err := o.ConfigObjectGUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.ExtCaps); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ExtensionsInt) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if o.SiteObjectGUID == nil {
+		o.SiteObjectGUID = &dtyp.GUID{}
+	}
+	if err := o.SiteObjectGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PID); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ReplicationEpoch); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.FlagsExt); err != nil {
+		return err
+	}
+	if o.ConfigObjectGUID == nil {
+		o.ConfigObjectGUID = &dtyp.GUID{}
+	}
+	if err := o.ConfigObjectGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ExtCaps); err != nil {
+		return err
 	}
 	return nil
 }
