@@ -681,7 +681,7 @@ func (p *TypeGenerator) GenMarshalSizeInfo(ctx context.Context, field *midl.Fiel
 
 		// for non-top level array size information is handled via NDRSizeInfo.
 
-		if dim := scopes.Dim(); dim.IsString && dim.Size().Empty() && dim.LengthIs.Empty() {
+		if dim := scopes.Dim(); dim.IsString && !dim.NoSizeLimit && dim.Size().Empty() && dim.LengthIs.Empty() {
 
 			// top-level string.
 

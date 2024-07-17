@@ -46,7 +46,7 @@ func (p *Generator) GenReadSize(ctx context.Context, sz interface{}) {
 
 func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Field, scopes *Scopes, index ...interface{}) {
 
-	if scopes == nil {
+	if scopes == nil || field.Attrs.Ignore {
 		// end.
 		return
 	}
@@ -178,7 +178,7 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 
 		if field.Position == 0 || scopes.IsTopLevelArray() {
 
-			if dim := scopes.Dim(); dim.IsString && dim.Size().Empty() && dim.LengthIs.Empty() {
+			if dim := scopes.Dim(); dim.IsString && !dim.NoSizeLimit && dim.Size().Empty() && dim.LengthIs.Empty() {
 
 				// unmarshal string using std-library.
 
@@ -280,6 +280,16 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 				p.P(name, "=", p.B("append", name, p.GoTypeZeroValue(ctx, p.Scope(), field, scopes.Next())))
 				p.GenFieldUnmarshalNDR(ctx, field, scopes.Next(), append(index, idx)...)
 			})
+
+			if scopes.Dim().IsString {
+				if field.Attrs.Format.MultiSize {
+					tmpName := "_tmp" + name
+					p.P(tmpName, ":=", p.B("string", p.B("utf16.Decode", name)))
+					p.If(tmpName, "=", p.B("strings.TrimRight", tmpName, "ndr.ZeroString"), ";", tmpName, "!=", `""`, func() {
+						p.P(origName, "=", p.B("strings.Split", tmpName, "ndr.ZeroString"))
+					})
+				}
+			}
 			break
 		}
 
