@@ -7441,6 +7441,7 @@ func (o *NotifyParamsList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *NotifyParamsList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ElementsCount)
 	return []uint64{

@@ -1745,6 +1745,7 @@ func (o *PACCredentialData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PACCredentialData) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CredentialCount)
 	return []uint64{

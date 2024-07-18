@@ -87,6 +87,7 @@ func (o *DataFactory2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DataFactory2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -179,6 +180,7 @@ func (o *DataFactory3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DataFactory3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -271,6 +273,7 @@ func (o *DataFactory) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DataFactory) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

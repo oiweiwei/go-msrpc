@@ -389,6 +389,7 @@ func (o *GetTrackingData) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *GetTrackingData) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -502,6 +503,7 @@ func (o *COMTrackingInfoEvents) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *COMTrackingInfoEvents) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -620,6 +622,7 @@ func (o *ProcessDump) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ProcessDump) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

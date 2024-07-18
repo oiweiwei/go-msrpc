@@ -49,6 +49,7 @@ func (o *AsyncEvictCleanup) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AsyncEvictCleanup) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

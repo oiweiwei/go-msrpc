@@ -2092,6 +2092,7 @@ func (o *ClaimSecurityAttributeOctetStringRelative) xxx_PreparePayload(ctx conte
 	}
 	return nil
 }
+
 func (o *ClaimSecurityAttributeOctetStringRelative) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(len(o.OctetString))
 	return []uint64{
@@ -2352,6 +2353,7 @@ func (o *SID) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *SID) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.SubAuthorityCount)
 	return []uint64{

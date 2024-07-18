@@ -854,6 +854,7 @@ func (o *TokenGroups) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TokenGroups) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.GroupCount)
 	return []uint64{

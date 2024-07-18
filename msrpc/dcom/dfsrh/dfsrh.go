@@ -398,6 +398,7 @@ func (o *ServerHealthReport) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ServerHealthReport) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -490,6 +491,7 @@ func (o *IADProxy2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *IADProxy2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -584,6 +586,7 @@ func (o *ServerHealthReport2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ServerHealthReport2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -676,6 +679,7 @@ func (o *IADProxy) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *IADProxy) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

@@ -631,6 +631,7 @@ func (o *DSName) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DSName) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64((o.NameLength + 1))
 	return []uint64{
@@ -908,6 +909,7 @@ func (o *UpToDateVectorV1Ext) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *UpToDateVectorV1Ext) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CursorsCount)
 	return []uint64{
@@ -1329,6 +1331,7 @@ func (o *PartialAttributeVectorV1Ext) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
+
 func (o *PartialAttributeVectorV1Ext) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.AttrsCount)
 	return []uint64{
@@ -1457,6 +1460,7 @@ func (o *MTXAddr) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *MTXAddr) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.MTXNameLength)
 	return []uint64{
@@ -2138,6 +2142,7 @@ func (o *PropertyMetadataExtVector) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
+
 func (o *PropertyMetadataExtVector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.PropertiesCount)
 	return []uint64{
@@ -2498,6 +2503,7 @@ func (o *UpToDateVectorV2Ext) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *UpToDateVectorV2Ext) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CursorsCount)
 	return []uint64{
@@ -6213,6 +6219,7 @@ func (o *DSReplicationNeighbors) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DSReplicationNeighbors) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.NeighborsCount)
 	return []uint64{
@@ -6389,6 +6396,7 @@ func (o *DSReplicationCursors) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DSReplicationCursors) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CursorsCount)
 	return []uint64{
@@ -6737,6 +6745,7 @@ func (o *DSReplicationKCCDSAFailures) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
+
 func (o *DSReplicationKCCDSAFailures) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -6856,6 +6865,7 @@ func (o *DSReplicationObjectMetadata) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
+
 func (o *DSReplicationObjectMetadata) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -7206,6 +7216,7 @@ func (o *DSReplicationPendingOperations) xxx_PreparePayload(ctx context.Context)
 	}
 	return nil
 }
+
 func (o *DSReplicationPendingOperations) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.PendingOperationsCount)
 	return []uint64{
@@ -7591,6 +7602,7 @@ func (o *DSReplicationAttributeValueMetadata) xxx_PreparePayload(ctx context.Con
 	}
 	return nil
 }
+
 func (o *DSReplicationAttributeValueMetadata) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -7785,6 +7797,7 @@ func (o *DSReplicationCursors2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DSReplicationCursors2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CursorsCount)
 	return []uint64{
@@ -8006,6 +8019,7 @@ func (o *DSReplicationCursorsV3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DSReplicationCursorsV3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CursorsCount)
 	return []uint64{
@@ -8269,6 +8283,7 @@ func (o *DSReplicationObjectMetadata2) xxx_PreparePayload(ctx context.Context) e
 	}
 	return nil
 }
+
 func (o *DSReplicationObjectMetadata2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -8676,6 +8691,7 @@ func (o *DSReplicationAttributeValueMetadata2) xxx_PreparePayload(ctx context.Co
 	}
 	return nil
 }
+
 func (o *DSReplicationAttributeValueMetadata2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -9090,6 +9106,7 @@ func (o *Extensions) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Extensions) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Length)
 	return []uint64{
@@ -11668,6 +11685,7 @@ func (o *VarSizeBufferWithVersion) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
+
 func (o *VarSizeBufferWithVersion) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.BufferLength)
 	return []uint64{
@@ -22729,6 +22747,7 @@ func (o *DSReplicationClientContexts) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
+
 func (o *DSReplicationClientContexts) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ContextsCount)
 	return []uint64{
@@ -23033,6 +23052,7 @@ func (o *DSReplicationServerOutgoingCalls) xxx_PreparePayload(ctx context.Contex
 	}
 	return nil
 }
+
 func (o *DSReplicationServerOutgoingCalls) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CallsCount)
 	return []uint64{

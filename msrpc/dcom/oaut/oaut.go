@@ -1490,6 +1490,7 @@ func (o *FlaggedWordBlob) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *FlaggedWordBlob) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Size)
 	return []uint64{
@@ -1603,6 +1604,7 @@ func (o *String) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *String) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Size)
 	return []uint64{
@@ -6782,6 +6784,7 @@ func (o *SafeArray) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *SafeArray) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DimsCount)
 	return []uint64{
@@ -7792,6 +7795,7 @@ func (o *ArrayDesc) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ArrayDesc) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DimsCount)
 	return []uint64{
@@ -9311,6 +9315,7 @@ func (o *TypeInfo2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TypeInfo2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -9403,6 +9408,7 @@ func (o *TypeLib2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TypeLib2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -9495,6 +9501,7 @@ func (o *Dispatch) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Dispatch) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -9587,6 +9594,7 @@ func (o *TypeComp) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TypeComp) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -9679,6 +9687,7 @@ func (o *TypeLib) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TypeLib) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -9771,6 +9780,7 @@ func (o *EnumVariant) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumVariant) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -9863,6 +9873,7 @@ func (o *TypeInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TypeInfo) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

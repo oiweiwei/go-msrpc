@@ -399,6 +399,7 @@ func (o *Record) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Record) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataLength)
 	return []uint64{
@@ -848,6 +849,7 @@ func (o *Record_Record) NDRSwitchValue(sw uint16) uint16 {
 	}
 	return uint16(0)
 }
+func (o *Record_Record) NDRLayout() {}
 
 func (o *Record_Record) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
 	if err := w.WriteSwitch(uint16(sw)); err != nil {

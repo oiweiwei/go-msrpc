@@ -387,6 +387,7 @@ func (o *BindingVector) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *BindingVector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
@@ -493,6 +494,7 @@ func (o *UUIDVector) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *UUIDVector) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{

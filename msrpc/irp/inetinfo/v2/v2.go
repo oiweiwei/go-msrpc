@@ -1006,6 +1006,7 @@ func (o *IPsecList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *IPsecList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -1302,6 +1303,7 @@ func (o *VirtualRootList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *VirtualRootList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{
@@ -1977,6 +1979,7 @@ func (o *SiteList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *SiteList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesCount)
 	return []uint64{

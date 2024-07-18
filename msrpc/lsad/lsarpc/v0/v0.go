@@ -1595,6 +1595,7 @@ func (o *ACL) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ACL) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64((o.ACLSize - 4))
 	if o.ACLSize < 4 {
@@ -4548,6 +4549,7 @@ func (o *PrivilegeSet) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PrivilegeSet) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.PrivilegeCount)
 	return []uint64{

@@ -81,6 +81,7 @@ func (o *EventSystemInitialize) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventSystemInitialize) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -224,6 +225,7 @@ func (o *EventClass) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventClass) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -346,6 +348,7 @@ func (o *EnumEventObject) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumEventObject) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -476,6 +479,7 @@ func (o *EventClass2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventClass2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -598,6 +602,7 @@ func (o *EventClass3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventClass3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -727,6 +732,7 @@ func (o *EventSubscription3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventSubscription3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -848,6 +854,7 @@ func (o *EventSubscription2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventSubscription2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -987,6 +994,7 @@ func (o *EventObjectCollection) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventObjectCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1103,6 +1111,7 @@ func (o *EventSystem2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventSystem2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1290,6 +1299,7 @@ func (o *EventSubscription) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventSubscription) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1417,6 +1427,7 @@ func (o *EventSystem) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EventSystem) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
