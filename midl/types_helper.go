@@ -87,6 +87,10 @@ func (f Format) String() string {
 		ret = append(ret, "rune")
 	}
 
+	if f.Hex {
+		ret = append(ret, "hex")
+	}
+
 	if f.MultiSize {
 		ret = append(ret, "multi_size")
 	}

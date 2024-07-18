@@ -217,6 +217,7 @@ type pAttr struct {
 	Pad                     uint64
 	Layout                  []*Field
 	NoSizeLimit             bool
+	IsLayout                bool
 }
 
 func (a pAttr) Set(at pAttrType) pAttr {
@@ -251,6 +252,8 @@ func (a pAttr) Set(at pAttrType) pAttr {
 		a.Format.MultiSize = true
 	case FORMAT_RUNE:
 		a.Format.Rune = true
+	case FORMAT_HEX:
+		a.Format.Hex = true
 	case SWITCH_IS:
 		a.SwitchIs = at.Attr.SwitchIs
 	case IGNORE:
@@ -394,6 +397,9 @@ func (a pAttr) MapAttr() map[int]interface{} {
 	}
 	if a.Format.Rune {
 		ret[FORMAT_RUNE] = a.Format.Rune
+	}
+	if a.Format.Hex {
+		ret[FORMAT_HEX] = a.Format.Hex
 	}
 	if !a.SwitchIs.Empty() {
 		ret[SWITCH_IS] = a.SwitchIs
@@ -586,6 +592,9 @@ func (a pAttr) Merge(ma pAttr) pAttr {
 	}
 	if ma.Format.Rune {
 		a.Format.Rune = ma.Format.Rune
+	}
+	if ma.Format.Hex {
+		a.Format.Hex = ma.Format.Hex
 	}
 	if !ma.SwitchIs.Empty() {
 		a.SwitchIs = ma.SwitchIs
@@ -811,6 +820,7 @@ var pAllowedFieldAttr = []int{
 	FORMAT_NULL_TERMINATED,
 	FORMAT_UTF8,
 	FORMAT_RUNE,
+	FORMAT_HEX,
 	FORMAT_MULTI_SIZE,
 	SWITCH_IS,
 	IGNORE,
@@ -832,6 +842,7 @@ var pAllowedParamAttr = []int{
 	FORMAT_NULL_TERMINATED,
 	FORMAT_UTF8,
 	FORMAT_RUNE,
+	FORMAT_HEX,
 	FORMAT_MULTI_SIZE,
 	SWITCH_IS,
 	IGNORE,
@@ -856,6 +867,7 @@ var pAllowedTypeAttr = []int{
 	FORMAT_NULL_TERMINATED,
 	FORMAT_UTF8,
 	FORMAT_RUNE,
+	FORMAT_HEX,
 	FORMAT_MULTI_SIZE,
 	POINTER,
 	V1_ENUM,
@@ -900,6 +912,7 @@ func (a pAttr) Field() *FieldAttr {
 		a.Safearray,
 		a.Layout,
 		a.NoSizeLimit,
+		a.IsLayout,
 	}
 }
 
@@ -942,5 +955,6 @@ func (a pAttr) Type() *TypeAttr {
 		nil,
 		"",
 		a.Pad,
+		a.IsLayout,
 	}
 }
