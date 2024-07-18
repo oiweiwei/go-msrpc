@@ -334,6 +334,16 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 	}
 
 	if scopes.Is(midl.TypeArray) {
+
+		if field.Attrs.Format.Hex {
+			varName := "_hex_" + field.Name
+			p.P(varName, ",", "err", ":=", p.B(p.AddImport(HexImport)+"."+"DecodeString", p.B("string", name)))
+			p.If("err", "!=", "nil", func() {
+				p.P("return", "err")
+			})
+			p.P(name, "=", varName)
+		}
+
 		if len(field.Attrs.Layout) > 0 {
 			for _, field := range field.Attrs.Layout {
 				fN := "_layout_" + field.Name
