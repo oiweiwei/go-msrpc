@@ -168,7 +168,7 @@ func main() {
 		p.P("LDAPName:", fmt.Sprintf("%q", attr.LDAPName), ",")
 		p.P("AttributeID:", fmt.Sprintf("%#v", attr.AttributeID), ",")
 		p.P("SystemID:", fmt.Sprintf("%#v", attr.SystemID), ",")
-		p.P("Syntax:", fmt.Sprintf("%q", attr.Syntax), ",")
+		p.P("Syntax:", fmt.Sprintf("Syntax{Name: %q, Converter: %s}", attr.Syntax, GetConverterSyntax(attr.Syntax)), ",")
 		p.P("Description:", fmt.Sprintf("%q", attr.Description), ",")
 		p.P("},")
 	}
@@ -182,6 +182,30 @@ func main() {
 
 	fmt.Fprintln(os.Stdout, string(b))
 
+}
+
+func GetConverterSyntax(s string) string {
+
+	switch s {
+	case "String(Unicode)":
+		return "StringUnicode{}"
+	case "Enumeration":
+		return "Enumeration{}"
+	case "String(Generalized-Time)":
+		return "GeneralizedTime{}"
+	case "Interval":
+		return "Interval{}"
+	case "Boolean":
+		return "Boolean{}"
+	case "Object(DS-DN)":
+		return "DSDN{}"
+	case "String(Object-Identifier)":
+		return "ObjectIdentifier{}"
+	case "String(Sid)":
+		return "SID{}"
+	default:
+		return "Raw{}"
+	}
 }
 
 func loadAttrs(ctx context.Context, from string) (Attrs, error) {

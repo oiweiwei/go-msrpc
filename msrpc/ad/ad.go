@@ -2,9 +2,25 @@ package ad
 
 import (
 	"encoding/asn1"
+	"encoding/json"
+	"fmt"
 
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 )
+
+type Converter interface {
+	Size() int
+	Convert([]byte, ...any) (any, error)
+}
+
+type Syntax struct {
+	Name      string
+	Converter Converter
+}
+
+func (s Syntax) MarshalJSON() ([]byte, error) {
+	return json.Marshal(s.Name)
+}
 
 // Attr is an Active Directory attribute.
 type Attr struct {
@@ -17,7 +33,7 @@ type Attr struct {
 	// The SystemID is the GUID of the attribute.
 	SystemID *uuid.UUID `json:"system_id"`
 	// Syntax is the syntax of the attribute.
-	Syntax string `json:"syntax"`
+	Syntax Syntax `json:"syntax"`
 	// Description is the description of the attribute.
 	Description string `json:"description"`
 }
@@ -36,4 +52,25 @@ func LookupByOID(oid asn1.ObjectIdentifier) (Attr, bool) {
 		return Attr{}, false
 	}
 	return attributes[n], true
+}
+
+func ParseNameAndValue(oid asn1.ObjectIdentifier, b []byte, opts ...any) (string, any, error) {
+
+	attr, ok := LookupByOID(oid)
+	if !ok {
+		return "", nil, fmt.Errorf("attribute not found")
+	}
+
+	if sz := attr.Syntax.Converter.Size(); sz > 0 {
+		if len(b) < sz {
+			return attr.LDAPName, nil, fmt.Errorf("value is too short")
+		}
+	}
+
+	value, err := attr.Syntax.Converter.Convert(b, opts...)
+	if err != nil {
+		return attr.LDAPName, nil, err
+	}
+
+	return attr.LDAPName, value, nil
 }
