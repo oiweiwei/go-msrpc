@@ -2,6 +2,7 @@ package samr
 
 import (
 	"context"
+	"encoding/hex"
 	"fmt"
 	"strings"
 	"unicode/utf16"
@@ -23,6 +24,7 @@ var (
 	_ = (*uuid.UUID)(nil)
 	_ = (*dcerpc.SyntaxID)(nil)
 	_ = (*errors.Error)(nil)
+	_ = hex.DecodeString
 	_ = dcetypes.GoPackage
 	_ = dtyp.GoPackage
 )
@@ -315,6 +317,148 @@ type SamrClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+}
+
+// PackagesCredentialsName represents the PACKAGES_CREDENTIALS_NAME RPC constant
+var PackagesCredentialsName = "Packages"
+
+// WdigestCredentialsName represents the WDIGEST_CREDENTIALS_NAME RPC constant
+var WdigestCredentialsName = "Primary:WDigest"
+
+// KerberosStoredCredentialName represents the KERB_STORED_CREDENTIAL_NAME RPC constant
+var KerberosStoredCredentialName = "Primary:Kerberos"
+
+// KerberosStoredCredentialNewName represents the KERB_STORED_CREDENTIAL_NEW_NAME RPC constant
+var KerberosStoredCredentialNewName = "Primary:Kerberos-Newer-Keys"
+
+// NTLMStrongNTOWFName represents the NTLM_STRONG_NTOWF_NAME RPC constant
+var NTLMStrongNTOWFName = "Primary:NTLM-Strong-NTOWF"
+
+// CleartextCredentialsName represents the CLEARTEXT_CREDENTIALS_NAME RPC constant
+var CleartextCredentialsName = "Primary:CLEARTEXT"
+
+// RawCredentials structure represents RAW_CREDENTIALS RPC structure.
+type RawCredentials struct {
+	RawCredentials []byte `idl:"name:RawCredentials" json:"raw_credentials"`
+}
+
+func (o *RawCredentials) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *RawCredentials) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	if o.RawCredentials != nil {
+		_ptr_RawCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.RawCredentials {
+				i1 := i1
+				if err := w.WriteData(o.RawCredentials[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RawCredentials, _ptr_RawCredentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *RawCredentials) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_RawCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.RawCredentials = append(o.RawCredentials, uint8(0))
+			if err := w.ReadData(&o.RawCredentials[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_RawCredentials := func(ptr interface{}) { o.RawCredentials = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.RawCredentials, _s_RawCredentials, _ptr_RawCredentials); err != nil {
+		return err
+	}
+	return nil
+}
+
+// CleartextCredentials structure represents CLEARTEXT_CREDENTIALS RPC structure.
+type CleartextCredentials struct {
+	CleartextCredentials string `idl:"name:CleartextCredentials" json:"cleartext_credentials"`
+}
+
+func (o *CleartextCredentials) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *CleartextCredentials) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	if o.CleartextCredentials != "" {
+		_ptr_CleartextCredentials := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_CleartextCredentials_buf := utf16.Encode([]rune(o.CleartextCredentials))
+			for i1 := range _CleartextCredentials_buf {
+				i1 := i1
+				if err := w.WriteData(_CleartextCredentials_buf[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.CleartextCredentials, _ptr_CleartextCredentials); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *CleartextCredentials) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_CleartextCredentials := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		var _CleartextCredentials_buf []uint16
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			_CleartextCredentials_buf = append(_CleartextCredentials_buf, uint16(0))
+			if err := w.ReadData(&_CleartextCredentials_buf[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_CleartextCredentials := func(ptr interface{}) { o.CleartextCredentials = *ptr.(*string) }
+	if err := w.ReadPointer(&o.CleartextCredentials, _s_CleartextCredentials, _ptr_CleartextCredentials); err != nil {
+		return err
+	}
+	return nil
 }
 
 // NTLMStrongNTOWF structure represents NTLM_STRONG_NTOWF RPC structure.
@@ -816,8 +960,10 @@ type KerberosKeyData struct {
 	//	+-------+-------------+
 	//	|     3 | des-cbc-md5 |
 	//	+-------+-------------+
-	KeyType   uint32 `idl:"name:KeyType" json:"key_type"`
-	KeyLenght uint32 `idl:"name:KeyLenght" json:"key_lenght"`
+	KeyType uint32 `idl:"name:KeyType" json:"key_type"`
+	// KeyLength (4 bytes): The length, in bytes, of the value beginning at KeyOffset. The
+	// value of this field is stored in little-endian byte order.
+	KeyLength uint32 `idl:"name:KeyLength" json:"key_length"`
 	// KeyOffset (4 bytes): An offset, in little-endian byte order, from the beginning of
 	// the property value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL)
 	// to where the key value starts. The key value is the hash value specified according
@@ -856,7 +1002,7 @@ func (o *KerberosKeyData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.KeyType); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.KeyLenght); err != nil {
+	if err := w.WriteData(o.KeyLength); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.KeyOffset); err != nil {
@@ -886,7 +1032,7 @@ func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.KeyType); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.KeyLenght); err != nil {
+	if err := w.ReadData(&o.KeyLength); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.KeyOffset); err != nil {
@@ -1353,8 +1499,10 @@ type KerberosKeyDataNew struct {
 	IterationCount uint32 `idl:"name:IterationCount" json:"iteration_count"`
 	// KeyType (4 bytes): Indicates the type of key, stored as a 32-bit unsigned integer
 	// in little-endian byte order. This MUST be one of the values listed in section 2.2.10.8.
-	KeyType   uint32 `idl:"name:KeyType" json:"key_type"`
-	KeyLenght uint32 `idl:"name:KeyLenght" json:"key_lenght"`
+	KeyType uint32 `idl:"name:KeyType" json:"key_type"`
+	// KeyLength (4 bytes): The length, in bytes, of the value beginning at KeyOffset. The
+	// value of this field is stored in little-endian byte order.
+	KeyLength uint32 `idl:"name:KeyLength" json:"key_length"`
 	// KeyOffset (4 bytes): An offset, in little-endian byte order, from the beginning of
 	// the property value (that is, from the beginning of the Revision field of KERB_STORED_CREDENTIAL_NEW)
 	// to where the key value starts.
@@ -1395,7 +1543,7 @@ func (o *KerberosKeyDataNew) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.KeyType); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.KeyLenght); err != nil {
+	if err := w.WriteData(o.KeyLength); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.KeyOffset); err != nil {
@@ -1428,7 +1576,7 @@ func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.KeyType); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.KeyLenght); err != nil {
+	if err := w.ReadData(&o.KeyLength); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.KeyOffset); err != nil {
@@ -2120,19 +2268,20 @@ type UserProperty struct {
 	// to arbitrary values on update.
 	_ uint16 `idl:"name:Reserved"`
 	// PropertyName (variable): The name of this property as a UTF-16 encoded string.
-	PropertyName string `idl:"name:PropertyName;size_is:((NameLength/2))" json:"property_name"`
+	PropertyName     string `idl:"name:PropertyName;size_is:((NameLength/2))" json:"property_name"`
+	PropertyValueRaw []byte `idl:"name:PropertyValueRaw;size_is:(ValueLength)" json:"property_value_raw"`
 	// PropertyValue (variable): The value of this property. The value MUST be hexadecimal-encoded
 	// using an 8-bit character size, and the values '0' through '9' inclusive and 'a' through
 	// 'f' inclusive (the specification of 'a' through 'f' is case-sensitive).
-	PropertyValue []byte `idl:"name:PropertyValue;size_is:(ValueLength)" json:"property_value"`
+	PropertyValue *UserProperty_PropertyValue `idl:"name:PropertyValue;switch_is:PropertyName" json:"property_value"`
 }
 
 func (o *UserProperty) xxx_PreparePayload(ctx context.Context) error {
 	if o.PropertyName != "" && o.NameLength == 0 {
 		o.NameLength = uint16((len(o.PropertyName) * 2))
 	}
-	if o.PropertyValue != nil && o.ValueLength == 0 {
-		o.ValueLength = uint16(len(o.PropertyValue))
+	if o.PropertyValueRaw != nil && o.ValueLength == 0 {
+		o.ValueLength = uint16(len(o.PropertyValueRaw))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -2195,8 +2344,8 @@ func (o *UserProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.PropertyValue != nil || o.ValueLength > 0 {
-		_ptr_PropertyValue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+	if o.PropertyValueRaw != nil || o.ValueLength > 0 {
+		_ptr_PropertyValueRaw := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			dimSize1 := uint64(o.ValueLength)
 			if err := w.WriteSize(dimSize1); err != nil {
 				return err
@@ -2204,23 +2353,23 @@ func (o *UserProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			sizeInfo := []uint64{
 				dimSize1,
 			}
-			for i1 := range o.PropertyValue {
+			for i1 := range o.PropertyValueRaw {
 				i1 := i1
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				if err := w.WriteData(o.PropertyValue[i1]); err != nil {
+				if err := w.WriteData(o.PropertyValueRaw[i1]); err != nil {
 					return err
 				}
 			}
-			for i1 := len(o.PropertyValue); uint64(i1) < sizeInfo[0]; i1++ {
+			for i1 := len(o.PropertyValueRaw); uint64(i1) < sizeInfo[0]; i1++ {
 				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.PropertyValue, _ptr_PropertyValue); err != nil {
+		if err := w.WritePointer(&o.PropertyValueRaw, _ptr_PropertyValueRaw); err != nil {
 			return err
 		}
 	} else {
@@ -2276,7 +2425,7 @@ func (o *UserProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.PropertyName, _s_PropertyName, _ptr_PropertyName); err != nil {
 		return err
 	}
-	_ptr_PropertyValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+	_ptr_PropertyValueRaw := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		sizeInfo := []uint64{
 			0,
 		}
@@ -2290,19 +2439,623 @@ func (o *UserProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			sizeInfo[0] = uint64(o.ValueLength)
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.PropertyValue", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.PropertyValueRaw", sizeInfo[0])
 		}
-		o.PropertyValue = make([]byte, sizeInfo[0])
-		for i1 := range o.PropertyValue {
+		o.PropertyValueRaw = make([]byte, sizeInfo[0])
+		for i1 := range o.PropertyValueRaw {
 			i1 := i1
-			if err := w.ReadData(&o.PropertyValue[i1]); err != nil {
+			if err := w.ReadData(&o.PropertyValueRaw[i1]); err != nil {
+				return err
+			}
+		}
+		_hex_PropertyValueRaw, err := hex.DecodeString(string(o.PropertyValueRaw))
+		if err != nil {
+			return err
+		}
+		o.PropertyValueRaw = _hex_PropertyValueRaw
+		_layout_PropertyValue := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PropertyValue == nil {
+				o.PropertyValue = &UserProperty_PropertyValue{}
+			}
+			_swPropertyValue := string(o.PropertyName)
+			if err := o.PropertyValue.UnmarshalUnionNDR(ctx, w, _swPropertyValue); err != nil {
+				return err
+			}
+			return nil
+		})
+		if len(o.PropertyValueRaw) > 0 {
+			if err := w.WithBytes(o.PropertyValueRaw).Unmarshal(ctx, _layout_PropertyValue); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_PropertyValue := func(ptr interface{}) { o.PropertyValue = *ptr.(*[]byte) }
-	if err := w.ReadPointer(&o.PropertyValue, _s_PropertyValue, _ptr_PropertyValue); err != nil {
+	_s_PropertyValueRaw := func(ptr interface{}) { o.PropertyValueRaw = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.PropertyValueRaw, _s_PropertyValueRaw, _ptr_PropertyValueRaw); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue structure represents USER_PROPERTY union anonymous member.
+//
+// The USER_PROPERTY structure defines an array element that contains a single property
+// name and value for the supplementalCredentials attribute.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| NameLength                                                    | ValueLength                                                   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved                                                      | PropertyName (variable)                                       |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| PropertyValue (variable)                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type UserProperty_PropertyValue struct {
+	// Types that are assignable to Value
+	//
+	// *UserProperty_PropertyValue_PackagesCredential
+	// *UserProperty_PropertyValue_WDigestCredential
+	// *UserProperty_PropertyValue_KerberosStoredCredential
+	// *UserProperty_PropertyValue_KerberosStoredCredentialNew
+	// *UserProperty_PropertyValue_NTLMStrongNTOWF
+	// *UserProperty_PropertyValue_CleartextCredential
+	// *UserProperty_PropertyValue_RawCredential
+	Value is_UserProperty_PropertyValue `json:"value"`
+}
+
+func (o *UserProperty_PropertyValue) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *UserProperty_PropertyValue_PackagesCredential:
+		if value != nil {
+			return value.PackagesCredential
+		}
+	case *UserProperty_PropertyValue_WDigestCredential:
+		if value != nil {
+			return value.WDigestCredential
+		}
+	case *UserProperty_PropertyValue_KerberosStoredCredential:
+		if value != nil {
+			return value.KerberosStoredCredential
+		}
+	case *UserProperty_PropertyValue_KerberosStoredCredentialNew:
+		if value != nil {
+			return value.KerberosStoredCredentialNew
+		}
+	case *UserProperty_PropertyValue_NTLMStrongNTOWF:
+		if value != nil {
+			return value.NTLMStrongNTOWF
+		}
+	case *UserProperty_PropertyValue_CleartextCredential:
+		if value != nil {
+			return value.CleartextCredential
+		}
+	case *UserProperty_PropertyValue_RawCredential:
+		if value != nil {
+			return value.RawCredential
+		}
+	}
+	return nil
+}
+
+type is_UserProperty_PropertyValue interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_UserProperty_PropertyValue()
+}
+
+func (o *UserProperty_PropertyValue) NDRSwitchValue(sw string) string {
+	if o == nil {
+		return string("")
+	}
+	switch (interface{})(o.Value).(type) {
+	case *UserProperty_PropertyValue_PackagesCredential:
+		return string("Packages")
+	case *UserProperty_PropertyValue_WDigestCredential:
+		return string("Primary:WDigest")
+	case *UserProperty_PropertyValue_KerberosStoredCredential:
+		return string("Primary:Kerberos")
+	case *UserProperty_PropertyValue_KerberosStoredCredentialNew:
+		return string("Primary:Kerberos-Newer-Keys")
+	case *UserProperty_PropertyValue_NTLMStrongNTOWF:
+		return string("Primary:NTLM-Strong-NTOWF")
+	case *UserProperty_PropertyValue_CleartextCredential:
+		return string("Primary:CLEARTEXT")
+	}
+	return string("")
+}
+func (o *UserProperty_PropertyValue) NDRLayout() {}
+
+func (o *UserProperty_PropertyValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw string) error {
+	if err := w.WriteSwitch(string(sw)); err != nil {
+		return err
+	}
+	// ms_union
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	switch sw {
+	case string("Packages"):
+		_o, _ := o.Value.(*UserProperty_PropertyValue_PackagesCredential)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_PackagesCredential{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case string("Primary:WDigest"):
+		_o, _ := o.Value.(*UserProperty_PropertyValue_WDigestCredential)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_WDigestCredential{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case string("Primary:Kerberos"):
+		_o, _ := o.Value.(*UserProperty_PropertyValue_KerberosStoredCredential)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_KerberosStoredCredential{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case string("Primary:Kerberos-Newer-Keys"):
+		_o, _ := o.Value.(*UserProperty_PropertyValue_KerberosStoredCredentialNew)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_KerberosStoredCredentialNew{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case string("Primary:NTLM-Strong-NTOWF"):
+		_o, _ := o.Value.(*UserProperty_PropertyValue_NTLMStrongNTOWF)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_NTLMStrongNTOWF{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case string("Primary:CLEARTEXT"):
+		_o, _ := o.Value.(*UserProperty_PropertyValue_CleartextCredential)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_CleartextCredential{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		_o, _ := o.Value.(*UserProperty_PropertyValue_RawCredential)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&UserProperty_PropertyValue_RawCredential{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *UserProperty_PropertyValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw string) error {
+	if err := w.ReadSwitch((*string)(&sw)); err != nil {
+		return err
+	}
+	// ms_union
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	switch sw {
+	case string("Packages"):
+		o.Value = &UserProperty_PropertyValue_PackagesCredential{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case string("Primary:WDigest"):
+		o.Value = &UserProperty_PropertyValue_WDigestCredential{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case string("Primary:Kerberos"):
+		o.Value = &UserProperty_PropertyValue_KerberosStoredCredential{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case string("Primary:Kerberos-Newer-Keys"):
+		o.Value = &UserProperty_PropertyValue_KerberosStoredCredentialNew{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case string("Primary:NTLM-Strong-NTOWF"):
+		o.Value = &UserProperty_PropertyValue_NTLMStrongNTOWF{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case string("Primary:CLEARTEXT"):
+		o.Value = &UserProperty_PropertyValue_CleartextCredential{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		o.Value = &UserProperty_PropertyValue_RawCredential{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_PackagesCredential structure represents UserProperty_PropertyValue RPC union arm.
+//
+// It has following labels: "Packages"
+type UserProperty_PropertyValue_PackagesCredential struct {
+	PackagesCredential *PackagesCredentials `idl:"name:PackagesCredential" json:"packages_credential"`
+}
+
+func (*UserProperty_PropertyValue_PackagesCredential) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_PackagesCredential) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.PackagesCredential != nil {
+		_ptr_PackagesCredential := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.PackagesCredential != nil {
+				if err := o.PackagesCredential.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&PackagesCredentials{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PackagesCredential, _ptr_PackagesCredential); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_PackagesCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_PackagesCredential := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.PackagesCredential == nil {
+			o.PackagesCredential = &PackagesCredentials{}
+		}
+		if err := o.PackagesCredential.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_PackagesCredential := func(ptr interface{}) { o.PackagesCredential = *ptr.(**PackagesCredentials) }
+	if err := w.ReadPointer(&o.PackagesCredential, _s_PackagesCredential, _ptr_PackagesCredential); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_WDigestCredential structure represents UserProperty_PropertyValue RPC union arm.
+//
+// It has following labels: "Primary:WDigest"
+type UserProperty_PropertyValue_WDigestCredential struct {
+	WDigestCredential *WdigestCredentials `idl:"name:WDigestCredential" json:"w_digest_credential"`
+}
+
+func (*UserProperty_PropertyValue_WDigestCredential) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_WDigestCredential) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.WDigestCredential != nil {
+		_ptr_WDigestCredential := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.WDigestCredential != nil {
+				if err := o.WDigestCredential.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&WdigestCredentials{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.WDigestCredential, _ptr_WDigestCredential); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_WDigestCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_WDigestCredential := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.WDigestCredential == nil {
+			o.WDigestCredential = &WdigestCredentials{}
+		}
+		if err := o.WDigestCredential.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_WDigestCredential := func(ptr interface{}) { o.WDigestCredential = *ptr.(**WdigestCredentials) }
+	if err := w.ReadPointer(&o.WDigestCredential, _s_WDigestCredential, _ptr_WDigestCredential); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_KerberosStoredCredential structure represents UserProperty_PropertyValue RPC union arm.
+//
+// It has following labels: "Primary:Kerberos"
+type UserProperty_PropertyValue_KerberosStoredCredential struct {
+	KerberosStoredCredential *KerberosStoredCredential `idl:"name:KerbStoredCredential" json:"kerberos_stored_credential"`
+}
+
+func (*UserProperty_PropertyValue_KerberosStoredCredential) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_KerberosStoredCredential) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.KerberosStoredCredential != nil {
+		_ptr_KerbStoredCredential := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.KerberosStoredCredential != nil {
+				if err := o.KerberosStoredCredential.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&KerberosStoredCredential{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.KerberosStoredCredential, _ptr_KerbStoredCredential); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_KerberosStoredCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_KerbStoredCredential := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.KerberosStoredCredential == nil {
+			o.KerberosStoredCredential = &KerberosStoredCredential{}
+		}
+		if err := o.KerberosStoredCredential.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_KerbStoredCredential := func(ptr interface{}) { o.KerberosStoredCredential = *ptr.(**KerberosStoredCredential) }
+	if err := w.ReadPointer(&o.KerberosStoredCredential, _s_KerbStoredCredential, _ptr_KerbStoredCredential); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_KerberosStoredCredentialNew structure represents UserProperty_PropertyValue RPC union arm.
+//
+// It has following labels: "Primary:Kerberos-Newer-Keys"
+type UserProperty_PropertyValue_KerberosStoredCredentialNew struct {
+	KerberosStoredCredentialNew *KerberosStoredCredentialNew `idl:"name:KerbStoredCredentialNew" json:"kerberos_stored_credential_new"`
+}
+
+func (*UserProperty_PropertyValue_KerberosStoredCredentialNew) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_KerberosStoredCredentialNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.KerberosStoredCredentialNew != nil {
+		_ptr_KerbStoredCredentialNew := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.KerberosStoredCredentialNew != nil {
+				if err := o.KerberosStoredCredentialNew.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&KerberosStoredCredentialNew{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.KerberosStoredCredentialNew, _ptr_KerbStoredCredentialNew); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_KerberosStoredCredentialNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_KerbStoredCredentialNew := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.KerberosStoredCredentialNew == nil {
+			o.KerberosStoredCredentialNew = &KerberosStoredCredentialNew{}
+		}
+		if err := o.KerberosStoredCredentialNew.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_KerbStoredCredentialNew := func(ptr interface{}) { o.KerberosStoredCredentialNew = *ptr.(**KerberosStoredCredentialNew) }
+	if err := w.ReadPointer(&o.KerberosStoredCredentialNew, _s_KerbStoredCredentialNew, _ptr_KerbStoredCredentialNew); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_NTLMStrongNTOWF structure represents UserProperty_PropertyValue RPC union arm.
+//
+// It has following labels: "Primary:NTLM-Strong-NTOWF"
+type UserProperty_PropertyValue_NTLMStrongNTOWF struct {
+	NTLMStrongNTOWF *NTLMStrongNTOWF `idl:"name:NTLMStrongNTOWF" json:"ntlm_strong_ntowf"`
+}
+
+func (*UserProperty_PropertyValue_NTLMStrongNTOWF) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_NTLMStrongNTOWF) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.NTLMStrongNTOWF != nil {
+		_ptr_NTLMStrongNTOWF := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.NTLMStrongNTOWF != nil {
+				if err := o.NTLMStrongNTOWF.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&NTLMStrongNTOWF{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.NTLMStrongNTOWF, _ptr_NTLMStrongNTOWF); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_NTLMStrongNTOWF) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_NTLMStrongNTOWF := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.NTLMStrongNTOWF == nil {
+			o.NTLMStrongNTOWF = &NTLMStrongNTOWF{}
+		}
+		if err := o.NTLMStrongNTOWF.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_NTLMStrongNTOWF := func(ptr interface{}) { o.NTLMStrongNTOWF = *ptr.(**NTLMStrongNTOWF) }
+	if err := w.ReadPointer(&o.NTLMStrongNTOWF, _s_NTLMStrongNTOWF, _ptr_NTLMStrongNTOWF); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_CleartextCredential structure represents UserProperty_PropertyValue RPC union arm.
+//
+// It has following labels: "Primary:CLEARTEXT"
+type UserProperty_PropertyValue_CleartextCredential struct {
+	CleartextCredential *CleartextCredentials `idl:"name:CleartextCredential" json:"cleartext_credential"`
+}
+
+func (*UserProperty_PropertyValue_CleartextCredential) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_CleartextCredential) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.CleartextCredential != nil {
+		_ptr_CleartextCredential := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.CleartextCredential != nil {
+				if err := o.CleartextCredential.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&CleartextCredentials{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.CleartextCredential, _ptr_CleartextCredential); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_CleartextCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_CleartextCredential := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.CleartextCredential == nil {
+			o.CleartextCredential = &CleartextCredentials{}
+		}
+		if err := o.CleartextCredential.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_CleartextCredential := func(ptr interface{}) { o.CleartextCredential = *ptr.(**CleartextCredentials) }
+	if err := w.ReadPointer(&o.CleartextCredential, _s_CleartextCredential, _ptr_CleartextCredential); err != nil {
+		return err
+	}
+	return nil
+}
+
+// UserProperty_PropertyValue_RawCredential structure represents UserProperty_PropertyValue RPC default union arm.
+type UserProperty_PropertyValue_RawCredential struct {
+	RawCredential *RawCredentials `idl:"name:RawCredential" json:"raw_credential"`
+}
+
+func (*UserProperty_PropertyValue_RawCredential) is_UserProperty_PropertyValue() {}
+
+func (o *UserProperty_PropertyValue_RawCredential) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.RawCredential != nil {
+		_ptr_RawCredential := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.RawCredential != nil {
+				if err := o.RawCredential.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&RawCredentials{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RawCredential, _ptr_RawCredential); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *UserProperty_PropertyValue_RawCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_RawCredential := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.RawCredential == nil {
+			o.RawCredential = &RawCredentials{}
+		}
+		if err := o.RawCredential.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_RawCredential := func(ptr interface{}) { o.RawCredential = *ptr.(**RawCredentials) }
+	if err := w.ReadPointer(&o.RawCredential, _s_RawCredential, _ptr_RawCredential); err != nil {
 		return err
 	}
 	return nil
