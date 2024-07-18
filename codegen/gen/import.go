@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"sort"
+	"strings"
 
 	"github.com/oiweiwei/go-msrpc/midl"
 )
@@ -48,6 +49,11 @@ type Import struct {
 }
 
 var (
+	HexImport = Import{
+		Name:  "encoding/hex",
+		Guard: "hex.DecodeString",
+	}
+
 	DefaultImports = []Import{
 		{
 			Name:  "context",
@@ -118,13 +124,14 @@ func (p *Generator) GenImportGuards(ctx context.Context) {
 	p.P(")")
 }
 
-func (p *Generator) AddImport(imp Import) {
+func (p *Generator) AddImport(imp Import) string {
 
 	for _, imps := range p.out.Imports {
 		if imps.Name == imp.Name {
-			return
+			return imps.Name[strings.LastIndex(imps.Name, "/")+1:]
 		}
 	}
 	fmt.Println("[ADD IMPORT]", imp)
 	p.out.Imports = append(p.out.Imports, imp)
+	return imp.Name[strings.LastIndex(imp.Name, "/")+1:]
 }

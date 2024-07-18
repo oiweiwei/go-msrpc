@@ -48,6 +48,7 @@ func (p *TypeGenerator) GenUnion(ctx context.Context) {
 	if !p.Union().IsEncapsulated() {
 		p.GenerateNDRSwitchValue(ctx)
 	}
+	p.GenLayout(ctx)
 	p.GenUnionMarshalNDR(ctx)
 	p.GenUnionUnmarshalNDR(ctx)
 
@@ -85,6 +86,14 @@ func (p *TypeGenerator) GenerateUnionGetValue(ctx context.Context) {
 
 }
 
+func (p *TypeGenerator) SwitchTypeZeroValue(ctx context.Context, switchType string) any {
+	switch switchType {
+	case "string":
+		return `""`
+	}
+	return 0
+}
+
 func (p *TypeGenerator) GenerateNDRSwitchValue(ctx context.Context) {
 
 	switchType := p.SwitchType(ctx, p.Scopes)
@@ -92,7 +101,7 @@ func (p *TypeGenerator) GenerateNDRSwitchValue(ctx context.Context) {
 	p.P()
 	p.Block("func", "(o *"+p.GoTypeName+")", "NDRSwitchValue(sw "+switchType+")", switchType, func() {
 		p.If("o == nil", func() {
-			p.P("return", p.B(switchType, 0))
+			p.P("return", p.B(switchType, p.SwitchTypeZeroValue(ctx, switchType)))
 		})
 		p.Block("switch", "(interface{})(o.Value).(type)", func() {
 			for _, cases := range p.Union().Body {
@@ -114,7 +123,7 @@ func (p *TypeGenerator) GenerateNDRSwitchValue(ctx context.Context) {
 				p.P("return", p.B(switchType, cases.Labels[0]))
 			}
 		})
-		p.P("return", p.B(switchType, 0))
+		p.P("return", p.B(switchType, p.SwitchTypeZeroValue(ctx, switchType)))
 	})
 }
 

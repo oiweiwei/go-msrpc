@@ -437,10 +437,17 @@ func (p *TypeGenerator) GenStruct(ctx context.Context) {
 
 	p.GenStructPreparePayload(ctx)
 	p.GenStructNDRSizeInfo(ctx)
+	p.GenLayout(ctx)
 	p.GenStructMarshalNDR(ctx)
 	p.GenStructUnmarshalNDR(ctx)
 	p.GenSubTypes(ctx, p.Struct().Fields)
 
+}
+
+func (p *TypeGenerator) GenLayout(ctx context.Context) {
+	if p.Scope().IsLayout {
+		p.P("func", "(o *"+p.GoTypeName+")", "NDRLayout()", "{}")
+	}
 }
 
 func (p *TypeGenerator) GenStructNDRSizeInfo(ctx context.Context) {
@@ -449,6 +456,7 @@ func (p *TypeGenerator) GenStructNDRSizeInfo(ctx context.Context) {
 		return
 	}
 
+	p.P()
 	p.P("func", "(o *"+p.GoTypeName+")", "NDRSizeInfo() []uint64 {")
 
 	last := p.Struct().LastField()
@@ -840,6 +848,11 @@ func (p *TypeGenerator) GenWriteStringBuffer(ctx context.Context, scopes *Scopes
 		p.P(varName, ":=", p.B("[]byte", name))
 	default:
 		p.P(`return errors.New("cannot handle ` + scopes.Kind().String() + ` to string type conversion")`)
+	}
+
+	if scopes.Dim().NoSizeLimit {
+		// skip for unlimited size types.
+		return varName
 	}
 
 	if scopes.Dim().IsNullTerminated {
