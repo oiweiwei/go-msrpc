@@ -17961,6 +17961,7 @@ func (o *SiteListInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *SiteListInfo) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.SitesCount)
 	return []uint64{

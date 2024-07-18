@@ -1128,6 +1128,7 @@ func (o *ExtendedErrorInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ExtendedErrorInfo) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Length)
 	return []uint64{

@@ -49,6 +49,7 @@ func (o *AppHostPropertySchema) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostPropertySchema) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -143,6 +144,7 @@ func (o *AppHostPropertySchemaCollection) xxx_PreparePayload(ctx context.Context
 	}
 	return nil
 }
+
 func (o *AppHostPropertySchemaCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -237,6 +239,7 @@ func (o *AppHostSectionDefinition) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
+
 func (o *AppHostSectionDefinition) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -331,6 +334,7 @@ func (o *AppHostConfigLocation) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostConfigLocation) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -425,6 +429,7 @@ func (o *AppHostProperty) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostProperty) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -517,6 +522,7 @@ func (o *AppHostMethod) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostMethod) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -611,6 +617,7 @@ func (o *AppHostMethodCollection) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
+
 func (o *AppHostMethodCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -705,6 +712,7 @@ func (o *AppHostElementCollection) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
+
 func (o *AppHostElementCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -799,6 +807,7 @@ func (o *AppHostSectionDefinitionCollection) xxx_PreparePayload(ctx context.Cont
 	}
 	return nil
 }
+
 func (o *AppHostSectionDefinitionCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -893,6 +902,7 @@ func (o *AppHostElement) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostElement) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -987,6 +997,7 @@ func (o *AppHostConstantValueCollection) xxx_PreparePayload(ctx context.Context)
 	}
 	return nil
 }
+
 func (o *AppHostConstantValueCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1081,6 +1092,7 @@ func (o *AppHostConfigException) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostConfigException) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1175,6 +1187,7 @@ func (o *AppHostMappingExtension) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
+
 func (o *AppHostMappingExtension) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1269,6 +1282,7 @@ func (o *AppHostPathMapper) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostPathMapper) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1363,6 +1377,7 @@ func (o *AppHostPropertyException) xxx_PreparePayload(ctx context.Context) error
 	}
 	return nil
 }
+
 func (o *AppHostPropertyException) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1457,6 +1472,7 @@ func (o *AppHostConstantValue) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostConstantValue) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1551,6 +1567,7 @@ func (o *AppHostConfigLocationCollection) xxx_PreparePayload(ctx context.Context
 	}
 	return nil
 }
+
 func (o *AppHostConfigLocationCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1645,6 +1662,7 @@ func (o *AppHostElementSchemaCollection) xxx_PreparePayload(ctx context.Context)
 	}
 	return nil
 }
+
 func (o *AppHostElementSchemaCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1739,6 +1757,7 @@ func (o *AppHostMethodInstance) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostMethodInstance) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1833,6 +1852,7 @@ func (o *AppHostConfigManager) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostConfigManager) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -1927,6 +1947,7 @@ func (o *AppHostElementSchema) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostElementSchema) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2021,6 +2042,7 @@ func (o *AppHostAdminManager) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostAdminManager) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2115,6 +2137,7 @@ func (o *AppHostConfigFile) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostConfigFile) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2209,6 +2232,7 @@ func (o *AppHostPropertyCollection) xxx_PreparePayload(ctx context.Context) erro
 	}
 	return nil
 }
+
 func (o *AppHostPropertyCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2303,6 +2327,7 @@ func (o *AppHostChangeHandler) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostChangeHandler) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2397,6 +2422,7 @@ func (o *AppHostMethodSchema) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostMethodSchema) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2491,6 +2517,7 @@ func (o *AppHostCollectionSchema) xxx_PreparePayload(ctx context.Context) error 
 	}
 	return nil
 }
+
 func (o *AppHostCollectionSchema) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2585,6 +2612,7 @@ func (o *AppHostWritableAdminManager) xxx_PreparePayload(ctx context.Context) er
 	}
 	return nil
 }
+
 func (o *AppHostWritableAdminManager) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2679,6 +2707,7 @@ func (o *AppHostSectionGroup) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AppHostSectionGroup) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2773,6 +2802,7 @@ func (o *AppHostChildElementCollection) xxx_PreparePayload(ctx context.Context) 
 	}
 	return nil
 }
+
 func (o *AppHostChildElementCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

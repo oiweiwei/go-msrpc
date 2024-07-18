@@ -4790,6 +4790,7 @@ func (o *VolumeClient4) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *VolumeClient4) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -4882,6 +4883,7 @@ func (o *VolumeClient3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *VolumeClient3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -4974,6 +4976,7 @@ func (o *VolumeClient2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *VolumeClient2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -5068,6 +5071,7 @@ func (o *IDMRemoteServer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *IDMRemoteServer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -5160,6 +5164,7 @@ func (o *VolumeClient) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *VolumeClient) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -5252,6 +5257,7 @@ func (o *IDMNotify) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *IDMNotify) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

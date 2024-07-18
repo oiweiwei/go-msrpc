@@ -11867,6 +11867,7 @@ func (o *BIDIRequestContainer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *BIDIRequestContainer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
@@ -11983,6 +11984,7 @@ func (o *BIDIResponseContainer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *BIDIResponseContainer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
@@ -13386,6 +13388,7 @@ func (o *V2NotifyInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *V2NotifyInfo) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
@@ -14686,6 +14689,7 @@ func (o *BranchOfficeJobDataContainer) xxx_PreparePayload(ctx context.Context) e
 	}
 	return nil
 }
+
 func (o *BranchOfficeJobDataContainer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.JobDataEntriesCount)
 	return []uint64{

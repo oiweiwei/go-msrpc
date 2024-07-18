@@ -184,6 +184,7 @@ func (o *SAFSession) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *SAFSession) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -310,6 +311,7 @@ func (o *RemoteAssistanceServer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *RemoteAssistanceServer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -444,6 +446,7 @@ func (o *PCHService) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PCHService) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -536,6 +539,7 @@ func (o *PCHCollection) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PCHCollection) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

@@ -390,6 +390,7 @@ func (o *IPv4Array) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *IPv4Array) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.AddrCount)
 	return []uint64{
@@ -620,6 +621,7 @@ func (o *AddrArray) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *AddrArray) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.AddrCount)
 	return []uint64{
@@ -789,6 +791,7 @@ func (o *Buffer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Buffer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Length)
 	return []uint64{
@@ -4532,6 +4535,7 @@ func (o *ZoneListW2K) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ZoneListW2K) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ZoneCount)
 	return []uint64{
@@ -4692,6 +4696,7 @@ func (o *ZoneList_NET) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ZoneList_NET) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ZoneCount)
 	return []uint64{
@@ -4852,6 +4857,7 @@ func (o *ZoneList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ZoneList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ZoneCount)
 	return []uint64{
@@ -5272,6 +5278,7 @@ func (o *TrustPointList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TrustPointList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.TrustPointCount)
 	return []uint64{
@@ -6602,6 +6609,7 @@ func (o *ZoneDnssecSettings) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ZoneDnssecSettings) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
@@ -7133,6 +7141,7 @@ func (o *TrustAnchor) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TrustAnchor) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.RRLength)
 	return []uint64{
@@ -7293,6 +7302,7 @@ func (o *TrustAnchorList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *TrustAnchorList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.TrustAnchorCount)
 	return []uint64{
@@ -7536,6 +7546,7 @@ func (o *DPList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DPList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DPCount)
 	return []uint64{
@@ -7803,6 +7814,7 @@ func (o *DPInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DPInfo) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ReplicaCount)
 	return []uint64{
@@ -12906,6 +12918,7 @@ func (o *SKDList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *SKDList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
@@ -13545,6 +13558,7 @@ func (o *Record) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Record) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataLength)
 	return []uint64{
@@ -13683,6 +13697,7 @@ func (o *FlatRecord) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *FlatRecord) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataLength)
 	return []uint64{
@@ -14766,6 +14781,7 @@ func (o *PolicyContentList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PolicyContentList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ContentCount)
 	return []uint64{
@@ -15003,6 +15019,7 @@ func (o *Policy) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Policy) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.CriteriaCount)
 	return []uint64{
@@ -15361,6 +15378,7 @@ func (o *EnumeratePolicyList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumeratePolicyList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.PolicyCount)
 	return []uint64{
@@ -15980,6 +15998,7 @@ func (o *EnumVirtualizationInstanceList) xxx_PreparePayload(ctx context.Context)
 	}
 	return nil
 }
+
 func (o *EnumVirtualizationInstanceList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.VirtualizationInstanceCount)
 	return []uint64{
@@ -16771,6 +16790,7 @@ func (o *EnumZoneScopeList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumZoneScopeList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ZoneScopeCount)
 	return []uint64{
@@ -17956,6 +17976,7 @@ func (o *EnumScopeList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumScopeList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.ScopeCount)
 	return []uint64{

@@ -895,6 +895,7 @@ func (o *CertAdminD2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *CertAdminD2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -987,6 +988,7 @@ func (o *CertAdminD) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *CertAdminD) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

@@ -108,6 +108,7 @@ func (o *ManagedObject) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ManagedObject) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -202,6 +203,7 @@ func (o *ServicedComponentInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ServicedComponentInfo) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -296,6 +298,7 @@ func (o *RemoteDispatch) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *RemoteDispatch) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

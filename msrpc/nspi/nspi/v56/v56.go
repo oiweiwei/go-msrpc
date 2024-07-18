@@ -375,6 +375,7 @@ func (o *PropertyTagArray) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PropertyTagArray) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64((o.ValuesCount + 1))
 	return []uint64{
@@ -1664,6 +1665,7 @@ func (o *PropertyRowSet) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PropertyRowSet) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.RowsCount)
 	return []uint64{
@@ -3315,6 +3317,7 @@ func (o *PropertyNameSet) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *PropertyNameSet) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.NamesCount)
 	return []uint64{

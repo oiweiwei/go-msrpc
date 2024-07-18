@@ -2617,6 +2617,7 @@ func (o *EnumList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntryCount)
 	return []uint64{
@@ -3296,6 +3297,7 @@ func (o *GroupEnumList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *GroupEnumList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntryCount)
 	return []uint64{
@@ -3405,6 +3407,7 @@ func (o *ResourceEnumList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ResourceEnumList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntryCount)
 	return []uint64{

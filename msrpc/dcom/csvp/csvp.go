@@ -1928,6 +1928,7 @@ func (o *ClusterLogEx) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterLogEx) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2022,6 +2023,7 @@ func (o *ClusterStorage3) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterStorage3) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2114,6 +2116,7 @@ func (o *ClusterLog) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterLog) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2208,6 +2211,7 @@ func (o *ClusterStorage2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterStorage2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2300,6 +2304,7 @@ func (o *ClusterSetup) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterSetup) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2394,6 +2399,7 @@ func (o *ClusterFirewall) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterFirewall) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2488,6 +2494,7 @@ func (o *ClusterCleanup) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterCleanup) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2582,6 +2589,7 @@ func (o *ClusterNetwork2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterNetwork2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -2674,6 +2682,7 @@ func (o *ClusterUpdate) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ClusterUpdate) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{

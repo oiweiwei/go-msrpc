@@ -1420,6 +1420,7 @@ func (o *EnumList) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *EnumList) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntryCount)
 	return []uint64{

@@ -430,6 +430,7 @@ func (o *ORPCExtent) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *ORPCExtent) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(((o.Size + 7) & (^uint32(7))))
 	return []uint64{
@@ -922,6 +923,7 @@ func (o *DualStringArray) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *DualStringArray) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.EntriesLength)
 	return []uint64{
@@ -1026,6 +1028,7 @@ func (o *InterfacePointer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *InterfacePointer) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -4859,6 +4862,7 @@ func (o *RemoteUnknown2) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *RemoteUnknown2) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -4951,6 +4955,7 @@ func (o *Unknown) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *Unknown) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
@@ -5043,6 +5048,7 @@ func (o *RemoteUnknown) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
 func (o *RemoteUnknown) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.DataCount)
 	return []uint64{
