@@ -128,6 +128,10 @@ func Unmarshal(in string) (*UUID, error) {
 		err error
 	)
 
+	if len(in) > 2 && in[0] == '{' {
+		in = in[1 : len(in)-1]
+	}
+
 	if s = strings.Split(in, "-"); len(s) != 5 {
 		return nil, fmt.Errorf("uuid: invalid uuid literal: %s", in)
 	} else if len(s[0]) != 8 {

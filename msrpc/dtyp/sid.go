@@ -7,10 +7,73 @@ import (
 	"encoding/json"
 	"fmt"
 	"strconv"
+	"strings"
+
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
 )
 
 func (o *SID) MarshalJSON() ([]byte, error) {
 	return json.Marshal(o.String())
+}
+
+func (o *SID) Bytes() ([]byte, error) {
+	return ndr.Marshal(o, ndr.Opaque)
+}
+
+func ParseSID(s string) (*SID, error) {
+	o := new(SID)
+	if err := o.Parse(s); err != nil {
+		return nil, err
+	}
+	return o, nil
+}
+
+func (o *SID) Parse(s string) error {
+
+	if s == "S-1-0-0" || s == "" || o == nil {
+		return nil
+	}
+
+	if !strings.HasPrefix(s, "S-") {
+		return fmt.Errorf("sid: parse: invalid prefix")
+	}
+
+	*o = SID{}
+
+	for i, p := range strings.Split(s[2:], "-") {
+		switch i {
+		case 0:
+			revision, err := strconv.ParseInt(p, 10, 8)
+			if err != nil {
+				return fmt.Errorf("sid: parse: revision: %v", err)
+			}
+			o.Revision = uint8(revision)
+		case 1:
+			if strings.HasPrefix(p, "0x") {
+				iauth, err := hex.DecodeString(p[2:])
+				if err != nil {
+					return fmt.Errorf("sid: parse: idauthority: %v", err)
+				}
+				o.IDAuthority = &SIDIDAuthority{Value: iauth}
+			} else {
+				iauth, err := strconv.ParseInt(p, 10, 64)
+				if err != nil {
+					return fmt.Errorf("sid: parse: idauthority: %v", err)
+				}
+				o.IDAuthority = &SIDIDAuthority{Value: make([]byte, 6)}
+				binary.BigEndian.PutUint32(o.IDAuthority.Value[2:], uint32(iauth))
+			}
+		default:
+			subauth, err := strconv.ParseInt(p, 10, 64)
+			if err != nil {
+				return fmt.Errorf("sid: parse: subauthority: %v", err)
+			}
+			o.SubAuthority = append(o.SubAuthority, uint32(subauth))
+			o.SubAuthorityCount++
+		}
+	}
+
+	return nil
 }
 
 // String ...
