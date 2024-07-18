@@ -20,6 +20,10 @@ type debug struct{}
 
 var Debug debug
 
+type noLayout struct{}
+
+var NoLayout noLayout
+
 // NDR20 function returns the NDR2.0 Marshaler/Unmarshaler.
 func NDR20(buf []byte, opts ...any) NDR {
 
@@ -36,6 +40,8 @@ func NDR20(buf []byte, opts ...any) NDR {
 			ndr.drep = o
 		case opaque:
 			ndr.opaque = true
+		case noLayout:
+			ndr.noLayout = true
 		case debug:
 			ndr.debug = true
 		case ChunkedBuffer:
@@ -52,11 +58,13 @@ func NDR20(buf []byte, opts ...any) NDR {
 // WithBytes function sets the current buffer bytes to value `b`.
 func (w *ndr20) WithBytes(b []byte) NDR {
 	return &ndr20{
-		drep:   w.drep,
-		buf:    NewAlignBuffer(NewChunk(b, w.drep)),
-		ptrs:   make(map[uint32]Pointer),
-		opaque: w.opaque,
-		err:    w.err,
+		drep:     w.drep,
+		buf:      NewAlignBuffer(NewChunk(b, w.drep)),
+		ptrs:     make(map[uint32]Pointer),
+		opaque:   w.opaque,
+		noLayout: w.noLayout,
+		noop:     w.noLayout,
+		err:      w.err,
 	}
 }
 
@@ -89,7 +97,7 @@ type ndr20 struct {
 	ptrs map[uint32]Pointer
 	// The flag that indicates whether to include NDR-related
 	// labels into the marshaled/unmarshaled output.
-	opaque, debug bool
+	opaque, debug, noLayout, noop bool
 }
 
 // Err function returns the NDR error.
@@ -509,7 +517,7 @@ func (w *ndr20) ReadDeferred() error {
 // array of bytes.
 func (w *ndr20) Marshal(ctx context.Context, mrs Marshaler) ([]byte, error) {
 
-	if w.err != nil {
+	if w.err != nil || w.noop {
 		return nil, w.err
 	}
 
@@ -527,7 +535,7 @@ func (w *ndr20) Marshal(ctx context.Context, mrs Marshaler) ([]byte, error) {
 // Unmarshal function unmarshals the `mrs` from the buffer.
 func (w *ndr20) Unmarshal(ctx context.Context, mrs Unmarshaler) error {
 
-	if w.err != nil {
+	if w.err != nil || w.noop {
 		return w.err
 	}
 
@@ -537,6 +545,12 @@ func (w *ndr20) Unmarshal(ctx context.Context, mrs Unmarshaler) error {
 
 	if err := w.ReadDeferred(); err != nil {
 		return w.SetErr(err)
+	}
+
+	if hook, ok := (any)(mrs).(AfterUnmarshalNDR); ok && hook != nil {
+		if err := hook.AfterUnmarshalNDR(ctx); err != nil {
+			return w.SetErr(err)
+		}
 	}
 
 	return nil
