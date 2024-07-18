@@ -32,6 +32,10 @@ type Unmarshaler interface {
 	UnmarshalNDR(context.Context, Reader) error
 }
 
+type AfterUnmarshalNDR interface {
+	AfterUnmarshalNDR(context.Context) error
+}
+
 // Error(er) interface.
 type Error interface {
 	// Err function must return the captured error.
