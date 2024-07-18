@@ -9,6 +9,21 @@ import "ms-dtyp.idl";
  
 interface samr{
 
+const char * PACKAGES_CREDENTIALS_NAME = "Packages";
+const char * WDIGEST_CREDENTIALS_NAME = "Primary:WDigest";
+const char * KERB_STORED_CREDENTIAL_NAME = "Primary:Kerberos";
+const char * KERB_STORED_CREDENTIAL_NEW_NAME = "Primary:Kerberos-Newer-Keys";
+const char * NTLM_STRONG_NTOWF_NAME = "Primary:NTLM-Strong-NTOWF";
+const char * CLEARTEXT_CREDENTIALS_NAME = "Primary:CLEARTEXT";
+
+typedef struct _RAW_CREDENTIALS {
+    [size_is(*)] BYTE * RawCredentials[];
+} RAW_CREDENTIALS, *PRAW_CREDENTIALS;
+
+typedef struct _CLEARTEXT_CREDENTIALS {
+    [size_is(*)] WCHAR * CleartextCredentials[];
+} CLEARTEXT_CREDENTIALS, *PCLEARTEXT_CREDENTIALS;
+
 typedef struct _NTLM_STRONG_NTOWF {
     BYTE * NTLMStrongNTOWF[16];
 } NTLM_STRONG_NTOWF, *PNTLM_STRONG_NTOWF;
@@ -31,7 +46,7 @@ typedef struct _KERB_KEY_DATA {
     unsigned short Reserved2;
     unsigned long Reserved3;
     unsigned long KeyType;
-    unsigned long KeyLenght;
+    unsigned long KeyLength;
     unsigned long KeyOffset;
     [ignore] BYTE * KeyData[];
 } KERB_KEY_DATA, *PKERB_KEY_DATA;
@@ -56,7 +71,7 @@ typedef struct _KERB_KEY_DATA_NEW {
     unsigned long Reserved3;
     unsigned long IterationCount;
     unsigned long KeyType;
-    unsigned long KeyLenght;
+    unsigned long KeyLength;
     unsigned long KeyOffset;
     [ignore] BYTE * KeyData[];
 } KERB_KEY_DATA_NEW, *PKERB_KEY_DATA_NEW;
@@ -85,7 +100,18 @@ typedef struct _USER_PROPERTY {
     unsigned short ValueLength;
     unsigned short Reserved;
     [size_is(NameLength/2)] WCHAR * PropertyName;
-    [size_is(ValueLength)] CHAR * PropertyValue;
+    [goext_layout(
+            [switch_type(PWCHAR), switch_is(PropertyName)] union {
+            [case(PACKAGES_CREDENTIALS_NAME)] PPACKAGES_CREDENTIALS PackagesCredential;
+            [case(WDIGEST_CREDENTIALS_NAME)] PWDIGEST_CREDENTIALS WDigestCredential;
+            [case(KERB_STORED_CREDENTIAL_NAME)] PKERB_STORED_CREDENTIAL KerbStoredCredential;
+            [case(KERB_STORED_CREDENTIAL_NEW_NAME)] PKERB_STORED_CREDENTIAL_NEW KerbStoredCredentialNew;
+            [case(NTLM_STRONG_NTOWF_NAME)] PNTLM_STRONG_NTOWF NTLMStrongNTOWF;
+            [case(CLEARTEXT_CREDENTIALS_NAME)] PCLEARTEXT_CREDENTIALS CleartextCredential;
+            [default] PRAW_CREDENTIALS RawCredential;
+        } PropertyValue
+    )]
+    [size_is(ValueLength), format(hex)] CHAR * PropertyValueRaw;
 } USER_PROPERTY, *PUSER_PROPERTY;
 
 typedef struct _USER_PROPERTIES {
