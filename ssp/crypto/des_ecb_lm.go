@@ -12,7 +12,7 @@ func DES_ECB_LM(k uint32, b []byte) ([]byte, error) {
 	key2 := []byte{key[3], key[0], key[1], key[2], key[3], key[0], key[1]}
 
 	h1 := DES_ECB(key1, b[:8], false)
-	h2 := DES_ECB(key2, b[:8], false)
+	h2 := DES_ECB(key2, b[8:], false)
 
 	return append(h1, h2...), nil
 }
