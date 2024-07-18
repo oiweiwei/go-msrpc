@@ -393,6 +393,84 @@ func (o *Handle) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
+// DSNameError type represents DS_NAME_ERROR RPC enumeration.
+type DSNameError uint32
+
+var (
+	DSNameErrorNoError                DSNameError = 0
+	DSNameErrorResolving              DSNameError = 1
+	DSNameErrorNotFound               DSNameError = 2
+	DSNameErrorNotUnique              DSNameError = 3
+	DSNameErrorNoMapping              DSNameError = 4
+	DSNameErrorDomainOnly             DSNameError = 5
+	DSNameErrorNoSyntacticalMapping   DSNameError = 6
+	DSNameErrorTrustReferral          DSNameError = 7
+	DSNameErrorIsSIDHistoryUnknown    DSNameError = 4294967282
+	DSNameErrorIsSIDHistoryAlias      DSNameError = 4294967283
+	DSNameErrorIsSIDHistoryGroup      DSNameError = 4294967284
+	DSNameErrorIsSIDHistoryUser       DSNameError = 4294967285
+	DSNameErrorIsSIDUnknown           DSNameError = 4294967286
+	DSNameErrorIsSIDAlias             DSNameError = 4294967287
+	DSNameErrorIsSIDGroup             DSNameError = 4294967288
+	DSNameErrorIsSIDUser              DSNameError = 4294967289
+	DSNameErrorSchemaGUIDControlRight DSNameError = 4294967290
+	DSNameErrorSchemaGUIDClass        DSNameError = 4294967291
+	DSNameErrorSchemaGUIDAttributeSet DSNameError = 4294967292
+	DSNameErrorSchemaGUIDAttribute    DSNameError = 4294967293
+	DSNameErrorSchemaGUIDNotFound     DSNameError = 4294967294
+	DSNameErrorIsFpo                  DSNameError = 4294967295
+)
+
+func (o DSNameError) String() string {
+	switch o {
+	case DSNameErrorNoError:
+		return "DSNameErrorNoError"
+	case DSNameErrorResolving:
+		return "DSNameErrorResolving"
+	case DSNameErrorNotFound:
+		return "DSNameErrorNotFound"
+	case DSNameErrorNotUnique:
+		return "DSNameErrorNotUnique"
+	case DSNameErrorNoMapping:
+		return "DSNameErrorNoMapping"
+	case DSNameErrorDomainOnly:
+		return "DSNameErrorDomainOnly"
+	case DSNameErrorNoSyntacticalMapping:
+		return "DSNameErrorNoSyntacticalMapping"
+	case DSNameErrorTrustReferral:
+		return "DSNameErrorTrustReferral"
+	case DSNameErrorIsSIDHistoryUnknown:
+		return "DSNameErrorIsSIDHistoryUnknown"
+	case DSNameErrorIsSIDHistoryAlias:
+		return "DSNameErrorIsSIDHistoryAlias"
+	case DSNameErrorIsSIDHistoryGroup:
+		return "DSNameErrorIsSIDHistoryGroup"
+	case DSNameErrorIsSIDHistoryUser:
+		return "DSNameErrorIsSIDHistoryUser"
+	case DSNameErrorIsSIDUnknown:
+		return "DSNameErrorIsSIDUnknown"
+	case DSNameErrorIsSIDAlias:
+		return "DSNameErrorIsSIDAlias"
+	case DSNameErrorIsSIDGroup:
+		return "DSNameErrorIsSIDGroup"
+	case DSNameErrorIsSIDUser:
+		return "DSNameErrorIsSIDUser"
+	case DSNameErrorSchemaGUIDControlRight:
+		return "DSNameErrorSchemaGUIDControlRight"
+	case DSNameErrorSchemaGUIDClass:
+		return "DSNameErrorSchemaGUIDClass"
+	case DSNameErrorSchemaGUIDAttributeSet:
+		return "DSNameErrorSchemaGUIDAttributeSet"
+	case DSNameErrorSchemaGUIDAttribute:
+		return "DSNameErrorSchemaGUIDAttribute"
+	case DSNameErrorSchemaGUIDNotFound:
+		return "DSNameErrorSchemaGUIDNotFound"
+	case DSNameErrorIsFpo:
+		return "DSNameErrorIsFpo"
+	}
+	return "Invalid"
+}
+
 // EncryptedPayload structure represents ENCRYPTED_PAYLOAD RPC structure.
 //
 // The ENCRYPTED_PAYLOAD packet is the concrete type for a value of an encrypted attribute.
