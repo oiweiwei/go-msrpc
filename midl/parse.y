@@ -240,6 +240,7 @@ var (
 %token <Token> FORMAT_MULTI_SIZE
 %token <Token> FORMAT_UTF8
 %token <Token> FORMAT_RUNE
+%token <Token> FORMAT_HEX
 %token <Token> IGNORE
 %token <Token> POINTER
 %token <Token> POINTER_REF
@@ -938,6 +939,9 @@ attribute               : FIRST_IS '(' attr_var_list ')'
                             }
                         | GOEXT_LAYOUT '(' field_declarator ')'
                             {
+                                for i := range $3 {
+                                    $3[i].Attrs.IsLayout = true
+                                }
                                 $$ = pAttrType{GOEXT_LAYOUT, pAttr{Layout: $3}}
                             }
                         | SIZE_IS '(' '*' ')'
@@ -2529,6 +2533,10 @@ format_attribute        : FORMAT_UTF8
                         | FORMAT_RUNE
                             {
                                 $$ = FORMAT_RUNE
+                            }
+                        | FORMAT_HEX
+                            {
+                                $$ = FORMAT_HEX
                             }
                         ;
 

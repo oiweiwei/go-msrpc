@@ -408,6 +408,7 @@ type TypeAttr struct {
 	Pointers []PointerType
 	Parent   string
 	Pad      uint64
+	IsLayout bool
 }
 
 func (t *TypeAttr) EnumType() Kind {
@@ -440,6 +441,7 @@ func (t *TypeAttr) clone() *TypeAttr {
 		append([]PointerType{}, t.Pointers...),
 		t.Parent,
 		t.Pad,
+		t.IsLayout,
 	}
 }
 
@@ -472,6 +474,9 @@ func (t *TypeAttr) Merge(tt *TypeAttr) *TypeAttr {
 	}
 	if tt.Format.Rune {
 		t.Format.Rune = tt.Format.Rune
+	}
+	if tt.Format.Hex {
+		t.Format.Hex = tt.Format.Hex
 	}
 	if tt.Format.MultiSize {
 		t.Format.MultiSize = tt.Format.MultiSize
@@ -515,6 +520,9 @@ func (t *TypeAttr) Merge(tt *TypeAttr) *TypeAttr {
 	}
 	if tt.Pad != 0 {
 		t.Pad = tt.Pad
+	}
+	if tt.IsLayout {
+		t.IsLayout = tt.IsLayout
 	}
 
 	return t
@@ -574,6 +582,7 @@ type FieldAttr struct {
 	Safearray   *Type
 	Layout      []*Field
 	NoSizeLimit bool
+	IsLayout    bool
 }
 
 func (f *FieldAttr) SizeAttr() *SizeAttr {
@@ -636,6 +645,7 @@ func (f *FieldAttr) TypeAttr() *TypeAttr {
 			Pointer:    f.Pointer,
 			Usage:      f.Usage,
 			Format:     f.Format,
+			IsLayout:   f.IsLayout,
 		}
 	}
 	return &TypeAttr{}
@@ -652,6 +662,7 @@ type Format struct {
 	UTF8           bool
 	MultiSize      bool
 	Rune           bool
+	Hex            bool
 }
 
 type Direction struct {
