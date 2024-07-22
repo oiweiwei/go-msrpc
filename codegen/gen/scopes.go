@@ -257,6 +257,9 @@ func (i *Scopes) alignment(opaque bool) int {
 	case t.Is(midl.TypeStruct):
 		a := 0
 		for _, f := range t.Struct.Fields {
+			if f.Attrs.Ignore {
+				continue
+			}
 			if fa := NewScopes(f.Scopes()).alignment(opaque); fa > a {
 				a = fa
 			}
@@ -301,6 +304,9 @@ func (i *Scopes) IsDeferrable() bool {
 		return i.Next().IsDeferrable()
 	case i.Is(midl.TypeStruct):
 		for _, field := range i.Struct().Fields {
+			if field.Attrs.Ignore {
+				continue
+			}
 			if NewScopes(field.Scopes()).IsDeferrable() {
 				return true
 			}

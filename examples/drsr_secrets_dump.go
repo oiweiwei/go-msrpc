@@ -8,6 +8,7 @@ package main
 
 import (
 	"context"
+	"encoding/asn1"
 	"encoding/hex"
 	"encoding/json"
 	"flag"
@@ -171,13 +172,28 @@ func main() {
 				os.Exit(1)
 			}
 
+			name, l := "", []interface{}{}
+
 			for i := range attr.AttributeValue.Values {
 				n, val, err := ad.ParseNameAndValue(oid, attr.AttributeValue.Values[i].Value, prefixes)
 				if err != nil {
 					fmt.Fprintln(os.Stderr, "parse name and value", err)
 					os.Exit(1)
 				}
-				object[n] = val
+
+				if _, ok := val.(asn1.ObjectIdentifier); ok {
+					val = val.(asn1.ObjectIdentifier).String()
+				}
+
+				name, l = n, append(l, val)
+			}
+
+			if name != "" {
+				if len(l) > 1 {
+					object[name] = l
+				} else {
+					object[name] = l[0]
+				}
 			}
 		}
 

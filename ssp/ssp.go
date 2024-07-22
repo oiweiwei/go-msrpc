@@ -34,7 +34,11 @@ var (
 
 // MechanismTypeDefault function returns the default mechanism.
 func MechanismTypeDefault(ctx context.Context) gssapi.OID {
-	return gssapi.GetMechanism(ctx, nil).Type()
+	mech := gssapi.GetMechanism(ctx, nil)
+	if mech != nil {
+		return mech.Type()
+	}
+	return nil
 }
 
 func WithNTLM(cfg *ntlm.Config) gssapi.Option {

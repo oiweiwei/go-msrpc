@@ -984,7 +984,7 @@ func (o *KerberosKeyData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(9); err != nil {
+	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
 	// reserved Reserved1
@@ -1011,7 +1011,7 @@ func (o *KerberosKeyData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return nil
 }
 func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(9); err != nil {
+	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	// reserved Reserved1
@@ -1522,7 +1522,7 @@ func (o *KerberosKeyDataNew) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(9); err != nil {
+	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
 	// reserved Reserved1
@@ -1552,7 +1552,7 @@ func (o *KerberosKeyDataNew) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	return nil
 }
 func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(9); err != nil {
+	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	// reserved Reserved1
