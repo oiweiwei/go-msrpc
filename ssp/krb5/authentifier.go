@@ -4,9 +4,12 @@ import (
 	"context"
 	"fmt"
 	"os"
+	"regexp"
+	"strconv"
 
 	"github.com/jcmturner/gokrb5/v8/client"
 	"github.com/jcmturner/gokrb5/v8/credentials"
+	"github.com/jcmturner/gokrb5/v8/iana/etypeID"
 	"github.com/jcmturner/gokrb5/v8/service"
 	"github.com/jcmturner/gokrb5/v8/spnego"
 	"github.com/jcmturner/gokrb5/v8/types"
@@ -98,6 +101,12 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		cli.Credentials = creds.WithPassword(pwd.Password())
 	} else if kt, ok := a.Config.Credential.(credential.Keytab); ok {
 		cli.Credentials = creds.WithKeytab(kt.Keytab())
+	} else if ntHash, ok := a.Config.Credential.(credential.NTHash); ok {
+		cli.Credentials = WithNTHash(creds, ntHash.NTHash())
+		// XXX: add rc4-hmac to allowed etypes.
+		cli.Config.LibDefaults.DefaultTGSEnctypeIDs = []int32{etypeID.RC4_HMAC}
+		cli.Config.LibDefaults.DefaultTktEnctypeIDs = []int32{etypeID.RC4_HMAC}
+		cli.Config.LibDefaults.PermittedEnctypeIDs = []int32{etypeID.RC4_HMAC}
 	}
 
 	if _, err := cli.IsConfigured(); err != nil {
@@ -148,6 +157,26 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 	return nil
 }
 
+var kvnoErrRe = regexp.MustCompile(`kvno: (\d+)`)
+
+func (a *Authentifier) affirmLogin(ctx context.Context) error {
+	if err := a.client.AffirmLogin(); err != nil {
+		if _, ok := a.Config.Credential.(credential.NTHash); !ok {
+			return err
+		}
+		// FIXME: retry using kvno from error message.
+		if m := kvnoErrRe.FindStringSubmatch(err.Error()); len(m) > 1 {
+			kvno, err1 := strconv.ParseInt(m[1], 10, 32)
+			if err1 != nil {
+				return err
+			}
+			a.client.Credentials.Keytab().Entries[0].KVNO = uint32(kvno)
+			return a.client.AffirmLogin()
+		}
+	}
+	return nil
+}
+
 func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 
 	cli, err := a.makeClient(ctx)
@@ -157,7 +186,7 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 
 	a.client = cli
 
-	if err := a.client.AffirmLogin(); err != nil {
+	if err := a.affirmLogin(ctx); err != nil {
 		return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
 	}
 

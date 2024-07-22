@@ -109,6 +109,12 @@ func LoadKRB5Conf(p string) (*config.Config, error) {
 	return ParsedLibDefaults(c), nil
 }
 
+func AddEnctypeID(c *config.Config, etype int32) *config.Config {
+	l := c.LibDefaults
+	c.LibDefaults = l
+	return c
+}
+
 func ParsedLibDefaults(c *config.Config) *config.Config {
 	l := c.LibDefaults
 	l.DefaultTGSEnctypeIDs = parseETypes(l.DefaultTGSEnctypes, l.AllowWeakCrypto)
@@ -142,12 +148,19 @@ func parseETypes(s []string, w bool) []int32 {
 }
 
 func IsValidCredential(cred any) bool {
-	if _, ok := cred.(credential.Keytab); !ok {
-		_, ok = cred.(credential.Password)
-		return ok
+	if _, ok := cred.(credential.Keytab); ok {
+		return true
 	}
 
-	return true
+	if _, ok := cred.(credential.Password); ok {
+		return true
+	}
+
+	if _, ok := cred.(credential.NTHash); ok {
+		return true
+	}
+
+	return false
 }
 
 // ServiceSettings function returns the set of options for the
