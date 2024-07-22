@@ -51,6 +51,60 @@ var (
 	GoPackage = "dtyp"
 )
 
+// AccessMaskGenericRead represents the ACCESS_MASK_GENERIC_READ RPC constant
+var AccessMaskGenericRead = 2147483648
+
+// AccessMaskGenericWrite represents the ACCESS_MASK_GENERIC_WRITE RPC constant
+var AccessMaskGenericWrite = 1073741824
+
+// AccessMaskGenericExecute represents the ACCESS_MASK_GENERIC_EXECUTE RPC constant
+var AccessMaskGenericExecute = 536870912
+
+// AccessMaskGenericAll represents the ACCESS_MASK_GENERIC_ALL RPC constant
+var AccessMaskGenericAll = 268435456
+
+// AccessMaskMaximumAllowed represents the ACCESS_MASK_MAXIMUM_ALLOWED RPC constant
+var AccessMaskMaximumAllowed = 33554432
+
+// AccessMaskAccessSystemSecurity represents the ACCESS_MASK_ACCESS_SYSTEM_SECURITY RPC constant
+var AccessMaskAccessSystemSecurity = 16777216
+
+// AccessMaskSynchronize represents the ACCESS_MASK_SYNCHRONIZE RPC constant
+var AccessMaskSynchronize = 1048576
+
+// AccessMaskWriteOwner represents the ACCESS_MASK_WRITE_OWNER RPC constant
+var AccessMaskWriteOwner = 524288
+
+// AccessMaskWriteDACL represents the ACCESS_MASK_WRITE_DACL RPC constant
+var AccessMaskWriteDACL = 262144
+
+// AccessMaskReadControl represents the ACCESS_MASK_READ_CONTROL RPC constant
+var AccessMaskReadControl = 131072
+
+// AccessMaskDelete represents the ACCESS_MASK_DELETE RPC constant
+var AccessMaskDelete = 65536
+
+// ACEFlagContainerInheritACE represents the ACE_FLAG_CONTAINER_INHERIT_ACE RPC constant
+var ACEFlagContainerInheritACE = 2
+
+// ACEFlagFailedAccessACEFlag represents the ACE_FLAG_FAILED_ACCESS_ACE_FLAG RPC constant
+var ACEFlagFailedAccessACEFlag = 128
+
+// ACEFlagInheritOnlyACE represents the ACE_FLAG_INHERIT_ONLY_ACE RPC constant
+var ACEFlagInheritOnlyACE = 8
+
+// ACEFlagInheritedACE represents the ACE_FLAG_INHERITED_ACE RPC constant
+var ACEFlagInheritedACE = 16
+
+// ACEFlagNoPropagateInheritACE represents the ACE_FLAG_NO_PROPAGATE_INHERIT_ACE RPC constant
+var ACEFlagNoPropagateInheritACE = 4
+
+// ACEFlagObjectInheritACE represents the ACE_FLAG_OBJECT_INHERIT_ACE RPC constant
+var ACEFlagObjectInheritACE = 1
+
+// ACEFlagSuccessfulAccessACEFlag represents the ACE_FLAG_SUCCESSFUL_ACCESS_ACE_FLAG RPC constant
+var ACEFlagSuccessfulAccessACEFlag = 64
+
 // Filetime structure represents FILETIME RPC structure.
 //
 // The FILETIME structure is a 64-bit value that represents the number of 100-nanosecond
@@ -1831,6 +1885,2015 @@ func (o *ACEHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
+// AccessAllowedACE structure represents ACCESS_ALLOWED_ACE RPC structure.
+//
+// The ACCESS_ALLOWED_ACE structure defines an ACE for the discretionary access control
+// list (DACL) that controls access to an object. An access-allowed ACE allows access
+// to an object for a specific trustee identified by a security identifier (SID).
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessAllowedACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that specifies the user rights allowed by this ACE.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+}
+
+func (o *AccessAllowedACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AccessAllowedObjectACE structure represents ACCESS_ALLOWED_OBJECT_ACE RPC structure.
+//
+// The ACCESS_ALLOWED_OBJECT_ACE structure defines an ACE that controls allowed access
+// to an object, a property set, or property. The ACE contains a set of access rights,
+// a GUID that identifies the type of object, and a SID that identifies the trustee
+// to whom the system will grant access. The ACE also contains a GUID and a set of flags
+// that control inheritance of the ACE by child objects.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Flags                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ObjectType (16 bytes)                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| InheritedObjectType (16 bytes)                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessAllowedObjectACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that specifies the user rights allowed by this ACE.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|                 VALUE                  |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CONTROL_ACCESS 0X00000100 | The ObjectType GUID identifies an extended access right.                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CREATE_CHILD 0X00000001   | The ObjectType GUID identifies a type of child object. The ACE controls the      |
+	//	|                                        | trustee's right to create this type of child object.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_DELETE_CHILD 0X00000002   | The ObjectType GUID identifies a type of child object. The ACE controls the      |
+	//	|                                        | trustee's right to delete this type of child object.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_READ_PROP 0x00000010      | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to read the property or property set.               |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_WRITE_PROP 0x00000020     | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to write the property or property set.              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_SELF 0x00000008           | The ObjectType GUID identifies a validated write.                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Flags  (4 bytes): A 32-bit unsigned integer that specifies a set of bit flags that
+	// indicate whether the ObjectType and InheritedObjectType fields contain valid data.
+	// This parameter can be one or more of the following values.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                              |                                                                                  |
+	//	|                    VALUE                     |                                     MEANING                                      |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType are valid.                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
+	//	|                                              | objects can inherit the ACE.                                                     |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:Flags" json:"flags"`
+	// ObjectType (16 bytes): A GUID that identifies a property set, property, extended
+	// right, or type of child object. The purpose of this GUID depends on the user rights
+	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored. For information
+	// on access rights and for a mapping of the control access rights to the corresponding
+	// GUID value that identifies each right, see [MS-ADTS] sections 5.1.3.2 and 5.1.3.2.1.
+	//
+	// ACCESS_MASK bits are not mutually exclusive. Therefore, the ObjectType field can
+	// be set in an ACE with any ACCESS_MASK. If the AccessCheck algorithm calls this ACE
+	// and does not find an appropriate GUID, then that ACE will be ignored. For more information
+	// on access checks and object access, see [MS-ADTS] section 5.1.3.3.3.
+	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
+	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
+	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
+	// ACE_HEADER, as well as by any protection against inheritance placed on the child
+	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
+	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+}
+
+func (o *AccessAllowedObjectACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.ObjectType != nil {
+		_ptr_ObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swObjectType := uint32((o.Flags & 1))
+			if o.ObjectType != nil {
+				if err := o.ObjectType.MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ObjectType, _ptr_ObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.InheritedObjectType != nil {
+		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			if o.InheritedObjectType != nil {
+				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ObjectType == nil {
+			o.ObjectType = &ACEGUID{}
+		}
+		_swObjectType := uint32((o.Flags & 1))
+		if err := o.ObjectType.UnmarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
+		return err
+	}
+	_ptr_InheritedObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.InheritedObjectType == nil {
+			o.InheritedObjectType = &ACEGUID{}
+		}
+		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEGUID structure represents ACE_GUID RPC union.
+type ACEGUID struct {
+	// Types that are assignable to Value
+	//
+	// *ACEGUID_GUID
+	// *ACEGUID_DefaultACEGUID
+	Value is_ACEGUID `json:"value"`
+}
+
+func (o *ACEGUID) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *ACEGUID_GUID:
+		if value != nil {
+			return value.GUID
+		}
+	}
+	return nil
+}
+
+type is_ACEGUID interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_ACEGUID()
+}
+
+func (o *ACEGUID) NDRSwitchValue(sw uint32) uint32 {
+	if o == nil {
+		return uint32(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *ACEGUID_GUID:
+		return uint32(1)
+	}
+	return uint32(0)
+}
+
+func (o *ACEGUID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteSwitch(uint32(sw)); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(1):
+		_o, _ := o.Value.(*ACEGUID_GUID)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEGUID_GUID{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		// no-op
+	}
+	return nil
+}
+
+func (o *ACEGUID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(1):
+		o.Value = &ACEGUID_GUID{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		o.Value = &ACEGUID_DefaultACEGUID{}
+	}
+	return nil
+}
+
+// ACEGUID_GUID structure represents ACE_GUID RPC union arm.
+//
+// It has following labels: 1
+type ACEGUID_GUID struct {
+	GUID *GUID `idl:"name:GUID" json:"guid"`
+}
+
+func (*ACEGUID_GUID) is_ACEGUID() {}
+
+func (o *ACEGUID_GUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.GUID != nil {
+		if err := o.GUID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEGUID_GUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if o.GUID == nil {
+		o.GUID = &GUID{}
+	}
+	if err := o.GUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEGUID_DefaultACEGUID structure represents ACE_GUID RPC default union arm.
+type ACEGUID_DefaultACEGUID struct {
+}
+
+func (*ACEGUID_DefaultACEGUID) is_ACEGUID() {}
+
+func (o *ACEGUID_DefaultACEGUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return nil
+}
+func (o *ACEGUID_DefaultACEGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	return nil
+}
+
+// AccessDeniedACE structure represents ACCESS_DENIED_ACE RPC structure.
+//
+// The ACCESS_DENIED_ACE structure defines an ACE for the DACL that controls access
+// to an object. An access-denied ACE denies access to an object for a specific trustee
+// identified by a SID.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessDeniedACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that specifies the user rights denied by this ACE.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+}
+
+func (o *AccessDeniedACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AccessDeniedObjectACE structure represents ACCESS_DENIED_OBJECT_ACE RPC structure.
+//
+// The ACCESS_DENIED_OBJECT_ACE structure defines an ACE that controls denied access
+// to an object, a property set, or a property. The ACE contains a set of access rights,
+// a GUID that identifies the type of object, and a SID that identifies the trustee
+// to whom the system will deny access. The ACE also contains a GUID and a set of flags
+// that control inheritance of the ACE by child objects.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Flags                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ObjectType (16 bytes)                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| InheritedObjectType (16 bytes)                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessDeniedObjectACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that specifies the user rights allowed by this ACE.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|                 VALUE                  |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CONTROL_ACCESS 0X00000100 | The ObjectType GUID identifies an extended access right.                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CREATE_CHILD 0X00000001   | The ObjectType GUID identifies a type of child object. The ACE controls the      |
+	//	|                                        | trustee's right to create this type of child object.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_DELETE_CHILD 0X00000002   | The ObjectType GUID identifies a type of child object. The ACE controls the      |
+	//	|                                        | trustee's right to delete this type of child object.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_READ_PROP 0x00000010      | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to read the property or property set.               |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_WRITE_PROP 0x00000020     | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to write the property or property set.              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_SELF 0x00000008           | The ObjectType GUID identifies a validated write.                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Flags  (4 bytes): A 32-bit unsigned integer that specifies a set of bit flags that
+	// indicate whether the ObjectType and InheritedObjectType fields contain valid data.
+	// This parameter can be one or more of the following values.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                              |                                                                                  |
+	//	|                    VALUE                     |                                     MEANING                                      |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType is valid.                             |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
+	//	|                                              | objects can inherit the ACE.                                                     |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:Flags" json:"flags"`
+	// ObjectType (16 bytes): A GUID that identifies a property set, a property, an extended
+	// right, or a type of child object. The purpose of this GUID depends on the user rights
+	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored. For information
+	// about access rights and for a mapping of the control access rights to the corresponding
+	// GUID value that identifies each right, see [MS-ADTS] sections 5.1.3.2 and 5.1.3.2.1.
+	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
+	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
+	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
+	// ACE_HEADER, as well as by any protection against inheritance placed on the child
+	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
+	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+}
+
+func (o *AccessDeniedObjectACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.ObjectType != nil {
+		_ptr_ObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swObjectType := uint32((o.Flags & 1))
+			if o.ObjectType != nil {
+				if err := o.ObjectType.MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ObjectType, _ptr_ObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.InheritedObjectType != nil {
+		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			if o.InheritedObjectType != nil {
+				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ObjectType == nil {
+			o.ObjectType = &ACEGUID{}
+		}
+		_swObjectType := uint32((o.Flags & 1))
+		if err := o.ObjectType.UnmarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
+		return err
+	}
+	_ptr_InheritedObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.InheritedObjectType == nil {
+			o.InheritedObjectType = &ACEGUID{}
+		}
+		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AccessAllowedCallbackACE structure represents ACCESS_ALLOWED_CALLBACK_ACE RPC structure.
+//
+// The ACCESS_ALLOWED_CALLBACK_ACE structure defines an ACE for the DACL that controls
+// access to an object. An access-allowed ACE allows access to an object for a specific
+// trustee identified by a SID.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ApplicationData (variable)                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessAllowedCallbackACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that specifies the user rights allowed by this ACE.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+	// ApplicationData (variable): Optional application data. The size of the application
+	// data is determined by the AceSize field of the ACE_HEADER.
+	ApplicationData []byte `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *AccessAllowedCallbackACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedCallbackACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AccessDeniedCallbackACE structure represents ACCESS_DENIED_CALLBACK_ACE RPC structure.
+//
+// The ACCESS_DENIED_CALLBACK_ACE structure defines an ACE for the DACL that controls
+// access to an object. An access-denied ACE denies access to an object for a specific
+// trustee identified by a SID.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ApplicationData (variable)                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessDeniedCallbackACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that specifies the user rights denied by this ACE.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+	// ApplicationData (variable): Optional application data. The size of the application
+	// data is determined by the AceSize field of the ACE_HEADER.
+	ApplicationData []byte `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *AccessDeniedCallbackACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedCallbackACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AccessAllowedCallbackObjectACE structure represents ACCESS_ALLOWED_CALLBACK_OBJECT_ACE RPC structure.
+//
+// The ACCESS_ALLOWED_CALLBACK_OBJECT_ACE structure defines an ACE that controls allowed
+// access to an object, property set, or property. The ACE contains a set of user rights,
+// a GUID that identifies the type of object, and a SID that identifies the trustee
+// to whom the system will grant access. The ACE also contains a GUID and a set of flags
+// that control inheritance of the ACE by child objects.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Flags                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ObjectType (16 bytes)                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| InheritedObjectType (16 bytes)                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ApplicationData (variable)                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessAllowedCallbackObjectACE struct {
+	// Mask (4 bytes): An ACCESS_MASK structure that specifies the user rights allowed by
+	// this ACE.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|                 VALUE                  |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CONTROL_ACCESS 0X00000100 | The ObjectType GUID identifies an extended access right.                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CREATE_CHILD 0X00000001   | The ObjectType GUID identifies a type of child object. The ACE controls the      |
+	//	|                                        | trustee's right to create this type of child object.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_READ_PROP 0x00000010      | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to read the property or property set.               |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_WRITE_PROP 0x00000020     | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to write the property or property set.              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_SELF 0x00000008           | The ObjectType GUID identifies a validated write.                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Flags (4 bytes): A 32-bit unsigned integer that specifies a set of bit flags that
+	// indicate whether the ObjectType and InheritedObjectType fields contain valid data.
+	// This parameter can be one or more of the following values.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                              |                                                                                  |
+	//	|                    VALUE                     |                                     MEANING                                      |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType are valid.                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
+	//	|                                              | objects can inherit the ACE.                                                     |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:Flags" json:"flags"`
+	// ObjectType (16 bytes): A GUID that identifies a property set, property, extended
+	// right, or type of child object. The purpose of this GUID depends on the user rights
+	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored.
+	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
+	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
+	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
+	// ACE_HEADER, as well as by any protection against inheritance placed on the child
+	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
+	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+	// ApplicationData (variable): Optional application data. The size of the application
+	// data is determined by the AceSize field of the ACE_HEADER.
+	ApplicationData []byte `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *AccessAllowedCallbackObjectACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.ObjectType != nil {
+		_ptr_ObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swObjectType := uint32((o.Flags & 1))
+			if o.ObjectType != nil {
+				if err := o.ObjectType.MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ObjectType, _ptr_ObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.InheritedObjectType != nil {
+		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			if o.InheritedObjectType != nil {
+				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ObjectType == nil {
+			o.ObjectType = &ACEGUID{}
+		}
+		_swObjectType := uint32((o.Flags & 1))
+		if err := o.ObjectType.UnmarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
+		return err
+	}
+	_ptr_InheritedObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.InheritedObjectType == nil {
+			o.InheritedObjectType = &ACEGUID{}
+		}
+		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// AccessDeniedCallbackObjectACE structure represents ACCESS_DENIED_CALLBACK_OBJECT_ACE RPC structure.
+//
+// The ACCESS_DENIED_CALLBACK_OBJECT_ACE structure defines an ACE that controls denied
+// access to an object, a property set, or property. The ACE contains a set of user
+// rights, a GUID that identifies the type of object, and a SID that identifies the
+// trustee to whom the system will deny access. The ACE also contains a GUID and a set
+// of flags that control inheritance of the ACE by child objects.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Flags                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ObjectType (16 bytes)                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| InheritedObjectType (16 bytes)                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ApplicationData (variable)                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type AccessDeniedCallbackObjectACE struct {
+	// Mask (4 bytes): An ACCESS_MASK structure that specifies the user rights denied by
+	// this ACE.
+	//
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                        |                                                                                  |
+	//	|                 VALUE                  |                                     MEANING                                      |
+	//	|                                        |                                                                                  |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CONTROL_ACCESS 0X00000100 | The ObjectType GUID identifies an extended access right.                         |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_CREATE_CHILD 0X00000001   | The ObjectType GUID identifies a type of child object. The ACE controls the      |
+	//	|                                        | trustee's right to create this type of child object.                             |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_READ_PROP 0x00000010      | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to read the property or property set.               |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_WRITE_PROP 0x00000020     | The ObjectType GUID identifies a property set or property of the object. The ACE |
+	//	|                                        | controls the trustee's right to write the property or property set.              |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	//	| ADS_RIGHT_DS_SELF 0x00000008           | The ObjectType GUID identifies a validated write.                                |
+	//	+----------------------------------------+----------------------------------------------------------------------------------+
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Flags (4 bytes): A 32-bit unsigned integer that specifies a set of bit flags that
+	// indicate whether the ObjectType and InheritedObjectType fields contain valid data.
+	// This parameter can be one or more of the following values.
+	//
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	|                                              |                                                                                  |
+	//	|                    VALUE                     |                                     MEANING                                      |
+	//	|                                              |                                                                                  |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| 0x00000000                                   | Neither ObjectType nor InheritedObjectType are valid.                            |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_OBJECT_TYPE_PRESENT 0x00000001           | ObjectType is valid.                                                             |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	//	| ACE_INHERITED_OBJECT_TYPE_PRESENT 0x00000002 | InheritedObjectType is valid. If this value is not specified, all types of child |
+	//	|                                              | objects can inherit the ACE.                                                     |
+	//	+----------------------------------------------+----------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:Flags" json:"flags"`
+	// ObjectType (16 bytes): A GUID that identifies a property set, property, extended
+	// right, or type of child object. The purpose of this GUID depends on the user rights
+	// specified in the Mask field. This field is valid only if the ACE _OBJECT_TYPE_PRESENT
+	// bit is set in the Flags field. Otherwise, the ObjectType field is ignored.
+	ObjectType *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
+	// InheritedObjectType (16 bytes): A GUID that identifies the type of child object that
+	// can inherit the ACE. Inheritance is also controlled by the inheritance flags in the
+	// ACE_HEADER, as well as by any protection against inheritance placed on the child
+	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
+	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4.
+	SID *SID `idl:"name:Sid" json:"sid"`
+	// ApplicationData (variable): Optional application data. The size of the application
+	// data is determined by the AceSize field of the ACE_HEADER.
+	ApplicationData []byte `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *AccessDeniedCallbackObjectACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.ObjectType != nil {
+		_ptr_ObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swObjectType := uint32((o.Flags & 1))
+			if o.ObjectType != nil {
+				if err := o.ObjectType.MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ObjectType, _ptr_ObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.InheritedObjectType != nil {
+		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			if o.InheritedObjectType != nil {
+				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ObjectType == nil {
+			o.ObjectType = &ACEGUID{}
+		}
+		_swObjectType := uint32((o.Flags & 1))
+		if err := o.ObjectType.UnmarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
+		return err
+	}
+	_ptr_InheritedObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.InheritedObjectType == nil {
+			o.InheritedObjectType = &ACEGUID{}
+		}
+		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemAuditACE structure represents SYSTEM_AUDIT_ACE RPC structure.
+//
+// The SYSTEM_AUDIT_ACE structure defines an access ACE for the system access control
+// list (SACL) that specifies what types of access cause system-level notifications.
+// A system-audit ACE causes an audit message to be logged when a specified trustee
+// attempts to gain access to an object. The trustee is identified by a SID.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type SystemAuditACE struct {
+	// Mask (4 bytes): An ACCESS_MASK structure that specifies the user rights that cause
+	// audit messages to be generated.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4. An access attempt of a kind specified by the Mask field by any trustee whose SID
+	// matches the Sid field causes the system to generate an audit message. If an application
+	// does not specify a SID for this field, audit messages are generated for the specified
+	// access rights for all trustees.
+	SID *SID `idl:"name:Sid" json:"sid"`
+}
+
+func (o *SystemAuditACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemAuditObjectACE structure represents SYSTEM_AUDIT_OBJECT_ACE RPC structure.
+type SystemAuditObjectACE struct {
+	Mask                uint32   `idl:"name:Mask" json:"mask"`
+	Flags               uint32   `idl:"name:Flags" json:"flags"`
+	ObjectType          *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	SID                 *SID     `idl:"name:Sid" json:"sid"`
+	ApplicationData     []byte   `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *SystemAuditObjectACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.ObjectType != nil {
+		_ptr_ObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swObjectType := uint32((o.Flags & 1))
+			if o.ObjectType != nil {
+				if err := o.ObjectType.MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ObjectType, _ptr_ObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.InheritedObjectType != nil {
+		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			if o.InheritedObjectType != nil {
+				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ObjectType == nil {
+			o.ObjectType = &ACEGUID{}
+		}
+		_swObjectType := uint32((o.Flags & 1))
+		if err := o.ObjectType.UnmarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
+		return err
+	}
+	_ptr_InheritedObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.InheritedObjectType == nil {
+			o.InheritedObjectType = &ACEGUID{}
+		}
+		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemAuditCallbackACE structure represents SYSTEM_AUDIT_CALLBACK_ACE RPC structure.
+//
+// The SYSTEM_AUDIT_CALLBACK_ACE structure defines an ACE for the SACL that specifies
+// what types of access cause system-level notifications. A system-audit ACE causes
+// an audit message to be logged when a specified trustee attempts to gain access to
+// an object. The trustee is identified by a SID.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ApplicationData (variable)                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type SystemAuditCallbackACE struct {
+	// Mask (4 bytes): An ACCESS_MASK structure that specifies the user rights that cause
+	// audit messages to be generated.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4. An access attempt of a kind specified by the Mask field by any trustee whose SID
+	// matches the Sid field causes the system to generate an audit message. If an application
+	// does not specify a SID for this field, audit messages are generated for the specified
+	// access rights for all trustees.
+	SID *SID `idl:"name:Sid" json:"sid"`
+	// ApplicationData (variable): Optional application data. The size of the application
+	// data is determined by the AceSize field of the ACE_HEADER.
+	ApplicationData []byte `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *SystemAuditCallbackACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditCallbackACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
 // SystemMandatoryLabelACE structure represents SYSTEM_MANDATORY_LABEL_ACE RPC structure.
 //
 // The SYSTEM_MANDATORY_LABEL_ACE structure defines an ACE for the SACL that specifies
@@ -1854,11 +3917,6 @@ func (o *ACEHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // entry (ACE) for the system access control list (SACL) that specifies the mandatory
 // access level and policy for a securable object.
 type SystemMandatoryLabelACE struct {
-	// Header (4 bytes): An ACE_HEADER structure that specifies the size and type of ACE.
-	// It also contains flags that control inheritance of the ACE by child objects.
-	//
-	// Header:  An ACE_HEADER structure, as specified in section 2.4.4.13.
-	Header *ACEHeader `idl:"name:Header" json:"header"`
 	// Mask (4 bytes): An ACCESS_MASK structure that specifies the access policy for principals
 	// with a mandatory integrity level lower than the object associated with the SACL that
 	// contains this ACE.
@@ -1880,10 +3938,30 @@ type SystemMandatoryLabelACE struct {
 	//
 	// Mask:  An ACCESS_MASK as specified in section 2.4.4.13.
 	Mask uint32 `idl:"name:Mask" json:"mask"`
-	// SidStart:  Specifies the first DWORD of the SID. The remaining bytes of the SID are
-	// stored in contiguous memory after the SidStart member. The IdentifierAuthority and
-	// RID MUST be as specified 2.4.4.13.
-	SIDStart uint32 `idl:"name:SidStart" json:"sid_start"`
+	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
+	// 4. The identifier authority of the SID must be SECURITY_MANDATORY_LABEL_AUTHORITY.
+	// The RID of the SID specifies the mandatory integrity level of the object associated
+	// with the SACL that contains this ACE. The RID must be one of the following values.
+	//
+	//	+------------+------------------------------------+
+	//	|            |                                    |
+	//	|   VALUE    |              MEANING               |
+	//	|            |                                    |
+	//	+------------+------------------------------------+
+	//	+------------+------------------------------------+
+	//	| 0x00000000 | Untrusted integrity level.         |
+	//	+------------+------------------------------------+
+	//	| 0x00001000 | Low integrity level.               |
+	//	+------------+------------------------------------+
+	//	| 0x00002000 | Medium integrity level.            |
+	//	+------------+------------------------------------+
+	//	| 0x00003000 | High integrity level.              |
+	//	+------------+------------------------------------+
+	//	| 0x00004000 | System integrity level.            |
+	//	+------------+------------------------------------+
+	//	| 0x00005000 | Protected process integrity level. |
+	//	+------------+------------------------------------+
+	SID *SID `idl:"name:Sid" json:"sid"`
 }
 
 func (o *SystemMandatoryLabelACE) xxx_PreparePayload(ctx context.Context) error {
@@ -1898,40 +3976,1954 @@ func (o *SystemMandatoryLabelACE) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(4); err != nil {
+	if err := w.WriteAlign(9); err != nil {
 		return err
-	}
-	if o.Header != nil {
-		if err := o.Header.MarshalNDR(ctx, w); err != nil {
-			return err
-		}
-	} else {
-		if err := (&ACEHeader{}).MarshalNDR(ctx, w); err != nil {
-			return err
-		}
 	}
 	if err := w.WriteData(o.Mask); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.SIDStart); err != nil {
-		return err
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
 func (o *SystemMandatoryLabelACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(4); err != nil {
-		return err
-	}
-	if o.Header == nil {
-		o.Header = &ACEHeader{}
-	}
-	if err := o.Header.UnmarshalNDR(ctx, w); err != nil {
+	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Mask); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.SIDStart); err != nil {
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemAuditCallbackObjectACE structure represents SYSTEM_AUDIT_CALLBACK_OBJECT_ACE RPC structure.
+type SystemAuditCallbackObjectACE struct {
+	Mask                uint32   `idl:"name:Mask" json:"mask"`
+	Flags               uint32   `idl:"name:Flags" json:"flags"`
+	ObjectType          *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	SID                 *SID     `idl:"name:Sid" json:"sid"`
+	ApplicationData     []byte   `idl:"name:ApplicationData" json:"application_data"`
+}
+
+func (o *SystemAuditCallbackObjectACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if o.ObjectType != nil {
+		_ptr_ObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swObjectType := uint32((o.Flags & 1))
+			if o.ObjectType != nil {
+				if err := o.ObjectType.MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ObjectType, _ptr_ObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.InheritedObjectType != nil {
+		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			if o.InheritedObjectType != nil {
+				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ACEGUID{}).MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.ApplicationData != nil {
+		_ptr_ApplicationData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.ApplicationData {
+				i1 := i1
+				if err := w.WriteData(o.ApplicationData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ApplicationData, _ptr_ApplicationData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_ObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.ObjectType == nil {
+			o.ObjectType = &ACEGUID{}
+		}
+		_swObjectType := uint32((o.Flags & 1))
+		if err := o.ObjectType.UnmarshalUnionNDR(ctx, w, _swObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_ObjectType := func(ptr interface{}) { o.ObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.ObjectType, _s_ObjectType, _ptr_ObjectType); err != nil {
+		return err
+	}
+	_ptr_InheritedObjectType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.InheritedObjectType == nil {
+			o.InheritedObjectType = &ACEGUID{}
+		}
+		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_InheritedObjectType := func(ptr interface{}) { o.InheritedObjectType = *ptr.(**ACEGUID) }
+	if err := w.ReadPointer(&o.InheritedObjectType, _s_InheritedObjectType, _ptr_InheritedObjectType); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_ApplicationData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.ApplicationData = append(o.ApplicationData, uint8(0))
+			if err := w.ReadData(&o.ApplicationData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ApplicationData := func(ptr interface{}) { o.ApplicationData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ApplicationData, _s_ApplicationData, _ptr_ApplicationData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemResourceAttributeACE structure represents SYSTEM_RESOURCE_ATTRIBUTE_ACE RPC structure.
+//
+// The SYSTEM_RESOURCE_ATTRIBUTE_ACE structure defines an ACE for the specification
+// of a resource attribute associated with an object. A SYSTEM_RESOURCE_ATTRIBUTE_ACE
+// is used in conditional ACEs in specifying access or audit policy for the resource.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Attribute Data (variable)                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type SystemResourceAttributeACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that MUST be set to zero.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): The SID corresponding to the Everyone SID (S-1-1-0) in binary form.
+	SID           *SID   `idl:"name:Sid" json:"sid"`
+	AttributeData []byte `idl:"name:AttributeData" json:"attribute_data"`
+}
+
+func (o *SystemResourceAttributeACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemResourceAttributeACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.AttributeData != nil {
+		_ptr_AttributeData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.AttributeData {
+				i1 := i1
+				if err := w.WriteData(o.AttributeData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AttributeData, _ptr_AttributeData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemResourceAttributeACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	_ptr_AttributeData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.AttributeData = append(o.AttributeData, uint8(0))
+			if err := w.ReadData(&o.AttributeData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_AttributeData := func(ptr interface{}) { o.AttributeData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.AttributeData, _s_AttributeData, _ptr_AttributeData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// SystemScopedPolicyIDACE structure represents SYSTEM_SCOPED_POLICY_ID_ACE RPC structure.
+//
+// The SYSTEM_SCOPED_POLICY_ID_ACE structure defines an ACE for the purpose of applying
+// a central access policy to the resource.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Header                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Mask                                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Sid (variable)                                                                                                                |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type SystemScopedPolicyIDACE struct {
+	// Mask (4 bytes): An ACCESS_MASK that MUST be set to zero.
+	Mask uint32 `idl:"name:Mask" json:"mask"`
+	// Sid (variable): A SID that identifies a central access policy. For a SYSTEM_SCOPED_POLICY_ID_ACE
+	// to be applicable on a resource, this SID MUST match a CAPID of a CentralAccessPolicy
+	// contained in the CentralAccessPoliciesList (as specified in [MS-GPCAP] section 3.2.1.1)
+	// of the machine on which the access evaluation will be performed.
+	SID *SID `idl:"name:Sid" json:"sid"`
+}
+
+func (o *SystemScopedPolicyIDACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemScopedPolicyIDACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Mask); err != nil {
+		return err
+	}
+	if o.SID != nil {
+		_ptr_Sid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SID != nil {
+				if err := o.SID.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SID{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SID, _ptr_Sid); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *SystemScopedPolicyIDACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Mask); err != nil {
+		return err
+	}
+	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SID == nil {
+			o.SID = &SID{}
+		}
+		if err := o.SID.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_Sid := func(ptr interface{}) { o.SID = *ptr.(**SID) }
+	if err := w.ReadPointer(&o.SID, _s_Sid, _ptr_Sid); err != nil {
+		return err
+	}
+	return nil
+}
+
+// RawACE structure represents RAW_ACE RPC structure.
+type RawACE struct {
+	RawData []byte `idl:"name:RawData" json:"raw_data"`
+}
+
+func (o *RawACE) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *RawACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(6); err != nil {
+		return err
+	}
+	if o.RawData != nil {
+		_ptr_RawData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.RawData {
+				i1 := i1
+				if err := w.WriteData(o.RawData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RawData, _ptr_RawData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *RawACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(6); err != nil {
+		return err
+	}
+	_ptr_RawData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.RawData = append(o.RawData, uint8(0))
+			if err := w.ReadData(&o.RawData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_RawData := func(ptr interface{}) { o.RawData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.RawData, _s_RawData, _ptr_RawData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEType type represents ACE_TYPE RPC enumeration.
+type ACEType uint16
+
+var (
+	ACETypeAccessAllowedACEType               ACEType = 0
+	ACETypeAccessDeniedACEType                ACEType = 1
+	ACETypeSystemAuditACEType                 ACEType = 2
+	ACETypeSystemAlarmACEType                 ACEType = 3
+	ACETypeAccessAllowedCompoundACEType       ACEType = 4
+	ACETypeAccessAllowedObjectACEType         ACEType = 5
+	ACETypeAccessDeniedObjectACEType          ACEType = 6
+	ACETypeSystemAuditObjectACEType           ACEType = 7
+	ACETypeSystemAlarmObjectACEType           ACEType = 8
+	ACETypeAccessAllowedCallbackACEType       ACEType = 9
+	ACETypeAccessDeniedCallbackACEType        ACEType = 10
+	ACETypeAccessAllowedCallbackObjectACEType ACEType = 11
+	ACETypeAccessDeniedCallbackObjectACEType  ACEType = 12
+	ACETypeSystemAuditCallbackACEType         ACEType = 13
+	ACETypeSystemAlarmCallbackACEType         ACEType = 14
+	ACETypeSystemAuditCallbackObjectACEType   ACEType = 15
+	ACETypeSystemAlarmCallbackObjectACEType   ACEType = 16
+	ACETypeSystemMandatoryLabelACEType        ACEType = 17
+	ACETypeSystemResourceAttributeACEType     ACEType = 18
+	ACETypeSystemScopedPolicyIdaceType        ACEType = 19
+)
+
+func (o ACEType) String() string {
+	switch o {
+	case ACETypeAccessAllowedACEType:
+		return "ACETypeAccessAllowedACEType"
+	case ACETypeAccessDeniedACEType:
+		return "ACETypeAccessDeniedACEType"
+	case ACETypeSystemAuditACEType:
+		return "ACETypeSystemAuditACEType"
+	case ACETypeSystemAlarmACEType:
+		return "ACETypeSystemAlarmACEType"
+	case ACETypeAccessAllowedCompoundACEType:
+		return "ACETypeAccessAllowedCompoundACEType"
+	case ACETypeAccessAllowedObjectACEType:
+		return "ACETypeAccessAllowedObjectACEType"
+	case ACETypeAccessDeniedObjectACEType:
+		return "ACETypeAccessDeniedObjectACEType"
+	case ACETypeSystemAuditObjectACEType:
+		return "ACETypeSystemAuditObjectACEType"
+	case ACETypeSystemAlarmObjectACEType:
+		return "ACETypeSystemAlarmObjectACEType"
+	case ACETypeAccessAllowedCallbackACEType:
+		return "ACETypeAccessAllowedCallbackACEType"
+	case ACETypeAccessDeniedCallbackACEType:
+		return "ACETypeAccessDeniedCallbackACEType"
+	case ACETypeAccessAllowedCallbackObjectACEType:
+		return "ACETypeAccessAllowedCallbackObjectACEType"
+	case ACETypeAccessDeniedCallbackObjectACEType:
+		return "ACETypeAccessDeniedCallbackObjectACEType"
+	case ACETypeSystemAuditCallbackACEType:
+		return "ACETypeSystemAuditCallbackACEType"
+	case ACETypeSystemAlarmCallbackACEType:
+		return "ACETypeSystemAlarmCallbackACEType"
+	case ACETypeSystemAuditCallbackObjectACEType:
+		return "ACETypeSystemAuditCallbackObjectACEType"
+	case ACETypeSystemAlarmCallbackObjectACEType:
+		return "ACETypeSystemAlarmCallbackObjectACEType"
+	case ACETypeSystemMandatoryLabelACEType:
+		return "ACETypeSystemMandatoryLabelACEType"
+	case ACETypeSystemResourceAttributeACEType:
+		return "ACETypeSystemResourceAttributeACEType"
+	case ACETypeSystemScopedPolicyIdaceType:
+		return "ACETypeSystemScopedPolicyIdaceType"
+	}
+	return "Invalid"
+}
+
+// ACE structure represents ACE RPC structure.
+type ACE struct {
+	ACEType  uint8    `idl:"name:AceType" json:"ace_type"`
+	ACEFlags uint8    `idl:"name:AceFlags" json:"ace_flags"`
+	ACESize  uint16   `idl:"name:AceSize" json:"ace_size"`
+	Data     []byte   `idl:"name:Data;size_is:((AceSize-4))" json:"data"`
+	ACEData  *ACEData `idl:"name:AceData;switch_is:AceType" json:"ace_data"`
+}
+
+func (o *ACE) xxx_PreparePayload(ctx context.Context) error {
+	if o.Data != nil && o.ACESize == 0 {
+		o.ACESize = uint16((len(o.Data) + 4))
+	}
+	if o.ACESize < 4 {
+		o.ACESize = 4
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(7); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ACEType); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ACEFlags); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ACESize); err != nil {
+		return err
+	}
+	if o.Data != nil || (o.ACESize-4) > 0 {
+		_ptr_Data := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64((o.ACESize - 4))
+			if o.ACESize < 4 {
+				dimSize1 = uint64(0)
+			}
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Data {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Data[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Data, _ptr_Data); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	// pad 4
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(7); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ACEType); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ACEFlags); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ACESize); err != nil {
+		return err
+	}
+	_ptr_Data := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ACESize > 4 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64((o.ACESize - 4))
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+		}
+		o.Data = make([]byte, sizeInfo[0])
+		for i1 := range o.Data {
+			i1 := i1
+			if err := w.ReadData(&o.Data[i1]); err != nil {
+				return err
+			}
+		}
+		_layout_AceData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			_ptr_AceData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if o.ACEData == nil {
+					o.ACEData = &ACEData{}
+				}
+				_swACEData := uint8(o.ACEType)
+				if err := o.ACEData.UnmarshalUnionNDR(ctx, w, _swACEData); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_AceData := func(ptr interface{}) { o.ACEData = *ptr.(**ACEData) }
+			if err := w.ReadPointer(&o.ACEData, _s_AceData, _ptr_AceData); err != nil {
+				return err
+			}
+			return nil
+		})
+		if len(o.Data) > 0 {
+			if err := w.WithBytes(o.Data).Unmarshal(ctx, _layout_AceData); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Data := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Data, _s_Data, _ptr_Data); err != nil {
+		return err
+	}
+	// pad 4
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData structure represents ACE_DATA RPC union.
+type ACEData struct {
+	// Types that are assignable to Value
+	//
+	// *ACEData_AccessAllowedACE
+	// *ACEData_AccessDeniedACE
+	// *ACEData_SystemAuditACE
+	// *ACEData_AccessAllowedObjectACE
+	// *ACEData_AccessDeniedObjectACE
+	// *ACEData_SystemAuditObjectACE
+	// *ACEData_AccessAllowedCallbackACE
+	// *ACEData_AccessDeniedCallbackACE
+	// *ACEData_AccessAllowedCallbackObjectACE
+	// *ACEData_AccessDeniedCallbackObjectACE
+	// *ACEData_SystemAuditCallbackACE
+	// *ACEData_SystemAuditCallbackObjectACE
+	// *ACEData_SystemMandatoryLabelACE
+	// *ACEData_SystemResourceAttributeACE
+	// *ACEData_SystemScopedPolicyIDACE
+	// *ACEData_RawACE
+	Value is_ACEData `json:"value"`
+}
+
+func (o *ACEData) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *ACEData_AccessAllowedACE:
+		if value != nil {
+			return value.AccessAllowedACE
+		}
+	case *ACEData_AccessDeniedACE:
+		if value != nil {
+			return value.AccessDeniedACE
+		}
+	case *ACEData_SystemAuditACE:
+		if value != nil {
+			return value.SystemAuditACE
+		}
+	case *ACEData_AccessAllowedObjectACE:
+		if value != nil {
+			return value.AccessAllowedObjectACE
+		}
+	case *ACEData_AccessDeniedObjectACE:
+		if value != nil {
+			return value.AccessDeniedObjectACE
+		}
+	case *ACEData_SystemAuditObjectACE:
+		if value != nil {
+			return value.SystemAuditObjectACE
+		}
+	case *ACEData_AccessAllowedCallbackACE:
+		if value != nil {
+			return value.AccessAllowedCallbackACE
+		}
+	case *ACEData_AccessDeniedCallbackACE:
+		if value != nil {
+			return value.AccessDeniedCallbackACE
+		}
+	case *ACEData_AccessAllowedCallbackObjectACE:
+		if value != nil {
+			return value.AccessAllowedCallbackObjectACE
+		}
+	case *ACEData_AccessDeniedCallbackObjectACE:
+		if value != nil {
+			return value.AccessDeniedCallbackObjectACE
+		}
+	case *ACEData_SystemAuditCallbackACE:
+		if value != nil {
+			return value.SystemAuditCallbackACE
+		}
+	case *ACEData_SystemAuditCallbackObjectACE:
+		if value != nil {
+			return value.SystemAuditCallbackObjectACE
+		}
+	case *ACEData_SystemMandatoryLabelACE:
+		if value != nil {
+			return value.SystemMandatoryLabelACE
+		}
+	case *ACEData_SystemResourceAttributeACE:
+		if value != nil {
+			return value.SystemResourceAttributeACE
+		}
+	case *ACEData_SystemScopedPolicyIDACE:
+		if value != nil {
+			return value.SystemScopedPolicyIDACE
+		}
+	case *ACEData_RawACE:
+		if value != nil {
+			return value.RawACE
+		}
+	}
+	return nil
+}
+
+type is_ACEData interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_ACEData()
+}
+
+func (o *ACEData) NDRSwitchValue(sw uint8) uint8 {
+	if o == nil {
+		return uint8(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *ACEData_AccessAllowedACE:
+		return uint8(0)
+	case *ACEData_AccessDeniedACE:
+		return uint8(1)
+	case *ACEData_SystemAuditACE:
+		return uint8(2)
+	case *ACEData_AccessAllowedObjectACE:
+		return uint8(5)
+	case *ACEData_AccessDeniedObjectACE:
+		return uint8(6)
+	case *ACEData_SystemAuditObjectACE:
+		return uint8(7)
+	case *ACEData_AccessAllowedCallbackACE:
+		return uint8(9)
+	case *ACEData_AccessDeniedCallbackACE:
+		return uint8(10)
+	case *ACEData_AccessAllowedCallbackObjectACE:
+		return uint8(11)
+	case *ACEData_AccessDeniedCallbackObjectACE:
+		return uint8(12)
+	case *ACEData_SystemAuditCallbackACE:
+		return uint8(13)
+	case *ACEData_SystemAuditCallbackObjectACE:
+		return uint8(15)
+	case *ACEData_SystemMandatoryLabelACE:
+		return uint8(17)
+	case *ACEData_SystemResourceAttributeACE:
+		return uint8(18)
+	case *ACEData_SystemScopedPolicyIDACE:
+		return uint8(19)
+	}
+	return uint8(0)
+}
+
+func (o *ACEData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint8) error {
+	if err := w.WriteSwitch(uint8(sw)); err != nil {
+		return err
+	}
+	switch sw {
+	case uint8(0):
+		_o, _ := o.Value.(*ACEData_AccessAllowedACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessAllowedACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(1):
+		_o, _ := o.Value.(*ACEData_AccessDeniedACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessDeniedACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(2):
+		_o, _ := o.Value.(*ACEData_SystemAuditACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemAuditACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(5):
+		_o, _ := o.Value.(*ACEData_AccessAllowedObjectACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessAllowedObjectACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(6):
+		_o, _ := o.Value.(*ACEData_AccessDeniedObjectACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessDeniedObjectACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(7):
+		_o, _ := o.Value.(*ACEData_SystemAuditObjectACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemAuditObjectACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(9):
+		_o, _ := o.Value.(*ACEData_AccessAllowedCallbackACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessAllowedCallbackACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(10):
+		_o, _ := o.Value.(*ACEData_AccessDeniedCallbackACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessDeniedCallbackACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(11):
+		_o, _ := o.Value.(*ACEData_AccessAllowedCallbackObjectACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessAllowedCallbackObjectACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(12):
+		_o, _ := o.Value.(*ACEData_AccessDeniedCallbackObjectACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_AccessDeniedCallbackObjectACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(13):
+		_o, _ := o.Value.(*ACEData_SystemAuditCallbackACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemAuditCallbackACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(15):
+		_o, _ := o.Value.(*ACEData_SystemAuditCallbackObjectACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemAuditCallbackObjectACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(17):
+		_o, _ := o.Value.(*ACEData_SystemMandatoryLabelACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemMandatoryLabelACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(18):
+		_o, _ := o.Value.(*ACEData_SystemResourceAttributeACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemResourceAttributeACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	case uint8(19):
+		_o, _ := o.Value.(*ACEData_SystemScopedPolicyIDACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_SystemScopedPolicyIDACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+		_o, _ := o.Value.(*ACEData_RawACE)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ACEData_RawACE{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
+}
+
+func (o *ACEData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint8) error {
+	if err := w.ReadSwitch((*uint8)(&sw)); err != nil {
+		return err
+	}
+	switch sw {
+	case uint8(0):
+		o.Value = &ACEData_AccessAllowedACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(1):
+		o.Value = &ACEData_AccessDeniedACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(2):
+		o.Value = &ACEData_SystemAuditACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(5):
+		o.Value = &ACEData_AccessAllowedObjectACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(6):
+		o.Value = &ACEData_AccessDeniedObjectACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(7):
+		o.Value = &ACEData_SystemAuditObjectACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(9):
+		o.Value = &ACEData_AccessAllowedCallbackACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(10):
+		o.Value = &ACEData_AccessDeniedCallbackACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(11):
+		o.Value = &ACEData_AccessAllowedCallbackObjectACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(12):
+		o.Value = &ACEData_AccessDeniedCallbackObjectACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(13):
+		o.Value = &ACEData_SystemAuditCallbackACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(15):
+		o.Value = &ACEData_SystemAuditCallbackObjectACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(17):
+		o.Value = &ACEData_SystemMandatoryLabelACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(18):
+		o.Value = &ACEData_SystemResourceAttributeACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	case uint8(19):
+		o.Value = &ACEData_SystemScopedPolicyIDACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+		o.Value = &ACEData_RawACE{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ACEData_AccessAllowedACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 0
+type ACEData_AccessAllowedACE struct {
+	AccessAllowedACE *AccessAllowedACE `idl:"name:AccessAllowedAce" json:"access_allowed_ace"`
+}
+
+func (*ACEData_AccessAllowedACE) is_ACEData() {}
+
+func (o *ACEData_AccessAllowedACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessAllowedACE != nil {
+		_ptr_AccessAllowedAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessAllowedACE != nil {
+				if err := o.AccessAllowedACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessAllowedACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessAllowedACE, _ptr_AccessAllowedAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessAllowedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessAllowedAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessAllowedACE == nil {
+			o.AccessAllowedACE = &AccessAllowedACE{}
+		}
+		if err := o.AccessAllowedACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessAllowedAce := func(ptr interface{}) { o.AccessAllowedACE = *ptr.(**AccessAllowedACE) }
+	if err := w.ReadPointer(&o.AccessAllowedACE, _s_AccessAllowedAce, _ptr_AccessAllowedAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessDeniedACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 1
+type ACEData_AccessDeniedACE struct {
+	AccessDeniedACE *AccessDeniedACE `idl:"name:AccessDeniedAce" json:"access_denied_ace"`
+}
+
+func (*ACEData_AccessDeniedACE) is_ACEData() {}
+
+func (o *ACEData_AccessDeniedACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessDeniedACE != nil {
+		_ptr_AccessDeniedAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessDeniedACE != nil {
+				if err := o.AccessDeniedACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessDeniedACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessDeniedACE, _ptr_AccessDeniedAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessDeniedACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessDeniedAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessDeniedACE == nil {
+			o.AccessDeniedACE = &AccessDeniedACE{}
+		}
+		if err := o.AccessDeniedACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessDeniedAce := func(ptr interface{}) { o.AccessDeniedACE = *ptr.(**AccessDeniedACE) }
+	if err := w.ReadPointer(&o.AccessDeniedACE, _s_AccessDeniedAce, _ptr_AccessDeniedAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemAuditACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 2
+type ACEData_SystemAuditACE struct {
+	SystemAuditACE *SystemAuditACE `idl:"name:SystemAuditAce" json:"system_audit_ace"`
+}
+
+func (*ACEData_SystemAuditACE) is_ACEData() {}
+
+func (o *ACEData_SystemAuditACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemAuditACE != nil {
+		_ptr_SystemAuditAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemAuditACE != nil {
+				if err := o.SystemAuditACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemAuditACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemAuditACE, _ptr_SystemAuditAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemAuditACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemAuditAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemAuditACE == nil {
+			o.SystemAuditACE = &SystemAuditACE{}
+		}
+		if err := o.SystemAuditACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemAuditAce := func(ptr interface{}) { o.SystemAuditACE = *ptr.(**SystemAuditACE) }
+	if err := w.ReadPointer(&o.SystemAuditACE, _s_SystemAuditAce, _ptr_SystemAuditAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessAllowedObjectACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 5
+type ACEData_AccessAllowedObjectACE struct {
+	AccessAllowedObjectACE *AccessAllowedObjectACE `idl:"name:AccessAllowedObjectAce" json:"access_allowed_object_ace"`
+}
+
+func (*ACEData_AccessAllowedObjectACE) is_ACEData() {}
+
+func (o *ACEData_AccessAllowedObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessAllowedObjectACE != nil {
+		_ptr_AccessAllowedObjectAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessAllowedObjectACE != nil {
+				if err := o.AccessAllowedObjectACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessAllowedObjectACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessAllowedObjectACE, _ptr_AccessAllowedObjectAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessAllowedObjectAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessAllowedObjectACE == nil {
+			o.AccessAllowedObjectACE = &AccessAllowedObjectACE{}
+		}
+		if err := o.AccessAllowedObjectACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessAllowedObjectAce := func(ptr interface{}) { o.AccessAllowedObjectACE = *ptr.(**AccessAllowedObjectACE) }
+	if err := w.ReadPointer(&o.AccessAllowedObjectACE, _s_AccessAllowedObjectAce, _ptr_AccessAllowedObjectAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessDeniedObjectACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 6
+type ACEData_AccessDeniedObjectACE struct {
+	AccessDeniedObjectACE *AccessDeniedObjectACE `idl:"name:AccessDeniedObjectAce" json:"access_denied_object_ace"`
+}
+
+func (*ACEData_AccessDeniedObjectACE) is_ACEData() {}
+
+func (o *ACEData_AccessDeniedObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessDeniedObjectACE != nil {
+		_ptr_AccessDeniedObjectAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessDeniedObjectACE != nil {
+				if err := o.AccessDeniedObjectACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessDeniedObjectACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessDeniedObjectACE, _ptr_AccessDeniedObjectAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessDeniedObjectAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessDeniedObjectACE == nil {
+			o.AccessDeniedObjectACE = &AccessDeniedObjectACE{}
+		}
+		if err := o.AccessDeniedObjectACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessDeniedObjectAce := func(ptr interface{}) { o.AccessDeniedObjectACE = *ptr.(**AccessDeniedObjectACE) }
+	if err := w.ReadPointer(&o.AccessDeniedObjectACE, _s_AccessDeniedObjectAce, _ptr_AccessDeniedObjectAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemAuditObjectACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 7
+type ACEData_SystemAuditObjectACE struct {
+	SystemAuditObjectACE *SystemAuditObjectACE `idl:"name:SystemAuditObjectAce" json:"system_audit_object_ace"`
+}
+
+func (*ACEData_SystemAuditObjectACE) is_ACEData() {}
+
+func (o *ACEData_SystemAuditObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemAuditObjectACE != nil {
+		_ptr_SystemAuditObjectAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemAuditObjectACE != nil {
+				if err := o.SystemAuditObjectACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemAuditObjectACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemAuditObjectACE, _ptr_SystemAuditObjectAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemAuditObjectAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemAuditObjectACE == nil {
+			o.SystemAuditObjectACE = &SystemAuditObjectACE{}
+		}
+		if err := o.SystemAuditObjectACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemAuditObjectAce := func(ptr interface{}) { o.SystemAuditObjectACE = *ptr.(**SystemAuditObjectACE) }
+	if err := w.ReadPointer(&o.SystemAuditObjectACE, _s_SystemAuditObjectAce, _ptr_SystemAuditObjectAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessAllowedCallbackACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 9
+type ACEData_AccessAllowedCallbackACE struct {
+	AccessAllowedCallbackACE *AccessAllowedCallbackACE `idl:"name:AccessAllowedCallbackAce" json:"access_allowed_callback_ace"`
+}
+
+func (*ACEData_AccessAllowedCallbackACE) is_ACEData() {}
+
+func (o *ACEData_AccessAllowedCallbackACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessAllowedCallbackACE != nil {
+		_ptr_AccessAllowedCallbackAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessAllowedCallbackACE != nil {
+				if err := o.AccessAllowedCallbackACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessAllowedCallbackACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessAllowedCallbackACE, _ptr_AccessAllowedCallbackAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessAllowedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessAllowedCallbackAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessAllowedCallbackACE == nil {
+			o.AccessAllowedCallbackACE = &AccessAllowedCallbackACE{}
+		}
+		if err := o.AccessAllowedCallbackACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessAllowedCallbackAce := func(ptr interface{}) { o.AccessAllowedCallbackACE = *ptr.(**AccessAllowedCallbackACE) }
+	if err := w.ReadPointer(&o.AccessAllowedCallbackACE, _s_AccessAllowedCallbackAce, _ptr_AccessAllowedCallbackAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessDeniedCallbackACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 10
+type ACEData_AccessDeniedCallbackACE struct {
+	AccessDeniedCallbackACE *AccessDeniedCallbackACE `idl:"name:AccessDeniedCallbackAce" json:"access_denied_callback_ace"`
+}
+
+func (*ACEData_AccessDeniedCallbackACE) is_ACEData() {}
+
+func (o *ACEData_AccessDeniedCallbackACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessDeniedCallbackACE != nil {
+		_ptr_AccessDeniedCallbackAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessDeniedCallbackACE != nil {
+				if err := o.AccessDeniedCallbackACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessDeniedCallbackACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessDeniedCallbackACE, _ptr_AccessDeniedCallbackAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessDeniedCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessDeniedCallbackAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessDeniedCallbackACE == nil {
+			o.AccessDeniedCallbackACE = &AccessDeniedCallbackACE{}
+		}
+		if err := o.AccessDeniedCallbackACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessDeniedCallbackAce := func(ptr interface{}) { o.AccessDeniedCallbackACE = *ptr.(**AccessDeniedCallbackACE) }
+	if err := w.ReadPointer(&o.AccessDeniedCallbackACE, _s_AccessDeniedCallbackAce, _ptr_AccessDeniedCallbackAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessAllowedCallbackObjectACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 11
+type ACEData_AccessAllowedCallbackObjectACE struct {
+	AccessAllowedCallbackObjectACE *AccessAllowedCallbackObjectACE `idl:"name:AccessAllowedCallbackObjectAce" json:"access_allowed_callback_object_ace"`
+}
+
+func (*ACEData_AccessAllowedCallbackObjectACE) is_ACEData() {}
+
+func (o *ACEData_AccessAllowedCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessAllowedCallbackObjectACE != nil {
+		_ptr_AccessAllowedCallbackObjectAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessAllowedCallbackObjectACE != nil {
+				if err := o.AccessAllowedCallbackObjectACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessAllowedCallbackObjectACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessAllowedCallbackObjectACE, _ptr_AccessAllowedCallbackObjectAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessAllowedCallbackObjectAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessAllowedCallbackObjectACE == nil {
+			o.AccessAllowedCallbackObjectACE = &AccessAllowedCallbackObjectACE{}
+		}
+		if err := o.AccessAllowedCallbackObjectACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessAllowedCallbackObjectAce := func(ptr interface{}) { o.AccessAllowedCallbackObjectACE = *ptr.(**AccessAllowedCallbackObjectACE) }
+	if err := w.ReadPointer(&o.AccessAllowedCallbackObjectACE, _s_AccessAllowedCallbackObjectAce, _ptr_AccessAllowedCallbackObjectAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_AccessDeniedCallbackObjectACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 12
+type ACEData_AccessDeniedCallbackObjectACE struct {
+	AccessDeniedCallbackObjectACE *AccessDeniedCallbackObjectACE `idl:"name:AccessDeniedCallbackObjectAce" json:"access_denied_callback_object_ace"`
+}
+
+func (*ACEData_AccessDeniedCallbackObjectACE) is_ACEData() {}
+
+func (o *ACEData_AccessDeniedCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.AccessDeniedCallbackObjectACE != nil {
+		_ptr_AccessDeniedCallbackObjectAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.AccessDeniedCallbackObjectACE != nil {
+				if err := o.AccessDeniedCallbackObjectACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&AccessDeniedCallbackObjectACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.AccessDeniedCallbackObjectACE, _ptr_AccessDeniedCallbackObjectAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_AccessDeniedCallbackObjectAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.AccessDeniedCallbackObjectACE == nil {
+			o.AccessDeniedCallbackObjectACE = &AccessDeniedCallbackObjectACE{}
+		}
+		if err := o.AccessDeniedCallbackObjectACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_AccessDeniedCallbackObjectAce := func(ptr interface{}) { o.AccessDeniedCallbackObjectACE = *ptr.(**AccessDeniedCallbackObjectACE) }
+	if err := w.ReadPointer(&o.AccessDeniedCallbackObjectACE, _s_AccessDeniedCallbackObjectAce, _ptr_AccessDeniedCallbackObjectAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemAuditCallbackACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 13
+type ACEData_SystemAuditCallbackACE struct {
+	SystemAuditCallbackACE *SystemAuditCallbackACE `idl:"name:SystemAuditCallbackAce" json:"system_audit_callback_ace"`
+}
+
+func (*ACEData_SystemAuditCallbackACE) is_ACEData() {}
+
+func (o *ACEData_SystemAuditCallbackACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemAuditCallbackACE != nil {
+		_ptr_SystemAuditCallbackAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemAuditCallbackACE != nil {
+				if err := o.SystemAuditCallbackACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemAuditCallbackACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemAuditCallbackACE, _ptr_SystemAuditCallbackAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemAuditCallbackACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemAuditCallbackAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemAuditCallbackACE == nil {
+			o.SystemAuditCallbackACE = &SystemAuditCallbackACE{}
+		}
+		if err := o.SystemAuditCallbackACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemAuditCallbackAce := func(ptr interface{}) { o.SystemAuditCallbackACE = *ptr.(**SystemAuditCallbackACE) }
+	if err := w.ReadPointer(&o.SystemAuditCallbackACE, _s_SystemAuditCallbackAce, _ptr_SystemAuditCallbackAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemAuditCallbackObjectACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 15
+type ACEData_SystemAuditCallbackObjectACE struct {
+	SystemAuditCallbackObjectACE *SystemAuditCallbackObjectACE `idl:"name:SystemAuditCallbackObjectAce" json:"system_audit_callback_object_ace"`
+}
+
+func (*ACEData_SystemAuditCallbackObjectACE) is_ACEData() {}
+
+func (o *ACEData_SystemAuditCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemAuditCallbackObjectACE != nil {
+		_ptr_SystemAuditCallbackObjectAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemAuditCallbackObjectACE != nil {
+				if err := o.SystemAuditCallbackObjectACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemAuditCallbackObjectACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemAuditCallbackObjectACE, _ptr_SystemAuditCallbackObjectAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemAuditCallbackObjectAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemAuditCallbackObjectACE == nil {
+			o.SystemAuditCallbackObjectACE = &SystemAuditCallbackObjectACE{}
+		}
+		if err := o.SystemAuditCallbackObjectACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemAuditCallbackObjectAce := func(ptr interface{}) { o.SystemAuditCallbackObjectACE = *ptr.(**SystemAuditCallbackObjectACE) }
+	if err := w.ReadPointer(&o.SystemAuditCallbackObjectACE, _s_SystemAuditCallbackObjectAce, _ptr_SystemAuditCallbackObjectAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemMandatoryLabelACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 17
+type ACEData_SystemMandatoryLabelACE struct {
+	SystemMandatoryLabelACE *SystemMandatoryLabelACE `idl:"name:SystemMandatoryLabelAce" json:"system_mandatory_label_ace"`
+}
+
+func (*ACEData_SystemMandatoryLabelACE) is_ACEData() {}
+
+func (o *ACEData_SystemMandatoryLabelACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemMandatoryLabelACE != nil {
+		_ptr_SystemMandatoryLabelAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemMandatoryLabelACE != nil {
+				if err := o.SystemMandatoryLabelACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemMandatoryLabelACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemMandatoryLabelACE, _ptr_SystemMandatoryLabelAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemMandatoryLabelACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemMandatoryLabelAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemMandatoryLabelACE == nil {
+			o.SystemMandatoryLabelACE = &SystemMandatoryLabelACE{}
+		}
+		if err := o.SystemMandatoryLabelACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemMandatoryLabelAce := func(ptr interface{}) { o.SystemMandatoryLabelACE = *ptr.(**SystemMandatoryLabelACE) }
+	if err := w.ReadPointer(&o.SystemMandatoryLabelACE, _s_SystemMandatoryLabelAce, _ptr_SystemMandatoryLabelAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemResourceAttributeACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 18
+type ACEData_SystemResourceAttributeACE struct {
+	SystemResourceAttributeACE *SystemResourceAttributeACE `idl:"name:SystemResourceAttributeAce" json:"system_resource_attribute_ace"`
+}
+
+func (*ACEData_SystemResourceAttributeACE) is_ACEData() {}
+
+func (o *ACEData_SystemResourceAttributeACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemResourceAttributeACE != nil {
+		_ptr_SystemResourceAttributeAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemResourceAttributeACE != nil {
+				if err := o.SystemResourceAttributeACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemResourceAttributeACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemResourceAttributeACE, _ptr_SystemResourceAttributeAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemResourceAttributeACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemResourceAttributeAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemResourceAttributeACE == nil {
+			o.SystemResourceAttributeACE = &SystemResourceAttributeACE{}
+		}
+		if err := o.SystemResourceAttributeACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemResourceAttributeAce := func(ptr interface{}) { o.SystemResourceAttributeACE = *ptr.(**SystemResourceAttributeACE) }
+	if err := w.ReadPointer(&o.SystemResourceAttributeACE, _s_SystemResourceAttributeAce, _ptr_SystemResourceAttributeAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_SystemScopedPolicyIDACE structure represents ACE_DATA RPC union arm.
+//
+// It has following labels: 19
+type ACEData_SystemScopedPolicyIDACE struct {
+	SystemScopedPolicyIDACE *SystemScopedPolicyIDACE `idl:"name:SystemScopedPolicyIdAce" json:"system_scoped_policy_id_ace"`
+}
+
+func (*ACEData_SystemScopedPolicyIDACE) is_ACEData() {}
+
+func (o *ACEData_SystemScopedPolicyIDACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.SystemScopedPolicyIDACE != nil {
+		_ptr_SystemScopedPolicyIdAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.SystemScopedPolicyIDACE != nil {
+				if err := o.SystemScopedPolicyIDACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&SystemScopedPolicyIDACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SystemScopedPolicyIDACE, _ptr_SystemScopedPolicyIdAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_SystemScopedPolicyIDACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_SystemScopedPolicyIdAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.SystemScopedPolicyIDACE == nil {
+			o.SystemScopedPolicyIDACE = &SystemScopedPolicyIDACE{}
+		}
+		if err := o.SystemScopedPolicyIDACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_SystemScopedPolicyIdAce := func(ptr interface{}) { o.SystemScopedPolicyIDACE = *ptr.(**SystemScopedPolicyIDACE) }
+	if err := w.ReadPointer(&o.SystemScopedPolicyIDACE, _s_SystemScopedPolicyIdAce, _ptr_SystemScopedPolicyIdAce); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ACEData_RawACE structure represents ACE_DATA RPC default union arm.
+type ACEData_RawACE struct {
+	RawACE *RawACE `idl:"name:RawAce" json:"raw_ace"`
+}
+
+func (*ACEData_RawACE) is_ACEData() {}
+
+func (o *ACEData_RawACE) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.RawACE != nil {
+		_ptr_RawAce := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.RawACE != nil {
+				if err := o.RawACE.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&RawACE{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.RawACE, _ptr_RawAce); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ACEData_RawACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_RawAce := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.RawACE == nil {
+			o.RawACE = &RawACE{}
+		}
+		if err := o.RawACE.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_RawAce := func(ptr interface{}) { o.RawACE = *ptr.(**RawACE) }
+	if err := w.ReadPointer(&o.RawACE, _s_RawAce, _ptr_RawAce); err != nil {
 		return err
 	}
 	return nil
@@ -2559,9 +6551,13 @@ type ACL struct {
 	// Sbz2 (2 bytes): An unsigned 16-bit integer. This field is reserved and MUST be set
 	// to zero.
 	SBZ2 uint16 `idl:"name:Sbz2" json:"sbz2"`
+	Aces []*ACE `idl:"name:Aces;size_is:(AceCount)" json:"aces"`
 }
 
 func (o *ACL) xxx_PreparePayload(ctx context.Context) error {
+	if o.Aces != nil && o.ACECount == 0 {
+		o.ACECount = uint16(len(o.Aces))
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
 			return err
@@ -2569,11 +6565,28 @@ func (o *ACL) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
+
+func (o *ACL) NDRSizeInfo() []uint64 {
+	dimSize1 := uint64(o.ACECount)
+	return []uint64{
+		dimSize1,
+	}
+}
 func (o *ACL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(2); err != nil {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for sz1 := range sizeInfo {
+			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.WriteAlign(7); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ACLRevision); err != nil {
@@ -2591,10 +6604,52 @@ func (o *ACL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SBZ2); err != nil {
 		return err
 	}
+	for i1 := range o.Aces {
+		i1 := i1
+		if uint64(i1) >= sizeInfo[0] {
+			break
+		}
+		if o.Aces[i1] != nil {
+			_ptr_Aces := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Aces[i1] != nil {
+					if err := o.Aces[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&ACE{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Aces[i1], _ptr_Aces); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+	}
+	for i1 := len(o.Aces); uint64(i1) < sizeInfo[0]; i1++ {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 func (o *ACL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(2); err != nil {
+	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
+	if !ok {
+		sizeInfo = o.NDRSizeInfo()
+		for i1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
+				return err
+			}
+		}
+		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
+	}
+	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ACLRevision); err != nil {
@@ -2611,6 +6666,30 @@ func (o *ACL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	if err := w.ReadData(&o.SBZ2); err != nil {
 		return err
+	}
+	// XXX: for opaque unmarshaling
+	if o.ACECount > 0 && sizeInfo[0] == 0 {
+		sizeInfo[0] = uint64(o.ACECount)
+	}
+	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+		return fmt.Errorf("buffer overflow for size %d of array o.Aces", sizeInfo[0])
+	}
+	o.Aces = make([]*ACE, sizeInfo[0])
+	for i1 := range o.Aces {
+		i1 := i1
+		_ptr_Aces := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Aces[i1] == nil {
+				o.Aces[i1] = &ACE{}
+			}
+			if err := o.Aces[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Aces := func(ptr interface{}) { o.Aces[i1] = *ptr.(**ACE) }
+		if err := w.ReadPointer(&o.Aces[i1], _s_Aces, _ptr_Aces); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -2758,6 +6837,29 @@ type SecurityDescriptor struct {
 	//
 	// Control:  As specified in section 2.4.6.
 	Control uint16 `idl:"name:Control" json:"control"`
+	// OffsetOwner (4 bytes): An unsigned 32-bit integer that specifies the offset to the
+	// SID. This SID specifies the owner of the object to which the security descriptor
+	// is associated. This must be a valid offset if the OD flag is not set. If this field
+	// is set to zero, the OwnerSid field MUST not be present.
+	OffsetOwner uint32 `idl:"name:OffsetOwner" json:"offset_owner"`
+	// OffsetGroup (4 bytes): An unsigned 32-bit integer that specifies the offset to the
+	// SID. This SID specifies the group of the object to which the security descriptor
+	// is associated. This must be a valid offset if the GD flag is not set. If this field
+	// is set to zero, the GroupSid field MUST not be present.
+	OffsetGroup uint32 `idl:"name:OffsetGroup" json:"offset_group"`
+	// OffsetSacl (4 bytes): An unsigned 32-bit integer that specifies the offset to the
+	// ACL that contains system ACEs. Typically, the system ACL contains auditing ACEs (such
+	// as SYSTEM_AUDIT_ACE, SYSTEM_AUDIT_CALLBACK_ACE, or SYSTEM_AUDIT_CALLBACK_OBJECT_ACE),
+	// and at most one Label ACE (as specified in section 2.4.4.13). This must be a valid
+	// offset if the SP flag is set; if the SP flag is not set, this field MUST be set to
+	// zero. If this field is set to zero, the Sacl field MUST not be present.
+	OffsetSACL uint32 `idl:"name:OffsetSacl" json:"offset_sacl"`
+	// OffsetDacl (4 bytes): An unsigned 32-bit integer that specifies the offset to the
+	// ACL that contains ACEs that control access. Typically, the DACL contains ACEs that
+	// grant or deny access to principals or groups. This must be a valid offset if the
+	// DP flag is set; if the DP flag is not set, this field MUST be set to zero. If this
+	// field is set to zero, the Dacl field MUST not be present.
+	OffsetDACL uint32 `idl:"name:OffsetDacl" json:"offset_dacl"`
 	// Owner:  Pointer to the Owner SID (OwnerSid), as specified in section 2.4.6.
 	Owner *SID `idl:"name:Owner" json:"owner"`
 	// Group:  Pointer to the Group SID (GroupSid), as specified in section 2.4.6.

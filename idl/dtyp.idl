@@ -196,6 +196,26 @@ typedef struct _RPC_SID_IDENTIFIER_AUTHORITY {
 typedef DWORD ACCESS_MASK;
 typedef ACCESS_MASK *PACCESS_MASK;
 
+const DWORD ACCESS_MASK_GENERIC_READ = 0x80000000;
+const DWORD ACCESS_MASK_GENERIC_WRITE = 0x40000000;
+const DWORD ACCESS_MASK_GENERIC_EXECUTE = 0x20000000;
+const DWORD ACCESS_MASK_GENERIC_ALL = 0x10000000;
+const DWORD ACCESS_MASK_MAXIMUM_ALLOWED = 0x02000000;
+const DWORD ACCESS_MASK_ACCESS_SYSTEM_SECURITY = 0x01000000;
+const DWORD ACCESS_MASK_SYNCHRONIZE = 0x00100000;
+const DWORD ACCESS_MASK_WRITE_OWNER = 0x00080000;
+const DWORD ACCESS_MASK_WRITE_DACL = 0x00040000;
+const DWORD ACCESS_MASK_READ_CONTROL = 0x00020000;
+const DWORD ACCESS_MASK_DELETE = 0x00010000;
+
+const UCHAR ACE_FLAG_CONTAINER_INHERIT_ACE = 0x2;
+const UCHAR ACE_FLAG_FAILED_ACCESS_ACE_FLAG = 0x80;
+const UCHAR ACE_FLAG_INHERIT_ONLY_ACE = 0x8;
+const UCHAR ACE_FLAG_INHERITED_ACE = 0x10;
+const UCHAR ACE_FLAG_NO_PROPAGATE_INHERIT_ACE = 0x4;
+const UCHAR ACE_FLAG_OBJECT_INHERIT_ACE = 0x1;
+const UCHAR ACE_FLAG_SUCCESSFUL_ACCESS_ACE_FLAG = 0x40;
+
 typedef struct _OBJECT_TYPE_LIST {
   WORD Level;
   ACCESS_MASK Remaining;
@@ -210,12 +230,208 @@ typedef struct _ACE_HEADER {
 } ACE_HEADER,
  *PACE_HEADER;
 
+typedef struct _ACCESS_ALLOWED_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+} ACCESS_ALLOWED_ACE, *PACCESS_ALLOWED_ACE;
+
+typedef struct _ACCESS_ALLOWED_OBJECT_ACE {
+    ACCESS_MASK Mask;
+    DWORD Flags;
+    [switch_is(Flags&0x1)] PACE_GUID ObjectType;
+    [switch_is((Flags&0x2)>>1)] PACE_GUID InheritedObjectType;
+    PSID Sid;
+} ACCESS_ALLOWED_OBJECT_ACE, *PACCESS_ALLOWED_OBJECT_ACE;
+
+typedef [switch_type(DWORD)] union _ACE_GUID {
+    [case(0x1)] GUID GUID;
+    [default];
+} ACE_GUID, *PACE_GUID;
+
+typedef struct _ACCESS_DENIED_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+} ACCESS_DENIED_ACE, *PACCESS_DENIED_ACE;
+
+typedef struct _ACCESS_DENIED_OBJECT_ACE {
+    ACCESS_MASK Mask;
+    DWORD Flags;
+    [switch_is(Flags&0x1)] PACE_GUID ObjectType;
+    [switch_is((Flags&0x2)>>1)] PACE_GUID InheritedObjectType;
+    PSID Sid;
+} ACCESS_DENIED_OBJECT_ACE, *PACCESS_DENIED_OBJECT_ACE;
+
+typedef struct _ACCESS_ALLOWED_CALLBACK_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+    [size_is(*)] BYTE *ApplicationData[];
+} ACCESS_ALLOWED_CALLBACK_ACE, *PACCESS_ALLOWED_CALLBACK_ACE;
+
+typedef struct _ACCESS_DENIED_CALLBACK_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+    [size_is(*)] BYTE *ApplicationData[];
+} ACCESS_DENIED_CALLBACK_ACE, *PACCESS_DENIED_CALLBACK_ACE;
+
+typedef struct _ACCESS_ALLOWED_CALLBACK_OBJECT_ACE {
+    ACCESS_MASK Mask;
+    DWORD Flags;
+    [switch_is(Flags&0x1)] PACE_GUID ObjectType;
+    [switch_is((Flags&0x2)>>1)] PACE_GUID InheritedObjectType;
+    PSID Sid;
+    [size_is(*)] BYTE *ApplicationData[];
+} ACCESS_ALLOWED_CALLBACK_OBJECT_ACE, *PACCESS_ALLOWED_CALLBACK_OBJECT_ACE;
+
+typedef struct _ACCESS_DENIED_CALLBACK_OBJECT_ACE {
+    ACCESS_MASK Mask;
+    DWORD Flags;
+    [switch_is(Flags&0x1)] PACE_GUID ObjectType;
+    [switch_is((Flags&0x2)>>1)] PACE_GUID InheritedObjectType;
+    PSID Sid;
+    [size_is(*)] BYTE *ApplicationData[];
+} ACCESS_DENIED_CALLBACK_OBJECT_ACE, *PACCESS_DENIED_CALLBACK_OBJECT_ACE;
+
+typedef struct _SYSTEM_AUDIT_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+} SYSTEM_AUDIT_ACE, *PSYSTEM_AUDIT_ACE;
+
+typedef struct _SYSTEM_AUDIT_OBJECT_ACE {
+    ACCESS_MASK Mask;
+    DWORD Flags;
+    [switch_is(Flags&0x1)] PACE_GUID ObjectType;
+    [switch_is((Flags&0x2)>>1)] PACE_GUID InheritedObjectType;
+    PSID Sid;
+    [size_is(*)] BYTE * ApplicationData[];
+} SYSTEM_AUDIT_OBJECT_ACE, *PSYSTEM_AUDIT_OBJECT_ACE;
+
+typedef struct _SYSTEM_AUDIT_CALLBACK_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+    [size_is(*)] BYTE * ApplicationData[];
+} SYSTEM_AUDIT_CALLBACK_ACE, *PSYSTEM_AUDIT_CALLBACK_ACE;
+
 typedef struct _SYSTEM_MANDATORY_LABEL_ACE {
-  ACE_HEADER Header;
   ACCESS_MASK Mask;
-  DWORD SidStart;
+  PSID Sid;
 } SYSTEM_MANDATORY_LABEL_ACE,
  *PSYSTEM_MANDATORY_LABEL_ACE;
+
+typedef struct _SYSTEM_AUDIT_CALLBACK_OBJECT_ACE {
+    ACCESS_MASK Mask;
+    DWORD Flags;
+    [switch_is(Flags&0x1)] PACE_GUID ObjectType;
+    [switch_is((Flags&0x2)>>1)] PACE_GUID InheritedObjectType;
+    PSID Sid;
+    [size_is(*)] BYTE * ApplicationData[];
+} SYSTEM_AUDIT_CALLBACK_OBJECT_ACE, *PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE;
+
+typedef struct _SYSTEM_RESOURCE_ATTRIBUTE_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+    [size_is(*)] BYTE * AttributeData[];
+} SYSTEM_RESOURCE_ATTRIBUTE_ACE, *PSYSTEM_RESOURCE_ATTRIBUTE_ACE;
+
+typedef struct _SYSTEM_SCOPED_POLICY_ID_ACE {
+    ACCESS_MASK Mask;
+    PSID Sid;
+} SYSTEM_SCOPED_POLICY_ID_ACE, *PSYSTEM_SCOPED_POLICY_ID_ACE;
+
+typedef struct _RAW_ACE {
+    [size_is(*)] BYTE * RawData[];
+} RAW_ACE, *PRAW_ACE;
+
+typedef enum _ACE_TYPE {
+    ACCESS_ALLOWED_ACE_TYPE,
+    ACCESS_DENIED_ACE_TYPE,
+    SYSTEM_AUDIT_ACE_TYPE,
+    SYSTEM_ALARM_ACE_TYPE,
+    ACCESS_ALLOWED_COMPOUND_ACE_TYPE,
+    ACCESS_ALLOWED_OBJECT_ACE_TYPE,
+    ACCESS_DENIED_OBJECT_ACE_TYPE,
+    SYSTEM_AUDIT_OBJECT_ACE_TYPE,
+    SYSTEM_ALARM_OBJECT_ACE_TYPE,
+    ACCESS_ALLOWED_CALLBACK_ACE_TYPE,
+    ACCESS_DENIED_CALLBACK_ACE_TYPE,
+    ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE,
+    ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE,
+    SYSTEM_AUDIT_CALLBACK_ACE_TYPE,
+    SYSTEM_ALARM_CALLBACK_ACE_TYPE,
+    SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE,
+    SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE,
+    SYSTEM_MANDATORY_LABEL_ACE_TYPE,
+    SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE,
+    SYSTEM_SCOPED_POLICY_ID_ACE_TYPE
+} ACE_TYPE;
+
+typedef [pad(4)] struct _ACE {
+    UCHAR AceType;
+    UCHAR AceFlags;
+    USHORT AceSize;
+    [goext_layout(
+        [switch_is(AceType)] PACE_DATA AceData
+    )]
+    [size_is(AceSize-4)] BYTE * Data;
+} ACE, *PACE;
+
+typedef [switch_type(UCHAR)] union _ACE_DATA {
+
+    [case(ACCESS_ALLOWED_ACE_TYPE)]
+        PACCESS_ALLOWED_ACE AccessAllowedAce;
+    
+    [case(ACCESS_DENIED_ACE_TYPE)]
+        PACCESS_DENIED_ACE AccessDeniedAce;
+    
+    [case(SYSTEM_AUDIT_ACE_TYPE)]
+        PSYSTEM_AUDIT_ACE SystemAuditAce;
+    
+    [case(ACCESS_ALLOWED_OBJECT_ACE_TYPE)]
+        PACCESS_ALLOWED_OBJECT_ACE AccessAllowedObjectAce;
+    
+    [case(ACCESS_DENIED_OBJECT_ACE_TYPE)]
+        PACCESS_DENIED_OBJECT_ACE AccessDeniedObjectAce;
+    
+    [case(SYSTEM_AUDIT_OBJECT_ACE_TYPE)]
+        PSYSTEM_AUDIT_OBJECT_ACE SystemAuditObjectAce;
+    
+    [case(ACCESS_ALLOWED_CALLBACK_ACE_TYPE)]
+        PACCESS_ALLOWED_CALLBACK_ACE AccessAllowedCallbackAce;
+    
+    [case(ACCESS_DENIED_CALLBACK_ACE_TYPE)]
+        PACCESS_DENIED_CALLBACK_ACE AccessDeniedCallbackAce;
+    
+    [case(ACCESS_ALLOWED_CALLBACK_OBJECT_ACE_TYPE)]
+        PACCESS_ALLOWED_CALLBACK_OBJECT_ACE AccessAllowedCallbackObjectAce;
+    
+    [case(ACCESS_DENIED_CALLBACK_OBJECT_ACE_TYPE)]
+        PACCESS_DENIED_CALLBACK_OBJECT_ACE AccessDeniedCallbackObjectAce;
+    
+    [case(SYSTEM_AUDIT_CALLBACK_ACE_TYPE)]
+        PSYSTEM_AUDIT_CALLBACK_ACE SystemAuditCallbackAce;
+    
+    // [case(SYSTEM_ALARM_CALLBACK_ACE_TYPE)]
+    //    SYSTEM_ALARM_CALLBACK_ACE SystemAlarmCallbackAce;
+    
+    [case(SYSTEM_AUDIT_CALLBACK_OBJECT_ACE_TYPE)]
+        PSYSTEM_AUDIT_CALLBACK_OBJECT_ACE SystemAuditCallbackObjectAce;
+    
+    // [case(SYSTEM_ALARM_CALLBACK_OBJECT_ACE_TYPE)]
+    //    SYSTEM_ALARM_CALLBACK_OBJECT_ACE SystemAlarmCallbackObjectAce;
+    
+    [case(SYSTEM_MANDATORY_LABEL_ACE_TYPE)]
+        PSYSTEM_MANDATORY_LABEL_ACE SystemMandatoryLabelAce;
+    
+    [case(SYSTEM_RESOURCE_ATTRIBUTE_ACE_TYPE)]
+        PSYSTEM_RESOURCE_ATTRIBUTE_ACE SystemResourceAttributeAce;
+    
+    [case(SYSTEM_SCOPED_POLICY_ID_ACE_TYPE)]
+        PSYSTEM_SCOPED_POLICY_ID_ACE SystemScopedPolicyIdAce;
+    
+    [default]
+        PRAW_ACE RawAce;
+    
+} ACE_DATA, *PACE_DATA;
+
 
 typedef struct _TOKEN_MANDATORY_POLICY {
   DWORD Policy;
@@ -270,6 +486,7 @@ typedef struct _ACL {
   unsigned short AclSize;
   unsigned short AceCount;
   unsigned short Sbz2;
+  [size_is(AceCount)] PACE Aces[];
 } ACL,
  *PACL;
 
@@ -277,6 +494,11 @@ typedef struct _SECURITY_DESCRIPTOR {
   UCHAR Revision;
   UCHAR Sbz1;
   USHORT Control;
+  // for self-relative representation.
+  [ignore] ULONG OffsetOwner;
+  [ignore] ULONG OffsetGroup;
+  [ignore] ULONG OffsetSacl; 
+  [ignore] ULONG OffsetDacl; 
   PSID Owner;
   PSID Group;
   PACL Sacl;

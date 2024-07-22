@@ -189,6 +189,8 @@ func GetConverterSyntax(s string) string {
 	switch s {
 	case "String(Unicode)":
 		return "StringUnicode{}"
+	case "String(NT-Sec-Desc)":
+		return "SecurityDescriptor{}"
 	case "Enumeration":
 		return "Enumeration{}"
 	case "String(Generalized-Time)":

@@ -2060,7 +2060,7 @@ var attributes = map[string]Attr{
 		LDAPName:    "fRSRootSecurity",
 		AttributeID: asn1.ObjectIdentifier{1, 2, 840, 113556, 1, 4, 535},
 		SystemID:    &uuid.UUID{TimeLow: 0x5245801f, TimeMid: 0xca6a, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaf, ClockSeqLow: 0xff, Node: [6]uint8{0x0, 0x0, 0xf8, 0x3, 0x67, 0xc1}},
-		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: Raw{}},
+		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: SecurityDescriptor{}},
 		Description: "The security descriptor of replica set root for file replication.",
 	},
 	"a-frsservicecommand": {
@@ -4116,7 +4116,7 @@ var attributes = map[string]Attr{
 		LDAPName:    "msDFS-LinkSecurityDescriptorv2",
 		AttributeID: asn1.ObjectIdentifier{1, 2, 840, 113556, 1, 4, 2040},
 		SystemID:    &uuid.UUID{TimeLow: 0x57cf87f7, TimeMid: 0x3426, TimeHiAndVersion: 0x4841, ClockSeqHiAndReserved: 0xb3, ClockSeqLow: 0x22, Node: [6]uint8{0x2, 0xb3, 0xb6, 0xe9, 0xeb, 0xa8}},
-		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: Raw{}},
+		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: SecurityDescriptor{}},
 		Description: "Security descriptor of the DFS links's re-parse point on the file system.",
 	},
 	"a-msdfs-namespaceidentityguidv2": {
@@ -4724,7 +4724,7 @@ var attributes = map[string]Attr{
 		LDAPName:    "msDS-AllowedToActOnBehalfOfOtherIdentity",
 		AttributeID: asn1.ObjectIdentifier{1, 2, 840, 113556, 1, 4, 2182},
 		SystemID:    &uuid.UUID{TimeLow: 0x3f78c3e5, TimeMid: 0xf79a, TimeHiAndVersion: 0x46bd, ClockSeqHiAndReserved: 0xa0, ClockSeqLow: 0xb8, Node: [6]uint8{0x9d, 0x18, 0x11, 0x6d, 0xdc, 0x79}},
-		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: Raw{}},
+		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: SecurityDescriptor{}},
 		Description: "This attribute is used for access checks to determine if a requestor has permission to act on the behalf of other identities to services running as this account.",
 	},
 	"a-msds-allowedtodelegateto": {
@@ -5220,7 +5220,7 @@ var attributes = map[string]Attr{
 		LDAPName:    "msDS-GroupMSAMembership",
 		AttributeID: asn1.ObjectIdentifier{1, 2, 840, 113556, 1, 4, 2200},
 		SystemID:    &uuid.UUID{TimeLow: 0x888eedd6, TimeMid: 0xce04, TimeHiAndVersion: 0xdf40, ClockSeqHiAndReserved: 0xb4, ClockSeqLow: 0x62, Node: [6]uint8{0xb8, 0xa5, 0xe, 0x41, 0xba, 0x38}},
-		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: Raw{}},
+		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: SecurityDescriptor{}},
 		Description: "This attribute is used for access checks to determine if a requestor has permission to retrieve the password for a group MSA.",
 	},
 	"a-msds-habseniorityindex": {
@@ -8660,7 +8660,7 @@ var attributes = map[string]Attr{
 		LDAPName:    "nTSecurityDescriptor",
 		AttributeID: asn1.ObjectIdentifier{1, 2, 840, 113556, 1, 2, 281},
 		SystemID:    &uuid.UUID{TimeLow: 0xbf9679e3, TimeMid: 0xde6, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xa2, ClockSeqLow: 0x85, Node: [6]uint8{0x0, 0xaa, 0x0, 0x30, 0x49, 0xe2}},
-		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: Raw{}},
+		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: SecurityDescriptor{}},
 		Description: "The Windows NT security descriptor for the schema object. A security descriptor is a data structure that contains security information about an object, such as the ownership and permissions of the object.",
 	},
 	"a-o": {
@@ -9148,7 +9148,7 @@ var attributes = map[string]Attr{
 		LDAPName:    "pKIEnrollmentAccess",
 		AttributeID: asn1.ObjectIdentifier{1, 2, 840, 113556, 1, 4, 1335},
 		SystemID:    &uuid.UUID{TimeLow: 0x926be278, TimeMid: 0x56f9, TimeHiAndVersion: 0x11d2, ClockSeqHiAndReserved: 0x90, ClockSeqLow: 0xd0, Node: [6]uint8{0x0, 0xc0, 0x4f, 0xd9, 0x1a, 0xb1}},
-		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: Raw{}},
+		Syntax:      Syntax{Name: "String(NT-Sec-Desc)", Converter: SecurityDescriptor{}},
 		Description: "The PKI-Enrollment-Access attribute is for internal use only.",
 	},
 	"a-pkiexpirationperiod": {

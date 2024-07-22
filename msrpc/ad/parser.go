@@ -95,6 +95,20 @@ func (SID) Convert(b []byte, _ ...any) (any, error) {
 	return &sid, nil
 }
 
+type SecurityDescriptor struct{}
+
+func (SecurityDescriptor) Size() int { return -1 }
+
+func (SecurityDescriptor) Convert(b []byte, _ ...any) (any, error) {
+	sd := &dtyp.SecurityDescriptor{}
+
+	if err := sd.Parse(b); err != nil {
+		return nil, err
+	}
+
+	return sd, nil
+}
+
 type Raw struct{}
 
 func (Raw) Size() int { return -1 }

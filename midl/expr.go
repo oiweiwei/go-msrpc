@@ -714,13 +714,13 @@ func (e Expr) Coerce(kind Kind) (Expr, error) {
 			return ret, fmt.Errorf("unknown size integer type")
 		}
 		val = big.NewInt(0).SetInt64(v.Int64())
-	case TypeUint8, TypeUint16, TypeUint32, TypeUint64:
+	case TypeUChar, TypeUint8, TypeUint16, TypeUint32, TypeUint64:
 		v, ok := e.BigInt()
 		if !ok {
 			return ret, fmt.Errorf("cannot coerce the expression to the integer type")
 		}
 		switch kind {
-		case TypeUint8:
+		case TypeUint8, TypeUChar:
 			if v.BitLen() > 8 {
 				return ret, fmt.Errorf("8-bit integer overflow")
 			}
