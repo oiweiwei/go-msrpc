@@ -14,11 +14,15 @@ type Credential interface {
 
 // parseDomainUserWorkstation parses the username and variadic workstation argument and outputs
 // the domain name, user name, and workstation.
-func parseDomainUserWorkstation(un string, workstation ...string) (string, string, string) {
+func parseDomainUserWorkstation(un string, opts ...Option) (string, string, string) {
 
 	wkst := ""
-	if len(workstation) > 0 {
-		wkst = workstation[0]
+
+	for _, opt := range opts {
+		switch v := opt.(type) {
+		case wkstOpt:
+			wkst = string(v)
+		}
 	}
 
 	// down-level logon name.
