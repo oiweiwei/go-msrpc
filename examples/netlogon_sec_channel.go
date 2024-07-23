@@ -38,7 +38,7 @@ import (
 
 func init() {
 	// add credentials.
-	gssapi.AddCredential(credential.NewFromPassword(os.Getenv("SAM_USERNAME"), os.Getenv("SAM_PASSWORD"), os.Getenv("SAM_WORKSTATION")))
+	gssapi.AddCredential(credential.NewFromPassword(os.Getenv("SAM_USERNAME"), os.Getenv("SAM_PASSWORD"), credential.Workstation(os.Getenv("SAM_WORKSTATION"))))
 	// add mechanism.
 	gssapi.AddMechanism(ssp.SPNEGO)
 	gssapi.AddMechanism(ssp.NTLM)

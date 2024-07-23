@@ -54,14 +54,14 @@ func (p *password) Workstation() string {
 func NewFromString(s string) Password {
 	ss := strings.Split(s, "%")
 	if len(ss) > 1 {
-		return NewFromPassword(ss[0], ss[1], "")
+		return NewFromPassword(ss[0], ss[1])
 	}
-	return NewFromPassword(s, "", "")
+	return NewFromPassword(s, "")
 }
 
 // NewFromPassword function returns the username/password credential.
-func NewFromPassword(un, passwd string, workstation ...string) Password {
-	dn, un, wkst := parseDomainUserWorkstation(un, workstation...)
+func NewFromPassword(un, passwd string, opts ...Option) Password {
+	dn, un, wkst := parseDomainUserWorkstation(un, opts...)
 	return &password{
 		domainName:  dn,
 		userName:    un,

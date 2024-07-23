@@ -109,12 +109,6 @@ func LoadKRB5Conf(p string) (*config.Config, error) {
 	return ParsedLibDefaults(c), nil
 }
 
-func AddEnctypeID(c *config.Config, etype int32) *config.Config {
-	l := c.LibDefaults
-	c.LibDefaults = l
-	return c
-}
-
 func ParsedLibDefaults(c *config.Config) *config.Config {
 	l := c.LibDefaults
 	l.DefaultTGSEnctypeIDs = parseETypes(l.DefaultTGSEnctypes, l.AllowWeakCrypto)
