@@ -249,25 +249,25 @@ type DispatchClient interface {
 }
 
 // DispatchMethod represents the DISPATCH_METHOD RPC constant
-var DispatchMethod = 1
+const DispatchMethod = 0x00000001
 
 // DispatchPropertyGet represents the DISPATCH_PROPERTYGET RPC constant
-var DispatchPropertyGet = 2
+const DispatchPropertyGet = 0x00000002
 
 // DispatchPropertyPut represents the DISPATCH_PROPERTYPUT RPC constant
-var DispatchPropertyPut = 4
+const DispatchPropertyPut = 0x00000004
 
 // DispatchPropertyPutReference represents the DISPATCH_PROPERTYPUTREF RPC constant
-var DispatchPropertyPutReference = 8
+const DispatchPropertyPutReference = 0x00000008
 
 // DispatchZeroVarResult represents the DISPATCH_zeroVarResult RPC constant
-var DispatchZeroVarResult = 131072
+const DispatchZeroVarResult = 0x00020000
 
 // DispatchZeroExceptionInfo represents the DISPATCH_zeroExcepInfo RPC constant
-var DispatchZeroExceptionInfo = 262144
+const DispatchZeroExceptionInfo = 0x00040000
 
 // DispatchZeroArgError represents the DISPATCH_zeroArgErr RPC constant
-var DispatchZeroArgError = 524288
+const DispatchZeroArgError = 0x00080000
 
 // DispatchIDValue represents the DISPID_VALUE RPC constant
 var DispatchIDValue = 0

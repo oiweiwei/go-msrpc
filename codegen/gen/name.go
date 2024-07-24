@@ -2,6 +2,7 @@ package gen
 
 import (
 	"context"
+	"fmt"
 	"path/filepath"
 	"strings"
 
@@ -19,6 +20,12 @@ var (
 	RPCName          = go_names.Unescape
 	Title            = go_names.Title
 )
+
+func GoHex(n int) func(uint64) string {
+	return func(v uint64) string {
+		return fmt.Sprintf("0x%0*X", n*2, v)
+	}
+}
 
 var defaultVersion = &midl.Version{}
 

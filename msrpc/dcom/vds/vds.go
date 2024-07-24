@@ -74,64 +74,64 @@ var MaxPath = 260
 var MaxFSNameSize = 8
 
 // VerVDSLUNInformation represents the VER_VDS_LUN_INFORMATION RPC constant
-var VerVDSLUNInformation = 1
+const VerVDSLUNInformation = 0x00000001
 
 // NFPackArrive represents the VDS_NF_PACK_ARRIVE RPC constant
-var NFPackArrive = 1
+const NFPackArrive = 0x00000001
 
 // NFPackDepart represents the VDS_NF_PACK_DEPART RPC constant
-var NFPackDepart = 2
+const NFPackDepart = 0x00000002
 
 // NFPackModify represents the VDS_NF_PACK_MODIFY RPC constant
-var NFPackModify = 3
+const NFPackModify = 0x00000003
 
 // NFVolumeArrive represents the VDS_NF_VOLUME_ARRIVE RPC constant
-var NFVolumeArrive = 4
+const NFVolumeArrive = 0x00000004
 
 // NFVolumeDepart represents the VDS_NF_VOLUME_DEPART RPC constant
-var NFVolumeDepart = 5
+const NFVolumeDepart = 0x00000005
 
 // NFVolumeModify represents the VDS_NF_VOLUME_MODIFY RPC constant
-var NFVolumeModify = 6
+const NFVolumeModify = 0x00000006
 
 // NFVolumeRebuildingProgress represents the VDS_NF_VOLUME_REBUILDING_PROGRESS RPC constant
-var NFVolumeRebuildingProgress = 7
+const NFVolumeRebuildingProgress = 0x00000007
 
 // NFDiskArrive represents the VDS_NF_DISK_ARRIVE RPC constant
-var NFDiskArrive = 8
+const NFDiskArrive = 0x00000008
 
 // NFDiskDepart represents the VDS_NF_DISK_DEPART RPC constant
-var NFDiskDepart = 9
+const NFDiskDepart = 0x00000009
 
 // NFDiskModify represents the VDS_NF_DISK_MODIFY RPC constant
-var NFDiskModify = 10
+const NFDiskModify = 0x0000000A
 
 // NFPartitionArrive represents the VDS_NF_PARTITION_ARRIVE RPC constant
-var NFPartitionArrive = 11
+const NFPartitionArrive = 0x0000000B
 
 // NFPartitionDepart represents the VDS_NF_PARTITION_DEPART RPC constant
-var NFPartitionDepart = 12
+const NFPartitionDepart = 0x0000000C
 
 // NFPartitionModify represents the VDS_NF_PARTITION_MODIFY RPC constant
-var NFPartitionModify = 13
+const NFPartitionModify = 0x0000000D
 
 // NFDriveLetterFree represents the VDS_NF_DRIVE_LETTER_FREE RPC constant
-var NFDriveLetterFree = 201
+const NFDriveLetterFree = 0x000000C9
 
 // NFDriveLetterAssign represents the VDS_NF_DRIVE_LETTER_ASSIGN RPC constant
-var NFDriveLetterAssign = 202
+const NFDriveLetterAssign = 0x000000CA
 
 // NFFileSystemModify represents the VDS_NF_FILE_SYSTEM_MODIFY RPC constant
-var NFFileSystemModify = 203
+const NFFileSystemModify = 0x000000CB
 
 // NFFileSystemFormatProgress represents the VDS_NF_FILE_SYSTEM_FORMAT_PROGRESS RPC constant
-var NFFileSystemFormatProgress = 204
+const NFFileSystemFormatProgress = 0x000000CC
 
 // NFMountPointsChange represents the VDS_NF_MOUNT_POINTS_CHANGE RPC constant
-var NFMountPointsChange = 205
+const NFMountPointsChange = 0x000000CD
 
 // NFServiceOutOfSync represents the VDS_NF_SERVICE_OUT_OF_SYNC RPC constant
-var NFServiceOutOfSync = 301
+const NFServiceOutOfSync = 0x0000012D
 
 // ObjectID structure represents VDS_OBJECT_ID RPC structure.
 type ObjectID dtyp.GUID

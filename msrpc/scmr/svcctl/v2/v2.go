@@ -1508,34 +1508,34 @@ type SvcctlClient interface {
 }
 
 // MaxServiceNameLength represents the MAX_SERVICE_NAME_LENGTH RPC constant
-var MaxServiceNameLength = 256
+const MaxServiceNameLength = 0x00000100
 
 // MaxDependSize represents the SC_MAX_DEPEND_SIZE RPC constant
-var MaxDependSize = 4096
+const MaxDependSize = 0x1000
 
 // MaxNameLength represents the SC_MAX_NAME_LENGTH RPC constant
-var MaxNameLength = 257
+const MaxNameLength = 0x0101
 
 // MaxPathLength represents the SC_MAX_PATH_LENGTH RPC constant
-var MaxPathLength = 32768
+const MaxPathLength = 0x8000
 
 // MaxPwdSize represents the SC_MAX_PWD_SIZE RPC constant
-var MaxPwdSize = 514
+const MaxPwdSize = 0x0202
 
 // MaxComputerNameLength represents the SC_MAX_COMPUTER_NAME_LENGTH RPC constant
-var MaxComputerNameLength = 1024
+const MaxComputerNameLength = 0x0400
 
 // MaxAccountNameLength represents the SC_MAX_ACCOUNT_NAME_LENGTH RPC constant
-var MaxAccountNameLength = 2048
+const MaxAccountNameLength = 0x0800
 
 // MaxCommentLength represents the SC_MAX_COMMENT_LENGTH RPC constant
-var MaxCommentLength = 128
+const MaxCommentLength = 0x0080
 
 // MaxArgumentLength represents the SC_MAX_ARGUMENT_LENGTH RPC constant
-var MaxArgumentLength = 1024
+const MaxArgumentLength = 0x0400
 
 // MaxArguments represents the SC_MAX_ARGUMENTS RPC constant
-var MaxArguments = 1024
+const MaxArguments = 0x0400
 
 // Handle structure represents SC_RPC_HANDLE RPC structure.
 type Handle dcetypes.ContextHandle

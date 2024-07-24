@@ -52,10 +52,10 @@ type ActivationClient interface {
 }
 
 // MaxRequestedInterfaces represents the MAX_REQUESTED_INTERFACES RPC constant
-var MaxRequestedInterfaces = 32768
+const MaxRequestedInterfaces = 0x00008000
 
 // MaxRequestedProtocolSequences represents the MAX_REQUESTED_PROTSEQS RPC constant
-var MaxRequestedProtocolSequences = 32768
+const MaxRequestedProtocolSequences = 0x00008000
 
 type xxx_DefaultActivationClient struct {
 	cc dcerpc.Conn

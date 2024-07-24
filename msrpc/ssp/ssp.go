@@ -30,4 +30,4 @@ var (
 )
 
 // MaxMasterSecretBytes represents the MAX_MASTER_SECRET_BYTES RPC constant
-var MaxMasterSecretBytes = 16
+const MaxMasterSecretBytes = 0x00000010

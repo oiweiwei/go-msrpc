@@ -49,10 +49,10 @@ var (
 )
 
 // MinActpropLimit represents the MIN_ACTPROP_LIMIT RPC constant
-var MinActpropLimit = 1
+const MinActpropLimit = 0x00000001
 
 // MaxActpropLimit represents the MAX_ACTPROP_LIMIT RPC constant
-var MaxActpropLimit = 10
+const MaxActpropLimit = 0x0000000A
 
 // ClassID structure represents CLSID RPC structure.
 type ClassID dtyp.GUID

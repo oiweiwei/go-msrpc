@@ -807,6 +807,72 @@ type WinregClient interface {
 	AlterContext(context.Context, ...dcerpc.Option) error
 }
 
+// OwnerSecurityInformation represents the OWNER_SECURITY_INFORMATION RPC constant
+const OwnerSecurityInformation = 0x00000001
+
+// GroupSecurityInformation represents the GROUP_SECURITY_INFORMATION RPC constant
+const GroupSecurityInformation = 0x00000002
+
+// DACLSecurityInformation represents the DACL_SECURITY_INFORMATION RPC constant
+const DACLSecurityInformation = 0x00000004
+
+// SACLSecurityInformation represents the SACL_SECURITY_INFORMATION RPC constant
+const SACLSecurityInformation = 0x00000008
+
+// RegBinary represents the REG_BINARY RPC constant
+const RegBinary = 0x00000003
+
+// RegDword represents the REG_DWORD RPC constant
+const RegDword = 0x00000004
+
+// RegDwordLittleEndian represents the REG_DWORD_LITTLE_ENDIAN RPC constant
+const RegDwordLittleEndian = 0x00000004
+
+// RegDwordBigEndian represents the REG_DWORD_BIG_ENDIAN RPC constant
+const RegDwordBigEndian = 0x00000005
+
+// RegExpandString represents the REG_EXPAND_SZ RPC constant
+const RegExpandString = 0x00000002
+
+// RegLink represents the REG_LINK RPC constant
+const RegLink = 0x00000006
+
+// RegMultistring represents the REG_MULTI_SZ RPC constant
+const RegMultistring = 0x00000007
+
+// RegNone represents the REG_NONE RPC constant
+const RegNone = 0x00000000
+
+// RegQword represents the REG_QWORD RPC constant
+const RegQword = 0x0000000B
+
+// RegQwordLittleEndian represents the REG_QWORD_LITTLE_ENDIAN RPC constant
+const RegQwordLittleEndian = 0x0000000B
+
+// RegString represents the REG_SZ RPC constant
+const RegString = 0x00000001
+
+// KeyQueryValue represents the KEY_QUERY_VALUE RPC constant
+const KeyQueryValue = 0x00000001
+
+// KeySetValue represents the KEY_SET_VALUE RPC constant
+const KeySetValue = 0x00000002
+
+// KeyCreateSubKey represents the KEY_CREATE_SUB_KEY RPC constant
+const KeyCreateSubKey = 0x00000004
+
+// KeyEnumerateSubKeys represents the KEY_ENUMERATE_SUB_KEYS RPC constant
+const KeyEnumerateSubKeys = 0x00000008
+
+// KeyCreateLink represents the KEY_CREATE_LINK RPC constant
+const KeyCreateLink = 0x00000020
+
+// KeyWOW6464Key represents the KEY_WOW64_64KEY RPC constant
+const KeyWOW6464Key = 0x00000100
+
+// KeyWOW6432Key represents the KEY_WOW64_32KEY RPC constant
+const KeyWOW6432Key = 0x00000200
+
 // UnicodeString structure represents RRP_UNICODE_STRING RPC structure.
 type UnicodeString dtyp.UnicodeString
 

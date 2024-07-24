@@ -269,7 +269,7 @@ var DispatchIDPipelineModuleConnector = 109051904
 var DispatchIDPipelineModuleHost = 110100480
 
 // MaxNumberPropertyDefinitions represents the FsrmMaxNumberPropertyDefinitions RPC constant
-var MaxNumberPropertyDefinitions = 200
+const MaxNumberPropertyDefinitions = 0x000000C8
 
 // DispatchIDQuotaBase represents the FSRM_DISPID_QUOTA_BASE RPC constant
 var DispatchIDQuotaBase = 34603008
@@ -299,19 +299,19 @@ var DispatchIDQuotaTemplateManager = 36700160
 var DispatchIDQuotaManagerEx = 37748736
 
 // MaxNumberThresholds represents the FsrmMaxNumberThresholds RPC constant
-var MaxNumberThresholds = 16
+const MaxNumberThresholds = 0x00000010
 
 // MinThresholdValue represents the FsrmMinThresholdValue RPC constant
-var MinThresholdValue = 1
+const MinThresholdValue = 0x00000001
 
 // MaxThresholdValue represents the FsrmMaxThresholdValue RPC constant
-var MaxThresholdValue = 250
+const MaxThresholdValue = 0x000000FA
 
 // MinQuotaLimit represents the FsrmMinQuotaLimit RPC constant
-var MinQuotaLimit = 1024
+const MinQuotaLimit = 0x00000400
 
 // MaxExcludeFolders represents the FsrmMaxExcludeFolders RPC constant
-var MaxExcludeFolders = 32
+const MaxExcludeFolders = 0x00000020
 
 // DispatchIDReportManager represents the FSRM_DISPID_REPORT_MANAGER RPC constant
 var DispatchIDReportManager = 68157440

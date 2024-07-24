@@ -758,6 +758,14 @@ const (
 	CharsetISO_UCS
 )
 
+func IsIntegerType(kind Kind) bool {
+	switch kind {
+	case TypeInt8, TypeUint8, TypeInt16, TypeUint16, TypeInt32, TypeUint32, TypeInt64, TypeUint64:
+		return true
+	}
+	return false
+}
+
 func PrimitiveTypeSize(kind Kind) int {
 
 	var ret int
