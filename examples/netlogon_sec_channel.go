@@ -59,7 +59,7 @@ func j(v any) string {
 
 func main() {
 
-	sAMCred := credential.NewFromPassword(os.Getenv("SAM_USERNAME"), os.Getenv("SAM_PASSWORD"), os.Getenv("SAM_WORKSTATION"))
+	sAMCred := credential.NewFromPassword(os.Getenv("SAM_USERNAME"), os.Getenv("SAM_PASSWORD"), credential.Workstation(os.Getenv("SAM_WORKSTATION")))
 
 	ctx := gssapi.NewSecurityContext(context.Background())
 
@@ -79,7 +79,7 @@ func main() {
 
 	dcs, err := cli.GetDCName(ctx, &logon.GetDCNameRequest{
 		ComputerName: sAMCred.Workstation(),
-		Flags:        1<<30 /* locate dns names */ | 1<<9, /* locate ips */
+		Flags:        logon.DSReturnDNSName | logon.DSIPRequired,
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
@@ -109,7 +109,7 @@ func main() {
 		LogonInformation: &logon.Level{
 			Value: &logon.Level_LogonNetworkTransitive{LogonNetworkTransitive: &logon.NetworkInfo{
 				Identity: &logon.LogonIdentityInfo{
-					ParameterControl: 1 << 11,
+					ParameterControl: logon.IdentityAllowWorkstationTrustAccount,
 					LogonDomainName:  &dtyp.UnicodeString{Buffer: uCred.DomainName()},
 					UserName:         &dtyp.UnicodeString{Buffer: uCred.UserName()},
 					Workstation:      &dtyp.UnicodeString{Buffer: uCred.Workstation()},
