@@ -45,7 +45,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	key, err := cli.OpenCurrentUser(ctx, &winreg.OpenCurrentUserRequest{DesiredAccess: 0xA0000000 | 0x00000001 | 0x00020000 | 0x00000008})
+	key, err := cli.OpenCurrentUser(ctx, &winreg.OpenCurrentUserRequest{
+		DesiredAccess: winreg.KeyQueryValue | winreg.KeyEnumerateSubKeys,
+	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "key", err)
 		os.Exit(1)
@@ -63,7 +65,7 @@ func main() {
 		SubKey: &winreg.UnicodeString{
 			Buffer: "Software\\Classes\\Extensions\\ContractId\u0000",
 		},
-		DesiredAccess: 0x00000001 | 0x00020000 | 0x00000008,
+		DesiredAccess: winreg.KeyQueryValue | winreg.KeyEnumerateSubKeys,
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "key", err)
@@ -106,20 +108,20 @@ func RecursiveEnumerateKeys(ctx context.Context, cli winreg.WinregClient, i int,
 		}
 
 		switch t := fmt.Sprintf("{%d}", value.Type); value.Type {
-		case 4:
+		case winreg.RegDword:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t, binary.LittleEndian.Uint32(value.Data))
-		case 5:
+		case winreg.RegDwordBigEndian:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t, binary.BigEndian.Uint32(value.Data))
-		case 7:
+		case winreg.RegMultistring:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t)
 			for i, b := range strings.Split(string(value.Data), string([]byte{0})) {
 				fmt.Println("\t\t", fmt.Sprintf("[%d]", i), b)
 			}
-		case 11:
+		case winreg.RegQword:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t, binary.LittleEndian.Uint64(value.Data))
-		case 0:
+		case winreg.RegNone:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t, "{NONE}")
-		case 1, 2:
+		case winreg.RegString, winreg.RegExpandString:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t, string(value.Data))
 		default:
 			fmt.Println("\t", value.ValueNameOut.Buffer, "=", t, hex.EncodeToString(value.Data))
@@ -147,7 +149,7 @@ func RecursiveEnumerateKeys(ctx context.Context, cli winreg.WinregClient, i int,
 		open, err := cli.BaseRegOpenKey(ctx, &winreg.BaseRegOpenKeyRequest{
 			Key:           h,
 			SubKey:        sub.NameOut,
-			DesiredAccess: 0x00000001 | 0x00020000 | 0x00000008,
+			DesiredAccess: winreg.KeyQueryValue | winreg.KeyEnumerateSubKeys,
 		})
 
 		if err != nil {

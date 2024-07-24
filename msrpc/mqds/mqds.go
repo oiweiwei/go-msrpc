@@ -124,28 +124,28 @@ var (
 )
 
 // LT represents the PRLT RPC constant
-var LT = 0
+const LT = 0x00000000
 
 // LE represents the PRLE RPC constant
-var LE = 1
+const LE = 0x00000001
 
 // GT represents the PRGT RPC constant
-var GT = 2
+const GT = 0x00000002
 
 // GE represents the PRGE RPC constant
-var GE = 3
+const GE = 0x00000003
 
 // EQ represents the PREQ RPC constant
-var EQ = 4
+const EQ = 0x00000004
 
 // NE represents the PRNE RPC constant
-var NE = 5
+const NE = 0x00000005
 
 // QuerySortAscend represents the QUERY_SORTASCEND RPC constant
-var QuerySortAscend = 0
+const QuerySortAscend = 0x00000000
 
 // QuerySortDescend represents the QUERY_SORTDESCEND RPC constant
-var QuerySortDescend = 1
+const QuerySortDescend = 0x00000001
 
 // PropertyRestriction structure represents MQPROPERTYRESTRICTION RPC structure.
 //

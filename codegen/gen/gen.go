@@ -253,6 +253,10 @@ func (p *Generator) XXX() string {
 func (p *Generator) GenConst(ctx context.Context, c *midl.Const) {
 	p.P()
 	p.P("//", GoName(c.Name), "represents the", c.Name, "RPC constant")
+	if midl.IsIntegerType(c.Type) && !c.Type.Signed() {
+		p.P("const", GoName(c.Name), "=", c.Value.Expression(GoName, GoHex(midl.PrimitiveTypeSize(c.Type))))
+		return
+	}
 	p.P("var", GoName(c.Name), "=", c.Value.Expression(GoName))
 }
 

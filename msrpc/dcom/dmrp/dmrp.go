@@ -87,10 +87,10 @@ var (
 )
 
 // DiskAudioCD represents the DISK_AUDIO_CD RPC constant
-var DiskAudioCD = 1
+const DiskAudioCD = 0x00000001
 
 // DiskNec98 represents the DISK_NEC98 RPC constant
-var DiskNec98 = 2
+const DiskNec98 = 0x00000002
 
 // DeviceTypeUnknown represents the DEVICETYPE_UNKNOWN RPC constant
 var DeviceTypeUnknown = 0
@@ -210,184 +210,184 @@ var ContainsSystemDir = 1024
 var ContainsMixedPartitions = 2048
 
 // PartitionOS2Boot represents the PARTITION_OS2_BOOT RPC constant
-var PartitionOS2Boot = 10
+const PartitionOS2Boot = 0x0000000A
 
 // PartitionEISA represents the PARTITION_EISA RPC constant
-var PartitionEISA = 18
+const PartitionEISA = 0x00000012
 
 // PartitionHibernation represents the PARTITION_HIBERNATION RPC constant
-var PartitionHibernation = 132
+const PartitionHibernation = 0x00000084
 
 // PartitionDiagnostic represents the PARTITION_DIAGNOSTIC RPC constant
-var PartitionDiagnostic = 160
+const PartitionDiagnostic = 0x000000A0
 
 // PartitionDell represents the PARTITION_DELL RPC constant
-var PartitionDell = 222
+const PartitionDell = 0x000000DE
 
 // PartitionIBM represents the PARTITION_IBM RPC constant
-var PartitionIBM = 254
+const PartitionIBM = 0x000000FE
 
 // RegionFormatInProgress represents the REGION_FORMAT_IN_PROGRESS RPC constant
-var RegionFormatInProgress = 1
+const RegionFormatInProgress = 0x00000001
 
 // VolumeFormatInProgress represents the VOLUME_FORMAT_IN_PROGRESS RPC constant
-var VolumeFormatInProgress = 1
+const VolumeFormatInProgress = 0x00000001
 
 // RegionIsSystemPartition represents the REGION_IS_SYSTEM_PARTITION RPC constant
-var RegionIsSystemPartition = 2
+const RegionIsSystemPartition = 0x00000002
 
 // RegionHasPageFile represents the REGION_HAS_PAGEFILE RPC constant
-var RegionHasPageFile = 4
+const RegionHasPageFile = 0x00000004
 
 // VolumeHasPageFile represents the VOLUME_HAS_PAGEFILE RPC constant
-var VolumeHasPageFile = 4
+const VolumeHasPageFile = 0x00000004
 
 // RegionHadBootINI represents the REGION_HAD_BOOT_INI RPC constant
-var RegionHadBootINI = 64
+const RegionHadBootINI = 0x00000040
 
 // VolumeIsBootVolume represents the VOLUME_IS_BOOT_VOLUME RPC constant
-var VolumeIsBootVolume = 256
+const VolumeIsBootVolume = 0x00000100
 
 // VolumeIsRestartable represents the VOLUME_IS_RESTARTABLE RPC constant
-var VolumeIsRestartable = 1024
+const VolumeIsRestartable = 0x00000400
 
 // VolumeIsSystemVolume represents the VOLUME_IS_SYSTEM_VOLUME RPC constant
-var VolumeIsSystemVolume = 2048
+const VolumeIsSystemVolume = 0x00000800
 
 // VolumeHasRetainPartition represents the VOLUME_HAS_RETAIN_PARTITION RPC constant
-var VolumeHasRetainPartition = 4096
+const VolumeHasRetainPartition = 0x00001000
 
 // VolumeHadBootINI represents the VOLUME_HAD_BOOT_INI RPC constant
-var VolumeHadBootINI = 8192
+const VolumeHadBootINI = 0x00002000
 
 // VolumeCorrupt represents the VOLUME_CORRUPT RPC constant
-var VolumeCorrupt = 16384
+const VolumeCorrupt = 0x00004000
 
 // VolumeHasCrashDump represents the VOLUME_HAS_CRASHDUMP RPC constant
-var VolumeHasCrashDump = 32768
+const VolumeHasCrashDump = 0x00008000
 
 // VolumeIsCurrBootVolume represents the VOLUME_IS_CURR_BOOT_VOLUME RPC constant
-var VolumeIsCurrBootVolume = 65536
+const VolumeIsCurrBootVolume = 0x00010000
 
 // VolumeHasHibernation represents the VOLUME_HAS_HIBERNATION RPC constant
-var VolumeHasHibernation = 131072
+const VolumeHasHibernation = 0x00020000
 
 // NoForceOperation represents the NO_FORCE_OPERATION RPC constant
-var NoForceOperation = 0
+const NoForceOperation = 0x00000000
 
 // ForceOperation represents the FORCE_OPERATION RPC constant
-var ForceOperation = 1
+const ForceOperation = 0x00000001
 
 // DLPendingRemoval represents the DL_PENDING_REMOVAL RPC constant
-var DLPendingRemoval = 1
+const DLPendingRemoval = 0x00000001
 
 // SystemFlagServer represents the SYSFLAG_SERVER RPC constant
-var SystemFlagServer = 1
+const SystemFlagServer = 0x00000001
 
 // SystemFlagAlpha represents the SYSFLAG_ALPHA RPC constant
-var SystemFlagAlpha = 2
+const SystemFlagAlpha = 0x00000002
 
 // SystemFlagSyspartSecure represents the SYSFLAG_SYSPART_SECURE RPC constant
-var SystemFlagSyspartSecure = 4
+const SystemFlagSyspartSecure = 0x00000004
 
 // SystemFlagNec98 represents the SYSFLAG_NEC_98 RPC constant
-var SystemFlagNec98 = 8
+const SystemFlagNec98 = 0x00000008
 
 // SystemFlagLaptop represents the SYSFLAG_LAPTOP RPC constant
-var SystemFlagLaptop = 16
+const SystemFlagLaptop = 0x00000010
 
 // SystemFlagWolfpack represents the SYSFLAG_WOLFPACK RPC constant
-var SystemFlagWolfpack = 32
+const SystemFlagWolfpack = 0x00000020
 
 // DskmergeDelete represents the DSKMERGE_DELETE RPC constant
-var DskmergeDelete = 1
+const DskmergeDelete = 0x00000001
 
 // DskmergeDeleteRedundancy represents the DSKMERGE_DELETE_REDUNDANCY RPC constant
-var DskmergeDeleteRedundancy = 2
+const DskmergeDeleteRedundancy = 0x00000002
 
 // DskmergeStaleData represents the DSKMERGE_STALE_DATA RPC constant
-var DskmergeStaleData = 4
+const DskmergeStaleData = 0x00000004
 
 // DskmergeRelated represents the DSKMERGE_RELATED RPC constant
-var DskmergeRelated = 8
+const DskmergeRelated = 0x00000008
 
 // DskmergeInNoUnrelated represents the DSKMERGE_IN_NO_UNRELATED RPC constant
-var DskmergeInNoUnrelated = 1
+const DskmergeInNoUnrelated = 0x00000001
 
 // DskmergeOutNoPrimaryDiskGroup represents the DSKMERGE_OUT_NO_PRIMARY_DG RPC constant
-var DskmergeOutNoPrimaryDiskGroup = 1
+const DskmergeOutNoPrimaryDiskGroup = 0x00000001
 
 // FtreplaceForce represents the FTREPLACE_FORCE RPC constant
-var FtreplaceForce = 1
+const FtreplaceForce = 0x00000001
 
 // FtreplaceDeleteOnFail represents the FTREPLACE_DELETE_ON_FAIL RPC constant
-var FtreplaceDeleteOnFail = 2
+const FtreplaceDeleteOnFail = 0x00000002
 
 // CreateAssignAccessPath represents the CREATE_ASSIGN_ACCESS_PATH RPC constant
-var CreateAssignAccessPath = 1
+const CreateAssignAccessPath = 0x00000001
 
 // EnableVolumeCompression represents the ENABLE_VOLUME_COMPRESSION RPC constant
-var EnableVolumeCompression = 1
+const EnableVolumeCompression = 0x00000001
 
 // MaxFSNameSize represents the MAX_FS_NAME_SIZE RPC constant
-var MaxFSNameSize = 8
+const MaxFSNameSize = 0x00000008
 
 // FormatOptionCompress represents the FSF_FMT_OPTION_COMPRESS RPC constant
-var FormatOptionCompress = 1
+const FormatOptionCompress = 0x00000001
 
 // FormatOptionLabel represents the FSF_FMT_OPTION_LABEL RPC constant
-var FormatOptionLabel = 2
+const FormatOptionLabel = 0x00000002
 
 // MountPointSupport represents the FSF_MNT_POINT_SUPPORT RPC constant
-var MountPointSupport = 4
+const MountPointSupport = 0x00000004
 
 // RemovableMediaSupport represents the FSF_REMOVABLE_MEDIA_SUPPORT RPC constant
-var RemovableMediaSupport = 8
+const RemovableMediaSupport = 0x00000008
 
 // FSGrowSupport represents the FSF_FS_GROW_SUPPORT RPC constant
-var FSGrowSupport = 16
+const FSGrowSupport = 0x00000010
 
 // FSQuickFormatEnable represents the FSF_FS_QUICK_FORMAT_ENABLE RPC constant
-var FSQuickFormatEnable = 32
+const FSQuickFormatEnable = 0x00000020
 
 // FSAllocSize512 represents the FSF_FS_ALLOC_SZ_512 RPC constant
-var FSAllocSize512 = 64
+const FSAllocSize512 = 0x00000040
 
 // FSAllocSize1K represents the FSF_FS_ALLOC_SZ_1K RPC constant
-var FSAllocSize1K = 128
+const FSAllocSize1K = 0x00000080
 
 // FSAllocSize2K represents the FSF_FS_ALLOC_SZ_2K RPC constant
-var FSAllocSize2K = 256
+const FSAllocSize2K = 0x00000100
 
 // FSAllocSize4K represents the FSF_FS_ALLOC_SZ_4K RPC constant
-var FSAllocSize4K = 512
+const FSAllocSize4K = 0x00000200
 
 // FSAllocSize8K represents the FSF_FS_ALLOC_SZ_8K RPC constant
-var FSAllocSize8K = 1024
+const FSAllocSize8K = 0x00000400
 
 // FSAllocSize16K represents the FSF_FS_ALLOC_SZ_16K RPC constant
-var FSAllocSize16K = 2048
+const FSAllocSize16K = 0x00000800
 
 // FSAllocSize32K represents the FSF_FS_ALLOC_SZ_32K RPC constant
-var FSAllocSize32K = 4096
+const FSAllocSize32K = 0x00001000
 
 // FSAllocSize64K represents the FSF_FS_ALLOC_SZ_64K RPC constant
-var FSAllocSize64K = 8192
+const FSAllocSize64K = 0x00002000
 
 // FSAllocSize128K represents the FSF_FS_ALLOC_SZ_128K RPC constant
-var FSAllocSize128K = 16384
+const FSAllocSize128K = 0x00004000
 
 // FSAllocSize256K represents the FSF_FS_ALLOC_SZ_256K RPC constant
-var FSAllocSize256K = 32768
+const FSAllocSize256K = 0x00008000
 
 // FSAllocSizeOther represents the FSF_FS_ALLOC_SZ_OTHER RPC constant
-var FSAllocSizeOther = 65536
+const FSAllocSizeOther = 0x00010000
 
 // FSFormatSupported represents the FSF_FS_FORMAT_SUPPORTED RPC constant
-var FSFormatSupported = 131072
+const FSFormatSupported = 0x00020000
 
 // FSValidBits represents the FSF_FS_VALID_BITS RPC constant
-var FSValidBits = 262143
+const FSValidBits = 0x0003FFFF
 
 // FSTypeUnknown represents the FSTYPE_UNKNOWN RPC constant
 var FSTypeUnknown = 0
@@ -411,70 +411,70 @@ var FSTypeUDF = 5
 var FSTypeOther = 2147483648
 
 // EncapInfoCantProceed represents the ENCAP_INFO_CANT_PROCEED RPC constant
-var EncapInfoCantProceed = 1
+const EncapInfoCantProceed = 0x00000001
 
 // EncapInfoNoFreeSpace represents the ENCAP_INFO_NO_FREE_SPACE RPC constant
-var EncapInfoNoFreeSpace = 2
+const EncapInfoNoFreeSpace = 0x00000002
 
 // EncapInfoBadActive represents the ENCAP_INFO_BAD_ACTIVE RPC constant
-var EncapInfoBadActive = 4
+const EncapInfoBadActive = 0x00000004
 
 // EncapInfoUnknownPart represents the ENCAP_INFO_UNKNOWN_PART RPC constant
-var EncapInfoUnknownPart = 8
+const EncapInfoUnknownPart = 0x00000008
 
 // EncapInfoFTUnhealthy represents the ENCAP_INFO_FT_UNHEALTHY RPC constant
-var EncapInfoFTUnhealthy = 16
+const EncapInfoFTUnhealthy = 0x00000010
 
 // EncapInfoFTQueryFailed represents the ENCAP_INFO_FT_QUERY_FAILED RPC constant
-var EncapInfoFTQueryFailed = 32
+const EncapInfoFTQueryFailed = 0x00000020
 
 // EncapInfoFTHasRAID5 represents the ENCAP_INFO_FT_HAS_RAID5 RPC constant
-var EncapInfoFTHasRAID5 = 64
+const EncapInfoFTHasRAID5 = 0x00000040
 
 // EncapInfoFTOnBoot represents the ENCAP_INFO_FT_ON_BOOT RPC constant
-var EncapInfoFTOnBoot = 128
+const EncapInfoFTOnBoot = 0x00000080
 
 // EncapInfoRebootRequired represents the ENCAP_INFO_REBOOT_REQD RPC constant
-var EncapInfoRebootRequired = 256
+const EncapInfoRebootRequired = 0x00000100
 
 // EncapInfoContainsFT represents the ENCAP_INFO_CONTAINS_FT RPC constant
-var EncapInfoContainsFT = 512
+const EncapInfoContainsFT = 0x00000200
 
 // EncapInfoVolumeBusy represents the ENCAP_INFO_VOLUME_BUSY RPC constant
-var EncapInfoVolumeBusy = 1024
+const EncapInfoVolumeBusy = 0x00000400
 
 // EncapInfoPartNRChange represents the ENCAP_INFO_PART_NR_CHANGE RPC constant
-var EncapInfoPartNRChange = 2048
+const EncapInfoPartNRChange = 0x00000800
 
 // SystemFlagNoDynamic represents the SYSFLAG_NO_DYNAMIC RPC constant
-var SystemFlagNoDynamic = 16
+const SystemFlagNoDynamic = 0x00000010
 
 // SystemFlagIA64 represents the SYSFLAG_IA64 RPC constant
-var SystemFlagIA64 = 64
+const SystemFlagIA64 = 0x00000040
 
 // SystemFlagUninstallValid represents the SYSFLAG_UNINSTALL_VALID RPC constant
-var SystemFlagUninstallValid = 128
+const SystemFlagUninstallValid = 0x00000080
 
 // SystemFlagDynamic1394 represents the SYSFLAG_DYNAMIC_1394 RPC constant
-var SystemFlagDynamic1394 = 256
+const SystemFlagDynamic1394 = 0x00000100
 
 // DiskFormattableDVD represents the DISK_FORMATTABLE_DVD RPC constant
-var DiskFormattableDVD = 4
+const DiskFormattableDVD = 0x00000004
 
 // DiskMemoryStick represents the DISK_MEMORY_STICK RPC constant
-var DiskMemoryStick = 8
+const DiskMemoryStick = 0x00000008
 
 // DiskNTFSNotSupported represents the DISK_NTFS_NOT_SUPPORTED RPC constant
-var DiskNTFSNotSupported = 16
+const DiskNTFSNotSupported = 0x00000010
 
 // RegionHidden represents the REGION_HIDDEN RPC constant
-var RegionHidden = 262144
+const RegionHidden = 0x00040000
 
 // EncapInfoMixedPartitions represents the ENCAP_INFO_MIXED_PARTITIONS RPC constant
-var EncapInfoMixedPartitions = 4096
+const EncapInfoMixedPartitions = 0x00001000
 
 // EncapInfoOpenFailed represents the ENCAP_INFO_OPEN_FAILED RPC constant
-var EncapInfoOpenFailed = 8192
+const EncapInfoOpenFailed = 0x00002000
 
 // RegionType type represents REGIONTYPE RPC enumeration.
 //

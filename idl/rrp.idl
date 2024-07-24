@@ -14,6 +14,23 @@ interface winreg
     typedef [handle] PWCHAR PREGISTRY_SERVER_NAME;
     typedef DWORD           SECURITY_INFORMATION, 
                            *PSECURITY_INFORMATION;
+
+    const SECURITY_INFORMATION OWNER_SECURITY_INFORMATION = 0x00000001;
+    const SECURITY_INFORMATION GROUP_SECURITY_INFORMATION = 0x00000002;
+    const SECURITY_INFORMATION DACL_SECURITY_INFORMATION = 0x00000004;
+    const SECURITY_INFORMATION SACL_SECURITY_INFORMATION = 0x00000008;
+
+    const DWORD REG_BINARY = 3;
+    const DWORD REG_DWORD = 4;
+    const DWORD REG_DWORD_LITTLE_ENDIAN = 4;
+    const DWORD REG_DWORD_BIG_ENDIAN = 5;
+    const DWORD REG_EXPAND_SZ = 2;
+    const DWORD REG_LINK = 6;
+    const DWORD REG_MULTI_SZ = 7;
+    const DWORD REG_NONE = 0;
+    const DWORD REG_QWORD = 11;
+    const DWORD REG_QWORD_LITTLE_ENDIAN = 11;
+    const DWORD REG_SZ = 1;
  
     typedef struct value_ent {  
         PRPC_UNICODE_STRING   ve_valuename;  
@@ -23,6 +40,14 @@ interface winreg
     } RVALENT,  *PRVALENT;
  
     typedef ULONG REGSAM;
+
+    const REGSAM KEY_QUERY_VALUE = 0x00000001;
+    const REGSAM KEY_SET_VALUE = 0x00000002;
+    const REGSAM KEY_CREATE_SUB_KEY = 0x00000004;
+    const REGSAM KEY_ENUMERATE_SUB_KEYS = 0x00000008;
+    const REGSAM KEY_CREATE_LINK = 0x00000020;
+    const REGSAM KEY_WOW64_64KEY = 0x00000100;
+    const REGSAM KEY_WOW64_32KEY = 0x00000200;
  
     typedef struct _RPC_SECURITY_DESCRIPTOR {
         [ size_is( cbInSecurityDescriptor ),

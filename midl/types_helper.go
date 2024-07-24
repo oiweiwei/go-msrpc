@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"hash/fnv"
+	"math/big"
 	"runtime"
 	"strings"
 )
@@ -632,22 +633,37 @@ func (e Expr) String() string {
 	return e.Expr.String()
 }
 
-func (e Expr) Expression(namer ...func(string) string) string {
+func (e Expr) Expression(opts ...any) string {
 
 	if e.Empty() {
 		return ""
+	}
+
+	var formatter func(uint64) string
+
+	for _, opt := range opts {
+		switch opt := opt.(type) {
+		case func(uint64) string:
+			formatter = opt
+		}
 	}
 
 	if !e.reqParam {
 		switch e.Value.(type) {
 		case string:
 			return fmt.Sprintf("\"%v\"", e.Value)
+		case *big.Int:
+			if formatter != nil {
+				return formatter(e.Value.(*big.Int).Uint64())
+			} else {
+				return fmt.Sprintf("%v", e.Value)
+			}
 		default:
 			return fmt.Sprintf("%v", e.Value)
 		}
 	}
 
-	return e.Expr.Expression(namer...)
+	return e.Expr.Expression(opts...)
 }
 
 var opToString = map[int]string{
@@ -675,13 +691,20 @@ var opToString = map[int]string{
 	'/':         "/",
 }
 
-var noop = func(s string) string { return s }
+func (t *ExprTree) Expression(opts ...any) string {
 
-func (t *ExprTree) Expression(namer ...func(string) string) string {
+	var (
+		namer     func(string) string
+		formatter func(uint64) string
+	)
 
-	nr := noop
-	if len(namer) > 0 {
-		nr = namer[0]
+	for _, opt := range opts {
+		switch opt := opt.(type) {
+		case func(string) string:
+			namer = opt
+		case func(uint64) string:
+			formatter = opt
+		}
 	}
 
 	var ret string
@@ -693,27 +716,40 @@ func (t *ExprTree) Expression(namer ...func(string) string) string {
 	switch t.Op {
 	case TERNARY:
 		if t.Cond.Op == UMUL || t.Cond.Op == IDENT {
-			ret = fmt.Sprintf(t.Lval.Expression(nr))
+			ret = fmt.Sprintf(t.Lval.Expression(opts...))
 		} else {
-			ret = fmt.Sprintf("(%s?%s:%s)", t.Cond.Expression(nr), t.Lval.Expression(nr), t.Rval.Expression(nr))
+			ret = fmt.Sprintf("(%s?%s:%s)", t.Cond.Expression(opts...), t.Lval.Expression(opts...), t.Rval.Expression(opts...))
 		}
 	case LOGICAL_AND, LOGICAL_OR, LE, LT, GE, GT, EQ, NE, OR, XOR, AND, LSH, RSH:
-		ret = fmt.Sprintf("(%s%s%s)", t.Lval.Expression(nr), opToString[t.Op], t.Rval.Expression(nr))
+		ret = fmt.Sprintf("(%s%s%s)", t.Lval.Expression(opts...), opToString[t.Op], t.Rval.Expression(opts...))
 	case '+', '-', '*', '/', '%':
-		ret = fmt.Sprintf("(%s%s%s)", t.Lval.Expression(nr), string(rune(t.Op)), t.Rval.Expression(nr))
+		ret = fmt.Sprintf("(%s%s%s)", t.Lval.Expression(opts...), string(rune(t.Op)), t.Rval.Expression(opts...))
 	case UNEG:
-		ret = fmt.Sprintf("(%suint32(%s))", "^", t.Lval.Expression(nr))
+		ret = fmt.Sprintf("(%suint32(%s))", "^", t.Lval.Expression(opts...))
 	case UPLUS, UMINUS, UNOT:
-		ret = fmt.Sprintf("(%s%s)", opToString[t.Op], t.Lval.Expression(nr))
+		ret = fmt.Sprintf("(%s%s)", opToString[t.Op], t.Lval.Expression(opts...))
 	case UMUL:
-		ret = fmt.Sprintf("%s", t.Lval.Expression(nr))
+		ret = fmt.Sprintf("%s", t.Lval.Expression(opts...))
 	case IDENT:
-		ret = nr(fmt.Sprintf("%v", t.Value))
+		if namer != nil {
+			ret = namer(fmt.Sprintf("%v", t.Value))
+		} else {
+			ret = fmt.Sprintf("%v", t.Value)
+		}
 	default:
-		ret = fmt.Sprintf("%v", t.Value)
+		if formatter != nil && isBigInt(t.Value) {
+			ret = formatter(t.Value.(*big.Int).Uint64())
+		} else {
+			ret = fmt.Sprintf("%v", t.Value)
+		}
 	}
 
 	return ret
+}
+
+func isBigInt(v any) bool {
+	i, ok := v.(*big.Int)
+	return ok && i != nil
 }
 
 func (t *ExprTree) String() string {

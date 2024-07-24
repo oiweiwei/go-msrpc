@@ -52,37 +52,37 @@ var (
 )
 
 // AccessMaskGenericRead represents the ACCESS_MASK_GENERIC_READ RPC constant
-var AccessMaskGenericRead = 2147483648
+const AccessMaskGenericRead = 0x80000000
 
 // AccessMaskGenericWrite represents the ACCESS_MASK_GENERIC_WRITE RPC constant
-var AccessMaskGenericWrite = 1073741824
+const AccessMaskGenericWrite = 0x40000000
 
 // AccessMaskGenericExecute represents the ACCESS_MASK_GENERIC_EXECUTE RPC constant
-var AccessMaskGenericExecute = 536870912
+const AccessMaskGenericExecute = 0x20000000
 
 // AccessMaskGenericAll represents the ACCESS_MASK_GENERIC_ALL RPC constant
-var AccessMaskGenericAll = 268435456
+const AccessMaskGenericAll = 0x10000000
 
 // AccessMaskMaximumAllowed represents the ACCESS_MASK_MAXIMUM_ALLOWED RPC constant
-var AccessMaskMaximumAllowed = 33554432
+const AccessMaskMaximumAllowed = 0x02000000
 
 // AccessMaskAccessSystemSecurity represents the ACCESS_MASK_ACCESS_SYSTEM_SECURITY RPC constant
-var AccessMaskAccessSystemSecurity = 16777216
+const AccessMaskAccessSystemSecurity = 0x01000000
 
 // AccessMaskSynchronize represents the ACCESS_MASK_SYNCHRONIZE RPC constant
-var AccessMaskSynchronize = 1048576
+const AccessMaskSynchronize = 0x00100000
 
 // AccessMaskWriteOwner represents the ACCESS_MASK_WRITE_OWNER RPC constant
-var AccessMaskWriteOwner = 524288
+const AccessMaskWriteOwner = 0x00080000
 
 // AccessMaskWriteDACL represents the ACCESS_MASK_WRITE_DACL RPC constant
-var AccessMaskWriteDACL = 262144
+const AccessMaskWriteDACL = 0x00040000
 
 // AccessMaskReadControl represents the ACCESS_MASK_READ_CONTROL RPC constant
-var AccessMaskReadControl = 131072
+const AccessMaskReadControl = 0x00020000
 
 // AccessMaskDelete represents the ACCESS_MASK_DELETE RPC constant
-var AccessMaskDelete = 65536
+const AccessMaskDelete = 0x00010000
 
 // ACEFlagContainerInheritACE represents the ACE_FLAG_CONTAINER_INHERIT_ACE RPC constant
 var ACEFlagContainerInheritACE = 2
