@@ -55,3 +55,22 @@ func (o *GUID) UUID() *uuid.UUID {
 		Node:                  [6]byte{data4[2], data4[3], data4[4], data4[5], data4[6], data4[7]},
 	}
 }
+
+func (o *GUID) IsZero() bool {
+
+	if o == nil {
+		return true
+	}
+
+	if !(o.Data1 == 0 && o.Data2 == 0 && o.Data3 == 0) {
+		return false
+	}
+
+	for i := range o.Data4 {
+		if o.Data4[i] != 0 {
+			return false
+		}
+	}
+
+	return true
+}
