@@ -74,7 +74,7 @@ func AddEntry(kt *keytab.Keytab, entry *Entry) error {
 	return nil
 }
 
-func WithNTHash(creds *credentials.Credentials, ntHash []byte) *credentials.Credentials {
+func WithNTHash(creds *credentials.Credentials, ntHash []byte, kvno int) *credentials.Credentials {
 
 	kt := new(keytab.Keytab)
 
@@ -91,7 +91,7 @@ func WithNTHash(creds *credentials.Credentials, ntHash []byte) *credentials.Cred
 			KeyType:  etypeID.RC4_HMAC,
 			KeyValue: ntHash,
 		},
-		KVNO: 1, // TODO: seems to be a good choice.
+		KVNO: uint32(kvno),
 	})
 
 	return creds.WithKeytab(kt)

@@ -102,7 +102,7 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 	} else if kt, ok := a.Config.Credential.(credential.Keytab); ok {
 		cli.Credentials = creds.WithKeytab(kt.Keytab())
 	} else if ntHash, ok := a.Config.Credential.(credential.NTHash); ok {
-		cli.Credentials = WithNTHash(creds, ntHash.NTHash())
+		cli.Credentials = WithNTHash(creds, ntHash.NTHash(), ntHash.KVNO())
 		// XXX: add rc4-hmac to allowed etypes.
 		cli.Config.LibDefaults.DefaultTGSEnctypeIDs = []int32{etypeID.RC4_HMAC}
 		cli.Config.LibDefaults.DefaultTktEnctypeIDs = []int32{etypeID.RC4_HMAC}
