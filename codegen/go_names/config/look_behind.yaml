@@ -71,6 +71,7 @@ lookBehind:
   int: {xact: [internal, transaction]}
   inter: {domain: [interdomain]}
   ip: {sec: [ipsec], v6: [ipv6], v4: [ipv4]}
+  ntlm: {v1: [ntlmv1], v2: [ntlmv2]}
   kind: {tkind: [kind]}
   l: {num: [num]}
   log: {handle: [log]}

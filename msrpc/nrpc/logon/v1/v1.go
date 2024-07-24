@@ -839,6 +839,117 @@ type LogonClient interface {
 	AlterContext(context.Context, ...dcerpc.Option) error
 }
 
+// IdentityCleartextPasswordAllowed represents the IDENTITY_CLEARTEXT_PASSWORD_ALLOWED RPC constant
+const IdentityCleartextPasswordAllowed = 0x00000002
+
+// IdentityUpdateLogonStatistics represents the IDENTITY_UPDATE_LOGON_STATISTICS RPC constant
+const IdentityUpdateLogonStatistics = 0x00000004
+
+// IdentityReturnUserParameters represents the IDENTITY_RETURN_USER_PARAMETERS RPC constant
+const IdentityReturnUserParameters = 0x00000008
+
+// IdentityDontTryGuestAccount represents the IDENTITY_DONT_TRY_GUEST_ACCOUNT RPC constant
+const IdentityDontTryGuestAccount = 0x00000010
+
+// IdentityAllowServerTrustAccount represents the IDENTITY_ALLOW_SERVER_TRUST_ACCOUNT RPC constant
+const IdentityAllowServerTrustAccount = 0x00000020
+
+// IdentityReturnPasswordExpiry represents the IDENTITY_RETURN_PASSWORD_EXPIRY RPC constant
+const IdentityReturnPasswordExpiry = 0x00000040
+
+// IdentityUseClientChallenge represents the IDENTITY_USE_CLIENT_CHALLENGE RPC constant
+const IdentityUseClientChallenge = 0x00000080
+
+// IdentityTryGuestAccountOnly represents the IDENTITY_TRY_GUEST_ACCOUNT_ONLY RPC constant
+const IdentityTryGuestAccountOnly = 0x00000100
+
+// IdentityReturnProfilePath represents the IDENTITY_RETURN_PROFILE_PATH RPC constant
+const IdentityReturnProfilePath = 0x00000200
+
+// IdentityTrySpecifiedDomainOnly represents the IDENTITY_TRY_SPECIFIED_DOMAIN_ONLY RPC constant
+const IdentityTrySpecifiedDomainOnly = 0x00000400
+
+// IdentityAllowWorkstationTrustAccount represents the IDENTITY_ALLOW_WORKSTATION_TRUST_ACCOUNT RPC constant
+const IdentityAllowWorkstationTrustAccount = 0x00000800
+
+// IdentityDisablePersonalFallback represents the IDENTITY_DISABLE_PERSONAL_FALLBACK RPC constant
+const IdentityDisablePersonalFallback = 0x00001000
+
+// IdentityAllowForceGuest represents the IDENTITY_ALLOW_FORCE_GUEST RPC constant
+const IdentityAllowForceGuest = 0x00002000
+
+// IdentityCleartextPasswordSupplied represents the IDENTITY_CLEARTEXT_PASSWORD_SUPPLIED RPC constant
+const IdentityCleartextPasswordSupplied = 0x00004000
+
+// IdentityAllowNTLMv1 represents the IDENTITY_ALLOW_NTLM_V1 RPC constant
+const IdentityAllowNTLMv1 = 0x00010000
+
+// IdentityUseSubAuthentication represents the IDENTITY_USE_SUB_AUTHENTICATION RPC constant
+const IdentityUseSubAuthentication = 0x00100000
+
+// IdentityUseSubAuthenticationPackageIDMask represents the IDENTITY_USE_SUB_AUTHENTICATION_PACKAGE_ID_MASK RPC constant
+const IdentityUseSubAuthenticationPackageIDMask = 0xFF000000
+
+// DSForceRediscovery represents the DS_FORCE_REDISCOVERY RPC constant
+const DSForceRediscovery = 0x00000001
+
+// DSDirectoryServiceRequired represents the DS_DIRECTORY_SERVICE_REQUIRED RPC constant
+const DSDirectoryServiceRequired = 0x00000010
+
+// DSDirectoryServicePreferred represents the DS_DIRECTORY_SERVICE_PREFERRED RPC constant
+const DSDirectoryServicePreferred = 0x00000020
+
+// DSGCServerRequired represents the DS_GC_SERVER_REQUIRED RPC constant
+const DSGCServerRequired = 0x00000040
+
+// DSPDCRequired represents the DS_PDC_REQUIRED RPC constant
+const DSPDCRequired = 0x00000080
+
+// DSBackgroundOnly represents the DS_BACKGROUND_ONLY RPC constant
+const DSBackgroundOnly = 0x00000100
+
+// DSIPRequired represents the DS_IP_REQUIRED RPC constant
+const DSIPRequired = 0x00000200
+
+// DSKDCRequired represents the DS_KDC_REQUIRED RPC constant
+const DSKDCRequired = 0x00000400
+
+// DSTimeServerRequired represents the DS_TIME_SERVER_REQUIRED RPC constant
+const DSTimeServerRequired = 0x00000800
+
+// DSWritableRequired represents the DS_WRITABLE_REQUIRED RPC constant
+const DSWritableRequired = 0x00001000
+
+// DSGoodTimeServerPreferred represents the DS_GOOD_TIME_SERVER_PREFERRED RPC constant
+const DSGoodTimeServerPreferred = 0x00002000
+
+// DSAvoidSelf represents the DS_AVOID_SELF RPC constant
+const DSAvoidSelf = 0x00004000
+
+// DSOnlyLDAPNeeded represents the DS_ONLY_LDAP_NEEDED RPC constant
+const DSOnlyLDAPNeeded = 0x00008000
+
+// DSIsFlatName represents the DS_IS_FLAT_NAME RPC constant
+const DSIsFlatName = 0x00010000
+
+// DSIsDNSName represents the DS_IS_DNS_NAME RPC constant
+const DSIsDNSName = 0x00020000
+
+// DSTryNextClosestSite represents the DS_TRY_NEXT_CLOSEST_SITE RPC constant
+const DSTryNextClosestSite = 0x00040000
+
+// DSDirectoryService6Required represents the DS_DIRECTORY_SERVICE_6_REQUIRED RPC constant
+const DSDirectoryService6Required = 0x00080000
+
+// DSWebServiceRequired represents the DS_WEB_SERVICE_REQUIRED RPC constant
+const DSWebServiceRequired = 0x00100000
+
+// DSReturnDNSName represents the DS_RETURN_DNS_NAME RPC constant
+const DSReturnDNSName = 0x40000000
+
+// DSReturnFlatName represents the DS_RETURN_FLAT_NAME RPC constant
+const DSReturnFlatName = 0x80000000
+
 // String structure represents STRING RPC structure.
 //
 // The STRING structure contains the length, the maximum length, and a pointer to a

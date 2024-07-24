@@ -112,6 +112,7 @@ abbr:
   dn: DN
   dname: DNAME
   dns: DNS
+  kdc: KDC
   dnscname0: CNAME
   dnskey0: KEY
   dnskey: DNSKEY
@@ -252,6 +253,8 @@ abbr:
   ipid: IPID
   ips: IPs
   ipsec: IPsec
+  ntlmv1: NTLMv1
+  ntlmv2: NTLMv2
   ipv4: IPv4
   ipv6: IPv6
   irp: IRP
