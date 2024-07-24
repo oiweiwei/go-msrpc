@@ -436,7 +436,7 @@ func WithEndpoint(s string) BindOption {
 	})
 }
 
-func ParseOptions(ctx context.Context, opts ...Option) (*option, error) {
+func ParseSecurityOptions(ctx context.Context, opts ...Option) *option {
 
 	option := &option{}
 
@@ -446,6 +446,13 @@ func ParseOptions(ctx context.Context, opts ...Option) (*option, error) {
 			o(option)
 		}
 	}
+
+	return option
+}
+
+func ParseOptions(ctx context.Context, opts ...Option) (*option, error) {
+
+	option := ParseSecurityOptions(ctx, opts...)
 
 	for i := range opts {
 		switch o := (opts[i]).(type) {
