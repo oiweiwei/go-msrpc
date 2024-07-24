@@ -114,7 +114,7 @@ func (s StringBinding) URLWithSyntax(syntax SyntaxID, uConvs ...ConvertUUID) *ur
 	u := s.URL()
 
 	uConv := DefaultConvertUUID
-	if len(uConvs) > 0 {
+	if len(uConvs) > 0 && uConvs[0] != nil {
 		uConv = uConvs[0]
 	}
 
@@ -214,6 +214,37 @@ func ProtocolSequenceFromString(s string) ProtocolSequence {
 		p = ProtocolSequenceLRPC
 	}
 	return p
+}
+
+func ParseSyntaxID(s string) (*SyntaxID, error) {
+
+	var (
+		id  SyntaxID
+		err error
+	)
+
+	s, ver, ok := strings.Cut(s, "/")
+	if ok {
+		vMajStr, vMinStr, ok := strings.Cut(strings.TrimLeft(ver, "v"), ".")
+		if ok {
+			vMin, err := strconv.ParseUint(vMinStr, 10, 16)
+			if err != nil {
+				return nil, fmt.Errorf("parse syntax: version major: %w", err)
+			}
+			id.IfVersionMinor = uint16(vMin)
+		}
+		vMaj, err := strconv.ParseUint(vMajStr, 10, 16)
+		if err != nil {
+			return nil, fmt.Errorf("parse syntax: version minor: %w", err)
+		}
+		id.IfVersionMajor = uint16(vMaj)
+	}
+
+	if id.IfUUID, err = uuid.Parse(s); err != nil {
+		return nil, fmt.Errorf("parse syntax id: %w", err)
+	}
+
+	return &id, nil
 }
 
 func ParseBindingURL(s string) (*Binding, error) {
