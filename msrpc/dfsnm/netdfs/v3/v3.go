@@ -4542,7 +4542,6 @@ func (o *Info) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) err
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -4652,7 +4651,6 @@ func (o *Info) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) e
 			return err
 		}
 	default:
-		o.Value = &Info_DefaultInfo{}
 	}
 	return nil
 }
@@ -5647,19 +5645,6 @@ func (o *Info_150) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Info150, _s_DfsInfo150, _ptr_DfsInfo150); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Info_DefaultInfo structure represents DFS_INFO_STRUCT RPC default union arm.
-type Info_DefaultInfo struct {
-}
-
-func (*Info_DefaultInfo) is_Info() {}
-
-func (o *Info_DefaultInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Info_DefaultInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

@@ -4894,7 +4894,6 @@ func (o *Rule20_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Write
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -4921,7 +4920,6 @@ func (o *Rule20_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Rea
 			return err
 		}
 	default:
-		o.Value = &Rule20_IPProtocolData_DefaultRule20{}
 	}
 	return nil
 }
@@ -5016,19 +5014,6 @@ func (o *Rule20_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context,
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule20_IPProtocolData_DefaultRule20 structure represents Rule20_IPProtocolData RPC default union arm.
-type Rule20_IPProtocolData_DefaultRule20 struct {
-}
-
-func (*Rule20_IPProtocolData_DefaultRule20) is_Rule20_IPProtocolData() {}
-
-func (o *Rule20_IPProtocolData_DefaultRule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule20_IPProtocolData_DefaultRule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -5711,7 +5696,6 @@ func (o *Rule210_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -5738,7 +5722,6 @@ func (o *Rule210_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &Rule210_IPProtocolData_DefaultRule210{}
 	}
 	return nil
 }
@@ -5833,19 +5816,6 @@ func (o *Rule210_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule210_IPProtocolData_DefaultRule210 structure represents Rule210_IPProtocolData RPC default union arm.
-type Rule210_IPProtocolData_DefaultRule210 struct {
-}
-
-func (*Rule210_IPProtocolData_DefaultRule210) is_Rule210_IPProtocolData() {}
-
-func (o *Rule210_IPProtocolData_DefaultRule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule210_IPProtocolData_DefaultRule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -6622,7 +6592,6 @@ func (o *Rule220_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -6649,7 +6618,6 @@ func (o *Rule220_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &Rule220_IPProtocolData_DefaultRule220{}
 	}
 	return nil
 }
@@ -6744,19 +6712,6 @@ func (o *Rule220_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule220_IPProtocolData_DefaultRule220 structure represents Rule220_IPProtocolData RPC default union arm.
-type Rule220_IPProtocolData_DefaultRule220 struct {
-}
-
-func (*Rule220_IPProtocolData_DefaultRule220) is_Rule220_IPProtocolData() {}
-
-func (o *Rule220_IPProtocolData_DefaultRule220) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule220_IPProtocolData_DefaultRule220) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -7578,7 +7533,6 @@ func (o *Rule224_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -7605,7 +7559,6 @@ func (o *Rule224_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &Rule224_IPProtocolData_DefaultRule224{}
 	}
 	return nil
 }
@@ -7700,19 +7653,6 @@ func (o *Rule224_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule224_IPProtocolData_DefaultRule224 structure represents Rule224_IPProtocolData RPC default union arm.
-type Rule224_IPProtocolData_DefaultRule224 struct {
-}
-
-func (*Rule224_IPProtocolData_DefaultRule224) is_Rule224_IPProtocolData() {}
-
-func (o *Rule224_IPProtocolData_DefaultRule224) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule224_IPProtocolData_DefaultRule224) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -8541,7 +8481,6 @@ func (o *Rule225_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -8568,7 +8507,6 @@ func (o *Rule225_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &Rule225_IPProtocolData_DefaultRule225{}
 	}
 	return nil
 }
@@ -8663,19 +8601,6 @@ func (o *Rule225_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule225_IPProtocolData_DefaultRule225 structure represents Rule225_IPProtocolData RPC default union arm.
-type Rule225_IPProtocolData_DefaultRule225 struct {
-}
-
-func (*Rule225_IPProtocolData_DefaultRule225) is_Rule225_IPProtocolData() {}
-
-func (o *Rule225_IPProtocolData_DefaultRule225) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule225_IPProtocolData_DefaultRule225) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -9517,7 +9442,6 @@ func (o *Rule226_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -9544,7 +9468,6 @@ func (o *Rule226_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &Rule226_IPProtocolData_DefaultRule226{}
 	}
 	return nil
 }
@@ -9639,19 +9562,6 @@ func (o *Rule226_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule226_IPProtocolData_DefaultRule226 structure represents Rule226_IPProtocolData RPC default union arm.
-type Rule226_IPProtocolData_DefaultRule226 struct {
-}
-
-func (*Rule226_IPProtocolData_DefaultRule226) is_Rule226_IPProtocolData() {}
-
-func (o *Rule226_IPProtocolData_DefaultRule226) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule226_IPProtocolData_DefaultRule226) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -10532,7 +10442,6 @@ func (o *Rule227_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -10559,7 +10468,6 @@ func (o *Rule227_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &Rule227_IPProtocolData_DefaultRule227{}
 	}
 	return nil
 }
@@ -10654,19 +10562,6 @@ func (o *Rule227_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule227_IPProtocolData_DefaultRule227 structure represents Rule227_IPProtocolData RPC default union arm.
-type Rule227_IPProtocolData_DefaultRule227 struct {
-}
-
-func (*Rule227_IPProtocolData_DefaultRule227) is_Rule227_IPProtocolData() {}
-
-func (o *Rule227_IPProtocolData_DefaultRule227) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule227_IPProtocolData_DefaultRule227) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -11773,7 +11668,6 @@ func (o *Rule_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -11800,7 +11694,6 @@ func (o *Rule_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reade
 			return err
 		}
 	default:
-		o.Value = &Rule_IPProtocolData_DefaultRule{}
 	}
 	return nil
 }
@@ -11899,19 +11792,6 @@ func (o *Rule_IPProtocolData_TypeCodeListV6) UnmarshalNDR(ctx context.Context, w
 	if err := o.TypeCodeListV6.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Rule_IPProtocolData_DefaultRule structure represents Rule_IPProtocolData RPC default union arm.
-type Rule_IPProtocolData_DefaultRule struct {
-}
-
-func (*Rule_IPProtocolData_DefaultRule) is_Rule_IPProtocolData() {}
-
-func (o *Rule_IPProtocolData_DefaultRule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Rule_IPProtocolData_DefaultRule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -15510,7 +15390,6 @@ func (o *AuthSuite210_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -15532,7 +15411,6 @@ func (o *AuthSuite210_AuthSuite) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &AuthSuite210_DefaultAuthSuite210{}
 	}
 	return nil
 }
@@ -15721,19 +15599,6 @@ func (o *AuthSuite210_AuthSuite_SharedKey) UnmarshalNDR(ctx context.Context, w n
 	if err := w.ReadPointer(&o.SharedKey, _s_wszSHKey, _ptr_wszSHKey); err != nil {
 		return err
 	}
-	return nil
-}
-
-// AuthSuite210_DefaultAuthSuite210 structure represents AuthSuite210_AuthSuite RPC default union arm.
-type AuthSuite210_DefaultAuthSuite210 struct {
-}
-
-func (*AuthSuite210_DefaultAuthSuite210) is_AuthSuite210_AuthSuite() {}
-
-func (o *AuthSuite210_DefaultAuthSuite210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *AuthSuite210_DefaultAuthSuite210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -16248,7 +16113,6 @@ func (o *AuthSuite_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -16276,7 +16140,6 @@ func (o *AuthSuite_AuthSuite) UnmarshalUnionNDR(ctx context.Context, w ndr.Reade
 			return err
 		}
 	default:
-		o.Value = &AuthSuite_DefaultAuthSuite{}
 	}
 	return nil
 }
@@ -16596,19 +16459,6 @@ func (o *AuthSuite_AuthSuite_ProxyServer) UnmarshalNDR(ctx context.Context, w nd
 	if err := w.ReadPointer(&o.ProxyServer, _s_wszProxyServer, _ptr_wszProxyServer); err != nil {
 		return err
 	}
-	return nil
-}
-
-// AuthSuite_DefaultAuthSuite structure represents AuthSuite_AuthSuite RPC default union arm.
-type AuthSuite_DefaultAuthSuite struct {
-}
-
-func (*AuthSuite_DefaultAuthSuite) is_AuthSuite_AuthSuite() {}
-
-func (o *AuthSuite_DefaultAuthSuite) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *AuthSuite_DefaultAuthSuite) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -19117,7 +18967,6 @@ func (o *AuthInfo_AuthInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -19142,7 +18991,6 @@ func (o *AuthInfo_AuthInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader,
 			return err
 		}
 	default:
-		o.Value = &AuthInfo_DefaultAuthInfo{}
 	}
 	return nil
 }
@@ -19368,19 +19216,6 @@ func (o *AuthInfo_AuthInfo_Kerberos) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	if err := w.ReadPointer(&o.PeerID, _s_wszPeerId, _ptr_wszPeerId); err != nil {
 		return err
 	}
-	return nil
-}
-
-// AuthInfo_DefaultAuthInfo structure represents AuthInfo_AuthInfo RPC default union arm.
-type AuthInfo_DefaultAuthInfo struct {
-}
-
-func (*AuthInfo_DefaultAuthInfo) is_AuthInfo_AuthInfo() {}
-
-func (o *AuthInfo_DefaultAuthInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *AuthInfo_DefaultAuthInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

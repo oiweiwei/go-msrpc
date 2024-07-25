@@ -2988,7 +2988,6 @@ func (o *WorkstationInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -3034,7 +3033,6 @@ func (o *WorkstationInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, s
 			return err
 		}
 	default:
-		o.Value = &WorkstationInfo_DefaultWorkstationInfo{}
 	}
 	return nil
 }
@@ -3393,19 +3391,6 @@ func (o *WorkstationInfo_1046) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadPointer(&o.WorkstationInfo1046, _s_WkstaInfo1046, _ptr_WkstaInfo1046); err != nil {
 		return err
 	}
-	return nil
-}
-
-// WorkstationInfo_DefaultWorkstationInfo structure represents WKSTA_INFO RPC default union arm.
-type WorkstationInfo_DefaultWorkstationInfo struct {
-}
-
-func (*WorkstationInfo_DefaultWorkstationInfo) is_WorkstationInfo() {}
-
-func (o *WorkstationInfo_DefaultWorkstationInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *WorkstationInfo_DefaultWorkstationInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -3965,7 +3950,6 @@ func (o *UseInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -3996,7 +3980,6 @@ func (o *UseInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32
 			return err
 		}
 	default:
-		o.Value = &UseInfo_DefaultUseInfo{}
 	}
 	return nil
 }
@@ -4202,19 +4185,6 @@ func (o *UseInfo_3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.UseInfo3, _s_UseInfo3, _ptr_UseInfo3); err != nil {
 		return err
 	}
-	return nil
-}
-
-// UseInfo_DefaultUseInfo structure represents USE_INFO RPC default union arm.
-type UseInfo_DefaultUseInfo struct {
-}
-
-func (*UseInfo_DefaultUseInfo) is_UseInfo() {}
-
-func (o *UseInfo_DefaultUseInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *UseInfo_DefaultUseInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -4616,7 +4586,6 @@ func (o *UseEnum_UseInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -4642,7 +4611,6 @@ func (o *UseEnum_UseInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, s
 			return err
 		}
 	default:
-		o.Value = &UseInfo_DefaultUseEnum{}
 	}
 	return nil
 }
@@ -4794,19 +4762,6 @@ func (o *UseInfo_Level2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Level2, _s_Level2, _ptr_Level2); err != nil {
 		return err
 	}
-	return nil
-}
-
-// UseInfo_DefaultUseEnum structure represents UseEnum_UseInfo RPC default union arm.
-type UseInfo_DefaultUseEnum struct {
-}
-
-func (*UseInfo_DefaultUseEnum) is_UseEnum_UseInfo() {}
-
-func (o *UseInfo_DefaultUseEnum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *UseInfo_DefaultUseEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -5190,7 +5145,6 @@ func (o *WorkstationUserEnum_WorkstationUserInfo) MarshalUnionNDR(ctx context.Co
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -5211,7 +5165,6 @@ func (o *WorkstationUserEnum_WorkstationUserInfo) UnmarshalUnionNDR(ctx context.
 			return err
 		}
 	default:
-		o.Value = &WorkstationUserInfo_DefaultWorkstationUserEnum{}
 	}
 	return nil
 }
@@ -5313,19 +5266,6 @@ func (o *WorkstationUserInfo_Level1) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	if err := w.ReadPointer(&o.Level1, _s_Level1, _ptr_Level1); err != nil {
 		return err
 	}
-	return nil
-}
-
-// WorkstationUserInfo_DefaultWorkstationUserEnum structure represents WorkstationUserEnum_WorkstationUserInfo RPC default union arm.
-type WorkstationUserInfo_DefaultWorkstationUserEnum struct {
-}
-
-func (*WorkstationUserInfo_DefaultWorkstationUserEnum) is_WorkstationUserEnum_WorkstationUserInfo() {}
-
-func (o *WorkstationUserInfo_DefaultWorkstationUserEnum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *WorkstationUserInfo_DefaultWorkstationUserEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -5566,7 +5506,6 @@ func (o *WorkstationTransportEnum_WorkstationTransportInfo) MarshalUnionNDR(ctx 
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -5582,7 +5521,6 @@ func (o *WorkstationTransportEnum_WorkstationTransportInfo) UnmarshalUnionNDR(ct
 			return err
 		}
 	default:
-		o.Value = &WorkstationTransportInfo_DefaultWorkstationTransportEnum{}
 	}
 	return nil
 }
@@ -5634,20 +5572,6 @@ func (o *WorkstationTransportInfo_Level0) UnmarshalNDR(ctx context.Context, w nd
 	if err := w.ReadPointer(&o.Level0, _s_Level0, _ptr_Level0); err != nil {
 		return err
 	}
-	return nil
-}
-
-// WorkstationTransportInfo_DefaultWorkstationTransportEnum structure represents WorkstationTransportEnum_WorkstationTransportInfo RPC default union arm.
-type WorkstationTransportInfo_DefaultWorkstationTransportEnum struct {
-}
-
-func (*WorkstationTransportInfo_DefaultWorkstationTransportEnum) is_WorkstationTransportEnum_WorkstationTransportInfo() {
-}
-
-func (o *WorkstationTransportInfo_DefaultWorkstationTransportEnum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *WorkstationTransportInfo_DefaultWorkstationTransportEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

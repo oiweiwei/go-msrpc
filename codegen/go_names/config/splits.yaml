@@ -68,6 +68,7 @@ split:
   certtransdbextension: [cert, trans, db, extension]
   certtransdbresultcolumn: [cert, trans, db, result, column]
   certtransdbresultrow: [cert, trans, db, result, row]
+  certsvc: [cert, svc]
   certtype: [cert, type]
   certviewrestriction: [cert, view, restriction]
   chglog: [change, log]

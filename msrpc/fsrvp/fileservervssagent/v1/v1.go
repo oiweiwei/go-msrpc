@@ -532,7 +532,6 @@ func (o *ShareMapping) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -552,7 +551,6 @@ func (o *ShareMapping) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw u
 			return err
 		}
 	default:
-		o.Value = &ShareMapping_DefaultShareMapping{}
 	}
 	return nil
 }
@@ -606,19 +604,6 @@ func (o *ShareMapping_1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.ShareMapping1, _s_ShareMapping1, _ptr_ShareMapping1); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ShareMapping_DefaultShareMapping structure represents FSSAGENT_SHARE_MAPPING RPC default union arm.
-type ShareMapping_DefaultShareMapping struct {
-}
-
-func (*ShareMapping_DefaultShareMapping) is_ShareMapping() {}
-
-func (o *ShareMapping_DefaultShareMapping) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ShareMapping_DefaultShareMapping) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

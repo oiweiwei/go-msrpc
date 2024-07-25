@@ -2462,7 +2462,6 @@ func (o *ObjectReference_ObjectReference) MarshalUnionNDR(ctx context.Context, w
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -2493,7 +2492,6 @@ func (o *ObjectReference_ObjectReference) UnmarshalUnionNDR(ctx context.Context,
 			return err
 		}
 	default:
-		o.Value = &ObjectReference_DefaultObjectReference{}
 	}
 	return nil
 }
@@ -2619,19 +2617,6 @@ func (o *ObjectReference_Extended) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	if err := o.Extended.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ObjectReference_DefaultObjectReference structure represents ObjectReference_ObjectReference RPC default union arm.
-type ObjectReference_DefaultObjectReference struct {
-}
-
-func (*ObjectReference_DefaultObjectReference) is_ObjectReference_ObjectReference() {}
-
-func (o *ObjectReference_DefaultObjectReference) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ObjectReference_DefaultObjectReference) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
