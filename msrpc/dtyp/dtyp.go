@@ -2537,7 +2537,6 @@ type ACEGUID struct {
 	// Types that are assignable to Value
 	//
 	// *ACEGUID_GUID
-	// *ACEGUID_DefaultACEGUID
 	Value is_ACEGUID `json:"value"`
 }
 

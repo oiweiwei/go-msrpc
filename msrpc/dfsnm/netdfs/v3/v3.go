@@ -4181,7 +4181,6 @@ type Info struct {
 	// *Info_106
 	// *Info_107
 	// *Info_150
-	// *Info_DefaultInfo
 	Value is_Info `json:"value"`
 }
 

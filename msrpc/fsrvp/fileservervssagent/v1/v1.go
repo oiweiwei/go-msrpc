@@ -477,7 +477,6 @@ type ShareMapping struct {
 	// Types that are assignable to Value
 	//
 	// *ShareMapping_1
-	// *ShareMapping_DefaultShareMapping
 	Value is_ShareMapping `json:"value"`
 }
 

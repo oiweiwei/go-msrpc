@@ -308,7 +308,6 @@ type ServerEnum_ServerInfo struct {
 	// Types that are assignable to Value
 	//
 	// *ServerInfo_Level100
-	// *ServerInfo_DefaultServerEnum
 	Value is_ServerEnum_ServerInfo `json:"value"`
 }
 

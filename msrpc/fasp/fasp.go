@@ -4803,7 +4803,6 @@ type Rule20_IPProtocolData struct {
 	// *Rule20_IPProtocolData_Ports
 	// *Rule20_IPProtocolData_TypeCodeListV4
 	// *Rule20_IPProtocolData_TypeCodeListV6
-	// *Rule20_IPProtocolData_DefaultRule20
 	Value is_Rule20_IPProtocolData `json:"value"`
 }
 
@@ -5605,7 +5604,6 @@ type Rule210_IPProtocolData struct {
 	// *Rule210_IPProtocolData_Ports
 	// *Rule210_IPProtocolData_TypeCodeListV4
 	// *Rule210_IPProtocolData_TypeCodeListV6
-	// *Rule210_IPProtocolData_DefaultRule210
 	Value is_Rule210_IPProtocolData `json:"value"`
 }
 
@@ -6501,7 +6499,6 @@ type Rule220_IPProtocolData struct {
 	// *Rule220_IPProtocolData_Ports
 	// *Rule220_IPProtocolData_TypeCodeListV4
 	// *Rule220_IPProtocolData_TypeCodeListV6
-	// *Rule220_IPProtocolData_DefaultRule220
 	Value is_Rule220_IPProtocolData `json:"value"`
 }
 
@@ -7442,7 +7439,6 @@ type Rule224_IPProtocolData struct {
 	// *Rule224_IPProtocolData_Ports
 	// *Rule224_IPProtocolData_TypeCodeListV4
 	// *Rule224_IPProtocolData_TypeCodeListV6
-	// *Rule224_IPProtocolData_DefaultRule224
 	Value is_Rule224_IPProtocolData `json:"value"`
 }
 
@@ -8390,7 +8386,6 @@ type Rule225_IPProtocolData struct {
 	// *Rule225_IPProtocolData_Ports
 	// *Rule225_IPProtocolData_TypeCodeListV4
 	// *Rule225_IPProtocolData_TypeCodeListV6
-	// *Rule225_IPProtocolData_DefaultRule225
 	Value is_Rule225_IPProtocolData `json:"value"`
 }
 
@@ -9351,7 +9346,6 @@ type Rule226_IPProtocolData struct {
 	// *Rule226_IPProtocolData_Ports
 	// *Rule226_IPProtocolData_TypeCodeListV4
 	// *Rule226_IPProtocolData_TypeCodeListV6
-	// *Rule226_IPProtocolData_DefaultRule226
 	Value is_Rule226_IPProtocolData `json:"value"`
 }
 
@@ -10351,7 +10345,6 @@ type Rule227_IPProtocolData struct {
 	// *Rule227_IPProtocolData_Ports
 	// *Rule227_IPProtocolData_TypeCodeListV4
 	// *Rule227_IPProtocolData_TypeCodeListV6
-	// *Rule227_IPProtocolData_DefaultRule227
 	Value is_Rule227_IPProtocolData `json:"value"`
 }
 
@@ -11577,7 +11570,6 @@ type Rule_IPProtocolData struct {
 	// *Rule_IPProtocolData_Ports
 	// *Rule_IPProtocolData_TypeCodeListV4
 	// *Rule_IPProtocolData_TypeCodeListV6
-	// *Rule_IPProtocolData_DefaultRule
 	Value is_Rule_IPProtocolData `json:"value"`
 }
 
@@ -15316,7 +15308,6 @@ type AuthSuite210_AuthSuite struct {
 	//
 	// *AuthSuite210_Cert
 	// *AuthSuite210_SharedKey
-	// *AuthSuite210_DefaultAuthSuite210
 	Value is_AuthSuite210_AuthSuite `json:"value"`
 }
 
@@ -16016,7 +16007,6 @@ type AuthSuite_AuthSuite struct {
 	// *AuthSuite_Cert
 	// *AuthSuite_SharedKey
 	// *AuthSuite_ProxyServer
-	// *AuthSuite_DefaultAuthSuite
 	Value is_AuthSuite_AuthSuite `json:"value"`
 }
 
@@ -18883,7 +18873,6 @@ type AuthInfo_AuthInfo struct {
 	//
 	// *AuthInfo_Cert
 	// *AuthInfo_Kerberos
-	// *AuthInfo_DefaultAuthInfo
 	Value is_AuthInfo_AuthInfo `json:"value"`
 }
 

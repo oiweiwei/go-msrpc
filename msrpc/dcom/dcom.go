@@ -2360,7 +2360,6 @@ type ObjectReference_ObjectReference struct {
 	// *ObjectReference_Handler
 	// *ObjectReference_Custom
 	// *ObjectReference_Extended
-	// *ObjectReference_DefaultObjectReference
 	Value is_ObjectReference_ObjectReference `json:"value"`
 }
 

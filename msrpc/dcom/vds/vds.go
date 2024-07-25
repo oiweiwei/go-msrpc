@@ -2650,7 +2650,6 @@ type AsyncOutput_AsyncOutput struct {
 	// *AsyncOutput_BreakVolumePlex
 	// *AsyncOutput_ShrinkVolume
 	// *AsyncOutput_CreateVDisk
-	// *AsyncOutput_DefaultAsyncOutput
 	Value is_AsyncOutput_AsyncOutput `json:"value"`
 }
 
@@ -4704,7 +4703,6 @@ type PartitionProperty_PartitionProperty struct {
 	//
 	// *PartitionProperty_MBR
 	// *PartitionProperty_GPT
-	// *PartitionProperty_DefaultPartitionProperty
 	Value is_PartitionProperty_PartitionProperty `json:"value"`
 }
 
@@ -5013,7 +5011,6 @@ type CreatePartitionParameters_CreatePartitionParameters struct {
 	//
 	// *CreatePartitionParameters_MBRPartitionInfo
 	// *CreatePartitionParameters_GPTPartitionInfo
-	// *CreatePartitionParameters_DefaultCreatePartitionParameters
 	Value is_CreatePartitionParameters_CreatePartitionParameters `json:"value"`
 }
 
@@ -6488,7 +6485,6 @@ type ChangeAttributesParameters_ChangeAttributesParameters struct {
 	//
 	// *ChangeAttributesParameters_MBRPartitionInfo
 	// *ChangeAttributesParameters_GPTPartitionInfo
-	// *ChangeAttributesParameters_DefaultChangeAttributesParameters
 	Value is_ChangeAttributesParameters_ChangeAttributesParameters `json:"value"`
 }
 
@@ -6804,7 +6800,6 @@ type ChangePartitionTypeParameters_ChangePartitionTypeParameters struct {
 	//
 	// *ChangePartitionTypeParameters_MBRPartitionInfo
 	// *ChangePartitionTypeParameters_GPTPartitionInfo
-	// *ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters
 	Value is_ChangePartitionTypeParameters_ChangePartitionTypeParameters `json:"value"`
 }
 
@@ -8272,7 +8267,6 @@ type DiskProperty_DiskProperty struct {
 	//
 	// *DiskProperty_Signature
 	// *DiskProperty_DiskGUID
-	// *DiskProperty_DefaultDiskProperty
 	Value is_DiskProperty_DiskProperty `json:"value"`
 }
 
@@ -8816,7 +8810,6 @@ type DiskProperty2_DiskProperty2 struct {
 	//
 	// *DiskProperty2_Signature
 	// *DiskProperty2_DiskGUID
-	// *DiskProperty2_DefaultDiskProperty2
 	Value is_DiskProperty2_DiskProperty2 `json:"value"`
 }
 
@@ -9340,7 +9333,6 @@ type AdvancedDiskProperty_AdvancedDiskProperty struct {
 	//
 	// *AdvancedDiskProperty_Signature
 	// *AdvancedDiskProperty_DiskGUID
-	// *AdvancedDiskProperty_DefaultAdvancedDiskProperty
 	Value is_AdvancedDiskProperty_AdvancedDiskProperty `json:"value"`
 }
 

@@ -2835,7 +2835,6 @@ type WorkstationInfo struct {
 	// *WorkstationInfo_1013
 	// *WorkstationInfo_1018
 	// *WorkstationInfo_1046
-	// *WorkstationInfo_DefaultWorkstationInfo
 	Value is_WorkstationInfo `json:"value"`
 }
 
@@ -3848,7 +3847,6 @@ type UseInfo struct {
 	// *UseInfo_1
 	// *UseInfo_2
 	// *UseInfo_3
-	// *UseInfo_DefaultUseInfo
 	Value is_UseInfo `json:"value"`
 }
 
@@ -4501,7 +4499,6 @@ type UseEnum_UseInfo struct {
 	// *UseInfo_Level0
 	// *UseInfo_Level1
 	// *UseInfo_Level2
-	// *UseInfo_DefaultUseEnum
 	Value is_UseEnum_UseInfo `json:"value"`
 }
 
@@ -5077,7 +5074,6 @@ type WorkstationUserEnum_WorkstationUserInfo struct {
 	//
 	// *WorkstationUserInfo_Level0
 	// *WorkstationUserInfo_Level1
-	// *WorkstationUserInfo_DefaultWorkstationUserEnum
 	Value is_WorkstationUserEnum_WorkstationUserInfo `json:"value"`
 }
 
@@ -5455,7 +5451,6 @@ type WorkstationTransportEnum_WorkstationTransportInfo struct {
 	// Types that are assignable to Value
 	//
 	// *WorkstationTransportInfo_Level0
-	// *WorkstationTransportInfo_DefaultWorkstationTransportEnum
 	Value is_WorkstationTransportEnum_WorkstationTransportInfo `json:"value"`
 }
 
