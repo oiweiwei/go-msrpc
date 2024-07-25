@@ -584,7 +584,7 @@ typedef struct _ACL {
   unsigned short AclSize;
   unsigned short AceCount;
   unsigned short Sbz2;
-  [size_is(AceCount)] PACE Aces[];
+  [size_is(AceCount)] PACE AceEntries[];
 } ACL,
  *PACL;
 

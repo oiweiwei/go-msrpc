@@ -6853,13 +6853,13 @@ type ACL struct {
 	ACECount uint16 `idl:"name:AceCount" json:"ace_count"`
 	// Sbz2 (2 bytes): An unsigned 16-bit integer. This field is reserved and MUST be set
 	// to zero.
-	SBZ2 uint16 `idl:"name:Sbz2" json:"sbz2"`
-	Aces []*ACE `idl:"name:Aces;size_is:(AceCount)" json:"aces"`
+	SBZ2       uint16 `idl:"name:Sbz2" json:"sbz2"`
+	ACEEntries []*ACE `idl:"name:AceEntries;size_is:(AceCount)" json:"ace_entries"`
 }
 
 func (o *ACL) xxx_PreparePayload(ctx context.Context) error {
-	if o.Aces != nil && o.ACECount == 0 {
-		o.ACECount = uint16(len(o.Aces))
+	if o.ACEEntries != nil && o.ACECount == 0 {
+		o.ACECount = uint16(len(o.ACEEntries))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -6907,15 +6907,15 @@ func (o *ACL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SBZ2); err != nil {
 		return err
 	}
-	for i1 := range o.Aces {
+	for i1 := range o.ACEEntries {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
 			break
 		}
-		if o.Aces[i1] != nil {
-			_ptr_Aces := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Aces[i1] != nil {
-					if err := o.Aces[i1].MarshalNDR(ctx, w); err != nil {
+		if o.ACEEntries[i1] != nil {
+			_ptr_AceEntries := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ACEEntries[i1] != nil {
+					if err := o.ACEEntries[i1].MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -6925,7 +6925,7 @@ func (o *ACL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Aces[i1], _ptr_Aces); err != nil {
+			if err := w.WritePointer(&o.ACEEntries[i1], _ptr_AceEntries); err != nil {
 				return err
 			}
 		} else {
@@ -6934,7 +6934,7 @@ func (o *ACL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			}
 		}
 	}
-	for i1 := len(o.Aces); uint64(i1) < sizeInfo[0]; i1++ {
+	for i1 := len(o.ACEEntries); uint64(i1) < sizeInfo[0]; i1++ {
 		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
@@ -6975,22 +6975,22 @@ func (o *ACL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		sizeInfo[0] = uint64(o.ACECount)
 	}
 	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Aces", sizeInfo[0])
+		return fmt.Errorf("buffer overflow for size %d of array o.ACEEntries", sizeInfo[0])
 	}
-	o.Aces = make([]*ACE, sizeInfo[0])
-	for i1 := range o.Aces {
+	o.ACEEntries = make([]*ACE, sizeInfo[0])
+	for i1 := range o.ACEEntries {
 		i1 := i1
-		_ptr_Aces := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Aces[i1] == nil {
-				o.Aces[i1] = &ACE{}
+		_ptr_AceEntries := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ACEEntries[i1] == nil {
+				o.ACEEntries[i1] = &ACE{}
 			}
-			if err := o.Aces[i1].UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ACEEntries[i1].UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_Aces := func(ptr interface{}) { o.Aces[i1] = *ptr.(**ACE) }
-		if err := w.ReadPointer(&o.Aces[i1], _s_Aces, _ptr_Aces); err != nil {
+		_s_AceEntries := func(ptr interface{}) { o.ACEEntries[i1] = *ptr.(**ACE) }
+		if err := w.ReadPointer(&o.ACEEntries[i1], _s_AceEntries, _ptr_AceEntries); err != nil {
 			return err
 		}
 	}
