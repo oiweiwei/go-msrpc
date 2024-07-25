@@ -6931,7 +6931,6 @@ type ShareInfo struct {
 	// *ShareInfo_1004
 	// *ShareInfo_1006
 	// *ShareInfo_1501
-	// *ShareInfo_DefaultShareInfo
 	// *ShareInfo_1005
 	// *ShareInfo_501
 	// *ShareInfo_503

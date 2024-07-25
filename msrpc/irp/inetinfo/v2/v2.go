@@ -2536,7 +2536,6 @@ type StatisticsInfo struct {
 	// Types that are assignable to Value
 	//
 	// *StatisticsInfo_InetStats0
-	// *StatisticsInfo_DefaultStatisticsInfo
 	Value is_StatisticsInfo `json:"value"`
 }
 
@@ -3173,7 +3172,6 @@ type W3Statistics struct {
 	// Types that are assignable to Value
 	//
 	// *W3Statistics_StatInfo1
-	// *W3Statistics_DefaultW3Statistics
 	Value is_W3Statistics `json:"value"`
 }
 
@@ -3531,7 +3529,6 @@ type FTPStatistics struct {
 	// Types that are assignable to Value
 	//
 	// *FTPStatistics_StatInfo0
-	// *FTPStatistics_DefaultFTPStatistics
 	Value is_FTPStatistics `json:"value"`
 }
 
@@ -3957,7 +3954,6 @@ type IISUserEnum_ConfigInfo struct {
 	// Types that are assignable to Value
 	//
 	// *IISUserEnum_ConfigInfo_Level1
-	// *IISUserEnum_ConfigInfo_DefaultIISUserEnum
 	Value is_IISUserEnum_ConfigInfo `json:"value"`
 }
 

@@ -7506,7 +7506,6 @@ type TypeDesc_Union struct {
 	// *TypeDesc_Union_TypeDesc
 	// *TypeDesc_Union_ArrayDesc
 	// *TypeDesc_Union_HrefType
-	// *TypeDesc_Union_DefaultTypeDesc
 	Value is_TypeDesc_Union `json:"value"`
 }
 

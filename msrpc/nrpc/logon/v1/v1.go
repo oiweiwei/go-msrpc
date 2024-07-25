@@ -6519,7 +6519,6 @@ type DeltaUnion struct {
 	// *DeltaUnion_DeltaDeleteGroup
 	// *DeltaUnion_DeltaDeleteUser
 	// *DeltaUnion_DeltaSerialNumberSkip
-	// *DeltaUnion_DefaultDeltaUnion
 	Value is_DeltaUnion `json:"value"`
 }
 
@@ -7785,7 +7784,6 @@ type DeltaIDUnion struct {
 	// *DeltaIDUnion_RID
 	// *DeltaIDUnion_SID
 	// *DeltaIDUnion_Name
-	// *DeltaIDUnion_DefaultDeltaIDUnion
 	Value is_DeltaIDUnion `json:"value"`
 }
 
@@ -9000,7 +8998,6 @@ type Level struct {
 	// *Level_LogonNetwork
 	// *Level_LogonNetworkTransitive
 	// *Level_LogonGeneric
-	// *Level_DefaultLevel
 	Value is_Level `json:"value"`
 }
 
@@ -11806,7 +11803,6 @@ type Validation struct {
 	// *Validation_SAM2
 	// *Validation_Generic2
 	// *Validation_SAM4
-	// *Validation_DefaultValidation
 	Value is_Validation `json:"value"`
 }
 
@@ -12174,7 +12170,6 @@ type ControlDataInformation struct {
 	// *ControlDataInformation_TrustedDomainName
 	// *ControlDataInformation_DebugFlag
 	// *ControlDataInformation_UserName
-	// *ControlDataInformation_DefaultControlDataInformation
 	Value is_ControlDataInformation `json:"value"`
 }
 
@@ -12846,7 +12841,6 @@ type ControlQueryInformation struct {
 	// *ControlQueryInformation_Info2
 	// *ControlQueryInformation_Info3
 	// *ControlQueryInformation_Info4
-	// *ControlQueryInformation_DefaultControlQueryInformation
 	Value is_ControlQueryInformation `json:"value"`
 }
 

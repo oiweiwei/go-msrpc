@@ -3898,7 +3898,6 @@ type DiskInfoEx_DiskInfoEx struct {
 	//
 	// *DiskInfoEx_MBR
 	// *DiskInfoEx_GPT
-	// *DiskInfoEx_DefaultDiskInfoEx
 	Value is_DiskInfoEx_DiskInfoEx `json:"value"`
 }
 
@@ -4403,7 +4402,6 @@ type RegionInfoEx_RegionInfoEx struct {
 	//
 	// *RegionInfoEx_MBR
 	// *RegionInfoEx_GPT
-	// *RegionInfoEx_DefaultRegionInfoEx
 	Value is_RegionInfoEx_RegionInfoEx `json:"value"`
 }
 

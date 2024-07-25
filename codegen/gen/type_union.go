@@ -30,6 +30,9 @@ func (p *TypeGenerator) GenUnion(ctx context.Context) {
 			p.P("Types that are assignable to Value")
 			p.P()
 			for _, cases := range p.Union().Body {
+				if cases.IsDefault && len(cases.Arms) == 0 {
+					continue
+				}
 				p.P("*" + p.UnionArmName(ctx, cases))
 			}
 		})

@@ -243,7 +243,6 @@ type ClaimEntry_Values struct {
 	// *ClaimEntry_Values_ClaimEntryUint64
 	// *ClaimEntry_Values_ClaimEntryString
 	// *ClaimEntry_Values_ClaimEntryBoolean
-	// *ClaimEntry_Values_DefaultClaimEntry
 	Value is_ClaimEntry_Values `json:"value"`
 }
 
