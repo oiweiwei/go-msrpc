@@ -14,6 +14,14 @@ func (o *SecurityDescriptor) Parse(b []byte) error {
 	r.ReadData(&o.SBZ1)
 	r.ReadData(&o.Control)
 
+	if r.Err() != nil {
+		return r.Err()
+	}
+
+	if o.Control&SelfRelative == 0 {
+		return ndr.NDR20(b, ndr.Opaque).Unmarshal(context.Background(), o)
+	}
+
 	r.ReadData(&o.OffsetOwner)
 	r.ReadData(&o.OffsetGroup)
 	r.ReadData(&o.OffsetSACL)
