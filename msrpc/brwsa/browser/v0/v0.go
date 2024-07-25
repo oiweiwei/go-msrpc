@@ -363,7 +363,6 @@ func (o *ServerEnum_ServerInfo) MarshalUnionNDR(ctx context.Context, w ndr.Write
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -383,7 +382,6 @@ func (o *ServerEnum_ServerInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Rea
 			return err
 		}
 	default:
-		o.Value = &ServerInfo_DefaultServerEnum{}
 	}
 	return nil
 }
@@ -438,19 +436,6 @@ func (o *ServerInfo_Level100) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := w.ReadPointer(&o.Level100, _s_Level100, _ptr_Level100); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ServerInfo_DefaultServerEnum structure represents ServerEnum_ServerInfo RPC default union arm.
-type ServerInfo_DefaultServerEnum struct {
-}
-
-func (*ServerInfo_DefaultServerEnum) is_ServerEnum_ServerInfo() {}
-
-func (o *ServerInfo_DefaultServerEnum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ServerInfo_DefaultServerEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

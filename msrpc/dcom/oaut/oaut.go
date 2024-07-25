@@ -7597,7 +7597,6 @@ func (o *TypeDesc_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -7624,7 +7623,6 @@ func (o *TypeDesc_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw
 			return err
 		}
 	default:
-		o.Value = &TypeDesc_Union_DefaultTypeDesc{}
 	}
 	return nil
 }
@@ -7753,19 +7751,6 @@ func (o *TypeDesc_Union_HrefType) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	if err := w.ReadData(&o.HrefType); err != nil {
 		return err
 	}
-	return nil
-}
-
-// TypeDesc_Union_DefaultTypeDesc structure represents TypeDesc_Union RPC default union arm.
-type TypeDesc_Union_DefaultTypeDesc struct {
-}
-
-func (*TypeDesc_Union_DefaultTypeDesc) is_TypeDesc_Union() {}
-
-func (o *TypeDesc_Union_DefaultTypeDesc) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *TypeDesc_Union_DefaultTypeDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

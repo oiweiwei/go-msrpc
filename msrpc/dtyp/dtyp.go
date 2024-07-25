@@ -84,6 +84,30 @@ const AccessMaskReadControl = 0x00020000
 // AccessMaskDelete represents the ACCESS_MASK_DELETE RPC constant
 const AccessMaskDelete = 0x00010000
 
+// AccessMaskDSControlAccess represents the ACCESS_MASK_DS_CONTROL_ACCESS RPC constant
+const AccessMaskDSControlAccess = 0x00000100
+
+// AccessMaskDSCreateChild represents the ACCESS_MASK_DS_CREATE_CHILD RPC constant
+const AccessMaskDSCreateChild = 0x00000001
+
+// AccessMaskDSDeleteChild represents the ACCESS_MASK_DS_DELETE_CHILD RPC constant
+const AccessMaskDSDeleteChild = 0x00000002
+
+// AccessMaskDSReadProperty represents the ACCESS_MASK_DS_READ_PROP RPC constant
+const AccessMaskDSReadProperty = 0x00000010
+
+// AccessMaskDSWriteProperty represents the ACCESS_MASK_DS_WRITE_PROP RPC constant
+const AccessMaskDSWriteProperty = 0x00000020
+
+// AccessMaskDSSelf represents the ACCESS_MASK_DS_SELF RPC constant
+const AccessMaskDSSelf = 0x00000008
+
+// ACEObjectTypePresent represents the ACE_OBJECT_TYPE_PRESENT RPC constant
+const ACEObjectTypePresent = 0x00000001
+
+// ACEInheritedObjectTypePresent represents the ACE_INHERITED_OBJECT_TYPE_PRESENT RPC constant
+const ACEInheritedObjectTypePresent = 0x00000002
+
 // ACEFlagContainerInheritACE represents the ACE_FLAG_CONTAINER_INHERIT_ACE RPC constant
 var ACEFlagContainerInheritACE = 2
 
@@ -104,6 +128,294 @@ var ACEFlagObjectInheritACE = 1
 
 // ACEFlagSuccessfulAccessACEFlag represents the ACE_FLAG_SUCCESSFUL_ACCESS_ACE_FLAG RPC constant
 var ACEFlagSuccessfulAccessACEFlag = 64
+
+// SystemMandatoryLabelNoWriteUp represents the SYSTEM_MANDATORY_LABEL_NO_WRITE_UP RPC constant
+const SystemMandatoryLabelNoWriteUp = 0x00000001
+
+// SystemMandatoryLabelNoReadUp represents the SYSTEM_MANDATORY_LABEL_NO_READ_UP RPC constant
+const SystemMandatoryLabelNoReadUp = 0x00000002
+
+// SystemMandatoryLabelNoExecuteUp represents the SYSTEM_MANDATORY_LABEL_NO_EXECUTE_UP RPC constant
+const SystemMandatoryLabelNoExecuteUp = 0x00000004
+
+// SecurityNullSIDAuthority represents the SECURITY_NULL_SID_AUTHORITY RPC constant
+const SecurityNullSIDAuthority = 0x00000000
+
+// SecurityWorldSIDAuthority represents the SECURITY_WORLD_SID_AUTHORITY RPC constant
+const SecurityWorldSIDAuthority = 0x00000001
+
+// SecurityLocalSIDAuthority represents the SECURITY_LOCAL_SID_AUTHORITY RPC constant
+const SecurityLocalSIDAuthority = 0x00000002
+
+// SecurityCreatorSIDAuthority represents the SECURITY_CREATOR_SID_AUTHORITY RPC constant
+const SecurityCreatorSIDAuthority = 0x00000003
+
+// SecurityNTAuthority represents the SECURITY_NT_AUTHORITY RPC constant
+const SecurityNTAuthority = 0x00000005
+
+// SecurityNullRID represents the SECURITY_NULL_RID RPC constant
+const SecurityNullRID = 0x00000000
+
+// SecurityWorldRID represents the SECURITY_WORLD_RID RPC constant
+const SecurityWorldRID = 0x00000000
+
+// SecurityLocalRID represents the SECURITY_LOCAL_RID RPC constant
+const SecurityLocalRID = 0x00000000
+
+// SecurityLocalLogonRID represents the SECURITY_LOCAL_LOGON_RID RPC constant
+const SecurityLocalLogonRID = 0x00000001
+
+// SecurityCreatorOwnerRID represents the SECURITY_CREATOR_OWNER_RID RPC constant
+const SecurityCreatorOwnerRID = 0x00000000
+
+// SecurityCreatorGroupRID represents the SECURITY_CREATOR_GROUP_RID RPC constant
+const SecurityCreatorGroupRID = 0x00000001
+
+// SecurityMandatoryUntrustedRID represents the SECURITY_MANDATORY_UNTRUSTED_RID RPC constant
+const SecurityMandatoryUntrustedRID = 0x00000000
+
+// SecurityMandatoryLowRID represents the SECURITY_MANDATORY_LOW_RID RPC constant
+const SecurityMandatoryLowRID = 0x00001000
+
+// SecurityMandatoryMediumRID represents the SECURITY_MANDATORY_MEDIUM_RID RPC constant
+const SecurityMandatoryMediumRID = 0x00002000
+
+// SecurityMandatoryMediumPlusRID represents the SECURITY_MANDATORY_MEDIUM_PLUS_RID RPC constant
+const SecurityMandatoryMediumPlusRID = 0x00002100
+
+// SecurityMandatoryHighRID represents the SECURITY_MANDATORY_HIGH_RID RPC constant
+const SecurityMandatoryHighRID = 0x00003000
+
+// SecurityMandatorySystemRID represents the SECURITY_MANDATORY_SYSTEM_RID RPC constant
+const SecurityMandatorySystemRID = 0x00004000
+
+// SecurityMandatoryProtectedProcessRID represents the SECURITY_MANDATORY_PROTECTED_PROCESS_RID RPC constant
+const SecurityMandatoryProtectedProcessRID = 0x00005000
+
+// DomainGroupRIDEnterpriseReadonlyDomainControllers represents the DOMAIN_GROUP_RID_ENTERPRISE_READONLY_DOMAIN_CONTROLLERS RPC constant
+const DomainGroupRIDEnterpriseReadonlyDomainControllers = 0x000001F2
+
+// DomainUserRIDAdmin represents the DOMAIN_USER_RID_ADMIN RPC constant
+const DomainUserRIDAdmin = 0x000001F4
+
+// DomainUserRIDGuest represents the DOMAIN_USER_RID_GUEST RPC constant
+const DomainUserRIDGuest = 0x000001F5
+
+// DomainUserRIDKRBTGT represents the DOMAIN_USER_RID_KRBTGT RPC constant
+const DomainUserRIDKRBTGT = 0x000001F6
+
+// DomainUserRIDDefaultAccount represents the DOMAIN_USER_RID_DEFAULT_ACCOUNT RPC constant
+const DomainUserRIDDefaultAccount = 0x000001F7
+
+// DomainGroupRIDAdmins represents the DOMAIN_GROUP_RID_ADMINS RPC constant
+const DomainGroupRIDAdmins = 0x00000200
+
+// DomainGroupRIDUsers represents the DOMAIN_GROUP_RID_USERS RPC constant
+const DomainGroupRIDUsers = 0x00000201
+
+// DomainGroupRIDGuests represents the DOMAIN_GROUP_RID_GUESTS RPC constant
+const DomainGroupRIDGuests = 0x00000202
+
+// DomainGroupRIDComputers represents the DOMAIN_GROUP_RID_COMPUTERS RPC constant
+const DomainGroupRIDComputers = 0x00000203
+
+// DomainGroupRIDControllers represents the DOMAIN_GROUP_RID_CONTROLLERS RPC constant
+const DomainGroupRIDControllers = 0x00000204
+
+// DomainGroupRIDCertAdmins represents the DOMAIN_GROUP_RID_CERT_ADMINS RPC constant
+const DomainGroupRIDCertAdmins = 0x00000205
+
+// DomainGroupRIDSchemaAdmins represents the DOMAIN_GROUP_RID_SCHEMA_ADMINS RPC constant
+const DomainGroupRIDSchemaAdmins = 0x00000206
+
+// DomainGroupRIDEnterpriseAdmins represents the DOMAIN_GROUP_RID_ENTERPRISE_ADMINS RPC constant
+const DomainGroupRIDEnterpriseAdmins = 0x00000207
+
+// DomainGroupRIDPolicyAdmins represents the DOMAIN_GROUP_RID_POLICY_ADMINS RPC constant
+const DomainGroupRIDPolicyAdmins = 0x00000208
+
+// DomainGroupRIDReadonlyControllers represents the DOMAIN_GROUP_RID_READONLY_CONTROLLERS RPC constant
+const DomainGroupRIDReadonlyControllers = 0x00000209
+
+// DomainGroupRIDCloneableControllers represents the DOMAIN_GROUP_RID_CLONEABLE_CONTROLLERS RPC constant
+const DomainGroupRIDCloneableControllers = 0x0000020A
+
+// DomainGroupRIDCDCReserved represents the DOMAIN_GROUP_RID_CDC_RESERVED RPC constant
+const DomainGroupRIDCDCReserved = 0x0000020C
+
+// DomainGroupRIDProtectedUsers represents the DOMAIN_GROUP_RID_PROTECTED_USERS RPC constant
+const DomainGroupRIDProtectedUsers = 0x0000020D
+
+// DomainGroupRIDKeyAdmins represents the DOMAIN_GROUP_RID_KEY_ADMINS RPC constant
+const DomainGroupRIDKeyAdmins = 0x0000020E
+
+// DomainGroupRIDEnterpriseKeyAdmins represents the DOMAIN_GROUP_RID_ENTERPRISE_KEY_ADMINS RPC constant
+const DomainGroupRIDEnterpriseKeyAdmins = 0x0000020F
+
+// DomainAliasRIDAdmins represents the DOMAIN_ALIAS_RID_ADMINS RPC constant
+const DomainAliasRIDAdmins = 0x00000220
+
+// DomainAliasRIDUsers represents the DOMAIN_ALIAS_RID_USERS RPC constant
+const DomainAliasRIDUsers = 0x00000221
+
+// DomainAliasRIDGuests represents the DOMAIN_ALIAS_RID_GUESTS RPC constant
+const DomainAliasRIDGuests = 0x00000222
+
+// DomainAliasRIDPowerUsers represents the DOMAIN_ALIAS_RID_POWER_USERS RPC constant
+const DomainAliasRIDPowerUsers = 0x00000223
+
+// DomainAliasRIDAccountOperations represents the DOMAIN_ALIAS_RID_ACCOUNT_OPS RPC constant
+const DomainAliasRIDAccountOperations = 0x00000224
+
+// DomainAliasRIDSystemOperations represents the DOMAIN_ALIAS_RID_SYSTEM_OPS RPC constant
+const DomainAliasRIDSystemOperations = 0x00000225
+
+// DomainAliasRIDPrintOperations represents the DOMAIN_ALIAS_RID_PRINT_OPS RPC constant
+const DomainAliasRIDPrintOperations = 0x00000226
+
+// DomainAliasRIDBackupOperations represents the DOMAIN_ALIAS_RID_BACKUP_OPS RPC constant
+const DomainAliasRIDBackupOperations = 0x00000227
+
+// DomainAliasRIDReplicator represents the DOMAIN_ALIAS_RID_REPLICATOR RPC constant
+const DomainAliasRIDReplicator = 0x00000228
+
+// DomainAliasRIDRASServers represents the DOMAIN_ALIAS_RID_RAS_SERVERS RPC constant
+const DomainAliasRIDRASServers = 0x00000229
+
+// DomainAliasRIDPreW2KCompAccess represents the DOMAIN_ALIAS_RID_PRE_W2K_COMP_ACCESS RPC constant
+const DomainAliasRIDPreW2KCompAccess = 0x0000022A
+
+// DomainAliasRIDRemoteDesktopUsers represents the DOMAIN_ALIAS_RID_REMOTE_DESKTOP_USERS RPC constant
+const DomainAliasRIDRemoteDesktopUsers = 0x0000022B
+
+// DomainAliasRIDNetworkConfigurationOperations represents the DOMAIN_ALIAS_RID_NETWORK_CONFIGURATION_OPS RPC constant
+const DomainAliasRIDNetworkConfigurationOperations = 0x0000022C
+
+// DomainAliasRIDIncomingForestTrustBuilders represents the DOMAIN_ALIAS_RID_INCOMING_FOREST_TRUST_BUILDERS RPC constant
+const DomainAliasRIDIncomingForestTrustBuilders = 0x0000022D
+
+// DomainAliasRIDMonitoringUsers represents the DOMAIN_ALIAS_RID_MONITORING_USERS RPC constant
+const DomainAliasRIDMonitoringUsers = 0x0000022E
+
+// DomainAliasRIDLoggingUsers represents the DOMAIN_ALIAS_RID_LOGGING_USERS RPC constant
+const DomainAliasRIDLoggingUsers = 0x0000022F
+
+// DomainAliasRIDAuthorizationAccess represents the DOMAIN_ALIAS_RID_AUTHORIZATION_ACCESS RPC constant
+const DomainAliasRIDAuthorizationAccess = 0x00000230
+
+// DomainAliasRIDTSLicenseServers represents the DOMAIN_ALIAS_RID_TS_LICENSE_SERVERS RPC constant
+const DomainAliasRIDTSLicenseServers = 0x00000231
+
+// DomainAliasRIDDCOMUsers represents the DOMAIN_ALIAS_RID_DCOM_USERS RPC constant
+const DomainAliasRIDDCOMUsers = 0x00000232
+
+// DomainAliasRIDInternetUsers represents the DOMAIN_ALIAS_RID_INTERNET_USERS RPC constant
+const DomainAliasRIDInternetUsers = 0x00000238
+
+// DomainAliasRIDCryptoOperators represents the DOMAIN_ALIAS_RID_CRYPTO_OPERATORS RPC constant
+const DomainAliasRIDCryptoOperators = 0x00000239
+
+// DomainAliasRIDCacheablePrincipalsGroup represents the DOMAIN_ALIAS_RID_CACHEABLE_PRINCIPALS_GROUP RPC constant
+const DomainAliasRIDCacheablePrincipalsGroup = 0x0000023B
+
+// DomainAliasRIDNonCacheablePrincipalsGroup represents the DOMAIN_ALIAS_RID_NON_CACHEABLE_PRINCIPALS_GROUP RPC constant
+const DomainAliasRIDNonCacheablePrincipalsGroup = 0x0000023C
+
+// DomainAliasRIDEventLogReadersGroup represents the DOMAIN_ALIAS_RID_EVENT_LOG_READERS_GROUP RPC constant
+const DomainAliasRIDEventLogReadersGroup = 0x0000023D
+
+// DomainAliasRIDCertServiceDCOMAccessGroup represents the DOMAIN_ALIAS_RID_CERTSVC_DCOM_ACCESS_GROUP RPC constant
+const DomainAliasRIDCertServiceDCOMAccessGroup = 0x0000023E
+
+// DomainAliasRIDRDSRemoteAccessServers represents the DOMAIN_ALIAS_RID_RDS_REMOTE_ACCESS_SERVERS RPC constant
+const DomainAliasRIDRDSRemoteAccessServers = 0x0000023F
+
+// DomainAliasRIDRDSEndpointServers represents the DOMAIN_ALIAS_RID_RDS_ENDPOINT_SERVERS RPC constant
+const DomainAliasRIDRDSEndpointServers = 0x00000240
+
+// DomainAliasRIDRDSManagementServers represents the DOMAIN_ALIAS_RID_RDS_MANAGEMENT_SERVERS RPC constant
+const DomainAliasRIDRDSManagementServers = 0x00000241
+
+// DomainAliasRIDHyperVAdmins represents the DOMAIN_ALIAS_RID_HYPER_V_ADMINS RPC constant
+const DomainAliasRIDHyperVAdmins = 0x00000242
+
+// DomainAliasRIDAccessControlAssistanceOperations represents the DOMAIN_ALIAS_RID_ACCESS_CONTROL_ASSISTANCE_OPS RPC constant
+const DomainAliasRIDAccessControlAssistanceOperations = 0x00000243
+
+// DomainAliasRIDRemoteManagementUsers represents the DOMAIN_ALIAS_RID_REMOTE_MANAGEMENT_USERS RPC constant
+const DomainAliasRIDRemoteManagementUsers = 0x00000244
+
+// DomainAliasRIDDefaultAccount represents the DOMAIN_ALIAS_RID_DEFAULT_ACCOUNT RPC constant
+const DomainAliasRIDDefaultAccount = 0x00000245
+
+// DomainAliasRIDStorageReplicaAdmins represents the DOMAIN_ALIAS_RID_STORAGE_REPLICA_ADMINS RPC constant
+const DomainAliasRIDStorageReplicaAdmins = 0x00000246
+
+// DomainAliasRIDDeviceOwners represents the DOMAIN_ALIAS_RID_DEVICE_OWNERS RPC constant
+const DomainAliasRIDDeviceOwners = 0x00000247
+
+// RIDLowIntegrityLevel represents the RID_LOW_INTEGRITY_LEVEL RPC constant
+const RIDLowIntegrityLevel = 0x00001000
+
+// RIDMediumIntegrityLevel represents the RID_MEDIUM_INTEGRITY_LEVEL RPC constant
+const RIDMediumIntegrityLevel = 0x00002000
+
+// RIDHighIntegrityLevel represents the RID_HIGH_INTEGRITY_LEVEL RPC constant
+const RIDHighIntegrityLevel = 0x00003000
+
+// RIDSystemIntegrityLevel represents the RID_SYSTEM_INTEGRITY_LEVEL RPC constant
+const RIDSystemIntegrityLevel = 0x00004000
+
+// RIDProtectedProcessIntegrityLevel represents the RID_PROTECTED_PROCESS_INTEGRITY_LEVEL RPC constant
+const RIDProtectedProcessIntegrityLevel = 0x00005000
+
+// OwnerDefaulted represents the OWNER_DEFAULTED RPC constant
+const OwnerDefaulted = 0x0001
+
+// GroupDefaulted represents the GROUP_DEFAULTED RPC constant
+const GroupDefaulted = 0x0002
+
+// DACLPresent represents the DACL_PRESENT RPC constant
+const DACLPresent = 0x0004
+
+// DACLDefaulted represents the DACL_DEFAULTED RPC constant
+const DACLDefaulted = 0x0008
+
+// SACLPresent represents the SACL_PRESENT RPC constant
+const SACLPresent = 0x0010
+
+// SACLDefaulted represents the SACL_DEFAULTED RPC constant
+const SACLDefaulted = 0x0020
+
+// DACLTrusted represents the DACL_TRUSTED RPC constant
+const DACLTrusted = 0x0040
+
+// ServerSecurity represents the SERVER_SECURITY RPC constant
+const ServerSecurity = 0x0080
+
+// DACLComputedInheritanceRequired represents the DACL_COMPUTED_INHERITANCE_REQUIRED RPC constant
+const DACLComputedInheritanceRequired = 0x0100
+
+// SACLComputedInheritanceRequired represents the SACL_COMPUTED_INHERITANCE_REQUIRED RPC constant
+const SACLComputedInheritanceRequired = 0x0200
+
+// DACLAutoInherited represents the DACL_AUTO_INHERITED RPC constant
+const DACLAutoInherited = 0x0400
+
+// SACLAutoInherited represents the SACL_AUTO_INHERITED RPC constant
+const SACLAutoInherited = 0x0800
+
+// DACLProtected represents the DACL_PROTECTED RPC constant
+const DACLProtected = 0x1000
+
+// SACLProtected represents the SACL_PROTECTED RPC constant
+const SACLProtected = 0x2000
+
+// RMControlValid represents the RM_CONTROL_VALID RPC constant
+const RMControlValid = 0x4000
+
+// SelfRelative represents the SELF_RELATIVE RPC constant
+const SelfRelative = 0x8000
 
 // Filetime structure represents FILETIME RPC structure.
 //
@@ -2072,7 +2384,7 @@ type AccessAllowedObjectACE struct {
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
 	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
 	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
-	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
 	SID *SID `idl:"name:Sid" json:"sid"`
@@ -2123,7 +2435,7 @@ func (o *AccessAllowedObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	}
 	if o.InheritedObjectType != nil {
 		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			_swInheritedObjectType := uint32((o.Flags & 2))
 			if o.InheritedObjectType != nil {
 				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 					return err
@@ -2194,7 +2506,7 @@ func (o *AccessAllowedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		if o.InheritedObjectType == nil {
 			o.InheritedObjectType = &ACEGUID{}
 		}
-		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		_swInheritedObjectType := uint32((o.Flags & 2))
 		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 			return err
 		}
@@ -2254,6 +2566,11 @@ func (o *ACEGUID) NDRSwitchValue(sw uint32) uint32 {
 	}
 	switch (interface{})(o.Value).(type) {
 	case *ACEGUID_GUID:
+		switch sw {
+		case uint32(1),
+			uint32(2):
+			return sw
+		}
 		return uint32(1)
 	}
 	return uint32(0)
@@ -2264,7 +2581,8 @@ func (o *ACEGUID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 		return err
 	}
 	switch sw {
-	case uint32(1):
+	case uint32(1),
+		uint32(2):
 		_o, _ := o.Value.(*ACEGUID_GUID)
 		if _o != nil {
 			if err := _o.MarshalNDR(ctx, w); err != nil {
@@ -2276,7 +2594,6 @@ func (o *ACEGUID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -2286,20 +2603,20 @@ func (o *ACEGUID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32
 		return err
 	}
 	switch sw {
-	case uint32(1):
+	case uint32(1),
+		uint32(2):
 		o.Value = &ACEGUID_GUID{}
 		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	default:
-		o.Value = &ACEGUID_DefaultACEGUID{}
 	}
 	return nil
 }
 
 // ACEGUID_GUID structure represents ACE_GUID RPC union arm.
 //
-// It has following labels: 1
+// It has following labels: 1, 2
 type ACEGUID_GUID struct {
 	GUID *GUID `idl:"name:GUID" json:"guid"`
 }
@@ -2325,19 +2642,6 @@ func (o *ACEGUID_GUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.GUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ACEGUID_DefaultACEGUID structure represents ACE_GUID RPC default union arm.
-type ACEGUID_DefaultACEGUID struct {
-}
-
-func (*ACEGUID_DefaultACEGUID) is_ACEGUID() {}
-
-func (o *ACEGUID_DefaultACEGUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ACEGUID_DefaultACEGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -2523,7 +2827,7 @@ type AccessDeniedObjectACE struct {
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
 	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
 	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
-	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
 	SID *SID `idl:"name:Sid" json:"sid"`
@@ -2574,7 +2878,7 @@ func (o *AccessDeniedObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	}
 	if o.InheritedObjectType != nil {
 		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			_swInheritedObjectType := uint32((o.Flags & 2))
 			if o.InheritedObjectType != nil {
 				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 					return err
@@ -2645,7 +2949,7 @@ func (o *AccessDeniedObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		if o.InheritedObjectType == nil {
 			o.InheritedObjectType = &ACEGUID{}
 		}
-		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		_swInheritedObjectType := uint32((o.Flags & 2))
 		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 			return err
 		}
@@ -3022,7 +3326,7 @@ type AccessAllowedCallbackObjectACE struct {
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
 	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
 	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
-	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
 	SID *SID `idl:"name:Sid" json:"sid"`
@@ -3076,7 +3380,7 @@ func (o *AccessAllowedCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.W
 	}
 	if o.InheritedObjectType != nil {
 		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			_swInheritedObjectType := uint32((o.Flags & 2))
 			if o.InheritedObjectType != nil {
 				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 					return err
@@ -3165,7 +3469,7 @@ func (o *AccessAllowedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr
 		if o.InheritedObjectType == nil {
 			o.InheritedObjectType = &ACEGUID{}
 		}
-		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		_swInheritedObjectType := uint32((o.Flags & 2))
 		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 			return err
 		}
@@ -3296,7 +3600,7 @@ type AccessDeniedCallbackObjectACE struct {
 	// ACE_HEADER, as well as by any protection against inheritance placed on the child
 	// objects. This field is valid only if the ACE_INHERITED_OBJECT_TYPE_PRESENT bit is
 	// set in the Flags member. Otherwise, the InheritedObjectType field is ignored.
-	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	// Sid (variable): The SID of a trustee. The length of the SID MUST be a multiple of
 	// 4.
 	SID *SID `idl:"name:Sid" json:"sid"`
@@ -3350,7 +3654,7 @@ func (o *AccessDeniedCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Wr
 	}
 	if o.InheritedObjectType != nil {
 		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			_swInheritedObjectType := uint32((o.Flags & 2))
 			if o.InheritedObjectType != nil {
 				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 					return err
@@ -3439,7 +3743,7 @@ func (o *AccessDeniedCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.
 		if o.InheritedObjectType == nil {
 			o.InheritedObjectType = &ACEGUID{}
 		}
-		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		_swInheritedObjectType := uint32((o.Flags & 2))
 		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 			return err
 		}
@@ -3580,7 +3884,7 @@ type SystemAuditObjectACE struct {
 	Mask                uint32   `idl:"name:Mask" json:"mask"`
 	Flags               uint32   `idl:"name:Flags" json:"flags"`
 	ObjectType          *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
-	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	SID                 *SID     `idl:"name:Sid" json:"sid"`
 	ApplicationData     []byte   `idl:"name:ApplicationData" json:"application_data"`
 }
@@ -3630,7 +3934,7 @@ func (o *SystemAuditObjectACE) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	}
 	if o.InheritedObjectType != nil {
 		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			_swInheritedObjectType := uint32((o.Flags & 2))
 			if o.InheritedObjectType != nil {
 				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 					return err
@@ -3719,7 +4023,7 @@ func (o *SystemAuditObjectACE) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		if o.InheritedObjectType == nil {
 			o.InheritedObjectType = &ACEGUID{}
 		}
-		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		_swInheritedObjectType := uint32((o.Flags & 2))
 		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 			return err
 		}
@@ -4033,7 +4337,7 @@ type SystemAuditCallbackObjectACE struct {
 	Mask                uint32   `idl:"name:Mask" json:"mask"`
 	Flags               uint32   `idl:"name:Flags" json:"flags"`
 	ObjectType          *ACEGUID `idl:"name:ObjectType;switch_is:(Flags 1 &)" json:"object_type"`
-	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:((Flags 2 &) 1 >>)" json:"inherited_object_type"`
+	InheritedObjectType *ACEGUID `idl:"name:InheritedObjectType;switch_is:(Flags 2 &)" json:"inherited_object_type"`
 	SID                 *SID     `idl:"name:Sid" json:"sid"`
 	ApplicationData     []byte   `idl:"name:ApplicationData" json:"application_data"`
 }
@@ -4083,7 +4387,7 @@ func (o *SystemAuditCallbackObjectACE) MarshalNDR(ctx context.Context, w ndr.Wri
 	}
 	if o.InheritedObjectType != nil {
 		_ptr_InheritedObjectType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+			_swInheritedObjectType := uint32((o.Flags & 2))
 			if o.InheritedObjectType != nil {
 				if err := o.InheritedObjectType.MarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 					return err
@@ -4172,7 +4476,7 @@ func (o *SystemAuditCallbackObjectACE) UnmarshalNDR(ctx context.Context, w ndr.R
 		if o.InheritedObjectType == nil {
 			o.InheritedObjectType = &ACEGUID{}
 		}
-		_swInheritedObjectType := uint32(((o.Flags & 2) >> 1))
+		_swInheritedObjectType := uint32((o.Flags & 2))
 		if err := o.InheritedObjectType.UnmarshalUnionNDR(ctx, w, _swInheritedObjectType); err != nil {
 			return err
 		}

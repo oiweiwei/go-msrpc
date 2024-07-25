@@ -345,7 +345,6 @@ func (o *ClaimEntry_Values) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -376,7 +375,6 @@ func (o *ClaimEntry_Values) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader,
 			return err
 		}
 	default:
-		o.Value = &ClaimEntry_Values_DefaultClaimEntry{}
 	}
 	return nil
 }
@@ -502,19 +500,6 @@ func (o *ClaimEntry_Values_ClaimEntryBoolean) UnmarshalNDR(ctx context.Context, 
 	if err := o.ClaimEntryBoolean.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ClaimEntry_Values_DefaultClaimEntry structure represents ClaimEntry_Values RPC default union arm.
-type ClaimEntry_Values_DefaultClaimEntry struct {
-}
-
-func (*ClaimEntry_Values_DefaultClaimEntry) is_ClaimEntry_Values() {}
-
-func (o *ClaimEntry_Values_DefaultClaimEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ClaimEntry_Values_DefaultClaimEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

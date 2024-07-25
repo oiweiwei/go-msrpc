@@ -7142,7 +7142,6 @@ func (o *ShareInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -7207,7 +7206,6 @@ func (o *ShareInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint
 			return err
 		}
 	default:
-		o.Value = &ShareInfo_DefaultShareInfo{}
 	}
 	return nil
 }
@@ -7573,19 +7571,6 @@ func (o *ShareInfo_1501) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.ShareInfo1501, _s_ShareInfo1501, _ptr_ShareInfo1501); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ShareInfo_DefaultShareInfo structure represents SHARE_INFO RPC default union arm.
-type ShareInfo_DefaultShareInfo struct {
-}
-
-func (*ShareInfo_DefaultShareInfo) is_ShareInfo() {}
-
-func (o *ShareInfo_DefaultShareInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ShareInfo_DefaultShareInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

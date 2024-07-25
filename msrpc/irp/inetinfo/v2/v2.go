@@ -2591,7 +2591,6 @@ func (o *StatisticsInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -2611,7 +2610,6 @@ func (o *StatisticsInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw
 			return err
 		}
 	default:
-		o.Value = &StatisticsInfo_DefaultStatisticsInfo{}
 	}
 	return nil
 }
@@ -2663,19 +2661,6 @@ func (o *StatisticsInfo_InetStats0) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := w.ReadPointer(&o.InetStats0, _s_InetStats0, _ptr_InetStats0); err != nil {
 		return err
 	}
-	return nil
-}
-
-// StatisticsInfo_DefaultStatisticsInfo structure represents INET_INFO_STATISTICS_INFO RPC default union arm.
-type StatisticsInfo_DefaultStatisticsInfo struct {
-}
-
-func (*StatisticsInfo_DefaultStatisticsInfo) is_StatisticsInfo() {}
-
-func (o *StatisticsInfo_DefaultStatisticsInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *StatisticsInfo_DefaultStatisticsInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -3243,7 +3228,6 @@ func (o *W3Statistics) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -3263,7 +3247,6 @@ func (o *W3Statistics) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw u
 			return err
 		}
 	default:
-		o.Value = &W3Statistics_DefaultW3Statistics{}
 	}
 	return nil
 }
@@ -3315,19 +3298,6 @@ func (o *W3Statistics_StatInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadPointer(&o.StatInfo1, _s_StatInfo1, _ptr_StatInfo1); err != nil {
 		return err
 	}
-	return nil
-}
-
-// W3Statistics_DefaultW3Statistics structure represents W3_STATISTICS_STRUCT RPC default union arm.
-type W3Statistics_DefaultW3Statistics struct {
-}
-
-func (*W3Statistics_DefaultW3Statistics) is_W3Statistics() {}
-
-func (o *W3Statistics_DefaultW3Statistics) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *W3Statistics_DefaultW3Statistics) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -3616,7 +3586,6 @@ func (o *FTPStatistics) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -3636,7 +3605,6 @@ func (o *FTPStatistics) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw 
 			return err
 		}
 	default:
-		o.Value = &FTPStatistics_DefaultFTPStatistics{}
 	}
 	return nil
 }
@@ -3688,19 +3656,6 @@ func (o *FTPStatistics_StatInfo0) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	if err := w.ReadPointer(&o.StatInfo0, _s_StatInfo0, _ptr_StatInfo0); err != nil {
 		return err
 	}
-	return nil
-}
-
-// FTPStatistics_DefaultFTPStatistics structure represents FTP_STATISTICS_STRUCT RPC default union arm.
-type FTPStatistics_DefaultFTPStatistics struct {
-}
-
-func (*FTPStatistics_DefaultFTPStatistics) is_FTPStatistics() {}
-
-func (o *FTPStatistics_DefaultFTPStatistics) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *FTPStatistics_DefaultFTPStatistics) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -4057,7 +4012,6 @@ func (o *IISUserEnum_ConfigInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -4077,7 +4031,6 @@ func (o *IISUserEnum_ConfigInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &IISUserEnum_ConfigInfo_DefaultIISUserEnum{}
 	}
 	return nil
 }
@@ -4131,19 +4084,6 @@ func (o *IISUserEnum_ConfigInfo_Level1) UnmarshalNDR(ctx context.Context, w ndr.
 	if err := w.ReadPointer(&o.Level1, _s_Level1, _ptr_Level1); err != nil {
 		return err
 	}
-	return nil
-}
-
-// IISUserEnum_ConfigInfo_DefaultIISUserEnum structure represents IISUserEnum_ConfigInfo RPC default union arm.
-type IISUserEnum_ConfigInfo_DefaultIISUserEnum struct {
-}
-
-func (*IISUserEnum_ConfigInfo_DefaultIISUserEnum) is_IISUserEnum_ConfigInfo() {}
-
-func (o *IISUserEnum_ConfigInfo_DefaultIISUserEnum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *IISUserEnum_ConfigInfo_DefaultIISUserEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

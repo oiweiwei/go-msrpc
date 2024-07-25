@@ -6829,7 +6829,6 @@ func (o *DeltaUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -6924,7 +6923,6 @@ func (o *DeltaUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uin
 			return err
 		}
 	default:
-		o.Value = &DeltaUnion_DefaultDeltaUnion{}
 	}
 	return nil
 }
@@ -7777,19 +7775,6 @@ func (o *DeltaUnion_DeltaSerialNumberSkip) UnmarshalNDR(ctx context.Context, w n
 	return nil
 }
 
-// DeltaUnion_DefaultDeltaUnion structure represents NETLOGON_DELTA_UNION RPC default union arm.
-type DeltaUnion_DefaultDeltaUnion struct {
-}
-
-func (*DeltaUnion_DefaultDeltaUnion) is_DeltaUnion() {}
-
-func (o *DeltaUnion_DefaultDeltaUnion) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *DeltaUnion_DefaultDeltaUnion) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	return nil
-}
-
 // DeltaIDUnion structure represents NETLOGON_DELTA_ID_UNION RPC union.
 //
 // The NETLOGON_DELTA_ID_UNION union defines an account identifier type that is selected
@@ -7937,7 +7922,6 @@ func (o *DeltaIDUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -7985,7 +7969,6 @@ func (o *DeltaIDUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw u
 			return err
 		}
 	default:
-		o.Value = &DeltaIDUnion_DefaultDeltaIDUnion{}
 	}
 	return nil
 }
@@ -8110,19 +8093,6 @@ func (o *DeltaIDUnion_Name) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
 		return err
 	}
-	return nil
-}
-
-// DeltaIDUnion_DefaultDeltaIDUnion structure represents NETLOGON_DELTA_ID_UNION RPC default union arm.
-type DeltaIDUnion_DefaultDeltaIDUnion struct {
-}
-
-func (*DeltaIDUnion_DefaultDeltaIDUnion) is_DeltaIDUnion() {}
-
-func (o *DeltaIDUnion_DefaultDeltaIDUnion) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *DeltaIDUnion_DefaultDeltaIDUnion) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -9187,7 +9157,6 @@ func (o *Level) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) er
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -9237,7 +9206,6 @@ func (o *Level) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) 
 			return err
 		}
 	default:
-		o.Value = &Level_DefaultLevel{}
 	}
 	return nil
 }
@@ -9606,19 +9574,6 @@ func (o *Level_LogonGeneric) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadPointer(&o.LogonGeneric, _s_LogonGeneric, _ptr_LogonGeneric); err != nil {
 		return err
 	}
-	return nil
-}
-
-// Level_DefaultLevel structure represents NETLOGON_LEVEL RPC default union arm.
-type Level_DefaultLevel struct {
-}
-
-func (*Level_DefaultLevel) is_Level() {}
-
-func (o *Level_DefaultLevel) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Level_DefaultLevel) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -11957,7 +11912,6 @@ func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -11992,7 +11946,6 @@ func (o *Validation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uin
 			return err
 		}
 	default:
-		o.Value = &Validation_DefaultValidation{}
 	}
 	return nil
 }
@@ -12208,19 +12161,6 @@ func (o *Validation_SAM4) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	return nil
 }
 
-// Validation_DefaultValidation structure represents NETLOGON_VALIDATION RPC default union arm.
-type Validation_DefaultValidation struct {
-}
-
-func (*Validation_DefaultValidation) is_Validation() {}
-
-func (o *Validation_DefaultValidation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *Validation_DefaultValidation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	return nil
-}
-
 // ControlDataInformation structure represents NETLOGON_CONTROL_DATA_INFORMATION RPC union.
 //
 // The NETLOGON_CONTROL_DATA_INFORMATION union is used as input to the NetrLogonControl2
@@ -12333,7 +12273,6 @@ func (o *ControlDataInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -12366,7 +12305,6 @@ func (o *ControlDataInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 			return err
 		}
 	default:
-		o.Value = &ControlDataInformation_DefaultControlDataInformation{}
 	}
 	return nil
 }
@@ -12481,19 +12419,6 @@ func (o *ControlDataInformation_UserName) UnmarshalNDR(ctx context.Context, w nd
 	if err := w.ReadPointer(&o.UserName, _s_UserName, _ptr_UserName); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ControlDataInformation_DefaultControlDataInformation structure represents NETLOGON_CONTROL_DATA_INFORMATION RPC default union arm.
-type ControlDataInformation_DefaultControlDataInformation struct {
-}
-
-func (*ControlDataInformation_DefaultControlDataInformation) is_ControlDataInformation() {}
-
-func (o *ControlDataInformation_DefaultControlDataInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ControlDataInformation_DefaultControlDataInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -13027,7 +12952,6 @@ func (o *ControlQueryInformation) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -13062,7 +12986,6 @@ func (o *ControlQueryInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.R
 			return err
 		}
 	default:
-		o.Value = &ControlQueryInformation_DefaultControlQueryInformation{}
 	}
 	return nil
 }
@@ -13273,19 +13196,6 @@ func (o *ControlQueryInformation_Info4) UnmarshalNDR(ctx context.Context, w ndr.
 	if err := w.ReadPointer(&o.Info4, _s_NetlogonInfo4, _ptr_NetlogonInfo4); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ControlQueryInformation_DefaultControlQueryInformation structure represents NETLOGON_CONTROL_QUERY_INFORMATION RPC default union arm.
-type ControlQueryInformation_DefaultControlQueryInformation struct {
-}
-
-func (*ControlQueryInformation_DefaultControlQueryInformation) is_ControlQueryInformation() {}
-
-func (o *ControlQueryInformation_DefaultControlQueryInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ControlQueryInformation_DefaultControlQueryInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

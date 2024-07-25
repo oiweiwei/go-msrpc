@@ -2769,7 +2769,6 @@ func (o *AsyncOutput_AsyncOutput) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -2805,7 +2804,6 @@ func (o *AsyncOutput_AsyncOutput) UnmarshalUnionNDR(ctx context.Context, w ndr.R
 			return err
 		}
 	default:
-		o.Value = &AsyncOutput_DefaultAsyncOutput{}
 	}
 	return nil
 }
@@ -3264,19 +3262,6 @@ func (o *AsyncOutput_AsyncOutput_CreateVDisk) UnmarshalNDR(ctx context.Context, 
 	if err := w.ReadPointer(&o.VDiskUnknown, _s_pVDiskUnk, _ptr_pVDiskUnk); err != nil {
 		return err
 	}
-	return nil
-}
-
-// AsyncOutput_DefaultAsyncOutput structure represents AsyncOutput_AsyncOutput RPC default union arm.
-type AsyncOutput_DefaultAsyncOutput struct {
-}
-
-func (*AsyncOutput_DefaultAsyncOutput) is_AsyncOutput_AsyncOutput() {}
-
-func (o *AsyncOutput_DefaultAsyncOutput) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *AsyncOutput_DefaultAsyncOutput) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -4787,7 +4772,6 @@ func (o *PartitionProperty_PartitionProperty) MarshalUnionNDR(ctx context.Contex
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -4808,7 +4792,6 @@ func (o *PartitionProperty_PartitionProperty) UnmarshalUnionNDR(ctx context.Cont
 			return err
 		}
 	default:
-		o.Value = &PartitionProperty_DefaultPartitionProperty{}
 	}
 	return nil
 }
@@ -4874,19 +4857,6 @@ func (o *PartitionProperty_GPT) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := o.GPT.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// PartitionProperty_DefaultPartitionProperty structure represents PartitionProperty_PartitionProperty RPC default union arm.
-type PartitionProperty_DefaultPartitionProperty struct {
-}
-
-func (*PartitionProperty_DefaultPartitionProperty) is_PartitionProperty_PartitionProperty() {}
-
-func (o *PartitionProperty_DefaultPartitionProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *PartitionProperty_DefaultPartitionProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -5111,7 +5081,6 @@ func (o *CreatePartitionParameters_CreatePartitionParameters) MarshalUnionNDR(ct
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -5132,7 +5101,6 @@ func (o *CreatePartitionParameters_CreatePartitionParameters) UnmarshalUnionNDR(
 			return err
 		}
 	default:
-		o.Value = &CreatePartitionParameters_DefaultCreatePartitionParameters{}
 	}
 	return nil
 }
@@ -5354,20 +5322,6 @@ func (o *CreatePartitionParameters_CreatePartitionParameters_GPTPartitionInfo) U
 			return err
 		}
 	}
-	return nil
-}
-
-// CreatePartitionParameters_DefaultCreatePartitionParameters structure represents CreatePartitionParameters_CreatePartitionParameters RPC default union arm.
-type CreatePartitionParameters_DefaultCreatePartitionParameters struct {
-}
-
-func (*CreatePartitionParameters_DefaultCreatePartitionParameters) is_CreatePartitionParameters_CreatePartitionParameters() {
-}
-
-func (o *CreatePartitionParameters_DefaultCreatePartitionParameters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *CreatePartitionParameters_DefaultCreatePartitionParameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -6602,7 +6556,6 @@ func (o *ChangeAttributesParameters_ChangeAttributesParameters) MarshalUnionNDR(
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -6623,7 +6576,6 @@ func (o *ChangeAttributesParameters_ChangeAttributesParameters) UnmarshalUnionND
 			return err
 		}
 	default:
-		o.Value = &ChangeAttributesParameters_DefaultChangeAttributesParameters{}
 	}
 	return nil
 }
@@ -6785,20 +6737,6 @@ func (o *ChangeAttributesParameters_ChangeAttributesParameters_GPTPartitionInfo)
 	return nil
 }
 
-// ChangeAttributesParameters_DefaultChangeAttributesParameters structure represents ChangeAttributesParameters_ChangeAttributesParameters RPC default union arm.
-type ChangeAttributesParameters_DefaultChangeAttributesParameters struct {
-}
-
-func (*ChangeAttributesParameters_DefaultChangeAttributesParameters) is_ChangeAttributesParameters_ChangeAttributesParameters() {
-}
-
-func (o *ChangeAttributesParameters_DefaultChangeAttributesParameters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ChangeAttributesParameters_DefaultChangeAttributesParameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	return nil
-}
-
 // ChangePartitionTypeParameters structure represents CHANGE_PARTITION_TYPE_PARAMETERS RPC structure.
 //
 // The CHANGE_PARTITION_TYPE_PARAMETERS structure describes parameters to use when changing
@@ -6934,7 +6872,6 @@ func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) MarshalUni
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -6955,7 +6892,6 @@ func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) UnmarshalU
 			return err
 		}
 	default:
-		o.Value = &ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters{}
 	}
 	return nil
 }
@@ -7106,20 +7042,6 @@ func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters_GPTPartitio
 	if err := o.PartitionType.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters structure represents ChangePartitionTypeParameters_ChangePartitionTypeParameters RPC default union arm.
-type ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters struct {
-}
-
-func (*ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters) is_ChangePartitionTypeParameters_ChangePartitionTypeParameters() {
-}
-
-func (o *ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *ChangePartitionTypeParameters_DefaultChangePartitionTypeParameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -8418,7 +8340,6 @@ func (o *DiskProperty_DiskProperty) MarshalUnionNDR(ctx context.Context, w ndr.W
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -8439,7 +8360,6 @@ func (o *DiskProperty_DiskProperty) UnmarshalUnionNDR(ctx context.Context, w ndr
 			return err
 		}
 	default:
-		o.Value = &DiskProperty_DefaultDiskProperty{}
 	}
 	return nil
 }
@@ -8496,19 +8416,6 @@ func (o *DiskProperty_DiskGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := o.DiskGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// DiskProperty_DefaultDiskProperty structure represents DiskProperty_DiskProperty RPC default union arm.
-type DiskProperty_DefaultDiskProperty struct {
-}
-
-func (*DiskProperty_DefaultDiskProperty) is_DiskProperty_DiskProperty() {}
-
-func (o *DiskProperty_DefaultDiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *DiskProperty_DefaultDiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -8977,7 +8884,6 @@ func (o *DiskProperty2_DiskProperty2) MarshalUnionNDR(ctx context.Context, w ndr
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -8998,7 +8904,6 @@ func (o *DiskProperty2_DiskProperty2) UnmarshalUnionNDR(ctx context.Context, w n
 			return err
 		}
 	default:
-		o.Value = &DiskProperty2_DefaultDiskProperty2{}
 	}
 	return nil
 }
@@ -9055,19 +8960,6 @@ func (o *DiskProperty2_DiskGUID) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := o.DiskGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// DiskProperty2_DefaultDiskProperty2 structure represents DiskProperty2_DiskProperty2 RPC default union arm.
-type DiskProperty2_DefaultDiskProperty2 struct {
-}
-
-func (*DiskProperty2_DefaultDiskProperty2) is_DiskProperty2_DiskProperty2() {}
-
-func (o *DiskProperty2_DefaultDiskProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *DiskProperty2_DefaultDiskProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -9516,7 +9408,6 @@ func (o *AdvancedDiskProperty_AdvancedDiskProperty) MarshalUnionNDR(ctx context.
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -9537,7 +9428,6 @@ func (o *AdvancedDiskProperty_AdvancedDiskProperty) UnmarshalUnionNDR(ctx contex
 			return err
 		}
 	default:
-		o.Value = &AdvancedDiskProperty_DefaultAdvancedDiskProperty{}
 	}
 	return nil
 }
@@ -9592,20 +9482,6 @@ func (o *AdvancedDiskProperty_DiskGUID) UnmarshalNDR(ctx context.Context, w ndr.
 	if err := o.DiskGUID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// AdvancedDiskProperty_DefaultAdvancedDiskProperty structure represents AdvancedDiskProperty_AdvancedDiskProperty RPC default union arm.
-type AdvancedDiskProperty_DefaultAdvancedDiskProperty struct {
-}
-
-func (*AdvancedDiskProperty_DefaultAdvancedDiskProperty) is_AdvancedDiskProperty_AdvancedDiskProperty() {
-}
-
-func (o *AdvancedDiskProperty_DefaultAdvancedDiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *AdvancedDiskProperty_DefaultAdvancedDiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

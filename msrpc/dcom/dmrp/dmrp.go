@@ -3966,7 +3966,6 @@ func (o *DiskInfoEx_DiskInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.Write
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -3987,7 +3986,6 @@ func (o *DiskInfoEx_DiskInfoEx) UnmarshalUnionNDR(ctx context.Context, w ndr.Rea
 			return err
 		}
 	default:
-		o.Value = &DiskInfoEx_DefaultDiskInfoEx{}
 	}
 	return nil
 }
@@ -4137,19 +4135,6 @@ func (o *DiskInfoEx_DiskInfoEx_GPT) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := o.DiskID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	return nil
-}
-
-// DiskInfoEx_DefaultDiskInfoEx structure represents DiskInfoEx_DiskInfoEx RPC default union arm.
-type DiskInfoEx_DefaultDiskInfoEx struct {
-}
-
-func (*DiskInfoEx_DefaultDiskInfoEx) is_DiskInfoEx_DiskInfoEx() {}
-
-func (o *DiskInfoEx_DefaultDiskInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *DiskInfoEx_DefaultDiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
@@ -4486,7 +4471,6 @@ func (o *RegionInfoEx_RegionInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.W
 			}
 		}
 	default:
-		// no-op
 	}
 	return nil
 }
@@ -4507,7 +4491,6 @@ func (o *RegionInfoEx_RegionInfoEx) UnmarshalUnionNDR(ctx context.Context, w ndr
 			return err
 		}
 	default:
-		o.Value = &RegionInfoEx_DefaultRegionInfoEx{}
 	}
 	return nil
 }
@@ -4758,19 +4741,6 @@ func (o *RegionInfoEx_RegionInfoEx_GPT) UnmarshalNDR(ctx context.Context, w ndr.
 	if err := w.ReadData(&o.Attributes); err != nil {
 		return err
 	}
-	return nil
-}
-
-// RegionInfoEx_DefaultRegionInfoEx structure represents RegionInfoEx_RegionInfoEx RPC default union arm.
-type RegionInfoEx_DefaultRegionInfoEx struct {
-}
-
-func (*RegionInfoEx_DefaultRegionInfoEx) is_RegionInfoEx_RegionInfoEx() {}
-
-func (o *RegionInfoEx_DefaultRegionInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return nil
-}
-func (o *RegionInfoEx_DefaultRegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 

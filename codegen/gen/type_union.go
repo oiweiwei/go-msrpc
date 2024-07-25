@@ -228,7 +228,7 @@ func (p *TypeGenerator) GenUnionMarshalNDR(ctx context.Context) {
 		p.P("default", ":")
 		if defaultCase == nil {
 			p.P("return", `fmt.Errorf("unsupported switch case value %v", `+swVar+`)`)
-		} else {
+		} else if len(defaultCase.Arms) > 0 {
 			armName := p.UnionArmName(ctx, defaultCase)
 			if p.IsArmPointerToPrimitiveType(ctx, defaultCase) {
 				// special case, take care of the nil value for the union arm containing
@@ -346,6 +346,10 @@ func (p *TypeGenerator) GenUnionArmInterface(ctx context.Context, cases *midl.Un
 }
 
 func (p *TypeGenerator) GenUnionArm(ctx context.Context, cases *midl.UnionCase) {
+
+	if cases.IsDefault && len(cases.Arms) == 0 {
+		return
+	}
 
 	caseName := p.UnionArmName(ctx, cases)
 

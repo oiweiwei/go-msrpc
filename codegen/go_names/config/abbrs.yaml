@@ -21,7 +21,13 @@ abbr:
   aes256: AES256
   aes: AES
   afsdb: AFSDB
+  rds: RDS
+  dcom: DCOM
   ah: AH
+  rm: RM
+  ras: RAS
+  ads: ADS
+  krbtgt: KRBTGT
   alg: Algorithm
   ansi: ANSI
   api: API

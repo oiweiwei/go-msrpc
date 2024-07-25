@@ -63,7 +63,7 @@ func (p *TypeGenerator) GenUnionUnmarshalNDR(ctx context.Context) {
 		p.P("default", ":")
 		if defaultCase == nil {
 			p.P("return", `fmt.Errorf("unsupported switch case value %v", `+swVar+`)`)
-		} else {
+		} else if len(defaultCase.Arms) > 0 {
 			armName := p.UnionArmName(ctx, defaultCase)
 			if p.IsArmPointerToPrimitiveType(ctx, defaultCase) {
 				p.GenUnionArmPrimitiveTypeUnmarshalNDR(ctx, defaultCase, armName)
