@@ -84,7 +84,9 @@ func main() {
 		os.Exit(1)
 	}
 
-	clientCaps := drsuapi.ExtensionsInt{Flags: 0x01000000 | 0x00008000 | 0x04000000}
+	clientCaps := drsuapi.ExtensionsInt{
+		Flags: drsuapi.ExtGetNCChangesRequestV8 | drsuapi.ExtStrongEncryption | drsuapi.ExtGetNCChangesReplyV6,
+	}
 
 	b, err := ndr.Marshal(&clientCaps, ndr.Opaque)
 	if err != nil {
@@ -107,9 +109,9 @@ func main() {
 		In: &drsuapi.MessageCrackNamesRequest{
 			Value: &drsuapi.MessageCrackNamesRequest_V1{
 				V1: &drsuapi.MessageCrackNamesRequestV1{
-					FormatOffered: 0xFFFFFFF0, // DS_NT4_ACCOUNT_NAME_SANS_DOMAIN_EX
+					FormatOffered: uint32(drsuapi.DSNameFormatNT4AccountNameSANSDomainEx),
 					Names:         names,
-					FormatDesired: 0x00000006, // DS_UNIQUE_ID_NAME
+					FormatDesired: uint32(drsuapi.DSNameFormatUniqueIDName),
 				},
 			},
 		},
@@ -142,8 +144,8 @@ func main() {
 						NC: &drsuapi.DSName{
 							GUID: dtyp.GUIDFromUUID(uuid.MustParse(name.Name)),
 						},
-						Flags:             0x00000020 | 0x00000010,
-						ExtendedOperation: 0x00000006,
+						Flags:             drsuapi.InitSync | drsuapi.GetAncestor | drsuapi.GetAllGroupMembership | drsuapi.WritableReplica,
+						ExtendedOperation: drsuapi.ExtendedOperationReplicationObject,
 					},
 				},
 			},

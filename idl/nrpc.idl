@@ -1504,7 +1504,14 @@ interface logon
         [out] UCHAR * Authoritative,
         [in,out] ULONG * ExtraFlags
         );
- 
+
+    const ULONG TRUST_TYPE_FOREST_MEMBER = 0x00000001;
+    const ULONG TRUST_TYPE_DIRECTLY_TRUSTED = 0x00000002;
+    const ULONG TRUST_TYPE_DOMAIN_TREE_ROOT = 0x00000004;
+    const ULONG TRUST_TYPE_PRIMARY_DOMAIN = 0x00000008;
+    const ULONG TRUST_TYPE_NATIVE_MODE = 0x00000010;
+    const ULONG TRUST_TYPE_DIRECTLY_TRUSTS = 0x00000020;
+
     // Opnum 40
     NET_API_STATUS
     DsrEnumerateDomainTrusts (

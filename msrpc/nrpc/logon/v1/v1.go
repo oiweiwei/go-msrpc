@@ -950,6 +950,24 @@ const DSReturnDNSName = 0x40000000
 // DSReturnFlatName represents the DS_RETURN_FLAT_NAME RPC constant
 const DSReturnFlatName = 0x80000000
 
+// TrustTypeForestMember represents the TRUST_TYPE_FOREST_MEMBER RPC constant
+const TrustTypeForestMember = 0x00000001
+
+// TrustTypeDirectlyTrusted represents the TRUST_TYPE_DIRECTLY_TRUSTED RPC constant
+const TrustTypeDirectlyTrusted = 0x00000002
+
+// TrustTypeDomainTreeRoot represents the TRUST_TYPE_DOMAIN_TREE_ROOT RPC constant
+const TrustTypeDomainTreeRoot = 0x00000004
+
+// TrustTypePrimaryDomain represents the TRUST_TYPE_PRIMARY_DOMAIN RPC constant
+const TrustTypePrimaryDomain = 0x00000008
+
+// TrustTypeNativeMode represents the TRUST_TYPE_NATIVE_MODE RPC constant
+const TrustTypeNativeMode = 0x00000010
+
+// TrustTypeDirectlyTrusts represents the TRUST_TYPE_DIRECTLY_TRUSTS RPC constant
+const TrustTypeDirectlyTrusts = 0x00000020
+
 // String structure represents STRING RPC structure.
 //
 // The STRING structure contains the length, the maximum length, and a pointer to a

@@ -76,7 +76,7 @@ func main() {
 		ServerName:    serverName,
 		Operation:     "EnumZones",
 		TypeIn:        uint32(dnsp.TypeIDDword),
-		DataIn:        &dnsp.Union{Value: &dnsp.Union_Dword{Dword: 0x00003FFF}},
+		DataIn:        &dnsp.Union{Value: &dnsp.Union_Dword{Dword: uint32(dnsp.ZoneRequestFilterAll)}},
 	})
 
 	if err != nil {
