@@ -161,6 +161,144 @@ var MaxRecordTypes = 32
 // MaxZoneTransferTypes represents the MAX_ZONE_TRANSFER_TYPES RPC constant
 var MaxZoneTransferTypes = 2
 
+// ZoneRequestFilter type represents ZONE_REQUEST_FILTER RPC enumeration.
+type ZoneRequestFilter uint16
+
+var (
+	ZoneRequestFilterPrimary   ZoneRequestFilter = 1
+	ZoneRequestFilterSecondary ZoneRequestFilter = 2
+	ZoneRequestFilterCache     ZoneRequestFilter = 4
+	ZoneRequestFilterAuto      ZoneRequestFilter = 8
+	ZoneRequestFilterForward   ZoneRequestFilter = 16
+	ZoneRequestFilterReverse   ZoneRequestFilter = 32
+	ZoneRequestFilterForwarder ZoneRequestFilter = 64
+	ZoneRequestFilterStub      ZoneRequestFilter = 128
+	ZoneRequestFilterDS        ZoneRequestFilter = 256
+	ZoneRequestFilterNonDS     ZoneRequestFilter = 512
+	ZoneRequestFilterDomainDP  ZoneRequestFilter = 1024
+	ZoneRequestFilterForestDP  ZoneRequestFilter = 2048
+	ZoneRequestFilterCustomDP  ZoneRequestFilter = 4096
+	ZoneRequestFilterLegacyDP  ZoneRequestFilter = 8192
+	ZoneRequestFilterAll       ZoneRequestFilter = 16383
+)
+
+func (o ZoneRequestFilter) String() string {
+	switch o {
+	case ZoneRequestFilterPrimary:
+		return "ZoneRequestFilterPrimary"
+	case ZoneRequestFilterSecondary:
+		return "ZoneRequestFilterSecondary"
+	case ZoneRequestFilterCache:
+		return "ZoneRequestFilterCache"
+	case ZoneRequestFilterAuto:
+		return "ZoneRequestFilterAuto"
+	case ZoneRequestFilterForward:
+		return "ZoneRequestFilterForward"
+	case ZoneRequestFilterReverse:
+		return "ZoneRequestFilterReverse"
+	case ZoneRequestFilterForwarder:
+		return "ZoneRequestFilterForwarder"
+	case ZoneRequestFilterStub:
+		return "ZoneRequestFilterStub"
+	case ZoneRequestFilterDS:
+		return "ZoneRequestFilterDS"
+	case ZoneRequestFilterNonDS:
+		return "ZoneRequestFilterNonDS"
+	case ZoneRequestFilterDomainDP:
+		return "ZoneRequestFilterDomainDP"
+	case ZoneRequestFilterForestDP:
+		return "ZoneRequestFilterForestDP"
+	case ZoneRequestFilterCustomDP:
+		return "ZoneRequestFilterCustomDP"
+	case ZoneRequestFilterLegacyDP:
+		return "ZoneRequestFilterLegacyDP"
+	case ZoneRequestFilterAll:
+		return "ZoneRequestFilterAll"
+	}
+	return "Invalid"
+}
+
+// StatID type represents DNSSRV_STATID RPC enumeration.
+type StatID uint32
+
+var (
+	StatIDTime          StatID = 1
+	StatIDQuery         StatID = 2
+	StatIDQuery2        StatID = 4
+	StatIDRecurse       StatID = 8
+	StatIDMaster        StatID = 16
+	StatIDSecondary     StatID = 32
+	StatIDWINS          StatID = 64
+	StatIDWireUpdate    StatID = 256
+	StatIDSKWANSEC      StatID = 512
+	StatIDDS            StatID = 1024
+	StatIDNonWireUpdate StatID = 2048
+	StatIDMemory        StatID = 65536
+	StatIDTimeout       StatID = 131072
+	StatIDDatabase      StatID = 262144
+	StatIDRecord        StatID = 524288
+	StatIDPacket        StatID = 1048576
+	StatIDNBSTAT        StatID = 2097152
+	StatIDErrors        StatID = 4194304
+	StatIDCache         StatID = 8388608
+	StatIDDNSSEC        StatID = 16777216
+	StatIDPrivate       StatID = 268435456
+	StatIDRRL           StatID = 536870912
+	StatIDAll           StatID = 838799231
+)
+
+func (o StatID) String() string {
+	switch o {
+	case StatIDTime:
+		return "StatIDTime"
+	case StatIDQuery:
+		return "StatIDQuery"
+	case StatIDQuery2:
+		return "StatIDQuery2"
+	case StatIDRecurse:
+		return "StatIDRecurse"
+	case StatIDMaster:
+		return "StatIDMaster"
+	case StatIDSecondary:
+		return "StatIDSecondary"
+	case StatIDWINS:
+		return "StatIDWINS"
+	case StatIDWireUpdate:
+		return "StatIDWireUpdate"
+	case StatIDSKWANSEC:
+		return "StatIDSKWANSEC"
+	case StatIDDS:
+		return "StatIDDS"
+	case StatIDNonWireUpdate:
+		return "StatIDNonWireUpdate"
+	case StatIDMemory:
+		return "StatIDMemory"
+	case StatIDTimeout:
+		return "StatIDTimeout"
+	case StatIDDatabase:
+		return "StatIDDatabase"
+	case StatIDRecord:
+		return "StatIDRecord"
+	case StatIDPacket:
+		return "StatIDPacket"
+	case StatIDNBSTAT:
+		return "StatIDNBSTAT"
+	case StatIDErrors:
+		return "StatIDErrors"
+	case StatIDCache:
+		return "StatIDCache"
+	case StatIDDNSSEC:
+		return "StatIDDNSSEC"
+	case StatIDPrivate:
+		return "StatIDPrivate"
+	case StatIDRRL:
+		return "StatIDRRL"
+	case StatIDAll:
+		return "StatIDAll"
+	}
+	return "Invalid"
+}
+
 // StatHeader structure represents DNSSRV_STAT_HEADER RPC structure.
 //
 // The DNSSRV_STAT_HEADER structure precedes each DNSSRV_STATS structure (section 2.2.10.2.2)
@@ -6524,11 +6662,11 @@ func (o *ZoneSKD) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// ZoneDnssecSettings structure represents DNS_RPC_ZONE_DNSSEC_SETTINGS RPC structure.
+// ZoneDNSSECSettings structure represents DNS_RPC_ZONE_DNSSEC_SETTINGS RPC structure.
 //
 // The DNS_RPC_ZONE_DNSSEC_SETTINGS structure SHOULD<50>  represent the DNSSEC properties
 // of a zone.
-type ZoneDnssecSettings struct {
+type ZoneDNSSECSettings struct {
 	// dwRpcStructureVersion: The structure version number; this MUST be set to 0x00000001.
 	RPCStructureVersion uint32 `idl:"name:dwRpcStructureVersion" json:"rpc_structure_version"`
 	// dwReserved0: MUST be set to zero when sent and MUST be ignored on receipt.
@@ -6592,7 +6730,7 @@ type ZoneDnssecSettings struct {
 	ZoneSKDArray []*ZoneSKD `idl:"name:pZoneSkdArray;size_is:(dwCount)" json:"zone_skd_array"`
 }
 
-func (o *ZoneDnssecSettings) xxx_PreparePayload(ctx context.Context) error {
+func (o *ZoneDNSSECSettings) xxx_PreparePayload(ctx context.Context) error {
 	if o.NSEC3CurrentSalt != nil && o.NSEC3CurrentSaltLength == 0 {
 		o.NSEC3CurrentSaltLength = uint32(len(o.NSEC3CurrentSalt))
 	}
@@ -6610,13 +6748,13 @@ func (o *ZoneDnssecSettings) xxx_PreparePayload(ctx context.Context) error {
 	return nil
 }
 
-func (o *ZoneDnssecSettings) NDRSizeInfo() []uint64 {
+func (o *ZoneDNSSECSettings) NDRSizeInfo() []uint64 {
 	dimSize1 := uint64(o.Count)
 	return []uint64{
 		dimSize1,
 	}
 }
-func (o *ZoneDnssecSettings) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *ZoneDNSSECSettings) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -6830,7 +6968,7 @@ func (o *ZoneDnssecSettings) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	}
 	return nil
 }
-func (o *ZoneDnssecSettings) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *ZoneDNSSECSettings) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
 	if !ok {
 		sizeInfo = o.NDRSizeInfo()
@@ -9221,7 +9359,7 @@ type ZoneInfoW2K struct {
 	UseWINS uint32 `idl:"name:fUseWins" json:"use_wins"`
 	// fUseNbstat: A Boolean value that indicates whether WINS-R resource record lookup
 	// is enabled for this reverse lookup zones.
-	UseNbstat uint32 `idl:"name:fUseNbstat" json:"use_nbstat"`
+	UseNBSTAT uint32 `idl:"name:fUseNbstat" json:"use_nbstat"`
 	// fAging: A Boolean value where TRUE (0x00000001) indicates that aging is enabled for
 	// resource records in this zone, so the time-stamps of records in the zone will be
 	// updated when server receives dynamic update request for that record; whereas FALSE(0x00000000)
@@ -9398,7 +9536,7 @@ func (o *ZoneInfoW2K) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UseNbstat); err != nil {
+	if err := w.WriteData(o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Aging); err != nil {
@@ -9545,7 +9683,7 @@ func (o *ZoneInfoW2K) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UseNbstat); err != nil {
+	if err := w.ReadData(&o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Aging); err != nil {
@@ -9622,7 +9760,7 @@ type ZoneInfo_NET struct {
 	Secondaries          *IPv4Array `idl:"name:aipSecondaries" json:"secondaries"`
 	Notify               *IPv4Array `idl:"name:aipNotify" json:"notify"`
 	UseWINS              uint32     `idl:"name:fUseWins" json:"use_wins"`
-	UseNbstat            uint32     `idl:"name:fUseNbstat" json:"use_nbstat"`
+	UseNBSTAT            uint32     `idl:"name:fUseNbstat" json:"use_nbstat"`
 	Aging                uint32     `idl:"name:fAging" json:"aging"`
 	NoRefreshInterval    uint32     `idl:"name:dwNoRefreshInterval" json:"no_refresh_interval"`
 	RefreshInterval      uint32     `idl:"name:dwRefreshInterval" json:"refresh_interval"`
@@ -9844,7 +9982,7 @@ func (o *ZoneInfo_NET) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UseNbstat); err != nil {
+	if err := w.WriteData(o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Aging); err != nil {
@@ -10085,7 +10223,7 @@ func (o *ZoneInfo_NET) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UseNbstat); err != nil {
+	if err := w.ReadData(&o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Aging); err != nil {
@@ -10276,7 +10414,7 @@ type ZoneInfoLonghorn struct {
 	// above.
 	Notify               *AddrArray `idl:"name:aipNotify" json:"notify"`
 	UseWINS              uint32     `idl:"name:fUseWins" json:"use_wins"`
-	UseNbstat            uint32     `idl:"name:fUseNbstat" json:"use_nbstat"`
+	UseNBSTAT            uint32     `idl:"name:fUseNbstat" json:"use_nbstat"`
 	Aging                uint32     `idl:"name:fAging" json:"aging"`
 	NoRefreshInterval    uint32     `idl:"name:dwNoRefreshInterval" json:"no_refresh_interval"`
 	RefreshInterval      uint32     `idl:"name:dwRefreshInterval" json:"refresh_interval"`
@@ -10466,7 +10604,7 @@ func (o *ZoneInfoLonghorn) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UseNbstat); err != nil {
+	if err := w.WriteData(o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Aging); err != nil {
@@ -10692,7 +10830,7 @@ func (o *ZoneInfoLonghorn) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadData(&o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UseNbstat); err != nil {
+	if err := w.ReadData(&o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Aging); err != nil {
@@ -10829,7 +10967,7 @@ type ZoneInfo struct {
 	Secondaries              *AddrArray `idl:"name:aipSecondaries" json:"secondaries"`
 	Notify                   *AddrArray `idl:"name:aipNotify" json:"notify"`
 	UseWINS                  uint32     `idl:"name:fUseWins" json:"use_wins"`
-	UseNbstat                uint32     `idl:"name:fUseNbstat" json:"use_nbstat"`
+	UseNBSTAT                uint32     `idl:"name:fUseNbstat" json:"use_nbstat"`
 	Aging                    uint32     `idl:"name:fAging" json:"aging"`
 	NoRefreshInterval        uint32     `idl:"name:dwNoRefreshInterval" json:"no_refresh_interval"`
 	RefreshInterval          uint32     `idl:"name:dwRefreshInterval" json:"refresh_interval"`
@@ -10995,7 +11133,7 @@ func (o *ZoneInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.UseNbstat); err != nil {
+	if err := w.WriteData(o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Aging); err != nil {
@@ -11221,7 +11359,7 @@ func (o *ZoneInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.UseWINS); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.UseNbstat); err != nil {
+	if err := w.ReadData(&o.UseNBSTAT); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Aging); err != nil {
@@ -21920,7 +22058,7 @@ func (o *Union_TrustAnchorList) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 type Union_ZoneDNSSecuritySettings struct {
 	// ZoneDnsSecSettings: A pointer to a structure of type DNS_RPC_ZONE_DNSSEC_SETTINGS
 	// (section 2.2.6.2.9). This structure is used to list the DNSSEC settings of a zone.
-	ZoneDNSSecuritySettings *ZoneDnssecSettings `idl:"name:ZoneDnsSecSettings" json:"zone_dns_security_settings"`
+	ZoneDNSSecuritySettings *ZoneDNSSECSettings `idl:"name:ZoneDnsSecSettings" json:"zone_dns_security_settings"`
 }
 
 func (*Union_ZoneDNSSecuritySettings) is_Union() {}
@@ -21933,7 +22071,7 @@ func (o *Union_ZoneDNSSecuritySettings) MarshalNDR(ctx context.Context, w ndr.Wr
 					return err
 				}
 			} else {
-				if err := (&ZoneDnssecSettings{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&ZoneDNSSECSettings{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -21952,14 +22090,14 @@ func (o *Union_ZoneDNSSecuritySettings) MarshalNDR(ctx context.Context, w ndr.Wr
 func (o *Union_ZoneDNSSecuritySettings) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	_ptr_ZoneDnsSecSettings := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.ZoneDNSSecuritySettings == nil {
-			o.ZoneDNSSecuritySettings = &ZoneDnssecSettings{}
+			o.ZoneDNSSecuritySettings = &ZoneDNSSECSettings{}
 		}
 		if err := o.ZoneDNSSecuritySettings.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_ZoneDnsSecSettings := func(ptr interface{}) { o.ZoneDNSSecuritySettings = *ptr.(**ZoneDnssecSettings) }
+	_s_ZoneDnsSecSettings := func(ptr interface{}) { o.ZoneDNSSecuritySettings = *ptr.(**ZoneDNSSECSettings) }
 	if err := w.ReadPointer(&o.ZoneDNSSecuritySettings, _s_ZoneDnsSecSettings, _ptr_ZoneDnsSecSettings); err != nil {
 		return err
 	}

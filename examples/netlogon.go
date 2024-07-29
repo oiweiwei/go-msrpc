@@ -50,7 +50,10 @@ func main() {
 		return
 	}
 
-	resp, err := cli.GetDCName(ctx, &logon.GetDCNameRequest{ComputerName: "PC$", Flags: 1<<30 | 1<<9})
+	resp, err := cli.GetDCName(ctx, &logon.GetDCNameRequest{
+		ComputerName: "PC$",
+		Flags:        logon.DSReturnDNSName | logon.DSIPRequired,
+	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
@@ -58,30 +61,10 @@ func main() {
 
 	fmt.Printf("%s\n", j(resp.DomainControllerInfo))
 
-	resp, err = cli.GetDCName(ctx, &logon.GetDCNameRequest{ComputerName: "PC$", Flags: 1<<30 | 1<<9})
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
-
-	fmt.Printf("%#+v\n", resp.DomainControllerInfo)
-
-	// do invalid call.
+	// do valid call.
 	trusts, err := cli.EnumerateDomainTrusts(ctx, &logon.EnumerateDomainTrustsRequest{
 		ServerName: resp.DomainControllerInfo.DomainControllerName,
-		// Flags:      1 << 0,
-	})
-	if err != nil {
-
-		fmt.Println(j(trusts))
-		fmt.Fprintln(os.Stderr, err)
-		// return
-	}
-
-	// do valid call.
-	trusts, err = cli.EnumerateDomainTrusts(ctx, &logon.EnumerateDomainTrustsRequest{
-		ServerName: resp.DomainControllerInfo.DomainControllerName,
-		Flags:      1 << 0,
+		Flags:      logon.TrustTypeForestMember,
 	})
 	if err != nil {
 

@@ -5,7 +5,7 @@ lookBehind:
   act: {e: [action]}
   addr: {vers: [addr, vers]}
   adv: {disk: [advanced, disk]}
-  async: {out: [async, output]}
+  async: {out: [async, output], rep: [async, replication]}
   b: {authenticated: [is, authenticated]}
   bi: {directional: [bidirectional]}
   bnd: {msg: [bnd, message]}
@@ -113,6 +113,7 @@ lookBehind:
   privilege: {def: [privilege, definition]}
   product: {handle: [product]}
   psec: {phase: [ipsec, phase], phase1: [phase1], phase2: [phase2]}
+  sec: {dns: [dnssec]}
   psession: {handle: [session]}
   pswz: {identifier: [vpd, identifier]}
   pul: {title: [actual, title], relative: [actual, relative], num: [num]}
@@ -177,3 +178,7 @@ lookBehind:
   wide: {string: [unicode, string]}
   word: {str: [word]}
   over: {write: [overwrite]}
+  or: {dotnet: [or, dtnet]}
+  writ: {rep: [writable, replica]}
+  per: {sync: [periodical, sync]}
+  mail: {rep: [mail, replication]}

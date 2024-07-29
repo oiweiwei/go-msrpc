@@ -343,6 +343,240 @@ type DrsuapiClient interface {
 	AlterContext(context.Context, ...dcerpc.Option) error
 }
 
+// ExtBase represents the DRS_EXT_BASE RPC constant
+const ExtBase = 0x00000001
+
+// ExtAsyncReply represents the DRS_EXT_ASYNCREPL RPC constant
+const ExtAsyncReply = 0x00000002
+
+// ExtRemoveAPI represents the DRS_EXT_REMOVEAPI RPC constant
+const ExtRemoveAPI = 0x00000004
+
+// ExtMoveRequestV2 represents the DRS_EXT_MOVEREQ_V2 RPC constant
+const ExtMoveRequestV2 = 0x00000008
+
+// ExtGetNCChangesDeflate represents the DRS_EXT_GETCHG_DEFLATE RPC constant
+const ExtGetNCChangesDeflate = 0x00000010
+
+// ExtDCInfoV1 represents the DRS_EXT_DCINFO_V1 RPC constant
+const ExtDCInfoV1 = 0x00000020
+
+// ExtRestoreUSNOptimization represents the DRS_EXT_RESTORE_USN_OPTIMIZATION RPC constant
+const ExtRestoreUSNOptimization = 0x00000040
+
+// ExtAddEntry represents the DRS_EXT_ADDENTRY RPC constant
+const ExtAddEntry = 0x00000080
+
+// ExtKCCExecute represents the DRS_EXT_KCC_EXECUTE RPC constant
+const ExtKCCExecute = 0x00000100
+
+// ExtAddEntryV2 represents the DRS_EXT_ADDENTRY_V2 RPC constant
+const ExtAddEntryV2 = 0x00000200
+
+// ExtLinkedValueReplication represents the DRS_EXT_LINKED_VALUE_REPLICATION RPC constant
+const ExtLinkedValueReplication = 0x00000400
+
+// ExtDCInfoV2 represents the DRS_EXT_DCINFO_V2 RPC constant
+const ExtDCInfoV2 = 0x00000800
+
+// ExtInstanceTypeNotRequestOnModify represents the DRS_EXT_INSTANCE_TYPE_NOT_REQ_ON_MOD RPC constant
+const ExtInstanceTypeNotRequestOnModify = 0x00001000
+
+// ExtCryptoBind represents the DRS_EXT_CRYPTO_BIND RPC constant
+const ExtCryptoBind = 0x00002000
+
+// ExtGetReplicationInfo represents the DRS_EXT_GET_REPL_INFO RPC constant
+const ExtGetReplicationInfo = 0x00004000
+
+// ExtStrongEncryption represents the DRS_EXT_STRONG_ENCRYPTION RPC constant
+const ExtStrongEncryption = 0x00008000
+
+// ExtDCInfoVQ represents the DRS_EXT_DCINFO_VFFFFFFFF RPC constant
+const ExtDCInfoVQ = 0x00010000
+
+// ExtTransitiveMembership represents the DRS_EXT_TRANSITIVE_MEMBERSHIP RPC constant
+const ExtTransitiveMembership = 0x00020000
+
+// ExtAddSIDHistory represents the DRS_EXT_ADD_SID_HISTORY RPC constant
+const ExtAddSIDHistory = 0x00040000
+
+// ExtPostBeta3 represents the DRS_EXT_POST_BETA3 RPC constant
+const ExtPostBeta3 = 0x00080000
+
+// ExtGetNCChangesRequestV5 represents the DRS_EXT_GETCHGREQ_V5 RPC constant
+const ExtGetNCChangesRequestV5 = 0x00100000
+
+// ExtGetMemberships2 represents the DRS_EXT_GETMEMBERSHIPS2 RPC constant
+const ExtGetMemberships2 = 0x00200000
+
+// ExtGetNCChangesRequestV6 represents the DRS_EXT_GETCHGREQ_V6 RPC constant
+const ExtGetNCChangesRequestV6 = 0x00400000
+
+// ExtNonDomainNCs represents the DRS_EXT_NONDOMAIN_NCS RPC constant
+const ExtNonDomainNCs = 0x00800000
+
+// ExtGetNCChangesRequestV8 represents the DRS_EXT_GETCHGREQ_V8 RPC constant
+const ExtGetNCChangesRequestV8 = 0x01000000
+
+// ExtGetNCChangesReplyV5 represents the DRS_EXT_GETCHGREPLY_V5 RPC constant
+const ExtGetNCChangesReplyV5 = 0x02000000
+
+// ExtGetNCChangesReplyV6 represents the DRS_EXT_GETCHGREPLY_V6 RPC constant
+const ExtGetNCChangesReplyV6 = 0x04000000
+
+// ExtWhistlerBeta3 represents the DRS_EXT_WHISTLER_BETA3 RPC constant
+const ExtWhistlerBeta3 = 0x08000000
+
+// ExtW2K3Deflate represents the DRS_EXT_W2K3_DEFLATE RPC constant
+const ExtW2K3Deflate = 0x10000000
+
+// ExtGetNCChangesRequestV10 represents the DRS_EXT_GETCHGREQ_V10 RPC constant
+const ExtGetNCChangesRequestV10 = 0x20000000
+
+// ExtReservedForWin2KOrNETPart2 represents the DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART2 RPC constant
+const ExtReservedForWin2KOrNETPart2 = 0x40000000
+
+// ExtReservedForWin2KOrNETPart3 represents the DRS_EXT_RESERVED_FOR_WIN2K_OR_DOTNET_PART3 RPC constant
+const ExtReservedForWin2KOrNETPart3 = 0x80000000
+
+// AsyncOperation represents the DRS_ASYNC_OP RPC constant
+const AsyncOperation = 0x00000001
+
+// GetNCChangesCheck represents the DRS_GETCHG_CHECK RPC constant
+const GetNCChangesCheck = 0x00000002
+
+// UpdateNotification represents the DRS_UPDATE_NOTIFICATION RPC constant
+const UpdateNotification = 0x00000002
+
+// AddReference represents the DRS_ADD_REF RPC constant
+const AddReference = 0x00000004
+
+// SyncAll represents the DRS_SYNC_ALL RPC constant
+const SyncAll = 0x00000004
+
+// DeleteReference represents the DRS_DEL_REF RPC constant
+const DeleteReference = 0x00000008
+
+// WritableReplica represents the DRS_WRITABLE_REPLICA RPC constant
+const WritableReplica = 0x00000010
+
+// InitSync represents the DRS_INIT_SYNC RPC constant
+const InitSync = 0x00000020
+
+// PeriodicalSync represents the DRS_PERIODICAL_SYNC RPC constant
+const PeriodicalSync = 0x00000040
+
+// MailReplication represents the DRS_MAIL_REPLICATION RPC constant
+const MailReplication = 0x00000080
+
+// AsyncReplication represents the DRS_ASYNC_REPLICATION RPC constant
+const AsyncReplication = 0x00000100
+
+// IgnoreError represents the DRS_IGNORE_ERROR RPC constant
+const IgnoreError = 0x00000100
+
+// TwoWaySync represents the DRS_TWO_WAY_SYNC RPC constant
+const TwoWaySync = 0x00000200
+
+// CriticalOnly represents the DRS_CRITICAL_ONLY RPC constant
+const CriticalOnly = 0x00000400
+
+// GetAncestor represents the DRS_GET_ANCESTOR RPC constant
+const GetAncestor = 0x00000800
+
+// GetNCSize represents the DRS_GET_NC_SIZE RPC constant
+const GetNCSize = 0x00001000
+
+// LocalOnly represents the DRS_LOCAL_ONLY RPC constant
+const LocalOnly = 0x00001000
+
+// NonGCReadOnlyReplica represents the DRS_NON_GC_RO_REPLICA RPC constant
+const NonGCReadOnlyReplica = 0x00002000
+
+// SyncByName represents the DRS_SYNC_BY_NAME RPC constant
+const SyncByName = 0x00004000
+
+// ReferenceOK represents the DRS_REF_OK RPC constant
+const ReferenceOK = 0x00004000
+
+// FullSyncNow represents the DRS_FULL_SYNC_NOW RPC constant
+const FullSyncNow = 0x00008000
+
+// NoSource represents the DRS_NO_SOURCE RPC constant
+const NoSource = 0x00008000
+
+// FullSyncInProgress represents the DRS_FULL_SYNC_IN_PROGRESS RPC constant
+const FullSyncInProgress = 0x00010000
+
+// FullSyncPacket represents the DRS_FULL_SYNC_PACKET RPC constant
+const FullSyncPacket = 0x00020000
+
+// SyncRequeue represents the DRS_SYNC_REQUEUE RPC constant
+const SyncRequeue = 0x00040000
+
+// SyncUrgent represents the DRS_SYNC_URGENT RPC constant
+const SyncUrgent = 0x00080000
+
+// ReferenceGCSPN represents the DRS_REF_GC_SPN RPC constant
+const ReferenceGCSPN = 0x00100000
+
+// NoDiscard represents the DRS_NO_DISCARD RPC constant
+const NoDiscard = 0x00100000
+
+// NeverSynced represents the DRS_NEVER_SYNCED RPC constant
+const NeverSynced = 0x00200000
+
+// SpecialSecretProcessing represents the DRS_SPECIAL_SECRET_PROCESSING RPC constant
+const SpecialSecretProcessing = 0x00400000
+
+// InitSyncNow represents the DRS_INIT_SYNC_NOW RPC constant
+const InitSyncNow = 0x00800000
+
+// Preempted represents the DRS_PREEMPTED RPC constant
+const Preempted = 0x01000000
+
+// SyncForced represents the DRS_SYNC_FORCED RPC constant
+const SyncForced = 0x02000000
+
+// DisableAutoSync represents the DRS_DISABLE_AUTO_SYNC RPC constant
+const DisableAutoSync = 0x04000000
+
+// DisablePeriodicSync represents the DRS_DISABLE_PERIODIC_SYNC RPC constant
+const DisablePeriodicSync = 0x08000000
+
+// UseCompression represents the DRS_USE_COMPRESSION RPC constant
+const UseCompression = 0x10000000
+
+// NeverNotify represents the DRS_NEVER_NOTIFY RPC constant
+const NeverNotify = 0x20000000
+
+// SyncPartialAttributes represents the DRS_SYNC_PARTIAL_ATTRIBUTES RPC constant
+const SyncPartialAttributes = 0x40000000
+
+// GetAllGroupMembership represents the DRS_GET_ALL_GROUP_MEMBERSHIP RPC constant
+const GetAllGroupMembership = 0x80000000
+
+// ExtendedOperationFSMORequestRole represents the EXOP_FSMO_REQ_ROLE RPC constant
+const ExtendedOperationFSMORequestRole = 0x00000001
+
+// ExtendedOperationFSMORequestRIDAlloc represents the EXOP_FSMO_REQ_RID_ALLOC RPC constant
+const ExtendedOperationFSMORequestRIDAlloc = 0x00000002
+
+// ExtendedOperationFSMORIDRequestRole represents the EXOP_FSMO_RID_REQ_ROLE RPC constant
+const ExtendedOperationFSMORIDRequestRole = 0x00000003
+
+// ExtendedOperationFSMORequestPDC represents the EXOP_FSMO_REQ_PDC RPC constant
+const ExtendedOperationFSMORequestPDC = 0x00000004
+
+// ExtendedOperationFSMOAbandonRole represents the EXOP_FSMO_ABANDON_ROLE RPC constant
+const ExtendedOperationFSMOAbandonRole = 0x00000005
+
+// ExtendedOperationReplicationObject represents the EXOP_REPL_OBJ RPC constant
+const ExtendedOperationReplicationObject = 0x00000006
+
+// ExtendedOperationReplicationSecrets represents the EXOP_REPL_SECRETS RPC constant
+const ExtendedOperationReplicationSecrets = 0x00000007
+
 // Handle structure represents DRS_HANDLE RPC structure.
 type Handle dcetypes.ContextHandle
 
@@ -418,7 +652,7 @@ var (
 	DSNameErrorSchemaGUIDAttributeSet DSNameError = 4294967292
 	DSNameErrorSchemaGUIDAttribute    DSNameError = 4294967293
 	DSNameErrorSchemaGUIDNotFound     DSNameError = 4294967294
-	DSNameErrorIsFpo                  DSNameError = 4294967295
+	DSNameErrorIsFPO                  DSNameError = 4294967295
 )
 
 func (o DSNameError) String() string {
@@ -465,8 +699,124 @@ func (o DSNameError) String() string {
 		return "DSNameErrorSchemaGUIDAttribute"
 	case DSNameErrorSchemaGUIDNotFound:
 		return "DSNameErrorSchemaGUIDNotFound"
-	case DSNameErrorIsFpo:
-		return "DSNameErrorIsFpo"
+	case DSNameErrorIsFPO:
+		return "DSNameErrorIsFPO"
+	}
+	return "Invalid"
+}
+
+// DSNameFormat type represents DS_NAME_FORMAT RPC enumeration.
+//
+// The DS_NAME_FORMAT enumeration describes the format of a name sent to or received
+// from the IDL_DRSCrackNames method.
+type DSNameFormat uint32
+
+var (
+	// DS_UNKNOWN_NAME:  The server looks up the name by using the algorithm specified
+	// in the LookupUnknownName procedure.
+	DSNameFormatUnknownName DSNameFormat = 0
+	// DS_FQDN_1779_NAME:  A distinguished name.
+	DSNameFormatFQDN1779Name DSNameFormat = 1
+	// DS_NT4_ACCOUNT_NAME:  Windows NT 4.0 operating system (and prior) name format. The
+	// account name is in the format domain\user and the domain-only name is in the format
+	// domain\.
+	DSNameFormatNT4AccountName DSNameFormat = 2
+	// DS_DISPLAY_NAME:  A user-friendly display name.
+	DSNameFormatDisplayName DSNameFormat = 3
+	// DS_UNIQUE_ID_NAME:  Curly braced string representation of an objectGUID. The format
+	// of the string representation is specified in [MS-DTYP] section 2.3.4.3.
+	DSNameFormatUniqueIDName DSNameFormat = 6
+	// DS_CANONICAL_NAME:  A canonical name.
+	DSNameFormatCanonicalName DSNameFormat = 7
+	// DS_USER_PRINCIPAL_NAME:  User principal name.
+	DSNameFormatUserPrincipalName DSNameFormat = 8
+	// DS_CANONICAL_NAME_EX:  Same as DS_CANONICAL_NAME except that the rightmost forward
+	// slash (/) is replaced with a newline character (\n).
+	DSNameFormatCanonicalNameEx DSNameFormat = 9
+	// DS_SERVICE_PRINCIPAL_NAME:  Service principal name (SPN).
+	DSNameFormatServicePrincipalName DSNameFormat = 10
+	// DS_SID_OR_SID_HISTORY_NAME:  String representation of a SID (as specified in [MS-DTYP]
+	// section 2.4.2).
+	DSNameFormatSIDOrSIDHistoryName DSNameFormat = 11
+	// DS_DNS_DOMAIN_NAME:  Not supported.
+	DSNameFormatDNSDomainName                     DSNameFormat = 12
+	DSNameFormatListSites                         DSNameFormat = 4294967295
+	DSNameFormatListServersInSite                 DSNameFormat = 4294967294
+	DSNameFormatListDomainsInSite                 DSNameFormat = 4294967293
+	DSNameFormatListServersForDomainInSite        DSNameFormat = 4294967292
+	DSNameFormatListInfoForServer                 DSNameFormat = 4294967291
+	DSNameFormatListRoles                         DSNameFormat = 4294967290
+	DSNameFormatNT4AccountNameSANSDomain          DSNameFormat = 4294967289
+	DSNameFormatMapSchemaGUID                     DSNameFormat = 4294967288
+	DSNameFormatListDomains                       DSNameFormat = 4294967287
+	DSNameFormatListNCS                           DSNameFormat = 4294967286
+	DSNameFormatLtSecurityIdentitiesName          DSNameFormat = 4294967285
+	DSNameFormatStringSIDName                     DSNameFormat = 4294967284
+	DSNameFormatListServersWithDCSInSite          DSNameFormat = 4294967283
+	DSNameFormatListGlobalCatalogServers          DSNameFormat = 4294967281
+	DSNameFormatNT4AccountNameSANSDomainEx        DSNameFormat = 4294967280
+	DSNameFormatUserPrincipalNameAndAltSecurityID DSNameFormat = 4294967279
+	DSNameFormatUserPrincipalNameForLogon         DSNameFormat = 4294967282
+)
+
+func (o DSNameFormat) String() string {
+	switch o {
+	case DSNameFormatUnknownName:
+		return "DSNameFormatUnknownName"
+	case DSNameFormatFQDN1779Name:
+		return "DSNameFormatFQDN1779Name"
+	case DSNameFormatNT4AccountName:
+		return "DSNameFormatNT4AccountName"
+	case DSNameFormatDisplayName:
+		return "DSNameFormatDisplayName"
+	case DSNameFormatUniqueIDName:
+		return "DSNameFormatUniqueIDName"
+	case DSNameFormatCanonicalName:
+		return "DSNameFormatCanonicalName"
+	case DSNameFormatUserPrincipalName:
+		return "DSNameFormatUserPrincipalName"
+	case DSNameFormatCanonicalNameEx:
+		return "DSNameFormatCanonicalNameEx"
+	case DSNameFormatServicePrincipalName:
+		return "DSNameFormatServicePrincipalName"
+	case DSNameFormatSIDOrSIDHistoryName:
+		return "DSNameFormatSIDOrSIDHistoryName"
+	case DSNameFormatDNSDomainName:
+		return "DSNameFormatDNSDomainName"
+	case DSNameFormatListSites:
+		return "DSNameFormatListSites"
+	case DSNameFormatListServersInSite:
+		return "DSNameFormatListServersInSite"
+	case DSNameFormatListDomainsInSite:
+		return "DSNameFormatListDomainsInSite"
+	case DSNameFormatListServersForDomainInSite:
+		return "DSNameFormatListServersForDomainInSite"
+	case DSNameFormatListInfoForServer:
+		return "DSNameFormatListInfoForServer"
+	case DSNameFormatListRoles:
+		return "DSNameFormatListRoles"
+	case DSNameFormatNT4AccountNameSANSDomain:
+		return "DSNameFormatNT4AccountNameSANSDomain"
+	case DSNameFormatMapSchemaGUID:
+		return "DSNameFormatMapSchemaGUID"
+	case DSNameFormatListDomains:
+		return "DSNameFormatListDomains"
+	case DSNameFormatListNCS:
+		return "DSNameFormatListNCS"
+	case DSNameFormatLtSecurityIdentitiesName:
+		return "DSNameFormatLtSecurityIdentitiesName"
+	case DSNameFormatStringSIDName:
+		return "DSNameFormatStringSIDName"
+	case DSNameFormatListServersWithDCSInSite:
+		return "DSNameFormatListServersWithDCSInSite"
+	case DSNameFormatListGlobalCatalogServers:
+		return "DSNameFormatListGlobalCatalogServers"
+	case DSNameFormatNT4AccountNameSANSDomainEx:
+		return "DSNameFormatNT4AccountNameSANSDomainEx"
+	case DSNameFormatUserPrincipalNameAndAltSecurityID:
+		return "DSNameFormatUserPrincipalNameAndAltSecurityID"
+	case DSNameFormatUserPrincipalNameForLogon:
+		return "DSNameFormatUserPrincipalNameForLogon"
 	}
 	return "Invalid"
 }

@@ -189,6 +189,7 @@ abbr:
   fport: F
   fqbn: FQBN
   fqdn: FQDN
+  fqdn1779: FQDN1779
   fs: FS
   fsm: FSM
   fsmo: FSMO
@@ -645,3 +646,15 @@ abbr:
   ntms: NTMS
   reqd: Required
   nr: NR
+  ncs: NCs
+  sans: SANs
+  dcs: DCs
+  usn: USN
+  w2k3: W2K3
+  win2k: Win2K
+  dtnet: NET
+  fpo: FPO
+  dnssec: DNSSEC
+  dbase: Database
+  nbstat: NBSTAT
+  skwansec: SKWANSEC
