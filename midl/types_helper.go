@@ -673,7 +673,7 @@ var opToString = map[int]string{
 	GT:          ">",
 	LE:          "<=",
 	LT:          "<",
-	EQ:          "=",
+	EQ:          "==",
 	NE:          "!=",
 	OR:          "|",
 	XOR:         "^",

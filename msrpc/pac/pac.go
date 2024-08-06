@@ -86,6 +86,15 @@ var (
 	GoPackage = "pac"
 )
 
+// SignatureTypeKerberosChecksumHMACMD5 represents the SIGNATURE_TYPE_KERB_CHECKSUM_HMAC_MD5 RPC constant
+const SignatureTypeKerberosChecksumHMACMD5 = 0xFFFFFF76
+
+// SignatureTypeHMACSHA196AES128 represents the SIGNATURE_TYPE_HMAC_SHA1_96_AES128 RPC constant
+const SignatureTypeHMACSHA196AES128 = 0x0000000F
+
+// SignatureTypeHMACSHA196AES256 represents the SIGNATURE_TYPE_HMAC_SHA1_96_AES256 RPC constant
+const SignatureTypeHMACSHA196AES256 = 0x00000010
+
 // KerberosSIDAndAttributes structure represents KERB_SID_AND_ATTRIBUTES RPC structure.
 //
 // The KERB_SID_AND_ATTRIBUTES structure represents a SID and its attributes for use
@@ -441,10 +450,13 @@ type PACType struct {
 	// The actual contents of the PAC are placed serially after the variable set of PAC_INFO_BUFFER
 	// structures. The contents are individually serialized PAC elements. All PAC elements
 	// MUST be placed on an 8-byte boundary.
-	Buffers []*PACInfoBuffer `idl:"name:Buffers" json:"buffers"`
+	Buffers []*PACInfoBuffer `idl:"name:Buffers;size_is:(cBuffers)" json:"buffers"`
 }
 
 func (o *PACType) xxx_PreparePayload(ctx context.Context) error {
+	if o.Buffers != nil && o.BuffersCount == 0 {
+		o.BuffersCount = uint32(len(o.Buffers))
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
 			return err
@@ -456,7 +468,7 @@ func (o *PACType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(8); err != nil {
+	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.BuffersCount); err != nil {
@@ -465,30 +477,49 @@ func (o *PACType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Version); err != nil {
 		return err
 	}
-	for i1 := range o.Buffers {
-		i1 := i1
-		if uint64(i1) >= 1 {
-			break
-		}
-		if o.Buffers[i1] != nil {
-			if err := o.Buffers[i1].MarshalNDR(ctx, w); err != nil {
+	if o.Buffers != nil || o.BuffersCount > 0 {
+		_ptr_Buffers := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.BuffersCount)
+			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
-		} else {
-			if err := (&PACInfoBuffer{}).MarshalNDR(ctx, w); err != nil {
-				return err
+			sizeInfo := []uint64{
+				dimSize1,
 			}
+			for i1 := range o.Buffers {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Buffers[i1] != nil {
+					if err := o.Buffers[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&PACInfoBuffer{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Buffers); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&PACInfoBuffer{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Buffers, _ptr_Buffers); err != nil {
+			return err
 		}
-	}
-	for i1 := len(o.Buffers); uint64(i1) < 1; i1++ {
-		if err := (&PACInfoBuffer{}).MarshalNDR(ctx, w); err != nil {
+	} else {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *PACType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(8); err != nil {
+	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.BuffersCount); err != nil {
@@ -497,15 +528,37 @@ func (o *PACType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Version); err != nil {
 		return err
 	}
-	o.Buffers = make([]*PACInfoBuffer, 1)
-	for i1 := range o.Buffers {
-		i1 := i1
-		if o.Buffers[i1] == nil {
-			o.Buffers[i1] = &PACInfoBuffer{}
+	_ptr_Buffers := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
 		}
-		if err := o.Buffers[i1].UnmarshalNDR(ctx, w); err != nil {
-			return err
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
 		}
+		// XXX: for opaque unmarshaling
+		if o.BuffersCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.BuffersCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Buffers", sizeInfo[0])
+		}
+		o.Buffers = make([]*PACInfoBuffer, sizeInfo[0])
+		for i1 := range o.Buffers {
+			i1 := i1
+			if o.Buffers[i1] == nil {
+				o.Buffers[i1] = &PACInfoBuffer{}
+			}
+			if err := o.Buffers[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Buffers := func(ptr interface{}) { o.Buffers = *ptr.(*[]*PACInfoBuffer) }
+	if err := w.ReadPointer(&o.Buffers, _s_Buffers, _ptr_Buffers); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1660,7 +1713,7 @@ type PACCredentialInfo struct {
 	// credentials encrypted using the mechanism specified by the EncryptionType field.
 	// The byte array of encrypted data is computed according to the procedures specified
 	// in [RFC3961].
-	SerializedData uint8 `idl:"name:SerializedData" json:"serialized_data"`
+	SerializedData []byte `idl:"name:SerializedData" json:"serialized_data"`
 }
 
 func (o *PACCredentialInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -1684,14 +1737,23 @@ func (o *PACCredentialInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.EncryptionType); err != nil {
 		return err
 	}
-	_ptr_SerializedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.SerializedData); err != nil {
+	if o.SerializedData != nil {
+		_ptr_SerializedData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.SerializedData {
+				i1 := i1
+				if err := w.WriteData(o.SerializedData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.SerializedData, _ptr_SerializedData); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.SerializedData, _ptr_SerializedData); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -1706,12 +1768,16 @@ func (o *PACCredentialInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	_ptr_SerializedData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.SerializedData); err != nil {
-			return err
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.SerializedData = append(o.SerializedData, uint8(0))
+			if err := w.ReadData(&o.SerializedData[i1]); err != nil {
+				return err
+			}
 		}
 		return nil
 	})
-	_s_SerializedData := func(ptr interface{}) { o.SerializedData = *ptr.(*uint8) }
+	_s_SerializedData := func(ptr interface{}) { o.SerializedData = *ptr.(*[]byte) }
 	if err := w.ReadPointer(&o.SerializedData, _s_SerializedData, _ptr_SerializedData); err != nil {
 		return err
 	}
@@ -2300,10 +2366,13 @@ type PACSignatureData struct {
 	// The KERB_CHECKSUM_HMAC_MD5 checksum (defined in the preceding table) is 16 bytes
 	// in length. The size of the signature is determined by the value of the SignatureType
 	// field, as indicated in the preceding table.
-	Signature uint8 `idl:"name:Signature" json:"signature"`
+	Signature []byte `idl:"name:Signature;size_is:(((SignatureType==4294967158)?16:12))" json:"signature"`
 }
 
 func (o *PACSignatureData) xxx_PreparePayload(ctx context.Context) error {
+	if o.Signature != nil && o.SignatureType == 0 {
+		o.SignatureType = uint32(len(o.Signature))
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
 			return err
@@ -2321,14 +2390,50 @@ func (o *PACSignatureData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SignatureType); err != nil {
 		return err
 	}
-	_ptr_Signature := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Signature); err != nil {
+	_exprSignatureType := uint32(0)
+	if o.SignatureType == 4294967158 {
+		_exprSignatureType = uint32(16)
+	} else {
+		_exprSignatureType = uint32(12)
+	}
+	if o.Signature != nil || _exprSignatureType > 0 {
+		_ptr_Signature := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_exprSignatureType := uint64(0)
+			if o.SignatureType == 4294967158 {
+				_exprSignatureType = uint64(16)
+			} else {
+				_exprSignatureType = uint64(12)
+			}
+			dimSize1 := uint64(_exprSignatureType)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Signature {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Signature[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Signature); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Signature, _ptr_Signature); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Signature, _ptr_Signature); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	return nil
 }
@@ -2340,12 +2445,37 @@ func (o *PACSignatureData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	_ptr_Signature := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.Signature); err != nil {
-			return err
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		_exprSignature := uint64(0)
+		if o.SignatureType == 4294967158 {
+			_exprSignature = uint64(16)
+		} else {
+			_exprSignature = uint64(12)
+		}
+		if _exprSignature > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(_exprSignature)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Signature", sizeInfo[0])
+		}
+		o.Signature = make([]byte, sizeInfo[0])
+		for i1 := range o.Signature {
+			i1 := i1
+			if err := w.ReadData(&o.Signature[i1]); err != nil {
+				return err
+			}
 		}
 		return nil
 	})
-	_s_Signature := func(ptr interface{}) { o.Signature = *ptr.(*uint8) }
+	_s_Signature := func(ptr interface{}) { o.Signature = *ptr.(*[]byte) }
 	if err := w.ReadPointer(&o.Signature, _s_Signature, _ptr_Signature); err != nil {
 		return err
 	}

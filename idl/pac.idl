@@ -22,7 +22,7 @@
  typedef struct _PACTYPE {
      ULONG cBuffers;
      ULONG Version;
-     PAC_INFO_BUFFER Buffers[1];
+     [size_is(cBuffers)] PAC_INFO_BUFFER * Buffers[];
  } PACTYPE, *PPACTYPE;
   
  typedef struct _PAC_INFO_BUFFER {
@@ -79,7 +79,7 @@
  typedef struct _PAC_CREDENTIAL_INFO {
      ULONG Version;
      ULONG EncryptionType;
-     [size_is(*)] UCHAR * SerializedData;
+     [size_is(*)] UCHAR * SerializedData[];
  } PAC_CREDENTIAL_INFO, *PPAC_CREDENTIAL_INFO;
   
  typedef struct _PAC_CREDENTIAL_DATA {
@@ -107,10 +107,14 @@
      USHORT NameLength;
      [size_is(NameLength)] WCHAR * Name;
  } PAC_CLIENT_INFO, *PPAC_CLIENT_INFO;
+
+ const ULONG SIGNATURE_TYPE_KERB_CHECKSUM_HMAC_MD5 = 0xFFFFFF76;
+ const ULONG SIGNATURE_TYPE_HMAC_SHA1_96_AES128 = 0x0000000F;
+ const ULONG SIGNATURE_TYPE_HMAC_SHA1_96_AES256 = 0x00000010;
   
  typedef struct _PAC_SIGNATURE_DATA {
      ULONG SignatureType;
-     [size_is(*)] UCHAR * Signature;     // size is from the PAC_INFO_BUFFER - sizeof(ULONG)
+     [size_is(SignatureType == SIGNATURE_TYPE_KERB_CHECKSUM_HMAC_MD5 ? 16 : 12)] UCHAR * Signature[];     // size is from the PAC_INFO_BUFFER - sizeof(ULONG)
  } PAC_SIGNATURE_DATA, *PPAC_SIGNATURE_DATA;
   
  typedef struct _S4U_DELEGATION_INFO {
