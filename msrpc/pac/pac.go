@@ -2696,6 +2696,33 @@ type UPNDNSInfo struct {
 	//	|       | and SID.                                                                         |
 	//	+-------+----------------------------------------------------------------------------------+
 	Flags uint32 `idl:"name:Flags" json:"flags"`
+	Raw   []byte `idl:"name:Raw" json:"raw"`
+	// SamNameLength (2 bytes): An unsigned 16-bit integer in little-endian format that
+	// specifies the length, in bytes, of the SAM name. The location of the SAM name is
+	// described later in this section. This field is only present if the S flag bit is
+	// set.
+	SAMNameLength uint16 `idl:"name:SamNameLength" json:"sam_name_length"`
+	// SamNameOffset (2 bytes): An unsigned 16-bit integer in little-endian format that
+	// contains the offset to the beginning of the SAM name, in bytes, from the beginning
+	// of the UPN_DNS_INFO structure. This field is only present if the S flag bit is set.
+	SAMNameOffset uint16 `idl:"name:SamNameOffset" json:"sam_name_offset"`
+	// SidLength (2 bytes): An unsigned 16-bit integer in little-endian format that specifies
+	// the length, in bytes, of the client’s SID. The location of the SID is described
+	// later in this section. This field is only present if the S flag bit is set.
+	SIDLength uint16 `idl:"name:SidLength" json:"sid_length"`
+	// SidOffset (2 byte): An unsigned 16-bit integer in little-endian format that contains
+	// the offset to the beginning of the client’s SID, in bytes, from the beginning of
+	// the UPN_DNS_INFO structure. This field is only present if the S flag bit is set.
+	//
+	// The actual DNS and UPN information (and, if the S flag bit is set, the SAM name and
+	// SID) is placed after the UPN_DNS_INFO structure following the header and starting
+	// with the corresponding offset in a consecutive buffer. The UPN, FQDN, and SAM name
+	// are encoded using a two-byte UTF16 scheme, in little-endian order.
+	SIDOffset     uint16    `idl:"name:SidOffset" json:"sid_offset"`
+	UPN           string    `idl:"name:Upn" json:"upn"`
+	DNSDomainName string    `idl:"name:DnsDomainName" json:"dns_domain_name"`
+	SAMName       string    `idl:"name:SamName" json:"sam_name"`
+	SID           *dtyp.SID `idl:"name:Sid" json:"sid"`
 }
 
 func (o *UPNDNSInfo) xxx_PreparePayload(ctx context.Context) error {
@@ -2710,7 +2737,7 @@ func (o *UPNDNSInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(4); err != nil {
+	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.UPNLength); err != nil {
@@ -2728,10 +2755,28 @@ func (o *UPNDNSInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if o.Raw != nil {
+		_ptr_Raw := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.Raw {
+				i1 := i1
+				if err := w.WriteData(o.Raw[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Raw, _ptr_Raw); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
 	return nil
 }
 func (o *UPNDNSInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(4); err != nil {
+	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.UPNLength); err != nil {
@@ -2747,6 +2792,20 @@ func (o *UPNDNSInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	_ptr_Raw := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.Raw = append(o.Raw, uint8(0))
+			if err := w.ReadData(&o.Raw[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Raw := func(ptr interface{}) { o.Raw = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Raw, _s_Raw, _ptr_Raw); err != nil {
 		return err
 	}
 	return nil
