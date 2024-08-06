@@ -2188,12 +2188,12 @@ type PACClientInfo struct {
 	NameLength uint16 `idl:"name:NameLength" json:"name_length"`
 	// Name (variable): An array of 16-bit Unicode characters in little-endian format that
 	// contains the client's account name.
-	Name string `idl:"name:Name;size_is:(NameLength)" json:"name"`
+	Name string `idl:"name:Name;size_is:((NameLength/2))" json:"name"`
 }
 
 func (o *PACClientInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.Name != "" && o.NameLength == 0 {
-		o.NameLength = uint16(len(o.Name))
+		o.NameLength = uint16((len(o.Name) * 2))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -2221,9 +2221,9 @@ func (o *PACClientInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.NameLength); err != nil {
 		return err
 	}
-	if o.Name != "" || o.NameLength > 0 {
+	if o.Name != "" || (o.NameLength/2) > 0 {
 		_ptr_Name := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			dimSize1 := uint64(o.NameLength)
+			dimSize1 := uint64((o.NameLength / 2))
 			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
@@ -2283,8 +2283,8 @@ func (o *PACClientInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 			}
 		}
 		// XXX: for opaque unmarshaling
-		if o.NameLength > 0 && sizeInfo[0] == 0 {
-			sizeInfo[0] = uint64(o.NameLength)
+		if (o.NameLength/2) > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64((o.NameLength / 2))
 		}
 		var _Name_buf []uint16
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
