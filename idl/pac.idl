@@ -130,6 +130,15 @@
      USHORT DnsDomainNameLength;
      USHORT DnsDomainNameOffset;
      ULONG Flags;
+     [size_is(*)] BYTE * Raw[];
+     [ignore] USHORT SamNameLength;
+     [ignore] USHORT SamNameOffset;
+     [ignore] USHORT SidLength;
+     [ignore] USHORT SidOffset;
+     [ignore] WCHAR * Upn[];
+     [ignore] WCHAR * DnsDomainName[];
+     [ignore] WCHAR * SamName[];
+     [ignore] PRPC_SID Sid;
  } UPN_DNS_INFO, *PUPN_DNS_INFO;
   
  typedef struct _PAC_CLIENT_CLAIMS_INFO {
