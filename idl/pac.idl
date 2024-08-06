@@ -105,7 +105,7 @@
  typedef struct _PAC_CLIENT_INFO {
      FILETIME ClientId;
      USHORT NameLength;
-     [size_is(NameLength)] WCHAR * Name;
+     [size_is(NameLength/2)] WCHAR * Name;
  } PAC_CLIENT_INFO, *PPAC_CLIENT_INFO;
 
  const ULONG SIGNATURE_TYPE_KERB_CHECKSUM_HMAC_MD5 = 0xFFFFFF76;
