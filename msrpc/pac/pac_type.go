@@ -9,6 +9,7 @@ import (
 )
 
 type PAC struct {
+	Version                          int                     `json:"version"`
 	LogonInformation                 *KerberosValidationInfo `json:"logon_information,omitempty"`
 	ServerChecksum                   *PACSignatureData       `json:"server_checksum,omitempty"`
 	KDCChecksum                      *PACSignatureData       `json:"kdc_checksum,omitempty"`
@@ -29,6 +30,8 @@ func (p *PAC) Unmarshal(b []byte) error {
 	if err := ndr.Unmarshal(b, &pac, ndr.Opaque); err != nil {
 		return fmt.Errorf("unmarshal_pac: headers: %w", err)
 	}
+
+	p.Version = int(pac.Version)
 
 	for _, buffer := range pac.Buffers {
 		b := b[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)]
@@ -105,7 +108,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 
 	var pac PACType
 
-	pac.Version = 5
+	pac.Version = uint32(p.Version)
 
 	// LogonInformation
 	if p.LogonInformation != nil {
