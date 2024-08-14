@@ -101,14 +101,19 @@ func MarshalWithTypeSerializationV1(d Marshaler, opts ...any) ([]byte, error) {
 
 	ctx := context.Background()
 
-	var c CommonHeaderV1
-	c.Version = 0x01
-	c.Endianness = 0x10
-	c.CommonHeaderLength = 0x10
-	c.Filler = []byte{0xCC, 0xCC, 0xCC, 0xCC}
+	c := CommonHeaderV1{
+		Version:            0x01,
+		Endianness:         uint8(ByteOrderLittleEndian),
+		CommonHeaderLength: 0x08,
+		Filler:             []byte{0xCC, 0xCC, 0xCC, 0xCC},
+	}
 
-	var p PrivateHeaderV1
-	p.ObjectBufferLength = 0x00
+	for _, opt := range opts {
+		switch v := opt.(type) {
+		case DataRepresentation:
+			c.Endianness = uint8(ByteOrderMask & uint32(v))
+		}
+	}
 
 	opts = append(opts, DefaultDataRepresentation|DataRepresentation(c.Endianness))
 
@@ -117,7 +122,14 @@ func MarshalWithTypeSerializationV1(d Marshaler, opts ...any) ([]byte, error) {
 		return nil, err
 	}
 
-	p.ObjectBufferLength = uint32(len(b))
+	// add padding to 8 bytes.
+	if pad := len(b) % 8; pad != 0 {
+		b = append(b, make([]byte, 8-pad)...)
+	}
+
+	p := PrivateHeaderV1{
+		ObjectBufferLength: uint32(len(b)),
+	}
 
 	r := NDR20(nil, Opaque)
 
