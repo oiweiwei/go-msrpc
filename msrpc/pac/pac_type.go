@@ -64,7 +64,7 @@ func (p *PAC) Unmarshal(b []byte) error {
 			p.ClientNameAndTicketInformation = &v
 		case 0x0000000B:
 			var v S4UDelegationInfo
-			if err := ndr.UnmarshalWithTypeSerializationV1(b, &v, ndr.Opaque); err != nil {
+			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
 				return fmt.Errorf("unmarshal_pac: constrained_delegation_information: %w", err)
 			}
 			p.ConstrainedDelegationInformation = &v
@@ -87,7 +87,11 @@ func (p *PAC) Unmarshal(b []byte) error {
 		case 0x00000011:
 			// TODO: PACAttributesInfo
 		case 0x00000012:
-			// TODO: RequestorSID
+			var v dtyp.SID
+			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
+				return fmt.Errorf("unmarshal_pac: requestor_sid: %w", err)
+			}
+			p.RequestorSID = &v
 		case 0x00000013:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
@@ -95,7 +99,11 @@ func (p *PAC) Unmarshal(b []byte) error {
 			}
 			p.ExtendedKDCChecksum = &v
 		case 0x00000014:
-			// TODO: RequestorGUID
+			var v dtyp.GUID
+			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
+				return fmt.Errorf("unmarshal_pac: requestor_guid: %w", err)
+			}
+			p.RequestorGUID = &v
 		}
 	}
 
@@ -180,6 +188,16 @@ func (p *PAC) Marshal() ([]byte, error) {
 		writeWithPad(buf, b)
 	}
 
+	// RequestorSID
+	if p.RequestorSID != nil {
+		b, err := ndr.Marshal(p.RequestorSID, ndr.Opaque)
+		if err != nil {
+			return nil, err
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000012, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
 	// ExtendedKDCChecksum
 	if p.ExtendedKDCChecksum != nil {
 		b, err := ndr.Marshal(p.ExtendedKDCChecksum, ndr.Opaque)
@@ -187,6 +205,16 @@ func (p *PAC) Marshal() ([]byte, error) {
 			return nil, err
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000013, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
+	// RequestorGUID
+	if p.RequestorGUID != nil {
+		b, err := ndr.Marshal(p.RequestorGUID, ndr.Opaque)
+		if err != nil {
+			return nil, err
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000014, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
 	}
 
