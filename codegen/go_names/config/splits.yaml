@@ -576,3 +576,8 @@ split:
   iddnssec: [id, dnssec]
   idnbstat: [id, nbstat]
   idskwansec: [id, skwansec]
+  noquarantine: [no, quarantine]
+  droppacket: [drop, packet]
+  defaultquarsetting: [default, quarantine, setting]
+  noquarinfo: [no, quarantine, info]
+  restrictedaccess: [restricted, access]

@@ -833,14 +833,14 @@ type QuarantineStatus uint16
 var (
 	// NOQUARANTINE: The DHCP client is compliant with the health policies defined by the
 	// administrator and has normal access to the network.
-	QuarantineStatusNoquarantine QuarantineStatus = 0
+	QuarantineStatusNoQuarantine QuarantineStatus = 0
 	// RESTRICTEDACCESS: The DHCP client is not compliant with the health policies defined
 	// by the administrator and is being quarantined with restricted access to the network.
-	QuarantineStatusRestrictedaccess QuarantineStatus = 1
+	QuarantineStatusRestrictedAccess QuarantineStatus = 1
 	// DROPPACKET: The DHCP client is not compliant with the health policies defined by
 	// the administrator and is being denied access to the network. The DHCP server does
 	// not grant an IP address lease to this client.
-	QuarantineStatusDroppacket QuarantineStatus = 2
+	QuarantineStatusDropPacket QuarantineStatus = 2
 	// PROBATION: The DHCP client is not compliant with the health policies defined by the
 	// administrator and is being granted normal access to the network for a limited time.
 	QuarantineStatusProbation QuarantineStatus = 3
@@ -851,27 +851,27 @@ var (
 	// on the DHCP NAP server. When a network policy server (NPS) is unavailable, the DHCP
 	// client can be put in any of the states NOQUARANTINE, RESTRICTEDACCESS, or DROPPACKET,
 	// depending on the default setting on the DHCP NAP server.
-	QuarantineStatusDefaultquarsetting QuarantineStatus = 5
+	QuarantineStatusDefaultQuarantineSetting QuarantineStatus = 5
 	// NOQUARINFO: No quarantine.
-	QuarantineStatusNoquarinfo QuarantineStatus = 6
+	QuarantineStatusNoQuarantineInfo QuarantineStatus = 6
 )
 
 func (o QuarantineStatus) String() string {
 	switch o {
-	case QuarantineStatusNoquarantine:
-		return "QuarantineStatusNoquarantine"
-	case QuarantineStatusRestrictedaccess:
-		return "QuarantineStatusRestrictedaccess"
-	case QuarantineStatusDroppacket:
-		return "QuarantineStatusDroppacket"
+	case QuarantineStatusNoQuarantine:
+		return "QuarantineStatusNoQuarantine"
+	case QuarantineStatusRestrictedAccess:
+		return "QuarantineStatusRestrictedAccess"
+	case QuarantineStatusDropPacket:
+		return "QuarantineStatusDropPacket"
 	case QuarantineStatusProbation:
 		return "QuarantineStatusProbation"
 	case QuarantineStatusExempt:
 		return "QuarantineStatusExempt"
-	case QuarantineStatusDefaultquarsetting:
-		return "QuarantineStatusDefaultquarsetting"
-	case QuarantineStatusNoquarinfo:
-		return "QuarantineStatusNoquarinfo"
+	case QuarantineStatusDefaultQuarantineSetting:
+		return "QuarantineStatusDefaultQuarantineSetting"
+	case QuarantineStatusNoQuarantineInfo:
+		return "QuarantineStatusNoQuarantineInfo"
 	}
 	return "Invalid"
 }
