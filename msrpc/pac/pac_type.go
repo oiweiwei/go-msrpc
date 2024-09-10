@@ -44,7 +44,11 @@ func (p *PAC) Unmarshal(b []byte) error {
 
 		if buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000013 {
 			// clear the signature data
-			clear(p.ZeroSignatureRaw[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)])
+			if uint64(buffer.BufferLength) < 4 {
+				return fmt.Errorf("unmarshal_pac: clear signature: buffer_type: %d: invalid buffer length: %d",
+					buffer.Type, buffer.BufferLength)
+			}
+			clear(p.ZeroSignatureRaw[buffer.Offset+4 : buffer.Offset+uint64(buffer.BufferLength)])
 		}
 
 		switch buffer.Type {
