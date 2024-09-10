@@ -85,7 +85,13 @@ func (p *PAC) Unmarshal(b []byte) error {
 			}
 			p.TicketChecksum = &v
 		case 0x00000011:
-			// TODO: PACAttributesInfo
+			// XXX: the format of the PAC_ATTRIBUTE_INFO is defined as uint32 flag-size in bits
+			// and array of flags of rounded (flag-size / 32)
+			var v PACAttributesInfo
+			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
+				return fmt.Errorf("unmarshal_pac: attributes: %w", err)
+			}
+			p.Attributes = &v
 		case 0x00000012:
 			var v dtyp.SID
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
@@ -185,6 +191,16 @@ func (p *PAC) Marshal() ([]byte, error) {
 			return nil, err
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000010, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
+	// Attributes.
+	if p.Attributes != nil {
+		b, err := ndr.Marshal(p.Attributes, ndr.Opaque)
+		if err != nil {
+			return nil, err
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000011, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
 	}
 
