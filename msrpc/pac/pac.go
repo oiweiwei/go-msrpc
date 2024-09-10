@@ -95,6 +95,12 @@ const SignatureTypeHMACSHA196AES128 = 0x0000000F
 // SignatureTypeHMACSHA196AES256 represents the SIGNATURE_TYPE_HMAC_SHA1_96_AES256 RPC constant
 const SignatureTypeHMACSHA196AES256 = 0x00000010
 
+// PACWasRequested represents the PAC_WAS_REQUESTED RPC constant
+const PACWasRequested = 0x00000001
+
+// PACWasGivenImplicitly represents the PAC_WAS_GIVEN_IMPLICITLY RPC constant
+const PACWasGivenImplicitly = 0x00000002
+
 // KerberosSIDAndAttributes structure represents KERB_SID_AND_ATTRIBUTES RPC structure.
 //
 // The KERB_SID_AND_ATTRIBUTES structure represents a SID and its attributes for use
