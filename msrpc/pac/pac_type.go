@@ -42,7 +42,7 @@ func (p *PAC) Unmarshal(b []byte) error {
 
 		b := b[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)]
 
-		if buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000010 || buffer.Type == 0x00000013 {
+		if buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000013 {
 			// clear the signature data
 			clear(p.ZeroSignatureRaw[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)])
 		}
