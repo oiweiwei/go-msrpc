@@ -10,6 +10,7 @@ import (
 
 type PAC struct {
 	Version                          int                     `json:"version"`
+	ZeroSignatureRaw                 []byte                  `json:"-"`
 	LogonInformation                 *KerberosValidationInfo `json:"logon_information,omitempty"`
 	ServerChecksum                   *PACSignatureData       `json:"server_checksum,omitempty"`
 	KDCChecksum                      *PACSignatureData       `json:"kdc_checksum,omitempty"`
@@ -33,8 +34,19 @@ func (p *PAC) Unmarshal(b []byte) error {
 
 	p.Version = int(pac.Version)
 
+	// allocate data for signature verification.
+	p.ZeroSignatureRaw = make([]byte, len(b))
+	copy(p.ZeroSignatureRaw, b)
+
 	for _, buffer := range pac.Buffers {
+
 		b := b[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)]
+
+		if buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000010 || buffer.Type == 0x00000013 {
+			// clear the signature data
+			clear(p.ZeroSignatureRaw[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)])
+		}
+
 		switch buffer.Type {
 		case 0x00000001:
 			var v KerberosValidationInfo
