@@ -10,7 +10,7 @@ import (
 
 type PAC struct {
 	Version                          int                     `json:"version"`
-	ZeroSignatureRaw                 []byte                  `json:"-"`
+	Buffers                          []*PACInfoBuffer        `json:"pac_info_buffer"`
 	LogonInformation                 *KerberosValidationInfo `json:"logon_information,omitempty"`
 	ServerChecksum                   *PACSignatureData       `json:"server_checksum,omitempty"`
 	KDCChecksum                      *PACSignatureData       `json:"kdc_checksum,omitempty"`
@@ -33,23 +33,11 @@ func (p *PAC) Unmarshal(b []byte) error {
 	}
 
 	p.Version = int(pac.Version)
-
-	// allocate data for signature verification.
-	p.ZeroSignatureRaw = make([]byte, len(b))
-	copy(p.ZeroSignatureRaw, b)
+	p.Buffers = pac.Buffers
 
 	for _, buffer := range pac.Buffers {
 
 		b := b[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)]
-
-		if buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000013 {
-			// clear the signature data
-			if uint64(buffer.BufferLength) < 4 {
-				return fmt.Errorf("unmarshal_pac: clear signature: buffer_type: %d: invalid buffer length: %d",
-					buffer.Type, buffer.BufferLength)
-			}
-			clear(p.ZeroSignatureRaw[buffer.Offset+4 : buffer.Offset+uint64(buffer.BufferLength)])
-		}
 
 		switch buffer.Type {
 		case 0x00000001:
@@ -132,6 +120,58 @@ func (p *PAC) Unmarshal(b []byte) error {
 	return nil
 }
 
+func IsSignatureBuffer(buffer *PACInfoBuffer) bool {
+	if buffer != nil {
+		return buffer.Type == 0x00000006 || buffer.Type == 0x00000007 || buffer.Type == 0x00000010 || buffer.Type == 0x00000013
+	}
+
+	return false
+}
+
+// FillInSignatureData function fills the signature data in the buffer.
+func FillInSignatureData(b []byte, sign *PACInfoBuffer, data []byte) ([]byte, error) {
+
+	if !IsSignatureBuffer(sign) {
+		return b, nil
+	}
+
+	if len(b) < int(sign.Offset+uint64(sign.BufferLength)) {
+		return nil, fmt.Errorf("fill_signature_data: buffer too small")
+	}
+
+	if sign.BufferLength < 4 {
+		return nil, fmt.Errorf("fill_signature_data: buffer too small")
+	}
+
+	if n := copy(b[sign.Offset+4:sign.Offset+uint64(sign.BufferLength)], data); n != len(data) {
+		return nil, fmt.Errorf("fill_signature_data: short write")
+	}
+
+	return b, nil
+}
+
+// ZeroOutSignatureData function clears the signature data in the buffer.
+func ZeroOutSignatureData(b []byte, sign *PACInfoBuffer) ([]byte, error) {
+
+	if !IsSignatureBuffer(sign) {
+		return b, nil
+	}
+
+	if len(b) < int(sign.Offset+uint64(sign.BufferLength)) {
+		return nil, fmt.Errorf("zero_out_signature_data: buffer too small")
+	}
+
+	if sign.BufferLength < 4 {
+		return nil, fmt.Errorf("zero_out_signature_data: buffer too small")
+	}
+
+	clear(b[sign.Offset+4 : sign.Offset+uint64(sign.BufferLength)])
+	return b, nil
+}
+
+// Marshal function marshals the PAC structure into a byte array also setting the
+// PAC.Buffers field to the Buffers slice. This buffer slice will contain the
+// information about the binary layout.
 func (p *PAC) Marshal() ([]byte, error) {
 
 	buf := new(bytes.Buffer)
@@ -258,6 +298,8 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	p.Buffers = pac.Buffers
 
 	return append(b, buf.Bytes()...), nil
 }
