@@ -4813,7 +4813,7 @@ func (o *Rule20_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule20_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule20_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -4927,28 +4927,50 @@ func (o *Rule20_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Rea
 //
 // It has following labels: 6, 17
 type Rule20_IPProtocolData_Ports struct {
-	Ports *Rule20_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule20_IPProtocolData_Ports) is_Rule20_IPProtocolData() {}
 
 func (o *Rule20_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule20_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule20_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule20_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -5614,7 +5636,7 @@ func (o *Rule210_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule210_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule210_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -5728,28 +5750,50 @@ func (o *Rule210_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 //
 // It has following labels: 6, 17
 type Rule210_IPProtocolData_Ports struct {
-	Ports *Rule210_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule210_IPProtocolData_Ports) is_Rule210_IPProtocolData() {}
 
 func (o *Rule210_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule210_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule210_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule210_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -6509,7 +6553,7 @@ func (o *Rule220_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule220_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule220_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -6623,28 +6667,50 @@ func (o *Rule220_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 //
 // It has following labels: 6, 17
 type Rule220_IPProtocolData_Ports struct {
-	Ports *Rule220_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule220_IPProtocolData_Ports) is_Rule220_IPProtocolData() {}
 
 func (o *Rule220_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule220_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule220_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule220_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -7449,7 +7515,7 @@ func (o *Rule224_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule224_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule224_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -7563,28 +7629,50 @@ func (o *Rule224_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 //
 // It has following labels: 6, 17
 type Rule224_IPProtocolData_Ports struct {
-	Ports *Rule224_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule224_IPProtocolData_Ports) is_Rule224_IPProtocolData() {}
 
 func (o *Rule224_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule224_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule224_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule224_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -8396,7 +8484,7 @@ func (o *Rule225_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule225_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule225_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -8510,28 +8598,50 @@ func (o *Rule225_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 //
 // It has following labels: 6, 17
 type Rule225_IPProtocolData_Ports struct {
-	Ports *Rule225_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule225_IPProtocolData_Ports) is_Rule225_IPProtocolData() {}
 
 func (o *Rule225_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule225_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule225_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule225_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -9356,7 +9466,7 @@ func (o *Rule226_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule226_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule226_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -9470,28 +9580,50 @@ func (o *Rule226_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 //
 // It has following labels: 6, 17
 type Rule226_IPProtocolData_Ports struct {
-	Ports *Rule226_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule226_IPProtocolData_Ports) is_Rule226_IPProtocolData() {}
 
 func (o *Rule226_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule226_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule226_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule226_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -10355,7 +10487,7 @@ func (o *Rule227_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule227_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule227_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -10469,28 +10601,50 @@ func (o *Rule227_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Re
 //
 // It has following labels: 6, 17
 type Rule227_IPProtocolData_Ports struct {
-	Ports *Rule227_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	LocalPorts  *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule227_IPProtocolData_Ports) is_Rule227_IPProtocolData() {}
 
 func (o *Rule227_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule227_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule227_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule227_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
@@ -11580,7 +11734,7 @@ func (o *Rule_IPProtocolData) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *Rule_IPProtocolData_Ports:
 		if value != nil {
-			return value.Ports
+			return value
 		}
 	case *Rule_IPProtocolData_TypeCodeListV4:
 		if value != nil {
@@ -11694,28 +11848,54 @@ func (o *Rule_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reade
 //
 // It has following labels: 6, 17
 type Rule_IPProtocolData_Ports struct {
-	Ports *Rule_IPProtocolData_Ports `idl:"name:Ports" json:"ports"`
+	// LocalPorts:  A condition that specifies the local host ports of the TCP or UDP traffic
+	// that the rule matches.
+	LocalPorts *Ports `idl:"name:LocalPorts" json:"local_ports"`
+	// RemotePorts:  A condition that specifies the remote host ports of the TCP or UDP
+	// traffic that the rule matches.
+	RemotePorts *Ports `idl:"name:RemotePorts" json:"remote_ports"`
 }
 
 func (*Rule_IPProtocolData_Ports) is_Rule_IPProtocolData() {}
 
 func (o *Rule_IPProtocolData_Ports) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.Ports != nil {
-		if err := o.Ports.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.LocalPorts != nil {
+		if err := o.LocalPorts.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
-		if err := (&Rule_IPProtocolData_Ports{}).MarshalNDR(ctx, w); err != nil {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.RemotePorts != nil {
+		if err := o.RemotePorts.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&Ports{}).MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *Rule_IPProtocolData_Ports) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.Ports == nil {
-		o.Ports = &Rule_IPProtocolData_Ports{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.Ports.UnmarshalNDR(ctx, w); err != nil {
+	if o.LocalPorts == nil {
+		o.LocalPorts = &Ports{}
+	}
+	if err := o.LocalPorts.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.RemotePorts == nil {
+		o.RemotePorts = &Ports{}
+	}
+	if err := o.RemotePorts.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil

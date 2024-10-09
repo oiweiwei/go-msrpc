@@ -253,19 +253,19 @@ func (o *ClaimEntry_Values) GetValue() any {
 	switch value := (interface{})(o.Value).(type) {
 	case *ClaimEntry_Values_ClaimEntryInt64:
 		if value != nil {
-			return value.ClaimEntryInt64
+			return value
 		}
 	case *ClaimEntry_Values_ClaimEntryUint64:
 		if value != nil {
-			return value.ClaimEntryUint64
+			return value
 		}
 	case *ClaimEntry_Values_ClaimEntryString:
 		if value != nil {
-			return value.ClaimEntryString
+			return value
 		}
 	case *ClaimEntry_Values_ClaimEntryBoolean:
 		if value != nil {
-			return value.ClaimEntryBoolean
+			return value
 		}
 	}
 	return nil
@@ -382,28 +382,88 @@ func (o *ClaimEntry_Values) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader,
 //
 // It has following labels: 1
 type ClaimEntry_Values_ClaimEntryInt64 struct {
-	ClaimEntryInt64 *ClaimEntry_Values_ClaimEntryInt64 `idl:"name:CLAIM_ENTRY_INT64" json:"claim_entry_int64"`
+	ValueCount  uint32  `idl:"name:ValueCount" json:"value_count"`
+	Int64Values []int64 `idl:"name:Int64Values;size_is:(ValueCount)" json:"int64_values"`
 }
 
 func (*ClaimEntry_Values_ClaimEntryInt64) is_ClaimEntry_Values() {}
 
 func (o *ClaimEntry_Values_ClaimEntryInt64) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.ClaimEntryInt64 != nil {
-		if err := o.ClaimEntryInt64.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ValueCount); err != nil {
+		return err
+	}
+	if o.Int64Values != nil || o.ValueCount > 0 {
+		_ptr_Int64Values := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ValueCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Int64Values {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Int64Values[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Int64Values); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(int64(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Int64Values, _ptr_Int64Values); err != nil {
 			return err
 		}
 	} else {
-		if err := (&ClaimEntry_Values_ClaimEntryInt64{}).MarshalNDR(ctx, w); err != nil {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *ClaimEntry_Values_ClaimEntryInt64) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.ClaimEntryInt64 == nil {
-		o.ClaimEntryInt64 = &ClaimEntry_Values_ClaimEntryInt64{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.ClaimEntryInt64.UnmarshalNDR(ctx, w); err != nil {
+	if err := w.ReadData(&o.ValueCount); err != nil {
+		return err
+	}
+	_ptr_Int64Values := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ValueCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ValueCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Int64Values", sizeInfo[0])
+		}
+		o.Int64Values = make([]int64, sizeInfo[0])
+		for i1 := range o.Int64Values {
+			i1 := i1
+			if err := w.ReadData(&o.Int64Values[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Int64Values := func(ptr interface{}) { o.Int64Values = *ptr.(*[]int64) }
+	if err := w.ReadPointer(&o.Int64Values, _s_Int64Values, _ptr_Int64Values); err != nil {
 		return err
 	}
 	return nil
@@ -413,28 +473,88 @@ func (o *ClaimEntry_Values_ClaimEntryInt64) UnmarshalNDR(ctx context.Context, w 
 //
 // It has following labels: 2
 type ClaimEntry_Values_ClaimEntryUint64 struct {
-	ClaimEntryUint64 *ClaimEntry_Values_ClaimEntryUint64 `idl:"name:CLAIM_ENTRY_UINT64" json:"claim_entry_uint64"`
+	ValueCount   uint32   `idl:"name:ValueCount" json:"value_count"`
+	Uint64Values []uint64 `idl:"name:Uint64Values;size_is:(ValueCount)" json:"uint64_values"`
 }
 
 func (*ClaimEntry_Values_ClaimEntryUint64) is_ClaimEntry_Values() {}
 
 func (o *ClaimEntry_Values_ClaimEntryUint64) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.ClaimEntryUint64 != nil {
-		if err := o.ClaimEntryUint64.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ValueCount); err != nil {
+		return err
+	}
+	if o.Uint64Values != nil || o.ValueCount > 0 {
+		_ptr_Uint64Values := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ValueCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Uint64Values {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Uint64Values[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Uint64Values); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint64(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Uint64Values, _ptr_Uint64Values); err != nil {
 			return err
 		}
 	} else {
-		if err := (&ClaimEntry_Values_ClaimEntryUint64{}).MarshalNDR(ctx, w); err != nil {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *ClaimEntry_Values_ClaimEntryUint64) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.ClaimEntryUint64 == nil {
-		o.ClaimEntryUint64 = &ClaimEntry_Values_ClaimEntryUint64{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.ClaimEntryUint64.UnmarshalNDR(ctx, w); err != nil {
+	if err := w.ReadData(&o.ValueCount); err != nil {
+		return err
+	}
+	_ptr_Uint64Values := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ValueCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ValueCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Uint64Values", sizeInfo[0])
+		}
+		o.Uint64Values = make([]uint64, sizeInfo[0])
+		for i1 := range o.Uint64Values {
+			i1 := i1
+			if err := w.ReadData(&o.Uint64Values[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_Uint64Values := func(ptr interface{}) { o.Uint64Values = *ptr.(*[]uint64) }
+	if err := w.ReadPointer(&o.Uint64Values, _s_Uint64Values, _ptr_Uint64Values); err != nil {
 		return err
 	}
 	return nil
@@ -444,28 +564,107 @@ func (o *ClaimEntry_Values_ClaimEntryUint64) UnmarshalNDR(ctx context.Context, w
 //
 // It has following labels: 3
 type ClaimEntry_Values_ClaimEntryString struct {
-	ClaimEntryString *ClaimEntry_Values_ClaimEntryString `idl:"name:CLAIM_ENTRY_STRING" json:"claim_entry_string"`
+	ValueCount   uint32   `idl:"name:ValueCount" json:"value_count"`
+	StringValues []string `idl:"name:StringValues;size_is:(ValueCount);string" json:"string_values"`
 }
 
 func (*ClaimEntry_Values_ClaimEntryString) is_ClaimEntry_Values() {}
 
 func (o *ClaimEntry_Values_ClaimEntryString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.ClaimEntryString != nil {
-		if err := o.ClaimEntryString.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ValueCount); err != nil {
+		return err
+	}
+	if o.StringValues != nil || o.ValueCount > 0 {
+		_ptr_StringValues := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ValueCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.StringValues {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.StringValues[i1] != "" {
+					_ptr_StringValues := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+						if err := ndr.WriteUTF16NString(ctx, w, o.StringValues[i1]); err != nil {
+							return err
+						}
+						return nil
+					})
+					if err := w.WritePointer(&o.StringValues[i1], _ptr_StringValues); err != nil {
+						return err
+					}
+				} else {
+					if err := w.WritePointer(nil); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.StringValues); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WritePointer(nil); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.StringValues, _ptr_StringValues); err != nil {
 			return err
 		}
 	} else {
-		if err := (&ClaimEntry_Values_ClaimEntryString{}).MarshalNDR(ctx, w); err != nil {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *ClaimEntry_Values_ClaimEntryString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.ClaimEntryString == nil {
-		o.ClaimEntryString = &ClaimEntry_Values_ClaimEntryString{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.ClaimEntryString.UnmarshalNDR(ctx, w); err != nil {
+	if err := w.ReadData(&o.ValueCount); err != nil {
+		return err
+	}
+	_ptr_StringValues := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ValueCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ValueCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.StringValues", sizeInfo[0])
+		}
+		o.StringValues = make([]string, sizeInfo[0])
+		for i1 := range o.StringValues {
+			i1 := i1
+			_ptr_StringValues := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if err := ndr.ReadUTF16NString(ctx, w, &o.StringValues[i1]); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_StringValues := func(ptr interface{}) { o.StringValues[i1] = *ptr.(*string) }
+			if err := w.ReadPointer(&o.StringValues[i1], _s_StringValues, _ptr_StringValues); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_StringValues := func(ptr interface{}) { o.StringValues = *ptr.(*[]string) }
+	if err := w.ReadPointer(&o.StringValues, _s_StringValues, _ptr_StringValues); err != nil {
 		return err
 	}
 	return nil
@@ -475,28 +674,88 @@ func (o *ClaimEntry_Values_ClaimEntryString) UnmarshalNDR(ctx context.Context, w
 //
 // It has following labels: 6
 type ClaimEntry_Values_ClaimEntryBoolean struct {
-	ClaimEntryBoolean *ClaimEntry_Values_ClaimEntryBoolean `idl:"name:CLAIM_ENTRY_BOOLEAN" json:"claim_entry_boolean"`
+	ValueCount    uint32   `idl:"name:ValueCount" json:"value_count"`
+	BooleanValues []uint64 `idl:"name:BooleanValues;size_is:(ValueCount)" json:"boolean_values"`
 }
 
 func (*ClaimEntry_Values_ClaimEntryBoolean) is_ClaimEntry_Values() {}
 
 func (o *ClaimEntry_Values_ClaimEntryBoolean) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	if o.ClaimEntryBoolean != nil {
-		if err := o.ClaimEntryBoolean.MarshalNDR(ctx, w); err != nil {
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ValueCount); err != nil {
+		return err
+	}
+	if o.BooleanValues != nil || o.ValueCount > 0 {
+		_ptr_BooleanValues := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ValueCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.BooleanValues {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.BooleanValues[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.BooleanValues); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint64(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.BooleanValues, _ptr_BooleanValues); err != nil {
 			return err
 		}
 	} else {
-		if err := (&ClaimEntry_Values_ClaimEntryBoolean{}).MarshalNDR(ctx, w); err != nil {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *ClaimEntry_Values_ClaimEntryBoolean) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if o.ClaimEntryBoolean == nil {
-		o.ClaimEntryBoolean = &ClaimEntry_Values_ClaimEntryBoolean{}
+	if err := w.ReadAlign(9); err != nil {
+		return err
 	}
-	if err := o.ClaimEntryBoolean.UnmarshalNDR(ctx, w); err != nil {
+	if err := w.ReadData(&o.ValueCount); err != nil {
+		return err
+	}
+	_ptr_BooleanValues := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ValueCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ValueCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.BooleanValues", sizeInfo[0])
+		}
+		o.BooleanValues = make([]uint64, sizeInfo[0])
+		for i1 := range o.BooleanValues {
+			i1 := i1
+			if err := w.ReadData(&o.BooleanValues[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_BooleanValues := func(ptr interface{}) { o.BooleanValues = *ptr.(*[]uint64) }
+	if err := w.ReadPointer(&o.BooleanValues, _s_BooleanValues, _ptr_BooleanValues); err != nil {
 		return err
 	}
 	return nil

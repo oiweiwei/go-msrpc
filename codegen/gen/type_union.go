@@ -79,7 +79,11 @@ func (p *TypeGenerator) GenerateUnionGetValue(ctx context.Context) {
 				// determine for-sure.
 				p.P("case", "*"+p.UnionArmName(ctx, cases), ":")
 				p.If("value", "!=", "nil", func() {
-					p.P("return", "value."+p.GoFieldName(cases.Arms[0]))
+					if p.IsEmbeddedArmStruct(ctx, cases) {
+						p.P("return", "value")
+					} else {
+						p.P("return", "value."+p.GoFieldName(cases.Arms[0]))
+					}
 				})
 			}
 		})
@@ -383,9 +387,9 @@ func (p *TypeGenerator) GenUnionArm(ctx context.Context, cases *midl.UnionCase) 
 
 func (p *TypeGenerator) ArmFields(ctx context.Context, cases *midl.UnionCase) []*midl.Field {
 
-	// if p.IsEmbeddedArmStruct(ctx, cases) && cases.Arms[0].Type.Struct != nil {
-	//	return cases.Arms[0].Type.Struct.Fields
-	// }
+	if p.IsEmbeddedArmStruct(ctx, cases) {
+		return cases.Arms[0].Type.Struct.Fields
+	}
 
 	return cases.Arms
 }
@@ -398,6 +402,10 @@ func (p *TypeGenerator) GenUnionArmMarshalNDR(ctx context.Context, arm *midl.Uni
 
 	p.P()
 	p.P("func", "(o *"+caseName+")", "MarshalNDR(ctx context.Context, w ndr.Writer)", "error", "{")
+
+	if p.IsEmbeddedArmStruct(ctx, arm) {
+		p.GenDoAlignmentMarshalNDR(ctx, NewScopes(arm.Arms[0].Scopes()).Alignment())
+	}
 
 	for _, field := range p.ArmFields(ctx, arm) {
 		scopes := NewScopes(field.Scopes())
