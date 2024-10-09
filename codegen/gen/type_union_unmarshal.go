@@ -95,7 +95,11 @@ func (p *TypeGenerator) GenUnionArmUnmarshalNDR(ctx context.Context, arm *midl.U
 
 	p.P("func", "(o *"+caseName+")", "UnmarshalNDR(ctx context.Context, w ndr.Reader)", "error", "{")
 
-	for _, field := range arm.Arms {
+	if p.IsEmbeddedArmStruct(ctx, arm) {
+		p.GenDoAlignmentUnmarshalNDR(ctx, NewScopes(arm.Arms[0].Scopes()).Alignment())
+	}
+
+	for _, field := range p.ArmFields(ctx, arm) {
 		scopes := NewScopes(field.Scopes())
 		if p.IsArmPointerToPrimitiveType(ctx, arm) {
 			scopes = scopes.Next()
