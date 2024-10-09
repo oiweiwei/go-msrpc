@@ -86,6 +86,10 @@ abbr:
   csid: CSID # called subscription id
   css: CSS
   csv: CSV
+  cbc: CBC
+  crc: CRC
+  cts: CTS
+  rc4: RC4
   csvfs: CSVFS
   ctrs: Counters
   ctx: Context

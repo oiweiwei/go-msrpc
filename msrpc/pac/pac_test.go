@@ -7,11 +7,13 @@ import (
 	"testing"
 
 	"github.com/jcmturner/gokrb5/v8/test/testdata"
+	"github.com/jcmturner/gokrb5/v8/types"
 
-	pac_testdata "github.com/oiweiwei/go-msrpc/msrpc/pac/testdata"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
 
 	"github.com/oiweiwei/go-msrpc/msrpc/adts/claims/claims/v1"
-	ndr "github.com/oiweiwei/go-msrpc/ndr"
+
+	pac_testdata "github.com/oiweiwei/go-msrpc/msrpc/pac/testdata"
 )
 
 var j = func(v any) string {
@@ -91,6 +93,43 @@ func TestClaimsSet(t *testing.T) {
 		}
 
 		fmt.Println(j(cls.ClaimsMaps()))
+	}
+
+}
+
+func TestCredentialsInfo(t *testing.T) {
+
+	for _, vec := range [][2]string{
+		{pac_testdata.MarshaledPAC_CredentialsInfo_Key, pac_testdata.MarshaledPAC_CredentialsInfo},
+	} {
+
+		b, err := hex.DecodeString(vec[1])
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		var ci PACCredentialInfo
+
+		if err := ndr.Unmarshal(b, &ci, ndr.Opaque); err != nil {
+			t.Fatal(err)
+		}
+
+		bkey, err := hex.DecodeString(vec[0])
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		key := types.EncryptionKey{
+			KeyType:  int32(ci.EncryptionType),
+			KeyValue: bkey,
+		}
+
+		pkg, err := ci.DecryptCredentialData(key)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		fmt.Println(j(pkg))
 	}
 
 }

@@ -86,6 +86,69 @@ var (
 	GoPackage = "pac"
 )
 
+// PACInfoBufferTypeLogonInfo represents the PAC_INFO_BUFFER_TYPE_LOGON_INFO RPC constant
+const PACInfoBufferTypeLogonInfo = 0x00000001
+
+// PACInfoBufferTypeCredentialsInfo represents the PAC_INFO_BUFFER_TYPE_CREDENTIALS_INFO RPC constant
+const PACInfoBufferTypeCredentialsInfo = 0x00000002
+
+// PACInfoBufferTypeServerChecksum represents the PAC_INFO_BUFFER_TYPE_SERVER_CHECKSUM RPC constant
+const PACInfoBufferTypeServerChecksum = 0x00000006
+
+// PACInfoBufferTypeKDCChecksum represents the PAC_INFO_BUFFER_TYPE_KDC_CHECKSUM RPC constant
+const PACInfoBufferTypeKDCChecksum = 0x00000007
+
+// PACInfoBufferTypeClientNameAndTicketInfo represents the PAC_INFO_BUFFER_TYPE_CLIENT_NAME_AND_TICKET_INFO RPC constant
+const PACInfoBufferTypeClientNameAndTicketInfo = 0x0000000A
+
+// PACInfoBufferTypeConstrainedDelegationInfo represents the PAC_INFO_BUFFER_TYPE_CONSTRAINED_DELEGATION_INFO RPC constant
+const PACInfoBufferTypeConstrainedDelegationInfo = 0x0000000B
+
+// PACInfoBufferTypeUPNAndDNSInfo represents the PAC_INFO_BUFFER_TYPE_UPN_AND_DNS_INFO RPC constant
+const PACInfoBufferTypeUPNAndDNSInfo = 0x0000000C
+
+// PACInfoBufferTypeClientClaimsInfo represents the PAC_INFO_BUFFER_TYPE_CLIENT_CLAIMS_INFO RPC constant
+const PACInfoBufferTypeClientClaimsInfo = 0x0000000D
+
+// PACInfoBufferTypeDeviceInfo represents the PAC_INFO_BUFFER_TYPE_DEVICE_INFO RPC constant
+const PACInfoBufferTypeDeviceInfo = 0x0000000E
+
+// PACInfoBufferTypeDeviceClaimsInfo represents the PAC_INFO_BUFFER_TYPE_DEVICE_CLAIMS_INFO RPC constant
+const PACInfoBufferTypeDeviceClaimsInfo = 0x0000000F
+
+// PACInfoBufferTypeTicketChecksum represents the PAC_INFO_BUFFER_TYPE_TICKET_CHECKSUM RPC constant
+const PACInfoBufferTypeTicketChecksum = 0x00000010
+
+// PACInfoBufferTypeAttributes represents the PAC_INFO_BUFFER_TYPE_ATTRIBUTES RPC constant
+const PACInfoBufferTypeAttributes = 0x00000011
+
+// PACInfoBufferTypeRequestorSID represents the PAC_INFO_BUFFER_TYPE_REQUESTOR_SID RPC constant
+const PACInfoBufferTypeRequestorSID = 0x00000012
+
+// PACInfoBufferTypeExtendedKDCChecksum represents the PAC_INFO_BUFFER_TYPE_EXTENDED_KDC_CHECKSUM RPC constant
+const PACInfoBufferTypeExtendedKDCChecksum = 0x00000013
+
+// PACInfoBufferTypeRequestorGUID represents the PAC_INFO_BUFFER_TYPE_REQUESTOR_GUID RPC constant
+const PACInfoBufferTypeRequestorGUID = 0x00000014
+
+// EncryptionTypeNone represents the ENCRYPTION_TYPE_NONE RPC constant
+const EncryptionTypeNone = 0x00000000
+
+// EncryptionTypeDESCBCCRC represents the ENCRYPTION_TYPE_DES_CBC_CRC RPC constant
+const EncryptionTypeDESCBCCRC = 0x00000001
+
+// EncryptionTypeDESCBCMD5 represents the ENCRYPTION_TYPE_DES_CBC_MD5 RPC constant
+const EncryptionTypeDESCBCMD5 = 0x00000003
+
+// EncryptionTypeAES128CTSHMACSHA196 represents the ENCRYPTION_TYPE_AES128_CTS_HMAC_SHA1_96 RPC constant
+const EncryptionTypeAES128CTSHMACSHA196 = 0x00000011
+
+// EncryptionTypeAES256CTSHMACSHA196 represents the ENCRYPTION_TYPE_AES256_CTS_HMAC_SHA1_96 RPC constant
+const EncryptionTypeAES256CTSHMACSHA196 = 0x00000012
+
+// EncryptionTypeRC4HMAC represents the ENCRYPTION_TYPE_RC4_HMAC RPC constant
+const EncryptionTypeRC4HMAC = 0x00000017
+
 // SignatureTypeKerberosChecksumHMACMD5 represents the SIGNATURE_TYPE_KERB_CHECKSUM_HMAC_MD5 RPC constant
 const SignatureTypeKerberosChecksumHMACMD5 = 0xFFFFFF76
 
@@ -1919,7 +1982,8 @@ type SecurityPackageSupplementalCred struct {
 	CredentialSize uint32 `idl:"name:CredentialSize" json:"credential_size"`
 	// Credentials: A pointer that MUST reference the serialized credentials being presented
 	// to the security protocol named in PackageName.
-	Credentials []byte `idl:"name:Credentials;size_is:(CredentialSize)" json:"credentials"`
+	Credentials                []byte                      `idl:"name:Credentials;size_is:(CredentialSize)" json:"credentials"`
+	NTLMSupplementalCredential *NTLMSupplementalCredential `idl:"name:NtlmSupplementalCredential" json:"ntlm_supplemental_credential"`
 }
 
 func (o *SecurityPackageSupplementalCred) xxx_PreparePayload(ctx context.Context) error {
