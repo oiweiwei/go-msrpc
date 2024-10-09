@@ -4,24 +4,30 @@ import (
 	"bytes"
 	"fmt"
 
-	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
+
+	claims "github.com/oiweiwei/go-msrpc/msrpc/adts/claims/claims/v1"
+	dtyp "github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 )
 
 type PAC struct {
-	Version                          int                     `json:"version"`
-	Buffers                          []*PACInfoBuffer        `json:"pac_info_buffer"`
-	LogonInformation                 *KerberosValidationInfo `json:"logon_information,omitempty"`
-	ServerChecksum                   *PACSignatureData       `json:"server_checksum,omitempty"`
-	KDCChecksum                      *PACSignatureData       `json:"kdc_checksum,omitempty"`
-	ClientNameAndTicketInformation   *PACClientInfo          `json:"client_name_and_ticket_information,omitempty"`
-	ConstrainedDelegationInformation *S4UDelegationInfo      `json:"constrained_delegation_information,omitempty"`
-	UPNAndDNSInformation             *UPNDNSInfo             `json:"upn_and_dns_information,omitempty"`
-	TicketChecksum                   *PACSignatureData       `json:"ticket_checksum,omitempty"`
-	Attributes                       *PACAttributesInfo      `json:"attributes,omitempty"`
-	RequestorSID                     *dtyp.SID               `json:"requestor_sid,omitempty"`
-	ExtendedKDCChecksum              *PACSignatureData       `json:"extended_kdc_checksum,omitempty"`
-	RequestorGUID                    *dtyp.GUID              `json:"requestor_guid,omitempty"`
+	Version                          int                       `json:"version"`
+	Buffers                          []*PACInfoBuffer          `json:"pac_info_buffer"`
+	LogonInformation                 *KerberosValidationInfo   `json:"logon_information,omitempty"`
+	CredentialInfo                   *PACCredentialInfo        `json:"credential_info,omitempty"`
+	ServerChecksum                   *PACSignatureData         `json:"server_checksum,omitempty"`
+	KDCChecksum                      *PACSignatureData         `json:"kdc_checksum,omitempty"`
+	ClientNameAndTicketInformation   *PACClientInfo            `json:"client_name_and_ticket_information,omitempty"`
+	ConstrainedDelegationInformation *S4UDelegationInfo        `json:"constrained_delegation_information,omitempty"`
+	UPNAndDNSInformation             *UPNDNSInfo               `json:"upn_and_dns_information,omitempty"`
+	ClientClaimsInformation          *claims.ClaimsSetMetadata `json:"client_claims_information,omitempty"`
+	DeviceInformation                *PACDeviceInfo            `json:"device_information,omitempty"`
+	DeviceClaimsInformation          *claims.ClaimsSetMetadata `json:"device_claims_information,omitempty"`
+	TicketChecksum                   *PACSignatureData         `json:"ticket_checksum,omitempty"`
+	Attributes                       *PACAttributesInfo        `json:"attributes,omitempty"`
+	RequestorSID                     *dtyp.SID                 `json:"requestor_sid,omitempty"`
+	ExtendedKDCChecksum              *PACSignatureData         `json:"extended_kdc_checksum,omitempty"`
+	RequestorGUID                    *dtyp.GUID                `json:"requestor_guid,omitempty"`
 }
 
 func (p *PAC) Unmarshal(b []byte) error {
@@ -39,6 +45,10 @@ func (p *PAC) Unmarshal(b []byte) error {
 
 		b := b[buffer.Offset : buffer.Offset+uint64(buffer.BufferLength)]
 
+		if len(b) == 0 {
+			continue
+		}
+
 		switch buffer.Type {
 		case 0x00000001:
 			var v KerberosValidationInfo
@@ -47,7 +57,11 @@ func (p *PAC) Unmarshal(b []byte) error {
 			}
 			p.LogonInformation = &v
 		case 0x00000002:
-			// TODO: Credentials information
+			var v PACCredentialInfo
+			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
+				return fmt.Errorf("unmarshal_pac: credential_info: %w", err)
+			}
+			p.CredentialInfo = &v
 		case 0x00000006:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
@@ -78,10 +92,24 @@ func (p *PAC) Unmarshal(b []byte) error {
 				return fmt.Errorf("unmarshal_pac: upn_and_dns_information: %w", err)
 			}
 			p.UPNAndDNSInformation = &v
+		case 0x0000000D:
+			var v claims.ClaimsSetMetadata
+			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
+				return fmt.Errorf("unmarshal_pac: client_claims_information: %w", err)
+			}
+			p.ClientClaimsInformation = &v
 		case 0x0000000E:
-			// TODO: Device information
+			var v PACDeviceInfo
+			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
+				return fmt.Errorf("unmarshal_pac: device_information: %w", err)
+			}
+			p.DeviceInformation = &v
 		case 0x0000000F:
-			// TODO: Device claims information
+			var v claims.ClaimsSetMetadata
+			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
+				return fmt.Errorf("unmarshal_pac: client_claims_information: %w", err)
+			}
+			p.DeviceClaimsInformation = &v
 		case 0x00000010:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
@@ -184,9 +212,19 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.LogonInformation != nil {
 		b, err := ndr.MarshalWithTypeSerializationV1(ndr.MarshalerPointer(p.LogonInformation))
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: logon_information: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000001, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
+	// CredentialInfo
+	if p.CredentialInfo != nil {
+		b, err := ndr.Marshal(p.CredentialInfo, ndr.Opaque)
+		if err != nil {
+			return nil, fmt.Errorf("marshal_pac: credential_info: %w", err)
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000002, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
 	}
 
@@ -194,7 +232,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.ServerChecksum != nil {
 		b, err := ndr.Marshal(p.ServerChecksum, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: server_checksum: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000006, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -204,7 +242,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.KDCChecksum != nil {
 		b, err := ndr.Marshal(p.KDCChecksum, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: kdc_checksum: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000007, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -214,7 +252,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.ClientNameAndTicketInformation != nil {
 		b, err := ndr.Marshal(p.ClientNameAndTicketInformation, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: client_name_and_ticket_information: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x0000000A, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -224,7 +262,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.ConstrainedDelegationInformation != nil {
 		b, err := ndr.MarshalWithTypeSerializationV1(p.ConstrainedDelegationInformation)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: constrained_delegation_information: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x0000000B, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -234,9 +272,39 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.UPNAndDNSInformation != nil {
 		b, err := p.UPNAndDNSInformation.Marshal()
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: upn_and_dns_information: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x0000000C, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
+	// ClientClaimsInformation
+	if p.ClientClaimsInformation != nil {
+		b, err := ndr.MarshalWithTypeSerializationV1(ndr.MarshalerPointer(p.ClientClaimsInformation))
+		if err != nil {
+			return nil, fmt.Errorf("marshal_pac: client_claims_information: %w", err)
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x0000000D, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
+	// DeviceInformation
+	if p.DeviceInformation != nil {
+		b, err := ndr.MarshalWithTypeSerializationV1(ndr.MarshalerPointer(p.DeviceInformation))
+		if err != nil {
+			return nil, fmt.Errorf("marshal_pac: device_information: %w", err)
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x0000000E, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
+		writeWithPad(buf, b)
+	}
+
+	// DeviceClaimsInformation
+	if p.DeviceClaimsInformation != nil {
+		b, err := ndr.MarshalWithTypeSerializationV1(ndr.MarshalerPointer(p.DeviceClaimsInformation))
+		if err != nil {
+			return nil, fmt.Errorf("marshal_pac: device_claims_information: %w", err)
+		}
+		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x0000000F, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
 	}
 
@@ -244,7 +312,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.TicketChecksum != nil {
 		b, err := ndr.Marshal(p.TicketChecksum, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: ticket_checksum: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000010, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -254,7 +322,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.Attributes != nil {
 		b, err := ndr.Marshal(p.Attributes, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: attributes: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000011, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -264,7 +332,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.RequestorSID != nil {
 		b, err := ndr.Marshal(p.RequestorSID, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: requestor_sid: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000012, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -274,7 +342,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.ExtendedKDCChecksum != nil {
 		b, err := ndr.Marshal(p.ExtendedKDCChecksum, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: extended_kdc_checksum: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000013, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
@@ -284,7 +352,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 	if p.RequestorGUID != nil {
 		b, err := ndr.Marshal(p.RequestorGUID, ndr.Opaque)
 		if err != nil {
-			return nil, err
+			return nil, fmt.Errorf("marshal_pac: requestor_guid: %w", err)
 		}
 		pac.Buffers = append(pac.Buffers, &PACInfoBuffer{Type: 0x00000014, Offset: uint64(buf.Len()), BufferLength: uint32(len(b))})
 		writeWithPad(buf, b)
