@@ -14,7 +14,7 @@ type PAC struct {
 	Version                          int                       `json:"version"`
 	Buffers                          []*PACInfoBuffer          `json:"pac_info_buffer"`
 	LogonInformation                 *KerberosValidationInfo   `json:"logon_information,omitempty"`
-	CredentialInfo                   *PACCredentialInfo        `json:"credential_info,omitempty"`
+	CredentialInformation            *PACCredentialInfo        `json:"credential_information,omitempty"`
 	ServerChecksum                   *PACSignatureData         `json:"server_checksum,omitempty"`
 	KDCChecksum                      *PACSignatureData         `json:"kdc_checksum,omitempty"`
 	ClientNameAndTicketInformation   *PACClientInfo            `json:"client_name_and_ticket_information,omitempty"`
@@ -50,73 +50,73 @@ func (p *PAC) Unmarshal(b []byte) error {
 		}
 
 		switch buffer.Type {
-		case 0x00000001:
+		case PACInfoBufferTypeLogonInfo:
 			var v KerberosValidationInfo
 			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
 				return fmt.Errorf("unmarshal_pac: kerberos_validation_info: %w", err)
 			}
 			p.LogonInformation = &v
-		case 0x00000002:
+		case PACInfoBufferTypeCredentialsInfo:
 			var v PACCredentialInfo
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: credential_info: %w", err)
 			}
-			p.CredentialInfo = &v
-		case 0x00000006:
+			p.CredentialInformation = &v
+		case PACInfoBufferTypeServerChecksum:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarhsal_pac: server_checksum: %w", err)
 			}
 			p.ServerChecksum = &v
-		case 0x00000007:
+		case PACInfoBufferTypeKDCChecksum:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: kdc_checksum: %w", err)
 			}
 			p.KDCChecksum = &v
-		case 0x0000000A:
+		case PACInfoBufferTypeClientNameAndTicketInfo:
 			var v PACClientInfo
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: client_name_and_ticket_information: %w", err)
 			}
 			p.ClientNameAndTicketInformation = &v
-		case 0x0000000B:
+		case PACInfoBufferTypeConstrainedDelegationInfo:
 			var v S4UDelegationInfo
 			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
 				return fmt.Errorf("unmarshal_pac: constrained_delegation_information: %w", err)
 			}
 			p.ConstrainedDelegationInformation = &v
-		case 0x0000000C:
+		case PACInfoBufferTypeUPNAndDNSInfo:
 			var v UPNDNSInfo
 			if err := v.Unmarshal(b); err != nil {
 				return fmt.Errorf("unmarshal_pac: upn_and_dns_information: %w", err)
 			}
 			p.UPNAndDNSInformation = &v
-		case 0x0000000D:
+		case PACInfoBufferTypeClientClaimsInfo:
 			var v claims.ClaimsSetMetadata
 			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
 				return fmt.Errorf("unmarshal_pac: client_claims_information: %w", err)
 			}
 			p.ClientClaimsInformation = &v
-		case 0x0000000E:
+		case PACInfoBufferTypeDeviceInfo:
 			var v PACDeviceInfo
 			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
 				return fmt.Errorf("unmarshal_pac: device_information: %w", err)
 			}
 			p.DeviceInformation = &v
-		case 0x0000000F:
+		case PACInfoBufferTypeDeviceClaimsInfo:
 			var v claims.ClaimsSetMetadata
 			if err := ndr.UnmarshalWithTypeSerializationV1(b, ndr.UnmarshalerPointer(&v)); err != nil {
 				return fmt.Errorf("unmarshal_pac: client_claims_information: %w", err)
 			}
 			p.DeviceClaimsInformation = &v
-		case 0x00000010:
+		case PACInfoBufferTypeTicketChecksum:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: ticket_checksum: %w", err)
 			}
 			p.TicketChecksum = &v
-		case 0x00000011:
+		case PACInfoBufferTypeAttributes:
 			// XXX: the format of the PAC_ATTRIBUTE_INFO is defined as uint32 flag-size in bits
 			// and array of flags of rounded (flag-size / 32)
 			var v PACAttributesInfo
@@ -124,19 +124,19 @@ func (p *PAC) Unmarshal(b []byte) error {
 				return fmt.Errorf("unmarshal_pac: attributes: %w", err)
 			}
 			p.Attributes = &v
-		case 0x00000012:
+		case PACInfoBufferTypeRequestorSID:
 			var v dtyp.SID
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: requestor_sid: %w", err)
 			}
 			p.RequestorSID = &v
-		case 0x00000013:
+		case PACInfoBufferTypeExtendedKDCChecksum:
 			var v PACSignatureData
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: extended_kdc_checksum: %w", err)
 			}
 			p.ExtendedKDCChecksum = &v
-		case 0x00000014:
+		case PACInfoBufferTypeRequestorGUID:
 			var v dtyp.GUID
 			if err := ndr.Unmarshal(b, &v, ndr.Opaque); err != nil {
 				return fmt.Errorf("unmarshal_pac: requestor_guid: %w", err)
@@ -218,9 +218,9 @@ func (p *PAC) Marshal() ([]byte, error) {
 		writeWithPad(buf, b)
 	}
 
-	// CredentialInfo
-	if p.CredentialInfo != nil {
-		b, err := ndr.Marshal(p.CredentialInfo, ndr.Opaque)
+	// CredentialInformation
+	if p.CredentialInformation != nil {
+		b, err := ndr.Marshal(p.CredentialInformation, ndr.Opaque)
 		if err != nil {
 			return nil, fmt.Errorf("marshal_pac: credential_info: %w", err)
 		}
