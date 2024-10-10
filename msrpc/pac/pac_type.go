@@ -260,7 +260,7 @@ func (p *PAC) Marshal() ([]byte, error) {
 
 	// ConstrainedDelegationInformation
 	if p.ConstrainedDelegationInformation != nil {
-		b, err := ndr.MarshalWithTypeSerializationV1(p.ConstrainedDelegationInformation)
+		b, err := ndr.MarshalWithTypeSerializationV1(ndr.MarshalerPointer(p.ConstrainedDelegationInformation))
 		if err != nil {
 			return nil, fmt.Errorf("marshal_pac: constrained_delegation_information: %w", err)
 		}
