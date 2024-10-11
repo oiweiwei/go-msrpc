@@ -257,6 +257,9 @@ func (c *clientConn) Unwrap(ctx context.Context, hdr Header, raw []byte, call Ca
 // WritePacket function encodes, encrypts/signs and sends the packet to the server.
 func (c *clientConn) WritePacket(ctx context.Context, call Call, pkt *Packet) error {
 	if err := c.writePacket(ctx, call, pkt); err != nil {
+		if terr := c.transport.HasErr(); terr != nil {
+			err = terr
+		}
 		// close transport on error.
 		c.transport.Close(ctx)
 		return err
@@ -278,6 +281,9 @@ func (c *clientConn) writePacket(ctx context.Context, call Call, pkt *Packet) er
 		return fmt.Errorf("wrap packet: %w", err)
 	}
 
+	ctx, cancel := context.WithTimeout(ctx, c.transport.settings.Timeout)
+	defer cancel()
+
 	if err := call.WriteBuffer(ctx, pkt.Header, c.buffer); err != nil {
 		return fmt.Errorf("write buffer: %w", err)
 	}
@@ -293,8 +299,12 @@ func (c *clientConn) ReadPacket(ctx context.Context, call Call, pkt *Packet) (*P
 
 	pkt, err := c.readPacket(ctx, call, pkt)
 	if err != nil {
+		if terr := c.transport.HasErr(); terr != nil {
+			err = terr
+		}
 		// close transport on error.
 		c.transport.Close(ctx)
+		c.logger.Debug().Msg("After Close")
 		return nil, err
 	}
 
@@ -303,6 +313,9 @@ func (c *clientConn) ReadPacket(ctx context.Context, call Call, pkt *Packet) (*P
 
 // readPacket.
 func (c *clientConn) readPacket(ctx context.Context, call Call, pkt *Packet) (*Packet, error) {
+
+	ctx, cancel := context.WithTimeout(ctx, c.transport.settings.Timeout)
+	defer cancel()
 
 	hdr, err := call.ReadBuffer(ctx, c.buffer)
 	if err != nil {

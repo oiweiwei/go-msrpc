@@ -134,9 +134,6 @@ func (c *transport) ReadBuffer(ctx context.Context, p []byte) (Header, error) {
 
 	var hdr Header
 
-	ctx, cancel := context.WithTimeout(ctx, c.settings.Timeout)
-	defer cancel()
-
 	if len(p) < c.settings.MaxXmitFrag {
 		return hdr, ErrBufferTooSmall
 	}
@@ -194,6 +191,7 @@ func (t *transport) recvLoop(ctx context.Context) error {
 				t.logger.Error().Uint32("call_id", call.ID()).Err(err).Msg("serving response error")
 			}
 		case <-ctx.Done():
+			t.logger.Debug().Msg("receiver routine terminated")
 			return nil
 		}
 	}
@@ -265,7 +263,6 @@ func (t *transport) sendLoop(ctx context.Context) error {
 	t.logger.Debug().Msg("started sender routine")
 
 	for {
-
 		select {
 		case call := <-t.txQ:
 			t.logger.Debug().Uint32("call_id", call.ID()).Msg("serving call")
@@ -274,6 +271,7 @@ func (t *transport) sendLoop(ctx context.Context) error {
 				t.logger.Error().Uint32("call_id", call.ID()).Err(err).Msg("serving call error")
 			}
 		case <-ctx.Done():
+			t.logger.Debug().Msg("sender routine terminated")
 			return nil
 		}
 	}
@@ -361,21 +359,21 @@ func clearTimer(t **time.Timer) {
 }
 
 // doWithTimeout.
-func doWithTimeout(ctx context.Context, timout time.Duration, f func() error) error {
+func doWithTimeout(ctx context.Context, timeout time.Duration, f func() error) error {
 
 	done := make(chan error, 1)
 	go func() {
 		done <- f()
 	}()
 
-	timer := time.NewTimer(timout)
+	timer := time.NewTimer(timeout)
 
 	var err error
 
 	select {
 	case err = <-done:
 	case <-timer.C:
-		err = context.DeadlineExceeded
+		return context.DeadlineExceeded
 	case <-ctx.Done():
 		err = ctx.Err()
 	}

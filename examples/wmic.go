@@ -8,9 +8,12 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"io"
 	"net"
 	"os"
 	"time"
+
+	"github.com/rs/zerolog"
 
 	"github.com/oiweiwei/go-msrpc/ssp"
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
@@ -45,10 +48,26 @@ func init() {
 	gssapi.AddMechanism(ssp.NTLM)
 }
 
-var query string
+var (
+	query    string
+	resource string
+	proto    bool
+	forward  bool
+	debug    bool
+	timeout  time.Duration
+	limit    int
+	page     int
+)
 
 func init() {
 	flag.StringVar(&query, "query", "", "wmic query")
+	flag.StringVar(&resource, "resource", "//./root/cimv2", "wmi resource")
+	flag.BoolVar(&proto, "proto", false, "return prototype")
+	flag.BoolVar(&debug, "debug", false, "debug")
+	flag.DurationVar(&timeout, "timeout", 30*time.Second, "timeout")
+	flag.IntVar(&limit, "limit", 0, "limit")
+	flag.IntVar(&page, "page", 100, "page")
+	flag.BoolVar(&forward, "forward-only", false, "forward-only")
 	flag.Parse()
 }
 
@@ -56,12 +75,20 @@ var j = func(data any) string { b, _ := json.MarshalIndent(data, "", "  "); retu
 
 func main() {
 
+	log := zerolog.New(os.Stderr)
+
+	if !debug {
+		log = zerolog.New(io.Discard)
+	}
+
 	ctx := gssapi.NewSecurityContext(context.Background())
 
 	// https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-dcom/2be2642e-67a1-4690-883b-642b505ddb1d
 
 	// ObjectExporter uses well-known endpoint 135.
-	cc, err := dcerpc.Dial(ctx, net.JoinHostPort(os.Getenv("SERVER"), "135"))
+	cc, err := dcerpc.Dial(ctx, net.JoinHostPort(os.Getenv("SERVER"), "135"),
+		dcerpc.WithLogger(log),
+		dcerpc.WithTimeout(timeout))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "dial_well_known_endpoint", err)
 		return
@@ -109,8 +136,12 @@ func main() {
 		return
 	}
 
+	wccOpts := append(act.OXIDBindings.EndpointsByProtocol("ncacn_ip_tcp"),
+		dcerpc.WithLogger(log),
+		dcerpc.WithTimeout(timeout))
+
 	// dial WMI using OXID bindings. (use ncacn_tcp_ip).
-	wcc, err := dcerpc.Dial(ctx, os.Getenv("SERVER"), act.OXIDBindings.EndpointsByProtocol("ncacn_ip_tcp")...)
+	wcc, err := dcerpc.Dial(ctx, os.Getenv("SERVER"), wccOpts...)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "dial_wmi_endpoint", err)
 		return
@@ -134,7 +165,7 @@ func main() {
 	// login to WMI.
 	login, err := l1login.NTLMLogin(ctx, &iwbemlevel1login.NTLMLoginRequest{
 		This:            &dcom.ORPCThis{Version: srv.COMVersion},
-		NetworkResource: "//./root/cimv2",
+		NetworkResource: resource,
 	})
 
 	if err != nil {
@@ -149,28 +180,41 @@ func main() {
 		return
 	}
 
+	flags := wmi.QueryFlagType(0)
+
+	if proto {
+		flags |= wmi.QueryFlagTypePrototype
+	}
+
+	if forward {
+		flags |= wmi.QueryFlagType(wmi.GenericFlagTypeForwardOnly)
+	}
+
 	enum, err := svcs.ExecQuery(ctx, &iwbemservices.ExecQueryRequest{
 		This:          &dcom.ORPCThis{Version: srv.COMVersion},
 		QueryLanguage: &oaut.String{Data: "WQL"},
 		Query:         &oaut.String{Data: query},
+		Flags:         int32(flags),
 	})
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "wmi_exec_query", query, err)
 		return
 	}
 
-	enums, err := ienumwbemclassobject.NewEnumClassObjectClient(ctx, wcc, dcom.WithIPID(enum.Enum.InterfacePointer().IPID()))
-	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		return
-	}
+	if !forward {
+		enums, err := ienumwbemclassobject.NewEnumClassObjectClient(ctx, wcc, dcom.WithIPID(enum.Enum.InterfacePointer().IPID()))
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			return
+		}
 
-	_, err = enums.Reset(ctx, &ienumwbemclassobject.ResetRequest{
-		This: &dcom.ORPCThis{Version: srv.COMVersion},
-	})
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "wmi_enum_reset", err)
-		return
+		_, err = enums.Reset(ctx, &ienumwbemclassobject.ResetRequest{
+			This: &dcom.ORPCThis{Version: srv.COMVersion},
+		})
+		if err != nil {
+			fmt.Fprintln(os.Stderr, "wmi_enum_reset", err)
+			return
+		}
 	}
 
 	irem, err := iremunknown2.NewRemoteUnknown2Client(ctx, wcc,
@@ -214,12 +258,16 @@ func main() {
 
 	now := time.Now()
 
-	for {
+	if limit > 0 && limit < page {
+		page = limit
+	}
+
+	for i := 0; limit == 0 || i < limit; i += page {
 
 		ret, err := wco.Next(ctx, &iwbemwcosmartenum.NextRequest{
 			This:    &dcom.ORPCThis{Version: srv.COMVersion},
 			Timeout: -1,
-			Count:   100,
+			Count:   uint32(page),
 		})
 		if err != nil {
 			if wmi.Status(ret.Return) != wmi.StatusFalse {
