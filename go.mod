@@ -1,6 +1,6 @@
 module github.com/oiweiwei/go-msrpc
 
-go 1.21
+go 1.21.5
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.1

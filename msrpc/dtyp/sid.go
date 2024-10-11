@@ -43,7 +43,7 @@ func (o *SID) Parse(s string) error {
 	for i, p := range strings.Split(s[2:], "-") {
 		switch i {
 		case 0:
-			revision, err := strconv.ParseInt(p, 10, 8)
+			revision, err := strconv.ParseUint(p, 10, 8)
 			if err != nil {
 				return fmt.Errorf("sid: parse: revision: %v", err)
 			}
@@ -56,7 +56,7 @@ func (o *SID) Parse(s string) error {
 				}
 				o.IDAuthority = &SIDIDAuthority{Value: iauth}
 			} else {
-				iauth, err := strconv.ParseInt(p, 10, 64)
+				iauth, err := strconv.ParseUint(p, 10, 32)
 				if err != nil {
 					return fmt.Errorf("sid: parse: idauthority: %v", err)
 				}
@@ -64,7 +64,7 @@ func (o *SID) Parse(s string) error {
 				binary.BigEndian.PutUint32(o.IDAuthority.Value[2:], uint32(iauth))
 			}
 		default:
-			subauth, err := strconv.ParseInt(p, 10, 64)
+			subauth, err := strconv.ParseUint(p, 10, 32)
 			if err != nil {
 				return fmt.Errorf("sid: parse: subauthority: %v", err)
 			}
