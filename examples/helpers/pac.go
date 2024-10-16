@@ -10,6 +10,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 
 	"github.com/oiweiwei/go-msrpc/msrpc/pac"
 )
@@ -33,7 +34,7 @@ func main() {
 	)
 
 	if f = os.Stdin; input != "-" && input != "" {
-		if _, err := os.Stat(input); !os.IsNotExist(err) {
+		if _, err := os.Stat(input); err != nil && (os.IsNotExist(err) || strings.Contains(err.Error(), "too long")) {
 			f = bytes.NewReader([]byte(input))
 		} else if f, err = os.Open(input); err != nil {
 			log.Fatal(err)
