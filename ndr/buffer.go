@@ -3,6 +3,7 @@ package ndr
 import (
 	"encoding/binary"
 	"io"
+	go_math "math"
 	"sync"
 
 	"github.com/oiweiwei/go-msrpc/ndr/math"
@@ -389,7 +390,7 @@ func (c *WaitChunk) Len() int {
 		return c.bAndFormat.maxLen
 	}
 
-	return (1 << 31)
+	return go_math.MaxInt
 }
 
 // EOF function indicates whether the WaitChunk is completed.
