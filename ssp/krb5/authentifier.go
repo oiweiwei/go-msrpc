@@ -38,6 +38,9 @@ type Authentifier struct {
 	// key.
 	state *SecurityService
 
+	// In the case that no credentials other than a ccache with service tickets
+	// are available, this variable keeps a reference to this ccache because the
+	// gokrb5 client will not accept such a ccache file.
 	ccacheWithoutTGT *credentials.CCache
 }
 
@@ -91,10 +94,9 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		// ccache is present.
 		cli, err = client.NewFromCCache(cc, a.Config.KRB5Config, a.Config.ClientSettings()...)
 		if err != nil && len(cc.Credentials) != 0 && strings.Contains(strings.ToLower(err.Error()), "tgt not found") {
-			// The ccache does not contain a TGT, initialize client with dummy
-			// keytab and remember that we do not have credentials for
-			// pre-authentication so we will need to get any service ticket
-			// directly from the ccache
+			// The ccache does not contain a TGT, initialize client without
+			// credentials and remember that we will need to get any service
+			// ticket directly from the ccache
 			a.ccacheWithoutTGT = cc
 		} else if err != nil {
 			return nil, fmt.Errorf("client from ccache: %w", err)
@@ -180,6 +182,13 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 var kvnoErrRe = regexp.MustCompile(`kvno: (\d+)`)
 
 func (a *Authentifier) affirmLogin(ctx context.Context) error {
+	if a.ccacheWithoutTGT != nil {
+		// The client does not have any credentials to obtain a TGT but we can
+		// skip the login because we will fetch service tickets from the ccache
+		// file later.
+		return nil
+	}
+
 	if err := a.client.AffirmLogin(); err != nil {
 		if _, ok := a.Config.Credential.(credential.NTHash); !ok {
 			return err
@@ -197,6 +206,37 @@ func (a *Authentifier) affirmLogin(ctx context.Context) error {
 	return nil
 }
 
+func (a *Authentifier) getServiceTicket(sname string) (messages.Ticket, types.EncryptionKey, error) {
+	if a.ccacheWithoutTGT != nil {
+		// the client is not configured for pre-authentication so we can only
+		// obtain service tickets from the ccache.
+
+		var tkt messages.Ticket
+
+		c, ok := a.ccacheWithoutTGT.GetEntry(types.PrincipalName{
+			NameType:   nametype.KRB_NT_SRV_INST,
+			NameString: strings.Split(sname, "/"),
+		})
+		if !ok {
+			return tkt, types.EncryptionKey{}, fmt.Errorf("no service ticket for %s in CCACHE", a.Config.SName)
+		}
+
+		err := tkt.Unmarshal(c.Ticket)
+		if err != nil {
+			return tkt, c.Key, fmt.Errorf("unmarshal ticket from CCACHE")
+		}
+
+		return tkt, c.Key, nil
+	}
+
+	tkt, key, err := a.client.GetServiceTicket(a.Config.SName)
+	if err != nil {
+		return tkt, key, fmt.Errorf("krb5: init: apreq: get service ticket: %w", err)
+	}
+
+	return tkt, key, nil
+}
+
 func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 	cli, err := a.makeClient(ctx)
 	if err != nil {
@@ -205,37 +245,13 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 
 	a.client = cli
 
-	var (
-		tkt messages.Ticket
-		key types.EncryptionKey
-	)
+	if err := a.affirmLogin(ctx); err != nil {
+		return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
+	}
 
-	if a.ccacheWithoutTGT != nil {
-		// the client is not configured for pre-authentication so we can only
-		// obtain service tickets from the ccache.
-		c, ok := a.ccacheWithoutTGT.GetEntry(types.PrincipalName{
-			NameType:   nametype.KRB_NT_SRV_INST,
-			NameString: strings.Split(a.Config.SName, "/"),
-		})
-		if !ok {
-			return nil, fmt.Errorf("no service ticket for %s in CCACHE", a.Config.SName)
-		}
-
-		err = tkt.Unmarshal(c.Ticket)
-		if err != nil {
-			return nil, fmt.Errorf("unmarshal ticket from CCACHE")
-		}
-
-		key = c.Key
-	} else {
-		if err := a.affirmLogin(ctx); err != nil {
-			return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
-		}
-
-		tkt, key, err = a.client.GetServiceTicket(a.Config.SName)
-		if err != nil {
-			return nil, fmt.Errorf("krb5: init: apreq: get service ticket: %w", err)
-		}
+	tkt, key, err := a.getServiceTicket(a.Config.SName)
+	if err != nil {
+		return nil, err
 	}
 
 	tok, err := spnego.NewKRB5TokenAPREQ(a.client, tkt, key, a.Config.Flags, a.Config.APOptions)
