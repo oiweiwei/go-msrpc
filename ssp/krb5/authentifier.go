@@ -6,10 +6,13 @@ import (
 	"os"
 	"regexp"
 	"strconv"
+	"strings"
 
 	"github.com/jcmturner/gokrb5/v8/client"
 	"github.com/jcmturner/gokrb5/v8/credentials"
 	"github.com/jcmturner/gokrb5/v8/iana/etypeID"
+	"github.com/jcmturner/gokrb5/v8/iana/nametype"
+	"github.com/jcmturner/gokrb5/v8/messages"
 	"github.com/jcmturner/gokrb5/v8/service"
 	"github.com/jcmturner/gokrb5/v8/spnego"
 	"github.com/jcmturner/gokrb5/v8/types"
@@ -34,6 +37,11 @@ type Authentifier struct {
 	SessionKey types.EncryptionKey
 	// key.
 	state *SecurityService
+
+	// In the case that no credentials other than a ccache with service tickets
+	// are available, this variable keeps a reference to this ccache because the
+	// gokrb5 client will not accept such a ccache file.
+	ccacheWithoutTGT *credentials.CCache
 }
 
 type SecurityService struct {
@@ -51,7 +59,6 @@ func (a *Authentifier) makeService(ctx context.Context) (*service.Settings, erro
 }
 
 func (a *Authentifier) tryLoadCCache(ctx context.Context) (*credentials.CCache, bool, error) {
-
 	p := a.Config.CCachePath
 	if p != "" {
 		cc, err := credentials.LoadCCache(p)
@@ -72,7 +79,6 @@ func (a *Authentifier) tryLoadCCache(ctx context.Context) (*credentials.CCache, 
 
 // makeClient function initializes the kerberos client.
 func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
-
 	var cli *client.Client
 
 	// try load credentials cache.
@@ -82,15 +88,20 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		return nil, err
 	}
 
+	creds := credentials.New(a.Config.Credential.UserName(), a.Config.Credential.DomainName())
+
 	if ok {
 		// ccache is present.
-		if cli, err = client.NewFromCCache(cc, a.Config.KRB5Config,
-			a.Config.ClientSettings()...); err != nil {
+		cli, err = client.NewFromCCache(cc, a.Config.KRB5Config, a.Config.ClientSettings()...)
+		if err != nil && len(cc.Credentials) != 0 && strings.Contains(strings.ToLower(err.Error()), "tgt not found") {
+			// The ccache does not contain a TGT, initialize client without
+			// credentials and remember that we will need to get any service
+			// ticket directly from the ccache
+			a.ccacheWithoutTGT = cc
+		} else if err != nil {
 			return nil, fmt.Errorf("client from ccache: %w", err)
 		}
 	}
-
-	creds := credentials.New(a.Config.Credential.UserName(), a.Config.Credential.DomainName())
 
 	if cli == nil {
 		cli = client.NewWithPassword(creds.UserName(), creds.Realm(), "",
@@ -109,9 +120,21 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		cli.Config.LibDefaults.PermittedEnctypeIDs = []int32{etypeID.RC4_HMAC}
 	}
 
-	if _, err := cli.IsConfigured(); err != nil {
+	_, err = cli.IsConfigured()
+	if err != nil {
+		// The client should be configured now, unless we only have a ccache with
+		// service tickets. In this case, we can authenticate without the client
+		// being configured.
+		if a.ccacheWithoutTGT != nil && len(a.ccacheWithoutTGT.Credentials) > 0 {
+			return cli, nil
+		}
+
 		return nil, fmt.Errorf("client configuration: %w", err)
 	}
+
+	// The client is configured and can obtain TGTs itself, so we can forget the
+	// ccache that only contained service tickets.
+	a.ccacheWithoutTGT = nil
 
 	return cli, nil
 }
@@ -119,7 +142,6 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 // makeSecurityService function sets up the security service for
 // signing/encryption.
 func (a *Authentifier) makeSecurityService(ctx context.Context) error {
-
 	if a.APRep != nil {
 		// derive service from mutual-authentication. (dce-style or mutual-authn
 		// GSS flags are set.)
@@ -160,6 +182,13 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 var kvnoErrRe = regexp.MustCompile(`kvno: (\d+)`)
 
 func (a *Authentifier) affirmLogin(ctx context.Context) error {
+	if a.ccacheWithoutTGT != nil {
+		// The client does not have any credentials to obtain a TGT but we can
+		// skip the login because we will fetch service tickets from the ccache
+		// file later.
+		return nil
+	}
+
 	if err := a.client.AffirmLogin(); err != nil {
 		if _, ok := a.Config.Credential.(credential.NTHash); !ok {
 			return err
@@ -177,8 +206,38 @@ func (a *Authentifier) affirmLogin(ctx context.Context) error {
 	return nil
 }
 
-func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
+func (a *Authentifier) getServiceTicket(sname string) (messages.Ticket, types.EncryptionKey, error) {
+	if a.ccacheWithoutTGT != nil {
+		// the client is not configured for pre-authentication so we can only
+		// obtain service tickets from the ccache.
 
+		var tkt messages.Ticket
+
+		c, ok := a.ccacheWithoutTGT.GetEntry(types.PrincipalName{
+			NameType:   nametype.KRB_NT_SRV_INST,
+			NameString: strings.Split(sname, "/"),
+		})
+		if !ok {
+			return tkt, types.EncryptionKey{}, fmt.Errorf("no service ticket for %s in CCACHE", a.Config.SName)
+		}
+
+		err := tkt.Unmarshal(c.Ticket)
+		if err != nil {
+			return tkt, c.Key, fmt.Errorf("unmarshal ticket from CCACHE")
+		}
+
+		return tkt, c.Key, nil
+	}
+
+	tkt, key, err := a.client.GetServiceTicket(a.Config.SName)
+	if err != nil {
+		return tkt, key, fmt.Errorf("krb5: init: apreq: get service ticket: %w", err)
+	}
+
+	return tkt, key, nil
+}
+
+func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 	cli, err := a.makeClient(ctx)
 	if err != nil {
 		return nil, fmt.Errorf("krb5: init: apreq: make client: %w", err)
@@ -190,9 +249,9 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 		return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
 	}
 
-	tkt, key, err := a.client.GetServiceTicket(a.Config.SName)
+	tkt, key, err := a.getServiceTicket(a.Config.SName)
 	if err != nil {
-		return nil, fmt.Errorf("krb5: init: apreq: get service ticket: %w", err)
+		return nil, err
 	}
 
 	tok, err := spnego.NewKRB5TokenAPREQ(a.client, tkt, key, a.Config.Flags, a.Config.APOptions)
@@ -224,7 +283,6 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 }
 
 func (a *Authentifier) APReply(ctx context.Context, b []byte) ([]byte, error) {
-
 	if len(b) == 0 {
 		if err := a.makeSecurityService(ctx); err != nil {
 			return nil, fmt.Errorf("krb5: init: aprep: make security service: %w", err)
