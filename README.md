@@ -235,9 +235,9 @@ this or that field.
 
  * Static strings
 
- * Handle anonymous structures inside union arms
+ * Investigate: Association Group ID is not shared across several named pipe connections. (each NP requires dedicated connection).
 
- * Kerberos HMAC-RC4 NT Hash support via Keytab.
+ * Convenient way to combine SPNEGO and NTLM/KRB5 within connection option.
 
 # References
 
