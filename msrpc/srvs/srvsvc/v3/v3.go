@@ -5152,7 +5152,7 @@ func (o *ShareInfo1501I) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 // of the fields in this structure, see the description for the SHARE_INFO_502_I (section
 // 2.2.4.26) structure (shi0_xxx denotes the same information as shi502_xxx).
 type ShareInfo0 struct {
-	Shi0NetworkName string `idl:"name:shi0_netname;string" json:"shi0_network_name"`
+	NetworkName string `idl:"name:shi0_netname;string" json:"network_name"`
 }
 
 func (o *ShareInfo0) xxx_PreparePayload(ctx context.Context) error {
@@ -5170,14 +5170,14 @@ func (o *ShareInfo0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(6); err != nil {
 		return err
 	}
-	if o.Shi0NetworkName != "" {
+	if o.NetworkName != "" {
 		_ptr_shi0_netname := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16NString(ctx, w, o.Shi0NetworkName); err != nil {
+			if err := ndr.WriteUTF16NString(ctx, w, o.NetworkName); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Shi0NetworkName, _ptr_shi0_netname); err != nil {
+		if err := w.WritePointer(&o.NetworkName, _ptr_shi0_netname); err != nil {
 			return err
 		}
 	} else {
@@ -5192,13 +5192,13 @@ func (o *ShareInfo0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	_ptr_shi0_netname := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16NString(ctx, w, &o.Shi0NetworkName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.NetworkName); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_shi0_netname := func(ptr interface{}) { o.Shi0NetworkName = *ptr.(*string) }
-	if err := w.ReadPointer(&o.Shi0NetworkName, _s_shi0_netname, _ptr_shi0_netname); err != nil {
+	_s_shi0_netname := func(ptr interface{}) { o.NetworkName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.NetworkName, _s_shi0_netname, _ptr_shi0_netname); err != nil {
 		return err
 	}
 	return nil
@@ -5327,9 +5327,9 @@ func (o *ShareInfo0Container) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 // a description of the fields in this structure, see the description for the SHARE_INFO_502_I
 // (section 2.2.4.26) structure (shi1_xxx denotes the same information as shi502_xxx).
 type ShareInfo1 struct {
-	Shi1NetworkName string `idl:"name:shi1_netname;string" json:"shi1_network_name"`
-	Shi1Type        uint32 `idl:"name:shi1_type" json:"shi1_type"`
-	Shi1Remark      string `idl:"name:shi1_remark;string" json:"shi1_remark"`
+	NetworkName string `idl:"name:shi1_netname;string" json:"network_name"`
+	Type        uint32 `idl:"name:shi1_type" json:"type"`
+	Remark      string `idl:"name:shi1_remark;string" json:"remark"`
 }
 
 func (o *ShareInfo1) xxx_PreparePayload(ctx context.Context) error {
@@ -5347,14 +5347,14 @@ func (o *ShareInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if o.Shi1NetworkName != "" {
+	if o.NetworkName != "" {
 		_ptr_shi1_netname := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16NString(ctx, w, o.Shi1NetworkName); err != nil {
+			if err := ndr.WriteUTF16NString(ctx, w, o.NetworkName); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Shi1NetworkName, _ptr_shi1_netname); err != nil {
+		if err := w.WritePointer(&o.NetworkName, _ptr_shi1_netname); err != nil {
 			return err
 		}
 	} else {
@@ -5362,17 +5362,17 @@ func (o *ShareInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.Shi1Type); err != nil {
+	if err := w.WriteData(o.Type); err != nil {
 		return err
 	}
-	if o.Shi1Remark != "" {
+	if o.Remark != "" {
 		_ptr_shi1_remark := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16NString(ctx, w, o.Shi1Remark); err != nil {
+			if err := ndr.WriteUTF16NString(ctx, w, o.Remark); err != nil {
 				return err
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Shi1Remark, _ptr_shi1_remark); err != nil {
+		if err := w.WritePointer(&o.Remark, _ptr_shi1_remark); err != nil {
 			return err
 		}
 	} else {
@@ -5387,26 +5387,26 @@ func (o *ShareInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	_ptr_shi1_netname := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16NString(ctx, w, &o.Shi1NetworkName); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.NetworkName); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_shi1_netname := func(ptr interface{}) { o.Shi1NetworkName = *ptr.(*string) }
-	if err := w.ReadPointer(&o.Shi1NetworkName, _s_shi1_netname, _ptr_shi1_netname); err != nil {
+	_s_shi1_netname := func(ptr interface{}) { o.NetworkName = *ptr.(*string) }
+	if err := w.ReadPointer(&o.NetworkName, _s_shi1_netname, _ptr_shi1_netname); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.Shi1Type); err != nil {
+	if err := w.ReadData(&o.Type); err != nil {
 		return err
 	}
 	_ptr_shi1_remark := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16NString(ctx, w, &o.Shi1Remark); err != nil {
+		if err := ndr.ReadUTF16NString(ctx, w, &o.Remark); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_shi1_remark := func(ptr interface{}) { o.Shi1Remark = *ptr.(*string) }
-	if err := w.ReadPointer(&o.Shi1Remark, _s_shi1_remark, _ptr_shi1_remark); err != nil {
+	_s_shi1_remark := func(ptr interface{}) { o.Remark = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Remark, _s_shi1_remark, _ptr_shi1_remark); err != nil {
 		return err
 	}
 	return nil
