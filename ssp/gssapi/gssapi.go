@@ -90,6 +90,8 @@ type ContextManager interface {
 	AcceptSecurityContext(context.Context, *Token, ...Option) (*Token, error)
 	// Deletes the security context.
 	DeleteSecurityContext(context.Context, ...Option) error
+	// Resets the security context.
+	ResetSecurityContext(context.Context, ...Option) error
 	// The maximum message size for the given limit.
 	WrapSizeLimit(context.Context, int, ...Option) int
 	// Sets the context attribute.
