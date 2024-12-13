@@ -5,14 +5,11 @@ import (
 	"fmt"
 	"math/rand"
 	"net"
-	"os"
-	"strconv"
 	"strings"
 	"sync"
 
-	"github.com/hirochachacha/go-smb2"
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
-	"github.com/oiweiwei/go-msrpc/ssp/credential"
+	"github.com/oiweiwei/go-msrpc/smb2"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 	"github.com/rs/zerolog"
 )
@@ -376,87 +373,40 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 
 	case ProtocolSequenceNamedPipe:
 
-		addr := net.JoinHostPort(t.serverAddr, strconv.Itoa(t.settings.SMBPort))
+		t.logger.Debug().Msgf("dialing smb named pipe %s:%d:%s\\%s",
+			t.serverAddr, t.settings.SMBPort, binding.ShareName(), binding.NamedPipe())
 
-		t.logger.Debug().Msgf("dialing smb named pipe %s:%s\\%s", addr, binding.ShareName(), binding.NamedPipe())
-
-		conn, err := net.DialTimeout("tcp", addr, t.settings.Timeout)
+		dialer, err := smb2.CompatDialer(t.settings.SMBDialer)
 		if err != nil {
 			return nil, fmt.Errorf("ncacn_np: %w", err)
 		}
 
-		t.logger.Debug().Msgf("dialing smb %s done", addr)
-
-		var dialer *smb2.Dialer
-
-		if dialer = t.settings.SMBDialer; dialer == nil {
-
-			var creds any
-
-			for _, opt := range ParseSecurityOptions(ctx, t.opts...).SecurityOptions {
-				switch opt := opt.(type) {
-				case gssapi.Credential:
-					creds = opt.Value()
-				}
-			}
-
-			if creds == nil {
-				creds = gssapi.GetCredentialValue(ctx, "", nil, gssapi.InitiateOnly)
-			}
-
-			// extract credentials.
-			switch creds := creds.(type) {
-			case credential.Password:
-				// setup dialer using password.
-				dialer = &smb2.Dialer{
-					Initiator: &smb2.NTLMInitiator{
-						Domain:      creds.DomainName(),
-						User:        creds.UserName(),
-						Password:    creds.Password(),
-						Workstation: creds.Workstation(),
-					},
-				}
-			case credential.NTHash:
-				// setup dialer using hash.
-				dialer = &smb2.Dialer{
-					Initiator: &smb2.NTLMInitiator{
-						Domain:      creds.DomainName(),
-						User:        creds.UserName(),
-						Hash:        creds.NTHash(),
-						Workstation: creds.Workstation(),
-					},
-				}
-			default:
-				return nil, fmt.Errorf("ncacn_np: no credentials")
+		if dialer == nil {
+			o := ParseSecurityOptions(ctx, t.opts...).Security
+			if o != nil {
+				dialer = smb2.NewDialer(
+					smb2.WithSecurity(
+						// set target name by default if available.
+						gssapi.WithTargetName(o.TargetName),
+					),
+				)
+			} else {
+				dialer = smb2.NewDialer(smb2.WithSecurity())
 			}
 		}
 
-		t.logger.Debug().Msgf("dialing smb server")
+		pipe := &smb2.NamedPipe{
+			Logger:    t.logger,
+			Address:   t.serverAddr,
+			Port:      t.settings.SMBPort,
+			Timeout:   t.settings.Timeout,
+			Dialer:    dialer,
+			ShareName: binding.ShareName(),
+			Name:      binding.NamedPipe(),
+		}
 
-		smb, err := dialer.Dial(conn)
-		if err != nil {
+		if err := pipe.Connect(ctx); err != nil {
 			return nil, fmt.Errorf("ncacn_np: %w", err)
-		}
-
-		t.logger.Debug().Msgf("mounting share %s", binding.ShareName())
-
-		share, err := smb.Mount(binding.ShareName())
-		if err != nil {
-			return nil, err
-		}
-
-		var pipe *smb2.File
-
-		for {
-			pipe, err = share.OpenFile(binding.NamedPipe(), os.O_RDWR, 0666)
-			if err != nil {
-				if strings.Contains(err.Error(), "An instance of a named pipe cannot be found in the listening state") {
-					t.logger.Err(err).Msgf("open share file %s", binding.NamedPipe())
-					continue
-				}
-				return nil, err
-			}
-			break
 		}
 
 		t.logger.Debug().Msgf("dialing smb named pipe done")

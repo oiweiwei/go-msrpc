@@ -69,7 +69,7 @@ func main() {
 	}
 	defer cc.Close(ctx)
 
-	cli, err := epm.NewEpmClient(ctx, cc, dcerpc.WithSeal(), dcerpc.WithTargetName(os.Getenv("TARGET")), dcerpc.WithVerifyBitMask(true), dcerpc.WithVerifyPresenetation(true), dcerpc.WithVerifyHeader2(true), dcerpc.WithLogger(zerolog.New(os.Stdout)))
+	cli, err := epm.NewEpmClient(ctx, cc, dcerpc.WithSeal(), dcerpc.WithTargetName(os.Getenv("TARGET")), dcerpc.WithVerifyBitMask(true), dcerpc.WithVerifyPresentation(true), dcerpc.WithVerifyHeader2(true), dcerpc.WithLogger(zerolog.New(os.Stdout)))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		return
