@@ -70,6 +70,12 @@ func NewFromPassword(un, passwd string, opts ...Option) Password {
 	}
 }
 
+// DomainName function returns the domain name from the user name.
+func DomainName(un string) string {
+	dn, _, _ := parseDomainUserWorkstation(un)
+	return dn
+}
+
 // Anonymous function returns the anonymous password credentials.
 func Anonymous() Password {
 	return &password{}

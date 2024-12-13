@@ -4,7 +4,6 @@ import (
 	"context"
 	"time"
 
-	"github.com/hirochachacha/go-smb2"
 	"github.com/rs/zerolog"
 
 	"github.com/oiweiwei/go-msrpc/ndr"
@@ -54,7 +53,7 @@ type Transport struct {
 	// SMB port.
 	SMBPort int
 	// SMB dialer.
-	SMBDialer *smb2.Dialer
+	SMBDialer any
 	// Endpoint Mapper.
 	EndpointMapper EndpointMapper
 	// Preferred protocol sequence.
@@ -98,7 +97,7 @@ func WithSMBPort(port int) ConnectOption {
 }
 
 // WithSMBDialer function sets the SMB dialer.
-func WithSMBDialer(dialer *smb2.Dialer) ConnectOption {
+func WithSMBDialer(dialer any) ConnectOption {
 	return func(o *Transport) { o.SMBDialer = dialer }
 }
 

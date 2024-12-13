@@ -304,7 +304,6 @@ func (c *clientConn) ReadPacket(ctx context.Context, call Call, pkt *Packet) (*P
 		}
 		// close transport on error.
 		c.transport.Close(ctx)
-		c.logger.Debug().Msg("After Close")
 		return nil, err
 	}
 

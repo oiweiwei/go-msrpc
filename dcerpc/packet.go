@@ -263,6 +263,8 @@ func (c *transport) DecodePacket(ctx context.Context, pkt *Packet, raw []byte) (
 			return nil, errors.New(ctx, pdu.Status)
 		}
 		maxLen = int(pdu.AllocHint)
+	case *BindNak:
+		return pkt, nil
 	case *Shutdown:
 		return nil, ErrShutdown
 	}

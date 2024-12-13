@@ -258,7 +258,7 @@ func WithVerifyHeader2(must bool) BindOption {
 
 // WithVerifyPresentation option includes the presentation verification
 // to the request verification trailer.
-func WithVerifyPresenetation(must bool) BindOption {
+func WithVerifyPresentation(must bool) BindOption {
 	return BindOption(func(opt *option) {
 		opt.Verify = append(opt.Verify, &VerificationCommand{
 			Command:  &VerifyPresentation{},
@@ -355,7 +355,6 @@ func WithSeal() SecurityOption {
 //	}))
 func WithSecurityConfig(cfg gssapi.MechanismConfig) SecurityOption {
 	return SecurityOption(func(ctx *Security) {
-		// select the auth type.
 		ctx.Type = MechanismToAuthType(cfg.Type())
 		// append the gssapi options.
 		ctx.opts = append(ctx.opts, gssapi.WithMechanismType(cfg.Type()), gssapi.WithMechanismConfig(cfg))

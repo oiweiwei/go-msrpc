@@ -12,6 +12,7 @@ type kt struct {
 	userName string
 	realm    string
 	kt       *keytab.Keytab
+	err      error
 }
 
 func (kt *kt) UserName() string {
@@ -38,4 +39,20 @@ func (kt *kt) Keytab() *keytab.Keytab {
 		return &kkt
 	}
 	return nil
+}
+
+// NewFromKeytabFile ...
+func NewFromKeytabFile(un string, keytabFile string, opts ...Option) Keytab {
+	kt, _ := keytab.Load(keytabFile)
+	return NewFromKeytab(un, kt)
+}
+
+// NewFromKeytab ...
+func NewFromKeytab(un string, keytab *keytab.Keytab, opts ...Option) Keytab {
+	realm, un, _ := parseDomainUserWorkstation(un, opts...)
+	return &kt{
+		userName: un,
+		realm:    realm,
+		kt:       keytab,
+	}
 }
