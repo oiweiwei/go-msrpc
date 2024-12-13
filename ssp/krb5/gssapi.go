@@ -121,7 +121,7 @@ func (m *Mechanism) Init(ctx context.Context, tok *gssapi.Token) (*gssapi.Token,
 			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
 		}
 
-		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.SessionKey.KeyValue)
+		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.ExportedSessionKey)
 		gssapi.SetAttribute(ctx, gssapi.AttributeTarget, m.Config.SName)
 
 		return &gssapi.Token{Payload: b}, gssapi.ContextComplete(ctx)
