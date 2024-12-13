@@ -35,6 +35,8 @@ type Authentifier struct {
 	APRep *APRep
 	// The session key.
 	SessionKey types.EncryptionKey
+	// Exported session key.
+	ExportedSessionKey []byte
 	// key.
 	state *SecurityService
 
@@ -175,6 +177,8 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 	} else {
 		a.state.InboundCipher, a.state.OutboundCipher = clientCipher, serverCipher
 	}
+
+	a.ExportedSessionKey = a.state.Key.KeyValue
 
 	return nil
 }
