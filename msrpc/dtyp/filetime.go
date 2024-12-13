@@ -17,6 +17,10 @@ func (ft *Filetime) IsNever() bool {
 	return ft.LowDateTime == 0xFFFFFFFF && ft.HighDateTime == 0x7FFFFFFF
 }
 
+func (ft *Filetime) IsZero() bool {
+	return ft.LowDateTime == 0 && ft.HighDateTime == 0
+}
+
 // AsTime function returns the time.Time.
 func (ft *Filetime) AsTime() time.Time {
 	if ft.LowDateTime == 0 && ft.HighDateTime == 0 {

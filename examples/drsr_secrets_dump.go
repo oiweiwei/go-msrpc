@@ -78,7 +78,7 @@ func main() {
 
 	defer cc.Close(ctx)
 
-	cli, err := drsuapi.NewDrsuapiClient(ctx, cc, dcerpc.WithSeal())
+	cli, err := drsuapi.NewDrsuapiClient(ctx, cc, dcerpc.WithSeal(), dcerpc.WithTargetName(os.Getenv("TARGET")))
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)

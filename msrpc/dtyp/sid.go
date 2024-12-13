@@ -134,3 +134,22 @@ func (o *SID) decodeBinary(b []byte, order binary.ByteOrder) error {
 
 	return nil
 }
+
+func (o *SID) Copy() *SID {
+	if o == nil {
+		return nil
+	}
+	ret := *o
+	ret.IDAuthority = &SIDIDAuthority{Value: make([]byte, 6)}
+	copy(ret.IDAuthority.Value, o.IDAuthority.Value)
+	ret.SubAuthority = make([]uint32, o.SubAuthorityCount)
+	copy(ret.SubAuthority, o.SubAuthority)
+	return &ret
+}
+
+func (o *SID) AddRelativeID(id uint32) *SID {
+	ret := o.Copy()
+	ret.SubAuthority = append(ret.SubAuthority, id)
+	ret.SubAuthorityCount++
+	return ret
+}
