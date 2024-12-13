@@ -109,6 +109,15 @@ func NewSecurityContext(ctx context.Context, opts ...ContextOption) context.Cont
 	return context.WithValue(ctx, ctxKey{}, &SecurityContext{MechanismStore: mechs, CredentialStore: creds})
 }
 
+// ResetSecurityContext to it's initial state.
+func ResetSecurityContext(ctx context.Context) context.Context {
+	cc := fromContext(ctx)
+	if cc == nil {
+		return ctx
+	}
+	return context.WithValue(ctx, ctxKey{}, &SecurityContext{MechanismStore: cc.MechanismStore, CredentialStore: cc.CredentialStore})
+}
+
 // FromContext retrieves the Security Context.
 func FromContext(ctx context.Context) SecurityContext {
 	cc := fromContext(ctx)
