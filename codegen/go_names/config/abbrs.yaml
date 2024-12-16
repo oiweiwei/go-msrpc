@@ -56,7 +56,6 @@ abbr:
   brecord: Record
   bstr: String
   buf: Buffer
-  buf: Buffer
   buff: Buffer
   bw: Bandwidth
   ca: CA
@@ -150,7 +149,6 @@ abbr:
   dsm: DSM
   dsms: DSMs
   dsrm: DSRM
-  dst: Destination
   dst: Destination
   dte: DTE
   dtm: DTM # dynamic-tunnel mode
@@ -306,7 +304,6 @@ abbr:
   mac: MAC
   madcap: MADCAP
   mapi: MAPI
-  mb: MB
   mb: MB
   mbr: MBR
   mcast: MCast

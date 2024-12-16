@@ -126,7 +126,6 @@ split:
   dhcpipv6: [dhcp, ipv6]
   dhcpm: [dhcp, m]
   dhcpsrv: [dhcp, srv]
-  dhcpsrv: [dhcp, srv]
   dih: [device, id, header]
   direrr: [directory, err]
   diskid: [disk, id]
