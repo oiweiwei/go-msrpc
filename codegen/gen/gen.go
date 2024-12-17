@@ -57,7 +57,7 @@ func (p *Generator) Reset(ctx context.Context, source interface{}, n ...string) 
 
 	switch source := source.(type) {
 	case *midl.File:
-		path := trimExt(source.Path)
+		path := filepath.Join(append([]string{trimExt(source.Path)}, n...)...)
 		p.out = NewFileBuffer(path, source.GoPkg)
 		if len(n) == 0 {
 			p.out.IsRoot = true
@@ -175,6 +175,11 @@ func (p *Generator) Gen(ctx context.Context, fn string) error {
 
 		p.GenServerInterface(ctx, iff)
 		p.GenServerHandle(ctx, iff)
+	}
+
+	if f.IsDCOM() {
+		p.Reset(ctx, f, "client")
+		p.GenClientSet(ctx, f)
 	}
 
 	p.Reset(ctx, nil)

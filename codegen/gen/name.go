@@ -12,6 +12,7 @@ import (
 
 var (
 	GoName           = go_names.GoName
+	GoNamePrivate    = go_names.GoNamePrivate
 	GoNameNoReserved = go_names.GoNameNoReserved
 	GoMergeNames     = go_names.GoMergeNames
 	GoSnakeCase      = go_names.GoSnakeCase

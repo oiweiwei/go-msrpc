@@ -75,6 +75,8 @@ var j = func(data any) string { b, _ := json.MarshalIndent(data, "", "  "); retu
 
 func main() {
 
+	startTime := time.Now()
+
 	log := zerolog.New(os.Stderr)
 
 	if !debug {
@@ -297,5 +299,6 @@ func main() {
 	}
 
 	fmt.Fprintln(os.Stderr, "query execution time:", time.Now().Sub(now))
+	fmt.Fprintln(os.Stderr, "script execution time:", time.Now().Sub(startTime))
 
 }

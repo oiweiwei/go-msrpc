@@ -319,6 +319,15 @@ func (p *Generator) SyntaxName(ctx context.Context, iff *midl.Interface) string 
 	return fmt.Sprintf("%sV%d_%d", n, ver.Major, ver.Minor)
 }
 
+func (p *Generator) SyntaxNameWithImport(ctx context.Context, iff *midl.Interface) string {
+	n := p.GoInterfaceTypeName(ctx, iff, "") + "Syntax"
+	ver := iff.Attrs.Version
+	if ver == nil {
+		ver = &midl.Version{}
+	}
+	return fmt.Sprintf("%sV%d_%d", n, ver.Major, ver.Minor)
+}
+
 func (p *Generator) GenInterfaceID(ctx context.Context, iff *midl.Interface) {
 
 	if iff.Attrs.UUID == nil {

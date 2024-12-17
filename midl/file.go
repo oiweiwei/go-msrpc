@@ -248,3 +248,16 @@ func (f *File) GoPackage(tn string) (string, bool) {
 
 	return "", false
 }
+
+func (f *File) IsDCOM() bool {
+	for _, iff := range f.Interfaces {
+		if iff.IsObject() {
+			return true
+		}
+	}
+	return false
+}
+
+func (f *File) PkgIs(pkg string) bool {
+	return f.GoPkg == pkg
+}

@@ -28,6 +28,20 @@ func GoName(n string) string {
 	return strings.Join((&Namer{defaultConfig}).GoName(n), "")
 }
 
+func GoNamePrivate(n string) string {
+	nn := (&Namer{defaultConfig}).GoName(n)
+	if len(nn) > 0 {
+		nn[0] = strings.ToLower(nn[0])
+	}
+	ret := strings.Join(nn, "")
+	switch ret {
+	case "import":
+		ret += "1"
+	}
+	return ret
+
+}
+
 func GoNameNoReserved(n string) string {
 	return strings.Join((&Namer{defaultConfig}).GoNameNoReserved(n), "")
 }

@@ -40,6 +40,19 @@ type clientConn struct {
 	logger zerolog.Logger
 }
 
+// SubConn interface implements the sub-connection query method
+// using presentation context syntax identifier.
+type SubConn interface {
+	// Conn.
+	Conn
+	// SubConn function returns the client connection established for the abstract syntax.
+	// If the abstract syntax was not found ErrConnNotExist is returned.
+	// If the connection is closed ErrConnClosed is returned.
+	// If presenetation context negotiation was not successful the sub-connection and
+	// presentation context error is returned.
+	SubConn(context.Context, *SyntaxID) (Conn, error)
+}
+
 // SubConn function returns the client connection established for the abstract syntax.
 func (c *clientConn) SubConn(ctx context.Context, abstractSyntax *SyntaxID) (Conn, error) {
 
@@ -53,7 +66,7 @@ func (c *clientConn) SubConn(ctx context.Context, abstractSyntax *SyntaxID) (Con
 	if abstractSyntax != nil {
 		for _, sub := range c.subs {
 			if *sub.presentation.AbstractSyntax == *abstractSyntax {
-				return sub, nil
+				return sub, sub.presentation.Error
 			}
 		}
 	}
