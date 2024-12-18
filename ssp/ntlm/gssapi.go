@@ -23,6 +23,17 @@ func (Config) Type() gssapi.OID {
 	return MechanismType
 }
 
+// Copy function returns the copy of the configuration.
+func (c *Config) Copy() gssapi.MechanismConfig {
+
+	cp := *c
+
+	cp.ChannelBindings = make([]byte, len(c.ChannelBindings))
+	copy(cp.ChannelBindings, c.ChannelBindings)
+
+	return &cp
+}
+
 // DefaultConfig function returns the default config.
 func (Mechanism) DefaultConfig(ctx context.Context) (gssapi.MechanismConfig, error) {
 	return NewConfig(), nil

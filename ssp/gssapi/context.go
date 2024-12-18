@@ -80,6 +80,21 @@ func withContextStatus(ctx context.Context, status Status, err error) error {
 
 type ContextOption any
 
+// WithCredential function returns the credential option for the
+// local context credential store.
+func WithCredential(value any) ContextOption {
+	return &credential{value: value}
+}
+
+// WithMechanismFactory function returns the mechanism factory option for the
+// local context mechanism store.
+func WithMechanismFactory(value MechanismFactory, defaultConfig ...MechanismConfig) ContextOption {
+	if len(defaultConfig) > 0 {
+		return WithDefaultConfig(value, defaultConfig[0].Copy())
+	}
+	return value
+}
+
 // NewSecurityContext initializes the Security Context.
 // The function must be called before InitSecurityContext.
 func NewSecurityContext(ctx context.Context, opts ...ContextOption) context.Context {
@@ -143,7 +158,7 @@ func GetMechanismConfig(ctx context.Context, oid OID) any {
 
 	for _, c := range cc.MechanismConfigs {
 		if c.Type().Equal(oid) {
-			return (interface{})(c)
+			return c.Copy()
 		}
 	}
 
@@ -153,7 +168,7 @@ func GetMechanismConfig(ctx context.Context, oid OID) any {
 			if err != nil {
 				return nil
 			}
-			return (interface{})(c)
+			return c.Copy()
 		}
 	}
 

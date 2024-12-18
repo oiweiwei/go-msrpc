@@ -2,11 +2,14 @@ package gssapi
 
 import (
 	"context"
+	"errors"
 )
 
 type MechanismConfig interface {
 	// The mechanism type object identifier.
 	Type() OID
+	// Copy must return copy of the configuration.
+	Copy() MechanismConfig
 }
 
 type MechanismFactory interface {
@@ -16,6 +19,39 @@ type MechanismFactory interface {
 	DefaultConfig(context.Context) (MechanismConfig, error)
 	// The mechanism type object identifier.
 	Type() OID
+}
+
+// MechanismFactoryWithConfig represents the mechanism factory with default
+// configuration attached.
+type MechanismFactoryWithConfig struct {
+	MechanismFactory
+	defaultConfig MechanismConfig
+}
+
+var ErrInvalidConfig = errors.New("mechanism factory with config: config type mismatch")
+
+// DefaultConfig function returns the default configuration associated with mechanism factory.
+func (f MechanismFactoryWithConfig) DefaultConfig(ctx context.Context) (MechanismConfig, error) {
+
+	if f.defaultConfig == nil {
+		// use default.
+		return f.MechanismFactory.DefaultConfig(ctx)
+	}
+
+	if !f.defaultConfig.Type().Equal(f.Type()) {
+		// check type.
+		return nil, ErrInvalidConfig
+	}
+
+	return f.defaultConfig.Copy(), nil
+}
+
+// WithDefaultConfig function returns the mechanism factory with default configuration attached.
+func WithDefaultConfig(factory MechanismFactory, config MechanismConfig) MechanismFactory {
+	return MechanismFactoryWithConfig{
+		MechanismFactory: factory,
+		defaultConfig:    config,
+	}
 }
 
 type Mechanism interface {

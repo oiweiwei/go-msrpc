@@ -12,6 +12,7 @@ import (
 	"github.com/jcmturner/gokrb5/v8/types"
 
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
+	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
 
 // The generic credential.
@@ -68,6 +69,15 @@ type Config struct {
 	// AssumePreAuthentication used to configure the client to
 	// assume pre-authentication is required.
 	AssumePreAuthentication bool
+}
+
+func (c *Config) FlagIsSet(f gssapi.Cap) bool {
+	for _, flag := range c.Flags {
+		if flag == (int)(f) {
+			return true
+		}
+	}
+	return false
 }
 
 var DefaultKRB5ConfPath = "/etc/krb5.conf"

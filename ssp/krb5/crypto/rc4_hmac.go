@@ -9,12 +9,14 @@ import (
 	"crypto/rc4"
 	"encoding/asn1"
 	"encoding/binary"
+	"errors"
 	"fmt"
 	"hash"
 
-	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 	"github.com/jcmturner/gokrb5/v8/asn1tools"
 	"github.com/jcmturner/gokrb5/v8/types"
+
+	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
 
 var (
@@ -98,9 +100,55 @@ func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal []
 	return ok, nil
 }
 
+var errDataTruncated = asn1.SyntaxError{Msg: "data truncated"}
+
+// fixASN1Header function works with non-DCE (non-mutual) authentication RC4-HMAC tokens.
+// These tokens are constructed over complete wrapped payload, hence the ASN.1 header length
+// is seems to be truncated.
+func (c *RC4HMAC) fixASN1Header(ctx context.Context, b []byte, forSign [][]byte) ([]byte, error) {
+
+	var val asn1.RawValue
+
+	// try marshal token, if content is valid, return as is.
+	_, err := asn1.Unmarshal(b, &val)
+	if err == nil || !errors.Is(err, errDataTruncated) {
+		return b, err
+	}
+
+	// data truncated error returned, we need to include payload
+	// to match the ASN.1 header length.
+
+	sz := 0
+	for _, forSign := range forSign {
+		sz += len(forSign)
+	}
+
+	// unmarshal again.
+	_, err = asn1.Unmarshal(append(b, make([]byte, sz)...), &val)
+	if err != nil {
+		return b, err
+	}
+
+	oid, err := asn1.Marshal(KRB5OID)
+	if err != nil {
+		return nil, fmt.Errorf("marshal krb5oid: %w", err)
+	}
+
+	// trim oid.
+	sgn := val.Bytes[len(oid):]
+	// trim trailer and add oid again.
+	return c.withASN1Header(ctx, sgn[:32])
+
+}
+
 func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
 	if len(sgn) < 8 {
+		return false, gssapi.ErrDefectiveToken
+	}
+
+	sgn, err := c.fixASN1Header(ctx, sgn, forSign)
+	if err != nil {
 		return false, gssapi.ErrDefectiveToken
 	}
 

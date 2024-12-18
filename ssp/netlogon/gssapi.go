@@ -20,6 +20,19 @@ func (Config) Type() gssapi.OID {
 	return MechanismType
 }
 
+func (c *Config) Copy() gssapi.MechanismConfig {
+
+	cp := *c
+
+	cp.ClientChallenge = make([]byte, len(c.ClientChallenge))
+	copy(cp.ClientChallenge, c.ClientChallenge)
+
+	cp.ServerChallenge = make([]byte, len(c.ServerChallenge))
+	copy(cp.ServerChallenge, c.ServerChallenge)
+
+	return &cp
+}
+
 // The mechanism type object identifier.
 func (Mechanism) Type() gssapi.OID {
 	return MechanismType

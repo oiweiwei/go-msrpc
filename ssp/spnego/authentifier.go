@@ -100,6 +100,13 @@ func (a *Authentifier) Respond(ctx context.Context, b []byte) ([]byte, error) {
 
 		if resp.State == AcceptCompleted {
 
+			if len(resp.ResponseToken) > 0 {
+				_, err = a.Mechanism.Init(ctx, &gssapi.Token{Payload: resp.ResponseToken})
+				if err != nil {
+					return nil, fmt.Errorf("spnego: init: mechanism init: %w", err)
+				}
+			}
+
 			// the spnego negotiation completed successfully, verify
 			// the mechanism list mic.
 

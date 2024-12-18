@@ -25,6 +25,16 @@ func (Config) Type() gssapi.OID {
 	return (gssapi.OID)(MechanismTypeSPNEGO)
 }
 
+func (c *Config) Copy() gssapi.MechanismConfig {
+
+	cp := *c
+
+	cp.MechanismsList = make([]gssapi.MechanismFactory, len(c.MechanismsList))
+	copy(cp.MechanismsList, c.MechanismsList)
+
+	return &cp
+}
+
 func (Mechanism) DefaultConfig(ctx context.Context) (gssapi.MechanismConfig, error) {
 
 	config := &Config{}

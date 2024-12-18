@@ -21,6 +21,25 @@ func (Config) Type() gssapi.OID {
 	return MechanismType
 }
 
+func (c *Config) Copy() gssapi.MechanismConfig {
+
+	cp := *c
+
+	if c.KRB5Config != nil {
+		// shallow copy.
+		cfg := *c.KRB5Config
+		cp.KRB5Config = &cfg
+	}
+
+	cp.Flags = make([]int, len(c.Flags))
+	copy(cp.Flags, c.Flags)
+
+	cp.APOptions = make([]int, len(c.APOptions))
+	copy(cp.APOptions, c.APOptions)
+
+	return &cp
+}
+
 // DefaultConfig function returns the default config.
 func (Mechanism) DefaultConfig(ctx context.Context) (gssapi.MechanismConfig, error) {
 	return NewConfig(), nil
@@ -67,7 +86,7 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 		c.Flags = append(c.Flags, int(gssapi.Anonymity))
 	}
 
-	if cc.Capabilities.IsSet(gssapi.MutualAuthn) {
+	if cc.Capabilities.IsSet(gssapi.MutualAuthn) || c.FlagIsSet(gssapi.MutualAuthn) {
 		c.APOptions = append(c.APOptions, flags.APOptionMutualRequired)
 	}
 
@@ -124,12 +143,31 @@ func (m *Mechanism) Init(ctx context.Context, tok *gssapi.Token) (*gssapi.Token,
 		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.ExportedSessionKey)
 		gssapi.SetAttribute(ctx, gssapi.AttributeTarget, m.Config.SName)
 
+		if !m.Config.DCEStyle && m.Config.FlagIsSet(gssapi.MutualAuthn) {
+			// return empty apreply for non-dce style mutual authentication.
+			return &gssapi.Token{}, gssapi.ContextComplete(ctx)
+		}
+
 		return &gssapi.Token{Payload: b}, gssapi.ContextComplete(ctx)
 	}
 
 	b, err := m.APRequest(ctx)
 	if err != nil {
 		return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+	}
+
+	if !m.Config.DCEStyle && !m.Config.FlagIsSet(gssapi.MutualAuthn) /* for non-dce style, there will be no APReply */ {
+
+		// compute session keys.
+		_, err := m.APReply(ctx, nil)
+		if err != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+
+		gssapi.SetAttribute(ctx, gssapi.AttributeSessionKey, m.ExportedSessionKey)
+		gssapi.SetAttribute(ctx, gssapi.AttributeTarget, m.Config.SName)
+
+		return &gssapi.Token{Payload: b}, gssapi.ContextComplete(ctx)
 	}
 
 	return &gssapi.Token{Payload: b}, gssapi.ContextContinueNeeded(ctx)
