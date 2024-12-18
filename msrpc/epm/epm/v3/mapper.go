@@ -40,10 +40,18 @@ func NewMapper(ctx context.Context, addr string, opts ...dcerpc.Option) dcerpc.E
 
 	var conn dcerpc.Conn
 
+	dialOpts := []dcerpc.Option{}
+
+	for _, opt := range opts {
+		if opt, ok := opt.(dcerpc.ConnectOption); ok {
+			dialOpts = append(dialOpts, opt)
+		}
+	}
+
 	for _, binding := range bindings {
 		binding.NetworkAddress = addr
 		o.Logger.Debug().Msgf("endpoint mapper: dialing %s", binding)
-		if conn, err = dcerpc.Dial(ctx, binding.String()); err != nil {
+		if conn, err = dcerpc.Dial(ctx, binding.String(), dialOpts...); err != nil {
 			o.Logger.Error().Err(err).Msgf("endpoint mapper: dial %s", binding)
 			continue
 		}
@@ -55,7 +63,7 @@ func NewMapper(ctx context.Context, addr string, opts ...dcerpc.Option) dcerpc.E
 		return m.WithErr(err)
 	}
 
-	o.Logger.Debug().Msgf("endpoint mapper: dialing %s", binding)
+	o.Logger.Debug().Msgf("endpoint mapper: dialing client %s", binding)
 
 	if m.cli, err = NewEpmClient(ctx, conn, opts...); err != nil {
 		return m.WithErr(err)
