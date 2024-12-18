@@ -25,6 +25,26 @@ type xxx_SecureChannelClient struct {
 
 var SecureChannel_T = &xxx_SecureChannelClient{}
 
+func getCredential(ctx context.Context, opts ...dcerpc.Option) (netlogon.Credential, error) {
+
+	creds := gssapi.GetCredential(ctx, "", nil, gssapi.InitiateAndAccept)
+	if creds == nil {
+		if o := dcerpc.ParseSecurityOptions(ctx, opts...); len(o.SecurityOptions) > 0 {
+			ctx := gssapi.NewSecurityContext(ctx, o.SecurityOptions...)
+			return getCredential(ctx)
+		}
+
+		return nil, fmt.Errorf("secure_channel: credentials missing")
+	}
+
+	cred, ok := creds.Value().(netlogon.Credential)
+	if !ok || cred == nil {
+		return nil, fmt.Errorf("secure_channel: credentials missing")
+	}
+
+	return cred, nil
+}
+
 func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (LogonSecureChannelClient, error) {
 
 	cli, err := NewLogonClient(ctx, cc, opts...)
@@ -32,9 +52,9 @@ func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.
 		return nil, err
 	}
 
-	creds, ok := gssapi.GetCredential(ctx, "", nil, gssapi.InitiateAndAccept).Value().(netlogon.Credential)
-	if !ok || creds == nil {
-		return nil, fmt.Errorf("secure_channel: credentials missing")
+	creds, err := getCredential(ctx, opts...)
+	if err != nil {
+		return nil, err
 	}
 
 	cfg := &netlogon.Config{
