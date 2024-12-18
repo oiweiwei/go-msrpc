@@ -1,0 +1,10 @@
+---
+- include_tasks: create_local_admin.yml
+- include_tasks: set-timezone.yml
+- include_tasks: windows-disable-ipv6.yml
+- include_tasks: windows-disable-defender.yml
+- include_tasks: disable_firewall.yml
+- include_tasks: windows-enable-icmp.yml
+- include_tasks: windows-enable-ps-logging.yml
+- include_tasks: common_installs.yml
+#- include_tasks: make_windows_sorta_better.yml

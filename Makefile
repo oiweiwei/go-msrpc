@@ -140,3 +140,11 @@ all:
 .PHONY: test
 test:
 	go test ./example/...
+
+.PHONY: develop-up
+develop-up:
+	cd ./develop && vagrant up dc01
+
+.PHONY: develop-provision
+develop-provision:
+	cd ./develop && vagrant up dc01 --provision

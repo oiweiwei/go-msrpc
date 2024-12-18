@@ -1,0 +1,46 @@
+---
+# we have a retry here since the DC will be "applying changes" but respond to WinRM and other commands
+# including trying to query for a DC, etc
+# in testing, it usually gets to ~20 retries (~2.5 minutes) left when the host is ready
+- name: Create domain user accounts
+  win_domain_user:
+    name: "{{ item.name }}"
+    password: "{{ item.password }}"
+    firstname: "{{ item.firstname | default() }}"
+    surname: "{{ item.surname | default () }}"
+    upn: "{{ item.firstname }}.{{ item.surname }}@{{ root_domain }}"
+    groups: "{{ item.add_group | default('Domain Users') }}"
+  register: create_accounts
+  retries: 30
+  delay: 15
+  until: create_accounts is successful
+  loop:
+  - name: Phoebe Chillax
+    firstname: Phoebe
+    surname: Chillax
+    password: "summer2021!"
+  - name: Randy Random
+    firstname: Randy
+    surname: Random
+    password: "QJMaNJ26fg43dPTd"
+  - name: Tynan Sylvester
+    firstname: Tynan
+    surname: Sylvester
+    password: "RimworldIsTheBest2021!"
+    add_group: "Domain Admins"
+  - name: Unconstrained User
+    firstname: Unconstrained
+    surname: User
+    password: "Iamunconstrained2021!"
+  - name: Constrained User
+    firstname: Constrained
+    surname: User
+    password: "Iamconstrained2021!"
+  - name: Kerberoast Me
+    firstname: Kerberoast
+    surname: Me
+    password: "P@ssw0rd!"
+  - name: AsrepRoast Me
+    firstname: AsrepRoast
+    surname: Me
+    password: "P@ssw0rd!"

@@ -1,0 +1,5 @@
+- include_tasks: domain_setup.yml
+- include_tasks: add_domain_users.yml
+- include_tasks: set_constrainment.yml
+- include_tasks: set_roasting.yml
+#- include_tasks: testing_task.yml
