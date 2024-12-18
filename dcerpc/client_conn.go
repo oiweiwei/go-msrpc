@@ -107,6 +107,13 @@ func (c *clientConn) AlterContext(ctx context.Context, opts ...Option) error {
 	return nil
 }
 
+func (c *clientConn) Context() context.Context {
+	if c.security != nil && c.security.ctx != nil {
+		return c.security.ctx
+	}
+	return context.Background()
+}
+
 // Invoke function invokes the operation.
 func (c *clientConn) Invoke(ctx context.Context, op Operation, opts ...CallOption) error {
 

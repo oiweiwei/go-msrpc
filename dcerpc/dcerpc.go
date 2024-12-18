@@ -53,6 +53,8 @@ type Conn interface {
 	Bind(context.Context, ...Option) (Conn, error)
 	// Alter Context.
 	AlterContext(context.Context, ...Option) error
+	// Context.
+	Context() context.Context
 	// Invoke.
 	Invoke(context.Context, Operation, ...CallOption) error
 	// Invoke Object.

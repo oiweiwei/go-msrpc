@@ -160,6 +160,11 @@ func (t *conn) AlterContext(_ context.Context, _ ...Option) error {
 	return fmt.Errorf("alter context: the transport is not binded")
 }
 
+// Context.
+func (t *conn) Context() context.Context {
+	return context.Background()
+}
+
 // Invoke.
 func (t *conn) Invoke(_ context.Context, _ Operation, _ ...CallOption) error {
 	return fmt.Errorf("invoke: connection is not binded")
@@ -382,17 +387,12 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 		}
 
 		if dialer == nil {
-			o := ParseSecurityOptions(ctx, t.opts...).Security
-			if o != nil {
-				dialer = smb2.NewDialer(
-					smb2.WithSecurity(
-						// set target name by default if available.
-						gssapi.WithTargetName(o.TargetName),
-					),
-				)
-			} else {
-				dialer = smb2.NewDialer(smb2.WithSecurity())
+			o, opts := ParseSecurityOptions(ctx, t.opts...), []gssapi.ContextOption{}
+			if o.Security != nil && o.Security.TargetName != "" {
+				opts = append(opts, gssapi.WithTargetName(o.Security.TargetName))
 			}
+			opts = append(opts, o.SecurityOptions...)
+			dialer = smb2.NewDialer(smb2.WithSecurity(opts...))
 		}
 
 		pipe := &smb2.NamedPipe{
