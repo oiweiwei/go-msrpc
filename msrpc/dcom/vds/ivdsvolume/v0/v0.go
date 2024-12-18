@@ -122,6 +122,9 @@ type VolumeClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) VolumeClient
 }
@@ -360,6 +363,10 @@ func (o *xxx_DefaultVolumeClient) AlterContext(ctx context.Context, opts ...dcer
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultVolumeClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultVolumeClient) IPID(ctx context.Context, ipid *dcom.IPID) VolumeClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -370,6 +377,7 @@ func (o *xxx_DefaultVolumeClient) IPID(ctx context.Context, ipid *dcom.IPID) Vol
 		ipid:          ipid,
 	}
 }
+
 func NewVolumeClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (VolumeClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

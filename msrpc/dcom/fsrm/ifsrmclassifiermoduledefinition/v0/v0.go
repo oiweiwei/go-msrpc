@@ -70,6 +70,9 @@ type ClassifierModuleDefinitionClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ClassifierModuleDefinitionClient
 }
@@ -208,6 +211,10 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) AlterContext(ctx context.C
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultClassifierModuleDefinitionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultClassifierModuleDefinitionClient) IPID(ctx context.Context, ipid *dcom.IPID) ClassifierModuleDefinitionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -218,6 +225,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) IPID(ctx context.Context, 
 		ipid:                           ipid,
 	}
 }
+
 func NewClassifierModuleDefinitionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ClassifierModuleDefinitionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

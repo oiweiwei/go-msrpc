@@ -72,6 +72,9 @@ type ATSvcClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ATEnumContainer structure represents AT_ENUM_CONTAINER RPC structure.
@@ -248,6 +251,11 @@ func (o *xxx_DefaultATSvcClient) JobGetInfo(ctx context.Context, in *JobGetInfoR
 func (o *xxx_DefaultATSvcClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultATSvcClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewATSvcClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ATSvcClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ATSvcSyntaxV1_0))...)
 	if err != nil {

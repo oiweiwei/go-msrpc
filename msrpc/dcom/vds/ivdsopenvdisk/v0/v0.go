@@ -99,6 +99,9 @@ type OpenVDiskClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) OpenVDiskClient
 }
@@ -237,6 +240,10 @@ func (o *xxx_DefaultOpenVDiskClient) AlterContext(ctx context.Context, opts ...d
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultOpenVDiskClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultOpenVDiskClient) IPID(ctx context.Context, ipid *dcom.IPID) OpenVDiskClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -247,6 +254,7 @@ func (o *xxx_DefaultOpenVDiskClient) IPID(ctx context.Context, ipid *dcom.IPID) 
 		ipid:          ipid,
 	}
 }
+
 func NewOpenVDiskClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (OpenVDiskClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

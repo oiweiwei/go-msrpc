@@ -233,6 +233,9 @@ type DNSServerClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultDNSServerClient struct {
@@ -489,6 +492,11 @@ func (o *xxx_DefaultDNSServerClient) EnumRecords4(ctx context.Context, in *EnumR
 func (o *xxx_DefaultDNSServerClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultDNSServerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewDNSServerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DNSServerClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DNSServerSyntaxV5_0))...)
 	if err != nil {

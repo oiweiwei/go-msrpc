@@ -59,6 +59,9 @@ type RfriClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultRfriClient struct {
@@ -94,6 +97,11 @@ func (o *xxx_DefaultRfriClient) GetFQDNFromServerDN(ctx context.Context, in *Get
 func (o *xxx_DefaultRfriClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultRfriClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewRfriClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RfriClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RfriSyntaxV1_0))...)
 	if err != nil {

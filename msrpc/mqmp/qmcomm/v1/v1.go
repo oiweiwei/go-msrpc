@@ -562,6 +562,9 @@ type QmcommClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // CreateRemoteCursor structure represents CACCreateRemoteCursor RPC structure.
@@ -4630,6 +4633,11 @@ func (o *xxx_DefaultQmcommClient) GetRTQMServerPort(ctx context.Context, in *Get
 func (o *xxx_DefaultQmcommClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultQmcommClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewQmcommClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (QmcommClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(QmcommSyntaxV1_0))...)
 	if err != nil {

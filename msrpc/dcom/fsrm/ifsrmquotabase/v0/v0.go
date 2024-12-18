@@ -181,6 +181,9 @@ type QuotaBaseClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) QuotaBaseClient
 }
@@ -399,6 +402,10 @@ func (o *xxx_DefaultQuotaBaseClient) AlterContext(ctx context.Context, opts ...d
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultQuotaBaseClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultQuotaBaseClient) IPID(ctx context.Context, ipid *dcom.IPID) QuotaBaseClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -409,6 +416,7 @@ func (o *xxx_DefaultQuotaBaseClient) IPID(ctx context.Context, ipid *dcom.IPID) 
 		ipid:         ipid,
 	}
 }
+
 func NewQuotaBaseClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (QuotaBaseClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

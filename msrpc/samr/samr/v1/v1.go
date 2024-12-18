@@ -317,6 +317,9 @@ type SamrClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // PackagesCredentialsName represents the PACKAGES_CREDENTIALS_NAME RPC constant
@@ -15166,6 +15169,11 @@ func (o *xxx_DefaultSamrClient) ValidatePassword(ctx context.Context, in *Valida
 func (o *xxx_DefaultSamrClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultSamrClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewSamrClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SamrClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(SamrSyntaxV1_0))...)
 	if err != nil {

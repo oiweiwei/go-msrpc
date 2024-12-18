@@ -50,6 +50,9 @@ type DsaopClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MessageExecuteScriptRequestV1 structure represents DSA_MSG_EXECUTE_SCRIPT_REQ_V1 RPC structure.
@@ -1056,6 +1059,11 @@ func (o *xxx_DefaultDsaopClient) ExecuteScript(ctx context.Context, in *ExecuteS
 func (o *xxx_DefaultDsaopClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultDsaopClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewDsaopClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DsaopClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DsaopSyntaxV1_0))...)
 	if err != nil {

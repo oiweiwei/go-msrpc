@@ -40,6 +40,9 @@ type ExtendedErrorClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ANSIString structure represents EEAString RPC structure.
@@ -1306,6 +1309,11 @@ type xxx_DefaultExtendedErrorClient struct {
 func (o *xxx_DefaultExtendedErrorClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultExtendedErrorClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewExtendedErrorClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ExtendedErrorClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ExtendedErrorSyntaxV1_0))...)
 	if err != nil {

@@ -341,6 +341,9 @@ type DrsuapiClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ExtBase represents the DRS_EXT_BASE RPC constant
@@ -30304,6 +30307,11 @@ func (o *xxx_DefaultDrsuapiClient) ReadNGCKey(ctx context.Context, in *ReadNGCKe
 func (o *xxx_DefaultDrsuapiClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultDrsuapiClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewDrsuapiClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DrsuapiClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DrsuapiSyntaxV4_0))...)
 	if err != nil {

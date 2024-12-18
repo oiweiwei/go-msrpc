@@ -55,6 +55,9 @@ type WCOSmartEnumClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) WCOSmartEnumClient
 }
@@ -93,6 +96,10 @@ func (o *xxx_DefaultWCOSmartEnumClient) AlterContext(ctx context.Context, opts .
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultWCOSmartEnumClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultWCOSmartEnumClient) IPID(ctx context.Context, ipid *dcom.IPID) WCOSmartEnumClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -103,6 +110,7 @@ func (o *xxx_DefaultWCOSmartEnumClient) IPID(ctx context.Context, ipid *dcom.IPI
 		ipid:          ipid,
 	}
 }
+
 func NewWCOSmartEnumClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WCOSmartEnumClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

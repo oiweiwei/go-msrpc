@@ -66,6 +66,9 @@ type AppHostAdminManagerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostAdminManagerClient
 }
@@ -164,6 +167,10 @@ func (o *xxx_DefaultAppHostAdminManagerClient) AlterContext(ctx context.Context,
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostAdminManagerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostAdminManagerClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostAdminManagerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -174,6 +181,7 @@ func (o *xxx_DefaultAppHostAdminManagerClient) IPID(ctx context.Context, ipid *d
 		ipid:          ipid,
 	}
 }
+
 func NewAppHostAdminManagerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostAdminManagerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

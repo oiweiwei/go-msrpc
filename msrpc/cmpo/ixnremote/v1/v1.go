@@ -455,6 +455,9 @@ type IxnRemoteClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxComputerNameLength represents the MAX_COMPUTERNAME_LENGTH RPC constant
@@ -894,6 +897,11 @@ func (o *xxx_DefaultIxnRemoteClient) BuildContextW(ctx context.Context, in *Buil
 func (o *xxx_DefaultIxnRemoteClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultIxnRemoteClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewIxnRemoteClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IxnRemoteClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IxnRemoteSyntaxV1_0))...)
 	if err != nil {

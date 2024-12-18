@@ -148,6 +148,9 @@ type W32TimeClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultW32TimeClient struct {
@@ -261,6 +264,11 @@ func (o *xxx_DefaultW32TimeClient) Log(ctx context.Context, in *LogRequest, opts
 func (o *xxx_DefaultW32TimeClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultW32TimeClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewW32TimeClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (W32TimeClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(W32TimeSyntaxV4_1))...)
 	if err != nil {

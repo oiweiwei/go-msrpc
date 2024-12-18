@@ -86,6 +86,9 @@ type Client interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) Client
 }
@@ -328,6 +331,10 @@ func NewClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clie
 
 func (o *xxx_DefaultClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultClient) Conn() dcerpc.Conn {
+	return o.cc
 }
 
 func (o *xxx_DefaultClient) IPID(ctx context.Context, ipid *dcom.IPID) Client {

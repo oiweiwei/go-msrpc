@@ -55,6 +55,9 @@ type WindowsShutdownClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultWindowsShutdownClient struct {
@@ -90,6 +93,11 @@ func (o *xxx_DefaultWindowsShutdownClient) AbortShutdown(ctx context.Context, in
 func (o *xxx_DefaultWindowsShutdownClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultWindowsShutdownClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewWindowsShutdownClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WindowsShutdownClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(WindowsShutdownSyntaxV1_0))...)
 	if err != nil {

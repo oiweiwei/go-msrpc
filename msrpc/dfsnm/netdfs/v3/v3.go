@@ -838,6 +838,9 @@ type NetdfsClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // TargetPriorityClass type represents DFS_TARGET_PRIORITY_CLASS RPC enumeration.
@@ -7980,6 +7983,11 @@ func (o *xxx_DefaultNetdfsClient) GetSupportedNamespaceVersion(ctx context.Conte
 func (o *xxx_DefaultNetdfsClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultNetdfsClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewNetdfsClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NetdfsClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NetdfsSyntaxV3_0))...)
 	if err != nil {

@@ -371,6 +371,9 @@ type Clusapi2Client interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Cluster structure represents HCLUSTER_RPC RPC structure.
@@ -2997,6 +3000,11 @@ func (o *xxx_DefaultClusapi2Client) SetServiceAccountPassword(ctx context.Contex
 func (o *xxx_DefaultClusapi2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultClusapi2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewClusapi2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clusapi2Client, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Clusapi2SyntaxV2_0))...)
 	if err != nil {

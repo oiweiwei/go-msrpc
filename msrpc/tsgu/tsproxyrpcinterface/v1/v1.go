@@ -457,6 +457,9 @@ type InterfaceClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxResourceNames represents the MAX_RESOURCE_NAMES RPC constant
@@ -4480,6 +4483,11 @@ func (o *xxx_DefaultInterfaceClient) SendToServer(ctx context.Context, in *SendT
 func (o *xxx_DefaultInterfaceClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultInterfaceClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewInterfaceClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (InterfaceClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(InterfaceSyntaxV1_3))...)
 	if err != nil {

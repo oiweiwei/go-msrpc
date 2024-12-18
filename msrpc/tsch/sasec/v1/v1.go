@@ -64,6 +64,9 @@ type SasecClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Cnlen represents the CNLEN RPC constant
@@ -137,6 +140,11 @@ func (o *xxx_DefaultSasecClient) GetAccountInformation(ctx context.Context, in *
 func (o *xxx_DefaultSasecClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultSasecClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewSasecClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SasecClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(SasecSyntaxV1_0))...)
 	if err != nil {

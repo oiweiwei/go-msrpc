@@ -72,6 +72,9 @@ type ClassificationRuleClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ClassificationRuleClient
 }
@@ -210,6 +213,10 @@ func (o *xxx_DefaultClassificationRuleClient) AlterContext(ctx context.Context, 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultClassificationRuleClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultClassificationRuleClient) IPID(ctx context.Context, ipid *dcom.IPID) ClassificationRuleClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -220,6 +227,7 @@ func (o *xxx_DefaultClassificationRuleClient) IPID(ctx context.Context, ipid *dc
 		ipid:       ipid,
 	}
 }
+
 func NewClassificationRuleClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ClassificationRuleClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

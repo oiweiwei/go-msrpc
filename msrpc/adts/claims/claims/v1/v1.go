@@ -40,6 +40,9 @@ type ClaimsClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ClaimType type represents CLAIM_TYPE RPC enumeration.
@@ -1245,6 +1248,11 @@ type xxx_DefaultClaimsClient struct {
 func (o *xxx_DefaultClaimsClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultClaimsClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewClaimsClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ClaimsClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ClaimsSyntaxV1_0))...)
 	if err != nil {

@@ -60,6 +60,9 @@ type FetchSmartEnumClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) FetchSmartEnumClient
 }
@@ -98,6 +101,10 @@ func (o *xxx_DefaultFetchSmartEnumClient) AlterContext(ctx context.Context, opts
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultFetchSmartEnumClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultFetchSmartEnumClient) IPID(ctx context.Context, ipid *dcom.IPID) FetchSmartEnumClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -108,6 +115,7 @@ func (o *xxx_DefaultFetchSmartEnumClient) IPID(ctx context.Context, ipid *dcom.I
 		ipid:          ipid,
 	}
 }
+
 func NewFetchSmartEnumClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FetchSmartEnumClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

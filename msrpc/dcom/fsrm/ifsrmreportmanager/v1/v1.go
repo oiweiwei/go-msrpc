@@ -239,6 +239,9 @@ type ReportManagerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ReportManagerClient
 }
@@ -457,6 +460,10 @@ func (o *xxx_DefaultReportManagerClient) AlterContext(ctx context.Context, opts 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultReportManagerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultReportManagerClient) IPID(ctx context.Context, ipid *dcom.IPID) ReportManagerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -467,6 +474,7 @@ func (o *xxx_DefaultReportManagerClient) IPID(ctx context.Context, ipid *dcom.IP
 		ipid:           ipid,
 	}
 }
+
 func NewReportManagerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ReportManagerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

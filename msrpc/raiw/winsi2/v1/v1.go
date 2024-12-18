@@ -87,6 +87,9 @@ type Winsi2Client interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultWinsi2Client struct {
@@ -122,6 +125,11 @@ func (o *xxx_DefaultWinsi2Client) CheckAccess(ctx context.Context, in *CheckAcce
 func (o *xxx_DefaultWinsi2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultWinsi2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewWinsi2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Winsi2Client, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Winsi2SyntaxV1_0))...)
 	if err != nil {

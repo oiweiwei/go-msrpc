@@ -90,6 +90,9 @@ type EventObjectCollectionClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) EventObjectCollectionClient
 }
@@ -228,6 +231,10 @@ func (o *xxx_DefaultEventObjectCollectionClient) AlterContext(ctx context.Contex
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultEventObjectCollectionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultEventObjectCollectionClient) IPID(ctx context.Context, ipid *dcom.IPID) EventObjectCollectionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -238,6 +245,7 @@ func (o *xxx_DefaultEventObjectCollectionClient) IPID(ctx context.Context, ipid 
 		ipid:           ipid,
 	}
 }
+
 func NewEventObjectCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EventObjectCollectionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

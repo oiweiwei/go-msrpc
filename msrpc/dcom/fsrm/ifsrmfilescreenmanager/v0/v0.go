@@ -201,6 +201,9 @@ type FileScreenManagerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) FileScreenManagerClient
 }
@@ -399,6 +402,10 @@ func (o *xxx_DefaultFileScreenManagerClient) AlterContext(ctx context.Context, o
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultFileScreenManagerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultFileScreenManagerClient) IPID(ctx context.Context, ipid *dcom.IPID) FileScreenManagerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -409,6 +416,7 @@ func (o *xxx_DefaultFileScreenManagerClient) IPID(ctx context.Context, ipid *dco
 		ipid:           ipid,
 	}
 }
+
 func NewFileScreenManagerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FileScreenManagerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

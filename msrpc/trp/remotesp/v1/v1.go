@@ -91,6 +91,9 @@ type RemotespClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Type2 structure represents PCONTEXT_HANDLE_TYPE2 RPC structure.
@@ -183,6 +186,11 @@ func (o *xxx_DefaultRemotespClient) Detach(ctx context.Context, in *DetachReques
 func (o *xxx_DefaultRemotespClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultRemotespClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewRemotespClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemotespClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemotespSyntaxV1_0))...)
 	if err != nil {

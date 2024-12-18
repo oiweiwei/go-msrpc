@@ -69,6 +69,9 @@ type Disk3Client interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) Disk3Client
 }
@@ -127,6 +130,10 @@ func (o *xxx_DefaultDisk3Client) AlterContext(ctx context.Context, opts ...dcerp
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultDisk3Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultDisk3Client) IPID(ctx context.Context, ipid *dcom.IPID) Disk3Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -137,6 +144,7 @@ func (o *xxx_DefaultDisk3Client) IPID(ctx context.Context, ipid *dcom.IPID) Disk
 		ipid:          ipid,
 	}
 }
+
 func NewDisk3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Disk3Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

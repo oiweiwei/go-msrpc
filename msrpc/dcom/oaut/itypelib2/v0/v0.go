@@ -110,6 +110,9 @@ type TypeLib2Client interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) TypeLib2Client
 }
@@ -208,6 +211,10 @@ func (o *xxx_DefaultTypeLib2Client) AlterContext(ctx context.Context, opts ...dc
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultTypeLib2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultTypeLib2Client) IPID(ctx context.Context, ipid *dcom.IPID) TypeLib2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -218,6 +225,7 @@ func (o *xxx_DefaultTypeLib2Client) IPID(ctx context.Context, ipid *dcom.IPID) T
 		ipid:          ipid,
 	}
 }
+
 func NewTypeLib2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TypeLib2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

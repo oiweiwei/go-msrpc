@@ -62,6 +62,9 @@ type CatalogTableInfoClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) CatalogTableInfoClient
 }
@@ -100,6 +103,10 @@ func (o *xxx_DefaultCatalogTableInfoClient) AlterContext(ctx context.Context, op
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultCatalogTableInfoClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultCatalogTableInfoClient) IPID(ctx context.Context, ipid *dcom.IPID) CatalogTableInfoClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -110,6 +117,7 @@ func (o *xxx_DefaultCatalogTableInfoClient) IPID(ctx context.Context, ipid *dcom
 		ipid:          ipid,
 	}
 }
+
 func NewCatalogTableInfoClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (CatalogTableInfoClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -136,6 +136,9 @@ type ServerHealthReportClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ServerHealthReportClient
 }
@@ -254,6 +257,10 @@ func (o *xxx_DefaultServerHealthReportClient) AlterContext(ctx context.Context, 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultServerHealthReportClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultServerHealthReportClient) IPID(ctx context.Context, ipid *dcom.IPID) ServerHealthReportClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -264,6 +271,7 @@ func (o *xxx_DefaultServerHealthReportClient) IPID(ctx context.Context, ipid *dc
 		ipid:          ipid,
 	}
 }
+
 func NewServerHealthReportClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ServerHealthReportClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

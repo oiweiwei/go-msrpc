@@ -63,6 +63,9 @@ type IrpcRemoteObjectClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // RemoteObject structure represents PRPCREMOTEOBJECT RPC structure.
@@ -145,6 +148,11 @@ func (o *xxx_DefaultIrpcRemoteObjectClient) Delete(ctx context.Context, in *Dele
 func (o *xxx_DefaultIrpcRemoteObjectClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultIrpcRemoteObjectClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewIrpcRemoteObjectClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IrpcRemoteObjectClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IrpcRemoteObjectSyntaxV1_0))...)
 	if err != nil {

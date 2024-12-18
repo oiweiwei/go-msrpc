@@ -384,6 +384,9 @@ type InetinfoClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // CapFlags structure represents INET_INFO_CAP_FLAGS RPC structure.
@@ -4298,6 +4301,11 @@ func (o *xxx_DefaultInetinfoClient) IISDisconnectUser(ctx context.Context, in *I
 func (o *xxx_DefaultInetinfoClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultInetinfoClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewInetinfoClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (InetinfoClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(InetinfoSyntaxV2_0))...)
 	if err != nil {

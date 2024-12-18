@@ -64,6 +64,9 @@ type IDMRemoteServerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) IDMRemoteServerClient
 }
@@ -102,6 +105,10 @@ func (o *xxx_DefaultIDMRemoteServerClient) AlterContext(ctx context.Context, opt
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultIDMRemoteServerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultIDMRemoteServerClient) IPID(ctx context.Context, ipid *dcom.IPID) IDMRemoteServerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -112,6 +119,7 @@ func (o *xxx_DefaultIDMRemoteServerClient) IPID(ctx context.Context, ipid *dcom.
 		ipid:          ipid,
 	}
 }
+
 func NewIDMRemoteServerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IDMRemoteServerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

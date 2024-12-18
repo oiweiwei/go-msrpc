@@ -150,6 +150,9 @@ type ClusterLogClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ClusterLogClient
 }
@@ -248,6 +251,10 @@ func (o *xxx_DefaultClusterLogClient) AlterContext(ctx context.Context, opts ...
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultClusterLogClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultClusterLogClient) IPID(ctx context.Context, ipid *dcom.IPID) ClusterLogClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -258,6 +265,7 @@ func (o *xxx_DefaultClusterLogClient) IPID(ctx context.Context, ipid *dcom.IPID)
 		ipid:          ipid,
 	}
 }
+
 func NewClusterLogClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ClusterLogClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -63,6 +63,9 @@ type CertPassageClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultCertPassageClient struct {
@@ -85,6 +88,11 @@ func (o *xxx_DefaultCertPassageClient) CertServerRequest(ctx context.Context, in
 func (o *xxx_DefaultCertPassageClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultCertPassageClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewCertPassageClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (CertPassageClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(CertPassageSyntaxV0_0))...)
 	if err != nil {

@@ -244,6 +244,9 @@ type DispatchClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) DispatchClient
 }
@@ -375,6 +378,10 @@ func (o *xxx_DefaultDispatchClient) AlterContext(ctx context.Context, opts ...dc
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultDispatchClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultDispatchClient) IPID(ctx context.Context, ipid *dcom.IPID) DispatchClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -385,6 +392,7 @@ func (o *xxx_DefaultDispatchClient) IPID(ctx context.Context, ipid *dcom.IPID) D
 		ipid:          ipid,
 	}
 }
+
 func NewDispatchClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DispatchClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

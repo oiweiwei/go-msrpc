@@ -216,6 +216,9 @@ type IISApplicationAdminClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) IISApplicationAdminClient
 }
@@ -374,6 +377,10 @@ func (o *xxx_DefaultIISApplicationAdminClient) AlterContext(ctx context.Context,
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultIISApplicationAdminClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultIISApplicationAdminClient) IPID(ctx context.Context, ipid *dcom.IPID) IISApplicationAdminClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -384,6 +391,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) IPID(ctx context.Context, ipid *d
 		ipid:          ipid,
 	}
 }
+
 func NewIISApplicationAdminClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IISApplicationAdminClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -91,6 +91,9 @@ type CallResultClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) CallResultClient
 }
@@ -189,6 +192,10 @@ func (o *xxx_DefaultCallResultClient) AlterContext(ctx context.Context, opts ...
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultCallResultClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultCallResultClient) IPID(ctx context.Context, ipid *dcom.IPID) CallResultClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -199,6 +206,7 @@ func (o *xxx_DefaultCallResultClient) IPID(ctx context.Context, ipid *dcom.IPID)
 		ipid:          ipid,
 	}
 }
+
 func NewCallResultClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (CallResultClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

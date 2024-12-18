@@ -60,6 +60,9 @@ type AppHostConstantValueCollectionClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostConstantValueCollectionClient
 }
@@ -118,6 +121,10 @@ func (o *xxx_DefaultAppHostConstantValueCollectionClient) AlterContext(ctx conte
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostConstantValueCollectionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostConstantValueCollectionClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostConstantValueCollectionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -128,6 +135,7 @@ func (o *xxx_DefaultAppHostConstantValueCollectionClient) IPID(ctx context.Conte
 		ipid:          ipid,
 	}
 }
+
 func NewAppHostConstantValueCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostConstantValueCollectionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -61,6 +61,9 @@ type AppHostWritableAdminManagerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostWritableAdminManagerClient
 }
@@ -139,6 +142,10 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) AlterContext(ctx context.
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostWritableAdminManagerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostWritableAdminManagerClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostWritableAdminManagerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -149,6 +156,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) IPID(ctx context.Context,
 		ipid:                      ipid,
 	}
 }
+
 func NewAppHostWritableAdminManagerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostWritableAdminManagerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

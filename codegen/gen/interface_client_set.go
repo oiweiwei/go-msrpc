@@ -54,6 +54,9 @@ func (p *Generator) GenClientSet(ctx context.Context, f *midl.File) {
 		p.P("//", "AlterContext alters the client context.")
 		p.P(p.B("AlterContext", "context.Context", "...dcerpc.Option"), "error")
 		p.P()
+		p.P("//", "Conn returns the client connection (unsafe)")
+		p.P(p.B("Conn"), "dcerpc.Conn")
+		p.P()
 		p.P("//", "IPID sets the object interface identifier.")
 		p.P(p.B("IPID", "context.Context", "*dcom.IPID"), p.B("", n))
 	})
@@ -154,6 +157,10 @@ func (p *Generator) GenClientSet(ctx context.Context, f *midl.File) {
 	p.P()
 	p.Block("func", "(o *"+dn+")", "AlterContext(ctx context.Context, opts ...dcerpc.Option)", "error", func() {
 		p.P("return o.cc.AlterContext(ctx, opts...)")
+	})
+	p.P()
+	p.Block("func", "(o *"+dn+")", "Conn()", "dcerpc.Conn", func() {
+		p.P("return o.cc")
 	})
 	p.P()
 	p.Block("func", "(o *"+dn+")", "IPID(ctx context.Context, ipid *dcom.IPID)", n, func() {

@@ -100,6 +100,9 @@ type TypeCompClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) TypeCompClient
 }
@@ -158,6 +161,10 @@ func (o *xxx_DefaultTypeCompClient) AlterContext(ctx context.Context, opts ...dc
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultTypeCompClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultTypeCompClient) IPID(ctx context.Context, ipid *dcom.IPID) TypeCompClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -168,6 +175,7 @@ func (o *xxx_DefaultTypeCompClient) IPID(ctx context.Context, ipid *dcom.IPID) T
 		ipid:          ipid,
 	}
 }
+
 func NewTypeCompClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TypeCompClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

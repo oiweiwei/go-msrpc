@@ -142,6 +142,9 @@ type SettingClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) SettingClient
 }
@@ -420,6 +423,10 @@ func (o *xxx_DefaultSettingClient) AlterContext(ctx context.Context, opts ...dce
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultSettingClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultSettingClient) IPID(ctx context.Context, ipid *dcom.IPID) SettingClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -430,6 +437,7 @@ func (o *xxx_DefaultSettingClient) IPID(ctx context.Context, ipid *dcom.IPID) Se
 		ipid:           ipid,
 	}
 }
+
 func NewSettingClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SettingClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -140,6 +140,9 @@ type ReportSchedulerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ReportSchedulerClient
 }
@@ -238,6 +241,10 @@ func (o *xxx_DefaultReportSchedulerClient) AlterContext(ctx context.Context, opt
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultReportSchedulerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultReportSchedulerClient) IPID(ctx context.Context, ipid *dcom.IPID) ReportSchedulerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -248,6 +255,7 @@ func (o *xxx_DefaultReportSchedulerClient) IPID(ctx context.Context, ipid *dcom.
 		ipid:           ipid,
 	}
 }
+
 func NewReportSchedulerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ReportSchedulerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

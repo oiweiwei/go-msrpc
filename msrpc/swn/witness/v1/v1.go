@@ -239,6 +239,9 @@ type WitnessClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultWitnessClient struct {
@@ -313,6 +316,11 @@ func (o *xxx_DefaultWitnessClient) RegisterEx(ctx context.Context, in *RegisterE
 func (o *xxx_DefaultWitnessClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultWitnessClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewWitnessClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WitnessClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(WitnessSyntaxV1_1))...)
 	if err != nil {

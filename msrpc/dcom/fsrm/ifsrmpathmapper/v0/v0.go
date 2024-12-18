@@ -72,6 +72,9 @@ type PathMapperClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) PathMapperClient
 }
@@ -110,6 +113,10 @@ func (o *xxx_DefaultPathMapperClient) AlterContext(ctx context.Context, opts ...
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultPathMapperClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultPathMapperClient) IPID(ctx context.Context, ipid *dcom.IPID) PathMapperClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -120,6 +127,7 @@ func (o *xxx_DefaultPathMapperClient) IPID(ctx context.Context, ipid *dcom.IPID)
 		ipid:           ipid,
 	}
 }
+
 func NewPathMapperClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (PathMapperClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -25,26 +25,6 @@ type xxx_SecureChannelClient struct {
 
 var SecureChannel_T = &xxx_SecureChannelClient{}
 
-func getCredential(ctx context.Context, opts ...dcerpc.Option) (netlogon.Credential, error) {
-
-	creds := gssapi.GetCredential(ctx, "", nil, gssapi.InitiateAndAccept)
-	if creds == nil {
-		if o := dcerpc.ParseSecurityOptions(ctx, opts...); len(o.SecurityOptions) > 0 {
-			ctx := gssapi.NewSecurityContext(ctx, o.SecurityOptions...)
-			return getCredential(ctx)
-		}
-
-		return nil, fmt.Errorf("secure_channel: credentials missing")
-	}
-
-	cred, ok := creds.Value().(netlogon.Credential)
-	if !ok || cred == nil {
-		return nil, fmt.Errorf("secure_channel: credentials missing")
-	}
-
-	return cred, nil
-}
-
 func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (LogonSecureChannelClient, error) {
 
 	cli, err := NewLogonClient(ctx, cc, opts...)
@@ -52,9 +32,14 @@ func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.
 		return nil, err
 	}
 
-	creds, err := getCredential(ctx, opts...)
-	if err != nil {
-		return nil, err
+	sspCred := gssapi.GetCredential(cli.Conn().Context(), "", nil, gssapi.InitiateAndAccept)
+	if sspCred == nil {
+		return nil, fmt.Errorf("secure_channel: credentials missing")
+	}
+
+	creds, ok := sspCred.Value().(netlogon.Credential)
+	if !ok || creds == nil {
+		return nil, fmt.Errorf("secure_channel: credentials missing")
 	}
 
 	cfg := &netlogon.Config{
@@ -67,9 +52,8 @@ func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.
 		return nil, fmt.Errorf("secure_channel: %v", err)
 	}
 
-	wksta := creds.Workstation()
-	if wksta == "" {
-		wksta = "GO-MSRPC"
+	if creds.Workstation() == "" {
+		return nil, fmt.Errorf("secure_channel: workstation missing")
 	}
 
 	dc, err := cli.GetDCName(ctx, &GetDCNameRequest{
@@ -82,7 +66,7 @@ func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.
 
 	chal, err := cli.RequestChallenge(ctx, &RequestChallengeRequest{
 		PrimaryName:     dc.DomainControllerInfo.DomainControllerName,
-		ComputerName:    wksta,
+		ComputerName:    creds.Workstation(),
 		ClientChallenge: &Credential{Data: cfg.ClientChallenge},
 	})
 	if err != nil {

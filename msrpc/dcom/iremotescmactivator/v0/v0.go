@@ -59,6 +59,9 @@ type RemoteSCMActivatorClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultRemoteSCMActivatorClient struct {
@@ -94,6 +97,11 @@ func (o *xxx_DefaultRemoteSCMActivatorClient) RemoteCreateInstance(ctx context.C
 func (o *xxx_DefaultRemoteSCMActivatorClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultRemoteSCMActivatorClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewRemoteSCMActivatorClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteSCMActivatorClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteSCMActivatorSyntaxV0_0))...)
 	if err != nil {

@@ -99,6 +99,9 @@ type ClusterUpdateClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ClusterUpdateClient
 }
@@ -157,6 +160,10 @@ func (o *xxx_DefaultClusterUpdateClient) AlterContext(ctx context.Context, opts 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultClusterUpdateClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultClusterUpdateClient) IPID(ctx context.Context, ipid *dcom.IPID) ClusterUpdateClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -167,6 +174,7 @@ func (o *xxx_DefaultClusterUpdateClient) IPID(ctx context.Context, ipid *dcom.IP
 		ipid:          ipid,
 	}
 }
+
 func NewClusterUpdateClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ClusterUpdateClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

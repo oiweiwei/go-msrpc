@@ -243,6 +243,9 @@ type IMSAdminBase2WClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) IMSAdminBase2WClient
 }
@@ -381,6 +384,10 @@ func (o *xxx_DefaultIMSAdminBase2WClient) AlterContext(ctx context.Context, opts
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultIMSAdminBase2WClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultIMSAdminBase2WClient) IPID(ctx context.Context, ipid *dcom.IPID) IMSAdminBase2WClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -391,6 +398,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) IPID(ctx context.Context, ipid *dcom.I
 		ipid:                ipid,
 	}
 }
+
 func NewIMSAdminBase2WClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IMSAdminBase2WClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

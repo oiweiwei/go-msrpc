@@ -1505,6 +1505,9 @@ type SvcctlClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxServiceNameLength represents the MAX_SERVICE_NAME_LENGTH RPC constant
@@ -9107,6 +9110,11 @@ func (o *xxx_DefaultSvcctlClient) OpenSCM2(ctx context.Context, in *OpenSCM2Requ
 func (o *xxx_DefaultSvcctlClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultSvcctlClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewSvcctlClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SvcctlClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(SvcctlSyntaxV2_0))...)
 	if err != nil {

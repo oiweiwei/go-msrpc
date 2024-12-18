@@ -51,6 +51,9 @@ type ISDKeyClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultISDKeyClient struct {
@@ -73,6 +76,11 @@ func (o *xxx_DefaultISDKeyClient) GetKey(ctx context.Context, in *GetKeyRequest,
 func (o *xxx_DefaultISDKeyClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultISDKeyClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewISDKeyClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ISDKeyClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ISDKeySyntaxV1_0))...)
 	if err != nil {

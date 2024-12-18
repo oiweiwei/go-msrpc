@@ -108,6 +108,9 @@ type RefreshingServicesClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) RefreshingServicesClient
 }
@@ -246,6 +249,10 @@ func (o *xxx_DefaultRefreshingServicesClient) AlterContext(ctx context.Context, 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultRefreshingServicesClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultRefreshingServicesClient) IPID(ctx context.Context, ipid *dcom.IPID) RefreshingServicesClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -256,6 +263,7 @@ func (o *xxx_DefaultRefreshingServicesClient) IPID(ctx context.Context, ipid *dc
 		ipid:          ipid,
 	}
 }
+
 func NewRefreshingServicesClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RefreshingServicesClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

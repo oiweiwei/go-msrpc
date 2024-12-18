@@ -60,6 +60,9 @@ type AppHostElementSchemaCollectionClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostElementSchemaCollectionClient
 }
@@ -118,6 +121,10 @@ func (o *xxx_DefaultAppHostElementSchemaCollectionClient) AlterContext(ctx conte
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostElementSchemaCollectionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostElementSchemaCollectionClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostElementSchemaCollectionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -128,6 +135,7 @@ func (o *xxx_DefaultAppHostElementSchemaCollectionClient) IPID(ctx context.Conte
 		ipid:          ipid,
 	}
 }
+
 func NewAppHostElementSchemaCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostElementSchemaCollectionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

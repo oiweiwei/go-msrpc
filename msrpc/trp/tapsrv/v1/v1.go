@@ -100,6 +100,9 @@ type TapsrvClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Type structure represents PCONTEXT_HANDLE_TYPE RPC structure.
@@ -192,6 +195,11 @@ func (o *xxx_DefaultTapsrvClient) ClientDetach(ctx context.Context, in *ClientDe
 func (o *xxx_DefaultTapsrvClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultTapsrvClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewTapsrvClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TapsrvClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TapsrvSyntaxV1_0))...)
 	if err != nil {

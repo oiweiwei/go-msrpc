@@ -51,6 +51,9 @@ type BackupKeyClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultBackupKeyClient struct {
@@ -73,6 +76,11 @@ func (o *xxx_DefaultBackupKeyClient) BackupKey(ctx context.Context, in *BackupKe
 func (o *xxx_DefaultBackupKeyClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultBackupKeyClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewBackupKeyClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (BackupKeyClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(BackupKeySyntaxV1_0))...)
 	if err != nil {

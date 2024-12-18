@@ -743,6 +743,9 @@ type WinspoolClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // TableDword represents the TABLE_DWORD RPC constant
@@ -17580,6 +17583,11 @@ func (o *xxx_DefaultWinspoolClient) SetPrinterAttributes(ctx context.Context, in
 func (o *xxx_DefaultWinspoolClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultWinspoolClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewWinspoolClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WinspoolClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(WinspoolSyntaxV1_0))...)
 	if err != nil {

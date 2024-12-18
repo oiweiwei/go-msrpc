@@ -191,6 +191,9 @@ type WAMAdminClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) WAMAdminClient
 }
@@ -329,6 +332,10 @@ func (o *xxx_DefaultWAMAdminClient) AlterContext(ctx context.Context, opts ...dc
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultWAMAdminClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultWAMAdminClient) IPID(ctx context.Context, ipid *dcom.IPID) WAMAdminClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -339,6 +346,7 @@ func (o *xxx_DefaultWAMAdminClient) IPID(ctx context.Context, ipid *dcom.IPID) W
 		ipid:          ipid,
 	}
 }
+
 func NewWAMAdminClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WAMAdminClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -3019,6 +3019,9 @@ type RemoteFwClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // PolicyStore structure represents FW_POLICY_STORE_HANDLE RPC structure.
@@ -4298,6 +4301,11 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules231(ctx context.Context, i
 func (o *xxx_DefaultRemoteFwClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultRemoteFwClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewRemoteFwClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteFwClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteFwSyntaxV1_0))...)
 	if err != nil {

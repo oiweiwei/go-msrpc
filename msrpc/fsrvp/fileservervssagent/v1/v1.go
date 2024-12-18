@@ -338,6 +338,9 @@ type FileServerVSSAgentClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ShareMapping1 structure represents FSSAGENT_SHARE_MAPPING_1 RPC structure.
@@ -782,6 +785,11 @@ func (o *xxx_DefaultFileServerVSSAgentClient) PrepareShadowCopySet(ctx context.C
 func (o *xxx_DefaultFileServerVSSAgentClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultFileServerVSSAgentClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewFileServerVSSAgentClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FileServerVSSAgentClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(FileServerVSSAgentSyntaxV1_0))...)
 	if err != nil {

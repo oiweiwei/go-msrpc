@@ -76,6 +76,9 @@ type AsyncemsmdbClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultAsyncemsmdbClient struct {
@@ -98,6 +101,11 @@ func (o *xxx_DefaultAsyncemsmdbClient) DoAsyncWaitEx(ctx context.Context, in *Do
 func (o *xxx_DefaultAsyncemsmdbClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultAsyncemsmdbClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewAsyncemsmdbClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AsyncemsmdbClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(AsyncemsmdbSyntaxV0_1))...)
 	if err != nil {

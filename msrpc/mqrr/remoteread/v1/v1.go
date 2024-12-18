@@ -496,6 +496,9 @@ type RemoteReadClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // QueueNoSerialize structure represents QUEUE_CONTEXT_HANDLE_NOSERIALIZE RPC structure.
@@ -983,6 +986,11 @@ func (o *xxx_DefaultRemoteReadClient) EndTransactionalReceive(ctx context.Contex
 func (o *xxx_DefaultRemoteReadClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultRemoteReadClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewRemoteReadClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteReadClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(RemoteReadSyntaxV1_0))...)
 	if err != nil {

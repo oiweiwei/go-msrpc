@@ -88,6 +88,9 @@ type EnumObjectClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) EnumObjectClient
 }
@@ -186,6 +189,10 @@ func (o *xxx_DefaultEnumObjectClient) AlterContext(ctx context.Context, opts ...
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultEnumObjectClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultEnumObjectClient) IPID(ctx context.Context, ipid *dcom.IPID) EnumObjectClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -196,6 +203,7 @@ func (o *xxx_DefaultEnumObjectClient) IPID(ctx context.Context, ipid *dcom.IPID)
 		ipid:          ipid,
 	}
 }
+
 func NewEnumObjectClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EnumObjectClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

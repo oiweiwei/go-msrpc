@@ -291,6 +291,9 @@ type EventlogClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxStrings represents the MAX_STRINGS RPC constant
@@ -824,6 +827,11 @@ func (o *xxx_DefaultEventlogClient) ReportEventExA(ctx context.Context, in *Repo
 func (o *xxx_DefaultEventlogClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultEventlogClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewEventlogClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EventlogClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(EventlogSyntaxV0_0))...)
 	if err != nil {

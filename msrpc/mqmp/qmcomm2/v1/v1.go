@@ -115,6 +115,9 @@ type Qmcomm2Client interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultQmcomm2Client struct {
@@ -176,6 +179,11 @@ func (o *xxx_DefaultQmcomm2Client) CreateCursorEx(ctx context.Context, in *Creat
 func (o *xxx_DefaultQmcomm2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultQmcomm2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewQmcomm2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Qmcomm2Client, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Qmcomm2SyntaxV1_0))...)
 	if err != nil {

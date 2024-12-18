@@ -308,6 +308,9 @@ type PerflibV2Client interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Query structure represents RPC_HQUERY RPC structure.
@@ -471,6 +474,11 @@ func (o *xxx_DefaultPerflibV2Client) ValidateCounters(ctx context.Context, in *V
 func (o *xxx_DefaultPerflibV2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultPerflibV2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewPerflibV2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (PerflibV2Client, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(PerflibV2SyntaxV1_0))...)
 	if err != nil {

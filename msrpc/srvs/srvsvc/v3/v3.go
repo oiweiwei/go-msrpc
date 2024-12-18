@@ -1038,6 +1038,9 @@ type SrvsvcClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ConnectionInfo0 structure represents CONNECTION_INFO_0 RPC structure.
@@ -19227,6 +19230,11 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteEx(ctx context.Context, in *ShareDe
 func (o *xxx_DefaultSrvsvcClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultSrvsvcClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewSrvsvcClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (SrvsvcClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(SrvsvcSyntaxV3_0))...)
 	if err != nil {

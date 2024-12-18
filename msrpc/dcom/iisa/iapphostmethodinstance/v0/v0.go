@@ -69,6 +69,9 @@ type AppHostMethodInstanceClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostMethodInstanceClient
 }
@@ -187,6 +190,10 @@ func (o *xxx_DefaultAppHostMethodInstanceClient) AlterContext(ctx context.Contex
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostMethodInstanceClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostMethodInstanceClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostMethodInstanceClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -197,6 +204,7 @@ func (o *xxx_DefaultAppHostMethodInstanceClient) IPID(ctx context.Context, ipid 
 		ipid:          ipid,
 	}
 }
+
 func NewAppHostMethodInstanceClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostMethodInstanceClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

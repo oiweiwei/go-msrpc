@@ -66,6 +66,9 @@ type AppHostSectionDefinitionCollectionClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostSectionDefinitionCollectionClient
 }
@@ -164,6 +167,10 @@ func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) AlterContext(ctx c
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostSectionDefinitionCollectionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -174,6 +181,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionCollectionClient) IPID(ctx context.C
 		ipid:          ipid,
 	}
 }
+
 func NewAppHostSectionDefinitionCollectionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostSectionDefinitionCollectionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

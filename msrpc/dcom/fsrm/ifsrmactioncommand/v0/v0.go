@@ -96,6 +96,9 @@ type ActionCommandClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ActionCommandClient
 }
@@ -394,6 +397,10 @@ func (o *xxx_DefaultActionCommandClient) AlterContext(ctx context.Context, opts 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultActionCommandClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultActionCommandClient) IPID(ctx context.Context, ipid *dcom.IPID) ActionCommandClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -404,6 +411,7 @@ func (o *xxx_DefaultActionCommandClient) IPID(ctx context.Context, ipid *dcom.IP
 		ipid:         ipid,
 	}
 }
+
 func NewActionCommandClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ActionCommandClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

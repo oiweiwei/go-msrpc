@@ -65,6 +65,9 @@ type EpmClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxAnnotationSize represents the ept_max_annotation_size RPC constant
@@ -327,6 +330,11 @@ func (o *xxx_DefaultEpmClient) ManagementDelete(ctx context.Context, in *Managem
 func (o *xxx_DefaultEpmClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultEpmClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewEpmClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EpmClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(EpmSyntaxV3_0))...)
 	if err != nil {

@@ -69,6 +69,9 @@ type QuotaTemplateManagerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) QuotaTemplateManagerClient
 }
@@ -187,6 +190,10 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) AlterContext(ctx context.Context
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultQuotaTemplateManagerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultQuotaTemplateManagerClient) IPID(ctx context.Context, ipid *dcom.IPID) QuotaTemplateManagerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -197,6 +204,7 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) IPID(ctx context.Context, ipid *
 		ipid:           ipid,
 	}
 }
+
 func NewQuotaTemplateManagerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (QuotaTemplateManagerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

@@ -153,6 +153,9 @@ type FileGroupManagerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) FileGroupManagerClient
 }
@@ -271,6 +274,10 @@ func (o *xxx_DefaultFileGroupManagerClient) AlterContext(ctx context.Context, op
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultFileGroupManagerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultFileGroupManagerClient) IPID(ctx context.Context, ipid *dcom.IPID) FileGroupManagerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -281,6 +288,7 @@ func (o *xxx_DefaultFileGroupManagerClient) IPID(ctx context.Context, ipid *dcom
 		ipid:           ipid,
 	}
 }
+
 func NewFileGroupManagerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FileGroupManagerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

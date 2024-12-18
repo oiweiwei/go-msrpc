@@ -472,6 +472,9 @@ type IrpcAsyncNotifyClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ConversationStyle type represents PrintAsyncNotifyConversationStyle RPC enumeration.
@@ -743,6 +746,11 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) CloseChannel(ctx context.Context, in 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultIrpcAsyncNotifyClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewIrpcAsyncNotifyClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (IrpcAsyncNotifyClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(IrpcAsyncNotifySyntaxV1_0))...)
 	if err != nil {

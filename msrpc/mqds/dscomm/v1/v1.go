@@ -565,6 +565,9 @@ type DscommClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Type structure represents PCONTEXT_HANDLE_TYPE RPC structure.
@@ -1023,6 +1026,11 @@ func (o *xxx_DefaultDscommClient) GetServerPort(ctx context.Context, in *GetServ
 func (o *xxx_DefaultDscommClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultDscommClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewDscommClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DscommClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DscommSyntaxV1_0))...)
 	if err != nil {

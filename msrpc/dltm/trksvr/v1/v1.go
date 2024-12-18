@@ -154,6 +154,9 @@ type TrksvrClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultTrksvrClient struct {
@@ -189,6 +192,11 @@ func (o *xxx_DefaultTrksvrClient) ServerMessageCallback(ctx context.Context, in 
 func (o *xxx_DefaultTrksvrClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultTrksvrClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewTrksvrClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TrksvrClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TrksvrSyntaxV1_0))...)
 	if err != nil {

@@ -56,6 +56,9 @@ type COMTrackingInfoEventsClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) COMTrackingInfoEventsClient
 }
@@ -94,6 +97,10 @@ func (o *xxx_DefaultCOMTrackingInfoEventsClient) AlterContext(ctx context.Contex
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultCOMTrackingInfoEventsClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultCOMTrackingInfoEventsClient) IPID(ctx context.Context, ipid *dcom.IPID) COMTrackingInfoEventsClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -104,6 +111,7 @@ func (o *xxx_DefaultCOMTrackingInfoEventsClient) IPID(ctx context.Context, ipid 
 		ipid:          ipid,
 	}
 }
+
 func NewCOMTrackingInfoEventsClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (COMTrackingInfoEventsClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

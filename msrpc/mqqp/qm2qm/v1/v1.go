@@ -319,6 +319,9 @@ type Qm2qmClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Session structure represents PCTX_RRSESSION_HANDLE_TYPE RPC structure.
@@ -931,6 +934,11 @@ func (o *xxx_DefaultQm2qmClient) StartReceiveByLookupID(ctx context.Context, in 
 func (o *xxx_DefaultQm2qmClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultQm2qmClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewQm2qmClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Qm2qmClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Qm2qmSyntaxV1_0))...)
 	if err != nil {

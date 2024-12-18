@@ -63,6 +63,9 @@ type FileScreenExceptionClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) FileScreenExceptionClient
 }
@@ -141,6 +144,10 @@ func (o *xxx_DefaultFileScreenExceptionClient) AlterContext(ctx context.Context,
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultFileScreenExceptionClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultFileScreenExceptionClient) IPID(ctx context.Context, ipid *dcom.IPID) FileScreenExceptionClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -151,6 +158,7 @@ func (o *xxx_DefaultFileScreenExceptionClient) IPID(ctx context.Context, ipid *d
 		ipid:         ipid,
 	}
 }
+
 func NewFileScreenExceptionClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FileScreenExceptionClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

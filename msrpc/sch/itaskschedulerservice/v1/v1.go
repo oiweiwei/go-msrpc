@@ -174,6 +174,9 @@ type TaskSchedulerServiceClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // TaskUserCred structure represents TASK_USER_CRED RPC structure.
@@ -667,6 +670,11 @@ func (o *xxx_DefaultTaskSchedulerServiceClient) EnableTask(ctx context.Context, 
 func (o *xxx_DefaultTaskSchedulerServiceClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultTaskSchedulerServiceClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewTaskSchedulerServiceClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TaskSchedulerServiceClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TaskSchedulerServiceSyntaxV1_0))...)
 	if err != nil {

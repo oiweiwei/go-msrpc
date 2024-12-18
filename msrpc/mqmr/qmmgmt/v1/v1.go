@@ -113,6 +113,9 @@ type QmmgmtClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ManagementObjectType type represents MgmtObjectType RPC enumeration.
@@ -454,6 +457,11 @@ func (o *xxx_DefaultQmmgmtClient) ManagementAction(ctx context.Context, in *Mana
 func (o *xxx_DefaultQmmgmtClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultQmmgmtClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewQmmgmtClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (QmmgmtClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(QmmgmtSyntaxV1_0))...)
 	if err != nil {

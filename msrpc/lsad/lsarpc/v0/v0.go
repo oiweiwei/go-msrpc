@@ -1372,6 +1372,9 @@ type LsarpcClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Handle structure represents LSAPR_HANDLE RPC structure.
@@ -10322,6 +10325,11 @@ func (o *xxx_DefaultLsarpcClient) SetForestTrustInformation(ctx context.Context,
 func (o *xxx_DefaultLsarpcClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultLsarpcClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewLsarpcClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (LsarpcClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(LsarpcSyntaxV0_0))...)
 	if err != nil {

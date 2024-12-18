@@ -114,6 +114,9 @@ type RemoteAssistanceServerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) RemoteAssistanceServerClient
 }
@@ -172,6 +175,10 @@ func (o *xxx_DefaultRemoteAssistanceServerClient) AlterContext(ctx context.Conte
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultRemoteAssistanceServerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultRemoteAssistanceServerClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteAssistanceServerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -182,6 +189,7 @@ func (o *xxx_DefaultRemoteAssistanceServerClient) IPID(ctx context.Context, ipid
 		ipid:           ipid,
 	}
 }
+
 func NewRemoteAssistanceServerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteAssistanceServerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

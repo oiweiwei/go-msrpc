@@ -42,6 +42,9 @@ type TypeSmartCardPackClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ReaderSmartCardContext structure represents REDIR_SCARDCONTEXT RPC structure.
@@ -6165,6 +6168,11 @@ type xxx_DefaultTypeSmartCardPackClient struct {
 func (o *xxx_DefaultTypeSmartCardPackClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultTypeSmartCardPackClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewTypeSmartCardPackClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (TypeSmartCardPackClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(TypeSmartCardPackSyntaxV1_0))...)
 	if err != nil {

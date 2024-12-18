@@ -55,6 +55,9 @@ type AppHostChangeHandlerClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) AppHostChangeHandlerClient
 }
@@ -93,6 +96,10 @@ func (o *xxx_DefaultAppHostChangeHandlerClient) AlterContext(ctx context.Context
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAppHostChangeHandlerClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAppHostChangeHandlerClient) IPID(ctx context.Context, ipid *dcom.IPID) AppHostChangeHandlerClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -103,6 +110,7 @@ func (o *xxx_DefaultAppHostChangeHandlerClient) IPID(ctx context.Context, ipid *
 		ipid:          ipid,
 	}
 }
+
 func NewAppHostChangeHandlerClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AppHostChangeHandlerClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

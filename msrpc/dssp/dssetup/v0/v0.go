@@ -96,6 +96,9 @@ type DssetupClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MachineRole type represents DSROLE_MACHINE_ROLE RPC enumeration.
@@ -738,6 +741,11 @@ func (o *xxx_DefaultDssetupClient) GetPrimaryDomainInformation(ctx context.Conte
 func (o *xxx_DefaultDssetupClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultDssetupClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewDssetupClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (DssetupClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(DssetupSyntaxV0_0))...)
 	if err != nil {

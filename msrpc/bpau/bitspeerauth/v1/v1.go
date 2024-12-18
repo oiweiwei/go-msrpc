@@ -49,6 +49,9 @@ type BitsPeerAuthClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultBitsPeerAuthClient struct {
@@ -71,6 +74,11 @@ func (o *xxx_DefaultBitsPeerAuthClient) ExchangePublicKeys(ctx context.Context, 
 func (o *xxx_DefaultBitsPeerAuthClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultBitsPeerAuthClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewBitsPeerAuthClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (BitsPeerAuthClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(BitsPeerAuthSyntaxV1_0))...)
 	if err != nil {

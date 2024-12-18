@@ -4106,6 +4106,9 @@ type FaxClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultFaxClient struct {
@@ -5467,6 +5470,11 @@ func (o *xxx_DefaultFaxClient) GetConfigOption(ctx context.Context, in *GetConfi
 func (o *xxx_DefaultFaxClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultFaxClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewFaxClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (FaxClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(FaxSyntaxV4_0))...)
 	if err != nil {

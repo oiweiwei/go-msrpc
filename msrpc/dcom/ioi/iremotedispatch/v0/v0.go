@@ -68,6 +68,9 @@ type RemoteDispatchClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) RemoteDispatchClient
 }
@@ -126,6 +129,10 @@ func (o *xxx_DefaultRemoteDispatchClient) AlterContext(ctx context.Context, opts
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultRemoteDispatchClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultRemoteDispatchClient) IPID(ctx context.Context, ipid *dcom.IPID) RemoteDispatchClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -136,6 +143,7 @@ func (o *xxx_DefaultRemoteDispatchClient) IPID(ctx context.Context, ipid *dcom.I
 		ipid:           ipid,
 	}
 }
+
 func NewRemoteDispatchClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (RemoteDispatchClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

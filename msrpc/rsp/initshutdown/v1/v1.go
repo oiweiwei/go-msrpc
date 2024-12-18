@@ -62,6 +62,9 @@ type InitShutdownClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultInitShutdownClient struct {
@@ -110,6 +113,11 @@ func (o *xxx_DefaultInitShutdownClient) BaseInitiateShutdownEx(ctx context.Conte
 func (o *xxx_DefaultInitShutdownClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultInitShutdownClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewInitShutdownClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (InitShutdownClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(InitShutdownSyntaxV1_0))...)
 	if err != nil {

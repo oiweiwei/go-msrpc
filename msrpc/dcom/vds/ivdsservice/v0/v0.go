@@ -186,6 +186,9 @@ type ServiceClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ServiceClient
 }
@@ -524,6 +527,10 @@ func (o *xxx_DefaultServiceClient) AlterContext(ctx context.Context, opts ...dce
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultServiceClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultServiceClient) IPID(ctx context.Context, ipid *dcom.IPID) ServiceClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -534,6 +541,7 @@ func (o *xxx_DefaultServiceClient) IPID(ctx context.Context, ipid *dcom.IPID) Se
 		ipid:          ipid,
 	}
 }
+
 func NewServiceClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ServiceClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

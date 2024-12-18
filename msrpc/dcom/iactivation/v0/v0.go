@@ -49,6 +49,9 @@ type ActivationClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxRequestedInterfaces represents the MAX_REQUESTED_INTERFACES RPC constant
@@ -77,6 +80,11 @@ func (o *xxx_DefaultActivationClient) RemoteActivation(ctx context.Context, in *
 func (o *xxx_DefaultActivationClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultActivationClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewActivationClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ActivationClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ActivationSyntaxV0_0))...)
 	if err != nil {

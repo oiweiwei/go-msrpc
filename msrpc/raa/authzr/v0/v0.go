@@ -119,6 +119,9 @@ type AuthzrClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // Handle structure represents AUTHZR_HANDLE RPC structure.
@@ -2316,6 +2319,11 @@ func (o *xxx_DefaultAuthzrClient) ModifySIDs(ctx context.Context, in *ModifySIDs
 func (o *xxx_DefaultAuthzrClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultAuthzrClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewAuthzrClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (AuthzrClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(AuthzrSyntaxV0_0))...)
 	if err != nil {

@@ -64,6 +64,9 @@ type HBAPortClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) HBAPortClient
 }
@@ -122,6 +125,10 @@ func (o *xxx_DefaultHBAPortClient) AlterContext(ctx context.Context, opts ...dce
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultHBAPortClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultHBAPortClient) IPID(ctx context.Context, ipid *dcom.IPID) HBAPortClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -132,6 +139,7 @@ func (o *xxx_DefaultHBAPortClient) IPID(ctx context.Context, ipid *dcom.IPID) HB
 		ipid:          ipid,
 	}
 }
+
 func NewHBAPortClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (HBAPortClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

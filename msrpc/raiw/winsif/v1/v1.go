@@ -554,6 +554,9 @@ type WinsifClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultWinsifClient struct {
@@ -849,6 +852,11 @@ func (o *xxx_DefaultWinsifClient) DoScavengingNew(ctx context.Context, in *DoSca
 func (o *xxx_DefaultWinsifClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultWinsifClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewWinsifClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WinsifClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(WinsifSyntaxV1_0))...)
 	if err != nil {

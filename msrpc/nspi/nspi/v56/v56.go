@@ -292,6 +292,9 @@ type NspiClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // FlatUID structure represents FlatUID_r RPC structure.
@@ -5143,6 +5146,11 @@ func (o *xxx_DefaultNspiClient) ResolveNamesW(ctx context.Context, in *ResolveNa
 func (o *xxx_DefaultNspiClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultNspiClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewNspiClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (NspiClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(NspiSyntaxV56_0))...)
 	if err != nil {

@@ -1338,6 +1338,9 @@ type Clusapi3Client interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // MaxClusterControlCodeBufferSize represents the MAX_CLUSTER_CONTROL_CODE_BUFFER_SIZE RPC constant
@@ -6403,6 +6406,11 @@ func (o *xxx_DefaultClusapi3Client) ChangeResourceGroupEx(ctx context.Context, i
 func (o *xxx_DefaultClusapi3Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultClusapi3Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewClusapi3Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Clusapi3Client, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Clusapi3SyntaxV3_0))...)
 	if err != nil {

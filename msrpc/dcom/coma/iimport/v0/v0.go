@@ -97,6 +97,9 @@ type ImportClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ImportClient
 }
@@ -155,6 +158,10 @@ func (o *xxx_DefaultImportClient) AlterContext(ctx context.Context, opts ...dcer
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultImportClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultImportClient) IPID(ctx context.Context, ipid *dcom.IPID) ImportClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -165,6 +172,7 @@ func (o *xxx_DefaultImportClient) IPID(ctx context.Context, ipid *dcom.IPID) Imp
 		ipid:          ipid,
 	}
 }
+
 func NewImportClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImportClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

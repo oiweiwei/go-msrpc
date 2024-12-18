@@ -94,6 +94,9 @@ type PropertyDefinition2Client interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) PropertyDefinition2Client
 }
@@ -212,6 +215,10 @@ func (o *xxx_DefaultPropertyDefinition2Client) AlterContext(ctx context.Context,
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultPropertyDefinition2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultPropertyDefinition2Client) IPID(ctx context.Context, ipid *dcom.IPID) PropertyDefinition2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -222,6 +229,7 @@ func (o *xxx_DefaultPropertyDefinition2Client) IPID(ctx context.Context, ipid *d
 		ipid:                     ipid,
 	}
 }
+
 func NewPropertyDefinition2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (PropertyDefinition2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

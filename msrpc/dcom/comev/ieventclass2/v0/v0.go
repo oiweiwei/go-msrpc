@@ -76,6 +76,9 @@ type EventClass2Client interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) EventClass2Client
 }
@@ -254,6 +257,10 @@ func (o *xxx_DefaultEventClass2Client) AlterContext(ctx context.Context, opts ..
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultEventClass2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultEventClass2Client) IPID(ctx context.Context, ipid *dcom.IPID) EventClass2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -264,6 +271,7 @@ func (o *xxx_DefaultEventClass2Client) IPID(ctx context.Context, ipid *dcom.IPID
 		ipid:             ipid,
 	}
 }
+
 func NewEventClass2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EventClass2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

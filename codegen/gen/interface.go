@@ -190,7 +190,10 @@ func (p *Generator) GenClient(ctx context.Context, iff *midl.Interface) {
 	p.Block("func", "(o *"+dn+")", "AlterContext(ctx context.Context, opts ...dcerpc.Option)", "error", func() {
 		p.P("return o.cc.AlterContext(ctx, opts...)")
 	})
-
+	p.P()
+	p.Block("func", "(o *"+dn+")", "Conn()", "dcerpc.Conn", func() {
+		p.P("return o.cc")
+	})
 	if iff.IsObject() {
 		p.P()
 		p.Block("func", "(o *"+dn+")", "IPID(ctx context.Context, ipid *dcom.IPID)", n, func() {
@@ -207,6 +210,7 @@ func (p *Generator) GenClient(ctx context.Context, iff *midl.Interface) {
 		})
 	}
 
+	p.P()
 	p.Block("func", p.B("New"+n, "ctx context.Context", "cc dcerpc.Conn", "opts ...dcerpc.Option"), p.B("", n, "error"), func() {
 
 		if iff.IsObject() {
@@ -301,6 +305,9 @@ func (p *Generator) GenClientInterface(ctx context.Context, iff *midl.Interface)
 		p.P()
 		p.P("//", "AlterContext alters the client context.")
 		p.P(p.B("AlterContext", "context.Context", "...dcerpc.Option"), "error")
+		p.P()
+		p.P("//", "Conn returns the client connection (unsafe)")
+		p.P(p.B("Conn"), "dcerpc.Conn")
 
 		if iff.IsObject() {
 			p.P()

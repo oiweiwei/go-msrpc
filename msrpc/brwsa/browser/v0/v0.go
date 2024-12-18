@@ -115,6 +115,9 @@ type BrowserClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // ServerInfo100Container structure represents SERVER_INFO_100_CONTAINER RPC structure.
@@ -458,6 +461,11 @@ func (o *xxx_DefaultBrowserClient) QueryOtherDomains(ctx context.Context, in *Qu
 func (o *xxx_DefaultBrowserClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultBrowserClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewBrowserClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (BrowserClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(BrowserSyntaxV0_0))...)
 	if err != nil {

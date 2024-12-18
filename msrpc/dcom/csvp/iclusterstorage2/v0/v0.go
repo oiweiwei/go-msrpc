@@ -920,6 +920,9 @@ type ClusterStorage2Client interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ClusterStorage2Client
 }
@@ -1518,6 +1521,10 @@ func (o *xxx_DefaultClusterStorage2Client) AlterContext(ctx context.Context, opt
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultClusterStorage2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultClusterStorage2Client) IPID(ctx context.Context, ipid *dcom.IPID) ClusterStorage2Client {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -1528,6 +1535,7 @@ func (o *xxx_DefaultClusterStorage2Client) IPID(ctx context.Context, ipid *dcom.
 		ipid:          ipid,
 	}
 }
+
 func NewClusterStorage2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ClusterStorage2Client, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

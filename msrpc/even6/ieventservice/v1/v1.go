@@ -316,6 +316,9 @@ type EventServiceClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // SubscribePull represents the EvtRpcSubscribePull RPC constant
@@ -2637,6 +2640,11 @@ func (o *xxx_DefaultEventServiceClient) GetClassicLogDisplayName(ctx context.Con
 func (o *xxx_DefaultEventServiceClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultEventServiceClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewEventServiceClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (EventServiceClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(EventServiceSyntaxV1_0))...)
 	if err != nil {

@@ -91,6 +91,9 @@ type ManagedObjectClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) ManagedObjectClient
 }
@@ -149,6 +152,10 @@ func (o *xxx_DefaultManagedObjectClient) AlterContext(ctx context.Context, opts 
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultManagedObjectClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultManagedObjectClient) IPID(ctx context.Context, ipid *dcom.IPID) ManagedObjectClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -159,6 +166,7 @@ func (o *xxx_DefaultManagedObjectClient) IPID(ctx context.Context, ipid *dcom.IP
 		ipid:          ipid,
 	}
 }
+
 func NewManagedObjectClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ManagedObjectClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {

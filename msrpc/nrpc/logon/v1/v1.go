@@ -837,6 +837,9 @@ type LogonClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 // IdentityCleartextPasswordAllowed represents the IDENTITY_CLEARTEXT_PASSWORD_ALLOWED RPC constant
@@ -19257,6 +19260,11 @@ func (o *xxx_DefaultLogonClient) ChainSetClientAttributes(ctx context.Context, i
 func (o *xxx_DefaultLogonClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultLogonClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewLogonClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (LogonClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(LogonSyntaxV1_0))...)
 	if err != nil {
