@@ -155,10 +155,13 @@ func (a *Authentifier) Authenticate(ctx context.Context, b []byte) ([]byte, erro
 		Negotiate:           cm.Negotiate,
 		LMChallengeResponse: resp.LM,
 		NTChallengeResponse: resp.NT,
-		DomainName:          a.Config.Credential.DomainName(),
-		UserName:            a.Config.Credential.UserName(),
-		Workstation:         a.Config.Credential.Workstation(),
 		MIC:                 make([]byte, 16),
+	}
+
+	if a.Config.Credential != nil {
+		am.DomainName = a.Config.Credential.DomainName()
+		am.UserName = a.Config.Credential.UserName()
+		am.Workstation = a.Config.Credential.Workstation()
 	}
 
 	var exportedKey []byte
