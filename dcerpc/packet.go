@@ -188,7 +188,7 @@ func (c *transport) Codec(raw []byte, drep ndr.DataRepresentation) ndr.NDR {
 // IsSecurePacket function returns `true` if security trailer is/must_be appended
 // to the packet.
 func (c *transport) IsSecurePacket(ctx context.Context, pkt *Packet) bool {
-	return pkt.Header.AuthLength != 0 || (pkt.SecurityTrailer.AuthLevel >= AuthLevelConnect && c.settings.IsSecurityMultiplexed())
+	return pkt.Header.AuthLength != 0 || (pkt.SecurityTrailer.AuthLevel > AuthLevelConnect) || (pkt.SecurityTrailer.AuthLevel >= AuthLevelConnect && c.settings.IsSecurityMultiplexed())
 }
 
 // DecodeFragmentFromBuffer function decodes the fragment in buffer `raw`, unwraps the contents
@@ -206,7 +206,7 @@ func (c *transport) DecodePacket(ctx context.Context, pkt *Packet, raw []byte) (
 	// set proper fragment length.
 	pkt.raw, pkt.end = raw[:pkt.Header.FragLength], int(pkt.Header.FragLength)
 	// adjust auth length.
-	if pkt.Header.AuthLength != 0 {
+	if c.IsSecurePacket(ctx, pkt) {
 		// adjust stub end to include security trailer.
 		pkt.end -= SecurityTrailerSize + int(pkt.Header.AuthLength)
 	}

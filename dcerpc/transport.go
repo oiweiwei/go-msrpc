@@ -156,6 +156,10 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 		SecurityTrailer: o.Security.SecurityTrailer(),
 	}
 
+	if o.Security == nil || o.Security.Established() {
+		pkt.SecurityTrailer = SecurityTrailer{}
+	}
+
 	// set auth data.
 	if pkt.AuthData, err = o.Security.Init(ctx, nil); err != nil {
 		return nil, fmt.Errorf("alter context: init security: %w", err)
@@ -165,7 +169,7 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 		return nil, fmt.Errorf("alter context: write packet: %w", err)
 	}
 	// read bind response (bind-ack, bind-nak).
-	if pkt, err = c.ReadPacket(ctx, call); err != nil {
+	if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("alter context: read packet: %w", err)
 	}
 
@@ -221,7 +225,7 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 			return nil, fmt.Errorf("alter context: write packet: %w", err)
 		}
 		// read alter_context response.
-		if pkt, err = c.ReadPacket(ctx, call); err != nil {
+		if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
 			return nil, fmt.Errorf("alter context: read packet: %w", err)
 		}
 		// check response.
@@ -354,7 +358,7 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		return nil, fmt.Errorf("bind: write packet: %w", err)
 	}
 	// read bind response (bind-ack, bind-nak).
-	if pkt, err = c.ReadPacket(ctx, call); err != nil {
+	if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("bind: read packet: %w", err)
 	}
 
@@ -439,7 +443,7 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 			return nil, fmt.Errorf("bind: alter context: write packet: %w", err)
 		}
 		// read alter_context response.
-		if pkt, err = c.ReadPacket(ctx, call); err != nil {
+		if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
 			return nil, fmt.Errorf("bind: alter context: read packet: %w", err)
 		}
 		// check response.
@@ -521,9 +525,11 @@ func (t *transport) writePacket(ctx context.Context, call Call, pkt *Packet) err
 }
 
 // ReadPacket function reads and decodes the packet from the connection.
-func (t *transport) ReadPacket(ctx context.Context, call Call) (*Packet, error) {
+func (t *transport) ReadPacket(ctx context.Context, call Call, pkt *Packet) (*Packet, error) {
 
-	pkt, err := t.readPacket(ctx, call)
+	var err error
+
+	pkt, err = t.readPacket(ctx, call, pkt)
 	if err != nil {
 		return nil, t.asyncClose(ctx, err)
 	}
@@ -532,7 +538,7 @@ func (t *transport) ReadPacket(ctx context.Context, call Call) (*Packet, error) 
 }
 
 // readPacket.
-func (t *transport) readPacket(ctx context.Context, call Call) (*Packet, error) {
+func (t *transport) readPacket(ctx context.Context, call Call, pkt *Packet) (*Packet, error) {
 
 	var err error
 
@@ -549,8 +555,6 @@ func (t *transport) readPacket(ctx context.Context, call Call) (*Packet, error) 
 			return nil, fmt.Errorf("read buffer: %w", err)
 		}
 	}
-
-	pkt := &Packet{}
 
 	// decode the retrieved packet.
 	if pkt, err = t.DecodePacket(ctx, pkt, t.rx); err != nil {

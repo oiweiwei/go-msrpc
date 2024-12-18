@@ -91,9 +91,13 @@ func (SecurityContextOption) is_rpcOption() {}
 //	import "github.com/oiweiwei/go-msrpc/ssp"
 //
 //	cli, err := winreg.NewWinregClient(ctx, conn, dcerpc.WithSeal(), dcerpc.WithMechanism(ssp.NTLM))
-func WithMechanism(m gssapi.MechanismFactory) SecurityContextOption {
+func WithMechanism(m gssapi.MechanismFactory, defaultConfig ...gssapi.MechanismConfig) SecurityContextOption {
 	return SecurityContextOption(func(o *option) {
-		o.SecurityOptions = append(o.SecurityOptions, m)
+		if len(defaultConfig) > 0 {
+			o.SecurityOptions = append(o.SecurityOptions, gssapi.WithDefaultConfig(m, defaultConfig[0]))
+		} else {
+			o.SecurityOptions = append(o.SecurityOptions, m)
+		}
 	})
 }
 
