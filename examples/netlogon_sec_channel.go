@@ -3,14 +3,14 @@
 // netlogon_sec_channel.go script establishes the secure channel and validates credentials
 // provided via creds parameter. (specify creds as --creds 'DOMAIN\username%password').
 //
-// NOTE: SAM_USERNAME, and SAM_PASSWORD are machine account password acquired while joining
+// NOTE: MACHINE_ACCOUNT_USERNAME, and MACHINE_ACCOUNT_PASSWORD are machine account password acquired while joining
 // domain. To join domain you must do following:
 //
 //	# https://manpages.ubuntu.com/manpages/trusty/man8/adcli.8.html
 //	$ sudo adcli join CONTOSO.NET --domain-controller=${SERVER} --show-password --show-details
 //
-// Password will be located under computer-password key, and SAM_USERNAME must be set to computer-name + '$'.
-// (if computer-name is MYPC, then SAM_USERNAME will be MYPC$)
+// Password will be located under computer-password key, and MACHINE_ACCOUNT_USERNAME must be set to computer-name + '$'.
+// (if computer-name is MYPC, then MACHINE_ACCOUNT_USERNAME will be MYPC$)
 package main
 
 import (
@@ -38,7 +38,7 @@ import (
 
 func init() {
 	// add credentials.
-	gssapi.AddCredential(credential.NewFromPassword(os.Getenv("SAM_USERNAME"), os.Getenv("SAM_PASSWORD"), credential.Workstation(os.Getenv("SAM_WORKSTATION"))))
+	gssapi.AddCredential(credential.NewFromPassword(os.Getenv("MACHINE_ACCOUNT_USERNAME"), os.Getenv("MACHINE_ACCOUNT_PASSWORD"), credential.Workstation(os.Getenv("MACHINE_ACCOUNT_WORKSTATION"))))
 	// add mechanism.
 	gssapi.AddMechanism(ssp.SPNEGO)
 	gssapi.AddMechanism(ssp.NTLM)
@@ -59,7 +59,7 @@ func j(v any) string {
 
 func main() {
 
-	sAMCred := credential.NewFromPassword(os.Getenv("SAM_USERNAME"), os.Getenv("SAM_PASSWORD"), credential.Workstation(os.Getenv("SAM_WORKSTATION")))
+	sAMCred := credential.NewFromPassword(os.Getenv("MACHINE_ACCOUNT_USERNAME"), os.Getenv("MACHINE_ACCOUNT_PASSWORD"), credential.Workstation(os.Getenv("MACHINE_ACCOUNT_WORKSTATION")))
 
 	ctx := gssapi.NewSecurityContext(context.Background())
 

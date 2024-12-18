@@ -207,7 +207,7 @@ func main() {
 
 		// decrypt the unicode password hash.
 		if b, _ := object["unicodePwd"].([]byte); len(b) != 0 {
-			pwd, err := drsuapi.DecryptHash(ctx, rid, b)
+			pwd, err := drsuapi.DecryptHash(cli.Conn().Context(), rid, b)
 			if err != nil {
 				fmt.Fprintln(os.Stderr, err)
 				return
@@ -217,7 +217,7 @@ func main() {
 
 		// decode the supplemental credentials (kerberos tickets).
 		if b, _ := object["supplementalCredentials"].([]byte); len(b) != 0 {
-			creds, err := drsuapi.DecryptData(ctx, b)
+			creds, err := drsuapi.DecryptData(cli.Conn().Context(), b)
 			if err != nil {
 				fmt.Fprintln(os.Stderr, err)
 				return
