@@ -126,9 +126,9 @@ F1D6C29C-8FBE-4691-8724-F6D8DEAEAFC8	MS-CSVP	Failover Cluster: Setup and Validat
 12108A88-6858-4467-B92F-E6CF4568DFB6	MS-CSVP	Failover Cluster: Setup and Validation Protocol (ClusPrep)	IClusterStorage2	v0.0	
 11942D87-A1DE-4E7F-83FB-A840D9C5928D	MS-CSVP	Failover Cluster: Setup and Validation Protocol (ClusPrep)	IClusterStorage3	v0.0	
 E3C9B851-C442-432B-8FC6-A7FAAFC09D3B	MS-CSVP	Failover Cluster: Setup and Validation Protocol (ClusPrep)	IClusterUpdate	v0.0	
-4D9F4AB8-7D1C-11CF-861E-0020AF6E7C57	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IActivation	v0.0	
-99FCFEC4-5260-101B-BBCB-00AA0021347A	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IObjectExporter	v0.0	
-000001A0-0000-0000-C000-000000000046	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IRemoteSCMActivator	v0.0	
+4D9F4AB8-7D1C-11CF-861E-0020AF6E7C57	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IActivation	v0.0	ncacn_ip_tcp:135
+99FCFEC4-5260-101B-BBCB-00AA0021347A	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IObjectExporter	v0.0	ncacn_ip_tcp:135
+000001A0-0000-0000-C000-000000000046	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IRemoteSCMActivator	v0.0	ncacn_ip_tcp:135
 00000143-0000-0000-C000-000000000046	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IRemUnknown2	v0.0	
 00000131-0000-0000-C000-000000000046	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IRemUnknown	v0.0	
 00000000-0000-0000-C000-000000000046	MS-DCOM	Distributed Component Object Model (DCOM) Remote Protocol	IUnknown	v0.0	

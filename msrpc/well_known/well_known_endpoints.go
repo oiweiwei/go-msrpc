@@ -2288,6 +2288,12 @@ func (u UUID) WellKnownEndpoint() []string {
 		return []string{"ncacn_np:browser"}
 	case MSCAPRLsacap:
 		return []string{"ncacn_np:lsarpc"}
+	case MSDCOMIActivation:
+		return []string{"ncacn_ip_tcp:135"}
+	case MSDCOMIObjectExporter:
+		return []string{"ncacn_ip_tcp:135"}
+	case MSDCOMIRemoteSCMActivator:
+		return []string{"ncacn_ip_tcp:135"}
 	case MSDFSNMNetDFS:
 		return []string{"ncacn_np:NETDFS"}
 	case MSDHCPMDhcpsrv2:
