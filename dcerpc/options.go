@@ -458,7 +458,7 @@ func ParseOptions(ctx context.Context, opts ...Option) (*option, error) {
 	option := ParseSecurityOptions(ctx, opts...)
 
 	for i := range opts {
-		switch o := (opts[i]).(type) {
+		switch o := (any)(opts[i]).(type) {
 		case SecurityOption:
 			if option.Security == nil {
 				option.Security, option.IsNewSecurity = NewSecurity(ctx, option.SecurityOptions...), true

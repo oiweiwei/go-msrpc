@@ -116,43 +116,76 @@ func Dial(ctx context.Context, addr string, opts ...Option) (Conn, error) {
 		opts:       append(opts, WithGroup(group)),
 	}
 
-	if net.ParseIP(addr) != nil {
-		// this is an ip address.
-		return tr, nil
+	ip, hostName, binding, err := ParseServerAddrWithDNSLookup(addr, true)
+	if err != nil {
+		return nil, fmt.Errorf("dial: %w", err)
 	}
 
-	if !strings.Contains(addr, ":") {
-		tr.settings.HostName = addr
-		// this is a fqdn.
+	if ip != nil {
+		tr.serverAddr = ip.String()
+	}
+
+	if hostName != "" {
+		tr.settings.HostName = hostName
+	}
+
+	if binding != nil {
+		// set the string binding.
+		tr.settings.StringBinding = *binding
+		// set the server address.
+		if tr.serverAddr = binding.NetworkAddress; tr.serverAddr == "" {
+			tr.serverAddr = binding.ComputerName
+		}
+	}
+
+	// return the transport set.
+	return tr, nil
+}
+
+// ParseServerAddr function parses the server address.
+func ParseServerAddr(addr string) (net.IP, string, *StringBinding, error) {
+	return ParseServerAddrWithDNSLookup(addr, false)
+}
+
+// ParseServerAddrWithDNSLookup function parses the server address
+// and performs the DNS lookup if required.
+func ParseServerAddrWithDNSLookup(addr string, doLookup bool) (net.IP, string, *StringBinding, error) {
+
+	if ip := net.ParseIP(addr); ip != nil {
+		// this is an ip address.
+		return ip, "", nil, nil
+	}
+
+	if !strings.Contains(addr, ":") && !strings.Contains(addr, "@") {
+
+		// this is fqdn.
+
+		if !doLookup {
+			return nil, addr, nil, nil
+		}
+
 		ips, err := net.LookupIP(addr)
 		if err != nil {
-			return nil, fmt.Errorf("dial: lookup server address: %w", err)
+			return nil, "", nil, fmt.Errorf("lookup server address: %w", err)
 		}
+
 		for _, ip := range ips {
 			if ip.To4() != nil {
-				tr.serverAddr = ip.String()
-				return tr, nil
+				return ip, addr, nil, nil
 			}
 		}
-		return nil, fmt.Errorf("dial: lookup server address: no ipv4 address")
+
+		return nil, "", nil, fmt.Errorf("lookup server address: no ipv4 address")
 	}
 
 	// address is the string binding (ie, ncacn_ip_tcp:127.0.0.1,
 	// or, ncacn_np:127.0.0.1[\PIPE\pipe_name]).
 	binding, err := ParseStringBinding(addr)
 	if err != nil {
-		return nil, fmt.Errorf("dial: %s: %w", addr, err)
+		return nil, "", nil, fmt.Errorf("%s: %w", addr, err)
 	}
 
-	// set the string binding.
-	tr.settings.StringBinding = *binding
-	// set the server address.
-	if tr.serverAddr = binding.NetworkAddress; tr.serverAddr == "" {
-		tr.serverAddr = binding.ComputerName
-	}
-
-	// return the transport set.
-	return tr, nil
+	return nil, "", binding, nil
 }
 
 // Alter Context.

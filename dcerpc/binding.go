@@ -86,6 +86,8 @@ var (
 // protocol sequence, the network address, and the endpoint and
 // endpoint options.
 type StringBinding struct {
+	// The username and password for the binding.
+	Username, Password string
 	// The object UUID.
 	ObjectUUID *uuid.UUID
 	// The protocol sequence.
@@ -97,6 +99,8 @@ type StringBinding struct {
 	// The endpoint: port number for TCP/IP or HTTP,
 	// named pipe name for SMB, or local IPC port for ALPC.
 	Endpoint string
+	// The extra endpoint options.
+	Extra []string
 }
 
 func (s StringBinding) Complete() bool {
@@ -256,6 +260,24 @@ func ParseBindingURL(s string) (*Binding, error) {
 
 	var url Binding
 
+	url.StringBinding.Username = u.User.Username()
+	url.StringBinding.Password, _ = u.User.Password()
+
+	for extra := range u.Query() {
+		switch extra {
+		case "username":
+			url.StringBinding.Username = u.Query().Get(extra)
+		case "password":
+			url.StringBinding.Password = u.Query().Get(extra)
+		default:
+			if v := u.Query().Get(extra); v != "" {
+				url.StringBinding.Extra = append(url.StringBinding.Extra, extra+"="+v)
+			} else {
+				url.StringBinding.Extra = append(url.StringBinding.Extra, extra)
+			}
+		}
+	}
+
 	p := strings.Split(u.Path, "/")
 
 	switch u.Scheme {
@@ -314,6 +336,7 @@ func ParseBindingURL(s string) (*Binding, error) {
 // ParseBinding function parses the string binding of format:
 // [ 'ObjectUUID' '@' ] ProtocolSequence ':' NetworkAddress '[' Endpoint ']'
 // [ NetworkAddress ] ':' Port
+// [ 'Username' '%' 'Password' '@' ] ProtocolSequence ':' 'ComputerName' '[' Endpoint ']'
 func ParseStringBinding(s string) (*StringBinding, error) {
 
 	var (
@@ -330,16 +353,31 @@ func ParseStringBinding(s string) (*StringBinding, error) {
 		return &b.StringBinding, nil
 	}
 
-	before, s, ok := strings.Cut(s, "@")
+	before, s, ok := CutRight(s, "@")
 	if ok {
-		if url.ObjectUUID, err = uuid.Parse(before); err != nil {
-			return nil, fmt.Errorf("parse string binding: %v", err)
+		if strings.Contains(before, "%") { // XXX: special case to pass username%password
+			url.Username, url.Password, _ = strings.Cut(before, "%")
+		} else {
+			if url.ObjectUUID, err = uuid.Parse(before); err != nil {
+				return nil, fmt.Errorf("parse string binding: %v", err)
+			}
 		}
 	} else {
 		s = before
 	}
 
 	if before, s, ok = strings.Cut(s, ":"); !ok {
+
+		if url.Username != "" || url.Password != "" {
+			// it's a username%password@host.
+			return &StringBinding{
+				Username:         url.Username,
+				Password:         url.Password,
+				NetworkAddress:   before,
+				ProtocolSequence: ProtocolSequenceIPTCP,
+			}, nil
+		}
+
 		return nil, fmt.Errorf("parse string binding: malformed binding url: protocol sequence is missing")
 	}
 
@@ -353,6 +391,8 @@ func ParseStringBinding(s string) (*StringBinding, error) {
 		// it's plain host:port. (assume tcp).
 
 		return &StringBinding{
+			Username:         url.Username,
+			Password:         url.Password,
 			NetworkAddress:   before,
 			ProtocolSequence: ProtocolSequenceIPTCP,
 			Endpoint:         s,
@@ -377,5 +417,29 @@ func ParseStringBinding(s string) (*StringBinding, error) {
 		return nil, fmt.Errorf("parse string binding: malformed binding url: endpoint is malformed")
 	}
 
+	if url.Endpoint != "" {
+		// parse endpoint options.
+		extras := strings.Split(url.Endpoint, ",")
+		if url.Endpoint, url.Extra = extras[0], extras[1:]; url.Endpoint == "*" || url.Endpoint == "?" {
+			// special case for named pipe.
+			url.Endpoint, url.Extra = "", extras
+		}
+		switch url.ProtocolSequence {
+		case ProtocolSequenceIPTCP:
+			// parse the port number.
+			if _, err := strconv.ParseUint(url.Endpoint, 10, 16); err != nil {
+				url.Endpoint, url.Extra = "", extras
+			}
+		}
+	}
+
 	return &url, nil
+}
+
+func CutRight(s string, sym string) (string, string, bool) {
+	i := strings.LastIndex(s, sym)
+	if i == -1 {
+		return s, "", false
+	}
+	return s[:i], s[i+1:], true
 }
