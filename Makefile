@@ -142,9 +142,9 @@ test:
 	go test ./example/...
 
 .PHONY: develop-up
-develop-up:
+vagrant-up:
 	cd ./develop && vagrant up dc01
 
 .PHONY: develop-provision
-develop-provision:
+vagrant-provision:
 	cd ./develop && vagrant up dc01 --provision
