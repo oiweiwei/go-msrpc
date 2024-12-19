@@ -120,6 +120,11 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		cli.Config.LibDefaults.DefaultTGSEnctypeIDs = []int32{etypeID.RC4_HMAC}
 		cli.Config.LibDefaults.DefaultTktEnctypeIDs = []int32{etypeID.RC4_HMAC}
 		cli.Config.LibDefaults.PermittedEnctypeIDs = []int32{etypeID.RC4_HMAC}
+	} else if ccache, ok := a.Config.Credential.(credential.CCache); ok {
+		cli, err = client.NewFromCCache(ccache.CCache(), a.Config.KRB5Config, a.Config.ClientSettings()...)
+		if err != nil {
+			return nil, fmt.Errorf("client from ccache credential: %w", err)
+		}
 	}
 
 	_, err = cli.IsConfigured()

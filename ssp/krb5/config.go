@@ -164,6 +164,10 @@ func IsValidCredential(cred any) bool {
 		return true
 	}
 
+	if _, ok := cred.(credential.CCache); ok {
+		return true
+	}
+
 	return false
 }
 
