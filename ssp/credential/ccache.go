@@ -6,7 +6,7 @@ import (
 
 type CCache interface {
 	Credential
-	// Keytab.
+	// CCache.
 	CCache() *credentials.CCache
 }
 
