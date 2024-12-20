@@ -107,7 +107,7 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 	}
 
 	if cc.Capabilities.IsSet(gssapi.DCEStyle) || c.DCEStyle {
-		c.Flags = append(c.Flags, int(gssapi.DCEStyle))
+		c.Flags, c.DCEStyle = append(c.Flags, int(gssapi.DCEStyle)), true
 	}
 
 	// XXX: this option controls whether the key from TGT must be

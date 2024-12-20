@@ -17,6 +17,9 @@ func SecurtiyContextInitiator(opts ...gssapi.ContextOption) *Initiator {
 		}
 	}
 
+	// allways include DCEStyle.
+	i.opts = append(i.opts, gssapi.WithRequest(gssapi.DCEStyle))
+
 	return &i
 }
 
