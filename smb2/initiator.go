@@ -71,10 +71,15 @@ func (i *Initiator) Sum(b []byte) []byte {
 
 func (i *Initiator) SessionKey() []byte {
 
-	key, ok := gssapi.GetAttribute(i.ctx, gssapi.AttributeSessionKey, i.opts...)
+	attr, ok := gssapi.GetAttribute(i.ctx, gssapi.AttributeSessionKey, i.opts...)
 	if !ok {
 		return nil
 	}
 
-	return key.([]byte)
+	key, ok := attr.([]byte)
+	if ok && len(key) > 16 {
+		return key[:16]
+	}
+
+	return key
 }
