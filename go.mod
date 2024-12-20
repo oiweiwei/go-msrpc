@@ -15,7 +15,7 @@ require (
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.8.4
 	golang.org/x/crypto v0.31.0
-	golang.org/x/net v0.25.0
+	golang.org/x/net v0.33.0
 	golang.org/x/text v0.21.0
 	gopkg.in/yaml.v3 v3.0.1
 	jaytaylor.com/html2text v0.0.0-20230321000545-74c2419ad056
