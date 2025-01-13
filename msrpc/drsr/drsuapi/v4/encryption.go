@@ -51,9 +51,18 @@ func DecryptDataWithKey(ctx context.Context, key []byte, b []byte) ([]byte, erro
 	return data[4:], nil
 }
 
-// DecryptHash decrypts the hash using the session key and rid.
+// DecryptHash decrypts the hash using the session key from context and rid.
 func DecryptHash(ctx context.Context, rid uint32, b []byte) ([]byte, error) {
 	b, err := DecryptData(ctx, b)
+	if err != nil {
+		return nil, err
+	}
+	return crypto.DES_ECB_LM(rid, b)
+}
+
+// DecryptHashWithKey decrypts the hash using the provided key and rid.
+func DecryptHashWithKey(ctx context.Context, key []byte, rid uint32, b []byte) ([]byte, error) {
+	b, err := DecryptDataWithKey(ctx, key, b)
 	if err != nil {
 		return nil, err
 	}
