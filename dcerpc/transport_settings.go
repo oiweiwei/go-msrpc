@@ -2,6 +2,7 @@ package dcerpc
 
 import (
 	"context"
+	"net"
 	"time"
 
 	"github.com/rs/zerolog"
@@ -50,6 +51,8 @@ type Transport struct {
 	// The programmable operation deadline for deecoding and
 	// encryption/decryption.
 	Deadline time.Duration
+	// Network dialer.
+	Dialer Dialer
 	// SMB port.
 	SMBPort int
 	// SMB dialer.
@@ -84,6 +87,17 @@ func WithNewTransport() ConnectOption {
 // WithGroupID option sets the association group identifier.
 func WithGroupID(id int) ConnectOption {
 	return func(o *Transport) { o.GroupID = id }
+}
+
+// Dialer interface is used to dial a TCP connection.
+type Dialer interface {
+	// DialContext dials a TCP connection.
+	DialContext(ctx context.Context, network, address string) (net.Conn, error)
+}
+
+// WithDialer option sets the network dialer dialer for TCP and SMB connections.
+func WithDialer(dialer Dialer) ConnectOption {
+	return func(o *Transport) { o.Dialer = dialer }
 }
 
 // WithTimeout option sets the networking timeout.

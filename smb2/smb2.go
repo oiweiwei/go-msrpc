@@ -74,22 +74,30 @@ func NewDialer(opts ...DialerOption) *smb2.Dialer {
 
 type NamedPipe struct {
 	*smb2.File
-	Logger    zerolog.Logger
-	Address   string
-	Port      int
-	Timeout   time.Duration
-	Dialer    *smb2.Dialer
-	ShareName string
-	Name      string
+	Logger          zerolog.Logger
+	Address         string
+	Port            int
+	Timeout         time.Duration
+	Dialer          *smb2.Dialer
+	NetworkDialFunc func(ctx context.Context, network, address string) (net.Conn, error)
+	ShareName       string
+	Name            string
 }
 
 const ErrNotActive = "An instance of a named pipe cannot be found in the listening state"
+
+func (pipe *NamedPipe) dial(ctx context.Context, addr string) (net.Conn, error) {
+	if pipe.NetworkDialFunc != nil {
+		return pipe.NetworkDialFunc(ctx, "tcp", addr)
+	}
+	return net.DialTimeout("tcp", addr, pipe.Timeout)
+}
 
 func (pipe *NamedPipe) Connect(ctx context.Context) error {
 
 	addr := net.JoinHostPort(pipe.Address, strconv.Itoa(pipe.Port))
 
-	conn, err := net.DialTimeout("tcp", addr, pipe.Timeout)
+	conn, err := pipe.dial(ctx, addr)
 	if err != nil {
 		return fmt.Errorf("dial smb server: %s: %w", addr, err)
 	}

@@ -400,9 +400,19 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 
 		t.logger.Debug().Msgf("dialing tcp %s", addr)
 
-		conn, err := net.DialTimeout("tcp", addr, t.settings.Timeout)
-		if err != nil {
-			return nil, fmt.Errorf("ncacn_ip_tcp: %w", err)
+		var (
+			conn RawConn
+			err  error
+		)
+
+		if t.settings.Dialer != nil {
+			if conn, err = t.settings.Dialer.DialContext(ctx, "tcp", addr); err != nil {
+				return nil, fmt.Errorf("ncacn_ip_tcp: custom dialer: %w", err)
+			}
+		} else {
+			if conn, err = net.DialTimeout("tcp", addr, t.settings.Timeout); err != nil {
+				return nil, fmt.Errorf("ncacn_ip_tcp: %w", err)
+			}
 		}
 
 		t.logger.Debug().Msgf("dialing tcp %s done", addr)
@@ -436,6 +446,10 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 			Dialer:    dialer,
 			ShareName: binding.ShareName(),
 			Name:      binding.NamedPipe(),
+		}
+
+		if t.settings.Dialer != nil {
+			pipe.NetworkDialFunc = t.settings.Dialer.DialContext
 		}
 
 		if err := pipe.Connect(ctx); err != nil {
