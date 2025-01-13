@@ -173,6 +173,21 @@
 //
 // As an effect, both cli1 and cli2 will use same security context identifier.
 //
+// ## Acquire Security Context Attributes
+//
+// After establishing the security context, you can acquire security attributes from the
+// client using connection context:
+//
+//	epmCli, err := epm.NewClient(ctx, conn, dcerpc.WithSeal(), dcerpc.WithEndpoint(":135"))
+//	if err != nil {
+//		// handle error
+//	}
+//
+//	key, ok := gssapi.GetAttribute(epmCli.Conn().Context(), gssapi.AttributeSessionKey)
+//	if ok {
+//		fmt.Printf("Session Key: %x\n", key)
+//	}
+//
 // # Per-Client Configuration
 //
 // When you wish for each client to have different security context / credentials / mechanism
