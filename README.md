@@ -7,6 +7,30 @@ The client stub generator for many [MSRPC](./msrpc) / [DCOM](./msrpc/dcom) servi
 
 ## Usage
 
+### Examples
+
+See [examples/samples_with_config](./examples/samples_with_config) and [msrpc](./msrpc/doc.go) package documentation.
+
+```sh
+# run using string binding extension.
+go run examples/samples_with_config/dnsp.go Administrator%P@ssw0rd@ncacn_ip_tcp:dc01.msad.local[privacy,spnego,krb5]
+
+go run examples/samples_with_config/wmic.go Administrator%P@ssw0rd@ncacn_ip_tcp:dc01.msad.local[privacy,spnego,krb5] \
+    --query "SELECT * FROM Win32_ComputerSystem"
+
+# same as above, but using command-line args
+go run examples/samples_with_config/dnsp.go \
+    --username=Administrator \
+    --domain=MSAD.LOCAL \
+    --password=P@ssw0rd \
+    --auth-level=privacy \
+    --auth-spnego \
+    --auth-type=krb5 \
+    --server=dc01.msad.local
+```
+
+### Examples (Old)
+
 See [examples](./examples) and [dcerpc](./dcerpc/doc.go) package documentation.
 
 Examples rely on following environment variables:
@@ -33,6 +57,10 @@ For codegeneration, run `make all` to regenerate all sources, or `make nrpc.go`.
 ### Connection-oriented DCE/RPC v5 client implementation
 
 The library implements the CO RPC v5 (`dcerpc` package) with following features:
+
+ * Transfer Syntax NDR2.0 and NDR64
+
+ * CO transport over Named Pipe (SMB2/3) and TCP.
 
  * Connection Multiplexing: multiple clients over single connection
 
@@ -62,7 +90,9 @@ The library implements some of the extensions defined in MS-RPCE document:
 
  * Bind-time Feature Negotiation: (actually not a feature).
 
- * Header Signing: (legacy thing, 
+ * Header Signing: (legacy thing)
+
+ * NDR64
 
 ### GSS-API / SSP Client Side
 
@@ -238,6 +268,14 @@ this or that field.
  * Investigate: Association Group ID is not shared across several named pipe connections. (each NP requires dedicated connection).
 
  * Convenient way to combine SPNEGO and NTLM/KRB5 within connection option.
+
+# Open Questions
+
+ * Why IObjectExporter does not support NDR64?
+
+ * Why server returns indistinguishable pointers for NDR64?
+
+ * Why SMB2 does not support certain auth levels (ie Winreg supports only Insecure and Privacy)?
 
 # References
 
