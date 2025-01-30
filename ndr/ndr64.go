@@ -105,6 +105,10 @@ func (w *ndr64) ReadEnum(enum any) error {
 		return w.err
 	}
 
+	if w.opaque {
+		return w.ReadData(enum)
+	}
+
 	val := uint32(0)
 
 	if err := w.ReadData(&val); err != nil {
@@ -152,6 +156,10 @@ func (w *ndr64) WriteEnum(enum any) error {
 
 	if w.err != nil {
 		return w.err
+	}
+
+	if w.opaque {
+		return w.WriteData(enum)
 	}
 
 	var val uint32
