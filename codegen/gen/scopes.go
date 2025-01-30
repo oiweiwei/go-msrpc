@@ -118,7 +118,10 @@ func (i *Scopes) ScopedType() *midl.Type {
 
 // Is function ...
 func (i *Scopes) Is(kind midl.Kind) bool {
-	return i.Type().Is(kind)
+	if i != nil {
+		return i.Type().Is(kind)
+	}
+	return false
 }
 
 func (i *Scopes) Kind() midl.Kind {

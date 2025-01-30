@@ -139,6 +139,14 @@ func (p *TypeGenerator) GenerateSwitchIs(ctx context.Context, field *midl.Field,
 	p.P(switchVar, ":=", p.B(switchType, p.GenExpr(ctx, switchIs, p.LookupExprField(ctx, switchIs), switchType)))
 }
 
+func (p *TypeGenerator) IsEnumSwitch(ctx context.Context, scopes *Scopes) bool {
+	if p.Union() != nil && p.Union().IsEncapsulated() {
+		return false
+	}
+
+	return NewScopes(scopes.Scope().SwitchType.Scopes()).Is(midl.TypeEnum)
+}
+
 func (p *TypeGenerator) SwitchType(ctx context.Context, scopes *Scopes) string {
 
 	var switchType string
@@ -149,7 +157,7 @@ func (p *TypeGenerator) SwitchType(ctx context.Context, scopes *Scopes) string {
 			Type:  p.Union().Switch.Type,
 		})
 	} else {
-		if scope := NewScopes(scopes.Scope().SwitchType.Scopes()); scope != nil && scope.Is(midl.TypeEnum) {
+		if scope := NewScopes(scopes.Scope().SwitchType.Scopes()); scope.Is(midl.TypeEnum) {
 			switchType = scope.EnumType().String()
 		} else {
 			switchType = p.Generator.GoFieldTypeName(ctx, p.Scope(), &midl.Field{
@@ -196,6 +204,8 @@ func (p *TypeGenerator) GenUnionMarshalNDR(ctx context.Context) {
 	if MSUnion(ctx) && sw == nil {
 		p.P("//", "ms_union")
 		p.GenDoAlignmentMarshalNDR(ctx, p.Alignment())
+	} else {
+		p.GenDoUnionAlignemntMarshalNDR(ctx, p.Alignment())
 	}
 
 	p.Block("switch", swVar, func() {

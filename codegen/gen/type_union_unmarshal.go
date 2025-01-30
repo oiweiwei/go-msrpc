@@ -27,14 +27,24 @@ func (p *TypeGenerator) GenUnionUnmarshalNDR(ctx context.Context) {
 	}
 
 	if sw != nil {
-		p.CheckErr(p.B("w.ReadData", p.B(p.BPtr(switchType), p.Amp(swVar))))
+		if p.IsEnumSwitch(ctx, p.Scopes) {
+			p.CheckErr(p.B("w.ReadEnum", p.B(p.BPtr(switchType), p.Amp(swVar))))
+		} else {
+			p.CheckErr(p.B("w.ReadData", p.B(p.BPtr(switchType), p.Amp(swVar))))
+		}
 	} else {
-		p.CheckErr(p.B("w.ReadSwitch", p.B(p.BPtr(switchType), p.Amp(swVar))))
+		if p.IsEnumSwitch(ctx, p.Scopes) {
+			p.CheckErr(p.B("w.ReadSwitch", p.B("ndr.Enum", p.B(p.BPtr(switchType), p.Amp(swVar)))))
+		} else {
+			p.CheckErr(p.B("w.ReadSwitch", p.B(p.BPtr(switchType), p.Amp(swVar))))
+		}
 	}
 
 	if MSUnion(ctx) && sw == nil {
 		p.P("//", "ms_union")
 		p.GenDoAlignmentUnmarshalNDR(ctx, p.Alignment())
+	} else {
+		p.GenDoUnionAlignemntUnmarshalNDR(ctx, p.Alignment())
 	}
 
 	p.Block("switch", swVar, func() {

@@ -293,9 +293,21 @@ func (p *Generator) GenDoAlignmentMarshalNDR(ctx context.Context, alignment int)
 	}
 }
 
+func (p *Generator) GenDoUnionAlignemntMarshalNDR(ctx context.Context, alignment int) {
+	if alignment > 1 {
+		p.CheckErr(p.B("w.WriteUnionAlign", alignment))
+	}
+}
+
 func (p *Generator) GenDoAlignmentUnmarshalNDR(ctx context.Context, alignment int) {
 	if alignment > 1 {
 		p.CheckErr(p.B("w.ReadAlign", alignment))
+	}
+}
+
+func (p *Generator) GenDoUnionAlignemntUnmarshalNDR(ctx context.Context, alignment int) {
+	if alignment > 1 {
+		p.CheckErr(p.B("w.ReadUnionAlign", alignment))
 	}
 }
 

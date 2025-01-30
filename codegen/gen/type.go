@@ -567,7 +567,7 @@ func (p *TypeGenerator) GenFieldMarshalNDR(ctx context.Context, field *midl.Fiel
 
 		// marshal enum.
 
-		p.CheckErr(p.B("w.WriteData", p.B(scopes.EnumType(), name)))
+		p.CheckErr(p.B("w.WriteEnum", p.B(scopes.EnumType(), name)))
 
 	case scopes.Is(midl.TypeUnion):
 
