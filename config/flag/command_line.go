@@ -18,6 +18,8 @@ func BindFlags(c *config.Config, flagSet *flag.FlagSet) {
 
 	flagSet.DurationVar(&c.Timeout, "timeout", c.Timeout, "timeout")
 
+	flagSet.StringVar(&c.TrasnferEncoding, "transfer-encoding", c.TrasnferEncoding, "transfer encoding: ndr20, ndr64")
+
 	flagSet.StringVar(&c.Credential.Password, "password", c.Credential.Password, "password to authenticate with")
 	flagSet.StringVar(&c.Credential.NTHash, "nthash", c.Credential.NTHash, "NT hash to authenticate with")
 	flagSet.StringVar(&c.Credential.MachineAccountPassword, "machine-account-password", c.Credential.MachineAccountPassword, "machine account password to authenticate with")

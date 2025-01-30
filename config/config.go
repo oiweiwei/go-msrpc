@@ -157,6 +157,9 @@ type Config struct {
 	// The protocol to use. (ncacn_np or smb, ncacn_ip_tcp or tcp)
 	Protocol string `json:"protocol"`
 
+	// The transfer encoding to use (ndr20, ndr64)
+	TrasnferEncoding string `json:"transfer_encoding"`
+
 	// The flag that indicates whether credentials and mechanisms should be
 	// included into connection options. If GlobalCredentials is true, then
 	// credentials and mechanisms are not included into connection options.
@@ -187,6 +190,8 @@ func New() *Config {
 
 	cfg.Auth.KRB5.DCEStyle = true
 	cfg.Auth.KRB5.DisablePAFXFAST = true
+
+	cfg.TrasnferEncoding = "ndr20"
 
 	return cfg
 }
@@ -348,6 +353,13 @@ func (cfg *Config) Credentials() []credential.Credential {
 func (cfg *Config) ClientOptions(ctx context.Context) []dcerpc.Option {
 
 	options := []dcerpc.Option{}
+
+	switch cfg.TrasnferEncoding {
+	case "ndr20":
+		options = append(options, dcerpc.WithNDR20())
+	case "ndr64":
+		options = append(options, dcerpc.WithNDR64())
+	}
 
 	switch cfg.Auth.Level {
 	case "none":
@@ -583,6 +595,15 @@ func ValidateAuthLevel(level string) error {
 	return nil
 }
 
+func ValidateTransferEncoding(encoding string) error {
+	switch encoding {
+	case "ndr20", "ndr64":
+	default:
+		return fmt.Errorf("invalid transfer encoding: %s", encoding)
+	}
+	return nil
+}
+
 func ValidateImpersonation(level string) error {
 
 	switch level {
@@ -666,6 +687,11 @@ func (cfg *Config) ParseServerAddr() error {
 
 		for _, extra := range binding.Extra {
 			switch extra {
+			// transfer encoding.
+			case "ndr20":
+				cfg.TrasnferEncoding = "ndr20"
+			case "ndr64":
+				cfg.TrasnferEncoding = "ndr64"
 			// auth type keywords.
 			case "spnego":
 				cfg.Auth.SPNEGO = true
@@ -727,6 +753,10 @@ func (cfg *Config) Validate() error {
 	case "ntlm", "krb5":
 	default:
 		return fmt.Errorf("invalid auth type: %s", cfg.Auth.Type)
+	}
+
+	if err := ValidateTransferEncoding(cfg.TrasnferEncoding); err != nil {
+		return err
 	}
 
 	if err := ValidateAuthLevel(cfg.Auth.Level); err != nil {
