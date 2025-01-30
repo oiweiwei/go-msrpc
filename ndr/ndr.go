@@ -87,6 +87,10 @@ type Reader interface {
 	// ReadAlign function performs alignment of the output buffer.
 	ReadAlign(int) error
 
+	// ReadUnionAlign function performs alignment of the union
+	// buffer.
+	ReadUnionAlign(int) error
+
 	// here go ReadX interface methods required to
 	// fullfill unmarshaling requirements.
 
@@ -102,6 +106,9 @@ type Reader interface {
 
 	// ReadSwitch function reads the switch value for the union.
 	ReadSwitch(any) error
+
+	// ReadEnum function reads the enumeration.
+	ReadEnum(any) error
 
 	// ReadPointer function reads the implementation-specific pointer.
 	// It receives the setter function in case if pointer is not null.
@@ -130,6 +137,10 @@ type Writer interface {
 	// WriteAlign function performs alignment of the output buffer.
 	WriteAlign(int) error
 
+	// WriteUnionAlign function performs alignment of the union
+	// output buffer.
+	WriteUnionAlign(int) error
+
 	// here go WriteX interface methods required to
 	// fullfill marshaling requirements.
 
@@ -144,6 +155,9 @@ type Writer interface {
 
 	// WriteSwitch function writes the union switch.
 	WriteSwitch(any) error
+
+	// WriteEnum function writes the enumeration.
+	WriteEnum(any) error
 
 	// WritePointer function writes the implementation-specific pointer.
 	// Optional data parameter will be used when the full pointer is used.
@@ -190,3 +204,5 @@ type Int3264 int64
 
 // Uint3264 type ...
 type Uint3264 uint64
+
+type Enum any
