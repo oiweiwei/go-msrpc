@@ -91,8 +91,8 @@ func (w *ndr64) ReadSwitch(sw any) error {
 		return w.err
 	}
 
-	if _, ok := sw.(Enum); ok {
-		return w.ReadEnum(sw)
+	if enum, ok := sw.(EnumWrapper); ok {
+		return w.ReadEnum(enum.Value())
 	}
 
 	return w.ReadData(sw)
@@ -144,8 +144,8 @@ func (w *ndr64) WriteSwitch(sw any) error {
 		return w.err
 	}
 
-	if _, ok := sw.(Enum); ok {
-		return w.WriteEnum(sw)
+	if enum, ok := sw.(EnumWrapper); ok {
+		return w.WriteEnum(enum.Value())
 	}
 
 	return w.WriteData(sw)
@@ -205,12 +205,16 @@ func (w *ndr64) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 		return nil
 	}
 
-	if ptr, ok := w.ptrs[pptr]; ok {
+	/* NDR64 doesn't care about pointers.
+	if ptr, ok := w.ptrs[uint64(pptr)]; ok {
 		setter(interface{}(ptr))
 		return nil
 	}
-
 	w.ptrs[pptr], w.rdeferred = ptr, append(w.rdeferred, mrs...)
+	*/
+
+	w.rdeferred = append(w.rdeferred, mrs...)
+
 	return nil
 }
 
