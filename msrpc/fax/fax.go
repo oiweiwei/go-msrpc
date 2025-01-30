@@ -1403,7 +1403,7 @@ func (o *ReceiptsConfigW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.AllowedReceipts); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.SMTPAuthOption)); err != nil {
+	if err := w.WriteEnum(uint16(o.SMTPAuthOption)); err != nil {
 		return err
 	}
 	// reserved lpwstrReserved
@@ -1494,7 +1494,7 @@ func (o *ReceiptsConfigW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.AllowedReceipts); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.SMTPAuthOption)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.SMTPAuthOption)); err != nil {
 		return err
 	}
 	// reserved lpwstrReserved
@@ -2192,7 +2192,7 @@ func (o *JobParamExW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Priority)); err != nil {
+	if err := w.WriteEnum(uint16(o.Priority)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.HCall); err != nil {
@@ -2253,7 +2253,7 @@ func (o *JobParamExW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.ReceiptDeliveryAddress, _s_lpwstrReceiptDeliveryAddress, _ptr_lpwstrReceiptDeliveryAddress); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Priority)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Priority)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.HCall); err != nil {
@@ -2418,7 +2418,7 @@ func (o *OutboundRoutingGroupw) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	return nil
@@ -2472,7 +2472,7 @@ func (o *OutboundRoutingGroupw) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadPointer(&o.Devices, _s_lpdwDevices, _ptr_lpdwDevices); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	return nil
@@ -2862,6 +2862,9 @@ func (o *RuleDestination) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 	if err := w.WriteSwitch(int32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case int32(0):
 		_o, _ := o.Value.(*RuleDestination_DeviceID)
@@ -2891,6 +2894,9 @@ func (o *RuleDestination) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 
 func (o *RuleDestination) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int32) error {
 	if err := w.ReadSwitch((*int32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -3786,7 +3792,7 @@ func (o *PortInfoExW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.ReceiveMode)); err != nil {
+	if err := w.WriteEnum(uint16(o.ReceiveMode)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Status); err != nil {
@@ -3882,7 +3888,7 @@ func (o *PortInfoExW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	o.Send = _bSend != 0
-	if err := w.ReadData((*uint16)(&o.ReceiveMode)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ReceiveMode)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Status); err != nil {

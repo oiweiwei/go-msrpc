@@ -1579,7 +1579,7 @@ func (o *xxx_EnumFileScreensOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -1620,7 +1620,7 @@ func (o *xxx_EnumFileScreensOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}
@@ -2480,7 +2480,7 @@ func (o *xxx_EnumFileScreenExceptionsOperation) MarshalNDRRequest(ctx context.Co
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -2521,7 +2521,7 @@ func (o *xxx_EnumFileScreenExceptionsOperation) UnmarshalNDRRequest(ctx context.
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}

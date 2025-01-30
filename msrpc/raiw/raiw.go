@@ -374,7 +374,7 @@ func (o *RecordAction) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Cmd)); err != nil {
+	if err := w.WriteEnum(uint16(o.Cmd)); err != nil {
 		return err
 	}
 	if o.Name != nil || (o.NameLength+1) > 0 {
@@ -497,7 +497,7 @@ func (o *RecordAction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Cmd)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Cmd)); err != nil {
 		return err
 	}
 	_ptr_pName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -2162,7 +2162,7 @@ func (o *ScavengingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.OpcodeE)); err != nil {
+	if err := w.WriteEnum(uint16(o.OpcodeE)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Age); err != nil {
@@ -2177,7 +2177,7 @@ func (o *ScavengingRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.OpcodeE)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.OpcodeE)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Age); err != nil {

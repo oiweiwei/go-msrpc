@@ -2706,6 +2706,9 @@ func (o *RestrictionUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 	if err := w.WriteSwitch(int32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case int32(0):
 		_o, _ := o.Value.(*RestrictionUnion_And)
@@ -2825,6 +2828,9 @@ func (o *RestrictionUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 
 func (o *RestrictionUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int32) error {
 	if err := w.ReadSwitch((*int32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -3969,6 +3975,9 @@ func (o *PropertyValueUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 	if err := w.WriteSwitch(int32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case int32(2):
 		_o, _ := o.Value.(*PropertyValueUnion_Int16)
@@ -4166,6 +4175,9 @@ func (o *PropertyValueUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 
 func (o *PropertyValueUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int32) error {
 	if err := w.ReadSwitch((*int32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

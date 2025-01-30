@@ -426,7 +426,7 @@ func (o *Record) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DataLength); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -478,7 +478,7 @@ func (o *Record) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.DataLength); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -853,6 +853,9 @@ func (o *Record_Record) NDRLayout() {}
 
 func (o *Record_Record) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
+		return err
+	}
+	if err := w.WriteUnionAlign(7); err != nil {
 		return err
 	}
 	switch sw {
@@ -1313,6 +1316,9 @@ func (o *Record_Record) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 
 func (o *Record_Record) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(7); err != nil {
 		return err
 	}
 	switch sw {

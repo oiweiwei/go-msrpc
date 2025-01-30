@@ -13126,13 +13126,13 @@ func (o *xxx_GetPersonalProfileInfoOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// dwFolder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
 	// ProfType {in} (1:{alias=FAX_ENUM_PERSONAL_PROF_TYPES}(enum))
 	{
-		if err := w.WriteData(uint16(o.ProfType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ProfType)); err != nil {
 			return err
 		}
 	}
@@ -13148,13 +13148,13 @@ func (o *xxx_GetPersonalProfileInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// dwFolder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
 	// ProfType {in} (1:{alias=FAX_ENUM_PERSONAL_PROF_TYPES}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ProfType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ProfType)); err != nil {
 			return err
 		}
 	}
@@ -14935,7 +14935,7 @@ func (o *xxx_GetArchiveConfigurationOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -14945,7 +14945,7 @@ func (o *xxx_GetArchiveConfigurationOperation) MarshalNDRRequest(ctx context.Con
 func (o *xxx_GetArchiveConfigurationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -15179,7 +15179,7 @@ func (o *xxx_SetArchiveConfigurationOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -15195,7 +15195,7 @@ func (o *xxx_SetArchiveConfigurationOperation) MarshalNDRRequest(ctx context.Con
 func (o *xxx_SetArchiveConfigurationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -19320,7 +19320,7 @@ func (o *xxx_StartMessagesEnumOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -19330,7 +19330,7 @@ func (o *xxx_StartMessagesEnumOperation) MarshalNDRRequest(ctx context.Context, 
 func (o *xxx_StartMessagesEnumOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -19955,7 +19955,7 @@ func (o *xxx_GetMessageOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -19971,7 +19971,7 @@ func (o *xxx_GetMessageOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -20209,7 +20209,7 @@ func (o *xxx_RemoveMessageOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -20225,7 +20225,7 @@ func (o *xxx_RemoveMessageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -20584,7 +20584,7 @@ func (o *xxx_StartCopyMessageFromServerOperation) MarshalNDRRequest(ctx context.
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -20600,7 +20600,7 @@ func (o *xxx_StartCopyMessageFromServerOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -23167,7 +23167,7 @@ func (o *xxx_RefreshArchiveOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -23177,7 +23177,7 @@ func (o *xxx_RefreshArchiveOperation) MarshalNDRRequest(ctx context.Context, w n
 func (o *xxx_RefreshArchiveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -23610,7 +23610,7 @@ func (o *xxx_GetServerSKUOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// pServerSKU {out} (1:{pointer=ref}*(1))(2:{alias=PRODUCT_SKU_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.ServerSKU)); err != nil {
+		if err := w.WriteEnum(uint16(o.ServerSKU)); err != nil {
 			return err
 		}
 	}
@@ -23626,7 +23626,7 @@ func (o *xxx_GetServerSKUOperation) MarshalNDRResponse(ctx context.Context, w nd
 func (o *xxx_GetServerSKUOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pServerSKU {out} (1:{pointer=ref}*(1))(2:{alias=PRODUCT_SKU_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ServerSKU)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ServerSKU)); err != nil {
 			return err
 		}
 	}
@@ -24487,7 +24487,7 @@ func (o *xxx_GetMessageExOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -24509,7 +24509,7 @@ func (o *xxx_GetMessageExOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -24788,7 +24788,7 @@ func (o *xxx_StartMessagesEnumExOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -24828,7 +24828,7 @@ func (o *xxx_StartMessagesEnumExOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -28015,7 +28015,7 @@ func (o *xxx_SetMessageOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.WriteData(uint16(o.Folder)); err != nil {
+		if err := w.WriteEnum(uint16(o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -28043,7 +28043,7 @@ func (o *xxx_SetMessageOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// Folder {in} (1:{alias=FAX_ENUM_MESSAGE_FOLDER}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Folder)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Folder)); err != nil {
 			return err
 		}
 	}
@@ -28194,7 +28194,7 @@ func (o *xxx_GetConfigOptionOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// option {in} (1:{alias=FAX_ENUM_CONFIG_OPTION}(enum))
 	{
-		if err := w.WriteData(uint16(o.Option)); err != nil {
+		if err := w.WriteEnum(uint16(o.Option)); err != nil {
 			return err
 		}
 	}
@@ -28204,7 +28204,7 @@ func (o *xxx_GetConfigOptionOperation) MarshalNDRRequest(ctx context.Context, w 
 func (o *xxx_GetConfigOptionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// option {in} (1:{alias=FAX_ENUM_CONFIG_OPTION}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Option)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Option)); err != nil {
 			return err
 		}
 	}

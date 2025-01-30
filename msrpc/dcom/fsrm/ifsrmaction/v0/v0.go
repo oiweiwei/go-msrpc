@@ -539,7 +539,7 @@ func (o *xxx_GetActionTypeOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// actionType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmActionType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ActionType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ActionType)); err != nil {
 			return err
 		}
 	}
@@ -567,7 +567,7 @@ func (o *xxx_GetActionTypeOperation) UnmarshalNDRResponse(ctx context.Context, w
 	}
 	// actionType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmActionType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ActionType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ActionType)); err != nil {
 			return err
 		}
 	}

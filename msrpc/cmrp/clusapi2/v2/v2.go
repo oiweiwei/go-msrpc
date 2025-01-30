@@ -26330,7 +26330,7 @@ func (o *xxx_SetServiceAccountPasswordOperation) MarshalNDRRequest(ctx context.C
 	}
 	// dwFlags {in} (1:{alias=IDL_CLUSTER_SET_PASSWORD_FLAGS}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -26352,7 +26352,7 @@ func (o *xxx_SetServiceAccountPasswordOperation) UnmarshalNDRRequest(ctx context
 	}
 	// dwFlags {in} (1:{alias=IDL_CLUSTER_SET_PASSWORD_FLAGS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}

@@ -1148,6 +1148,9 @@ func (o *CapabilitiesUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*CapabilitiesUnion_CapNap)
@@ -1168,6 +1171,9 @@ func (o *CapabilitiesUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 
 func (o *CapabilitiesUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -2651,6 +2657,9 @@ func (o *PacketTypeMessageUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*PacketTypeMessageUnion_ConsentMessage)
@@ -2693,6 +2702,9 @@ func (o *PacketTypeMessageUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *PacketTypeMessageUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -3206,6 +3218,9 @@ func (o *InitialPacketTypeUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(22083):
 		_o, _ := o.Value.(*InitialPacketTypeUnion_PacketVersionCaps)
@@ -3237,6 +3252,9 @@ func (o *InitialPacketTypeUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *InitialPacketTypeUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -3553,6 +3571,9 @@ func (o *PacketTypeUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(18500):
 		_o, _ := o.Value.(*PacketTypeUnion_PacketHeader)
@@ -3683,6 +3704,9 @@ func (o *PacketTypeUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 
 func (o *PacketTypeUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

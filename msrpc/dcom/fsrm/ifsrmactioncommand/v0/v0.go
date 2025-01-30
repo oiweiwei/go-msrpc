@@ -1476,7 +1476,7 @@ func (o *xxx_GetAccountOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// account {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.WriteData(uint16(o.Account)); err != nil {
+		if err := w.WriteEnum(uint16(o.Account)); err != nil {
 			return err
 		}
 	}
@@ -1504,7 +1504,7 @@ func (o *xxx_GetAccountOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 	}
 	// account {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Account)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Account)); err != nil {
 			return err
 		}
 	}
@@ -1632,7 +1632,7 @@ func (o *xxx_SetAccountOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// account {in} (1:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.WriteData(uint16(o.Account)); err != nil {
+		if err := w.WriteEnum(uint16(o.Account)); err != nil {
 			return err
 		}
 	}
@@ -1654,7 +1654,7 @@ func (o *xxx_SetAccountOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// account {in} (1:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Account)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Account)); err != nil {
 			return err
 		}
 	}

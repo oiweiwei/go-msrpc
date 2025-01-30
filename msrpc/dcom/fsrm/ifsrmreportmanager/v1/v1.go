@@ -541,7 +541,7 @@ func (o *xxx_EnumReportJobsOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -563,7 +563,7 @@ func (o *xxx_EnumReportJobsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}
@@ -1337,7 +1337,7 @@ func (o *xxx_GetOutputDirectoryOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.WriteData(uint16(o.Context)); err != nil {
+		if err := w.WriteEnum(uint16(o.Context)); err != nil {
 			return err
 		}
 	}
@@ -1359,7 +1359,7 @@ func (o *xxx_GetOutputDirectoryOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Context)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Context)); err != nil {
 			return err
 		}
 	}
@@ -1596,7 +1596,7 @@ func (o *xxx_SetOutputDirectoryOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.WriteData(uint16(o.Context)); err != nil {
+		if err := w.WriteEnum(uint16(o.Context)); err != nil {
 			return err
 		}
 	}
@@ -1645,7 +1645,7 @@ func (o *xxx_SetOutputDirectoryOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Context)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Context)); err != nil {
 			return err
 		}
 	}
@@ -1856,13 +1856,13 @@ func (o *xxx_IsFilterValidForReportTypeOperation) MarshalNDRRequest(ctx context.
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ReportType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ReportType)); err != nil {
 			return err
 		}
 	}
 	// filter {in} (1:{alias=FsrmReportFilter}(enum))
 	{
-		if err := w.WriteData(uint16(o.Filter)); err != nil {
+		if err := w.WriteEnum(uint16(o.Filter)); err != nil {
 			return err
 		}
 	}
@@ -1884,13 +1884,13 @@ func (o *xxx_IsFilterValidForReportTypeOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ReportType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ReportType)); err != nil {
 			return err
 		}
 	}
 	// filter {in} (1:{alias=FsrmReportFilter}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Filter)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Filter)); err != nil {
 			return err
 		}
 	}
@@ -2097,13 +2097,13 @@ func (o *xxx_GetDefaultFilterOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ReportType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ReportType)); err != nil {
 			return err
 		}
 	}
 	// filter {in} (1:{alias=FsrmReportFilter}(enum))
 	{
-		if err := w.WriteData(uint16(o.Filter)); err != nil {
+		if err := w.WriteEnum(uint16(o.Filter)); err != nil {
 			return err
 		}
 	}
@@ -2125,13 +2125,13 @@ func (o *xxx_GetDefaultFilterOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ReportType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ReportType)); err != nil {
 			return err
 		}
 	}
 	// filter {in} (1:{alias=FsrmReportFilter}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Filter)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Filter)); err != nil {
 			return err
 		}
 	}
@@ -2372,13 +2372,13 @@ func (o *xxx_SetDefaultFilterOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ReportType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ReportType)); err != nil {
 			return err
 		}
 	}
 	// filter {in} (1:{alias=FsrmReportFilter}(enum))
 	{
-		if err := w.WriteData(uint16(o.Filter)); err != nil {
+		if err := w.WriteEnum(uint16(o.Filter)); err != nil {
 			return err
 		}
 	}
@@ -2415,13 +2415,13 @@ func (o *xxx_SetDefaultFilterOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ReportType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ReportType)); err != nil {
 			return err
 		}
 	}
 	// filter {in} (1:{alias=FsrmReportFilter}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Filter)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Filter)); err != nil {
 			return err
 		}
 	}
@@ -2627,7 +2627,7 @@ func (o *xxx_GetReportSizeLimitOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// limit {in} (1:{alias=FsrmReportLimit}(enum))
 	{
-		if err := w.WriteData(uint16(o.Limit)); err != nil {
+		if err := w.WriteEnum(uint16(o.Limit)); err != nil {
 			return err
 		}
 	}
@@ -2649,7 +2649,7 @@ func (o *xxx_GetReportSizeLimitOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// limit {in} (1:{alias=FsrmReportLimit}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Limit)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Limit)); err != nil {
 			return err
 		}
 	}
@@ -2886,7 +2886,7 @@ func (o *xxx_SetReportSizeLimitOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// limit {in} (1:{alias=FsrmReportLimit}(enum))
 	{
-		if err := w.WriteData(uint16(o.Limit)); err != nil {
+		if err := w.WriteEnum(uint16(o.Limit)); err != nil {
 			return err
 		}
 	}
@@ -2923,7 +2923,7 @@ func (o *xxx_SetReportSizeLimitOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// limit {in} (1:{alias=FsrmReportLimit}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Limit)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Limit)); err != nil {
 			return err
 		}
 	}

@@ -4038,7 +4038,7 @@ func (o *DiskID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.DiskIDType)); err != nil {
+	if err := w.WriteEnum(uint16(o.DiskIDType)); err != nil {
 		return err
 	}
 	_swDiskID := uint16(o.DiskIDType)
@@ -4057,7 +4057,7 @@ func (o *DiskID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.DiskIDType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DiskIDType)); err != nil {
 		return err
 	}
 	if o.DiskID == nil {
@@ -4122,6 +4122,9 @@ func (o *DiskID_DiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*DiskID_DiskSignature)
@@ -4152,7 +4155,10 @@ func (o *DiskID_DiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 }
 
 func (o *DiskID_DiskID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -31278,7 +31284,7 @@ func (o *xxx_SetServiceAccountPasswordOperation) MarshalNDRRequest(ctx context.C
 	}
 	// dwFlags {in} (1:{alias=IDL_CLUSTER_SET_PASSWORD_FLAGS}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -31300,7 +31306,7 @@ func (o *xxx_SetServiceAccountPasswordOperation) UnmarshalNDRRequest(ctx context
 	}
 	// dwFlags {in} (1:{alias=IDL_CLUSTER_SET_PASSWORD_FLAGS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}

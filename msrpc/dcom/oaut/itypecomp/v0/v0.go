@@ -359,7 +359,7 @@ func (o *xxx_BindOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// pDescKind {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=DESCKIND}(enum))
 	{
-		if err := w.WriteData(uint32(o.DescKind)); err != nil {
+		if err := w.WriteEnum(uint32(o.DescKind)); err != nil {
 			return err
 		}
 	}
@@ -494,7 +494,7 @@ func (o *xxx_BindOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	}
 	// pDescKind {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=DESCKIND}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.DescKind)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.DescKind)); err != nil {
 			return err
 		}
 	}

@@ -3400,7 +3400,7 @@ func (o *xxx_GetInformationFromContextOperation) MarshalNDRRequest(ctx context.C
 	}
 	// InfoClass {in} (1:{alias=AUTHZ_CONTEXT_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InfoClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InfoClass)); err != nil {
 			return err
 		}
 	}
@@ -3419,7 +3419,7 @@ func (o *xxx_GetInformationFromContextOperation) UnmarshalNDRRequest(ctx context
 	}
 	// InfoClass {in} (1:{alias=AUTHZ_CONTEXT_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InfoClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InfoClass)); err != nil {
 			return err
 		}
 	}
@@ -3628,7 +3628,7 @@ func (o *xxx_ModifyClaimsOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// ClaimClass {in} (1:{alias=AUTHZ_CONTEXT_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.ClaimClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.ClaimClass)); err != nil {
 			return err
 		}
 	}
@@ -3652,7 +3652,7 @@ func (o *xxx_ModifyClaimsOperation) MarshalNDRRequest(ctx context.Context, w ndr
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if err := w.WriteData(uint16(o.ClaimOperations[i1])); err != nil {
+			if err := w.WriteEnum(uint16(o.ClaimOperations[i1])); err != nil {
 				return err
 			}
 		}
@@ -3704,7 +3704,7 @@ func (o *xxx_ModifyClaimsOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// ClaimClass {in} (1:{alias=AUTHZ_CONTEXT_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ClaimClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ClaimClass)); err != nil {
 			return err
 		}
 	}
@@ -3730,7 +3730,7 @@ func (o *xxx_ModifyClaimsOperation) UnmarshalNDRRequest(ctx context.Context, w n
 		o.ClaimOperations = make([]SecurityAttributeOperation, sizeInfo[0])
 		for i1 := range o.ClaimOperations {
 			i1 := i1
-			if err := w.ReadData((*uint16)(&o.ClaimOperations[i1])); err != nil {
+			if err := w.ReadEnum((*uint16)(&o.ClaimOperations[i1])); err != nil {
 				return err
 			}
 		}
@@ -3922,7 +3922,7 @@ func (o *xxx_ModifySIDsOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// SidClass {in} (1:{alias=AUTHZ_CONTEXT_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.SIDClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.SIDClass)); err != nil {
 			return err
 		}
 	}
@@ -3946,7 +3946,7 @@ func (o *xxx_ModifySIDsOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if err := w.WriteData(uint16(o.SIDOperations[i1])); err != nil {
+			if err := w.WriteEnum(uint16(o.SIDOperations[i1])); err != nil {
 				return err
 			}
 		}
@@ -3998,7 +3998,7 @@ func (o *xxx_ModifySIDsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// SidClass {in} (1:{alias=AUTHZ_CONTEXT_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SIDClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SIDClass)); err != nil {
 			return err
 		}
 	}
@@ -4024,7 +4024,7 @@ func (o *xxx_ModifySIDsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 		o.SIDOperations = make([]SIDOperation, sizeInfo[0])
 		for i1 := range o.SIDOperations {
 			i1 := i1
-			if err := w.ReadData((*uint16)(&o.SIDOperations[i1])); err != nil {
+			if err := w.ReadEnum((*uint16)(&o.SIDOperations[i1])); err != nil {
 				return err
 			}
 		}

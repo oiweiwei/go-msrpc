@@ -1124,7 +1124,7 @@ func (o *xxx_GetStateOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wr
 	}
 	// state {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmCollectionState}(enum))
 	{
-		if err := w.WriteData(uint16(o.State)); err != nil {
+		if err := w.WriteEnum(uint16(o.State)); err != nil {
 			return err
 		}
 	}
@@ -1152,7 +1152,7 @@ func (o *xxx_GetStateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// state {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmCollectionState}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.State)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.State)); err != nil {
 			return err
 		}
 	}

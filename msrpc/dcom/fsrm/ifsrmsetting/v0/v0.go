@@ -2987,7 +2987,7 @@ func (o *xxx_SetActionRunLimitIntervalOperation) MarshalNDRRequest(ctx context.C
 	}
 	// actionType {in} (1:{alias=FsrmActionType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ActionType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ActionType)); err != nil {
 			return err
 		}
 	}
@@ -3015,7 +3015,7 @@ func (o *xxx_SetActionRunLimitIntervalOperation) UnmarshalNDRRequest(ctx context
 	}
 	// actionType {in} (1:{alias=FsrmActionType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ActionType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ActionType)); err != nil {
 			return err
 		}
 	}
@@ -3210,7 +3210,7 @@ func (o *xxx_GetActionRunLimitIntervalOperation) MarshalNDRRequest(ctx context.C
 	}
 	// actionType {in} (1:{alias=FsrmActionType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ActionType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ActionType)); err != nil {
 			return err
 		}
 	}
@@ -3232,7 +3232,7 @@ func (o *xxx_GetActionRunLimitIntervalOperation) UnmarshalNDRRequest(ctx context
 	}
 	// actionType {in} (1:{alias=FsrmActionType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ActionType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ActionType)); err != nil {
 			return err
 		}
 	}

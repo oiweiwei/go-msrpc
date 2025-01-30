@@ -1016,7 +1016,7 @@ func (o *SecurityQualityOfService) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.Length); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ImpersonationLevel)); err != nil {
+	if err := w.WriteEnum(uint16(o.ImpersonationLevel)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ContextTrackingMode); err != nil {
@@ -1034,7 +1034,7 @@ func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	if err := w.ReadData(&o.Length); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ImpersonationLevel)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ImpersonationLevel)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ContextTrackingMode); err != nil {
@@ -1546,7 +1546,7 @@ func (o *TranslatedSID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Use)); err != nil {
+	if err := w.WriteEnum(uint16(o.Use)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.RelativeID); err != nil {
@@ -1561,7 +1561,7 @@ func (o *TranslatedSID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Use)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Use)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RelativeID); err != nil {
@@ -2025,7 +2025,7 @@ func (o *TranslatedName) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Use)); err != nil {
+	if err := w.WriteEnum(uint16(o.Use)); err != nil {
 		return err
 	}
 	if o.Name != nil {
@@ -2046,7 +2046,7 @@ func (o *TranslatedName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Use)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Use)); err != nil {
 		return err
 	}
 	if o.Name == nil {
@@ -2233,7 +2233,7 @@ func (o *TranslatedNameEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Use)); err != nil {
+	if err := w.WriteEnum(uint16(o.Use)); err != nil {
 		return err
 	}
 	if o.Name != nil {
@@ -2257,7 +2257,7 @@ func (o *TranslatedNameEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Use)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Use)); err != nil {
 		return err
 	}
 	if o.Name == nil {
@@ -2449,7 +2449,7 @@ func (o *TranslatedSIDEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Use)); err != nil {
+	if err := w.WriteEnum(uint16(o.Use)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.RelativeID); err != nil {
@@ -2467,7 +2467,7 @@ func (o *TranslatedSIDEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Use)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Use)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.RelativeID); err != nil {
@@ -2655,7 +2655,7 @@ func (o *TranslatedSIDEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Use)); err != nil {
+	if err := w.WriteEnum(uint16(o.Use)); err != nil {
 		return err
 	}
 	if o.SID != nil {
@@ -2691,7 +2691,7 @@ func (o *TranslatedSIDEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Use)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Use)); err != nil {
 		return err
 	}
 	_ptr_Sid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -3509,7 +3509,7 @@ func (o *xxx_LookupNamesOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -3579,7 +3579,7 @@ func (o *xxx_LookupNamesOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -3889,7 +3889,7 @@ func (o *xxx_LookupSIDsOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -3938,7 +3938,7 @@ func (o *xxx_LookupSIDsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -4895,7 +4895,7 @@ func (o *xxx_LookupSids2Operation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -4956,7 +4956,7 @@ func (o *xxx_LookupSids2Operation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -5316,7 +5316,7 @@ func (o *xxx_LookupNames2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -5398,7 +5398,7 @@ func (o *xxx_LookupNames2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -5763,7 +5763,7 @@ func (o *xxx_LookupNames3Operation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -5845,7 +5845,7 @@ func (o *xxx_LookupNames3Operation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -6166,7 +6166,7 @@ func (o *xxx_LookupSids3Operation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -6218,7 +6218,7 @@ func (o *xxx_LookupSids3Operation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -6561,7 +6561,7 @@ func (o *xxx_LookupNames4Operation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.LookupLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LookupLevel)); err != nil {
 			return err
 		}
 	}
@@ -6634,7 +6634,7 @@ func (o *xxx_LookupNames4Operation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// LookupLevel {in} (1:{alias=LSAP_LOOKUP_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LookupLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LookupLevel)); err != nil {
 			return err
 		}
 	}

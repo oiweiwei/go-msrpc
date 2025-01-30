@@ -2531,7 +2531,7 @@ func (o *xxx_GetRunningStatusOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// runningStatus {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmReportRunningStatus}(enum))
 	{
-		if err := w.WriteData(uint16(o.RunningStatus)); err != nil {
+		if err := w.WriteEnum(uint16(o.RunningStatus)); err != nil {
 			return err
 		}
 	}
@@ -2559,7 +2559,7 @@ func (o *xxx_GetRunningStatusOperation) UnmarshalNDRResponse(ctx context.Context
 	}
 	// runningStatus {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmReportRunningStatus}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RunningStatus)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RunningStatus)); err != nil {
 			return err
 		}
 	}
@@ -3608,7 +3608,7 @@ func (o *xxx_CreateReportOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ReportType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ReportType)); err != nil {
 			return err
 		}
 	}
@@ -3630,7 +3630,7 @@ func (o *xxx_CreateReportOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// reportType {in} (1:{alias=FsrmReportType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ReportType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ReportType)); err != nil {
 			return err
 		}
 	}
@@ -3865,7 +3865,7 @@ func (o *xxx_RunOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) 
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.WriteData(uint16(o.Context)); err != nil {
+		if err := w.WriteEnum(uint16(o.Context)); err != nil {
 			return err
 		}
 	}
@@ -3887,7 +3887,7 @@ func (o *xxx_RunOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Context)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Context)); err != nil {
 			return err
 		}
 	}

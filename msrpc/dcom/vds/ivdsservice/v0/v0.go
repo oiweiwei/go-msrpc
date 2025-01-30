@@ -1718,7 +1718,7 @@ func (o *xxx_GetObjectOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// type {in} (1:{alias=VDS_OBJECT_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Type)); err != nil {
+		if err := w.WriteEnum(uint16(o.Type)); err != nil {
 			return err
 		}
 	}
@@ -1749,7 +1749,7 @@ func (o *xxx_GetObjectOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// type {in} (1:{alias=VDS_OBJECT_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 			return err
 		}
 	}

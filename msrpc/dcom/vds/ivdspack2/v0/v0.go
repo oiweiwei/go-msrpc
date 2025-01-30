@@ -193,7 +193,7 @@ func (o *xxx_CreateVolume2Operation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// type {in} (1:{alias=VDS_VOLUME_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Type)); err != nil {
+		if err := w.WriteEnum(uint16(o.Type)); err != nil {
 			return err
 		}
 	}
@@ -263,7 +263,7 @@ func (o *xxx_CreateVolume2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// type {in} (1:{alias=VDS_VOLUME_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 			return err
 		}
 	}

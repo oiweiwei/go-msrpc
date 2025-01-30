@@ -978,7 +978,7 @@ func (o *xxx_GetRuleTypeOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// ruleType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.RuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.RuleType)); err != nil {
 			return err
 		}
 	}
@@ -1006,7 +1006,7 @@ func (o *xxx_GetRuleTypeOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	}
 	// ruleType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RuleType)); err != nil {
 			return err
 		}
 	}

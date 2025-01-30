@@ -5974,6 +5974,9 @@ func (o *DirectoryError) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*DirectoryError_AttributeError)
@@ -6060,6 +6063,9 @@ func (o *DirectoryError) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 
 func (o *DirectoryError) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -7485,7 +7491,7 @@ func (o *DSReplicationOperation) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteData(o.Priority); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.OperationType)); err != nil {
+	if err := w.WriteEnum(uint16(o.OperationType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Options); err != nil {
@@ -7572,7 +7578,7 @@ func (o *DSReplicationOperation) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadData(&o.Priority); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.OperationType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.OperationType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Options); err != nil {
@@ -12619,6 +12625,9 @@ func (o *MessageGetNCChangesRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(4):
 		_o, _ := o.Value.(*MessageGetNCChangesRequest_V4)
@@ -12694,6 +12703,9 @@ func (o *MessageGetNCChangesRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 
 func (o *MessageGetNCChangesRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -13036,7 +13048,7 @@ func (o *MessageGetNCChangesReplyV7) MarshalNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteData(o.CompressedVersion); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.CompressionAlgorithm)); err != nil {
+	if err := w.WriteEnum(uint16(o.CompressionAlgorithm)); err != nil {
 		return err
 	}
 	if o.CompressedAny != nil {
@@ -13057,7 +13069,7 @@ func (o *MessageGetNCChangesReplyV7) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	if err := w.ReadData(&o.CompressedVersion); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.CompressionAlgorithm)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.CompressionAlgorithm)); err != nil {
 		return err
 	}
 	if o.CompressedAny == nil {
@@ -13142,6 +13154,9 @@ func (o *MessageGetNCChangesReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageGetNCChangesReply_V1)
@@ -13206,6 +13221,9 @@ func (o *MessageGetNCChangesReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageGetNCChangesReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -13734,6 +13752,9 @@ func (o *MessageReplicaSync) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReplicaSync_V1)
@@ -13765,6 +13786,9 @@ func (o *MessageReplicaSync) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 
 func (o *MessageReplicaSync) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -14182,6 +14206,9 @@ func (o *MessageUpdateReferences) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageUpdateReferences_V1)
@@ -14213,6 +14240,9 @@ func (o *MessageUpdateReferences) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 
 func (o *MessageUpdateReferences) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -14901,6 +14931,9 @@ func (o *MessageAddReplica) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddReplica_V1)
@@ -14943,6 +14976,9 @@ func (o *MessageAddReplica) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 
 func (o *MessageAddReplica) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -15210,6 +15246,9 @@ func (o *MessageDeleteReplica) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageDeleteReplica_V1)
@@ -15230,6 +15269,9 @@ func (o *MessageDeleteReplica) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 
 func (o *MessageDeleteReplica) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -15488,6 +15530,9 @@ func (o *MessageModifyReplica) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageModifyReplica_V1)
@@ -15508,6 +15553,9 @@ func (o *MessageModifyReplica) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 
 func (o *MessageModifyReplica) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -15794,6 +15842,9 @@ func (o *MessageVerifyRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageVerifyRequest_V1)
@@ -15814,6 +15865,9 @@ func (o *MessageVerifyRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 
 func (o *MessageVerifyRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -16051,6 +16105,9 @@ func (o *MessageVerifyReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageVerifyReply_V1)
@@ -16071,6 +16128,9 @@ func (o *MessageVerifyReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 
 func (o *MessageVerifyReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -16280,7 +16340,7 @@ func (o *MessageReverseMembershipRequestV1) MarshalNDR(ctx context.Context, w nd
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.OperationType)); err != nil {
+	if err := w.WriteEnum(uint16(o.OperationType)); err != nil {
 		return err
 	}
 	if o.LimitingDomain != nil {
@@ -16355,7 +16415,7 @@ func (o *MessageReverseMembershipRequestV1) UnmarshalNDR(ctx context.Context, w 
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.OperationType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.OperationType)); err != nil {
 		return err
 	}
 	_ptr_pLimitingDomain := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -16419,6 +16479,9 @@ func (o *MessageReverseMembershipRequest) MarshalUnionNDR(ctx context.Context, w
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReverseMembershipRequest_V1)
@@ -16439,6 +16502,9 @@ func (o *MessageReverseMembershipRequest) MarshalUnionNDR(ctx context.Context, w
 
 func (o *MessageReverseMembershipRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -16863,6 +16929,9 @@ func (o *MessageReverseMembershipReply) MarshalUnionNDR(ctx context.Context, w n
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReverseMembershipReply_V1)
@@ -16883,6 +16952,9 @@ func (o *MessageReverseMembershipReply) MarshalUnionNDR(ctx context.Context, w n
 
 func (o *MessageReverseMembershipReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -17659,6 +17731,9 @@ func (o *MessageMoveRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageMoveRequest_V1)
@@ -17690,6 +17765,9 @@ func (o *MessageMoveRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 
 func (o *MessageMoveRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -18025,6 +18103,9 @@ func (o *MessageMoveReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageMoveReply_V1)
@@ -18056,6 +18137,9 @@ func (o *MessageMoveReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 
 func (o *MessageMoveReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -18426,6 +18510,9 @@ func (o *MessageCrackNamesRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageCrackNamesRequest_V1)
@@ -18446,6 +18533,9 @@ func (o *MessageCrackNamesRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageCrackNamesRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -18604,6 +18694,9 @@ func (o *MessageCrackNamesReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageCrackNamesReply_V1)
@@ -18624,6 +18717,9 @@ func (o *MessageCrackNamesReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *MessageCrackNamesReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -18857,6 +18953,9 @@ func (o *MessageNT4ChangeLogRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageNT4ChangeLogRequest_V1)
@@ -18877,6 +18976,9 @@ func (o *MessageNT4ChangeLogRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 
 func (o *MessageNT4ChangeLogRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -19321,6 +19423,9 @@ func (o *MessageNT4ChangeLogReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageNT4ChangeLogReply_V1)
@@ -19341,6 +19446,9 @@ func (o *MessageNT4ChangeLogReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageNT4ChangeLogReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -19603,6 +19711,9 @@ func (o *MessageWriteSPNRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageWriteSPNRequest_V1)
@@ -19623,6 +19734,9 @@ func (o *MessageWriteSPNRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *MessageWriteSPNRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -19753,6 +19867,9 @@ func (o *MessageWriteSPNReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageWriteSPNReply_V1)
@@ -19773,6 +19890,9 @@ func (o *MessageWriteSPNReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 
 func (o *MessageWriteSPNReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -19969,6 +20089,9 @@ func (o *MessageRemoveServerRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageRemoveServerRequest_V1)
@@ -19989,6 +20112,9 @@ func (o *MessageRemoveServerRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 
 func (o *MessageRemoveServerRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -20130,6 +20256,9 @@ func (o *MessageRemoveServerReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageRemoveServerReply_V1)
@@ -20150,6 +20279,9 @@ func (o *MessageRemoveServerReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageRemoveServerReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -20299,6 +20431,9 @@ func (o *MessageRemoveDSDomainRequest) MarshalUnionNDR(ctx context.Context, w nd
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageRemoveDSDomainRequest_V1)
@@ -20319,6 +20454,9 @@ func (o *MessageRemoveDSDomainRequest) MarshalUnionNDR(ctx context.Context, w nd
 
 func (o *MessageRemoveDSDomainRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -20452,6 +20590,9 @@ func (o *MessageRemoveDSDomainReply) MarshalUnionNDR(ctx context.Context, w ndr.
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageRemoveDSDomainReply_V1)
@@ -20472,6 +20613,9 @@ func (o *MessageRemoveDSDomainReply) MarshalUnionNDR(ctx context.Context, w ndr.
 
 func (o *MessageRemoveDSDomainReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -20635,6 +20779,9 @@ func (o *MessageDCInfoRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageDCInfoRequest_V1)
@@ -20655,6 +20802,9 @@ func (o *MessageDCInfoRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 
 func (o *MessageDCInfoRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -21240,6 +21390,9 @@ func (o *MessageDCInfoReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageDCInfoReply_V1)
@@ -21293,6 +21446,9 @@ func (o *MessageDCInfoReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 
 func (o *MessageDCInfoReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -21725,6 +21881,9 @@ func (o *MessageAddEntryRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddEntryRequest_V1)
@@ -21767,6 +21926,9 @@ func (o *MessageAddEntryRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *MessageAddEntryRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -22384,6 +22546,9 @@ func (o *ErrorData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*ErrorData_V1)
@@ -22404,6 +22569,9 @@ func (o *ErrorData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32
 
 func (o *ErrorData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -22711,6 +22879,9 @@ func (o *MessageAddEntryReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddEntryReply_V1)
@@ -22753,6 +22924,9 @@ func (o *MessageAddEntryReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 
 func (o *MessageAddEntryReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -22978,6 +23152,9 @@ func (o *MessageKCCExecute) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageKCCExecute_V1)
@@ -22998,6 +23175,9 @@ func (o *MessageKCCExecute) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 
 func (o *MessageKCCExecute) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -23882,6 +24062,9 @@ func (o *MessageGetReplicationInfoRequest) MarshalUnionNDR(ctx context.Context, 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageGetReplicationInfoRequest_V1)
@@ -23913,6 +24096,9 @@ func (o *MessageGetReplicationInfoRequest) MarshalUnionNDR(ctx context.Context, 
 
 func (o *MessageGetReplicationInfoRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -24140,6 +24326,9 @@ func (o *MessageGetReplicationInfoReply) MarshalUnionNDR(ctx context.Context, w 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*MessageGetReplicationInfoReply_Neighbors)
@@ -24314,6 +24503,9 @@ func (o *MessageGetReplicationInfoReply) MarshalUnionNDR(ctx context.Context, w 
 
 func (o *MessageGetReplicationInfoReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -25650,6 +25842,9 @@ func (o *MessageAddSIDHistoryRequest) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddSIDHistoryRequest_V1)
@@ -25670,6 +25865,9 @@ func (o *MessageAddSIDHistoryRequest) MarshalUnionNDR(ctx context.Context, w ndr
 
 func (o *MessageAddSIDHistoryRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -25800,6 +25998,9 @@ func (o *MessageAddSIDHistoryReply) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddSIDHistoryReply_V1)
@@ -25820,6 +26021,9 @@ func (o *MessageAddSIDHistoryReply) MarshalUnionNDR(ctx context.Context, w ndr.W
 
 func (o *MessageAddSIDHistoryReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -26029,6 +26233,9 @@ func (o *MessageGetMemberships2Request) MarshalUnionNDR(ctx context.Context, w n
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageGetMemberships2Request_V1)
@@ -26049,6 +26256,9 @@ func (o *MessageGetMemberships2Request) MarshalUnionNDR(ctx context.Context, w n
 
 func (o *MessageGetMemberships2Request) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -26260,6 +26470,9 @@ func (o *MessageGetMemberships2Reply) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageGetMemberships2Reply_V1)
@@ -26280,6 +26493,9 @@ func (o *MessageGetMemberships2Reply) MarshalUnionNDR(ctx context.Context, w ndr
 
 func (o *MessageGetMemberships2Reply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -26464,6 +26680,9 @@ func (o *MessageVerifyReplyObject) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageVerifyReplyObject_V1)
@@ -26484,6 +26703,9 @@ func (o *MessageVerifyReplyObject) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageVerifyReplyObject) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -26727,6 +26949,9 @@ func (o *MessageExistRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageExistRequest_V1)
@@ -26747,6 +26972,9 @@ func (o *MessageExistRequest) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 
 func (o *MessageExistRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -26966,6 +27194,9 @@ func (o *MessageExistReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageExistReply_V1)
@@ -26986,6 +27217,9 @@ func (o *MessageExistReply) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 
 func (o *MessageExistReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -27241,6 +27475,9 @@ func (o *MessageQuerySitesRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageQuerySitesRequest_V1)
@@ -27261,6 +27498,9 @@ func (o *MessageQuerySitesRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageQuerySitesRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -27528,6 +27768,9 @@ func (o *MessageQuerySitesReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageQuerySitesReply_V1)
@@ -27548,6 +27791,9 @@ func (o *MessageQuerySitesReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *MessageQuerySitesReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -27681,6 +27927,9 @@ func (o *MessageInitDemotionRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageInitDemotionRequest_V1)
@@ -27701,6 +27950,9 @@ func (o *MessageInitDemotionRequest) MarshalUnionNDR(ctx context.Context, w ndr.
 
 func (o *MessageInitDemotionRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -27832,6 +28084,9 @@ func (o *MessageInitDemotionReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageInitDemotionReply_V1)
@@ -27852,6 +28107,9 @@ func (o *MessageInitDemotionReply) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageInitDemotionReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -28046,6 +28304,9 @@ func (o *MessageReplicaDemotionRequest) MarshalUnionNDR(ctx context.Context, w n
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReplicaDemotionRequest_V1)
@@ -28066,6 +28327,9 @@ func (o *MessageReplicaDemotionRequest) MarshalUnionNDR(ctx context.Context, w n
 
 func (o *MessageReplicaDemotionRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -28199,6 +28463,9 @@ func (o *MessageReplicaDemotionReply) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReplicaDemotionReply_V1)
@@ -28219,6 +28486,9 @@ func (o *MessageReplicaDemotionReply) MarshalUnionNDR(ctx context.Context, w ndr
 
 func (o *MessageReplicaDemotionReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -28421,6 +28691,9 @@ func (o *MessageFinishDemotionRequest) MarshalUnionNDR(ctx context.Context, w nd
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageFinishDemotionRequest_V1)
@@ -28441,6 +28714,9 @@ func (o *MessageFinishDemotionRequest) MarshalUnionNDR(ctx context.Context, w nd
 
 func (o *MessageFinishDemotionRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -28597,6 +28873,9 @@ func (o *MessageFinishDemotionReply) MarshalUnionNDR(ctx context.Context, w ndr.
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageFinishDemotionReply_V1)
@@ -28617,6 +28896,9 @@ func (o *MessageFinishDemotionReply) MarshalUnionNDR(ctx context.Context, w ndr.
 
 func (o *MessageFinishDemotionReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -28793,6 +29075,9 @@ func (o *MessageAddCloneDCRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddCloneDCRequest_V1)
@@ -28813,6 +29098,9 @@ func (o *MessageAddCloneDCRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageAddCloneDCRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -29073,6 +29361,9 @@ func (o *MessageAddCloneDCReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageAddCloneDCReply_V1)
@@ -29093,6 +29384,9 @@ func (o *MessageAddCloneDCReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *MessageAddCloneDCReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -29311,6 +29605,9 @@ func (o *MessageWriteNGCKeyRequest) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageWriteNGCKeyRequest_V1)
@@ -29331,6 +29628,9 @@ func (o *MessageWriteNGCKeyRequest) MarshalUnionNDR(ctx context.Context, w ndr.W
 
 func (o *MessageWriteNGCKeyRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -29453,6 +29753,9 @@ func (o *MessageWriteNGCKeyReply) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageWriteNGCKeyReply_V1)
@@ -29473,6 +29776,9 @@ func (o *MessageWriteNGCKeyReply) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 
 func (o *MessageWriteNGCKeyReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -29614,6 +29920,9 @@ func (o *MessageReadNGCKeyRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReadNGCKeyRequest_V1)
@@ -29634,6 +29943,9 @@ func (o *MessageReadNGCKeyRequest) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *MessageReadNGCKeyRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -29832,6 +30144,9 @@ func (o *MessageReadNGCKeyReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageReadNGCKeyReply_V1)
@@ -29852,6 +30167,9 @@ func (o *MessageReadNGCKeyReply) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *MessageReadNGCKeyReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

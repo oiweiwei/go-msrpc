@@ -1445,6 +1445,9 @@ func (o *PropertyVariant_VarUnion) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(0),
 		uint16(1):
@@ -1676,6 +1679,9 @@ func (o *PropertyVariant_VarUnion) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 
 func (o *PropertyVariant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -2857,6 +2863,9 @@ func (o *QueueFormat_QueueFormat) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 	if err := w.WriteSwitch(uint8(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint8(0):
 	case uint8(1):
@@ -2955,6 +2964,9 @@ func (o *QueueFormat_QueueFormat) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 
 func (o *QueueFormat_QueueFormat) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint8) error {
 	if err := w.ReadSwitch((*uint8)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

@@ -585,7 +585,7 @@ func (o *xxx_CreateVDiskOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// Flags {in} (1:{alias=CREATE_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -705,7 +705,7 @@ func (o *xxx_CreateVDiskOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// Flags {in} (1:{alias=CREATE_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}

@@ -2222,7 +2222,7 @@ func (o *xxx_CreateThresholdActionOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// actionType {in} (1:{alias=FsrmActionType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ActionType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ActionType)); err != nil {
 			return err
 		}
 	}
@@ -2250,7 +2250,7 @@ func (o *xxx_CreateThresholdActionOperation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// actionType {in} (1:{alias=FsrmActionType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ActionType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ActionType)); err != nil {
 			return err
 		}
 	}

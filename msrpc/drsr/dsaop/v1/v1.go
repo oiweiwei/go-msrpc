@@ -217,6 +217,9 @@ func (o *MessageExecuteScriptRequest) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageExecuteScriptRequest_V1)
@@ -237,6 +240,9 @@ func (o *MessageExecuteScriptRequest) MarshalUnionNDR(ctx context.Context, w ndr
 
 func (o *MessageExecuteScriptRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -395,6 +401,9 @@ func (o *MessageExecuteScriptReply) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessageExecuteScriptReply_V1)
@@ -415,6 +424,9 @@ func (o *MessageExecuteScriptReply) MarshalUnionNDR(ctx context.Context, w ndr.W
 
 func (o *MessageExecuteScriptReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -548,6 +560,9 @@ func (o *MessagePrepareScriptRequest) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessagePrepareScriptRequest_V1)
@@ -568,6 +583,9 @@ func (o *MessagePrepareScriptRequest) MarshalUnionNDR(ctx context.Context, w ndr
 
 func (o *MessagePrepareScriptRequest) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -960,6 +978,9 @@ func (o *MessagePrepareScriptReply) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*MessagePrepareScriptReply_V1)
@@ -980,6 +1001,9 @@ func (o *MessagePrepareScriptReply) MarshalUnionNDR(ctx context.Context, w ndr.W
 
 func (o *MessagePrepareScriptReply) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

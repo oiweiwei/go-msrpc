@@ -837,7 +837,7 @@ func (o *xxx_GetTypeOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// type {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmPropertyConditionType}(enum))
 	{
-		if err := w.WriteData(uint16(o.Type)); err != nil {
+		if err := w.WriteEnum(uint16(o.Type)); err != nil {
 			return err
 		}
 	}
@@ -865,7 +865,7 @@ func (o *xxx_GetTypeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	}
 	// type {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmPropertyConditionType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 			return err
 		}
 	}
@@ -993,7 +993,7 @@ func (o *xxx_SetTypeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// type {in} (1:{alias=FsrmPropertyConditionType}(enum))
 	{
-		if err := w.WriteData(uint16(o.Type)); err != nil {
+		if err := w.WriteEnum(uint16(o.Type)); err != nil {
 			return err
 		}
 	}
@@ -1015,7 +1015,7 @@ func (o *xxx_SetTypeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// type {in} (1:{alias=FsrmPropertyConditionType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 			return err
 		}
 	}

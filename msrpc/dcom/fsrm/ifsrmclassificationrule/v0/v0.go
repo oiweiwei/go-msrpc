@@ -342,7 +342,7 @@ func (o *xxx_GetExecutionOptionOperation) MarshalNDRResponse(ctx context.Context
 	}
 	// executionOption {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmExecutionOption}(enum))
 	{
-		if err := w.WriteData(uint16(o.ExecutionOption)); err != nil {
+		if err := w.WriteEnum(uint16(o.ExecutionOption)); err != nil {
 			return err
 		}
 	}
@@ -370,7 +370,7 @@ func (o *xxx_GetExecutionOptionOperation) UnmarshalNDRResponse(ctx context.Conte
 	}
 	// executionOption {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmExecutionOption}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ExecutionOption)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ExecutionOption)); err != nil {
 			return err
 		}
 	}
@@ -500,7 +500,7 @@ func (o *xxx_SetExecutionOptionOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// executionOption {in} (1:{alias=FsrmExecutionOption}(enum))
 	{
-		if err := w.WriteData(uint16(o.ExecutionOption)); err != nil {
+		if err := w.WriteEnum(uint16(o.ExecutionOption)); err != nil {
 			return err
 		}
 	}
@@ -522,7 +522,7 @@ func (o *xxx_SetExecutionOptionOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// executionOption {in} (1:{alias=FsrmExecutionOption}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ExecutionOption)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ExecutionOption)); err != nil {
 			return err
 		}
 	}

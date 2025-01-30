@@ -345,7 +345,7 @@ func (o *xxx_AttachOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// Flags {in} (1:{alias=ATTACH_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -395,7 +395,7 @@ func (o *xxx_AttachOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	}
 	// Flags {in} (1:{alias=ATTACH_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -664,7 +664,7 @@ func (o *xxx_DetachOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// Flags {in} (1:{alias=DETACH_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -692,7 +692,7 @@ func (o *xxx_DetachOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	}
 	// Flags {in} (1:{alias=DETACH_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -886,7 +886,7 @@ func (o *xxx_DetachAndDeleteOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// Flags {in} (1:{alias=DETACH_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -914,7 +914,7 @@ func (o *xxx_DetachAndDeleteOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// Flags {in} (1:{alias=DETACH_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -1109,7 +1109,7 @@ func (o *xxx_CompactOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// Flags {in} (1:{alias=COMPACT_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -1138,7 +1138,7 @@ func (o *xxx_CompactOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// Flags {in} (1:{alias=COMPACT_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -1383,7 +1383,7 @@ func (o *xxx_MergeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 	}
 	// Flags {in} (1:{alias=MERGE_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -1411,7 +1411,7 @@ func (o *xxx_MergeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 	}
 	// Flags {in} (1:{alias=MERGE_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -1664,7 +1664,7 @@ func (o *xxx_ExpandOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// Flags {in} (1:{alias=EXPAND_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -1692,7 +1692,7 @@ func (o *xxx_ExpandOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	}
 	// Flags {in} (1:{alias=EXPAND_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}

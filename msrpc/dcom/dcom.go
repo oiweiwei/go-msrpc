@@ -2273,7 +2273,7 @@ func (o *ObjectReference) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Flags)); err != nil {
+	if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 		return err
 	}
 	if o.IID != nil {
@@ -2308,7 +2308,7 @@ func (o *ObjectReference) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 			return err
 		}
 	}
-	if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 		return err
 	}
 	if o.IID == nil {
@@ -2415,6 +2415,9 @@ func (o *ObjectReference_ObjectReference) MarshalUnionNDR(ctx context.Context, w
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*ObjectReference_Standard)
@@ -2467,6 +2470,9 @@ func (o *ObjectReference_ObjectReference) MarshalUnionNDR(ctx context.Context, w
 
 func (o *ObjectReference_ObjectReference) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {

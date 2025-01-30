@@ -1291,7 +1291,7 @@ func (o *xxx_ConvertStyleOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// NewStyle {in} (1:{alias=VDS_PARTITION_STYLE}(enum))
 	{
-		if err := w.WriteData(uint16(o.NewStyle)); err != nil {
+		if err := w.WriteEnum(uint16(o.NewStyle)); err != nil {
 			return err
 		}
 	}
@@ -1313,7 +1313,7 @@ func (o *xxx_ConvertStyleOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// NewStyle {in} (1:{alias=VDS_PARTITION_STYLE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.NewStyle)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.NewStyle)); err != nil {
 			return err
 		}
 	}

@@ -3395,7 +3395,7 @@ func (o *xxx_GetClassificationRunningStatusOperation) MarshalNDRResponse(ctx con
 	}
 	// runningStatus {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmReportRunningStatus}(enum))
 	{
-		if err := w.WriteData(uint16(o.RunningStatus)); err != nil {
+		if err := w.WriteEnum(uint16(o.RunningStatus)); err != nil {
 			return err
 		}
 	}
@@ -3423,7 +3423,7 @@ func (o *xxx_GetClassificationRunningStatusOperation) UnmarshalNDRResponse(ctx c
 	}
 	// runningStatus {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmReportRunningStatus}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RunningStatus)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RunningStatus)); err != nil {
 			return err
 		}
 	}
@@ -3556,7 +3556,7 @@ func (o *xxx_EnumPropertyDefinitionsOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -3578,7 +3578,7 @@ func (o *xxx_EnumPropertyDefinitionsOperation) UnmarshalNDRRequest(ctx context.C
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}
@@ -4354,13 +4354,13 @@ func (o *xxx_EnumRulesOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// ruleType {in} (1:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.RuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.RuleType)); err != nil {
 			return err
 		}
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -4382,13 +4382,13 @@ func (o *xxx_EnumRulesOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// ruleType {in} (1:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RuleType)); err != nil {
 			return err
 		}
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}
@@ -4630,7 +4630,7 @@ func (o *xxx_CreateRuleOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// ruleType {in} (1:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.RuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.RuleType)); err != nil {
 			return err
 		}
 	}
@@ -4652,7 +4652,7 @@ func (o *xxx_CreateRuleOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// ruleType {in} (1:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RuleType)); err != nil {
 			return err
 		}
 	}
@@ -4917,7 +4917,7 @@ func (o *xxx_GetRuleOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// ruleType {in} (1:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.RuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.RuleType)); err != nil {
 			return err
 		}
 	}
@@ -4958,7 +4958,7 @@ func (o *xxx_GetRuleOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// ruleType {in} (1:{alias=FsrmRuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RuleType)); err != nil {
 			return err
 		}
 	}
@@ -5201,13 +5201,13 @@ func (o *xxx_EnumModuleDefinitionsOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// moduleType {in} (1:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ModuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ModuleType)); err != nil {
 			return err
 		}
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -5229,13 +5229,13 @@ func (o *xxx_EnumModuleDefinitionsOperation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// moduleType {in} (1:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ModuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ModuleType)); err != nil {
 			return err
 		}
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}
@@ -5479,7 +5479,7 @@ func (o *xxx_CreateModuleDefinitionOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// moduleType {in} (1:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ModuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ModuleType)); err != nil {
 			return err
 		}
 	}
@@ -5501,7 +5501,7 @@ func (o *xxx_CreateModuleDefinitionOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// moduleType {in} (1:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ModuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ModuleType)); err != nil {
 			return err
 		}
 	}
@@ -5770,7 +5770,7 @@ func (o *xxx_GetModuleDefinitionOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// moduleType {in} (1:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ModuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ModuleType)); err != nil {
 			return err
 		}
 	}
@@ -5811,7 +5811,7 @@ func (o *xxx_GetModuleDefinitionOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// moduleType {in} (1:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ModuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ModuleType)); err != nil {
 			return err
 		}
 	}
@@ -6053,7 +6053,7 @@ func (o *xxx_RunClassificationOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.WriteData(uint16(o.Context)); err != nil {
+		if err := w.WriteEnum(uint16(o.Context)); err != nil {
 			return err
 		}
 	}
@@ -6085,7 +6085,7 @@ func (o *xxx_RunClassificationOperation) UnmarshalNDRRequest(ctx context.Context
 	}
 	// context {in} (1:{alias=FsrmReportGenerationContext}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Context)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Context)); err != nil {
 			return err
 		}
 	}
@@ -6733,7 +6733,7 @@ func (o *xxx_EnumFilePropertiesOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmGetFilePropertyOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -6774,7 +6774,7 @@ func (o *xxx_EnumFilePropertiesOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmGetFilePropertyOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}
@@ -7076,7 +7076,7 @@ func (o *xxx_GetFilePropertyOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmGetFilePropertyOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -7136,7 +7136,7 @@ func (o *xxx_GetFilePropertyOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmGetFilePropertyOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}

@@ -171,7 +171,7 @@ func (o *ManagementObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	_swManagementObject := uint16(o.Type)
@@ -190,7 +190,7 @@ func (o *ManagementObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.ManagementObject == nil {
@@ -254,6 +254,9 @@ func (o *ManagementObject_ManagementObject) MarshalUnionNDR(ctx context.Context,
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(2):
 		_o, _ := o.Value.(*ManagementObject_QueueFormat)
@@ -295,7 +298,10 @@ func (o *ManagementObject_ManagementObject) MarshalUnionNDR(ctx context.Context,
 }
 
 func (o *ManagementObject_ManagementObject) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

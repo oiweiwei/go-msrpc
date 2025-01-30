@@ -419,7 +419,7 @@ func (o *xxx_SetAllPathStatusesOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// status {in} (1:{alias=VDS_PATH_STATUS}(enum))
 	{
-		if err := w.WriteData(uint16(o.Status)); err != nil {
+		if err := w.WriteEnum(uint16(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -441,7 +441,7 @@ func (o *xxx_SetAllPathStatusesOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// status {in} (1:{alias=VDS_PATH_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 			return err
 		}
 	}

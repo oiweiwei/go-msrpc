@@ -3091,7 +3091,7 @@ func (o *xxx_GetDLLEntryOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// invKind {in} (1:{v1_enum, alias=INVOKEKIND}(enum))
 	{
-		if err := w.WriteData(uint32(o.InvKind)); err != nil {
+		if err := w.WriteEnum(uint32(o.InvKind)); err != nil {
 			return err
 		}
 	}
@@ -3125,7 +3125,7 @@ func (o *xxx_GetDLLEntryOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// invKind {in} (1:{v1_enum, alias=INVOKEKIND}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.InvKind)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.InvKind)); err != nil {
 			return err
 		}
 	}

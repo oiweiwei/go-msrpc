@@ -2455,7 +2455,7 @@ func (o *xxx_ConfigClusterCerV2Operation) MarshalNDRRequest(ctx context.Context,
 	}
 	// certType {in} (1:{alias=CLUSTER_CERTTYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.CertType)); err != nil {
+		if err := w.WriteEnum(uint16(o.CertType)); err != nil {
 			return err
 		}
 	}
@@ -2486,7 +2486,7 @@ func (o *xxx_ConfigClusterCerV2Operation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// certType {in} (1:{alias=CLUSTER_CERTTYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CertType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CertType)); err != nil {
 			return err
 		}
 	}
@@ -2741,7 +2741,7 @@ func (o *xxx_RetrieveClusterCertV2Operation) MarshalNDRResponse(ctx context.Cont
 	}
 	// certType {out} (1:{pointer=ref}*(1))(2:{alias=CLUSTER_CERTTYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.CertType)); err != nil {
+		if err := w.WriteEnum(uint16(o.CertType)); err != nil {
 			return err
 		}
 	}
@@ -2769,7 +2769,7 @@ func (o *xxx_RetrieveClusterCertV2Operation) UnmarshalNDRResponse(ctx context.Co
 	}
 	// certType {out} (1:{pointer=ref}*(1))(2:{alias=CLUSTER_CERTTYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CertType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CertType)); err != nil {
 			return err
 		}
 	}
@@ -2917,7 +2917,7 @@ func (o *xxx_GenerateClusterCertV2Operation) MarshalNDRRequest(ctx context.Conte
 	}
 	// certType {in} (1:{alias=CLUSTER_CERTTYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.CertType)); err != nil {
+		if err := w.WriteEnum(uint16(o.CertType)); err != nil {
 			return err
 		}
 	}
@@ -2948,7 +2948,7 @@ func (o *xxx_GenerateClusterCertV2Operation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// certType {in} (1:{alias=CLUSTER_CERTTYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CertType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CertType)); err != nil {
 			return err
 		}
 	}

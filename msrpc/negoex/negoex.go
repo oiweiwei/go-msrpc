@@ -626,7 +626,7 @@ func (o *MessageHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Signature); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.MessageType)); err != nil {
+	if err := w.WriteEnum(uint16(o.MessageType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.SequenceNum); err != nil {
@@ -656,7 +656,7 @@ func (o *MessageHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Signature); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.MessageType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.MessageType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.SequenceNum); err != nil {

@@ -2937,6 +2937,9 @@ func (o *TransferBufferV1_TransferBufferV1) MarshalUnionNDR(ctx context.Context,
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*TransferBufferV1_Send)
@@ -2979,6 +2982,9 @@ func (o *TransferBufferV1_TransferBufferV1) MarshalUnionNDR(ctx context.Context,
 
 func (o *TransferBufferV1_TransferBufferV1) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -4081,6 +4087,9 @@ func (o *ObjectFormat_ObjectFormat) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1):
 		_o, _ := o.Value.(*ObjectFormat_QueueFormat)
@@ -4101,6 +4110,9 @@ func (o *ObjectFormat_ObjectFormat) MarshalUnionNDR(ctx context.Context, w ndr.W
 
 func (o *ObjectFormat_ObjectFormat) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

@@ -701,7 +701,7 @@ func (o *SectionBuffer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.SectionBufferType)); err != nil {
+	if err := w.WriteEnum(uint16(o.SectionBufferType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.SectionSizeAlloc); err != nil {
@@ -749,7 +749,7 @@ func (o *SectionBuffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.SectionBufferType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.SectionBufferType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.SectionSizeAlloc); err != nil {

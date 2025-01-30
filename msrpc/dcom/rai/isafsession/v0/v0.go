@@ -792,7 +792,7 @@ func (o *xxx_GetSessionStateOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pVal {out, retval} (1:{pointer=ref}*(1))(2:{alias=SessionStateEnum}(enum))
 	{
-		if err := w.WriteData(uint16(o.Value)); err != nil {
+		if err := w.WriteEnum(uint16(o.Value)); err != nil {
 			return err
 		}
 	}
@@ -820,7 +820,7 @@ func (o *xxx_GetSessionStateOperation) UnmarshalNDRResponse(ctx context.Context,
 	}
 	// pVal {out, retval} (1:{pointer=ref}*(1))(2:{alias=SessionStateEnum}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Value)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Value)); err != nil {
 			return err
 		}
 	}
@@ -948,7 +948,7 @@ func (o *xxx_SetSessionStateOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// pVal {in} (1:{alias=SessionStateEnum}(enum))
 	{
-		if err := w.WriteData(uint16(o.Value)); err != nil {
+		if err := w.WriteEnum(uint16(o.Value)); err != nil {
 			return err
 		}
 	}
@@ -970,7 +970,7 @@ func (o *xxx_SetSessionStateOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// pVal {in} (1:{alias=SessionStateEnum}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Value)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Value)); err != nil {
 			return err
 		}
 	}

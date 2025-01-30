@@ -542,7 +542,7 @@ func (o *xxx_GetNextAdapterFirewallConfigurationOperation) MarshalNDRResponse(ct
 	}
 	// adapterProfile {out} (1:{pointer=ref}*(1))(2:{alias=CLUSTER_NETWORK_PROFILE}(enum))
 	{
-		if err := w.WriteData(uint16(o.AdapterProfile)); err != nil {
+		if err := w.WriteEnum(uint16(o.AdapterProfile)); err != nil {
 			return err
 		}
 	}
@@ -597,7 +597,7 @@ func (o *xxx_GetNextAdapterFirewallConfigurationOperation) UnmarshalNDRResponse(
 	}
 	// adapterProfile {out} (1:{pointer=ref}*(1))(2:{alias=CLUSTER_NETWORK_PROFILE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.AdapterProfile)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.AdapterProfile)); err != nil {
 			return err
 		}
 	}
