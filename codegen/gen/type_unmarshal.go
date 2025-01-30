@@ -108,10 +108,10 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 		if !scopes.IsV1Enum() && scopes.Enum().Is32 {
 			varName := "_e" + p.ToVar(name)
 			p.P(varName, ":=", p.B(scopes.EnumType(), name))
-			p.CheckErr(p.B("w.ReadData", p.Amp(varName)))
+			p.CheckErr(p.B("w.ReadEnum", p.Amp(varName)))
 			p.P(name, "=", p.B(p.GoScopeTypeName(ctx, p.Scope(), field, scopes), varName))
 		} else {
-			p.CheckErr(p.B("w.ReadData", p.B(p.BPtr(scopes.EnumType()), p.Amp(name))))
+			p.CheckErr(p.B("w.ReadEnum", p.B(p.BPtr(scopes.EnumType()), p.Amp(name))))
 		}
 
 	case scopes.Is(midl.TypeUnion):
