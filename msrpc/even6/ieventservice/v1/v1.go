@@ -1529,6 +1529,9 @@ func (o *Variant_Variant) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *Variant_Variant) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint32(sw))); err != nil {
 		return err
 	}
@@ -1664,6 +1667,9 @@ func (o *Variant_Variant) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 }
 
 func (o *Variant_Variant) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint32)(&sw))); err != nil {
 		return err
 	}

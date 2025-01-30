@@ -4119,6 +4119,9 @@ func (o *DiskID_DiskID) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DiskID_DiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -4155,6 +4158,9 @@ func (o *DiskID_DiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 }
 
 func (o *DiskID_DiskID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(4); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}

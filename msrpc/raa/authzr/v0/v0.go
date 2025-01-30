@@ -1209,6 +1209,9 @@ func (o *SecurityAttributeV1Value_AttributeUnion) NDRSwitchValue(sw uint16) uint
 }
 
 func (o *SecurityAttributeV1Value_AttributeUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -1258,6 +1261,9 @@ func (o *SecurityAttributeV1Value_AttributeUnion) MarshalUnionNDR(ctx context.Co
 }
 
 func (o *SecurityAttributeV1Value_AttributeUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -1908,6 +1914,9 @@ func (o *ContextInformation_ContextInfoUnion) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ContextInformation_ContextInfoUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -1959,6 +1968,9 @@ func (o *ContextInformation_ContextInfoUnion) MarshalUnionNDR(ctx context.Contex
 }
 
 func (o *ContextInformation_ContextInfoUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}

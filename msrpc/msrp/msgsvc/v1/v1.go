@@ -721,6 +721,9 @@ func (o *MessageEnum_MessageInfo) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *MessageEnum_MessageInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -758,6 +761,9 @@ func (o *MessageEnum_MessageInfo) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *MessageEnum_MessageInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -933,6 +939,9 @@ func (o *MessageInfo) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *MessageInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -970,6 +979,9 @@ func (o *MessageInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint
 }
 
 func (o *MessageInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}

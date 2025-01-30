@@ -223,6 +223,9 @@ func (o *ClusterDiskID_ClusterDiskID) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ClusterDiskID_ClusterDiskID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -281,6 +284,9 @@ func (o *ClusterDiskID_ClusterDiskID) MarshalUnionNDR(ctx context.Context, w ndr
 }
 
 func (o *ClusterDiskID_ClusterDiskID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(4); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}

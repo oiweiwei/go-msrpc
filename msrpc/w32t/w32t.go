@@ -499,6 +499,9 @@ func (o *ProviderData) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ProviderData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -535,6 +538,9 @@ func (o *ProviderData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 }
 
 func (o *ProviderData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -1476,6 +1482,9 @@ func (o *ProviderConfigData) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ProviderConfigData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -1512,6 +1521,9 @@ func (o *ProviderConfigData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 }
 
 func (o *ProviderConfigData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}

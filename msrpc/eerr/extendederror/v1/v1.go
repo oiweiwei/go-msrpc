@@ -545,6 +545,9 @@ func (o *ExtendedErrorParam_ExtendedErrorParam) NDRSwitchValue(sw int16) int16 {
 }
 
 func (o *ExtendedErrorParam_ExtendedErrorParam) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw int16) error {
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(int16(sw)); err != nil {
 		return err
 	}
@@ -626,6 +629,9 @@ func (o *ExtendedErrorParam_ExtendedErrorParam) MarshalUnionNDR(ctx context.Cont
 }
 
 func (o *ExtendedErrorParam_ExtendedErrorParam) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int16) error {
+	if err := w.ReadUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*int16)(&sw)); err != nil {
 		return err
 	}
@@ -987,6 +993,9 @@ func (o *ComputerName_ComputerName) NDRSwitchValue(sw int16) int16 {
 }
 
 func (o *ComputerName_ComputerName) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw int16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(int16(sw)); err != nil {
 		return err
 	}
@@ -1013,6 +1022,9 @@ func (o *ComputerName_ComputerName) MarshalUnionNDR(ctx context.Context, w ndr.W
 }
 
 func (o *ComputerName_ComputerName) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*int16)(&sw)); err != nil {
 		return err
 	}
