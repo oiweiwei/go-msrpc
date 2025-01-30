@@ -19,7 +19,7 @@ var (
 	// Transfer Syntax NDR64 UUID.
 	TransferNDR64 = uuid.New(0x71710533, 0xBEBA, 0x4937, 0x83, 0x19, [6]uint8{0xB5, 0xDB, 0xEF, 0x9C, 0xCC, 0x36})
 	// Transfer Syntax NDR64 v1.0.
-	TransferNDR64SyntaxV1_0 = &SyntaxID{TransferNDR, 1, 0}
+	TransferNDR64SyntaxV1_0 = &SyntaxID{TransferNDR64, 1, 0}
 
 	// Bind-time feature negotiation flags.
 	BindFlags = KeepConnOpenOnOrphaned | SecurityContextMultiplexing
