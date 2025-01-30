@@ -28,7 +28,7 @@ var NoLayout noLayout
 func NDR20(buf []byte, opts ...any) NDR {
 
 	ndr := &ndr20{
-		ptrs: make(map[uint32]Pointer),
+		ptrs: make(map[uint64]Pointer),
 		drep: DefaultDataRepresentation,
 	}
 
@@ -60,7 +60,7 @@ func (w *ndr20) WithBytes(b []byte) NDR {
 	return &ndr20{
 		drep:     w.drep,
 		buf:      NewAlignBuffer(NewChunk(b, w.drep)),
-		ptrs:     make(map[uint32]Pointer),
+		ptrs:     make(map[uint64]Pointer),
 		opaque:   w.opaque,
 		noLayout: w.noLayout,
 		noop:     w.noLayout,
@@ -94,7 +94,7 @@ type ndr20 struct {
 	// The list of deferred read pointers.
 	rdeferred []Unmarshaler
 	// The pointers map.
-	ptrs map[uint32]Pointer
+	ptrs map[uint64]Pointer
 	// The flag that indicates whether to include NDR-related
 	// labels into the marshaled/unmarshaled output.
 	opaque, debug, noLayout, noop bool
@@ -153,6 +153,11 @@ func (w *ndr20) WriteAlign(sz int) error {
 	return w.buf.FillMod(sz)
 }
 
+func (w *ndr20) WriteUnionAlign(sz int) error {
+	// not used.
+	return w.err
+}
+
 // ReadAlign function read the alignment required for the data
 // of size `sz`.
 func (w *ndr20) ReadAlign(sz int) error {
@@ -166,6 +171,11 @@ func (w *ndr20) ReadAlign(sz int) error {
 	}
 
 	return w.buf.SkipMod(sz)
+}
+
+func (w *ndr20) ReadUnionAlign(sz int) error {
+	// not used.
+	return w.err
 }
 
 // ReadSize function reads the size label information (length, size, offset)
@@ -189,13 +199,27 @@ func (w *ndr20) ReadSize(sz *uint64) error {
 
 // ReadSwitch function reads the non-encapsulated NDR switch
 // value from the buffer.
-func (w *ndr20) ReadSwitch(sw interface{}) error {
+func (w *ndr20) ReadSwitch(sw any) error {
 
 	if w.err != nil || w.opaque {
 		return w.err
 	}
 
+	if _, ok := sw.(Enum); ok {
+		return w.ReadEnum(sw)
+	}
+
 	return w.ReadData(sw)
+}
+
+// ReadEnum function reads the enumeration value from the buffer.
+func (w *ndr20) ReadEnum(enum any) error {
+
+	if w.err != nil {
+		return w.err
+	}
+
+	return w.ReadData(enum)
 }
 
 // Len function returns the current buffer length.
@@ -217,13 +241,27 @@ func (w *ndr20) WriteSize(sz uint64) error {
 
 // WriteSwitch function writes the non-encapsulated NDR
 // switch value to the buffer.
-func (w *ndr20) WriteSwitch(sw interface{}) error {
+func (w *ndr20) WriteSwitch(sw any) error {
 
 	if w.err != nil || w.opaque {
 		return w.err
 	}
 
+	if _, ok := sw.(Enum); ok {
+		return w.WriteEnum(sw)
+	}
+
 	return w.WriteData(sw)
+}
+
+// WriteEnum function writes the enumeration value to the buffer.
+func (w *ndr20) WriteEnum(enum any) error {
+
+	if w.err != nil {
+		return w.err
+	}
+
+	return w.WriteData(enum)
 }
 
 // SetErr function sets and returns the error `err`. Any method call
@@ -439,12 +477,12 @@ func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 		return nil
 	}
 
-	if ptr, ok := w.ptrs[pptr]; ok {
+	if ptr, ok := w.ptrs[uint64(pptr)]; ok {
 		setter(interface{}(ptr))
 		return nil
 	}
 
-	w.ptrs[pptr], w.rdeferred = ptr, append(w.rdeferred, mrs...)
+	w.ptrs[uint64(pptr)], w.rdeferred = ptr, append(w.rdeferred, mrs...)
 	return nil
 }
 
