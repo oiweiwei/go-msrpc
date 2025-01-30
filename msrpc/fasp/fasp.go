@@ -15581,7 +15581,7 @@ func (o *AuthSuite210_AuthSuite) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AuthSuite210_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(7); err != nil {
@@ -16297,7 +16297,7 @@ func (o *AuthSuite_AuthSuite) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AuthSuite_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(7); err != nil {
@@ -18387,7 +18387,7 @@ func (o *CryptoSet_CryptoSet) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *CryptoSet_CryptoSet) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(9); err != nil {
@@ -19171,7 +19171,7 @@ func (o *AuthInfo_AuthInfo) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AuthInfo_AuthInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(9); err != nil {
@@ -20047,7 +20047,7 @@ func (o *ProfileConfigValue) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ProfileConfigValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(7); err != nil {
@@ -21044,7 +21044,7 @@ func (o *MatchValue_MatchValue) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *MatchValue_MatchValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {

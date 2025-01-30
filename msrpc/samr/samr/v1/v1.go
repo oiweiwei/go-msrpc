@@ -6325,7 +6325,7 @@ func (o *DomainInfoBuffer) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DomainInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8006,7 +8006,7 @@ func (o *DisplayInfoBuffer) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DisplayInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8595,7 +8595,7 @@ func (o *GroupInfoBuffer) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *GroupInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -9116,7 +9116,7 @@ func (o *AliasInfoBuffer) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AliasInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -12059,7 +12059,7 @@ func (o *UserInfoBuffer) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *UserInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -13976,7 +13976,7 @@ func (o *SAMValidateInputArg) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *SAMValidateInputArg) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -14199,7 +14199,7 @@ func (o *SAMValidateOutputArg) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *SAMValidateOutputArg) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
