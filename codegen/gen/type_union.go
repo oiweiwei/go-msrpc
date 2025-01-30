@@ -196,9 +196,17 @@ func (p *TypeGenerator) GenUnionMarshalNDR(ctx context.Context) {
 	}
 
 	if sw != nil {
-		p.CheckErr(p.B("w.WriteData", p.B(switchType, swVar)))
+		if p.IsEnumSwitch(ctx, p.Scopes) {
+			p.CheckErr(p.B("w.WriteEnum", p.B(switchType, swVar)))
+		} else {
+			p.CheckErr(p.B("w.WriteData", p.B(switchType, swVar)))
+		}
 	} else {
-		p.CheckErr(p.B("w.WriteSwitch", p.B(switchType, swVar)))
+		if p.IsEnumSwitch(ctx, p.Scopes) {
+			p.CheckErr(p.B("w.WriteSwitch", p.B("ndr.Enum", p.B(switchType, swVar))))
+		} else {
+			p.CheckErr(p.B("w.WriteSwitch", p.B(switchType, swVar)))
+		}
 	}
 
 	if MSUnion(ctx) && sw == nil {
