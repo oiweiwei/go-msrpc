@@ -14,6 +14,15 @@ type SyntaxID struct {
 	IfVersionMinor uint16
 }
 
+func (v *SyntaxID) Is(other *SyntaxID) bool {
+	if v == nil || other == nil {
+		return false
+	}
+	return v.IfUUID.Equals(other.IfUUID) &&
+		v.IfVersionMajor == other.IfVersionMajor &&
+		v.IfVersionMinor == other.IfVersionMinor
+}
+
 // marshal function ...
 func (v *SyntaxID) WriteTo(ctx context.Context, w ndr.Writer) error {
 	w.SetErr(v.IfUUID.Write(w))

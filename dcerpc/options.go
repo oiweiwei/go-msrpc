@@ -218,7 +218,7 @@ func WithAbstractSyntax(abstractSyntax *SyntaxID) BindOption {
 func WithNDR20() BindOption {
 	return BindOption(func(opt *option) {
 		for _, tr := range opt.TransferSyntaxes {
-			if *tr == *TransferNDRSyntaxV2_0 {
+			if tr.Is(TransferNDRSyntaxV2_0) {
 				return
 			}
 		}
@@ -226,15 +226,15 @@ func WithNDR20() BindOption {
 	})
 }
 
-// WithNDR64 option specifies the NDR64 encoding. (NYI)
+// WithNDR64 option specifies the NDR64 encoding.
 func WithNDR64() BindOption {
 	return BindOption(func(opt *option) {
 		for _, tr := range opt.TransferSyntaxes {
-			if *tr == *TransferNDR64SyntaxV1_0 {
+			if tr.Is(TransferNDR64SyntaxV1_0) {
 				return
 			}
 		}
-		opt.TransferSyntaxes = append(opt.TransferSyntaxes, TransferNDRSyntaxV2_0)
+		opt.TransferSyntaxes = append(opt.TransferSyntaxes, TransferNDR64SyntaxV1_0)
 	})
 }
 

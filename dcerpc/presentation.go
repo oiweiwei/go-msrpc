@@ -22,6 +22,9 @@ type Presentation struct {
 // TransferEncoding function returns the transfer encoding for the
 // presentation context. The only supported encoding is NDR v2.0.
 func (c *Presentation) TransferEncoding() func([]byte, ...any) ndr.NDR {
+	if c.TransferSyntax.Is(TransferNDR64SyntaxV1_0) {
+		return ndr.NDR64
+	}
 	return ndr.NDR20
 }
 
