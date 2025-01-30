@@ -843,7 +843,7 @@ func (o *xxx_GetTypeKindOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// pTypeKind {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=TYPEKIND}(enum))
 	{
-		if err := w.WriteData(uint32(o.TypeKind)); err != nil {
+		if err := w.WriteEnum(uint32(o.TypeKind)); err != nil {
 			return err
 		}
 	}
@@ -871,7 +871,7 @@ func (o *xxx_GetTypeKindOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	}
 	// pTypeKind {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=TYPEKIND}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.TypeKind)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.TypeKind)); err != nil {
 			return err
 		}
 	}
@@ -1216,7 +1216,7 @@ func (o *xxx_GetFuncIndexOfMemberIDsOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// invKind {in} (1:{v1_enum, alias=INVOKEKIND}(enum))
 	{
-		if err := w.WriteData(uint32(o.InvKind)); err != nil {
+		if err := w.WriteEnum(uint32(o.InvKind)); err != nil {
 			return err
 		}
 	}
@@ -1244,7 +1244,7 @@ func (o *xxx_GetFuncIndexOfMemberIDsOperation) UnmarshalNDRRequest(ctx context.C
 	}
 	// invKind {in} (1:{v1_enum, alias=INVOKEKIND}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.InvKind)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.InvKind)); err != nil {
 			return err
 		}
 	}

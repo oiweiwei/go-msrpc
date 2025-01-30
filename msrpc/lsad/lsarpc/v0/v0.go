@@ -1970,7 +1970,7 @@ func (o *SecurityQualityOfService) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.Length); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ImpersonationLevel)); err != nil {
+	if err := w.WriteEnum(uint16(o.ImpersonationLevel)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ContextTrackingMode); err != nil {
@@ -1988,7 +1988,7 @@ func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	if err := w.ReadData(&o.Length); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ImpersonationLevel)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ImpersonationLevel)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ContextTrackingMode); err != nil {
@@ -2740,7 +2740,7 @@ func (o *PolicyLSAServerRoleInfo) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	if err := w.WriteAlign(2); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.LSAServerRole)); err != nil {
+	if err := w.WriteEnum(uint16(o.LSAServerRole)); err != nil {
 		return err
 	}
 	return nil
@@ -2749,7 +2749,7 @@ func (o *PolicyLSAServerRoleInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.LSAServerRole)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.LSAServerRole)); err != nil {
 		return err
 	}
 	return nil
@@ -3490,7 +3490,7 @@ func (o *ForestTrustRecord) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ForestTrustType)); err != nil {
+	if err := w.WriteEnum(uint16(o.ForestTrustType)); err != nil {
 		return err
 	}
 	if o.Time != nil {
@@ -3521,7 +3521,7 @@ func (o *ForestTrustRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ForestTrustType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ForestTrustType)); err != nil {
 		return err
 	}
 	if o.Time == nil {
@@ -3647,7 +3647,7 @@ func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context,
 }
 
 func (o *ForestTrustRecord_ForestTrustData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -3974,7 +3974,7 @@ func (o *ForestTrustCollisionRecord) MarshalNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteData(o.Index); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -3998,7 +3998,7 @@ func (o *ForestTrustCollisionRecord) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	if err := w.ReadData(&o.Index); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -6031,7 +6031,7 @@ func (o *PolicyInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *PolicyInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -6797,7 +6797,7 @@ func (o *PolicyDomainInformation) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *PolicyDomainInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8950,7 +8950,7 @@ func (o *TrustedDomainInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *TrustedDomainInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -11456,7 +11456,7 @@ func (o *xxx_QueryInformationPolicyOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -11475,7 +11475,7 @@ func (o *xxx_QueryInformationPolicyOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -11678,7 +11678,7 @@ func (o *xxx_SetInformationPolicyOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -11713,7 +11713,7 @@ func (o *xxx_SetInformationPolicyOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -14402,7 +14402,7 @@ func (o *xxx_QueryInfoTrustedDomainOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -14421,7 +14421,7 @@ func (o *xxx_QueryInfoTrustedDomainOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -14625,7 +14625,7 @@ func (o *xxx_SetInformationTrustedDomainOperation) MarshalNDRRequest(ctx context
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -14660,7 +14660,7 @@ func (o *xxx_SetInformationTrustedDomainOperation) UnmarshalNDRRequest(ctx conte
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -17728,7 +17728,7 @@ func (o *xxx_QueryTrustedDomainInfoOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -17756,7 +17756,7 @@ func (o *xxx_QueryTrustedDomainInfoOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -17976,7 +17976,7 @@ func (o *xxx_SetTrustedDomainInfoOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -18020,7 +18020,7 @@ func (o *xxx_SetTrustedDomainInfoOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19131,7 +19131,7 @@ func (o *xxx_QueryInformationPolicy2Operation) MarshalNDRRequest(ctx context.Con
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19150,7 +19150,7 @@ func (o *xxx_QueryInformationPolicy2Operation) UnmarshalNDRRequest(ctx context.C
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19353,7 +19353,7 @@ func (o *xxx_SetInformationPolicy2Operation) MarshalNDRRequest(ctx context.Conte
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19388,7 +19388,7 @@ func (o *xxx_SetInformationPolicy2Operation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// InformationClass {in} (1:{alias=POLICY_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19572,7 +19572,7 @@ func (o *xxx_QueryTrustedDomainInfoByNameOperation) MarshalNDRRequest(ctx contex
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19603,7 +19603,7 @@ func (o *xxx_QueryTrustedDomainInfoByNameOperation) UnmarshalNDRRequest(ctx cont
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19826,7 +19826,7 @@ func (o *xxx_SetTrustedDomainInfoByNameOperation) MarshalNDRRequest(ctx context.
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -19873,7 +19873,7 @@ func (o *xxx_SetTrustedDomainInfoByNameOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// InformationClass {in} (1:{alias=TRUSTED_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20539,7 +20539,7 @@ func (o *xxx_QueryDomainInformationPolicyOperation) MarshalNDRRequest(ctx contex
 	}
 	// InformationClass {in} (1:{alias=POLICY_DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20558,7 +20558,7 @@ func (o *xxx_QueryDomainInformationPolicyOperation) UnmarshalNDRRequest(ctx cont
 	}
 	// InformationClass {in} (1:{alias=POLICY_DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20762,7 +20762,7 @@ func (o *xxx_SetDomainInformationPolicyOperation) MarshalNDRRequest(ctx context.
 	}
 	// InformationClass {in} (1:{alias=POLICY_DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.InformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20809,7 +20809,7 @@ func (o *xxx_SetDomainInformationPolicyOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// InformationClass {in} (1:{alias=POLICY_DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InformationClass)); err != nil {
 			return err
 		}
 	}
@@ -21484,7 +21484,7 @@ func (o *xxx_QueryForestTrustInformationOperation) MarshalNDRRequest(ctx context
 	}
 	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.HighestRecordType)); err != nil {
+		if err := w.WriteEnum(uint16(o.HighestRecordType)); err != nil {
 			return err
 		}
 	}
@@ -21515,7 +21515,7 @@ func (o *xxx_QueryForestTrustInformationOperation) UnmarshalNDRRequest(ctx conte
 	}
 	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.HighestRecordType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.HighestRecordType)); err != nil {
 			return err
 		}
 	}
@@ -21738,7 +21738,7 @@ func (o *xxx_SetForestTrustInformationOperation) MarshalNDRRequest(ctx context.C
 	}
 	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.HighestRecordType)); err != nil {
+		if err := w.WriteEnum(uint16(o.HighestRecordType)); err != nil {
 			return err
 		}
 	}
@@ -21790,7 +21790,7 @@ func (o *xxx_SetForestTrustInformationOperation) UnmarshalNDRRequest(ctx context
 	}
 	// HighestRecordType {in} (1:{alias=LSA_FOREST_TRUST_RECORD_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.HighestRecordType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.HighestRecordType)); err != nil {
 			return err
 		}
 	}

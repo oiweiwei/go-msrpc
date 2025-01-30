@@ -836,13 +836,13 @@ func (o *xxx_RegisterClientOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// NotifyFilter {in} (1:{v1_enum, alias=PrintAsyncNotifyUserFilter}(enum))
 	{
-		if err := w.WriteData(uint32(o.NotifyFilter)); err != nil {
+		if err := w.WriteEnum(uint32(o.NotifyFilter)); err != nil {
 			return err
 		}
 	}
 	// conversationStyle {in} (1:{v1_enum, alias=PrintAsyncNotifyConversationStyle}(enum))
 	{
-		if err := w.WriteData(uint32(o.ConversationStyle)); err != nil {
+		if err := w.WriteEnum(uint32(o.ConversationStyle)); err != nil {
 			return err
 		}
 	}
@@ -886,13 +886,13 @@ func (o *xxx_RegisterClientOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// NotifyFilter {in} (1:{v1_enum, alias=PrintAsyncNotifyUserFilter}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.NotifyFilter)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.NotifyFilter)); err != nil {
 			return err
 		}
 	}
 	// conversationStyle {in} (1:{v1_enum, alias=PrintAsyncNotifyConversationStyle}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.ConversationStyle)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.ConversationStyle)); err != nil {
 			return err
 		}
 	}

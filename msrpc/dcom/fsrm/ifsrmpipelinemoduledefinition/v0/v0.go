@@ -2555,7 +2555,7 @@ func (o *xxx_GetModuleTypeOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// moduleType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.ModuleType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ModuleType)); err != nil {
 			return err
 		}
 	}
@@ -2583,7 +2583,7 @@ func (o *xxx_GetModuleTypeOperation) UnmarshalNDRResponse(ctx context.Context, w
 	}
 	// moduleType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmPipelineModuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ModuleType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ModuleType)); err != nil {
 			return err
 		}
 	}
@@ -3576,7 +3576,7 @@ func (o *xxx_GetAccountOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	}
 	// retrievalAccount {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.WriteData(uint16(o.RetrievalAccount)); err != nil {
+		if err := w.WriteEnum(uint16(o.RetrievalAccount)); err != nil {
 			return err
 		}
 	}
@@ -3604,7 +3604,7 @@ func (o *xxx_GetAccountOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 	}
 	// retrievalAccount {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RetrievalAccount)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RetrievalAccount)); err != nil {
 			return err
 		}
 	}
@@ -3732,7 +3732,7 @@ func (o *xxx_SetAccountOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// retrievalAccount {in} (1:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.WriteData(uint16(o.RetrievalAccount)); err != nil {
+		if err := w.WriteEnum(uint16(o.RetrievalAccount)); err != nil {
 			return err
 		}
 	}
@@ -3754,7 +3754,7 @@ func (o *xxx_SetAccountOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// retrievalAccount {in} (1:{alias=FsrmAccountType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RetrievalAccount)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RetrievalAccount)); err != nil {
 			return err
 		}
 	}

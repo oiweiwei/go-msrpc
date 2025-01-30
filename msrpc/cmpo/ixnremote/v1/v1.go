@@ -955,7 +955,7 @@ func (o *xxx_PokeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.WriteData(uint16(o.Rank)); err != nil {
+		if err := w.WriteEnum(uint16(o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -1013,7 +1013,7 @@ func (o *xxx_PokeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 func (o *xxx_PokeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Rank)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -1263,7 +1263,7 @@ func (o *xxx_BuildContextOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.WriteData(uint16(o.Rank)); err != nil {
+		if err := w.WriteEnum(uint16(o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -1357,7 +1357,7 @@ func (o *xxx_BuildContextOperation) MarshalNDRRequest(ctx context.Context, w ndr
 func (o *xxx_BuildContextOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Rank)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -1727,7 +1727,7 @@ func (o *xxx_NegotiateResourcesOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// resourceType {in} (1:{alias=RESOURCE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.ResourceType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ResourceType)); err != nil {
 			return err
 		}
 	}
@@ -1758,7 +1758,7 @@ func (o *xxx_NegotiateResourcesOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// resourceType {in} (1:{alias=RESOURCE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ResourceType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ResourceType)); err != nil {
 			return err
 		}
 	}
@@ -2203,13 +2203,13 @@ func (o *xxx_TearDownContextOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.WriteData(uint16(o.Rank)); err != nil {
+		if err := w.WriteEnum(uint16(o.Rank)); err != nil {
 			return err
 		}
 	}
 	// tearDownType {in} (1:{alias=TEARDOWN_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.TearDownType)); err != nil {
+		if err := w.WriteEnum(uint16(o.TearDownType)); err != nil {
 			return err
 		}
 	}
@@ -2228,13 +2228,13 @@ func (o *xxx_TearDownContextOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Rank)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Rank)); err != nil {
 			return err
 		}
 	}
 	// tearDownType {in} (1:{alias=TEARDOWN_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.TearDownType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.TearDownType)); err != nil {
 			return err
 		}
 	}
@@ -2445,7 +2445,7 @@ func (o *xxx_BeginTearDownOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// tearDownType {in} (1:{alias=TEARDOWN_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.TearDownType)); err != nil {
+		if err := w.WriteEnum(uint16(o.TearDownType)); err != nil {
 			return err
 		}
 	}
@@ -2464,7 +2464,7 @@ func (o *xxx_BeginTearDownOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// tearDownType {in} (1:{alias=TEARDOWN_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.TearDownType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.TearDownType)); err != nil {
 			return err
 		}
 	}
@@ -2628,7 +2628,7 @@ func (o *xxx_PokeWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 	}
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.WriteData(uint16(o.Rank)); err != nil {
+		if err := w.WriteEnum(uint16(o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -2686,7 +2686,7 @@ func (o *xxx_PokeWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 func (o *xxx_PokeWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Rank)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -2931,7 +2931,7 @@ func (o *xxx_BuildContextWOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.WriteData(uint16(o.Rank)); err != nil {
+		if err := w.WriteEnum(uint16(o.Rank)); err != nil {
 			return err
 		}
 	}
@@ -3025,7 +3025,7 @@ func (o *xxx_BuildContextWOperation) MarshalNDRRequest(ctx context.Context, w nd
 func (o *xxx_BuildContextWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// sRank {in} (1:{alias=SESSION_RANK}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Rank)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Rank)); err != nil {
 			return err
 		}
 	}

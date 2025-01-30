@@ -3535,7 +3535,7 @@ func (o *xxx_EnumSubnetElementsOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// EnumElementType {in} (1:{alias=DHCP_SUBNET_ELEMENT_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.EnumElementType)); err != nil {
+		if err := w.WriteEnum(uint16(o.EnumElementType)); err != nil {
 			return err
 		}
 	}
@@ -3579,7 +3579,7 @@ func (o *xxx_EnumSubnetElementsOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// EnumElementType {in} (1:{alias=DHCP_SUBNET_ELEMENT_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.EnumElementType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.EnumElementType)); err != nil {
 			return err
 		}
 	}
@@ -3908,7 +3908,7 @@ func (o *xxx_RemoveSubnetElementOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// ForceFlag {in} (1:{alias=DHCP_FORCE_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ForceFlag)); err != nil {
+		if err := w.WriteEnum(uint16(o.ForceFlag)); err != nil {
 			return err
 		}
 	}
@@ -3952,7 +3952,7 @@ func (o *xxx_RemoveSubnetElementOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// ForceFlag {in} (1:{alias=DHCP_FORCE_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ForceFlag)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ForceFlag)); err != nil {
 			return err
 		}
 	}
@@ -4129,7 +4129,7 @@ func (o *xxx_DeleteSubnetOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// ForceFlag {in} (1:{alias=DHCP_FORCE_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ForceFlag)); err != nil {
+		if err := w.WriteEnum(uint16(o.ForceFlag)); err != nil {
 			return err
 		}
 	}
@@ -4161,7 +4161,7 @@ func (o *xxx_DeleteSubnetOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// ForceFlag {in} (1:{alias=DHCP_FORCE_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ForceFlag)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ForceFlag)); err != nil {
 			return err
 		}
 	}
@@ -9671,7 +9671,7 @@ func (o *xxx_EnumSubnetElementsV4Operation) MarshalNDRRequest(ctx context.Contex
 	}
 	// EnumElementType {in} (1:{alias=DHCP_SUBNET_ELEMENT_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.EnumElementType)); err != nil {
+		if err := w.WriteEnum(uint16(o.EnumElementType)); err != nil {
 			return err
 		}
 	}
@@ -9715,7 +9715,7 @@ func (o *xxx_EnumSubnetElementsV4Operation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// EnumElementType {in} (1:{alias=DHCP_SUBNET_ELEMENT_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.EnumElementType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.EnumElementType)); err != nil {
 			return err
 		}
 	}
@@ -10045,7 +10045,7 @@ func (o *xxx_RemoveSubnetElementV4Operation) MarshalNDRRequest(ctx context.Conte
 	}
 	// ForceFlag {in} (1:{alias=DHCP_FORCE_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ForceFlag)); err != nil {
+		if err := w.WriteEnum(uint16(o.ForceFlag)); err != nil {
 			return err
 		}
 	}
@@ -10089,7 +10089,7 @@ func (o *xxx_RemoveSubnetElementV4Operation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// ForceFlag {in} (1:{alias=DHCP_FORCE_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ForceFlag)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ForceFlag)); err != nil {
 			return err
 		}
 	}

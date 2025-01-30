@@ -297,7 +297,7 @@ func (o *xxx_CreateFullConfigurationOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// ctComponentType {in} (1:{alias=eComponentType}(enum))
 	{
-		if err := w.WriteData(uint16(o.CtComponentType)); err != nil {
+		if err := w.WriteEnum(uint16(o.CtComponentType)); err != nil {
 			return err
 		}
 	}
@@ -331,7 +331,7 @@ func (o *xxx_CreateFullConfigurationOperation) UnmarshalNDRRequest(ctx context.C
 	}
 	// ctComponentType {in} (1:{alias=eComponentType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CtComponentType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CtComponentType)); err != nil {
 			return err
 		}
 	}
@@ -542,7 +542,7 @@ func (o *xxx_CreateLegacyConfigurationOperation) MarshalNDRRequest(ctx context.C
 	}
 	// ctComponentType {in} (1:{alias=eComponentType}(enum))
 	{
-		if err := w.WriteData(uint16(o.CtComponentType)); err != nil {
+		if err := w.WriteEnum(uint16(o.CtComponentType)); err != nil {
 			return err
 		}
 	}
@@ -576,7 +576,7 @@ func (o *xxx_CreateLegacyConfigurationOperation) UnmarshalNDRRequest(ctx context
 	}
 	// ctComponentType {in} (1:{alias=eComponentType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CtComponentType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CtComponentType)); err != nil {
 			return err
 		}
 	}
@@ -788,7 +788,7 @@ func (o *xxx_PromoteLegacyConfigurationOperation) MarshalNDRRequest(ctx context.
 	}
 	// ctComponentType {in} (1:{alias=eComponentType}(enum))
 	{
-		if err := w.WriteData(uint16(o.CtComponentType)); err != nil {
+		if err := w.WriteEnum(uint16(o.CtComponentType)); err != nil {
 			return err
 		}
 	}
@@ -822,7 +822,7 @@ func (o *xxx_PromoteLegacyConfigurationOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// ctComponentType {in} (1:{alias=eComponentType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CtComponentType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CtComponentType)); err != nil {
 			return err
 		}
 	}

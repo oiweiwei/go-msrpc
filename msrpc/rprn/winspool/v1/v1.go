@@ -14566,7 +14566,7 @@ func (o *PrintPropertyValue) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PropertyType)); err != nil {
+	if err := w.WriteEnum(uint16(o.PropertyType)); err != nil {
 		return err
 	}
 	_swValue := uint16(o.PropertyType)
@@ -14585,7 +14585,7 @@ func (o *PrintPropertyValue) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PropertyType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PropertyType)); err != nil {
 		return err
 	}
 	if o.Value == nil {
@@ -14738,7 +14738,7 @@ func (o *PrintPropertyValue_Value) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 }
 
 func (o *PrintPropertyValue_Value) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -15934,7 +15934,7 @@ func (o *BranchOfficeJobData) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.EventType)); err != nil {
+	if err := w.WriteEnum(uint16(o.EventType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.JobID); err != nil {
@@ -15956,7 +15956,7 @@ func (o *BranchOfficeJobData) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.EventType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.EventType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.JobID); err != nil {
@@ -16113,7 +16113,7 @@ func (o *BranchOfficeJobData_JobInfo) MarshalUnionNDR(ctx context.Context, w ndr
 }
 
 func (o *BranchOfficeJobData_JobInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union

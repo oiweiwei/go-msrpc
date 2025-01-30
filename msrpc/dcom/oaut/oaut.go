@@ -2429,6 +2429,9 @@ func (o *Variant_VarUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(20):
 		_o, _ := o.Value.(*Variant_VarUnion_LongLongValue)
@@ -3009,6 +3012,9 @@ func (o *Variant_VarUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 
 func (o *Variant_VarUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -6275,6 +6281,9 @@ func (o *SafeArrayUnion) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(o.SafeArrayType)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch o.SafeArrayType {
 	case uint32(8):
 		_o, _ := o.Value.(*SafeArrayUnion_String)
@@ -6394,6 +6403,9 @@ func (o *SafeArrayUnion) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 
 func (o *SafeArrayUnion) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData((*uint32)(&o.SafeArrayType)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch o.SafeArrayType {
@@ -7560,6 +7572,9 @@ func (o *TypeDesc_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(26),
 		uint16(27):
@@ -7602,6 +7617,9 @@ func (o *TypeDesc_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 
 func (o *TypeDesc_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -8207,13 +8225,13 @@ func (o *FuncDesc) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.FuncKind)); err != nil {
+	if err := w.WriteEnum(uint32(o.FuncKind)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.InvokeKind)); err != nil {
+	if err := w.WriteEnum(uint32(o.InvokeKind)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.CallConv)); err != nil {
+	if err := w.WriteEnum(uint32(o.CallConv)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ParamsCount); err != nil {
@@ -8309,13 +8327,13 @@ func (o *FuncDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LprgelemdescParam, _s_lprgelemdescParam, _ptr_lprgelemdescParam); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.FuncKind)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.FuncKind)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.InvokeKind)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.InvokeKind)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.CallConv)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.CallConv)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ParamsCount); err != nil {
@@ -8415,7 +8433,7 @@ func (o *VarDesc) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.VarFlags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.VarKind)); err != nil {
+	if err := w.WriteEnum(uint32(o.VarKind)); err != nil {
 		return err
 	}
 	return nil
@@ -8455,7 +8473,7 @@ func (o *VarDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.VarFlags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.VarKind)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.VarKind)); err != nil {
 		return err
 	}
 	return nil
@@ -8520,6 +8538,9 @@ func (o *VarDesc_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0),
 		uint32(3),
@@ -8552,7 +8573,10 @@ func (o *VarDesc_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 }
 
 func (o *VarDesc_Union) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
-	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint32)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -8849,7 +8873,7 @@ func (o *TypeAttribute) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LengthInstance); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.TypeKind)); err != nil {
+	if err := w.WriteEnum(uint32(o.TypeKind)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.FuncsCount); err != nil {
@@ -8938,7 +8962,7 @@ func (o *TypeAttribute) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.LengthInstance); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.TypeKind)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.TypeKind)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.FuncsCount); err != nil {
@@ -9040,7 +9064,7 @@ func (o *TypeLibAttribute) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LocaleID); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.SystemKind)); err != nil {
+	if err := w.WriteEnum(uint32(o.SystemKind)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.MajorVerNum); err != nil {
@@ -9067,7 +9091,7 @@ func (o *TypeLibAttribute) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadData(&o.LocaleID); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.SystemKind)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.SystemKind)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.MajorVerNum); err != nil {

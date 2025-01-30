@@ -2006,7 +2006,7 @@ func (o *ServiceNotification) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteData(o.Event); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	return nil
@@ -2018,7 +2018,7 @@ func (o *ServiceNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	if err := w.ReadData(&o.Event); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	return nil
@@ -2049,7 +2049,7 @@ func (o *Notification) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ObjectType)); err != nil {
+	if err := w.WriteEnum(uint16(o.ObjectType)); err != nil {
 		return err
 	}
 	_swNotification := uint16(o.ObjectType)
@@ -2068,7 +2068,7 @@ func (o *Notification) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ObjectType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ObjectType)); err != nil {
 		return err
 	}
 	if o.Notification == nil {
@@ -2174,6 +2174,9 @@ func (o *Notification_Notification) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(10):
 		_o, _ := o.Value.(*Notification_Pack)
@@ -2270,7 +2273,10 @@ func (o *Notification_Notification) MarshalUnionNDR(ctx context.Context, w ndr.W
 }
 
 func (o *Notification_Notification) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -2606,7 +2612,7 @@ func (o *AsyncOutput) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	_swAsyncOutput := uint16(o.Type)
@@ -2625,7 +2631,7 @@ func (o *AsyncOutput) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.AsyncOutput == nil {
@@ -2711,6 +2717,9 @@ func (o *AsyncOutput_AsyncOutput) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(10):
 		_o, _ := o.Value.(*AsyncOutput_CreatePartition)
@@ -2773,7 +2782,10 @@ func (o *AsyncOutput_AsyncOutput) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *AsyncOutput_AsyncOutput) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -3480,10 +3492,10 @@ func (o *StorageID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.CodeSet)); err != nil {
+	if err := w.WriteEnum(uint16(o.CodeSet)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IDLength); err != nil {
@@ -3528,10 +3540,10 @@ func (o *StorageID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.CodeSet)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.CodeSet)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IDLength); err != nil {
@@ -3735,7 +3747,7 @@ func (o *Interconnect) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.AddressType)); err != nil {
+	if err := w.WriteEnum(uint16(o.AddressType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.PortLength); err != nil {
@@ -3816,7 +3828,7 @@ func (o *Interconnect) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.AddressType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.AddressType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.PortLength); err != nil {
@@ -3958,7 +3970,7 @@ func (o *LUNInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CommandQueuing); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.BusType)); err != nil {
+	if err := w.WriteEnum(uint16(o.BusType)); err != nil {
 		return err
 	}
 	if o.VendorID != "" {
@@ -4099,7 +4111,7 @@ func (o *LUNInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.CommandQueuing); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.BusType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.BusType)); err != nil {
 		return err
 	}
 	_ptr_m_szVendorId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -4231,7 +4243,7 @@ func (o *FileSystemProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if o.VolumeID != nil {
@@ -4276,7 +4288,7 @@ func (o *FileSystemProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.VolumeID == nil {
@@ -4471,7 +4483,7 @@ func (o *DiskExtent) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Offset); err != nil {
@@ -4513,7 +4525,7 @@ func (o *DiskExtent) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.DiskID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Offset); err != nil {
@@ -4639,7 +4651,7 @@ func (o *PartitionProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -4670,7 +4682,7 @@ func (o *PartitionProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -4746,6 +4758,9 @@ func (o *PartitionProperty_PartitionProperty) MarshalUnionNDR(ctx context.Contex
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*PartitionProperty_MBR)
@@ -4775,7 +4790,10 @@ func (o *PartitionProperty_PartitionProperty) MarshalUnionNDR(ctx context.Contex
 }
 
 func (o *PartitionProperty_PartitionProperty) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -4971,7 +4989,7 @@ func (o *CreatePartitionParameters) MarshalNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Style)); err != nil {
+	if err := w.WriteEnum(uint16(o.Style)); err != nil {
 		return err
 	}
 	_swCreatePartitionParameters := uint16(o.Style)
@@ -4990,7 +5008,7 @@ func (o *CreatePartitionParameters) UnmarshalNDR(ctx context.Context, w ndr.Read
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Style)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Style)); err != nil {
 		return err
 	}
 	if o.CreatePartitionParameters == nil {
@@ -5054,6 +5072,9 @@ func (o *CreatePartitionParameters_CreatePartitionParameters) MarshalUnionNDR(ct
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*CreatePartitionParameters_MBRPartitionInfo)
@@ -5083,7 +5104,10 @@ func (o *CreatePartitionParameters_CreatePartitionParameters) MarshalUnionNDR(ct
 }
 
 func (o *CreatePartitionParameters_CreatePartitionParameters) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -6337,7 +6361,7 @@ func (o *FileSystemTypeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	for i1 := range o.Name {
@@ -6384,7 +6408,7 @@ func (o *FileSystemTypeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	o.Name = make([]uint16, 8)
@@ -6444,7 +6468,7 @@ func (o *ChangeAttributesParameters) MarshalNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Style)); err != nil {
+	if err := w.WriteEnum(uint16(o.Style)); err != nil {
 		return err
 	}
 	_swChangeAttributesParameters := uint16(o.Style)
@@ -6463,7 +6487,7 @@ func (o *ChangeAttributesParameters) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Style)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Style)); err != nil {
 		return err
 	}
 	if o.ChangeAttributesParameters == nil {
@@ -6528,6 +6552,9 @@ func (o *ChangeAttributesParameters_ChangeAttributesParameters) MarshalUnionNDR(
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*ChangeAttributesParameters_MBRPartitionInfo)
@@ -6557,7 +6584,10 @@ func (o *ChangeAttributesParameters_ChangeAttributesParameters) MarshalUnionNDR(
 }
 
 func (o *ChangeAttributesParameters_ChangeAttributesParameters) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -6759,7 +6789,7 @@ func (o *ChangePartitionTypeParameters) MarshalNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Style)); err != nil {
+	if err := w.WriteEnum(uint16(o.Style)); err != nil {
 		return err
 	}
 	_swChangePartitionTypeParameters := uint16(o.Style)
@@ -6778,7 +6808,7 @@ func (o *ChangePartitionTypeParameters) UnmarshalNDR(ctx context.Context, w ndr.
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Style)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Style)); err != nil {
 		return err
 	}
 	if o.ChangePartitionTypeParameters == nil {
@@ -6843,6 +6873,9 @@ func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) MarshalUni
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*ChangePartitionTypeParameters_MBRPartitionInfo)
@@ -6872,7 +6905,10 @@ func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) MarshalUni
 }
 
 func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -7135,7 +7171,7 @@ func (o *IPAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPv4Address); err != nil {
@@ -7184,7 +7220,7 @@ func (o *IPAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPv4Address); err != nil {
@@ -7457,10 +7493,10 @@ func (o *HBAPortProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.PortSpeed); err != nil {
@@ -7493,10 +7529,10 @@ func (o *HBAPortProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.Port.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.PortSpeed); err != nil {
@@ -7754,7 +7790,7 @@ func (o *ProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -7804,7 +7840,7 @@ func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadPointer(&o.Version, _s_pwszVersion, _ptr_pwszVersion); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -7876,7 +7912,7 @@ func (o *PackProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -7904,7 +7940,7 @@ func (o *PackProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Name, _s_pwszName, _ptr_pwszName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -8030,13 +8066,13 @@ func (o *DiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ReserveMode)); err != nil {
+	if err := w.WriteEnum(uint16(o.ReserveMode)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Health)); err != nil {
+	if err := w.WriteEnum(uint16(o.Health)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.DeviceType); err != nil {
@@ -8060,10 +8096,10 @@ func (o *DiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.BusType)); err != nil {
+	if err := w.WriteEnum(uint16(o.BusType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 		return err
 	}
 	_swDiskProperty := uint16(o.PartitionStyle)
@@ -8163,13 +8199,13 @@ func (o *DiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ReserveMode)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ReserveMode)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Health)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Health)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DeviceType); err != nil {
@@ -8193,10 +8229,10 @@ func (o *DiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.BusType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.BusType)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 		return err
 	}
 	if o.DiskProperty == nil {
@@ -8310,6 +8346,9 @@ func (o *DiskProperty_DiskProperty) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*DiskProperty_Signature)
@@ -8339,7 +8378,10 @@ func (o *DiskProperty_DiskProperty) MarshalUnionNDR(ctx context.Context, w ndr.W
 }
 
 func (o *DiskProperty_DiskProperty) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -8548,13 +8590,13 @@ func (o *DiskProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ReserveMode)); err != nil {
+	if err := w.WriteEnum(uint16(o.ReserveMode)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Health)); err != nil {
+	if err := w.WriteEnum(uint16(o.Health)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.DeviceType); err != nil {
@@ -8578,10 +8620,10 @@ func (o *DiskProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.BusType)); err != nil {
+	if err := w.WriteEnum(uint16(o.BusType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 		return err
 	}
 	_swDiskProperty2 := uint16(o.PartitionStyle)
@@ -8696,13 +8738,13 @@ func (o *DiskProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ReserveMode)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ReserveMode)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Health)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Health)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DeviceType); err != nil {
@@ -8726,10 +8768,10 @@ func (o *DiskProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.BusType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.BusType)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 		return err
 	}
 	if o.DiskProperty2 == nil {
@@ -8853,6 +8895,9 @@ func (o *DiskProperty2_DiskProperty2) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*DiskProperty2_Signature)
@@ -8882,7 +8927,10 @@ func (o *DiskProperty2_DiskProperty2) MarshalUnionNDR(ctx context.Context, w ndr
 }
 
 func (o *DiskProperty2_DiskProperty2) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -9154,16 +9202,16 @@ func (o *AdvancedDiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.PartitionCount); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Health)); err != nil {
+	if err := w.WriteEnum(uint16(o.Health)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.BusType)); err != nil {
+	if err := w.WriteEnum(uint16(o.BusType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 		return err
 	}
 	_swAdvancedDiskProperty := uint16(o.PartitionStyle)
@@ -9299,16 +9347,16 @@ func (o *AdvancedDiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadData(&o.PartitionCount); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Health)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Health)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.BusType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.BusType)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 		return err
 	}
 	if o.AdvancedDiskProperty == nil {
@@ -9376,6 +9424,9 @@ func (o *AdvancedDiskProperty_AdvancedDiskProperty) MarshalUnionNDR(ctx context.
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*AdvancedDiskProperty_Signature)
@@ -9405,7 +9456,10 @@ func (o *AdvancedDiskProperty_AdvancedDiskProperty) MarshalUnionNDR(ctx context.
 }
 
 func (o *AdvancedDiskProperty_AdvancedDiskProperty) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -9532,16 +9586,16 @@ func (o *VolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Health)); err != nil {
+	if err := w.WriteEnum(uint16(o.Health)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.TransitionState)); err != nil {
+	if err := w.WriteEnum(uint16(o.TransitionState)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Size); err != nil {
@@ -9550,7 +9604,7 @@ func (o *VolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.RecommendedFileSystemType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RecommendedFileSystemType)); err != nil {
 		return err
 	}
 	if o.Name != "" {
@@ -9580,16 +9634,16 @@ func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Health)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Health)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.TransitionState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.TransitionState)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Size); err != nil {
@@ -9598,7 +9652,7 @@ func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.RecommendedFileSystemType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RecommendedFileSystemType)); err != nil {
 		return err
 	}
 	_ptr_pwszName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -9676,16 +9730,16 @@ func (o *VolumeProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Health)); err != nil {
+	if err := w.WriteEnum(uint16(o.Health)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.TransitionState)); err != nil {
+	if err := w.WriteEnum(uint16(o.TransitionState)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Size); err != nil {
@@ -9694,7 +9748,7 @@ func (o *VolumeProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.RecommendedFileSystemType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RecommendedFileSystemType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.UniqueIDLength); err != nil {
@@ -9760,16 +9814,16 @@ func (o *VolumeProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Health)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Health)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.TransitionState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.TransitionState)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Size); err != nil {
@@ -9778,7 +9832,7 @@ func (o *VolumeProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.RecommendedFileSystemType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RecommendedFileSystemType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.UniqueIDLength); err != nil {
@@ -9888,16 +9942,16 @@ func (o *VolumePlexProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Health)); err != nil {
+	if err := w.WriteEnum(uint16(o.Health)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.TransitionState)); err != nil {
+	if err := w.WriteEnum(uint16(o.TransitionState)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Size); err != nil {
@@ -9921,16 +9975,16 @@ func (o *VolumePlexProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Health)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Health)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.TransitionState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.TransitionState)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Size); err != nil {
@@ -10501,7 +10555,7 @@ func (o *VDiskProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.State)); err != nil {
+	if err := w.WriteEnum(uint16(o.State)); err != nil {
 		return err
 	}
 	if o.VirtualDeviceType != nil {
@@ -10549,7 +10603,7 @@ func (o *VDiskProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.DiskFlag)); err != nil {
+	if err := w.WriteEnum(uint16(o.DiskFlag)); err != nil {
 		return err
 	}
 	if !o.IsChild {
@@ -10588,7 +10642,7 @@ func (o *VDiskProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.ID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.State)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.State)); err != nil {
 		return err
 	}
 	if o.VirtualDeviceType == nil {
@@ -10623,7 +10677,7 @@ func (o *VDiskProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadPointer(&o.DeviceName, _s_pDeviceName, _ptr_pDeviceName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.DiskFlag)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DiskFlag)); err != nil {
 		return err
 	}
 	var _bIsChild int32

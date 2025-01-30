@@ -433,7 +433,7 @@ func (o *ExtendedErrorParam) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	_swExtendedErrorParam := int16(o.Type)
@@ -452,7 +452,7 @@ func (o *ExtendedErrorParam) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.ExtendedErrorParam == nil {
@@ -548,6 +548,9 @@ func (o *ExtendedErrorParam_ExtendedErrorParam) MarshalUnionNDR(ctx context.Cont
 	if err := w.WriteSwitch(int16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case int16(1):
 		_o, _ := o.Value.(*ExtendedErrorParam_ANSIString)
@@ -624,6 +627,9 @@ func (o *ExtendedErrorParam_ExtendedErrorParam) MarshalUnionNDR(ctx context.Cont
 
 func (o *ExtendedErrorParam_ExtendedErrorParam) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int16) error {
 	if err := w.ReadSwitch((*int16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -904,7 +910,7 @@ func (o *ComputerName) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(7); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	_swComputerName := int16(o.Type)
@@ -923,7 +929,7 @@ func (o *ComputerName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.ComputerName == nil {
@@ -984,6 +990,9 @@ func (o *ComputerName_ComputerName) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(int16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	switch sw {
 	case int16(1):
 		_o, _ := o.Value.(*ComputerName_Name)
@@ -1005,6 +1014,9 @@ func (o *ComputerName_ComputerName) MarshalUnionNDR(ctx context.Context, w ndr.W
 
 func (o *ComputerName_ComputerName) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int16) error {
 	if err := w.ReadSwitch((*int16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(7); err != nil {
 		return err
 	}
 	switch sw {

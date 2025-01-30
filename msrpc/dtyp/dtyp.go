@@ -2579,6 +2579,9 @@ func (o *ACEGUID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(1),
 		uint32(2):
@@ -2599,6 +2602,9 @@ func (o *ACEGUID) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 
 func (o *ACEGUID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -5164,6 +5170,9 @@ func (o *ACEData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint8) e
 	if err := w.WriteSwitch(uint8(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(6); err != nil {
+		return err
+	}
 	switch sw {
 	case uint8(0):
 		_o, _ := o.Value.(*ACEData_AccessAllowedACE)
@@ -5347,6 +5356,9 @@ func (o *ACEData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint8) e
 
 func (o *ACEData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint8) error {
 	if err := w.ReadSwitch((*uint8)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(6); err != nil {
 		return err
 	}
 	switch sw {

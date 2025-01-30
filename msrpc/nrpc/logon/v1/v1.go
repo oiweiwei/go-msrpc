@@ -6854,7 +6854,7 @@ func (o *DeltaUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 }
 
 func (o *DeltaUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -7946,7 +7946,7 @@ func (o *DeltaIDUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 }
 
 func (o *DeltaIDUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8147,7 +8147,7 @@ func (o *DeltaEnum) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.DeltaType)); err != nil {
+	if err := w.WriteEnum(uint16(o.DeltaType)); err != nil {
 		return err
 	}
 	_swDeltaID := uint16(o.DeltaType)
@@ -8176,7 +8176,7 @@ func (o *DeltaEnum) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.DeltaType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DeltaType)); err != nil {
 		return err
 	}
 	if o.DeltaID == nil {
@@ -9180,7 +9180,7 @@ func (o *Level) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) er
 }
 
 func (o *Level) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -11934,7 +11934,7 @@ func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 }
 
 func (o *Validation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -17242,7 +17242,7 @@ func (o *ForestTrustRecord) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ForestTrustType)); err != nil {
+	if err := w.WriteEnum(uint16(o.ForestTrustType)); err != nil {
 		return err
 	}
 	if o.Time != nil {
@@ -17273,7 +17273,7 @@ func (o *ForestTrustRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ForestTrustType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ForestTrustType)); err != nil {
 		return err
 	}
 	if o.Time == nil {
@@ -17395,7 +17395,7 @@ func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context,
 }
 
 func (o *ForestTrustRecord_ForestTrustData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -19869,7 +19869,7 @@ func (o *xxx_SAMLogonOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.LogonLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -19891,7 +19891,7 @@ func (o *xxx_SAMLogonOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wri
 	}
 	// ValidationLevel {in} (1:{alias=NETLOGON_VALIDATION_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.ValidationLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.ValidationLevel)); err != nil {
 			return err
 		}
 	}
@@ -19971,7 +19971,7 @@ func (o *xxx_SAMLogonOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LogonLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -19990,7 +19990,7 @@ func (o *xxx_SAMLogonOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.R
 	}
 	// ValidationLevel {in} (1:{alias=NETLOGON_VALIDATION_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ValidationLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ValidationLevel)); err != nil {
 			return err
 		}
 	}
@@ -20334,7 +20334,7 @@ func (o *xxx_SAMLogoffOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.LogonLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -20430,7 +20430,7 @@ func (o *xxx_SAMLogoffOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LogonLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -20918,7 +20918,7 @@ func (o *xxx_AuthenticateOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -20968,7 +20968,7 @@ func (o *xxx_AuthenticateOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -21181,7 +21181,7 @@ func (o *xxx_PasswordSetOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -21243,7 +21243,7 @@ func (o *xxx_PasswordSetOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -24057,7 +24057,7 @@ func (o *xxx_Authenticate2Operation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -24113,7 +24113,7 @@ func (o *xxx_Authenticate2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -24367,7 +24367,7 @@ func (o *xxx_DatabaseSync2Operation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// RestartState {in} (1:{alias=SYNC_STATE}(enum))
 	{
-		if err := w.WriteData(uint16(o.RestartState)); err != nil {
+		if err := w.WriteEnum(uint16(o.RestartState)); err != nil {
 			return err
 		}
 	}
@@ -24425,7 +24425,7 @@ func (o *xxx_DatabaseSync2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// RestartState {in} (1:{alias=SYNC_STATE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.RestartState)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.RestartState)); err != nil {
 			return err
 		}
 	}
@@ -27552,7 +27552,7 @@ func (o *xxx_Authenticate3Operation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -27608,7 +27608,7 @@ func (o *xxx_Authenticate3Operation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -28820,7 +28820,7 @@ func (o *xxx_PasswordSet2Operation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -28882,7 +28882,7 @@ func (o *xxx_PasswordSet2Operation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -29121,7 +29121,7 @@ func (o *xxx_PasswordGetOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// AccountType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.AccountType)); err != nil {
+		if err := w.WriteEnum(uint16(o.AccountType)); err != nil {
 			return err
 		}
 	}
@@ -29171,7 +29171,7 @@ func (o *xxx_PasswordGetOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// AccountType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.AccountType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.AccountType)); err != nil {
 			return err
 		}
 	}
@@ -31584,7 +31584,7 @@ func (o *xxx_SAMLogonExOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.LogonLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -31606,7 +31606,7 @@ func (o *xxx_SAMLogonExOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// ValidationLevel {in} (1:{alias=NETLOGON_VALIDATION_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.ValidationLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.ValidationLevel)); err != nil {
 			return err
 		}
 	}
@@ -31654,7 +31654,7 @@ func (o *xxx_SAMLogonExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LogonLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -31673,7 +31673,7 @@ func (o *xxx_SAMLogonExOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// ValidationLevel {in} (1:{alias=NETLOGON_VALIDATION_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ValidationLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ValidationLevel)); err != nil {
 			return err
 		}
 	}
@@ -32579,7 +32579,7 @@ func (o *xxx_TrustPasswordsGetOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -32629,7 +32629,7 @@ func (o *xxx_TrustPasswordsGetOperation) UnmarshalNDRRequest(ctx context.Context
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -33599,7 +33599,7 @@ func (o *xxx_SAMLogonWithFlagsOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.LogonLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -33621,7 +33621,7 @@ func (o *xxx_SAMLogonWithFlagsOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// ValidationLevel {in} (1:{alias=NETLOGON_VALIDATION_INFO_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.ValidationLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.ValidationLevel)); err != nil {
 			return err
 		}
 	}
@@ -33707,7 +33707,7 @@ func (o *xxx_SAMLogonWithFlagsOperation) UnmarshalNDRRequest(ctx context.Context
 	}
 	// LogonLevel {in} (1:{alias=NETLOGON_LOGON_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.LogonLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.LogonLevel)); err != nil {
 			return err
 		}
 	}
@@ -33726,7 +33726,7 @@ func (o *xxx_SAMLogonWithFlagsOperation) UnmarshalNDRRequest(ctx context.Context
 	}
 	// ValidationLevel {in} (1:{alias=NETLOGON_VALIDATION_INFO_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ValidationLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ValidationLevel)); err != nil {
 			return err
 		}
 	}
@@ -34108,7 +34108,7 @@ func (o *xxx_GetTrustInfoOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.SecureChannelType)); err != nil {
+		if err := w.WriteEnum(uint16(o.SecureChannelType)); err != nil {
 			return err
 		}
 	}
@@ -34158,7 +34158,7 @@ func (o *xxx_GetTrustInfoOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// SecureChannelType {in} (1:{alias=NETLOGON_SECURE_CHANNEL_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SecureChannelType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SecureChannelType)); err != nil {
 			return err
 		}
 	}

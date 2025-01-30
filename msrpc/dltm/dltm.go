@@ -1421,7 +1421,7 @@ func (o *SyncVolume) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.HResult); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.SyncType)); err != nil {
+	if err := w.WriteEnum(uint32(o.SyncType)); err != nil {
 		return err
 	}
 	if o.Volume != nil {
@@ -1481,7 +1481,7 @@ func (o *SyncVolume) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.HResult); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.SyncType)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.SyncType)); err != nil {
 		return err
 	}
 	if o.Volume == nil {
@@ -2313,10 +2313,10 @@ func (o *MessageUnion) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.MessageType)); err != nil {
+	if err := w.WriteEnum(uint32(o.MessageType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.Priority)); err != nil {
+	if err := w.WriteEnum(uint32(o.Priority)); err != nil {
 		return err
 	}
 	_swMessageUnion := uint32(o.MessageType)
@@ -2350,10 +2350,10 @@ func (o *MessageUnion) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.MessageType)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.MessageType)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Priority)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Priority)); err != nil {
 		return err
 	}
 	if o.MessageUnion == nil {
@@ -2483,6 +2483,9 @@ func (o *MessageUnion_MessageUnion) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*MessageUnion_OldSearch)
@@ -2590,7 +2593,10 @@ func (o *MessageUnion_MessageUnion) MarshalUnionNDR(ctx context.Context, w ndr.W
 }
 
 func (o *MessageUnion_MessageUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
-	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint32)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

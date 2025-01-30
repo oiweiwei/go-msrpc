@@ -243,7 +243,7 @@ func (o *UpgradeStatusInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.OperationState); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PreviousServerState)); err != nil {
+	if err := w.WriteEnum(uint16(o.PreviousServerState)); err != nil {
 		return err
 	}
 	return nil
@@ -255,7 +255,7 @@ func (o *UpgradeStatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadData(&o.OperationState); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PreviousServerState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PreviousServerState)); err != nil {
 		return err
 	}
 	return nil
@@ -315,7 +315,7 @@ func (o *OperationStateInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteAlign(2); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.OperationState)); err != nil {
+	if err := w.WriteEnum(uint16(o.OperationState)); err != nil {
 		return err
 	}
 	return nil
@@ -324,7 +324,7 @@ func (o *OperationStateInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.OperationState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.OperationState)); err != nil {
 		return err
 	}
 	return nil
@@ -395,7 +395,7 @@ func (o *PrimaryDomainInfoBasic) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.MachineRole)); err != nil {
+	if err := w.WriteEnum(uint16(o.MachineRole)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -461,7 +461,7 @@ func (o *PrimaryDomainInfoBasic) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.MachineRole)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.MachineRole)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -562,6 +562,9 @@ func (o *PrimaryDomainInformation) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*PrimaryDomainInformation_DomainInfoBasic)
@@ -603,7 +606,10 @@ func (o *PrimaryDomainInformation) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 }
 
 func (o *PrimaryDomainInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -782,7 +788,7 @@ func (o *xxx_GetPrimaryDomainInformationOperation) MarshalNDRRequest(ctx context
 	}
 	// InfoLevel {in} (1:{alias=DSROLE_PRIMARY_DOMAIN_INFO_LEVEL}(enum))
 	{
-		if err := w.WriteData(uint16(o.InfoLevel)); err != nil {
+		if err := w.WriteEnum(uint16(o.InfoLevel)); err != nil {
 			return err
 		}
 	}
@@ -792,7 +798,7 @@ func (o *xxx_GetPrimaryDomainInformationOperation) MarshalNDRRequest(ctx context
 func (o *xxx_GetPrimaryDomainInformationOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// InfoLevel {in} (1:{alias=DSROLE_PRIMARY_DOMAIN_INFO_LEVEL}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.InfoLevel)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.InfoLevel)); err != nil {
 			return err
 		}
 	}

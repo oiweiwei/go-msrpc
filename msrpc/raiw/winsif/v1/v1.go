@@ -1391,7 +1391,7 @@ func (o *xxx_StatusOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// Cmd_e {in} (1:{alias=WINSINTF_CMD_E}(enum))
 	{
-		if err := w.WriteData(uint16(o.Cmd)); err != nil {
+		if err := w.WriteEnum(uint16(o.Cmd)); err != nil {
 			return err
 		}
 	}
@@ -1416,7 +1416,7 @@ func (o *xxx_StatusOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 func (o *xxx_StatusOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Cmd_e {in} (1:{alias=WINSINTF_CMD_E}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Cmd)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Cmd)); err != nil {
 			return err
 		}
 	}
@@ -1609,7 +1609,7 @@ func (o *xxx_TriggerOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// TrigType_e {in} (1:{alias=WINSINTF_TRIG_TYPE_E}(enum))
 	{
-		if err := w.WriteData(uint16(o.TriggerTypeE)); err != nil {
+		if err := w.WriteEnum(uint16(o.TriggerTypeE)); err != nil {
 			return err
 		}
 	}
@@ -1628,7 +1628,7 @@ func (o *xxx_TriggerOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// TrigType_e {in} (1:{alias=WINSINTF_TRIG_TYPE_E}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.TriggerTypeE)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.TriggerTypeE)); err != nil {
 			return err
 		}
 	}
@@ -3036,7 +3036,7 @@ func (o *xxx_SetPriorityClassOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// PrCls_e {in} (1:{alias=WINSINTF_PRIORITY_CLASS_E}(enum))
 	{
-		if err := w.WriteData(uint16(o.PriorityClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.PriorityClass)); err != nil {
 			return err
 		}
 	}
@@ -3046,7 +3046,7 @@ func (o *xxx_SetPriorityClassOperation) MarshalNDRRequest(ctx context.Context, w
 func (o *xxx_SetPriorityClassOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// PrCls_e {in} (1:{alias=WINSINTF_PRIORITY_CLASS_E}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.PriorityClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.PriorityClass)); err != nil {
 			return err
 		}
 	}
@@ -4662,7 +4662,7 @@ func (o *xxx_StatusNewOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// Cmd_e {in} (1:{alias=WINSINTF_CMD_E}(enum))
 	{
-		if err := w.WriteData(uint16(o.Cmd)); err != nil {
+		if err := w.WriteEnum(uint16(o.Cmd)); err != nil {
 			return err
 		}
 	}
@@ -4672,7 +4672,7 @@ func (o *xxx_StatusNewOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 func (o *xxx_StatusNewOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Cmd_e {in} (1:{alias=WINSINTF_CMD_E}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Cmd)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Cmd)); err != nil {
 			return err
 		}
 	}
@@ -4852,7 +4852,7 @@ func (o *xxx_StatusWOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// Cmd_e {in} (1:{alias=WINSINTF_CMD_E}(enum))
 	{
-		if err := w.WriteData(uint16(o.Cmd)); err != nil {
+		if err := w.WriteEnum(uint16(o.Cmd)); err != nil {
 			return err
 		}
 	}
@@ -4889,7 +4889,7 @@ func (o *xxx_StatusWOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// Cmd_e {in} (1:{alias=WINSINTF_CMD_E}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Cmd)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Cmd)); err != nil {
 			return err
 		}
 	}

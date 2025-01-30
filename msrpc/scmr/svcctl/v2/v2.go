@@ -3047,7 +3047,7 @@ func (o *Action) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.Type)); err != nil {
+	if err := w.WriteEnum(uint32(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Delay); err != nil {
@@ -3059,7 +3059,7 @@ func (o *Action) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Delay); err != nil {
@@ -20610,7 +20610,7 @@ func (o *xxx_QueryServiceStatusExOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// InfoLevel {in} (1:{v1_enum, alias=SC_STATUS_TYPE}(enum))
 	{
-		if err := w.WriteData(uint32(o.InfoLevel)); err != nil {
+		if err := w.WriteEnum(uint32(o.InfoLevel)); err != nil {
 			return err
 		}
 	}
@@ -20635,7 +20635,7 @@ func (o *xxx_QueryServiceStatusExOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// InfoLevel {in} (1:{v1_enum, alias=SC_STATUS_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.InfoLevel)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.InfoLevel)); err != nil {
 			return err
 		}
 	}
@@ -20880,7 +20880,7 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// InfoLevel {in} (1:{v1_enum, alias=SC_ENUM_TYPE}(enum))
 	{
-		if err := w.WriteData(uint32(o.InfoLevel)); err != nil {
+		if err := w.WriteEnum(uint32(o.InfoLevel)); err != nil {
 			return err
 		}
 	}
@@ -20953,7 +20953,7 @@ func (o *xxx_EnumServicesStatusExAOperation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// InfoLevel {in} (1:{v1_enum, alias=SC_ENUM_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.InfoLevel)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.InfoLevel)); err != nil {
 			return err
 		}
 	}
@@ -21356,7 +21356,7 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// InfoLevel {in} (1:{v1_enum, alias=SC_ENUM_TYPE}(enum))
 	{
-		if err := w.WriteData(uint32(o.InfoLevel)); err != nil {
+		if err := w.WriteEnum(uint32(o.InfoLevel)); err != nil {
 			return err
 		}
 	}
@@ -21429,7 +21429,7 @@ func (o *xxx_EnumServicesStatusExWOperation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// InfoLevel {in} (1:{v1_enum, alias=SC_ENUM_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.InfoLevel)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.InfoLevel)); err != nil {
 			return err
 		}
 	}

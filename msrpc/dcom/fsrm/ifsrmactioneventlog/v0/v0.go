@@ -294,7 +294,7 @@ func (o *xxx_GetEventTypeOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// eventType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmEventType}(enum))
 	{
-		if err := w.WriteData(uint16(o.EventType)); err != nil {
+		if err := w.WriteEnum(uint16(o.EventType)); err != nil {
 			return err
 		}
 	}
@@ -322,7 +322,7 @@ func (o *xxx_GetEventTypeOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	}
 	// eventType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmEventType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.EventType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.EventType)); err != nil {
 			return err
 		}
 	}
@@ -450,7 +450,7 @@ func (o *xxx_SetEventTypeOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// eventType {in} (1:{alias=FsrmEventType}(enum))
 	{
-		if err := w.WriteData(uint16(o.EventType)); err != nil {
+		if err := w.WriteEnum(uint16(o.EventType)); err != nil {
 			return err
 		}
 	}
@@ -472,7 +472,7 @@ func (o *xxx_SetEventTypeOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// eventType {in} (1:{alias=FsrmEventType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.EventType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.EventType)); err != nil {
 			return err
 		}
 	}

@@ -127,7 +127,7 @@ func (o *ClusterDiskID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.DiskIDType)); err != nil {
+	if err := w.WriteEnum(uint16(o.DiskIDType)); err != nil {
 		return err
 	}
 	_swClusterDiskID := uint16(o.DiskIDType)
@@ -146,7 +146,7 @@ func (o *ClusterDiskID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.DiskIDType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DiskIDType)); err != nil {
 		return err
 	}
 	if o.ClusterDiskID == nil {
@@ -226,6 +226,9 @@ func (o *ClusterDiskID_ClusterDiskID) MarshalUnionNDR(ctx context.Context, w ndr
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(0):
 		_o, _ := o.Value.(*ClusterDiskID_DiskSignature)
@@ -278,7 +281,10 @@ func (o *ClusterDiskID_ClusterDiskID) MarshalUnionNDR(ctx context.Context, w ndr
 }
 
 func (o *ClusterDiskID_ClusterDiskID) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -695,7 +701,7 @@ func (o *DiskProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DiskBusType); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.StackType)); err != nil {
+	if err := w.WriteEnum(uint16(o.StackType)); err != nil {
 		return err
 	}
 	if o.SCSIAddress != nil {
@@ -748,7 +754,7 @@ func (o *DiskProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.DiskBusType); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.StackType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.StackType)); err != nil {
 		return err
 	}
 	if o.SCSIAddress == nil {
@@ -994,7 +1000,7 @@ func (o *DiskPropertiesEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DiskBusType); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.StackType)); err != nil {
+	if err := w.WriteEnum(uint16(o.StackType)); err != nil {
 		return err
 	}
 	if o.SCSIAddress != nil {
@@ -1125,7 +1131,7 @@ func (o *DiskPropertiesEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	if err := w.ReadData(&o.DiskBusType); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.StackType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.StackType)); err != nil {
 		return err
 	}
 	if o.SCSIAddress == nil {
@@ -1594,7 +1600,7 @@ func (o *RouteLossAndState) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.PacketLoss); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	return nil
@@ -1606,7 +1612,7 @@ func (o *RouteLossAndState) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadData(&o.PacketLoss); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	return nil

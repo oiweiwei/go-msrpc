@@ -2445,7 +2445,7 @@ func (o *xxx_FormatPartitionOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// type {in} (1:{alias=VDS_FILE_SYSTEM_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Type)); err != nil {
+		if err := w.WriteEnum(uint16(o.Type)); err != nil {
 			return err
 		}
 	}
@@ -2503,7 +2503,7 @@ func (o *xxx_FormatPartitionOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// type {in} (1:{alias=VDS_FILE_SYSTEM_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 			return err
 		}
 	}

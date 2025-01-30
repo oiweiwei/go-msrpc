@@ -3490,7 +3490,7 @@ func (o *ObjectMetadata) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				if err := w.WriteData(uint16(o.EnforcementStates[i1])); err != nil {
+				if err := w.WriteEnum(uint16(o.EnforcementStates[i1])); err != nil {
 					return err
 				}
 			}
@@ -3540,7 +3540,7 @@ func (o *ObjectMetadata) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.EnforcementStates = make([]EnforcementState, sizeInfo[0])
 		for i1 := range o.EnforcementStates {
 			i1 := i1
-			if err := w.ReadData((*uint16)(&o.EnforcementStates[i1])); err != nil {
+			if err := w.ReadEnum((*uint16)(&o.EnforcementStates[i1])); err != nil {
 				return err
 			}
 		}
@@ -4459,7 +4459,7 @@ func (o *Rule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -4535,7 +4535,7 @@ func (o *Rule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -4595,10 +4595,10 @@ func (o *Rule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -4674,7 +4674,7 @@ func (o *Rule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -4728,7 +4728,7 @@ func (o *Rule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -4770,10 +4770,10 @@ func (o *Rule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -4857,6 +4857,9 @@ func (o *Rule20_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -4899,6 +4902,9 @@ func (o *Rule20_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Write
 
 func (o *Rule20_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -5197,7 +5203,7 @@ func (o *Rule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -5273,7 +5279,7 @@ func (o *Rule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -5333,10 +5339,10 @@ func (o *Rule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -5463,7 +5469,7 @@ func (o *Rule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -5517,7 +5523,7 @@ func (o *Rule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -5559,10 +5565,10 @@ func (o *Rule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -5680,6 +5686,9 @@ func (o *Rule210_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -5722,6 +5731,9 @@ func (o *Rule210_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *Rule210_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -6033,7 +6045,7 @@ func (o *Rule220) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -6109,7 +6121,7 @@ func (o *Rule220) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -6169,10 +6181,10 @@ func (o *Rule220) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -6347,7 +6359,7 @@ func (o *Rule220) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -6401,7 +6413,7 @@ func (o *Rule220) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -6443,10 +6455,10 @@ func (o *Rule220) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -6597,6 +6609,9 @@ func (o *Rule220_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -6639,6 +6654,9 @@ func (o *Rule220_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *Rule220_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -6955,7 +6973,7 @@ func (o *Rule224) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -7031,7 +7049,7 @@ func (o *Rule224) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -7091,10 +7109,10 @@ func (o *Rule224) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -7293,7 +7311,7 @@ func (o *Rule224) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -7347,7 +7365,7 @@ func (o *Rule224) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -7389,10 +7407,10 @@ func (o *Rule224) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -7559,6 +7577,9 @@ func (o *Rule224_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -7601,6 +7622,9 @@ func (o *Rule224_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *Rule224_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -7918,7 +7942,7 @@ func (o *Rule225) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -7994,7 +8018,7 @@ func (o *Rule225) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -8054,10 +8078,10 @@ func (o *Rule225) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -8259,7 +8283,7 @@ func (o *Rule225) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -8313,7 +8337,7 @@ func (o *Rule225) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -8355,10 +8379,10 @@ func (o *Rule225) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -8528,6 +8552,9 @@ func (o *Rule225_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -8570,6 +8597,9 @@ func (o *Rule225_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *Rule225_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -8885,7 +8915,7 @@ func (o *Rule226) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -8961,7 +8991,7 @@ func (o *Rule226) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -9021,10 +9051,10 @@ func (o *Rule226) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -9235,7 +9265,7 @@ func (o *Rule226) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -9289,7 +9319,7 @@ func (o *Rule226) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -9331,10 +9361,10 @@ func (o *Rule226) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -9510,6 +9540,9 @@ func (o *Rule226_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -9552,6 +9585,9 @@ func (o *Rule226_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *Rule226_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -9875,7 +9911,7 @@ func (o *Rule227) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -9951,7 +9987,7 @@ func (o *Rule227) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -10011,10 +10047,10 @@ func (o *Rule227) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -10243,7 +10279,7 @@ func (o *Rule227) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -10297,7 +10333,7 @@ func (o *Rule227) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -10339,10 +10375,10 @@ func (o *Rule227) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -10531,6 +10567,9 @@ func (o *Rule227_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -10573,6 +10612,9 @@ func (o *Rule227_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 
 func (o *Rule227_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -11090,7 +11132,7 @@ func (o *Rule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Profiles); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.IPProtocol); err != nil {
@@ -11166,7 +11208,7 @@ func (o *Rule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -11226,10 +11268,10 @@ func (o *Rule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -11476,7 +11518,7 @@ func (o *Rule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Profiles); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.IPProtocol); err != nil {
@@ -11530,7 +11572,7 @@ func (o *Rule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.LocalService, _s_wszLocalService, _ptr_wszLocalService); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -11572,10 +11614,10 @@ func (o *Rule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -11778,6 +11820,9 @@ func (o *Rule_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(6),
 		uint16(17):
@@ -11820,6 +11865,9 @@ func (o *Rule_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 
 func (o *Rule_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -12581,7 +12629,7 @@ func (o *Network) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.ProfileType)); err != nil {
+	if err := w.WriteEnum(uint32(o.ProfileType)); err != nil {
 		return err
 	}
 	return nil
@@ -12600,7 +12648,7 @@ func (o *Network) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Name, _s_pszName, _ptr_pszName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.ProfileType)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.ProfileType)); err != nil {
 		return err
 	}
 	return nil
@@ -12848,7 +12896,7 @@ func (o *Product) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				if err := w.WriteData(uint32(o.RuleCategories[i1])); err != nil {
+				if err := w.WriteEnum(uint32(o.RuleCategories[i1])); err != nil {
 					return err
 				}
 			}
@@ -12928,7 +12976,7 @@ func (o *Product) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.RuleCategories = make([]RuleCategory, sizeInfo[0])
 		for i1 := range o.RuleCategories {
 			i1 := i1
-			if err := w.ReadData((*uint32)(&o.RuleCategories[i1])); err != nil {
+			if err := w.ReadEnum((*uint32)(&o.RuleCategories[i1])); err != nil {
 				return err
 			}
 		}
@@ -13463,7 +13511,7 @@ func (o *CSRule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -13493,7 +13541,7 @@ func (o *CSRule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -13511,7 +13559,7 @@ func (o *CSRule20) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	return nil
@@ -13655,7 +13703,7 @@ func (o *CSRule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Phase2AuthSet, _s_wszPhase2AuthSet, _ptr_wszPhase2AuthSet); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -13677,7 +13725,7 @@ func (o *CSRule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -13690,7 +13738,7 @@ func (o *CSRule20) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	return nil
@@ -14027,7 +14075,7 @@ func (o *CSRule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -14057,7 +14105,7 @@ func (o *CSRule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -14075,7 +14123,7 @@ func (o *CSRule210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	if o.MMParentRuleID != "" {
@@ -14288,7 +14336,7 @@ func (o *CSRule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Phase2AuthSet, _s_wszPhase2AuthSet, _ptr_wszPhase2AuthSet); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -14310,7 +14358,7 @@ func (o *CSRule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -14323,7 +14371,7 @@ func (o *CSRule210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	_ptr_wszMMParentRuleId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -14782,7 +14830,7 @@ func (o *CSRule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Action)); err != nil {
+	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -14812,7 +14860,7 @@ func (o *CSRule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -14830,7 +14878,7 @@ func (o *CSRule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	if o.MMParentRuleID != "" {
@@ -15103,7 +15151,7 @@ func (o *CSRule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Phase2AuthSet, _s_wszPhase2AuthSet, _ptr_wszPhase2AuthSet); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Action)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -15125,7 +15173,7 @@ func (o *CSRule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -15138,7 +15186,7 @@ func (o *CSRule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	_ptr_wszMMParentRuleId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -15439,7 +15487,7 @@ func (o *AuthSuite210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(7); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Method)); err != nil {
+	if err := w.WriteEnum(uint16(o.Method)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -15461,7 +15509,7 @@ func (o *AuthSuite210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Method)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Method)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -15536,6 +15584,9 @@ func (o *AuthSuite210_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(5),
 		uint16(7):
@@ -15566,7 +15617,10 @@ func (o *AuthSuite210_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *AuthSuite210_AuthSuite) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(7); err != nil {
 		return err
 	}
 	switch sw {
@@ -15942,10 +15996,10 @@ func (o *CertCriteria) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.CertCriteriaType)); err != nil {
+	if err := w.WriteEnum(uint16(o.CertCriteriaType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.NameType)); err != nil {
+	if err := w.WriteEnum(uint16(o.NameType)); err != nil {
 		return err
 	}
 	if o.Name != "" {
@@ -16038,10 +16092,10 @@ func (o *CertCriteria) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.CertCriteriaType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.CertCriteriaType)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.NameType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.NameType)); err != nil {
 		return err
 	}
 	_ptr_wszName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -16138,7 +16192,7 @@ func (o *AuthSuite) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(7); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Method)); err != nil {
+	if err := w.WriteEnum(uint16(o.Method)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Flags); err != nil {
@@ -16160,7 +16214,7 @@ func (o *AuthSuite) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(7); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Method)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Method)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
@@ -16246,6 +16300,9 @@ func (o *AuthSuite_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(5),
 		uint16(7):
@@ -16288,7 +16345,10 @@ func (o *AuthSuite_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 }
 
 func (o *AuthSuite_AuthSuite) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(7); err != nil {
 		return err
 	}
 	switch sw {
@@ -16770,7 +16830,7 @@ func (o *AuthSet210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SchemaVersion); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+	if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 		return err
 	}
 	if o.SetID != "" {
@@ -16875,7 +16935,7 @@ func (o *AuthSet210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -16893,7 +16953,7 @@ func (o *AuthSet210) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.AuthSetFlags); err != nil {
@@ -16921,7 +16981,7 @@ func (o *AuthSet210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.SchemaVersion); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 		return err
 	}
 	_ptr_wszSetId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -16999,7 +17059,7 @@ func (o *AuthSet210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Suites, _s_pSuites, _ptr_pSuites); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -17012,7 +17072,7 @@ func (o *AuthSet210) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthSetFlags); err != nil {
@@ -17138,7 +17198,7 @@ func (o *AuthSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SchemaVersion); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+	if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 		return err
 	}
 	if o.SetID != "" {
@@ -17243,7 +17303,7 @@ func (o *AuthSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -17261,7 +17321,7 @@ func (o *AuthSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.AuthSetFlags); err != nil {
@@ -17289,7 +17349,7 @@ func (o *AuthSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.SchemaVersion); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 		return err
 	}
 	_ptr_wszSetId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -17367,7 +17427,7 @@ func (o *AuthSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.Suites, _s_pSuites, _ptr_pSuites); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -17380,7 +17440,7 @@ func (o *AuthSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.AuthSetFlags); err != nil {
@@ -17719,13 +17779,13 @@ func (o *Phase1CryptoSuite) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.KeyExchange)); err != nil {
+	if err := w.WriteEnum(uint16(o.KeyExchange)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Encryption)); err != nil {
+	if err := w.WriteEnum(uint16(o.Encryption)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Hash)); err != nil {
+	if err := w.WriteEnum(uint16(o.Hash)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.P1CryptoSuiteFlags); err != nil {
@@ -17737,13 +17797,13 @@ func (o *Phase1CryptoSuite) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.KeyExchange)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.KeyExchange)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Encryption)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Encryption)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Hash)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Hash)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.P1CryptoSuiteFlags); err != nil {
@@ -17821,16 +17881,16 @@ func (o *Phase2CryptoSuite) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Protocol)); err != nil {
+	if err := w.WriteEnum(uint16(o.Protocol)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.AHHash)); err != nil {
+	if err := w.WriteEnum(uint16(o.AHHash)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ESPHash)); err != nil {
+	if err := w.WriteEnum(uint16(o.ESPHash)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Encryption)); err != nil {
+	if err := w.WriteEnum(uint16(o.Encryption)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.TimeoutMinutes); err != nil {
@@ -17848,16 +17908,16 @@ func (o *Phase2CryptoSuite) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Protocol)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Protocol)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.AHHash)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.AHHash)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ESPHash)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ESPHash)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Encryption)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Encryption)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TimeoutMinutes); err != nil {
@@ -18086,7 +18146,7 @@ func (o *CryptoSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SchemaVersion); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+	if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 		return err
 	}
 	if o.SetID != "" {
@@ -18159,7 +18219,7 @@ func (o *CryptoSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -18177,7 +18237,7 @@ func (o *CryptoSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.CryptoSetFlags); err != nil {
@@ -18205,7 +18265,7 @@ func (o *CryptoSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.SchemaVersion); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 		return err
 	}
 	_ptr_wszSetId := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -18255,7 +18315,7 @@ func (o *CryptoSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.CryptoSet.UnmarshalUnionNDR(ctx, w, _swCryptoSet); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -18268,7 +18328,7 @@ func (o *CryptoSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.CryptoSetFlags); err != nil {
@@ -18330,6 +18390,9 @@ func (o *CryptoSet_CryptoSet) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*CryptoSet_Phase1)
@@ -18360,7 +18423,10 @@ func (o *CryptoSet_CryptoSet) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 }
 
 func (o *CryptoSet_CryptoSet) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -18623,7 +18689,7 @@ func (o *CryptoSet_CryptoSet_Phase2) MarshalNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PFS)); err != nil {
+	if err := w.WriteEnum(uint16(o.PFS)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Phase2SuitesLength); err != nil {
@@ -18674,7 +18740,7 @@ func (o *CryptoSet_CryptoSet_Phase2) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PFS)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PFS)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Phase2SuitesLength); err != nil {
@@ -19006,7 +19072,7 @@ func (o *AuthInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.AuthMethod)); err != nil {
+	if err := w.WriteEnum(uint16(o.AuthMethod)); err != nil {
 		return err
 	}
 	_swAuthInfo := uint16(o.AuthMethod)
@@ -19028,7 +19094,7 @@ func (o *AuthInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.AuthMethod)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.AuthMethod)); err != nil {
 		return err
 	}
 	if o.AuthInfo == nil {
@@ -19108,6 +19174,9 @@ func (o *AuthInfo_AuthInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(5),
 		uint16(7):
@@ -19141,7 +19210,10 @@ func (o *AuthInfo_AuthInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *AuthInfo_AuthInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -19429,7 +19501,7 @@ func (o *Endpoints) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.IPVersion)); err != nil {
+	if err := w.WriteEnum(uint16(o.IPVersion)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.SourceV4Address); err != nil {
@@ -19472,7 +19544,7 @@ func (o *Endpoints) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.IPVersion)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.IPVersion)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.SourceV4Address); err != nil {
@@ -19559,7 +19631,7 @@ func (o *Phase1SADetails) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SAID); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.KeyModuleType)); err != nil {
+	if err := w.WriteEnum(uint16(o.KeyModuleType)); err != nil {
 		return err
 	}
 	if o.Endpoints != nil {
@@ -19652,7 +19724,7 @@ func (o *Phase1SADetails) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.SAID); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.KeyModuleType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.KeyModuleType)); err != nil {
 		return err
 	}
 	if o.Endpoints == nil {
@@ -19810,7 +19882,7 @@ func (o *Phase2SADetails) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SAID); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Direction)); err != nil {
+	if err := w.WriteEnum(uint16(o.Direction)); err != nil {
 		return err
 	}
 	if o.Endpoints != nil {
@@ -19840,7 +19912,7 @@ func (o *Phase2SADetails) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.PFS)); err != nil {
+	if err := w.WriteEnum(uint16(o.PFS)); err != nil {
 		return err
 	}
 	if o.TransportFilterID != nil {
@@ -19864,7 +19936,7 @@ func (o *Phase2SADetails) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.SAID); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Direction)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Direction)); err != nil {
 		return err
 	}
 	if o.Endpoints == nil {
@@ -19888,7 +19960,7 @@ func (o *Phase2SADetails) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.SelectedProposal.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PFS)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PFS)); err != nil {
 		return err
 	}
 	if o.TransportFilterID == nil {
@@ -19978,6 +20050,9 @@ func (o *ProfileConfigValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(9):
 		_o, _ := o.Value.(*ProfileConfigValue_String)
@@ -20040,7 +20115,10 @@ func (o *ProfileConfigValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 }
 
 func (o *ProfileConfigValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(7); err != nil {
 		return err
 	}
 	switch sw {
@@ -20453,7 +20531,7 @@ func (o *MMRule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Origin)); err != nil {
+	if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 		return err
 	}
 	if o.GPOName != "" {
@@ -20471,7 +20549,7 @@ func (o *MMRule) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.MetadataReserved); err != nil {
@@ -20634,7 +20712,7 @@ func (o *MMRule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.PlatformValidityList.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 		return err
 	}
 	_ptr_wszGPOName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -20647,7 +20725,7 @@ func (o *MMRule) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.GPOName, _s_wszGPOName, _ptr_wszGPOName); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.MetadataReserved); err != nil {
@@ -20862,7 +20940,7 @@ func (o *MatchValue) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	_swMatchValue := uint16(o.Type)
@@ -20881,7 +20959,7 @@ func (o *MatchValue) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.MatchValue == nil {
@@ -20969,6 +21047,9 @@ func (o *MatchValue_MatchValue) MarshalUnionNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*MatchValue_Int8)
@@ -21033,7 +21114,10 @@ func (o *MatchValue_MatchValue) MarshalUnionNDR(ctx context.Context, w ndr.Write
 }
 
 func (o *MatchValue_MatchValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {
@@ -21355,10 +21439,10 @@ func (o *QueryCondition) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.MatchKey)); err != nil {
+	if err := w.WriteEnum(uint16(o.MatchKey)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.MatchType)); err != nil {
+	if err := w.WriteEnum(uint16(o.MatchType)); err != nil {
 		return err
 	}
 	if o.MatchValue != nil {
@@ -21376,10 +21460,10 @@ func (o *QueryCondition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.MatchKey)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.MatchKey)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.MatchType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.MatchType)); err != nil {
 		return err
 	}
 	if o.MatchValue == nil {
@@ -21607,7 +21691,7 @@ func (o *Query) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint32(o.Status)); err != nil {
+	if err := w.WriteEnum(uint32(o.Status)); err != nil {
 		return err
 	}
 	return nil
@@ -21654,7 +21738,7 @@ func (o *Query) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.OrConditions, _s_ORConditions, _ptr_ORConditions); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 		return err
 	}
 	return nil

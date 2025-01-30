@@ -194,7 +194,7 @@ func (o *ClaimEntry) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	_swValues := uint16(o.Type)
@@ -223,7 +223,7 @@ func (o *ClaimEntry) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadPointer(&o.ID, _s_Id, _ptr_Id); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if o.Values == nil {
@@ -301,6 +301,9 @@ func (o *ClaimEntry_Values) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*ClaimEntry_Values_ClaimEntryInt64)
@@ -352,7 +355,10 @@ func (o *ClaimEntry_Values) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *ClaimEntry_Values) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -796,7 +802,7 @@ func (o *ClaimsArray) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.ClaimsSourceType)); err != nil {
+	if err := w.WriteEnum(uint16(o.ClaimsSourceType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ClaimsCount); err != nil {
@@ -847,7 +853,7 @@ func (o *ClaimsArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ClaimsSourceType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ClaimsSourceType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ClaimsCount); err != nil {
@@ -1139,7 +1145,7 @@ func (o *ClaimsSetMetadata) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.CompressionFormat)); err != nil {
+	if err := w.WriteEnum(uint16(o.CompressionFormat)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.UncompressedClaimsSetSize); err != nil {
@@ -1195,7 +1201,7 @@ func (o *ClaimsSetMetadata) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadPointer(&o.ClaimsSet, _s_ClaimsSet, _ptr_ClaimsSet); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.CompressionFormat)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.CompressionFormat)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.UncompressedClaimsSetSize); err != nil {

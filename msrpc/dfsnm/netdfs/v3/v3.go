@@ -960,7 +960,7 @@ func (o *TargetPriority) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(4); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.TargetPriorityClass)); err != nil {
+	if err := w.WriteEnum(uint32(o.TargetPriorityClass)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.TargetPriorityRank); err != nil {
@@ -976,7 +976,7 @@ func (o *TargetPriority) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.TargetPriorityClass)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.TargetPriorityClass)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TargetPriorityRank); err != nil {
@@ -14435,7 +14435,7 @@ func (o *xxx_GetSupportedNamespaceVersionOperation) MarshalNDRRequest(ctx contex
 	}
 	// Origin {in} (1:{alias=DFS_NAMESPACE_VERSION_ORIGIN}(enum))
 	{
-		if err := w.WriteData(uint16(o.Origin)); err != nil {
+		if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 			return err
 		}
 	}
@@ -14466,7 +14466,7 @@ func (o *xxx_GetSupportedNamespaceVersionOperation) MarshalNDRRequest(ctx contex
 func (o *xxx_GetSupportedNamespaceVersionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// Origin {in} (1:{alias=DFS_NAMESPACE_VERSION_ORIGIN}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 			return err
 		}
 	}

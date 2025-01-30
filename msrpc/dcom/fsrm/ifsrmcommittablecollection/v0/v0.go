@@ -177,7 +177,7 @@ func (o *xxx_CommitOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// options {in} (1:{alias=FsrmCommitOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -199,7 +199,7 @@ func (o *xxx_CommitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	}
 	// options {in} (1:{alias=FsrmCommitOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}

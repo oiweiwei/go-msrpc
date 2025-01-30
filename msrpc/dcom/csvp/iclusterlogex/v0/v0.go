@@ -252,7 +252,7 @@ func (o *xxx_GenerateClusterLogOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -280,7 +280,7 @@ func (o *xxx_GenerateClusterLogOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -530,7 +530,7 @@ func (o *xxx_GenerateClusterHealthLogOperation) MarshalNDRRequest(ctx context.Co
 	}
 	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -558,7 +558,7 @@ func (o *xxx_GenerateClusterHealthLogOperation) UnmarshalNDRRequest(ctx context.
 	}
 	// flags {in} (1:{alias=ClusterLogExFlag}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}

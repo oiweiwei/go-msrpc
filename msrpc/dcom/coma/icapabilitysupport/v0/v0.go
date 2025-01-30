@@ -272,7 +272,7 @@ func (o *xxx_StartOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.WriteData(uint16(o.CSS)); err != nil {
+		if err := w.WriteEnum(uint16(o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -294,7 +294,7 @@ func (o *xxx_StartOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CSS)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -476,7 +476,7 @@ func (o *xxx_StopOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.WriteData(uint16(o.CSS)); err != nil {
+		if err := w.WriteEnum(uint16(o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -498,7 +498,7 @@ func (o *xxx_StopOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CSS)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -681,7 +681,7 @@ func (o *xxx_IsInstalledOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.WriteData(uint16(o.CSS)); err != nil {
+		if err := w.WriteEnum(uint16(o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -703,7 +703,7 @@ func (o *xxx_IsInstalledOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CSS)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -904,7 +904,7 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.WriteData(uint16(o.CSS)); err != nil {
+		if err := w.WriteEnum(uint16(o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -926,7 +926,7 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// i_css {in} (1:{alias=CatSrvServices}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CSS)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CSS)); err != nil {
 			return err
 		}
 	}
@@ -963,7 +963,7 @@ func (o *xxx_IsRunningOperation) MarshalNDRResponse(ctx context.Context, w ndr.W
 	}
 	// pulStates {out} (1:{pointer=ref}*(1))(2:{alias=CatSrvServiceState}(enum))
 	{
-		if err := w.WriteData(uint16(o.States)); err != nil {
+		if err := w.WriteEnum(uint16(o.States)); err != nil {
 			return err
 		}
 	}
@@ -991,7 +991,7 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// pulStates {out} (1:{pointer=ref}*(1))(2:{alias=CatSrvServiceState}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.States)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.States)); err != nil {
 			return err
 		}
 	}

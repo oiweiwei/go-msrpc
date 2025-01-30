@@ -2911,6 +2911,9 @@ func (o *WorkstationInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(100):
 		_o, _ := o.Value.(*WorkstationInfo_100)
@@ -2996,6 +2999,9 @@ func (o *WorkstationInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 
 func (o *WorkstationInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -3905,6 +3911,9 @@ func (o *UseInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*UseInfo_0)
@@ -3957,6 +3966,9 @@ func (o *UseInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) 
 
 func (o *UseInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -4551,6 +4563,9 @@ func (o *UseEnum_UseInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*UseInfo_Level0)
@@ -4592,6 +4607,9 @@ func (o *UseEnum_UseInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 
 func (o *UseEnum_UseInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -5120,6 +5138,9 @@ func (o *WorkstationUserEnum_WorkstationUserInfo) MarshalUnionNDR(ctx context.Co
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*WorkstationUserInfo_Level0)
@@ -5150,6 +5171,9 @@ func (o *WorkstationUserEnum_WorkstationUserInfo) MarshalUnionNDR(ctx context.Co
 
 func (o *WorkstationUserEnum_WorkstationUserInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -5491,6 +5515,9 @@ func (o *WorkstationTransportEnum_WorkstationTransportInfo) MarshalUnionNDR(ctx 
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case uint32(0):
 		_o, _ := o.Value.(*WorkstationTransportInfo_Level0)
@@ -5510,6 +5537,9 @@ func (o *WorkstationTransportEnum_WorkstationTransportInfo) MarshalUnionNDR(ctx 
 
 func (o *WorkstationTransportEnum_WorkstationTransportInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {
@@ -9657,7 +9687,7 @@ func (o *xxx_GetJoinInformationOperation) MarshalNDRResponse(ctx context.Context
 	}
 	// BufferType {out} (1:{alias=PNETSETUP_JOIN_STATUS}*(1))(2:{alias=NETSETUP_JOIN_STATUS}(enum))
 	{
-		if err := w.WriteData(uint16(o.BufferType)); err != nil {
+		if err := w.WriteEnum(uint16(o.BufferType)); err != nil {
 			return err
 		}
 	}
@@ -9689,7 +9719,7 @@ func (o *xxx_GetJoinInformationOperation) UnmarshalNDRResponse(ctx context.Conte
 	}
 	// BufferType {out} (1:{alias=PNETSETUP_JOIN_STATUS,pointer=ref}*(1))(2:{alias=NETSETUP_JOIN_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.BufferType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.BufferType)); err != nil {
 			return err
 		}
 	}
@@ -10935,7 +10965,7 @@ func (o *xxx_ValidateName2Operation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// NameType {in} (1:{alias=NETSETUP_NAME_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.NameType)); err != nil {
+		if err := w.WriteEnum(uint16(o.NameType)); err != nil {
 			return err
 		}
 	}
@@ -11002,7 +11032,7 @@ func (o *xxx_ValidateName2Operation) UnmarshalNDRRequest(ctx context.Context, w 
 	}
 	// NameType {in} (1:{alias=NETSETUP_NAME_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.NameType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.NameType)); err != nil {
 			return err
 		}
 	}
@@ -12598,7 +12628,7 @@ func (o *xxx_EnumerateComputerNamesOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// NameType {in} (1:{alias=NET_COMPUTER_NAME_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.NameType)); err != nil {
+		if err := w.WriteEnum(uint16(o.NameType)); err != nil {
 			return err
 		}
 	}
@@ -12631,7 +12661,7 @@ func (o *xxx_EnumerateComputerNamesOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// NameType {in} (1:{alias=NET_COMPUTER_NAME_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.NameType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.NameType)); err != nil {
 			return err
 		}
 	}

@@ -1360,7 +1360,7 @@ func (o *xxx_CreateVolumeOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// type {in} (1:{alias=VDS_VOLUME_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Type)); err != nil {
+		if err := w.WriteEnum(uint16(o.Type)); err != nil {
 			return err
 		}
 	}
@@ -1424,7 +1424,7 @@ func (o *xxx_CreateVolumeOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// type {in} (1:{alias=VDS_VOLUME_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 			return err
 		}
 	}
@@ -1725,7 +1725,7 @@ func (o *xxx_AddDiskOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// PartitionStyle {in} (1:{alias=VDS_PARTITION_STYLE}(enum))
 	{
-		if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+		if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 			return err
 		}
 	}
@@ -1762,7 +1762,7 @@ func (o *xxx_AddDiskOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// PartitionStyle {in} (1:{alias=VDS_PARTITION_STYLE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 			return err
 		}
 	}

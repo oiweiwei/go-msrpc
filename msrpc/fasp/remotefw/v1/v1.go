@@ -4355,13 +4355,13 @@ func (o *xxx_OpenPolicyStoreOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// StoreType {in} (1:{range=(1,11), alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.StoreType)); err != nil {
+		if err := w.WriteEnum(uint16(o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// AccessRight {in} (1:{range=(1,2), alias=FW_POLICY_ACCESS_RIGHT}(enum))
 	{
-		if err := w.WriteData(uint16(o.AccessRight)); err != nil {
+		if err := w.WriteEnum(uint16(o.AccessRight)); err != nil {
 			return err
 		}
 	}
@@ -4383,13 +4383,13 @@ func (o *xxx_OpenPolicyStoreOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// StoreType {in} (1:{range=(1,11), alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.StoreType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// AccessRight {in} (1:{range=(1,2), alias=FW_POLICY_ACCESS_RIGHT}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.AccessRight)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.AccessRight)); err != nil {
 			return err
 		}
 	}
@@ -4895,13 +4895,13 @@ func (o *xxx_GetGlobalConfigOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// StoreType {in} (1:{alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.StoreType)); err != nil {
+		if err := w.WriteEnum(uint16(o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// configID {in} (1:{range=(1,17), alias=FW_GLOBAL_CONFIG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ConfigID)); err != nil {
+		if err := w.WriteEnum(uint16(o.ConfigID)); err != nil {
 			return err
 		}
 	}
@@ -4986,13 +4986,13 @@ func (o *xxx_GetGlobalConfigOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// StoreType {in} (1:{alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.StoreType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// configID {in} (1:{range=(1,17), alias=FW_GLOBAL_CONFIG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ConfigID)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ConfigID)); err != nil {
 			return err
 		}
 	}
@@ -5366,13 +5366,13 @@ func (o *xxx_SetGlobalConfigOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// StoreType {in} (1:{alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.StoreType)); err != nil {
+		if err := w.WriteEnum(uint16(o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// configID {in} (1:{range=(1,17), alias=FW_GLOBAL_CONFIG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ConfigID)); err != nil {
+		if err := w.WriteEnum(uint16(o.ConfigID)); err != nil {
 			return err
 		}
 	}
@@ -5433,13 +5433,13 @@ func (o *xxx_SetGlobalConfigOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// StoreType {in} (1:{alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.StoreType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// configID {in} (1:{range=(1,17), alias=FW_GLOBAL_CONFIG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ConfigID)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ConfigID)); err != nil {
 			return err
 		}
 	}
@@ -6635,13 +6635,13 @@ func (o *xxx_GetConfigOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// configID {in} (1:{range=(1,18), alias=FW_PROFILE_CONFIG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ConfigID)); err != nil {
+		if err := w.WriteEnum(uint16(o.ConfigID)); err != nil {
 			return err
 		}
 	}
 	// Profile {in} (1:{v1_enum, alias=FW_PROFILE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint32(o.Profile)); err != nil {
+		if err := w.WriteEnum(uint32(o.Profile)); err != nil {
 			return err
 		}
 	}
@@ -6729,13 +6729,13 @@ func (o *xxx_GetConfigOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// configID {in} (1:{range=(1,18), alias=FW_PROFILE_CONFIG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ConfigID)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ConfigID)); err != nil {
 			return err
 		}
 	}
 	// Profile {in} (1:{v1_enum, alias=FW_PROFILE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Profile)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Profile)); err != nil {
 			return err
 		}
 	}
@@ -7113,13 +7113,13 @@ func (o *xxx_SetConfigOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// configID {in} (1:{range=(1,18), alias=FW_PROFILE_CONFIG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ConfigID)); err != nil {
+		if err := w.WriteEnum(uint16(o.ConfigID)); err != nil {
 			return err
 		}
 	}
 	// Profile {in} (1:{v1_enum, alias=FW_PROFILE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint32(o.Profile)); err != nil {
+		if err := w.WriteEnum(uint32(o.Profile)); err != nil {
 			return err
 		}
 	}
@@ -7160,13 +7160,13 @@ func (o *xxx_SetConfigOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// configID {in} (1:{range=(1,18), alias=FW_PROFILE_CONFIG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ConfigID)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ConfigID)); err != nil {
 			return err
 		}
 	}
 	// Profile {in} (1:{v1_enum, alias=FW_PROFILE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Profile)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Profile)); err != nil {
 			return err
 		}
 	}
@@ -8690,7 +8690,7 @@ func (o *xxx_DeleteAuthenticationSetOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -8715,7 +8715,7 @@ func (o *xxx_DeleteAuthenticationSetOperation) UnmarshalNDRRequest(ctx context.C
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -8878,7 +8878,7 @@ func (o *xxx_DeleteAllAuthenticationSetsOperation) MarshalNDRRequest(ctx context
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -8897,7 +8897,7 @@ func (o *xxx_DeleteAllAuthenticationSetsOperation) UnmarshalNDRRequest(ctx conte
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -9053,7 +9053,7 @@ func (o *xxx_EnumAuthenticationSetsOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -9084,7 +9084,7 @@ func (o *xxx_EnumAuthenticationSetsOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -9692,7 +9692,7 @@ func (o *xxx_DeleteCryptoSetOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -9717,7 +9717,7 @@ func (o *xxx_DeleteCryptoSetOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -9880,7 +9880,7 @@ func (o *xxx_DeleteAllCryptoSetsOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -9899,7 +9899,7 @@ func (o *xxx_DeleteAllCryptoSetsOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -10053,7 +10053,7 @@ func (o *xxx_EnumCryptoSetsOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -10084,7 +10084,7 @@ func (o *xxx_EnumCryptoSetsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -11658,7 +11658,7 @@ func (o *xxx_AddMainModeRuleOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -11674,7 +11674,7 @@ func (o *xxx_AddMainModeRuleOperation) MarshalNDRResponse(ctx context.Context, w
 func (o *xxx_AddMainModeRuleOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -11858,7 +11858,7 @@ func (o *xxx_SetMainModeRuleOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -11874,7 +11874,7 @@ func (o *xxx_SetMainModeRuleOperation) MarshalNDRResponse(ctx context.Context, w
 func (o *xxx_SetMainModeRuleOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -13414,7 +13414,7 @@ func (o *xxx_QueryAuthenticationSetsOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// IPsecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -13454,7 +13454,7 @@ func (o *xxx_QueryAuthenticationSetsOperation) UnmarshalNDRRequest(ctx context.C
 	}
 	// IPsecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -13706,7 +13706,7 @@ func (o *xxx_QueryCryptoSetsOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// IPsecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -13746,7 +13746,7 @@ func (o *xxx_QueryCryptoSetsOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// IPsecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -14511,13 +14511,13 @@ func (o *xxx_GetGlobalConfig210Operation) MarshalNDRRequest(ctx context.Context,
 	}
 	// StoreType {in} (1:{alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.StoreType)); err != nil {
+		if err := w.WriteEnum(uint16(o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// configID {in} (1:{range=(1,17), alias=FW_GLOBAL_CONFIG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ConfigID)); err != nil {
+		if err := w.WriteEnum(uint16(o.ConfigID)); err != nil {
 			return err
 		}
 	}
@@ -14602,13 +14602,13 @@ func (o *xxx_GetGlobalConfig210Operation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// StoreType {in} (1:{alias=FW_STORE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.StoreType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.StoreType)); err != nil {
 			return err
 		}
 	}
 	// configID {in} (1:{range=(1,17), alias=FW_GLOBAL_CONFIG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ConfigID)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ConfigID)); err != nil {
 			return err
 		}
 	}
@@ -14753,7 +14753,7 @@ func (o *xxx_GetGlobalConfig210Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pOrigin {out} (1:{pointer=ref}*(1))(2:{alias=FW_RULE_ORIGIN_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Origin)); err != nil {
+		if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 			return err
 		}
 	}
@@ -14820,7 +14820,7 @@ func (o *xxx_GetGlobalConfig210Operation) UnmarshalNDRResponse(ctx context.Conte
 	}
 	// pOrigin {out} (1:{pointer=ref}*(1))(2:{alias=FW_RULE_ORIGIN_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 			return err
 		}
 	}
@@ -15008,13 +15008,13 @@ func (o *xxx_GetConfig210Operation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// configID {in} (1:{range=(1,18), alias=FW_PROFILE_CONFIG}(enum))
 	{
-		if err := w.WriteData(uint16(o.ConfigID)); err != nil {
+		if err := w.WriteEnum(uint16(o.ConfigID)); err != nil {
 			return err
 		}
 	}
 	// Profile {in} (1:{v1_enum, alias=FW_PROFILE_TYPE}(enum))
 	{
-		if err := w.WriteData(uint32(o.Profile)); err != nil {
+		if err := w.WriteEnum(uint32(o.Profile)); err != nil {
 			return err
 		}
 	}
@@ -15102,13 +15102,13 @@ func (o *xxx_GetConfig210Operation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// configID {in} (1:{range=(1,18), alias=FW_PROFILE_CONFIG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ConfigID)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ConfigID)); err != nil {
 			return err
 		}
 	}
 	// Profile {in} (1:{v1_enum, alias=FW_PROFILE_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Profile)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Profile)); err != nil {
 			return err
 		}
 	}
@@ -15253,7 +15253,7 @@ func (o *xxx_GetConfig210Operation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// pOrigin {out} (1:{pointer=ref}*(1))(2:{alias=FW_RULE_ORIGIN_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Origin)); err != nil {
+		if err := w.WriteEnum(uint16(o.Origin)); err != nil {
 			return err
 		}
 	}
@@ -15320,7 +15320,7 @@ func (o *xxx_GetConfig210Operation) UnmarshalNDRResponse(ctx context.Context, w 
 	}
 	// pOrigin {out} (1:{pointer=ref}*(1))(2:{alias=FW_RULE_ORIGIN_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Origin)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Origin)); err != nil {
 			return err
 		}
 	}
@@ -15552,7 +15552,7 @@ func (o *xxx_AddFirewallRule210Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -15568,7 +15568,7 @@ func (o *xxx_AddFirewallRule210Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -15757,7 +15757,7 @@ func (o *xxx_SetFirewallRule210Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -15773,7 +15773,7 @@ func (o *xxx_SetFirewallRule210Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -16244,7 +16244,7 @@ func (o *xxx_AddConnectionSecurityRule210Operation) MarshalNDRResponse(ctx conte
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -16260,7 +16260,7 @@ func (o *xxx_AddConnectionSecurityRule210Operation) MarshalNDRResponse(ctx conte
 func (o *xxx_AddConnectionSecurityRule210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -16449,7 +16449,7 @@ func (o *xxx_SetConnectionSecurityRule210Operation) MarshalNDRResponse(ctx conte
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -16465,7 +16465,7 @@ func (o *xxx_SetConnectionSecurityRule210Operation) MarshalNDRResponse(ctx conte
 func (o *xxx_SetConnectionSecurityRule210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -16936,7 +16936,7 @@ func (o *xxx_AddAuthenticationSet210Operation) MarshalNDRResponse(ctx context.Co
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -16952,7 +16952,7 @@ func (o *xxx_AddAuthenticationSet210Operation) MarshalNDRResponse(ctx context.Co
 func (o *xxx_AddAuthenticationSet210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17138,7 +17138,7 @@ func (o *xxx_SetAuthenticationSet210Operation) MarshalNDRResponse(ctx context.Co
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17154,7 +17154,7 @@ func (o *xxx_SetAuthenticationSet210Operation) MarshalNDRResponse(ctx context.Co
 func (o *xxx_SetAuthenticationSet210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17290,7 +17290,7 @@ func (o *xxx_EnumAuthenticationSets210Operation) MarshalNDRRequest(ctx context.C
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -17321,7 +17321,7 @@ func (o *xxx_EnumAuthenticationSets210Operation) UnmarshalNDRRequest(ctx context
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -17621,7 +17621,7 @@ func (o *xxx_AddCryptoSet210Operation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17637,7 +17637,7 @@ func (o *xxx_AddCryptoSet210Operation) MarshalNDRResponse(ctx context.Context, w
 func (o *xxx_AddCryptoSet210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17821,7 +17821,7 @@ func (o *xxx_SetCryptoSet210Operation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17837,7 +17837,7 @@ func (o *xxx_SetCryptoSet210Operation) MarshalNDRResponse(ctx context.Context, w
 func (o *xxx_SetCryptoSet210Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -17973,7 +17973,7 @@ func (o *xxx_EnumCryptoSets210Operation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -18004,7 +18004,7 @@ func (o *xxx_EnumCryptoSets210Operation) UnmarshalNDRRequest(ctx context.Context
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -18306,7 +18306,7 @@ func (o *xxx_AddConnectionSecurityRule220Operation) MarshalNDRResponse(ctx conte
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -18322,7 +18322,7 @@ func (o *xxx_AddConnectionSecurityRule220Operation) MarshalNDRResponse(ctx conte
 func (o *xxx_AddConnectionSecurityRule220Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -18511,7 +18511,7 @@ func (o *xxx_SetConnectionSecurityRule220Operation) MarshalNDRResponse(ctx conte
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -18527,7 +18527,7 @@ func (o *xxx_SetConnectionSecurityRule220Operation) MarshalNDRResponse(ctx conte
 func (o *xxx_SetConnectionSecurityRule220Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -19271,7 +19271,7 @@ func (o *xxx_AddAuthenticationSet220Operation) MarshalNDRResponse(ctx context.Co
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -19287,7 +19287,7 @@ func (o *xxx_AddAuthenticationSet220Operation) MarshalNDRResponse(ctx context.Co
 func (o *xxx_AddAuthenticationSet220Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -19473,7 +19473,7 @@ func (o *xxx_SetAuthenticationSet220Operation) MarshalNDRResponse(ctx context.Co
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -19489,7 +19489,7 @@ func (o *xxx_SetAuthenticationSet220Operation) MarshalNDRResponse(ctx context.Co
 func (o *xxx_SetAuthenticationSet220Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -19625,7 +19625,7 @@ func (o *xxx_EnumAuthenticationSets220Operation) MarshalNDRRequest(ctx context.C
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -19656,7 +19656,7 @@ func (o *xxx_EnumAuthenticationSets220Operation) UnmarshalNDRRequest(ctx context
 	}
 	// IpSecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -19906,7 +19906,7 @@ func (o *xxx_QueryAuthenticationSets220Operation) MarshalNDRRequest(ctx context.
 	}
 	// IPsecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.WriteData(uint16(o.IPsecPhase)); err != nil {
+		if err := w.WriteEnum(uint16(o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -19946,7 +19946,7 @@ func (o *xxx_QueryAuthenticationSets220Operation) UnmarshalNDRRequest(ctx contex
 	}
 	// IPsecPhase {in} (1:{range=(1,2), alias=FW_IPSEC_PHASE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.IPsecPhase)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.IPsecPhase)); err != nil {
 			return err
 		}
 	}
@@ -20248,7 +20248,7 @@ func (o *xxx_AddFirewallRule220Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -20264,7 +20264,7 @@ func (o *xxx_AddFirewallRule220Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule220Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -20453,7 +20453,7 @@ func (o *xxx_SetFirewallRule220Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -20469,7 +20469,7 @@ func (o *xxx_SetFirewallRule220Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule220Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -21213,7 +21213,7 @@ func (o *xxx_AddFirewallRule224Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -21229,7 +21229,7 @@ func (o *xxx_AddFirewallRule224Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule224Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -21418,7 +21418,7 @@ func (o *xxx_SetFirewallRule224Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -21434,7 +21434,7 @@ func (o *xxx_SetFirewallRule224Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule224Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -22183,7 +22183,7 @@ func (o *xxx_AddFirewallRule225Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -22199,7 +22199,7 @@ func (o *xxx_AddFirewallRule225Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule225Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -22389,7 +22389,7 @@ func (o *xxx_SetFirewallRule225Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -22405,7 +22405,7 @@ func (o *xxx_SetFirewallRule225Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule225Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -23155,7 +23155,7 @@ func (o *xxx_AddFirewallRule226Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -23171,7 +23171,7 @@ func (o *xxx_AddFirewallRule226Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule226Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -23360,7 +23360,7 @@ func (o *xxx_SetFirewallRule226Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -23376,7 +23376,7 @@ func (o *xxx_SetFirewallRule226Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule226Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -24125,7 +24125,7 @@ func (o *xxx_AddFirewallRule227Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -24141,7 +24141,7 @@ func (o *xxx_AddFirewallRule227Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule227Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -24331,7 +24331,7 @@ func (o *xxx_SetFirewallRule227Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -24347,7 +24347,7 @@ func (o *xxx_SetFirewallRule227Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule227Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -25097,7 +25097,7 @@ func (o *xxx_AddFirewallRule231Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -25113,7 +25113,7 @@ func (o *xxx_AddFirewallRule231Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_AddFirewallRule231Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}
@@ -25303,7 +25303,7 @@ func (o *xxx_SetFirewallRule231Operation) MarshalNDRResponse(ctx context.Context
 	}
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.WriteData(uint32(o.Status)); err != nil {
+		if err := w.WriteEnum(uint32(o.Status)); err != nil {
 			return err
 		}
 	}
@@ -25319,7 +25319,7 @@ func (o *xxx_SetFirewallRule231Operation) MarshalNDRResponse(ctx context.Context
 func (o *xxx_SetFirewallRule231Operation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
 	// pStatus {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=FW_RULE_STATUS}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Status)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Status)); err != nil {
 			return err
 		}
 	}

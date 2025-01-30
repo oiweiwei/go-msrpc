@@ -706,13 +706,13 @@ func (o *xxx_CommitAndUpdateDerivedOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// commitOptions {in} (1:{alias=FsrmCommitOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.CommitOptions)); err != nil {
+		if err := w.WriteEnum(uint16(o.CommitOptions)); err != nil {
 			return err
 		}
 	}
 	// applyOptions {in} (1:{alias=FsrmTemplateApplyOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.ApplyOptions)); err != nil {
+		if err := w.WriteEnum(uint16(o.ApplyOptions)); err != nil {
 			return err
 		}
 	}
@@ -734,13 +734,13 @@ func (o *xxx_CommitAndUpdateDerivedOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// commitOptions {in} (1:{alias=FsrmCommitOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.CommitOptions)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.CommitOptions)); err != nil {
 			return err
 		}
 	}
 	// applyOptions {in} (1:{alias=FsrmTemplateApplyOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ApplyOptions)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ApplyOptions)); err != nil {
 			return err
 		}
 	}

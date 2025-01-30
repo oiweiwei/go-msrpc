@@ -1038,7 +1038,7 @@ func (o *xxx_GetTypeInfoTypeOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pTKind {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=TYPEKIND}(enum))
 	{
-		if err := w.WriteData(uint32(o.Kind)); err != nil {
+		if err := w.WriteEnum(uint32(o.Kind)); err != nil {
 			return err
 		}
 	}
@@ -1066,7 +1066,7 @@ func (o *xxx_GetTypeInfoTypeOperation) UnmarshalNDRResponse(ctx context.Context,
 	}
 	// pTKind {out} (1:{pointer=ref}*(1))(2:{v1_enum, alias=TYPEKIND}(enum))
 	{
-		if err := w.ReadData((*uint32)(&o.Kind)); err != nil {
+		if err := w.ReadEnum((*uint32)(&o.Kind)); err != nil {
 			return err
 		}
 	}

@@ -735,7 +735,7 @@ func (o *RefreshedObject) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RequestID); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint32(o.BlobType)); err != nil {
+	if err := w.WriteEnum(uint32(o.BlobType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.BlobLength); err != nil {
@@ -783,7 +783,7 @@ func (o *RefreshedObject) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.RequestID); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint32)(&o.BlobType)); err != nil {
+	if err := w.ReadEnum((*uint32)(&o.BlobType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.BlobLength); err != nil {
@@ -1113,6 +1113,9 @@ func (o *RefreshInfoUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 	if err := w.WriteSwitch(int32(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	switch sw {
 	case int32(3):
 		_o, _ := o.Value.(*RefreshInfoUnion_Remote)
@@ -1155,6 +1158,9 @@ func (o *RefreshInfoUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 
 func (o *RefreshInfoUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int32) error {
 	if err := w.ReadSwitch((*int32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
 		return err
 	}
 	switch sw {

@@ -340,7 +340,7 @@ func (o *xxx_GetCapabilitiesOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// capabilities {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmStorageModuleCaps}(enum))
 	{
-		if err := w.WriteData(uint16(o.Capabilities)); err != nil {
+		if err := w.WriteEnum(uint16(o.Capabilities)); err != nil {
 			return err
 		}
 	}
@@ -368,7 +368,7 @@ func (o *xxx_GetCapabilitiesOperation) UnmarshalNDRResponse(ctx context.Context,
 	}
 	// capabilities {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmStorageModuleCaps}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Capabilities)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Capabilities)); err != nil {
 			return err
 		}
 	}
@@ -498,7 +498,7 @@ func (o *xxx_SetCapabilitiesOperation) MarshalNDRRequest(ctx context.Context, w 
 	}
 	// capabilities {in} (1:{alias=FsrmStorageModuleCaps}(enum))
 	{
-		if err := w.WriteData(uint16(o.Capabilities)); err != nil {
+		if err := w.WriteEnum(uint16(o.Capabilities)); err != nil {
 			return err
 		}
 	}
@@ -520,7 +520,7 @@ func (o *xxx_SetCapabilitiesOperation) UnmarshalNDRRequest(ctx context.Context, 
 	}
 	// capabilities {in} (1:{alias=FsrmStorageModuleCaps}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Capabilities)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Capabilities)); err != nil {
 			return err
 		}
 	}
@@ -750,7 +750,7 @@ func (o *xxx_GetStorageTypeOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// storageType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmStorageModuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.StorageType)); err != nil {
+		if err := w.WriteEnum(uint16(o.StorageType)); err != nil {
 			return err
 		}
 	}
@@ -778,7 +778,7 @@ func (o *xxx_GetStorageTypeOperation) UnmarshalNDRResponse(ctx context.Context, 
 	}
 	// storageType {out, retval} (1:{pointer=ref}*(1))(2:{alias=FsrmStorageModuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.StorageType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.StorageType)); err != nil {
 			return err
 		}
 	}
@@ -908,7 +908,7 @@ func (o *xxx_SetStorageTypeOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// storageType {in} (1:{alias=FsrmStorageModuleType}(enum))
 	{
-		if err := w.WriteData(uint16(o.StorageType)); err != nil {
+		if err := w.WriteEnum(uint16(o.StorageType)); err != nil {
 			return err
 		}
 	}
@@ -930,7 +930,7 @@ func (o *xxx_SetStorageTypeOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// storageType {in} (1:{alias=FsrmStorageModuleType}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.StorageType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.StorageType)); err != nil {
 			return err
 		}
 	}

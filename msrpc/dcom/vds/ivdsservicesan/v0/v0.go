@@ -256,7 +256,7 @@ func (o *xxx_GetSANPolicyOperation) MarshalNDRResponse(ctx context.Context, w nd
 	}
 	// pSanPolicy {out} (1:{pointer=ref}*(1))(2:{alias=VDS_SAN_POLICY}(enum))
 	{
-		if err := w.WriteData(uint16(o.SANPolicy)); err != nil {
+		if err := w.WriteEnum(uint16(o.SANPolicy)); err != nil {
 			return err
 		}
 	}
@@ -284,7 +284,7 @@ func (o *xxx_GetSANPolicyOperation) UnmarshalNDRResponse(ctx context.Context, w 
 	}
 	// pSanPolicy {out} (1:{pointer=ref}*(1))(2:{alias=VDS_SAN_POLICY}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SANPolicy)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SANPolicy)); err != nil {
 			return err
 		}
 	}
@@ -415,7 +415,7 @@ func (o *xxx_SetSANPolicyOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// SanPolicy {in} (1:{alias=VDS_SAN_POLICY}(enum))
 	{
-		if err := w.WriteData(uint16(o.SANPolicy)); err != nil {
+		if err := w.WriteEnum(uint16(o.SANPolicy)); err != nil {
 			return err
 		}
 	}
@@ -437,7 +437,7 @@ func (o *xxx_SetSANPolicyOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// SanPolicy {in} (1:{alias=VDS_SAN_POLICY}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.SANPolicy)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.SANPolicy)); err != nil {
 			return err
 		}
 	}

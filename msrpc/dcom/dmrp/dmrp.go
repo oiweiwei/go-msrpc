@@ -890,13 +890,13 @@ func (o *VolumeSpec) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteAlign(8); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Layout)); err != nil {
+	if err := w.WriteEnum(uint16(o.Layout)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionType)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Length); err != nil {
@@ -911,13 +911,13 @@ func (o *VolumeSpec) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Layout)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Layout)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Length); err != nil {
@@ -1008,10 +1008,10 @@ func (o *VolumeInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ID); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Layout)); err != nil {
+	if err := w.WriteEnum(uint16(o.Layout)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Length); err != nil {
@@ -1023,7 +1023,7 @@ func (o *VolumeInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MemberCount); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.LastKnownState); err != nil {
@@ -1044,10 +1044,10 @@ func (o *VolumeInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ID); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Layout)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Layout)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Length); err != nil {
@@ -1059,7 +1059,7 @@ func (o *VolumeInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.MemberCount); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.LastKnownState); err != nil {
@@ -1879,7 +1879,7 @@ func (o *RegionSpec) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RegionID); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.RegionType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RegionType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.DiskID); err != nil {
@@ -1903,7 +1903,7 @@ func (o *RegionSpec) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.RegionID); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.RegionType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RegionType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.DiskID); err != nil {
@@ -2049,7 +2049,7 @@ func (o *RegionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Length); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.RegionType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RegionType)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.PartitionType); err != nil {
@@ -2058,7 +2058,7 @@ func (o *RegionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.IsActive); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.LastKnownState); err != nil {
@@ -2097,7 +2097,7 @@ func (o *RegionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Length); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.RegionType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RegionType)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.PartitionType); err != nil {
@@ -2106,7 +2106,7 @@ func (o *RegionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.IsActive); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.LastKnownState); err != nil {
@@ -2778,10 +2778,10 @@ func (o *TaskInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.PercentComplete); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Type)); err != nil {
+	if err := w.WriteEnum(uint16(o.Type)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Error); err != nil {
@@ -2811,10 +2811,10 @@ func (o *TaskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.PercentComplete); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Type)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Type)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Error); err != nil {
@@ -3007,7 +3007,7 @@ func (o *MergeObjectInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.Layout)); err != nil {
+	if err := w.WriteEnum(uint16(o.Layout)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.Length); err != nil {
@@ -3025,7 +3025,7 @@ func (o *MergeObjectInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Layout)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Layout)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Length); err != nil {
@@ -3345,7 +3345,7 @@ func (o *DiskInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MaySwitchStyle); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 		return err
 	}
 	_swDiskInfoEx := uint16(o.PartitionStyle)
@@ -3660,7 +3660,7 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.MaySwitchStyle); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 		return err
 	}
 	if o.DiskInfoEx == nil {
@@ -3941,6 +3941,9 @@ func (o *DiskInfoEx_DiskInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*DiskInfoEx_MBR)
@@ -3970,7 +3973,10 @@ func (o *DiskInfoEx_DiskInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.Write
 }
 
 func (o *DiskInfoEx_DiskInfoEx) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(4); err != nil {
 		return err
 	}
 	switch sw {
@@ -4234,10 +4240,10 @@ func (o *RegionInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Length); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.RegionType)); err != nil {
+	if err := w.WriteEnum(uint16(o.RegionType)); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.PartitionStyle)); err != nil {
+	if err := w.WriteEnum(uint16(o.PartitionStyle)); err != nil {
 		return err
 	}
 	_swRegionInfoEx := uint16(o.PartitionStyle)
@@ -4250,7 +4256,7 @@ func (o *RegionInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.Status)); err != nil {
+	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.LastKnownState); err != nil {
@@ -4329,10 +4335,10 @@ func (o *RegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Length); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.RegionType)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.RegionType)); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.PartitionStyle)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.PartitionStyle)); err != nil {
 		return err
 	}
 	if o.RegionInfoEx == nil {
@@ -4342,7 +4348,7 @@ func (o *RegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.RegionInfoEx.UnmarshalUnionNDR(ctx, w, _swRegionInfoEx); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.Status)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.LastKnownState); err != nil {
@@ -4445,6 +4451,9 @@ func (o *RegionInfoEx_RegionInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.W
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	switch sw {
 	case uint16(1):
 		_o, _ := o.Value.(*RegionInfoEx_MBR)
@@ -4474,7 +4483,10 @@ func (o *RegionInfoEx_RegionInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.W
 }
 
 func (o *RegionInfoEx_RegionInfoEx) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(8); err != nil {
 		return err
 	}
 	switch sw {

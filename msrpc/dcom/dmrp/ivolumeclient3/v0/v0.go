@@ -3604,7 +3604,7 @@ func (o *xxx_InitializeDiskStyleOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// style {in} (1:{alias=PARTITIONSTYLE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Style)); err != nil {
+		if err := w.WriteEnum(uint16(o.Style)); err != nil {
 			return err
 		}
 	}
@@ -3638,7 +3638,7 @@ func (o *xxx_InitializeDiskStyleOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// style {in} (1:{alias=PARTITIONSTYLE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Style)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Style)); err != nil {
 			return err
 		}
 	}
@@ -12814,7 +12814,7 @@ func (o *xxx_InitializeDiskExOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// style {in} (1:{alias=PARTITIONSTYLE}(enum))
 	{
-		if err := w.WriteData(uint16(o.Style)); err != nil {
+		if err := w.WriteEnum(uint16(o.Style)); err != nil {
 			return err
 		}
 	}
@@ -12848,7 +12848,7 @@ func (o *xxx_InitializeDiskExOperation) UnmarshalNDRRequest(ctx context.Context,
 	}
 	// style {in} (1:{alias=PARTITIONSTYLE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Style)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Style)); err != nil {
 			return err
 		}
 	}

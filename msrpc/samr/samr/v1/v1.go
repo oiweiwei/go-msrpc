@@ -5292,7 +5292,7 @@ func (o *DomainStateInformation) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteAlign(2); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.DomainServerState)); err != nil {
+	if err := w.WriteEnum(uint16(o.DomainServerState)); err != nil {
 		return err
 	}
 	return nil
@@ -5301,7 +5301,7 @@ func (o *DomainStateInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.DomainServerState)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DomainServerState)); err != nil {
 		return err
 	}
 	return nil
@@ -5486,7 +5486,7 @@ func (o *DomainServerRoleInformation) MarshalNDR(ctx context.Context, w ndr.Writ
 	if err := w.WriteAlign(2); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.DomainServerRole)); err != nil {
+	if err := w.WriteEnum(uint16(o.DomainServerRole)); err != nil {
 		return err
 	}
 	return nil
@@ -5495,7 +5495,7 @@ func (o *DomainServerRoleInformation) UnmarshalNDR(ctx context.Context, w ndr.Re
 	if err := w.ReadAlign(2); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.DomainServerRole)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.DomainServerRole)); err != nil {
 		return err
 	}
 	return nil
@@ -6472,7 +6472,7 @@ func (o *DomainInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 }
 
 func (o *DomainInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8076,7 +8076,7 @@ func (o *DisplayInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *DisplayInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8665,7 +8665,7 @@ func (o *GroupInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 }
 
 func (o *GroupInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -9164,7 +9164,7 @@ func (o *AliasInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw 
 }
 
 func (o *AliasInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -12327,7 +12327,7 @@ func (o *UserInfoBuffer) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw u
 }
 
 func (o *UserInfoBuffer) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -13610,7 +13610,7 @@ func (o *SAMValidateStandardOutputArg) MarshalNDR(ctx context.Context, w ndr.Wri
 			return err
 		}
 	}
-	if err := w.WriteData(uint16(o.ValidationStatus)); err != nil {
+	if err := w.WriteEnum(uint16(o.ValidationStatus)); err != nil {
 		return err
 	}
 	return nil
@@ -13625,7 +13625,7 @@ func (o *SAMValidateStandardOutputArg) UnmarshalNDR(ctx context.Context, w ndr.R
 	if err := o.ChangedPersistedFields.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.ValidationStatus)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.ValidationStatus)); err != nil {
 		return err
 	}
 	return nil
@@ -14024,7 +14024,7 @@ func (o *SAMValidateInputArg) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 }
 
 func (o *SAMValidateInputArg) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -14247,7 +14247,7 @@ func (o *SAMValidateOutputArg) MarshalUnionNDR(ctx context.Context, w ndr.Writer
 }
 
 func (o *SAMValidateOutputArg) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
-	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
+	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -16832,7 +16832,7 @@ func (o *xxx_QueryInformationDomainOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// DomainInformationClass {in} (1:{alias=DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.DomainInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DomainInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -16851,7 +16851,7 @@ func (o *xxx_QueryInformationDomainOperation) UnmarshalNDRRequest(ctx context.Co
 	}
 	// DomainInformationClass {in} (1:{alias=DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DomainInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DomainInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -17050,7 +17050,7 @@ func (o *xxx_SetInformationDomainOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// DomainInformationClass {in} (1:{alias=DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.DomainInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DomainInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -17085,7 +17085,7 @@ func (o *xxx_SetInformationDomainOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// DomainInformationClass {in} (1:{alias=DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DomainInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DomainInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20012,7 +20012,7 @@ func (o *xxx_QueryInformationGroupOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// GroupInformationClass {in} (1:{alias=GROUP_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.GroupInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.GroupInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20031,7 +20031,7 @@ func (o *xxx_QueryInformationGroupOperation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// GroupInformationClass {in} (1:{alias=GROUP_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.GroupInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.GroupInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20237,7 +20237,7 @@ func (o *xxx_SetInformationGroupOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// GroupInformationClass {in} (1:{alias=GROUP_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.GroupInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.GroupInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -20272,7 +20272,7 @@ func (o *xxx_SetInformationGroupOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// GroupInformationClass {in} (1:{alias=GROUP_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.GroupInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.GroupInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -21604,7 +21604,7 @@ func (o *xxx_QueryInformationAliasOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// AliasInformationClass {in} (1:{alias=ALIAS_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.AliasInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.AliasInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -21623,7 +21623,7 @@ func (o *xxx_QueryInformationAliasOperation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// AliasInformationClass {in} (1:{alias=ALIAS_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.AliasInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.AliasInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -21829,7 +21829,7 @@ func (o *xxx_SetInformationAliasOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// AliasInformationClass {in} (1:{alias=ALIAS_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.AliasInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.AliasInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -21864,7 +21864,7 @@ func (o *xxx_SetInformationAliasOperation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// AliasInformationClass {in} (1:{alias=ALIAS_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.AliasInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.AliasInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -23170,7 +23170,7 @@ func (o *xxx_QueryInformationUserOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.UserInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -23189,7 +23189,7 @@ func (o *xxx_QueryInformationUserOperation) UnmarshalNDRRequest(ctx context.Cont
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.UserInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -23386,7 +23386,7 @@ func (o *xxx_SetInformationUserOperation) MarshalNDRRequest(ctx context.Context,
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.UserInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -23421,7 +23421,7 @@ func (o *xxx_SetInformationUserOperation) UnmarshalNDRRequest(ctx context.Contex
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.UserInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -24342,7 +24342,7 @@ func (o *xxx_QueryDisplayInformationOperation) MarshalNDRRequest(ctx context.Con
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.WriteData(uint16(o.DisplayInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -24379,7 +24379,7 @@ func (o *xxx_QueryDisplayInformationOperation) UnmarshalNDRRequest(ctx context.C
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DisplayInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -24617,7 +24617,7 @@ func (o *xxx_GetDisplayEnumerationIndexOperation) MarshalNDRRequest(ctx context.
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.WriteData(uint16(o.DisplayInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -24651,7 +24651,7 @@ func (o *xxx_GetDisplayEnumerationIndexOperation) UnmarshalNDRRequest(ctx contex
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DisplayInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25193,7 +25193,7 @@ func (o *xxx_QueryInformationDomain2Operation) MarshalNDRRequest(ctx context.Con
 	}
 	// DomainInformationClass {in} (1:{alias=DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.DomainInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DomainInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25212,7 +25212,7 @@ func (o *xxx_QueryInformationDomain2Operation) UnmarshalNDRRequest(ctx context.C
 	}
 	// DomainInformationClass {in} (1:{alias=DOMAIN_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DomainInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DomainInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25420,7 +25420,7 @@ func (o *xxx_QueryInformationUser2Operation) MarshalNDRRequest(ctx context.Conte
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.UserInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25439,7 +25439,7 @@ func (o *xxx_QueryInformationUser2Operation) UnmarshalNDRRequest(ctx context.Con
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.UserInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25652,7 +25652,7 @@ func (o *xxx_QueryDisplayInformation2Operation) MarshalNDRRequest(ctx context.Co
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.WriteData(uint16(o.DisplayInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25689,7 +25689,7 @@ func (o *xxx_QueryDisplayInformation2Operation) UnmarshalNDRRequest(ctx context.
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DisplayInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25927,7 +25927,7 @@ func (o *xxx_GetDisplayEnumerationIndex2Operation) MarshalNDRRequest(ctx context
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.WriteData(uint16(o.DisplayInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -25961,7 +25961,7 @@ func (o *xxx_GetDisplayEnumerationIndex2Operation) UnmarshalNDRRequest(ctx conte
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DisplayInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -26442,7 +26442,7 @@ func (o *xxx_QueryDisplayInformation3Operation) MarshalNDRRequest(ctx context.Co
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.WriteData(uint16(o.DisplayInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -26479,7 +26479,7 @@ func (o *xxx_QueryDisplayInformation3Operation) UnmarshalNDRRequest(ctx context.
 	}
 	// DisplayInformationClass {in} (1:{alias=DOMAIN_DISPLAY_INFORMATION}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.DisplayInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.DisplayInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -28267,7 +28267,7 @@ func (o *xxx_SetInformationUser2Operation) MarshalNDRRequest(ctx context.Context
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.WriteData(uint16(o.UserInformationClass)); err != nil {
+		if err := w.WriteEnum(uint16(o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -28302,7 +28302,7 @@ func (o *xxx_SetInformationUser2Operation) UnmarshalNDRRequest(ctx context.Conte
 	}
 	// UserInformationClass {in} (1:{alias=USER_INFORMATION_CLASS}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.UserInformationClass)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.UserInformationClass)); err != nil {
 			return err
 		}
 	}
@@ -29441,7 +29441,7 @@ func (o *xxx_ValidatePasswordOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// ValidationType {in} (1:{alias=PASSWORD_POLICY_VALIDATION_TYPE}(enum))
 	{
-		if err := w.WriteData(uint16(o.ValidationType)); err != nil {
+		if err := w.WriteEnum(uint16(o.ValidationType)); err != nil {
 			return err
 		}
 	}
@@ -29467,7 +29467,7 @@ func (o *xxx_ValidatePasswordOperation) MarshalNDRRequest(ctx context.Context, w
 func (o *xxx_ValidatePasswordOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
 	// ValidationType {in} (1:{alias=PASSWORD_POLICY_VALIDATION_TYPE}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.ValidationType)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.ValidationType)); err != nil {
 			return err
 		}
 	}

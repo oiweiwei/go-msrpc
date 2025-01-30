@@ -588,7 +588,7 @@ func (o *RemoteReadDesc) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ArriveTime); err != nil {
 		return err
 	}
-	if err := w.WriteData(uint16(o.AckNack)); err != nil {
+	if err := w.WriteEnum(uint16(o.AckNack)); err != nil {
 		return err
 	}
 	if o.Buffer != nil || o.Size > 0 {
@@ -671,7 +671,7 @@ func (o *RemoteReadDesc) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.ArriveTime); err != nil {
 		return err
 	}
-	if err := w.ReadData((*uint16)(&o.AckNack)); err != nil {
+	if err := w.ReadEnum((*uint16)(&o.AckNack)); err != nil {
 		return err
 	}
 	_ptr_lpBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {

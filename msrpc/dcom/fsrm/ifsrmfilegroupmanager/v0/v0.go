@@ -893,7 +893,7 @@ func (o *xxx_EnumFileGroupsOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.WriteData(uint16(o.Options)); err != nil {
+		if err := w.WriteEnum(uint16(o.Options)); err != nil {
 			return err
 		}
 	}
@@ -915,7 +915,7 @@ func (o *xxx_EnumFileGroupsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// options {in, default_value={0}} (1:{alias=FsrmEnumOptions}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Options)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Options)); err != nil {
 			return err
 		}
 	}

@@ -263,13 +263,13 @@ func (o *xxx_OpenOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// AccessMask {in} (1:{alias=VIRTUAL_DISK_ACCESS_MASK}(enum))
 	{
-		if err := w.WriteData(uint16(o.AccessMask)); err != nil {
+		if err := w.WriteEnum(uint16(o.AccessMask)); err != nil {
 			return err
 		}
 	}
 	// Flags {in} (1:{alias=OPEN_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.WriteData(uint16(o.Flags)); err != nil {
+		if err := w.WriteEnum(uint16(o.Flags)); err != nil {
 			return err
 		}
 	}
@@ -298,14 +298,14 @@ func (o *xxx_OpenOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// AccessMask {in} (1:{alias=VIRTUAL_DISK_ACCESS_MASK}(enum))
 	{
 		_eAccessMask := uint16(o.AccessMask)
-		if err := w.ReadData(&_eAccessMask); err != nil {
+		if err := w.ReadEnum(&_eAccessMask); err != nil {
 			return err
 		}
 		o.AccessMask = vds.VirtualDiskAccessMask(_eAccessMask)
 	}
 	// Flags {in} (1:{alias=OPEN_VIRTUAL_DISK_FLAG}(enum))
 	{
-		if err := w.ReadData((*uint16)(&o.Flags)); err != nil {
+		if err := w.ReadEnum((*uint16)(&o.Flags)); err != nil {
 			return err
 		}
 	}
