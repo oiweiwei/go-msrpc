@@ -205,4 +205,21 @@ type Int3264 int64
 // Uint3264 type ...
 type Uint3264 uint64
 
-type Enum any
+type EnumWrapper interface {
+	is_Enum()
+	Value() any
+}
+
+type enumWrapper struct {
+	value any
+}
+
+func (enumWrapper) is_Enum() {}
+
+func (e enumWrapper) Value() any {
+	return e.value
+}
+
+func Enum(v any) EnumWrapper {
+	return enumWrapper{v}
+}

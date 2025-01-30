@@ -205,8 +205,8 @@ func (w *ndr20) ReadSwitch(sw any) error {
 		return w.err
 	}
 
-	if _, ok := sw.(Enum); ok {
-		return w.ReadEnum(sw)
+	if enum, ok := sw.(EnumWrapper); ok {
+		return w.ReadEnum(enum.Value())
 	}
 
 	return w.ReadData(sw)
@@ -247,8 +247,8 @@ func (w *ndr20) WriteSwitch(sw any) error {
 		return w.err
 	}
 
-	if _, ok := sw.(Enum); ok {
-		return w.WriteEnum(sw)
+	if enum, ok := sw.(EnumWrapper); ok {
+		return w.WriteEnum(enum.Value())
 	}
 
 	return w.WriteData(sw)
