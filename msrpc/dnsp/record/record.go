@@ -852,6 +852,9 @@ func (o *Record_Record) NDRSwitchValue(sw uint16) uint16 {
 func (o *Record_Record) NDRLayout() {}
 
 func (o *Record_Record) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -1315,6 +1318,9 @@ func (o *Record_Record) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw ui
 }
 
 func (o *Record_Record) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}

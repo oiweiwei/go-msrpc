@@ -6664,6 +6664,9 @@ func (o *DeltaUnion) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DeltaUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -6854,6 +6857,9 @@ func (o *DeltaUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 }
 
 func (o *DeltaUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -7881,6 +7887,9 @@ func (o *DeltaIDUnion) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DeltaIDUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -7946,6 +7955,9 @@ func (o *DeltaIDUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 }
 
 func (o *DeltaIDUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -9089,6 +9101,9 @@ func (o *Level) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Level) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -9180,6 +9195,9 @@ func (o *Level) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) er
 }
 
 func (o *Level) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -11876,6 +11894,9 @@ func (o *Validation) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -11934,6 +11955,9 @@ func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint1
 }
 
 func (o *Validation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -12244,6 +12268,9 @@ func (o *ControlDataInformation) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ControlDataInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -12294,6 +12321,9 @@ func (o *ControlDataInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *ControlDataInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -12914,6 +12944,9 @@ func (o *ControlQueryInformation) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ControlQueryInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -12972,6 +13005,9 @@ func (o *ControlQueryInformation) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *ControlQueryInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -14094,6 +14130,9 @@ func (o *DomainInformation) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *DomainInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -14131,6 +14170,9 @@ func (o *DomainInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *DomainInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -14621,6 +14663,9 @@ func (o *WorkstationInformation) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *WorkstationInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -14658,6 +14703,9 @@ func (o *WorkstationInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *WorkstationInformation) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -16083,6 +16131,9 @@ func (o *Capabilities) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *Capabilities) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(4); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -16109,6 +16160,9 @@ func (o *Capabilities) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uin
 }
 
 func (o *Capabilities) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(4); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -17348,6 +17402,9 @@ func (o *ForestTrustRecord_ForestTrustData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -17395,6 +17452,9 @@ func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context,
 }
 
 func (o *ForestTrustRecord_ForestTrustData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -18286,6 +18346,9 @@ func (o *InChainSetClientAttributes) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *InChainSetClientAttributes) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -18312,6 +18375,9 @@ func (o *InChainSetClientAttributes) MarshalUnionNDR(ctx context.Context, w ndr.
 }
 
 func (o *InChainSetClientAttributes) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -18539,6 +18605,9 @@ func (o *OutChainSetClientAttributes) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *OutChainSetClientAttributes) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -18565,6 +18634,9 @@ func (o *OutChainSetClientAttributes) MarshalUnionNDR(ctx context.Context, w ndr
 }
 
 func (o *OutChainSetClientAttributes) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}

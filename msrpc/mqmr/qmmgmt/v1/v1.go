@@ -251,6 +251,9 @@ func (o *ManagementObject_ManagementObject) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ManagementObject_ManagementObject) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -298,6 +301,9 @@ func (o *ManagementObject_ManagementObject) MarshalUnionNDR(ctx context.Context,
 }
 
 func (o *ManagementObject_ManagementObject) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}

@@ -1110,6 +1110,9 @@ func (o *RefreshInfoUnion) NDRSwitchValue(sw int32) int32 {
 }
 
 func (o *RefreshInfoUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw int32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(int32(sw)); err != nil {
 		return err
 	}
@@ -1157,6 +1160,9 @@ func (o *RefreshInfoUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw
 }
 
 func (o *RefreshInfoUnion) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw int32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*int32)(&sw)); err != nil {
 		return err
 	}

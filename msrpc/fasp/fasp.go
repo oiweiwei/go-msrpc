@@ -4854,6 +4854,9 @@ func (o *Rule20_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule20_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -4901,6 +4904,9 @@ func (o *Rule20_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Write
 }
 
 func (o *Rule20_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -5683,6 +5689,9 @@ func (o *Rule210_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule210_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -5730,6 +5739,9 @@ func (o *Rule210_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *Rule210_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -6606,6 +6618,9 @@ func (o *Rule220_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule220_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -6653,6 +6668,9 @@ func (o *Rule220_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *Rule220_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -7574,6 +7592,9 @@ func (o *Rule224_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule224_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -7621,6 +7642,9 @@ func (o *Rule224_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *Rule224_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -8549,6 +8573,9 @@ func (o *Rule225_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule225_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -8596,6 +8623,9 @@ func (o *Rule225_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *Rule225_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -9537,6 +9567,9 @@ func (o *Rule226_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule226_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -9584,6 +9617,9 @@ func (o *Rule226_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *Rule226_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -10564,6 +10600,9 @@ func (o *Rule227_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule227_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -10611,6 +10650,9 @@ func (o *Rule227_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *Rule227_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -11817,6 +11859,9 @@ func (o *Rule_IPProtocolData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Rule_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint16(sw)); err != nil {
 		return err
 	}
@@ -11864,6 +11909,9 @@ func (o *Rule_IPProtocolData) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 }
 
 func (o *Rule_IPProtocolData) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint16)(&sw)); err != nil {
 		return err
 	}
@@ -15581,6 +15629,9 @@ func (o *AuthSuite210_AuthSuite) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AuthSuite210_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -15617,6 +15668,9 @@ func (o *AuthSuite210_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writ
 }
 
 func (o *AuthSuite210_AuthSuite) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -16297,6 +16351,9 @@ func (o *AuthSuite_AuthSuite) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AuthSuite_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -16345,6 +16402,9 @@ func (o *AuthSuite_AuthSuite) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 }
 
 func (o *AuthSuite_AuthSuite) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -18387,6 +18447,9 @@ func (o *CryptoSet_CryptoSet) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *CryptoSet_CryptoSet) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -18423,6 +18486,9 @@ func (o *CryptoSet_CryptoSet) MarshalUnionNDR(ctx context.Context, w ndr.Writer,
 }
 
 func (o *CryptoSet_CryptoSet) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -19171,6 +19237,9 @@ func (o *AuthInfo_AuthInfo) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AuthInfo_AuthInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -19210,6 +19279,9 @@ func (o *AuthInfo_AuthInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, s
 }
 
 func (o *AuthInfo_AuthInfo) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -20047,6 +20119,9 @@ func (o *ProfileConfigValue) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ProfileConfigValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -20115,6 +20190,9 @@ func (o *ProfileConfigValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, 
 }
 
 func (o *ProfileConfigValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(7); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}
@@ -21044,6 +21122,9 @@ func (o *MatchValue_MatchValue) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *MatchValue_MatchValue) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
+	if err := w.WriteUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
@@ -21114,6 +21195,9 @@ func (o *MatchValue_MatchValue) MarshalUnionNDR(ctx context.Context, w ndr.Write
 }
 
 func (o *MatchValue_MatchValue) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint16) error {
+	if err := w.ReadUnionAlign(8); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch(ndr.Enum((*uint16)(&sw))); err != nil {
 		return err
 	}

@@ -5198,6 +5198,9 @@ func (o *ConfigInfoA_ConfigInfoA) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ConfigInfoA_ConfigInfoA) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -5312,6 +5315,9 @@ func (o *ConfigInfoA_ConfigInfoA) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *ConfigInfoA_ConfigInfoA) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -5999,6 +6005,9 @@ func (o *ConfigInfoW_ConfigInfoW) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ConfigInfoW_ConfigInfoW) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -6113,6 +6122,9 @@ func (o *ConfigInfoW_ConfigInfoW) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *ConfigInfoW_ConfigInfoW) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -7257,6 +7269,9 @@ func (o *NotifyParams_NotifyParams) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *NotifyParams_NotifyParams) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -7294,6 +7309,9 @@ func (o *NotifyParams_NotifyParams) MarshalUnionNDR(ctx context.Context, w ndr.W
 }
 
 func (o *NotifyParams_NotifyParams) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -7787,6 +7805,9 @@ func (o *ServiceControlInParamsA) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ServiceControlInParamsA) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -7813,6 +7834,9 @@ func (o *ServiceControlInParamsA) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *ServiceControlInParamsA) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -7921,6 +7945,9 @@ func (o *ServiceControlOutParamsA) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ServiceControlOutParamsA) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -7947,6 +7974,9 @@ func (o *ServiceControlOutParamsA) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 }
 
 func (o *ServiceControlOutParamsA) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -8224,6 +8254,9 @@ func (o *ServiceControlInParamsW) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ServiceControlInParamsW) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -8250,6 +8283,9 @@ func (o *ServiceControlInParamsW) MarshalUnionNDR(ctx context.Context, w ndr.Wri
 }
 
 func (o *ServiceControlInParamsW) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
@@ -8358,6 +8394,9 @@ func (o *ServiceControlOutParamsW) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *ServiceControlOutParamsW) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.WriteSwitch(uint32(sw)); err != nil {
 		return err
 	}
@@ -8384,6 +8423,9 @@ func (o *ServiceControlOutParamsW) MarshalUnionNDR(ctx context.Context, w ndr.Wr
 }
 
 func (o *ServiceControlOutParamsW) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
 	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
 		return err
 	}
