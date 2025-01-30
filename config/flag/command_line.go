@@ -28,7 +28,7 @@ func BindFlags(c *config.Config, flagSet *flag.FlagSet) {
 	flagSet.StringVar(&c.Auth.Level, "auth-level", c.Auth.Level, "authentication level: none, connect, call, pkt, integrity, privacy")
 	flagSet.StringVar(&c.Auth.Type, "auth-type", c.Auth.Type, "authentication type: ntlm, krb5")
 	flagSet.StringVar(&c.Auth.TargetName, "target-name", c.Auth.TargetName, "target name")
-	flagSet.BoolVar(&c.Auth.SPNEGO, "spnego", c.Auth.SPNEGO, "use spnego")
+	flagSet.BoolVar(&c.Auth.SPNEGO, "auth-spnego", c.Auth.SPNEGO, "use spnego")
 	flagSet.StringVar(&c.Auth.Impersonation, "impersonation", c.Auth.Impersonation, "impersonation level: anonymous, identify, impersonate, delegate")
 	flagSet.StringVar(&c.Auth.KRB5.ConfigFile, "krb5-config-file", c.Auth.KRB5.ConfigFile, "path to krb5.conf")
 	flagSet.StringVar(&c.Auth.KRB5.KDCServer, "krb5-kdc-server", c.Auth.KRB5.KDCServer, "KDC server to authenticate to")
