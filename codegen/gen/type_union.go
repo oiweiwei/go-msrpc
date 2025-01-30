@@ -195,6 +195,8 @@ func (p *TypeGenerator) GenUnionMarshalNDR(ctx context.Context) {
 		swVar = p.O(GoName(sw.Name))
 	}
 
+	p.GenDoUnionAlignemntMarshalNDR(ctx, p.Alignment())
+
 	if sw != nil {
 		if p.IsEnumSwitch(ctx, p.Scopes) {
 			p.CheckErr(p.B("w.WriteEnum", p.B(switchType, swVar)))
