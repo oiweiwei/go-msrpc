@@ -3938,7 +3938,7 @@ func (o *DiskInfoEx_DiskInfoEx) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DiskInfoEx_DiskInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(4); err != nil {
@@ -4448,7 +4448,7 @@ func (o *RegionInfoEx_RegionInfoEx) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *RegionInfoEx_RegionInfoEx) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {

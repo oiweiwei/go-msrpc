@@ -8535,7 +8535,7 @@ func (o *VarDesc_Union) NDRSwitchValue(sw uint32) uint32 {
 }
 
 func (o *VarDesc_Union) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
-	if err := w.WriteSwitch(uint32(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint32(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(9); err != nil {

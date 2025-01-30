@@ -298,7 +298,7 @@ func (o *ClaimEntry_Values) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ClaimEntry_Values) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(9); err != nil {

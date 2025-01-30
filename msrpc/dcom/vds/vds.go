@@ -2171,7 +2171,7 @@ func (o *Notification_Notification) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Notification_Notification) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {
@@ -2714,7 +2714,7 @@ func (o *AsyncOutput_AsyncOutput) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *AsyncOutput_AsyncOutput) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {
@@ -4755,7 +4755,7 @@ func (o *PartitionProperty_PartitionProperty) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *PartitionProperty_PartitionProperty) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {
@@ -5069,7 +5069,7 @@ func (o *CreatePartitionParameters_CreatePartitionParameters) NDRSwitchValue(sw 
 }
 
 func (o *CreatePartitionParameters_CreatePartitionParameters) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {
@@ -6549,7 +6549,7 @@ func (o *ChangeAttributesParameters_ChangeAttributesParameters) NDRSwitchValue(s
 }
 
 func (o *ChangeAttributesParameters_ChangeAttributesParameters) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(8); err != nil {
@@ -6870,7 +6870,7 @@ func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) NDRSwitchV
 }
 
 func (o *ChangePartitionTypeParameters_ChangePartitionTypeParameters) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(4); err != nil {
@@ -8343,7 +8343,7 @@ func (o *DiskProperty_DiskProperty) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DiskProperty_DiskProperty) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(4); err != nil {
@@ -8892,7 +8892,7 @@ func (o *DiskProperty2_DiskProperty2) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DiskProperty2_DiskProperty2) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(4); err != nil {
@@ -9421,7 +9421,7 @@ func (o *AdvancedDiskProperty_AdvancedDiskProperty) NDRSwitchValue(sw uint16) ui
 }
 
 func (o *AdvancedDiskProperty_AdvancedDiskProperty) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	if err := w.WriteUnionAlign(4); err != nil {

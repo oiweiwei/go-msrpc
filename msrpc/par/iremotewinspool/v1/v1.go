@@ -14411,7 +14411,7 @@ func (o *BranchOfficeJobData_JobInfo) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *BranchOfficeJobData_JobInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -15179,7 +15179,7 @@ func (o *PrintPropertyValue_Value) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *PrintPropertyValue_Value) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -16100,7 +16100,7 @@ func (o *PrintJobPropertyValue_Value) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *PrintJobPropertyValue_Value) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union

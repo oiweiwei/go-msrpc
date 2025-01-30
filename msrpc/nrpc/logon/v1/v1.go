@@ -6664,7 +6664,7 @@ func (o *DeltaUnion) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DeltaUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -7881,7 +7881,7 @@ func (o *DeltaIDUnion) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *DeltaIDUnion) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -9089,7 +9089,7 @@ func (o *Level) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Level) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -11876,7 +11876,7 @@ func (o *Validation) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *Validation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -17348,7 +17348,7 @@ func (o *ForestTrustRecord_ForestTrustData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union

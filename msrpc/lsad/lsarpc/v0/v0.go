@@ -3600,7 +3600,7 @@ func (o *ForestTrustRecord_ForestTrustData) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *ForestTrustRecord_ForestTrustData) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -5862,7 +5862,7 @@ func (o *PolicyInformation) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *PolicyInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -6749,7 +6749,7 @@ func (o *PolicyDomainInformation) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *PolicyDomainInformation) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
@@ -8792,7 +8792,7 @@ func (o *TrustedDomainInfo) NDRSwitchValue(sw uint16) uint16 {
 }
 
 func (o *TrustedDomainInfo) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint16) error {
-	if err := w.WriteSwitch(uint16(sw)); err != nil {
+	if err := w.WriteSwitch(ndr.Enum(uint16(sw))); err != nil {
 		return err
 	}
 	// ms_union
