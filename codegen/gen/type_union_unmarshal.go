@@ -26,6 +26,8 @@ func (p *TypeGenerator) GenUnionUnmarshalNDR(ctx context.Context) {
 		swVar = p.O(GoName(sw.Name))
 	}
 
+	p.GenDoUnionAlignemntUnmarshalNDR(ctx, p.Alignment())
+
 	if sw != nil {
 		if p.IsEnumSwitch(ctx, p.Scopes) {
 			p.CheckErr(p.B("w.ReadEnum", p.B(p.BPtr(switchType), p.Amp(swVar))))
