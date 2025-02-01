@@ -2763,7 +2763,7 @@ type Context struct {
 	// Reserved (4 bytes):  This MUST be set to 0x00000000 and MUST be ignored on receipt.
 	_ uint32 `idl:"name:Reserved"`
 	// dwNumExtents (4 bytes):  This MUST be set to 0x00000000.
-	ExtentsLength uint32 `idl:"name:dwNumExtents" json:"extents_length"`
+	ExtensionsCount uint32 `idl:"name:dwNumExtents" json:"extensions_count"`
 	// cbExtents (4 bytes):  This MUST be set to 0x00000000.
 	ExtentsLength uint32 `idl:"name:cbExtents" json:"extents_length"`
 	// MshlFlags (4 bytes): This MUST contain an implementation-specific value that MUST
@@ -2818,7 +2818,7 @@ func (o *Context) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ExtentsLength); err != nil {
+	if err := w.WriteData(o.ExtensionsCount); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.ExtentsLength); err != nil {
@@ -2904,7 +2904,7 @@ func (o *Context) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&_Reserved); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ExtentsLength); err != nil {
+	if err := w.ReadData(&o.ExtensionsCount); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.ExtentsLength); err != nil {
