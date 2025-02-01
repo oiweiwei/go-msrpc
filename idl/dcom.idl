@@ -254,8 +254,8 @@ typedef struct _OBJREF_CUSTOM
 {
     CLSID           clsid;
     unsigned long   cbExtension;
-    unsigned long   reserved;
-    [size_is(*)] byte * pObjectData[];
+    unsigned long   cbObjectData;
+    [size_is(cbObjectData)] byte * pObjectData[];
 } OBJREF_CUSTOM, *POBJREF_CUSTOM;
 
 typedef struct _DATAELEMENT {
@@ -297,6 +297,46 @@ typedef struct tagOBJREF {
 
 /* 
  * go-midl: objref end
+ */
+
+/*
+ * go-midl: context
+ */
+
+const unsigned long CTXMSHLFLAGS_BYVAL = 0x00000002;
+
+typedef struct tagCONTEXT
+{
+    unsigned short MajorVersion;
+    unsigned short MinVersion;
+    GUID ContextId;
+    unsigned long Flags;
+    unsigned long Reserved;
+    unsigned long dwNumExtents;
+    unsigned long cbExtents;
+    unsigned long MshlFlags;
+    unsigned long Count;
+    BOOL Frozen;
+    [size_is(Count)] PPROPMARSHALHEADER PropMarshalHeader;
+} Context, *PContext;
+
+const unsigned long CPFLAG_PROPAGATE = 0x00000001;
+
+const unsigned long CPFLAG_EXPOSE = 0x00000002;
+
+const unsigned long CPFLAG_ENVOY = 0x00000004;
+
+typedef struct tagPROPMARSHALHEADER
+{
+    CLSID clsid;
+    GUID policyId;
+    unsigned long flags;
+    unsigned long cb;
+    [size_is(cb)] byte *ctxProperty;
+} PROPMARSHALHEADER, *PPROPMARSHALHEADER;
+
+/*
+ * go-midl: context: end
  */
  
 typedef struct tagREMQIRESULT
