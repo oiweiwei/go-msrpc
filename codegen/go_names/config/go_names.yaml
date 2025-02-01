@@ -30,6 +30,7 @@ rename:
   hServiceStatus: [Service]
   pBSTR: [String]
   s: [String]
+  PropMarshalHeader: [Context, Properties]
 rotate:
   ob: Offset
   obwsz: Offset

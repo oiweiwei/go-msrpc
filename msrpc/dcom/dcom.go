@@ -48,6 +48,18 @@ var (
 	GoPackage = "dcom"
 )
 
+// ContextMarshalFlagByValue represents the CTXMSHLFLAGS_BYVAL RPC constant
+const ContextMarshalFlagByValue = 0x00000002
+
+// ContextPropertyFlagPropagate represents the CPFLAG_PROPAGATE RPC constant
+const ContextPropertyFlagPropagate = 0x00000001
+
+// ContextPropertyFlagExpose represents the CPFLAG_EXPOSE RPC constant
+const ContextPropertyFlagExpose = 0x00000002
+
+// ContextPropertyFlagEnvoy represents the CPFLAG_ENVOY RPC constant
+const ContextPropertyFlagEnvoy = 0x00000004
+
 // MinActpropLimit represents the MIN_ACTPROP_LIMIT RPC constant
 const MinActpropLimit = 0x00000001
 
@@ -1694,16 +1706,17 @@ type ObjectReferenceCustom struct {
 	ClassID *ClassID `idl:"name:clsid" json:"class_id"`
 	// cbExtension (4 bytes): This MUST be set to zero when sent and MUST be ignored on
 	// receipt.
-	ExtensionLength uint32 `idl:"name:cbExtension" json:"extension_length"`
-	// reserved (4 bytes): Unused. This can be set to any arbitrary value when sent and
-	// MUST be ignored on receipt.
-	_ uint32 `idl:"name:reserved"`
+	ExtensionLength  uint32 `idl:"name:cbExtension" json:"extension_length"`
+	ObjectDataLength uint32 `idl:"name:cbObjectData" json:"object_data_length"`
 	// pObjectData (variable): This MUST be an array of bytes containing data supplied by
 	// an application or higher-layer protocol.
-	ObjectData []byte `idl:"name:pObjectData" json:"object_data"`
+	ObjectData []byte `idl:"name:pObjectData;size_is:(cbObjectData)" json:"object_data"`
 }
 
 func (o *ObjectReferenceCustom) xxx_PreparePayload(ctx context.Context) error {
+	if o.ObjectData != nil && o.ObjectDataLength == 0 {
+		o.ObjectDataLength = uint32(len(o.ObjectData))
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
 			return err
@@ -1730,15 +1743,29 @@ func (o *ObjectReferenceCustom) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.ExtensionLength); err != nil {
 		return err
 	}
-	// reserved reserved
-	if err := w.WriteData(uint32(0)); err != nil {
+	if err := w.WriteData(o.ObjectDataLength); err != nil {
 		return err
 	}
-	if o.ObjectData != nil {
+	if o.ObjectData != nil || o.ObjectDataLength > 0 {
 		_ptr_pObjectData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.ObjectDataLength)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
 			for i1 := range o.ObjectData {
 				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
 				if err := w.WriteData(o.ObjectData[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.ObjectData); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
@@ -1767,15 +1794,28 @@ func (o *ObjectReferenceCustom) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadData(&o.ExtensionLength); err != nil {
 		return err
 	}
-	// reserved reserved
-	var _reserved uint32
-	if err := w.ReadData(&_reserved); err != nil {
+	if err := w.ReadData(&o.ObjectDataLength); err != nil {
 		return err
 	}
 	_ptr_pObjectData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		for i1 := 0; w.Len() > 0; i1++ {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.ObjectDataLength > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.ObjectDataLength)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.ObjectData", sizeInfo[0])
+		}
+		o.ObjectData = make([]byte, sizeInfo[0])
+		for i1 := range o.ObjectData {
 			i1 := i1
-			o.ObjectData = append(o.ObjectData, uint8(0))
 			if err := w.ReadData(&o.ObjectData[i1]); err != nil {
 				return err
 			}
@@ -2626,6 +2666,489 @@ func (o *ObjectReference_Extended) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		o.Extended = &ObjectReferenceExtended{}
 	}
 	if err := o.Extended.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	return nil
+}
+
+// Context structure represents Context RPC structure.
+//
+// This is the marshaled representation of a context (1). It contains an array of marshaled
+// context properties, each of which is represented by a PROPMARSHALHEADER.
+//
+// There are three types of context (1) structures:
+//
+// * A client context ( ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_519bff3c-1c9f-4d5a-aa88-a3c820a4ff3a
+// ). This type of context (1) is sent in an activation request in the *pIFDClientCtx*
+// field of the ActivationContextInfoData ( 5892b550-cd9e-4277-9644-4886d3b6d754 ) structure
+// (section 2.2.22.2.5). The context (1) structure MUST be marshaled into an OBJREF_CUSTOM
+// ( 88fdb261-7c9a-41ea-bfac-31583bdc65e6 ) structure (section 2.2.18.6) whose *clsid*
+// field is set to CLSID_ContextMarshaler (section 1.9 ( c25391af-f59e-40da-885e-cc84076673e4
+// ) ). The *iid* field of the OBJREF ( fe6c5e46-adf8-4e34-a8de-3f756c875f31 ) portion
+// of the OBJREF_CUSTOM structure MUST be set to IID_IContext (section 1.9). An implementation
+// MAY use this value as the IID ( ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_76ad3105-3f05-479d-a40c-c9c8fa2ebd83
+// ) of an interface with the local IDL attribute (section 2.2.27 ( 100ac689-eb4e-4b63-8354-6e064a485d51
+// ) ). <12> ( acc42954-4073-4f05-b850-efd562022077#Appendix_A_12 )
+//
+// * A prototype context ( ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_3b138442-c9c6-4f0f-bb59-66c783ed4d65
+// ). An application or a higher-layer protocol can instruct a DCOM client to send this
+// type of context (1) in an activation request. The prototype context is sent in the
+// *pIFDPrototypeCtx* field of the ActivationContextInfoData structure (section 2.2.22.2.5).
+// The context (1) structure MUST be marshaled into an OBJREF_CUSTOM structure (section
+// 2.2.18.6) whose *clsid* field is set to CLSID_ContextMarshaler (section 1.9). The
+// *iid* field of the OBJREF portion of the OBJREF_CUSTOM structure MUST be set to IID_IContext
+// (see section 1.9). An implementation MAY use this value as the IID of an interface
+// with the local IDL attribute (section 2.2.27). <13> ( acc42954-4073-4f05-b850-efd562022077#Appendix_A_13
+// )
+//
+// * An envoy context ( ba4c4d80-ef81-49b4-848f-9714d72b5c01#gt_a61f46c9-edea-481b-b494-517f3b05e88a
+// ). An application or a higher-layer protocol can instruct a DCOM server to send this
+// type of context (1) when marshaling an object. The envoy context is sent in the *Data*
+// field of the *ElmArray* field (section 2.2.18.8 ( 33ae0690-a3f7-4591-8443-b9df4567984d
+// ) ) of an OBJREF_EXTENDED ( 06220154-0372-495a-bfc6-a96b804884c6 ) structure (section
+// 2.2.18.7).
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| MajorVersion                                                  | MinVersion                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ContextId (16 bytes)                                                                                                          |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Flags                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Reserved                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwNumExtents                                                                                                                  |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cbExtents                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| MshlFlags                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Count                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Frozen                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| PropMarshalHeader (variable)                                                                                                  |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type Context struct {
+	// MajorVersion (2 bytes):  The major version of this context marshaled format. This
+	// MUST be set to 0x0001.
+	MajorVersion uint16 `idl:"name:MajorVersion" json:"major_version"`
+	// MinVersion (2 bytes): The minor version of this context (1) marshaled format. This
+	// MUST be set to 0x0001.
+	MinVersion uint16 `idl:"name:MinVersion" json:"min_version"`
+	// ContextId (16 bytes):  A GUID identifying the marshaled context (1).
+	ContextID *dtyp.GUID `idl:"name:ContextId" json:"context_id"`
+	// Flags (4 bytes): This MUST be set to the following value.
+	//
+	//	+-------------------------------+----------------------------------------------------------------------------------+
+	//	|                               |                                                                                  |
+	//	|             VALUE             |                                     MEANING                                      |
+	//	|                               |                                                                                  |
+	//	+-------------------------------+----------------------------------------------------------------------------------+
+	//	+-------------------------------+----------------------------------------------------------------------------------+
+	//	| CTXMSHLFLAGS_BYVAL 0x00000002 | The context is marshaled by value (this is the only representation that is valid |
+	//	|                               | on the wire).                                                                    |
+	//	+-------------------------------+----------------------------------------------------------------------------------+
+	Flags uint32 `idl:"name:Flags" json:"flags"`
+	// Reserved (4 bytes):  This MUST be set to 0x00000000 and MUST be ignored on receipt.
+	_ uint32 `idl:"name:Reserved"`
+	// dwNumExtents (4 bytes):  This MUST be set to 0x00000000.
+	ExtentsLength uint32 `idl:"name:dwNumExtents" json:"extents_length"`
+	// cbExtents (4 bytes):  This MUST be set to 0x00000000.
+	ExtentsLength uint32 `idl:"name:cbExtents" json:"extents_length"`
+	// MshlFlags (4 bytes): This MUST contain an implementation-specific value that MUST
+	// be ignored on receipt.<14>
+	MarshalFlags uint32 `idl:"name:MshlFlags" json:"marshal_flags"`
+	// Count (4 bytes):  The unsigned number of elements in the PropMarshalHeader array.
+	Count uint32 `idl:"name:Count" json:"count"`
+	// Frozen (4 bytes):  A Boolean that MUST be set to TRUE (0x00000001) and that MUST
+	// be ignored on receipt.
+	Frozen bool `idl:"name:Frozen" json:"frozen"`
+	// PropMarshalHeader (variable):  This MUST be an array of PROPMARSHALHEADER entries.
+	ContextProperties []*ContextProperty `idl:"name:PropMarshalHeader;size_is:(Count)" json:"context_properties"`
+}
+
+func (o *Context) xxx_PreparePayload(ctx context.Context) error {
+	if o.ContextProperties != nil && o.Count == 0 {
+		o.Count = uint32(len(o.ContextProperties))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Context) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.MajorVersion); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.MinVersion); err != nil {
+		return err
+	}
+	if o.ContextID != nil {
+		if err := o.ContextID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	// reserved Reserved
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ExtentsLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ExtentsLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.MarshalFlags); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Count); err != nil {
+		return err
+	}
+	if !o.Frozen {
+		if err := w.WriteData(int32(0)); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WriteData(int32(1)); err != nil {
+			return err
+		}
+	}
+	if o.ContextProperties != nil || o.Count > 0 {
+		_ptr_PropMarshalHeader := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Count)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.ContextProperties {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.ContextProperties[i1] != nil {
+					if err := o.ContextProperties[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&ContextProperty{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.ContextProperties); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&ContextProperty{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ContextProperties, _ptr_PropMarshalHeader); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *Context) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MajorVersion); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MinVersion); err != nil {
+		return err
+	}
+	if o.ContextID == nil {
+		o.ContextID = &dtyp.GUID{}
+	}
+	if err := o.ContextID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	// reserved Reserved
+	var _Reserved uint32
+	if err := w.ReadData(&_Reserved); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ExtentsLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ExtentsLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.MarshalFlags); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Count); err != nil {
+		return err
+	}
+	var _bFrozen int32
+	if err := w.ReadData(&_bFrozen); err != nil {
+		return err
+	}
+	o.Frozen = _bFrozen != 0
+	_ptr_PropMarshalHeader := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Count > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.Count)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.ContextProperties", sizeInfo[0])
+		}
+		o.ContextProperties = make([]*ContextProperty, sizeInfo[0])
+		for i1 := range o.ContextProperties {
+			i1 := i1
+			if o.ContextProperties[i1] == nil {
+				o.ContextProperties[i1] = &ContextProperty{}
+			}
+			if err := o.ContextProperties[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_PropMarshalHeader := func(ptr interface{}) { o.ContextProperties = *ptr.(*[]*ContextProperty) }
+	if err := w.ReadPointer(&o.ContextProperties, _s_PropMarshalHeader, _ptr_PropMarshalHeader); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ContextProperty structure represents PROPMARSHALHEADER RPC structure.
+//
+// PROPMARSHALHEADER is the marshaled representation of a context property. It contains
+// a context property identifier and a context property data buffer supplied by an application
+// or higher-layer protocol. The data buffer contains either an OBJREF that can be of
+// any valid OBJREF format representing a client or prototype context property, or it
+// contains opaque data representing an envoy context property.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| clsid (16 bytes)                                                                                                              |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| policyId (16 bytes)                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| flags                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cb                                                                                                                            |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ctxProperty (variable)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type ContextProperty struct {
+	// clsid (16 bytes):  This field MUST be either GUID_NULL or a CLSID supplied by the
+	// application or higher-layer protocol identifying an object class associated with
+	// the data in the ctxProperty field. If this field is GUID_NULL, ctxProperty MUST contain
+	// an OBJREF representing the marshaled client or prototype context property; otherwise,
+	// ctxProperty MUST contain opaque data representing the marshaled envoy context property.
+	ClassID *ClassID `idl:"name:clsid" json:"class_id"`
+	// policyId (16 bytes):  A GUID supplied by the application or higher-layer protocol
+	// containing a context property identifier for the marshaled context property in ctxProperty.
+	PolicyID *dtyp.GUID `idl:"name:policyId" json:"policy_id"`
+	// flags (4 bytes): This MUST be set to one of the following values.
+	//
+	//	+-----------------------------+-------------------------------------------------------+
+	//	|                             |                                                       |
+	//	|            VALUE            |                        MEANING                        |
+	//	|                             |                                                       |
+	//	+-----------------------------+-------------------------------------------------------+
+	//	+-----------------------------+-------------------------------------------------------+
+	//	| CPFLAG_PROPAGATE 0x00000001 | This context property is part of a prototype context. |
+	//	+-----------------------------+-------------------------------------------------------+
+	//	| CPFLAG_EXPOSE 0x00000002    | This context property is part of a client context.    |
+	//	+-----------------------------+-------------------------------------------------------+
+	//	| CPFLAG_ENVOY 0x00000004     | This context property is part of an envoy context.    |
+	//	+-----------------------------+-------------------------------------------------------+
+	Flags uint32 `idl:"name:flags" json:"flags"`
+	// cb (4 bytes): The unsigned size, in bytes, of the ctxProperty field.
+	Length uint32 `idl:"name:cb" json:"length"`
+	// ctxProperty (variable):  A buffer of cb bytes supplied by the application or higher-layer
+	// protocol. This buffer MUST contain an OBJREF representing the marshaled client or
+	// prototype context property if clsid is GUID_NULL; otherwise, it MUST contain opaque
+	// data representing the marshaled envoy context property.
+	ContextProperty []byte `idl:"name:ctxProperty;size_is:(cb)" json:"context_property"`
+}
+
+func (o *ContextProperty) xxx_PreparePayload(ctx context.Context) error {
+	if o.ContextProperty != nil && o.Length == 0 {
+		o.Length = uint32(len(o.ContextProperty))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ContextProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if o.ClassID != nil {
+		if err := o.ClassID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&ClassID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if o.PolicyID != nil {
+		if err := o.PolicyID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Flags); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	if o.ContextProperty != nil || o.Length > 0 {
+		_ptr_ctxProperty := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Length)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.ContextProperty {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.ContextProperty[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.ContextProperty); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.ContextProperty, _ptr_ctxProperty); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ContextProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if o.ClassID == nil {
+		o.ClassID = &ClassID{}
+	}
+	if err := o.ClassID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if o.PolicyID == nil {
+		o.PolicyID = &dtyp.GUID{}
+	}
+	if err := o.PolicyID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	_ptr_ctxProperty := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Length > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.Length)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.ContextProperty", sizeInfo[0])
+		}
+		o.ContextProperty = make([]byte, sizeInfo[0])
+		for i1 := range o.ContextProperty {
+			i1 := i1
+			if err := w.ReadData(&o.ContextProperty[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_ctxProperty := func(ptr interface{}) { o.ContextProperty = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.ContextProperty, _s_ctxProperty, _ptr_ctxProperty); err != nil {
 		return err
 	}
 	return nil
