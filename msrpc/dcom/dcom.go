@@ -48,18 +48,6 @@ var (
 	GoPackage = "dcom"
 )
 
-// ContextMarshalFlagByValue represents the CTXMSHLFLAGS_BYVAL RPC constant
-const ContextMarshalFlagByValue = 0x00000002
-
-// ContextPropertyFlagPropagate represents the CPFLAG_PROPAGATE RPC constant
-const ContextPropertyFlagPropagate = 0x00000001
-
-// ContextPropertyFlagExpose represents the CPFLAG_EXPOSE RPC constant
-const ContextPropertyFlagExpose = 0x00000002
-
-// ContextPropertyFlagEnvoy represents the CPFLAG_ENVOY RPC constant
-const ContextPropertyFlagEnvoy = 0x00000004
-
 // MinActpropLimit represents the MIN_ACTPROP_LIMIT RPC constant
 const MinActpropLimit = 0x00000001
 
@@ -1710,16 +1698,10 @@ type ObjectReferenceCustom struct {
 	Size            uint32 `idl:"name:size" json:"size"`
 	// pObjectData (variable): This MUST be an array of bytes containing data supplied by
 	// an application or higher-layer protocol.
-	ObjectData []byte `idl:"name:pObjectData;size_is:((size-8))" json:"object_data"`
+	ObjectData []byte `idl:"name:pObjectData" json:"object_data"`
 }
 
 func (o *ObjectReferenceCustom) xxx_PreparePayload(ctx context.Context) error {
-	if o.ObjectData != nil && o.Size == 0 {
-		o.Size = uint32((len(o.ObjectData) + 8))
-	}
-	if o.Size < 8 {
-		o.Size = 8
-	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
 			return err
@@ -1749,29 +1731,11 @@ func (o *ObjectReferenceCustom) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.Size); err != nil {
 		return err
 	}
-	if o.ObjectData != nil || (o.Size-8) > 0 {
+	if o.ObjectData != nil {
 		_ptr_pObjectData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			dimSize1 := uint64((o.Size - 8))
-			if o.Size < 8 {
-				dimSize1 = uint64(0)
-			}
-			if err := w.WriteSize(dimSize1); err != nil {
-				return err
-			}
-			sizeInfo := []uint64{
-				dimSize1,
-			}
 			for i1 := range o.ObjectData {
 				i1 := i1
-				if uint64(i1) >= sizeInfo[0] {
-					break
-				}
 				if err := w.WriteData(o.ObjectData[i1]); err != nil {
-					return err
-				}
-			}
-			for i1 := len(o.ObjectData); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
@@ -1804,24 +1768,9 @@ func (o *ObjectReferenceCustom) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	_ptr_pObjectData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		sizeInfo := []uint64{
-			0,
-		}
-		for sz1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		// XXX: for opaque unmarshaling
-		if o.Size > 8 && sizeInfo[0] == 0 {
-			sizeInfo[0] = uint64((o.Size - 8))
-		}
-		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.ObjectData", sizeInfo[0])
-		}
-		o.ObjectData = make([]byte, sizeInfo[0])
-		for i1 := range o.ObjectData {
+		for i1 := 0; w.Len() > 0; i1++ {
 			i1 := i1
+			o.ObjectData = append(o.ObjectData, uint8(0))
 			if err := w.ReadData(&o.ObjectData[i1]); err != nil {
 				return err
 			}
@@ -2677,6 +2626,21 @@ func (o *ObjectReference_Extended) UnmarshalNDR(ctx context.Context, w ndr.Reade
 	return nil
 }
 
+// ContextMarshalFlag type represents CTXMSHLFLAGS RPC enumeration.
+type ContextMarshalFlag uint16
+
+var (
+	ContextMarshalFlagByValue ContextMarshalFlag = 2
+)
+
+func (o ContextMarshalFlag) String() string {
+	switch o {
+	case ContextMarshalFlagByValue:
+		return "ContextMarshalFlagByValue"
+	}
+	return "Invalid"
+}
+
 // Context structure represents Context RPC structure.
 //
 // This is the marshaled representation of a context (1). It contains an array of marshaled
@@ -2962,6 +2926,27 @@ func (o *Context) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
+// ContextPropertyFlag type represents CPFLAG RPC enumeration.
+type ContextPropertyFlag uint16
+
+var (
+	ContextPropertyFlagPropagate ContextPropertyFlag = 1
+	ContextPropertyFlagExpose    ContextPropertyFlag = 2
+	ContextPropertyFlagEnvoy     ContextPropertyFlag = 4
+)
+
+func (o ContextPropertyFlag) String() string {
+	switch o {
+	case ContextPropertyFlagPropagate:
+		return "ContextPropertyFlagPropagate"
+	case ContextPropertyFlagExpose:
+		return "ContextPropertyFlagExpose"
+	case ContextPropertyFlagEnvoy:
+		return "ContextPropertyFlagEnvoy"
+	}
+	return "Invalid"
+}
+
 // ContextProperty structure represents PROPMARSHALHEADER RPC structure.
 //
 // PROPMARSHALHEADER is the marshaled representation of a context property. It contains
@@ -3155,6 +3140,117 @@ func (o *ContextProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	})
 	_s_ctxProperty := func(ptr interface{}) { o.ContextProperty = *ptr.(*[]byte) }
 	if err := w.ReadPointer(&o.ContextProperty, _s_ctxProperty, _ptr_ctxProperty); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ActivationPropertiesBlob structure represents ActivationPropertiesBLOB RPC structure.
+type ActivationPropertiesBlob struct {
+	Size uint32 `idl:"name:dwSize" json:"size"`
+	_    uint32 `idl:"name:dwReserved"`
+	Data []byte `idl:"name:data;size_is:(dwSize)" json:"data"`
+}
+
+func (o *ActivationPropertiesBlob) xxx_PreparePayload(ctx context.Context) error {
+	if o.Data != nil && o.Size == 0 {
+		o.Size = uint32(len(o.Data))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ActivationPropertiesBlob) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Size); err != nil {
+		return err
+	}
+	// reserved dwReserved
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if o.Data != nil || o.Size > 0 {
+		_ptr_data := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Size)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.Data {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(o.Data[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint8(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Data, _ptr_data); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ActivationPropertiesBlob) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Size); err != nil {
+		return err
+	}
+	// reserved dwReserved
+	var _dwReserved uint32
+	if err := w.ReadData(&_dwReserved); err != nil {
+		return err
+	}
+	_ptr_data := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Size > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.Size)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+		}
+		o.Data = make([]byte, sizeInfo[0])
+		for i1 := range o.Data {
+			i1 := i1
+			if err := w.ReadData(&o.Data[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_data := func(ptr interface{}) { o.Data = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Data, _s_data, _ptr_data); err != nil {
 		return err
 	}
 	return nil
@@ -3626,6 +3722,30 @@ func (o *CustomRemoteReplySCMInfo) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	return nil
+}
+
+// ActivateFlags type represents ACTVFLAGS RPC enumeration.
+type ActivateFlags uint16
+
+var (
+	ActivateFlagsDisableAAA          ActivateFlags = 2
+	ActivateFlagsActivate32BitServer ActivateFlags = 4
+	ActivateFlagsActivate64BitServer ActivateFlags = 8
+	ActivateFlagsNoFailureLog        ActivateFlags = 32
+)
+
+func (o ActivateFlags) String() string {
+	switch o {
+	case ActivateFlagsDisableAAA:
+		return "ActivateFlagsDisableAAA"
+	case ActivateFlagsActivate32BitServer:
+		return "ActivateFlagsActivate32BitServer"
+	case ActivateFlagsActivate64BitServer:
+		return "ActivateFlagsActivate64BitServer"
+	case ActivateFlagsNoFailureLog:
+		return "ActivateFlagsNoFailureLog"
+	}
+	return "Invalid"
 }
 
 // InstantiationInfoData structure represents InstantiationInfoData RPC structure.

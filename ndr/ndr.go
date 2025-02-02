@@ -223,3 +223,9 @@ func (e enumWrapper) Value() any {
 func Enum(v any) EnumWrapper {
 	return enumWrapper{v}
 }
+
+type padding uint8
+
+func Pad(n int) padding {
+	return padding(n)
+}

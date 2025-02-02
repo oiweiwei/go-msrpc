@@ -108,10 +108,14 @@ func MarshalWithTypeSerializationV1(d Marshaler, opts ...any) ([]byte, error) {
 		Filler:             []byte{0xCC, 0xCC, 0xCC, 0xCC},
 	}
 
+	pad := 0
+
 	for _, opt := range opts {
 		switch v := opt.(type) {
 		case DataRepresentation:
 			c.Endianness = uint8(ByteOrderMask & uint32(v))
+		case padding:
+			pad = int(v)
 		}
 	}
 
@@ -139,6 +143,12 @@ func MarshalWithTypeSerializationV1(d Marshaler, opts ...any) ([]byte, error) {
 
 	if err := p.MarshalNDR(ctx, r); err != nil {
 		return nil, err
+	}
+
+	if pad > 0 {
+		if err := r.WriteAlign(pad); err != nil {
+			return nil, err
+		}
 	}
 
 	return append(r.Bytes(), b...), nil

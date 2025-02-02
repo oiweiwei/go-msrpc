@@ -1,6 +1,7 @@
 package dtyp
 
 import (
+	"bytes"
 	"encoding/hex"
 	"encoding/json"
 	"fmt"
@@ -73,4 +74,17 @@ func (o *GUID) IsZero() bool {
 	}
 
 	return true
+}
+
+func (o *GUID) Equal(other *GUID) bool {
+
+	if o == nil != (other == nil) {
+		return false
+	}
+
+	if o == nil {
+		return true
+	}
+
+	return o.Data1 == other.Data1 && o.Data2 == other.Data2 && o.Data3 == other.Data3 && bytes.Compare(o.Data4, other.Data4) == 0
 }

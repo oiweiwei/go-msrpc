@@ -165,7 +165,7 @@ func (b *builder) ClassObject() (*wmi.ClassObject, error) {
 	}
 
 	ref := &dcom.ObjectReference{
-		Signature: []byte{0x4d, 0x45, 0x4f, 0x57},
+		Signature: ([]byte)(dcom.ObjectReferenceCustomSignature),
 		Flags:     dcom.ObjectReferenceTypeCustom,
 		IID:       iwbemclassobject.ClassObjectIID,
 		ObjectReference: &dcom.ObjectReference_ObjectReference{
