@@ -255,7 +255,7 @@ typedef struct _OBJREF_CUSTOM
     CLSID           clsid;
     unsigned long   cbExtension;
     unsigned long   size;
-    [size_is(size-8)] byte * pObjectData[];
+    [size_is(*)] byte * pObjectData[];
 } OBJREF_CUSTOM, *POBJREF_CUSTOM;
 
 typedef struct _DATAELEMENT {
@@ -303,7 +303,9 @@ typedef struct tagOBJREF {
  * go-midl: context
  */
 
-const unsigned long CTXMSHLFLAGS_BYVAL = 0x00000002;
+typedef enum {
+    CTXMSHLFLAGS_BYVAL = 0x00000002
+} CTXMSHLFLAGS;
 
 typedef struct tagCONTEXT
 {
@@ -320,11 +322,11 @@ typedef struct tagCONTEXT
     [size_is(Count)] PPROPMARSHALHEADER PropMarshalHeader;
 } Context, *PContext;
 
-const unsigned long CPFLAG_PROPAGATE = 0x00000001;
-
-const unsigned long CPFLAG_EXPOSE = 0x00000002;
-
-const unsigned long CPFLAG_ENVOY = 0x00000004;
+typedef enum {
+    CPFLAG_PROPAGATE = 0x00000001,
+    CPFLAG_EXPOSE = 0x00000002,
+    CPFLAG_ENVOY = 0x00000004
+} CPFLAG;
 
 typedef struct tagPROPMARSHALHEADER
 {
@@ -338,6 +340,13 @@ typedef struct tagPROPMARSHALHEADER
 /*
  * go-midl: context: end
  */
+
+typedef struct tagActivationPropertiesBLOB
+{
+    unsigned long dwSize;
+    unsigned long dwReserved;
+    [size_is(dwSize)] byte *data;
+} ActivationPropertiesBLOB, *PActivationPropertiesBLOB;
  
 typedef struct tagREMQIRESULT
 {
@@ -443,6 +452,13 @@ typedef struct _customREMOTE_REPLY_SCM_INFO
     DWORD                           authnHint;
     COMVERSION                      serverVersion;
 } customREMOTE_REPLY_SCM_INFO;
+
+typedef enum {
+    ACTVFLAGS_DISABLE_AAA = 0x00000002,
+    ACTVFLAGS_ACTIVATE_32_BIT_SERVER = 0x00000004,
+    ACTVFLAGS_ACTIVATE_64_BIT_SERVER = 0x00000008,
+    ACTVFLAGS_NO_FAILURE_LOG = 0x00000020
+} ACTVFLAGS;
  
 typedef struct tagInstantiationInfoData
 {

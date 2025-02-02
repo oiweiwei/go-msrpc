@@ -2,6 +2,8 @@ package dcom
 
 import "github.com/oiweiwei/go-msrpc/ndr"
 
+var ObjectReferenceCustomSignature = "MEOW"
+
 func (o *InterfacePointer) IPID() *IPID {
 	if std := o.GetStandardObjectReference().Std; std != nil && std.IPID != nil {
 		return std.IPID
