@@ -1706,16 +1706,19 @@ type ObjectReferenceCustom struct {
 	ClassID *ClassID `idl:"name:clsid" json:"class_id"`
 	// cbExtension (4 bytes): This MUST be set to zero when sent and MUST be ignored on
 	// receipt.
-	ExtensionLength  uint32 `idl:"name:cbExtension" json:"extension_length"`
-	ObjectDataLength uint32 `idl:"name:cbObjectData" json:"object_data_length"`
+	ExtensionLength uint32 `idl:"name:cbExtension" json:"extension_length"`
+	Size            uint32 `idl:"name:size" json:"size"`
 	// pObjectData (variable): This MUST be an array of bytes containing data supplied by
 	// an application or higher-layer protocol.
-	ObjectData []byte `idl:"name:pObjectData;size_is:(cbObjectData)" json:"object_data"`
+	ObjectData []byte `idl:"name:pObjectData;size_is:((size-8))" json:"object_data"`
 }
 
 func (o *ObjectReferenceCustom) xxx_PreparePayload(ctx context.Context) error {
-	if o.ObjectData != nil && o.ObjectDataLength == 0 {
-		o.ObjectDataLength = uint32(len(o.ObjectData))
+	if o.ObjectData != nil && o.Size == 0 {
+		o.Size = uint32((len(o.ObjectData) + 8))
+	}
+	if o.Size < 8 {
+		o.Size = 8
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -1743,12 +1746,15 @@ func (o *ObjectReferenceCustom) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.ExtensionLength); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.ObjectDataLength); err != nil {
+	if err := w.WriteData(o.Size); err != nil {
 		return err
 	}
-	if o.ObjectData != nil || o.ObjectDataLength > 0 {
+	if o.ObjectData != nil || (o.Size-8) > 0 {
 		_ptr_pObjectData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			dimSize1 := uint64(o.ObjectDataLength)
+			dimSize1 := uint64((o.Size - 8))
+			if o.Size < 8 {
+				dimSize1 = uint64(0)
+			}
 			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
@@ -1794,7 +1800,7 @@ func (o *ObjectReferenceCustom) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadData(&o.ExtensionLength); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.ObjectDataLength); err != nil {
+	if err := w.ReadData(&o.Size); err != nil {
 		return err
 	}
 	_ptr_pObjectData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
@@ -1807,8 +1813,8 @@ func (o *ObjectReferenceCustom) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 			}
 		}
 		// XXX: for opaque unmarshaling
-		if o.ObjectDataLength > 0 && sizeInfo[0] == 0 {
-			sizeInfo[0] = uint64(o.ObjectDataLength)
+		if o.Size > 8 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64((o.Size - 8))
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
 			return fmt.Errorf("buffer overflow for size %d of array o.ObjectData", sizeInfo[0])

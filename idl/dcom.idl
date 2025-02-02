@@ -254,8 +254,8 @@ typedef struct _OBJREF_CUSTOM
 {
     CLSID           clsid;
     unsigned long   cbExtension;
-    unsigned long   cbObjectData;
-    [size_is(cbObjectData)] byte * pObjectData[];
+    unsigned long   size;
+    [size_is(size-8)] byte * pObjectData[];
 } OBJREF_CUSTOM, *POBJREF_CUSTOM;
 
 typedef struct _DATAELEMENT {
