@@ -147,3 +147,5 @@ oaut	_BRECORD	d9237563-093e-4bc9-b824-4c306bfc19e3
 oaut	_SAFEARRAY	2e87a537-9305-41c6-a88b-b79809b3703a
 dhcpm	DHCP_POLICY_EX	a63aaffd-1c6b-4ad8-9d95-c1064b2112ea
 mqmp	CACTransferBufferV1	08791447-2c3c-48d4-98ab-ce9dd28a9509
+dcom	ErrorObjectData	08452c9c-c892-433f-8c2a-8c5283e7bd56
+dcom	ContextORPCExtension	df24170b-8b79-48aa-85d9-962fb967e3f9

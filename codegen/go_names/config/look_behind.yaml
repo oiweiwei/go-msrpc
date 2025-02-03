@@ -59,7 +59,8 @@ lookBehind:
   hnotify: {rpc: [notify]}
   hobject: {rpc: [object]}
   hport: {rpc: [port]}
-  hr: {result: [hresult]}
+  hr: {result: [hresult], server: [server, hresult]}
+  eh: {buffer: [buffer]}
   hres: {rpc: [resource]}
   hyper: {str: [hyper]}
   i: {xn: [ixn], pv4: [ipv4], pv6: [ipv6], ds: [ids]}
