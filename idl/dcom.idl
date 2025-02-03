@@ -81,11 +81,50 @@ typedef struct tagErrorObjectData
     DWORD  dwVersion;
     DWORD  dwHelpContext;
     IID    iid;
-    [unique,string]wchar_t* pszSource;
-    [unique,string]wchar_t* pszDescription;
-    [unique,string]wchar_t* pszHelpFile;
+    DWORD dwSourceSignature;
+    [switch_is(dwSourceSignature)] ErrorObjectDataString * Source;
+    DWORD dwDescriptionSignature;
+    [switch_is(dwDescriptionSignature)] ErrorObjectDataString * Description;
+    DWORD dwHelpFileSignature;
+    [switch_is(dwHelpFileSignature)] ErrorObjectDataString * HelpFile;
 } ErrorObjectData;
- 
+
+typedef [switch_type(DWORD)] union tagErrorObjectDataString {
+    [case(0xFFFFFFFF)] ErrorInfoString * String;
+    [default];
+} ErrorObjectDataString;
+
+typedef struct tagErrorInfoString
+{
+    DWORD dwMax;
+    DWORD dwOffSet;
+    DWORD dwActual;
+    [unique, string, size_is(dwMax)] wchar_t* Name;
+} ErrorInfoString;
+
+typedef struct tagContextORPCExtension
+{
+    byte Signature[4];
+    unsigned long Version;
+    unsigned long cPolicies;
+    unsigned long cbBuffer;
+    unsigned long cbSize;
+    unsigned long hr;
+    unsigned long hrServer;
+    unsigned long reserved;
+    [size_is(cPolicies)] EntryHeader * EntryHeader;
+    [size_is(*)] byte * PolicyData[];
+} ContextORPCExtension;
+
+typedef struct tagEntryHeader
+{
+    byte Signature[4];
+    unsigned long cbEHBuffer;
+    unsigned long cbSize;
+    unsigned long reserved;
+    GUID policyID;
+} EntryHeader;
+
 [
     uuid(4d9f4ab8-7d1c-11cf-861e-0020af6e7c57),
     pointer_default(unique)

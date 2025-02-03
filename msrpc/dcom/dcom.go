@@ -1153,10 +1153,29 @@ type ErrorObjectData struct {
 	// on receipt.<16>
 	HelpContext uint32 `idl:"name:dwHelpContext" json:"help_context"`
 	// iid (16 bytes): An IID that MUST be the IID of the interface returning the error.
-	IID         *IID   `idl:"name:iid" json:"iid"`
-	Source      string `idl:"name:pszSource;string;pointer:unique" json:"source"`
-	Description string `idl:"name:pszDescription;string;pointer:unique" json:"description"`
-	HelpFile    string `idl:"name:pszHelpFile;string;pointer:unique" json:"help_file"`
+	IID *IID `idl:"name:iid" json:"iid"`
+	// dwSourceSignature (4 bytes): This MUST be set to 0xFFFFFFFF if the Source field is
+	// present and MUST be set to 0x00000000 if the Source field is not present.
+	SourceSignature uint32 `idl:"name:dwSourceSignature" json:"source_signature"`
+	// Source (variable): This MUST contain an ErrorInfoString (see ErrorInfoString (section
+	// 2.2.21.3)) if the dwSourceSignature field is set to 0xFFFFFFFF and MUST NOT be present
+	// if the dwSourceSignature field is set to 0x00000000.<17>
+	Source *ErrorObjectDataString `idl:"name:Source;switch_is:dwSourceSignature" json:"source"`
+	// dwDescriptionSignature (4 bytes): This MUST be set to 0xFFFFFFFF if the Description
+	// field is present and that MUST be set to 0x00000000 if the Description field is not
+	// present.
+	DescriptionSignature uint32 `idl:"name:dwDescriptionSignature" json:"description_signature"`
+	// Description (variable): This MUST contain an ErrorInfoString (see ErrorInfoString
+	// (section 2.2.21.3)) if the dwDescriptionSignature field is set to 0xFFFFFFFF and
+	// MUST NOT be present if the dwDescriptionSignature field is set to 0x00000000.<18>
+	Description *ErrorObjectDataString `idl:"name:Description;switch_is:dwDescriptionSignature" json:"description"`
+	// dwHelpFileSignature (4 bytes): This MUST be set to 0xFFFFFFFF if the HelpFile field
+	// is present and MUST be set to 0x00000000 if the HelpFile field is not present.
+	HelpFileSignature uint32 `idl:"name:dwHelpFileSignature" json:"help_file_signature"`
+	// HelpFile (variable): This MUST contain an ErrorInfoString (see ErrorInfoString (section
+	// 2.2.21.3)) if the dwHelpFileSignature field is set to 0xFFFFFFFF and MUST NOT be
+	// present if the dwHelpFileSignature field is set to 0x00000000.<19>
+	HelpFile *ErrorObjectDataString `idl:"name:HelpFile;switch_is:dwHelpFileSignature" json:"help_file"`
 }
 
 func (o *ErrorObjectData) xxx_PreparePayload(ctx context.Context) error {
@@ -1189,14 +1208,24 @@ func (o *ErrorObjectData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.Source != "" {
-		_ptr_pszSource := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16NString(ctx, w, o.Source); err != nil {
-				return err
+	if err := w.WriteData(o.SourceSignature); err != nil {
+		return err
+	}
+	if o.Source != nil {
+		_ptr_Source := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swSource := uint32(o.SourceSignature)
+			if o.Source != nil {
+				if err := o.Source.MarshalUnionNDR(ctx, w, _swSource); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ErrorObjectDataString{}).MarshalUnionNDR(ctx, w, _swSource); err != nil {
+					return err
+				}
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Source, _ptr_pszSource); err != nil {
+		if err := w.WritePointer(&o.Source, _ptr_Source); err != nil {
 			return err
 		}
 	} else {
@@ -1204,14 +1233,24 @@ func (o *ErrorObjectData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.Description != "" {
-		_ptr_pszDescription := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16NString(ctx, w, o.Description); err != nil {
-				return err
+	if err := w.WriteData(o.DescriptionSignature); err != nil {
+		return err
+	}
+	if o.Description != nil {
+		_ptr_Description := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swDescription := uint32(o.DescriptionSignature)
+			if o.Description != nil {
+				if err := o.Description.MarshalUnionNDR(ctx, w, _swDescription); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ErrorObjectDataString{}).MarshalUnionNDR(ctx, w, _swDescription); err != nil {
+					return err
+				}
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.Description, _ptr_pszDescription); err != nil {
+		if err := w.WritePointer(&o.Description, _ptr_Description); err != nil {
 			return err
 		}
 	} else {
@@ -1219,14 +1258,24 @@ func (o *ErrorObjectData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.HelpFile != "" {
-		_ptr_pszHelpFile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := ndr.WriteUTF16NString(ctx, w, o.HelpFile); err != nil {
-				return err
+	if err := w.WriteData(o.HelpFileSignature); err != nil {
+		return err
+	}
+	if o.HelpFile != nil {
+		_ptr_HelpFile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			_swHelpFile := uint32(o.HelpFileSignature)
+			if o.HelpFile != nil {
+				if err := o.HelpFile.MarshalUnionNDR(ctx, w, _swHelpFile); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ErrorObjectDataString{}).MarshalUnionNDR(ctx, w, _swHelpFile); err != nil {
+					return err
+				}
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.HelpFile, _ptr_pszHelpFile); err != nil {
+		if err := w.WritePointer(&o.HelpFile, _ptr_HelpFile); err != nil {
 			return err
 		}
 	} else {
@@ -1252,34 +1301,749 @@ func (o *ErrorObjectData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	if err := o.IID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	_ptr_pszSource := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16NString(ctx, w, &o.Source); err != nil {
-			return err
-		}
-		return nil
-	})
-	_s_pszSource := func(ptr interface{}) { o.Source = *ptr.(*string) }
-	if err := w.ReadPointer(&o.Source, _s_pszSource, _ptr_pszSource); err != nil {
+	if err := w.ReadData(&o.SourceSignature); err != nil {
 		return err
 	}
-	_ptr_pszDescription := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16NString(ctx, w, &o.Description); err != nil {
+	_ptr_Source := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Source == nil {
+			o.Source = &ErrorObjectDataString{}
+		}
+		_swSource := uint32(o.SourceSignature)
+		if err := o.Source.UnmarshalUnionNDR(ctx, w, _swSource); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pszDescription := func(ptr interface{}) { o.Description = *ptr.(*string) }
-	if err := w.ReadPointer(&o.Description, _s_pszDescription, _ptr_pszDescription); err != nil {
+	_s_Source := func(ptr interface{}) { o.Source = *ptr.(**ErrorObjectDataString) }
+	if err := w.ReadPointer(&o.Source, _s_Source, _ptr_Source); err != nil {
 		return err
 	}
-	_ptr_pszHelpFile := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := ndr.ReadUTF16NString(ctx, w, &o.HelpFile); err != nil {
+	if err := w.ReadData(&o.DescriptionSignature); err != nil {
+		return err
+	}
+	_ptr_Description := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.Description == nil {
+			o.Description = &ErrorObjectDataString{}
+		}
+		_swDescription := uint32(o.DescriptionSignature)
+		if err := o.Description.UnmarshalUnionNDR(ctx, w, _swDescription); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pszHelpFile := func(ptr interface{}) { o.HelpFile = *ptr.(*string) }
-	if err := w.ReadPointer(&o.HelpFile, _s_pszHelpFile, _ptr_pszHelpFile); err != nil {
+	_s_Description := func(ptr interface{}) { o.Description = *ptr.(**ErrorObjectDataString) }
+	if err := w.ReadPointer(&o.Description, _s_Description, _ptr_Description); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.HelpFileSignature); err != nil {
+		return err
+	}
+	_ptr_HelpFile := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.HelpFile == nil {
+			o.HelpFile = &ErrorObjectDataString{}
+		}
+		_swHelpFile := uint32(o.HelpFileSignature)
+		if err := o.HelpFile.UnmarshalUnionNDR(ctx, w, _swHelpFile); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_HelpFile := func(ptr interface{}) { o.HelpFile = *ptr.(**ErrorObjectDataString) }
+	if err := w.ReadPointer(&o.HelpFile, _s_HelpFile, _ptr_HelpFile); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ErrorObjectDataString structure represents ErrorObjectDataString RPC union.
+type ErrorObjectDataString struct {
+	// Types that are assignable to Value
+	//
+	// *ErrorObjectDataString_String
+	Value is_ErrorObjectDataString `json:"value"`
+}
+
+func (o *ErrorObjectDataString) GetValue() any {
+	if o == nil {
+		return nil
+	}
+	switch value := (interface{})(o.Value).(type) {
+	case *ErrorObjectDataString_String:
+		if value != nil {
+			return value.String
+		}
+	}
+	return nil
+}
+
+type is_ErrorObjectDataString interface {
+	ndr.Marshaler
+	ndr.Unmarshaler
+	is_ErrorObjectDataString()
+}
+
+func (o *ErrorObjectDataString) NDRSwitchValue(sw uint32) uint32 {
+	if o == nil {
+		return uint32(0)
+	}
+	switch (interface{})(o.Value).(type) {
+	case *ErrorObjectDataString_String:
+		return uint32(4294967295)
+	}
+	return uint32(0)
+}
+
+func (o *ErrorObjectDataString) MarshalUnionNDR(ctx context.Context, w ndr.Writer, sw uint32) error {
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteSwitch(uint32(sw)); err != nil {
+		return err
+	}
+	if err := w.WriteUnionAlign(9); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(4294967295):
+		_o, _ := o.Value.(*ErrorObjectDataString_String)
+		if _o != nil {
+			if err := _o.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&ErrorObjectDataString_String{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+	default:
+	}
+	return nil
+}
+
+func (o *ErrorObjectDataString) UnmarshalUnionNDR(ctx context.Context, w ndr.Reader, sw uint32) error {
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadSwitch((*uint32)(&sw)); err != nil {
+		return err
+	}
+	if err := w.ReadUnionAlign(9); err != nil {
+		return err
+	}
+	switch sw {
+	case uint32(4294967295):
+		o.Value = &ErrorObjectDataString_String{}
+		if err := o.Value.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	default:
+	}
+	return nil
+}
+
+// ErrorObjectDataString_String structure represents ErrorObjectDataString RPC union arm.
+//
+// It has following labels: 4294967295
+type ErrorObjectDataString_String struct {
+	String *ErrorInfoString `idl:"name:String" json:"string"`
+}
+
+func (*ErrorObjectDataString_String) is_ErrorObjectDataString() {}
+
+func (o *ErrorObjectDataString_String) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if o.String != nil {
+		_ptr_String := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.String != nil {
+				if err := o.String.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ErrorInfoString{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.String, _ptr_String); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ErrorObjectDataString_String) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	_ptr_String := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		if o.String == nil {
+			o.String = &ErrorInfoString{}
+		}
+		if err := o.String.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		return nil
+	})
+	_s_String := func(ptr interface{}) { o.String = *ptr.(**ErrorInfoString) }
+	if err := w.ReadPointer(&o.String, _s_String, _ptr_String); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ErrorInfoString structure represents ErrorInfoString RPC structure.
+//
+// This packet specifies the format of the string data that is contained in a Custom-Marshaled
+// Error Info Format (section 2.2.21.2) packet.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwMax                                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwOffSet                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| dwActual                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Name (variable)                                                                                                               |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type ErrorInfoString struct {
+	// dwMax (4 bytes): The unsigned number of Unicode characters in the Name array including
+	// the NULL terminator.
+	Max uint32 `idl:"name:dwMax" json:"max"`
+	// dwOffSet (4 bytes): This MUST be set to zero.
+	OffSet uint32 `idl:"name:dwOffSet" json:"off_set"`
+	// dwActual (4 bytes): This MUST be set to the value of the dwMax field.
+	Actual uint32 `idl:"name:dwActual" json:"actual"`
+	// Name (variable):  This MUST contain an implementation-specific NULL-terminated Unicode
+	// string and SHOULD be ignored on receipt.
+	Name string `idl:"name:Name;size_is:(dwMax);string;pointer:unique" json:"name"`
+}
+
+func (o *ErrorInfoString) xxx_PreparePayload(ctx context.Context) error {
+	if o.Name != "" && o.Max == 0 {
+		o.Max = uint32(len(o.Name))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ErrorInfoString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Max); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.OffSet); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Actual); err != nil {
+		return err
+	}
+	if o.Name != "" || o.Max > 0 {
+		_ptr_Name := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Max)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			dimLength1 := ndr.UTF16NLen(o.Name)
+			if dimLength1 > sizeInfo[0] {
+				dimLength1 = sizeInfo[0]
+			} else {
+				sizeInfo[0] = dimLength1
+			}
+			if err := w.WriteSize(0); err != nil {
+				return err
+			}
+			if err := w.WriteSize(dimLength1); err != nil {
+				return err
+			}
+			_Name_buf := utf16.Encode([]rune(o.Name))
+			if uint64(len(_Name_buf)) > sizeInfo[0]-1 {
+				_Name_buf = _Name_buf[:sizeInfo[0]-1]
+			}
+			if o.Name != ndr.ZeroString {
+				_Name_buf = append(_Name_buf, uint16(0))
+			}
+			for i1 := range _Name_buf {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if err := w.WriteData(_Name_buf[i1]); err != nil {
+					return err
+				}
+			}
+			for i1 := len(_Name_buf); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := w.WriteData(uint16(0)); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Name, _ptr_Name); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ErrorInfoString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Max); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.OffSet); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Actual); err != nil {
+		return err
+	}
+	_ptr_Name := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		var _Name_buf []uint16
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array _Name_buf", sizeInfo[0])
+		}
+		_Name_buf = make([]uint16, sizeInfo[0])
+		for i1 := range _Name_buf {
+			i1 := i1
+			if err := w.ReadData(&_Name_buf[i1]); err != nil {
+				return err
+			}
+		}
+		o.Name = strings.TrimRight(string(utf16.Decode(_Name_buf)), ndr.ZeroString)
+		return nil
+	})
+	_s_Name := func(ptr interface{}) { o.Name = *ptr.(*string) }
+	if err := w.ReadPointer(&o.Name, _s_Name, _ptr_Name); err != nil {
+		return err
+	}
+	return nil
+}
+
+// ContextORPCExtension structure represents ContextORPCExtension RPC structure.
+//
+// CLSID_CONTEXT_EXTENSION is the identifying GUID for this ORPC extension, which is
+// marshaled into the data field of an ORPC_EXTENT using the structure format that follows.
+//
+// A context ORPC extension is used when a client or server passes data associated with
+// a context property along with and in response to an ORPC call.
+//
+// All fields MUST be marshaled with the same endianness as the encompassing RPC PDU.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Signature                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Version                                                                                                                       |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cPolicies                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cbBuffer                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cbSize                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| hr                                                                                                                            |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| hrServer                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| reserved                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| EntryHeader (variable)                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| PolicyData (variable)                                                                                                         |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type ContextORPCExtension struct {
+	// Signature (4 bytes):  This MUST be set to 0x414E554B.
+	Signature []byte `idl:"name:Signature" json:"signature"`
+	// Version (4 bytes):  This MUST be set to 0x00010000.
+	Version uint32 `idl:"name:Version" json:"version"`
+	// cPolicies (4 bytes): The unsigned number of elements in the EntryHeader array. This
+	// MUST also be equal to the number of elements in the PolicyData array.
+	PoliciesCount uint32 `idl:"name:cPolicies" json:"policies_count"`
+	// cbBuffer (4 bytes):  An implementation-specific value that MUST be ignored on receipt.<20>
+	BufferLength uint32 `idl:"name:cbBuffer" json:"buffer_length"`
+	// cbSize (4 bytes): The unsigned size (in bytes) from the beginning of this structure
+	// to the end of the last EntryHeader.
+	Length uint32 `idl:"name:cbSize" json:"length"`
+	// hr (4 bytes):  An HRESULT that MUST be set to zero and MUST be ignored on receipt.
+	HResult uint32 `idl:"name:hr" json:"hresult"`
+	// hrServer (4 bytes):  An HRESULT that MUST be set to zero when sent from client to
+	// server and MUST be ignored on receipt. When sent from server to client, this field
+	// MAY contain an implementation-specific error value.<21>
+	ServerHResult uint32 `idl:"name:hrServer" json:"server_hresult"`
+	// reserved (4 bytes):  This MUST be set to zero and MUST be ignored on receipt.
+	_ uint32 `idl:"name:reserved"`
+	// EntryHeader (variable):  An array of EntryHeader structures. The number of elements
+	// in the array MUST be specified in cPolicies.
+	EntryHeader []*EntryHeader `idl:"name:EntryHeader;size_is:(cPolicies)" json:"entry_header"`
+	// PolicyData (variable):  An array of byte arrays. The number of elements in the outer
+	// array MUST be specified in cPolicies. The number of elements in the byte array MUST
+	// be specified in the cbEHBuffer field (see section 2.2.21.5) in the corresponding
+	// element in the EntryHeader array.
+	//
+	// Both the EntryHeader and PolicyData arrays MUST have sizes that are integral multiples
+	// of eight, and all padding bytes MUST be initialized to zero and MUST be ignored on
+	// receipt.
+	PolicyData []byte `idl:"name:PolicyData" json:"policy_data"`
+}
+
+func (o *ContextORPCExtension) xxx_PreparePayload(ctx context.Context) error {
+	if o.EntryHeader != nil && o.PoliciesCount == 0 {
+		o.PoliciesCount = uint32(len(o.EntryHeader))
+	}
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ContextORPCExtension) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(9); err != nil {
+		return err
+	}
+	for i1 := range o.Signature {
+		i1 := i1
+		if uint64(i1) >= 4 {
+			break
+		}
+		if err := w.WriteData(o.Signature[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Signature); uint64(i1) < 4; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.Version); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.PoliciesCount); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.BufferLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.HResult); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.ServerHResult); err != nil {
+		return err
+	}
+	// reserved reserved
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if o.EntryHeader != nil || o.PoliciesCount > 0 {
+		_ptr_EntryHeader := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.PoliciesCount)
+			if err := w.WriteSize(dimSize1); err != nil {
+				return err
+			}
+			sizeInfo := []uint64{
+				dimSize1,
+			}
+			for i1 := range o.EntryHeader {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.EntryHeader[i1] != nil {
+					if err := o.EntryHeader[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&EntryHeader{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.EntryHeader); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&EntryHeader{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.EntryHeader, _ptr_EntryHeader); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	if o.PolicyData != nil {
+		_ptr_PolicyData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			for i1 := range o.PolicyData {
+				i1 := i1
+				if err := w.WriteData(o.PolicyData[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.PolicyData, _ptr_PolicyData); err != nil {
+			return err
+		}
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ContextORPCExtension) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(9); err != nil {
+		return err
+	}
+	o.Signature = make([]byte, 4)
+	for i1 := range o.Signature {
+		i1 := i1
+		if err := w.ReadData(&o.Signature[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.Version); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.PoliciesCount); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.BufferLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.HResult); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.ServerHResult); err != nil {
+		return err
+	}
+	// reserved reserved
+	var _reserved uint32
+	if err := w.ReadData(&_reserved); err != nil {
+		return err
+	}
+	_ptr_EntryHeader := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.PoliciesCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.PoliciesCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.EntryHeader", sizeInfo[0])
+		}
+		o.EntryHeader = make([]*EntryHeader, sizeInfo[0])
+		for i1 := range o.EntryHeader {
+			i1 := i1
+			if o.EntryHeader[i1] == nil {
+				o.EntryHeader[i1] = &EntryHeader{}
+			}
+			if err := o.EntryHeader[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_EntryHeader := func(ptr interface{}) { o.EntryHeader = *ptr.(*[]*EntryHeader) }
+	if err := w.ReadPointer(&o.EntryHeader, _s_EntryHeader, _ptr_EntryHeader); err != nil {
+		return err
+	}
+	_ptr_PolicyData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		for i1 := 0; w.Len() > 0; i1++ {
+			i1 := i1
+			o.PolicyData = append(o.PolicyData, uint8(0))
+			if err := w.ReadData(&o.PolicyData[i1]); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_PolicyData := func(ptr interface{}) { o.PolicyData = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.PolicyData, _s_PolicyData, _ptr_PolicyData); err != nil {
+		return err
+	}
+	return nil
+}
+
+// EntryHeader structure represents EntryHeader RPC structure.
+//
+// The EntryHeader structure is used to describe an opaque array of bytes associated
+// with a context property within the context ORPC extension.
+//
+// All fields MUST be marshaled with the same endianness as the encompassing RPC PDU.
+//
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 1 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 2 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 3 | 1 |
+//	|   |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |   |   |   |   |   |   |   |   | 0 |   |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| Signature                                                                                                                     |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cbEHBuffer                                                                                                                    |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| cbSize                                                                                                                        |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| reserved                                                                                                                      |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| policyID (16 bytes)                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+//	| ...                                                                                                                           |
+//	+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+type EntryHeader struct {
+	// Signature (4 bytes): This MUST be set to 0x494E414E.
+	Signature []byte `idl:"name:Signature" json:"signature"`
+	// cbEHBuffer (4 bytes):  The unsigned size (in bytes) of the opaque policy data buffer
+	// corresponding to this EntryHeader. This MUST NOT be zero.
+	BufferLength uint32 `idl:"name:cbEHBuffer" json:"buffer_length"`
+	// cbSize (4 bytes): The unsigned size (in bytes) of the offset from the beginning of
+	// the context ORPC extension buffer to the beginning of the opaque policy data buffer
+	// corresponding to this EntryHeader.
+	Length uint32 `idl:"name:cbSize" json:"length"`
+	// reserved (4 bytes):  This MUST be set to 0x00000000 and MUST be ignored on receipt.
+	_ uint32 `idl:"name:reserved"`
+	// policyID (16 bytes):  A GUID that MUST contain a context property identifier.
+	PolicyID *dtyp.GUID `idl:"name:policyID" json:"policy_id"`
+}
+
+func (o *EntryHeader) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *EntryHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	for i1 := range o.Signature {
+		i1 := i1
+		if uint64(i1) >= 4 {
+			break
+		}
+		if err := w.WriteData(o.Signature[i1]); err != nil {
+			return err
+		}
+	}
+	for i1 := len(o.Signature); uint64(i1) < 4; i1++ {
+		if err := w.WriteData(uint8(0)); err != nil {
+			return err
+		}
+	}
+	if err := w.WriteData(o.BufferLength); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Length); err != nil {
+		return err
+	}
+	// reserved reserved
+	if err := w.WriteData(uint32(0)); err != nil {
+		return err
+	}
+	if o.PolicyID != nil {
+		if err := o.PolicyID.MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	} else {
+		if err := (&dtyp.GUID{}).MarshalNDR(ctx, w); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *EntryHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	o.Signature = make([]byte, 4)
+	for i1 := range o.Signature {
+		i1 := i1
+		if err := w.ReadData(&o.Signature[i1]); err != nil {
+			return err
+		}
+	}
+	if err := w.ReadData(&o.BufferLength); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	// reserved reserved
+	var _reserved uint32
+	if err := w.ReadData(&_reserved); err != nil {
+		return err
+	}
+	if o.PolicyID == nil {
+		o.PolicyID = &dtyp.GUID{}
+	}
+	if err := o.PolicyID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
 	return nil
