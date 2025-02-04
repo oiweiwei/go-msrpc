@@ -13,6 +13,14 @@ func UnmarshalObjectArrayWithClass(b []byte, cls wmio.Class) (*ObjectArray, erro
 	return o, o.DecodeWithClass(wmio.NewCodec(b), cls)
 }
 
+// UnmarshalObjectArrayWithClasses decodes the ObjectArray structure
+// using the classes lookup map. Note that classes lookup map is updated
+// during the call and must be reused for the next object decoding.
+func UnmarshalObjectArrayWithClasses(b []byte, classes map[string]*wmio.Class) (*ObjectArray, error) {
+	o := &ObjectArray{}
+	return o, o.DecodeWithClasses(wmio.NewCodec(b), classes)
+}
+
 // The ObjectArray structure MUST be used to encode multiple CIM
 // objects that are returned in response to the IWbemWCOSmartEnum::Next
 // method. This structure is also used to encode parameters of the
@@ -102,7 +110,25 @@ type DataPacketObject struct {
 	Object *wmio.Object
 }
 
+var (
+	// Object is type WBEMOBJECT_CLASS:
+	// Structure contains the complete CIM Class definition.
+	ObjectTypeClass uint8 = 1
+	// Object is type WBEMOBJECT_INSTANCE:
+	// Structure contains the complete CIM Instance definition.
+	ObjectTypeInstance uint8 = 2
+	// Object is type WBEMOBJECT_INSTANCE_NOCLASS.
+	// Structure contains CIM Instance without the CIM Class definition.
+	ObjectTypeInstanceNoClass uint8 = 3
+)
+
+var DefaultClassID = ""
+
 func (o *ObjectArray) DecodeWithClass(r *wmio.Codec, cls wmio.Class) error {
+	return o.DecodeWithClasses(r, map[string]*wmio.Class{DefaultClassID: &cls})
+}
+
+func (o *ObjectArray) DecodeWithClasses(r *wmio.Codec, classes map[string]*wmio.Class) error {
 
 	r.ReadData(&o.ByteOrdering)
 	o.Signature = make([]byte, 8)
@@ -120,6 +146,12 @@ func (o *ObjectArray) DecodeWithClass(r *wmio.Codec, cls wmio.Class) error {
 
 	for i := 0; i < int(o.NumObjects); i++ {
 
+		var cls wmio.Class
+
+		if _, ok := classes[DefaultClassID]; ok {
+			cls = *classes[DefaultClassID]
+		}
+
 		var po DataPacketObject
 
 		r.ReadData(&po.SizeOfHeader)
@@ -136,12 +168,15 @@ func (o *ObjectArray) DecodeWithClass(r *wmio.Codec, cls wmio.Class) error {
 		var err error
 
 		switch po.ObjectType {
-		case 1:
+		case ObjectTypeClass:
+
 			if po.Object, err = wmio.UnmarshalWithClass(r.Bytes()[:po.SizeOfData2], wmio.Class{}); err != nil {
 				return err
 			}
+
 			cls = po.Object.Class.CurrentClass
-		case 2:
+
+		case ObjectTypeInstance:
 
 			if po.ClassID, err = ReadClassID(r); err != nil {
 				return err
@@ -152,18 +187,28 @@ func (o *ObjectArray) DecodeWithClass(r *wmio.Codec, cls wmio.Class) error {
 			}
 
 			cls = po.Object.Instance.CurrentClass
-		case 3:
-			if cls.Name == "" {
-				return fmt.Errorf("class name is empty")
-			}
+
+			// store classes into map.
+			classes[po.ClassID.String()] = &cls
+
+		case ObjectTypeInstanceNoClass:
 
 			if po.ClassID, err = ReadClassID(r); err != nil {
 				return err
 			}
 
+			if _, ok := classes[po.ClassID.String()]; ok {
+				cls = *(classes[po.ClassID.String()])
+			}
+
+			if cls.Name == "" {
+				return fmt.Errorf("class name is empty")
+			}
+
 			if po.Object, err = wmio.UnmarshalWithClass(r.Bytes()[:po.SizeOfData2], cls); err != nil {
 				return err
 			}
+
 		default:
 			return fmt.Errorf("unknown class type %d", po.ObjectType)
 		}

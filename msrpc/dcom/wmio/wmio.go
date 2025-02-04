@@ -123,7 +123,18 @@ func (o *Object) Values() Values {
 	var values = make(Values)
 
 	for _, prop := range o.Instance.Properties {
-		values[prop.Name] = prop.Value.Value
+		switch value := prop.Value.Value.(type) {
+		case *Object:
+			values[prop.Name] = value.Values()
+		case []*Object:
+			vls := make([]any, len(value))
+			for i := range value {
+				vls[i] = value[i].Values()
+			}
+			values[prop.Name] = vls
+		default:
+			values[prop.Name] = value
+		}
 	}
 
 	return values

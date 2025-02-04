@@ -157,6 +157,10 @@ func (c *Codec) DecodeWithSize32(sz uint32, data any) error {
 		return nil
 	}
 
+	if sz > uint32(c.buf.Len()) {
+		return c.Errf("decode_with_size32: expected size is greater than actual: %d > %d", sz, c.buf.Len())
+	}
+
 	b := make([]byte, sz)
 	c.ReadData(b)
 

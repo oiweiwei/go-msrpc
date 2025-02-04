@@ -8,6 +8,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"runtime"
 	"time"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
@@ -180,6 +181,8 @@ func main() {
 		flags |= wmi.QueryFlagType(wmi.GenericFlagTypeForwardOnly)
 	}
 
+	now := time.Now()
+
 	enum, err := svcs.ExecQuery(ctx, &iwbemservices.ExecQueryRequest{
 		This:          &dcom.ORPCThis{Version: srv.COMVersion},
 		QueryLanguage: &oaut.String{Data: "WQL"},
@@ -244,13 +247,14 @@ func main() {
 		return
 	}
 
-	var cls wmio.Class
-
-	now := time.Now()
-
 	if limit > 0 && limit < page {
 		page = limit
 	}
+
+	// classes should store the class definitions across the calls.
+	var classes = make(map[string]*wmio.Class)
+
+	count, buffer := 0, 0
 
 	for i := 0; limit == 0 || i < limit; i += page {
 
@@ -270,7 +274,7 @@ func main() {
 			break
 		}
 
-		oa, err := wmi.UnmarshalObjectArrayWithClass(ret.Buffer, cls)
+		oa, err := wmi.UnmarshalObjectArrayWithClasses(ret.Buffer, classes)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "unmarshal_object_array_with_class", err)
 			return
@@ -280,13 +284,33 @@ func main() {
 			if po.Object.Class != nil {
 				fmt.Println(J(po.Object.Properties()))
 			} else {
-				cls = po.Object.Instance.CurrentClass
 				fmt.Println(J(po.Object.Values()))
 			}
 		}
+
+		count += len(oa.Objects)
+		buffer += len(ret.Buffer)
 	}
 
+	fmt.Fprintln(os.Stderr, "buffer fetched:", buffer/1024, "KiB")
+	fmt.Fprintln(os.Stderr, "records fetched:", count)
 	fmt.Fprintln(os.Stderr, "query execution time:", time.Now().Sub(now))
 	fmt.Fprintln(os.Stderr, "script execution time:", time.Now().Sub(startTime))
+	PrintMemUsage()
 
+}
+
+func PrintMemUsage() {
+	var m runtime.MemStats
+	runtime.ReadMemStats(&m)
+	// For info on each, see: https://golang.org/pkg/runtime/#MemStats
+	fmt.Fprintf(os.Stderr, "alloc / total / sys / numgc: %v MiB / %v MiB / %v MiB / %v\n",
+		bToMb(m.Alloc),
+		bToMb(m.TotalAlloc),
+		bToMb(m.Sys),
+		m.NumGC)
+}
+
+func bToMb(b uint64) uint64 {
+	return b / 1024 / 1024
 }

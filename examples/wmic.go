@@ -192,6 +192,8 @@ func main() {
 		flags |= wmi.QueryFlagType(wmi.GenericFlagTypeForwardOnly)
 	}
 
+	now := time.Now()
+
 	enum, err := svcs.ExecQuery(ctx, &iwbemservices.ExecQueryRequest{
 		This:          &dcom.ORPCThis{Version: srv.COMVersion},
 		QueryLanguage: &oaut.String{Data: "WQL"},
@@ -256,9 +258,7 @@ func main() {
 		return
 	}
 
-	var cls wmio.Class
-
-	now := time.Now()
+	var classes = make(map[string]*wmio.Class)
 
 	if limit > 0 && limit < page {
 		page = limit
@@ -282,7 +282,7 @@ func main() {
 			break
 		}
 
-		oa, err := wmi.UnmarshalObjectArrayWithClass(ret.Buffer, cls)
+		oa, err := wmi.UnmarshalObjectArrayWithClasses(ret.Buffer, classes)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "unmarshal_object_array_with_class", err)
 			return
@@ -292,7 +292,6 @@ func main() {
 			if po.Object.Class != nil {
 				fmt.Println(j(po.Object.Properties()))
 			} else {
-				cls = po.Object.Instance.CurrentClass
 				fmt.Println(j(po.Object.Values()))
 			}
 		}
