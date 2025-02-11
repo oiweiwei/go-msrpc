@@ -9,11 +9,10 @@ require (
 	github.com/go-xmlfmt/xmlfmt v1.1.2
 	github.com/hirochachacha/go-smb2 v1.1.0
 	github.com/indece-official/go-ebcdic v1.2.0
-	github.com/jcmturner/gofork v1.7.6
-	github.com/jcmturner/gokrb5/v8 v8.4.4
 	github.com/joho/godotenv v1.5.1
 	github.com/miekg/dns v1.1.58
-	github.com/oiweiwei/go-smb2.fork v1.0.0
+	github.com/oiweiwei/go-smb2.fork v0.0.0-20241220141821-a5dd82e09d5f
+	github.com/oiweiwei/gokrb5.fork/v9 v9.0.1
 	github.com/rs/zerolog v1.32.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.10.0
@@ -28,10 +27,10 @@ require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/geoffgarside/ber v1.1.0 // indirect
-	github.com/gorilla/sessions v1.4.0 // indirect
 	github.com/hashicorp/go-uuid v1.0.3 // indirect
 	github.com/jcmturner/aescts/v2 v2.0.0 // indirect
 	github.com/jcmturner/dnsutils/v2 v2.0.0 // indirect
+	github.com/jcmturner/gofork v1.7.6 // indirect
 	github.com/jcmturner/goidentity/v6 v6.0.1 // indirect
 	github.com/jcmturner/rpc/v2 v2.0.3 // indirect
 	github.com/mattn/go-colorable v0.1.13 // indirect

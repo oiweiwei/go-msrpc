@@ -9,11 +9,9 @@ import (
 	"fmt"
 	"hash"
 
-	"github.com/jcmturner/gokrb5/v8/crypto"
-	"github.com/jcmturner/gokrb5/v8/crypto/common"
-	"github.com/jcmturner/gokrb5/v8/crypto/etype"
-	"github.com/jcmturner/gokrb5/v8/iana/keyusage"
-	"github.com/jcmturner/gokrb5/v8/types"
+	"github.com/oiweiwei/gokrb5.fork/v9/crypto/common"
+	"github.com/oiweiwei/gokrb5.fork/v9/crypto/etype"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/keyusage"
 )
 
 var (
@@ -25,31 +23,19 @@ var (
 // AESCTSHMACSHA1 represents the integrity/confidentiality routines
 // for the aes128-cts-hmac-sha1 and aes256-cts-hmac-sha1.
 type AESCTSHMACSHA1 struct {
-	// indicates whether this is an initiator.
-	init bool
-	// encryption key.
-	key types.EncryptionKey
-	// indicates whether the subkey is used.
-	subkey bool
+	setting CipherSetting
 	// usages.
 	ckU, ecU int
-	// encryption type.
-	etype etype.EType
 }
 
-func NewAESCipher(ctx context.Context, key types.EncryptionKey, isServer, isSubKey bool) (Cipher, error) {
-
-	etype, err := crypto.GetEtype(key.KeyType)
-	if err != nil {
-		return nil, fmt.Errorf("unable to determine the encryption type: %w", err)
-	}
+func NewAESCipher(ctx context.Context, setting CipherSetting) (Cipher, error) {
 
 	ckU, ecU := keyusage.GSSAPI_INITIATOR_SIGN, keyusage.GSSAPI_INITIATOR_SEAL
-	if isServer {
+	if !setting.IsLocal {
 		ckU, ecU = keyusage.GSSAPI_ACCEPTOR_SIGN, keyusage.GSSAPI_ACCEPTOR_SEAL
 	}
 
-	return &AESCTSHMACSHA1{etype: etype, init: !isServer, key: key, subkey: isSubKey, ckU: ckU, ecU: ecU}, nil
+	return &AESCTSHMACSHA1{setting: setting, ckU: ckU, ecU: ecU}, nil
 }
 
 func (c *AESCTSHMACSHA1) ChecksumHash() (hash.Hash, error) {
@@ -61,19 +47,19 @@ func (c *AESCTSHMACSHA1) IntegrityHash() (hash.Hash, error) {
 }
 
 func (c *AESCTSHMACSHA1) newHash(usage []byte) (hash.Hash, error) {
-	k, err := c.etype.DeriveKey(c.key.KeyValue, usage)
+	k, err := c.setting.Type.DeriveKey(c.setting.Key.KeyValue, usage)
 	if err != nil {
 		return nil, fmt.Errorf("unable to derive key for checksum: %w", err)
 	}
-	return &SizedHash{Hash: hmac.New(c.etype.GetHashFunc(), k), etype: c.etype}, nil
+	return &SizedHash{Hash: hmac.New(c.setting.Type.GetHashFunc(), k), etype: c.setting.Type}, nil
 }
 
 func (c *AESCTSHMACSHA1) flags() uint8 {
 	flags := uint8(0)
-	if !c.init {
+	if !c.setting.IsLocal {
 		flags |= CFXFlagSendByAcceptor
 	}
-	if c.subkey {
+	if c.setting.IsSubKey {
 		flags |= CFXFlagAcceptorSubKey
 	}
 	return flags
@@ -94,7 +80,7 @@ func (c *AESCTSHMACSHA1) Wrap(ctx context.Context, seqNum uint64, forSign, forSe
 
 func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
 
-	eB, hdr, cc := bytes.NewBuffer(nil), c.WrapHeader(ctx, seqNum), c.etype.GetConfounderByteSize()
+	eB, hdr, cc := bytes.NewBuffer(nil), c.WrapHeader(ctx, seqNum), c.setting.Type.GetConfounderByteSize()
 
 	// gen confounder.
 	confounder := make([]byte, cc)
@@ -138,12 +124,12 @@ func (c *AESCTSHMACSHA1) wrap(ctx context.Context, seqNum uint64, forSign, forSe
 	// write header.
 	iH.Write(hdr)
 
-	key, err := c.etype.DeriveKey(c.key.KeyValue, common.GetUsageKe(uint32(c.ecU)))
+	key, err := c.setting.Type.DeriveKey(c.setting.Key.KeyValue, common.GetUsageKe(uint32(c.ecU)))
 	if err != nil {
 		return nil, fmt.Errorf("derive key: %w", err)
 	}
 
-	_, b, err := c.etype.EncryptData(key, eB.Bytes())
+	_, b, err := c.setting.Type.EncryptData(key, eB.Bytes())
 	if err != nil {
 		return nil, fmt.Errorf("encrypt data: %w", err)
 	}
@@ -174,7 +160,7 @@ func (c *AESCTSHMACSHA1) Unwrap(ctx context.Context, seqNum uint64, forSign, for
 func (c *AESCTSHMACSHA1) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
 	// buffer for decryption.
-	eB, hdr, cc := bytes.NewBuffer(nil), sgn[:16], c.etype.GetConfounderByteSize()
+	eB, hdr, cc := bytes.NewBuffer(nil), sgn[:16], c.setting.Type.GetConfounderByteSize()
 
 	// write { ec | E"header" | confounder }
 	eB.Write(sgn[16:])
@@ -191,16 +177,16 @@ func (c *AESCTSHMACSHA1) unwrap(ctx context.Context, seqNum uint64, forSign, for
 	//        { confounder | E"data" | ec | E"header" | mic }
 	b := Rotate(eB.Bytes(), -(rrc + ec))
 
-	cksumSize := c.etype.GetHMACBitLength() / 8
+	cksumSize := c.setting.Type.GetHMACBitLength() / 8
 	// trim mic.
 	b, cksum := b[:len(b)-cksumSize], b[len(b)-cksumSize:]
 
-	key, err := c.etype.DeriveKey(c.key.KeyValue, common.GetUsageKe(uint32(c.ecU)))
+	key, err := c.setting.Type.DeriveKey(c.setting.Key.KeyValue, common.GetUsageKe(uint32(c.ecU)))
 	if err != nil {
 		return false, fmt.Errorf("derive key: %w", err)
 	}
 
-	b, err = c.etype.DecryptData(key, b)
+	b, err = c.setting.Type.DecryptData(key, b)
 	if err != nil {
 		return false, fmt.Errorf("decrypt data: %w", err)
 	}

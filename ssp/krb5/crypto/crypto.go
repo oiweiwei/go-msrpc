@@ -4,9 +4,9 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/jcmturner/gokrb5/v8/crypto"
-	"github.com/jcmturner/gokrb5/v8/iana/etypeID"
-	"github.com/jcmturner/gokrb5/v8/types"
+	"github.com/oiweiwei/gokrb5.fork/v9/crypto/etype"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
+	"github.com/oiweiwei/gokrb5.fork/v9/types"
 )
 
 type Cipher interface {
@@ -16,13 +16,28 @@ type Cipher interface {
 	Size(context.Context, bool) int
 }
 
-func NewCipher(ctx context.Context, key types.EncryptionKey, isSubKey bool, isServer bool) (Cipher, error) {
-	switch etype, _ := crypto.GetEtype(key.KeyType); etype.GetETypeID() {
+type CipherSetting struct {
+	// Key is an encryption key for the cipher.
+	Key types.EncryptionKey
+	// Type is an encryption type for the cipher.
+	Type etype.EType
+	// IsSubKey is true if the key is a subkey.
+	IsSubKey bool
+	// IsLocal is true if cipher is an initiator's cipher.
+	IsLocal bool
+	// DCEStyle is true if the cipher is DCE style.
+	DCEStyle bool
+}
+
+func NewCipher(ctx context.Context, setting CipherSetting) (Cipher, error) {
+	switch setting.Type.GetETypeID() {
 	case etypeID.AES128_CTS_HMAC_SHA1_96, etypeID.AES256_CTS_HMAC_SHA1_96:
-		return NewAESCipher(ctx, key, isServer, isSubKey)
+		return NewAESCipher(ctx, setting)
 	case etypeID.RC4_HMAC:
-		return NewRC4Cipher(ctx, key, isServer)
+		return NewRC4Cipher(ctx, setting)
+	case etypeID.DES_CBC_MD5, etypeID.DES_CBC_CRC:
+		return NewDESCipher(ctx, setting)
 	default:
-		return nil, fmt.Errorf("unsupported encryption type %d", etype.GetETypeID())
+		return nil, fmt.Errorf("unsupported encryption type %d", setting.Type.GetETypeID())
 	}
 }

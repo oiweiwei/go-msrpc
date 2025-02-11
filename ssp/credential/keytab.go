@@ -1,36 +1,19 @@
 package credential
 
-import "github.com/jcmturner/gokrb5/v8/keytab"
+import "github.com/oiweiwei/gokrb5.fork/v9/keytab"
 
 type Keytab interface {
 	Credential
 	// Keytab.
 	Keytab() *keytab.Keytab
+	// Keytab error.
+	Error() error
 }
 
 type kt struct {
-	userName string
-	realm    string
-	kt       *keytab.Keytab
-	err      error
-}
-
-func (kt *kt) UserName() string {
-	if kt != nil {
-		return kt.userName
-	}
-	return ""
-}
-
-func (kt *kt) DomainName() string {
-	if kt != nil {
-		return kt.realm
-	}
-	return ""
-}
-
-func (kt *kt) Workstation() string {
-	return ""
+	user
+	kt  *keytab.Keytab
+	err error
 }
 
 func (kt *kt) Keytab() *keytab.Keytab {
@@ -41,18 +24,25 @@ func (kt *kt) Keytab() *keytab.Keytab {
 	return nil
 }
 
+func (kt *kt) Error() error {
+	if kt != nil {
+		return kt.err
+	}
+	return nil
+}
+
 // NewFromKeytabFile ...
 func NewFromKeytabFile(un string, keytabFile string, opts ...Option) Keytab {
-	kt, _ := keytab.Load(keytabFile)
-	return NewFromKeytab(un, kt)
+	tab, err := keytab.Load(keytabFile)
+	kkt := NewFromKeytab(un, tab)
+	kkt.(*kt).err = err
+	return kkt
 }
 
 // NewFromKeytab ...
 func NewFromKeytab(un string, keytab *keytab.Keytab, opts ...Option) Keytab {
-	realm, un, _ := parseDomainUserWorkstation(un, opts...)
 	return &kt{
-		userName: un,
-		realm:    realm,
-		kt:       keytab,
+		user: parseUser(un, opts...),
+		kt:   keytab,
 	}
 }

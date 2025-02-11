@@ -4,18 +4,15 @@ import (
 	"context"
 	"fmt"
 	"os"
-	"regexp"
-	"strconv"
-	"strings"
 
-	"github.com/jcmturner/gokrb5/v8/client"
-	"github.com/jcmturner/gokrb5/v8/credentials"
-	"github.com/jcmturner/gokrb5/v8/iana/etypeID"
-	"github.com/jcmturner/gokrb5/v8/iana/nametype"
-	"github.com/jcmturner/gokrb5/v8/messages"
-	"github.com/jcmturner/gokrb5/v8/service"
-	"github.com/jcmturner/gokrb5/v8/spnego"
-	"github.com/jcmturner/gokrb5/v8/types"
+	"github.com/oiweiwei/gokrb5.fork/v9/client"
+	"github.com/oiweiwei/gokrb5.fork/v9/credentials"
+	krb_crypto "github.com/oiweiwei/gokrb5.fork/v9/crypto"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
+	"github.com/oiweiwei/gokrb5.fork/v9/messages"
+	"github.com/oiweiwei/gokrb5.fork/v9/service"
+	"github.com/oiweiwei/gokrb5.fork/v9/spnego"
+	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
 
@@ -30,9 +27,9 @@ type Authentifier struct {
 	// The service settings.
 	service *service.Settings
 	// The AP Req message.
-	APReq *APReq
+	APReq *messages.APReq
 	// The AP Rep message.
-	APRep *APRep
+	APRep *messages.APRep
 	// The session key.
 	SessionKey types.EncryptionKey
 	// Exported session key.
@@ -81,6 +78,7 @@ func (a *Authentifier) tryLoadCCache(ctx context.Context) (*credentials.CCache, 
 
 // makeClient function initializes the kerberos client.
 func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
+
 	var cli *client.Client
 
 	// try load credentials cache.
@@ -91,16 +89,10 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 	}
 
 	creds := credentials.New(a.Config.Credential.UserName(), a.Config.Credential.DomainName())
-
 	if ok {
 		// ccache is present.
-		cli, err = client.NewFromCCache(cc, a.Config.KRB5Config, a.Config.ClientSettings()...)
-		if err != nil && len(cc.Credentials) != 0 && strings.Contains(strings.ToLower(err.Error()), "tgt not found") {
-			// The ccache does not contain a TGT, initialize client without
-			// credentials and remember that we will need to get any service
-			// ticket directly from the ccache
-			a.ccacheWithoutTGT = cc
-		} else if err != nil {
+		cli, err = client.NewFromCCacheOptionalTGT(cc, a.Config.KRB5Config, a.Config.ClientSettings()...)
+		if err != nil {
 			return nil, fmt.Errorf("client from ccache: %w", err)
 		}
 	}
@@ -110,18 +102,25 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 			a.Config.KRB5Config, a.Config.ClientSettings()...)
 	}
 
-	if pwd, ok := a.Config.Credential.(credential.Password); ok {
-		cli.Credentials = creds.WithPassword(pwd.Password())
-	} else if kt, ok := a.Config.Credential.(credential.Keytab); ok {
-		cli.Credentials = creds.WithKeytab(kt.Keytab())
-	} else if ntHash, ok := a.Config.Credential.(credential.NTHash); ok {
-		cli.Credentials = WithNTHash(creds, ntHash.NTHash(), ntHash.KVNO())
-		// XXX: add rc4-hmac to allowed etypes.
-		cli.Config.LibDefaults.DefaultTGSEnctypeIDs = []int32{etypeID.RC4_HMAC}
-		cli.Config.LibDefaults.DefaultTktEnctypeIDs = []int32{etypeID.RC4_HMAC}
-		cli.Config.LibDefaults.PermittedEnctypeIDs = []int32{etypeID.RC4_HMAC}
-	} else if ccache, ok := a.Config.Credential.(credential.CCache); ok {
-		cli, err = client.NewFromCCache(ccache.CCache(), a.Config.KRB5Config, a.Config.ClientSettings()...)
+	switch cred := a.Config.Credential.(type) {
+	case credential.Password:
+		cli.Credentials = creds.WithPassword(cred.Password())
+	case credential.Keytab:
+		cli.Credentials = creds.WithKeytab(cred.Keytab())
+	case credential.NTHash:
+		cli.Credentials = creds.WithEncryptionKey(types.EncryptionKey{
+			KeyType:  etypeID.RC4_HMAC,
+			KeyValue: cred.NTHash(),
+		})
+		setEnctype(cli, etypeID.RC4_HMAC)
+	case credential.EncryptionKey:
+		cli.Credentials = creds.WithEncryptionKey(types.EncryptionKey{
+			KeyType:  int32(cred.KeyType()),
+			KeyValue: cred.KeyValue(),
+		})
+		setEnctype(cli, int32(cred.KeyType()))
+	case credential.CCache:
+		cli, err = client.NewFromCCacheOptionalTGT(cred.CCache(), a.Config.KRB5Config, a.Config.ClientSettings()...)
 		if err != nil {
 			return nil, fmt.Errorf("client from ccache credential: %w", err)
 		}
@@ -129,21 +128,16 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 
 	_, err = cli.IsConfigured()
 	if err != nil {
-		// The client should be configured now, unless we only have a ccache with
-		// service tickets. In this case, we can authenticate without the client
-		// being configured.
-		if a.ccacheWithoutTGT != nil && len(a.ccacheWithoutTGT.Credentials) > 0 {
-			return cli, nil
-		}
-
 		return nil, fmt.Errorf("client configuration: %w", err)
 	}
 
-	// The client is configured and can obtain TGTs itself, so we can forget the
-	// ccache that only contained service tickets.
-	a.ccacheWithoutTGT = nil
-
 	return cli, nil
+}
+
+func setEnctype(cli *client.Client, etype int32) {
+	cli.Config.LibDefaults.DefaultTGSEnctypeIDs = []int32{etype}
+	cli.Config.LibDefaults.DefaultTktEnctypeIDs = []int32{etype}
+	cli.Config.LibDefaults.DefaultTktEnctypeIDs = []int32{etype}
 }
 
 // makeSecurityService function sets up the security service for
@@ -153,26 +147,42 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 		// derive service from mutual-authentication. (dce-style or mutual-authn
 		// GSS flags are set.)
 		a.state = &SecurityService{
-			Key:                    a.APRep.Subkey,
+			Key:                    a.APRep.Part.Subkey,
 			IsSubKey:               true,
-			OutboundSequenceNumber: uint64(a.APReq.SequenceNumber()),
-			InboundSequenceNumber:  uint64(a.APRep.SequenceNumber()),
+			OutboundSequenceNumber: uint64(a.APReq.Authenticator.SeqNumber),
+			InboundSequenceNumber:  uint64(a.APRep.Part.SequenceNumber),
 		}
 	} else {
 		a.state = &SecurityService{
 			Key:                    a.SessionKey,
-			OutboundSequenceNumber: uint64(a.APReq.SequenceNumber()),
-			InboundSequenceNumber:  uint64(a.APReq.SequenceNumber()),
+			OutboundSequenceNumber: uint64(a.APReq.Authenticator.SeqNumber),
+			InboundSequenceNumber:  uint64(a.APReq.Authenticator.SeqNumber),
 		}
 	}
 
-	isServer := true
+	eType, err := krb_crypto.GetEtype(a.state.Key.KeyType)
+	if err != nil {
+		return fmt.Errorf("get etype: %w", err)
+	}
 
-	clientCipher, err := crypto.NewCipher(ctx, a.state.Key, a.state.IsSubKey, !isServer)
+	clientCipher, err := crypto.NewCipher(ctx, crypto.CipherSetting{
+		Type:     eType,
+		Key:      a.state.Key,
+		IsSubKey: a.state.IsSubKey,
+		IsLocal:  true,
+		DCEStyle: a.Config.DCEStyle,
+	})
 	if err != nil {
 		return fmt.Errorf("client cipher: %w", err)
 	}
-	serverCipher, err := crypto.NewCipher(ctx, a.state.Key, a.state.IsSubKey, isServer)
+
+	serverCipher, err := crypto.NewCipher(ctx, crypto.CipherSetting{
+		Type:     eType,
+		Key:      a.state.Key,
+		IsSubKey: a.state.IsSubKey,
+		IsLocal:  false,
+		DCEStyle: a.Config.DCEStyle,
+	})
 	if err != nil {
 		return fmt.Errorf("server cipher: %w", err)
 	}
@@ -188,79 +198,24 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 	return nil
 }
 
-var kvnoErrRe = regexp.MustCompile(`kvno: (\d+)`)
+func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 
-func (a *Authentifier) affirmLogin(ctx context.Context) error {
-	if a.ccacheWithoutTGT != nil {
-		// The client does not have any credentials to obtain a TGT but we can
-		// skip the login because we will fetch service tickets from the ccache
-		// file later.
-		return nil
+	var err error
+
+	if a.client, err = a.makeClient(ctx); err != nil {
+		return nil, fmt.Errorf("krb5: init: apreq: make client: %w", err)
 	}
 
-	if err := a.client.AffirmLogin(); err != nil {
-		if _, ok := a.Config.Credential.(credential.NTHash); !ok {
-			return err
+	if a.client.Credentials.HasPassword() || a.client.Credentials.HasKeyProvider() {
+		// don't affirm login for ccache (it should fail on getting service ticket.)
+		if err := a.client.AffirmLogin(); err != nil {
+			return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
 		}
-		// FIXME: retry using kvno from error message.
-		if m := kvnoErrRe.FindStringSubmatch(err.Error()); len(m) > 1 {
-			kvno, err1 := strconv.ParseInt(m[1], 10, 32)
-			if err1 != nil {
-				return err
-			}
-			a.client.Credentials.Keytab().Entries[0].KVNO = uint32(kvno)
-			return a.client.AffirmLogin()
-		}
-	}
-	return nil
-}
-
-func (a *Authentifier) getServiceTicket(sname string) (messages.Ticket, types.EncryptionKey, error) {
-	if a.ccacheWithoutTGT != nil {
-		// the client is not configured for pre-authentication so we can only
-		// obtain service tickets from the ccache.
-
-		var tkt messages.Ticket
-
-		c, ok := a.ccacheWithoutTGT.GetEntry(types.PrincipalName{
-			NameType:   nametype.KRB_NT_SRV_INST,
-			NameString: strings.Split(sname, "/"),
-		})
-		if !ok {
-			return tkt, types.EncryptionKey{}, fmt.Errorf("no service ticket for %s in CCACHE", a.Config.SName)
-		}
-
-		err := tkt.Unmarshal(c.Ticket)
-		if err != nil {
-			return tkt, c.Key, fmt.Errorf("unmarshal ticket from CCACHE")
-		}
-
-		return tkt, c.Key, nil
 	}
 
 	tkt, key, err := a.client.GetServiceTicket(a.Config.SName)
 	if err != nil {
-		return tkt, key, fmt.Errorf("krb5: init: apreq: get service ticket: %w", err)
-	}
-
-	return tkt, key, nil
-}
-
-func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
-	cli, err := a.makeClient(ctx)
-	if err != nil {
-		return nil, fmt.Errorf("krb5: init: apreq: make client: %w", err)
-	}
-
-	a.client = cli
-
-	if err := a.affirmLogin(ctx); err != nil {
-		return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
-	}
-
-	tkt, key, err := a.getServiceTicket(a.Config.SName)
-	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("krb5: init: apreq: get service ticket: %w", err)
 	}
 
 	tok, err := spnego.NewKRB5TokenAPREQ(a.client, tkt, key, a.Config.Flags, a.Config.APOptions)
@@ -268,7 +223,7 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 		return nil, fmt.Errorf("krb5: init: apreq: call new_krb5_token_apreq: %w", err)
 	}
 
-	a.APReq, a.SessionKey = (*APReq)(&tok.APReq), key
+	a.APReq, a.SessionKey = &tok.APReq, key
 
 	if err := a.APReq.DecryptAuthenticator(a.SessionKey); err != nil {
 		return nil, fmt.Errorf("krb5: init: apreq: decrypt authenticator: %w", err)
@@ -292,6 +247,7 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 }
 
 func (a *Authentifier) APReply(ctx context.Context, b []byte) ([]byte, error) {
+
 	if len(b) == 0 {
 		if err := a.makeSecurityService(ctx); err != nil {
 			return nil, fmt.Errorf("krb5: init: aprep: make security service: %w", err)
@@ -299,27 +255,32 @@ func (a *Authentifier) APReply(ctx context.Context, b []byte) ([]byte, error) {
 		return nil, nil
 	}
 
-	a.APRep = &APRep{}
+	a.APRep = &messages.APRep{}
 
 	if !a.Config.DCEStyle {
 		tok := &spnego.KRB5Token{}
 		if err := tok.Unmarshal(b); err != nil {
 			return nil, fmt.Errorf("krb5: init: aprep: unmarshal: dcestyle: %w", err)
 		}
-		a.APRep.APRep = tok.APRep
+		a.APRep = &tok.APRep
 	} else {
 		if err := a.APRep.Unmarshal(b); err != nil {
 			return nil, fmt.Errorf("krb5: init: aprep: unmarshal: %w", err)
 		}
 	}
 
-	if err := a.APRep.DecryptEncPart(a.SessionKey); err != nil {
+	if err := a.APRep.DecryptPart(a.SessionKey); err != nil {
 		return nil, fmt.Errorf("krb5: init: aprep: decrypt enc part: %w", err)
 	}
 
-	b, err := a.APRep.MarshalWithSeqNumber(a.APRep.EncAPRepPart.SequenceNumber, a.SessionKey)
+	ap, err := messages.NewAPRep(a.SessionKey, messages.NewEncAPRepPart(a.APRep.Part.SequenceNumber))
 	if err != nil {
-		return nil, fmt.Errorf("krb5: init: aprep: marshal enc part: %w", err)
+		return nil, fmt.Errorf("krb5: init: aprep: new aprep: %w", err)
+	}
+
+	b, err = ap.Marshal()
+	if err != nil {
+		return nil, fmt.Errorf("krb5: init: aprep: marshal: %w", err)
 	}
 
 	if err := a.makeSecurityService(ctx); err != nil {

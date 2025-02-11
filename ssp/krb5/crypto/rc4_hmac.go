@@ -9,12 +9,8 @@ import (
 	"crypto/rc4"
 	"encoding/asn1"
 	"encoding/binary"
-	"errors"
 	"fmt"
 	"hash"
-
-	"github.com/jcmturner/gokrb5/v8/asn1tools"
-	"github.com/jcmturner/gokrb5/v8/types"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
@@ -24,14 +20,11 @@ var (
 )
 
 type RC4HMAC struct {
-	// indicates whether this is an initiator.
-	init bool
-	// encryption key.
-	key types.EncryptionKey
+	setting CipherSetting
 }
 
-func NewRC4Cipher(ctx context.Context, key types.EncryptionKey, isServer bool) (Cipher, error) {
-	return &RC4HMAC{init: !isServer, key: key}, nil
+func NewRC4Cipher(ctx context.Context, setting CipherSetting) (Cipher, error) {
+	return &RC4HMAC{setting: setting}, nil
 }
 
 func (c *RC4HMAC) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
@@ -54,7 +47,7 @@ func (c *RC4HMAC) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]
 	// Ksign = HMAC(Kss, "signaturekey");
 	// Sgn_Cksum = MD5((int32)13, Token.Header, data);
 	// Sgn_Cksum = HMAC(Ksign, Sgn_Cksum);
-	cksum := c.hmac(c.hmac(c.key.KeyValue, []byte("signaturekey\x00")),
+	cksum := c.hmac(c.hmac(c.setting.Key.KeyValue, []byte("signaturekey\x00")),
 		c.md5(int32(13), hdr[:8], hdr[24:32], forSign))
 	// memcpy(Token.SGN_CKSUM, Sgn_Cksum, 8);
 	copy(hdr[16:24], cksum[:8])
@@ -62,7 +55,7 @@ func (c *RC4HMAC) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]
 	// for (i = 0; i < 16; i++) Klocal[i] = Kss[i] ^ 0xF0;
 	klocal := make([]byte, 16)
 	for i := range klocal {
-		klocal[i] = c.key.KeyValue[i] ^ 0xF0
+		klocal[i] = c.setting.Key.KeyValue[i] ^ 0xF0
 	}
 
 	// Kcrypt = HMAC(Klocal, (int32)0);
@@ -77,19 +70,9 @@ func (c *RC4HMAC) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]
 	// Kseq = HMAC(Kss, (int32)0);
 	// Kseq = HMAC(Kseq, Token.SGN_CKSUM);
 	// RC4(Kseq, Token.SND_SEQ);
-	c.rc4(c.hmac(c.hmac(c.key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
+	c.rc4(c.hmac(c.hmac(c.setting.Key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
 
-	return c.withASN1Header(ctx, hdr)
-}
-
-func (c *RC4HMAC) withASN1Header(ctx context.Context, b []byte) ([]byte, error) {
-
-	oid, err := asn1.Marshal(KRB5OID)
-	if err != nil {
-		return nil, fmt.Errorf("marshal krb5oid: %w", err)
-	}
-
-	return asn1tools.AddASNAppTag(append(oid, b...), 0), nil
+	return EncodeASN1Value(hdr, KRB5OID, true /* always use dce-style */, forSign)
 }
 
 func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
@@ -102,70 +85,30 @@ func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal []
 
 var errDataTruncated = asn1.SyntaxError{Msg: "data truncated"}
 
-// fixASN1Header function works with non-DCE (non-mutual) authentication RC4-HMAC tokens.
-// These tokens are constructed over complete wrapped payload, hence the ASN.1 header length
-// is seems to be truncated.
-func (c *RC4HMAC) fixASN1Header(ctx context.Context, b []byte, forSign [][]byte) ([]byte, error) {
-
-	var val asn1.RawValue
-
-	// try marshal token, if content is valid, return as is.
-	_, err := asn1.Unmarshal(b, &val)
-	if err == nil || !errors.Is(err, errDataTruncated) {
-		return b, err
-	}
-
-	// data truncated error returned, we need to include payload
-	// to match the ASN.1 header length.
-
-	sz := 0
-	for _, forSign := range forSign {
-		sz += len(forSign)
-	}
-
-	// unmarshal again.
-	_, err = asn1.Unmarshal(append(b, make([]byte, sz)...), &val)
-	if err != nil {
-		return b, err
-	}
-
-	oid, err := asn1.Marshal(KRB5OID)
-	if err != nil {
-		return nil, fmt.Errorf("marshal krb5oid: %w", err)
-	}
-
-	// trim oid.
-	sgn := val.Bytes[len(oid):]
-	// trim trailer and add oid again.
-	return c.withASN1Header(ctx, sgn[:32])
-
-}
-
 func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
-	if len(sgn) < 8 {
-		return false, gssapi.ErrDefectiveToken
-	}
-
-	sgn, err := c.fixASN1Header(ctx, sgn, forSign)
+	// trim asn1 header.
+	sgn, _, err := ParseASN1Value(sgn, forSign)
 	if err != nil {
 		return false, gssapi.ErrDefectiveToken
 	}
 
-	hdr := c.WrapHeader(ctx, seqNum)
-	copy(hdr[24:32], sgn[len(sgn)-8:])
+	exp := c.WrapHeader(ctx, seqNum)
+
+	// copy confounder from received signature.
+	copy(exp[24:32], sgn[24:32])
 
 	// for (i = 0; i < 16; i++) Klocal[i] = Kss[i] ^ 0xF0;
 	klocal := make([]byte, 16)
 	for i := range klocal {
-		klocal[i] = c.key.KeyValue[i] ^ 0xF0
+		klocal[i] = c.setting.Key.KeyValue[i] ^ 0xF0
 	}
 
 	// Kcrypt = HMAC(Klocal, (int32)0);
 	// Kcrypt = HMAC(Kcrypt, (int32)seq);
 	// RC4(Kcrypt, Token.Confounder);
-	cipher, _ := rc4.NewCipher(c.hmac(c.hmac(klocal, int32(0)), hdr[8:12]))
-	cipher.XORKeyStream(hdr[24:32], hdr[24:32])
+	cipher, _ := rc4.NewCipher(c.hmac(c.hmac(klocal, int32(0)), exp[8:12]))
+	cipher.XORKeyStream(exp[24:32], exp[24:32])
 	for i := range forSeal {
 		cipher.XORKeyStream(forSeal[i], forSeal[i])
 	}
@@ -173,25 +116,20 @@ func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal []
 	// Ksign = HMAC(Kss, "signaturekey");
 	// Sgn_Cksum = MD5((int32)13, Token.Header, data);
 	// Sgn_Cksum = HMAC(Ksign, Sgn_Cksum);
-	cksum := c.hmac(c.hmac(c.key.KeyValue, []byte("signaturekey\x00")),
-		c.md5(int32(13), hdr[:8], hdr[24:32], forSign))
+	cksum := c.hmac(c.hmac(c.setting.Key.KeyValue, []byte("signaturekey\x00")),
+		c.md5(int32(13), exp[:8], exp[24:32], forSign))
 	// memcpy(Token.SGN_CKSUM, Sgn_Cksum, 8);
-	copy(hdr[16:24], cksum[:8])
+	copy(exp[16:24], cksum[:8])
 
 	// Kseq = HMAC(Kss, (int32)0);
 	// Kseq = HMAC(Kseq, Token.SGN_CKSUM);
 	// RC4(Kseq, Token.SND_SEQ);
-	c.rc4(c.hmac(c.hmac(c.key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
-
-	expSgn, err := c.withASN1Header(ctx, hdr)
-	if err != nil {
-		return false, err
-	}
+	c.rc4(c.hmac(c.hmac(c.setting.Key.KeyValue, int32(0)), cksum[:8]), exp[8:16])
 
 	// set decrypted confounder back.
-	copy(sgn[len(sgn)-8:], hdr[24:32])
+	copy(sgn[24:32], exp[24:32])
 
-	return bytes.Equal(expSgn, sgn), nil
+	return bytes.Equal(exp, sgn), nil
 }
 
 func (c *RC4HMAC) Size(ctx context.Context, conf bool) int {
@@ -217,16 +155,16 @@ func (c *RC4HMAC) makeSignature(ctx context.Context, seqNum uint64, forSign [][]
 	// Ksign = HMAC(Kss, "signaturekey");
 	// Sgn_Cksum = MD5((int32)15, Token.Header, data);
 	// Sgn_Cksum = HMAC(Ksign, Sgn_Cksum);
-	cksum := c.hmac(c.hmac(c.key.KeyValue, []byte("signaturekey\x00")),
+	cksum := c.hmac(c.hmac(c.setting.Key.KeyValue, []byte("signaturekey\x00")),
 		c.md5(int32(15), hdr[:8], forSign))
 	// memcpy(Token.SGN_CKSUM, Sgn_Cksum, 8);
 	copy(hdr[16:24], cksum[:8])
 	// Kseq = HMAC(Kss, (int32)0);
 	// Kseq = HMAC(Kseq, Token.SGN_CKSUM);
 	// RC4(Kseq, Token.SND_SEQ);
-	c.rc4(c.hmac(c.hmac(c.key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
+	c.rc4(c.hmac(c.hmac(c.setting.Key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
 
-	return c.withASN1Header(ctx, hdr)
+	return EncodeASN1Value(hdr, KRB5OID, true /* always use dce-style */, forSign)
 }
 
 func (c *RC4HMAC) hmac(k []byte, data ...interface{}) []byte {
@@ -276,7 +214,7 @@ func (c *RC4HMAC) MICHeader(ctx context.Context, seqNum uint64) []byte {
 	// seq_number.
 	binary.BigEndian.PutUint32(hdr[8:12], uint32(seqNum))
 	// filler.
-	if !c.init {
+	if !c.setting.IsLocal {
 		hdr[12] = 0xff
 		hdr[13] = 0xff
 		hdr[14] = 0xff
@@ -305,7 +243,7 @@ func (c *RC4HMAC) WrapHeader(ctx context.Context, seqNum uint64) []byte {
 	// seq_number.
 	binary.BigEndian.PutUint32(hdr[8:12], uint32(seqNum))
 	// filler.
-	if !c.init {
+	if !c.setting.IsLocal {
 		hdr[12] = 0xff
 		hdr[13] = 0xff
 		hdr[14] = 0xff

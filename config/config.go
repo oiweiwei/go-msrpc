@@ -7,10 +7,12 @@ import (
 	"html/template"
 	"net"
 	"os"
+	"strconv"
 	"strings"
 	"time"
 
-	krb5_config "github.com/jcmturner/gokrb5/v8/config"
+	krb5_config "github.com/oiweiwei/gokrb5.fork/v9/config"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
 	zerolog "github.com/rs/zerolog"
 
 	"github.com/oiweiwei/go-msrpc/dcerpc"
@@ -69,6 +71,10 @@ type Config struct {
 		MachineAccountPassword string `json:"machine_account_password"`
 		// The machine account NT hash.
 		MachineAccountNTHash string `json:"machine_account_nt_hash"`
+		EncryptionKey        struct {
+			KeyType  int    `json:"key_type"`
+			KeyValue string `json:"key_value"`
+		}
 	} `json:"credential"`
 
 	// The auth configuration.
@@ -83,6 +89,8 @@ type Config struct {
 		TargetName string `json:"target_name"`
 		// The flag that indicates whether the SPNEGO should be used.
 		SPNEGO bool `json:"spnego"`
+		// The flag that indicates whether the header sign should be disabled.
+		NoHeaderSign bool `json:"no_header_sign"`
 
 		// The auth configuration for KRB5.
 		KRB5 struct {
@@ -314,6 +322,11 @@ func (cfg *Config) MachineAccountCredentials() []credential.Credential {
 			credential.Workstation(cfg.Workstation)))
 	}
 
+	if cfg.Credential.EncryptionKey.KeyValue != "" {
+		creds = append(creds, credential.NewFromEncryptionKey(cfg.Username, cfg.Credential.EncryptionKey.KeyType,
+			cfg.Credential.EncryptionKey.KeyValue, credential.Workstation(cfg.Workstation)))
+	}
+
 	return creds
 }
 
@@ -482,6 +495,10 @@ func (cfg *Config) getDialOptions() []dcerpc.Option {
 
 	if cfg.SMB.Port != 0 {
 		options = append(options, dcerpc.WithSMBPort(cfg.SMB.Port))
+	}
+
+	if cfg.Auth.NoHeaderSign {
+		options = append(options, dcerpc.NoHeaderSign())
 	}
 
 	if dialer := cfg.SMBDialerOptions(); len(dialer) > 0 {
@@ -661,6 +678,22 @@ func (cfg *Config) ParseServerAddr() error {
 		if binding.Password != "" {
 			if strings.HasPrefix(binding.Password, "hash:") {
 				cfg.Credential.NTHash = strings.TrimPrefix(binding.Password, "hash:")
+			} else if strings.HasPrefix(binding.Password, "key:") {
+				part := strings.Split(strings.TrimPrefix(binding.Password, "key:"), ":")
+				if len(part) == 2 {
+					cfg.Credential.EncryptionKey.KeyValue = part[1]
+					if itype, err := strconv.Atoi(part[0]); err == nil {
+						cfg.Credential.EncryptionKey.KeyType = itype
+					} else {
+						itype, ok := etypeID.ETypesByName[part[0]]
+						if !ok {
+							return fmt.Errorf("invalid encryption key type: %s", part[0])
+						}
+						cfg.Credential.EncryptionKey.KeyType = int(itype)
+					}
+				} else {
+					return fmt.Errorf("invalid encryption key: %s", binding.Password)
+				}
 			} else {
 				cfg.Credential.Password = binding.Password
 			}
@@ -871,7 +904,9 @@ var KRB5ConfigT = template.Must(template.New("krb5-config").Parse(`
 }
 
 [libdefaults]
+allow_weak_crypto = true
 default_realm = {{ .Domain }}
 default_tkt_enctypes = {{ range $encType := .Auth.KRB5.EncryptionTypes }}{{ $encType }} {{ end }}
 default_tgs_enctypes = {{ range $encType := .Auth.KRB5.EncryptionTypes }}{{ $encType }} {{ end }}
+permitted_enctypes = {{ range $encType := .Auth.KRB5.EncryptionTypes }}{{ $encType }} {{ end }}
 `))

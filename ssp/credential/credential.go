@@ -12,6 +12,11 @@ type Credential interface {
 	Workstation() string
 }
 
+func parseUser(un string, opts ...Option) user {
+	dn, un, wkst := parseDomainUserWorkstation(un, opts...)
+	return user{un, dn, wkst}
+}
+
 // parseDomainUserWorkstation parses the username and variadic workstation argument and outputs
 // the domain name, user name, and workstation.
 func parseDomainUserWorkstation(un string, opts ...Option) (string, string, string) {
@@ -37,4 +42,15 @@ func parseDomainUserWorkstation(un string, opts ...Option) (string, string, stri
 	}
 
 	return "", un, wkst
+}
+
+// DomainName function returns the domain name from the user name.
+func DomainName(un string) string {
+	dn, _, _ := parseDomainUserWorkstation(un)
+	return dn
+}
+
+// Anonymous function returns the anonymous password credentials.
+func Anonymous() Password {
+	return &password{}
 }
