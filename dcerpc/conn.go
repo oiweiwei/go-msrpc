@@ -425,10 +425,7 @@ func (t *conn) dialConn(ctx context.Context, binding StringBinding) (RawConn, er
 		t.logger.Debug().Msgf("dialing smb named pipe %s:%d:%s\\%s",
 			t.serverAddr, t.settings.SMBPort, binding.ShareName(), binding.NamedPipe())
 
-		dialer, err := smb2.CompatDialer(t.settings.SMBDialer)
-		if err != nil {
-			return nil, fmt.Errorf("ncacn_np: %w", err)
-		}
+		dialer := t.settings.SMBDialer
 
 		if dialer == nil {
 			o, opts := ParseSecurityOptions(ctx, t.opts...), []gssapi.ContextOption{}
