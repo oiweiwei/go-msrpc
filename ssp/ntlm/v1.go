@@ -100,6 +100,10 @@ func (v1 *V1) NTOWF(ctx context.Context, cred Credential) ([]byte, error) {
 		return cred.NTHash(), nil
 	}
 
+	if cred, ok := cred.(credential.EncryptionKey); ok {
+		return cred.KeyValue(), nil
+	}
+
 	if _, ok := cred.(credential.Password); !ok {
 		return nil, fmt.Errorf("v1: ntowf: encode password: invalid credential type %T", cred)
 	}

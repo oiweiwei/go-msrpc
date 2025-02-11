@@ -225,6 +225,10 @@ func (v2 *V2) NTOWF(ctx context.Context, cred Credential) ([]byte, error) {
 		k = cred.NTHash()
 	}
 
+	if cred, ok := cred.(credential.EncryptionKey); ok {
+		k = cred.KeyValue()
+	}
+
 	user, err := utf16le.Encode(strings.ToUpper(cred.UserName()) + cred.DomainName())
 	if err != nil {
 		return nil, fmt.Errorf("v2: ntowf: encode username: %w", err)

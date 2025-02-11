@@ -14,39 +14,14 @@ type Password interface {
 
 // Password implementation.
 type password struct {
-	userName    string
-	domainName  string
-	password    string
-	workstation string
-}
-
-// User name.
-func (p *password) UserName() string {
-	if p != nil {
-		return p.userName
-	}
-	return ""
-}
-
-// Domain name.
-func (p *password) DomainName() string {
-	if p != nil {
-		return p.domainName
-	}
-	return ""
+	user
+	password string
 }
 
 // Password.
 func (p *password) Password() string {
 	if p != nil {
 		return p.password
-	}
-	return ""
-}
-
-func (p *password) Workstation() string {
-	if p != nil {
-		return p.workstation
 	}
 	return ""
 }
@@ -61,22 +36,8 @@ func NewFromString(s string) Password {
 
 // NewFromPassword function returns the username/password credential.
 func NewFromPassword(un, passwd string, opts ...Option) Password {
-	dn, un, wkst := parseDomainUserWorkstation(un, opts...)
 	return &password{
-		domainName:  dn,
-		userName:    un,
-		password:    passwd,
-		workstation: wkst,
+		user:     parseUser(un, opts...),
+		password: passwd,
 	}
-}
-
-// DomainName function returns the domain name from the user name.
-func DomainName(un string) string {
-	dn, _, _ := parseDomainUserWorkstation(un)
-	return dn
-}
-
-// Anonymous function returns the anonymous password credentials.
-func Anonymous() Password {
-	return &password{}
 }

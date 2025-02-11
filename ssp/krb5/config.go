@@ -5,11 +5,11 @@ import (
 	"strings"
 	"time"
 
-	"github.com/jcmturner/gokrb5/v8/client"
-	"github.com/jcmturner/gokrb5/v8/config"
-	"github.com/jcmturner/gokrb5/v8/iana/etypeID"
-	"github.com/jcmturner/gokrb5/v8/service"
-	"github.com/jcmturner/gokrb5/v8/types"
+	"github.com/oiweiwei/gokrb5.fork/v9/client"
+	"github.com/oiweiwei/gokrb5.fork/v9/config"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
+	"github.com/oiweiwei/gokrb5.fork/v9/service"
+	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
@@ -161,6 +161,10 @@ func IsValidCredential(cred any) bool {
 	}
 
 	if _, ok := cred.(credential.NTHash); ok {
+		return true
+	}
+
+	if _, ok := cred.(credential.EncryptionKey); ok {
 		return true
 	}
 

@@ -53,7 +53,7 @@ import (
 )
 
 var (
-	cfg      = config.New().UseGlobalCredentials()
+	cfg      = config.New().UseGlobalCredentials().DisableEPM()
 	class    string
 	method   string
 	arg      string

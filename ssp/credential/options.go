@@ -12,12 +12,3 @@ func (wkstOpt) is_CredentialOption() {}
 func Workstation(s string) Option {
 	return wkstOpt(s)
 }
-
-type kvnoOpt int
-
-func (kvnoOpt) is_CredentialOption() {}
-
-// KVNO option.
-func KVNO(i int) Option {
-	return kvnoOpt(i)
-}

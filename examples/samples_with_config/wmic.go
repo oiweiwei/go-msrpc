@@ -41,7 +41,7 @@ import (
 )
 
 var (
-	cfg      = config.New().UseGlobalCredentials()
+	cfg      = config.New().UseGlobalCredentials().DisableEPM()
 	query    string
 	resource string
 	proto    bool

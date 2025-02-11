@@ -4,10 +4,10 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/jcmturner/gokrb5/v8/crypto"
-	"github.com/jcmturner/gokrb5/v8/iana/keyusage"
-	"github.com/jcmturner/gokrb5/v8/types"
 	ndr "github.com/oiweiwei/go-msrpc/ndr"
+	"github.com/oiweiwei/gokrb5.fork/v9/crypto"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/keyusage"
+	"github.com/oiweiwei/gokrb5.fork/v9/types"
 )
 
 func (o *PACCredentialInfo) DecryptCredentialData(key types.EncryptionKey) (*PACCredentialData, error) {

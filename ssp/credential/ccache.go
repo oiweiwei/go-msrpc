@@ -1,7 +1,7 @@
 package credential
 
 import (
-	"github.com/jcmturner/gokrb5/v8/credentials"
+	"github.com/oiweiwei/gokrb5.fork/v9/credentials"
 )
 
 type CCache interface {
@@ -10,31 +10,12 @@ type CCache interface {
 	CCache() *credentials.CCache
 }
 
-type ccacheCred struct {
-	userName string
-	realm    string
-	ccache   *credentials.CCache
+type ccache struct {
+	user
+	ccache *credentials.CCache
 }
 
-func (cc *ccacheCred) UserName() string {
-	if cc != nil {
-		return cc.userName
-	}
-	return ""
-}
-
-func (cc *ccacheCred) DomainName() string {
-	if cc != nil {
-		return cc.realm
-	}
-	return ""
-}
-
-func (cc *ccacheCred) Workstation() string {
-	return ""
-}
-
-func (cc *ccacheCred) CCache() *credentials.CCache {
+func (cc *ccache) CCache() *credentials.CCache {
 	if cc != nil && cc.ccache != nil {
 		ccache := *cc.ccache
 		return &ccache
@@ -42,11 +23,9 @@ func (cc *ccacheCred) CCache() *credentials.CCache {
 	return nil
 }
 
-func NewFromCCache(un string, ccache *credentials.CCache, opts ...Option) CCache {
-	realm, un, _ := parseDomainUserWorkstation(un, opts...)
-	return &ccacheCred{
-		userName: un,
-		realm:    realm,
-		ccache:   ccache,
+func NewFromCCache(un string, cc *credentials.CCache, opts ...Option) CCache {
+	return &ccache{
+		user:   parseUser(un, opts...),
+		ccache: cc,
 	}
 }

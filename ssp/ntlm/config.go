@@ -129,15 +129,23 @@ func IsCredentialEmpty(cred any) bool {
 		return len(cred.NTHash()) == 0
 	}
 
+	if cred, ok := cred.(credential.EncryptionKey); ok {
+		return cred.KeyType() == 0 && len(cred.KeyValue()) == 0
+	}
+
 	return true
 }
 
 func IsValidCredential(cred any) bool {
-	if _, ok := cred.(credential.Password); !ok {
-		_, ok = cred.(credential.NTHash)
-		return ok
+	switch cred := cred.(type) {
+	case credential.Password:
+		return true
+	case credential.NTHash:
+		return true
+	case credential.EncryptionKey:
+		return cred.KeyType() == 23
 	}
-	return true
+	return false
 }
 
 func (c *Config) NewNTLMVersion(ctx context.Context, cfg *Config, sess *SecurityParameters) NTLMVersion {

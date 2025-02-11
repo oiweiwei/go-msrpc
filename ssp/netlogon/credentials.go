@@ -11,17 +11,25 @@ import (
 )
 
 func IsValidCredential(cred any) bool {
-	if _, ok := cred.(credential.Password); !ok {
-		_, ok = cred.(credential.NTHash)
-		return ok
+	switch cred := cred.(type) {
+	case credential.Password:
+		return true
+	case credential.NTHash:
+		return true
+	case credential.EncryptionKey:
+		return cred.KeyType() == 23
 	}
-	return true
+	return false
 }
 
 func DeriveKey(ctx context.Context, cred Credential) ([]byte, error) {
 
 	if cred, ok := cred.(credential.NTHash); ok {
 		return cred.NTHash(), nil
+	}
+
+	if cred, ok := cred.(credential.EncryptionKey); ok {
+		return cred.KeyValue(), nil
 	}
 
 	if _, ok := cred.(credential.Password); !ok {

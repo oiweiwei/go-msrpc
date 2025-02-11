@@ -80,6 +80,13 @@ func (p *Packet) AuthDataBytes() []byte {
 	return p.raw[p.Header.FragLength-p.Header.AuthLength:]
 }
 
+func (p *Packet) IsControl() bool {
+	return p.Header.PacketType == PacketTypeBind ||
+		p.Header.PacketType == PacketTypeBindAck ||
+		p.Header.PacketType == PacketTypeAlterContext ||
+		p.Header.PacketType == PacketTypeAlterContextResponse
+}
+
 // Body structure represents the read-writer for the chunked
 // marshalling/unmarshalling operations.
 type Body struct {
@@ -188,7 +195,9 @@ func (c *transport) Codec(raw []byte, drep ndr.DataRepresentation) ndr.NDR {
 // IsSecurePacket function returns `true` if security trailer is/must_be appended
 // to the packet.
 func (c *transport) IsSecurePacket(ctx context.Context, pkt *Packet) bool {
-	return pkt.Header.AuthLength != 0 || (pkt.SecurityTrailer.AuthLevel > AuthLevelConnect) || (pkt.SecurityTrailer.AuthLevel >= AuthLevelConnect && c.settings.IsSecurityMultiplexed())
+	return pkt.Header.AuthLength != 0 ||
+		(pkt.SecurityTrailer.AuthLevel > AuthLevelConnect) ||
+		(pkt.SecurityTrailer.AuthLevel == AuthLevelConnect && (c.settings.IsSecurityMultiplexed() || pkt.IsControl()))
 }
 
 // DecodeFragmentFromBuffer function decodes the fragment in buffer `raw`, unwraps the contents
