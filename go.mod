@@ -7,12 +7,11 @@ toolchain go1.23.5
 require (
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/go-xmlfmt/xmlfmt v1.1.2
-	github.com/hirochachacha/go-smb2 v1.1.0
 	github.com/indece-official/go-ebcdic v1.2.0
 	github.com/joho/godotenv v1.5.1
 	github.com/miekg/dns v1.1.58
 	github.com/oiweiwei/go-smb2.fork v0.0.0-20241220141821-a5dd82e09d5f
-	github.com/oiweiwei/gokrb5.fork/v9 v9.0.1
+	github.com/oiweiwei/gokrb5.fork/v9 v9.0.2
 	github.com/rs/zerolog v1.32.0
 	github.com/sirupsen/logrus v1.9.3
 	github.com/stretchr/testify v1.10.0

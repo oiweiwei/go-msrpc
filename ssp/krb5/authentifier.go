@@ -36,11 +36,6 @@ type Authentifier struct {
 	ExportedSessionKey []byte
 	// key.
 	state *SecurityService
-
-	// In the case that no credentials other than a ccache with service tickets
-	// are available, this variable keeps a reference to this ccache because the
-	// gokrb5 client will not accept such a ccache file.
-	ccacheWithoutTGT *credentials.CCache
 }
 
 type SecurityService struct {
@@ -147,10 +142,10 @@ func (a *Authentifier) makeSecurityService(ctx context.Context) error {
 		// derive service from mutual-authentication. (dce-style or mutual-authn
 		// GSS flags are set.)
 		a.state = &SecurityService{
-			Key:                    a.APRep.Part.Subkey,
+			Key:                    a.APRep.DecryptedEncPart.Subkey,
 			IsSubKey:               true,
 			OutboundSequenceNumber: uint64(a.APReq.Authenticator.SeqNumber),
-			InboundSequenceNumber:  uint64(a.APRep.Part.SequenceNumber),
+			InboundSequenceNumber:  uint64(a.APRep.DecryptedEncPart.SequenceNumber),
 		}
 	} else {
 		a.state = &SecurityService{
@@ -206,8 +201,9 @@ func (a *Authentifier) APRequest(ctx context.Context) ([]byte, error) {
 		return nil, fmt.Errorf("krb5: init: apreq: make client: %w", err)
 	}
 
+	// affirm only for password and key (keytab) credentials. if ccache is used,
+	// it should fail on getting service ticket.
 	if a.client.Credentials.HasPassword() || a.client.Credentials.HasKeyProvider() {
-		// don't affirm login for ccache (it should fail on getting service ticket.)
 		if err := a.client.AffirmLogin(); err != nil {
 			return nil, fmt.Errorf("krb5: init: apreq: affirm login: %w", err)
 		}
@@ -269,11 +265,11 @@ func (a *Authentifier) APReply(ctx context.Context, b []byte) ([]byte, error) {
 		}
 	}
 
-	if err := a.APRep.DecryptPart(a.SessionKey); err != nil {
+	if err := a.APRep.DecryptEncPart(a.SessionKey); err != nil {
 		return nil, fmt.Errorf("krb5: init: aprep: decrypt enc part: %w", err)
 	}
 
-	ap, err := messages.NewAPRep(a.SessionKey, messages.NewEncAPRepPart(a.APRep.Part.SequenceNumber))
+	ap, err := messages.NewAPRep(a.SessionKey, messages.NewEncAPRepPart(a.APRep.DecryptedEncPart.SequenceNumber))
 	if err != nil {
 		return nil, fmt.Errorf("krb5: init: aprep: new aprep: %w", err)
 	}
