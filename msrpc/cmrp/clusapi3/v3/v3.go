@@ -13617,6 +13617,8 @@ func (o *QueryValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // QueryValueResponse structure represents the ApiQueryValue operation response
 type QueryValueResponse struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength     uint32 `idl:"name:cbData" json:"data_length"`
 	ValueType      uint32 `idl:"name:lpValueType" json:"value_type"`
 	Data           []byte `idl:"name:lpData;size_is:(cbData)" json:"data"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -13632,6 +13634,11 @@ func (o *QueryValueResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryValueOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.ValueType = o.ValueType
 	op.Data = o.Data
 	op.RequiredLength = o.RequiredLength
@@ -13644,6 +13651,9 @@ func (o *QueryValueResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryValueO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.ValueType = op.ValueType
 	o.Data = op.Data
 	o.RequiredLength = op.RequiredLength
@@ -21829,6 +21839,8 @@ func (o *NodeResourceControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // NodeResourceControlResponse structure represents the ApiNodeResourceControl operation response
 type NodeResourceControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -21844,6 +21856,11 @@ func (o *NodeResourceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Node
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -21856,6 +21873,9 @@ func (o *NodeResourceControlResponse) xxx_FromOp(ctx context.Context, op *xxx_No
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -22226,6 +22246,8 @@ func (o *ResourceControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // ResourceControlResponse structure represents the ApiResourceControl operation response
 type ResourceControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -22241,6 +22263,11 @@ func (o *ResourceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Resource
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -22253,6 +22280,9 @@ func (o *ResourceControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Resour
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -22666,6 +22696,8 @@ func (o *NodeResourceTypeControlRequest) UnmarshalNDR(ctx context.Context, r ndr
 
 // NodeResourceTypeControlResponse structure represents the ApiNodeResourceTypeControl operation response
 type NodeResourceTypeControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -22681,6 +22713,11 @@ func (o *NodeResourceTypeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -22693,6 +22730,9 @@ func (o *NodeResourceTypeControlResponse) xxx_FromOp(ctx context.Context, op *xx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -23081,6 +23121,8 @@ func (o *ResourceTypeControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // ResourceTypeControlResponse structure represents the ApiResourceTypeControl operation response
 type ResourceTypeControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -23096,6 +23138,11 @@ func (o *ResourceTypeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Reso
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -23108,6 +23155,9 @@ func (o *ResourceTypeControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -23503,6 +23553,8 @@ func (o *NodeGroupControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // NodeGroupControlResponse structure represents the ApiNodeGroupControl operation response
 type NodeGroupControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -23518,6 +23570,11 @@ func (o *NodeGroupControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeGro
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -23530,6 +23587,9 @@ func (o *NodeGroupControlResponse) xxx_FromOp(ctx context.Context, op *xxx_NodeG
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -23900,6 +23960,8 @@ func (o *GroupControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // GroupControlResponse structure represents the ApiGroupControl operation response
 type GroupControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -23915,6 +23977,11 @@ func (o *GroupControlResponse) xxx_ToOp(ctx context.Context, op *xxx_GroupContro
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -23927,6 +23994,9 @@ func (o *GroupControlResponse) xxx_FromOp(ctx context.Context, op *xxx_GroupCont
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -24322,6 +24392,8 @@ func (o *NodeNodeControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // NodeNodeControlResponse structure represents the ApiNodeNodeControl operation response
 type NodeNodeControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -24337,6 +24409,11 @@ func (o *NodeNodeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeNode
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -24349,6 +24426,9 @@ func (o *NodeNodeControlResponse) xxx_FromOp(ctx context.Context, op *xxx_NodeNo
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -24719,6 +24799,8 @@ func (o *NodeControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // NodeControlResponse structure represents the ApiNodeControl operation response
 type NodeControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -24734,6 +24816,11 @@ func (o *NodeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeControlO
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -24746,6 +24833,9 @@ func (o *NodeControlResponse) xxx_FromOp(ctx context.Context, op *xxx_NodeContro
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -26555,6 +26645,8 @@ func (o *NodeNetworkControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // NodeNetworkControlResponse structure represents the ApiNodeNetworkControl operation response
 type NodeNetworkControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -26570,6 +26662,11 @@ func (o *NodeNetworkControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeN
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -26582,6 +26679,9 @@ func (o *NodeNetworkControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Nod
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -26952,6 +27052,8 @@ func (o *NetworkControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // NetworkControlResponse structure represents the ApiNetworkControl operation response
 type NetworkControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -26967,6 +27069,11 @@ func (o *NetworkControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NetworkCo
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -26979,6 +27086,9 @@ func (o *NetworkControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Network
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -28831,6 +28941,8 @@ func (o *NodeNetInterfaceControlRequest) UnmarshalNDR(ctx context.Context, r ndr
 
 // NodeNetInterfaceControlResponse structure represents the ApiNodeNetInterfaceControl operation response
 type NodeNetInterfaceControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -28846,6 +28958,11 @@ func (o *NodeNetInterfaceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -28858,6 +28975,9 @@ func (o *NodeNetInterfaceControlResponse) xxx_FromOp(ctx context.Context, op *xx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -29230,6 +29350,8 @@ func (o *NetInterfaceControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // NetInterfaceControlResponse structure represents the ApiNetInterfaceControl operation response
 type NetInterfaceControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -29245,6 +29367,11 @@ func (o *NetInterfaceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NetI
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -29257,6 +29384,9 @@ func (o *NetInterfaceControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Ne
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -31087,6 +31217,8 @@ func (o *NodeClusterControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // NodeClusterControlResponse structure represents the ApiNodeClusterControl operation response
 type NodeClusterControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -31102,6 +31234,11 @@ func (o *NodeClusterControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeC
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -31114,6 +31251,9 @@ func (o *NodeClusterControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Nod
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -31484,6 +31624,8 @@ func (o *ClusterControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // ClusterControlResponse structure represents the ApiClusterControl operation response
 type ClusterControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -31499,6 +31641,11 @@ func (o *ClusterControlResponse) xxx_ToOp(ctx context.Context, op *xxx_ClusterCo
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -31511,6 +31658,9 @@ func (o *ClusterControlResponse) xxx_FromOp(ctx context.Context, op *xxx_Cluster
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -31934,6 +32084,8 @@ func (o *SetServiceAccountPasswordRequest) UnmarshalNDR(ctx context.Context, r n
 
 // SetServiceAccountPasswordResponse structure represents the ApiSetServiceAccountPassword operation response
 type SetServiceAccountPasswordResponse struct {
+	// XXX: ReturnStatusBufferSize is an implicit input depedency for output parameters
+	ReturnStatusBufferSize    uint32                      `idl:"name:ReturnStatusBufferSize" json:"return_status_buffer_size"`
 	ReturnStatusBufferPointer []*ClusterSetPasswordStatus `idl:"name:ReturnStatusBufferPtr;size_is:(ReturnStatusBufferSize);length_is:(SizeReturned)" json:"return_status_buffer_pointer"`
 	SizeReturned              uint32                      `idl:"name:SizeReturned" json:"size_returned"`
 	ExpectedBufferSize        uint32                      `idl:"name:ExpectedBufferSize" json:"expected_buffer_size"`
@@ -31948,6 +32100,11 @@ func (o *SetServiceAccountPasswordResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ReturnStatusBufferSize == uint32(0) {
+		op.ReturnStatusBufferSize = o.ReturnStatusBufferSize
+	}
+
 	op.ReturnStatusBufferPointer = o.ReturnStatusBufferPointer
 	op.SizeReturned = o.SizeReturned
 	op.ExpectedBufferSize = o.ExpectedBufferSize
@@ -31959,6 +32116,9 @@ func (o *SetServiceAccountPasswordResponse) xxx_FromOp(ctx context.Context, op *
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ReturnStatusBufferSize = op.ReturnStatusBufferSize
+
 	o.ReturnStatusBufferPointer = op.ReturnStatusBufferPointer
 	o.SizeReturned = op.SizeReturned
 	o.ExpectedBufferSize = op.ExpectedBufferSize
@@ -44538,6 +44698,8 @@ func (o *NodeGroupSetControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // NodeGroupSetControlResponse structure represents the ApiNodeGroupSetControl operation response
 type NodeGroupSetControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -44553,6 +44715,11 @@ func (o *NodeGroupSetControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Node
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -44565,6 +44732,9 @@ func (o *NodeGroupSetControlResponse) xxx_FromOp(ctx context.Context, op *xxx_No
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength
@@ -44938,6 +45108,8 @@ func (o *GroupSetControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // GroupSetControlResponse structure represents the ApiGroupSetControl operation response
 type GroupSetControlResponse struct {
+	// XXX: nOutBufferSize is an implicit input depedency for output parameters
+	OutBufferSize  uint32 `idl:"name:nOutBufferSize" json:"out_buffer_size"`
 	OutBuffer      []byte `idl:"name:lpOutBuffer;size_is:(nOutBufferSize);length_is:(lpBytesReturned)" json:"out_buffer"`
 	BytesReturned  uint32 `idl:"name:lpBytesReturned" json:"bytes_returned"`
 	RequiredLength uint32 `idl:"name:lpcbRequired" json:"required_length"`
@@ -44953,6 +45125,11 @@ func (o *GroupSetControlResponse) xxx_ToOp(ctx context.Context, op *xxx_GroupSet
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutBufferSize == uint32(0) {
+		op.OutBufferSize = o.OutBufferSize
+	}
+
 	op.OutBuffer = o.OutBuffer
 	op.BytesReturned = o.BytesReturned
 	op.RequiredLength = o.RequiredLength
@@ -44965,6 +45142,9 @@ func (o *GroupSetControlResponse) xxx_FromOp(ctx context.Context, op *xxx_GroupS
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutBufferSize = op.OutBufferSize
+
 	o.OutBuffer = op.OutBuffer
 	o.BytesReturned = op.BytesReturned
 	o.RequiredLength = op.RequiredLength

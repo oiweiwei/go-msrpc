@@ -6649,6 +6649,8 @@ func (o *GetObjectSecurityInternalRequest) UnmarshalNDR(ctx context.Context, r n
 
 // GetObjectSecurityInternalResponse structure represents the R_QMGetObjectSecurityInternal operation response
 type GetObjectSecurityInternalResponse struct {
+	// XXX: nLength is an implicit input depedency for output parameters
+	Length uint32 `idl:"name:nLength" json:"length"`
 	// pSecurityDescriptor:  MUST be a pointer to an array of bytes into which the server
 	// MUST write a self-relative SECURITY_DESCRIPTOR structure. The server MUST NOT write
 	// more than nLength bytes to the buffer. If the buffer provided by the client is too
@@ -6672,6 +6674,11 @@ func (o *GetObjectSecurityInternalResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Length == uint32(0) {
+		op.Length = o.Length
+	}
+
 	op.SecurityDescriptor = o.SecurityDescriptor
 	op.LengthNeeded = o.LengthNeeded
 	op.Return = o.Return
@@ -6682,6 +6689,9 @@ func (o *GetObjectSecurityInternalResponse) xxx_FromOp(ctx context.Context, op *
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Length = op.Length
+
 	o.SecurityDescriptor = op.SecurityDescriptor
 	o.LengthNeeded = op.LengthNeeded
 	o.Return = op.Return
@@ -7201,6 +7211,8 @@ func (o *GetObjectPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // GetObjectPropertiesResponse structure represents the R_QMGetObjectProperties operation response
 type GetObjectPropertiesResponse struct {
+	// XXX: cp is an implicit input depedency for output parameters
+	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
 	// apVar: MUST contain at least one element. On input, each element MUST be initialized
 	// to the appropriate VARTYPE for the associated property specified by the same element
 	// in aProp, or VT_NULL. Otherwise, the server SHOULD return the failure HRESULT MQ_ERROR_PROPERTY
@@ -7219,6 +7231,11 @@ func (o *GetObjectPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetO
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CreatePartition == uint32(0) {
+		op.CreatePartition = o.CreatePartition
+	}
+
 	op.Var = o.Var
 	op.Return = o.Return
 	return op
@@ -7228,6 +7245,9 @@ func (o *GetObjectPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CreatePartition = op.CreatePartition
+
 	o.Var = op.Var
 	o.Return = op.Return
 }
@@ -7952,6 +7972,8 @@ func (o *GetTMWhereaboutsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetTMWhereaboutsResponse structure represents the R_QMGetTmWhereabouts operation response
 type GetTMWhereaboutsResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// pbWhereabouts:  On success, points to an array of bytes containing a Distributed
 	// Transaction Coordinator (DTC) SWhereabouts structure, as specified in [MS-DTCO] section
 	// 2.2.5.11.
@@ -7971,6 +7993,11 @@ func (o *GetTMWhereaboutsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTMWh
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Whereabouts = o.Whereabouts
 	op.WhereaboutsLength = o.WhereaboutsLength
 	op.Return = o.Return
@@ -7981,6 +8008,9 @@ func (o *GetTMWhereaboutsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTM
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Whereabouts = op.Whereabouts
 	o.WhereaboutsLength = op.WhereaboutsLength
 	o.Return = op.Return
@@ -10270,6 +10300,8 @@ func (o *HandleToFormatNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // HandleToFormatNameResponse structure represents the rpc_ACHandleToFormatName operation response
 type HandleToFormatNameResponse struct {
+	// XXX: dwFormatNameRPCBufferLen is an implicit input depedency for output parameters
+	FormatNameRPCBufferLength uint32 `idl:"name:dwFormatNameRPCBufferLen" json:"format_name_rpc_buffer_length"`
 	// lpwcsFormatName:  Pointer to a Unicode character buffer into which the server writes
 	// the format name (as specified in [MS-MQMQ]) for the queue identified by the hQueue
 	// parameter. The character buffer MUST be null-terminated by the server prior to returning,
@@ -10294,6 +10326,11 @@ func (o *HandleToFormatNameResponse) xxx_ToOp(ctx context.Context, op *xxx_Handl
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.FormatNameRPCBufferLength == uint32(0) {
+		op.FormatNameRPCBufferLength = o.FormatNameRPCBufferLength
+	}
+
 	op.FormatName = o.FormatName
 	op.Length = o.Length
 	op.Return = o.Return
@@ -10304,6 +10341,9 @@ func (o *HandleToFormatNameResponse) xxx_FromOp(ctx context.Context, op *xxx_Han
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.FormatNameRPCBufferLength = op.FormatNameRPCBufferLength
+
 	o.FormatName = op.FormatName
 	o.Length = op.Length
 	o.Return = op.Return

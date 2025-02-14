@@ -2203,6 +2203,8 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // GetPropertiesResponse structure represents the S_DSGetProps operation response
 type GetPropertiesResponse struct {
+	// XXX: cp is an implicit input depedency for output parameters
+	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
 	// apVar: On input, each element MUST be initialized to the appropriate VARTYPE ([MS-MQMQ]
 	// section 2.2.12.1) for the associated property specified by the same element in aProp,
 	// or VT_NULL. On success, the server MUST populate the elements of this array with
@@ -2225,6 +2227,11 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CreatePartition == uint32(0) {
+		op.CreatePartition = o.CreatePartition
+	}
+
 	op.Var = o.Var
 	op.ServerSignature = o.ServerSignature
 	op.ServerSignatureSize = o.ServerSignatureSize
@@ -2236,6 +2243,9 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CreatePartition = op.CreatePartition
+
 	o.Var = op.Var
 	o.ServerSignature = op.ServerSignature
 	o.ServerSignatureSize = op.ServerSignatureSize
@@ -2947,6 +2957,8 @@ func (o *GetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // GetObjectSecurityResponse structure represents the S_DSGetObjectSecurity operation response
 type GetObjectSecurityResponse struct {
+	// XXX: nLength is an implicit input depedency for output parameters
+	Length uint32 `idl:"name:nLength" json:"length"`
 	// pSecurityDescriptor: If the SecurityInformation parameter is MQDS_SIGN_PUBLIC_KEY
 	// or MQDS_KEYX_PUBLIC_KEY, it SHOULD<55> contain a pointer to a BLOBHEADER (section
 	// 2.2.19) structure followed by an RSAPUBKEY (section 2.2.18) structure. Otherwise,
@@ -2972,6 +2984,11 @@ func (o *GetObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObj
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Length == uint32(0) {
+		op.Length = o.Length
+	}
+
 	op.SecurityDescriptor = o.SecurityDescriptor
 	op.LengthNeeded = o.LengthNeeded
 	op.ServerSignature = o.ServerSignature
@@ -2984,6 +3001,9 @@ func (o *GetObjectSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_GetO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Length = op.Length
+
 	o.SecurityDescriptor = op.SecurityDescriptor
 	o.LengthNeeded = op.LengthNeeded
 	o.ServerSignature = op.ServerSignature
@@ -4012,6 +4032,8 @@ func (o *LookupNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // LookupNextResponse structure represents the S_DSLookupNext operation response
 type LookupNextResponse struct {
+	// XXX: dwSize is an implicit input depedency for output parameters
+	Size uint32 `idl:"name:dwSize" json:"size"`
 	// dwOutSize: A pointer to an unsigned LONG that the server MUST set to the number of
 	// properties returned in pbBuffer for the set of objects being returned from this invocation
 	// of the S_DSLookupNext method. The server MUST return as many completed sets of properties
@@ -4041,6 +4063,11 @@ func (o *LookupNextResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Size == uint32(0) {
+		op.Size = o.Size
+	}
+
 	op.OutSize = o.OutSize
 	op.Buffer = o.Buffer
 	op.ServerSignature = o.ServerSignature
@@ -4053,6 +4080,9 @@ func (o *LookupNextResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupNextO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Size = op.Size
+
 	o.OutSize = op.OutSize
 	o.Buffer = op.Buffer
 	o.ServerSignature = op.ServerSignature
@@ -4914,6 +4944,8 @@ func (o *GetPropertiesGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // GetPropertiesGUIDResponse structure represents the S_DSGetPropsGuid operation response
 type GetPropertiesGUIDResponse struct {
+	// XXX: cp is an implicit input depedency for output parameters
+	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
 	// apVar: On input, each element MUST be initialized to the appropriate VARTYPE ([MS-MQMQ]
 	// section 2.2.12.1) for the associated property specified by the same element in aProp,
 	// or VT_NULL. On success, the server MUST populate the elements of this array with
@@ -4937,6 +4969,11 @@ func (o *GetPropertiesGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPro
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CreatePartition == uint32(0) {
+		op.CreatePartition = o.CreatePartition
+	}
+
 	op.Var = o.Var
 	op.ServerSignature = o.ServerSignature
 	op.ServerSignatureSize = o.ServerSignatureSize
@@ -4948,6 +4985,9 @@ func (o *GetPropertiesGUIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CreatePartition = op.CreatePartition
+
 	o.Var = op.Var
 	o.ServerSignature = op.ServerSignature
 	o.ServerSignatureSize = op.ServerSignatureSize
@@ -5640,6 +5680,8 @@ func (o *GetObjectSecurityGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // GetObjectSecurityGUIDResponse structure represents the S_DSGetObjectSecurityGuid operation response
 type GetObjectSecurityGUIDResponse struct {
+	// XXX: nLength is an implicit input depedency for output parameters
+	Length uint32 `idl:"name:nLength" json:"length"`
 	// pSecurityDescriptor: If the SecurityInformation parameter is MQDS_SIGN_PUBLIC_KEY
 	// or MQDS_KEYX_PUBLIC_KEY, it SHOULD<59> contain a pointer to a BLOBHEADER structure
 	// followed by an RSAPUBKEY (section 2.2.18) structure. Otherwise, this parameter contains
@@ -5667,6 +5709,11 @@ func (o *GetObjectSecurityGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Length == uint32(0) {
+		op.Length = o.Length
+	}
+
 	op.SecurityDescriptor = o.SecurityDescriptor
 	op.LengthNeeded = o.LengthNeeded
 	op.ServerSignature = o.ServerSignature
@@ -5679,6 +5726,9 @@ func (o *GetObjectSecurityGUIDResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Length = op.Length
+
 	o.SecurityDescriptor = op.SecurityDescriptor
 	o.LengthNeeded = op.LengthNeeded
 	o.ServerSignature = op.ServerSignature
@@ -7120,6 +7170,8 @@ func (o *QMSetMachinePropertiesSignProcRequest) UnmarshalNDR(ctx context.Context
 
 // QMSetMachinePropertiesSignProcResponse structure represents the S_DSQMSetMachinePropertiesSignProc operation response
 type QMSetMachinePropertiesSignProcResponse struct {
+	// XXX: dwSignatureMaxSize is an implicit input depedency for output parameters
+	SignatureMaxSize uint32 `idl:"name:dwSignatureMaxSize" json:"signature_max_size"`
 	// abSignature: MUST be set by the caller to a pointer to a buffer to contain the returned
 	// signature. MUST be set by the receiver to a signature over the challenge in abChallenge.
 	// The algorithm for creating this signature is specified by the following pseudocode.
@@ -7139,6 +7191,11 @@ func (o *QMSetMachinePropertiesSignProcResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.SignatureMaxSize == uint32(0) {
+		op.SignatureMaxSize = o.SignatureMaxSize
+	}
+
 	op.Signature = o.Signature
 	op.SignatureSize = o.SignatureSize
 	op.Return = o.Return
@@ -7149,6 +7206,9 @@ func (o *QMSetMachinePropertiesSignProcResponse) xxx_FromOp(ctx context.Context,
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.SignatureMaxSize = op.SignatureMaxSize
+
 	o.Signature = op.Signature
 	o.SignatureSize = op.SignatureSize
 	o.Return = op.Return
@@ -7536,6 +7596,8 @@ func (o *QMGetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // QMGetObjectSecurityResponse structure represents the S_DSQMGetObjectSecurity operation response
 type QMGetObjectSecurityResponse struct {
+	// XXX: nLength is an implicit input depedency for output parameters
+	Length uint32 `idl:"name:nLength" json:"length"`
 	// pSecurityDescriptor: If the SecurityInformation parameter is MQDS_SIGN_PUBLIC_KEY
 	// or MQDS_KEYX_PUBLIC_KEY, it SHOULD <73> contain a pointer to a BLOBHEADER structure
 	// followed by an RSAPUBKEY (section 2.2.18) structure. Otherwise, this parameter contains
@@ -7563,6 +7625,11 @@ func (o *QMGetObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_QMGe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Length == uint32(0) {
+		op.Length = o.Length
+	}
+
 	op.SecurityDescriptor = o.SecurityDescriptor
 	op.LengthNeeded = o.LengthNeeded
 	op.ServerSignature = o.ServerSignature
@@ -7575,6 +7642,9 @@ func (o *QMGetObjectSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_QM
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Length = op.Length
+
 	o.SecurityDescriptor = op.SecurityDescriptor
 	o.LengthNeeded = op.LengthNeeded
 	o.ServerSignature = op.ServerSignature
@@ -7985,6 +8055,8 @@ func (o *QMGetObjectSecurityChallengeResponseProcRequest) UnmarshalNDR(ctx conte
 
 // QMGetObjectSecurityChallengeResponseProcResponse structure represents the S_DSQMGetObjectSecurityChallengeResponceProc operation response
 type QMGetObjectSecurityChallengeResponseProcResponse struct {
+	// XXX: dwCallengeResponceMaxSize is an implicit input depedency for output parameters
+	ChallengeResponseMaxSize uint32 `idl:"name:dwCallengeResponceMaxSize" json:"challenge_response_max_size"`
 	// abCallengeResponce:  MUST be set by the caller to a pointer to a buffer to contain
 	// the returned signature. MUST be set by the receiver to a signature over the challenge
 	// in abChallenge. The algorithm for creating this signature is specified by the following
@@ -8005,6 +8077,11 @@ func (o *QMGetObjectSecurityChallengeResponseProcResponse) xxx_ToOp(ctx context.
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ChallengeResponseMaxSize == uint32(0) {
+		op.ChallengeResponseMaxSize = o.ChallengeResponseMaxSize
+	}
+
 	op.ChallengeResponse = o.ChallengeResponse
 	op.ChallengeResponseSize = o.ChallengeResponseSize
 	op.Return = o.Return
@@ -8015,6 +8092,9 @@ func (o *QMGetObjectSecurityChallengeResponseProcResponse) xxx_FromOp(ctx contex
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ChallengeResponseMaxSize = op.ChallengeResponseMaxSize
+
 	o.ChallengeResponse = op.ChallengeResponse
 	o.ChallengeResponseSize = op.ChallengeResponseSize
 	o.Return = op.Return
@@ -8323,6 +8403,8 @@ func (o *InitSecurityContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // InitSecurityContextResponse structure represents the S_InitSecCtx operation response
 type InitSecurityContextResponse struct {
+	// XXX: dwClientBuffMaxSize is an implicit input depedency for output parameters
+	ClientBufferMaxSize uint32 `idl:"name:dwClientBuffMaxSize" json:"client_buffer_max_size"`
 	// pClientBuff:  MUST be set by the caller to point to a buffer to hold the returned
 	// token. MUST be set by the receiver to the output_token from a call to GSS_Init_sec_context.
 	// The buffer length MUST NOT exceed the value specified by dwClientBuffMaxSize. If
@@ -8343,6 +8425,11 @@ func (o *InitSecurityContextResponse) xxx_ToOp(ctx context.Context, op *xxx_Init
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ClientBufferMaxSize == uint32(0) {
+		op.ClientBufferMaxSize = o.ClientBufferMaxSize
+	}
+
 	op.ClientBuffer = o.ClientBuffer
 	op.ClientBufferSize = o.ClientBufferSize
 	op.Return = o.Return
@@ -8353,6 +8440,9 @@ func (o *InitSecurityContextResponse) xxx_FromOp(ctx context.Context, op *xxx_In
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ClientBufferMaxSize = op.ClientBufferMaxSize
+
 	o.ClientBuffer = op.ClientBuffer
 	o.ClientBufferSize = op.ClientBufferSize
 	o.Return = op.Return

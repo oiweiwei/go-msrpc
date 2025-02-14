@@ -20250,9 +20250,11 @@ func (o *SAMLogonRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // SAMLogonResponse structure represents the NetrLogonSamLogon operation response
 type SAMLogonResponse struct {
-	ReturnAuthenticator   *Authenticator `idl:"name:ReturnAuthenticator;pointer:unique" json:"return_authenticator"`
-	ValidationInformation *Validation    `idl:"name:ValidationInformation;switch_is:ValidationLevel" json:"validation_information"`
-	Authoritative         uint8          `idl:"name:Authoritative" json:"authoritative"`
+	// XXX: ValidationLevel is an implicit input depedency for output parameters
+	ValidationLevel       ValidationInfoClass `idl:"name:ValidationLevel" json:"validation_level"`
+	ReturnAuthenticator   *Authenticator      `idl:"name:ReturnAuthenticator;pointer:unique" json:"return_authenticator"`
+	ValidationInformation *Validation         `idl:"name:ValidationInformation;switch_is:ValidationLevel" json:"validation_information"`
+	Authoritative         uint8               `idl:"name:Authoritative" json:"authoritative"`
 	// Return: The NetrLogonSamLogon return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -20264,6 +20266,11 @@ func (o *SAMLogonResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLogonOperati
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValidationLevel == ValidationInfoClass(0) {
+		op.ValidationLevel = o.ValidationLevel
+	}
+
 	op.ReturnAuthenticator = o.ReturnAuthenticator
 	op.ValidationInformation = o.ValidationInformation
 	op.Authoritative = o.Authoritative
@@ -20275,6 +20282,9 @@ func (o *SAMLogonResponse) xxx_FromOp(ctx context.Context, op *xxx_SAMLogonOpera
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValidationLevel = op.ValidationLevel
+
 	o.ReturnAuthenticator = op.ReturnAuthenticator
 	o.ValidationInformation = op.ValidationInformation
 	o.Authoritative = op.Authoritative
@@ -22667,6 +22677,8 @@ func (o *AccountDeltasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // AccountDeltasResponse structure represents the NetrAccountDeltas operation response
 type AccountDeltasResponse struct {
+	// XXX: BufferSize is an implicit input depedency for output parameters
+	BufferSize          uint32         `idl:"name:BufferSize" json:"buffer_size"`
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
 	Buffer              []byte         `idl:"name:Buffer;size_is:(BufferSize)" json:"buffer"`
 	CountReturned       uint32         `idl:"name:CountReturned" json:"count_returned"`
@@ -22683,6 +22695,11 @@ func (o *AccountDeltasResponse) xxx_ToOp(ctx context.Context, op *xxx_AccountDel
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
+	}
+
 	op.ReturnAuthenticator = o.ReturnAuthenticator
 	op.Buffer = o.Buffer
 	op.CountReturned = o.CountReturned
@@ -22696,6 +22713,9 @@ func (o *AccountDeltasResponse) xxx_FromOp(ctx context.Context, op *xxx_AccountD
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferSize = op.BufferSize
+
 	o.ReturnAuthenticator = op.ReturnAuthenticator
 	o.Buffer = op.Buffer
 	o.CountReturned = op.CountReturned
@@ -23092,6 +23112,8 @@ func (o *AccountSyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // AccountSyncResponse structure represents the NetrAccountSync operation response
 type AccountSyncResponse struct {
+	// XXX: BufferSize is an implicit input depedency for output parameters
+	BufferSize          uint32         `idl:"name:BufferSize" json:"buffer_size"`
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
 	Buffer              []byte         `idl:"name:Buffer;size_is:(BufferSize)" json:"buffer"`
 	CountReturned       uint32         `idl:"name:CountReturned" json:"count_returned"`
@@ -23109,6 +23131,11 @@ func (o *AccountSyncResponse) xxx_ToOp(ctx context.Context, op *xxx_AccountSyncO
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
+	}
+
 	op.ReturnAuthenticator = o.ReturnAuthenticator
 	op.Buffer = o.Buffer
 	op.CountReturned = o.CountReturned
@@ -23123,6 +23150,9 @@ func (o *AccountSyncResponse) xxx_FromOp(ctx context.Context, op *xxx_AccountSyn
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferSize = op.BufferSize
+
 	o.ReturnAuthenticator = op.ReturnAuthenticator
 	o.Buffer = op.Buffer
 	o.CountReturned = op.CountReturned
@@ -23572,7 +23602,9 @@ func (o *ControlRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // ControlResponse structure represents the NetrLogonControl operation response
 type ControlResponse struct {
-	Buffer *ControlQueryInformation `idl:"name:Buffer;switch_is:QueryLevel" json:"buffer"`
+	// XXX: QueryLevel is an implicit input depedency for output parameters
+	QueryLevel uint32                   `idl:"name:QueryLevel" json:"query_level"`
+	Buffer     *ControlQueryInformation `idl:"name:Buffer;switch_is:QueryLevel" json:"buffer"`
 	// Return: The NetrLogonControl return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -23584,6 +23616,11 @@ func (o *ControlResponse) xxx_ToOp(ctx context.Context, op *xxx_ControlOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.QueryLevel == uint32(0) {
+		op.QueryLevel = o.QueryLevel
+	}
+
 	op.Buffer = o.Buffer
 	op.Return = o.Return
 	return op
@@ -23593,6 +23630,9 @@ func (o *ControlResponse) xxx_FromOp(ctx context.Context, op *xxx_ControlOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.QueryLevel = op.QueryLevel
+
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }
@@ -24095,7 +24135,9 @@ func (o *Control2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // Control2Response structure represents the NetrLogonControl2 operation response
 type Control2Response struct {
-	Buffer *ControlQueryInformation `idl:"name:Buffer;switch_is:QueryLevel" json:"buffer"`
+	// XXX: QueryLevel is an implicit input depedency for output parameters
+	QueryLevel uint32                   `idl:"name:QueryLevel" json:"query_level"`
+	Buffer     *ControlQueryInformation `idl:"name:Buffer;switch_is:QueryLevel" json:"buffer"`
 	// Return: The NetrLogonControl2 return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -24107,6 +24149,11 @@ func (o *Control2Response) xxx_ToOp(ctx context.Context, op *xxx_Control2Operati
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.QueryLevel == uint32(0) {
+		op.QueryLevel = o.QueryLevel
+	}
+
 	op.Buffer = o.Buffer
 	op.Return = o.Return
 	return op
@@ -24116,6 +24163,9 @@ func (o *Control2Response) xxx_FromOp(ctx context.Context, op *xxx_Control2Opera
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.QueryLevel = op.QueryLevel
+
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }
@@ -25563,6 +25613,8 @@ func (o *Control2ExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // Control2ExResponse structure represents the NetrLogonControl2Ex operation response
 type Control2ExResponse struct {
+	// XXX: QueryLevel is an implicit input depedency for output parameters
+	QueryLevel uint32 `idl:"name:QueryLevel" json:"query_level"`
 	// Buffer: A NETLOGON_CONTROL_QUERY_INFORMATION structure, as specified in section 2.2.1.7.6,
 	// that contains the specific query results, with a level of verbosity as specified
 	// in QueryLevel.
@@ -25578,6 +25630,11 @@ func (o *Control2ExResponse) xxx_ToOp(ctx context.Context, op *xxx_Control2ExOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.QueryLevel == uint32(0) {
+		op.QueryLevel = o.QueryLevel
+	}
+
 	op.Buffer = o.Buffer
 	op.Return = o.Return
 	return op
@@ -25587,6 +25644,9 @@ func (o *Control2ExResponse) xxx_FromOp(ctx context.Context, op *xxx_Control2ExO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.QueryLevel = op.QueryLevel
+
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }
@@ -26459,6 +26519,8 @@ func (o *GetCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // GetCapabilitiesResponse structure represents the NetrLogonGetCapabilities operation response
 type GetCapabilitiesResponse struct {
+	// XXX: QueryLevel is an implicit input depedency for output parameters
+	QueryLevel uint32 `idl:"name:QueryLevel" json:"query_level"`
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure that contains
 	// the server return authenticator.
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
@@ -26474,6 +26536,11 @@ func (o *GetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCapab
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.QueryLevel == uint32(0) {
+		op.QueryLevel = o.QueryLevel
+	}
+
 	op.ReturnAuthenticator = o.ReturnAuthenticator
 	op.ServerCapabilities = o.ServerCapabilities
 	op.Return = o.Return
@@ -26484,6 +26551,9 @@ func (o *GetCapabilitiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCap
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.QueryLevel = op.QueryLevel
+
 	o.ReturnAuthenticator = op.ReturnAuthenticator
 	o.ServerCapabilities = op.ServerCapabilities
 	o.Return = op.Return
@@ -28911,6 +28981,8 @@ func (o *GetDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // GetDomainInfoResponse structure represents the NetrLogonGetDomainInfo operation response
 type GetDomainInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
 	// in section 2.2.1.1.5, that contains the server return authenticator.
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator" json:"return_authenticator"`
@@ -28928,6 +29000,11 @@ func (o *GetDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDomainI
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.ReturnAuthenticator = o.ReturnAuthenticator
 	op.DomBuffer = o.DomBuffer
 	op.Return = o.Return
@@ -28938,6 +29015,9 @@ func (o *GetDomainInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDomai
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.ReturnAuthenticator = op.ReturnAuthenticator
 	o.DomBuffer = op.DomBuffer
 	o.Return = op.Return
@@ -32090,6 +32170,8 @@ func (o *SAMLogonExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // SAMLogonExResponse structure represents the NetrLogonSamLogonEx operation response
 type SAMLogonExResponse struct {
+	// XXX: ValidationLevel is an implicit input depedency for output parameters
+	ValidationLevel ValidationInfoClass `idl:"name:ValidationLevel" json:"validation_level"`
 	// ValidationInformation: A pointer to a NETLOGON_VALIDATION structure, as specified
 	// in section 2.2.1.4.14, that describes the user validation information returned to
 	// the client. The type of the NETLOGON_VALIDATION used is determined by the value of
@@ -32140,6 +32222,11 @@ func (o *SAMLogonExResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLogonExOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValidationLevel == ValidationInfoClass(0) {
+		op.ValidationLevel = o.ValidationLevel
+	}
+
 	op.ValidationInformation = o.ValidationInformation
 	op.Authoritative = o.Authoritative
 	op.ExtraFlags = o.ExtraFlags
@@ -32151,6 +32238,9 @@ func (o *SAMLogonExResponse) xxx_FromOp(ctx context.Context, op *xxx_SAMLogonExO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValidationLevel = op.ValidationLevel
+
 	o.ValidationInformation = op.ValidationInformation
 	o.Authoritative = op.Authoritative
 	o.ExtraFlags = op.ExtraFlags
@@ -34221,6 +34311,8 @@ func (o *SAMLogonWithFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // SAMLogonWithFlagsResponse structure represents the NetrLogonSamLogonWithFlags operation response
 type SAMLogonWithFlagsResponse struct {
+	// XXX: ValidationLevel is an implicit input depedency for output parameters
+	ValidationLevel ValidationInfoClass `idl:"name:ValidationLevel" json:"validation_level"`
 	// ReturnAuthenticator: A pointer to a NETLOGON_AUTHENTICATOR structure, as specified
 	// in section 2.2.1.1.5, that contains the server return authenticator.
 	ReturnAuthenticator *Authenticator `idl:"name:ReturnAuthenticator;pointer:unique" json:"return_authenticator"`
@@ -34274,6 +34366,11 @@ func (o *SAMLogonWithFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLog
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValidationLevel == ValidationInfoClass(0) {
+		op.ValidationLevel = o.ValidationLevel
+	}
+
 	op.ReturnAuthenticator = o.ReturnAuthenticator
 	op.ValidationInformation = o.ValidationInformation
 	op.Authoritative = o.Authoritative
@@ -34286,6 +34383,9 @@ func (o *SAMLogonWithFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SAML
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValidationLevel = op.ValidationLevel
+
 	o.ReturnAuthenticator = op.ReturnAuthenticator
 	o.ValidationInformation = op.ValidationInformation
 	o.Authoritative = op.Authoritative

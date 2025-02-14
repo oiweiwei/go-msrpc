@@ -1255,6 +1255,8 @@ func (o *GetIDsOfNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // GetIDsOfNamesResponse structure represents the GetIDsOfNames operation response
 type GetIDsOfNamesResponse struct {
+	// XXX: cNames is an implicit input depedency for output parameters
+	NamesCount uint32 `idl:"name:cNames" json:"names_count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// rgDispId: MUST be an array of DISPIDs that are filled in by the server. Each DISPID
@@ -1271,6 +1273,11 @@ func (o *GetIDsOfNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDsOfNa
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.NamesCount == uint32(0) {
+		op.NamesCount = o.NamesCount
+	}
+
 	op.That = o.That
 	op.DispatchID = o.DispatchID
 	op.Return = o.Return
@@ -1281,6 +1288,9 @@ func (o *GetIDsOfNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIDsOf
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.NamesCount = op.NamesCount
+
 	o.That = op.That
 	o.DispatchID = op.DispatchID
 	o.Return = op.Return
@@ -1926,6 +1936,8 @@ func (o *InvokeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // InvokeResponse structure represents the Invoke operation response
 type InvokeResponse struct {
+	// XXX: cVarRef is an implicit input depedency for output parameters
+	VarReferenceCount uint32 `idl:"name:cVarRef" json:"var_reference_count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pVarResult: MUST point to a VARIANT that will be filled with the result of the method
@@ -1955,6 +1967,11 @@ func (o *InvokeResponse) xxx_ToOp(ctx context.Context, op *xxx_InvokeOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.VarReferenceCount == uint32(0) {
+		op.VarReferenceCount = o.VarReferenceCount
+	}
+
 	op.That = o.That
 	op.VarResult = o.VarResult
 	op.ExceptionInfo = o.ExceptionInfo
@@ -1968,6 +1985,9 @@ func (o *InvokeResponse) xxx_FromOp(ctx context.Context, op *xxx_InvokeOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.VarReferenceCount = op.VarReferenceCount
+
 	o.That = op.That
 	o.VarResult = op.VarResult
 	o.ExceptionInfo = op.ExceptionInfo

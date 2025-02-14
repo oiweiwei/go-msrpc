@@ -736,6 +736,8 @@ func (o *UninstallDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // UninstallDisksResponse structure represents the UninstallDisks operation response
 type UninstallDisksResponse struct {
+	// XXX: ulCount is an implicit input depedency for output parameters
+	Count uint32 `idl:"name:ulCount" json:"count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbReboot: A pointer to a Boolean that, if the operation is successfully completed,
@@ -759,6 +761,11 @@ func (o *UninstallDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_Uninstall
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Count == uint32(0) {
+		op.Count = o.Count
+	}
+
 	op.That = o.That
 	op.Reboot = o.Reboot
 	op.Results = o.Results
@@ -770,6 +777,9 @@ func (o *UninstallDisksResponse) xxx_FromOp(ctx context.Context, op *xxx_Uninsta
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Count = op.Count
+
 	o.That = op.That
 	o.Reboot = op.Reboot
 	o.Results = op.Results

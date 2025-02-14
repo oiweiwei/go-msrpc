@@ -975,6 +975,8 @@ func (o *GetNSAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr
 
 // GetNSAccountInformationResponse structure represents the SAGetNSAccountInformation operation response
 type GetNSAccountInformationResponse struct {
+	// XXX: ccBufferSize is an implicit input depedency for output parameters
+	BufferSize uint32 `idl:"name:ccBufferSize" json:"buffer_size"`
 	// wszBuffer: Upon input, MUST be an empty array of size equal to the ccBufferSize parameter.
 	// The client SHOULD initialize the array to contain zeroes. Upon return, the array
 	// MUST contain the ATSvc account name.
@@ -990,6 +992,11 @@ func (o *GetNSAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
+	}
+
 	op.Buffer = o.Buffer
 	op.Return = o.Return
 	return op
@@ -999,6 +1006,9 @@ func (o *GetNSAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferSize = op.BufferSize
+
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }
@@ -1306,6 +1316,8 @@ func (o *GetAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // GetAccountInformationResponse structure represents the SAGetAccountInformation operation response
 type GetAccountInformationResponse struct {
+	// XXX: ccBufferSize is an implicit input depedency for output parameters
+	BufferSize uint32 `idl:"name:ccBufferSize" json:"buffer_size"`
 	// wszBuffer: Upon input, MUST be an empty array of size equal to the ccBufferSize parameter.
 	// The client SHOULD initialize the array to contain zeroes. Upon return, the array
 	// MUST contain the name of the account to be used as the context the task runs under.
@@ -1321,6 +1333,11 @@ func (o *GetAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
+	}
+
 	op.Buffer = o.Buffer
 	op.Return = o.Return
 	return op
@@ -1330,6 +1347,9 @@ func (o *GetAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferSize = op.BufferSize
+
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }

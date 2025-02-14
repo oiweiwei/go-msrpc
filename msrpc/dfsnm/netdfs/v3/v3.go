@@ -9275,6 +9275,8 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetInfoResponse structure represents the NetrDfsGetInfo operation response
 type GetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// DfsInfo: The pointer to a DFS_INFO_STRUCT union to receive the returned information.
 	// The case of the union is selected by the value of the Level parameter.
 	Info *Info `idl:"name:DfsInfo;switch_is:Level" json:"info"`
@@ -9289,6 +9291,11 @@ func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -9298,6 +9305,9 @@ func (o *GetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }

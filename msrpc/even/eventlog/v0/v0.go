@@ -3298,6 +3298,8 @@ func (o *ReadEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // ReadEventLogWResponse structure represents the ElfrReadELW operation response
 type ReadEventLogWResponse struct {
+	// XXX: NumberOfBytesToRead is an implicit input depedency for output parameters
+	NumberOfBytesToRead uint32 `idl:"name:NumberOfBytesToRead" json:"number_of_bytes_to_read"`
 	// Buffer: The buffer in which to place data read from the event log.
 	Buffer []byte `idl:"name:Buffer;size_is:(NumberOfBytesToRead)" json:"buffer"`
 	// NumberOfBytesRead: Pointer to a variable that receives the number of bytes actually
@@ -3318,6 +3320,11 @@ func (o *ReadEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadEventL
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.NumberOfBytesToRead == uint32(0) {
+		op.NumberOfBytesToRead = o.NumberOfBytesToRead
+	}
+
 	op.Buffer = o.Buffer
 	op.NumberOfBytesRead = o.NumberOfBytesRead
 	op.MinNumberOfBytesNeeded = o.MinNumberOfBytesNeeded
@@ -3329,6 +3336,9 @@ func (o *ReadEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadEven
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.NumberOfBytesToRead = op.NumberOfBytesToRead
+
 	o.Buffer = op.Buffer
 	o.NumberOfBytesRead = op.NumberOfBytesRead
 	o.MinNumberOfBytesNeeded = op.MinNumberOfBytesNeeded
@@ -5590,6 +5600,8 @@ func (o *ReadEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // ReadEventLogAResponse structure represents the ElfrReadELA operation response
 type ReadEventLogAResponse struct {
+	// XXX: NumberOfBytesToRead is an implicit input depedency for output parameters
+	NumberOfBytesToRead uint32 `idl:"name:NumberOfBytesToRead" json:"number_of_bytes_to_read"`
 	// Buffer: Data read from the event log.
 	Buffer []byte `idl:"name:Buffer;size_is:(NumberOfBytesToRead)" json:"buffer"`
 	// NumberOfBytesRead: Number of bytes read by the method.
@@ -5609,6 +5621,11 @@ func (o *ReadEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadEventL
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.NumberOfBytesToRead == uint32(0) {
+		op.NumberOfBytesToRead = o.NumberOfBytesToRead
+	}
+
 	op.Buffer = o.Buffer
 	op.NumberOfBytesRead = o.NumberOfBytesRead
 	op.MinNumberOfBytesNeeded = o.MinNumberOfBytesNeeded
@@ -5620,6 +5637,9 @@ func (o *ReadEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadEven
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.NumberOfBytesToRead = op.NumberOfBytesToRead
+
 	o.Buffer = op.Buffer
 	o.NumberOfBytesRead = op.NumberOfBytesRead
 	o.MinNumberOfBytesNeeded = op.MinNumberOfBytesNeeded
@@ -6540,6 +6560,8 @@ func (o *GetLogInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // GetLogInformationResponse structure represents the ElfrGetLogInformation operation response
 type GetLogInformationResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: The event log information. This MUST point to either an EVENTLOG_FULL_INFORMATION
 	// (section 2.2.4) structure or be NULL.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -6557,6 +6579,11 @@ func (o *GetLogInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLog
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.Return = o.Return
@@ -6567,6 +6594,9 @@ func (o *GetLogInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetL
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.Return = op.Return

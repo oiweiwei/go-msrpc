@@ -20367,6 +20367,8 @@ func (o *FileGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // FileGetInfoResponse structure represents the NetrFileGetInfo operation response
 type FileGetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// InfoStruct: This parameter is of type LPFILE_INFO, which is defined in section 2.2.3.3.
 	// Its contents are determined by the value of the Level member, as shown in the previous
 	// parameter table.
@@ -20382,6 +20384,11 @@ func (o *FileGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_FileGetInfoO
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -20391,6 +20398,9 @@ func (o *FileGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_FileGetInf
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }
@@ -22195,6 +22205,8 @@ func (o *ShareGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // ShareGetInfoResponse structure represents the NetrShareGetInfo operation response
 type ShareGetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// InfoStruct: This parameter is of type LPSHARE_INFO union, as specified in section
 	// 2.2.3.6. Its contents are determined by the value of the Level parameter, as shown
 	// in the preceding table.
@@ -22210,6 +22222,11 @@ func (o *ShareGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareGetInf
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -22219,6 +22236,9 @@ func (o *ShareGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareGetI
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }
@@ -23402,6 +23422,8 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetInfoResponse structure represents the NetrServerGetInfo operation response
 type GetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// InfoStruct: This is a structure of type LPSERVER_INFO, as specified in section 2.2.3.7.
 	// The content of the InfoStruct parameter is determined by the Level parameter, as
 	// the preceding table shows.
@@ -23417,6 +23439,11 @@ func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -23426,6 +23453,9 @@ func (o *GetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }
@@ -26080,6 +26110,8 @@ func (o *PathCanonicalizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // PathCanonicalizeResponse structure represents the NetprPathCanonicalize operation response
 type PathCanonicalizeResponse struct {
+	// XXX: OutbufLen is an implicit input depedency for output parameters
+	OutputBufferLength uint32 `idl:"name:OutbufLen" json:"output_buffer_length"`
 	// Outbuf: A pointer to the output buffer where the canonicalized path name is returned.
 	OutputBuffer []byte `idl:"name:Outbuf;size_is:(OutbufLen)" json:"output_buffer"`
 	// PathType: A place to store the path type. This parameter MUST be set by the client
@@ -26098,6 +26130,11 @@ func (o *PathCanonicalizeResponse) xxx_ToOp(ctx context.Context, op *xxx_PathCan
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutputBufferLength == uint32(0) {
+		op.OutputBufferLength = o.OutputBufferLength
+	}
+
 	op.OutputBuffer = o.OutputBuffer
 	op.PathType = o.PathType
 	op.Return = o.Return
@@ -26108,6 +26145,9 @@ func (o *PathCanonicalizeResponse) xxx_FromOp(ctx context.Context, op *xxx_PathC
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutputBufferLength = op.OutputBufferLength
+
 	o.OutputBuffer = op.OutputBuffer
 	o.PathType = op.PathType
 	o.Return = op.Return
@@ -26874,6 +26914,8 @@ func (o *NameCanonicalizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // NameCanonicalizeResponse structure represents the NetprNameCanonicalize operation response
 type NameCanonicalizeResponse struct {
+	// XXX: OutbufLen is an implicit input depedency for output parameters
+	OutputBufferLength uint32 `idl:"name:OutbufLen" json:"output_buffer_length"`
 	// Outbuf: A pointer to a null-terminated UTF-16 string that is the buffer where the
 	// canonicalized name is returned.
 	OutputBuffer string `idl:"name:Outbuf;size_is:(OutbufLen)" json:"output_buffer"`
@@ -26888,6 +26930,11 @@ func (o *NameCanonicalizeResponse) xxx_ToOp(ctx context.Context, op *xxx_NameCan
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutputBufferLength == uint32(0) {
+		op.OutputBufferLength = o.OutputBufferLength
+	}
+
 	op.OutputBuffer = o.OutputBuffer
 	op.Return = o.Return
 	return op
@@ -26897,6 +26944,9 @@ func (o *NameCanonicalizeResponse) xxx_FromOp(ctx context.Context, op *xxx_NameC
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutputBufferLength = op.OutputBufferLength
+
 	o.OutputBuffer = op.OutputBuffer
 	o.Return = op.Return
 }
@@ -29981,6 +30031,8 @@ func (o *CreateExitPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // CreateExitPointResponse structure represents the NetrDfsCreateExitPoint operation response
 type CreateExitPointResponse struct {
+	// XXX: ShortPrefixLen is an implicit input depedency for output parameters
+	ShortPrefixLength uint32 `idl:"name:ShortPrefixLen" json:"short_prefix_length"`
 	// ShortPrefix: A pointer to a null-terminated UTF-16 string that is the buffer where
 	// the name of the DFS namespace root or link is returned.<147>
 	ShortPrefix string `idl:"name:ShortPrefix;size_is:(ShortPrefixLen)" json:"short_prefix"`
@@ -29995,6 +30047,11 @@ func (o *CreateExitPointResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateEx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ShortPrefixLength == uint32(0) {
+		op.ShortPrefixLength = o.ShortPrefixLength
+	}
+
 	op.ShortPrefix = o.ShortPrefix
 	op.Return = o.Return
 	return op
@@ -30004,6 +30061,9 @@ func (o *CreateExitPointResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ShortPrefixLength = op.ShortPrefixLength
+
 	o.ShortPrefix = op.ShortPrefix
 	o.Return = op.Return
 }

@@ -2217,6 +2217,8 @@ func (o *QueryDriveLettersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // QueryDriveLettersResponse structure represents the QueryDriveLetters operation response
 type QueryDriveLettersResponse struct {
+	// XXX: count is an implicit input depedency for output parameters
+	Count uint32 `idl:"name:count" json:"count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pDriveLetterPropArray: An array of VDS_DRIVE_LETTER_PROP structures that, if the
@@ -2233,6 +2235,11 @@ func (o *QueryDriveLettersResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryD
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Count == uint32(0) {
+		op.Count = o.Count
+	}
+
 	op.That = o.That
 	op.DriveLetterPropertyArray = o.DriveLetterPropertyArray
 	op.Return = o.Return
@@ -2243,6 +2250,9 @@ func (o *QueryDriveLettersResponse) xxx_FromOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Count = op.Count
+
 	o.That = op.That
 	o.DriveLetterPropertyArray = op.DriveLetterPropertyArray
 	o.Return = op.Return

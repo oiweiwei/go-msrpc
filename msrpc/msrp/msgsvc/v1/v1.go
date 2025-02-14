@@ -1934,6 +1934,8 @@ func (o *MessageNameGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // MessageNameGetInfoResponse structure represents the NetrMessageNameGetInfo operation response
 type MessageNameGetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// InfoStruct:  A pointer to a structure of type MSG_INFO.
 	Info *MessageInfo `idl:"name:InfoStruct;switch_is:Level" json:"info"`
 	// Return: The NetrMessageNameGetInfo return value.
@@ -1947,6 +1949,11 @@ func (o *MessageNameGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Messa
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -1956,6 +1963,9 @@ func (o *MessageNameGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Mes
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }

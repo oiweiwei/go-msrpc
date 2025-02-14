@@ -6551,6 +6551,8 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetInfoResponse structure represents the NetrWkstaGetInfo operation response
 type GetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// WkstaInfo: A pointer to the buffer that receives the data. The format of this data
 	// depends on the value of the level parameter.
 	WorkstationInfo *WorkstationInfo `idl:"name:WkstaInfo;switch_is:Level" json:"workstation_info"`
@@ -6565,6 +6567,11 @@ func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.WorkstationInfo = o.WorkstationInfo
 	op.Return = o.Return
 	return op
@@ -6574,6 +6581,9 @@ func (o *GetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.WorkstationInfo = op.WorkstationInfo
 	o.Return = op.Return
 }
@@ -8679,6 +8689,8 @@ func (o *UseGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // UseGetInfoResponse structure represents the NetrUseGetInfo operation response
 type UseGetInfoResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// InfoStruct: A pointer to the buffer that specifies the data. The format of this data
 	// depends on the value of the Level parameter.
 	Info *UseInfo `idl:"name:InfoStruct;switch_is:Level" json:"info"`
@@ -8693,6 +8705,11 @@ func (o *UseGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_UseGetInfoOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -8702,6 +8719,9 @@ func (o *UseGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_UseGetInfoO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }

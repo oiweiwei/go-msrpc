@@ -557,6 +557,8 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // NextResponse structure represents the Next operation response
 type NextResponse struct {
+	// XXX: celt is an implicit input depedency for output parameters
+	Count uint32 `idl:"name:celt" json:"count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// rgVar: MUST be set to an array of elements that are returned from the enumeration
@@ -577,6 +579,11 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Count == uint32(0) {
+		op.Count = o.Count
+	}
+
 	op.That = o.That
 	op.Var = o.Var
 	op.CountFetched = o.CountFetched
@@ -588,6 +595,9 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Count = op.Count
+
 	o.That = op.That
 	o.Var = op.Var
 	o.CountFetched = op.CountFetched

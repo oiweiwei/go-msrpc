@@ -969,6 +969,8 @@ func (o *RegisterModuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // RegisterModuleResponse structure represents the RegisterModule operation response
 type RegisterModuleResponse struct {
+	// XXX: cModules is an implicit input depedency for output parameters
+	ModulesCount uint32 `idl:"name:cModules" json:"modules_count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// ppModuleFlags:  A pointer to a variable that, upon successful completion, SHOULD
@@ -1006,6 +1008,11 @@ func (o *RegisterModuleResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterM
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ModulesCount == uint32(0) {
+		op.ModulesCount = o.ModulesCount
+	}
+
 	op.That = o.That
 	op.ModuleFlags = o.ModuleFlags
 	op.ResultsCount = o.ResultsCount
@@ -1021,6 +1028,9 @@ func (o *RegisterModuleResponse) xxx_FromOp(ctx context.Context, op *xxx_Registe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ModulesCount = op.ModulesCount
+
 	o.That = op.That
 	o.ModuleFlags = op.ModuleFlags
 	o.ResultsCount = op.ResultsCount

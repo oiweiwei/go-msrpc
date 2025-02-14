@@ -764,6 +764,8 @@ func (o *ClientRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // ClientRequestResponse structure represents the ClientRequest operation response
 type ClientRequestResponse struct {
+	// XXX: lNeededSize is an implicit input depedency for output parameters
+	NeededSize int32 `idl:"name:lNeededSize" json:"needed_size"`
 	// pBuffer: Packet that MUST contain event packets or function calls. The packet follows
 	// the structure of a TAPI32_MSG (section 2.2.5.2) packet. The Req_Func field of this
 	// packet contains information about the operation to be performed on the server.
@@ -781,6 +783,11 @@ func (o *ClientRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientRequ
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.NeededSize == int32(0) {
+		op.NeededSize = o.NeededSize
+	}
+
 	op.Buffer = o.Buffer
 	op.UsedSize = o.UsedSize
 	return op
@@ -790,6 +797,9 @@ func (o *ClientRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientRe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.NeededSize = op.NeededSize
+
 	o.Buffer = op.Buffer
 	o.UsedSize = op.UsedSize
 }

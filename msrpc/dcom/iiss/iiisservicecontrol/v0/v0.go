@@ -1361,6 +1361,8 @@ func (o *StatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // StatusResponse structure represents the Status operation response
 type StatusResponse struct {
+	// XXX: dwBufferSize is an implicit input depedency for output parameters
+	BufferSize uint32 `idl:"name:dwBufferSize" json:"buffer_size"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbBuffer: An array of unsigned chars that will be filled with information about the
@@ -1384,6 +1386,11 @@ func (o *StatusResponse) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
+	}
+
 	op.That = o.That
 	op.Buffer = o.Buffer
 	op.RequiredBufferSize = o.RequiredBufferSize
@@ -1396,6 +1403,9 @@ func (o *StatusResponse) xxx_FromOp(ctx context.Context, op *xxx_StatusOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferSize = op.BufferSize
+
 	o.That = op.That
 	o.Buffer = op.Buffer
 	o.RequiredBufferSize = op.RequiredBufferSize

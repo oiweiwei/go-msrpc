@@ -8688,6 +8688,8 @@ func (o *GetLogFileInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // GetLogFileInfoResponse structure represents the EvtRpcGetLogFileInfo operation response
 type GetLogFileInfoResponse struct {
+	// XXX: propertyValueBufferSize is an implicit input depedency for output parameters
+	PropertyValueBufferSize uint32 `idl:"name:propertyValueBufferSize" json:"property_value_buffer_size"`
 	// propertyValueBuffer: A byte-array that contains the buffer for returned data.
 	PropertyValueBuffer []byte `idl:"name:propertyValueBuffer;size_is:(propertyValueBufferSize)" json:"property_value_buffer"`
 	// propertyValueBufferLength: A pointer to a 32-bit unsigned integer that contains the
@@ -8704,6 +8706,11 @@ func (o *GetLogFileInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogFil
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.PropertyValueBufferSize == uint32(0) {
+		op.PropertyValueBufferSize = o.PropertyValueBufferSize
+	}
+
 	op.PropertyValueBuffer = o.PropertyValueBuffer
 	op.PropertyValueBufferLength = o.PropertyValueBufferLength
 	op.Return = o.Return
@@ -8714,6 +8721,9 @@ func (o *GetLogFileInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogF
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.PropertyValueBufferSize = op.PropertyValueBufferSize
+
 	o.PropertyValueBuffer = op.PropertyValueBuffer
 	o.PropertyValueBufferLength = op.PropertyValueBufferLength
 	o.Return = op.Return

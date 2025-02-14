@@ -3026,6 +3026,8 @@ func (o *GetQueueFileNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetQueueFileNameResponse structure represents the FaxObs_GetQueueFileName operation response
 type GetQueueFileNameResponse struct {
+	// XXX: FileNameSize is an implicit input depedency for output parameters
+	FileNameSize uint32 `idl:"name:FileNameSize" json:"file_name_size"`
 	// FileName: A buffer that MUST be allocated by the client to hold FileNameSize characters.
 	// On successful return from this call the server MUST write to this buffer a null-terminated
 	// character string containing the path name, including file name and extension, for
@@ -3042,6 +3044,11 @@ func (o *GetQueueFileNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQueu
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.FileNameSize == uint32(0) {
+		op.FileNameSize = o.FileNameSize
+	}
+
 	op.FileName = o.FileName
 	op.Return = o.Return
 	return op
@@ -3051,6 +3058,9 @@ func (o *GetQueueFileNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQu
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.FileNameSize = op.FileNameSize
+
 	o.FileName = op.FileName
 	o.Return = op.Return
 }

@@ -18791,6 +18791,8 @@ func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetJobResponse structure represents the RpcAsyncGetJob operation response
 type GetJobResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Job          []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetJob return value.
@@ -18804,6 +18806,11 @@ func (o *GetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Job = o.Job
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -18814,6 +18821,9 @@ func (o *GetJobResponse) xxx_FromOp(ctx context.Context, op *xxx_GetJobOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Job = op.Job
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -19188,6 +19198,8 @@ func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // EnumJobsResponse structure represents the RpcAsyncEnumJobs operation response
 type EnumJobsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Job           []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -19202,6 +19214,11 @@ func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperati
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Job = o.Job
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -19213,6 +19230,9 @@ func (o *EnumJobsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumJobsOpera
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Job = op.Job
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -19543,6 +19563,8 @@ func (o *AddJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // AddJobResponse structure represents the RpcAsyncAddJob operation response
 type AddJobResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	AddJob       []byte `idl:"name:pAddJob;size_is:(cbBuf);pointer:unique" json:"add_job"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncAddJob return value.
@@ -19556,6 +19578,11 @@ func (o *AddJobResponse) xxx_ToOp(ctx context.Context, op *xxx_AddJobOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.AddJob = o.AddJob
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -19566,6 +19593,9 @@ func (o *AddJobResponse) xxx_FromOp(ctx context.Context, op *xxx_AddJobOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.AddJob = op.AddJob
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -20484,6 +20514,8 @@ func (o *GetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // GetPrinterResponse structure represents the RpcAsyncGetPrinter operation response
 type GetPrinterResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	PrinterBuffer []byte `idl:"name:pPrinter;size_is:(cbBuf);pointer:unique" json:"printer_buffer"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetPrinter return value.
@@ -20497,6 +20529,11 @@ func (o *GetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrinterBuffer = o.PrinterBuffer
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -20507,6 +20544,9 @@ func (o *GetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrinterBuffer = op.PrinterBuffer
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -21817,6 +21857,8 @@ func (o *GetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // GetPrinterDataResponse structure represents the RpcAsyncGetPrinterData operation response
 type GetPrinterDataResponse struct {
+	// XXX: nSize is an implicit input depedency for output parameters
+	Size         uint32 `idl:"name:nSize" json:"size"`
 	Type         uint32 `idl:"name:pType" json:"type"`
 	Data         []byte `idl:"name:pData;size_is:(nSize)" json:"data"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
@@ -21831,6 +21873,11 @@ func (o *GetPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinte
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Size == uint32(0) {
+		op.Size = o.Size
+	}
+
 	op.Type = o.Type
 	op.Data = o.Data
 	op.NeededLength = o.NeededLength
@@ -21842,6 +21889,9 @@ func (o *GetPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Size = op.Size
+
 	o.Type = op.Type
 	o.Data = op.Data
 	o.NeededLength = op.NeededLength
@@ -22102,6 +22152,8 @@ func (o *GetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetPrinterDataExResponse structure represents the RpcAsyncGetPrinterDataEx operation response
 type GetPrinterDataExResponse struct {
+	// XXX: nSize is an implicit input depedency for output parameters
+	Size         uint32 `idl:"name:nSize" json:"size"`
 	Type         uint32 `idl:"name:pType" json:"type"`
 	Data         []byte `idl:"name:pData;size_is:(nSize)" json:"data"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
@@ -22116,6 +22168,11 @@ func (o *GetPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Size == uint32(0) {
+		op.Size = o.Size
+	}
+
 	op.Type = o.Type
 	op.Data = o.Data
 	op.NeededLength = o.NeededLength
@@ -22127,6 +22184,9 @@ func (o *GetPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Size = op.Size
+
 	o.Type = op.Type
 	o.Data = op.Data
 	o.NeededLength = op.NeededLength
@@ -23538,6 +23598,8 @@ func (o *GetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetFormResponse structure represents the RpcAsyncGetForm operation response
 type GetFormResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Form         []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetForm return value.
@@ -23551,6 +23613,11 @@ func (o *GetFormResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFormOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Form = o.Form
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -23561,6 +23628,9 @@ func (o *GetFormResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFormOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Form = op.Form
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -24104,6 +24174,8 @@ func (o *EnumFormsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // EnumFormsResponse structure represents the RpcAsyncEnumForms operation response
 type EnumFormsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Form          []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -24118,6 +24190,11 @@ func (o *EnumFormsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFormsOpera
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Form = o.Form
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -24129,6 +24206,9 @@ func (o *EnumFormsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFormsOpe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Form = op.Form
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -24560,6 +24640,8 @@ func (o *GetPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetPrinterDriverResponse structure represents the RpcAsyncGetPrinterDriver operation response
 type GetPrinterDriverResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength     uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Driver           []byte `idl:"name:pDriver;size_is:(cbBuf);pointer:unique" json:"driver"`
 	NeededLength     uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ServerMaxVersion uint32 `idl:"name:pdwServerMaxVersion" json:"server_max_version"`
@@ -24575,6 +24657,11 @@ func (o *GetPrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Driver = o.Driver
 	op.NeededLength = o.NeededLength
 	op.ServerMaxVersion = o.ServerMaxVersion
@@ -24587,6 +24674,9 @@ func (o *GetPrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Driver = op.Driver
 	o.NeededLength = op.NeededLength
 	o.ServerMaxVersion = op.ServerMaxVersion
@@ -24913,6 +25003,10 @@ func (o *EnumPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // EnumPrinterDataResponse structure represents the RpcAsyncEnumPrinterData operation response
 type EnumPrinterDataResponse struct {
+	// XXX: cbValueNameIn is an implicit input depedency for output parameters
+	ValueNameInLength uint32 `idl:"name:cbValueNameIn" json:"value_name_in_length"`
+	// XXX: cbDataIn is an implicit input depedency for output parameters
+	DataInLength       uint32 `idl:"name:cbDataIn" json:"data_in_length"`
 	ValueName          string `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
 	ValueNameOutLength uint32 `idl:"name:pcbValueNameOut" json:"value_name_out_length"`
 	Type               uint32 `idl:"name:pType" json:"type"`
@@ -24929,6 +25023,14 @@ func (o *EnumPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrin
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValueNameInLength == uint32(0) {
+		op.ValueNameInLength = o.ValueNameInLength
+	}
+	if op.DataInLength == uint32(0) {
+		op.DataInLength = o.DataInLength
+	}
+
 	op.ValueName = o.ValueName
 	op.ValueNameOutLength = o.ValueNameOutLength
 	op.Type = o.Type
@@ -24942,6 +25044,10 @@ func (o *EnumPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPr
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValueNameInLength = op.ValueNameInLength
+	o.DataInLength = op.DataInLength
+
 	o.ValueName = op.ValueName
 	o.ValueNameOutLength = op.ValueNameOutLength
 	o.Type = op.Type
@@ -25188,6 +25294,8 @@ func (o *EnumPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // EnumPrinterDataExResponse structure represents the RpcAsyncEnumPrinterDataEx operation response
 type EnumPrinterDataExResponse struct {
+	// XXX: cbEnumValuesIn is an implicit input depedency for output parameters
+	EnumValuesInLength  uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
 	EnumValues          []byte `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
 	EnumValuesOutLength uint32 `idl:"name:pcbEnumValuesOut" json:"enum_values_out_length"`
 	EnumValuesLength    uint32 `idl:"name:numEnumValues" json:"enum_values_length"`
@@ -25202,6 +25310,11 @@ func (o *EnumPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPr
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.EnumValuesInLength == uint32(0) {
+		op.EnumValuesInLength = o.EnumValuesInLength
+	}
+
 	op.EnumValues = o.EnumValues
 	op.EnumValuesOutLength = o.EnumValuesOutLength
 	op.EnumValuesLength = o.EnumValuesLength
@@ -25213,6 +25326,9 @@ func (o *EnumPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.EnumValuesInLength = op.EnumValuesInLength
+
 	o.EnumValues = op.EnumValues
 	o.EnumValuesOutLength = op.EnumValuesOutLength
 	o.EnumValuesLength = op.EnumValuesLength
@@ -25450,6 +25566,8 @@ func (o *EnumPrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // EnumPrinterKeyResponse structure represents the RpcAsyncEnumPrinterKey operation response
 type EnumPrinterKeyResponse struct {
+	// XXX: cbSubkeyIn is an implicit input depedency for output parameters
+	SubkeyInLength  uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
 	Subkey          string `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
 	SubkeyOutLength uint32 `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
 	// Return: The RpcAsyncEnumPrinterKey return value.
@@ -25463,6 +25581,11 @@ func (o *EnumPrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrint
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.SubkeyInLength == uint32(0) {
+		op.SubkeyInLength = o.SubkeyInLength
+	}
+
 	op.Subkey = o.Subkey
 	op.SubkeyOutLength = o.SubkeyOutLength
 	op.Return = o.Return
@@ -25473,6 +25596,9 @@ func (o *EnumPrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPri
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.SubkeyInLength = op.SubkeyInLength
+
 	o.Subkey = op.Subkey
 	o.SubkeyOutLength = op.SubkeyOutLength
 	o.Return = op.Return
@@ -26329,6 +26455,8 @@ func (o *XcvDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // XcvDataResponse structure represents the RpcAsyncXcvData operation response
 type XcvDataResponse struct {
+	// XXX: cbOutputData is an implicit input depedency for output parameters
+	OutputDataLength   uint32 `idl:"name:cbOutputData" json:"output_data_length"`
 	OutputData         []byte `idl:"name:pOutputData;size_is:(cbOutputData)" json:"output_data"`
 	OutputNeededLength uint32 `idl:"name:pcbOutputNeeded" json:"output_needed_length"`
 	Status             uint32 `idl:"name:pdwStatus" json:"status"`
@@ -26343,6 +26471,11 @@ func (o *XcvDataResponse) xxx_ToOp(ctx context.Context, op *xxx_XcvDataOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutputDataLength == uint32(0) {
+		op.OutputDataLength = o.OutputDataLength
+	}
+
 	op.OutputData = o.OutputData
 	op.OutputNeededLength = o.OutputNeededLength
 	op.Status = o.Status
@@ -26354,6 +26487,9 @@ func (o *XcvDataResponse) xxx_FromOp(ctx context.Context, op *xxx_XcvDataOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutputDataLength = op.OutputDataLength
+
 	o.OutputData = op.OutputData
 	o.OutputNeededLength = op.OutputNeededLength
 	o.Status = op.Status
@@ -27131,7 +27267,9 @@ func (o *PlayGDIScriptOnPrinterICRequest) UnmarshalNDR(ctx context.Context, r nd
 
 // PlayGDIScriptOnPrinterICResponse structure represents the RpcAsyncPlayGdiScriptOnPrinterIC operation response
 type PlayGDIScriptOnPrinterICResponse struct {
-	Out []byte `idl:"name:pOut;size_is:(cOut)" json:"out"`
+	// XXX: cOut is an implicit input depedency for output parameters
+	OutCount uint32 `idl:"name:cOut" json:"out_count"`
+	Out      []byte `idl:"name:pOut;size_is:(cOut)" json:"out"`
 	// Return: The RpcAsyncPlayGdiScriptOnPrinterIC return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -27143,6 +27281,11 @@ func (o *PlayGDIScriptOnPrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutCount == uint32(0) {
+		op.OutCount = o.OutCount
+	}
+
 	op.Out = o.Out
 	op.Return = o.Return
 	return op
@@ -27152,6 +27295,9 @@ func (o *PlayGDIScriptOnPrinterICResponse) xxx_FromOp(ctx context.Context, op *x
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutCount = op.OutCount
+
 	o.Out = op.Out
 	o.Return = op.Return
 }
@@ -27707,6 +27853,8 @@ func (o *EnumPrintersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // EnumPrintersResponse structure represents the RpcAsyncEnumPrinters operation response
 type EnumPrintersResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	PrinterEnum   []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -27721,6 +27869,11 @@ func (o *EnumPrintersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinter
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrinterEnum = o.PrinterEnum
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -27732,6 +27885,9 @@ func (o *EnumPrintersResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrint
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrinterEnum = op.PrinterEnum
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -28349,6 +28505,8 @@ func (o *EnumPrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // EnumPrinterDriversResponse structure represents the RpcAsyncEnumPrinterDrivers operation response
 type EnumPrinterDriversResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Drivers       []byte `idl:"name:pDrivers;size_is:(cbBuf);pointer:unique" json:"drivers"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -28363,6 +28521,11 @@ func (o *EnumPrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumP
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Drivers = o.Drivers
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -28374,6 +28537,9 @@ func (o *EnumPrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Drivers = op.Drivers
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -28761,6 +28927,8 @@ func (o *GetPrinterDriverDirectoryRequest) UnmarshalNDR(ctx context.Context, r n
 
 // GetPrinterDriverDirectoryResponse structure represents the RpcAsyncGetPrinterDriverDirectory operation response
 type GetPrinterDriverDirectoryResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength    uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	DriverDirectory []byte `idl:"name:pDriverDirectory;size_is:(cbBuf);pointer:unique" json:"driver_directory"`
 	NeededLength    uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetPrinterDriverDirectory return value.
@@ -28774,6 +28942,11 @@ func (o *GetPrinterDriverDirectoryResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.DriverDirectory = o.DriverDirectory
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -28784,6 +28957,9 @@ func (o *GetPrinterDriverDirectoryResponse) xxx_FromOp(ctx context.Context, op *
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.DriverDirectory = op.DriverDirectory
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -29837,6 +30013,8 @@ func (o *EnumPrintProcessorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // EnumPrintProcessorsResponse structure represents the RpcAsyncEnumPrintProcessors operation response
 type EnumPrintProcessorsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength       uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	PrintProcessorInfo []byte `idl:"name:pPrintProcessorInfo;size_is:(cbBuf);pointer:unique" json:"print_processor_info"`
 	NeededLength       uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount      uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -29851,6 +30029,11 @@ func (o *EnumPrintProcessorsResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrintProcessorInfo = o.PrintProcessorInfo
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -29862,6 +30045,9 @@ func (o *EnumPrintProcessorsResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrintProcessorInfo = op.PrintProcessorInfo
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -30249,6 +30435,8 @@ func (o *GetPrintProcessorDirectoryRequest) UnmarshalNDR(ctx context.Context, r 
 
 // GetPrintProcessorDirectoryResponse structure represents the RpcAsyncGetPrintProcessorDirectory operation response
 type GetPrintProcessorDirectoryResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength            uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	PrintProcessorDirectory []byte `idl:"name:pPrintProcessorDirectory;size_is:(cbBuf);pointer:unique" json:"print_processor_directory"`
 	NeededLength            uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetPrintProcessorDirectory return value.
@@ -30262,6 +30450,11 @@ func (o *GetPrintProcessorDirectoryResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrintProcessorDirectory = o.PrintProcessorDirectory
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -30272,6 +30465,9 @@ func (o *GetPrintProcessorDirectoryResponse) xxx_FromOp(ctx context.Context, op 
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrintProcessorDirectory = op.PrintProcessorDirectory
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -30628,6 +30824,8 @@ func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // EnumPortsResponse structure represents the RpcAsyncEnumPorts operation response
 type EnumPortsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Port          []byte `idl:"name:pPort;size_is:(cbBuf);pointer:unique" json:"port"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -30642,6 +30840,11 @@ func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOpera
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Port = o.Port
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -30653,6 +30856,9 @@ func (o *EnumPortsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPortsOpe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Port = op.Port
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -31012,6 +31218,8 @@ func (o *EnumMonitorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // EnumMonitorsResponse structure represents the RpcAsyncEnumMonitors operation response
 type EnumMonitorsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Monitor       []byte `idl:"name:pMonitor;size_is:(cbBuf);pointer:unique" json:"monitor"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -31026,6 +31234,11 @@ func (o *EnumMonitorsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMonitor
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Monitor = o.Monitor
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -31037,6 +31250,9 @@ func (o *EnumMonitorsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumMonit
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Monitor = op.Monitor
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -32576,6 +32792,8 @@ func (o *EnumPrintProcessorDataTypesRequest) UnmarshalNDR(ctx context.Context, r
 
 // EnumPrintProcessorDataTypesResponse structure represents the RpcAsyncEnumPrintProcessorDatatypes operation response
 type EnumPrintProcessorDataTypesResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	DataTypes     []byte `idl:"name:pDatatypes;size_is:(cbBuf);pointer:unique" json:"data_types"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -32590,6 +32808,11 @@ func (o *EnumPrintProcessorDataTypesResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.DataTypes = o.DataTypes
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -32601,6 +32824,9 @@ func (o *EnumPrintProcessorDataTypesResponse) xxx_FromOp(ctx context.Context, op
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.DataTypes = op.DataTypes
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -33348,6 +33574,8 @@ func (o *EnumPerMachineConnectionsRequest) UnmarshalNDR(ctx context.Context, r n
 
 // EnumPerMachineConnectionsResponse structure represents the RpcAsyncEnumPerMachineConnections operation response
 type EnumPerMachineConnectionsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	PrinterEnum   []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -33362,6 +33590,11 @@ func (o *EnumPerMachineConnectionsResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrinterEnum = o.PrinterEnum
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -33373,6 +33606,9 @@ func (o *EnumPerMachineConnectionsResponse) xxx_FromOp(ctx context.Context, op *
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrinterEnum = op.PrinterEnum
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -35304,6 +35540,8 @@ func (o *GetCorePrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // GetCorePrinterDriversResponse structure represents the RpcAsyncGetCorePrinterDrivers operation response
 type GetCorePrinterDriversResponse struct {
+	// XXX: cCorePrinterDrivers is an implicit input depedency for output parameters
+	CorePrinterDriversCount uint32 `idl:"name:cCorePrinterDrivers" json:"core_printer_drivers_count"`
 	// pCorePrinterDrivers: A pointer to a buffer that receives an array of CORE_PRINTER_DRIVER
 	// structures.
 	CorePrinterDrivers []*CorePrinterDriver `idl:"name:pCorePrinterDrivers;size_is:(cCorePrinterDrivers)" json:"core_printer_drivers"`
@@ -35318,6 +35556,11 @@ func (o *GetCorePrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CorePrinterDriversCount == uint32(0) {
+		op.CorePrinterDriversCount = o.CorePrinterDriversCount
+	}
+
 	op.CorePrinterDrivers = o.CorePrinterDrivers
 	op.Return = o.Return
 	return op
@@ -35327,6 +35570,9 @@ func (o *GetCorePrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CorePrinterDriversCount = op.CorePrinterDriversCount
+
 	o.CorePrinterDrivers = op.CorePrinterDrivers
 	o.Return = op.Return
 }
@@ -36050,6 +36296,8 @@ func (o *GetPrinterDriverPackagePathRequest) UnmarshalNDR(ctx context.Context, r
 
 // GetPrinterDriverPackagePathResponse structure represents the RpcAsyncGetPrinterDriverPackagePath operation response
 type GetPrinterDriverPackagePathResponse struct {
+	// XXX: cchDriverPackageCab is an implicit input depedency for output parameters
+	DriverPackageCabLength uint32 `idl:"name:cchDriverPackageCab" json:"driver_package_cab_length"`
 	// pszDriverPackageCab: A pointer to a string that contains the path name of the driver
 	// package file.<26> For rules governing path names, see [MS-RPRN] section 2.2.4.9.
 	// The pszDriverPackageCab parameter MUST NOT be NULL unless cchDriverPackageCab is
@@ -36069,6 +36317,11 @@ func (o *GetPrinterDriverPackagePathResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DriverPackageCabLength == uint32(0) {
+		op.DriverPackageCabLength = o.DriverPackageCabLength
+	}
+
 	op.DriverPackageCab = o.DriverPackageCab
 	op.RequiredLength = o.RequiredLength
 	op.Return = o.Return
@@ -36079,6 +36332,9 @@ func (o *GetPrinterDriverPackagePathResponse) xxx_FromOp(ctx context.Context, op
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DriverPackageCabLength = op.DriverPackageCabLength
+
 	o.DriverPackageCab = op.DriverPackageCab
 	o.RequiredLength = op.RequiredLength
 	o.Return = op.Return
@@ -36505,6 +36761,8 @@ func (o *ReadPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // ReadPrinterResponse structure represents the RpcAsyncReadPrinter operation response
 type ReadPrinterResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength     uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	Buffer           []byte `idl:"name:pBuf;size_is:(cbBuf)" json:"buffer"`
 	NoBytesReadCount uint32 `idl:"name:pcNoBytesRead" json:"no_bytes_read_count"`
 	// Return: The RpcAsyncReadPrinter return value.
@@ -36518,6 +36776,11 @@ func (o *ReadPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadPrinterO
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.NoBytesReadCount = o.NoBytesReadCount
 	op.Return = o.Return
@@ -36528,6 +36791,9 @@ func (o *ReadPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadPrinte
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.NoBytesReadCount = op.NoBytesReadCount
 	o.Return = op.Return

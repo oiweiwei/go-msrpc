@@ -6338,6 +6338,8 @@ func (o *GetDataPathsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // GetDataPathsResponse structure represents the GetDataPaths operation response
 type GetDataPathsResponse struct {
+	// XXX: dwMDBufferSize is an implicit input depedency for output parameters
+	BufferSize uint32 `idl:"name:dwMDBufferSize" json:"buffer_size"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pszBuffer: A pointer to a buffer that contains the retrieved data. If the method
@@ -6359,6 +6361,11 @@ func (o *GetDataPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDataPath
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferSize == uint32(0) {
+		op.BufferSize = o.BufferSize
+	}
+
 	op.That = o.That
 	op.Buffer = o.Buffer
 	op.RequiredBufferSize = o.RequiredBufferSize
@@ -6370,6 +6377,9 @@ func (o *GetDataPathsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDataPa
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferSize = op.BufferSize
+
 	o.That = op.That
 	o.Buffer = op.Buffer
 	o.RequiredBufferSize = op.RequiredBufferSize
