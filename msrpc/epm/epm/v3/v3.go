@@ -1170,6 +1170,8 @@ func (o *LookupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // LookupResponse structure represents the ept_lookup operation response
 type LookupResponse struct {
+	// XXX: max_ents is an implicit input depedency for output parameters
+	MaxEntries    uint32        `idl:"name:max_ents" json:"max_entries"`
 	EntryHandle   *LookupHandle `idl:"name:entry_handle" json:"entry_handle"`
 	EntriesLength uint32        `idl:"name:num_ents" json:"entries_length"`
 	Entries       []*Entry      `idl:"name:entries;size_is:(max_ents);length_is:(num_ents)" json:"entries"`
@@ -1183,6 +1185,11 @@ func (o *LookupResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.MaxEntries == uint32(0) {
+		op.MaxEntries = o.MaxEntries
+	}
+
 	op.EntryHandle = o.EntryHandle
 	op.EntriesLength = o.EntriesLength
 	op.Entries = o.Entries
@@ -1194,6 +1201,9 @@ func (o *LookupResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.MaxEntries = op.MaxEntries
+
 	o.EntryHandle = op.EntryHandle
 	o.EntriesLength = op.EntriesLength
 	o.Entries = op.Entries
@@ -1583,6 +1593,8 @@ func (o *MapRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // MapResponse structure represents the ept_map operation response
 type MapResponse struct {
+	// XXX: max_towers is an implicit input depedency for output parameters
+	MaxTowers    uint32            `idl:"name:max_towers" json:"max_towers"`
 	EntryHandle  *LookupHandle     `idl:"name:entry_handle" json:"entry_handle"`
 	TowersLength uint32            `idl:"name:num_towers" json:"towers_length"`
 	Towers       []*dcetypes.Tower `idl:"name:towers;size_is:(max_towers);length_is:(num_towers)" json:"towers"`
@@ -1596,6 +1608,11 @@ func (o *MapResponse) xxx_ToOp(ctx context.Context, op *xxx_MapOperation) *xxx_M
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.MaxTowers == uint32(0) {
+		op.MaxTowers = o.MaxTowers
+	}
+
 	op.EntryHandle = o.EntryHandle
 	op.TowersLength = o.TowersLength
 	op.Towers = o.Towers
@@ -1607,6 +1624,9 @@ func (o *MapResponse) xxx_FromOp(ctx context.Context, op *xxx_MapOperation) {
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.MaxTowers = op.MaxTowers
+
 	o.EntryHandle = op.EntryHandle
 	o.TowersLength = op.TowersLength
 	o.Towers = op.Towers

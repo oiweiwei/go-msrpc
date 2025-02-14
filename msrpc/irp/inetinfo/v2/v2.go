@@ -5911,6 +5911,8 @@ func (o *QueryStatisticsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // QueryStatisticsResponse structure represents the R_InetInfoQueryStatistics operation response
 type QueryStatisticsResponse struct {
+	// XXX: Level is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:Level" json:"level"`
 	// StatsInfo: The pointer to an INET_INFO_STATISTICS_INFO union that contains the data
 	// to be returned.
 	StatsInfo *StatisticsInfo `idl:"name:StatsInfo;switch_is:Level" json:"stats_info"`
@@ -5925,6 +5927,11 @@ func (o *QueryStatisticsResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySta
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.StatsInfo = o.StatsInfo
 	op.Return = o.Return
 	return op
@@ -5934,6 +5941,9 @@ func (o *QueryStatisticsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryS
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.StatsInfo = op.StatsInfo
 	o.Return = op.Return
 }
@@ -6799,6 +6809,8 @@ func (o *W3QueryStatistics2Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // W3QueryStatistics2Response structure represents the R_W3QueryStatistics2 operation response
 type W3QueryStatistics2Response struct {
+	// XXX: dwLevel is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:dwLevel" json:"level"`
 	// InfoStruct: The pointer to a W3_STATISTICS_STRUCT union to contain the retrieved
 	// statistics data.
 	Info *W3Statistics `idl:"name:InfoStruct;switch_is:dwLevel" json:"info"`
@@ -6813,6 +6825,11 @@ func (o *W3QueryStatistics2Response) xxx_ToOp(ctx context.Context, op *xxx_W3Que
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -6822,6 +6839,9 @@ func (o *W3QueryStatistics2Response) xxx_FromOp(ctx context.Context, op *xxx_W3Q
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }
@@ -7257,6 +7277,8 @@ func (o *FTPQueryStatistics2Request) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // FTPQueryStatistics2Response structure represents the R_FtpQueryStatistics2 operation response
 type FTPQueryStatistics2Response struct {
+	// XXX: dwLevel is an implicit input depedency for output parameters
+	Level uint32 `idl:"name:dwLevel" json:"level"`
 	// InfoStruct: The pointer to an FTP_STATISTICS_STRUCT union to contain the retrieved
 	// statistics data.
 	Info *FTPStatistics `idl:"name:InfoStruct;switch_is:dwLevel" json:"info"`
@@ -7271,6 +7293,11 @@ func (o *FTPQueryStatistics2Response) xxx_ToOp(ctx context.Context, op *xxx_FTPQ
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Level == uint32(0) {
+		op.Level = o.Level
+	}
+
 	op.Info = o.Info
 	op.Return = o.Return
 	return op
@@ -7280,6 +7307,9 @@ func (o *FTPQueryStatistics2Response) xxx_FromOp(ctx context.Context, op *xxx_FT
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Level = op.Level
+
 	o.Info = op.Info
 	o.Return = op.Return
 }

@@ -1146,6 +1146,8 @@ func (o *GetPropertiesExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // GetPropertiesExResponse structure represents the S_DSGetPropsEx operation response
 type GetPropertiesExResponse struct {
+	// XXX: cp is an implicit input depedency for output parameters
+	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
 	// apVar:  MUST be set by the client to an array that holds the property values retrieved
 	// from the object. Each element MUST be set by the server to the property value for
 	// the corresponding property identifier at the same element index in aProp. The array
@@ -1168,6 +1170,11 @@ func (o *GetPropertiesExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrope
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CreatePartition == uint32(0) {
+		op.CreatePartition = o.CreatePartition
+	}
+
 	op.Var = o.Var
 	op.ServerSignature = o.ServerSignature
 	op.ServerSignatureSize = o.ServerSignatureSize
@@ -1179,6 +1186,9 @@ func (o *GetPropertiesExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPro
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CreatePartition = op.CreatePartition
+
 	o.Var = op.Var
 	o.ServerSignature = op.ServerSignature
 	o.ServerSignatureSize = op.ServerSignatureSize
@@ -1681,6 +1691,8 @@ func (o *GetPropertiesGUIDExRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // GetPropertiesGUIDExResponse structure represents the S_DSGetPropsGuidEx operation response
 type GetPropertiesGUIDExResponse struct {
+	// XXX: cp is an implicit input depedency for output parameters
+	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
 	// apVar:  MUST be set by the client to an array that holds the property values retrieved
 	// from the object. Each element MUST be set by the server to the property value for
 	// the corresponding property identifier at the same element index in aProp. The array
@@ -1703,6 +1715,11 @@ func (o *GetPropertiesGUIDExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CreatePartition == uint32(0) {
+		op.CreatePartition = o.CreatePartition
+	}
+
 	op.Var = o.Var
 	op.ServerSignature = o.ServerSignature
 	op.ServerSignatureSize = o.ServerSignatureSize
@@ -1714,6 +1731,9 @@ func (o *GetPropertiesGUIDExResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CreatePartition = op.CreatePartition
+
 	o.Var = op.Var
 	o.ServerSignature = op.ServerSignature
 	o.ServerSignatureSize = op.ServerSignatureSize

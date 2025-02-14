@@ -823,6 +823,8 @@ func (o *ManagementGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // ManagementGetInfoResponse structure represents the R_QMMgmtGetInfo operation response
 type ManagementGetInfoResponse struct {
+	// XXX: cp is an implicit input depedency for output parameters
+	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
 	// apVar: Points to an array that specifies the property values associated with the
 	// array of property identifiers. Each element in this array specifies the property
 	// value for the corresponding property identifier at the same element index in the
@@ -843,6 +845,11 @@ func (o *ManagementGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Manage
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CreatePartition == uint32(0) {
+		op.CreatePartition = o.CreatePartition
+	}
+
 	op.Var = o.Var
 	op.Return = o.Return
 	return op
@@ -852,6 +859,9 @@ func (o *ManagementGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Mana
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CreatePartition = op.CreatePartition
+
 	o.Var = op.Var
 	o.Return = op.Return
 }

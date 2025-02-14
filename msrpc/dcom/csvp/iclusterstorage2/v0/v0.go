@@ -1869,6 +1869,8 @@ func (o *RawReadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // RawReadResponse structure represents the CprepDiskRawRead operation response
 type RawReadResponse struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbData: The data to read from the disk.
@@ -1889,6 +1891,11 @@ func (o *RawReadResponse) xxx_ToOp(ctx context.Context, op *xxx_RawReadOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.That = o.That
 	op.Data = o.Data
 	op.DataReadLength = o.DataReadLength
@@ -1901,6 +1908,9 @@ func (o *RawReadResponse) xxx_FromOp(ctx context.Context, op *xxx_RawReadOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.That = op.That
 	o.Data = op.Data
 	o.DataReadLength = op.DataReadLength
@@ -5071,6 +5081,8 @@ func (o *GetUniqueIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // GetUniqueIDsResponse structure represents the CprepDiskGetUniqueIds operation response
 type GetUniqueIDsResponse struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbData: The output buffer for the device ID data.
@@ -5092,6 +5104,11 @@ func (o *GetUniqueIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueID
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.That = o.That
 	op.Data = o.Data
 	op.DataOutLength = o.DataOutLength
@@ -5104,6 +5121,9 @@ func (o *GetUniqueIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUnique
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.That = op.That
 	o.Data = op.Data
 	o.DataOutLength = op.DataOutLength
@@ -8790,6 +8810,8 @@ func (o *GetDSMsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetDSMsResponse structure represents the CprepDiskGetDsms operation response
 type GetDSMsResponse struct {
+	// XXX: Size is an implicit input depedency for output parameters
+	Size uint32 `idl:"name:Size" json:"size"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ResgisteredDSMs uint32         `idl:"name:pResgisteredDsms" json:"resgistered_dsms"`
@@ -8807,6 +8829,11 @@ func (o *GetDSMsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDSMsOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Size == uint32(0) {
+		op.Size = o.Size
+	}
+
 	op.That = o.That
 	op.ResgisteredDSMs = o.ResgisteredDSMs
 	op.RegisteredDSMs = o.RegisteredDSMs
@@ -8818,6 +8845,9 @@ func (o *GetDSMsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDSMsOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Size = op.Size
+
 	o.That = op.That
 	o.ResgisteredDSMs = op.ResgisteredDSMs
 	o.RegisteredDSMs = op.RegisteredDSMs

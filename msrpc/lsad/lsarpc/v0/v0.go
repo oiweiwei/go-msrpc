@@ -11648,6 +11648,8 @@ func (o *QueryInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // QueryInformationPolicyResponse structure represents the LsarQueryInformationPolicy operation response
 type QueryInformationPolicyResponse struct {
+	// XXX: InformationClass is an implicit input depedency for output parameters
+	InformationClass PolicyInformationClass `idl:"name:InformationClass" json:"information_class"`
 	// PolicyInformation: A parameter that references policy information structure on return.
 	PolicyInformation *PolicyInformation `idl:"name:PolicyInformation;switch_is:InformationClass" json:"policy_information"`
 	// Return: The LsarQueryInformationPolicy return value.
@@ -11661,6 +11663,11 @@ func (o *QueryInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InformationClass == PolicyInformationClass(0) {
+		op.InformationClass = o.InformationClass
+	}
+
 	op.PolicyInformation = o.PolicyInformation
 	op.Return = o.Return
 	return op
@@ -11670,6 +11677,9 @@ func (o *QueryInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InformationClass = op.InformationClass
+
 	o.PolicyInformation = op.PolicyInformation
 	o.Return = op.Return
 }
@@ -14650,6 +14660,8 @@ func (o *QueryInfoTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // QueryInfoTrustedDomainResponse structure represents the LsarQueryInfoTrustedDomain operation response
 type QueryInfoTrustedDomainResponse struct {
+	// XXX: InformationClass is an implicit input depedency for output parameters
+	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
 	// TrustedDomainInformation: Used to return requested information about the trusted
 	// domain object.
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
@@ -14664,6 +14676,11 @@ func (o *QueryInfoTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InformationClass == TrustedInformationClass(0) {
+		op.InformationClass = o.InformationClass
+	}
+
 	op.TrustedDomainInformation = o.TrustedDomainInformation
 	op.Return = o.Return
 	return op
@@ -14673,6 +14690,9 @@ func (o *QueryInfoTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InformationClass = op.InformationClass
+
 	o.TrustedDomainInformation = op.TrustedDomainInformation
 	o.Return = op.Return
 }
@@ -18040,6 +18060,8 @@ func (o *QueryTrustedDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // QueryTrustedDomainInfoResponse structure represents the LsarQueryTrustedDomainInfo operation response
 type QueryTrustedDomainInfoResponse struct {
+	// XXX: InformationClass is an implicit input depedency for output parameters
+	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
 	// TrustedDomainInformation: Used to return the information on the trusted domain object
 	// to the caller.
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
@@ -18054,6 +18076,11 @@ func (o *QueryTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InformationClass == TrustedInformationClass(0) {
+		op.InformationClass = o.InformationClass
+	}
+
 	op.TrustedDomainInformation = o.TrustedDomainInformation
 	op.Return = o.Return
 	return op
@@ -18063,6 +18090,9 @@ func (o *QueryTrustedDomainInfoResponse) xxx_FromOp(ctx context.Context, op *xxx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InformationClass = op.InformationClass
+
 	o.TrustedDomainInformation = op.TrustedDomainInformation
 	o.Return = op.Return
 }
@@ -19455,6 +19485,8 @@ func (o *QueryInformationPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr
 
 // QueryInformationPolicy2Response structure represents the LsarQueryInformationPolicy2 operation response
 type QueryInformationPolicy2Response struct {
+	// XXX: InformationClass is an implicit input depedency for output parameters
+	InformationClass PolicyInformationClass `idl:"name:InformationClass" json:"information_class"`
 	// PolicyInformation: A parameter that references policy information structure on return.
 	PolicyInformation *PolicyInformation `idl:"name:PolicyInformation;switch_is:InformationClass" json:"policy_information"`
 	// Return: The LsarQueryInformationPolicy2 return value.
@@ -19468,6 +19500,11 @@ func (o *QueryInformationPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InformationClass == PolicyInformationClass(0) {
+		op.InformationClass = o.InformationClass
+	}
+
 	op.PolicyInformation = o.PolicyInformation
 	op.Return = o.Return
 	return op
@@ -19477,6 +19514,9 @@ func (o *QueryInformationPolicy2Response) xxx_FromOp(ctx context.Context, op *xx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InformationClass = op.InformationClass
+
 	o.PolicyInformation = op.PolicyInformation
 	o.Return = op.Return
 }
@@ -19920,6 +19960,8 @@ func (o *QueryTrustedDomainInfoByNameRequest) UnmarshalNDR(ctx context.Context, 
 
 // QueryTrustedDomainInfoByNameResponse structure represents the LsarQueryTrustedDomainInfoByName operation response
 type QueryTrustedDomainInfoByNameResponse struct {
+	// XXX: InformationClass is an implicit input depedency for output parameters
+	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
 	// TrustedDomainInformation: Used to return the information requested by the caller.
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
 	// Return: The LsarQueryTrustedDomainInfoByName return value.
@@ -19933,6 +19975,11 @@ func (o *QueryTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InformationClass == TrustedInformationClass(0) {
+		op.InformationClass = o.InformationClass
+	}
+
 	op.TrustedDomainInformation = o.TrustedDomainInformation
 	op.Return = o.Return
 	return op
@@ -19942,6 +19989,9 @@ func (o *QueryTrustedDomainInfoByNameResponse) xxx_FromOp(ctx context.Context, o
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InformationClass = op.InformationClass
+
 	o.TrustedDomainInformation = op.TrustedDomainInformation
 	o.Return = op.Return
 }
@@ -20887,6 +20937,8 @@ func (o *QueryDomainInformationPolicyRequest) UnmarshalNDR(ctx context.Context, 
 
 // QueryDomainInformationPolicyResponse structure represents the LsarQueryDomainInformationPolicy operation response
 type QueryDomainInformationPolicyResponse struct {
+	// XXX: InformationClass is an implicit input depedency for output parameters
+	InformationClass PolicyDomainInformationClass `idl:"name:InformationClass" json:"information_class"`
 	// PolicyDomainInformation: A parameter that references policy information structure
 	// on return.
 	PolicyDomainInformation *PolicyDomainInformation `idl:"name:PolicyDomainInformation;switch_is:InformationClass" json:"policy_domain_information"`
@@ -20901,6 +20953,11 @@ func (o *QueryDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InformationClass == PolicyDomainInformationClass(0) {
+		op.InformationClass = o.InformationClass
+	}
+
 	op.PolicyDomainInformation = o.PolicyDomainInformation
 	op.Return = o.Return
 	return op
@@ -20910,6 +20967,9 @@ func (o *QueryDomainInformationPolicyResponse) xxx_FromOp(ctx context.Context, o
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InformationClass = op.InformationClass
+
 	o.PolicyDomainInformation = op.PolicyDomainInformation
 	o.Return = op.Return
 }

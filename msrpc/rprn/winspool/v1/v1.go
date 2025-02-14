@@ -18068,6 +18068,8 @@ func (o *EnumPrintersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // EnumPrintersResponse structure represents the RpcEnumPrinters operation response
 type EnumPrintersResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pPrinterEnum: A pointer to a BUFFER defined in INFO Structures Query Parameters (section
 	// 3.1.4.1.9).
 	PrinterEnum []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
@@ -18088,6 +18090,11 @@ func (o *EnumPrintersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinter
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrinterEnum = o.PrinterEnum
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -18099,6 +18106,9 @@ func (o *EnumPrintersResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrint
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrinterEnum = op.PrinterEnum
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -19021,6 +19031,8 @@ func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetJobResponse structure represents the RpcGetJob operation response
 type GetJobResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pJob: A pointer to BUFFER as specified in INFO Structures Query Parameters (section
 	// 3.1.4.1.9).
 	Job []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
@@ -19037,6 +19049,11 @@ func (o *GetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Job = o.Job
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -19047,6 +19064,9 @@ func (o *GetJobResponse) xxx_FromOp(ctx context.Context, op *xxx_GetJobOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Job = op.Job
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -19429,6 +19449,8 @@ func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // EnumJobsResponse structure represents the RpcEnumJobs operation response
 type EnumJobsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pJob: A pointer to the BUFFER structure specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Job []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
@@ -19447,6 +19469,11 @@ func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperati
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Job = o.Job
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -19458,6 +19485,9 @@ func (o *EnumJobsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumJobsOpera
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Job = op.Job
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -20558,6 +20588,8 @@ func (o *GetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // GetPrinterResponse structure represents the RpcGetPrinter operation response
 type GetPrinterResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pPrinter: A pointer to a BUFFER (INFO Structures Query Parameters (section 3.1.4.1.9)).
 	PrinterBuffer []byte `idl:"name:pPrinter;size_is:(cbBuf);pointer:unique" json:"printer_buffer"`
 	// pcbNeeded: A parameter specified in INFO Structures Query Parameters.
@@ -20573,6 +20605,11 @@ func (o *GetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterOpe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrinterBuffer = o.PrinterBuffer
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -20583,6 +20620,9 @@ func (o *GetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterO
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrinterBuffer = op.PrinterBuffer
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -21211,6 +21251,8 @@ func (o *EnumPrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // EnumPrinterDriversResponse structure represents the RpcEnumPrinterDrivers operation response
 type EnumPrinterDriversResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pDrivers: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Drivers []byte `idl:"name:pDrivers;size_is:(cbBuf);pointer:unique" json:"drivers"`
@@ -21229,6 +21271,11 @@ func (o *EnumPrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumP
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Drivers = o.Drivers
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -21240,6 +21287,9 @@ func (o *EnumPrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Drivers = op.Drivers
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -21636,6 +21686,8 @@ func (o *GetPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetPrinterDriverResponse structure represents the RpcGetPrinterDriver operation response
 type GetPrinterDriverResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pDriver: An optional pointer to BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Driver []byte `idl:"name:pDriver;size_is:(cbBuf);pointer:unique" json:"driver"`
@@ -21652,6 +21704,11 @@ func (o *GetPrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Driver = o.Driver
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -21662,6 +21719,9 @@ func (o *GetPrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Driver = op.Driver
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -22054,6 +22114,8 @@ func (o *GetPrinterDriverDirectoryRequest) UnmarshalNDR(ctx context.Context, r n
 
 // GetPrinterDriverDirectoryResponse structure represents the RpcGetPrinterDriverDirectory operation response
 type GetPrinterDriverDirectoryResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pDriverDirectory: An optional pointer to BUFFER, as specified in String Query Parameters
 	// (section 3.1.4.1.7). If cbBuf is zero, this parameter SHOULD be NULL.
 	DriverDirectory []byte `idl:"name:pDriverDirectory;size_is:(cbBuf);pointer:unique" json:"driver_directory"`
@@ -22070,6 +22132,11 @@ func (o *GetPrinterDriverDirectoryResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.DriverDirectory = o.DriverDirectory
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -22080,6 +22147,9 @@ func (o *GetPrinterDriverDirectoryResponse) xxx_FromOp(ctx context.Context, op *
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.DriverDirectory = op.DriverDirectory
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -22915,6 +22985,8 @@ func (o *EnumPrintProcessorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // EnumPrintProcessorsResponse structure represents the RpcEnumPrintProcessors operation response
 type EnumPrintProcessorsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pPrintProcessorInfo: A pointer to BUFFER as specified in INFO Structures Query Parameters,
 	// section 3.1.4.1.9
 	PrintProcessorInfo []byte `idl:"name:pPrintProcessorInfo;size_is:(cbBuf);pointer:unique" json:"print_processor_info"`
@@ -22933,6 +23005,11 @@ func (o *EnumPrintProcessorsResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrintProcessorInfo = o.PrintProcessorInfo
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -22944,6 +23021,9 @@ func (o *EnumPrintProcessorsResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrintProcessorInfo = op.PrintProcessorInfo
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -23340,6 +23420,8 @@ func (o *GetPrintProcessorDirectoryRequest) UnmarshalNDR(ctx context.Context, r 
 
 // GetPrintProcessorDirectoryResponse structure represents the RpcGetPrintProcessorDirectory operation response
 type GetPrintProcessorDirectoryResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pPrintProcessorDirectory: This parameter MAY be NULL if cbBuf equals zero; otherwise,
 	// it is a pointer to BUFFER as specified in String Query Parameters, section 3.1.4.1.7.
 	PrintProcessorDirectory []byte `idl:"name:pPrintProcessorDirectory;size_is:(cbBuf);pointer:unique" json:"print_processor_directory"`
@@ -23357,6 +23439,11 @@ func (o *GetPrintProcessorDirectoryResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrintProcessorDirectory = o.PrintProcessorDirectory
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -23367,6 +23454,9 @@ func (o *GetPrintProcessorDirectoryResponse) xxx_FromOp(ctx context.Context, op 
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrintProcessorDirectory = op.PrintProcessorDirectory
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -24497,6 +24587,8 @@ func (o *ReadPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // ReadPrinterResponse structure represents the RpcReadPrinter operation response
 type ReadPrinterResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pBuf: A pointer to a buffer that receives the printer data. If the hPrinter parameter
 	// is the handle to a port object, this method returns the data that is returned by
 	// the port monitor.
@@ -24515,6 +24607,11 @@ func (o *ReadPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadPrinterO
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.NoBytesReadCount = o.NoBytesReadCount
 	op.Return = o.Return
@@ -24525,6 +24622,9 @@ func (o *ReadPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadPrinte
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.NoBytesReadCount = op.NoBytesReadCount
 	o.Return = op.Return
@@ -25015,6 +25115,8 @@ func (o *AddJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // AddJobResponse structure represents the RpcAddJob operation response
 type AddJobResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pAddJob: A pointer to a buffer of undefined values. This value can be NULL if cbBuf
 	// is zero and Level is 0x00000001.
 	AddJob []byte `idl:"name:pAddJob;size_is:(cbBuf);pointer:unique" json:"add_job"`
@@ -25031,6 +25133,11 @@ func (o *AddJobResponse) xxx_ToOp(ctx context.Context, op *xxx_AddJobOperation) 
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.AddJob = o.AddJob
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -25041,6 +25148,9 @@ func (o *AddJobResponse) xxx_FromOp(ctx context.Context, op *xxx_AddJobOperation
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.AddJob = op.AddJob
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -25460,6 +25570,8 @@ func (o *GetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // GetPrinterDataResponse structure represents the RpcGetPrinterData operation response
 type GetPrinterDataResponse struct {
+	// XXX: nSize is an implicit input depedency for output parameters
+	Size uint32 `idl:"name:nSize" json:"size"`
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
 	Type uint32 `idl:"name:pType" json:"type"`
 	// pData: A pointer to BUFFER as specified in Dynamically Typed Query Parameters.
@@ -25477,6 +25589,11 @@ func (o *GetPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinte
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Size == uint32(0) {
+		op.Size = o.Size
+	}
+
 	op.Type = o.Type
 	op.Data = o.Data
 	op.NeededLength = o.NeededLength
@@ -25488,6 +25605,9 @@ func (o *GetPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Size = op.Size
+
 	o.Type = op.Type
 	o.Data = op.Data
 	o.NeededLength = op.NeededLength
@@ -26854,6 +26974,8 @@ func (o *GetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // GetFormResponse structure represents the RpcGetForm operation response
 type GetFormResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pForm: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Form []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
@@ -26870,6 +26992,11 @@ func (o *GetFormResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFormOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Form = o.Form
 	op.NeededLength = o.NeededLength
 	op.Return = o.Return
@@ -26880,6 +27007,9 @@ func (o *GetFormResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFormOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Form = op.Form
 	o.NeededLength = op.NeededLength
 	o.Return = op.Return
@@ -27444,6 +27574,8 @@ func (o *EnumFormsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // EnumFormsResponse structure represents the RpcEnumForms operation response
 type EnumFormsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pForm: This parameter MAY be NULL if cbBuf equals zero; otherwise, it is a pointer
 	// to the BUFFER, as specified in INFO Structures Query Parameters, section 3.1.4.1.9.
 	Form []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
@@ -27464,6 +27596,11 @@ func (o *EnumFormsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFormsOpera
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Form = o.Form
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -27475,6 +27612,9 @@ func (o *EnumFormsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFormsOpe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Form = op.Form
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -27848,6 +27988,8 @@ func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // EnumPortsResponse structure represents the RpcEnumPorts operation response
 type EnumPortsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pPort: A pointer to the BUFFER, as specified in INFO Structures Query Parameters,
 	// section 3.1.4.1.9.
 	Port []byte `idl:"name:pPort;size_is:(cbBuf);pointer:unique" json:"port"`
@@ -27866,6 +28008,11 @@ func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOpera
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Port = o.Port
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -27877,6 +28024,9 @@ func (o *EnumPortsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPortsOpe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Port = op.Port
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -28253,6 +28403,8 @@ func (o *EnumMonitorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // EnumMonitorsResponse structure represents the RpcEnumMonitors operation response
 type EnumMonitorsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pMonitor: This parameter SHOULD be ignored if cbBuf equals zero; otherwise, it is
 	// a pointer to the BUFFER, as specified in INFO Structures Query Parameters, section
 	// 3.1.4.1.9.
@@ -28274,6 +28426,11 @@ func (o *EnumMonitorsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMonitor
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Monitor = o.Monitor
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -28285,6 +28442,9 @@ func (o *EnumMonitorsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumMonit
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Monitor = op.Monitor
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -28994,6 +29154,8 @@ func (o *PlayGDIScriptOnPrinterICRequest) UnmarshalNDR(ctx context.Context, r nd
 
 // PlayGDIScriptOnPrinterICResponse structure represents the RpcPlayGdiScriptOnPrinterIC operation response
 type PlayGDIScriptOnPrinterICResponse struct {
+	// XXX: cOut is an implicit input depedency for output parameters
+	OutCount uint32 `idl:"name:cOut" json:"out_count"`
 	// pOut: A pointer to a buffer, the size and contents of which are determined by the
 	// value of the cOut parameter.
 	Out []byte `idl:"name:pOut;size_is:(cOut)" json:"out"`
@@ -29008,6 +29170,11 @@ func (o *PlayGDIScriptOnPrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutCount == uint32(0) {
+		op.OutCount = o.OutCount
+	}
+
 	op.Out = o.Out
 	op.Return = o.Return
 	return op
@@ -29017,6 +29184,9 @@ func (o *PlayGDIScriptOnPrinterICResponse) xxx_FromOp(ctx context.Context, op *x
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutCount = op.OutCount
+
 	o.Out = op.Out
 	o.Return = op.Return
 }
@@ -30272,6 +30442,8 @@ func (o *EnumPrintProcessorDataTypesRequest) UnmarshalNDR(ctx context.Context, r
 
 // EnumPrintProcessorDataTypesResponse structure represents the RpcEnumPrintProcessorDatatypes operation response
 type EnumPrintProcessorDataTypesResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pDatatypes: This parameter MAY be NULL if cbBuf equals zero; otherwise, it is a pointer
 	// to BUFFER as specified in INFO Structures Query Parameters, section 3.1.4.1.9.
 	DataTypes []byte `idl:"name:pDatatypes;size_is:(cbBuf);pointer:unique" json:"data_types"`
@@ -30292,6 +30464,11 @@ func (o *EnumPrintProcessorDataTypesResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.DataTypes = o.DataTypes
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -30303,6 +30480,9 @@ func (o *EnumPrintProcessorDataTypesResponse) xxx_FromOp(ctx context.Context, op
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.DataTypes = op.DataTypes
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -30994,6 +31174,8 @@ func (o *GetPrinterDriver2Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // GetPrinterDriver2Response structure represents the RpcGetPrinterDriver2 operation response
 type GetPrinterDriver2Response struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pDriver: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Driver []byte `idl:"name:pDriver;size_is:(cbBuf);pointer:unique" json:"driver"`
@@ -31016,6 +31198,11 @@ func (o *GetPrinterDriver2Response) xxx_ToOp(ctx context.Context, op *xxx_GetPri
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Driver = o.Driver
 	op.NeededLength = o.NeededLength
 	op.ServerMaxVersion = o.ServerMaxVersion
@@ -31028,6 +31215,9 @@ func (o *GetPrinterDriver2Response) xxx_FromOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Driver = op.Driver
 	o.NeededLength = op.NeededLength
 	o.ServerMaxVersion = op.ServerMaxVersion
@@ -32609,6 +32799,8 @@ func (o *RemoteFindFirstPrinterChangeNotificationRequest) UnmarshalNDR(ctx conte
 
 // RemoteFindFirstPrinterChangeNotificationResponse structure represents the RpcRemoteFindFirstPrinterChangeNotification operation response
 type RemoteFindFirstPrinterChangeNotificationResponse struct {
+	// XXX: cbBuffer is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuffer" json:"buffer_length"`
 	// pBuffer: A pointer that MUST be set to NULL when sent and MUST be ignored on receipt.
 	Buffer []byte `idl:"name:pBuffer;size_is:(cbBuffer);pointer:unique" json:"buffer"`
 	// Return: The RpcRemoteFindFirstPrinterChangeNotification return value.
@@ -32622,6 +32814,11 @@ func (o *RemoteFindFirstPrinterChangeNotificationResponse) xxx_ToOp(ctx context.
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.Return = o.Return
 	return op
@@ -32631,6 +32828,9 @@ func (o *RemoteFindFirstPrinterChangeNotificationResponse) xxx_FromOp(ctx contex
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.Return = op.Return
 }
@@ -34658,6 +34858,10 @@ func (o *EnumPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // EnumPrinterDataResponse structure represents the RpcEnumPrinterData operation response
 type EnumPrinterDataResponse struct {
+	// XXX: cbValueNameIn is an implicit input depedency for output parameters
+	ValueNameInLength uint32 `idl:"name:cbValueNameIn" json:"value_name_in_length"`
+	// XXX: cbDataIn is an implicit input depedency for output parameters
+	DataInLength uint32 `idl:"name:cbDataIn" json:"data_in_length"`
 	// pValueName: A pointer to a buffer that receives a string specifying the name of the
 	// configuration data value. For rules governing value names, see section 2.2.4.18.
 	ValueName          string `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
@@ -34679,6 +34883,14 @@ func (o *EnumPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrin
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValueNameInLength == uint32(0) {
+		op.ValueNameInLength = o.ValueNameInLength
+	}
+	if op.DataInLength == uint32(0) {
+		op.DataInLength = o.DataInLength
+	}
+
 	op.ValueName = o.ValueName
 	op.ValueNameOutLength = o.ValueNameOutLength
 	op.Type = o.Type
@@ -34692,6 +34904,10 @@ func (o *EnumPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPr
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValueNameInLength = op.ValueNameInLength
+	o.DataInLength = op.DataInLength
+
 	o.ValueName = op.ValueName
 	o.ValueNameOutLength = op.ValueNameOutLength
 	o.Type = op.Type
@@ -35420,6 +35636,8 @@ func (o *GetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 
 // GetPrinterDataExResponse structure represents the RpcGetPrinterDataEx operation response
 type GetPrinterDataExResponse struct {
+	// XXX: nSize is an implicit input depedency for output parameters
+	Size uint32 `idl:"name:nSize" json:"size"`
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
 	Type uint32 `idl:"name:pType" json:"type"`
 	// pData: A pointer to BUFFER, as specified in Dynamically Typed Query Parameters. This
@@ -35438,6 +35656,11 @@ func (o *GetPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.Size == uint32(0) {
+		op.Size = o.Size
+	}
+
 	op.Type = o.Type
 	op.Data = o.Data
 	op.NeededLength = o.NeededLength
@@ -35449,6 +35672,9 @@ func (o *GetPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.Size = op.Size
+
 	o.Type = op.Type
 	o.Data = op.Data
 	o.NeededLength = op.NeededLength
@@ -35695,6 +35921,8 @@ func (o *EnumPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // EnumPrinterDataExResponse structure represents the RpcEnumPrinterDataEx operation response
 type EnumPrinterDataExResponse struct {
+	// XXX: cbEnumValuesIn is an implicit input depedency for output parameters
+	EnumValuesInLength uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
 	// pEnumValues: A pointer to BUFFER as specified in PRINTER_ENUM_VALUES Structures Query
 	// Parameters (section 3.1.4.1.10).
 	EnumValues          []byte `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
@@ -35711,6 +35939,11 @@ func (o *EnumPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPr
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.EnumValuesInLength == uint32(0) {
+		op.EnumValuesInLength = o.EnumValuesInLength
+	}
+
 	op.EnumValues = o.EnumValues
 	op.EnumValuesOutLength = o.EnumValuesOutLength
 	op.EnumValuesLength = o.EnumValuesLength
@@ -35722,6 +35955,9 @@ func (o *EnumPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.EnumValuesInLength = op.EnumValuesInLength
+
 	o.EnumValues = op.EnumValues
 	o.EnumValuesOutLength = op.EnumValuesOutLength
 	o.EnumValuesLength = op.EnumValuesLength
@@ -35961,6 +36197,8 @@ func (o *EnumPrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // EnumPrinterKeyResponse structure represents the RpcEnumPrinterKey operation response
 type EnumPrinterKeyResponse struct {
+	// XXX: cbSubkeyIn is an implicit input depedency for output parameters
+	SubkeyInLength uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
 	// pSubkey: A pointer to BUFFER as specified in String Query Parameters (section 3.1.4.1.7).
 	Subkey          string `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
 	SubkeyOutLength uint32 `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
@@ -35975,6 +36213,11 @@ func (o *EnumPrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrint
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.SubkeyInLength == uint32(0) {
+		op.SubkeyInLength = o.SubkeyInLength
+	}
+
 	op.Subkey = o.Subkey
 	op.SubkeyOutLength = o.SubkeyOutLength
 	op.Return = o.Return
@@ -35985,6 +36228,9 @@ func (o *EnumPrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPri
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.SubkeyInLength = op.SubkeyInLength
+
 	o.Subkey = op.Subkey
 	o.SubkeyOutLength = op.SubkeyOutLength
 	o.Return = op.Return
@@ -37388,6 +37634,8 @@ func (o *EnumPerMachineConnectionsRequest) UnmarshalNDR(ctx context.Context, r n
 
 // EnumPerMachineConnectionsResponse structure represents the RpcEnumPerMachineConnections operation response
 type EnumPerMachineConnectionsResponse struct {
+	// XXX: cbBuf is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 	// pPrinterEnum: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	PrinterEnum []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
@@ -37406,6 +37654,11 @@ func (o *EnumPerMachineConnectionsResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.PrinterEnum = o.PrinterEnum
 	op.NeededLength = o.NeededLength
 	op.ReturnedCount = o.ReturnedCount
@@ -37417,6 +37670,9 @@ func (o *EnumPerMachineConnectionsResponse) xxx_FromOp(ctx context.Context, op *
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.PrinterEnum = op.PrinterEnum
 	o.NeededLength = op.NeededLength
 	o.ReturnedCount = op.ReturnedCount
@@ -37767,6 +38023,8 @@ func (o *XcvDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // XcvDataResponse structure represents the RpcXcvData operation response
 type XcvDataResponse struct {
+	// XXX: cbOutputData is an implicit input depedency for output parameters
+	OutputDataLength uint32 `idl:"name:cbOutputData" json:"output_data_length"`
 	// pOutputData: A pointer to a buffer to receive output data. This parameter can be
 	// NULL if cbOutputData equals zero.
 	OutputData []byte `idl:"name:pOutputData;size_is:(cbOutputData)" json:"output_data"`
@@ -37788,6 +38046,11 @@ func (o *XcvDataResponse) xxx_ToOp(ctx context.Context, op *xxx_XcvDataOperation
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.OutputDataLength == uint32(0) {
+		op.OutputDataLength = o.OutputDataLength
+	}
+
 	op.OutputData = o.OutputData
 	op.OutputNeededLength = o.OutputNeededLength
 	op.Status = o.Status
@@ -37799,6 +38062,9 @@ func (o *XcvDataResponse) xxx_FromOp(ctx context.Context, op *xxx_XcvDataOperati
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.OutputDataLength = op.OutputDataLength
+
 	o.OutputData = op.OutputData
 	o.OutputNeededLength = op.OutputNeededLength
 	o.Status = op.Status
@@ -39010,6 +39276,8 @@ func (o *GetCorePrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // GetCorePrinterDriversResponse structure represents the RpcGetCorePrinterDrivers operation response
 type GetCorePrinterDriversResponse struct {
+	// XXX: cCorePrinterDrivers is an implicit input depedency for output parameters
+	CorePrinterDriversCount uint32 `idl:"name:cCorePrinterDrivers" json:"core_printer_drivers_count"`
 	// pCorePrinterDrivers: A pointer to a buffer that receives an array of CORE_PRINTER_DRIVER
 	// structures.
 	CorePrinterDrivers []*CorePrinterDriver `idl:"name:pCorePrinterDrivers;size_is:(cCorePrinterDrivers)" json:"core_printer_drivers"`
@@ -39024,6 +39292,11 @@ func (o *GetCorePrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.CorePrinterDriversCount == uint32(0) {
+		op.CorePrinterDriversCount = o.CorePrinterDriversCount
+	}
+
 	op.CorePrinterDrivers = o.CorePrinterDrivers
 	op.Return = o.Return
 	return op
@@ -39033,6 +39306,9 @@ func (o *GetCorePrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.CorePrinterDriversCount = op.CorePrinterDriversCount
+
 	o.CorePrinterDrivers = op.CorePrinterDrivers
 	o.Return = op.Return
 }
@@ -39462,6 +39738,8 @@ func (o *GetPrinterDriverPackagePathRequest) UnmarshalNDR(ctx context.Context, r
 
 // GetPrinterDriverPackagePathResponse structure represents the RpcGetPrinterDriverPackagePath operation response
 type GetPrinterDriverPackagePathResponse struct {
+	// XXX: cchDriverPackageCab is an implicit input depedency for output parameters
+	DriverPackageCabLength uint32 `idl:"name:cchDriverPackageCab" json:"driver_package_cab_length"`
 	// pszDriverPackageCab: This parameter is a pointer to a buffer that receives a string
 	// that specifies the path name of the driver package file.<351> For rules governing
 	// path names, see section 2.2.4.9. pszDriverPackageCab MUST NOT be NULL unless cchDriverPackageCab
@@ -39481,6 +39759,11 @@ func (o *GetPrinterDriverPackagePathResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DriverPackageCabLength == uint32(0) {
+		op.DriverPackageCabLength = o.DriverPackageCabLength
+	}
+
 	op.DriverPackageCab = o.DriverPackageCab
 	op.RequiredLength = o.RequiredLength
 	op.Return = o.Return
@@ -39491,6 +39774,9 @@ func (o *GetPrinterDriverPackagePathResponse) xxx_FromOp(ctx context.Context, op
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DriverPackageCabLength = op.DriverPackageCabLength
+
 	o.DriverPackageCab = op.DriverPackageCab
 	o.RequiredLength = op.RequiredLength
 	o.Return = op.Return

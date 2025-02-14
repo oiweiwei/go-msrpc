@@ -9278,6 +9278,8 @@ func (o *BaseRegQueryMultipleValuesRequest) UnmarshalNDR(ctx context.Context, r 
 
 // BaseRegQueryMultipleValuesResponse structure represents the BaseRegQueryMultipleValues operation response
 type BaseRegQueryMultipleValuesResponse struct {
+	// XXX: num_vals is an implicit input depedency for output parameters
+	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
 	// val_listOut: A pointer to an array of RVALENT structures, one for each value to be
 	// queried.
 	ValueListOut []*ValueEntry `idl:"name:val_listOut;size_is:(num_vals);length_is:(num_vals)" json:"value_list_out"`
@@ -9297,6 +9299,11 @@ func (o *BaseRegQueryMultipleValuesResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValsLength == uint32(0) {
+		op.ValsLength = o.ValsLength
+	}
+
 	op.ValueListOut = o.ValueListOut
 	op.Buffer = o.Buffer
 	op.TotalSize = o.TotalSize
@@ -9308,6 +9315,9 @@ func (o *BaseRegQueryMultipleValuesResponse) xxx_FromOp(ctx context.Context, op 
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValsLength = op.ValsLength
+
 	o.ValueListOut = op.ValueListOut
 	o.Buffer = op.Buffer
 	o.TotalSize = op.TotalSize
@@ -10565,6 +10575,10 @@ func (o *BaseRegQueryMultipleValues2Request) UnmarshalNDR(ctx context.Context, r
 
 // BaseRegQueryMultipleValues2Response structure represents the BaseRegQueryMultipleValues2 operation response
 type BaseRegQueryMultipleValues2Response struct {
+	// XXX: num_vals is an implicit input depedency for output parameters
+	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
+	// XXX: ldwTotsize is an implicit input depedency for output parameters
+	TotalSize uint32 `idl:"name:ldwTotsize" json:"total_size"`
 	// val_listOut: A pointer to an array of RVALENT structures, one for each value to be
 	// queried. This parameter is a placeholder to return the type, size, and data offset
 	// for each requested value.
@@ -10586,6 +10600,14 @@ func (o *BaseRegQueryMultipleValues2Response) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.ValsLength == uint32(0) {
+		op.ValsLength = o.ValsLength
+	}
+	if op.TotalSize == uint32(0) {
+		op.TotalSize = o.TotalSize
+	}
+
 	op.ValueListOut = o.ValueListOut
 	op.Buffer = o.Buffer
 	op.RequiredSize = o.RequiredSize
@@ -10597,6 +10619,10 @@ func (o *BaseRegQueryMultipleValues2Response) xxx_FromOp(ctx context.Context, op
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.ValsLength = op.ValsLength
+	o.TotalSize = op.TotalSize
+
 	o.ValueListOut = op.ValueListOut
 	o.Buffer = op.Buffer
 	o.RequiredSize = op.RequiredSize

@@ -18290,6 +18290,10 @@ func (o *QueryDNSRegCredentialsRequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // QueryDNSRegCredentialsResponse structure represents the R_DhcpQueryDnsRegCredentials operation response
 type QueryDNSRegCredentialsResponse struct {
+	// XXX: UnameSize is an implicit input depedency for output parameters
+	UserNameSize uint32 `idl:"name:UnameSize" json:"user_name_size"`
+	// XXX: DomainSize is an implicit input depedency for output parameters
+	DomainSize uint32 `idl:"name:DomainSize" json:"domain_size"`
 	// Uname:  A pointer to a null-terminated Unicode string in which the DHCP server returns
 	// the user name for the DNS. The memory is allocated at the RPC client and passed to
 	// the RPC server.
@@ -18309,6 +18313,14 @@ func (o *QueryDNSRegCredentialsResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.UserNameSize == uint32(0) {
+		op.UserNameSize = o.UserNameSize
+	}
+	if op.DomainSize == uint32(0) {
+		op.DomainSize = o.DomainSize
+	}
+
 	op.UserName = o.UserName
 	op.Domain = o.Domain
 	op.Return = o.Return
@@ -18319,6 +18331,10 @@ func (o *QueryDNSRegCredentialsResponse) xxx_FromOp(ctx context.Context, op *xxx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.UserNameSize = op.UserNameSize
+	o.DomainSize = op.DomainSize
+
 	o.UserName = op.UserName
 	o.Domain = op.Domain
 	o.Return = op.Return

@@ -10166,6 +10166,8 @@ func (o *QueryServiceObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r 
 
 // QueryServiceObjectSecurityResponse structure represents the RQueryServiceObjectSecurity operation response
 type QueryServiceObjectSecurityResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpSecurityDescriptor: A pointer to a buffer that contains a copy of the SECURITY_DESCRIPTOR
 	// structure (as specified in [MS-DTYP] section 2.4.6) for the specified service object.
 	SecurityDescriptor []byte `idl:"name:lpSecurityDescriptor;size_is:(cbBufSize)" json:"security_descriptor"`
@@ -10184,6 +10186,11 @@ func (o *QueryServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.SecurityDescriptor = o.SecurityDescriptor
 	op.BytesNeededLength = o.BytesNeededLength
 	op.Return = o.Return
@@ -10194,6 +10201,9 @@ func (o *QueryServiceObjectSecurityResponse) xxx_FromOp(ctx context.Context, op 
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.SecurityDescriptor = op.SecurityDescriptor
 	o.BytesNeededLength = op.BytesNeededLength
 	o.Return = op.Return
@@ -12995,6 +13005,8 @@ func (o *EnumDependentServicesWRequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // EnumDependentServicesWResponse structure represents the REnumDependentServicesW operation response
 type EnumDependentServicesWResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpServices: A pointer to an array of ENUM_SERVICE_STATUSW (section 2.2.11) structures
 	// that contain the name and service status information for each dependent service in
 	// the database.
@@ -13016,6 +13028,11 @@ func (o *EnumDependentServicesWResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Services = o.Services
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -13027,6 +13044,9 @@ func (o *EnumDependentServicesWResponse) xxx_FromOp(ctx context.Context, op *xxx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Services = op.Services
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -13404,6 +13424,8 @@ func (o *EnumServicesStatusWRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // EnumServicesStatusWResponse structure represents the REnumServicesStatusW operation response
 type EnumServicesStatusWResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to an array of ENUM_SERVICE_STATUSW (section 2.2.11) structures
 	// that contain the name and service status information for each service in the database.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -13431,6 +13453,11 @@ func (o *EnumServicesStatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -13443,6 +13470,9 @@ func (o *EnumServicesStatusWResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -17057,6 +17087,8 @@ func (o *EnumDependentServicesARequest) UnmarshalNDR(ctx context.Context, r ndr.
 
 // EnumDependentServicesAResponse structure represents the REnumDependentServicesA operation response
 type EnumDependentServicesAResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpServices: A pointer to an array of ENUM_SERVICE_STATUSA (section 2.2.10) structures
 	// that contain the name and service status information for each dependent service record
 	// in the database.
@@ -17078,6 +17110,11 @@ func (o *EnumDependentServicesAResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Services = o.Services
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -17089,6 +17126,9 @@ func (o *EnumDependentServicesAResponse) xxx_FromOp(ctx context.Context, op *xxx
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Services = op.Services
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -17465,6 +17505,8 @@ func (o *EnumServicesStatusARequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 
 // EnumServicesStatusAResponse structure represents the REnumServicesStatusA operation response
 type EnumServicesStatusAResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to an array of ENUM_SERVICE_STATUSA (section 2.2.10) structures
 	// that contain the name and service status information for each dependent service in
 	// the database.
@@ -17493,6 +17535,11 @@ func (o *EnumServicesStatusAResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -17505,6 +17552,9 @@ func (o *EnumServicesStatusAResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -19728,6 +19778,8 @@ func (o *EnumServiceGroupWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // EnumServiceGroupWResponse structure represents the REnumServiceGroupW operation response
 type EnumServiceGroupWResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to an array of ENUM_SERVICE_STATUSW (section 2.2.11) structures
 	// that contain the name and service status information for each dependent service in
 	// the database.
@@ -19756,6 +19808,11 @@ func (o *EnumServiceGroupWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSe
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -19768,6 +19825,9 @@ func (o *EnumServiceGroupWResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -20416,6 +20476,8 @@ func (o *QueryServiceConfig2ARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // QueryServiceConfig2AResponse structure represents the RQueryServiceConfig2A operation response
 type QueryServiceConfig2AResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to the buffer that contains the service configuration information.
 	// The format of this data depends on the value of the dwInfoLevel parameter.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -20434,6 +20496,11 @@ func (o *QueryServiceConfig2AResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.Return = o.Return
@@ -20444,6 +20511,9 @@ func (o *QueryServiceConfig2AResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.Return = op.Return
@@ -20710,6 +20780,8 @@ func (o *QueryServiceConfig2WRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // QueryServiceConfig2WResponse structure represents the RQueryServiceConfig2W operation response
 type QueryServiceConfig2WResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to the buffer that contains the service configuration information.
 	// The format of this data depends on the value of the dwInfoLevel parameter.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -20728,6 +20800,11 @@ func (o *QueryServiceConfig2WResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.Return = o.Return
@@ -20738,6 +20815,9 @@ func (o *QueryServiceConfig2WResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.Return = op.Return
@@ -20976,6 +21056,8 @@ func (o *QueryServiceStatusExRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // QueryServiceStatusExResponse structure represents the RQueryServiceStatusEx operation response
 type QueryServiceStatusExResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to the buffer that contains the status information in the form
 	// of a SERVICE_STATUS_PROCESS (section 2.2.49) structure.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -20994,6 +21076,11 @@ func (o *QueryServiceStatusExResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.Return = o.Return
@@ -21004,6 +21091,9 @@ func (o *QueryServiceStatusExResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.Return = op.Return
@@ -21443,6 +21533,8 @@ func (o *EnumServicesStatusExARequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // EnumServicesStatusExAResponse structure represents the REnumServicesStatusExA operation response
 type EnumServicesStatusExAResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to the buffer that contains the status information in the form
 	// of an array of ENUM_SERVICE_STATUS_PROCESSA (section 2.2.12) structures.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -21470,6 +21562,11 @@ func (o *EnumServicesStatusExAResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -21482,6 +21579,9 @@ func (o *EnumServicesStatusExAResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -21923,6 +22023,8 @@ func (o *EnumServicesStatusExWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 
 // EnumServicesStatusExWResponse structure represents the REnumServicesStatusExW operation response
 type EnumServicesStatusExWResponse struct {
+	// XXX: cbBufSize is an implicit input depedency for output parameters
+	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 	// lpBuffer: A pointer to the buffer that contains the status information in the form
 	// of an array of ENUM_SERVICE_STATUS_PROCESSW (section 2.2.13) structures.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -21951,6 +22053,11 @@ func (o *EnumServicesStatusExWResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.BufferLength == uint32(0) {
+		op.BufferLength = o.BufferLength
+	}
+
 	op.Buffer = o.Buffer
 	op.BytesNeededLength = o.BytesNeededLength
 	op.ServicesReturned = o.ServicesReturned
@@ -21963,6 +22070,9 @@ func (o *EnumServicesStatusExWResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.BufferLength = op.BufferLength
+
 	o.Buffer = op.Buffer
 	o.BytesNeededLength = op.BytesNeededLength
 	o.ServicesReturned = op.ServicesReturned
@@ -24519,6 +24629,8 @@ func (o *ControlServiceExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // ControlServiceExAResponse structure represents the RControlServiceExA operation response
 type ControlServiceExAResponse struct {
+	// XXX: dwInfoLevel is an implicit input depedency for output parameters
+	InfoLevel uint32 `idl:"name:dwInfoLevel" json:"info_level"`
 	// pControlOutParams: A pointer to a buffer that contains a SERVICE_CONTROL_STATUS_REASON_OUT_PARAMS
 	// (section 2.2.32) structure to receive the current status on the service.
 	ControlOutParams *ServiceControlOutParamsA `idl:"name:pControlOutParams;switch_is:dwInfoLevel" json:"control_out_params"`
@@ -24533,6 +24645,11 @@ func (o *ControlServiceExAResponse) xxx_ToOp(ctx context.Context, op *xxx_Contro
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InfoLevel == uint32(0) {
+		op.InfoLevel = o.InfoLevel
+	}
+
 	op.ControlOutParams = o.ControlOutParams
 	op.Return = o.Return
 	return op
@@ -24542,6 +24659,9 @@ func (o *ControlServiceExAResponse) xxx_FromOp(ctx context.Context, op *xxx_Cont
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InfoLevel = op.InfoLevel
+
 	o.ControlOutParams = op.ControlOutParams
 	o.Return = op.Return
 }
@@ -24837,6 +24957,8 @@ func (o *ControlServiceExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // ControlServiceExWResponse structure represents the RControlServiceExW operation response
 type ControlServiceExWResponse struct {
+	// XXX: dwInfoLevel is an implicit input depedency for output parameters
+	InfoLevel uint32 `idl:"name:dwInfoLevel" json:"info_level"`
 	// pControlOutParams: A pointer to a buffer that contains a SERVICE_CONTROL_STATUS_REASON_OUT_PARAMS
 	// (section 2.2.32) structure to receive the current status on the service.
 	ControlOutParams *ServiceControlOutParamsW `idl:"name:pControlOutParams;switch_is:dwInfoLevel" json:"control_out_params"`
@@ -24851,6 +24973,11 @@ func (o *ControlServiceExWResponse) xxx_ToOp(ctx context.Context, op *xxx_Contro
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InfoLevel == uint32(0) {
+		op.InfoLevel = o.InfoLevel
+	}
+
 	op.ControlOutParams = o.ControlOutParams
 	op.Return = o.Return
 	return op
@@ -24860,6 +24987,9 @@ func (o *ControlServiceExWResponse) xxx_FromOp(ctx context.Context, op *xxx_Cont
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InfoLevel = op.InfoLevel
+
 	o.ControlOutParams = op.ControlOutParams
 	o.Return = op.Return
 }

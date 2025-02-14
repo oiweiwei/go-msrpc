@@ -5288,6 +5288,8 @@ func (o *GetGlobalConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // GetGlobalConfigResponse structure represents the RRPC_FWGetGlobalConfig operation response
 type GetGlobalConfigResponse struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// being requested.
@@ -5311,6 +5313,11 @@ func (o *GetGlobalConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGloba
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.Buffer = o.Buffer
 	op.TransmittedLength = o.TransmittedLength
 	op.RequiredLength = o.RequiredLength
@@ -5322,6 +5329,9 @@ func (o *GetGlobalConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_GetGlo
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.Buffer = op.Buffer
 	o.TransmittedLength = op.TransmittedLength
 	o.RequiredLength = op.RequiredLength
@@ -7060,6 +7070,8 @@ func (o *GetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 
 // GetConfigResponse structure represents the RRPC_FWGetConfig operation response
 type GetConfigResponse struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// being requested.
@@ -7083,6 +7095,11 @@ func (o *GetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigOpera
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.Buffer = o.Buffer
 	op.TransmittedLength = o.TransmittedLength
 	op.RequiredLength = o.RequiredLength
@@ -7094,6 +7111,9 @@ func (o *GetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_GetConfigOpe
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.Buffer = op.Buffer
 	o.TransmittedLength = op.TransmittedLength
 	o.RequiredLength = op.RequiredLength
@@ -15079,6 +15099,8 @@ func (o *GetGlobalConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // GetGlobalConfig210Response structure represents the RRPC_FWGetGlobalConfig2_10 operation response
 type GetGlobalConfig210Response struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// that is being requested.
@@ -15105,6 +15127,11 @@ func (o *GetGlobalConfig210Response) xxx_ToOp(ctx context.Context, op *xxx_GetGl
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.Buffer = o.Buffer
 	op.TransmittedLength = o.TransmittedLength
 	op.RequiredLength = o.RequiredLength
@@ -15117,6 +15144,9 @@ func (o *GetGlobalConfig210Response) xxx_FromOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.Buffer = op.Buffer
 	o.TransmittedLength = op.TransmittedLength
 	o.RequiredLength = op.RequiredLength
@@ -15584,6 +15614,8 @@ func (o *GetConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // GetConfig210Response structure represents the RRPC_FWGetConfig2_10 operation response
 type GetConfig210Response struct {
+	// XXX: cbData is an implicit input depedency for output parameters
+	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// being requested.
@@ -15610,6 +15642,11 @@ func (o *GetConfig210Response) xxx_ToOp(ctx context.Context, op *xxx_GetConfig21
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.DataLength == uint32(0) {
+		op.DataLength = o.DataLength
+	}
+
 	op.Buffer = o.Buffer
 	op.TransmittedLength = o.TransmittedLength
 	op.RequiredLength = o.RequiredLength
@@ -15622,6 +15659,9 @@ func (o *GetConfig210Response) xxx_FromOp(ctx context.Context, op *xxx_GetConfig
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.DataLength = op.DataLength
+
 	o.Buffer = op.Buffer
 	o.TransmittedLength = op.TransmittedLength
 	o.RequiredLength = op.RequiredLength

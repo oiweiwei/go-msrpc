@@ -544,6 +544,8 @@ func (o *RemoteQueryInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // RemoteQueryInterfaceResponse structure represents the RemQueryInterface operation response
 type RemoteQueryInterfaceResponse struct {
+	// XXX: cIids is an implicit input depedency for output parameters
+	IIDsCount uint16 `idl:"name:cIids" json:"iids_count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// ppQIResults: This MUST contain an array of REMQIRESULT structures containing the
@@ -560,6 +562,11 @@ func (o *RemoteQueryInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.IIDsCount == uint16(0) {
+		op.IIDsCount = o.IIDsCount
+	}
+
 	op.That = o.That
 	op.QueryInterfaceResults = o.QueryInterfaceResults
 	op.Return = o.Return
@@ -570,6 +577,9 @@ func (o *RemoteQueryInterfaceResponse) xxx_FromOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.IIDsCount = op.IIDsCount
+
 	o.That = op.That
 	o.QueryInterfaceResults = op.QueryInterfaceResults
 	o.Return = op.Return
@@ -868,6 +878,8 @@ func (o *RemoteAddReferenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 
 // RemoteAddReferenceResponse structure represents the RemAddRef operation response
 type RemoteAddReferenceResponse struct {
+	// XXX: cInterfaceRefs is an implicit input depedency for output parameters
+	InterfaceReferencesCount uint16 `idl:"name:cInterfaceRefs" json:"interface_references_count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pResults:  This MUST contain an array of HRESULTs specifying the respective success
@@ -884,6 +896,11 @@ func (o *RemoteAddReferenceResponse) xxx_ToOp(ctx context.Context, op *xxx_Remot
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.InterfaceReferencesCount == uint16(0) {
+		op.InterfaceReferencesCount = o.InterfaceReferencesCount
+	}
+
 	op.That = o.That
 	op.Results = o.Results
 	op.Return = o.Return
@@ -894,6 +911,9 @@ func (o *RemoteAddReferenceResponse) xxx_FromOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.InterfaceReferencesCount = op.InterfaceReferencesCount
+
 	o.That = op.That
 	o.Results = op.Results
 	o.Return = op.Return

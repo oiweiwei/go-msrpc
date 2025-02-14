@@ -2298,6 +2298,8 @@ func (o *MigrateDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // MigrateDisksResponse structure represents the MigrateDisks operation response
 type MigrateDisksResponse struct {
+	// XXX: lNumberOfDisks is an implicit input depedency for output parameters
+	NumberOfDisks int32 `idl:"name:lNumberOfDisks" json:"number_of_disks"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pResults: A pointer to an array of HRESULT values that, if the operation is successfully
@@ -2321,6 +2323,11 @@ func (o *MigrateDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_MigrateDisk
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.NumberOfDisks == int32(0) {
+		op.NumberOfDisks = o.NumberOfDisks
+	}
+
 	op.That = o.That
 	op.Results = o.Results
 	op.RebootNeeded = o.RebootNeeded
@@ -2332,6 +2339,9 @@ func (o *MigrateDisksResponse) xxx_FromOp(ctx context.Context, op *xxx_MigrateDi
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.NumberOfDisks = op.NumberOfDisks
+
 	o.That = op.That
 	o.Results = op.Results
 	o.RebootNeeded = op.RebootNeeded

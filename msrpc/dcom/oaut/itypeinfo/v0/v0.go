@@ -2073,6 +2073,8 @@ func (o *GetNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // GetNamesResponse structure represents the GetNames operation response
 type GetNamesResponse struct {
+	// XXX: cMaxNames is an implicit input depedency for output parameters
+	MaxNamesCount uint32 `idl:"name:cMaxNames" json:"max_names_count"`
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// rgBstrNames: MUST be set to an array of BSTR. If pcNames is 0, rgBstrNames MUST be
@@ -2091,6 +2093,11 @@ func (o *GetNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNamesOperati
 	if o == nil {
 		return op
 	}
+	// XXX: implicit input dependencies for output parameters
+	if op.MaxNamesCount == uint32(0) {
+		op.MaxNamesCount = o.MaxNamesCount
+	}
+
 	op.That = o.That
 	op.Names = o.Names
 	op.NamesCount = o.NamesCount
@@ -2102,6 +2109,9 @@ func (o *GetNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNamesOpera
 	if o == nil {
 		return
 	}
+	// XXX: implicit input dependencies for output parameters
+	o.MaxNamesCount = op.MaxNamesCount
+
 	o.That = op.That
 	o.Names = op.Names
 	o.NamesCount = op.NamesCount
