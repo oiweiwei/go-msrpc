@@ -415,7 +415,7 @@ func (o *EstablishPositionRequest) xxx_ToOp(ctx context.Context, op *xxx_Establi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -466,9 +466,9 @@ func (o *EstablishPositionResponse) xxx_ToOp(ctx context.Context, op *xxx_Establ
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LocaleVersion = op.LocaleVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.LocaleVersion = o.LocaleVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -742,7 +742,7 @@ func (o *RequestChallengeRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -779,8 +779,8 @@ func (o *RequestChallengeResponse) xxx_ToOp(ctx context.Context, op *xxx_Request
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1094,7 +1094,7 @@ func (o *WBEMLoginRequest) xxx_ToOp(ctx context.Context, op *xxx_WBEMLoginOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1131,8 +1131,8 @@ func (o *WBEMLoginResponse) xxx_ToOp(ctx context.Context, op *xxx_WBEMLoginOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1486,11 +1486,11 @@ func (o *NTLMLoginRequest) xxx_ToOp(ctx context.Context, op *xxx_NTLMLoginOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NetworkResource = op.NetworkResource
-	o.PreferredLocale = op.PreferredLocale
-	o.Flags = op.Flags
-	o.Context = op.Context
+	op.This = o.This
+	op.NetworkResource = o.NetworkResource
+	op.PreferredLocale = o.PreferredLocale
+	op.Flags = o.Flags
+	op.Context = o.Context
 	return op
 }
 
@@ -1534,9 +1534,9 @@ func (o *NTLMLoginResponse) xxx_ToOp(ctx context.Context, op *xxx_NTLMLoginOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Namespace = op.Namespace
-	o.Return = op.Return
+	op.That = o.That
+	op.Namespace = o.Namespace
+	op.Return = o.Return
 	return op
 }
 

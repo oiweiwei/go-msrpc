@@ -743,7 +743,7 @@ func (o *GetModuleClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetModul
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -781,9 +781,9 @@ func (o *GetModuleClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetModu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleClassID = op.ModuleClassID
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleClassID = o.ModuleClassID
+	op.Return = o.Return
 	return op
 }
 
@@ -987,8 +987,8 @@ func (o *SetModuleClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetModul
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ModuleClassID = op.ModuleClassID
+	op.This = o.This
+	op.ModuleClassID = o.ModuleClassID
 	return op
 }
 
@@ -1026,8 +1026,8 @@ func (o *SetModuleClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetModu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1227,7 +1227,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1265,9 +1265,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -1469,8 +1469,8 @@ func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -1508,8 +1508,8 @@ func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1709,7 +1709,7 @@ func (o *GetCompanyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCompanyOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1747,9 +1747,9 @@ func (o *GetCompanyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCompanyOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Company = op.Company
-	o.Return = op.Return
+	op.That = o.That
+	op.Company = o.Company
+	op.Return = o.Return
 	return op
 }
 
@@ -1951,8 +1951,8 @@ func (o *SetCompanyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCompanyOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Company = op.Company
+	op.This = o.This
+	op.Company = o.Company
 	return op
 }
 
@@ -1990,8 +1990,8 @@ func (o *SetCompanyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCompanyOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2191,7 +2191,7 @@ func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2229,9 +2229,9 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Version = op.Version
-	o.Return = op.Return
+	op.That = o.That
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -2433,8 +2433,8 @@ func (o *SetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetVersionOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Version = op.Version
+	op.This = o.This
+	op.Version = o.Version
 	return op
 }
 
@@ -2472,8 +2472,8 @@ func (o *SetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2641,7 +2641,7 @@ func (o *GetModuleTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetModuleTy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2681,9 +2681,9 @@ func (o *GetModuleTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetModuleT
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleType = op.ModuleType
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleType = o.ModuleType
+	op.Return = o.Return
 	return op
 }
 
@@ -2850,7 +2850,7 @@ func (o *GetEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEnabledOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2888,9 +2888,9 @@ func (o *GetEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEnabledOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enabled = op.Enabled
-	o.Return = op.Return
+	op.That = o.That
+	op.Enabled = o.Enabled
+	op.Return = o.Return
 	return op
 }
 
@@ -3058,8 +3058,8 @@ func (o *SetEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEnabledOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Enabled = op.Enabled
+	op.This = o.This
+	op.Enabled = o.Enabled
 	return op
 }
 
@@ -3097,8 +3097,8 @@ func (o *SetEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEnabledOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3266,7 +3266,7 @@ func (o *GetNeedsFileContentRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3304,9 +3304,9 @@ func (o *GetNeedsFileContentResponse) xxx_ToOp(ctx context.Context, op *xxx_GetN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NeedsFileContent = op.NeedsFileContent
-	o.Return = op.Return
+	op.That = o.That
+	op.NeedsFileContent = o.NeedsFileContent
+	op.Return = o.Return
 	return op
 }
 
@@ -3476,8 +3476,8 @@ func (o *SetNeedsFileContentRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NeedsFileContent = op.NeedsFileContent
+	op.This = o.This
+	op.NeedsFileContent = o.NeedsFileContent
 	return op
 }
 
@@ -3515,8 +3515,8 @@ func (o *SetNeedsFileContentResponse) xxx_ToOp(ctx context.Context, op *xxx_SetN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3682,7 +3682,7 @@ func (o *GetAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAccountOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3720,9 +3720,9 @@ func (o *GetAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAccountOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RetrievalAccount = op.RetrievalAccount
-	o.Return = op.Return
+	op.That = o.That
+	op.RetrievalAccount = o.RetrievalAccount
+	op.Return = o.Return
 	return op
 }
 
@@ -3890,8 +3890,8 @@ func (o *SetAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAccountOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RetrievalAccount = op.RetrievalAccount
+	op.This = o.This
+	op.RetrievalAccount = o.RetrievalAccount
 	return op
 }
 
@@ -3929,8 +3929,8 @@ func (o *SetAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAccountOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4132,7 +4132,7 @@ func (o *GetSupportedExtensionsRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4170,9 +4170,9 @@ func (o *GetSupportedExtensionsResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SupportedExtensions = op.SupportedExtensions
-	o.Return = op.Return
+	op.That = o.That
+	op.SupportedExtensions = o.SupportedExtensions
+	op.Return = o.Return
 	return op
 }
 
@@ -4376,8 +4376,8 @@ func (o *SetSupportedExtensionsRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SupportedExtensions = op.SupportedExtensions
+	op.This = o.This
+	op.SupportedExtensions = o.SupportedExtensions
 	return op
 }
 
@@ -4415,8 +4415,8 @@ func (o *SetSupportedExtensionsResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4618,7 +4618,7 @@ func (o *GetParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetParamete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4656,9 +4656,9 @@ func (o *GetParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetParamet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Parameters = op.Parameters
-	o.Return = op.Return
+	op.That = o.That
+	op.Parameters = o.Parameters
+	op.Return = o.Return
 	return op
 }
 
@@ -4862,8 +4862,8 @@ func (o *SetParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetParamete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -4901,8 +4901,8 @@ func (o *SetParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetParamet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

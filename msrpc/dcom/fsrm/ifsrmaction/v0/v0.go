@@ -390,7 +390,7 @@ func (o *GetIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -428,9 +428,9 @@ func (o *GetIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ID = op.ID
-	o.Return = op.Return
+	op.That = o.That
+	op.ID = o.ID
+	op.Return = o.Return
 	return op
 }
 
@@ -597,7 +597,7 @@ func (o *GetActionTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionTy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -637,9 +637,9 @@ func (o *GetActionTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionT
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ActionType = op.ActionType
-	o.Return = op.Return
+	op.That = o.That
+	op.ActionType = o.ActionType
+	op.Return = o.Return
 	return op
 }
 
@@ -806,7 +806,7 @@ func (o *GetRunLimitIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -844,9 +844,9 @@ func (o *GetRunLimitIntervalResponse) xxx_ToOp(ctx context.Context, op *xxx_GetR
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Minutes = op.Minutes
-	o.Return = op.Return
+	op.That = o.That
+	op.Minutes = o.Minutes
+	op.Return = o.Return
 	return op
 }
 
@@ -1014,8 +1014,8 @@ func (o *SetRunLimitIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Minutes = op.Minutes
+	op.This = o.This
+	op.Minutes = o.Minutes
 	return op
 }
 
@@ -1053,8 +1053,8 @@ func (o *SetRunLimitIntervalResponse) xxx_ToOp(ctx context.Context, op *xxx_SetR
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1207,7 +1207,7 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1244,8 +1244,8 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

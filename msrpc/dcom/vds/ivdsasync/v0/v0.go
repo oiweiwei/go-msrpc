@@ -328,7 +328,7 @@ func (o *CancelRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -365,8 +365,8 @@ func (o *CancelResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -560,7 +560,7 @@ func (o *WaitRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -607,10 +607,10 @@ func (o *WaitResponse) xxx_ToOp(ctx context.Context, op *xxx_WaitOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HResult = op.HResult
-	o.AsyncOutput = op.AsyncOutput
-	o.Return = op.Return
+	op.That = o.That
+	op.HResult = o.HResult
+	op.AsyncOutput = o.AsyncOutput
+	op.Return = o.Return
 	return op
 }
 
@@ -791,7 +791,7 @@ func (o *QueryStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryStatusOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -836,10 +836,10 @@ func (o *QueryStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryStatusO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HResult = op.HResult
-	o.PercentCompleted = op.PercentCompleted
-	o.Return = op.Return
+	op.That = o.That
+	op.HResult = o.HResult
+	op.PercentCompleted = o.PercentCompleted
+	op.Return = o.Return
 	return op
 }
 

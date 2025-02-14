@@ -398,7 +398,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -436,9 +436,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -639,7 +639,7 @@ func (o *GetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -677,9 +677,9 @@ func (o *GetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -880,7 +880,7 @@ func (o *GetSourcesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSourcesOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -919,9 +919,9 @@ func (o *GetSourcesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSourcesOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Sources = op.Sources
-	o.Return = op.Return
+	op.That = o.That
+	op.Sources = o.Sources
+	op.Return = o.Return
 	return op
 }
 
@@ -1088,7 +1088,7 @@ func (o *GetPropertyFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrope
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1128,9 +1128,9 @@ func (o *GetPropertyFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetProp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Flags = op.Flags
-	o.Return = op.Return
+	op.That = o.That
+	op.Flags = o.Flags
+	op.Return = o.Return
 	return op
 }
 

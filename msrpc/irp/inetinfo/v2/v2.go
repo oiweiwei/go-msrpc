@@ -4480,7 +4480,7 @@ func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOper
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
+	op.Server = o.Server
 	return op
 }
 
@@ -4519,8 +4519,8 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -4721,8 +4721,8 @@ func (o *GetAdminInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAd
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
 	return op
 }
 
@@ -4761,8 +4761,8 @@ func (o *GetAdminInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.Config = op.Config
-	o.Return = op.Return
+	op.Config = o.Config
+	op.Return = o.Return
 	return op
 }
 
@@ -4961,8 +4961,8 @@ func (o *GetSitesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSitesOperatio
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
 	return op
 }
 
@@ -5001,8 +5001,8 @@ func (o *GetSitesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSitesOperati
 	if o == nil {
 		return op
 	}
-	o.Sites = op.Sites
-	o.Return = op.Return
+	op.Sites = o.Sites
+	op.Return = o.Return
 	return op
 }
 
@@ -5188,9 +5188,9 @@ func (o *SetAdminInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAd
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
-	o.Config = op.Config
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
+	op.Config = o.Config
 	return op
 }
 
@@ -5227,7 +5227,7 @@ func (o *SetAdminInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetA
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5426,8 +5426,8 @@ func (o *GetGlobalAdminInformationRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
 	return op
 }
 
@@ -5465,8 +5465,8 @@ func (o *GetGlobalAdminInformationResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Config = op.Config
-	o.Return = op.Return
+	op.Config = o.Config
+	op.Return = o.Return
 	return op
 }
 
@@ -5644,9 +5644,9 @@ func (o *SetGlobalAdminInformationRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
-	o.Config = op.Config
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
+	op.Config = o.Config
 	return op
 }
 
@@ -5683,7 +5683,7 @@ func (o *SetGlobalAdminInformationResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5883,9 +5883,9 @@ func (o *QueryStatisticsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryStat
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Level = op.Level
-	o.ServerMask = op.ServerMask
+	op.Server = o.Server
+	op.Level = o.Level
+	op.ServerMask = o.ServerMask
 	return op
 }
 
@@ -5925,8 +5925,8 @@ func (o *QueryStatisticsResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySta
 	if o == nil {
 		return op
 	}
-	o.StatsInfo = op.StatsInfo
-	o.Return = op.Return
+	op.StatsInfo = o.StatsInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -6080,8 +6080,8 @@ func (o *ClearStatisticsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearStat
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
 	return op
 }
 
@@ -6117,7 +6117,7 @@ func (o *ClearStatisticsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearSta
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6270,8 +6270,8 @@ func (o *FlushMemoryCacheRequest) xxx_ToOp(ctx context.Context, op *xxx_FlushMem
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServerMask = op.ServerMask
+	op.Server = o.Server
+	op.ServerMask = o.ServerMask
 	return op
 }
 
@@ -6307,7 +6307,7 @@ func (o *FlushMemoryCacheResponse) xxx_ToOp(ctx context.Context, op *xxx_FlushMe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6507,7 +6507,7 @@ func (o *GetServerCapabilitiesRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
+	op.Server = o.Server
 	return op
 }
 
@@ -6545,8 +6545,8 @@ func (o *GetServerCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.Cap = op.Cap
-	o.Return = op.Return
+	op.Cap = o.Cap
+	op.Return = o.Return
 	return op
 }
 
@@ -6771,9 +6771,9 @@ func (o *W3QueryStatistics2Request) xxx_ToOp(ctx context.Context, op *xxx_W3Quer
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Level = op.Level
-	o.Instance = op.Instance
+	op.Server = o.Server
+	op.Level = o.Level
+	op.Instance = o.Instance
 	return op
 }
 
@@ -6813,8 +6813,8 @@ func (o *W3QueryStatistics2Response) xxx_ToOp(ctx context.Context, op *xxx_W3Que
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -6966,8 +6966,8 @@ func (o *W3ClearStatistics2Request) xxx_ToOp(ctx context.Context, op *xxx_W3Clea
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Instance = op.Instance
+	op.Server = o.Server
+	op.Instance = o.Instance
 	return op
 }
 
@@ -7003,7 +7003,7 @@ func (o *W3ClearStatistics2Response) xxx_ToOp(ctx context.Context, op *xxx_W3Cle
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7229,9 +7229,9 @@ func (o *FTPQueryStatistics2Request) xxx_ToOp(ctx context.Context, op *xxx_FTPQu
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Level = op.Level
-	o.Instance = op.Instance
+	op.Server = o.Server
+	op.Level = o.Level
+	op.Instance = o.Instance
 	return op
 }
 
@@ -7271,8 +7271,8 @@ func (o *FTPQueryStatistics2Response) xxx_ToOp(ctx context.Context, op *xxx_FTPQ
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -7426,8 +7426,8 @@ func (o *FTPClearStatistics2Request) xxx_ToOp(ctx context.Context, op *xxx_FTPCl
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Instance = op.Instance
+	op.Server = o.Server
+	op.Instance = o.Instance
 	return op
 }
 
@@ -7463,7 +7463,7 @@ func (o *FTPClearStatistics2Response) xxx_ToOp(ctx context.Context, op *xxx_FTPC
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7688,10 +7688,10 @@ func (o *IISEnumerateUsersRequest) xxx_ToOp(ctx context.Context, op *xxx_IISEnum
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServiceID = op.ServiceID
-	o.Instance = op.Instance
-	o.Info = op.Info
+	op.Server = o.Server
+	op.ServiceID = o.ServiceID
+	op.Instance = o.Instance
+	op.Info = o.Info
 	return op
 }
 
@@ -7732,8 +7732,8 @@ func (o *IISEnumerateUsersResponse) xxx_ToOp(ctx context.Context, op *xxx_IISEnu
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -7918,10 +7918,10 @@ func (o *IISDisconnectUserRequest) xxx_ToOp(ctx context.Context, op *xxx_IISDisc
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.ServiceID = op.ServiceID
-	o.Instance = op.Instance
-	o.IDUser = op.IDUser
+	op.Server = o.Server
+	op.ServiceID = o.ServiceID
+	op.Instance = o.Instance
+	op.IDUser = o.IDUser
 	return op
 }
 
@@ -7959,7 +7959,7 @@ func (o *IISDisconnectUserResponse) xxx_ToOp(ctx context.Context, op *xxx_IISDis
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

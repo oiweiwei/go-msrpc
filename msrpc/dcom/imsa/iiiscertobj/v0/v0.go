@@ -659,8 +659,8 @@ func (o *SetInstanceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInstan
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NewValue = op.NewValue
+	op.This = o.This
+	op.NewValue = o.NewValue
 	return op
 }
 
@@ -698,8 +698,8 @@ func (o *SetInstanceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInsta
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -865,7 +865,7 @@ func (o *IsInstalledRemoteRequest) xxx_ToOp(ctx context.Context, op *xxx_IsInsta
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -904,9 +904,9 @@ func (o *IsInstalledRemoteResponse) xxx_ToOp(ctx context.Context, op *xxx_IsInst
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReturnValue = op.ReturnValue
-	o.Return = op.Return
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
 	return op
 }
 
@@ -1075,7 +1075,7 @@ func (o *IsExportableRemoteRequest) xxx_ToOp(ctx context.Context, op *xxx_IsExpo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1114,9 +1114,9 @@ func (o *IsExportableRemoteResponse) xxx_ToOp(ctx context.Context, op *xxx_IsExp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReturnValue = op.ReturnValue
-	o.Return = op.Return
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
 	return op
 }
 
@@ -1317,7 +1317,7 @@ func (o *GetCertInfoRemoteRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCert
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1360,9 +1360,9 @@ func (o *GetCertInfoRemoteResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCer
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.BinaryVariant = op.BinaryVariant
-	o.Return = op.Return
+	op.That = o.That
+	op.BinaryVariant = o.BinaryVariant
+	op.Return = o.Return
 	return op
 }
 
@@ -1759,14 +1759,14 @@ func (o *ImportFromBlobRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFrom
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InstanceName = op.InstanceName
-	o.Password = op.Password
-	o.InstallToMetabase = op.InstallToMetabase
-	o.AllowExport = op.AllowExport
-	o.OverwriteExisting = op.OverwriteExisting
-	o.Length = op.Length
-	o.BlobBinary = op.BlobBinary
+	op.This = o.This
+	op.InstanceName = o.InstanceName
+	op.Password = o.Password
+	op.InstallToMetabase = o.InstallToMetabase
+	op.AllowExport = o.AllowExport
+	op.OverwriteExisting = o.OverwriteExisting
+	op.Length = o.Length
+	op.BlobBinary = o.BlobBinary
 	return op
 }
 
@@ -1810,8 +1810,8 @@ func (o *ImportFromBlobResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportFro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2254,14 +2254,14 @@ func (o *ImportFromBlobGetHashRequest) xxx_ToOp(ctx context.Context, op *xxx_Imp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InstanceName = op.InstanceName
-	o.Password = op.Password
-	o.InstallToMetabase = op.InstallToMetabase
-	o.AllowExport = op.AllowExport
-	o.OverwriteExisting = op.OverwriteExisting
-	o.Length = op.Length
-	o.BlobBinary = op.BlobBinary
+	op.This = o.This
+	op.InstanceName = o.InstanceName
+	op.Password = o.Password
+	op.InstallToMetabase = o.InstallToMetabase
+	op.AllowExport = o.AllowExport
+	op.OverwriteExisting = o.OverwriteExisting
+	op.Length = o.Length
+	op.BlobBinary = o.BlobBinary
 	return op
 }
 
@@ -2312,10 +2312,10 @@ func (o *ImportFromBlobGetHashResponse) xxx_ToOp(ctx context.Context, op *xxx_Im
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CertHashLength = op.CertHashLength
-	o.CertHash = op.CertHash
-	o.Return = op.Return
+	op.That = o.That
+	op.CertHashLength = o.CertHashLength
+	op.CertHash = o.CertHash
+	op.Return = o.Return
 	return op
 }
 
@@ -2707,13 +2707,13 @@ func (o *ExportToBlobRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportToBlob
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InstanceName = op.InstanceName
-	o.Password = op.Password
-	o.PrivateKey = op.PrivateKey
-	o.CertChain = op.CertChain
-	o.Length = op.Length
-	o.BlobBinary = op.BlobBinary
+	op.This = o.This
+	op.InstanceName = o.InstanceName
+	op.Password = o.Password
+	op.PrivateKey = o.PrivateKey
+	op.CertChain = o.CertChain
+	op.Length = o.Length
+	op.BlobBinary = o.BlobBinary
 	return op
 }
 
@@ -2763,10 +2763,10 @@ func (o *ExportToBlobResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportToBlo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Length = op.Length
-	o.BlobBinary = op.BlobBinary
-	o.Return = op.Return
+	op.That = o.That
+	op.Length = o.Length
+	op.BlobBinary = o.BlobBinary
+	op.Return = o.Return
 	return op
 }
 

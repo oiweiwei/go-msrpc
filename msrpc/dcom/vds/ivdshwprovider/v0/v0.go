@@ -322,7 +322,7 @@ func (o *QuerySubSystemsRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySubS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -364,9 +364,9 @@ func (o *QuerySubSystemsResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySub
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 

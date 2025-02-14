@@ -369,7 +369,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -407,9 +407,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PlexProperties = op.PlexProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.PlexProperties = o.PlexProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -610,7 +610,7 @@ func (o *GetVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVolumeOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -651,9 +651,9 @@ func (o *GetVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVolumeOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Volume = op.Volume
-	o.Return = op.Return
+	op.That = o.That
+	op.Volume = o.Volume
+	op.Return = o.Return
 	return op
 }
 
@@ -903,7 +903,7 @@ func (o *QueryExtentsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryExtents
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -942,10 +942,10 @@ func (o *QueryExtentsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryExtent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ExtentArray = op.ExtentArray
-	o.NumberOfExtents = op.NumberOfExtents
-	o.Return = op.Return
+	op.That = o.That
+	op.ExtentArray = o.ExtentArray
+	op.NumberOfExtents = o.NumberOfExtents
+	op.Return = o.Return
 	return op
 }
 
@@ -1225,9 +1225,9 @@ func (o *RepairRequest) xxx_ToOp(ctx context.Context, op *xxx_RepairOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InputDiskArray = op.InputDiskArray
-	o.NumberOfDisks = op.NumberOfDisks
+	op.This = o.This
+	op.InputDiskArray = o.InputDiskArray
+	op.NumberOfDisks = o.NumberOfDisks
 	return op
 }
 
@@ -1272,9 +1272,9 @@ func (o *RepairResponse) xxx_ToOp(ctx context.Context, op *xxx_RepairOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

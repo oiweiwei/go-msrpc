@@ -6525,8 +6525,8 @@ func (o *GetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
+	op.ServerName = o.ServerName
+	op.Level = o.Level
 	return op
 }
 
@@ -6565,8 +6565,8 @@ func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation
 	if o == nil {
 		return op
 	}
-	o.WorkstationInfo = op.WorkstationInfo
-	o.Return = op.Return
+	op.WorkstationInfo = o.WorkstationInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -6834,10 +6834,10 @@ func (o *SetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.WorkstationInfo = op.WorkstationInfo
-	o.ErrorParameter = op.ErrorParameter
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.WorkstationInfo = o.WorkstationInfo
+	op.ErrorParameter = o.ErrorParameter
 	return op
 }
 
@@ -6879,8 +6879,8 @@ func (o *SetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation
 	if o == nil {
 		return op
 	}
-	o.ErrorParameter = op.ErrorParameter
-	o.Return = op.Return
+	op.ErrorParameter = o.ErrorParameter
+	op.Return = o.Return
 	return op
 }
 
@@ -7171,10 +7171,10 @@ func (o *UserEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_UserEnumOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UserInfo = op.UserInfo
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.UserInfo = o.UserInfo
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -7223,10 +7223,10 @@ func (o *UserEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_UserEnumOperati
 	if o == nil {
 		return op
 	}
-	o.UserInfo = op.UserInfo
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.UserInfo = o.UserInfo
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -7519,10 +7519,10 @@ func (o *TransportEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportEn
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.TransportInfo = op.TransportInfo
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.TransportInfo = o.TransportInfo
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -7572,10 +7572,10 @@ func (o *TransportEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportE
 	if o == nil {
 		return op
 	}
-	o.TransportInfo = op.TransportInfo
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.TransportInfo = o.TransportInfo
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -7828,10 +7828,10 @@ func (o *TransportAddRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportAdd
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.TransportInfo = op.TransportInfo
-	o.ErrorParameter = op.ErrorParameter
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.TransportInfo = o.TransportInfo
+	op.ErrorParameter = o.ErrorParameter
 	return op
 }
 
@@ -7874,8 +7874,8 @@ func (o *TransportAddResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportAd
 	if o == nil {
 		return op
 	}
-	o.ErrorParameter = op.ErrorParameter
-	o.Return = op.Return
+	op.ErrorParameter = o.ErrorParameter
+	op.Return = o.Return
 	return op
 }
 
@@ -8085,9 +8085,9 @@ func (o *TransportDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_Transport
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.TransportName = op.TransportName
-	o.ForceLevel = op.ForceLevel
+	op.ServerName = o.ServerName
+	op.TransportName = o.TransportName
+	op.ForceLevel = o.ForceLevel
 	return op
 }
 
@@ -8124,7 +8124,7 @@ func (o *TransportDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_Transpor
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8391,10 +8391,10 @@ func (o *UseAddRequest) xxx_ToOp(ctx context.Context, op *xxx_UseAddOperation) *
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Info = op.Info
-	o.ErrorParameter = op.ErrorParameter
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Info = o.Info
+	op.ErrorParameter = o.ErrorParameter
 	return op
 }
 
@@ -8435,8 +8435,8 @@ func (o *UseAddResponse) xxx_ToOp(ctx context.Context, op *xxx_UseAddOperation) 
 	if o == nil {
 		return op
 	}
-	o.ErrorParameter = op.ErrorParameter
-	o.Return = op.Return
+	op.ErrorParameter = o.ErrorParameter
+	op.Return = o.Return
 	return op
 }
 
@@ -8651,9 +8651,9 @@ func (o *UseGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_UseGetInfoOper
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UseName = op.UseName
-	o.Level = op.Level
+	op.ServerName = o.ServerName
+	op.UseName = o.UseName
+	op.Level = o.Level
 	return op
 }
 
@@ -8693,8 +8693,8 @@ func (o *UseGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_UseGetInfoOpe
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -8878,9 +8878,9 @@ func (o *UseDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_UseDeleteOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UseName = op.UseName
-	o.ForceLevel = op.ForceLevel
+	op.ServerName = o.ServerName
+	op.UseName = o.UseName
+	op.ForceLevel = o.ForceLevel
 	return op
 }
 
@@ -8917,7 +8917,7 @@ func (o *UseDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_UseDeleteOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9222,10 +9222,10 @@ func (o *UseEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_UseEnumOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -9289,10 +9289,10 @@ func (o *UseEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_UseEnumOperation
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -9551,10 +9551,10 @@ func (o *WorkstationStatisticsGetRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ServiceName = op.ServiceName
-	o.Level = op.Level
-	o.Options = op.Options
+	op.ServerName = o.ServerName
+	op.ServiceName = o.ServiceName
+	op.Level = o.Level
+	op.Options = o.Options
 	return op
 }
 
@@ -9595,8 +9595,8 @@ func (o *WorkstationStatisticsGetResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -9825,8 +9825,8 @@ func (o *GetJoinInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJoi
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NameBuffer = op.NameBuffer
+	op.ServerName = o.ServerName
+	op.NameBuffer = o.NameBuffer
 	return op
 }
 
@@ -9869,9 +9869,9 @@ func (o *GetJoinInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJo
 	if o == nil {
 		return op
 	}
-	o.NameBuffer = op.NameBuffer
-	o.BufferType = op.BufferType
-	o.Return = op.Return
+	op.NameBuffer = o.NameBuffer
+	op.BufferType = o.BufferType
+	op.Return = o.Return
 	return op
 }
 
@@ -10240,12 +10240,12 @@ func (o *JoinDomain2Request) xxx_ToOp(ctx context.Context, op *xxx_JoinDomain2Op
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DomainNameParam = op.DomainNameParam
-	o.MachineAccountOU = op.MachineAccountOU
-	o.AccountName = op.AccountName
-	o.Password = op.Password
-	o.Options = op.Options
+	op.ServerName = o.ServerName
+	op.DomainNameParam = o.DomainNameParam
+	op.MachineAccountOU = o.MachineAccountOU
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.Options = o.Options
 	return op
 }
 
@@ -10285,7 +10285,7 @@ func (o *JoinDomain2Response) xxx_ToOp(ctx context.Context, op *xxx_JoinDomain2O
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10543,10 +10543,10 @@ func (o *UnjoinDomain2Request) xxx_ToOp(ctx context.Context, op *xxx_UnjoinDomai
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.AccountName = op.AccountName
-	o.Password = op.Password
-	o.Options = op.Options
+	op.ServerName = o.ServerName
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.Options = o.Options
 	return op
 }
 
@@ -10584,7 +10584,7 @@ func (o *UnjoinDomain2Response) xxx_ToOp(ctx context.Context, op *xxx_UnjoinDoma
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10886,11 +10886,11 @@ func (o *RenameMachineInDomain2Request) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.MachineName = op.MachineName
-	o.AccountName = op.AccountName
-	o.Password = op.Password
-	o.Options = op.Options
+	op.ServerName = o.ServerName
+	op.MachineName = o.MachineName
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.Options = o.Options
 	return op
 }
 
@@ -10929,7 +10929,7 @@ func (o *RenameMachineInDomain2Response) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11186,11 +11186,11 @@ func (o *ValidateName2Request) xxx_ToOp(ctx context.Context, op *xxx_ValidateNam
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NameToValidate = op.NameToValidate
-	o.AccountName = op.AccountName
-	o.Password = op.Password
-	o.NameType = op.NameType
+	op.ServerName = o.ServerName
+	op.NameToValidate = o.NameToValidate
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.NameType = o.NameType
 	return op
 }
 
@@ -11229,7 +11229,7 @@ func (o *ValidateName2Response) xxx_ToOp(ctx context.Context, op *xxx_ValidateNa
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11598,11 +11598,11 @@ func (o *GetJoinableOUs2Request) xxx_ToOp(ctx context.Context, op *xxx_GetJoinab
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DomainNameParam = op.DomainNameParam
-	o.AccountName = op.AccountName
-	o.Password = op.Password
-	o.OUCount = op.OUCount
+	op.ServerName = o.ServerName
+	op.DomainNameParam = o.DomainNameParam
+	op.AccountName = o.AccountName
+	op.Password = o.Password
+	op.OUCount = o.OUCount
 	return op
 }
 
@@ -11647,9 +11647,9 @@ func (o *GetJoinableOUs2Response) xxx_ToOp(ctx context.Context, op *xxx_GetJoina
 	if o == nil {
 		return op
 	}
-	o.OUCount = op.OUCount
-	o.OUs = op.OUs
-	o.Return = op.Return
+	op.OUCount = o.OUCount
+	op.OUs = o.OUs
+	op.Return = o.Return
 	return op
 }
 
@@ -11948,10 +11948,10 @@ func (o *AddAlternateComputerNameRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.AlternateName = op.AlternateName
-	o.DomainAccount = op.DomainAccount
-	o.EncryptedPassword = op.EncryptedPassword
+	op.ServerName = o.ServerName
+	op.AlternateName = o.AlternateName
+	op.DomainAccount = o.DomainAccount
+	op.EncryptedPassword = o.EncryptedPassword
 	return op
 }
 
@@ -11989,7 +11989,7 @@ func (o *AddAlternateComputerNameResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12286,10 +12286,10 @@ func (o *RemoveAlternateComputerNameRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.AlternateName = op.AlternateName
-	o.DomainAccount = op.DomainAccount
-	o.EncryptedPassword = op.EncryptedPassword
+	op.ServerName = o.ServerName
+	op.AlternateName = o.AlternateName
+	op.DomainAccount = o.DomainAccount
+	op.EncryptedPassword = o.EncryptedPassword
 	return op
 }
 
@@ -12327,7 +12327,7 @@ func (o *RemoveAlternateComputerNameResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12624,10 +12624,10 @@ func (o *SetPrimaryComputerNameRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.PrimaryName = op.PrimaryName
-	o.DomainAccount = op.DomainAccount
-	o.EncryptedPassword = op.EncryptedPassword
+	op.ServerName = o.ServerName
+	op.PrimaryName = o.PrimaryName
+	op.DomainAccount = o.DomainAccount
+	op.EncryptedPassword = o.EncryptedPassword
 	return op
 }
 
@@ -12665,7 +12665,7 @@ func (o *SetPrimaryComputerNameResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12881,8 +12881,8 @@ func (o *EnumerateComputerNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NameType = op.NameType
+	op.ServerName = o.ServerName
+	op.NameType = o.NameType
 	return op
 }
 
@@ -12921,8 +12921,8 @@ func (o *EnumerateComputerNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.ComputerNames = op.ComputerNames
-	o.Return = op.Return
+	op.ComputerNames = o.ComputerNames
+	op.Return = o.Return
 	return op
 }
 

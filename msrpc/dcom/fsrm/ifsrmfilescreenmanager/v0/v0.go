@@ -619,7 +619,7 @@ func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAct
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -657,9 +657,9 @@ func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Variables = op.Variables
-	o.Return = op.Return
+	op.That = o.That
+	op.Variables = o.Variables
+	op.Return = o.Return
 	return op
 }
 
@@ -862,7 +862,7 @@ func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -900,9 +900,9 @@ func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Descriptions = op.Descriptions
-	o.Return = op.Return
+	op.That = o.That
+	op.Descriptions = o.Descriptions
+	op.Return = o.Return
 	return op
 }
 
@@ -1154,8 +1154,8 @@ func (o *CreateFileScreenRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -1199,9 +1199,9 @@ func (o *CreateFileScreenResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateF
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreen = op.FileScreen
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreen = o.FileScreen
+	op.Return = o.Return
 	return op
 }
 
@@ -1453,8 +1453,8 @@ func (o *GetFileScreenRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileScre
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -1496,9 +1496,9 @@ func (o *GetFileScreenResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileScr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreen = op.FileScreen
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreen = o.FileScreen
+	op.Return = o.Return
 	return op
 }
 
@@ -1766,9 +1766,9 @@ func (o *EnumFileScreensRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFileS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Options = op.Options
+	op.This = o.This
+	op.Path = o.Path
+	op.Options = o.Options
 	return op
 }
 
@@ -1812,9 +1812,9 @@ func (o *EnumFileScreensResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFile
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreens = op.FileScreens
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreens = o.FileScreens
+	op.Return = o.Return
 	return op
 }
 
@@ -2066,8 +2066,8 @@ func (o *CreateFileScreenExceptionRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -2111,9 +2111,9 @@ func (o *CreateFileScreenExceptionResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenException = op.FileScreenException
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenException = o.FileScreenException
+	op.Return = o.Return
 	return op
 }
 
@@ -2365,8 +2365,8 @@ func (o *GetFileScreenExceptionRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -2409,9 +2409,9 @@ func (o *GetFileScreenExceptionResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenException = op.FileScreenException
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenException = o.FileScreenException
+	op.Return = o.Return
 	return op
 }
 
@@ -2680,9 +2680,9 @@ func (o *EnumFileScreenExceptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Options = op.Options
+	op.This = o.This
+	op.Path = o.Path
+	op.Options = o.Options
 	return op
 }
 
@@ -2726,9 +2726,9 @@ func (o *EnumFileScreenExceptionsResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenExceptions = op.FileScreenExceptions
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenExceptions = o.FileScreenExceptions
+	op.Return = o.Return
 	return op
 }
 
@@ -2931,7 +2931,7 @@ func (o *CreateFileScreenCollectionRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2973,9 +2973,9 @@ func (o *CreateFileScreenCollectionResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Collection = op.Collection
-	o.Return = op.Return
+	op.That = o.That
+	op.Collection = o.Collection
+	op.Return = o.Return
 	return op
 }
 

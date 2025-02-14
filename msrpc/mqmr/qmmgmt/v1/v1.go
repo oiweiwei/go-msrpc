@@ -793,10 +793,10 @@ func (o *ManagementGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Managem
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
+	op.ObjectFormat = o.ObjectFormat
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
 	return op
 }
 
@@ -843,8 +843,8 @@ func (o *ManagementGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Manage
 	if o == nil {
 		return op
 	}
-	o.Var = op.Var
-	o.Return = op.Return
+	op.Var = o.Var
+	op.Return = o.Return
 	return op
 }
 
@@ -1013,8 +1013,8 @@ func (o *ManagementActionRequest) xxx_ToOp(ctx context.Context, op *xxx_Manageme
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.Action = op.Action
+	op.ObjectFormat = o.ObjectFormat
+	op.Action = o.Action
 	return op
 }
 
@@ -1050,7 +1050,7 @@ func (o *ManagementActionResponse) xxx_ToOp(ctx context.Context, op *xxx_Managem
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

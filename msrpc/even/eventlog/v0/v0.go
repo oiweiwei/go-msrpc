@@ -990,8 +990,8 @@ func (o *ClearEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearEvent
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.BackupFileName = op.BackupFileName
+	op.Log = o.Log
+	op.BackupFileName = o.BackupFileName
 	return op
 }
 
@@ -1027,7 +1027,7 @@ func (o *ClearEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearEven
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1180,8 +1180,8 @@ func (o *BackupEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupEve
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.BackupFileName = op.BackupFileName
+	op.Log = o.Log
+	op.BackupFileName = o.BackupFileName
 	return op
 }
 
@@ -1217,7 +1217,7 @@ func (o *BackupEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupEv
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1357,7 +1357,7 @@ func (o *CloseEventLogRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseEventL
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
+	op.Log = o.Log
 	return op
 }
 
@@ -1395,8 +1395,8 @@ func (o *CloseEventLogResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseEvent
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -1539,7 +1539,7 @@ func (o *DeregisterEventSourceRequest) xxx_ToOp(ctx context.Context, op *xxx_Der
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
+	op.Log = o.Log
 	return op
 }
 
@@ -1577,8 +1577,8 @@ func (o *DeregisterEventSourceResponse) xxx_ToOp(ctx context.Context, op *xxx_De
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -1711,7 +1711,7 @@ func (o *NumberOfRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_NumberOfR
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
+	op.Log = o.Log
 	return op
 }
 
@@ -1748,8 +1748,8 @@ func (o *NumberOfRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_NumberOf
 	if o == nil {
 		return op
 	}
-	o.NumberOfRecords = op.NumberOfRecords
-	o.Return = op.Return
+	op.NumberOfRecords = o.NumberOfRecords
+	op.Return = o.Return
 	return op
 }
 
@@ -1882,7 +1882,7 @@ func (o *OldestRecordRequest) xxx_ToOp(ctx context.Context, op *xxx_OldestRecord
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
+	op.Log = o.Log
 	return op
 }
 
@@ -1921,8 +1921,8 @@ func (o *OldestRecordResponse) xxx_ToOp(ctx context.Context, op *xxx_OldestRecor
 	if o == nil {
 		return op
 	}
-	o.OldestRecordNumber = op.OldestRecordNumber
-	o.Return = op.Return
+	op.OldestRecordNumber = o.OldestRecordNumber
+	op.Return = o.Return
 	return op
 }
 
@@ -2081,9 +2081,9 @@ func (o *ChangeNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeNotify
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.ClientID = op.ClientID
-	o.Event = op.Event
+	op.Log = o.Log
+	op.ClientID = o.ClientID
+	op.Event = o.Event
 	return op
 }
 
@@ -2120,7 +2120,7 @@ func (o *ChangeNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeNotif
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2371,11 +2371,11 @@ func (o *OpenEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenEventLo
 	if o == nil {
 		return op
 	}
-	o.UNCServerName = op.UNCServerName
-	o.ModuleName = op.ModuleName
-	o.RegModuleName = op.RegModuleName
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
+	op.UNCServerName = o.UNCServerName
+	op.ModuleName = o.ModuleName
+	op.RegModuleName = o.RegModuleName
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
 	return op
 }
 
@@ -2421,8 +2421,8 @@ func (o *OpenEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenEventL
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -2676,11 +2676,11 @@ func (o *RegisterEventSourceWRequest) xxx_ToOp(ctx context.Context, op *xxx_Regi
 	if o == nil {
 		return op
 	}
-	o.UNCServerName = op.UNCServerName
-	o.ModuleName = op.ModuleName
-	o.RegModuleName = op.RegModuleName
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
+	op.UNCServerName = o.UNCServerName
+	op.ModuleName = o.ModuleName
+	op.RegModuleName = o.RegModuleName
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
 	return op
 }
 
@@ -2722,8 +2722,8 @@ func (o *RegisterEventSourceWResponse) xxx_ToOp(ctx context.Context, op *xxx_Reg
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -2945,10 +2945,10 @@ func (o *OpenBackupEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenB
 	if o == nil {
 		return op
 	}
-	o.UNCServerName = op.UNCServerName
-	o.BackupFileName = op.BackupFileName
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
+	op.UNCServerName = o.UNCServerName
+	op.BackupFileName = o.BackupFileName
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
 	return op
 }
 
@@ -2994,8 +2994,8 @@ func (o *OpenBackupEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_Open
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -3268,10 +3268,10 @@ func (o *ReadEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadEventLo
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.ReadFlags = op.ReadFlags
-	o.RecordOffset = op.RecordOffset
-	o.NumberOfBytesToRead = op.NumberOfBytesToRead
+	op.Log = o.Log
+	op.ReadFlags = o.ReadFlags
+	op.RecordOffset = o.RecordOffset
+	op.NumberOfBytesToRead = o.NumberOfBytesToRead
 	return op
 }
 
@@ -3318,10 +3318,10 @@ func (o *ReadEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadEventL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.NumberOfBytesRead = op.NumberOfBytesRead
-	o.MinNumberOfBytesNeeded = op.MinNumberOfBytesNeeded
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.NumberOfBytesRead = o.NumberOfBytesRead
+	op.MinNumberOfBytesNeeded = o.MinNumberOfBytesNeeded
+	op.Return = o.Return
 	return op
 }
 
@@ -3944,20 +3944,20 @@ func (o *ReportEventWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventW
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Time = op.Time
-	o.EventType = op.EventType
-	o.EventCategory = op.EventCategory
-	o.EventID = op.EventID
-	o.StringsLength = op.StringsLength
-	o.DataSize = op.DataSize
-	o.ComputerName = op.ComputerName
-	o.UserSID = op.UserSID
-	o.Strings = op.Strings
-	o.Data = op.Data
-	o.Flags = op.Flags
-	o.RecordNumber = op.RecordNumber
-	o.TimeWritten = op.TimeWritten
+	op.Log = o.Log
+	op.Time = o.Time
+	op.EventType = o.EventType
+	op.EventCategory = o.EventCategory
+	op.EventID = o.EventID
+	op.StringsLength = o.StringsLength
+	op.DataSize = o.DataSize
+	op.ComputerName = o.ComputerName
+	op.UserSID = o.UserSID
+	op.Strings = o.Strings
+	op.Data = o.Data
+	op.Flags = o.Flags
+	op.RecordNumber = o.RecordNumber
+	op.TimeWritten = o.TimeWritten
 	return op
 }
 
@@ -4011,9 +4011,9 @@ func (o *ReportEventWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEvent
 	if o == nil {
 		return op
 	}
-	o.RecordNumber = op.RecordNumber
-	o.TimeWritten = op.TimeWritten
-	o.Return = op.Return
+	op.RecordNumber = o.RecordNumber
+	op.TimeWritten = o.TimeWritten
+	op.Return = o.Return
 	return op
 }
 
@@ -4187,8 +4187,8 @@ func (o *ClearEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_ClearEvent
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.BackupFileName = op.BackupFileName
+	op.Log = o.Log
+	op.BackupFileName = o.BackupFileName
 	return op
 }
 
@@ -4224,7 +4224,7 @@ func (o *ClearEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearEven
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4376,8 +4376,8 @@ func (o *BackupEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_BackupEve
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.BackupFileName = op.BackupFileName
+	op.Log = o.Log
+	op.BackupFileName = o.BackupFileName
 	return op
 }
 
@@ -4413,7 +4413,7 @@ func (o *BackupEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupEv
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4664,11 +4664,11 @@ func (o *OpenEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenEventLo
 	if o == nil {
 		return op
 	}
-	o.UNCServerName = op.UNCServerName
-	o.ModuleName = op.ModuleName
-	o.RegModuleName = op.RegModuleName
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
+	op.UNCServerName = o.UNCServerName
+	op.ModuleName = o.ModuleName
+	op.RegModuleName = o.RegModuleName
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
 	return op
 }
 
@@ -4714,8 +4714,8 @@ func (o *OpenEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenEventL
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -4969,11 +4969,11 @@ func (o *RegisterEventSourceARequest) xxx_ToOp(ctx context.Context, op *xxx_Regi
 	if o == nil {
 		return op
 	}
-	o.UNCServerName = op.UNCServerName
-	o.ModuleName = op.ModuleName
-	o.RegModuleName = op.RegModuleName
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
+	op.UNCServerName = o.UNCServerName
+	op.ModuleName = o.ModuleName
+	op.RegModuleName = o.RegModuleName
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
 	return op
 }
 
@@ -5015,8 +5015,8 @@ func (o *RegisterEventSourceAResponse) xxx_ToOp(ctx context.Context, op *xxx_Reg
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -5238,10 +5238,10 @@ func (o *OpenBackupEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenB
 	if o == nil {
 		return op
 	}
-	o.UNCServerName = op.UNCServerName
-	o.BackupFileName = op.BackupFileName
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
+	op.UNCServerName = o.UNCServerName
+	op.BackupFileName = o.BackupFileName
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
 	return op
 }
 
@@ -5286,8 +5286,8 @@ func (o *OpenBackupEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_Open
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Return = op.Return
+	op.Log = o.Log
+	op.Return = o.Return
 	return op
 }
 
@@ -5560,10 +5560,10 @@ func (o *ReadEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_ReadEventLo
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.ReadFlags = op.ReadFlags
-	o.RecordOffset = op.RecordOffset
-	o.NumberOfBytesToRead = op.NumberOfBytesToRead
+	op.Log = o.Log
+	op.ReadFlags = o.ReadFlags
+	op.RecordOffset = o.RecordOffset
+	op.NumberOfBytesToRead = o.NumberOfBytesToRead
 	return op
 }
 
@@ -5609,10 +5609,10 @@ func (o *ReadEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadEventL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.NumberOfBytesRead = op.NumberOfBytesRead
-	o.MinNumberOfBytesNeeded = op.MinNumberOfBytesNeeded
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.NumberOfBytesRead = o.NumberOfBytesRead
+	op.MinNumberOfBytesNeeded = o.MinNumberOfBytesNeeded
+	op.Return = o.Return
 	return op
 }
 
@@ -6230,20 +6230,20 @@ func (o *ReportEventARequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventA
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Time = op.Time
-	o.EventType = op.EventType
-	o.EventCategory = op.EventCategory
-	o.EventID = op.EventID
-	o.StringsLength = op.StringsLength
-	o.DataSize = op.DataSize
-	o.ComputerName = op.ComputerName
-	o.UserSID = op.UserSID
-	o.Strings = op.Strings
-	o.Data = op.Data
-	o.Flags = op.Flags
-	o.RecordNumber = op.RecordNumber
-	o.TimeWritten = op.TimeWritten
+	op.Log = o.Log
+	op.Time = o.Time
+	op.EventType = o.EventType
+	op.EventCategory = o.EventCategory
+	op.EventID = o.EventID
+	op.StringsLength = o.StringsLength
+	op.DataSize = o.DataSize
+	op.ComputerName = o.ComputerName
+	op.UserSID = o.UserSID
+	op.Strings = o.Strings
+	op.Data = o.Data
+	op.Flags = o.Flags
+	op.RecordNumber = o.RecordNumber
+	op.TimeWritten = o.TimeWritten
 	return op
 }
 
@@ -6297,9 +6297,9 @@ func (o *ReportEventAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEvent
 	if o == nil {
 		return op
 	}
-	o.RecordNumber = op.RecordNumber
-	o.TimeWritten = op.TimeWritten
-	o.Return = op.Return
+	op.RecordNumber = o.RecordNumber
+	op.TimeWritten = o.TimeWritten
+	op.Return = o.Return
 	return op
 }
 
@@ -6512,9 +6512,9 @@ func (o *GetLogInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogI
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.InfoLevel = op.InfoLevel
-	o.BufferLength = op.BufferLength
+	op.Log = o.Log
+	op.InfoLevel = o.InfoLevel
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -6557,9 +6557,9 @@ func (o *GetLogInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLog
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -7209,21 +7209,21 @@ func (o *ReportEventAndSourceWRequest) xxx_ToOp(ctx context.Context, op *xxx_Rep
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.Time = op.Time
-	o.EventType = op.EventType
-	o.EventCategory = op.EventCategory
-	o.EventID = op.EventID
-	o.SourceName = op.SourceName
-	o.StringsLength = op.StringsLength
-	o.DataSize = op.DataSize
-	o.ComputerName = op.ComputerName
-	o.UserSID = op.UserSID
-	o.Strings = op.Strings
-	o.Data = op.Data
-	o.Flags = op.Flags
-	o.RecordNumber = op.RecordNumber
-	o.TimeWritten = op.TimeWritten
+	op.Log = o.Log
+	op.Time = o.Time
+	op.EventType = o.EventType
+	op.EventCategory = o.EventCategory
+	op.EventID = o.EventID
+	op.SourceName = o.SourceName
+	op.StringsLength = o.StringsLength
+	op.DataSize = o.DataSize
+	op.ComputerName = o.ComputerName
+	op.UserSID = o.UserSID
+	op.Strings = o.Strings
+	op.Data = o.Data
+	op.Flags = o.Flags
+	op.RecordNumber = o.RecordNumber
+	op.TimeWritten = o.TimeWritten
 	return op
 }
 
@@ -7278,9 +7278,9 @@ func (o *ReportEventAndSourceWResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.RecordNumber = op.RecordNumber
-	o.TimeWritten = op.TimeWritten
-	o.Return = op.Return
+	op.RecordNumber = o.RecordNumber
+	op.TimeWritten = o.TimeWritten
+	op.Return = o.Return
 	return op
 }
 
@@ -7844,19 +7844,19 @@ func (o *ReportEventExWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEven
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.TimeGenerated = op.TimeGenerated
-	o.EventType = op.EventType
-	o.EventCategory = op.EventCategory
-	o.EventID = op.EventID
-	o.StringsLength = op.StringsLength
-	o.DataSize = op.DataSize
-	o.ComputerName = op.ComputerName
-	o.UserSID = op.UserSID
-	o.Strings = op.Strings
-	o.Data = op.Data
-	o.Flags = op.Flags
-	o.RecordNumber = op.RecordNumber
+	op.Log = o.Log
+	op.TimeGenerated = o.TimeGenerated
+	op.EventType = o.EventType
+	op.EventCategory = o.EventCategory
+	op.EventID = o.EventID
+	op.StringsLength = o.StringsLength
+	op.DataSize = o.DataSize
+	op.ComputerName = o.ComputerName
+	op.UserSID = o.UserSID
+	op.Strings = o.Strings
+	op.Data = o.Data
+	op.Flags = o.Flags
+	op.RecordNumber = o.RecordNumber
 	return op
 }
 
@@ -7906,8 +7906,8 @@ func (o *ReportEventExWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEve
 	if o == nil {
 		return op
 	}
-	o.RecordNumber = op.RecordNumber
-	o.Return = op.Return
+	op.RecordNumber = o.RecordNumber
+	op.Return = o.Return
 	return op
 }
 
@@ -8470,19 +8470,19 @@ func (o *ReportEventExARequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEven
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.TimeGenerated = op.TimeGenerated
-	o.EventType = op.EventType
-	o.EventCategory = op.EventCategory
-	o.EventID = op.EventID
-	o.StringsLength = op.StringsLength
-	o.DataSize = op.DataSize
-	o.ComputerName = op.ComputerName
-	o.UserSID = op.UserSID
-	o.Strings = op.Strings
-	o.Data = op.Data
-	o.Flags = op.Flags
-	o.RecordNumber = op.RecordNumber
+	op.Log = o.Log
+	op.TimeGenerated = o.TimeGenerated
+	op.EventType = o.EventType
+	op.EventCategory = o.EventCategory
+	op.EventID = o.EventID
+	op.StringsLength = o.StringsLength
+	op.DataSize = o.DataSize
+	op.ComputerName = o.ComputerName
+	op.UserSID = o.UserSID
+	op.Strings = o.Strings
+	op.Data = o.Data
+	op.Flags = o.Flags
+	op.RecordNumber = o.RecordNumber
 	return op
 }
 
@@ -8532,8 +8532,8 @@ func (o *ReportEventExAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEve
 	if o == nil {
 		return op
 	}
-	o.RecordNumber = op.RecordNumber
-	o.Return = op.Return
+	op.RecordNumber = o.RecordNumber
+	op.Return = o.Return
 	return op
 }
 

@@ -355,8 +355,8 @@ func (o *GetDiskIDFromLUNInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.LUNInfo = op.LUNInfo
+	op.This = o.This
+	op.LUNInfo = o.LUNInfo
 	return op
 }
 
@@ -398,9 +398,9 @@ func (o *GetDiskIDFromLUNInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskID = op.DiskID
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskID = o.DiskID
+	op.Return = o.Return
 	return op
 }
 
@@ -706,10 +706,10 @@ func (o *UninstallDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_UninstallD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskIDArray = op.DiskIDArray
-	o.Count = op.Count
-	o.Force = op.Force
+	op.This = o.This
+	op.DiskIDArray = o.DiskIDArray
+	op.Count = o.Count
+	op.Force = o.Force
 	return op
 }
 
@@ -759,10 +759,10 @@ func (o *UninstallDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_Uninstall
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Reboot = op.Reboot
-	o.Results = op.Results
-	o.Return = op.Return
+	op.That = o.That
+	op.Reboot = o.Reboot
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 

@@ -658,15 +658,15 @@ func (o *Execute21Request) xxx_ToOp(ctx context.Context, op *xxx_Execute21Operat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConnectionString = op.ConnectionString
-	o.HandlerString = op.HandlerString
-	o.QueryString = op.QueryString
-	o.MarshalOptions = op.MarshalOptions
-	o.Properties = op.Properties
-	o.TableID = op.TableID
-	o.ExecuteOptions = op.ExecuteOptions
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.ConnectionString = o.ConnectionString
+	op.HandlerString = o.HandlerString
+	op.QueryString = o.QueryString
+	op.MarshalOptions = o.MarshalOptions
+	op.Properties = o.Properties
+	op.TableID = o.TableID
+	op.ExecuteOptions = o.ExecuteOptions
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -713,10 +713,10 @@ func (o *Execute21Response) xxx_ToOp(ctx context.Context, op *xxx_Execute21Opera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Parameters = op.Parameters
-	o.RecordSet = op.RecordSet
-	o.Return = op.Return
+	op.That = o.That
+	op.Parameters = o.Parameters
+	op.RecordSet = o.RecordSet
+	op.Return = o.Return
 	return op
 }
 
@@ -1216,12 +1216,12 @@ func (o *Synchronize21Request) xxx_ToOp(ctx context.Context, op *xxx_Synchronize
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConnectionString = op.ConnectionString
-	o.HandlerString = op.HandlerString
-	o.SynchronizeOptions = op.SynchronizeOptions
-	o.RecordSet = op.RecordSet
-	o.StatusArray = op.StatusArray
+	op.This = o.This
+	op.ConnectionString = o.ConnectionString
+	op.HandlerString = o.HandlerString
+	op.SynchronizeOptions = o.SynchronizeOptions
+	op.RecordSet = o.RecordSet
+	op.StatusArray = o.StatusArray
 	return op
 }
 
@@ -1266,11 +1266,11 @@ func (o *Synchronize21Response) xxx_ToOp(ctx context.Context, op *xxx_Synchroniz
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RecordSet = op.RecordSet
-	o.StatusArray = op.StatusArray
-	o.Result = op.Result
-	o.Return = op.Return
+	op.That = o.That
+	op.RecordSet = o.RecordSet
+	op.StatusArray = o.StatusArray
+	op.Result = o.Result
+	op.Return = o.Return
 	return op
 }
 

@@ -390,9 +390,9 @@ func (o *ClientAttachRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientAttach
 	if o == nil {
 		return op
 	}
-	o.ProcessID = op.ProcessID
-	o.DomainUser = op.DomainUser
-	o.Machine = op.Machine
+	op.ProcessID = o.ProcessID
+	op.DomainUser = o.DomainUser
+	op.Machine = o.Machine
 	return op
 }
 
@@ -437,9 +437,9 @@ func (o *ClientAttachResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientAttac
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.AsyncEventsEvent = op.AsyncEventsEvent
-	o.Return = op.Return
+	op.Context = o.Context
+	op.AsyncEventsEvent = o.AsyncEventsEvent
+	op.Return = o.Return
 	return op
 }
 
@@ -734,10 +734,10 @@ func (o *ClientRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientReque
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Buffer = op.Buffer
-	o.NeededSize = op.NeededSize
-	o.UsedSize = op.UsedSize
+	op.Context = o.Context
+	op.Buffer = o.Buffer
+	op.NeededSize = o.NeededSize
+	op.UsedSize = o.UsedSize
 	return op
 }
 
@@ -781,8 +781,8 @@ func (o *ClientRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientRequ
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.UsedSize = op.UsedSize
+	op.Buffer = o.Buffer
+	op.UsedSize = o.UsedSize
 	return op
 }
 
@@ -914,7 +914,7 @@ func (o *ClientDetachRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientDetach
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -954,7 +954,7 @@ func (o *ClientDetachResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientDetac
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 

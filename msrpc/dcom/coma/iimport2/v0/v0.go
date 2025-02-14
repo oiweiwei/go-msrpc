@@ -328,8 +328,8 @@ func (o *SetPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPartition
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionID = op.PartitionID
+	op.This = o.This
+	op.PartitionID = o.PartitionID
 	return op
 }
 
@@ -367,8 +367,8 @@ func (o *SetPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPartitio
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

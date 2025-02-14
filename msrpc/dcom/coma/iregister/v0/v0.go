@@ -933,13 +933,13 @@ func (o *RegisterModuleRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterMo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
-	o.Modules = op.Modules
-	o.ModulesCount = op.ModulesCount
-	o.Flags = op.Flags
-	o.RequestedClassIDs = op.RequestedClassIDs
-	o.RequestedCount = op.RequestedCount
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
+	op.Modules = o.Modules
+	op.ModulesCount = o.ModulesCount
+	op.Flags = o.Flags
+	op.RequestedClassIDs = o.RequestedClassIDs
+	op.RequestedCount = o.RequestedCount
 	return op
 }
 
@@ -1006,14 +1006,14 @@ func (o *RegisterModuleResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterM
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleFlags = op.ModuleFlags
-	o.ResultsCount = op.ResultsCount
-	o.ResultClassIDs = op.ResultClassIDs
-	o.ResultNames = op.ResultNames
-	o.ResultFlags = op.ResultFlags
-	o.ResultHRs = op.ResultHRs
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleFlags = o.ModuleFlags
+	op.ResultsCount = o.ResultsCount
+	op.ResultClassIDs = o.ResultClassIDs
+	op.ResultNames = o.ResultNames
+	op.ResultFlags = o.ResultFlags
+	op.ResultHRs = o.ResultHRs
+	op.Return = o.Return
 	return op
 }
 

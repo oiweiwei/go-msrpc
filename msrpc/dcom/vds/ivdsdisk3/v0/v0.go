@@ -326,7 +326,7 @@ func (o *GetProperties2Request) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -364,9 +364,9 @@ func (o *GetProperties2Response) xxx_ToOp(ctx context.Context, op *xxx_GetProper
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskProperties = op.DiskProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskProperties = o.DiskProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -631,8 +631,8 @@ func (o *QueryFreeExtentsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFre
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Align = op.Align
+	op.This = o.This
+	op.Align = o.Align
 	return op
 }
 
@@ -676,10 +676,10 @@ func (o *QueryFreeExtentsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FreeExtentArray = op.FreeExtentArray
-	o.NumberOfFreeExtents = op.NumberOfFreeExtents
-	o.Return = op.Return
+	op.That = o.That
+	op.FreeExtentArray = o.FreeExtentArray
+	op.NumberOfFreeExtents = o.NumberOfFreeExtents
+	op.Return = o.Return
 	return op
 }
 

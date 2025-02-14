@@ -400,8 +400,8 @@ func (o *OnNewTrackingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_OnNewTr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ToplevelCollection = op.ToplevelCollection
+	op.This = o.This
+	op.ToplevelCollection = o.ToplevelCollection
 	return op
 }
 
@@ -439,8 +439,8 @@ func (o *OnNewTrackingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_OnNewT
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

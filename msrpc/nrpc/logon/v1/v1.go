@@ -19531,9 +19531,9 @@ func (o *UASLogonRequest) xxx_ToOp(ctx context.Context, op *xxx_UASLogonOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UserName = op.UserName
-	o.Workstation = op.Workstation
+	op.ServerName = o.ServerName
+	op.UserName = o.UserName
+	op.Workstation = o.Workstation
 	return op
 }
 
@@ -19571,8 +19571,8 @@ func (o *UASLogonResponse) xxx_ToOp(ctx context.Context, op *xxx_UASLogonOperati
 	if o == nil {
 		return op
 	}
-	o.ValidationInformation = op.ValidationInformation
-	o.Return = op.Return
+	op.ValidationInformation = o.ValidationInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -19756,9 +19756,9 @@ func (o *UASLogoffRequest) xxx_ToOp(ctx context.Context, op *xxx_UASLogoffOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UserName = op.UserName
-	o.Workstation = op.Workstation
+	op.ServerName = o.ServerName
+	op.UserName = o.UserName
+	op.Workstation = o.Workstation
 	return op
 }
 
@@ -19796,8 +19796,8 @@ func (o *UASLogoffResponse) xxx_ToOp(ctx context.Context, op *xxx_UASLogoffOpera
 	if o == nil {
 		return op
 	}
-	o.LogoffInformation = op.LogoffInformation
-	o.Return = op.Return
+	op.LogoffInformation = o.LogoffInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -20214,13 +20214,13 @@ func (o *SAMLogonRequest) xxx_ToOp(ctx context.Context, op *xxx_SAMLogonOperatio
 	if o == nil {
 		return op
 	}
-	o.LogonServer = op.LogonServer
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.LogonLevel = op.LogonLevel
-	o.LogonInformation = op.LogonInformation
-	o.ValidationLevel = op.ValidationLevel
+	op.LogonServer = o.LogonServer
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.LogonLevel = o.LogonLevel
+	op.LogonInformation = o.LogonInformation
+	op.ValidationLevel = o.ValidationLevel
 	return op
 }
 
@@ -20264,10 +20264,10 @@ func (o *SAMLogonResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLogonOperati
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.ValidationInformation = op.ValidationInformation
-	o.Authoritative = op.Authoritative
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.ValidationInformation = o.ValidationInformation
+	op.Authoritative = o.Authoritative
+	op.Return = o.Return
 	return op
 }
 
@@ -20640,12 +20640,12 @@ func (o *SAMLogoffRequest) xxx_ToOp(ctx context.Context, op *xxx_SAMLogoffOperat
 	if o == nil {
 		return op
 	}
-	o.LogonServer = op.LogonServer
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.LogonLevel = op.LogonLevel
-	o.LogonInformation = op.LogonInformation
+	op.LogonServer = o.LogonServer
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.LogonLevel = o.LogonLevel
+	op.LogonInformation = o.LogonInformation
 	return op
 }
 
@@ -20688,8 +20688,8 @@ func (o *SAMLogoffResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLogoffOpera
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Return = o.Return
 	return op
 }
 
@@ -20887,9 +20887,9 @@ func (o *RequestChallengeRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestC
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.ClientChallenge = op.ClientChallenge
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.ClientChallenge = o.ClientChallenge
 	return op
 }
 
@@ -20929,8 +20929,8 @@ func (o *RequestChallengeResponse) xxx_ToOp(ctx context.Context, op *xxx_Request
 	if o == nil {
 		return op
 	}
-	o.ServerChallenge = op.ServerChallenge
-	o.Return = op.Return
+	op.ServerChallenge = o.ServerChallenge
+	op.Return = o.Return
 	return op
 }
 
@@ -21151,11 +21151,11 @@ func (o *AuthenticateRequest) xxx_ToOp(ctx context.Context, op *xxx_Authenticate
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.ClientCredential = op.ClientCredential
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.ClientCredential = o.ClientCredential
 	return op
 }
 
@@ -21195,8 +21195,8 @@ func (o *AuthenticateResponse) xxx_ToOp(ctx context.Context, op *xxx_Authenticat
 	if o == nil {
 		return op
 	}
-	o.ServerCredential = op.ServerCredential
-	o.Return = op.Return
+	op.ServerCredential = o.ServerCredential
+	op.Return = o.Return
 	return op
 }
 
@@ -21452,12 +21452,12 @@ func (o *PasswordSetRequest) xxx_ToOp(ctx context.Context, op *xxx_PasswordSetOp
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.UASNewPassword = op.UASNewPassword
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.UASNewPassword = o.UASNewPassword
 	return op
 }
 
@@ -21500,8 +21500,8 @@ func (o *PasswordSetResponse) xxx_ToOp(ctx context.Context, op *xxx_PasswordSetO
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Return = o.Return
 	return op
 }
 
@@ -21843,13 +21843,13 @@ func (o *DatabaseDeltasRequest) xxx_ToOp(ctx context.Context, op *xxx_DatabaseDe
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DatabaseID = op.DatabaseID
-	o.DomainModifiedCount = op.DomainModifiedCount
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DatabaseID = o.DatabaseID
+	op.DomainModifiedCount = o.DomainModifiedCount
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -21904,10 +21904,10 @@ func (o *DatabaseDeltasResponse) xxx_ToOp(ctx context.Context, op *xxx_DatabaseD
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DomainModifiedCount = op.DomainModifiedCount
-	o.DeltaArray = op.DeltaArray
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DomainModifiedCount = o.DomainModifiedCount
+	op.DeltaArray = o.DeltaArray
+	op.Return = o.Return
 	return op
 }
 
@@ -22200,13 +22200,13 @@ func (o *DatabaseSyncRequest) xxx_ToOp(ctx context.Context, op *xxx_DatabaseSync
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DatabaseID = op.DatabaseID
-	o.SyncContext = op.SyncContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DatabaseID = o.DatabaseID
+	op.SyncContext = o.SyncContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -22250,10 +22250,10 @@ func (o *DatabaseSyncResponse) xxx_ToOp(ctx context.Context, op *xxx_DatabaseSyn
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.SyncContext = op.SyncContext
-	o.DeltaArray = op.DeltaArray
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.SyncContext = o.SyncContext
+	op.DeltaArray = o.DeltaArray
+	op.Return = o.Return
 	return op
 }
 
@@ -22629,14 +22629,14 @@ func (o *AccountDeltasRequest) xxx_ToOp(ctx context.Context, op *xxx_AccountDelt
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.RecordID = op.RecordID
-	o.Count = op.Count
-	o.Level = op.Level
-	o.BufferSize = op.BufferSize
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.RecordID = o.RecordID
+	op.Count = o.Count
+	op.Level = o.Level
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -22683,12 +22683,12 @@ func (o *AccountDeltasResponse) xxx_ToOp(ctx context.Context, op *xxx_AccountDel
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Buffer = op.Buffer
-	o.CountReturned = op.CountReturned
-	o.TotalEntries = op.TotalEntries
-	o.NextRecordID = op.NextRecordID
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Buffer = o.Buffer
+	op.CountReturned = o.CountReturned
+	op.TotalEntries = o.TotalEntries
+	op.NextRecordID = o.NextRecordID
+	op.Return = o.Return
 	return op
 }
 
@@ -23056,13 +23056,13 @@ func (o *AccountSyncRequest) xxx_ToOp(ctx context.Context, op *xxx_AccountSyncOp
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Reference = op.Reference
-	o.Level = op.Level
-	o.BufferSize = op.BufferSize
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Reference = o.Reference
+	op.Level = o.Level
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -23109,13 +23109,13 @@ func (o *AccountSyncResponse) xxx_ToOp(ctx context.Context, op *xxx_AccountSyncO
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Buffer = op.Buffer
-	o.CountReturned = op.CountReturned
-	o.TotalEntries = op.TotalEntries
-	o.NextReference = op.NextReference
-	o.LastRecordID = op.LastRecordID
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Buffer = o.Buffer
+	op.CountReturned = o.CountReturned
+	op.TotalEntries = o.TotalEntries
+	op.NextReference = o.NextReference
+	op.LastRecordID = o.LastRecordID
+	op.Return = o.Return
 	return op
 }
 
@@ -23310,8 +23310,8 @@ func (o *GetNetrDCNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNetrDCNa
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DomainName = op.DomainName
+	op.ServerName = o.ServerName
+	op.DomainName = o.DomainName
 	return op
 }
 
@@ -23351,8 +23351,8 @@ func (o *GetNetrDCNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNetrDCN
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -23544,9 +23544,9 @@ func (o *ControlRequest) xxx_ToOp(ctx context.Context, op *xxx_ControlOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.FunctionCode = op.FunctionCode
-	o.QueryLevel = op.QueryLevel
+	op.ServerName = o.ServerName
+	op.FunctionCode = o.FunctionCode
+	op.QueryLevel = o.QueryLevel
 	return op
 }
 
@@ -23584,8 +23584,8 @@ func (o *ControlResponse) xxx_ToOp(ctx context.Context, op *xxx_ControlOperation
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -23800,8 +23800,8 @@ func (o *GetAnyDCNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAnyDCName
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DomainName = op.DomainName
+	op.ServerName = o.ServerName
+	op.DomainName = o.DomainName
 	return op
 }
 
@@ -23841,8 +23841,8 @@ func (o *GetAnyDCNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAnyDCNam
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -24065,10 +24065,10 @@ func (o *Control2Request) xxx_ToOp(ctx context.Context, op *xxx_Control2Operatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.FunctionCode = op.FunctionCode
-	o.QueryLevel = op.QueryLevel
-	o.Data = op.Data
+	op.ServerName = o.ServerName
+	op.FunctionCode = o.FunctionCode
+	op.QueryLevel = o.QueryLevel
+	op.Data = o.Data
 	return op
 }
 
@@ -24107,8 +24107,8 @@ func (o *Control2Response) xxx_ToOp(ctx context.Context, op *xxx_Control2Operati
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -24355,12 +24355,12 @@ func (o *Authenticate2Request) xxx_ToOp(ctx context.Context, op *xxx_Authenticat
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.ClientCredential = op.ClientCredential
-	o.NegotiateFlags = op.NegotiateFlags
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.ClientCredential = o.ClientCredential
+	op.NegotiateFlags = o.NegotiateFlags
 	return op
 }
 
@@ -24402,9 +24402,9 @@ func (o *Authenticate2Response) xxx_ToOp(ctx context.Context, op *xxx_Authentica
 	if o == nil {
 		return op
 	}
-	o.ServerCredential = op.ServerCredential
-	o.NegotiateFlags = op.NegotiateFlags
-	o.Return = op.Return
+	op.ServerCredential = o.ServerCredential
+	op.NegotiateFlags = o.NegotiateFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -24774,14 +24774,14 @@ func (o *DatabaseSync2Request) xxx_ToOp(ctx context.Context, op *xxx_DatabaseSyn
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DatabaseID = op.DatabaseID
-	o.RestartState = op.RestartState
-	o.SyncContext = op.SyncContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DatabaseID = o.DatabaseID
+	op.RestartState = o.RestartState
+	op.SyncContext = o.SyncContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -24862,10 +24862,10 @@ func (o *DatabaseSync2Response) xxx_ToOp(ctx context.Context, op *xxx_DatabaseSy
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.SyncContext = op.SyncContext
-	o.DeltaArray = op.DeltaArray
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.SyncContext = o.SyncContext
+	op.DeltaArray = o.DeltaArray
+	op.Return = o.Return
 	return op
 }
 
@@ -25180,12 +25180,12 @@ func (o *DatabaseRedoRequest) xxx_ToOp(ctx context.Context, op *xxx_DatabaseRedo
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.ChangeLogEntry = op.ChangeLogEntry
-	o.ChangeLogEntrySize = op.ChangeLogEntrySize
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.ChangeLogEntry = o.ChangeLogEntry
+	op.ChangeLogEntrySize = o.ChangeLogEntrySize
 	return op
 }
 
@@ -25232,9 +25232,9 @@ func (o *DatabaseRedoResponse) xxx_ToOp(ctx context.Context, op *xxx_DatabaseRed
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DeltaArray = op.DeltaArray
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DeltaArray = o.DeltaArray
+	op.Return = o.Return
 	return op
 }
 
@@ -25533,10 +25533,10 @@ func (o *Control2ExRequest) xxx_ToOp(ctx context.Context, op *xxx_Control2ExOper
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.FunctionCode = op.FunctionCode
-	o.QueryLevel = op.QueryLevel
-	o.Data = op.Data
+	op.ServerName = o.ServerName
+	op.FunctionCode = o.FunctionCode
+	op.QueryLevel = o.QueryLevel
+	op.Data = o.Data
 	return op
 }
 
@@ -25578,8 +25578,8 @@ func (o *Control2ExResponse) xxx_ToOp(ctx context.Context, op *xxx_Control2ExOpe
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -25744,7 +25744,7 @@ func (o *EnumerateTrustedDomainsRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -25783,8 +25783,8 @@ func (o *EnumerateTrustedDomainsResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.DomainNameBuffer = op.DomainNameBuffer
-	o.Return = op.Return
+	op.DomainNameBuffer = o.DomainNameBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -26119,11 +26119,11 @@ func (o *GetDCNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDCNameOperat
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.DomainName = op.DomainName
-	o.DomainGUID = op.DomainGUID
-	o.SiteGUID = op.SiteGUID
-	o.Flags = op.Flags
+	op.ComputerName = o.ComputerName
+	op.DomainName = o.DomainName
+	op.DomainGUID = o.DomainGUID
+	op.SiteGUID = o.SiteGUID
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26163,8 +26163,8 @@ func (o *GetDCNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDCNameOpera
 	if o == nil {
 		return op
 	}
-	o.DomainControllerInfo = op.DomainControllerInfo
-	o.Return = op.Return
+	op.DomainControllerInfo = o.DomainControllerInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -26427,11 +26427,11 @@ func (o *GetCapabilitiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCapabi
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.QueryLevel = op.QueryLevel
+	op.ServerName = o.ServerName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.QueryLevel = o.QueryLevel
 	return op
 }
 
@@ -26474,9 +26474,9 @@ func (o *GetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCapab
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.ServerCapabilities = op.ServerCapabilities
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.ServerCapabilities = o.ServerCapabilities
+	op.Return = o.Return
 	return op
 }
 
@@ -26698,9 +26698,9 @@ func (o *SetServiceBitsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetService
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ServiceBitsOfInterest = op.ServiceBitsOfInterest
-	o.ServiceBits = op.ServiceBits
+	op.ServerName = o.ServerName
+	op.ServiceBitsOfInterest = o.ServiceBitsOfInterest
+	op.ServiceBits = o.ServiceBits
 	return op
 }
 
@@ -26737,7 +26737,7 @@ func (o *SetServiceBitsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetServic
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26926,8 +26926,8 @@ func (o *GetTrustRIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTrustRIDOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DomainName = op.DomainName
+	op.ServerName = o.ServerName
+	op.DomainName = o.DomainName
 	return op
 }
 
@@ -26965,8 +26965,8 @@ func (o *GetTrustRIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTrustRIDO
 	if o == nil {
 		return op
 	}
-	o.RID = op.RID
-	o.Return = op.Return
+	op.RID = o.RID
+	op.Return = o.Return
 	return op
 }
 
@@ -27241,10 +27241,10 @@ func (o *ComputeServerDigestRequest) xxx_ToOp(ctx context.Context, op *xxx_Compu
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.RID = op.RID
-	o.Message = op.Message
-	o.MessageSize = op.MessageSize
+	op.ServerName = o.ServerName
+	op.RID = o.RID
+	op.Message = o.Message
+	op.MessageSize = o.MessageSize
 	return op
 }
 
@@ -27290,9 +27290,9 @@ func (o *ComputeServerDigestResponse) xxx_ToOp(ctx context.Context, op *xxx_Comp
 	if o == nil {
 		return op
 	}
-	o.NewMessageDigest = op.NewMessageDigest
-	o.OldMessageDigest = op.OldMessageDigest
-	o.Return = op.Return
+	op.NewMessageDigest = o.NewMessageDigest
+	op.OldMessageDigest = o.OldMessageDigest
+	op.Return = o.Return
 	return op
 }
 
@@ -27595,10 +27595,10 @@ func (o *ComputeClientDigestRequest) xxx_ToOp(ctx context.Context, op *xxx_Compu
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DomainName = op.DomainName
-	o.Message = op.Message
-	o.MessageSize = op.MessageSize
+	op.ServerName = o.ServerName
+	op.DomainName = o.DomainName
+	op.Message = o.Message
+	op.MessageSize = o.MessageSize
 	return op
 }
 
@@ -27643,9 +27643,9 @@ func (o *ComputeClientDigestResponse) xxx_ToOp(ctx context.Context, op *xxx_Comp
 	if o == nil {
 		return op
 	}
-	o.NewMessageDigest = op.NewMessageDigest
-	o.OldMessageDigest = op.OldMessageDigest
-	o.Return = op.Return
+	op.NewMessageDigest = o.NewMessageDigest
+	op.OldMessageDigest = o.OldMessageDigest
+	op.Return = o.Return
 	return op
 }
 
@@ -27923,12 +27923,12 @@ func (o *Authenticate3Request) xxx_ToOp(ctx context.Context, op *xxx_Authenticat
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.ClientCredential = op.ClientCredential
-	o.NegotiateFlags = op.NegotiateFlags
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.ClientCredential = o.ClientCredential
+	op.NegotiateFlags = o.NegotiateFlags
 	return op
 }
 
@@ -27982,10 +27982,10 @@ func (o *Authenticate3Response) xxx_ToOp(ctx context.Context, op *xxx_Authentica
 	if o == nil {
 		return op
 	}
-	o.ServerCredential = op.ServerCredential
-	o.NegotiateFlags = op.NegotiateFlags
-	o.AccountRID = op.AccountRID
-	o.Return = op.Return
+	op.ServerCredential = o.ServerCredential
+	op.NegotiateFlags = o.NegotiateFlags
+	op.AccountRID = o.AccountRID
+	op.Return = o.Return
 	return op
 }
 
@@ -28308,11 +28308,11 @@ func (o *GetDCNameExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDCNameExOp
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.DomainName = op.DomainName
-	o.DomainGUID = op.DomainGUID
-	o.SiteName = op.SiteName
-	o.Flags = op.Flags
+	op.ComputerName = o.ComputerName
+	op.DomainName = o.DomainName
+	op.DomainGUID = o.DomainGUID
+	op.SiteName = o.SiteName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -28352,8 +28352,8 @@ func (o *GetDCNameExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDCNameExO
 	if o == nil {
 		return op
 	}
-	o.DomainControllerInfo = op.DomainControllerInfo
-	o.Return = op.Return
+	op.DomainControllerInfo = o.DomainControllerInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -28526,7 +28526,7 @@ func (o *GetSiteNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteNameOp
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
+	op.ComputerName = o.ComputerName
 	return op
 }
 
@@ -28564,8 +28564,8 @@ func (o *GetSiteNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSiteNameO
 	if o == nil {
 		return op
 	}
-	o.SiteName = op.SiteName
-	o.Return = op.Return
+	op.SiteName = o.SiteName
+	op.Return = o.Return
 	return op
 }
 
@@ -28877,12 +28877,12 @@ func (o *GetDomainInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDomainIn
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Level = op.Level
-	o.WorkstationBuffer = op.WorkstationBuffer
+	op.ServerName = o.ServerName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Level = o.Level
+	op.WorkstationBuffer = o.WorkstationBuffer
 	return op
 }
 
@@ -28928,9 +28928,9 @@ func (o *GetDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDomainI
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DomBuffer = op.DomBuffer
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DomBuffer = o.DomBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -29187,12 +29187,12 @@ func (o *PasswordSet2Request) xxx_ToOp(ctx context.Context, op *xxx_PasswordSet2
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ClearNewPassword = op.ClearNewPassword
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ClearNewPassword = o.ClearNewPassword
 	return op
 }
 
@@ -29235,8 +29235,8 @@ func (o *PasswordSet2Response) xxx_ToOp(ctx context.Context, op *xxx_PasswordSet
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Return = o.Return
 	return op
 }
 
@@ -29488,11 +29488,11 @@ func (o *PasswordGetRequest) xxx_ToOp(ctx context.Context, op *xxx_PasswordGetOp
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.AccountName = op.AccountName
-	o.AccountType = op.AccountType
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
+	op.PrimaryName = o.PrimaryName
+	op.AccountName = o.AccountName
+	op.AccountType = o.AccountType
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
 	return op
 }
 
@@ -29537,9 +29537,9 @@ func (o *PasswordGetResponse) xxx_ToOp(ctx context.Context, op *xxx_PasswordGetO
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.EncryptedNTOWFPassword = op.EncryptedNTOWFPassword
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.EncryptedNTOWFPassword = o.EncryptedNTOWFPassword
+	op.Return = o.Return
 	return op
 }
 
@@ -29805,11 +29805,11 @@ func (o *SendToSAMRequest) xxx_ToOp(ctx context.Context, op *xxx_SendToSAMOperat
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.OpaqueBuffer = op.OpaqueBuffer
-	o.OpaqueBufferSize = op.OpaqueBufferSize
+	op.PrimaryName = o.PrimaryName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.OpaqueBuffer = o.OpaqueBuffer
+	op.OpaqueBufferSize = o.OpaqueBufferSize
 	return op
 }
 
@@ -29851,8 +29851,8 @@ func (o *SendToSAMResponse) xxx_ToOp(ctx context.Context, op *xxx_SendToSAMOpera
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.Return = o.Return
 	return op
 }
 
@@ -30123,9 +30123,9 @@ func (o *AddressToSiteNamesWRequest) xxx_ToOp(ctx context.Context, op *xxx_Addre
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.EntryCount = op.EntryCount
-	o.SocketAddresses = op.SocketAddresses
+	op.ComputerName = o.ComputerName
+	op.EntryCount = o.EntryCount
+	op.SocketAddresses = o.SocketAddresses
 	return op
 }
 
@@ -30169,8 +30169,8 @@ func (o *AddressToSiteNamesWResponse) xxx_ToOp(ctx context.Context, op *xxx_Addr
 	if o == nil {
 		return op
 	}
-	o.SiteNames = op.SiteNames
-	o.Return = op.Return
+	op.SiteNames = o.SiteNames
+	op.Return = o.Return
 	return op
 }
 
@@ -30670,13 +30670,13 @@ func (o *GetDCNameEx2Request) xxx_ToOp(ctx context.Context, op *xxx_GetDCNameEx2
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.AccountName = op.AccountName
-	o.AllowableAccountControlBits = op.AllowableAccountControlBits
-	o.DomainName = op.DomainName
-	o.DomainGUID = op.DomainGUID
-	o.SiteName = op.SiteName
-	o.Flags = op.Flags
+	op.ComputerName = o.ComputerName
+	op.AccountName = o.AccountName
+	op.AllowableAccountControlBits = o.AllowableAccountControlBits
+	op.DomainName = o.DomainName
+	op.DomainGUID = o.DomainGUID
+	op.SiteName = o.SiteName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -30720,8 +30720,8 @@ func (o *GetDCNameEx2Response) xxx_ToOp(ctx context.Context, op *xxx_GetDCNameEx
 	if o == nil {
 		return op
 	}
-	o.DomainControllerInfo = op.DomainControllerInfo
-	o.Return = op.Return
+	op.DomainControllerInfo = o.DomainControllerInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -30909,7 +30909,7 @@ func (o *GetTimeServiceParentDomainRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -30964,9 +30964,9 @@ func (o *GetTimeServiceParentDomainResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.DomainName = op.DomainName
-	o.PDCSameSite = op.PDCSameSite
-	o.Return = op.Return
+	op.DomainName = o.DomainName
+	op.PDCSameSite = o.PDCSameSite
+	op.Return = o.Return
 	return op
 }
 
@@ -31132,7 +31132,7 @@ func (o *EnumerateTrustedDomainsExRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -31171,8 +31171,8 @@ func (o *EnumerateTrustedDomainsExResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Domains = op.Domains
-	o.Return = op.Return
+	op.Domains = o.Domains
+	op.Return = o.Return
 	return op
 }
 
@@ -31446,9 +31446,9 @@ func (o *AddressToSiteNamesExWRequest) xxx_ToOp(ctx context.Context, op *xxx_Add
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.EntryCount = op.EntryCount
-	o.SocketAddresses = op.SocketAddresses
+	op.ComputerName = o.ComputerName
+	op.EntryCount = o.EntryCount
+	op.SocketAddresses = o.SocketAddresses
 	return op
 }
 
@@ -31492,8 +31492,8 @@ func (o *AddressToSiteNamesExWResponse) xxx_ToOp(ctx context.Context, op *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.SiteNames = op.SiteNames
-	o.Return = op.Return
+	op.SiteNames = o.SiteNames
+	op.Return = o.Return
 	return op
 }
 
@@ -31676,7 +31676,7 @@ func (o *GetDCSiteCoverageWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDCS
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -31714,8 +31714,8 @@ func (o *GetDCSiteCoverageWResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDC
 	if o == nil {
 		return op
 	}
-	o.SiteNames = op.SiteNames
-	o.Return = op.Return
+	op.SiteNames = o.SiteNames
+	op.Return = o.Return
 	return op
 }
 
@@ -32056,12 +32056,12 @@ func (o *SAMLogonExRequest) xxx_ToOp(ctx context.Context, op *xxx_SAMLogonExOper
 	if o == nil {
 		return op
 	}
-	o.LogonServer = op.LogonServer
-	o.ComputerName = op.ComputerName
-	o.LogonLevel = op.LogonLevel
-	o.LogonInformation = op.LogonInformation
-	o.ValidationLevel = op.ValidationLevel
-	o.ExtraFlags = op.ExtraFlags
+	op.LogonServer = o.LogonServer
+	op.ComputerName = o.ComputerName
+	op.LogonLevel = o.LogonLevel
+	op.LogonInformation = o.LogonInformation
+	op.ValidationLevel = o.ValidationLevel
+	op.ExtraFlags = o.ExtraFlags
 	return op
 }
 
@@ -32140,10 +32140,10 @@ func (o *SAMLogonExResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLogonExOpe
 	if o == nil {
 		return op
 	}
-	o.ValidationInformation = op.ValidationInformation
-	o.Authoritative = op.Authoritative
-	o.ExtraFlags = op.ExtraFlags
-	o.Return = op.Return
+	op.ValidationInformation = o.ValidationInformation
+	op.Authoritative = o.Authoritative
+	op.ExtraFlags = o.ExtraFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -32356,8 +32356,8 @@ func (o *EnumerateDomainTrustsRequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -32396,8 +32396,8 @@ func (o *EnumerateDomainTrustsResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Domains = op.Domains
-	o.Return = op.Return
+	op.Domains = o.Domains
+	op.Return = o.Return
 	return op
 }
 
@@ -32693,11 +32693,11 @@ func (o *DeregisterDNSHostRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DNSDomainName = op.DNSDomainName
-	o.DomainGUID = op.DomainGUID
-	o.DSAGUID = op.DSAGUID
-	o.DNSHostName = op.DNSHostName
+	op.ServerName = o.ServerName
+	op.DNSDomainName = o.DNSDomainName
+	op.DomainGUID = o.DomainGUID
+	op.DSAGUID = o.DSAGUID
+	op.DNSHostName = o.DNSHostName
 	return op
 }
 
@@ -32736,7 +32736,7 @@ func (o *DeregisterDNSHostRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -33012,11 +33012,11 @@ func (o *TrustPasswordsGetRequest) xxx_ToOp(ctx context.Context, op *xxx_TrustPa
 	if o == nil {
 		return op
 	}
-	o.TrustedDCName = op.TrustedDCName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
+	op.TrustedDCName = o.TrustedDCName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
 	return op
 }
 
@@ -33074,10 +33074,10 @@ func (o *TrustPasswordsGetResponse) xxx_ToOp(ctx context.Context, op *xxx_TrustP
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.EncryptedNewOWFPassword = op.EncryptedNewOWFPassword
-	o.EncryptedOldOWFPassword = op.EncryptedOldOWFPassword
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.EncryptedNewOWFPassword = o.EncryptedNewOWFPassword
+	op.EncryptedOldOWFPassword = o.EncryptedOldOWFPassword
+	op.Return = o.Return
 	return op
 }
 
@@ -33341,9 +33341,9 @@ func (o *GetForestTrustInformationRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.TrustedDomainName = op.TrustedDomainName
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.TrustedDomainName = o.TrustedDomainName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -33383,8 +33383,8 @@ func (o *GetForestTrustInformationResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ForestTrustInfo = op.ForestTrustInfo
-	o.Return = op.Return
+	op.ForestTrustInfo = o.ForestTrustInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -33646,10 +33646,10 @@ func (o *GetNetrForestTrustInformationRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.Flags = o.Flags
 	return op
 }
 
@@ -33693,9 +33693,9 @@ func (o *GetNetrForestTrustInformationResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.ForestTrustInfo = op.ForestTrustInfo
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.ForestTrustInfo = o.ForestTrustInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -34183,14 +34183,14 @@ func (o *SAMLogonWithFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SAMLogo
 	if o == nil {
 		return op
 	}
-	o.LogonServer = op.LogonServer
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.LogonLevel = op.LogonLevel
-	o.LogonInformation = op.LogonInformation
-	o.ValidationLevel = op.ValidationLevel
-	o.ExtraFlags = op.ExtraFlags
+	op.LogonServer = o.LogonServer
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.LogonLevel = o.LogonLevel
+	op.LogonInformation = o.LogonInformation
+	op.ValidationLevel = o.ValidationLevel
+	op.ExtraFlags = o.ExtraFlags
 	return op
 }
 
@@ -34274,11 +34274,11 @@ func (o *SAMLogonWithFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SAMLog
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.ValidationInformation = op.ValidationInformation
-	o.Authoritative = op.Authoritative
-	o.ExtraFlags = op.ExtraFlags
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.ValidationInformation = o.ValidationInformation
+	op.Authoritative = o.Authoritative
+	op.ExtraFlags = o.ExtraFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -34603,11 +34603,11 @@ func (o *GetTrustInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTrustInfo
 	if o == nil {
 		return op
 	}
-	o.TrustedDCName = op.TrustedDCName
-	o.AccountName = op.AccountName
-	o.SecureChannelType = op.SecureChannelType
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
+	op.TrustedDCName = o.TrustedDCName
+	op.AccountName = o.AccountName
+	op.SecureChannelType = o.SecureChannelType
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
 	return op
 }
 
@@ -34669,11 +34669,11 @@ func (o *GetTrustInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTrustInf
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.EncryptedNewOWFPassword = op.EncryptedNewOWFPassword
-	o.EncryptedOldOWFPassword = op.EncryptedOldOWFPassword
-	o.TrustInfo = op.TrustInfo
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.EncryptedNewOWFPassword = o.EncryptedNewOWFPassword
+	op.EncryptedOldOWFPassword = o.EncryptedOldOWFPassword
+	op.TrustInfo = o.TrustInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -34992,12 +34992,12 @@ func (o *UpdateReadOnlyServerDNSRecordsRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ComputerName = op.ComputerName
-	o.Authenticator = op.Authenticator
-	o.SiteName = op.SiteName
-	o.DNSTTL = op.DNSTTL
-	o.DNSNames = op.DNSNames
+	op.ServerName = o.ServerName
+	op.ComputerName = o.ComputerName
+	op.Authenticator = o.Authenticator
+	op.SiteName = o.SiteName
+	op.DNSTTL = o.DNSTTL
+	op.DNSNames = o.DNSNames
 	return op
 }
 
@@ -35043,9 +35043,9 @@ func (o *UpdateReadOnlyServerDNSRecordsResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.DNSNames = op.DNSNames
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.DNSNames = o.DNSNames
+	op.Return = o.Return
 	return op
 }
 
@@ -35403,15 +35403,15 @@ func (o *ChainSetClientAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.PrimaryName = op.PrimaryName
-	o.ChainedFromServerName = op.ChainedFromServerName
-	o.ChainedForClientName = op.ChainedForClientName
-	o.Authenticator = op.Authenticator
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.InVersion = op.InVersion
-	o.In = op.In
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
+	op.PrimaryName = o.PrimaryName
+	op.ChainedFromServerName = o.ChainedFromServerName
+	op.ChainedForClientName = o.ChainedForClientName
+	op.Authenticator = o.Authenticator
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.InVersion = o.InVersion
+	op.In = o.In
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
 	return op
 }
 
@@ -35464,10 +35464,10 @@ func (o *ChainSetClientAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ReturnAuthenticator = op.ReturnAuthenticator
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.ReturnAuthenticator = o.ReturnAuthenticator
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 

@@ -1013,11 +1013,11 @@ func (o *RegisterClientRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterCl
 	if o == nil {
 		return op
 	}
-	o.RegistrationObject = op.RegistrationObject
-	o.Name = op.Name
-	o.InNotificationType = op.InNotificationType
-	o.NotifyFilter = op.NotifyFilter
-	o.ConversationStyle = op.ConversationStyle
+	op.RegistrationObject = o.RegistrationObject
+	op.Name = o.Name
+	op.InNotificationType = o.InNotificationType
+	op.NotifyFilter = o.NotifyFilter
+	op.ConversationStyle = o.ConversationStyle
 	return op
 }
 
@@ -1059,8 +1059,8 @@ func (o *RegisterClientResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterC
 	if o == nil {
 		return op
 	}
-	o.RemoteServerReferral = op.RemoteServerReferral
-	o.Return = op.Return
+	op.RemoteServerReferral = o.RemoteServerReferral
+	op.Return = o.Return
 	return op
 }
 
@@ -1183,7 +1183,7 @@ func (o *UnregisterClientRequest) xxx_ToOp(ctx context.Context, op *xxx_Unregist
 	if o == nil {
 		return op
 	}
-	o.RegistrationObject = op.RegistrationObject
+	op.RegistrationObject = o.RegistrationObject
 	return op
 }
 
@@ -1218,7 +1218,7 @@ func (o *UnregisterClientResponse) xxx_ToOp(ctx context.Context, op *xxx_Unregis
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1437,7 +1437,7 @@ func (o *GetNewChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNewChann
 	if o == nil {
 		return op
 	}
-	o.RemoteObject = op.RemoteObject
+	op.RemoteObject = o.RemoteObject
 	return op
 }
 
@@ -1479,9 +1479,9 @@ func (o *GetNewChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNewChan
 	if o == nil {
 		return op
 	}
-	o.NumberOfChannels = op.NumberOfChannels
-	o.ChannelContext = op.ChannelContext
-	o.Return = op.Return
+	op.NumberOfChannels = o.NumberOfChannels
+	op.ChannelContext = o.ChannelContext
+	op.Return = o.Return
 	return op
 }
 
@@ -1914,10 +1914,10 @@ func (o *GetNotificationSendResponseRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Channel = op.Channel
-	o.InNotificationType = op.InNotificationType
-	o.InSize = op.InSize
-	o.InNotificationData = op.InNotificationData
+	op.Channel = o.Channel
+	op.InNotificationType = o.InNotificationType
+	op.InSize = o.InSize
+	op.InNotificationData = o.InNotificationData
 	return op
 }
 
@@ -1983,11 +1983,11 @@ func (o *GetNotificationSendResponseResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Channel = op.Channel
-	o.OutNotificationType = op.OutNotificationType
-	o.OutSize = op.OutSize
-	o.OutNotificationData = op.OutNotificationData
-	o.Return = op.Return
+	op.Channel = o.Channel
+	op.OutNotificationType = o.OutNotificationType
+	op.OutSize = o.OutSize
+	op.OutNotificationData = o.OutNotificationData
+	op.Return = o.Return
 	return op
 }
 
@@ -2247,7 +2247,7 @@ func (o *GetNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNotifi
 	if o == nil {
 		return op
 	}
-	o.RemoteObject = op.RemoteObject
+	op.RemoteObject = o.RemoteObject
 	return op
 }
 
@@ -2295,10 +2295,10 @@ func (o *GetNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNotif
 	if o == nil {
 		return op
 	}
-	o.OutNotificationType = op.OutNotificationType
-	o.OutSize = op.OutSize
-	o.OutNotificationData = op.OutNotificationData
-	o.Return = op.Return
+	op.OutNotificationType = o.OutNotificationType
+	op.OutSize = o.OutSize
+	op.OutNotificationData = o.OutNotificationData
+	op.Return = o.Return
 	return op
 }
 
@@ -2577,10 +2577,10 @@ func (o *CloseChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseChannel
 	if o == nil {
 		return op
 	}
-	o.Channel = op.Channel
-	o.InNotificationType = op.InNotificationType
-	o.InSize = op.InSize
-	o.Reason = op.Reason
+	op.Channel = o.Channel
+	op.InNotificationType = o.InNotificationType
+	op.InSize = o.InSize
+	op.Reason = o.Reason
 	return op
 }
 
@@ -2623,8 +2623,8 @@ func (o *CloseChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseChanne
 	if o == nil {
 		return op
 	}
-	o.Channel = op.Channel
-	o.Return = op.Return
+	op.Channel = o.Channel
+	op.Return = o.Return
 	return op
 }
 

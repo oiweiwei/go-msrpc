@@ -490,10 +490,10 @@ func (o *QueryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Connection = op.Connection
-	o.Query = op.Query
-	o.MarshalOptions = op.MarshalOptions
+	op.This = o.This
+	op.Connection = o.Connection
+	op.Query = o.Query
+	op.MarshalOptions = o.MarshalOptions
 	return op
 }
 
@@ -534,9 +534,9 @@ func (o *QueryResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RecordSet = op.RecordSet
-	o.Return = op.Return
+	op.That = o.That
+	op.RecordSet = o.RecordSet
+	op.Return = o.Return
 	return op
 }
 
@@ -786,9 +786,9 @@ func (o *SubmitChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_SubmitChang
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Connection = op.Connection
-	o.RecordSet = op.RecordSet
+	op.This = o.This
+	op.Connection = o.Connection
+	op.RecordSet = o.RecordSet
 	return op
 }
 
@@ -827,8 +827,8 @@ func (o *SubmitChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_SubmitChan
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1076,8 +1076,8 @@ func (o *ConvertToStringRequest) xxx_ToOp(ctx context.Context, op *xxx_ConvertTo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Object = op.Object
+	op.This = o.This
+	op.Object = o.Object
 	return op
 }
 
@@ -1116,9 +1116,9 @@ func (o *ConvertToStringResponse) xxx_ToOp(ctx context.Context, op *xxx_ConvertT
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Inline = op.Inline
-	o.Return = op.Return
+	op.That = o.That
+	op.Inline = o.Inline
+	op.Return = o.Return
 	return op
 }
 
@@ -1348,8 +1348,8 @@ func (o *CreateRecordSetRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateRec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VarColumnInfos = op.VarColumnInfos
+	op.This = o.This
+	op.VarColumnInfos = o.VarColumnInfos
 	return op
 }
 
@@ -1388,9 +1388,9 @@ func (o *CreateRecordSetResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Dispatch = op.Dispatch
-	o.Return = op.Return
+	op.That = o.That
+	op.Dispatch = o.Dispatch
+	op.Return = o.Return
 	return op
 }
 

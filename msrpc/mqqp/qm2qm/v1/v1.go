@@ -1129,7 +1129,7 @@ func (o *StartReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_StartReceive
 	if o == nil {
 		return op
 	}
-	o.RemoteReadDesc = op.RemoteReadDesc
+	op.RemoteReadDesc = o.RemoteReadDesc
 	return op
 }
 
@@ -1203,9 +1203,9 @@ func (o *StartReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_StartReceiv
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.RemoteReadDesc = op.RemoteReadDesc
-	o.Return = op.Return
+	op.Context = o.Context
+	op.RemoteReadDesc = o.RemoteReadDesc
+	op.Return = o.Return
 	return op
 }
 
@@ -1380,8 +1380,8 @@ func (o *EndReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_EndReceiveOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Ack = op.Ack
+	op.Context = o.Context
+	op.Ack = o.Ack
 	return op
 }
 
@@ -1419,8 +1419,8 @@ func (o *EndReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_EndReceiveOpe
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -1627,11 +1627,11 @@ func (o *OpenQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueOperat
 	if o == nil {
 		return op
 	}
-	o.ClientGUID = op.ClientGUID
-	o.MQS = op.MQS
-	o.Queue = op.Queue
-	o.QueueID = op.QueueID
-	o.ContextID = op.ContextID
+	op.ClientGUID = o.ClientGUID
+	op.MQS = o.MQS
+	op.Queue = o.Queue
+	op.QueueID = o.QueueID
+	op.ContextID = o.ContextID
 	return op
 }
 
@@ -1674,8 +1674,8 @@ func (o *OpenQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueOpera
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -1815,7 +1815,7 @@ func (o *CloseQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseQueueOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -1852,8 +1852,8 @@ func (o *CloseQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseQueueOpe
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -1978,8 +1978,8 @@ func (o *CloseCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorOp
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.Cursor = op.Cursor
+	op.Queue = o.Queue
+	op.Cursor = o.Cursor
 	return op
 }
 
@@ -2015,7 +2015,7 @@ func (o *CloseCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2156,9 +2156,9 @@ func (o *CancelReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelRecei
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.QueueID = op.QueueID
-	o.RequestID = op.RequestID
+	op.Queue = o.Queue
+	op.QueueID = o.QueueID
+	op.RequestID = o.RequestID
 	return op
 }
 
@@ -2195,7 +2195,7 @@ func (o *CancelReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelRece
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2305,7 +2305,7 @@ func (o *PurgeQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOper
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
+	op.Queue = o.Queue
 	return op
 }
 
@@ -2340,7 +2340,7 @@ func (o *PurgeQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2479,7 +2479,7 @@ func (o *GetQMQMServerPortRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQMQM
 	if o == nil {
 		return op
 	}
-	o.PortType = op.PortType
+	op.PortType = o.PortType
 	return op
 }
 
@@ -2514,7 +2514,7 @@ func (o *GetQMQMServerPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQMQ
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2674,9 +2674,9 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.Major = op.Major
-	o.Minor = op.Minor
-	o.BuildNumber = op.BuildNumber
+	op.Major = o.Major
+	op.Minor = o.Minor
+	op.BuildNumber = o.BuildNumber
 	return op
 }
 
@@ -2882,7 +2882,7 @@ func (o *StartReceive2Request) xxx_ToOp(ctx context.Context, op *xxx_StartReceiv
 	if o == nil {
 		return op
 	}
-	o.RemoteReadDesc2 = op.RemoteReadDesc2
+	op.RemoteReadDesc2 = o.RemoteReadDesc2
 	return op
 }
 
@@ -2956,9 +2956,9 @@ func (o *StartReceive2Response) xxx_ToOp(ctx context.Context, op *xxx_StartRecei
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.RemoteReadDesc2 = op.RemoteReadDesc2
-	o.Return = op.Return
+	op.Context = o.Context
+	op.RemoteReadDesc2 = o.RemoteReadDesc2
+	op.Return = o.Return
 	return op
 }
 
@@ -3200,8 +3200,8 @@ func (o *StartReceiveByLookupIDRequest) xxx_ToOp(ctx context.Context, op *xxx_St
 	if o == nil {
 		return op
 	}
-	o.LookupID = op.LookupID
-	o.RemoteReadDesc2 = op.RemoteReadDesc2
+	op.LookupID = o.LookupID
+	op.RemoteReadDesc2 = o.RemoteReadDesc2
 	return op
 }
 
@@ -3295,9 +3295,9 @@ func (o *StartReceiveByLookupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.RemoteReadDesc2 = op.RemoteReadDesc2
-	o.Return = op.Return
+	op.Context = o.Context
+	op.RemoteReadDesc2 = o.RemoteReadDesc2
+	op.Return = o.Return
 	return op
 }
 

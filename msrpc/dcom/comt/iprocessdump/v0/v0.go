@@ -297,7 +297,7 @@ func (o *IsSupportedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsSupportedOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -334,8 +334,8 @@ func (o *IsSupportedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsSupportedO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -657,10 +657,10 @@ func (o *DumpProcessRequest) xxx_ToOp(ctx context.Context, op *xxx_DumpProcessOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
-	o.Directory = op.Directory
-	o.MaxFiles = op.MaxFiles
+	op.This = o.This
+	op.ContainerID = o.ContainerID
+	op.Directory = o.Directory
+	op.MaxFiles = o.MaxFiles
 	return op
 }
 
@@ -704,9 +704,9 @@ func (o *DumpProcessResponse) xxx_ToOp(ctx context.Context, op *xxx_DumpProcessO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DumpFile = op.DumpFile
-	o.Return = op.Return
+	op.That = o.That
+	op.DumpFile = o.DumpFile
+	op.Return = o.Return
 	return op
 }
 

@@ -415,10 +415,10 @@ func (o *NextRequest) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ProxyGUID = op.ProxyGUID
-	o.Timeout = op.Timeout
-	o.Count = op.Count
+	op.This = o.This
+	op.ProxyGUID = o.ProxyGUID
+	op.Timeout = o.Timeout
+	op.Count = o.Count
 	return op
 }
 
@@ -461,11 +461,11 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Returned = op.Returned
-	o.BufferSize = op.BufferSize
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.That = o.That
+	op.Returned = o.Returned
+	op.BufferSize = o.BufferSize
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 

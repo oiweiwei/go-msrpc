@@ -602,12 +602,12 @@ func (o *GetChildPathsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetChildPat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.BufferSize = op.BufferSize
-	o.Buffer = op.Buffer
-	o.RequiredBufferSize = op.RequiredBufferSize
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.BufferSize = o.BufferSize
+	op.Buffer = o.Buffer
+	op.RequiredBufferSize = o.RequiredBufferSize
 	return op
 }
 
@@ -657,10 +657,10 @@ func (o *GetChildPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetChildPa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Buffer = op.Buffer
-	o.RequiredBufferSize = op.RequiredBufferSize
-	o.Return = op.Return
+	op.That = o.That
+	op.Buffer = o.Buffer
+	op.RequiredBufferSize = o.RequiredBufferSize
+	op.Return = o.Return
 	return op
 }
 

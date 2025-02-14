@@ -595,10 +595,10 @@ func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
-	o.HashValue = op.HashValue
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Name = o.Name
+	op.HashValue = o.HashValue
+	op.Flags = o.Flags
 	return op
 }
 
@@ -684,13 +684,13 @@ func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.DescKind = op.DescKind
-	o.FuncDesc = op.FuncDesc
-	o.VarDesc = op.VarDesc
-	o.TypeComp = op.TypeComp
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.DescKind = o.DescKind
+	op.FuncDesc = o.FuncDesc
+	op.VarDesc = o.VarDesc
+	op.TypeComp = o.TypeComp
+	op.Return = o.Return
 	return op
 }
 
@@ -927,9 +927,9 @@ func (o *BindTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_BindTypeOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
-	o.HashValue = op.HashValue
+	op.This = o.This
+	op.Name = o.Name
+	op.HashValue = o.HashValue
 	return op
 }
 
@@ -975,9 +975,9 @@ func (o *BindTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_BindTypeOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.Return = o.Return
 	return op
 }
 

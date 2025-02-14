@@ -393,10 +393,10 @@ func (o *BackupKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupKeyOperat
 	if o == nil {
 		return op
 	}
-	o.ActionAgent = op.ActionAgent
-	o.DataIn = op.DataIn
-	o.DataInLength = op.DataInLength
-	o.Param = op.Param
+	op.ActionAgent = o.ActionAgent
+	op.DataIn = o.DataIn
+	op.DataInLength = o.DataInLength
+	op.Param = o.Param
 	return op
 }
 
@@ -440,9 +440,9 @@ func (o *BackupKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupKeyOpera
 	if o == nil {
 		return op
 	}
-	o.DataOut = op.DataOut
-	o.DataOutLength = op.DataOutLength
-	o.Return = op.Return
+	op.DataOut = o.DataOut
+	op.DataOutLength = o.DataOutLength
+	op.Return = o.Return
 	return op
 }
 

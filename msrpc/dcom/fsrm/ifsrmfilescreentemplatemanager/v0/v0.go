@@ -407,7 +407,7 @@ func (o *CreateTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateTemp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -445,9 +445,9 @@ func (o *CreateTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateTem
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenTemplate = op.FileScreenTemplate
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenTemplate = o.FileScreenTemplate
+	op.Return = o.Return
 	return op
 }
 
@@ -698,8 +698,8 @@ func (o *GetTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTemplateOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -738,9 +738,9 @@ func (o *GetTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTemplateO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenTemplate = op.FileScreenTemplate
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenTemplate = o.FileScreenTemplate
+	op.Return = o.Return
 	return op
 }
 
@@ -957,8 +957,8 @@ func (o *EnumTemplatesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumTemplat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Options = op.Options
+	op.This = o.This
+	op.Options = o.Options
 	return op
 }
 
@@ -997,9 +997,9 @@ func (o *EnumTemplatesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumTempla
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenTemplates = op.FileScreenTemplates
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenTemplates = o.FileScreenTemplates
+	op.Return = o.Return
 	return op
 }
 
@@ -1250,8 +1250,8 @@ func (o *ExportTemplatesRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportTem
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FileScreenTemplateNamesArray = op.FileScreenTemplateNamesArray
+	op.This = o.This
+	op.FileScreenTemplateNamesArray = o.FileScreenTemplateNamesArray
 	return op
 }
 
@@ -1290,9 +1290,9 @@ func (o *ExportTemplatesResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportTe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SerializedFileScreenTemplates = op.SerializedFileScreenTemplates
-	o.Return = op.Return
+	op.That = o.That
+	op.SerializedFileScreenTemplates = o.SerializedFileScreenTemplates
+	op.Return = o.Return
 	return op
 }
 
@@ -1591,9 +1591,9 @@ func (o *ImportTemplatesRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportTem
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SerializedFileScreenTemplates = op.SerializedFileScreenTemplates
-	o.FileScreenTemplateNamesArray = op.FileScreenTemplateNamesArray
+	op.This = o.This
+	op.SerializedFileScreenTemplates = o.SerializedFileScreenTemplates
+	op.FileScreenTemplateNamesArray = o.FileScreenTemplateNamesArray
 	return op
 }
 
@@ -1633,9 +1633,9 @@ func (o *ImportTemplatesResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportTe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenTemplates = op.FileScreenTemplates
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenTemplates = o.FileScreenTemplates
+	op.Return = o.Return
 	return op
 }
 

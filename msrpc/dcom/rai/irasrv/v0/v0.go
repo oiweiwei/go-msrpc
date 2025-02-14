@@ -421,8 +421,8 @@ func (o *GetNoviceUserInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNovi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -463,9 +463,9 @@ func (o *GetNoviceUserInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNov
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -745,9 +745,9 @@ func (o *GetSessionInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSession
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.UserNames = op.UserNames
-	o.Count = op.Count
+	op.This = o.This
+	op.UserNames = o.UserNames
+	op.Count = o.Count
 	return op
 }
 
@@ -794,10 +794,10 @@ func (o *GetSessionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessio
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UserNames = op.UserNames
-	o.Count = op.Count
-	o.Return = op.Return
+	op.That = o.That
+	op.UserNames = o.UserNames
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 

@@ -453,7 +453,7 @@ func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAct
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -491,9 +491,9 @@ func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Variables = op.Variables
-	o.Return = op.Return
+	op.That = o.That
+	op.Variables = o.Variables
+	op.Return = o.Return
 	return op
 }
 
@@ -696,7 +696,7 @@ func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -734,9 +734,9 @@ func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Descriptions = op.Descriptions
-	o.Return = op.Return
+	op.That = o.That
+	op.Descriptions = o.Descriptions
+	op.Return = o.Return
 	return op
 }
 
@@ -955,8 +955,8 @@ func (o *EnumFileManagementJobsRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Options = op.Options
+	op.This = o.This
+	op.Options = o.Options
 	return op
 }
 
@@ -998,9 +998,9 @@ func (o *EnumFileManagementJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileManagementJobs = op.FileManagementJobs
-	o.Return = op.Return
+	op.That = o.That
+	op.FileManagementJobs = o.FileManagementJobs
+	op.Return = o.Return
 	return op
 }
 
@@ -1203,7 +1203,7 @@ func (o *CreateFileManagementJobRequest) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1246,9 +1246,9 @@ func (o *CreateFileManagementJobResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileManagementJob = op.FileManagementJob
-	o.Return = op.Return
+	op.That = o.That
+	op.FileManagementJob = o.FileManagementJob
+	op.Return = o.Return
 	return op
 }
 
@@ -1500,8 +1500,8 @@ func (o *GetFileManagementJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetF
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -1544,9 +1544,9 @@ func (o *GetFileManagementJobResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileManagementJob = op.FileManagementJob
-	o.Return = op.Return
+	op.That = o.That
+	op.FileManagementJob = o.FileManagementJob
+	op.Return = o.Return
 	return op
 }
 

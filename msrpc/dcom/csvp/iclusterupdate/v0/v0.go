@@ -388,7 +388,7 @@ func (o *GetUpdatesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUpdatesOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -469,10 +469,10 @@ func (o *GetUpdatesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUpdatesOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UpdateCount = op.UpdateCount
-	o.Updates = op.Updates
-	o.Return = op.Return
+	op.That = o.That
+	op.UpdateCount = o.UpdateCount
+	op.Updates = o.Updates
+	op.Return = o.Return
 	return op
 }
 
@@ -640,7 +640,7 @@ func (o *CountRequest) xxx_ToOp(ctx context.Context, op *xxx_CountOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -679,9 +679,9 @@ func (o *CountResponse) xxx_ToOp(ctx context.Context, op *xxx_CountOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 

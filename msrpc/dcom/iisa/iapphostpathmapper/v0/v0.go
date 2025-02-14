@@ -407,9 +407,9 @@ func (o *MapPathRequest) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConfigPath = op.ConfigPath
-	o.MappedPhysicalPath = op.MappedPhysicalPath
+	op.This = o.This
+	op.ConfigPath = o.ConfigPath
+	op.MappedPhysicalPath = o.MappedPhysicalPath
 	return op
 }
 
@@ -449,9 +449,9 @@ func (o *MapPathResponse) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NewPhysicalPath = op.NewPhysicalPath
-	o.Return = op.Return
+	op.That = o.That
+	op.NewPhysicalPath = o.NewPhysicalPath
+	op.Return = o.Return
 	return op
 }
 

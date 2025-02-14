@@ -316,7 +316,7 @@ func (o *GetSmartEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSmartEnum
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -357,9 +357,9 @@ func (o *GetSmartEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSmartEnu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SmartEnum = op.SmartEnum
-	o.Return = op.Return
+	op.That = o.That
+	op.SmartEnum = o.SmartEnum
+	op.Return = o.Return
 	return op
 }
 

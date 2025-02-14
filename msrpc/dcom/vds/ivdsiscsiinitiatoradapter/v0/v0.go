@@ -329,7 +329,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -367,9 +367,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.InitiatorAdapterProperty = op.InitiatorAdapterProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.InitiatorAdapterProperty = o.InitiatorAdapterProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -572,7 +572,7 @@ func (o *QueryInitiatorPortalsRequest) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -614,9 +614,9 @@ func (o *QueryInitiatorPortalsResponse) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 

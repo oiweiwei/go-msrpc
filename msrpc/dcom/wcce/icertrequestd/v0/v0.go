@@ -590,12 +590,12 @@ func (o *RequestRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.Authority = op.Authority
-	o.RequestID = op.RequestID
-	o.Attributes = op.Attributes
-	o.Request = op.Request
+	op.This = o.This
+	op.Flags = o.Flags
+	op.Authority = o.Authority
+	op.RequestID = o.RequestID
+	op.Attributes = o.Attributes
+	op.Request = o.Request
 	return op
 }
 
@@ -666,13 +666,13 @@ func (o *RequestResponse) xxx_ToOp(ctx context.Context, op *xxx_RequestOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RequestID = op.RequestID
-	o.Disposition = op.Disposition
-	o.CertChain = op.CertChain
-	o.EncodedCert = op.EncodedCert
-	o.DispositionMessage = op.DispositionMessage
-	o.Return = op.Return
+	op.That = o.That
+	op.RequestID = o.RequestID
+	op.Disposition = o.Disposition
+	op.CertChain = o.CertChain
+	op.EncodedCert = o.EncodedCert
+	op.DispositionMessage = o.DispositionMessage
+	op.Return = o.Return
 	return op
 }
 
@@ -916,9 +916,9 @@ func (o *GetCACertRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCACertOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Chain = op.Chain
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Chain = o.Chain
+	op.Authority = o.Authority
 	return op
 }
 
@@ -960,9 +960,9 @@ func (o *GetCACertResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCACertOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Out = op.Out
-	o.Return = op.Return
+	op.That = o.That
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -1161,8 +1161,8 @@ func (o *PingRequest) xxx_ToOp(ctx context.Context, op *xxx_PingOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -1200,8 +1200,8 @@ func (o *PingResponse) xxx_ToOp(ctx context.Context, op *xxx_PingOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

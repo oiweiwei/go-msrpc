@@ -386,8 +386,8 @@ func (o *GetConfigFileRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigFi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConfigPath = op.ConfigPath
+	op.This = o.This
+	op.ConfigPath = o.ConfigPath
 	return op
 }
 
@@ -426,9 +426,9 @@ func (o *GetConfigFileResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigF
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ConfigFile = op.ConfigFile
-	o.Return = op.Return
+	op.That = o.That
+	op.ConfigFile = o.ConfigFile
+	op.Return = o.Return
 	return op
 }
 
@@ -679,8 +679,8 @@ func (o *GetUniqueConfigPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUn
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConfigPath = op.ConfigPath
+	op.This = o.This
+	op.ConfigPath = o.ConfigPath
 	return op
 }
 
@@ -719,9 +719,9 @@ func (o *GetUniqueConfigPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetU
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UniquePath = op.UniquePath
-	o.Return = op.Return
+	op.That = o.That
+	op.UniquePath = o.UniquePath
+	op.Return = o.Return
 	return op
 }
 

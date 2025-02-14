@@ -230,7 +230,7 @@ func (o *RemoteGetMasterSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.SecretLength = op.SecretLength
+	op.SecretLength = o.SecretLength
 	return op
 }
 
@@ -267,9 +267,9 @@ func (o *RemoteGetMasterSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.SecretLength = op.SecretLength
-	o.Secret = op.Secret
-	o.Return = op.Return
+	op.SecretLength = o.SecretLength
+	op.Secret = o.Secret
+	op.Return = o.Return
 	return op
 }
 

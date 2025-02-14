@@ -1352,12 +1352,12 @@ func (o *OpenNamespaceRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNamespa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Namespace = op.Namespace
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.WorkingNamespace = op.WorkingNamespace
-	o.Result = op.Result
+	op.This = o.This
+	op.Namespace = o.Namespace
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.WorkingNamespace = o.WorkingNamespace
+	op.Result = o.Result
 	return op
 }
 
@@ -1430,10 +1430,10 @@ func (o *OpenNamespaceResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenNamesp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.WorkingNamespace = op.WorkingNamespace
-	o.Result = op.Result
-	o.Return = op.Return
+	op.That = o.That
+	op.WorkingNamespace = o.WorkingNamespace
+	op.Result = o.Result
+	op.Return = o.Return
 	return op
 }
 
@@ -1639,8 +1639,8 @@ func (o *CancelAsyncCallRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelAsy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Sink = op.Sink
+	op.This = o.This
+	op.Sink = o.Sink
 	return op
 }
 
@@ -1678,8 +1678,8 @@ func (o *CancelAsyncCallResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelAs
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1894,8 +1894,8 @@ func (o *QueryObjectSinkRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryObje
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1937,9 +1937,9 @@ func (o *QueryObjectSinkResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryObj
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ResponseHandler = op.ResponseHandler
-	o.Return = op.Return
+	op.That = o.That
+	op.ResponseHandler = o.ResponseHandler
+	op.Return = o.Return
 	return op
 }
 
@@ -2525,12 +2525,12 @@ func (o *GetObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectPath = op.ObjectPath
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.Object = op.Object
-	o.CallResult = op.CallResult
+	op.This = o.This
+	op.ObjectPath = o.ObjectPath
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.Object = o.Object
+	op.CallResult = o.CallResult
 	return op
 }
 
@@ -2602,10 +2602,10 @@ func (o *GetObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObjectOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Object = op.Object
-	o.CallResult = op.CallResult
-	o.Return = op.Return
+	op.That = o.That
+	op.Object = o.Object
+	op.CallResult = o.CallResult
+	op.Return = o.Return
 	return op
 }
 
@@ -2953,11 +2953,11 @@ func (o *GetObjectAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectPath = op.ObjectPath
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.ObjectPath = o.ObjectPath
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -2998,8 +2998,8 @@ func (o *GetObjectAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObject
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3454,11 +3454,11 @@ func (o *PutClassRequest) xxx_ToOp(ctx context.Context, op *xxx_PutClassOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Object = op.Object
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.CallResult = op.CallResult
+	op.This = o.This
+	op.Object = o.Object
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.CallResult = o.CallResult
 	return op
 }
 
@@ -3517,9 +3517,9 @@ func (o *PutClassResponse) xxx_ToOp(ctx context.Context, op *xxx_PutClassOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CallResult = op.CallResult
-	o.Return = op.Return
+	op.That = o.That
+	op.CallResult = o.CallResult
+	op.Return = o.Return
 	return op
 }
 
@@ -3880,11 +3880,11 @@ func (o *PutClassAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_PutClassAsy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Object = op.Object
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.Object = o.Object
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -3925,8 +3925,8 @@ func (o *PutClassAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_PutClassAs
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4352,11 +4352,11 @@ func (o *DeleteClassRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Class = op.Class
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.CallResult = op.CallResult
+	op.This = o.This
+	op.Class = o.Class
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.CallResult = o.CallResult
 	return op
 }
 
@@ -4413,9 +4413,9 @@ func (o *DeleteClassResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CallResult = op.CallResult
-	o.Return = op.Return
+	op.That = o.That
+	op.CallResult = o.CallResult
+	op.Return = o.Return
 	return op
 }
 
@@ -4748,11 +4748,11 @@ func (o *DeleteClassAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteCl
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Class = op.Class
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.Class = o.Class
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -4793,8 +4793,8 @@ func (o *DeleteClassAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteC
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5136,10 +5136,10 @@ func (o *CreateClassEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCla
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Superclass = op.Superclass
-	o.Flags = op.Flags
-	o.Context = op.Context
+	op.This = o.This
+	op.Superclass = o.Superclass
+	op.Flags = o.Flags
+	op.Context = o.Context
 	return op
 }
 
@@ -5182,9 +5182,9 @@ func (o *CreateClassEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateCl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -5535,11 +5535,11 @@ func (o *CreateClassEnumAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Superclass = op.Superclass
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.Superclass = o.Superclass
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -5580,8 +5580,8 @@ func (o *CreateClassEnumAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6057,11 +6057,11 @@ func (o *PutInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_PutInstanceOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Instance = op.Instance
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.CallResult = op.CallResult
+	op.This = o.This
+	op.Instance = o.Instance
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.CallResult = o.CallResult
 	return op
 }
 
@@ -6120,9 +6120,9 @@ func (o *PutInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_PutInstanceO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CallResult = op.CallResult
-	o.Return = op.Return
+	op.That = o.That
+	op.CallResult = o.CallResult
+	op.Return = o.Return
 	return op
 }
 
@@ -6502,11 +6502,11 @@ func (o *PutInstanceAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_PutInsta
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Instance = op.Instance
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.Instance = o.Instance
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -6547,8 +6547,8 @@ func (o *PutInstanceAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_PutInst
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6981,11 +6981,11 @@ func (o *DeleteInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteInst
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectPath = op.ObjectPath
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.CallResult = op.CallResult
+	op.This = o.This
+	op.ObjectPath = o.ObjectPath
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.CallResult = o.CallResult
 	return op
 }
 
@@ -7044,9 +7044,9 @@ func (o *DeleteInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteIns
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CallResult = op.CallResult
-	o.Return = op.Return
+	op.That = o.That
+	op.CallResult = o.CallResult
+	op.Return = o.Return
 	return op
 }
 
@@ -7383,11 +7383,11 @@ func (o *DeleteInstanceAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectPath = op.ObjectPath
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.ObjectPath = o.ObjectPath
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -7428,8 +7428,8 @@ func (o *DeleteInstanceAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7779,10 +7779,10 @@ func (o *CreateInstanceEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Superclass = op.Superclass
-	o.Flags = op.Flags
-	o.Context = op.Context
+	op.This = o.This
+	op.Superclass = o.Superclass
+	op.Flags = o.Flags
+	op.Context = o.Context
 	return op
 }
 
@@ -7826,9 +7826,9 @@ func (o *CreateInstanceEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -8182,11 +8182,11 @@ func (o *CreateInstanceEnumAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Superclass = op.Superclass
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.Superclass = o.Superclass
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -8227,8 +8227,8 @@ func (o *CreateInstanceEnumAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8623,11 +8623,11 @@ func (o *ExecQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QueryLanguage = op.QueryLanguage
-	o.Query = op.Query
-	o.Flags = op.Flags
-	o.Context = op.Context
+	op.This = o.This
+	op.QueryLanguage = o.QueryLanguage
+	op.Query = o.Query
+	op.Flags = o.Flags
+	op.Context = o.Context
 	return op
 }
 
@@ -8672,9 +8672,9 @@ func (o *ExecQueryResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -9073,12 +9073,12 @@ func (o *ExecQueryAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QueryLanguage = op.QueryLanguage
-	o.Query = op.Query
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.QueryLanguage = o.QueryLanguage
+	op.Query = o.Query
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -9120,8 +9120,8 @@ func (o *ExecQueryAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecQuery
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -9510,11 +9510,11 @@ func (o *ExecNotificationQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_Exe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QueryLanguage = op.QueryLanguage
-	o.Query = op.Query
-	o.Flags = op.Flags
-	o.Context = op.Context
+	op.This = o.This
+	op.QueryLanguage = o.QueryLanguage
+	op.Query = o.Query
+	op.Flags = o.Flags
+	op.Context = o.Context
 	return op
 }
 
@@ -9559,9 +9559,9 @@ func (o *ExecNotificationQueryResponse) xxx_ToOp(ctx context.Context, op *xxx_Ex
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -9950,12 +9950,12 @@ func (o *ExecNotificationQueryAsyncRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QueryLanguage = op.QueryLanguage
-	o.Query = op.Query
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.QueryLanguage = o.QueryLanguage
+	op.Query = o.Query
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -9997,8 +9997,8 @@ func (o *ExecNotificationQueryAsyncResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -10676,14 +10676,14 @@ func (o *ExecMethodRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecMethodOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectPath = op.ObjectPath
-	o.MethodName = op.MethodName
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.InParams = op.InParams
-	o.OutParams = op.OutParams
-	o.CallResult = op.CallResult
+	op.This = o.This
+	op.ObjectPath = o.ObjectPath
+	op.MethodName = o.MethodName
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.InParams = o.InParams
+	op.OutParams = o.OutParams
+	op.CallResult = o.CallResult
 	return op
 }
 
@@ -10760,10 +10760,10 @@ func (o *ExecMethodResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecMethodOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OutParams = op.OutParams
-	o.CallResult = op.CallResult
-	o.Return = op.Return
+	op.That = o.That
+	op.OutParams = o.OutParams
+	op.CallResult = o.CallResult
+	op.Return = o.Return
 	return op
 }
 
@@ -11201,13 +11201,13 @@ func (o *ExecMethodAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecMetho
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectPath = op.ObjectPath
-	o.MethodName = op.MethodName
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.InParams = op.InParams
-	o.ResponseHandler = op.ResponseHandler
+	op.This = o.This
+	op.ObjectPath = o.ObjectPath
+	op.MethodName = o.MethodName
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.InParams = o.InParams
+	op.ResponseHandler = o.ResponseHandler
 	return op
 }
 
@@ -11250,8 +11250,8 @@ func (o *ExecMethodAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecMeth
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

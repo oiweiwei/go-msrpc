@@ -405,7 +405,7 @@ func (o *GetPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -443,9 +443,9 @@ func (o *GetPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LocationPath = op.LocationPath
-	o.Return = op.Return
+	op.That = o.That
+	op.LocationPath = o.LocationPath
+	op.Return = o.Return
 	return op
 }
 
@@ -612,7 +612,7 @@ func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -650,9 +650,9 @@ func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 
@@ -882,8 +882,8 @@ func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -922,9 +922,9 @@ func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Section = op.Section
-	o.Return = op.Return
+	op.That = o.That
+	op.Section = o.Section
+	op.Return = o.Return
 	return op
 }
 
@@ -1175,8 +1175,8 @@ func (o *AddConfigSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_AddConfi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SectionName = op.SectionName
+	op.This = o.This
+	op.SectionName = o.SectionName
 	return op
 }
 
@@ -1215,9 +1215,9 @@ func (o *AddConfigSectionResponse) xxx_ToOp(ctx context.Context, op *xxx_AddConf
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AdminElement = op.AdminElement
-	o.Return = op.Return
+	op.That = o.That
+	op.AdminElement = o.AdminElement
+	op.Return = o.Return
 	return op
 }
 
@@ -1402,8 +1402,8 @@ func (o *DeleteConfigSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -1441,8 +1441,8 @@ func (o *DeleteConfigSectionResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

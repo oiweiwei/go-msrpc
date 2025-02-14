@@ -474,7 +474,7 @@ func (o *GetConfigPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigPa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -512,9 +512,9 @@ func (o *GetConfigPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ConfigPath = op.ConfigPath
-	o.Return = op.Return
+	op.That = o.That
+	op.ConfigPath = o.ConfigPath
+	op.Return = o.Return
 	return op
 }
 
@@ -715,7 +715,7 @@ func (o *GetFilePathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFilePathOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -753,9 +753,9 @@ func (o *GetFilePathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFilePathO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FilePath = op.FilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.FilePath = o.FilePath
+	op.Return = o.Return
 	return op
 }
 
@@ -956,7 +956,7 @@ func (o *GetLocationsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLocations
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -994,9 +994,9 @@ func (o *GetLocationsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLocation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Locations = op.Locations
-	o.Return = op.Return
+	op.That = o.That
+	op.Locations = o.Locations
+	op.Return = o.Return
 	return op
 }
 
@@ -1295,9 +1295,9 @@ func (o *GetAdminSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAdminS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SectionName = op.SectionName
-	o.Path = op.Path
+	op.This = o.This
+	op.SectionName = o.SectionName
+	op.Path = o.Path
 	return op
 }
 
@@ -1337,9 +1337,9 @@ func (o *GetAdminSectionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAdmin
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AdminSection = op.AdminSection
-	o.Return = op.Return
+	op.That = o.That
+	op.AdminSection = o.AdminSection
+	op.Return = o.Return
 	return op
 }
 
@@ -1588,8 +1588,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -1628,9 +1628,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1861,9 +1861,9 @@ func (o *SetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
-	o.Value = op.Value
+	op.This = o.This
+	op.MetadataType = o.MetadataType
+	op.Value = o.Value
 	return op
 }
 
@@ -1902,8 +1902,8 @@ func (o *SetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2058,7 +2058,7 @@ func (o *ClearInvalidSectionsRequest) xxx_ToOp(ctx context.Context, op *xxx_Clea
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2095,8 +2095,8 @@ func (o *ClearInvalidSectionsResponse) xxx_ToOp(ctx context.Context, op *xxx_Cle
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2298,7 +2298,7 @@ func (o *GetRootSectionGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2336,9 +2336,9 @@ func (o *GetRootSectionGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_GetR
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SectionGroups = op.SectionGroups
-	o.Return = op.Return
+	op.That = o.That
+	op.SectionGroups = o.SectionGroups
+	op.Return = o.Return
 	return op
 }
 

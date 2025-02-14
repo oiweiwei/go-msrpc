@@ -494,10 +494,10 @@ func (o *RemoteQueryInterface2Request) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IPID = op.IPID
-	o.IIDsCount = op.IIDsCount
-	o.IIDs = op.IIDs
+	op.This = o.This
+	op.IPID = o.IPID
+	op.IIDsCount = o.IIDsCount
+	op.IIDs = o.IIDs
 	return op
 }
 
@@ -543,10 +543,10 @@ func (o *RemoteQueryInterface2Response) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HResult = op.HResult
-	o.Interface = op.Interface
-	o.Return = op.Return
+	op.That = o.That
+	op.HResult = o.HResult
+	op.Interface = o.Interface
+	op.Return = o.Return
 	return op
 }
 

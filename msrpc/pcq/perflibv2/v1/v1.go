@@ -699,8 +699,8 @@ func (o *EnumerateCounterSetRequest) xxx_ToOp(ctx context.Context, op *xxx_Enume
 	if o == nil {
 		return op
 	}
-	o.Machine = op.Machine
-	o.InSize = op.InSize
+	op.Machine = o.Machine
+	op.InSize = o.InSize
 	return op
 }
 
@@ -744,10 +744,10 @@ func (o *EnumerateCounterSetResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.OutSize = op.OutSize
-	o.ReturnSize = op.ReturnSize
-	o.Data = op.Data
-	o.Return = op.Return
+	op.OutSize = o.OutSize
+	op.ReturnSize = o.ReturnSize
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -1063,11 +1063,11 @@ func (o *QueryCounterSetRegistrationInfoRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.Machine = op.Machine
-	o.CounterSetGUID = op.CounterSetGUID
-	o.RequestCode = op.RequestCode
-	o.RequestLocaleID = op.RequestLocaleID
-	o.InSize = op.InSize
+	op.Machine = o.Machine
+	op.CounterSetGUID = o.CounterSetGUID
+	op.RequestCode = o.RequestCode
+	op.RequestLocaleID = o.RequestLocaleID
+	op.InSize = o.InSize
 	return op
 }
 
@@ -1112,10 +1112,10 @@ func (o *QueryCounterSetRegistrationInfoResponse) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.OutSize = op.OutSize
-	o.ReturnSize = op.ReturnSize
-	o.Data = op.Data
-	o.Return = op.Return
+	op.OutSize = o.OutSize
+	op.ReturnSize = o.ReturnSize
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -1401,9 +1401,9 @@ func (o *EnumerateCounterSetInstancesRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Machine = op.Machine
-	o.CounterSetGUID = op.CounterSetGUID
-	o.InSize = op.InSize
+	op.Machine = o.Machine
+	op.CounterSetGUID = o.CounterSetGUID
+	op.InSize = o.InSize
 	return op
 }
 
@@ -1447,10 +1447,10 @@ func (o *EnumerateCounterSetInstancesResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.OutSize = op.OutSize
-	o.ReturnSize = op.ReturnSize
-	o.Data = op.Data
-	o.Return = op.Return
+	op.OutSize = o.OutSize
+	op.ReturnSize = o.ReturnSize
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -1587,7 +1587,7 @@ func (o *OpenQueryHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQuery
 	if o == nil {
 		return op
 	}
-	o.Machine = op.Machine
+	op.Machine = o.Machine
 	return op
 }
 
@@ -1624,8 +1624,8 @@ func (o *OpenQueryHandleResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQuer
 	if o == nil {
 		return op
 	}
-	o.Query = op.Query
-	o.Return = op.Return
+	op.Query = o.Query
+	op.Return = o.Return
 	return op
 }
 
@@ -1769,7 +1769,7 @@ func (o *CloseQueryHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseQue
 	if o == nil {
 		return op
 	}
-	o.Query = op.Query
+	op.Query = o.Query
 	return op
 }
 
@@ -1808,8 +1808,8 @@ func (o *CloseQueryHandleResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseQu
 	if o == nil {
 		return op
 	}
-	o.Query = op.Query
-	o.Return = op.Return
+	op.Query = o.Query
+	op.Return = o.Return
 	return op
 }
 
@@ -2045,8 +2045,8 @@ func (o *QueryCounterInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCou
 	if o == nil {
 		return op
 	}
-	o.Query = op.Query
-	o.InSize = op.InSize
+	op.Query = o.Query
+	op.InSize = o.InSize
 	return op
 }
 
@@ -2088,10 +2088,10 @@ func (o *QueryCounterInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCo
 	if o == nil {
 		return op
 	}
-	o.OutSize = op.OutSize
-	o.ReturnSize = op.ReturnSize
-	o.Data = op.Data
-	o.Return = op.Return
+	op.OutSize = o.OutSize
+	op.ReturnSize = o.ReturnSize
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -2329,8 +2329,8 @@ func (o *QueryCounterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCou
 	if o == nil {
 		return op
 	}
-	o.Query = op.Query
-	o.InSize = op.InSize
+	op.Query = o.Query
+	op.InSize = o.InSize
 	return op
 }
 
@@ -2372,10 +2372,10 @@ func (o *QueryCounterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCo
 	if o == nil {
 		return op
 	}
-	o.OutSize = op.OutSize
-	o.ReturnSize = op.ReturnSize
-	o.Data = op.Data
-	o.Return = op.Return
+	op.OutSize = o.OutSize
+	op.ReturnSize = o.ReturnSize
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -2634,10 +2634,10 @@ func (o *ValidateCountersRequest) xxx_ToOp(ctx context.Context, op *xxx_Validate
 	if o == nil {
 		return op
 	}
-	o.Query = op.Query
-	o.InSize = op.InSize
-	o.Data = op.Data
-	o.Add = op.Add
+	op.Query = o.Query
+	op.InSize = o.InSize
+	op.Data = o.Data
+	op.Add = o.Add
 	return op
 }
 
@@ -2680,8 +2680,8 @@ func (o *ValidateCountersResponse) xxx_ToOp(ctx context.Context, op *xxx_Validat
 	if o == nil {
 		return op
 	}
-	o.Data = op.Data
-	o.Return = op.Return
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 

@@ -361,7 +361,7 @@ func (o *GetExcludeFoldersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExcl
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -399,9 +399,9 @@ func (o *GetExcludeFoldersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Folders = op.Folders
-	o.Return = op.Return
+	op.That = o.That
+	op.Folders = o.Folders
+	op.Return = o.Return
 	return op
 }
 
@@ -605,8 +605,8 @@ func (o *SetExcludeFoldersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExcl
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Folders = op.Folders
+	op.This = o.This
+	op.Folders = o.Folders
 	return op
 }
 
@@ -644,8 +644,8 @@ func (o *SetExcludeFoldersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -875,9 +875,9 @@ func (o *CommitAndUpdateDerivedRequest) xxx_ToOp(ctx context.Context, op *xxx_Co
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CommitOptions = op.CommitOptions
-	o.ApplyOptions = op.ApplyOptions
+	op.This = o.This
+	op.CommitOptions = o.CommitOptions
+	op.ApplyOptions = o.ApplyOptions
 	return op
 }
 
@@ -917,9 +917,9 @@ func (o *CommitAndUpdateDerivedResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DerivedObjectsResult = op.DerivedObjectsResult
-	o.Return = op.Return
+	op.That = o.That
+	op.DerivedObjectsResult = o.DerivedObjectsResult
+	op.Return = o.Return
 	return op
 }
 

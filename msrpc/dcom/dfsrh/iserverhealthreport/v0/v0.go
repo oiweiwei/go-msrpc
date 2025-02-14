@@ -718,11 +718,11 @@ func (o *GetReportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReportOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReplicationGroupGUID = op.ReplicationGroupGUID
-	o.ReferenceMember = op.ReferenceMember
-	o.ReferenceVersionVectors = op.ReferenceVersionVectors
-	o.Flags = op.Flags
+	op.This = o.This
+	op.ReplicationGroupGUID = o.ReplicationGroupGUID
+	op.ReferenceMember = o.ReferenceMember
+	op.ReferenceVersionVectors = o.ReferenceVersionVectors
+	op.Flags = o.Flags
 	return op
 }
 
@@ -771,10 +771,10 @@ func (o *GetReportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReportOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MemberVersionVectors = op.MemberVersionVectors
-	o.ReportXML = op.ReportXML
-	o.Return = op.Return
+	op.That = o.That
+	op.MemberVersionVectors = o.MemberVersionVectors
+	op.ReportXML = o.ReportXML
+	op.Return = o.Return
 	return op
 }
 
@@ -1220,11 +1220,11 @@ func (o *GetCompressedReportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReplicationGroupGUID = op.ReplicationGroupGUID
-	o.ReferenceMember = op.ReferenceMember
-	o.ReferenceVersionVectors = op.ReferenceVersionVectors
-	o.Flags = op.Flags
+	op.This = o.This
+	op.ReplicationGroupGUID = o.ReplicationGroupGUID
+	op.ReferenceMember = o.ReferenceMember
+	op.ReferenceVersionVectors = o.ReferenceVersionVectors
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1278,11 +1278,11 @@ func (o *GetCompressedReportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetC
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MemberVersionVectors = op.MemberVersionVectors
-	o.ReportCompressed = op.ReportCompressed
-	o.UncompressedReportSize = op.UncompressedReportSize
-	o.Return = op.Return
+	op.That = o.That
+	op.MemberVersionVectors = o.MemberVersionVectors
+	op.ReportCompressed = o.ReportCompressed
+	op.UncompressedReportSize = o.UncompressedReportSize
+	op.Return = o.Return
 	return op
 }
 
@@ -1598,9 +1598,9 @@ func (o *GetRawReportExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRawRepo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReplicationGroupGUID = op.ReplicationGroupGUID
-	o.ReportOptions = op.ReportOptions
+	op.This = o.This
+	op.ReplicationGroupGUID = o.ReplicationGroupGUID
+	op.ReportOptions = o.ReportOptions
 	return op
 }
 
@@ -1641,9 +1641,9 @@ func (o *GetRawReportExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRawRep
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Report = op.Report
-	o.Return = op.Return
+	op.That = o.That
+	op.Report = o.Report
+	op.Return = o.Return
 	return op
 }
 
@@ -1890,8 +1890,8 @@ func (o *GetReferenceVersionVectorsRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	op.This = o.This
+	op.ReplicationGroupGUID = o.ReplicationGroupGUID
 	return op
 }
 
@@ -1933,9 +1933,9 @@ func (o *GetReferenceVersionVectorsResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReferenceVersionVectors = op.ReferenceVersionVectors
-	o.Return = op.Return
+	op.That = o.That
+	op.ReferenceVersionVectors = o.ReferenceVersionVectors
+	op.Return = o.Return
 	return op
 }
 
@@ -2228,8 +2228,8 @@ func (o *GetReferenceBacklogCountsRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FlatMemberVersionVectors = op.FlatMemberVersionVectors
+	op.This = o.This
+	op.FlatMemberVersionVectors = o.FlatMemberVersionVectors
 	return op
 }
 
@@ -2273,9 +2273,9 @@ func (o *GetReferenceBacklogCountsResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.BacklogCounts = op.BacklogCounts
-	o.Return = op.Return
+	op.That = o.That
+	op.BacklogCounts = o.BacklogCounts
+	op.Return = o.Return
 	return op
 }
 

@@ -1314,8 +1314,8 @@ func (o *MessageNameAddRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNam
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.MessageName = op.MessageName
+	op.ServerName = o.ServerName
+	op.MessageName = o.MessageName
 	return op
 }
 
@@ -1351,7 +1351,7 @@ func (o *MessageNameAddResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageNa
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1646,10 +1646,10 @@ func (o *MessageNameEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNa
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
-	o.PrefMaxLength = op.PrefMaxLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Info = o.Info
+	op.PrefMaxLength = o.PrefMaxLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -1699,10 +1699,10 @@ func (o *MessageNameEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageN
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -1906,9 +1906,9 @@ func (o *MessageNameGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Messag
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.MessageName = op.MessageName
-	o.Level = op.Level
+	op.ServerName = o.ServerName
+	op.MessageName = o.MessageName
+	op.Level = o.Level
 	return op
 }
 
@@ -1947,8 +1947,8 @@ func (o *MessageNameGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Messa
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -2102,8 +2102,8 @@ func (o *MessageNameDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_Message
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.MessageName = op.MessageName
+	op.ServerName = o.ServerName
+	op.MessageName = o.MessageName
 	return op
 }
 
@@ -2139,7 +2139,7 @@ func (o *MessageNameDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_Messag
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

@@ -380,7 +380,7 @@ func (o *GetReportTypesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReportT
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -418,9 +418,9 @@ func (o *GetReportTypesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReport
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReportTypes = op.ReportTypes
-	o.Return = op.Return
+	op.That = o.That
+	op.ReportTypes = o.ReportTypes
+	op.Return = o.Return
 	return op
 }
 
@@ -622,8 +622,8 @@ func (o *SetReportTypesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetReportT
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReportTypes = op.ReportTypes
+	op.This = o.This
+	op.ReportTypes = o.ReportTypes
 	return op
 }
 
@@ -661,8 +661,8 @@ func (o *SetReportTypesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetReport
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -862,7 +862,7 @@ func (o *GetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -900,9 +900,9 @@ func (o *GetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailTo = op.MailTo
-	o.Return = op.Return
+	op.That = o.That
+	op.MailTo = o.MailTo
+	op.Return = o.Return
 	return op
 }
 
@@ -1104,8 +1104,8 @@ func (o *SetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailTo = op.MailTo
+	op.This = o.This
+	op.MailTo = o.MailTo
 	return op
 }
 
@@ -1143,8 +1143,8 @@ func (o *SetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

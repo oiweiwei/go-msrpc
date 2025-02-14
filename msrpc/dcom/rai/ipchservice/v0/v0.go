@@ -604,11 +604,11 @@ func (o *RemoteConnectionParametersRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.UserName = op.UserName
-	o.DomainName = op.DomainName
-	o.SessionID = op.SessionID
-	o.UserHelpBlob = op.UserHelpBlob
+	op.This = o.This
+	op.UserName = o.UserName
+	op.DomainName = o.DomainName
+	op.SessionID = o.SessionID
+	op.UserHelpBlob = o.UserHelpBlob
 	return op
 }
 
@@ -652,9 +652,9 @@ func (o *RemoteConnectionParametersResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ConnectionString = op.ConnectionString
-	o.Return = op.Return
+	op.That = o.That
+	op.ConnectionString = o.ConnectionString
+	op.Return = o.Return
 	return op
 }
 
@@ -857,7 +857,7 @@ func (o *RemoteUserSessionInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -897,9 +897,9 @@ func (o *RemoteUserSessionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 

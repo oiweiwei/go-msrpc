@@ -440,7 +440,7 @@ func (o *GetSessionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionID
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -478,9 +478,9 @@ func (o *GetSessionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionI
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -648,8 +648,8 @@ func (o *SetSessionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSessionID
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -687,8 +687,8 @@ func (o *SetSessionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSessionI
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -854,7 +854,7 @@ func (o *GetSessionStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -892,9 +892,9 @@ func (o *GetSessionStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1062,8 +1062,8 @@ func (o *SetSessionStateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSessio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -1101,8 +1101,8 @@ func (o *SetSessionStateResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSessi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1302,7 +1302,7 @@ func (o *GetDomainNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDomainNa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1340,9 +1340,9 @@ func (o *GetDomainNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDomainN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1544,8 +1544,8 @@ func (o *SetDomainNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDomainNa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -1583,8 +1583,8 @@ func (o *SetDomainNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDomainN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1784,7 +1784,7 @@ func (o *GetUserNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1822,9 +1822,9 @@ func (o *GetUserNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -2026,8 +2026,8 @@ func (o *SetUserNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetUserNameOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -2065,8 +2065,8 @@ func (o *SetUserNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetUserNameO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

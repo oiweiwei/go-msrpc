@@ -397,11 +397,11 @@ func (o *CreatePartitionExRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateP
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Size = op.Size
-	o.Align = op.Align
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Size = o.Size
+	op.Align = o.Align
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -449,9 +449,9 @@ func (o *CreatePartitionExResponse) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

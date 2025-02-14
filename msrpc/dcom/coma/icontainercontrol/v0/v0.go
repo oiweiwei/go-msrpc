@@ -360,8 +360,8 @@ func (o *CreateContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCon
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
 	return op
 }
 
@@ -399,8 +399,8 @@ func (o *CreateContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateCo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -579,8 +579,8 @@ func (o *ShutdownContainersRequest) xxx_ToOp(ctx context.Context, op *xxx_Shutdo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
 	return op
 }
 
@@ -618,8 +618,8 @@ func (o *ShutdownContainersResponse) xxx_ToOp(ctx context.Context, op *xxx_Shutd
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -774,7 +774,7 @@ func (o *RefreshComponentsRequest) xxx_ToOp(ctx context.Context, op *xxx_Refresh
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -811,8 +811,8 @@ func (o *RefreshComponentsResponse) xxx_ToOp(ctx context.Context, op *xxx_Refres
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

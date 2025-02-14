@@ -307,8 +307,8 @@ func (o *InitializeRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MachineName = op.MachineName
+	op.This = o.This
+	op.MachineName = o.MachineName
 	return op
 }
 
@@ -346,8 +346,8 @@ func (o *InitializeResponse) xxx_ToOp(ctx context.Context, op *xxx_InitializeOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -1149,13 +1149,13 @@ func (o *SetExtensionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExtension
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.RequestID = op.RequestID
-	o.ExtensionName = op.ExtensionName
-	o.Type = op.Type
-	o.Flags = op.Flags
-	o.Value = op.Value
+	op.This = o.This
+	op.Authority = o.Authority
+	op.RequestID = o.RequestID
+	op.ExtensionName = o.ExtensionName
+	op.Type = o.Type
+	op.Flags = o.Flags
+	op.Value = o.Value
 	return op
 }
 
@@ -1198,8 +1198,8 @@ func (o *SetExtensionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExtensio
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1454,10 +1454,10 @@ func (o *SetAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAttribut
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.RequestID = op.RequestID
-	o.Attributes = op.Attributes
+	op.This = o.This
+	op.Authority = o.Authority
+	op.RequestID = o.RequestID
+	op.Attributes = o.Attributes
 	return op
 }
 
@@ -1497,8 +1497,8 @@ func (o *SetAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAttribu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1721,9 +1721,9 @@ func (o *ResubmitRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_ResubmitR
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.RequestID = op.RequestID
+	op.This = o.This
+	op.Authority = o.Authority
+	op.RequestID = o.RequestID
 	return op
 }
 
@@ -1768,9 +1768,9 @@ func (o *ResubmitRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_Resubmit
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Disposition = op.Disposition
-	o.Return = op.Return
+	op.That = o.That
+	op.Disposition = o.Disposition
+	op.Return = o.Return
 	return op
 }
 
@@ -1981,9 +1981,9 @@ func (o *DenyRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_DenyRequestOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.RequestID = op.RequestID
+	op.This = o.This
+	op.Authority = o.Authority
+	op.RequestID = o.RequestID
 	return op
 }
 
@@ -2022,8 +2022,8 @@ func (o *DenyRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_DenyRequestO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2289,9 +2289,9 @@ func (o *IsValidCertificateRequest) xxx_ToOp(ctx context.Context, op *xxx_IsVali
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.SerialNumber = op.SerialNumber
+	op.This = o.This
+	op.Authority = o.Authority
+	op.SerialNumber = o.SerialNumber
 	return op
 }
 
@@ -2371,10 +2371,10 @@ func (o *IsValidCertificateResponse) xxx_ToOp(ctx context.Context, op *xxx_IsVal
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RevocationReason = op.RevocationReason
-	o.Disposition = op.Disposition
-	o.Return = op.Return
+	op.That = o.That
+	op.RevocationReason = o.RevocationReason
+	op.Disposition = o.Disposition
+	op.Return = o.Return
 	return op
 }
 
@@ -2597,9 +2597,9 @@ func (o *PublishCRLRequest) xxx_ToOp(ctx context.Context, op *xxx_PublishCRLOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.FileTime = op.FileTime
+	op.This = o.This
+	op.Authority = o.Authority
+	op.FileTime = o.FileTime
 	return op
 }
 
@@ -2638,8 +2638,8 @@ func (o *PublishCRLResponse) xxx_ToOp(ctx context.Context, op *xxx_PublishCRLOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2860,8 +2860,8 @@ func (o *GetCRLRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCRLOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -2907,9 +2907,9 @@ func (o *GetCRLResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCRLOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CRL = op.CRL
-	o.Return = op.Return
+	op.That = o.That
+	op.CRL = o.CRL
+	op.Return = o.Return
 	return op
 }
 
@@ -3221,11 +3221,11 @@ func (o *RevokeCertificateRequest) xxx_ToOp(ctx context.Context, op *xxx_RevokeC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.SerialNumber = op.SerialNumber
-	o.Reason = op.Reason
-	o.FileTime = op.FileTime
+	op.This = o.This
+	op.Authority = o.Authority
+	op.SerialNumber = o.SerialNumber
+	op.Reason = o.Reason
+	op.FileTime = o.FileTime
 	return op
 }
 
@@ -3266,8 +3266,8 @@ func (o *RevokeCertificateResponse) xxx_ToOp(ctx context.Context, op *xxx_Revoke
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3534,10 +3534,10 @@ func (o *EnumViewColumnRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumViewCo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.Column = op.Column
-	o.ColumnCount = op.ColumnCount
+	op.This = o.This
+	op.Authority = o.Authority
+	op.Column = o.Column
+	op.ColumnCount = o.ColumnCount
 	return op
 }
 
@@ -3586,10 +3586,10 @@ func (o *EnumViewColumnResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumViewC
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ColumnOutCount = op.ColumnOutCount
-	o.ColumnInfo = op.ColumnInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.ColumnOutCount = o.ColumnOutCount
+	op.ColumnInfo = o.ColumnInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -3873,9 +3873,9 @@ func (o *GetViewDefaultColumnSetRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.ColumnSetDefault = op.ColumnSetDefault
+	op.This = o.This
+	op.Authority = o.Authority
+	op.ColumnSetDefault = o.ColumnSetDefault
 	return op
 }
 
@@ -3920,10 +3920,10 @@ func (o *GetViewDefaultColumnSetResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ColumnOutCount = op.ColumnOutCount
-	o.ColumnInfo = op.ColumnInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.ColumnOutCount = o.ColumnOutCount
+	op.ColumnInfo = o.ColumnInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -4263,12 +4263,12 @@ func (o *EnumAttributesOrExtensionsRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.RowID = op.RowID
-	o.Flags = op.Flags
-	o.Last = op.Last
-	o.Count = op.Count
+	op.This = o.This
+	op.Authority = o.Authority
+	op.RowID = o.RowID
+	op.Flags = o.Flags
+	op.Last = o.Last
+	op.Count = o.Count
 	return op
 }
 
@@ -4322,10 +4322,10 @@ func (o *EnumAttributesOrExtensionsResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Fetched = op.Fetched
-	o.Out = op.Out
-	o.Return = op.Return
+	op.That = o.That
+	op.Fetched = o.Fetched
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -4744,14 +4744,14 @@ func (o *OpenViewRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenViewOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.CertViewRestrictionCount = op.CertViewRestrictionCount
-	o.CertViewRestrictions = op.CertViewRestrictions
-	o.ColumnsCountOut = op.ColumnsCountOut
-	o.ColumnsOut = op.ColumnsOut
-	o.ID = op.ID
-	o.Count = op.Count
+	op.This = o.This
+	op.Authority = o.Authority
+	op.CertViewRestrictionCount = o.CertViewRestrictionCount
+	op.CertViewRestrictions = o.CertViewRestrictions
+	op.ColumnsCountOut = o.ColumnsCountOut
+	op.ColumnsOut = o.ColumnsOut
+	op.ID = o.ID
+	op.Count = o.Count
 	return op
 }
 
@@ -4807,10 +4807,10 @@ func (o *OpenViewResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenViewOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Fetched = op.Fetched
-	o.ResultRows = op.ResultRows
-	o.Return = op.Return
+	op.That = o.That
+	op.Fetched = o.Fetched
+	op.ResultRows = o.ResultRows
+	op.Return = o.Return
 	return op
 }
 
@@ -5078,10 +5078,10 @@ func (o *EnumViewRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumViewOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.ID = op.ID
-	o.Count = op.Count
+	op.This = o.This
+	op.Authority = o.Authority
+	op.ID = o.ID
+	op.Count = o.Count
 	return op
 }
 
@@ -5132,10 +5132,10 @@ func (o *EnumViewResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumViewOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Fetched = op.Fetched
-	o.ResultRows = op.ResultRows
-	o.Return = op.Return
+	op.That = o.That
+	op.Fetched = o.Fetched
+	op.ResultRows = o.ResultRows
+	op.Return = o.Return
 	return op
 }
 
@@ -5330,8 +5330,8 @@ func (o *CloseViewRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseViewOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -5369,8 +5369,8 @@ func (o *CloseViewResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseViewOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5620,9 +5620,9 @@ func (o *ServerControlRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerContr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.ControlFlags = op.ControlFlags
+	op.This = o.This
+	op.Authority = o.Authority
+	op.ControlFlags = o.ControlFlags
 	return op
 }
 
@@ -5663,9 +5663,9 @@ func (o *ServerControlResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerCont
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Out = op.Out
-	o.Return = op.Return
+	op.That = o.That
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -5865,8 +5865,8 @@ func (o *PingRequest) xxx_ToOp(ctx context.Context, op *xxx_PingOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -5904,8 +5904,8 @@ func (o *PingResponse) xxx_ToOp(ctx context.Context, op *xxx_PingOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6111,8 +6111,8 @@ func (o *GetServerStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServerS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -6156,9 +6156,9 @@ func (o *GetServerStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServer
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.State = op.State
-	o.Return = op.Return
+	op.That = o.That
+	op.State = o.State
+	op.Return = o.Return
 	return op
 }
 
@@ -6429,12 +6429,12 @@ func (o *BackupPrepareRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupPrepa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.Jet = op.Jet
-	o.BackupFlags = op.BackupFlags
-	o.BackupAnnotation = op.BackupAnnotation
-	o.ClientID = op.ClientID
+	op.This = o.This
+	op.Authority = o.Authority
+	op.Jet = o.Jet
+	op.BackupFlags = o.BackupFlags
+	op.BackupAnnotation = o.BackupAnnotation
+	op.ClientID = o.ClientID
 	return op
 }
 
@@ -6476,8 +6476,8 @@ func (o *BackupPrepareResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupPrep
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6630,7 +6630,7 @@ func (o *BackupEndRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupEndOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -6667,8 +6667,8 @@ func (o *BackupEndResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupEndOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6921,7 +6921,7 @@ func (o *BackupGetAttachmentInformationRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -6965,10 +6965,10 @@ func (o *BackupGetAttachmentInformationResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DBFiles = op.DBFiles
-	o.DBFilesLength = op.DBFilesLength
-	o.Return = op.Return
+	op.That = o.That
+	op.DBFiles = o.DBFiles
+	op.DBFilesLength = o.DBFilesLength
+	op.Return = o.Return
 	return op
 }
 
@@ -7223,7 +7223,7 @@ func (o *BackupGetBackupLogsRequest) xxx_ToOp(ctx context.Context, op *xxx_Backu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -7267,10 +7267,10 @@ func (o *BackupGetBackupLogsResponse) xxx_ToOp(ctx context.Context, op *xxx_Back
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFiles = op.LogFiles
-	o.LogFilesLength = op.LogFilesLength
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFiles = o.LogFiles
+	op.LogFilesLength = o.LogFilesLength
+	op.Return = o.Return
 	return op
 }
 
@@ -7479,8 +7479,8 @@ func (o *BackupOpenFileRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupOpen
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -7521,9 +7521,9 @@ func (o *BackupOpenFileResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Length = op.Length
-	o.Return = op.Return
+	op.That = o.That
+	op.Length = o.Length
+	op.Return = o.Return
 	return op
 }
 
@@ -7752,8 +7752,8 @@ func (o *BackupReadFileRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupRead
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BufferLength = op.BufferLength
+	op.This = o.This
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -7795,10 +7795,10 @@ func (o *BackupReadFileResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupRea
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Buffer = op.Buffer
-	o.ReadLength = op.ReadLength
-	o.Return = op.Return
+	op.That = o.That
+	op.Buffer = o.Buffer
+	op.ReadLength = o.ReadLength
+	op.Return = o.Return
 	return op
 }
 
@@ -7953,7 +7953,7 @@ func (o *BackupCloseFileRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupClo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -7990,8 +7990,8 @@ func (o *BackupCloseFileResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupCl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8146,7 +8146,7 @@ func (o *BackupTruncateLogsRequest) xxx_ToOp(ctx context.Context, op *xxx_Backup
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -8183,8 +8183,8 @@ func (o *BackupTruncateLogsResponse) xxx_ToOp(ctx context.Context, op *xxx_Backu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8452,10 +8452,10 @@ func (o *ImportCertificateRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.Certificate = op.Certificate
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Authority = o.Authority
+	op.Certificate = o.Certificate
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8500,9 +8500,9 @@ func (o *ImportCertificateResponse) xxx_ToOp(ctx context.Context, op *xxx_Import
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RequestID = op.RequestID
-	o.Return = op.Return
+	op.That = o.That
+	op.RequestID = o.RequestID
+	op.Return = o.Return
 	return op
 }
 
@@ -8756,7 +8756,7 @@ func (o *BackupGetDynamicFilesRequest) xxx_ToOp(ctx context.Context, op *xxx_Bac
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -8799,10 +8799,10 @@ func (o *BackupGetDynamicFilesResponse) xxx_ToOp(ctx context.Context, op *xxx_Ba
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Files = op.Files
-	o.FilesLength = op.FilesLength
-	o.Return = op.Return
+	op.That = o.That
+	op.Files = o.Files
+	op.FilesLength = o.FilesLength
+	op.Return = o.Return
 	return op
 }
 
@@ -9057,7 +9057,7 @@ func (o *RestoreGetDatabaseLocationsRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -9101,10 +9101,10 @@ func (o *RestoreGetDatabaseLocationsResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DatabaseLocations = op.DatabaseLocations
-	o.PathsLength = op.PathsLength
-	o.Return = op.Return
+	op.That = o.That
+	op.DatabaseLocations = o.DatabaseLocations
+	op.PathsLength = o.PathsLength
+	op.Return = o.Return
 	return op
 }
 

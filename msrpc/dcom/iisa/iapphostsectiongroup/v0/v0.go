@@ -440,7 +440,7 @@ func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -478,9 +478,9 @@ func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SectionGroupCount = op.SectionGroupCount
-	o.Return = op.Return
+	op.That = o.That
+	op.SectionGroupCount = o.SectionGroupCount
+	op.Return = o.Return
 	return op
 }
 
@@ -710,8 +710,8 @@ func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VarIndex = op.VarIndex
+	op.This = o.This
+	op.VarIndex = o.VarIndex
 	return op
 }
 
@@ -750,9 +750,9 @@ func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SectionGroup = op.SectionGroup
-	o.Return = op.Return
+	op.That = o.That
+	op.SectionGroup = o.SectionGroup
+	op.Return = o.Return
 	return op
 }
 
@@ -953,7 +953,7 @@ func (o *GetSectionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSectionsOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -991,9 +991,9 @@ func (o *GetSectionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSectionsO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Sections = op.Sections
-	o.Return = op.Return
+	op.That = o.That
+	op.Sections = o.Sections
+	op.Return = o.Return
 	return op
 }
 
@@ -1244,8 +1244,8 @@ func (o *AddSectionGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_AddSectio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SectionGroupName = op.SectionGroupName
+	op.This = o.This
+	op.SectionGroupName = o.SectionGroupName
 	return op
 }
 
@@ -1284,9 +1284,9 @@ func (o *AddSectionGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_AddSecti
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SectionGroup = op.SectionGroup
-	o.Return = op.Return
+	op.That = o.That
+	op.SectionGroup = o.SectionGroup
+	op.Return = o.Return
 	return op
 }
 
@@ -1471,8 +1471,8 @@ func (o *DeleteSectionGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VarIndex = op.VarIndex
+	op.This = o.This
+	op.VarIndex = o.VarIndex
 	return op
 }
 
@@ -1510,8 +1510,8 @@ func (o *DeleteSectionGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1711,7 +1711,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1749,9 +1749,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -1952,7 +1952,7 @@ func (o *GetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1990,9 +1990,9 @@ func (o *GetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Type = op.Type
-	o.Return = op.Return
+	op.That = o.That
+	op.Type = o.Type
+	op.Return = o.Return
 	return op
 }
 
@@ -2194,8 +2194,8 @@ func (o *SetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
+	op.This = o.This
+	op.Type = o.Type
 	return op
 }
 
@@ -2233,8 +2233,8 @@ func (o *SetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

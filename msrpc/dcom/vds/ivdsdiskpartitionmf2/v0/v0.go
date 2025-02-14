@@ -468,13 +468,13 @@ func (o *FormatPartitionEx2Request) xxx_ToOp(ctx context.Context, op *xxx_Format
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.FileSystemTypeName = op.FileSystemTypeName
-	o.FileSystemRevision = op.FileSystemRevision
-	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
-	o.Label = op.Label
-	o.Options = op.Options
+	op.This = o.This
+	op.Offset = o.Offset
+	op.FileSystemTypeName = o.FileSystemTypeName
+	op.FileSystemRevision = o.FileSystemRevision
+	op.DesiredUnitAllocationSize = o.DesiredUnitAllocationSize
+	op.Label = o.Label
+	op.Options = o.Options
 	return op
 }
 
@@ -521,9 +521,9 @@ func (o *FormatPartitionEx2Response) xxx_ToOp(ctx context.Context, op *xxx_Forma
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

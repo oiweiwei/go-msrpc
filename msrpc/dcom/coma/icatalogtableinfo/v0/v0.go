@@ -929,15 +929,15 @@ func (o *GetClientTableInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCli
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CatalogID = op.CatalogID
-	o.TableID = op.TableID
-	o.TableFlags = op.TableFlags
-	o.QueryCellArray = op.QueryCellArray
-	o.QueryCellArrayLength = op.QueryCellArrayLength
-	o.QueryComparison = op.QueryComparison
-	o.QueryComparisonLength = op.QueryComparisonLength
-	o.QueryFormat = op.QueryFormat
+	op.This = o.This
+	op.CatalogID = o.CatalogID
+	op.TableID = o.TableID
+	op.TableFlags = o.TableFlags
+	op.QueryCellArray = o.QueryCellArray
+	op.QueryCellArrayLength = o.QueryCellArrayLength
+	op.QueryComparison = o.QueryComparison
+	op.QueryComparisonLength = o.QueryComparisonLength
+	op.QueryFormat = o.QueryFormat
 	return op
 }
 
@@ -1007,15 +1007,15 @@ func (o *GetClientTableInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RequiredFixedGUID = op.RequiredFixedGUID
-	o.AuxiliaryGUID = op.AuxiliaryGUID
-	o.AuxiliaryGUIDCount = op.AuxiliaryGUIDCount
-	o.PropertyMeta = op.PropertyMeta
-	o.PropertiesCount = op.PropertiesCount
-	o.IIDs = op.IIDs
-	o.Interface = op.Interface
-	o.Return = op.Return
+	op.That = o.That
+	op.RequiredFixedGUID = o.RequiredFixedGUID
+	op.AuxiliaryGUID = o.AuxiliaryGUID
+	op.AuxiliaryGUIDCount = o.AuxiliaryGUIDCount
+	op.PropertyMeta = o.PropertyMeta
+	op.PropertiesCount = o.PropertiesCount
+	op.IIDs = o.IIDs
+	op.Interface = o.Interface
+	op.Return = o.Return
 	return op
 }
 

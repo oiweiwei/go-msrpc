@@ -398,8 +398,8 @@ func (o *RemoteDispatchAutoDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.String = op.String
+	op.This = o.This
+	op.String = o.String
 	return op
 }
 
@@ -442,9 +442,9 @@ func (o *RemoteDispatchAutoDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReturnValue = op.ReturnValue
-	o.Return = op.Return
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
 	return op
 }
 
@@ -699,8 +699,8 @@ func (o *RemoteDispatchNotAutoDoneRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.String = op.String
+	op.This = o.This
+	op.String = o.String
 	return op
 }
 
@@ -743,9 +743,9 @@ func (o *RemoteDispatchNotAutoDoneResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReturnValue = op.ReturnValue
-	o.Return = op.Return
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
 	return op
 }
 

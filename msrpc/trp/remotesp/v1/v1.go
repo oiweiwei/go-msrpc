@@ -328,8 +328,8 @@ func (o *AttachResponse) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) 
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -525,9 +525,9 @@ func (o *EventProcRequest) xxx_ToOp(ctx context.Context, op *xxx_EventProcOperat
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Buffer = op.Buffer
-	o.Size = op.Size
+	op.Context = o.Context
+	op.Buffer = o.Buffer
+	op.Size = o.Size
 	return op
 }
 
@@ -691,7 +691,7 @@ func (o *DetachRequest) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) *
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -731,7 +731,7 @@ func (o *DetachResponse) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) 
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 

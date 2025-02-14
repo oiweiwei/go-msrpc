@@ -432,8 +432,8 @@ func (o *RemoteRefreshRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteRefre
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -478,10 +478,10 @@ func (o *RemoteRefreshResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteRefr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ObjectsLength = op.ObjectsLength
-	o.Objects = op.Objects
-	o.Return = op.Return
+	op.That = o.That
+	op.ObjectsLength = o.ObjectsLength
+	op.Objects = o.Objects
+	op.Return = o.Return
 	return op
 }
 
@@ -725,10 +725,10 @@ func (o *StopRefreshingRequest) xxx_ToOp(ctx context.Context, op *xxx_StopRefres
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IDsLength = op.IDsLength
-	o.IDs = op.IDs
-	o.Flags = op.Flags
+	op.This = o.This
+	op.IDsLength = o.IDsLength
+	op.IDs = o.IDs
+	op.Flags = o.Flags
 	return op
 }
 
@@ -768,8 +768,8 @@ func (o *StopRefreshingResponse) xxx_ToOp(ctx context.Context, op *xxx_StopRefre
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

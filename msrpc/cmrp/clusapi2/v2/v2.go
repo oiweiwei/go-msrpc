@@ -3141,8 +3141,8 @@ func (o *OpenClusterResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenClusterO
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -3281,7 +3281,7 @@ func (o *CloseClusterRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseCluster
 	if o == nil {
 		return op
 	}
-	o.Cluster = op.Cluster
+	op.Cluster = o.Cluster
 	return op
 }
 
@@ -3317,8 +3317,8 @@ func (o *CloseClusterResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseCluste
 	if o == nil {
 		return op
 	}
-	o.Cluster = op.Cluster
-	o.Return = op.Return
+	op.Cluster = o.Cluster
+	op.Return = o.Return
 	return op
 }
 
@@ -3427,7 +3427,7 @@ func (o *SetClusterNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCluster
 	if o == nil {
 		return op
 	}
-	o.NewClusterName = op.NewClusterName
+	op.NewClusterName = o.NewClusterName
 	return op
 }
 
@@ -3462,7 +3462,7 @@ func (o *SetClusterNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCluste
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3667,9 +3667,9 @@ func (o *GetClusterNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCluste
 	if o == nil {
 		return op
 	}
-	o.ClusterName = op.ClusterName
-	o.NodeName = op.NodeName
-	o.Return = op.Return
+	op.ClusterName = o.ClusterName
+	op.NodeName = o.NodeName
+	op.Return = o.Return
 	return op
 }
 
@@ -3918,12 +3918,12 @@ func (o *GetClusterVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClu
 	if o == nil {
 		return op
 	}
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
-	o.BuildNumber = op.BuildNumber
-	o.VendorID = op.VendorID
-	o.CSDVersion = op.CSDVersion
-	o.Return = op.Return
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
+	op.BuildNumber = o.BuildNumber
+	op.VendorID = o.VendorID
+	op.CSDVersion = o.CSDVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -4147,10 +4147,10 @@ func (o *GetQuorumResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuo
 	if o == nil {
 		return op
 	}
-	o.ResourceName = op.ResourceName
-	o.DeviceName = op.DeviceName
-	o.MaxQuorumLogSize = op.MaxQuorumLogSize
-	o.Return = op.Return
+	op.ResourceName = o.ResourceName
+	op.DeviceName = o.DeviceName
+	op.MaxQuorumLogSize = o.MaxQuorumLogSize
+	op.Return = o.Return
 	return op
 }
 
@@ -4298,9 +4298,9 @@ func (o *SetQuorumResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_SetQuor
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.DeviceName = op.DeviceName
-	o.MaxQuorumLogSize = op.MaxQuorumLogSize
+	op.Resource = o.Resource
+	op.DeviceName = o.DeviceName
+	op.MaxQuorumLogSize = o.MaxQuorumLogSize
 	return op
 }
 
@@ -4337,7 +4337,7 @@ func (o *SetQuorumResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_SetQuo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4492,7 +4492,7 @@ func (o *CreateEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateEnumOper
 	if o == nil {
 		return op
 	}
-	o.Type = op.Type
+	op.Type = o.Type
 	return op
 }
 
@@ -4528,8 +4528,8 @@ func (o *CreateEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateEnumOpe
 	if o == nil {
 		return op
 	}
-	o.ReturnEnum = op.ReturnEnum
-	o.Return = op.Return
+	op.ReturnEnum = o.ReturnEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -4660,7 +4660,7 @@ func (o *OpenResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenResource
 	if o == nil {
 		return op
 	}
-	o.ResourceName = op.ResourceName
+	op.ResourceName = o.ResourceName
 	return op
 }
 
@@ -4696,8 +4696,8 @@ func (o *OpenResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenResourc
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -4879,10 +4879,10 @@ func (o *CreateResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateReso
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.ResourceName = op.ResourceName
-	o.ResourceType = op.ResourceType
-	o.Flags = op.Flags
+	op.Group = o.Group
+	op.ResourceName = o.ResourceName
+	op.ResourceType = o.ResourceType
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4921,8 +4921,8 @@ func (o *CreateResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRes
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -5040,7 +5040,7 @@ func (o *DeleteResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteReso
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -5075,7 +5075,7 @@ func (o *DeleteResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteRes
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5213,7 +5213,7 @@ func (o *CloseResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseResour
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -5249,8 +5249,8 @@ func (o *CloseResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseResou
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.Return = op.Return
+	op.Resource = o.Resource
+	op.Return = o.Return
 	return op
 }
 
@@ -5457,7 +5457,7 @@ func (o *GetResourceStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResou
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -5495,10 +5495,10 @@ func (o *GetResourceStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReso
 	if o == nil {
 		return op
 	}
-	o.State = op.State
-	o.NodeName = op.NodeName
-	o.GroupName = op.GroupName
-	o.Return = op.Return
+	op.State = o.State
+	op.NodeName = o.NodeName
+	op.GroupName = o.GroupName
+	op.Return = o.Return
 	return op
 }
 
@@ -5632,8 +5632,8 @@ func (o *SetResourceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetResour
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.ResourceName = op.ResourceName
+	op.Resource = o.Resource
+	op.ResourceName = o.ResourceName
 	return op
 }
 
@@ -5669,7 +5669,7 @@ func (o *SetResourceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetResou
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5824,7 +5824,7 @@ func (o *GetResourceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResource
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -5860,8 +5860,8 @@ func (o *GetResourceIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResourc
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Return = op.Return
+	op.GUID = o.GUID
+	op.Return = o.Return
 	return op
 }
 
@@ -6017,7 +6017,7 @@ func (o *GetResourceTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResour
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -6053,8 +6053,8 @@ func (o *GetResourceTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResou
 	if o == nil {
 		return op
 	}
-	o.ResourceType = op.ResourceType
-	o.Return = op.Return
+	op.ResourceType = o.ResourceType
+	op.Return = o.Return
 	return op
 }
 
@@ -6172,7 +6172,7 @@ func (o *FailResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_FailResource
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -6207,7 +6207,7 @@ func (o *FailResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_FailResourc
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6324,7 +6324,7 @@ func (o *OnlineResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_OnlineReso
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -6359,7 +6359,7 @@ func (o *OnlineResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_OnlineRes
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6476,7 +6476,7 @@ func (o *OfflineResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_OfflineRe
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
+	op.Resource = o.Resource
 	return op
 }
 
@@ -6511,7 +6511,7 @@ func (o *OfflineResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_OfflineR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6653,8 +6653,8 @@ func (o *AddResourceDependencyRequest) xxx_ToOp(ctx context.Context, op *xxx_Add
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.DepdendsOn = op.DepdendsOn
+	op.Resource = o.Resource
+	op.DepdendsOn = o.DepdendsOn
 	return op
 }
 
@@ -6690,7 +6690,7 @@ func (o *AddResourceDependencyResponse) xxx_ToOp(ctx context.Context, op *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6832,8 +6832,8 @@ func (o *RemoveResourceDependencyRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.DepdendsOn = op.DepdendsOn
+	op.Resource = o.Resource
+	op.DepdendsOn = o.DepdendsOn
 	return op
 }
 
@@ -6869,7 +6869,7 @@ func (o *RemoveResourceDependencyResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7011,8 +7011,8 @@ func (o *CanResourceBeDependentRequest) xxx_ToOp(ctx context.Context, op *xxx_Ca
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.ResourceDependent = op.ResourceDependent
+	op.Resource = o.Resource
+	op.ResourceDependent = o.ResourceDependent
 	return op
 }
 
@@ -7048,7 +7048,7 @@ func (o *CanResourceBeDependentResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7226,8 +7226,8 @@ func (o *CreateRestrictionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.Type = op.Type
+	op.Resource = o.Resource
+	op.Type = o.Type
 	return op
 }
 
@@ -7264,8 +7264,8 @@ func (o *CreateRestrictionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Cr
 	if o == nil {
 		return op
 	}
-	o.ReturnEnum = op.ReturnEnum
-	o.Return = op.Return
+	op.ReturnEnum = o.ReturnEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -7406,8 +7406,8 @@ func (o *AddResourceNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_AddResour
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.Node = op.Node
+	op.Resource = o.Resource
+	op.Node = o.Node
 	return op
 }
 
@@ -7443,7 +7443,7 @@ func (o *AddResourceNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_AddResou
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7585,8 +7585,8 @@ func (o *RemoveResourceNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_Remove
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.Node = op.Node
+	op.Resource = o.Resource
+	op.Node = o.Node
 	return op
 }
 
@@ -7622,7 +7622,7 @@ func (o *RemoveResourceNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7764,8 +7764,8 @@ func (o *ChangeResourceGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_Chang
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.Group = op.Group
+	op.Resource = o.Resource
+	op.Group = o.Group
 	return op
 }
 
@@ -7801,7 +7801,7 @@ func (o *ChangeResourceGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_Chan
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7967,11 +7967,11 @@ func (o *CreateResourceTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.TypeName = op.TypeName
-	o.DisplayName = op.DisplayName
-	o.DLLName = op.DLLName
-	o.LooksAlive = op.LooksAlive
-	o.IsAlive = op.IsAlive
+	op.TypeName = o.TypeName
+	op.DisplayName = o.DisplayName
+	op.DLLName = o.DLLName
+	op.LooksAlive = o.LooksAlive
+	op.IsAlive = o.IsAlive
 	return op
 }
 
@@ -8010,7 +8010,7 @@ func (o *CreateResourceTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8120,7 +8120,7 @@ func (o *DeleteResourceTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.TypeName = op.TypeName
+	op.TypeName = o.TypeName
 	return op
 }
 
@@ -8155,7 +8155,7 @@ func (o *DeleteResourceTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8285,7 +8285,7 @@ func (o *GetRootKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRootKeyOper
 	if o == nil {
 		return op
 	}
-	o.DesiredAccess = op.DesiredAccess
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -8321,8 +8321,8 @@ func (o *GetRootKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRootKeyOpe
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -8565,11 +8565,11 @@ func (o *CreateKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateKeyOperat
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.Options = op.Options
-	o.DesiredAccess = op.DesiredAccess
-	o.SecurityAttributes = op.SecurityAttributes
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.Options = o.Options
+	op.DesiredAccess = o.DesiredAccess
+	op.SecurityAttributes = o.SecurityAttributes
 	return op
 }
 
@@ -8610,9 +8610,9 @@ func (o *CreateKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateKeyOpera
 	if o == nil {
 		return op
 	}
-	o.Disposition = op.Disposition
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Disposition = o.Disposition
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -8781,9 +8781,9 @@ func (o *OpenKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenKeyOperation)
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.DesiredAccess = op.DesiredAccess
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -8821,8 +8821,8 @@ func (o *OpenKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenKeyOperation
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -9014,8 +9014,8 @@ func (o *EnumKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumKeyOperation)
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Index = op.Index
+	op.Key = o.Key
+	op.Index = o.Index
 	return op
 }
 
@@ -9053,9 +9053,9 @@ func (o *EnumKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumKeyOperation
 	if o == nil {
 		return op
 	}
-	o.KeyName = op.KeyName
-	o.LastWriteTime = op.LastWriteTime
-	o.Return = op.Return
+	op.KeyName = o.KeyName
+	op.LastWriteTime = o.LastWriteTime
+	op.Return = o.Return
 	return op
 }
 
@@ -9266,11 +9266,11 @@ func (o *SetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueName = op.ValueName
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
+	op.Key = o.Key
+	op.ValueName = o.ValueName
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -9309,7 +9309,7 @@ func (o *SetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperati
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9440,8 +9440,8 @@ func (o *DeleteValueRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteValueOp
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueName = op.ValueName
+	op.Key = o.Key
+	op.ValueName = o.ValueName
 	return op
 }
 
@@ -9477,7 +9477,7 @@ func (o *DeleteValueResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteValueO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9694,9 +9694,9 @@ func (o *QueryValueRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryValueOper
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueName = op.ValueName
-	o.DataLength = op.DataLength
+	op.Key = o.Key
+	op.ValueName = o.ValueName
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -9736,10 +9736,10 @@ func (o *QueryValueResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryValueOpe
 	if o == nil {
 		return op
 	}
-	o.ValueType = op.ValueType
-	o.Data = op.Data
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.ValueType = o.ValueType
+	op.Data = o.Data
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -9873,8 +9873,8 @@ func (o *DeleteKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteKeyOperat
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
+	op.Key = o.Key
+	op.SubKey = o.SubKey
 	return op
 }
 
@@ -9910,7 +9910,7 @@ func (o *DeleteKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteKeyOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10180,9 +10180,9 @@ func (o *EnumValueRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumValueOperat
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Index = op.Index
-	o.DataLength = op.DataLength
+	op.Key = o.Key
+	op.Index = o.Index
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -10224,12 +10224,12 @@ func (o *EnumValueResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumValueOpera
 	if o == nil {
 		return op
 	}
-	o.ValueName = op.ValueName
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
-	o.TotalSize = op.TotalSize
-	o.Return = op.Return
+	op.ValueName = o.ValueName
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
+	op.TotalSize = o.TotalSize
+	op.Return = o.Return
 	return op
 }
 
@@ -10372,7 +10372,7 @@ func (o *CloseKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseKeyOperatio
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
+	op.Key = o.Key
 	return op
 }
 
@@ -10408,8 +10408,8 @@ func (o *CloseKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseKeyOperati
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -10627,7 +10627,7 @@ func (o *QueryInfoKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryInfoKey
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
+	op.Key = o.Key
 	return op
 }
 
@@ -10669,14 +10669,14 @@ func (o *QueryInfoKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryInfoKe
 	if o == nil {
 		return op
 	}
-	o.SubKeysCount = op.SubKeysCount
-	o.MaxSubKeyLength = op.MaxSubKeyLength
-	o.ValuesCount = op.ValuesCount
-	o.MaxValueNameLength = op.MaxValueNameLength
-	o.MaxValueLength = op.MaxValueLength
-	o.SecurityDescriptorLength = op.SecurityDescriptorLength
-	o.LastWriteTime = op.LastWriteTime
-	o.Return = op.Return
+	op.SubKeysCount = o.SubKeysCount
+	op.MaxSubKeyLength = o.MaxSubKeyLength
+	op.ValuesCount = o.ValuesCount
+	op.MaxValueNameLength = o.MaxValueNameLength
+	op.MaxValueLength = o.MaxValueLength
+	op.SecurityDescriptorLength = o.SecurityDescriptorLength
+	op.LastWriteTime = o.LastWriteTime
+	op.Return = o.Return
 	return op
 }
 
@@ -10843,9 +10843,9 @@ func (o *SetKeySecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetKeySecu
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.Key = o.Key
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -10882,7 +10882,7 @@ func (o *SetKeySecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetKeySec
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11069,9 +11069,9 @@ func (o *GetKeySecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetKeySecu
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.Key = o.Key
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -11109,8 +11109,8 @@ func (o *GetKeySecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetKeySec
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.Return = o.Return
 	return op
 }
 
@@ -11241,7 +11241,7 @@ func (o *OpenGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenGroupOperat
 	if o == nil {
 		return op
 	}
-	o.GroupName = op.GroupName
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -11277,8 +11277,8 @@ func (o *OpenGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenGroupOpera
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -11409,7 +11409,7 @@ func (o *CreateGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateGroupOp
 	if o == nil {
 		return op
 	}
-	o.GroupName = op.GroupName
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -11445,8 +11445,8 @@ func (o *CreateGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateGroupO
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -11564,7 +11564,7 @@ func (o *DeleteGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteGroupOp
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -11599,7 +11599,7 @@ func (o *DeleteGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteGroupO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11737,7 +11737,7 @@ func (o *CloseGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseGroupOper
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -11773,8 +11773,8 @@ func (o *CloseGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseGroupOpe
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.Return = op.Return
+	op.Group = o.Group
+	op.Return = o.Return
 	return op
 }
 
@@ -11943,7 +11943,7 @@ func (o *GetGroupStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGroupSta
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -11980,9 +11980,9 @@ func (o *GetGroupStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGroupSt
 	if o == nil {
 		return op
 	}
-	o.State = op.State
-	o.NodeName = op.NodeName
-	o.Return = op.Return
+	op.State = o.State
+	op.NodeName = o.NodeName
+	op.Return = o.Return
 	return op
 }
 
@@ -12115,8 +12115,8 @@ func (o *SetGroupNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetGroupName
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.GroupName = op.GroupName
+	op.Group = o.Group
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -12152,7 +12152,7 @@ func (o *SetGroupNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetGroupNam
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12307,7 +12307,7 @@ func (o *GetGroupIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGroupIDOper
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -12343,8 +12343,8 @@ func (o *GetGroupIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGroupIDOpe
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Return = op.Return
+	op.GUID = o.GUID
+	op.Return = o.Return
 	return op
 }
 
@@ -12500,7 +12500,7 @@ func (o *GetNodeIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNodeIDOperat
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
+	op.Node = o.Node
 	return op
 }
 
@@ -12536,8 +12536,8 @@ func (o *GetNodeIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNodeIDOpera
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Return = op.Return
+	op.GUID = o.GUID
+	op.Return = o.Return
 	return op
 }
 
@@ -12655,7 +12655,7 @@ func (o *OnlineGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_OnlineGroupOp
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -12690,7 +12690,7 @@ func (o *OnlineGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_OnlineGroupO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12807,7 +12807,7 @@ func (o *OfflineGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_OfflineGroup
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -12842,7 +12842,7 @@ func (o *OfflineGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_OfflineGrou
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12959,7 +12959,7 @@ func (o *MoveGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveGroupOperat
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -12994,7 +12994,7 @@ func (o *MoveGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_MoveGroupOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13134,8 +13134,8 @@ func (o *MoveGroupToNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveGroup
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.Node = op.Node
+	op.Group = o.Group
+	op.Node = o.Node
 	return op
 }
 
@@ -13171,7 +13171,7 @@ func (o *MoveGroupToNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_MoveGrou
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13351,8 +13351,8 @@ func (o *CreateGroupResourceEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.Type = op.Type
+	op.Group = o.Group
+	op.Type = o.Type
 	return op
 }
 
@@ -13389,8 +13389,8 @@ func (o *CreateGroupResourceEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ReturnEnum = op.ReturnEnum
-	o.Return = op.Return
+	op.ReturnEnum = o.ReturnEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -13597,9 +13597,9 @@ func (o *SetGroupNodeListRequest) xxx_ToOp(ctx context.Context, op *xxx_SetGroup
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.NodeList = op.NodeList
-	o.ListLength = op.ListLength
+	op.Group = o.Group
+	op.NodeList = o.NodeList
+	op.ListLength = o.ListLength
 	return op
 }
 
@@ -13636,7 +13636,7 @@ func (o *SetGroupNodeListResponse) xxx_ToOp(ctx context.Context, op *xxx_SetGrou
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13786,8 +13786,8 @@ func (o *CreateNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateNotif
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -13926,7 +13926,7 @@ func (o *CloseNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseNotifyOp
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
+	op.Notify = o.Notify
 	return op
 }
 
@@ -13962,8 +13962,8 @@ func (o *CloseNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseNotifyO
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Return = op.Return
+	op.Notify = o.Notify
+	op.Return = o.Return
 	return op
 }
 
@@ -14132,10 +14132,10 @@ func (o *AddNotifyClusterRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNotif
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Cluster = op.Cluster
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
+	op.Notify = o.Notify
+	op.Cluster = o.Cluster
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
 	return op
 }
 
@@ -14173,7 +14173,7 @@ func (o *AddNotifyClusterResponse) xxx_ToOp(ctx context.Context, op *xxx_AddNoti
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14354,10 +14354,10 @@ func (o *AddNotifyNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNotifyNo
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Node = op.Node
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
+	op.Notify = o.Notify
+	op.Node = o.Node
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
 	return op
 }
 
@@ -14396,8 +14396,8 @@ func (o *AddNotifyNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_AddNotifyN
 	if o == nil {
 		return op
 	}
-	o.StateSequence = op.StateSequence
-	o.Return = op.Return
+	op.StateSequence = o.StateSequence
+	op.Return = o.Return
 	return op
 }
 
@@ -14579,10 +14579,10 @@ func (o *AddNotifyGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNotifyG
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Group = op.Group
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
+	op.Notify = o.Notify
+	op.Group = o.Group
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
 	return op
 }
 
@@ -14621,8 +14621,8 @@ func (o *AddNotifyGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_AddNotify
 	if o == nil {
 		return op
 	}
-	o.StateSequence = op.StateSequence
-	o.Return = op.Return
+	op.StateSequence = o.StateSequence
+	op.Return = o.Return
 	return op
 }
 
@@ -14804,10 +14804,10 @@ func (o *AddNotifyResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNoti
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Resource = op.Resource
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
+	op.Notify = o.Notify
+	op.Resource = o.Resource
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
 	return op
 }
 
@@ -14846,8 +14846,8 @@ func (o *AddNotifyResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_AddNot
 	if o == nil {
 		return op
 	}
-	o.StateSequence = op.StateSequence
-	o.Return = op.Return
+	op.StateSequence = o.StateSequence
+	op.Return = o.Return
 	return op
 }
 
@@ -15038,11 +15038,11 @@ func (o *AddNotifyKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNotifyKey
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Key = op.Key
-	o.NotifyKey = op.NotifyKey
-	o.Filter = op.Filter
-	o.WatchSubTree = op.WatchSubTree
+	op.Notify = o.Notify
+	op.Key = o.Key
+	op.NotifyKey = o.NotifyKey
+	op.Filter = o.Filter
+	op.WatchSubTree = o.WatchSubTree
 	return op
 }
 
@@ -15081,7 +15081,7 @@ func (o *AddNotifyKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_AddNotifyKe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15263,11 +15263,11 @@ func (o *ReAddNotifyNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_ReAddNoti
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Node = op.Node
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
-	o.StateSequence = op.StateSequence
+	op.Notify = o.Notify
+	op.Node = o.Node
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
+	op.StateSequence = o.StateSequence
 	return op
 }
 
@@ -15306,7 +15306,7 @@ func (o *ReAddNotifyNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_ReAddNot
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15488,11 +15488,11 @@ func (o *ReAddNotifyGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_ReAddNot
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Group = op.Group
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
-	o.StateSequence = op.StateSequence
+	op.Notify = o.Notify
+	op.Group = o.Group
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
+	op.StateSequence = o.StateSequence
 	return op
 }
 
@@ -15531,7 +15531,7 @@ func (o *ReAddNotifyGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_ReAddNo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15715,11 +15715,11 @@ func (o *ReAddNotifyResourceRequest) xxx_ToOp(ctx context.Context, op *xxx_ReAdd
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Resource = op.Resource
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
-	o.StateSequence = op.StateSequence
+	op.Notify = o.Notify
+	op.Resource = o.Resource
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
+	op.StateSequence = o.StateSequence
 	return op
 }
 
@@ -15758,7 +15758,7 @@ func (o *ReAddNotifyResourceResponse) xxx_ToOp(ctx context.Context, op *xxx_ReAd
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15966,8 +15966,8 @@ func (o *GetNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNotifyOperat
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Timeout = op.Timeout
+	op.Notify = o.Notify
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -16007,11 +16007,11 @@ func (o *GetNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNotifyOpera
 	if o == nil {
 		return op
 	}
-	o.NotifyKey = op.NotifyKey
-	o.Filter = op.Filter
-	o.StateSequence = op.StateSequence
-	o.Name = op.Name
-	o.Return = op.Return
+	op.NotifyKey = o.NotifyKey
+	op.Filter = o.Filter
+	op.StateSequence = o.StateSequence
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -16145,7 +16145,7 @@ func (o *OpenNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNodeOperatio
 	if o == nil {
 		return op
 	}
-	o.NodeName = op.NodeName
+	op.NodeName = o.NodeName
 	return op
 }
 
@@ -16181,8 +16181,8 @@ func (o *OpenNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenNodeOperati
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -16321,7 +16321,7 @@ func (o *CloseNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseNodeOperat
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
+	op.Node = o.Node
 	return op
 }
 
@@ -16357,8 +16357,8 @@ func (o *CloseNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseNodeOpera
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
-	o.Return = op.Return
+	op.Node = o.Node
+	op.Return = o.Return
 	return op
 }
 
@@ -16489,7 +16489,7 @@ func (o *GetNodeStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNodeState
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
+	op.Node = o.Node
 	return op
 }
 
@@ -16525,8 +16525,8 @@ func (o *GetNodeStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNodeStat
 	if o == nil {
 		return op
 	}
-	o.State = op.State
-	o.Return = op.Return
+	op.State = o.State
+	op.Return = o.Return
 	return op
 }
 
@@ -16644,7 +16644,7 @@ func (o *PauseNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_PauseNodeOperat
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
+	op.Node = o.Node
 	return op
 }
 
@@ -16679,7 +16679,7 @@ func (o *PauseNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_PauseNodeOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -16796,7 +16796,7 @@ func (o *ResumeNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_ResumeNodeOper
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
+	op.Node = o.Node
 	return op
 }
 
@@ -16831,7 +16831,7 @@ func (o *ResumeNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_ResumeNodeOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -16948,7 +16948,7 @@ func (o *EvictNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_EvictNodeOperat
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
+	op.Node = o.Node
 	return op
 }
 
@@ -16983,7 +16983,7 @@ func (o *EvictNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_EvictNodeOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17337,12 +17337,12 @@ func (o *NodeResourceControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NodeR
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.Node = op.Node
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Resource = o.Resource
+	op.Node = o.Node
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -17385,10 +17385,10 @@ func (o *NodeResourceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Node
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -17720,11 +17720,11 @@ func (o *ResourceControlRequest) xxx_ToOp(ctx context.Context, op *xxx_ResourceC
 	if o == nil {
 		return op
 	}
-	o.Resource = op.Resource
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Resource = o.Resource
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -17766,10 +17766,10 @@ func (o *ResourceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Resource
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -18140,13 +18140,13 @@ func (o *NodeResourceTypeControlRequest) xxx_ToOp(ctx context.Context, op *xxx_N
 	if o == nil {
 		return op
 	}
-	o.Cluster = op.Cluster
-	o.ResourceTypeName = op.ResourceTypeName
-	o.Node = op.Node
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Cluster = o.Cluster
+	op.ResourceTypeName = o.ResourceTypeName
+	op.Node = o.Node
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -18190,10 +18190,10 @@ func (o *NodeResourceTypeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -18541,12 +18541,12 @@ func (o *ResourceTypeControlRequest) xxx_ToOp(ctx context.Context, op *xxx_Resou
 	if o == nil {
 		return op
 	}
-	o.Cluster = op.Cluster
-	o.ResourceTypeName = op.ResourceTypeName
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Cluster = o.Cluster
+	op.ResourceTypeName = o.ResourceTypeName
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -18589,10 +18589,10 @@ func (o *ResourceTypeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_Reso
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -18947,12 +18947,12 @@ func (o *NodeGroupControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NodeGrou
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.Node = op.Node
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Group = o.Group
+	op.Node = o.Node
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -18995,10 +18995,10 @@ func (o *NodeGroupControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeGro
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -19330,11 +19330,11 @@ func (o *GroupControlRequest) xxx_ToOp(ctx context.Context, op *xxx_GroupControl
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Group = o.Group
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -19376,10 +19376,10 @@ func (o *GroupControlResponse) xxx_ToOp(ctx context.Context, op *xxx_GroupContro
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -19734,12 +19734,12 @@ func (o *NodeNodeControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NodeNodeC
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
-	o.HostNode = op.HostNode
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Node = o.Node
+	op.HostNode = o.HostNode
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -19782,10 +19782,10 @@ func (o *NodeNodeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeNode
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -20117,11 +20117,11 @@ func (o *NodeControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NodeControlOp
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Node = o.Node
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -20163,10 +20163,10 @@ func (o *NodeControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeControlO
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -20299,7 +20299,7 @@ func (o *OpenNetworkRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNetworkOp
 	if o == nil {
 		return op
 	}
-	o.NetworkName = op.NetworkName
+	op.NetworkName = o.NetworkName
 	return op
 }
 
@@ -20335,8 +20335,8 @@ func (o *OpenNetworkResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenNetworkO
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -20475,7 +20475,7 @@ func (o *CloseNetworkRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseNetwork
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
+	op.Network = o.Network
 	return op
 }
 
@@ -20511,8 +20511,8 @@ func (o *CloseNetworkResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseNetwor
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
-	o.Return = op.Return
+	op.Network = o.Network
+	op.Return = o.Return
 	return op
 }
 
@@ -20643,7 +20643,7 @@ func (o *GetNetworkStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNetwor
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
+	op.Network = o.Network
 	return op
 }
 
@@ -20679,8 +20679,8 @@ func (o *GetNetworkStateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNetwo
 	if o == nil {
 		return op
 	}
-	o.State = op.State
-	o.Return = op.Return
+	op.State = o.State
+	op.Return = o.Return
 	return op
 }
 
@@ -20812,8 +20812,8 @@ func (o *SetNetworkNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNetwork
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
-	o.NetworkName = op.NetworkName
+	op.Network = o.Network
+	op.NetworkName = o.NetworkName
 	return op
 }
 
@@ -20849,7 +20849,7 @@ func (o *SetNetworkNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNetwor
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21027,8 +21027,8 @@ func (o *CreateNetworkEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateN
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
-	o.Type = op.Type
+	op.Network = o.Network
+	op.Type = o.Type
 	return op
 }
 
@@ -21065,8 +21065,8 @@ func (o *CreateNetworkEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.ReturnEnum = op.ReturnEnum
-	o.Return = op.Return
+	op.ReturnEnum = o.ReturnEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -21222,7 +21222,7 @@ func (o *GetNetworkIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNetworkID
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
+	op.Network = o.Network
 	return op
 }
 
@@ -21258,8 +21258,8 @@ func (o *GetNetworkIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNetworkI
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Return = op.Return
+	op.GUID = o.GUID
+	op.Return = o.Return
 	return op
 }
 
@@ -21448,8 +21448,8 @@ func (o *SetNetworkPriorityOrderRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.NetworkCount = op.NetworkCount
-	o.NetworkIDList = op.NetworkIDList
+	op.NetworkCount = o.NetworkCount
+	op.NetworkIDList = o.NetworkIDList
 	return op
 }
 
@@ -21485,7 +21485,7 @@ func (o *SetNetworkPriorityOrderResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21839,12 +21839,12 @@ func (o *NodeNetworkControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NodeNe
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
-	o.Node = op.Node
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Network = o.Network
+	op.Node = o.Node
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -21887,10 +21887,10 @@ func (o *NodeNetworkControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeN
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -22222,11 +22222,11 @@ func (o *NetworkControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NetworkCon
 	if o == nil {
 		return op
 	}
-	o.Network = op.Network
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Network = o.Network
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -22268,10 +22268,10 @@ func (o *NetworkControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NetworkCo
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -22455,10 +22455,10 @@ func (o *AddNotifyNetworkRequest) xxx_ToOp(ctx context.Context, op *xxx_AddNotif
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Network = op.Network
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
+	op.Notify = o.Notify
+	op.Network = o.Network
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
 	return op
 }
 
@@ -22497,8 +22497,8 @@ func (o *AddNotifyNetworkResponse) xxx_ToOp(ctx context.Context, op *xxx_AddNoti
 	if o == nil {
 		return op
 	}
-	o.StateSequence = op.StateSequence
-	o.Return = op.Return
+	op.StateSequence = o.StateSequence
+	op.Return = o.Return
 	return op
 }
 
@@ -22683,11 +22683,11 @@ func (o *ReAddNotifyNetworkRequest) xxx_ToOp(ctx context.Context, op *xxx_ReAddN
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Network = op.Network
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
-	o.StateSequence = op.StateSequence
+	op.Notify = o.Notify
+	op.Network = o.Network
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
+	op.StateSequence = o.StateSequence
 	return op
 }
 
@@ -22726,7 +22726,7 @@ func (o *ReAddNotifyNetworkResponse) xxx_ToOp(ctx context.Context, op *xxx_ReAdd
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22856,7 +22856,7 @@ func (o *OpenNetInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNetI
 	if o == nil {
 		return op
 	}
-	o.NetInterfaceName = op.NetInterfaceName
+	op.NetInterfaceName = o.NetInterfaceName
 	return op
 }
 
@@ -22892,8 +22892,8 @@ func (o *OpenNetInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenNet
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -23032,7 +23032,7 @@ func (o *CloseNetInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseNe
 	if o == nil {
 		return op
 	}
-	o.NetInterface = op.NetInterface
+	op.NetInterface = o.NetInterface
 	return op
 }
 
@@ -23068,8 +23068,8 @@ func (o *CloseNetInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseN
 	if o == nil {
 		return op
 	}
-	o.NetInterface = op.NetInterface
-	o.Return = op.Return
+	op.NetInterface = o.NetInterface
+	op.Return = o.Return
 	return op
 }
 
@@ -23202,7 +23202,7 @@ func (o *GetNetInterfaceStateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetN
 	if o == nil {
 		return op
 	}
-	o.NetInterface = op.NetInterface
+	op.NetInterface = o.NetInterface
 	return op
 }
 
@@ -23238,8 +23238,8 @@ func (o *GetNetInterfaceStateResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.State = op.State
-	o.Return = op.Return
+	op.State = o.State
+	op.Return = o.Return
 	return op
 }
 
@@ -23400,8 +23400,8 @@ func (o *GetNetInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNetInt
 	if o == nil {
 		return op
 	}
-	o.NodeName = op.NodeName
-	o.NetworkName = op.NetworkName
+	op.NodeName = o.NodeName
+	op.NetworkName = o.NetworkName
 	return op
 }
 
@@ -23438,8 +23438,8 @@ func (o *GetNetInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNetIn
 	if o == nil {
 		return op
 	}
-	o.InterfaceName = op.InterfaceName
-	o.Return = op.Return
+	op.InterfaceName = o.InterfaceName
+	op.Return = o.Return
 	return op
 }
 
@@ -23595,7 +23595,7 @@ func (o *GetNetInterfaceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNetI
 	if o == nil {
 		return op
 	}
-	o.NetInterface = op.NetInterface
+	op.NetInterface = o.NetInterface
 	return op
 }
 
@@ -23631,8 +23631,8 @@ func (o *GetNetInterfaceIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNet
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Return = op.Return
+	op.GUID = o.GUID
+	op.Return = o.Return
 	return op
 }
 
@@ -23987,12 +23987,12 @@ func (o *NodeNetInterfaceControlRequest) xxx_ToOp(ctx context.Context, op *xxx_N
 	if o == nil {
 		return op
 	}
-	o.NetInterface = op.NetInterface
-	o.Node = op.Node
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.NetInterface = o.NetInterface
+	op.Node = o.Node
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -24035,10 +24035,10 @@ func (o *NodeNetInterfaceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -24372,11 +24372,11 @@ func (o *NetInterfaceControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NetIn
 	if o == nil {
 		return op
 	}
-	o.NetInterface = op.NetInterface
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.NetInterface = o.NetInterface
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -24418,10 +24418,10 @@ func (o *NetInterfaceControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NetI
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -24607,10 +24607,10 @@ func (o *AddNotifyNetInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_Add
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.NetInterface = op.NetInterface
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
+	op.Notify = o.Notify
+	op.NetInterface = o.NetInterface
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
 	return op
 }
 
@@ -24649,8 +24649,8 @@ func (o *AddNotifyNetInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.StateSequence = op.StateSequence
-	o.Return = op.Return
+	op.StateSequence = o.StateSequence
+	op.Return = o.Return
 	return op
 }
 
@@ -24835,11 +24835,11 @@ func (o *ReAddNotifyNetInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.NetInterface = op.NetInterface
-	o.Filter = op.Filter
-	o.NotifyKey = op.NotifyKey
-	o.StateSequence = op.StateSequence
+	op.Notify = o.Notify
+	op.NetInterface = o.NetInterface
+	op.Filter = o.Filter
+	op.NotifyKey = o.NotifyKey
+	op.StateSequence = o.StateSequence
 	return op
 }
 
@@ -24878,7 +24878,7 @@ func (o *ReAddNotifyNetInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25056,8 +25056,8 @@ func (o *CreateNodeEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNode
 	if o == nil {
 		return op
 	}
-	o.Node = op.Node
-	o.Type = op.Type
+	op.Node = o.Node
+	op.Type = o.Type
 	return op
 }
 
@@ -25094,8 +25094,8 @@ func (o *CreateNodeEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateNod
 	if o == nil {
 		return op
 	}
-	o.ReturnEnum = op.ReturnEnum
-	o.Return = op.Return
+	op.ReturnEnum = o.ReturnEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -25393,13 +25393,13 @@ func (o *GetClusterVersion2Response) xxx_ToOp(ctx context.Context, op *xxx_GetCl
 	if o == nil {
 		return op
 	}
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
-	o.BuildNumber = op.BuildNumber
-	o.VendorID = op.VendorID
-	o.CSDVersion = op.CSDVersion
-	o.ClusterOperationVerInfo = op.ClusterOperationVerInfo
-	o.Return = op.Return
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
+	op.BuildNumber = o.BuildNumber
+	op.VendorID = o.VendorID
+	op.CSDVersion = o.CSDVersion
+	op.ClusterOperationVerInfo = o.ClusterOperationVerInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -25576,8 +25576,8 @@ func (o *CreateRestrictionTypeEnumRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.TypeName = op.TypeName
-	o.Type = op.Type
+	op.TypeName = o.TypeName
+	op.Type = o.Type
 	return op
 }
 
@@ -25614,8 +25614,8 @@ func (o *CreateRestrictionTypeEnumResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ReturnEnum = op.ReturnEnum
-	o.Return = op.Return
+	op.ReturnEnum = o.ReturnEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -25726,7 +25726,7 @@ func (o *BackupClusterDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_Bac
 	if o == nil {
 		return op
 	}
-	o.PathName = op.PathName
+	op.PathName = o.PathName
 	return op
 }
 
@@ -25761,7 +25761,7 @@ func (o *BackupClusterDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_Ba
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26115,12 +26115,12 @@ func (o *NodeClusterControlRequest) xxx_ToOp(ctx context.Context, op *xxx_NodeCl
 	if o == nil {
 		return op
 	}
-	o.Cluster = op.Cluster
-	o.HostNode = op.HostNode
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Cluster = o.Cluster
+	op.HostNode = o.HostNode
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -26163,10 +26163,10 @@ func (o *NodeClusterControlResponse) xxx_ToOp(ctx context.Context, op *xxx_NodeC
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -26498,11 +26498,11 @@ func (o *ClusterControlRequest) xxx_ToOp(ctx context.Context, op *xxx_ClusterCon
 	if o == nil {
 		return op
 	}
-	o.Cluster = op.Cluster
-	o.ControlCode = op.ControlCode
-	o.InBuffer = op.InBuffer
-	o.InBufferSize = op.InBufferSize
-	o.OutBufferSize = op.OutBufferSize
+	op.Cluster = o.Cluster
+	op.ControlCode = o.ControlCode
+	op.InBuffer = o.InBuffer
+	op.InBufferSize = o.InBufferSize
+	op.OutBufferSize = o.OutBufferSize
 	return op
 }
 
@@ -26544,10 +26544,10 @@ func (o *ClusterControlResponse) xxx_ToOp(ctx context.Context, op *xxx_ClusterCo
 	if o == nil {
 		return op
 	}
-	o.OutBuffer = op.OutBuffer
-	o.BytesReturned = op.BytesReturned
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.OutBuffer = o.OutBuffer
+	op.BytesReturned = o.BytesReturned
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -26669,7 +26669,7 @@ func (o *UnblockGetNotifyCallRequest) xxx_ToOp(ctx context.Context, op *xxx_Unbl
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
+	op.Notify = o.Notify
 	return op
 }
 
@@ -26704,7 +26704,7 @@ func (o *UnblockGetNotifyCallResponse) xxx_ToOp(ctx context.Context, op *xxx_Unb
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26946,9 +26946,9 @@ func (o *SetServiceAccountPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.NewPassword = op.NewPassword
-	o.Flags = op.Flags
-	o.ReturnStatusBufferSize = op.ReturnStatusBufferSize
+	op.NewPassword = o.NewPassword
+	op.Flags = o.Flags
+	op.ReturnStatusBufferSize = o.ReturnStatusBufferSize
 	return op
 }
 
@@ -26988,10 +26988,10 @@ func (o *SetServiceAccountPasswordResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ReturnStatusBufferPointer = op.ReturnStatusBufferPointer
-	o.SizeReturned = op.SizeReturned
-	o.ExpectedBufferSize = op.ExpectedBufferSize
-	o.Return = op.Return
+	op.ReturnStatusBufferPointer = o.ReturnStatusBufferPointer
+	op.SizeReturned = o.SizeReturned
+	op.ExpectedBufferSize = o.ExpectedBufferSize
+	op.Return = o.Return
 	return op
 }
 

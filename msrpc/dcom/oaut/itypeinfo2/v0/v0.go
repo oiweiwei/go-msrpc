@@ -897,7 +897,7 @@ func (o *GetTypeKindRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeKindOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -937,9 +937,9 @@ func (o *GetTypeKindResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeKindO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeKind = op.TypeKind
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeKind = o.TypeKind
+	op.Return = o.Return
 	return op
 }
 
@@ -1106,7 +1106,7 @@ func (o *GetTypeFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeFlags
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1146,9 +1146,9 @@ func (o *GetTypeFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeFlag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeFlags = op.TypeFlags
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeFlags = o.TypeFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -1348,9 +1348,9 @@ func (o *GetFuncIndexOfMemberIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
-	o.InvKind = op.InvKind
+	op.This = o.This
+	op.MemberID = o.MemberID
+	op.InvKind = o.InvKind
 	return op
 }
 
@@ -1397,9 +1397,9 @@ func (o *GetFuncIndexOfMemberIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FuncIndex = op.FuncIndex
-	o.Return = op.Return
+	op.That = o.That
+	op.FuncIndex = o.FuncIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -1583,8 +1583,8 @@ func (o *GetVarIndexOfMemberIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
+	op.This = o.This
+	op.MemberID = o.MemberID
 	return op
 }
 
@@ -1626,9 +1626,9 @@ func (o *GetVarIndexOfMemberIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarIndex = op.VarIndex
-	o.Return = op.Return
+	op.That = o.That
+	op.VarIndex = o.VarIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -1856,8 +1856,8 @@ func (o *GetCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCustomDa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.GUID = op.GUID
+	op.This = o.This
+	op.GUID = o.GUID
 	return op
 }
 
@@ -1902,9 +1902,9 @@ func (o *GetCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCustomD
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarValue = op.VarValue
-	o.Return = op.Return
+	op.That = o.That
+	op.VarValue = o.VarValue
+	op.Return = o.Return
 	return op
 }
 
@@ -2147,9 +2147,9 @@ func (o *GetFuncCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFunc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
-	o.GUID = op.GUID
+	op.This = o.This
+	op.Index = o.Index
+	op.GUID = o.GUID
 	return op
 }
 
@@ -2191,9 +2191,9 @@ func (o *GetFuncCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFun
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarValue = op.VarValue
-	o.Return = op.Return
+	op.That = o.That
+	op.VarValue = o.VarValue
+	op.Return = o.Return
 	return op
 }
 
@@ -2454,10 +2454,10 @@ func (o *GetParamCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IndexFunc = op.IndexFunc
-	o.IndexParam = op.IndexParam
-	o.GUID = op.GUID
+	op.This = o.This
+	op.IndexFunc = o.IndexFunc
+	op.IndexParam = o.IndexParam
+	op.GUID = o.GUID
 	return op
 }
 
@@ -2500,9 +2500,9 @@ func (o *GetParamCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarValue = op.VarValue
-	o.Return = op.Return
+	op.That = o.That
+	op.VarValue = o.VarValue
+	op.Return = o.Return
 	return op
 }
 
@@ -2745,9 +2745,9 @@ func (o *GetVarCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVarCu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
-	o.GUID = op.GUID
+	op.This = o.This
+	op.Index = o.Index
+	op.GUID = o.GUID
 	return op
 }
 
@@ -2789,9 +2789,9 @@ func (o *GetVarCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVarC
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarValue = op.VarValue
-	o.Return = op.Return
+	op.That = o.That
+	op.VarValue = o.VarValue
+	op.Return = o.Return
 	return op
 }
 
@@ -3036,9 +3036,9 @@ func (o *GetImplTypeCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
-	o.GUID = op.GUID
+	op.This = o.This
+	op.Index = o.Index
+	op.GUID = o.GUID
 	return op
 }
 
@@ -3080,9 +3080,9 @@ func (o *GetImplTypeCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarValue = op.VarValue
-	o.Return = op.Return
+	op.That = o.That
+	op.VarValue = o.VarValue
+	op.Return = o.Return
 	return op
 }
 
@@ -3408,10 +3408,10 @@ func (o *GetDocumentation2Request) xxx_ToOp(ctx context.Context, op *xxx_GetDocu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
-	o.LocaleID = op.LocaleID
-	o.PointerFlags = op.PointerFlags
+	op.This = o.This
+	op.MemberID = o.MemberID
+	op.LocaleID = o.LocaleID
+	op.PointerFlags = o.PointerFlags
 	return op
 }
 
@@ -3477,11 +3477,11 @@ func (o *GetDocumentation2Response) xxx_ToOp(ctx context.Context, op *xxx_GetDoc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HelpString = op.HelpString
-	o.HelpStringContext = op.HelpStringContext
-	o.HelpStringDLL = op.HelpStringDLL
-	o.Return = op.Return
+	op.That = o.That
+	op.HelpString = o.HelpString
+	op.HelpStringContext = o.HelpStringContext
+	op.HelpStringDLL = o.HelpStringDLL
+	op.Return = o.Return
 	return op
 }
 
@@ -3665,7 +3665,7 @@ func (o *GetAllCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllCu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3712,9 +3712,9 @@ func (o *GetAllCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllC
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CustomData = op.CustomData
-	o.Return = op.Return
+	op.That = o.That
+	op.CustomData = o.CustomData
+	op.Return = o.Return
 	return op
 }
 
@@ -3915,8 +3915,8 @@ func (o *GetAllFuncCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -3959,9 +3959,9 @@ func (o *GetAllFuncCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CustomData = op.CustomData
-	o.Return = op.Return
+	op.That = o.That
+	op.CustomData = o.CustomData
+	op.Return = o.Return
 	return op
 }
 
@@ -4180,9 +4180,9 @@ func (o *GetAllParamCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IndexFunc = op.IndexFunc
-	o.IndexParam = op.IndexParam
+	op.This = o.This
+	op.IndexFunc = o.IndexFunc
+	op.IndexParam = o.IndexParam
 	return op
 }
 
@@ -4226,9 +4226,9 @@ func (o *GetAllParamCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CustomData = op.CustomData
-	o.Return = op.Return
+	op.That = o.That
+	op.CustomData = o.CustomData
+	op.Return = o.Return
 	return op
 }
 
@@ -4427,8 +4427,8 @@ func (o *GetAllVarCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAl
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -4471,9 +4471,9 @@ func (o *GetAllVarCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CustomData = op.CustomData
-	o.Return = op.Return
+	op.That = o.That
+	op.CustomData = o.CustomData
+	op.Return = o.Return
 	return op
 }
 
@@ -4674,8 +4674,8 @@ func (o *GetAllImplTypeCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -4718,9 +4718,9 @@ func (o *GetAllImplTypeCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CustomData = op.CustomData
-	o.Return = op.Return
+	op.That = o.That
+	op.CustomData = o.CustomData
+	op.Return = o.Return
 	return op
 }
 

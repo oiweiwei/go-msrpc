@@ -614,7 +614,7 @@ func (o *GetExecutablePathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -652,9 +652,9 @@ func (o *GetExecutablePathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ExecutablePath = op.ExecutablePath
-	o.Return = op.Return
+	op.That = o.That
+	op.ExecutablePath = o.ExecutablePath
+	op.Return = o.Return
 	return op
 }
 
@@ -858,8 +858,8 @@ func (o *SetExecutablePathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ExecutablePath = op.ExecutablePath
+	op.This = o.This
+	op.ExecutablePath = o.ExecutablePath
 	return op
 }
 
@@ -897,8 +897,8 @@ func (o *SetExecutablePathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1098,7 +1098,7 @@ func (o *GetArgumentsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetArguments
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1136,9 +1136,9 @@ func (o *GetArgumentsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetArgument
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Arguments = op.Arguments
-	o.Return = op.Return
+	op.That = o.That
+	op.Arguments = o.Arguments
+	op.Return = o.Return
 	return op
 }
 
@@ -1340,8 +1340,8 @@ func (o *SetArgumentsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetArguments
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Arguments = op.Arguments
+	op.This = o.This
+	op.Arguments = o.Arguments
 	return op
 }
 
@@ -1379,8 +1379,8 @@ func (o *SetArgumentsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetArgument
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1546,7 +1546,7 @@ func (o *GetAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAccountOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1584,9 +1584,9 @@ func (o *GetAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAccountOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Account = op.Account
-	o.Return = op.Return
+	op.That = o.That
+	op.Account = o.Account
+	op.Return = o.Return
 	return op
 }
 
@@ -1754,8 +1754,8 @@ func (o *SetAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAccountOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Account = op.Account
+	op.This = o.This
+	op.Account = o.Account
 	return op
 }
 
@@ -1793,8 +1793,8 @@ func (o *SetAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAccountOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1996,7 +1996,7 @@ func (o *GetWorkingDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetWo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2034,9 +2034,9 @@ func (o *GetWorkingDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetW
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.WorkingDirectory = op.WorkingDirectory
-	o.Return = op.Return
+	op.That = o.That
+	op.WorkingDirectory = o.WorkingDirectory
+	op.Return = o.Return
 	return op
 }
 
@@ -2240,8 +2240,8 @@ func (o *SetWorkingDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_SetWo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.WorkingDirectory = op.WorkingDirectory
+	op.This = o.This
+	op.WorkingDirectory = o.WorkingDirectory
 	return op
 }
 
@@ -2279,8 +2279,8 @@ func (o *SetWorkingDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_SetW
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2448,7 +2448,7 @@ func (o *GetMonitorCommandRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMoni
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2486,9 +2486,9 @@ func (o *GetMonitorCommandResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMon
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MonitorCommand = op.MonitorCommand
-	o.Return = op.Return
+	op.That = o.That
+	op.MonitorCommand = o.MonitorCommand
+	op.Return = o.Return
 	return op
 }
 
@@ -2658,8 +2658,8 @@ func (o *SetMonitorCommandRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMoni
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MonitorCommand = op.MonitorCommand
+	op.This = o.This
+	op.MonitorCommand = o.MonitorCommand
 	return op
 }
 
@@ -2697,8 +2697,8 @@ func (o *SetMonitorCommandResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMon
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2864,7 +2864,7 @@ func (o *GetKillTimeoutRequest) xxx_ToOp(ctx context.Context, op *xxx_GetKillTim
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2902,9 +2902,9 @@ func (o *GetKillTimeoutResponse) xxx_ToOp(ctx context.Context, op *xxx_GetKillTi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Minutes = op.Minutes
-	o.Return = op.Return
+	op.That = o.That
+	op.Minutes = o.Minutes
+	op.Return = o.Return
 	return op
 }
 
@@ -3072,8 +3072,8 @@ func (o *SetKillTimeoutRequest) xxx_ToOp(ctx context.Context, op *xxx_SetKillTim
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Minutes = op.Minutes
+	op.This = o.This
+	op.Minutes = o.Minutes
 	return op
 }
 
@@ -3111,8 +3111,8 @@ func (o *SetKillTimeoutResponse) xxx_ToOp(ctx context.Context, op *xxx_SetKillTi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3278,7 +3278,7 @@ func (o *GetLogResultRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogResult
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3316,9 +3316,9 @@ func (o *GetLogResultResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogResul
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogResults = op.LogResults
-	o.Return = op.Return
+	op.That = o.That
+	op.LogResults = o.LogResults
+	op.Return = o.Return
 	return op
 }
 
@@ -3486,8 +3486,8 @@ func (o *SetLogResultRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLogResult
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.LogResults = op.LogResults
+	op.This = o.This
+	op.LogResults = o.LogResults
 	return op
 }
 
@@ -3525,8 +3525,8 @@ func (o *SetLogResultResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLogResul
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

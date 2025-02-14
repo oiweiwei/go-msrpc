@@ -694,11 +694,11 @@ func (o *BackupWithPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_Backup
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupName = op.BackupName
-	o.Version = op.Version
-	o.Flags = op.Flags
-	o.Password = op.Password
+	op.This = o.This
+	op.BackupName = o.BackupName
+	op.Version = o.Version
+	op.Flags = o.Flags
+	op.Password = o.Password
 	return op
 }
 
@@ -739,8 +739,8 @@ func (o *BackupWithPasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_Backu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1019,11 +1019,11 @@ func (o *RestoreWithPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_Resto
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupName = op.BackupName
-	o.Version = op.Version
-	o.Flags = op.Flags
-	o.Password = op.Password
+	op.This = o.This
+	op.BackupName = o.BackupName
+	op.Version = o.Version
+	op.Flags = o.Flags
+	op.Password = o.Password
 	return op
 }
 
@@ -1064,8 +1064,8 @@ func (o *RestoreWithPasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_Rest
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1369,11 +1369,11 @@ func (o *ExportRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Password = op.Password
-	o.FileName = op.FileName
-	o.SourcePath = op.SourcePath
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Password = o.Password
+	op.FileName = o.FileName
+	op.SourcePath = o.SourcePath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1414,8 +1414,8 @@ func (o *ExportResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1769,12 +1769,12 @@ func (o *ImportRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Password = op.Password
-	o.FileName = op.FileName
-	o.SourcePath = op.SourcePath
-	o.DestinationPath = op.DestinationPath
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Password = o.Password
+	op.FileName = o.FileName
+	op.SourcePath = o.SourcePath
+	op.DestinationPath = o.DestinationPath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1816,8 +1816,8 @@ func (o *ImportResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2072,11 +2072,11 @@ func (o *RestoreHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreHis
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.HistoryLocation = op.HistoryLocation
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
-	o.Flags = op.Flags
+	op.This = o.This
+	op.HistoryLocation = o.HistoryLocation
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
+	op.Flags = o.Flags
 	return op
 }
 
@@ -2117,8 +2117,8 @@ func (o *RestoreHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreHi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2448,9 +2448,9 @@ func (o *EnumHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumHistoryOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.HistoryLocation = op.HistoryLocation
-	o.EnumIndex = op.EnumIndex
+	op.This = o.This
+	op.HistoryLocation = o.HistoryLocation
+	op.EnumIndex = o.EnumIndex
 	return op
 }
 
@@ -2497,12 +2497,12 @@ func (o *EnumHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumHistoryO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HistoryLocation = op.HistoryLocation
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
-	o.HistoryTime = op.HistoryTime
-	o.Return = op.Return
+	op.That = o.That
+	op.HistoryLocation = o.HistoryLocation
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
+	op.HistoryTime = o.HistoryTime
+	op.Return = o.Return
 	return op
 }
 

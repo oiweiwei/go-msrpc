@@ -402,9 +402,9 @@ func (o *GetNewDSARequest) xxx_ToOp(ctx context.Context, op *xxx_GetNewDSAOperat
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.UserDN = op.UserDN
-	o.Server = op.Server
+	op.Flags = o.Flags
+	op.UserDN = o.UserDN
+	op.Server = o.Server
 	return op
 }
 
@@ -444,8 +444,8 @@ func (o *GetNewDSAResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNewDSAOpera
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Return = op.Return
+	op.Server = o.Server
+	op.Return = o.Return
 	return op
 }
 
@@ -705,9 +705,9 @@ func (o *GetFQDNFromServerDNRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFQ
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.MailboxServerDNLength = op.MailboxServerDNLength
-	o.MailboxServerDN = op.MailboxServerDN
+	op.Flags = o.Flags
+	op.MailboxServerDNLength = o.MailboxServerDNLength
+	op.MailboxServerDN = o.MailboxServerDN
 	return op
 }
 
@@ -748,8 +748,8 @@ func (o *GetFQDNFromServerDNResponse) xxx_ToOp(ctx context.Context, op *xxx_GetF
 	if o == nil {
 		return op
 	}
-	o.ServerFQDN = op.ServerFQDN
-	o.Return = op.Return
+	op.ServerFQDN = o.ServerFQDN
+	op.Return = o.Return
 	return op
 }
 

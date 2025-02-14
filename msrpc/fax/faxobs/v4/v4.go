@@ -1698,8 +1698,8 @@ func (o *ConnectionReferenceCountRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Connect = op.Connect
+	op.Handle = o.Handle
+	op.Connect = o.Connect
 	return op
 }
 
@@ -1744,9 +1744,9 @@ func (o *ConnectionReferenceCountResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.CanShare = op.CanShare
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.CanShare = o.CanShare
+	op.Return = o.Return
 	return op
 }
 
@@ -1902,8 +1902,8 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -2109,10 +2109,10 @@ func (o *GetInstallTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInstal
 	if o == nil {
 		return op
 	}
-	o.InstallType = op.InstallType
-	o.InstalledPlatforms = op.InstalledPlatforms
-	o.ProductType = op.ProductType
-	o.Return = op.Return
+	op.InstallType = o.InstallType
+	op.InstalledPlatforms = o.InstalledPlatforms
+	op.ProductType = o.ProductType
+	op.Return = o.Return
 	return op
 }
 
@@ -2282,8 +2282,8 @@ func (o *OpenPortRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPortOperatio
 	if o == nil {
 		return op
 	}
-	o.DeviceID = op.DeviceID
-	o.Flags = op.Flags
+	op.DeviceID = o.DeviceID
+	op.Flags = o.Flags
 	return op
 }
 
@@ -2323,8 +2323,8 @@ func (o *OpenPortResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPortOperati
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.Return = op.Return
+	op.FaxPort = o.FaxPort
+	op.Return = o.Return
 	return op
 }
 
@@ -2464,7 +2464,7 @@ func (o *ClosePortRequest) xxx_ToOp(ctx context.Context, op *xxx_ClosePortOperat
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
+	op.FaxPort = o.FaxPort
 	return op
 }
 
@@ -2501,8 +2501,8 @@ func (o *ClosePortResponse) xxx_ToOp(ctx context.Context, op *xxx_ClosePortOpera
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.Return = op.Return
+	op.FaxPort = o.FaxPort
+	op.Return = o.Return
 	return op
 }
 
@@ -2688,8 +2688,8 @@ func (o *SendDocumentRequest) xxx_ToOp(ctx context.Context, op *xxx_SendDocument
 	if o == nil {
 		return op
 	}
-	o.FileName = op.FileName
-	o.JobParams = op.JobParams
+	op.FileName = o.FileName
+	op.JobParams = o.JobParams
 	return op
 }
 
@@ -2727,8 +2727,8 @@ func (o *SendDocumentResponse) xxx_ToOp(ctx context.Context, op *xxx_SendDocumen
 	if o == nil {
 		return op
 	}
-	o.FaxJobID = op.FaxJobID
-	o.Return = op.Return
+	op.FaxJobID = o.FaxJobID
+	op.Return = o.Return
 	return op
 }
 
@@ -3000,8 +3000,8 @@ func (o *GetQueueFileNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQueue
 	if o == nil {
 		return op
 	}
-	o.FileName = op.FileName
-	o.FileNameSize = op.FileNameSize
+	op.FileName = o.FileName
+	op.FileNameSize = o.FileNameSize
 	return op
 }
 
@@ -3042,8 +3042,8 @@ func (o *GetQueueFileNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQueu
 	if o == nil {
 		return op
 	}
-	o.FileName = op.FileName
-	o.Return = op.Return
+	op.FileName = o.FileName
+	op.Return = o.Return
 	return op
 }
 
@@ -3366,8 +3366,8 @@ func (o *EnumJobsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperatio
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -3411,10 +3411,10 @@ func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperati
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.JobsReturned = op.JobsReturned
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.JobsReturned = o.JobsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -3741,9 +3741,9 @@ func (o *GetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.JobID = o.JobID
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -3785,9 +3785,9 @@ func (o *GetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -3967,9 +3967,9 @@ func (o *SetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.Command = op.Command
-	o.JobEntry = op.JobEntry
+	op.JobID = o.JobID
+	op.Command = o.Command
+	op.JobEntry = o.JobEntry
 	return op
 }
 
@@ -4006,7 +4006,7 @@ func (o *SetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4388,11 +4388,11 @@ func (o *GetPageDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPageDataOp
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.ImageWidth = op.ImageWidth
-	o.ImageHeight = op.ImageHeight
+	op.JobID = o.JobID
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.ImageWidth = o.ImageWidth
+	op.ImageHeight = o.ImageHeight
 	return op
 }
 
@@ -4443,11 +4443,11 @@ func (o *GetPageDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPageDataO
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.ImageWidth = op.ImageWidth
-	o.ImageHeight = op.ImageHeight
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.ImageWidth = o.ImageWidth
+	op.ImageHeight = o.ImageHeight
+	op.Return = o.Return
 	return op
 }
 
@@ -4785,9 +4785,9 @@ func (o *GetDeviceStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDevice
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.StatusBuffer = op.StatusBuffer
-	o.BufferSize = op.BufferSize
+	op.FaxPort = o.FaxPort
+	op.StatusBuffer = o.StatusBuffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -4829,9 +4829,9 @@ func (o *GetDeviceStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDevic
 	if o == nil {
 		return op
 	}
-	o.StatusBuffer = op.StatusBuffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.StatusBuffer = o.StatusBuffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -4943,7 +4943,7 @@ func (o *AbortRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
+	op.JobID = o.JobID
 	return op
 }
 
@@ -4978,7 +4978,7 @@ func (o *AbortResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortOperation) *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5301,8 +5301,8 @@ func (o *EnumPortsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOperat
 	if o == nil {
 		return op
 	}
-	o.PortBuffer = op.PortBuffer
-	o.BufferSize = op.BufferSize
+	op.PortBuffer = o.PortBuffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -5347,10 +5347,10 @@ func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOpera
 	if o == nil {
 		return op
 	}
-	o.PortBuffer = op.PortBuffer
-	o.BufferSize = op.BufferSize
-	o.PortsReturned = op.PortsReturned
-	o.Return = op.Return
+	op.PortBuffer = o.PortBuffer
+	op.BufferSize = o.BufferSize
+	op.PortsReturned = o.PortsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -5686,9 +5686,9 @@ func (o *GetPortRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPortOperation)
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.PortBuffer = op.PortBuffer
-	o.BufferSize = op.BufferSize
+	op.FaxPort = o.FaxPort
+	op.PortBuffer = o.PortBuffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -5730,9 +5730,9 @@ func (o *GetPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPortOperation
 	if o == nil {
 		return op
 	}
-	o.PortBuffer = op.PortBuffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.PortBuffer = o.PortBuffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -5884,8 +5884,8 @@ func (o *SetPortRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation)
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.PortInfo = op.PortInfo
+	op.FaxPort = o.FaxPort
+	op.PortInfo = o.PortInfo
 	return op
 }
 
@@ -5921,7 +5921,7 @@ func (o *SetPortResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6271,9 +6271,9 @@ func (o *EnumRoutingMethodsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumRo
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
+	op.FaxPort = o.FaxPort
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
 	return op
 }
 
@@ -6320,10 +6320,10 @@ func (o *EnumRoutingMethodsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumR
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
-	o.PortsReturned = op.PortsReturned
-	o.Return = op.Return
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
+	op.PortsReturned = o.PortsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -6515,9 +6515,9 @@ func (o *EnableRoutingMethodRequest) xxx_ToOp(ctx context.Context, op *xxx_Enabl
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingGUID = op.RoutingGUID
-	o.Enabled = op.Enabled
+	op.FaxPort = o.FaxPort
+	op.RoutingGUID = o.RoutingGUID
+	op.Enabled = o.Enabled
 	return op
 }
 
@@ -6554,7 +6554,7 @@ func (o *EnableRoutingMethodResponse) xxx_ToOp(ctx context.Context, op *xxx_Enab
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6935,10 +6935,10 @@ func (o *GetRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRouting
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingGUID = op.RoutingGUID
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
+	op.FaxPort = o.FaxPort
+	op.RoutingGUID = o.RoutingGUID
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
 	return op
 }
 
@@ -6983,9 +6983,9 @@ func (o *GetRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRoutin
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
-	o.Return = op.Return
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -7244,10 +7244,10 @@ func (o *SetRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRouting
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingGUID = op.RoutingGUID
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
+	op.FaxPort = o.FaxPort
+	op.RoutingGUID = o.RoutingGUID
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
 	return op
 }
 
@@ -7285,7 +7285,7 @@ func (o *SetRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetRoutin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7611,8 +7611,8 @@ func (o *EnumGlobalRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
 	return op
 }
 
@@ -7660,10 +7660,10 @@ func (o *EnumGlobalRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
-	o.MethodsReturned = op.MethodsReturned
-	o.Return = op.Return
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
+	op.MethodsReturned = o.MethodsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -7793,7 +7793,7 @@ func (o *SetGlobalRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetG
 	if o == nil {
 		return op
 	}
-	o.RoutingInfo = op.RoutingInfo
+	op.RoutingInfo = o.RoutingInfo
 	return op
 }
 
@@ -7828,7 +7828,7 @@ func (o *SetGlobalRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8138,8 +8138,8 @@ func (o *GetConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfi
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -8181,9 +8181,9 @@ func (o *GetConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConf
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -8321,7 +8321,7 @@ func (o *SetConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConfi
 	if o == nil {
 		return op
 	}
-	o.FaxConfig = op.FaxConfig
+	op.FaxConfig = o.FaxConfig
 	return op
 }
 
@@ -8356,7 +8356,7 @@ func (o *SetConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetConf
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8697,9 +8697,9 @@ func (o *GetLoggingCategoriesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.NumberCategories = op.NumberCategories
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.NumberCategories = o.NumberCategories
 	return op
 }
 
@@ -8746,10 +8746,10 @@ func (o *GetLoggingCategoriesResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.NumberCategories = op.NumberCategories
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.NumberCategories = o.NumberCategories
+	op.Return = o.Return
 	return op
 }
 
@@ -8959,9 +8959,9 @@ func (o *SetLoggingCategoriesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.NumberCategories = op.NumberCategories
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.NumberCategories = o.NumberCategories
 	return op
 }
 
@@ -8998,7 +8998,7 @@ func (o *SetLoggingCategoriesResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9313,8 +9313,8 @@ func (o *GetTAPILocationsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTAPIL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -9361,9 +9361,9 @@ func (o *GetTAPILocationsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTAPI
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -9555,8 +9555,8 @@ func (o *SetTAPILocationsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTAPIL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -9592,7 +9592,7 @@ func (o *SetTAPILocationsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTAPI
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9904,8 +9904,8 @@ func (o *GetMAPIProfilesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMAPIPr
 	if o == nil {
 		return op
 	}
-	o.MAPIProfiles = op.MAPIProfiles
-	o.BufferSize = op.BufferSize
+	op.MAPIProfiles = o.MAPIProfiles
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -9949,9 +9949,9 @@ func (o *GetMAPIProfilesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMAPIP
 	if o == nil {
 		return op
 	}
-	o.MAPIProfiles = op.MAPIProfiles
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.MAPIProfiles = o.MAPIProfiles
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -10154,9 +10154,9 @@ func (o *StartClientServerRequest) xxx_ToOp(ctx context.Context, op *xxx_StartCl
 	if o == nil {
 		return op
 	}
-	o.MachineName = op.MachineName
-	o.ClientName = op.ClientName
-	o.Context = op.Context
+	op.MachineName = o.MachineName
+	op.ClientName = o.ClientName
+	op.Context = o.Context
 	return op
 }
 
@@ -10193,7 +10193,7 @@ func (o *StartClientServerResponse) xxx_ToOp(ctx context.Context, op *xxx_StartC
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10521,9 +10521,9 @@ func (o *GetSecurityDescriptorRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.ID = op.ID
-	o.FaxSecurityDescriptor = op.FaxSecurityDescriptor
-	o.BufferSize = op.BufferSize
+	op.ID = o.ID
+	op.FaxSecurityDescriptor = o.FaxSecurityDescriptor
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -10566,9 +10566,9 @@ func (o *GetSecurityDescriptorResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.FaxSecurityDescriptor = op.FaxSecurityDescriptor
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.FaxSecurityDescriptor = o.FaxSecurityDescriptor
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -10759,8 +10759,8 @@ func (o *SetSecurityDescriptorRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.FaxSecurityDescriptor = op.FaxSecurityDescriptor
-	o.BufferSize = op.BufferSize
+	op.FaxSecurityDescriptor = o.FaxSecurityDescriptor
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -10796,7 +10796,7 @@ func (o *SetSecurityDescriptorResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10942,8 +10942,8 @@ func (o *GetSecurityDescriptorCountResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Count = op.Count
-	o.Return = op.Return
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 
@@ -11121,7 +11121,7 @@ func (o *AccessCheckRequest) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckOp
 	if o == nil {
 		return op
 	}
-	o.AccessMask = op.AccessMask
+	op.AccessMask = o.AccessMask
 	return op
 }
 
@@ -11160,8 +11160,8 @@ func (o *AccessCheckResponse) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckO
 	if o == nil {
 		return op
 	}
-	o.Access = op.Access
-	o.Return = op.Return
+	op.Access = o.Access
+	op.Return = o.Return
 	return op
 }
 

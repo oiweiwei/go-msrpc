@@ -592,7 +592,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -630,9 +630,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -834,8 +834,8 @@ func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -873,8 +873,8 @@ func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1040,7 +1040,7 @@ func (o *GetRuleTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRuleTypeOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1080,9 +1080,9 @@ func (o *GetRuleTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRuleTypeO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RuleType = op.RuleType
-	o.Return = op.Return
+	op.That = o.That
+	op.RuleType = o.RuleType
+	op.Return = o.Return
 	return op
 }
 
@@ -1285,7 +1285,7 @@ func (o *GetModuleDefinitionNameRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1323,9 +1323,9 @@ func (o *GetModuleDefinitionNameResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleDefinitionName = op.ModuleDefinitionName
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleDefinitionName = o.ModuleDefinitionName
+	op.Return = o.Return
 	return op
 }
 
@@ -1529,8 +1529,8 @@ func (o *SetModuleDefinitionNameRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ModuleDefinitionName = op.ModuleDefinitionName
+	op.This = o.This
+	op.ModuleDefinitionName = o.ModuleDefinitionName
 	return op
 }
 
@@ -1568,8 +1568,8 @@ func (o *SetModuleDefinitionNameResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1769,7 +1769,7 @@ func (o *GetNamespaceRootsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetName
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1807,9 +1807,9 @@ func (o *GetNamespaceRootsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNam
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NamespaceRoots = op.NamespaceRoots
-	o.Return = op.Return
+	op.That = o.That
+	op.NamespaceRoots = o.NamespaceRoots
+	op.Return = o.Return
 	return op
 }
 
@@ -2011,8 +2011,8 @@ func (o *SetNamespaceRootsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetName
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NamespaceRoots = op.NamespaceRoots
+	op.This = o.This
+	op.NamespaceRoots = o.NamespaceRoots
 	return op
 }
 
@@ -2050,8 +2050,8 @@ func (o *SetNamespaceRootsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNam
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2217,7 +2217,7 @@ func (o *GetRuleFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRuleFlags
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2255,9 +2255,9 @@ func (o *GetRuleFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRuleFlag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RuleFlags = op.RuleFlags
-	o.Return = op.Return
+	op.That = o.That
+	op.RuleFlags = o.RuleFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -2425,8 +2425,8 @@ func (o *SetRuleFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRuleFlags
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RuleFlags = op.RuleFlags
+	op.This = o.This
+	op.RuleFlags = o.RuleFlags
 	return op
 }
 
@@ -2464,8 +2464,8 @@ func (o *SetRuleFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetRuleFlag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2665,7 +2665,7 @@ func (o *GetParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetParamete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2703,9 +2703,9 @@ func (o *GetParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetParamet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Parameters = op.Parameters
-	o.Return = op.Return
+	op.That = o.That
+	op.Parameters = o.Parameters
+	op.Return = o.Return
 	return op
 }
 
@@ -2907,8 +2907,8 @@ func (o *SetParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetParamete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -2946,8 +2946,8 @@ func (o *SetParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetParamet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3113,7 +3113,7 @@ func (o *GetLastModifiedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLastMo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3153,9 +3153,9 @@ func (o *GetLastModifiedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLastM
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LastModified = op.LastModified
-	o.Return = op.Return
+	op.That = o.That
+	op.LastModified = o.LastModified
+	op.Return = o.Return
 	return op
 }
 

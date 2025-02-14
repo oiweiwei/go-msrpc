@@ -369,7 +369,7 @@ func (o *GetSerializedBufferRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -407,9 +407,9 @@ func (o *GetSerializedBufferResponse) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.String = op.String
-	o.Return = op.Return
+	op.That = o.That
+	op.String = o.String
+	op.Return = o.Return
 	return op
 }
 
@@ -638,7 +638,7 @@ func (o *GetObjectIdentityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObje
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -686,11 +686,11 @@ func (o *GetObjectIdentityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObj
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.GUID = op.GUID
-	o.AppDomainID = op.AppDomainID
-	o.CCW = op.CCW
-	o.Return = op.Return
+	op.That = o.That
+	op.GUID = o.GUID
+	op.AppDomainID = o.AppDomainID
+	op.CCW = o.CCW
+	op.Return = o.Return
 	return op
 }
 

@@ -366,10 +366,10 @@ func (o *ExportPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportPar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionID = op.PartitionID
-	o.InstallerPackage = op.InstallerPackage
-	o.Flags = op.Flags
+	op.This = o.This
+	op.PartitionID = o.PartitionID
+	op.InstallerPackage = o.InstallerPackage
+	op.Flags = o.Flags
 	return op
 }
 
@@ -409,8 +409,8 @@ func (o *ExportPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportPa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

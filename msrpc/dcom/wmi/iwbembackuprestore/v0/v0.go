@@ -341,9 +341,9 @@ func (o *BackupRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupToFile = op.BackupToFile
-	o.Flags = op.Flags
+	op.This = o.This
+	op.BackupToFile = o.BackupToFile
+	op.Flags = o.Flags
 	return op
 }
 
@@ -382,8 +382,8 @@ func (o *BackupResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -579,9 +579,9 @@ func (o *RestoreRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RestoreFromFile = op.RestoreFromFile
-	o.Flags = op.Flags
+	op.This = o.This
+	op.RestoreFromFile = o.RestoreFromFile
+	op.Flags = o.Flags
 	return op
 }
 
@@ -620,8 +620,8 @@ func (o *RestoreResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

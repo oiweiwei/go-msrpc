@@ -4741,7 +4741,7 @@ func (o *CreateTunnelRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateTunnel
 	if o == nil {
 		return op
 	}
-	o.Packet = op.Packet
+	op.Packet = o.Packet
 	return op
 }
 
@@ -4797,10 +4797,10 @@ func (o *CreateTunnelResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateTunne
 	if o == nil {
 		return op
 	}
-	o.PacketResponse = op.PacketResponse
-	o.TunnelContext = op.TunnelContext
-	o.TunnelID = op.TunnelID
-	o.Return = op.Return
+	op.PacketResponse = o.PacketResponse
+	op.TunnelContext = o.TunnelContext
+	op.TunnelID = o.TunnelID
+	op.Return = o.Return
 	return op
 }
 
@@ -5005,8 +5005,8 @@ func (o *AuthorizeTunnelRequest) xxx_ToOp(ctx context.Context, op *xxx_Authorize
 	if o == nil {
 		return op
 	}
-	o.TunnelContext = op.TunnelContext
-	o.Packet = op.Packet
+	op.TunnelContext = o.TunnelContext
+	op.Packet = o.Packet
 	return op
 }
 
@@ -5046,8 +5046,8 @@ func (o *AuthorizeTunnelResponse) xxx_ToOp(ctx context.Context, op *xxx_Authoriz
 	if o == nil {
 		return op
 	}
-	o.PacketResponse = op.PacketResponse
-	o.Return = op.Return
+	op.PacketResponse = o.PacketResponse
+	op.Return = o.Return
 	return op
 }
 
@@ -5277,9 +5277,9 @@ func (o *MakeTunnelCallRequest) xxx_ToOp(ctx context.Context, op *xxx_MakeTunnel
 	if o == nil {
 		return op
 	}
-	o.TunnelContext = op.TunnelContext
-	o.ProcID = op.ProcID
-	o.Packet = op.Packet
+	op.TunnelContext = o.TunnelContext
+	op.ProcID = o.ProcID
+	op.Packet = o.Packet
 	return op
 }
 
@@ -5322,8 +5322,8 @@ func (o *MakeTunnelCallResponse) xxx_ToOp(ctx context.Context, op *xxx_MakeTunne
 	if o == nil {
 		return op
 	}
-	o.PacketResponse = op.PacketResponse
-	o.Return = op.Return
+	op.PacketResponse = o.PacketResponse
+	op.Return = o.Return
 	return op
 }
 
@@ -5518,8 +5518,8 @@ func (o *CreateChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateChann
 	if o == nil {
 		return op
 	}
-	o.TunnelContext = op.TunnelContext
-	o.EndpointInfo = op.EndpointInfo
+	op.TunnelContext = o.TunnelContext
+	op.EndpointInfo = o.EndpointInfo
 	return op
 }
 
@@ -5565,9 +5565,9 @@ func (o *CreateChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateChan
 	if o == nil {
 		return op
 	}
-	o.ChannelContext = op.ChannelContext
-	o.ChannelID = op.ChannelID
-	o.Return = op.Return
+	op.ChannelContext = o.ChannelContext
+	op.ChannelID = o.ChannelID
+	op.Return = o.Return
 	return op
 }
 
@@ -5711,7 +5711,7 @@ func (o *CloseChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseChannel
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -5749,8 +5749,8 @@ func (o *CloseChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseChanne
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -5893,7 +5893,7 @@ func (o *CloseTunnelRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseTunnelOp
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -5931,8 +5931,8 @@ func (o *CloseTunnelResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseTunnelO
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -6080,7 +6080,7 @@ func (o *SetupReceivePipeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetupRec
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
+	op.Message = o.Message
 	return op
 }
 
@@ -6115,7 +6115,7 @@ func (o *SetupReceivePipeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetupRe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6262,7 +6262,7 @@ func (o *SendToServerRequest) xxx_ToOp(ctx context.Context, op *xxx_SendToServer
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
+	op.Message = o.Message
 	return op
 }
 
@@ -6297,7 +6297,7 @@ func (o *SendToServerResponse) xxx_ToOp(ctx context.Context, op *xxx_SendToServe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

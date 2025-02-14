@@ -393,7 +393,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -431,9 +431,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -636,7 +636,7 @@ func (o *GetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDisplay
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -674,9 +674,9 @@ func (o *GetDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDispla
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DisplayName = op.DisplayName
-	o.Return = op.Return
+	op.That = o.That
+	op.DisplayName = o.DisplayName
+	op.Return = o.Return
 	return op
 }
 
@@ -879,7 +879,7 @@ func (o *GetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -917,9 +917,9 @@ func (o *GetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Description = op.Description
-	o.Return = op.Return
+	op.That = o.That
+	op.Description = o.Description
+	op.Return = o.Return
 	return op
 }
 
@@ -1122,7 +1122,7 @@ func (o *GetUniqueIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1162,9 +1162,9 @@ func (o *GetUniqueIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UniqueID = op.UniqueID
-	o.Return = op.Return
+	op.That = o.That
+	op.UniqueID = o.UniqueID
+	op.Return = o.Return
 	return op
 }
 

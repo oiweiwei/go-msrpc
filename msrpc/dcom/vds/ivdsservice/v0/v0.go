@@ -695,7 +695,7 @@ func (o *IsServiceReadyRequest) xxx_ToOp(ctx context.Context, op *xxx_IsServiceR
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -732,8 +732,8 @@ func (o *IsServiceReadyResponse) xxx_ToOp(ctx context.Context, op *xxx_IsService
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -888,7 +888,7 @@ func (o *WaitForServiceReadyRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitF
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -925,8 +925,8 @@ func (o *WaitForServiceReadyResponse) xxx_ToOp(ctx context.Context, op *xxx_Wait
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1107,7 +1107,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1145,9 +1145,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServiceProperty = op.ServiceProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.ServiceProperty = o.ServiceProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -1365,8 +1365,8 @@ func (o *QueryProvidersRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryProvi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Masks = op.Masks
+	op.This = o.This
+	op.Masks = o.Masks
 	return op
 }
 
@@ -1409,9 +1409,9 @@ func (o *QueryProvidersResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryProv
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -1614,7 +1614,7 @@ func (o *QueryUnallocatedDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1656,9 +1656,9 @@ func (o *QueryUnallocatedDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -1899,9 +1899,9 @@ func (o *GetObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectID = op.ObjectID
-	o.Type = op.Type
+	op.This = o.This
+	op.ObjectID = o.ObjectID
+	op.Type = o.Type
 	return op
 }
 
@@ -1944,9 +1944,9 @@ func (o *GetObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObjectOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ObjectUnknown = op.ObjectUnknown
-	o.Return = op.Return
+	op.That = o.That
+	op.ObjectUnknown = o.ObjectUnknown
+	op.Return = o.Return
 	return op
 }
 
@@ -2189,9 +2189,9 @@ func (o *QueryDriveLettersRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryDr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FirstLetter = op.FirstLetter
-	o.Count = op.Count
+	op.This = o.This
+	op.FirstLetter = o.FirstLetter
+	op.Count = o.Count
 	return op
 }
 
@@ -2233,9 +2233,9 @@ func (o *QueryDriveLettersResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryD
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DriveLetterPropertyArray = op.DriveLetterPropertyArray
-	o.Return = op.Return
+	op.That = o.That
+	op.DriveLetterPropertyArray = o.DriveLetterPropertyArray
+	op.Return = o.Return
 	return op
 }
 
@@ -2487,7 +2487,7 @@ func (o *QueryFileSystemTypesRequest) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2531,10 +2531,10 @@ func (o *QueryFileSystemTypesResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemTypeProperties = op.FileSystemTypeProperties
-	o.NumberOfFileSystems = op.NumberOfFileSystems
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemTypeProperties = o.FileSystemTypeProperties
+	op.NumberOfFileSystems = o.NumberOfFileSystems
+	op.Return = o.Return
 	return op
 }
 
@@ -2689,7 +2689,7 @@ func (o *ReenumerateRequest) xxx_ToOp(ctx context.Context, op *xxx_ReenumerateOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2726,8 +2726,8 @@ func (o *ReenumerateResponse) xxx_ToOp(ctx context.Context, op *xxx_ReenumerateO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2880,7 +2880,7 @@ func (o *RefreshRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2917,8 +2917,8 @@ func (o *RefreshResponse) xxx_ToOp(ctx context.Context, op *xxx_RefreshOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3073,7 +3073,7 @@ func (o *CleanupObsoleteMountPointsRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3110,8 +3110,8 @@ func (o *CleanupObsoleteMountPointsResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3327,8 +3327,8 @@ func (o *AdviseRequest) xxx_ToOp(ctx context.Context, op *xxx_AdviseOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Sink = op.Sink
+	op.This = o.This
+	op.Sink = o.Sink
 	return op
 }
 
@@ -3371,9 +3371,9 @@ func (o *AdviseResponse) xxx_ToOp(ctx context.Context, op *xxx_AdviseOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Cookie = op.Cookie
-	o.Return = op.Return
+	op.That = o.That
+	op.Cookie = o.Cookie
+	op.Return = o.Return
 	return op
 }
 
@@ -3542,8 +3542,8 @@ func (o *UnadviseRequest) xxx_ToOp(ctx context.Context, op *xxx_UnadviseOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Cookie = op.Cookie
+	op.This = o.This
+	op.Cookie = o.Cookie
 	return op
 }
 
@@ -3581,8 +3581,8 @@ func (o *UnadviseResponse) xxx_ToOp(ctx context.Context, op *xxx_UnadviseOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3735,7 +3735,7 @@ func (o *RebootRequest) xxx_ToOp(ctx context.Context, op *xxx_RebootOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3772,8 +3772,8 @@ func (o *RebootResponse) xxx_ToOp(ctx context.Context, op *xxx_RebootOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3940,8 +3940,8 @@ func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3979,8 +3979,8 @@ func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4147,8 +4147,8 @@ func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4186,8 +4186,8 @@ func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

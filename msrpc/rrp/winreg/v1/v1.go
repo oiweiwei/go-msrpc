@@ -1972,8 +1972,8 @@ func (o *OpenClassesRootRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenClass
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -2012,8 +2012,8 @@ func (o *OpenClassesRootResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenClas
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -2188,8 +2188,8 @@ func (o *OpenCurrentUserRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenCurre
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -2228,8 +2228,8 @@ func (o *OpenCurrentUserResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenCurr
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -2404,8 +2404,8 @@ func (o *OpenLocalMachineRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenLoca
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -2444,8 +2444,8 @@ func (o *OpenLocalMachineResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenLoc
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -2618,8 +2618,8 @@ func (o *OpenPerformanceDataRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenP
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -2658,8 +2658,8 @@ func (o *OpenPerformanceDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Open
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -2834,8 +2834,8 @@ func (o *OpenUsersRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenUsersOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -2874,8 +2874,8 @@ func (o *OpenUsersResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenUsersOpera
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -3018,7 +3018,7 @@ func (o *BaseRegCloseKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegCl
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
+	op.Key = o.Key
 	return op
 }
 
@@ -3058,8 +3058,8 @@ func (o *BaseRegCloseKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegC
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -3443,13 +3443,13 @@ func (o *BaseRegCreateKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegC
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.Class = op.Class
-	o.Options = op.Options
-	o.DesiredAccess = op.DesiredAccess
-	o.SecurityAttributes = op.SecurityAttributes
-	o.Disposition = op.Disposition
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.Class = o.Class
+	op.Options = o.Options
+	op.DesiredAccess = o.DesiredAccess
+	op.SecurityAttributes = o.SecurityAttributes
+	op.Disposition = o.Disposition
 	return op
 }
 
@@ -3508,9 +3508,9 @@ func (o *BaseRegCreateKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.ResultKey = op.ResultKey
-	o.Disposition = op.Disposition
-	o.Return = op.Return
+	op.ResultKey = o.ResultKey
+	op.Disposition = o.Disposition
+	op.Return = o.Return
 	return op
 }
 
@@ -3664,8 +3664,8 @@ func (o *BaseRegDeleteKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegD
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
+	op.Key = o.Key
+	op.SubKey = o.SubKey
 	return op
 }
 
@@ -3701,7 +3701,7 @@ func (o *BaseRegDeleteKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3854,8 +3854,8 @@ func (o *BaseRegDeleteValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueName = op.ValueName
+	op.Key = o.Key
+	op.ValueName = o.ValueName
 	return op
 }
 
@@ -3891,7 +3891,7 @@ func (o *BaseRegDeleteValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4283,11 +4283,11 @@ func (o *BaseRegEnumKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegEnu
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Index = op.Index
-	o.NameIn = op.NameIn
-	o.ClassIn = op.ClassIn
-	o.LastWriteTime = op.LastWriteTime
+	op.Key = o.Key
+	op.Index = o.Index
+	op.NameIn = o.NameIn
+	op.ClassIn = o.ClassIn
+	op.LastWriteTime = o.LastWriteTime
 	return op
 }
 
@@ -4335,10 +4335,10 @@ func (o *BaseRegEnumKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegEn
 	if o == nil {
 		return op
 	}
-	o.NameOut = op.NameOut
-	o.ClassOut = op.ClassOut
-	o.LastWriteTime = op.LastWriteTime
-	o.Return = op.Return
+	op.NameOut = o.NameOut
+	op.ClassOut = o.ClassOut
+	op.LastWriteTime = o.LastWriteTime
+	op.Return = o.Return
 	return op
 }
 
@@ -4937,13 +4937,13 @@ func (o *BaseRegEnumValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegE
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Index = op.Index
-	o.ValueNameIn = op.ValueNameIn
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
-	o.Length = op.Length
+	op.Key = o.Key
+	op.Index = o.Index
+	op.ValueNameIn = o.ValueNameIn
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
+	op.Length = o.Length
 	return op
 }
 
@@ -4997,12 +4997,12 @@ func (o *BaseRegEnumValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.ValueNameOut = op.ValueNameOut
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
-	o.Length = op.Length
-	o.Return = op.Return
+	op.ValueNameOut = o.ValueNameOut
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
+	op.Length = o.Length
+	op.Return = o.Return
 	return op
 }
 
@@ -5128,7 +5128,7 @@ func (o *BaseRegFlushKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegFl
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
+	op.Key = o.Key
 	return op
 }
 
@@ -5163,7 +5163,7 @@ func (o *BaseRegFlushKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegF
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5365,9 +5365,9 @@ func (o *BaseRegGetKeySecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_Bas
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptorIn = op.SecurityDescriptorIn
+	op.Key = o.Key
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptorIn = o.SecurityDescriptorIn
 	return op
 }
 
@@ -5407,8 +5407,8 @@ func (o *BaseRegGetKeySecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_Ba
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptorOut = op.SecurityDescriptorOut
-	o.Return = op.Return
+	op.SecurityDescriptorOut = o.SecurityDescriptorOut
+	op.Return = o.Return
 	return op
 }
 
@@ -5597,9 +5597,9 @@ func (o *BaseRegLoadKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegLoa
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.File = op.File
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.File = o.File
 	return op
 }
 
@@ -5636,7 +5636,7 @@ func (o *BaseRegLoadKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegLo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5859,10 +5859,10 @@ func (o *BaseRegOpenKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegOpe
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.Options = op.Options
-	o.DesiredAccess = op.DesiredAccess
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.Options = o.Options
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -5903,8 +5903,8 @@ func (o *BaseRegOpenKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegOp
 	if o == nil {
 		return op
 	}
-	o.ResultKey = op.ResultKey
-	o.Return = op.Return
+	op.ResultKey = o.ResultKey
+	op.Return = o.Return
 	return op
 }
 
@@ -6199,8 +6199,8 @@ func (o *BaseRegQueryInfoKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseR
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ClassIn = op.ClassIn
+	op.Key = o.Key
+	op.ClassIn = o.ClassIn
 	return op
 }
 
@@ -6265,16 +6265,16 @@ func (o *BaseRegQueryInfoKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_Base
 	if o == nil {
 		return op
 	}
-	o.ClassOut = op.ClassOut
-	o.SubKeysCount = op.SubKeysCount
-	o.MaxSubKeyLength = op.MaxSubKeyLength
-	o.MaxClassLength = op.MaxClassLength
-	o.ValuesCount = op.ValuesCount
-	o.MaxValueNameLength = op.MaxValueNameLength
-	o.MaxValueLength = op.MaxValueLength
-	o.SecurityDescriptorLength = op.SecurityDescriptorLength
-	o.LastWriteTime = op.LastWriteTime
-	o.Return = op.Return
+	op.ClassOut = o.ClassOut
+	op.SubKeysCount = o.SubKeysCount
+	op.MaxSubKeyLength = o.MaxSubKeyLength
+	op.MaxClassLength = o.MaxClassLength
+	op.ValuesCount = o.ValuesCount
+	op.MaxValueNameLength = o.MaxValueNameLength
+	op.MaxValueLength = o.MaxValueLength
+	op.SecurityDescriptorLength = o.SecurityDescriptorLength
+	op.LastWriteTime = o.LastWriteTime
+	op.Return = o.Return
 	return op
 }
 
@@ -6845,12 +6845,12 @@ func (o *BaseRegQueryValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueName = op.ValueName
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
-	o.Length = op.Length
+	op.Key = o.Key
+	op.ValueName = o.ValueName
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
+	op.Length = o.Length
 	return op
 }
 
@@ -6910,11 +6910,11 @@ func (o *BaseRegQueryValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	if o == nil {
 		return op
 	}
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
-	o.Length = op.Length
-	o.Return = op.Return
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
+	op.Length = o.Length
+	op.Return = o.Return
 	return op
 }
 
@@ -7136,10 +7136,10 @@ func (o *BaseRegReplaceKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.NewFile = op.NewFile
-	o.OldFile = op.OldFile
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.NewFile = o.NewFile
+	op.OldFile = o.OldFile
 	return op
 }
 
@@ -7177,7 +7177,7 @@ func (o *BaseRegReplaceKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7370,9 +7370,9 @@ func (o *BaseRegRestoreKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.File = op.File
-	o.Flags = op.Flags
+	op.Key = o.Key
+	op.File = o.File
+	op.Flags = o.Flags
 	return op
 }
 
@@ -7409,7 +7409,7 @@ func (o *BaseRegRestoreKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7611,9 +7611,9 @@ func (o *BaseRegSaveKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSav
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.File = op.File
-	o.SecurityAttributes = op.SecurityAttributes
+	op.Key = o.Key
+	op.File = o.File
+	op.SecurityAttributes = o.SecurityAttributes
 	return op
 }
 
@@ -7650,7 +7650,7 @@ func (o *BaseRegSaveKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSa
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7820,9 +7820,9 @@ func (o *BaseRegSetKeySecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_Bas
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.Key = o.Key
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -7859,7 +7859,7 @@ func (o *BaseRegSetKeySecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_Ba
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8093,11 +8093,11 @@ func (o *BaseRegSetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSe
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueName = op.ValueName
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
+	op.Key = o.Key
+	op.ValueName = o.ValueName
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -8136,7 +8136,7 @@ func (o *BaseRegSetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegS
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8287,8 +8287,8 @@ func (o *BaseRegUnloadKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegU
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
+	op.Key = o.Key
+	op.SubKey = o.SubKey
 	return op
 }
 
@@ -8324,7 +8324,7 @@ func (o *BaseRegUnloadKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8458,7 +8458,7 @@ func (o *BaseRegGetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
+	op.Key = o.Key
 	return op
 }
 
@@ -8496,8 +8496,8 @@ func (o *BaseRegGetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -8672,8 +8672,8 @@ func (o *OpenCurrentConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenCur
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -8711,8 +8711,8 @@ func (o *OpenCurrentConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenCu
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -9246,11 +9246,11 @@ func (o *BaseRegQueryMultipleValuesRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueListIn = op.ValueListIn
-	o.ValsLength = op.ValsLength
-	o.Buffer = op.Buffer
-	o.TotalSize = op.TotalSize
+	op.Key = o.Key
+	op.ValueListIn = o.ValueListIn
+	op.ValsLength = o.ValsLength
+	op.Buffer = o.Buffer
+	op.TotalSize = o.TotalSize
 	return op
 }
 
@@ -9297,10 +9297,10 @@ func (o *BaseRegQueryMultipleValuesResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.ValueListOut = op.ValueListOut
-	o.Buffer = op.Buffer
-	o.TotalSize = op.TotalSize
-	o.Return = op.Return
+	op.ValueListOut = o.ValueListOut
+	op.Buffer = o.Buffer
+	op.TotalSize = o.TotalSize
+	op.Return = o.Return
 	return op
 }
 
@@ -9536,10 +9536,10 @@ func (o *BaseRegSaveKeyExRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegS
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.File = op.File
-	o.SecurityAttributes = op.SecurityAttributes
-	o.Flags = op.Flags
+	op.Key = o.Key
+	op.File = o.File
+	op.SecurityAttributes = o.SecurityAttributes
+	op.Flags = o.Flags
 	return op
 }
 
@@ -9577,7 +9577,7 @@ func (o *BaseRegSaveKeyExResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseReg
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9749,8 +9749,8 @@ func (o *OpenPerformanceTextRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenP
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -9788,8 +9788,8 @@ func (o *OpenPerformanceTextResponse) xxx_ToOp(ctx context.Context, op *xxx_Open
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -9964,8 +9964,8 @@ func (o *OpenPerformanceNlsTextRequest) xxx_ToOp(ctx context.Context, op *xxx_Op
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -10004,8 +10004,8 @@ func (o *OpenPerformanceNlsTextResponse) xxx_ToOp(ctx context.Context, op *xxx_O
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.Return = op.Return
+	op.Key = o.Key
+	op.Return = o.Return
 	return op
 }
 
@@ -10533,11 +10533,11 @@ func (o *BaseRegQueryMultipleValues2Request) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.ValueListIn = op.ValueListIn
-	o.ValsLength = op.ValsLength
-	o.Buffer = op.Buffer
-	o.TotalSize = op.TotalSize
+	op.Key = o.Key
+	op.ValueListIn = o.ValueListIn
+	op.ValsLength = o.ValsLength
+	op.Buffer = o.Buffer
+	op.TotalSize = o.TotalSize
 	return op
 }
 
@@ -10586,10 +10586,10 @@ func (o *BaseRegQueryMultipleValues2Response) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.ValueListOut = op.ValueListOut
-	o.Buffer = op.Buffer
-	o.RequiredSize = op.RequiredSize
-	o.Return = op.Return
+	op.ValueListOut = o.ValueListOut
+	op.Buffer = o.Buffer
+	op.RequiredSize = o.RequiredSize
+	op.Return = o.Return
 	return op
 }
 
@@ -10786,9 +10786,9 @@ func (o *BaseRegDeleteKeyExRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRe
 	if o == nil {
 		return op
 	}
-	o.Key = op.Key
-	o.SubKey = op.SubKey
-	o.AccessMask = op.AccessMask
+	op.Key = o.Key
+	op.SubKey = o.SubKey
+	op.AccessMask = o.AccessMask
 	return op
 }
 
@@ -10825,7 +10825,7 @@ func (o *BaseRegDeleteKeyExResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

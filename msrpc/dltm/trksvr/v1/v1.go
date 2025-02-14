@@ -336,7 +336,7 @@ func (o *ServerMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerMessa
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
+	op.Message = o.Message
 	return op
 }
 
@@ -375,8 +375,8 @@ func (o *ServerMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerMess
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
-	o.Return = op.Return
+	op.Message = o.Message
+	op.Return = o.Return
 	return op
 }
 
@@ -531,7 +531,7 @@ func (o *ServerMessageCallbackRequest) xxx_ToOp(ctx context.Context, op *xxx_Ser
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
+	op.Message = o.Message
 	return op
 }
 
@@ -569,8 +569,8 @@ func (o *ServerMessageCallbackResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
-	o.Return = op.Return
+	op.Message = o.Message
+	op.Return = o.Return
 	return op
 }
 

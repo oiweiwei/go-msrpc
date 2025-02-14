@@ -407,9 +407,9 @@ func (o *GenerateClusterLogRequest) xxx_ToOp(ctx context.Context, op *xxx_Genera
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SpanMinutes = op.SpanMinutes
-	o.Flags = op.Flags
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
+	op.Flags = o.Flags
 	return op
 }
 
@@ -456,9 +456,9 @@ func (o *GenerateClusterLogResponse) xxx_ToOp(ctx context.Context, op *xxx_Gener
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFilePath = op.LogFilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
 	return op
 }
 
@@ -693,9 +693,9 @@ func (o *GenerateClusterHealthLogRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SpanMinutes = op.SpanMinutes
-	o.Flags = op.Flags
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
+	op.Flags = o.Flags
 	return op
 }
 
@@ -737,9 +737,9 @@ func (o *GenerateClusterHealthLogResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFilePath = op.LogFilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
 	return op
 }
 

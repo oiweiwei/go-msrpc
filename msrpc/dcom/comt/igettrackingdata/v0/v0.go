@@ -428,7 +428,7 @@ func (o *GetContainerDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConta
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -472,10 +472,10 @@ func (o *GetContainerDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCont
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Containers = op.Containers
-	o.ContainerData = op.ContainerData
-	o.Return = op.Return
+	op.That = o.That
+	op.Containers = o.Containers
+	op.ContainerData = o.ContainerData
+	op.Return = o.Return
 	return op
 }
 
@@ -743,8 +743,8 @@ func (o *GetComponentDataByContainerRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
+	op.This = o.This
+	op.ContainerID = o.ContainerID
 	return op
 }
 
@@ -789,10 +789,10 @@ func (o *GetComponentDataByContainerResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Components = op.Components
-	o.ComponentData = op.ComponentData
-	o.Return = op.Return
+	op.That = o.That
+	op.Components = o.Components
+	op.ComponentData = o.ComponentData
+	op.Return = o.Return
 	return op
 }
 
@@ -1035,9 +1035,9 @@ func (o *GetComponentDataByContainerAndClassIDRequest) xxx_ToOp(ctx context.Cont
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
-	o.ClassID = op.ClassID
+	op.This = o.This
+	op.ContainerID = o.ContainerID
+	op.ClassID = o.ClassID
 	return op
 }
 
@@ -1079,9 +1079,9 @@ func (o *GetComponentDataByContainerAndClassIDResponse) xxx_ToOp(ctx context.Con
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ComponentData = op.ComponentData
-	o.Return = op.Return
+	op.That = o.That
+	op.ComponentData = o.ComponentData
+	op.Return = o.Return
 	return op
 }
 

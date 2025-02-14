@@ -3114,7 +3114,7 @@ func (o *CloseRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
+	op.Object = o.Object
 	return op
 }
 
@@ -3150,8 +3150,8 @@ func (o *CloseResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *x
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.Return = op.Return
+	op.Object = o.Object
+	op.Return = o.Return
 	return op
 }
 
@@ -3350,9 +3350,9 @@ func (o *OpenPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOper
 	if o == nil {
 		return op
 	}
-	o.SystemName = op.SystemName
-	o.ObjectAttributes = op.ObjectAttributes
-	o.DesiredAccess = op.DesiredAccess
+	op.SystemName = o.SystemName
+	op.ObjectAttributes = o.ObjectAttributes
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -3390,8 +3390,8 @@ func (o *OpenPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOpe
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Return = op.Return
+	op.Policy = o.Policy
+	op.Return = o.Return
 	return op
 }
 
@@ -3745,12 +3745,12 @@ func (o *LookupNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupNamesOp
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Count = op.Count
-	o.Names = op.Names
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
+	op.Policy = o.Policy
+	op.Count = o.Count
+	op.Names = o.Names
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
 	return op
 }
 
@@ -3801,10 +3801,10 @@ func (o *LookupNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupNamesO
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -4106,11 +4106,11 @@ func (o *LookupSIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupSIDsOper
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.SIDEnumBuffer = op.SIDEnumBuffer
-	o.TranslatedNames = op.TranslatedNames
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
+	op.Policy = o.Policy
+	op.SIDEnumBuffer = o.SIDEnumBuffer
+	op.TranslatedNames = o.TranslatedNames
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
 	return op
 }
 
@@ -4159,10 +4159,10 @@ func (o *LookupSIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupSIDsOpe
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedNames = op.TranslatedNames
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedNames = o.TranslatedNames
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -4363,9 +4363,9 @@ func (o *OpenPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2Op
 	if o == nil {
 		return op
 	}
-	o.SystemName = op.SystemName
-	o.ObjectAttributes = op.ObjectAttributes
-	o.DesiredAccess = op.DesiredAccess
+	op.SystemName = o.SystemName
+	op.ObjectAttributes = o.ObjectAttributes
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -4403,8 +4403,8 @@ func (o *OpenPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2O
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Return = op.Return
+	op.Policy = o.Policy
+	op.Return = o.Return
 	return op
 }
 
@@ -4772,9 +4772,9 @@ func (o *GetUserNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameOp
 	if o == nil {
 		return op
 	}
-	o.SystemName = op.SystemName
-	o.UserName = op.UserName
-	o.DomainName = op.DomainName
+	op.SystemName = o.SystemName
+	op.UserName = o.UserName
+	op.DomainName = o.DomainName
 	return op
 }
 
@@ -4819,9 +4819,9 @@ func (o *GetUserNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameO
 	if o == nil {
 		return op
 	}
-	o.UserName = op.UserName
-	o.DomainName = op.DomainName
-	o.Return = op.Return
+	op.UserName = o.UserName
+	op.DomainName = o.DomainName
+	op.Return = o.Return
 	return op
 }
 
@@ -5154,13 +5154,13 @@ func (o *LookupSids2Request) xxx_ToOp(ctx context.Context, op *xxx_LookupSids2Op
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.SIDEnumBuffer = op.SIDEnumBuffer
-	o.TranslatedNames = op.TranslatedNames
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
-	o.LookupOptions = op.LookupOptions
-	o.ClientRevision = op.ClientRevision
+	op.Policy = o.Policy
+	op.SIDEnumBuffer = o.SIDEnumBuffer
+	op.TranslatedNames = o.TranslatedNames
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
+	op.LookupOptions = o.LookupOptions
+	op.ClientRevision = o.ClientRevision
 	return op
 }
 
@@ -5211,10 +5211,10 @@ func (o *LookupSids2Response) xxx_ToOp(ctx context.Context, op *xxx_LookupSids2O
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedNames = op.TranslatedNames
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedNames = o.TranslatedNames
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -5602,14 +5602,14 @@ func (o *LookupNames2Request) xxx_ToOp(ctx context.Context, op *xxx_LookupNames2
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Count = op.Count
-	o.Names = op.Names
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
-	o.LookupOptions = op.LookupOptions
-	o.ClientRevision = op.ClientRevision
+	op.Policy = o.Policy
+	op.Count = o.Count
+	op.Names = o.Names
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
+	op.LookupOptions = o.LookupOptions
+	op.ClientRevision = o.ClientRevision
 	return op
 }
 
@@ -5662,10 +5662,10 @@ func (o *LookupNames2Response) xxx_ToOp(ctx context.Context, op *xxx_LookupNames
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -6053,14 +6053,14 @@ func (o *LookupNames3Request) xxx_ToOp(ctx context.Context, op *xxx_LookupNames3
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Count = op.Count
-	o.Names = op.Names
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
-	o.LookupOptions = op.LookupOptions
-	o.ClientRevision = op.ClientRevision
+	op.Policy = o.Policy
+	op.Count = o.Count
+	op.Names = o.Names
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
+	op.LookupOptions = o.LookupOptions
+	op.ClientRevision = o.ClientRevision
 	return op
 }
 
@@ -6113,10 +6113,10 @@ func (o *LookupNames3Response) xxx_ToOp(ctx context.Context, op *xxx_LookupNames
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -6426,12 +6426,12 @@ func (o *LookupSids3Request) xxx_ToOp(ctx context.Context, op *xxx_LookupSids3Op
 	if o == nil {
 		return op
 	}
-	o.SIDEnumBuffer = op.SIDEnumBuffer
-	o.TranslatedNames = op.TranslatedNames
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
-	o.LookupOptions = op.LookupOptions
-	o.ClientRevision = op.ClientRevision
+	op.SIDEnumBuffer = o.SIDEnumBuffer
+	op.TranslatedNames = o.TranslatedNames
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
+	op.LookupOptions = o.LookupOptions
+	op.ClientRevision = o.ClientRevision
 	return op
 }
 
@@ -6481,10 +6481,10 @@ func (o *LookupSids3Response) xxx_ToOp(ctx context.Context, op *xxx_LookupSids3O
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedNames = op.TranslatedNames
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedNames = o.TranslatedNames
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -6887,13 +6887,13 @@ func (o *LookupNames4Request) xxx_ToOp(ctx context.Context, op *xxx_LookupNames4
 	if o == nil {
 		return op
 	}
-	o.Count = op.Count
-	o.Names = op.Names
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.LookupLevel = op.LookupLevel
-	o.MappedCount = op.MappedCount
-	o.LookupOptions = op.LookupOptions
-	o.ClientRevision = op.ClientRevision
+	op.Count = o.Count
+	op.Names = o.Names
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.LookupLevel = o.LookupLevel
+	op.MappedCount = o.MappedCount
+	op.LookupOptions = o.LookupOptions
+	op.ClientRevision = o.ClientRevision
 	return op
 }
 
@@ -6946,10 +6946,10 @@ func (o *LookupNames4Response) xxx_ToOp(ctx context.Context, op *xxx_LookupNames
 	if o == nil {
 		return op
 	}
-	o.ReferencedDomains = op.ReferencedDomains
-	o.TranslatedSIDs = op.TranslatedSIDs
-	o.MappedCount = op.MappedCount
-	o.Return = op.Return
+	op.ReferencedDomains = o.ReferencedDomains
+	op.TranslatedSIDs = o.TranslatedSIDs
+	op.MappedCount = o.MappedCount
+	op.Return = o.Return
 	return op
 }
 

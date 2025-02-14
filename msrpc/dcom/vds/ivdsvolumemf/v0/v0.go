@@ -555,7 +555,7 @@ func (o *GetFileSystemPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -595,9 +595,9 @@ func (o *GetFileSystemPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemProperty = op.FileSystemProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemProperty = o.FileSystemProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -895,13 +895,13 @@ func (o *FormatRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
-	o.Label = op.Label
-	o.UnitAllocationSize = op.UnitAllocationSize
-	o.Force = op.Force
-	o.QuickFormat = op.QuickFormat
-	o.EnableCompression = op.EnableCompression
+	op.This = o.This
+	op.Type = o.Type
+	op.Label = o.Label
+	op.UnitAllocationSize = o.UnitAllocationSize
+	op.Force = o.Force
+	op.QuickFormat = o.QuickFormat
+	op.EnableCompression = o.EnableCompression
 	return op
 }
 
@@ -948,9 +948,9 @@ func (o *FormatResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1183,8 +1183,8 @@ func (o *AddAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_AddAccessPa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -1222,8 +1222,8 @@ func (o *AddAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_AddAccessP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1482,7 +1482,7 @@ func (o *QueryAccessPathsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryAcc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1525,10 +1525,10 @@ func (o *QueryAccessPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryAc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PathArray = op.PathArray
-	o.NumberOfAccessPaths = op.NumberOfAccessPaths
-	o.Return = op.Return
+	op.That = o.That
+	op.PathArray = o.PathArray
+	op.NumberOfAccessPaths = o.NumberOfAccessPaths
+	op.Return = o.Return
 	return op
 }
 
@@ -1781,7 +1781,7 @@ func (o *QueryReparsePointsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryR
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1824,10 +1824,10 @@ func (o *QueryReparsePointsResponse) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReparsePointProperties = op.ReparsePointProperties
-	o.NumberOfReparsePointProperties = op.NumberOfReparsePointProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.ReparsePointProperties = o.ReparsePointProperties
+	op.NumberOfReparsePointProperties = o.NumberOfReparsePointProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -2077,9 +2077,9 @@ func (o *DeleteAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Force = op.Force
+	op.This = o.This
+	op.Path = o.Path
+	op.Force = o.Force
 	return op
 }
 
@@ -2118,8 +2118,8 @@ func (o *DeleteAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteA
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2272,7 +2272,7 @@ func (o *MountRequest) xxx_ToOp(ctx context.Context, op *xxx_MountOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2309,8 +2309,8 @@ func (o *MountResponse) xxx_ToOp(ctx context.Context, op *xxx_MountOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2495,9 +2495,9 @@ func (o *DismountRequest) xxx_ToOp(ctx context.Context, op *xxx_DismountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Force = op.Force
-	o.Permanent = op.Permanent
+	op.This = o.This
+	op.Force = o.Force
+	op.Permanent = o.Permanent
 	return op
 }
 
@@ -2536,8 +2536,8 @@ func (o *DismountResponse) xxx_ToOp(ctx context.Context, op *xxx_DismountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2707,8 +2707,8 @@ func (o *SetFileSystemFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFil
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -2746,8 +2746,8 @@ func (o *SetFileSystemFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2917,8 +2917,8 @@ func (o *ClearFileSystemFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_Clea
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -2956,8 +2956,8 @@ func (o *ClearFileSystemFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_Cle
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

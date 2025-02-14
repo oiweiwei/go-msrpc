@@ -610,7 +610,7 @@ func (o *GetMailFromRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailFromOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -648,9 +648,9 @@ func (o *GetMailFromResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailFromO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailFrom = op.MailFrom
-	o.Return = op.Return
+	op.That = o.That
+	op.MailFrom = o.MailFrom
+	op.Return = o.Return
 	return op
 }
 
@@ -852,8 +852,8 @@ func (o *SetMailFromRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailFromOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailFrom = op.MailFrom
+	op.This = o.This
+	op.MailFrom = o.MailFrom
 	return op
 }
 
@@ -891,8 +891,8 @@ func (o *SetMailFromResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailFromO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1092,7 +1092,7 @@ func (o *GetMailReplyToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailRep
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1130,9 +1130,9 @@ func (o *GetMailReplyToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailReplyTo = op.MailReplyTo
-	o.Return = op.Return
+	op.That = o.That
+	op.MailReplyTo = o.MailReplyTo
+	op.Return = o.Return
 	return op
 }
 
@@ -1334,8 +1334,8 @@ func (o *SetMailReplyToRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailRep
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailReplyTo = op.MailReplyTo
+	op.This = o.This
+	op.MailReplyTo = o.MailReplyTo
 	return op
 }
 
@@ -1373,8 +1373,8 @@ func (o *SetMailReplyToResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1574,7 +1574,7 @@ func (o *GetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1612,9 +1612,9 @@ func (o *GetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailTo = op.MailTo
-	o.Return = op.Return
+	op.That = o.That
+	op.MailTo = o.MailTo
+	op.Return = o.Return
 	return op
 }
 
@@ -1816,8 +1816,8 @@ func (o *SetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailTo = op.MailTo
+	op.This = o.This
+	op.MailTo = o.MailTo
 	return op
 }
 
@@ -1855,8 +1855,8 @@ func (o *SetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2056,7 +2056,7 @@ func (o *GetMailCCRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailCCOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2094,9 +2094,9 @@ func (o *GetMailCCResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailCCOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailCC = op.MailCC
-	o.Return = op.Return
+	op.That = o.That
+	op.MailCC = o.MailCC
+	op.Return = o.Return
 	return op
 }
 
@@ -2298,8 +2298,8 @@ func (o *SetMailCCRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailCCOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailCC = op.MailCC
+	op.This = o.This
+	op.MailCC = o.MailCC
 	return op
 }
 
@@ -2337,8 +2337,8 @@ func (o *SetMailCCResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailCCOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2538,7 +2538,7 @@ func (o *GetMailBCCRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailBCCOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2576,9 +2576,9 @@ func (o *GetMailBCCResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailBCCOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailBCC = op.MailBCC
-	o.Return = op.Return
+	op.That = o.That
+	op.MailBCC = o.MailBCC
+	op.Return = o.Return
 	return op
 }
 
@@ -2780,8 +2780,8 @@ func (o *SetMailBCCRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailBCCOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailBCC = op.MailBCC
+	op.This = o.This
+	op.MailBCC = o.MailBCC
 	return op
 }
 
@@ -2819,8 +2819,8 @@ func (o *SetMailBCCResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailBCCOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3020,7 +3020,7 @@ func (o *GetMailSubjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailSub
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3058,9 +3058,9 @@ func (o *GetMailSubjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailSu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailSubject = op.MailSubject
-	o.Return = op.Return
+	op.That = o.That
+	op.MailSubject = o.MailSubject
+	op.Return = o.Return
 	return op
 }
 
@@ -3262,8 +3262,8 @@ func (o *SetMailSubjectRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailSub
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailSubject = op.MailSubject
+	op.This = o.This
+	op.MailSubject = o.MailSubject
 	return op
 }
 
@@ -3301,8 +3301,8 @@ func (o *SetMailSubjectResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailSu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3502,7 +3502,7 @@ func (o *GetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMessage
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3540,9 +3540,9 @@ func (o *GetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMessag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MessageText = op.MessageText
-	o.Return = op.Return
+	op.That = o.That
+	op.MessageText = o.MessageText
+	op.Return = o.Return
 	return op
 }
 
@@ -3744,8 +3744,8 @@ func (o *SetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMessage
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MessageText = op.MessageText
+	op.This = o.This
+	op.MessageText = o.MessageText
 	return op
 }
 
@@ -3783,8 +3783,8 @@ func (o *SetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMessag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

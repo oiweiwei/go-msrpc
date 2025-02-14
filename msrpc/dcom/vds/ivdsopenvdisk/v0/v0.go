@@ -550,11 +550,11 @@ func (o *AttachRequest) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.StringSecurityDescriptor = op.StringSecurityDescriptor
-	o.Flags = op.Flags
-	o.ProviderSpecificFlags = op.ProviderSpecificFlags
-	o.TimeoutInMs = op.TimeoutInMs
+	op.This = o.This
+	op.StringSecurityDescriptor = o.StringSecurityDescriptor
+	op.Flags = o.Flags
+	op.ProviderSpecificFlags = o.ProviderSpecificFlags
+	op.TimeoutInMs = o.TimeoutInMs
 	return op
 }
 
@@ -599,9 +599,9 @@ func (o *AttachResponse) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -786,9 +786,9 @@ func (o *DetachRequest) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.ProviderSpecificFlags = op.ProviderSpecificFlags
+	op.This = o.This
+	op.Flags = o.Flags
+	op.ProviderSpecificFlags = o.ProviderSpecificFlags
 	return op
 }
 
@@ -827,8 +827,8 @@ func (o *DetachResponse) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1012,9 +1012,9 @@ func (o *DetachAndDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DetachAnd
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.ProviderSpecificFlags = op.ProviderSpecificFlags
+	op.This = o.This
+	op.Flags = o.Flags
+	op.ProviderSpecificFlags = o.ProviderSpecificFlags
 	return op
 }
 
@@ -1053,8 +1053,8 @@ func (o *DetachAndDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DetachAn
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1286,8 +1286,8 @@ func (o *CompactRequest) xxx_ToOp(ctx context.Context, op *xxx_CompactOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1329,9 +1329,9 @@ func (o *CompactResponse) xxx_ToOp(ctx context.Context, op *xxx_CompactOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1569,9 +1569,9 @@ func (o *MergeRequest) xxx_ToOp(ctx context.Context, op *xxx_MergeOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.MergeDepth = op.MergeDepth
+	op.This = o.This
+	op.Flags = o.Flags
+	op.MergeDepth = o.MergeDepth
 	return op
 }
 
@@ -1614,9 +1614,9 @@ func (o *MergeResponse) xxx_ToOp(ctx context.Context, op *xxx_MergeOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1848,9 +1848,9 @@ func (o *ExpandRequest) xxx_ToOp(ctx context.Context, op *xxx_ExpandOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.NewSize = op.NewSize
+	op.This = o.This
+	op.Flags = o.Flags
+	op.NewSize = o.NewSize
 	return op
 }
 
@@ -1893,9 +1893,9 @@ func (o *ExpandResponse) xxx_ToOp(ctx context.Context, op *xxx_ExpandOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

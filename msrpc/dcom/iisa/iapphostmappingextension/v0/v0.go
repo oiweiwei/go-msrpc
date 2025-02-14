@@ -398,8 +398,8 @@ func (o *GetSiteNameFromSiteIDRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SiteID = op.SiteID
+	op.This = o.This
+	op.SiteID = o.SiteID
 	return op
 }
 
@@ -438,9 +438,9 @@ func (o *GetSiteNameFromSiteIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SiteName = op.SiteName
-	o.Return = op.Return
+	op.That = o.That
+	op.SiteName = o.SiteName
+	op.Return = o.Return
 	return op
 }
 
@@ -657,8 +657,8 @@ func (o *GetSiteIDFromSiteNameRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SiteName = op.SiteName
+	op.This = o.This
+	op.SiteName = o.SiteName
 	return op
 }
 
@@ -697,9 +697,9 @@ func (o *GetSiteIDFromSiteNameResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SiteID = op.SiteID
-	o.Return = op.Return
+	op.That = o.That
+	op.SiteID = o.SiteID
+	op.Return = o.Return
 	return op
 }
 
@@ -916,8 +916,8 @@ func (o *GetSiteElementFromSiteIDRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SiteID = op.SiteID
+	op.This = o.This
+	op.SiteID = o.SiteID
 	return op
 }
 
@@ -956,9 +956,9 @@ func (o *GetSiteElementFromSiteIDResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SiteElement = op.SiteElement
-	o.Return = op.Return
+	op.That = o.That
+	op.SiteElement = o.SiteElement
+	op.Return = o.Return
 	return op
 }
 
@@ -1349,9 +1349,9 @@ func (o *MapPathRequest) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SiteName = op.SiteName
-	o.VirtualPath = op.VirtualPath
+	op.This = o.This
+	op.SiteName = o.SiteName
+	op.VirtualPath = o.VirtualPath
 	return op
 }
 
@@ -1393,11 +1393,11 @@ func (o *MapPathResponse) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PhysicalPath = op.PhysicalPath
-	o.VirtualDirectoryElement = op.VirtualDirectoryElement
-	o.ApplicationElement = op.ApplicationElement
-	o.Return = op.Return
+	op.That = o.That
+	op.PhysicalPath = o.PhysicalPath
+	op.VirtualDirectoryElement = o.VirtualDirectoryElement
+	op.ApplicationElement = o.ApplicationElement
+	op.Return = o.Return
 	return op
 }
 

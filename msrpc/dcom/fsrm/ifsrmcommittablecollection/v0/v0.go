@@ -325,8 +325,8 @@ func (o *CommitRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Options = op.Options
+	op.This = o.This
+	op.Options = o.Options
 	return op
 }
 
@@ -365,9 +365,9 @@ func (o *CommitResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Results = op.Results
-	o.Return = op.Return
+	op.That = o.That
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 

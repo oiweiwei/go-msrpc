@@ -382,7 +382,7 @@ func (o *GetFilterCriteriaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFilt
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -420,9 +420,9 @@ func (o *GetFilterCriteriaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFil
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FilterCriteria = op.FilterCriteria
-	o.Return = op.Return
+	op.That = o.That
+	op.FilterCriteria = o.FilterCriteria
+	op.Return = o.Return
 	return op
 }
 
@@ -626,8 +626,8 @@ func (o *SetFilterCriteriaRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFilt
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FilterCriteria = op.FilterCriteria
+	op.This = o.This
+	op.FilterCriteria = o.FilterCriteria
 	return op
 }
 
@@ -665,8 +665,8 @@ func (o *SetFilterCriteriaResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFil
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -868,7 +868,7 @@ func (o *GetSubscriberMonikerRequest) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -906,9 +906,9 @@ func (o *GetSubscriberMonikerResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Moniker = op.Moniker
-	o.Return = op.Return
+	op.That = o.That
+	op.Moniker = o.Moniker
+	op.Return = o.Return
 	return op
 }
 
@@ -1112,8 +1112,8 @@ func (o *SetSubscriberMonikerRequest) xxx_ToOp(ctx context.Context, op *xxx_SetS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Moniker = op.Moniker
+	op.This = o.This
+	op.Moniker = o.Moniker
 	return op
 }
 
@@ -1151,8 +1151,8 @@ func (o *SetSubscriberMonikerResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

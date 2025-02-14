@@ -531,8 +531,8 @@ func (o *NextRequest) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Count = op.Count
+	op.This = o.This
+	op.Count = o.Count
 	return op
 }
 
@@ -577,10 +577,10 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Var = op.Var
-	o.CountFetched = op.CountFetched
-	o.Return = op.Return
+	op.That = o.That
+	op.Var = o.Var
+	op.CountFetched = o.CountFetched
+	op.Return = o.Return
 	return op
 }
 
@@ -750,8 +750,8 @@ func (o *SkipRequest) xxx_ToOp(ctx context.Context, op *xxx_SkipOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Count = op.Count
+	op.This = o.This
+	op.Count = o.Count
 	return op
 }
 
@@ -789,8 +789,8 @@ func (o *SkipResponse) xxx_ToOp(ctx context.Context, op *xxx_SkipOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -943,7 +943,7 @@ func (o *ResetRequest) xxx_ToOp(ctx context.Context, op *xxx_ResetOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -980,8 +980,8 @@ func (o *ResetResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1181,7 +1181,7 @@ func (o *CloneRequest) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1220,9 +1220,9 @@ func (o *CloneResponse) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 

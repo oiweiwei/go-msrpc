@@ -446,7 +446,7 @@ func (o *Get_NewEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_Get_NewEnumOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -484,9 +484,9 @@ func (o *Get_NewEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Get_NewEnumO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UnknownEnum = op.UnknownEnum
-	o.Return = op.Return
+	op.That = o.That
+	op.UnknownEnum = o.UnknownEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -743,8 +743,8 @@ func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectID = op.ObjectID
+	op.This = o.This
+	op.ObjectID = o.ObjectID
 	return op
 }
 
@@ -790,9 +790,9 @@ func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Item = op.Item
-	o.Return = op.Return
+	op.That = o.That
+	op.Item = o.Item
+	op.Return = o.Return
 	return op
 }
 
@@ -993,7 +993,7 @@ func (o *GetNewEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNewEnumOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1034,9 +1034,9 @@ func (o *GetNewEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNewEnumOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -1203,7 +1203,7 @@ func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1243,9 +1243,9 @@ func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 
@@ -1508,9 +1508,9 @@ func (o *AddRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Item = op.Item
-	o.ObjectID = op.ObjectID
+	op.This = o.This
+	op.Item = o.Item
+	op.ObjectID = o.ObjectID
 	return op
 }
 
@@ -1549,8 +1549,8 @@ func (o *AddResponse) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_A
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1751,8 +1751,8 @@ func (o *RemoveRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectID = op.ObjectID
+	op.This = o.This
+	op.ObjectID = o.ObjectID
 	return op
 }
 
@@ -1790,8 +1790,8 @@ func (o *RemoveResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

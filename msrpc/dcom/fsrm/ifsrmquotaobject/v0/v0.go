@@ -426,7 +426,7 @@ func (o *GetPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -464,9 +464,9 @@ func (o *GetPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Path = op.Path
-	o.Return = op.Return
+	op.That = o.That
+	op.Path = o.Path
+	op.Return = o.Return
 	return op
 }
 
@@ -667,7 +667,7 @@ func (o *GetUserSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserSIDOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -705,9 +705,9 @@ func (o *GetUserSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserSIDOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UserSID = op.UserSID
-	o.Return = op.Return
+	op.That = o.That
+	op.UserSID = o.UserSID
+	op.Return = o.Return
 	return op
 }
 
@@ -908,7 +908,7 @@ func (o *GetUserAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserAcc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -946,9 +946,9 @@ func (o *GetUserAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserAc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UserAccount = op.UserAccount
-	o.Return = op.Return
+	op.That = o.That
+	op.UserAccount = o.UserAccount
+	op.Return = o.Return
 	return op
 }
 
@@ -1151,7 +1151,7 @@ func (o *GetSourceTemplateNameRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1189,9 +1189,9 @@ func (o *GetSourceTemplateNameResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.QuotaTemplateName = op.QuotaTemplateName
-	o.Return = op.Return
+	op.That = o.That
+	op.QuotaTemplateName = o.QuotaTemplateName
+	op.Return = o.Return
 	return op
 }
 
@@ -1360,7 +1360,7 @@ func (o *GetMatchesSourceTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1398,9 +1398,9 @@ func (o *GetMatchesSourceTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Matches = op.Matches
-	o.Return = op.Return
+	op.That = o.That
+	op.Matches = o.Matches
+	op.Return = o.Return
 	return op
 }
 
@@ -1602,8 +1602,8 @@ func (o *ApplyTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_ApplyTempla
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QuotaTemplateName = op.QuotaTemplateName
+	op.This = o.This
+	op.QuotaTemplateName = o.QuotaTemplateName
 	return op
 }
 
@@ -1641,8 +1641,8 @@ func (o *ApplyTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_ApplyTempl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

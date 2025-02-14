@@ -1104,7 +1104,7 @@ func (o *GetServerPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServerP
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1437,15 +1437,15 @@ func (o *OpenQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueOperat
 	if o == nil {
 		return op
 	}
-	o.QueueFormat = op.QueueFormat
-	o.Access = op.Access
-	o.ShareMode = op.ShareMode
-	o.ClientID = op.ClientID
-	o.NonRoutingServer = op.NonRoutingServer
-	o.Major = op.Major
-	o.Minor = op.Minor
-	o.BuildNumber = op.BuildNumber
-	o.Workgroup = op.Workgroup
+	op.QueueFormat = o.QueueFormat
+	op.Access = o.Access
+	op.ShareMode = o.ShareMode
+	op.ClientID = o.ClientID
+	op.NonRoutingServer = o.NonRoutingServer
+	op.Major = o.Major
+	op.Minor = o.Minor
+	op.BuildNumber = o.BuildNumber
+	op.Workgroup = o.Workgroup
 	return op
 }
 
@@ -1488,7 +1488,7 @@ func (o *OpenQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueOpera
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -1631,7 +1631,7 @@ func (o *CloseQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseQueueOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -1672,8 +1672,8 @@ func (o *CloseQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseQueueOpe
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -1810,7 +1810,7 @@ func (o *CreateCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCursor
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -1847,8 +1847,8 @@ func (o *CreateCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateCurso
 	if o == nil {
 		return op
 	}
-	o.Cursor = op.Cursor
-	o.Return = op.Return
+	op.Cursor = o.Cursor
+	op.Return = o.Return
 	return op
 }
 
@@ -1989,8 +1989,8 @@ func (o *CloseCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorOp
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Cursor = op.Cursor
+	op.Context = o.Context
+	op.Cursor = o.Cursor
 	return op
 }
 
@@ -2026,7 +2026,7 @@ func (o *CloseCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2149,7 +2149,7 @@ func (o *PurgeQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -2184,7 +2184,7 @@ func (o *PurgeQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2640,14 +2640,14 @@ func (o *StartReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_StartReceive
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.LookupID = op.LookupID
-	o.Cursor = op.Cursor
-	o.Action = op.Action
-	o.Timeout = op.Timeout
-	o.RequestID = op.RequestID
-	o.MaxBodySize = op.MaxBodySize
-	o.MaxCompoundMessageSize = op.MaxCompoundMessageSize
+	op.Context = o.Context
+	op.LookupID = o.LookupID
+	op.Cursor = o.Cursor
+	op.Action = o.Action
+	op.Timeout = o.Timeout
+	op.RequestID = o.RequestID
+	op.MaxBodySize = o.MaxBodySize
+	op.MaxCompoundMessageSize = o.MaxCompoundMessageSize
 	return op
 }
 
@@ -2766,11 +2766,11 @@ func (o *StartReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_StartReceiv
 	if o == nil {
 		return op
 	}
-	o.ArriveTime = op.ArriveTime
-	o.SequenceID = op.SequenceID
-	o.NumberOfSections = op.NumberOfSections
-	o.PacketSections = op.PacketSections
-	o.Return = op.Return
+	op.ArriveTime = o.ArriveTime
+	op.SequenceID = o.SequenceID
+	op.NumberOfSections = o.NumberOfSections
+	op.PacketSections = o.PacketSections
+	op.Return = o.Return
 	return op
 }
 
@@ -2915,8 +2915,8 @@ func (o *CancelReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelRecei
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.RequestID = op.RequestID
+	op.Context = o.Context
+	op.RequestID = o.RequestID
 	return op
 }
 
@@ -2952,7 +2952,7 @@ func (o *CancelReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelRece
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3127,9 +3127,9 @@ func (o *EndReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_EndReceiveOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Ack = op.Ack
-	o.RequestID = op.RequestID
+	op.Context = o.Context
+	op.Ack = o.Ack
+	op.RequestID = o.RequestID
 	return op
 }
 
@@ -3166,7 +3166,7 @@ func (o *EndReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_EndReceiveOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3353,10 +3353,10 @@ func (o *MoveMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveMessageOp
 	if o == nil {
 		return op
 	}
-	o.ContextFrom = op.ContextFrom
-	o.ContextTo = op.ContextTo
-	o.LookupID = op.LookupID
-	o.TransactionID = op.TransactionID
+	op.ContextFrom = o.ContextFrom
+	op.ContextTo = o.ContextTo
+	op.LookupID = o.LookupID
+	op.TransactionID = o.TransactionID
 	return op
 }
 
@@ -3394,7 +3394,7 @@ func (o *MoveMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_MoveMessageO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3709,15 +3709,15 @@ func (o *OpenQueueForMoveRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQueu
 	if o == nil {
 		return op
 	}
-	o.QueueFormat = op.QueueFormat
-	o.Access = op.Access
-	o.ShareMode = op.ShareMode
-	o.ClientID = op.ClientID
-	o.NonRoutingServer = op.NonRoutingServer
-	o.Major = op.Major
-	o.Minor = op.Minor
-	o.BuildNumber = op.BuildNumber
-	o.Workgroup = op.Workgroup
+	op.QueueFormat = o.QueueFormat
+	op.Access = o.Access
+	op.ShareMode = o.ShareMode
+	op.ClientID = o.ClientID
+	op.NonRoutingServer = o.NonRoutingServer
+	op.Major = o.Major
+	op.Minor = o.Minor
+	op.BuildNumber = o.BuildNumber
+	op.Workgroup = o.Workgroup
 	return op
 }
 
@@ -3770,8 +3770,8 @@ func (o *OpenQueueForMoveResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQue
 	if o == nil {
 		return op
 	}
-	o.MoveContext = op.MoveContext
-	o.Context = op.Context
+	op.MoveContext = o.MoveContext
+	op.Context = o.Context
 	return op
 }
 
@@ -3996,10 +3996,10 @@ func (o *EnlistRemoteTransactionRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.TransactionID = op.TransactionID
-	o.PropagationTokenLength = op.PropagationTokenLength
-	o.PropagationToken = op.PropagationToken
-	o.QueueFormat = op.QueueFormat
+	op.TransactionID = o.TransactionID
+	op.PropagationTokenLength = o.PropagationTokenLength
+	op.PropagationToken = o.PropagationToken
+	op.QueueFormat = o.QueueFormat
 	return op
 }
 
@@ -4037,7 +4037,7 @@ func (o *EnlistRemoteTransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4522,15 +4522,15 @@ func (o *StartTransactionalReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.LookupID = op.LookupID
-	o.Cursor = op.Cursor
-	o.Action = op.Action
-	o.Timeout = op.Timeout
-	o.RequestID = op.RequestID
-	o.MaxBodySize = op.MaxBodySize
-	o.MaxCompoundMessageSize = op.MaxCompoundMessageSize
-	o.TransactionID = op.TransactionID
+	op.Context = o.Context
+	op.LookupID = o.LookupID
+	op.Cursor = o.Cursor
+	op.Action = o.Action
+	op.Timeout = o.Timeout
+	op.RequestID = o.RequestID
+	op.MaxBodySize = o.MaxBodySize
+	op.MaxCompoundMessageSize = o.MaxCompoundMessageSize
+	op.TransactionID = o.TransactionID
 	return op
 }
 
@@ -4648,11 +4648,11 @@ func (o *StartTransactionalReceiveResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ArriveTime = op.ArriveTime
-	o.SequenceID = op.SequenceID
-	o.NumberOfSections = op.NumberOfSections
-	o.PacketSections = op.PacketSections
-	o.Return = op.Return
+	op.ArriveTime = o.ArriveTime
+	op.SequenceID = o.SequenceID
+	op.NumberOfSections = o.NumberOfSections
+	op.PacketSections = o.PacketSections
+	op.Return = o.Return
 	return op
 }
 
@@ -4825,9 +4825,9 @@ func (o *SetUserAcknowledgementClassRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.LookupID = op.LookupID
-	o.Class = op.Class
+	op.Context = o.Context
+	op.LookupID = o.LookupID
+	op.Class = o.Class
 	return op
 }
 
@@ -4864,7 +4864,7 @@ func (o *SetUserAcknowledgementClassResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5042,9 +5042,9 @@ func (o *EndTransactionalReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Ack = op.Ack
-	o.RequestID = op.RequestID
+	op.Context = o.Context
+	op.Ack = o.Ack
+	op.RequestID = o.RequestID
 	return op
 }
 
@@ -5081,7 +5081,7 @@ func (o *EndTransactionalReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

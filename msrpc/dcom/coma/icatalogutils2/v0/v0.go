@@ -642,11 +642,11 @@ func (o *CopyConglomerationsRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourcePartition = op.SourcePartition
-	o.DestinationPartition = op.DestinationPartition
-	o.ConglomerationsCount = op.ConglomerationsCount
-	o.ConglomerationNamesOrIDs = op.ConglomerationNamesOrIDs
+	op.This = o.This
+	op.SourcePartition = o.SourcePartition
+	op.DestinationPartition = o.DestinationPartition
+	op.ConglomerationsCount = o.ConglomerationsCount
+	op.ConglomerationNamesOrIDs = o.ConglomerationNamesOrIDs
 	return op
 }
 
@@ -687,8 +687,8 @@ func (o *CopyConglomerationsResponse) xxx_ToOp(ctx context.Context, op *xxx_Copy
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -894,10 +894,10 @@ func (o *CopyComponentConfigurationRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourceConglomeration = op.SourceConglomeration
-	o.Component = op.Component
-	o.DestinationConglomeration = op.DestinationConglomeration
+	op.This = o.This
+	op.SourceConglomeration = o.SourceConglomeration
+	op.Component = o.Component
+	op.DestinationConglomeration = o.DestinationConglomeration
 	return op
 }
 
@@ -937,8 +937,8 @@ func (o *CopyComponentConfigurationResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1181,12 +1181,12 @@ func (o *AliasComponentRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasCompo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourceConglomeration = op.SourceConglomeration
-	o.Component = op.Component
-	o.DestinationConglomeration = op.DestinationConglomeration
-	o.NewClassID = op.NewClassID
-	o.NewProgID = op.NewProgID
+	op.This = o.This
+	op.SourceConglomeration = o.SourceConglomeration
+	op.Component = o.Component
+	op.DestinationConglomeration = o.DestinationConglomeration
+	op.NewClassID = o.NewClassID
+	op.NewProgID = o.NewProgID
 	return op
 }
 
@@ -1228,8 +1228,8 @@ func (o *AliasComponentResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasComp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1435,10 +1435,10 @@ func (o *MoveComponentConfigurationRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourceConglomeration = op.SourceConglomeration
-	o.Component = op.Component
-	o.DestinationConglomeration = op.DestinationConglomeration
+	op.This = o.This
+	op.SourceConglomeration = o.SourceConglomeration
+	op.Component = o.Component
+	op.DestinationConglomeration = o.DestinationConglomeration
 	return op
 }
 
@@ -1478,8 +1478,8 @@ func (o *MoveComponentConfigurationResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2160,9 +2160,9 @@ func (o *GetEventClassesForIid2Request) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IID = op.IID
-	o.PartitionID = op.PartitionID
+	op.This = o.This
+	op.IID = o.IID
+	op.PartitionID = o.PartitionID
 	return op
 }
 
@@ -2224,14 +2224,14 @@ func (o *GetEventClassesForIid2Response) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ClassesCount = op.ClassesCount
-	o.ClassIDs = op.ClassIDs
-	o.ProgIDs = op.ProgIDs
-	o.Descriptions = op.Descriptions
-	o.ConglomerationIDs = op.ConglomerationIDs
-	o.IsPrivate = op.IsPrivate
-	o.Return = op.Return
+	op.That = o.That
+	op.ClassesCount = o.ClassesCount
+	op.ClassIDs = o.ClassIDs
+	op.ProgIDs = o.ProgIDs
+	op.Descriptions = o.Descriptions
+	op.ConglomerationIDs = o.ConglomerationIDs
+	op.IsPrivate = o.IsPrivate
+	op.Return = o.Return
 	return op
 }
 
@@ -2451,8 +2451,8 @@ func (o *IsSafeToDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_IsSafeToDe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.File = op.File
+	op.This = o.This
+	op.File = o.File
 	return op
 }
 
@@ -2491,9 +2491,9 @@ func (o *IsSafeToDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_IsSafeToD
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.InUse = op.InUse
-	o.Return = op.Return
+	op.That = o.That
+	op.InUse = o.InUse
+	op.Return = o.Return
 	return op
 }
 
@@ -2649,7 +2649,7 @@ func (o *FlushPartitionCacheRequest) xxx_ToOp(ctx context.Context, op *xxx_Flush
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2686,8 +2686,8 @@ func (o *FlushPartitionCacheResponse) xxx_ToOp(ctx context.Context, op *xxx_Flus
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2954,8 +2954,8 @@ func (o *EnumerateSRPLevelsRequest) xxx_ToOp(ctx context.Context, op *xxx_Enumer
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Locale = op.Locale
+	op.This = o.This
+	op.Locale = o.Locale
 	return op
 }
 
@@ -3000,10 +3000,10 @@ func (o *EnumerateSRPLevelsResponse) xxx_ToOp(ctx context.Context, op *xxx_Enume
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LevelsCount = op.LevelsCount
-	o.SRPLevels = op.SRPLevels
-	o.Return = op.Return
+	op.That = o.That
+	op.LevelsCount = o.LevelsCount
+	op.SRPLevels = o.SRPLevels
+	op.Return = o.Return
 	return op
 }
 
@@ -3512,8 +3512,8 @@ func (o *GetComponentVersionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClassIDOrProgID = op.ClassIDOrProgID
+	op.This = o.This
+	op.ClassIDOrProgID = o.ClassIDOrProgID
 	return op
 }
 
@@ -3570,13 +3570,13 @@ func (o *GetComponentVersionsResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Versions = op.Versions
-	o.PartitionIDs = op.PartitionIDs
-	o.ConglomerationIDs = op.ConglomerationIDs
-	o.IsPrivate = op.IsPrivate
-	o.Bitness = op.Bitness
-	o.Return = op.Return
+	op.That = o.That
+	op.Versions = o.Versions
+	op.PartitionIDs = o.PartitionIDs
+	op.ConglomerationIDs = o.ConglomerationIDs
+	op.IsPrivate = o.IsPrivate
+	op.Bitness = o.Bitness
+	op.Return = o.Return
 	return op
 }
 

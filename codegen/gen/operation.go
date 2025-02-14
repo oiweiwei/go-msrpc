@@ -364,7 +364,7 @@ func (p *Generator) GenOperationToOp(ctx context.Context, op *midl.Operation, di
 		if n == "_" {
 			continue
 		}
-		p.P(p.O(n), "=", "op."+n)
+		p.P("op."+n, "=", p.O(n))
 
 	}
 	p.P("return", "op")

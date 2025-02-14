@@ -243,8 +243,8 @@ func (o *DoAsyncWaitExRequest) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncWait
 	if o == nil {
 		return op
 	}
-	o.AsyncSession = op.AsyncSession
-	o.FlagsIn = op.FlagsIn
+	op.AsyncSession = o.AsyncSession
+	op.FlagsIn = o.FlagsIn
 	return op
 }
 
@@ -296,8 +296,8 @@ func (o *DoAsyncWaitExResponse) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncWai
 	if o == nil {
 		return op
 	}
-	o.FlagsOut = op.FlagsOut
-	o.Return = op.Return
+	op.FlagsOut = o.FlagsOut
+	op.Return = o.Return
 	return op
 }
 

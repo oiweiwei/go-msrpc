@@ -394,7 +394,7 @@ func (o *GetCapabilitiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCapabi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -432,9 +432,9 @@ func (o *GetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCapab
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Capabilities = op.Capabilities
-	o.Return = op.Return
+	op.That = o.That
+	op.Capabilities = o.Capabilities
+	op.Return = o.Return
 	return op
 }
 
@@ -604,8 +604,8 @@ func (o *SetCapabilitiesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCapabi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Capabilities = op.Capabilities
+	op.This = o.This
+	op.Capabilities = o.Capabilities
 	return op
 }
 
@@ -643,8 +643,8 @@ func (o *SetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCapab
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -812,7 +812,7 @@ func (o *GetStorageTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetStorage
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -850,9 +850,9 @@ func (o *GetStorageTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetStorag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.StorageType = op.StorageType
-	o.Return = op.Return
+	op.That = o.That
+	op.StorageType = o.StorageType
+	op.Return = o.Return
 	return op
 }
 
@@ -1022,8 +1022,8 @@ func (o *SetStorageTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetStorage
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.StorageType = op.StorageType
+	op.This = o.This
+	op.StorageType = o.StorageType
 	return op
 }
 
@@ -1061,8 +1061,8 @@ func (o *SetStorageTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetStorag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1230,7 +1230,7 @@ func (o *GetUpdatesFileContentRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1268,9 +1268,9 @@ func (o *GetUpdatesFileContentResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UpdatesFileContent = op.UpdatesFileContent
-	o.Return = op.Return
+	op.That = o.That
+	op.UpdatesFileContent = o.UpdatesFileContent
+	op.Return = o.Return
 	return op
 }
 
@@ -1440,8 +1440,8 @@ func (o *SetUpdatesFileContentRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.UpdatesFileContent = op.UpdatesFileContent
+	op.This = o.This
+	op.UpdatesFileContent = o.UpdatesFileContent
 	return op
 }
 
@@ -1479,8 +1479,8 @@ func (o *SetUpdatesFileContentResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

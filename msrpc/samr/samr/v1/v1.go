@@ -15387,8 +15387,8 @@ func (o *ConnectRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -15426,8 +15426,8 @@ func (o *ConnectResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectOperation
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Return = op.Return
+	op.Server = o.Server
+	op.Return = o.Return
 	return op
 }
 
@@ -15572,7 +15572,7 @@ func (o *CloseHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseHandleOp
 	if o == nil {
 		return op
 	}
-	o.SAMHandle = op.SAMHandle
+	op.SAMHandle = o.SAMHandle
 	return op
 }
 
@@ -15614,8 +15614,8 @@ func (o *CloseHandleResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseHandleO
 	if o == nil {
 		return op
 	}
-	o.SAMHandle = op.SAMHandle
-	o.Return = op.Return
+	op.SAMHandle = o.SAMHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -15805,9 +15805,9 @@ func (o *SetSecurityObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecu
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.Object = o.Object
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -15844,7 +15844,7 @@ func (o *SetSecurityObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSec
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -16048,8 +16048,8 @@ func (o *QuerySecurityObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.SecurityInformation = op.SecurityInformation
+	op.Object = o.Object
+	op.SecurityInformation = o.SecurityInformation
 	return op
 }
 
@@ -16093,8 +16093,8 @@ func (o *QuerySecurityObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.Return = o.Return
 	return op
 }
 
@@ -16293,8 +16293,8 @@ func (o *LookupDomainInSAMServerRequest) xxx_ToOp(ctx context.Context, op *xxx_L
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Name = op.Name
+	op.Server = o.Server
+	op.Name = o.Name
 	return op
 }
 
@@ -16338,8 +16338,8 @@ func (o *LookupDomainInSAMServerResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.DomainID = op.DomainID
-	o.Return = op.Return
+	op.DomainID = o.DomainID
+	op.Return = o.Return
 	return op
 }
 
@@ -16566,9 +16566,9 @@ func (o *EnumerateDomainsInSAMServerRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Server = o.Server
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -16618,10 +16618,10 @@ func (o *EnumerateDomainsInSAMServerResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.Buffer = op.Buffer
-	o.CountReturned = op.CountReturned
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.Buffer = o.Buffer
+	op.CountReturned = o.CountReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -16804,9 +16804,9 @@ func (o *OpenDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenDomainOper
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.DesiredAccess = op.DesiredAccess
-	o.DomainID = op.DomainID
+	op.Server = o.Server
+	op.DesiredAccess = o.DesiredAccess
+	op.DomainID = o.DomainID
 	return op
 }
 
@@ -16849,8 +16849,8 @@ func (o *OpenDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenDomainOpe
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.Return = op.Return
+	op.Domain = o.Domain
+	op.Return = o.Return
 	return op
 }
 
@@ -17033,8 +17033,8 @@ func (o *QueryInformationDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DomainInformationClass = op.DomainInformationClass
+	op.Domain = o.Domain
+	op.DomainInformationClass = o.DomainInformationClass
 	return op
 }
 
@@ -17071,8 +17071,8 @@ func (o *QueryInformationDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -17247,9 +17247,9 @@ func (o *SetInformationDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_SetI
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DomainInformationClass = op.DomainInformationClass
-	o.DomainInformation = op.DomainInformation
+	op.Domain = o.Domain
+	op.DomainInformationClass = o.DomainInformationClass
+	op.DomainInformation = o.DomainInformation
 	return op
 }
 
@@ -17286,7 +17286,7 @@ func (o *SetInformationDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17487,9 +17487,9 @@ func (o *CreateGroupInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.Name = op.Name
-	o.DesiredAccess = op.DesiredAccess
+	op.Domain = o.Domain
+	op.Name = o.Name
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -17538,9 +17538,9 @@ func (o *CreateGroupInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.RelativeID = op.RelativeID
-	o.Return = op.Return
+	op.GroupHandle = o.GroupHandle
+	op.RelativeID = o.RelativeID
+	op.Return = o.Return
 	return op
 }
 
@@ -17768,9 +17768,9 @@ func (o *EnumerateGroupsInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Domain = o.Domain
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -17836,10 +17836,10 @@ func (o *EnumerateGroupsInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.Buffer = op.Buffer
-	o.CountReturned = op.CountReturned
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.Buffer = o.Buffer
+	op.CountReturned = o.CountReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -18043,9 +18043,9 @@ func (o *CreateUserInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.Name = op.Name
-	o.DesiredAccess = op.DesiredAccess
+	op.Domain = o.Domain
+	op.Name = o.Name
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -18090,9 +18090,9 @@ func (o *CreateUserInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.RelativeID = op.RelativeID
-	o.Return = op.Return
+	op.UserHandle = o.UserHandle
+	op.RelativeID = o.RelativeID
+	op.Return = o.Return
 	return op
 }
 
@@ -18335,10 +18335,10 @@ func (o *EnumerateUsersInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.EnumerationContext = op.EnumerationContext
-	o.UserAccountControl = op.UserAccountControl
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Domain = o.Domain
+	op.EnumerationContext = o.EnumerationContext
+	op.UserAccountControl = o.UserAccountControl
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -18423,10 +18423,10 @@ func (o *EnumerateUsersInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.Buffer = op.Buffer
-	o.CountReturned = op.CountReturned
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.Buffer = o.Buffer
+	op.CountReturned = o.CountReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -18630,9 +18630,9 @@ func (o *CreateAliasInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.AccountName = op.AccountName
-	o.DesiredAccess = op.DesiredAccess
+	op.Domain = o.Domain
+	op.AccountName = o.AccountName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -18681,9 +18681,9 @@ func (o *CreateAliasInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.RelativeID = op.RelativeID
-	o.Return = op.Return
+	op.AliasHandle = o.AliasHandle
+	op.RelativeID = o.RelativeID
+	op.Return = o.Return
 	return op
 }
 
@@ -18911,9 +18911,9 @@ func (o *EnumerateAliasesInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Domain = o.Domain
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -18979,10 +18979,10 @@ func (o *EnumerateAliasesInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.Buffer = op.Buffer
-	o.CountReturned = op.CountReturned
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.Buffer = o.Buffer
+	op.CountReturned = o.CountReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -19162,8 +19162,8 @@ func (o *GetAliasMembershipRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAli
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.SIDArray = op.SIDArray
+	op.Domain = o.Domain
+	op.SIDArray = o.SIDArray
 	return op
 }
 
@@ -19206,8 +19206,8 @@ func (o *GetAliasMembershipResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAl
 	if o == nil {
 		return op
 	}
-	o.Membership = op.Membership
-	o.Return = op.Return
+	op.Membership = o.Membership
+	op.Return = o.Return
 	return op
 }
 
@@ -19489,9 +19489,9 @@ func (o *LookupNamesInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Looku
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.Count = op.Count
-	o.Names = op.Names
+	op.Domain = o.Domain
+	op.Count = o.Count
+	op.Names = o.Names
 	return op
 }
 
@@ -19537,9 +19537,9 @@ func (o *LookupNamesInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Look
 	if o == nil {
 		return op
 	}
-	o.RelativeIDs = op.RelativeIDs
-	o.Use = op.Use
-	o.Return = op.Return
+	op.RelativeIDs = o.RelativeIDs
+	op.Use = o.Use
+	op.Return = o.Return
 	return op
 }
 
@@ -19807,9 +19807,9 @@ func (o *LookupIDsInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupI
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.Count = op.Count
-	o.RelativeIDs = op.RelativeIDs
+	op.Domain = o.Domain
+	op.Count = o.Count
+	op.RelativeIDs = o.RelativeIDs
 	return op
 }
 
@@ -19856,9 +19856,9 @@ func (o *LookupIDsInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Lookup
 	if o == nil {
 		return op
 	}
-	o.Names = op.Names
-	o.Use = op.Use
-	o.Return = op.Return
+	op.Names = o.Names
+	op.Use = o.Use
+	op.Return = o.Return
 	return op
 }
 
@@ -20032,9 +20032,9 @@ func (o *OpenGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenGroupOperat
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DesiredAccess = op.DesiredAccess
-	o.GroupID = op.GroupID
+	op.Domain = o.Domain
+	op.DesiredAccess = o.DesiredAccess
+	op.GroupID = o.GroupID
 	return op
 }
 
@@ -20077,8 +20077,8 @@ func (o *OpenGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenGroupOpera
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.Return = op.Return
+	op.GroupHandle = o.GroupHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -20265,8 +20265,8 @@ func (o *QueryInformationGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.GroupInformationClass = op.GroupInformationClass
+	op.GroupHandle = o.GroupHandle
+	op.GroupInformationClass = o.GroupInformationClass
 	return op
 }
 
@@ -20308,8 +20308,8 @@ func (o *QueryInformationGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -20482,9 +20482,9 @@ func (o *SetInformationGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_SetIn
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.GroupInformationClass = op.GroupInformationClass
-	o.Buffer = op.Buffer
+	op.GroupHandle = o.GroupHandle
+	op.GroupInformationClass = o.GroupInformationClass
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -20521,7 +20521,7 @@ func (o *SetInformationGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_SetI
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20675,9 +20675,9 @@ func (o *AddMemberToGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMembe
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.MemberID = op.MemberID
-	o.Attributes = op.Attributes
+	op.GroupHandle = o.GroupHandle
+	op.MemberID = o.MemberID
+	op.Attributes = o.Attributes
 	return op
 }
 
@@ -20714,7 +20714,7 @@ func (o *AddMemberToGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMemb
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20858,7 +20858,7 @@ func (o *DeleteGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteGroupOp
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
+	op.GroupHandle = o.GroupHandle
 	return op
 }
 
@@ -20900,8 +20900,8 @@ func (o *DeleteGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteGroupO
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.Return = op.Return
+	op.GroupHandle = o.GroupHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -21042,8 +21042,8 @@ func (o *RemoveMemberFromGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.MemberID = op.MemberID
+	op.GroupHandle = o.GroupHandle
+	op.MemberID = o.MemberID
 	return op
 }
 
@@ -21079,7 +21079,7 @@ func (o *RemoveMemberFromGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21245,7 +21245,7 @@ func (o *GetMembersInGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMemb
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
+	op.GroupHandle = o.GroupHandle
 	return op
 }
 
@@ -21287,8 +21287,8 @@ func (o *GetMembersInGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMem
 	if o == nil {
 		return op
 	}
-	o.Members = op.Members
-	o.Return = op.Return
+	op.Members = o.Members
+	op.Return = o.Return
 	return op
 }
 
@@ -21445,9 +21445,9 @@ func (o *SetMemberAttributesOfGroupRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.GroupHandle = op.GroupHandle
-	o.MemberID = op.MemberID
-	o.Attributes = op.Attributes
+	op.GroupHandle = o.GroupHandle
+	op.MemberID = o.MemberID
+	op.Attributes = o.Attributes
 	return op
 }
 
@@ -21484,7 +21484,7 @@ func (o *SetMemberAttributesOfGroupResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21656,9 +21656,9 @@ func (o *OpenAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenAliasOperat
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DesiredAccess = op.DesiredAccess
-	o.AliasID = op.AliasID
+	op.Domain = o.Domain
+	op.DesiredAccess = o.DesiredAccess
+	op.AliasID = o.AliasID
 	return op
 }
 
@@ -21701,8 +21701,8 @@ func (o *OpenAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenAliasOpera
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.Return = op.Return
+	op.AliasHandle = o.AliasHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -21889,8 +21889,8 @@ func (o *QueryInformationAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.AliasInformationClass = op.AliasInformationClass
+	op.AliasHandle = o.AliasHandle
+	op.AliasInformationClass = o.AliasInformationClass
 	return op
 }
 
@@ -21932,8 +21932,8 @@ func (o *QueryInformationAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -22106,9 +22106,9 @@ func (o *SetInformationAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_SetIn
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.AliasInformationClass = op.AliasInformationClass
-	o.Buffer = op.Buffer
+	op.AliasHandle = o.AliasHandle
+	op.AliasInformationClass = o.AliasInformationClass
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -22145,7 +22145,7 @@ func (o *SetInformationAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_SetI
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22289,7 +22289,7 @@ func (o *DeleteAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAliasOp
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
+	op.AliasHandle = o.AliasHandle
 	return op
 }
 
@@ -22331,8 +22331,8 @@ func (o *DeleteAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAliasO
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.Return = op.Return
+	op.AliasHandle = o.AliasHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -22480,8 +22480,8 @@ func (o *AddMemberToAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMembe
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.MemberID = op.MemberID
+	op.AliasHandle = o.AliasHandle
+	op.MemberID = o.MemberID
 	return op
 }
 
@@ -22517,7 +22517,7 @@ func (o *AddMemberToAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMemb
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22666,8 +22666,8 @@ func (o *RemoveMemberFromAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.MemberID = op.MemberID
+	op.AliasHandle = o.AliasHandle
+	op.MemberID = o.MemberID
 	return op
 }
 
@@ -22703,7 +22703,7 @@ func (o *RemoveMemberFromAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22850,7 +22850,7 @@ func (o *GetMembersInAliasRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMemb
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
+	op.AliasHandle = o.AliasHandle
 	return op
 }
 
@@ -22892,8 +22892,8 @@ func (o *GetMembersInAliasResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMem
 	if o == nil {
 		return op
 	}
-	o.Members = op.Members
-	o.Return = op.Return
+	op.Members = o.Members
+	op.Return = o.Return
 	return op
 }
 
@@ -23066,9 +23066,9 @@ func (o *OpenUserRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenUserOperatio
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DesiredAccess = op.DesiredAccess
-	o.UserID = op.UserID
+	op.Domain = o.Domain
+	op.DesiredAccess = o.DesiredAccess
+	op.UserID = o.UserID
 	return op
 }
 
@@ -23111,8 +23111,8 @@ func (o *OpenUserResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenUserOperati
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.Return = op.Return
+	op.UserHandle = o.UserHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -23257,7 +23257,7 @@ func (o *DeleteUserRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteUserOper
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
+	op.UserHandle = o.UserHandle
 	return op
 }
 
@@ -23299,8 +23299,8 @@ func (o *DeleteUserResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteUserOpe
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.Return = op.Return
+	op.UserHandle = o.UserHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -23483,8 +23483,8 @@ func (o *QueryInformationUserRequest) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.UserInformationClass = op.UserInformationClass
+	op.UserHandle = o.UserHandle
+	op.UserInformationClass = o.UserInformationClass
 	return op
 }
 
@@ -23521,8 +23521,8 @@ func (o *QueryInformationUserResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -23685,9 +23685,9 @@ func (o *SetInformationUserRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInf
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.UserInformationClass = op.UserInformationClass
-	o.Buffer = op.Buffer
+	op.UserHandle = o.UserHandle
+	op.UserInformationClass = o.UserInformationClass
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -23724,7 +23724,7 @@ func (o *SetInformationUserResponse) xxx_ToOp(ctx context.Context, op *xxx_SetIn
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24219,17 +24219,17 @@ func (o *ChangePasswordUserRequest) xxx_ToOp(ctx context.Context, op *xxx_Change
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.LMPresent = op.LMPresent
-	o.OldLMEncryptedWithNewLM = op.OldLMEncryptedWithNewLM
-	o.NewLMEncryptedWithOldLM = op.NewLMEncryptedWithOldLM
-	o.NTPresent = op.NTPresent
-	o.OldNTEncryptedWithNewNT = op.OldNTEncryptedWithNewNT
-	o.NewNTEncryptedWithOldNT = op.NewNTEncryptedWithOldNT
-	o.NTCrossEncryptionPresent = op.NTCrossEncryptionPresent
-	o.NewNTEncryptedWithNewLM = op.NewNTEncryptedWithNewLM
-	o.LMCrossEncryptionPresent = op.LMCrossEncryptionPresent
-	o.NewLMEncryptedWithNewNT = op.NewLMEncryptedWithNewNT
+	op.UserHandle = o.UserHandle
+	op.LMPresent = o.LMPresent
+	op.OldLMEncryptedWithNewLM = o.OldLMEncryptedWithNewLM
+	op.NewLMEncryptedWithOldLM = o.NewLMEncryptedWithOldLM
+	op.NTPresent = o.NTPresent
+	op.OldNTEncryptedWithNewNT = o.OldNTEncryptedWithNewNT
+	op.NewNTEncryptedWithOldNT = o.NewNTEncryptedWithOldNT
+	op.NTCrossEncryptionPresent = o.NTCrossEncryptionPresent
+	op.NewNTEncryptedWithNewLM = o.NewNTEncryptedWithNewLM
+	op.LMCrossEncryptionPresent = o.LMCrossEncryptionPresent
+	op.NewLMEncryptedWithNewNT = o.NewLMEncryptedWithNewNT
 	return op
 }
 
@@ -24274,7 +24274,7 @@ func (o *ChangePasswordUserResponse) xxx_ToOp(ctx context.Context, op *xxx_Chang
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24440,7 +24440,7 @@ func (o *GetGroupsForUserRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGroup
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
+	op.UserHandle = o.UserHandle
 	return op
 }
 
@@ -24482,8 +24482,8 @@ func (o *GetGroupsForUserResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGrou
 	if o == nil {
 		return op
 	}
-	o.Groups = op.Groups
-	o.Return = op.Return
+	op.Groups = o.Groups
+	op.Return = o.Return
 	return op
 }
 
@@ -24715,11 +24715,11 @@ func (o *QueryDisplayInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DisplayInformationClass = op.DisplayInformationClass
-	o.Index = op.Index
-	o.EntryCount = op.EntryCount
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Domain = o.Domain
+	op.DisplayInformationClass = o.DisplayInformationClass
+	op.Index = o.Index
+	op.EntryCount = o.EntryCount
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -24761,10 +24761,10 @@ func (o *QueryDisplayInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.TotalAvailable = op.TotalAvailable
-	o.TotalReturned = op.TotalReturned
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.TotalAvailable = o.TotalAvailable
+	op.TotalReturned = o.TotalReturned
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -24942,9 +24942,9 @@ func (o *GetDisplayEnumerationIndexRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DisplayInformationClass = op.DisplayInformationClass
-	o.Prefix = op.Prefix
+	op.Domain = o.Domain
+	op.DisplayInformationClass = o.DisplayInformationClass
+	op.Prefix = o.Prefix
 	return op
 }
 
@@ -24982,8 +24982,8 @@ func (o *GetDisplayEnumerationIndexResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Index = op.Index
-	o.Return = op.Return
+	op.Index = o.Index
+	op.Return = o.Return
 	return op
 }
 
@@ -25127,7 +25127,7 @@ func (o *GetUserDomainPasswordInformationRequest) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
+	op.UserHandle = o.UserHandle
 	return op
 }
 
@@ -25168,8 +25168,8 @@ func (o *GetUserDomainPasswordInformationResponse) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.PasswordInformation = op.PasswordInformation
-	o.Return = op.Return
+	op.PasswordInformation = o.PasswordInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -25319,8 +25319,8 @@ func (o *RemoveMemberFromForeignDomainRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.MemberSID = op.MemberSID
+	op.Domain = o.Domain
+	op.MemberSID = o.MemberSID
 	return op
 }
 
@@ -25356,7 +25356,7 @@ func (o *RemoveMemberFromForeignDomainResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25542,8 +25542,8 @@ func (o *QueryInformationDomain2Request) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DomainInformationClass = op.DomainInformationClass
+	op.Domain = o.Domain
+	op.DomainInformationClass = o.DomainInformationClass
 	return op
 }
 
@@ -25585,8 +25585,8 @@ func (o *QueryInformationDomain2Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -25773,8 +25773,8 @@ func (o *QueryInformationUser2Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.UserInformationClass = op.UserInformationClass
+	op.UserHandle = o.UserHandle
+	op.UserInformationClass = o.UserInformationClass
 	return op
 }
 
@@ -25816,8 +25816,8 @@ func (o *QueryInformationUser2Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -26049,11 +26049,11 @@ func (o *QueryDisplayInformation2Request) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DisplayInformationClass = op.DisplayInformationClass
-	o.Index = op.Index
-	o.EntryCount = op.EntryCount
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Domain = o.Domain
+	op.DisplayInformationClass = o.DisplayInformationClass
+	op.Index = o.Index
+	op.EntryCount = o.EntryCount
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -26095,10 +26095,10 @@ func (o *QueryDisplayInformation2Response) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.TotalAvailable = op.TotalAvailable
-	o.TotalReturned = op.TotalReturned
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.TotalAvailable = o.TotalAvailable
+	op.TotalReturned = o.TotalReturned
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -26285,9 +26285,9 @@ func (o *GetDisplayEnumerationIndex2Request) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DisplayInformationClass = op.DisplayInformationClass
-	o.Prefix = op.Prefix
+	op.Domain = o.Domain
+	op.DisplayInformationClass = o.DisplayInformationClass
+	op.Prefix = o.Prefix
 	return op
 }
 
@@ -26331,8 +26331,8 @@ func (o *GetDisplayEnumerationIndex2Response) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Index = op.Index
-	o.Return = op.Return
+	op.Index = o.Index
+	op.Return = o.Return
 	return op
 }
 
@@ -26563,10 +26563,10 @@ func (o *CreateUser2InDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.Name = op.Name
-	o.AccountType = op.AccountType
-	o.DesiredAccess = op.DesiredAccess
+	op.Domain = o.Domain
+	op.Name = o.Name
+	op.AccountType = o.AccountType
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -26614,10 +26614,10 @@ func (o *CreateUser2InDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.GrantedAccess = op.GrantedAccess
-	o.RelativeID = op.RelativeID
-	o.Return = op.Return
+	op.UserHandle = o.UserHandle
+	op.GrantedAccess = o.GrantedAccess
+	op.RelativeID = o.RelativeID
+	op.Return = o.Return
 	return op
 }
 
@@ -26860,11 +26860,11 @@ func (o *QueryDisplayInformation3Request) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Domain = op.Domain
-	o.DisplayInformationClass = op.DisplayInformationClass
-	o.Index = op.Index
-	o.EntryCount = op.EntryCount
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Domain = o.Domain
+	op.DisplayInformationClass = o.DisplayInformationClass
+	op.Index = o.Index
+	op.EntryCount = o.EntryCount
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -26914,10 +26914,10 @@ func (o *QueryDisplayInformation3Response) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.TotalAvailable = op.TotalAvailable
-	o.TotalReturned = op.TotalReturned
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.TotalAvailable = o.TotalAvailable
+	op.TotalReturned = o.TotalReturned
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -27075,8 +27075,8 @@ func (o *AddMultipleMembersToAliasRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.MembersBuffer = op.MembersBuffer
+	op.AliasHandle = o.AliasHandle
+	op.MembersBuffer = o.MembersBuffer
 	return op
 }
 
@@ -27112,7 +27112,7 @@ func (o *AddMultipleMembersToAliasResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27268,8 +27268,8 @@ func (o *RemoveMultipleMembersFromAliasRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.AliasHandle = op.AliasHandle
-	o.MembersBuffer = op.MembersBuffer
+	op.AliasHandle = o.AliasHandle
+	op.MembersBuffer = o.MembersBuffer
 	return op
 }
 
@@ -27305,7 +27305,7 @@ func (o *RemoveMultipleMembersFromAliasResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27589,10 +27589,10 @@ func (o *OEMChangePasswordUser2Request) xxx_ToOp(ctx context.Context, op *xxx_OE
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UserName = op.UserName
-	o.NewPasswordEncryptedWithOldLM = op.NewPasswordEncryptedWithOldLM
-	o.OldLMOWFPasswordEncryptedWithNewLM = op.OldLMOWFPasswordEncryptedWithNewLM
+	op.ServerName = o.ServerName
+	op.UserName = o.UserName
+	op.NewPasswordEncryptedWithOldLM = o.NewPasswordEncryptedWithOldLM
+	op.OldLMOWFPasswordEncryptedWithNewLM = o.OldLMOWFPasswordEncryptedWithNewLM
 	return op
 }
 
@@ -27630,7 +27630,7 @@ func (o *OEMChangePasswordUser2Response) xxx_ToOp(ctx context.Context, op *xxx_O
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28030,13 +28030,13 @@ func (o *UnicodeChangePasswordUser2Request) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UserName = op.UserName
-	o.NewPasswordEncryptedWithOldNT = op.NewPasswordEncryptedWithOldNT
-	o.OldNTOWFPasswordEncryptedWithNewNT = op.OldNTOWFPasswordEncryptedWithNewNT
-	o.LMPresent = op.LMPresent
-	o.NewPasswordEncryptedWithOldLM = op.NewPasswordEncryptedWithOldLM
-	o.OldLMOWFPasswordEncryptedWithNewNT = op.OldLMOWFPasswordEncryptedWithNewNT
+	op.ServerName = o.ServerName
+	op.UserName = o.UserName
+	op.NewPasswordEncryptedWithOldNT = o.NewPasswordEncryptedWithOldNT
+	op.OldNTOWFPasswordEncryptedWithNewNT = o.OldNTOWFPasswordEncryptedWithNewNT
+	op.LMPresent = o.LMPresent
+	op.NewPasswordEncryptedWithOldLM = o.NewPasswordEncryptedWithOldLM
+	op.OldLMOWFPasswordEncryptedWithNewNT = o.OldLMOWFPasswordEncryptedWithNewNT
 	return op
 }
 
@@ -28077,7 +28077,7 @@ func (o *UnicodeChangePasswordUser2Response) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28265,8 +28265,8 @@ func (o *GetDomainPasswordInformationResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.PasswordInformation = op.PasswordInformation
-	o.Return = op.Return
+	op.PasswordInformation = o.PasswordInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -28440,8 +28440,8 @@ func (o *Connect2Request) xxx_ToOp(ctx context.Context, op *xxx_Connect2Operatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -28479,8 +28479,8 @@ func (o *Connect2Response) xxx_ToOp(ctx context.Context, op *xxx_Connect2Operati
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Return = op.Return
+	op.Server = o.Server
+	op.Return = o.Return
 	return op
 }
 
@@ -28653,9 +28653,9 @@ func (o *SetInformationUser2Request) xxx_ToOp(ctx context.Context, op *xxx_SetIn
 	if o == nil {
 		return op
 	}
-	o.UserHandle = op.UserHandle
-	o.UserInformationClass = op.UserInformationClass
-	o.Buffer = op.Buffer
+	op.UserHandle = o.UserHandle
+	op.UserInformationClass = o.UserInformationClass
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -28692,7 +28692,7 @@ func (o *SetInformationUser2Response) xxx_ToOp(ctx context.Context, op *xxx_SetI
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28881,9 +28881,9 @@ func (o *Connect4Request) xxx_ToOp(ctx context.Context, op *xxx_Connect4Operatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ClientRevision = op.ClientRevision
-	o.DesiredAccess = op.DesiredAccess
+	op.ServerName = o.ServerName
+	op.ClientRevision = o.ClientRevision
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -28922,8 +28922,8 @@ func (o *Connect4Response) xxx_ToOp(ctx context.Context, op *xxx_Connect4Operati
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Return = op.Return
+	op.Server = o.Server
+	op.Return = o.Return
 	return op
 }
 
@@ -29176,10 +29176,10 @@ func (o *Connect5Request) xxx_ToOp(ctx context.Context, op *xxx_Connect5Operatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DesiredAccess = op.DesiredAccess
-	o.InVersion = op.InVersion
-	o.InRevisionInfo = op.InRevisionInfo
+	op.ServerName = o.ServerName
+	op.DesiredAccess = o.DesiredAccess
+	op.InVersion = o.InVersion
+	op.InRevisionInfo = o.InRevisionInfo
 	return op
 }
 
@@ -29224,10 +29224,10 @@ func (o *Connect5Response) xxx_ToOp(ctx context.Context, op *xxx_Connect5Operati
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.OutRevisionInfo = op.OutRevisionInfo
-	o.Server = op.Server
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.OutRevisionInfo = o.OutRevisionInfo
+	op.Server = o.Server
+	op.Return = o.Return
 	return op
 }
 
@@ -29412,8 +29412,8 @@ func (o *RIDToSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_RIDToSIDOperatio
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.RID = op.RID
+	op.Object = o.Object
+	op.RID = o.RID
 	return op
 }
 
@@ -29455,8 +29455,8 @@ func (o *RIDToSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_RIDToSIDOperati
 	if o == nil {
 		return op
 	}
-	o.SID = op.SID
-	o.Return = op.Return
+	op.SID = o.SID
+	op.Return = o.Return
 	return op
 }
 
@@ -29650,8 +29650,8 @@ func (o *SetDSRMPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDSRMPa
 	if o == nil {
 		return op
 	}
-	o.UserID = op.UserID
-	o.EncryptedNTOWFPassword = op.EncryptedNTOWFPassword
+	op.UserID = o.UserID
+	op.EncryptedNTOWFPassword = o.EncryptedNTOWFPassword
 	return op
 }
 
@@ -29687,7 +29687,7 @@ func (o *SetDSRMPasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDSRMP
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29877,8 +29877,8 @@ func (o *ValidatePasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_Validate
 	if o == nil {
 		return op
 	}
-	o.ValidationType = op.ValidationType
-	o.InputArg = op.InputArg
+	op.ValidationType = o.ValidationType
+	op.InputArg = o.InputArg
 	return op
 }
 
@@ -29916,8 +29916,8 @@ func (o *ValidatePasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_Validat
 	if o == nil {
 		return op
 	}
-	o.OutputArg = op.OutputArg
-	o.Return = op.Return
+	op.OutputArg = o.OutputArg
+	op.Return = o.Return
 	return op
 }
 

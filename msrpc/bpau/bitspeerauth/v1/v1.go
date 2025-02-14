@@ -341,8 +341,8 @@ func (o *ExchangePublicKeysRequest) xxx_ToOp(ctx context.Context, op *xxx_Exchan
 	if o == nil {
 		return op
 	}
-	o.ClientKeyLength = op.ClientKeyLength
-	o.ClientKey = op.ClientKey
+	op.ClientKeyLength = o.ClientKeyLength
+	op.ClientKey = o.ClientKey
 	return op
 }
 
@@ -386,9 +386,9 @@ func (o *ExchangePublicKeysResponse) xxx_ToOp(ctx context.Context, op *xxx_Excha
 	if o == nil {
 		return op
 	}
-	o.ServerKeyLength = op.ServerKeyLength
-	o.ServerKey = op.ServerKey
-	o.Return = op.Return
+	op.ServerKeyLength = o.ServerKeyLength
+	op.ServerKey = o.ServerKey
+	op.Return = o.Return
 	return op
 }
 

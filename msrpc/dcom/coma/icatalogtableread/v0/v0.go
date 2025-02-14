@@ -916,15 +916,15 @@ func (o *ReadTableRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadTableOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CatalogID = op.CatalogID
-	o.TableID = op.TableID
-	o.TableFlags = op.TableFlags
-	o.QueryCellArray = op.QueryCellArray
-	o.QueryCellArrayLength = op.QueryCellArrayLength
-	o.QueryComparison = op.QueryComparison
-	o.QueryComparisonLength = op.QueryComparisonLength
-	o.QueryFormat = op.QueryFormat
+	op.This = o.This
+	op.CatalogID = o.CatalogID
+	op.TableID = o.TableID
+	op.TableFlags = o.TableFlags
+	op.QueryCellArray = o.QueryCellArray
+	op.QueryCellArrayLength = o.QueryCellArrayLength
+	op.QueryComparison = o.QueryComparison
+	op.QueryComparisonLength = o.QueryComparisonLength
+	op.QueryFormat = o.QueryFormat
 	return op
 }
 
@@ -989,14 +989,14 @@ func (o *ReadTableResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadTableOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TableDataFixed = op.TableDataFixed
-	o.TableDataFixedLength = op.TableDataFixedLength
-	o.TableDataVariable = op.TableDataVariable
-	o.TableDataVariableLength = op.TableDataVariableLength
-	o.TableDetailedErrors = op.TableDetailedErrors
-	o.TableDetailedErrorsLength = op.TableDetailedErrorsLength
-	o.Return = op.Return
+	op.That = o.That
+	op.TableDataFixed = o.TableDataFixed
+	op.TableDataFixedLength = o.TableDataFixedLength
+	op.TableDataVariable = o.TableDataVariable
+	op.TableDataVariableLength = o.TableDataVariableLength
+	op.TableDetailedErrors = o.TableDetailedErrors
+	op.TableDetailedErrorsLength = o.TableDetailedErrorsLength
+	op.Return = o.Return
 	return op
 }
 

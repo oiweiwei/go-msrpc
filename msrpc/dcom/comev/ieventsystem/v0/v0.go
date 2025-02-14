@@ -616,9 +616,9 @@ func (o *QueryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ProgID = op.ProgID
-	o.QueryCriteria = op.QueryCriteria
+	op.This = o.This
+	op.ProgID = o.ProgID
+	op.QueryCriteria = o.QueryCriteria
 	return op
 }
 
@@ -666,10 +666,10 @@ func (o *QueryResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ErrorIndex = op.ErrorIndex
-	o.Interface = op.Interface
-	o.Return = op.Return
+	op.That = o.That
+	op.ErrorIndex = o.ErrorIndex
+	op.Interface = o.Interface
+	op.Return = o.Return
 	return op
 }
 
@@ -937,9 +937,9 @@ func (o *StoreRequest) xxx_ToOp(ctx context.Context, op *xxx_StoreOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ProgID = op.ProgID
-	o.Interface = op.Interface
+	op.This = o.This
+	op.ProgID = o.ProgID
+	op.Interface = o.Interface
 	return op
 }
 
@@ -978,8 +978,8 @@ func (o *StoreResponse) xxx_ToOp(ctx context.Context, op *xxx_StoreOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1241,9 +1241,9 @@ func (o *RemoveRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ProgID = op.ProgID
-	o.QueryCriteria = op.QueryCriteria
+	op.This = o.This
+	op.ProgID = o.ProgID
+	op.QueryCriteria = o.QueryCriteria
 	return op
 }
 
@@ -1283,9 +1283,9 @@ func (o *RemoveResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ErrorIndex = op.ErrorIndex
-	o.Return = op.Return
+	op.That = o.That
+	op.ErrorIndex = o.ErrorIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -1488,7 +1488,7 @@ func (o *GetEventObjectChangeEventClassIDRequest) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1530,9 +1530,9 @@ func (o *GetEventObjectChangeEventClassIDResponse) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventClassID = op.EventClassID
-	o.Return = op.Return
+	op.That = o.That
+	op.EventClassID = o.EventClassID
+	op.Return = o.Return
 	return op
 }
 
@@ -1844,9 +1844,9 @@ func (o *QuerySRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ProgID = op.ProgID
-	o.QueryCriteria = op.QueryCriteria
+	op.This = o.This
+	op.ProgID = o.ProgID
+	op.QueryCriteria = o.QueryCriteria
 	return op
 }
 
@@ -1889,9 +1889,9 @@ func (o *QuerySResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Interface = op.Interface
-	o.Return = op.Return
+	op.That = o.That
+	op.Interface = o.Interface
+	op.Return = o.Return
 	return op
 }
 
@@ -2156,9 +2156,9 @@ func (o *RemoveSRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveSOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ProgID = op.ProgID
-	o.QueryCriteria = op.QueryCriteria
+	op.This = o.This
+	op.ProgID = o.ProgID
+	op.QueryCriteria = o.QueryCriteria
 	return op
 }
 
@@ -2197,8 +2197,8 @@ func (o *RemoveSResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveSOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

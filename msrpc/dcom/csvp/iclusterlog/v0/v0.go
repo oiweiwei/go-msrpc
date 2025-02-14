@@ -468,7 +468,7 @@ func (o *GenerateClusterLogRequest) xxx_ToOp(ctx context.Context, op *xxx_Genera
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -513,9 +513,9 @@ func (o *GenerateClusterLogResponse) xxx_ToOp(ctx context.Context, op *xxx_Gener
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFilePath = op.LogFilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
 	return op
 }
 
@@ -735,8 +735,8 @@ func (o *GenerateTimeSpanLogRequest) xxx_ToOp(ctx context.Context, op *xxx_Gener
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SpanMinutes = op.SpanMinutes
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
 	return op
 }
 
@@ -777,9 +777,9 @@ func (o *GenerateTimeSpanLogResponse) xxx_ToOp(ctx context.Context, op *xxx_Gene
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFilePath = op.LogFilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
 	return op
 }
 
@@ -982,7 +982,7 @@ func (o *GenerateClusterLogInLocalTimeRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1027,9 +1027,9 @@ func (o *GenerateClusterLogInLocalTimeResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFilePath = op.LogFilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
 	return op
 }
 
@@ -1249,8 +1249,8 @@ func (o *GenerateTimeSpanLogInLocalTimeRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SpanMinutes = op.SpanMinutes
+	op.This = o.This
+	op.SpanMinutes = o.SpanMinutes
 	return op
 }
 
@@ -1291,9 +1291,9 @@ func (o *GenerateTimeSpanLogInLocalTimeResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LogFilePath = op.LogFilePath
-	o.Return = op.Return
+	op.That = o.That
+	op.LogFilePath = o.LogFilePath
+	op.Return = o.Return
 	return op
 }
 

@@ -1276,8 +1276,8 @@ func (o *PrepareScriptRequest) xxx_ToOp(ctx context.Context, op *xxx_PrepareScri
 	if o == nil {
 		return op
 	}
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -1317,9 +1317,9 @@ func (o *PrepareScriptResponse) xxx_ToOp(ctx context.Context, op *xxx_PrepareScr
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -1505,8 +1505,8 @@ func (o *ExecuteScriptRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteScri
 	if o == nil {
 		return op
 	}
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -1546,9 +1546,9 @@ func (o *ExecuteScriptResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteScr
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 

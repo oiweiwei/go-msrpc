@@ -289,8 +289,8 @@ func (o *SetEventRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventToSet = op.EventToSet
+	op.This = o.This
+	op.EventToSet = o.EventToSet
 	return op
 }
 
@@ -328,8 +328,8 @@ func (o *SetEventResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEventOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -359,7 +359,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -397,9 +397,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -600,7 +600,7 @@ func (o *GetSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -638,9 +638,9 @@ func (o *GetSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MethodSchema = op.MethodSchema
-	o.Return = op.Return
+	op.That = o.That
+	op.MethodSchema = o.MethodSchema
+	op.Return = o.Return
 	return op
 }
 
@@ -841,7 +841,7 @@ func (o *CreateInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateInst
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -879,9 +879,9 @@ func (o *CreateInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateIns
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MethodInstance = op.MethodInstance
-	o.Return = op.Return
+	op.That = o.That
+	op.MethodInstance = o.MethodInstance
+	op.Return = o.Return
 	return op
 }
 

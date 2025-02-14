@@ -543,7 +543,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -581,9 +581,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -784,7 +784,7 @@ func (o *GetCollectionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCollecti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -822,9 +822,9 @@ func (o *GetCollectionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCollect
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Collection = op.Collection
-	o.Return = op.Return
+	op.That = o.That
+	op.Collection = o.Collection
+	op.Return = o.Return
 	return op
 }
 
@@ -1025,7 +1025,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1063,9 +1063,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Properties = op.Properties
-	o.Return = op.Return
+	op.That = o.That
+	op.Properties = o.Properties
+	op.Return = o.Return
 	return op
 }
 
@@ -1266,7 +1266,7 @@ func (o *GetChildElementsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetChild
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1304,9 +1304,9 @@ func (o *GetChildElementsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetChil
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Elements = op.Elements
-	o.Return = op.Return
+	op.That = o.That
+	op.Elements = o.Elements
+	op.Return = o.Return
 	return op
 }
 
@@ -1555,8 +1555,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -1595,9 +1595,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1828,9 +1828,9 @@ func (o *SetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
-	o.Value = op.Value
+	op.This = o.This
+	op.MetadataType = o.MetadataType
+	op.Value = o.Value
 	return op
 }
 
@@ -1869,8 +1869,8 @@ func (o *SetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2070,7 +2070,7 @@ func (o *GetSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2108,9 +2108,9 @@ func (o *GetSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Schema = op.Schema
-	o.Return = op.Return
+	op.That = o.That
+	op.Schema = o.Schema
+	op.Return = o.Return
 	return op
 }
 
@@ -2361,8 +2361,8 @@ func (o *GetElementByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEleme
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SubName = op.SubName
+	op.This = o.This
+	op.SubName = o.SubName
 	return op
 }
 
@@ -2401,9 +2401,9 @@ func (o *GetElementByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetElem
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Element = op.Element
-	o.Return = op.Return
+	op.That = o.That
+	op.Element = o.Element
+	op.Return = o.Return
 	return op
 }
 
@@ -2654,8 +2654,8 @@ func (o *GetPropertyByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SubName = op.SubName
+	op.This = o.This
+	op.SubName = o.SubName
 	return op
 }
 
@@ -2694,9 +2694,9 @@ func (o *GetPropertyByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Property = op.Property
-	o.Return = op.Return
+	op.That = o.That
+	op.Property = o.Property
+	op.Return = o.Return
 	return op
 }
 
@@ -2850,7 +2850,7 @@ func (o *ClearRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2887,8 +2887,8 @@ func (o *ClearResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3088,7 +3088,7 @@ func (o *GetMethodsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMethodsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3126,9 +3126,9 @@ func (o *GetMethodsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMethodsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Methods = op.Methods
-	o.Return = op.Return
+	op.That = o.That
+	op.Methods = o.Methods
+	op.Return = o.Return
 	return op
 }
 

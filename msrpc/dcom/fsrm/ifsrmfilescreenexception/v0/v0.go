@@ -359,7 +359,7 @@ func (o *GetPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -397,9 +397,9 @@ func (o *GetPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Path = op.Path
-	o.Return = op.Return
+	op.That = o.That
+	op.Path = o.Path
+	op.Return = o.Return
 	return op
 }
 
@@ -602,7 +602,7 @@ func (o *GetAllowedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -640,9 +640,9 @@ func (o *GetAllowedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AllowList = op.AllowList
-	o.Return = op.Return
+	op.That = o.That
+	op.AllowList = o.AllowList
+	op.Return = o.Return
 	return op
 }
 
@@ -846,8 +846,8 @@ func (o *SetAllowedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AllowList = op.AllowList
+	op.This = o.This
+	op.AllowList = o.AllowList
 	return op
 }
 
@@ -885,8 +885,8 @@ func (o *SetAllowedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

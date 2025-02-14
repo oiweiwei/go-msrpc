@@ -294,7 +294,7 @@ func (o *OpenConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenConnec
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -352,8 +352,8 @@ func (o *OpenConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenConne
 	if o == nil {
 		return op
 	}
-	o.Fax = op.Fax
-	o.Return = op.Return
+	op.Fax = o.Fax
+	op.Return = o.Return
 	return op
 }
 
@@ -513,8 +513,8 @@ func (o *ClientEventQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientEv
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.FaxEvent = op.FaxEvent
+	op.FaxPort = o.FaxPort
+	op.FaxEvent = o.FaxEvent
 	return op
 }
 
@@ -550,7 +550,7 @@ func (o *ClientEventQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientE
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -690,7 +690,7 @@ func (o *CloseConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseConn
 	if o == nil {
 		return op
 	}
-	o.Fax = op.Fax
+	op.Fax = o.Fax
 	return op
 }
 
@@ -728,8 +728,8 @@ func (o *CloseConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseCon
 	if o == nil {
 		return op
 	}
-	o.Fax = op.Fax
-	o.Return = op.Return
+	op.Fax = o.Fax
+	op.Return = o.Return
 	return op
 }
 
@@ -946,9 +946,9 @@ func (o *ClientEventQueueExRequest) xxx_ToOp(ctx context.Context, op *xxx_Client
 	if o == nil {
 		return op
 	}
-	o.ClientContext = op.ClientContext
-	o.Data = op.Data
-	o.DataSize = op.DataSize
+	op.ClientContext = o.ClientContext
+	op.Data = o.Data
+	op.DataSize = o.DataSize
 	return op
 }
 
@@ -985,7 +985,7 @@ func (o *ClientEventQueueExResponse) xxx_ToOp(ctx context.Context, op *xxx_Clien
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

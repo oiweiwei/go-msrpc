@@ -559,7 +559,7 @@ func (o *GetTypeInfoCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeI
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -599,9 +599,9 @@ func (o *GetTypeInfoCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetType
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfoCount = op.TypeInfoCount
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfoCount = o.TypeInfoCount
+	op.Return = o.Return
 	return op
 }
 
@@ -832,9 +832,9 @@ func (o *GetTypeInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeInfoOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TypeInfoIndex = op.TypeInfoIndex
-	o.LocaleID = op.LocaleID
+	op.This = o.This
+	op.TypeInfoIndex = o.TypeInfoIndex
+	op.LocaleID = o.LocaleID
 	return op
 }
 
@@ -884,9 +884,9 @@ func (o *GetTypeInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeInfoO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1223,11 +1223,11 @@ func (o *GetIDsOfNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIDsOfNam
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IID = op.IID
-	o.Names = op.Names
-	o.NamesCount = op.NamesCount
-	o.LocaleID = op.LocaleID
+	op.This = o.This
+	op.IID = o.IID
+	op.Names = o.Names
+	op.NamesCount = o.NamesCount
+	op.LocaleID = o.LocaleID
 	return op
 }
 
@@ -1271,9 +1271,9 @@ func (o *GetIDsOfNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDsOfNa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DispatchID = op.DispatchID
-	o.Return = op.Return
+	op.That = o.That
+	op.DispatchID = o.DispatchID
+	op.Return = o.Return
 	return op
 }
 
@@ -1886,15 +1886,15 @@ func (o *InvokeRequest) xxx_ToOp(ctx context.Context, op *xxx_InvokeOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DispatchIDMember = op.DispatchIDMember
-	o.IID = op.IID
-	o.LocaleID = op.LocaleID
-	o.Flags = op.Flags
-	o.DispatchParams = op.DispatchParams
-	o.VarReferenceCount = op.VarReferenceCount
-	o.VarReferenceIndex = op.VarReferenceIndex
-	o.VarReference = op.VarReference
+	op.This = o.This
+	op.DispatchIDMember = o.DispatchIDMember
+	op.IID = o.IID
+	op.LocaleID = o.LocaleID
+	op.Flags = o.Flags
+	op.DispatchParams = o.DispatchParams
+	op.VarReferenceCount = o.VarReferenceCount
+	op.VarReferenceIndex = o.VarReferenceIndex
+	op.VarReference = o.VarReference
 	return op
 }
 
@@ -1955,12 +1955,12 @@ func (o *InvokeResponse) xxx_ToOp(ctx context.Context, op *xxx_InvokeOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarResult = op.VarResult
-	o.ExceptionInfo = op.ExceptionInfo
-	o.ArgError = op.ArgError
-	o.VarReference = op.VarReference
-	o.Return = op.Return
+	op.That = o.That
+	op.VarResult = o.VarResult
+	op.ExceptionInfo = o.ExceptionInfo
+	op.ArgError = o.ArgError
+	op.VarReference = o.VarReference
+	op.Return = o.Return
 	return op
 }
 

@@ -653,13 +653,13 @@ func (o *Request2Request) xxx_ToOp(ctx context.Context, op *xxx_Request2Operatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.Flags = op.Flags
-	o.SerialNumber = op.SerialNumber
-	o.RequestID = op.RequestID
-	o.Attributes = op.Attributes
-	o.Request = op.Request
+	op.This = o.This
+	op.Authority = o.Authority
+	op.Flags = o.Flags
+	op.SerialNumber = o.SerialNumber
+	op.RequestID = o.RequestID
+	op.Attributes = o.Attributes
+	op.Request = o.Request
 	return op
 }
 
@@ -717,13 +717,13 @@ func (o *Request2Response) xxx_ToOp(ctx context.Context, op *xxx_Request2Operati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RequestID = op.RequestID
-	o.Disposition = op.Disposition
-	o.FullResponse = op.FullResponse
-	o.EncodedCert = op.EncodedCert
-	o.DispositionMessage = op.DispositionMessage
-	o.Return = op.Return
+	op.That = o.That
+	op.RequestID = o.RequestID
+	op.Disposition = o.Disposition
+	op.FullResponse = o.FullResponse
+	op.EncodedCert = o.EncodedCert
+	op.DispositionMessage = o.DispositionMessage
+	op.Return = o.Return
 	return op
 }
 
@@ -1152,11 +1152,11 @@ func (o *GetCAPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCAProper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
-	o.PropertyID = op.PropertyID
-	o.PropertyIndex = op.PropertyIndex
-	o.PropertyType = op.PropertyType
+	op.This = o.This
+	op.Authority = o.Authority
+	op.PropertyID = o.PropertyID
+	op.PropertyIndex = o.PropertyIndex
+	op.PropertyType = o.PropertyType
 	return op
 }
 
@@ -1201,9 +1201,9 @@ func (o *GetCAPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCAPrope
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyValue = op.PropertyValue
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyValue = o.PropertyValue
+	op.Return = o.Return
 	return op
 }
 
@@ -1443,8 +1443,8 @@ func (o *GetCAPropertyInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCAPr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -1488,10 +1488,10 @@ func (o *GetCAPropertyInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCAP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyCount = op.PropertyCount
-	o.PropertyInfo = op.PropertyInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyCount = o.PropertyCount
+	op.PropertyInfo = o.PropertyInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1689,8 +1689,8 @@ func (o *Ping2Request) xxx_ToOp(ctx context.Context, op *xxx_Ping2Operation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Authority = op.Authority
+	op.This = o.This
+	op.Authority = o.Authority
 	return op
 }
 
@@ -1728,8 +1728,8 @@ func (o *Ping2Response) xxx_ToOp(ctx context.Context, op *xxx_Ping2Operation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

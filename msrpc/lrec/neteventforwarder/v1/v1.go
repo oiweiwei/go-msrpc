@@ -383,7 +383,7 @@ func (o *OpenSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionOp
 	if o == nil {
 		return op
 	}
-	o.LoggerName = op.LoggerName
+	op.LoggerName = o.LoggerName
 	return op
 }
 
@@ -419,8 +419,8 @@ func (o *OpenSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionO
 	if o == nil {
 		return op
 	}
-	o.SessionHandle = op.SessionHandle
-	o.Return = op.Return
+	op.SessionHandle = o.SessionHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -568,7 +568,7 @@ func (o *ReceiveDataRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveDataOp
 	if o == nil {
 		return op
 	}
-	o.SessionHandle = op.SessionHandle
+	op.SessionHandle = o.SessionHandle
 	return op
 }
 
@@ -604,8 +604,8 @@ func (o *ReceiveDataResponse) xxx_ToOp(ctx context.Context, op *xxx_ReceiveDataO
 	if o == nil {
 		return op
 	}
-	o.EventBuffer = op.EventBuffer
-	o.Return = op.Return
+	op.EventBuffer = o.EventBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -733,7 +733,7 @@ func (o *CloseSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseSession
 	if o == nil {
 		return op
 	}
-	o.SessionHandle = op.SessionHandle
+	op.SessionHandle = o.SessionHandle
 	return op
 }
 
@@ -767,7 +767,7 @@ func (o *CloseSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseSessio
 	if o == nil {
 		return op
 	}
-	o.SessionHandle = op.SessionHandle
+	op.SessionHandle = o.SessionHandle
 	return op
 }
 

@@ -635,7 +635,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -673,9 +673,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -876,7 +876,7 @@ func (o *GetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -914,9 +914,9 @@ func (o *GetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Type = op.Type
-	o.Return = op.Return
+	op.That = o.That
+	op.Type = o.Type
+	op.Return = o.Return
 	return op
 }
 
@@ -1119,7 +1119,7 @@ func (o *GetDefaultValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDefaul
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1157,9 +1157,9 @@ func (o *GetDefaultValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDefau
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DefaultValue = op.DefaultValue
-	o.Return = op.Return
+	op.That = o.That
+	op.DefaultValue = o.DefaultValue
+	op.Return = o.Return
 	return op
 }
 
@@ -1326,7 +1326,7 @@ func (o *GetIsRequiredRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsRequir
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1364,9 +1364,9 @@ func (o *GetIsRequiredResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsRequi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsRequired = op.IsRequired
-	o.Return = op.Return
+	op.That = o.That
+	op.IsRequired = o.IsRequired
+	op.Return = o.Return
 	return op
 }
 
@@ -1535,7 +1535,7 @@ func (o *GetIsUniqueKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsUniqu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1573,9 +1573,9 @@ func (o *GetIsUniqueKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsUniq
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsUniqueKey = op.IsUniqueKey
-	o.Return = op.Return
+	op.That = o.That
+	op.IsUniqueKey = o.IsUniqueKey
+	op.Return = o.Return
 	return op
 }
 
@@ -1744,7 +1744,7 @@ func (o *GetIsCombinedKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsCom
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1782,9 +1782,9 @@ func (o *GetIsCombinedKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsCo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsCombinedKey = op.IsCombinedKey
-	o.Return = op.Return
+	op.That = o.That
+	op.IsCombinedKey = o.IsCombinedKey
+	op.Return = o.Return
 	return op
 }
 
@@ -1951,7 +1951,7 @@ func (o *GetIsExpandedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsExpand
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1989,9 +1989,9 @@ func (o *GetIsExpandedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsExpan
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsExpanded = op.IsExpanded
-	o.Return = op.Return
+	op.That = o.That
+	op.IsExpanded = o.IsExpanded
+	op.Return = o.Return
 	return op
 }
 
@@ -2194,7 +2194,7 @@ func (o *GetValidationTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVali
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2232,9 +2232,9 @@ func (o *GetValidationTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVal
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ValidationType = op.ValidationType
-	o.Return = op.Return
+	op.That = o.That
+	op.ValidationType = o.ValidationType
+	op.Return = o.Return
 	return op
 }
 
@@ -2437,7 +2437,7 @@ func (o *GetValidationParameterRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2475,9 +2475,9 @@ func (o *GetValidationParameterResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ValidationParameter = op.ValidationParameter
-	o.Return = op.Return
+	op.That = o.That
+	op.ValidationParameter = o.ValidationParameter
+	op.Return = o.Return
 	return op
 }
 
@@ -2726,8 +2726,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -2766,9 +2766,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -2937,7 +2937,7 @@ func (o *GetIsCaseSensitiveRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2975,9 +2975,9 @@ func (o *GetIsCaseSensitiveResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIs
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsCaseSensitive = op.IsCaseSensitive
-	o.Return = op.Return
+	op.That = o.That
+	op.IsCaseSensitive = o.IsCaseSensitive
+	op.Return = o.Return
 	return op
 }
 
@@ -3180,7 +3180,7 @@ func (o *GetPossibleValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPoss
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3218,9 +3218,9 @@ func (o *GetPossibleValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPos
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Values = op.Values
-	o.Return = op.Return
+	op.That = o.That
+	op.Values = o.Values
+	op.Return = o.Return
 	return op
 }
 
@@ -3389,7 +3389,7 @@ func (o *GetDoesAllowInfiniteRequest) xxx_ToOp(ctx context.Context, op *xxx_GetD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3427,9 +3427,9 @@ func (o *GetDoesAllowInfiniteResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AllowInfinite = op.AllowInfinite
-	o.Return = op.Return
+	op.That = o.That
+	op.AllowInfinite = o.AllowInfinite
+	op.Return = o.Return
 	return op
 }
 
@@ -3598,7 +3598,7 @@ func (o *GetIsEncryptedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsEncry
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3636,9 +3636,9 @@ func (o *GetIsEncryptedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsEncr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsEncrypted = op.IsEncrypted
-	o.Return = op.Return
+	op.That = o.That
+	op.IsEncrypted = o.IsEncrypted
+	op.Return = o.Return
 	return op
 }
 
@@ -3841,7 +3841,7 @@ func (o *GetTimeSpanFormatRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTime
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3879,9 +3879,9 @@ func (o *GetTimeSpanFormatResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTim
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TimeSpanFormat = op.TimeSpanFormat
-	o.Return = op.Return
+	op.That = o.That
+	op.TimeSpanFormat = o.TimeSpanFormat
+	op.Return = o.Return
 	return op
 }
 

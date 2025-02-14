@@ -380,7 +380,7 @@ func (o *GetInitiatorNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIniti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -420,9 +420,9 @@ func (o *GetInitiatorNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInit
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ISCSIName = op.ISCSIName
-	o.Return = op.Return
+	op.That = o.That
+	op.ISCSIName = o.ISCSIName
+	op.Return = o.Return
 	return op
 }
 
@@ -625,7 +625,7 @@ func (o *QueryInitiatorAdaptersRequest) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -667,9 +667,9 @@ func (o *QueryInitiatorAdaptersResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -901,9 +901,9 @@ func (o *SetInitiatorSharedSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InitiatorSharedSecret = op.InitiatorSharedSecret
-	o.TargetID = op.TargetID
+	op.This = o.This
+	op.InitiatorSharedSecret = o.InitiatorSharedSecret
+	op.TargetID = o.TargetID
 	return op
 }
 
@@ -942,8 +942,8 @@ func (o *SetInitiatorSharedSecretResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

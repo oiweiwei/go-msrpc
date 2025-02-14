@@ -1092,13 +1092,13 @@ func (o *ImportFromFileRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFrom
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ModuleDestination = op.ModuleDestination
-	o.InstallerPackage = op.InstallerPackage
-	o.User = op.User
-	o.Password = op.Password
-	o.RemoteServerName = op.RemoteServerName
-	o.Flags = op.Flags
+	op.This = o.This
+	op.ModuleDestination = o.ModuleDestination
+	op.InstallerPackage = o.InstallerPackage
+	op.User = o.User
+	op.Password = o.Password
+	op.RemoteServerName = o.RemoteServerName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1174,16 +1174,16 @@ func (o *ImportFromFileResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportFro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModulesCount = op.ModulesCount
-	o.ModuleFlags = op.ModuleFlags
-	o.Modules = op.Modules
-	o.ComponentsCount = op.ComponentsCount
-	o.ResultClassIDs = op.ResultClassIDs
-	o.ResultNames = op.ResultNames
-	o.ResultFlags = op.ResultFlags
-	o.ResultHRs = op.ResultHRs
-	o.Return = op.Return
+	op.That = o.That
+	op.ModulesCount = o.ModulesCount
+	op.ModuleFlags = o.ModuleFlags
+	op.Modules = o.Modules
+	op.ComponentsCount = o.ComponentsCount
+	op.ResultClassIDs = o.ResultClassIDs
+	op.ResultNames = o.ResultNames
+	op.ResultFlags = o.ResultFlags
+	op.ResultHRs = o.ResultHRs
+	op.Return = o.Return
 	return op
 }
 
@@ -1691,8 +1691,8 @@ func (o *QueryFileRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFileOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InstallerPackage = op.InstallerPackage
+	op.This = o.This
+	op.InstallerPackage = o.InstallerPackage
 	return op
 }
 
@@ -1757,15 +1757,15 @@ func (o *QueryFileResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFileOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Conglomerations = op.Conglomerations
-	o.Names = op.Names
-	o.Descriptions = op.Descriptions
-	o.Users = op.Users
-	o.IsProxy = op.IsProxy
-	o.ModulesCount = op.ModulesCount
-	o.Modules = op.Modules
-	o.Return = op.Return
+	op.That = o.That
+	op.Conglomerations = o.Conglomerations
+	op.Names = o.Names
+	op.Descriptions = o.Descriptions
+	op.Users = o.Users
+	op.IsProxy = o.IsProxy
+	op.ModulesCount = o.ModulesCount
+	op.Modules = o.Modules
+	op.Return = o.Return
 	return op
 }
 

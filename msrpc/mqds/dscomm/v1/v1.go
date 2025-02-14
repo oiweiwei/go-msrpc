@@ -1507,14 +1507,14 @@ func (o *CreateObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateObject
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.SecurityDescriptorLength = op.SecurityDescriptorLength
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
-	o.ObjectGUID = op.ObjectGUID
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.SecurityDescriptorLength = o.SecurityDescriptorLength
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
+	op.ObjectGUID = o.ObjectGUID
 	return op
 }
 
@@ -1559,8 +1559,8 @@ func (o *CreateObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateObjec
 	if o == nil {
 		return op
 	}
-	o.ObjectGUID = op.ObjectGUID
-	o.Return = op.Return
+	op.ObjectGUID = o.ObjectGUID
+	op.Return = o.Return
 	return op
 }
 
@@ -1691,8 +1691,8 @@ func (o *DeleteObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteObject
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
 	return op
 }
 
@@ -1728,7 +1728,7 @@ func (o *DeleteObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjec
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2167,13 +2167,13 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -2225,10 +2225,10 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.Var = op.Var
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.Var = o.Var
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -2504,11 +2504,11 @@ func (o *SetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetProperti
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
 	return op
 }
 
@@ -2547,7 +2547,7 @@ func (o *SetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPropert
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2913,12 +2913,12 @@ func (o *GetObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObje
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.SecurityInformation = op.SecurityInformation
-	o.Length = op.Length
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.SecurityInformation = o.SecurityInformation
+	op.Length = o.Length
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -2972,11 +2972,11 @@ func (o *GetObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObj
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.LengthNeeded = op.LengthNeeded
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.LengthNeeded = o.LengthNeeded
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -3228,11 +3228,11 @@ func (o *SetObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetObje
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.Length = op.Length
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.Length = o.Length
 	return op
 }
 
@@ -3271,7 +3271,7 @@ func (o *SetObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetObj
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3591,11 +3591,11 @@ func (o *LookupBeginRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupBeginOp
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Restriction = op.Restriction
-	o.Columns = op.Columns
-	o.Sort = op.Sort
-	o.ServerAuth = op.ServerAuth
+	op.Context = o.Context
+	op.Restriction = o.Restriction
+	op.Columns = o.Columns
+	op.Sort = o.Sort
+	op.ServerAuth = o.ServerAuth
 	return op
 }
 
@@ -3637,8 +3637,8 @@ func (o *LookupBeginResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupBeginO
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -3982,10 +3982,10 @@ func (o *LookupNextRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Size = op.Size
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.Handle = o.Handle
+	op.Size = o.Size
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -4041,11 +4041,11 @@ func (o *LookupNextResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOpe
 	if o == nil {
 		return op
 	}
-	o.OutSize = op.OutSize
-	o.Buffer = op.Buffer
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.OutSize = o.OutSize
+	op.Buffer = o.Buffer
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -4190,7 +4190,7 @@ func (o *LookupEndRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupEndOperat
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -4229,8 +4229,8 @@ func (o *LookupEndResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupEndOpera
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -4369,8 +4369,8 @@ func (o *DeleteObjectGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOb
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
 	return op
 }
 
@@ -4406,7 +4406,7 @@ func (o *DeleteObjectGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4878,13 +4878,13 @@ func (o *GetPropertiesGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProp
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -4937,10 +4937,10 @@ func (o *GetPropertiesGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPro
 	if o == nil {
 		return op
 	}
-	o.Var = op.Var
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.Var = o.Var
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -5224,11 +5224,11 @@ func (o *SetPropertiesGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetProp
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
 	return op
 }
 
@@ -5267,7 +5267,7 @@ func (o *SetPropertiesGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPro
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5606,12 +5606,12 @@ func (o *GetObjectSecurityGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
-	o.SecurityInformation = op.SecurityInformation
-	o.Length = op.Length
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
+	op.SecurityInformation = o.SecurityInformation
+	op.Length = o.Length
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -5667,11 +5667,11 @@ func (o *GetObjectSecurityGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.LengthNeeded = op.LengthNeeded
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.LengthNeeded = o.LengthNeeded
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -5932,11 +5932,11 @@ func (o *SetObjectSecurityGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.Length = op.Length
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.Length = o.Length
 	return op
 }
 
@@ -5975,7 +5975,7 @@ func (o *SetObjectSecurityGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6250,11 +6250,11 @@ func (o *QMSetMachinePropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_QM
 	if o == nil {
 		return op
 	}
-	o.PathName = op.PathName
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
-	o.Context = op.Context
+	op.PathName = o.PathName
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
+	op.Context = o.Context
 	return op
 }
 
@@ -6293,7 +6293,7 @@ func (o *QMSetMachinePropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6640,10 +6640,10 @@ func (o *CreateServersCacheRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.Index = op.Index
-	o.SiteServers = op.SiteServers
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.Index = o.Index
+	op.SiteServers = o.SiteServers
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -6700,11 +6700,11 @@ func (o *CreateServersCacheResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Index = op.Index
-	o.SiteServers = op.SiteServers
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.Index = o.Index
+	op.SiteServers = o.SiteServers
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -7086,12 +7086,12 @@ func (o *QMSetMachinePropertiesSignProcRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.Challenge = op.Challenge
-	o.ChallengeSize = op.ChallengeSize
-	o.Context = op.Context
-	o.Signature = op.Signature
-	o.SignatureSize = op.SignatureSize
-	o.SignatureMaxSize = op.SignatureMaxSize
+	op.Challenge = o.Challenge
+	op.ChallengeSize = o.ChallengeSize
+	op.Context = o.Context
+	op.Signature = o.Signature
+	op.SignatureSize = o.SignatureSize
+	op.SignatureMaxSize = o.SignatureMaxSize
 	return op
 }
 
@@ -7139,9 +7139,9 @@ func (o *QMSetMachinePropertiesSignProcResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.Signature = op.Signature
-	o.SignatureSize = op.SignatureSize
-	o.Return = op.Return
+	op.Signature = o.Signature
+	op.SignatureSize = o.SignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -7500,13 +7500,13 @@ func (o *QMGetObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_QMGet
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
-	o.SecurityInformation = op.SecurityInformation
-	o.Length = op.Length
-	o.Context = op.Context
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
+	op.SecurityInformation = o.SecurityInformation
+	op.Length = o.Length
+	op.Context = o.Context
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -7563,11 +7563,11 @@ func (o *QMGetObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_QMGe
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.LengthNeeded = op.LengthNeeded
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.LengthNeeded = o.LengthNeeded
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -7951,12 +7951,12 @@ func (o *QMGetObjectSecurityChallengeResponseProcRequest) xxx_ToOp(ctx context.C
 	if o == nil {
 		return op
 	}
-	o.Challenge = op.Challenge
-	o.ChallengeSize = op.ChallengeSize
-	o.Context = op.Context
-	o.ChallengeResponse = op.ChallengeResponse
-	o.ChallengeResponseSize = op.ChallengeResponseSize
-	o.ChallengeResponseMaxSize = op.ChallengeResponseMaxSize
+	op.Challenge = o.Challenge
+	op.ChallengeSize = o.ChallengeSize
+	op.Context = o.Context
+	op.ChallengeResponse = o.ChallengeResponse
+	op.ChallengeResponseSize = o.ChallengeResponseSize
+	op.ChallengeResponseMaxSize = o.ChallengeResponseMaxSize
 	return op
 }
 
@@ -8005,9 +8005,9 @@ func (o *QMGetObjectSecurityChallengeResponseProcResponse) xxx_ToOp(ctx context.
 	if o == nil {
 		return op
 	}
-	o.ChallengeResponse = op.ChallengeResponse
-	o.ChallengeResponseSize = op.ChallengeResponseSize
-	o.Return = op.Return
+	op.ChallengeResponse = o.ChallengeResponse
+	op.ChallengeResponseSize = o.ChallengeResponseSize
+	op.Return = o.Return
 	return op
 }
 
@@ -8293,10 +8293,10 @@ func (o *InitSecurityContextRequest) xxx_ToOp(ctx context.Context, op *xxx_InitS
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.ServerBuffer = op.ServerBuffer
-	o.ServerBufferSize = op.ServerBufferSize
-	o.ClientBufferMaxSize = op.ClientBufferMaxSize
+	op.Context = o.Context
+	op.ServerBuffer = o.ServerBuffer
+	op.ServerBufferSize = o.ServerBufferSize
+	op.ClientBufferMaxSize = o.ClientBufferMaxSize
 	return op
 }
 
@@ -8343,9 +8343,9 @@ func (o *InitSecurityContextResponse) xxx_ToOp(ctx context.Context, op *xxx_Init
 	if o == nil {
 		return op
 	}
-	o.ClientBuffer = op.ClientBuffer
-	o.ClientBufferSize = op.ClientBufferSize
-	o.Return = op.Return
+	op.ClientBuffer = o.ClientBuffer
+	op.ClientBufferSize = o.ClientBufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -8644,12 +8644,12 @@ func (o *ValidateServerRequest) xxx_ToOp(ctx context.Context, op *xxx_ValidateSe
 	if o == nil {
 		return op
 	}
-	o.EnterpriseID = op.EnterpriseID
-	o.SetupMode = op.SetupMode
-	o.Context = op.Context
-	o.ClientBufferMaxSize = op.ClientBufferMaxSize
-	o.ClientBuffer = op.ClientBuffer
-	o.ClientBufferSize = op.ClientBufferSize
+	op.EnterpriseID = o.EnterpriseID
+	op.SetupMode = o.SetupMode
+	op.Context = o.Context
+	op.ClientBufferMaxSize = o.ClientBufferMaxSize
+	op.ClientBuffer = o.ClientBuffer
+	op.ClientBufferSize = o.ClientBufferSize
 	return op
 }
 
@@ -8692,8 +8692,8 @@ func (o *ValidateServerResponse) xxx_ToOp(ctx context.Context, op *xxx_ValidateS
 	if o == nil {
 		return op
 	}
-	o.ServerAuth = op.ServerAuth
-	o.Return = op.Return
+	op.ServerAuth = o.ServerAuth
+	op.Return = o.Return
 	return op
 }
 
@@ -8836,7 +8836,7 @@ func (o *CloseServerRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseServerOp
 	if o == nil {
 		return op
 	}
-	o.ServerAuth = op.ServerAuth
+	op.ServerAuth = o.ServerAuth
 	return op
 }
 
@@ -8876,8 +8876,8 @@ func (o *CloseServerResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseServerO
 	if o == nil {
 		return op
 	}
-	o.ServerAuth = op.ServerAuth
-	o.Return = op.Return
+	op.ServerAuth = o.ServerAuth
+	op.Return = o.Return
 	return op
 }
 
@@ -9004,7 +9004,7 @@ func (o *GetServerPortRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServerPo
 	if o == nil {
 		return op
 	}
-	o.IP = op.IP
+	op.IP = o.IP
 	return op
 }
 
@@ -9039,7 +9039,7 @@ func (o *GetServerPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServerP
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

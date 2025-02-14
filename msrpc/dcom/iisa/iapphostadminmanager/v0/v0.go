@@ -480,9 +480,9 @@ func (o *GetAdminSectionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAdminS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SectionName = op.SectionName
-	o.Path = op.Path
+	op.This = o.This
+	op.SectionName = o.SectionName
+	op.Path = o.Path
 	return op
 }
 
@@ -522,9 +522,9 @@ func (o *GetAdminSectionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAdmin
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AdminSection = op.AdminSection
-	o.Return = op.Return
+	op.That = o.That
+	op.AdminSection = o.AdminSection
+	op.Return = o.Return
 	return op
 }
 
@@ -773,8 +773,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -813,9 +813,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1046,9 +1046,9 @@ func (o *SetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
-	o.Value = op.Value
+	op.This = o.This
+	op.MetadataType = o.MetadataType
+	op.Value = o.Value
 	return op
 }
 
@@ -1087,8 +1087,8 @@ func (o *SetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1290,7 +1290,7 @@ func (o *GetConfigManagerRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1328,9 +1328,9 @@ func (o *GetConfigManagerResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConf
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ConfigManager = op.ConfigManager
-	o.Return = op.Return
+	op.That = o.That
+	op.ConfigManager = o.ConfigManager
+	op.Return = o.Return
 	return op
 }
 

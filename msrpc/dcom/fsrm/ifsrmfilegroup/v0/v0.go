@@ -428,7 +428,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -466,9 +466,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -670,8 +670,8 @@ func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -709,8 +709,8 @@ func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -910,7 +910,7 @@ func (o *GetMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMembersOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -948,9 +948,9 @@ func (o *GetMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMembersOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Members = op.Members
-	o.Return = op.Return
+	op.That = o.That
+	op.Members = o.Members
+	op.Return = o.Return
 	return op
 }
 
@@ -1152,8 +1152,8 @@ func (o *SetMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMembersOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Members = op.Members
+	op.This = o.This
+	op.Members = o.Members
 	return op
 }
 
@@ -1191,8 +1191,8 @@ func (o *SetMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMembersOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1392,7 +1392,7 @@ func (o *GetNonMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNonMembe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1430,9 +1430,9 @@ func (o *GetNonMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNonMemb
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NonMembers = op.NonMembers
-	o.Return = op.Return
+	op.That = o.That
+	op.NonMembers = o.NonMembers
+	op.Return = o.Return
 	return op
 }
 
@@ -1634,8 +1634,8 @@ func (o *SetNonMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNonMembe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NonMembers = op.NonMembers
+	op.This = o.This
+	op.NonMembers = o.NonMembers
 	return op
 }
 
@@ -1673,8 +1673,8 @@ func (o *SetNonMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNonMemb
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

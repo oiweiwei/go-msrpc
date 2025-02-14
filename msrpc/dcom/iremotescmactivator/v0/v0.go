@@ -369,8 +369,8 @@ func (o *RemoteGetClassObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.ORPCThis = op.ORPCThis
-	o.ActPropertiesIn = op.ActPropertiesIn
+	op.ORPCThis = o.ORPCThis
+	op.ActPropertiesIn = o.ActPropertiesIn
 	return op
 }
 
@@ -429,9 +429,9 @@ func (o *RemoteGetClassObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.ORPCThat = op.ORPCThat
-	o.ActPropertiesOut = op.ActPropertiesOut
-	o.Return = op.Return
+	op.ORPCThat = o.ORPCThat
+	op.ActPropertiesOut = o.ActPropertiesOut
+	op.Return = o.Return
 	return op
 }
 
@@ -763,9 +763,9 @@ func (o *RemoteCreateInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.ORPCThis = op.ORPCThis
-	o.UnknownOuter = op.UnknownOuter
-	o.ActPropertiesIn = op.ActPropertiesIn
+	op.ORPCThis = o.ORPCThis
+	op.UnknownOuter = o.UnknownOuter
+	op.ActPropertiesIn = o.ActPropertiesIn
 	return op
 }
 
@@ -825,9 +825,9 @@ func (o *RemoteCreateInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.ORPCThat = op.ORPCThat
-	o.ActPropertiesOut = op.ActPropertiesOut
-	o.Return = op.Return
+	op.ORPCThat = o.ORPCThat
+	op.ActPropertiesOut = o.ActPropertiesOut
+	op.Return = o.Return
 	return op
 }
 

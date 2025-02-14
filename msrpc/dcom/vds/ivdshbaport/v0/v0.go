@@ -315,7 +315,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -353,9 +353,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HBAPortProperty = op.HBAPortProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.HBAPortProperty = o.HBAPortProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -526,8 +526,8 @@ func (o *SetAllPathStatusesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAll
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Status = op.Status
+	op.This = o.This
+	op.Status = o.Status
 	return op
 }
 
@@ -565,8 +565,8 @@ func (o *SetAllPathStatusesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

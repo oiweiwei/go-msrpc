@@ -495,7 +495,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -533,9 +533,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -736,7 +736,7 @@ func (o *GetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -774,9 +774,9 @@ func (o *GetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Type = op.Type
-	o.Return = op.Return
+	op.That = o.That
+	op.Type = o.Type
+	op.Return = o.Return
 	return op
 }
 
@@ -978,8 +978,8 @@ func (o *SetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
+	op.This = o.This
+	op.Type = o.Type
 	return op
 }
 
@@ -1017,8 +1017,8 @@ func (o *SetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1220,7 +1220,7 @@ func (o *GetOverrideModeDefaultRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1258,9 +1258,9 @@ func (o *GetOverrideModeDefaultResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OverrideModeDefault = op.OverrideModeDefault
-	o.Return = op.Return
+	op.That = o.That
+	op.OverrideModeDefault = o.OverrideModeDefault
+	op.Return = o.Return
 	return op
 }
 
@@ -1464,8 +1464,8 @@ func (o *SetOverrideModeDefaultRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.OverrideModeDefault = op.OverrideModeDefault
+	op.This = o.This
+	op.OverrideModeDefault = o.OverrideModeDefault
 	return op
 }
 
@@ -1503,8 +1503,8 @@ func (o *SetOverrideModeDefaultResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1706,7 +1706,7 @@ func (o *GetAllowDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAll
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1744,9 +1744,9 @@ func (o *GetAllowDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AllowDefinition = op.AllowDefinition
-	o.Return = op.Return
+	op.That = o.That
+	op.AllowDefinition = o.AllowDefinition
+	op.Return = o.Return
 	return op
 }
 
@@ -1950,8 +1950,8 @@ func (o *SetAllowDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAll
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AllowDefinition = op.AllowDefinition
+	op.This = o.This
+	op.AllowDefinition = o.AllowDefinition
 	return op
 }
 
@@ -1989,8 +1989,8 @@ func (o *SetAllowDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2192,7 +2192,7 @@ func (o *GetAllowLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllow
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2230,9 +2230,9 @@ func (o *GetAllowLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AllowLocation = op.AllowLocation
-	o.Return = op.Return
+	op.That = o.That
+	op.AllowLocation = o.AllowLocation
+	op.Return = o.Return
 	return op
 }
 
@@ -2436,8 +2436,8 @@ func (o *SetAllowLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAllow
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AllowLocation = op.AllowLocation
+	op.This = o.This
+	op.AllowLocation = o.AllowLocation
 	return op
 }
 
@@ -2475,8 +2475,8 @@ func (o *SetAllowLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAllo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

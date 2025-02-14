@@ -344,9 +344,9 @@ func (o *SetClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientIn
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClientMachine = op.ClientMachine
-	o.ClientProcID = op.ClientProcID
+	op.This = o.This
+	op.ClientMachine = o.ClientMachine
+	op.ClientProcID = o.ClientProcID
 	return op
 }
 
@@ -385,8 +385,8 @@ func (o *SetClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetClientI
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

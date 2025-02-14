@@ -456,7 +456,7 @@ func (o *GetBlockedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetB
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -494,9 +494,9 @@ func (o *GetBlockedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.BlockList = op.BlockList
-	o.Return = op.Return
+	op.That = o.That
+	op.BlockList = o.BlockList
+	op.Return = o.Return
 	return op
 }
 
@@ -700,8 +700,8 @@ func (o *SetBlockedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetB
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BlockList = op.BlockList
+	op.This = o.This
+	op.BlockList = o.BlockList
 	return op
 }
 
@@ -739,8 +739,8 @@ func (o *SetBlockedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -908,7 +908,7 @@ func (o *GetFileScreenFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFil
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -946,9 +946,9 @@ func (o *GetFileScreenFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileScreenFlags = op.FileScreenFlags
-	o.Return = op.Return
+	op.That = o.That
+	op.FileScreenFlags = o.FileScreenFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -1118,8 +1118,8 @@ func (o *SetFileScreenFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFil
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FileScreenFlags = op.FileScreenFlags
+	op.This = o.This
+	op.FileScreenFlags = o.FileScreenFlags
 	return op
 }
 
@@ -1157,8 +1157,8 @@ func (o *SetFileScreenFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1373,8 +1373,8 @@ func (o *CreateActionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateAction
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ActionType = op.ActionType
+	op.This = o.This
+	op.ActionType = o.ActionType
 	return op
 }
 
@@ -1416,9 +1416,9 @@ func (o *CreateActionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateActio
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Action = op.Action
-	o.Return = op.Return
+	op.That = o.That
+	op.Action = o.Action
+	op.Return = o.Return
 	return op
 }
 
@@ -1619,7 +1619,7 @@ func (o *EnumActionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumActionsOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1662,9 +1662,9 @@ func (o *EnumActionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumActionsO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Actions = op.Actions
-	o.Return = op.Return
+	op.That = o.That
+	op.Actions = o.Actions
+	op.Return = o.Return
 	return op
 }
 

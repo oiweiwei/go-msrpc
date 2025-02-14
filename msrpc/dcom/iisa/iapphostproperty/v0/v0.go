@@ -497,7 +497,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -535,9 +535,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -738,7 +738,7 @@ func (o *GetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -776,9 +776,9 @@ func (o *GetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Variant = op.Variant
-	o.Return = op.Return
+	op.That = o.That
+	op.Variant = o.Variant
+	op.Return = o.Return
 	return op
 }
 
@@ -961,8 +961,8 @@ func (o *SetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -1000,8 +1000,8 @@ func (o *SetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1154,7 +1154,7 @@ func (o *ClearRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1191,8 +1191,8 @@ func (o *ClearResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1392,7 +1392,7 @@ func (o *GetStringValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetStringV
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1430,9 +1430,9 @@ func (o *GetStringValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetString
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1633,7 +1633,7 @@ func (o *GetExceptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetException
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1671,9 +1671,9 @@ func (o *GetExceptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExceptio
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Exception = op.Exception
-	o.Return = op.Return
+	op.That = o.That
+	op.Exception = o.Exception
+	op.Return = o.Return
 	return op
 }
 
@@ -1922,8 +1922,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -1962,9 +1962,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -2195,9 +2195,9 @@ func (o *SetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
-	o.Value = op.Value
+	op.This = o.This
+	op.MetadataType = o.MetadataType
+	op.Value = o.Value
 	return op
 }
 
@@ -2236,8 +2236,8 @@ func (o *SetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2437,7 +2437,7 @@ func (o *GetSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2475,9 +2475,9 @@ func (o *GetSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Schema = op.Schema
-	o.Return = op.Return
+	op.That = o.That
+	op.Schema = o.Schema
+	op.Return = o.Return
 	return op
 }
 

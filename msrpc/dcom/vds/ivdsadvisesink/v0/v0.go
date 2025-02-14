@@ -348,9 +348,9 @@ func (o *OnNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_OnNotifyOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NumberOfNotifications = op.NumberOfNotifications
-	o.NotificationArray = op.NotificationArray
+	op.This = o.This
+	op.NumberOfNotifications = o.NumberOfNotifications
+	op.NotificationArray = o.NotificationArray
 	return op
 }
 
@@ -389,8 +389,8 @@ func (o *OnNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_OnNotifyOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

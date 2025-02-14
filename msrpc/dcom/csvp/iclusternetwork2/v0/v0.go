@@ -808,13 +808,13 @@ func (o *SendRTMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendRTMessa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourceIPAddress = op.SourceIPAddress
-	o.DestinationIPAddress = op.DestinationIPAddress
-	o.DestinationPort = op.DestinationPort
-	o.AddressFamily = op.AddressFamily
-	o.MessageSize = op.MessageSize
-	o.Timeout = op.Timeout
+	op.This = o.This
+	op.SourceIPAddress = o.SourceIPAddress
+	op.DestinationIPAddress = o.DestinationIPAddress
+	op.DestinationPort = o.DestinationPort
+	op.AddressFamily = o.AddressFamily
+	op.MessageSize = o.MessageSize
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -861,9 +861,9 @@ func (o *SendRTMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_SendRTMess
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RTElapsedTime = op.RTElapsedTime
-	o.Return = op.Return
+	op.That = o.That
+	op.RTElapsedTime = o.RTElapsedTime
+	op.Return = o.Return
 	return op
 }
 
@@ -1084,8 +1084,8 @@ func (o *InitializeNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_Initialize
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RequestUDPPort = op.RequestUDPPort
+	op.This = o.This
+	op.RequestUDPPort = o.RequestUDPPort
 	return op
 }
 
@@ -1131,12 +1131,12 @@ func (o *InitializeNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_Initializ
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.BoundUDPPort = op.BoundUDPPort
-	o.NodeMajorVersion = op.NodeMajorVersion
-	o.NodeMinorVersion = op.NodeMinorVersion
-	o.ClusterPrepareVersion = op.ClusterPrepareVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.BoundUDPPort = o.BoundUDPPort
+	op.NodeMajorVersion = o.NodeMajorVersion
+	op.NodeMinorVersion = o.NodeMinorVersion
+	op.ClusterPrepareVersion = o.ClusterPrepareVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -1386,8 +1386,8 @@ func (o *GetIPConfigSerializedRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ApplyClusterFilter = op.ApplyClusterFilter
+	op.This = o.This
+	op.ApplyClusterFilter = o.ApplyClusterFilter
 	return op
 }
 
@@ -1432,10 +1432,10 @@ func (o *GetIPConfigSerializedResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Data = op.Data
-	o.OutLength = op.OutLength
-	o.Return = op.Return
+	op.That = o.That
+	op.Data = o.Data
+	op.OutLength = o.OutLength
+	op.Return = o.Return
 	return op
 }
 
@@ -1590,7 +1590,7 @@ func (o *CleanupNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1627,8 +1627,8 @@ func (o *CleanupNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1809,7 +1809,7 @@ func (o *QueryFirewallConfigurationRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1884,10 +1884,10 @@ func (o *QueryFirewallConfigurationResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServerRulesEnabled = op.ServerRulesEnabled
-	o.ManagementRulesEnabled = op.ManagementRulesEnabled
-	o.Return = op.Return
+	op.That = o.That
+	op.ServerRulesEnabled = o.ServerRulesEnabled
+	op.ManagementRulesEnabled = o.ManagementRulesEnabled
+	op.Return = o.Return
 	return op
 }
 
@@ -2074,8 +2074,8 @@ func (o *ProcessAddRoutesRequest) xxx_ToOp(ctx context.Context, op *xxx_ProcessA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Request = op.Request
+	op.This = o.This
+	op.Request = o.Request
 	return op
 }
 
@@ -2113,8 +2113,8 @@ func (o *ProcessAddRoutesResponse) xxx_ToOp(ctx context.Context, op *xxx_Process
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2297,7 +2297,7 @@ func (o *GetAddRoutesStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAdd
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2336,9 +2336,9 @@ func (o *GetAddRoutesStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAd
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Reply = op.Reply
-	o.Return = op.Return
+	op.That = o.That
+	op.Reply = o.Reply
+	op.Return = o.Return
 	return op
 }
 
@@ -2494,7 +2494,7 @@ func (o *CancelAddRoutesRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_Ca
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2531,8 +2531,8 @@ func (o *CancelAddRoutesRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

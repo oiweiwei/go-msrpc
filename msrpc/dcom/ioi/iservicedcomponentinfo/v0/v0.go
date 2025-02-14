@@ -358,8 +358,8 @@ func (o *GetComponentInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCompo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InfoMask = op.InfoMask
+	op.This = o.This
+	op.InfoMask = o.InfoMask
 	return op
 }
 
@@ -416,10 +416,10 @@ func (o *GetComponentInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.InfoMask = op.InfoMask
-	o.InfoArray = op.InfoArray
-	o.Return = op.Return
+	op.That = o.That
+	op.InfoMask = o.InfoMask
+	op.InfoArray = o.InfoArray
+	op.Return = o.Return
 	return op
 }
 

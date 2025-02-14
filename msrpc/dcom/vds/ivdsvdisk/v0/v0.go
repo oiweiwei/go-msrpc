@@ -451,10 +451,10 @@ func (o *OpenRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AccessMask = op.AccessMask
-	o.Flags = op.Flags
-	o.ReadWriteDepth = op.ReadWriteDepth
+	op.This = o.This
+	op.AccessMask = o.AccessMask
+	op.Flags = o.Flags
+	op.ReadWriteDepth = o.ReadWriteDepth
 	return op
 }
 
@@ -495,9 +495,9 @@ func (o *OpenResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OpenVDisk = op.OpenVDisk
-	o.Return = op.Return
+	op.That = o.That
+	op.OpenVDisk = o.OpenVDisk
+	op.Return = o.Return
 	return op
 }
 
@@ -679,7 +679,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -717,9 +717,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskProperties = op.DiskProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskProperties = o.DiskProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -920,7 +920,7 @@ func (o *GetHostVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetHostVolu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -958,9 +958,9 @@ func (o *GetHostVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetHostVol
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Volume = op.Volume
-	o.Return = op.Return
+	op.That = o.That
+	op.Volume = o.Volume
+	op.Return = o.Return
 	return op
 }
 
@@ -1152,7 +1152,7 @@ func (o *GetDeviceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDeviceNa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1191,9 +1191,9 @@ func (o *GetDeviceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDeviceN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DeviceName = op.DeviceName
-	o.Return = op.Return
+	op.That = o.That
+	op.DeviceName = o.DeviceName
+	op.Return = o.Return
 	return op
 }
 

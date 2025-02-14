@@ -335,10 +335,10 @@ func (o *ChangePartitionTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_Chang
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Force = op.Force
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Force = o.Force
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -378,8 +378,8 @@ func (o *ChangePartitionTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_Chan
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

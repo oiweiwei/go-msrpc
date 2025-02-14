@@ -723,7 +723,7 @@ func (o *GetTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTaskOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -761,9 +761,9 @@ func (o *GetTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTaskOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskName = op.TaskName
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskName = o.TaskName
+	op.Return = o.Return
 	return op
 }
 
@@ -965,8 +965,8 @@ func (o *SetTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTaskOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TaskName = op.TaskName
+	op.This = o.This
+	op.TaskName = o.TaskName
 	return op
 }
 
@@ -1004,8 +1004,8 @@ func (o *SetTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTaskOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1205,7 +1205,7 @@ func (o *GetNamespaceRootsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetName
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1243,9 +1243,9 @@ func (o *GetNamespaceRootsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNam
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NamespaceRoots = op.NamespaceRoots
-	o.Return = op.Return
+	op.That = o.That
+	op.NamespaceRoots = o.NamespaceRoots
+	op.Return = o.Return
 	return op
 }
 
@@ -1447,8 +1447,8 @@ func (o *SetNamespaceRootsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetName
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NamespaceRoots = op.NamespaceRoots
+	op.This = o.This
+	op.NamespaceRoots = o.NamespaceRoots
 	return op
 }
 
@@ -1486,8 +1486,8 @@ func (o *SetNamespaceRootsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNam
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1687,7 +1687,7 @@ func (o *GetFormatsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFormatsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1725,9 +1725,9 @@ func (o *GetFormatsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFormatsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Formats = op.Formats
-	o.Return = op.Return
+	op.That = o.That
+	op.Formats = o.Formats
+	op.Return = o.Return
 	return op
 }
 
@@ -1929,8 +1929,8 @@ func (o *SetFormatsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFormatsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Formats = op.Formats
+	op.This = o.This
+	op.Formats = o.Formats
 	return op
 }
 
@@ -1968,8 +1968,8 @@ func (o *SetFormatsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFormatsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2169,7 +2169,7 @@ func (o *GetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2207,9 +2207,9 @@ func (o *GetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailTo = op.MailTo
-	o.Return = op.Return
+	op.That = o.That
+	op.MailTo = o.MailTo
+	op.Return = o.Return
 	return op
 }
 
@@ -2411,8 +2411,8 @@ func (o *SetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailTo = op.MailTo
+	op.This = o.This
+	op.MailTo = o.MailTo
 	return op
 }
 
@@ -2450,8 +2450,8 @@ func (o *SetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2617,7 +2617,7 @@ func (o *GetRunningStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRunni
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2655,9 +2655,9 @@ func (o *GetRunningStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRunn
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RunningStatus = op.RunningStatus
-	o.Return = op.Return
+	op.That = o.That
+	op.RunningStatus = o.RunningStatus
+	op.Return = o.Return
 	return op
 }
 
@@ -2824,7 +2824,7 @@ func (o *GetLastRunRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLastRunOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2862,9 +2862,9 @@ func (o *GetLastRunResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLastRunOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LastRun = op.LastRun
-	o.Return = op.Return
+	op.That = o.That
+	op.LastRun = o.LastRun
+	op.Return = o.Return
 	return op
 }
 
@@ -3065,7 +3065,7 @@ func (o *GetLastErrorRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLastError
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3103,9 +3103,9 @@ func (o *GetLastErrorResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLastErro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LastError = op.LastError
-	o.Return = op.Return
+	op.That = o.That
+	op.LastError = o.LastError
+	op.Return = o.Return
 	return op
 }
 
@@ -3308,7 +3308,7 @@ func (o *GetLastGeneratedInDirectoryRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3347,9 +3347,9 @@ func (o *GetLastGeneratedInDirectoryResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Path = op.Path
-	o.Return = op.Return
+	op.That = o.That
+	op.Path = o.Path
+	op.Return = o.Return
 	return op
 }
 
@@ -3550,7 +3550,7 @@ func (o *EnumReportsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumReportsOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3591,9 +3591,9 @@ func (o *EnumReportsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumReportsO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Reports = op.Reports
-	o.Return = op.Return
+	op.That = o.That
+	op.Reports = o.Reports
+	op.Return = o.Return
 	return op
 }
 
@@ -3810,8 +3810,8 @@ func (o *CreateReportRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateReport
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReportType = op.ReportType
+	op.This = o.This
+	op.ReportType = o.ReportType
 	return op
 }
 
@@ -3853,9 +3853,9 @@ func (o *CreateReportResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRepor
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Report = op.Report
-	o.Return = op.Return
+	op.That = o.That
+	op.Report = o.Report
+	op.Return = o.Return
 	return op
 }
 
@@ -4023,8 +4023,8 @@ func (o *RunRequest) xxx_ToOp(ctx context.Context, op *xxx_RunOperation) *xxx_Ru
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Context = op.Context
+	op.This = o.This
+	op.Context = o.Context
 	return op
 }
 
@@ -4062,8 +4062,8 @@ func (o *RunResponse) xxx_ToOp(ctx context.Context, op *xxx_RunOperation) *xxx_R
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4245,8 +4245,8 @@ func (o *WaitForCompletionRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitFor
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.WaitSeconds = op.WaitSeconds
+	op.This = o.This
+	op.WaitSeconds = o.WaitSeconds
 	return op
 }
 
@@ -4285,9 +4285,9 @@ func (o *WaitForCompletionResponse) xxx_ToOp(ctx context.Context, op *xxx_WaitFo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Completed = op.Completed
-	o.Return = op.Return
+	op.That = o.That
+	op.Completed = o.Completed
+	op.Return = o.Return
 	return op
 }
 
@@ -4441,7 +4441,7 @@ func (o *CancelRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4478,8 +4478,8 @@ func (o *CancelResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

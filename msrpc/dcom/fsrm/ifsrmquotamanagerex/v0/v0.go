@@ -364,9 +364,9 @@ func (o *IsAffectedByQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_IsAffec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Options = op.Options
+	op.This = o.This
+	op.Path = o.Path
+	op.Options = o.Options
 	return op
 }
 
@@ -408,9 +408,9 @@ func (o *IsAffectedByQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_IsAffe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Affected = op.Affected
-	o.Return = op.Return
+	op.That = o.That
+	op.Affected = o.Affected
+	op.Return = o.Return
 	return op
 }
 

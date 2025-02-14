@@ -590,12 +590,12 @@ func (o *AddObjectToRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_AddO
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RefresherID = op.RefresherID
-	o.Path = op.Path
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ClientRefresherVersion = op.ClientRefresherVersion
+	op.This = o.This
+	op.RefresherID = o.RefresherID
+	op.Path = o.Path
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ClientRefresherVersion = o.ClientRefresherVersion
 	return op
 }
 
@@ -644,10 +644,10 @@ func (o *AddObjectToRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_Add
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Info = op.Info
-	o.ServerRefresherVersion = op.ServerRefresherVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.Info = o.Info
+	op.ServerRefresherVersion = o.ServerRefresherVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -1010,12 +1010,12 @@ func (o *AddObjectToRefresherByTemplateRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RefresherID = op.RefresherID
-	o.Template = op.Template
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ClientRefresherVersion = op.ClientRefresherVersion
+	op.This = o.This
+	op.RefresherID = o.RefresherID
+	op.Template = o.Template
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ClientRefresherVersion = o.ClientRefresherVersion
 	return op
 }
 
@@ -1064,10 +1064,10 @@ func (o *AddObjectToRefresherByTemplateResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Info = op.Info
-	o.ServerRefresherVersion = op.ServerRefresherVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.Info = o.Info
+	op.ServerRefresherVersion = o.ServerRefresherVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -1395,12 +1395,12 @@ func (o *AddEnumToRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_AddEnu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RefresherID = op.RefresherID
-	o.Class = op.Class
-	o.Flags = op.Flags
-	o.Context = op.Context
-	o.ClientRefresherVersion = op.ClientRefresherVersion
+	op.This = o.This
+	op.RefresherID = o.RefresherID
+	op.Class = o.Class
+	op.Flags = o.Flags
+	op.Context = o.Context
+	op.ClientRefresherVersion = o.ClientRefresherVersion
 	return op
 }
 
@@ -1449,10 +1449,10 @@ func (o *AddEnumToRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_AddEn
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Info = op.Info
-	o.ServerRefresherVersion = op.ServerRefresherVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.Info = o.Info
+	op.ServerRefresherVersion = o.ServerRefresherVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -1701,11 +1701,11 @@ func (o *RemoveObjectFromRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RefresherID = op.RefresherID
-	o.ID = op.ID
-	o.Flags = op.Flags
-	o.ClientRefresherVersion = op.ClientRefresherVersion
+	op.This = o.This
+	op.RefresherID = o.RefresherID
+	op.ID = o.ID
+	op.Flags = o.Flags
+	op.ClientRefresherVersion = o.ClientRefresherVersion
 	return op
 }
 
@@ -1749,9 +1749,9 @@ func (o *RemoveObjectFromRefresherResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServerRefresherVersion = op.ServerRefresherVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.ServerRefresherVersion = o.ServerRefresherVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -2052,10 +2052,10 @@ func (o *GetRemoteRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRem
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RefresherID = op.RefresherID
-	o.Flags = op.Flags
-	o.ClientRefresherVersion = op.ClientRefresherVersion
+	op.This = o.This
+	op.RefresherID = o.RefresherID
+	op.Flags = o.Flags
+	op.ClientRefresherVersion = o.ClientRefresherVersion
 	return op
 }
 
@@ -2105,11 +2105,11 @@ func (o *GetRemoteRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RemoteRefresher = op.RemoteRefresher
-	o.GUID = op.GUID
-	o.ServerRefresherVersion = op.ServerRefresherVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.RemoteRefresher = o.RemoteRefresher
+	op.GUID = o.GUID
+	op.ServerRefresherVersion = o.ServerRefresherVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -2543,13 +2543,13 @@ func (o *ReconnectRemoteRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RefresherID = op.RefresherID
-	o.Flags = op.Flags
-	o.ObjectsLength = op.ObjectsLength
-	o.ClientRefresherVersion = op.ClientRefresherVersion
-	o.ReconnectInfo = op.ReconnectInfo
-	o.ReconnectResults = op.ReconnectResults
+	op.This = o.This
+	op.RefresherID = o.RefresherID
+	op.Flags = o.Flags
+	op.ObjectsLength = o.ObjectsLength
+	op.ClientRefresherVersion = o.ClientRefresherVersion
+	op.ReconnectInfo = o.ReconnectInfo
+	op.ReconnectResults = o.ReconnectResults
 	return op
 }
 
@@ -2599,10 +2599,10 @@ func (o *ReconnectRemoteRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReconnectResults = op.ReconnectResults
-	o.ServerRefresherVersion = op.ServerRefresherVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.ReconnectResults = o.ReconnectResults
+	op.ServerRefresherVersion = o.ServerRefresherVersion
+	op.Return = o.Return
 	return op
 }
 

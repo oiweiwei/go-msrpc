@@ -362,7 +362,7 @@ func (o *GetDerivedObjectsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDeri
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -404,9 +404,9 @@ func (o *GetDerivedObjectsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDer
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DerivedObjects = op.DerivedObjects
-	o.Return = op.Return
+	op.That = o.That
+	op.DerivedObjects = o.DerivedObjects
+	op.Return = o.Return
 	return op
 }
 
@@ -607,7 +607,7 @@ func (o *GetResultsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResultsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -649,9 +649,9 @@ func (o *GetResultsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResultsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Results = op.Results
-	o.Return = op.Return
+	op.That = o.That
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 

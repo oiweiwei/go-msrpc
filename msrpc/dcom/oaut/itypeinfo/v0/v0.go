@@ -894,7 +894,7 @@ func (o *GetTypeAttributeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -934,9 +934,9 @@ func (o *GetTypeAttributeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetType
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeAttribute = op.TypeAttribute
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeAttribute = o.TypeAttribute
+	op.Return = o.Return
 	return op
 }
 
@@ -1137,7 +1137,7 @@ func (o *GetTypeCompRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeCompOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1181,9 +1181,9 @@ func (o *GetTypeCompResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeCompO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Comp = op.Comp
-	o.Return = op.Return
+	op.That = o.That
+	op.Comp = o.Comp
+	op.Return = o.Return
 	return op
 }
 
@@ -1419,8 +1419,8 @@ func (o *GetFuncDescRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFuncDescOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -1462,9 +1462,9 @@ func (o *GetFuncDescResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFuncDescO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FuncDesc = op.FuncDesc
-	o.Return = op.Return
+	op.That = o.That
+	op.FuncDesc = o.FuncDesc
+	op.Return = o.Return
 	return op
 }
 
@@ -1699,8 +1699,8 @@ func (o *GetVarDescRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVarDescOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -1742,9 +1742,9 @@ func (o *GetVarDescResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVarDescOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VarDesc = op.VarDesc
-	o.Return = op.Return
+	op.That = o.That
+	op.VarDesc = o.VarDesc
+	op.Return = o.Return
 	return op
 }
 
@@ -2045,9 +2045,9 @@ func (o *GetNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNamesOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
-	o.MaxNamesCount = op.MaxNamesCount
+	op.This = o.This
+	op.MemberID = o.MemberID
+	op.MaxNamesCount = o.MaxNamesCount
 	return op
 }
 
@@ -2091,10 +2091,10 @@ func (o *GetNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNamesOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Names = op.Names
-	o.NamesCount = op.NamesCount
-	o.Return = op.Return
+	op.That = o.That
+	op.Names = o.Names
+	op.NamesCount = o.NamesCount
+	op.Return = o.Return
 	return op
 }
 
@@ -2286,8 +2286,8 @@ func (o *GetReferenceTypeOfImplTypeRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -2349,9 +2349,9 @@ func (o *GetReferenceTypeOfImplTypeResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReferenceType = op.ReferenceType
-	o.Return = op.Return
+	op.That = o.That
+	op.ReferenceType = o.ReferenceType
+	op.Return = o.Return
 	return op
 }
 
@@ -2534,8 +2534,8 @@ func (o *GetImplTypeFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImplT
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -2576,9 +2576,9 @@ func (o *GetImplTypeFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetImpl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ImplTypeFlags = op.ImplTypeFlags
-	o.Return = op.Return
+	op.That = o.That
+	op.ImplTypeFlags = o.ImplTypeFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -2959,9 +2959,9 @@ func (o *GetDocumentationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDocum
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
-	o.PointerFlags = op.PointerFlags
+	op.This = o.This
+	op.MemberID = o.MemberID
+	op.PointerFlags = o.PointerFlags
 	return op
 }
 
@@ -3038,12 +3038,12 @@ func (o *GetDocumentationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDocu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.DocString = op.DocString
-	o.HelpContext = op.HelpContext
-	o.HelpFile = op.HelpFile
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.DocString = o.DocString
+	op.HelpContext = o.HelpContext
+	op.HelpFile = o.HelpFile
+	op.Return = o.Return
 	return op
 }
 
@@ -3372,10 +3372,10 @@ func (o *GetDLLEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDLLEntryOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
-	o.InvKind = op.InvKind
-	o.PointerFlags = op.PointerFlags
+	op.This = o.This
+	op.MemberID = o.MemberID
+	op.InvKind = o.InvKind
+	op.PointerFlags = o.PointerFlags
 	return op
 }
 
@@ -3427,11 +3427,11 @@ func (o *GetDLLEntryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDLLEntryO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DLLName = op.DLLName
-	o.Name = op.Name
-	o.Ordinal = op.Ordinal
-	o.Return = op.Return
+	op.That = o.That
+	op.DLLName = o.DLLName
+	op.Name = o.Name
+	op.Ordinal = o.Ordinal
+	op.Return = o.Return
 	return op
 }
 
@@ -3650,8 +3650,8 @@ func (o *GetReferenceTypeInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetR
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TypeHandle = op.TypeHandle
+	op.This = o.This
+	op.TypeHandle = o.TypeHandle
 	return op
 }
 
@@ -3693,9 +3693,9 @@ func (o *GetReferenceTypeInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -3920,8 +3920,8 @@ func (o *CreateInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateInst
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IID = op.IID
+	op.This = o.This
+	op.IID = o.IID
 	return op
 }
 
@@ -3965,9 +3965,9 @@ func (o *CreateInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateIns
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Object = op.Object
-	o.Return = op.Return
+	op.That = o.That
+	op.Object = o.Object
+	op.Return = o.Return
 	return op
 }
 
@@ -4183,8 +4183,8 @@ func (o *GetMopsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMopsOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MemberID = op.MemberID
+	op.This = o.This
+	op.MemberID = o.MemberID
 	return op
 }
 
@@ -4224,9 +4224,9 @@ func (o *GetMopsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMopsOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Mops = op.Mops
-	o.Return = op.Return
+	op.That = o.That
+	op.Mops = o.Mops
+	op.Return = o.Return
 	return op
 }
 
@@ -4442,7 +4442,7 @@ func (o *GetContainingTypeLibRequest) xxx_ToOp(ctx context.Context, op *xxx_GetC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4484,10 +4484,10 @@ func (o *GetContainingTypeLibResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Lib = op.Lib
-	o.Index = op.Index
-	o.Return = op.Return
+	op.That = o.That
+	op.Lib = o.Lib
+	op.Index = o.Index
+	op.Return = o.Return
 	return op
 }
 

@@ -740,7 +740,7 @@ func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAct
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -778,9 +778,9 @@ func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Variables = op.Variables
-	o.Return = op.Return
+	op.That = o.That
+	op.Variables = o.Variables
+	op.Return = o.Return
 	return op
 }
 
@@ -983,7 +983,7 @@ func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1021,9 +1021,9 @@ func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Descriptions = op.Descriptions
-	o.Return = op.Return
+	op.That = o.That
+	op.Descriptions = o.Descriptions
+	op.Return = o.Return
 	return op
 }
 
@@ -1274,8 +1274,8 @@ func (o *CreateQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateQuotaOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -1319,9 +1319,9 @@ func (o *CreateQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateQuotaO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quota = op.Quota
-	o.Return = op.Return
+	op.That = o.That
+	op.Quota = o.Quota
+	op.Return = o.Return
 	return op
 }
 
@@ -1625,9 +1625,9 @@ func (o *CreateAutoApplyQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QuotaTemplateName = op.QuotaTemplateName
-	o.Path = op.Path
+	op.This = o.This
+	op.QuotaTemplateName = o.QuotaTemplateName
+	op.Path = o.Path
 	return op
 }
 
@@ -1672,9 +1672,9 @@ func (o *CreateAutoApplyQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quota = op.Quota
-	o.Return = op.Return
+	op.That = o.That
+	op.Quota = o.Quota
+	op.Return = o.Return
 	return op
 }
 
@@ -1924,8 +1924,8 @@ func (o *GetQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -1967,9 +1967,9 @@ func (o *GetQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quota = op.Quota
-	o.Return = op.Return
+	op.That = o.That
+	op.Quota = o.Quota
+	op.Return = o.Return
 	return op
 }
 
@@ -2221,8 +2221,8 @@ func (o *GetAutoApplyQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAuto
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -2264,9 +2264,9 @@ func (o *GetAutoApplyQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAut
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quota = op.Quota
-	o.Return = op.Return
+	op.That = o.That
+	op.Quota = o.Quota
+	op.Return = o.Return
 	return op
 }
 
@@ -2519,8 +2519,8 @@ func (o *GetRestrictiveQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -2562,9 +2562,9 @@ func (o *GetRestrictiveQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetR
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quota = op.Quota
-	o.Return = op.Return
+	op.That = o.That
+	op.Quota = o.Quota
+	op.Return = o.Return
 	return op
 }
 
@@ -2830,9 +2830,9 @@ func (o *EnumQuotasRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumQuotasOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Options = op.Options
+	op.This = o.This
+	op.Path = o.Path
+	op.Options = o.Options
 	return op
 }
 
@@ -2876,9 +2876,9 @@ func (o *EnumQuotasResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumQuotasOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quotas = op.Quotas
-	o.Return = op.Return
+	op.That = o.That
+	op.Quotas = o.Quotas
+	op.Return = o.Return
 	return op
 }
 
@@ -3146,9 +3146,9 @@ func (o *EnumAutoApplyQuotasRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Options = op.Options
+	op.This = o.This
+	op.Path = o.Path
+	op.Options = o.Options
 	return op
 }
 
@@ -3192,9 +3192,9 @@ func (o *EnumAutoApplyQuotasResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quotas = op.Quotas
-	o.Return = op.Return
+	op.That = o.That
+	op.Quotas = o.Quotas
+	op.Return = o.Return
 	return op
 }
 
@@ -3463,9 +3463,9 @@ func (o *EnumEffectiveQuotasRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumE
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Options = op.Options
+	op.This = o.This
+	op.Path = o.Path
+	op.Options = o.Options
 	return op
 }
 
@@ -3508,9 +3508,9 @@ func (o *EnumEffectiveQuotasResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Quotas = op.Quotas
-	o.Return = op.Return
+	op.That = o.That
+	op.Quotas = o.Quotas
+	op.Return = o.Return
 	return op
 }
 
@@ -3714,8 +3714,8 @@ func (o *ScanRequest) xxx_ToOp(ctx context.Context, op *xxx_ScanOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -3753,8 +3753,8 @@ func (o *ScanResponse) xxx_ToOp(ctx context.Context, op *xxx_ScanOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3956,7 +3956,7 @@ func (o *CreateQuotaCollectionRequest) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3997,9 +3997,9 @@ func (o *CreateQuotaCollectionResponse) xxx_ToOp(ctx context.Context, op *xxx_Cr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Collection = op.Collection
-	o.Return = op.Return
+	op.That = o.That
+	op.Collection = o.Collection
+	op.Return = o.Return
 	return op
 }
 

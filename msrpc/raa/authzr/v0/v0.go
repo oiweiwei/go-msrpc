@@ -2462,7 +2462,7 @@ func (o *FreeContextRequest) xxx_ToOp(ctx context.Context, op *xxx_FreeContextOp
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
+	op.ContextHandle = o.ContextHandle
 	return op
 }
 
@@ -2500,8 +2500,8 @@ func (o *FreeContextResponse) xxx_ToOp(ctx context.Context, op *xxx_FreeContextO
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -2750,10 +2750,10 @@ func (o *InitializeContextFromSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.SID = op.SID
-	o.ExpirationTime = op.ExpirationTime
-	o.ID = op.ID
+	op.Flags = o.Flags
+	op.SID = o.SID
+	op.ExpirationTime = o.ExpirationTime
+	op.ID = o.ID
 	return op
 }
 
@@ -2793,8 +2793,8 @@ func (o *InitializeContextFromSIDResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -2963,8 +2963,8 @@ func (o *InitializeCompoundContextRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.User = op.User
-	o.Device = op.Device
+	op.User = o.User
+	op.Device = o.Device
 	return op
 }
 
@@ -3003,8 +3003,8 @@ func (o *InitializeCompoundContextResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Compound = op.Compound
-	o.Return = op.Return
+	op.Compound = o.Compound
+	op.Return = o.Return
 	return op
 }
 
@@ -3315,12 +3315,12 @@ func (o *AccessCheckRequest) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckOp
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Flags = op.Flags
-	o.Request = op.Request
-	o.SecurityDescriptorCount = op.SecurityDescriptorCount
-	o.SecurityDescriptors = op.SecurityDescriptors
-	o.Reply = op.Reply
+	op.ContextHandle = o.ContextHandle
+	op.Flags = o.Flags
+	op.Request = o.Request
+	op.SecurityDescriptorCount = o.SecurityDescriptorCount
+	op.SecurityDescriptors = o.SecurityDescriptors
+	op.Reply = o.Reply
 	return op
 }
 
@@ -3363,8 +3363,8 @@ func (o *AccessCheckResponse) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckO
 	if o == nil {
 		return op
 	}
-	o.Reply = op.Reply
-	o.Return = op.Return
+	op.Reply = o.Reply
+	op.Return = o.Return
 	return op
 }
 
@@ -3549,8 +3549,8 @@ func (o *GetInformationFromContextRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.InfoClass = op.InfoClass
+	op.ContextHandle = o.ContextHandle
+	op.InfoClass = o.InfoClass
 	return op
 }
 
@@ -3589,8 +3589,8 @@ func (o *GetInformationFromContextResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ContextInformation = op.ContextInformation
-	o.Return = op.Return
+	op.ContextInformation = o.ContextInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -3846,11 +3846,11 @@ func (o *ModifyClaimsRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyClaims
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.ClaimClass = op.ClaimClass
-	o.OperationCount = op.OperationCount
-	o.ClaimOperations = op.ClaimOperations
-	o.Claims = op.Claims
+	op.ContextHandle = o.ContextHandle
+	op.ClaimClass = o.ClaimClass
+	op.OperationCount = o.OperationCount
+	op.ClaimOperations = o.ClaimOperations
+	op.Claims = o.Claims
 	return op
 }
 
@@ -3889,7 +3889,7 @@ func (o *ModifyClaimsResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyClaim
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4144,11 +4144,11 @@ func (o *ModifySIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifySIDsOper
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.SIDClass = op.SIDClass
-	o.OperationCount = op.OperationCount
-	o.SIDOperations = op.SIDOperations
-	o.SIDs = op.SIDs
+	op.ContextHandle = o.ContextHandle
+	op.SIDClass = o.SIDClass
+	op.OperationCount = o.OperationCount
+	op.SIDOperations = o.SIDOperations
+	op.SIDs = o.SIDs
 	return op
 }
 
@@ -4187,7 +4187,7 @@ func (o *ModifySIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifySIDsOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

@@ -31195,8 +31195,8 @@ func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.ClientDSA = op.ClientDSA
-	o.Client = op.Client
+	op.ClientDSA = o.ClientDSA
+	op.Client = o.Client
 	return op
 }
 
@@ -31237,9 +31237,9 @@ func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.DRS = op.DRS
-	o.Return = op.Return
+	op.Server = o.Server
+	op.DRS = o.DRS
+	op.Return = o.Return
 	return op
 }
 
@@ -31381,7 +31381,7 @@ func (o *UnbindRequest) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *
 	if o == nil {
 		return op
 	}
-	o.DRS = op.DRS
+	op.DRS = o.DRS
 	return op
 }
 
@@ -31419,8 +31419,8 @@ func (o *UnbindResponse) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) 
 	if o == nil {
 		return op
 	}
-	o.DRS = op.DRS
-	o.Return = op.Return
+	op.DRS = o.DRS
+	op.Return = o.Return
 	return op
 }
 
@@ -31586,9 +31586,9 @@ func (o *SyncReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_SyncReplicaOp
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Version = op.Version
-	o.Sync = op.Sync
+	op.Handle = o.Handle
+	op.Version = o.Version
+	op.Sync = o.Sync
 	return op
 }
 
@@ -31625,7 +31625,7 @@ func (o *SyncReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_SyncReplicaO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31833,9 +31833,9 @@ func (o *GetNCChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNCChanges
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -31876,9 +31876,9 @@ func (o *GetNCChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNCChange
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -32045,9 +32045,9 @@ func (o *UpdateReferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateRe
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Version = op.Version
-	o.UpdateReferences = op.UpdateReferences
+	op.Handle = o.Handle
+	op.Version = o.Version
+	op.UpdateReferences = o.UpdateReferences
 	return op
 }
 
@@ -32084,7 +32084,7 @@ func (o *UpdateReferencesResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32249,9 +32249,9 @@ func (o *AddReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_AddReplicaOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Version = op.Version
-	o.Add = op.Add
+	op.Handle = o.Handle
+	op.Version = o.Version
+	op.Add = o.Add
 	return op
 }
 
@@ -32288,7 +32288,7 @@ func (o *AddReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_AddReplicaOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32453,9 +32453,9 @@ func (o *DeleteReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteRepli
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Version = op.Version
-	o.Delete = op.Delete
+	op.Handle = o.Handle
+	op.Version = o.Version
+	op.Delete = o.Delete
 	return op
 }
 
@@ -32492,7 +32492,7 @@ func (o *DeleteReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteRepl
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32657,9 +32657,9 @@ func (o *ModifyReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyRepli
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Version = op.Version
-	o.Modify = op.Modify
+	op.Handle = o.Handle
+	op.Version = o.Version
+	op.Modify = o.Modify
 	return op
 }
 
@@ -32696,7 +32696,7 @@ func (o *ModifyReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyRepl
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32904,9 +32904,9 @@ func (o *VerifyNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyNamesOp
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -32947,9 +32947,9 @@ func (o *VerifyNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyNamesO
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -33159,9 +33159,9 @@ func (o *GetMembershipsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMembers
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -33202,9 +33202,9 @@ func (o *GetMembershipsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMember
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -33414,9 +33414,9 @@ func (o *InterdomainMoveRequest) xxx_ToOp(ctx context.Context, op *xxx_Interdoma
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -33457,9 +33457,9 @@ func (o *InterdomainMoveResponse) xxx_ToOp(ctx context.Context, op *xxx_Interdom
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -33669,9 +33669,9 @@ func (o *GetNT4ChangeLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNT4Cha
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -33712,9 +33712,9 @@ func (o *GetNT4ChangeLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNT4Ch
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -33924,9 +33924,9 @@ func (o *CrackNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_CrackNamesOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -33967,9 +33967,9 @@ func (o *CrackNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_CrackNamesOpe
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -34174,9 +34174,9 @@ func (o *WriteSPNRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteSPNOperatio
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -34218,9 +34218,9 @@ func (o *WriteSPNResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteSPNOperati
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -34425,9 +34425,9 @@ func (o *RemoveDSServerRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSSe
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -34469,9 +34469,9 @@ func (o *RemoveDSServerResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSS
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -34676,9 +34676,9 @@ func (o *RemoveDSDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSDo
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -34720,9 +34720,9 @@ func (o *RemoveDSDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSD
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -34934,9 +34934,9 @@ func (o *DomainControllerInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Doma
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -34977,9 +34977,9 @@ func (o *DomainControllerInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Dom
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -35189,9 +35189,9 @@ func (o *AddEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_AddEntryOperatio
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -35232,9 +35232,9 @@ func (o *AddEntryResponse) xxx_ToOp(ctx context.Context, op *xxx_AddEntryOperati
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -35395,9 +35395,9 @@ func (o *ExecuteKCCRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteKCCOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -35434,7 +35434,7 @@ func (o *ExecuteKCCResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteKCCOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -35642,9 +35642,9 @@ func (o *GetReplicationInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRep
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -35685,9 +35685,9 @@ func (o *GetReplicationInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -35892,9 +35892,9 @@ func (o *AddSIDHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_AddSIDHisto
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -35936,9 +35936,9 @@ func (o *AddSIDHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_AddSIDHist
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -36148,9 +36148,9 @@ func (o *GetMemberships2Request) xxx_ToOp(ctx context.Context, op *xxx_GetMember
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -36191,9 +36191,9 @@ func (o *GetMemberships2Response) xxx_ToOp(ctx context.Context, op *xxx_GetMembe
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -36362,9 +36362,9 @@ func (o *VerifyObjectsReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_Veri
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Version = op.Version
-	o.Verify = op.Verify
+	op.Handle = o.Handle
+	op.Version = o.Version
+	op.Verify = o.Verify
 	return op
 }
 
@@ -36401,7 +36401,7 @@ func (o *VerifyObjectsReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_Ver
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36611,9 +36611,9 @@ func (o *GetObjectExistenceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObj
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -36654,9 +36654,9 @@ func (o *GetObjectExistenceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOb
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -36866,9 +36866,9 @@ func (o *QuerySitesByCostRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySit
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -36909,9 +36909,9 @@ func (o *QuerySitesByCostResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySi
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -37109,9 +37109,9 @@ func (o *InitDemotionRequest) xxx_ToOp(ctx context.Context, op *xxx_InitDemotion
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -37152,9 +37152,9 @@ func (o *InitDemotionResponse) xxx_ToOp(ctx context.Context, op *xxx_InitDemotio
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -37358,9 +37358,9 @@ func (o *DemotionReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_DemotionR
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -37401,9 +37401,9 @@ func (o *DemotionReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_Demotion
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -37607,9 +37607,9 @@ func (o *FinishDemotionRequest) xxx_ToOp(ctx context.Context, op *xxx_FinishDemo
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -37650,9 +37650,9 @@ func (o *FinishDemotionResponse) xxx_ToOp(ctx context.Context, op *xxx_FinishDem
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -37862,9 +37862,9 @@ func (o *AddCloneDCRequest) xxx_ToOp(ctx context.Context, op *xxx_AddCloneDCOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -37905,9 +37905,9 @@ func (o *AddCloneDCResponse) xxx_ToOp(ctx context.Context, op *xxx_AddCloneDCOpe
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -38108,9 +38108,9 @@ func (o *WriteNGCKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteNGCKeyOp
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -38149,9 +38149,9 @@ func (o *WriteNGCKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteNGCKeyO
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -38358,9 +38358,9 @@ func (o *ReadNGCKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadNGCKeyOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.InVersion = op.InVersion
-	o.In = op.In
+	op.Handle = o.Handle
+	op.InVersion = o.InVersion
+	op.In = o.In
 	return op
 }
 
@@ -38399,9 +38399,9 @@ func (o *ReadNGCKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadNGCKeyOpe
 	if o == nil {
 		return op
 	}
-	o.OutVersion = op.OutVersion
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutVersion = o.OutVersion
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 

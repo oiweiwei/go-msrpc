@@ -453,7 +453,7 @@ func (o *GetAddElementNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAdd
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -491,9 +491,9 @@ func (o *GetAddElementNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAd
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ElementName = op.ElementName
-	o.Return = op.Return
+	op.That = o.That
+	op.ElementName = o.ElementName
+	op.Return = o.Return
 	return op
 }
 
@@ -744,8 +744,8 @@ func (o *GetAddElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAd
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ElementName = op.ElementName
+	op.This = o.This
+	op.ElementName = o.ElementName
 	return op
 }
 
@@ -784,9 +784,9 @@ func (o *GetAddElementSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Schema = op.Schema
-	o.Return = op.Return
+	op.That = o.That
+	op.Schema = o.Schema
+	op.Return = o.Return
 	return op
 }
 
@@ -989,7 +989,7 @@ func (o *GetRemoveElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1027,9 +1027,9 @@ func (o *GetRemoveElementSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Schema = op.Schema
-	o.Return = op.Return
+	op.That = o.That
+	op.Schema = o.Schema
+	op.Return = o.Return
 	return op
 }
 
@@ -1232,7 +1232,7 @@ func (o *GetClearElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1270,9 +1270,9 @@ func (o *GetClearElementSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Schema = op.Schema
-	o.Return = op.Return
+	op.That = o.That
+	op.Schema = o.Schema
+	op.Return = o.Return
 	return op
 }
 
@@ -1441,7 +1441,7 @@ func (o *GetIsMergeAppendRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsMer
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1479,9 +1479,9 @@ func (o *GetIsMergeAppendResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsMe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsMergeAppend = op.IsMergeAppend
-	o.Return = op.Return
+	op.That = o.That
+	op.IsMergeAppend = o.IsMergeAppend
+	op.Return = o.Return
 	return op
 }
 
@@ -1730,8 +1730,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -1770,9 +1770,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1941,7 +1941,7 @@ func (o *GetDoesAllowDuplicatesRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1979,9 +1979,9 @@ func (o *GetDoesAllowDuplicatesResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AllowDuplicates = op.AllowDuplicates
-	o.Return = op.Return
+	op.That = o.That
+	op.AllowDuplicates = o.AllowDuplicates
+	op.Return = o.Return
 	return op
 }
 
