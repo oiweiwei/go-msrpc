@@ -271,6 +271,54 @@ func (p *Generator) OperationParams(ctx context.Context, op *midl.Operation) []*
 	}, params...)
 }
 
+func (p *Generator) GetExprIdents(ctx context.Context, expr ...midl.Expr) []string {
+	ret := make([]string, 0, len(expr))
+	for _, expr := range expr {
+		val, ok := expr.Ident().Value.(string)
+		if ok {
+			ret = append(ret, val)
+		}
+	}
+	return ret
+}
+
+func (p *Generator) GetOutputParamImplicitDependents(ctx context.Context, op *midl.Operation, dir int) []*midl.Param {
+
+	if dir != OutParam {
+		return nil
+	}
+
+	deps, seen := []*midl.Param{}, make(map[string]bool)
+	params := make(map[string]*midl.Param)
+
+	for _, param := range p.OperationParams(ctx, op) {
+		params[param.Name] = param
+	}
+
+	for _, param := range p.OperationParams(ctx, op) {
+		if !param.Attrs.Direction.Out {
+			continue
+		}
+		for _, expr := range [][]midl.Expr{
+			param.Attrs.SizeIs,
+			param.Attrs.LengthIs,
+			param.Attrs.FirstIs,
+			param.Attrs.LastIs,
+			param.Attrs.MaxIs,
+			param.Attrs.MinIs,
+			[]midl.Expr{param.Attrs.SwitchIs},
+		} {
+			for _, ident := range p.GetExprIdents(ctx, expr...) {
+				if p, ok := params[ident]; ok && p.Attrs.Direction.In && !p.Attrs.Direction.Out && !seen[p.Name] {
+					deps, seen[p.Name] = append(deps, p), true
+				}
+			}
+		}
+	}
+
+	return deps
+}
+
 func (p *Generator) GenOperationStruct(ctx context.Context, op *midl.Operation, dir int) {
 
 	p.P()
@@ -281,6 +329,15 @@ func (p *Generator) GenOperationStruct(ctx context.Context, op *midl.Operation, 
 
 	// generate go structure for the in/out/any parameters.
 	p.Structure(p.OpName(ctx, op, dir), func() {
+		for _, param := range p.GetOutputParamImplicitDependents(ctx, op, dir) {
+			p.P("//", "XXX:", param.Name, "is an implicit input depedency for output parameters")
+			p.NewParamGenerator(ctx, param.Type).GenStructField(ctx, &midl.Field{
+				Name:  param.Name,
+				Attrs: param.Attrs.FieldAttr,
+				Type:  param.Type,
+			})
+		}
+
 		for _, param := range p.OperationParams(ctx, op) {
 			if !p.IsDir(ctx, param.Attrs.Direction, dir) {
 				continue
@@ -356,6 +413,28 @@ func (p *Generator) GenOperationToOp(ctx context.Context, op *midl.Operation, di
 	p.If("o == nil", func() {
 		p.P("return", "op")
 	})
+
+	if implicit := p.GetOutputParamImplicitDependents(ctx, op, dir); len(implicit) > 0 {
+		p.P("//", "XXX:", "implicit input dependencies for output parameters")
+		for _, param := range implicit {
+			n := GoName(param.Name)
+			if n == "_" {
+				continue
+			}
+			f := &midl.Field{
+				Name:  param.Name,
+				Type:  param.Type,
+				Attrs: param.Attrs.FieldAttr,
+			}
+
+			// if op.(n) is zero value, you can set it.
+			p.If("op."+n, "==", p.GoTypeZeroValue(ctx, f.Type.Attrs, f, NewScopes(f.Scopes())), func() {
+				p.P("op."+n, "=", p.O(n))
+			})
+		}
+		p.P()
+	}
+
 	for _, param := range p.OperationParams(ctx, op) {
 		if !p.IsDir(ctx, param.Attrs.Direction, dir) || param.IsHandle() {
 			continue
@@ -377,6 +456,18 @@ func (p *Generator) GenOperationFromOp(ctx context.Context, op *midl.Operation, 
 	p.If("o == nil", func() {
 		p.P("return")
 	})
+	if implicit := p.GetOutputParamImplicitDependents(ctx, op, dir); len(implicit) > 0 {
+		p.P("//", "XXX:", "implicit input dependencies for output parameters")
+		for _, param := range implicit {
+			n := GoName(param.Name)
+			if n == "_" {
+				continue
+			}
+			p.P(p.O(n), "=", "op."+n)
+		}
+		p.P()
+	}
+
 	for _, param := range p.OperationParams(ctx, op) {
 		if !p.IsDir(ctx, param.Attrs.Direction, dir) || param.IsHandle() {
 			continue
