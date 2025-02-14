@@ -175,6 +175,7 @@ func (p *Generator) Gen(ctx context.Context, fn string) error {
 
 		p.GenServerInterface(ctx, iff)
 		p.GenServerHandle(ctx, iff)
+		p.GenUnplementedServer(ctx, iff)
 	}
 
 	if f.IsDCOM() {
