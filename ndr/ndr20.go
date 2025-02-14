@@ -73,6 +73,15 @@ func Marshal(d Marshaler, opts ...any) ([]byte, error) {
 	return NDR20(nil, opts...).Marshal(context.Background(), d)
 }
 
+// MarshalResponse function marshal the operation `d` response using NDR2.0 format.
+func MarshalResponse(d Operation, opts ...any) ([]byte, error) {
+	w := NDR20(nil, opts...)
+	if err := d.MarshalNDRResponse(context.Background(), w); err != nil {
+		return nil, err
+	}
+	return w.Bytes(), nil
+}
+
 // Unmarshal function unmarshals the bytes `b` to the data `d`
 // using NDR2.0 format.
 func Unmarshal(b []byte, d Unmarshaler, opts ...any) error {
