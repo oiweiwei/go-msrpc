@@ -322,7 +322,7 @@ func (p *Generator) GenOperationStruct(ctx context.Context, op *midl.Operation, 
 	dirN := ParamName(dir)
 
 	p.Block("func", "(o *"+p.OpName(ctx, op, dir)+")", "MarshalNDR", "(ctx context.Context, w ndr.Writer)", "error", func() {
-		p.P("return", "o."+p.XXX()+"ToOp(ctx).MarshalNDR"+dirN+"(ctx, w)")
+		p.P("return", "o."+p.XXX()+"ToOp(ctx, nil).MarshalNDR"+dirN+"(ctx, w)")
 	})
 
 	p.Block("func", "(o *"+p.OpName(ctx, op, dir)+")", "UnmarshalNDR", "(ctx context.Context, r ndr.Reader)", "error", func() {
@@ -349,11 +349,13 @@ func (p *Generator) GenOpName(ctx context.Context, op *midl.Operation, dir int) 
 func (p *Generator) GenOperationToOp(ctx context.Context, op *midl.Operation, dir int) {
 
 	p.P()
-	p.P("func", "(o *"+p.OpName(ctx, op, dir)+")", p.XXX()+"ToOp(ctx context.Context)", "*"+p.OpName(ctx, op, AnyParam), "{")
-	p.If("o == nil", func() {
-		p.P("return", p.Amp(p.OpName(ctx, op, AnyParam)+"{}"))
+	p.P("func", "(o *"+p.OpName(ctx, op, dir)+")", p.XXX()+"ToOp(ctx context.Context, op *"+p.OpName(ctx, op, AnyParam), ")", "*"+p.OpName(ctx, op, AnyParam), "{")
+	p.If("op == nil", func() {
+		p.P("op", "=", "&"+p.OpName(ctx, op, AnyParam)+"{}")
 	})
-	p.P("return &"+p.OpName(ctx, op, AnyParam), "{")
+	p.If("o == nil", func() {
+		p.P("return", "op")
+	})
 	for _, param := range p.OperationParams(ctx, op) {
 		if !p.IsDir(ctx, param.Attrs.Direction, dir) || param.IsHandle() {
 			continue
@@ -362,9 +364,10 @@ func (p *Generator) GenOperationToOp(ctx context.Context, op *midl.Operation, di
 		if n == "_" {
 			continue
 		}
-		p.P(n, ":", p.O(n), ",")
+		p.P(p.O(n), "=", "op."+n)
+
 	}
-	p.P("}")
+	p.P("return", "op")
 	p.P("}")
 }
 

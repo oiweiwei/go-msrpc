@@ -57,12 +57,14 @@ func (p *Generator) GenServerHandle(ctx context.Context, iff *midl.Interface) {
 					p.P("return", "nil, nil")
 					continue
 				}
-				p.P("in", ":=", p.Amp(p.OpName(ctx, op, InParam))+"{}")
-				p.If("err := in.UnmarshalNDR(ctx, r);", "err != nil", func() {
+				p.P("op", ":=", p.Amp(p.OpName(ctx, op, AnyParam))+"{}")
+				p.If("err := op.UnmarshalNDRRequest(ctx, r);", "err != nil", func() {
 					p.P("return", "nil, err")
 				})
-				p.P("resp, err", ":=", p.B("o."+p.MethodName(ctx, op), "ctx", "in"))
-				p.P("return", "resp."+p.XXX()+"ToOp(ctx)", ", err")
+				p.P("req", ":=", p.Amp(p.OpName(ctx, op, InParam)+"{}"))
+				p.P("req", ".", p.B(p.XXX()+"FromOp", "ctx", "op"))
+				p.P("resp, err", ":=", p.B("o."+p.MethodName(ctx, op), "ctx", "req"))
+				p.P("return", "resp."+p.XXX()+"ToOp(ctx, op)", ", err")
 			}
 		})
 
@@ -113,6 +115,32 @@ func (p *Generator) GenServerInterface(ctx context.Context, iff *midl.Interface)
 	})
 }
 
+func (p *Generator) GenUnplementedServer(ctx context.Context, iff *midl.Interface) {
+
+	n := "Unimplemented" + GoName(iff.Name) + "Server"
+	baseN := "Unimplemented" + GoName(iff.BaseName) + "Server"
+
+	p.P()
+	p.P("//", "Unimplemented", iff.Name)
+	p.Block("type", n, "struct", func() {
+		if iff.IsObject() && iff.Base != nil {
+			p.P()
+			p.P(p.GoInterfaceTypeName(ctx, iff.Base, baseN))
+		}
+	})
+
+	p.P()
+	for _, op := range iff.Body.Operations {
+		if p.IsUnusedOp(op.Name) {
+			continue
+		}
+		p.P("func", p.B("", n), p.B(p.MethodName(ctx, op), "context.Context", "*"+p.OpName(ctx, op, InParam)),
+			p.B("", "*"+p.OpName(ctx, op, OutParam), "error"), "{ return nil, dcerpc.ErrNotImplemented }")
+	}
+	p.P()
+	p.P("var", "_", GoName(iff.Name)+"Server", "=", p.B("", "*"+n), p.B("", "nil"))
+}
+
 func (p *Generator) GenClient(ctx context.Context, iff *midl.Interface) {
 
 	n := GoName(iff.Name) + "Client"
@@ -151,7 +179,7 @@ func (p *Generator) GenClient(ctx context.Context, iff *midl.Interface) {
 			p.B("",
 				"*"+p.OpName(ctx, op, OutParam), "error",
 			), "{")
-		p.P("op", ":=", p.B("in."+p.XXX()+"ToOp", "ctx"))
+		p.P("op", ":=", p.B("in."+p.XXX()+"ToOp", "ctx", "nil"))
 		if iff.IsObject() {
 			p.If("_, ok := dcom.HasIPID(opts); !ok", func() {
 				p.If("o.ipid != nil", func() {
