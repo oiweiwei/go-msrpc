@@ -80,6 +80,8 @@ var (
 // number and return the operation response.
 type ServerHandle func(context.Context, int, ndr.Reader) (Operation, error)
 
+var ErrNotImplemented = errors.New("not implemented")
+
 // Group is used to hold the association group identifier.
 // The association can be passed through the options using multiple
 // connections, thus sharing the same group id between them.
