@@ -82,7 +82,7 @@ func (o *xxx_DefaultIDMRemoteServerClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultIDMRemoteServerClient) CreateRemoteObject(ctx context.Context, in *CreateRemoteObjectRequest, opts ...dcerpc.CallOption) (*CreateRemoteObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -346,15 +346,17 @@ type CreateRemoteObjectRequest struct {
 	RemoteComputerName string `idl:"name:RemoteComputerName;max_is:(cMax)" json:"remote_computer_name"`
 }
 
-func (o *CreateRemoteObjectRequest) xxx_ToOp(ctx context.Context) *xxx_CreateRemoteObjectOperation {
+func (o *CreateRemoteObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateRemoteObjectOperation) *xxx_CreateRemoteObjectOperation {
+	if op == nil {
+		op = &xxx_CreateRemoteObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateRemoteObjectOperation{}
+		return op
 	}
-	return &xxx_CreateRemoteObjectOperation{
-		This:               o.This,
-		MaxCount:           o.MaxCount,
-		RemoteComputerName: o.RemoteComputerName,
-	}
+	o.This = op.This
+	o.MaxCount = op.MaxCount
+	o.RemoteComputerName = op.RemoteComputerName
+	return op
 }
 
 func (o *CreateRemoteObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateRemoteObjectOperation) {
@@ -366,7 +368,7 @@ func (o *CreateRemoteObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.RemoteComputerName = op.RemoteComputerName
 }
 func (o *CreateRemoteObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateRemoteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateRemoteObjectOperation{}
@@ -385,14 +387,16 @@ type CreateRemoteObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateRemoteObjectResponse) xxx_ToOp(ctx context.Context) *xxx_CreateRemoteObjectOperation {
+func (o *CreateRemoteObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRemoteObjectOperation) *xxx_CreateRemoteObjectOperation {
+	if op == nil {
+		op = &xxx_CreateRemoteObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateRemoteObjectOperation{}
+		return op
 	}
-	return &xxx_CreateRemoteObjectOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateRemoteObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateRemoteObjectOperation) {
@@ -403,7 +407,7 @@ func (o *CreateRemoteObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.Return = op.Return
 }
 func (o *CreateRemoteObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateRemoteObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateRemoteObjectOperation{}

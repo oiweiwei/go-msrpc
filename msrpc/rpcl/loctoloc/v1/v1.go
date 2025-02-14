@@ -143,7 +143,7 @@ type xxx_DefaultLocToLocClient struct {
 }
 
 func (o *xxx_DefaultLocToLocClient) LookupBegin(ctx context.Context, in *LookupBeginRequest, opts ...dcerpc.CallOption) (*LookupBeginResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -153,7 +153,7 @@ func (o *xxx_DefaultLocToLocClient) LookupBegin(ctx context.Context, in *LookupB
 }
 
 func (o *xxx_DefaultLocToLocClient) LookupDone(ctx context.Context, in *LookupDoneRequest, opts ...dcerpc.CallOption) (*LookupDoneResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -163,7 +163,7 @@ func (o *xxx_DefaultLocToLocClient) LookupDone(ctx context.Context, in *LookupDo
 }
 
 func (o *xxx_DefaultLocToLocClient) LookupNext(ctx context.Context, in *LookupNextRequest, opts ...dcerpc.CallOption) (*LookupNextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -173,7 +173,7 @@ func (o *xxx_DefaultLocToLocClient) LookupNext(ctx context.Context, in *LookupNe
 }
 
 func (o *xxx_DefaultLocToLocClient) EntryObjectInquireNext(ctx context.Context, in *EntryObjectInquireNextRequest, opts ...dcerpc.CallOption) (*EntryObjectInquireNextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -183,7 +183,7 @@ func (o *xxx_DefaultLocToLocClient) EntryObjectInquireNext(ctx context.Context, 
 }
 
 func (o *xxx_DefaultLocToLocClient) PingLocator(ctx context.Context, in *PingLocatorRequest, opts ...dcerpc.CallOption) (*PingLocatorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -193,7 +193,7 @@ func (o *xxx_DefaultLocToLocClient) PingLocator(ctx context.Context, in *PingLoc
 }
 
 func (o *xxx_DefaultLocToLocClient) EntryObjectInquireDone(ctx context.Context, in *EntryObjectInquireDoneRequest, opts ...dcerpc.CallOption) (*EntryObjectInquireDoneResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -203,7 +203,7 @@ func (o *xxx_DefaultLocToLocClient) EntryObjectInquireDone(ctx context.Context, 
 }
 
 func (o *xxx_DefaultLocToLocClient) EntryObjectInquireBegin(ctx context.Context, in *EntryObjectInquireBeginRequest, opts ...dcerpc.CallOption) (*EntryObjectInquireBeginResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -563,19 +563,21 @@ type LookupBeginRequest struct {
 	MaxCacheAge uint32 `idl:"name:MaxCacheAge" json:"max_cache_age"`
 }
 
-func (o *LookupBeginRequest) xxx_ToOp(ctx context.Context) *xxx_LookupBeginOperation {
+func (o *LookupBeginRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupBeginOperation) *xxx_LookupBeginOperation {
+	if op == nil {
+		op = &xxx_LookupBeginOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupBeginOperation{}
+		return op
 	}
-	return &xxx_LookupBeginOperation{
-		EntryNameSyntax: o.EntryNameSyntax,
-		EntryName:       o.EntryName,
-		InterfaceID:     o.InterfaceID,
-		TransferSyntax:  o.TransferSyntax,
-		ObjectUUID:      o.ObjectUUID,
-		BindingMaxCount: o.BindingMaxCount,
-		MaxCacheAge:     o.MaxCacheAge,
-	}
+	o.EntryNameSyntax = op.EntryNameSyntax
+	o.EntryName = op.EntryName
+	o.InterfaceID = op.InterfaceID
+	o.TransferSyntax = op.TransferSyntax
+	o.ObjectUUID = op.ObjectUUID
+	o.BindingMaxCount = op.BindingMaxCount
+	o.MaxCacheAge = op.MaxCacheAge
+	return op
 }
 
 func (o *LookupBeginRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupBeginOperation) {
@@ -591,7 +593,7 @@ func (o *LookupBeginRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupBegin
 	o.MaxCacheAge = op.MaxCacheAge
 }
 func (o *LookupBeginRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupBeginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupBeginOperation{}
@@ -614,14 +616,16 @@ type LookupBeginResponse struct {
 	Status uint16 `idl:"name:status" json:"status"`
 }
 
-func (o *LookupBeginResponse) xxx_ToOp(ctx context.Context) *xxx_LookupBeginOperation {
+func (o *LookupBeginResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupBeginOperation) *xxx_LookupBeginOperation {
+	if op == nil {
+		op = &xxx_LookupBeginOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupBeginOperation{}
+		return op
 	}
-	return &xxx_LookupBeginOperation{
-		ImportContext: o.ImportContext,
-		Status:        o.Status,
-	}
+	o.ImportContext = op.ImportContext
+	o.Status = op.Status
+	return op
 }
 
 func (o *LookupBeginResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupBeginOperation) {
@@ -632,7 +636,7 @@ func (o *LookupBeginResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupBegi
 	o.Status = op.Status
 }
 func (o *LookupBeginResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupBeginResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupBeginOperation{}
@@ -755,13 +759,15 @@ type LookupDoneRequest struct {
 	ImportContext *rpcl.Context `idl:"name:import_context" json:"import_context"`
 }
 
-func (o *LookupDoneRequest) xxx_ToOp(ctx context.Context) *xxx_LookupDoneOperation {
+func (o *LookupDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupDoneOperation) *xxx_LookupDoneOperation {
+	if op == nil {
+		op = &xxx_LookupDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupDoneOperation{}
+		return op
 	}
-	return &xxx_LookupDoneOperation{
-		ImportContext: o.ImportContext,
-	}
+	o.ImportContext = op.ImportContext
+	return op
 }
 
 func (o *LookupDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupDoneOperation) {
@@ -771,7 +777,7 @@ func (o *LookupDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupDoneOp
 	o.ImportContext = op.ImportContext
 }
 func (o *LookupDoneRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupDoneOperation{}
@@ -795,14 +801,16 @@ type LookupDoneResponse struct {
 	Status uint16 `idl:"name:status" json:"status"`
 }
 
-func (o *LookupDoneResponse) xxx_ToOp(ctx context.Context) *xxx_LookupDoneOperation {
+func (o *LookupDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupDoneOperation) *xxx_LookupDoneOperation {
+	if op == nil {
+		op = &xxx_LookupDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupDoneOperation{}
+		return op
 	}
-	return &xxx_LookupDoneOperation{
-		ImportContext: o.ImportContext,
-		Status:        o.Status,
-	}
+	o.ImportContext = op.ImportContext
+	o.Status = op.Status
+	return op
 }
 
 func (o *LookupDoneResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupDoneOperation) {
@@ -813,7 +821,7 @@ func (o *LookupDoneResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupDoneO
 	o.Status = op.Status
 }
 func (o *LookupDoneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupDoneResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupDoneOperation{}
@@ -961,13 +969,15 @@ type LookupNextRequest struct {
 	ImportContext *rpcl.Context `idl:"name:import_context" json:"import_context"`
 }
 
-func (o *LookupNextRequest) xxx_ToOp(ctx context.Context) *xxx_LookupNextOperation {
+func (o *LookupNextRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOperation) *xxx_LookupNextOperation {
+	if op == nil {
+		op = &xxx_LookupNextOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupNextOperation{}
+		return op
 	}
-	return &xxx_LookupNextOperation{
-		ImportContext: o.ImportContext,
-	}
+	o.ImportContext = op.ImportContext
+	return op
 }
 
 func (o *LookupNextRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupNextOperation) {
@@ -977,7 +987,7 @@ func (o *LookupNextRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupNextOp
 	o.ImportContext = op.ImportContext
 }
 func (o *LookupNextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNextOperation{}
@@ -1018,14 +1028,16 @@ type LookupNextResponse struct {
 	Status uint16 `idl:"name:status" json:"status"`
 }
 
-func (o *LookupNextResponse) xxx_ToOp(ctx context.Context) *xxx_LookupNextOperation {
+func (o *LookupNextResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOperation) *xxx_LookupNextOperation {
+	if op == nil {
+		op = &xxx_LookupNextOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupNextOperation{}
+		return op
 	}
-	return &xxx_LookupNextOperation{
-		BindingVector: o.BindingVector,
-		Status:        o.Status,
-	}
+	o.BindingVector = op.BindingVector
+	o.Status = op.Status
+	return op
 }
 
 func (o *LookupNextResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupNextOperation) {
@@ -1036,7 +1048,7 @@ func (o *LookupNextResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupNextO
 	o.Status = op.Status
 }
 func (o *LookupNextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupNextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNextOperation{}
@@ -1186,13 +1198,15 @@ type EntryObjectInquireNextRequest struct {
 	InquireContext *rpcl.Context `idl:"name:InqContext" json:"inquire_context"`
 }
 
-func (o *EntryObjectInquireNextRequest) xxx_ToOp(ctx context.Context) *xxx_EntryObjectInquireNextOperation {
+func (o *EntryObjectInquireNextRequest) xxx_ToOp(ctx context.Context, op *xxx_EntryObjectInquireNextOperation) *xxx_EntryObjectInquireNextOperation {
+	if op == nil {
+		op = &xxx_EntryObjectInquireNextOperation{}
+	}
 	if o == nil {
-		return &xxx_EntryObjectInquireNextOperation{}
+		return op
 	}
-	return &xxx_EntryObjectInquireNextOperation{
-		InquireContext: o.InquireContext,
-	}
+	o.InquireContext = op.InquireContext
+	return op
 }
 
 func (o *EntryObjectInquireNextRequest) xxx_FromOp(ctx context.Context, op *xxx_EntryObjectInquireNextOperation) {
@@ -1202,7 +1216,7 @@ func (o *EntryObjectInquireNextRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.InquireContext = op.InquireContext
 }
 func (o *EntryObjectInquireNextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EntryObjectInquireNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EntryObjectInquireNextOperation{}
@@ -1225,14 +1239,16 @@ type EntryObjectInquireNextResponse struct {
 	Status uint16 `idl:"name:status" json:"status"`
 }
 
-func (o *EntryObjectInquireNextResponse) xxx_ToOp(ctx context.Context) *xxx_EntryObjectInquireNextOperation {
+func (o *EntryObjectInquireNextResponse) xxx_ToOp(ctx context.Context, op *xxx_EntryObjectInquireNextOperation) *xxx_EntryObjectInquireNextOperation {
+	if op == nil {
+		op = &xxx_EntryObjectInquireNextOperation{}
+	}
 	if o == nil {
-		return &xxx_EntryObjectInquireNextOperation{}
+		return op
 	}
-	return &xxx_EntryObjectInquireNextOperation{
-		Vector: o.Vector,
-		Status: o.Status,
-	}
+	o.Vector = op.Vector
+	o.Status = op.Status
+	return op
 }
 
 func (o *EntryObjectInquireNextResponse) xxx_FromOp(ctx context.Context, op *xxx_EntryObjectInquireNextOperation) {
@@ -1243,7 +1259,7 @@ func (o *EntryObjectInquireNextResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Status = op.Status
 }
 func (o *EntryObjectInquireNextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EntryObjectInquireNextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EntryObjectInquireNextOperation{}
@@ -1319,11 +1335,14 @@ func (o *xxx_PingLocatorOperation) UnmarshalNDRResponse(ctx context.Context, w n
 type PingLocatorRequest struct {
 }
 
-func (o *PingLocatorRequest) xxx_ToOp(ctx context.Context) *xxx_PingLocatorOperation {
-	if o == nil {
-		return &xxx_PingLocatorOperation{}
+func (o *PingLocatorRequest) xxx_ToOp(ctx context.Context, op *xxx_PingLocatorOperation) *xxx_PingLocatorOperation {
+	if op == nil {
+		op = &xxx_PingLocatorOperation{}
 	}
-	return &xxx_PingLocatorOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *PingLocatorRequest) xxx_FromOp(ctx context.Context, op *xxx_PingLocatorOperation) {
@@ -1332,7 +1351,7 @@ func (o *PingLocatorRequest) xxx_FromOp(ctx context.Context, op *xxx_PingLocator
 	}
 }
 func (o *PingLocatorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PingLocatorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PingLocatorOperation{}
@@ -1352,13 +1371,15 @@ type PingLocatorResponse struct {
 	Status uint32 `idl:"name:status" json:"status"`
 }
 
-func (o *PingLocatorResponse) xxx_ToOp(ctx context.Context) *xxx_PingLocatorOperation {
+func (o *PingLocatorResponse) xxx_ToOp(ctx context.Context, op *xxx_PingLocatorOperation) *xxx_PingLocatorOperation {
+	if op == nil {
+		op = &xxx_PingLocatorOperation{}
+	}
 	if o == nil {
-		return &xxx_PingLocatorOperation{}
+		return op
 	}
-	return &xxx_PingLocatorOperation{
-		Status: o.Status,
-	}
+	o.Status = op.Status
+	return op
 }
 
 func (o *PingLocatorResponse) xxx_FromOp(ctx context.Context, op *xxx_PingLocatorOperation) {
@@ -1368,7 +1389,7 @@ func (o *PingLocatorResponse) xxx_FromOp(ctx context.Context, op *xxx_PingLocato
 	o.Status = op.Status
 }
 func (o *PingLocatorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PingLocatorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PingLocatorOperation{}
@@ -1493,13 +1514,15 @@ type EntryObjectInquireDoneRequest struct {
 	InquireContext *rpcl.Context `idl:"name:InqContext" json:"inquire_context"`
 }
 
-func (o *EntryObjectInquireDoneRequest) xxx_ToOp(ctx context.Context) *xxx_EntryObjectInquireDoneOperation {
+func (o *EntryObjectInquireDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_EntryObjectInquireDoneOperation) *xxx_EntryObjectInquireDoneOperation {
+	if op == nil {
+		op = &xxx_EntryObjectInquireDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_EntryObjectInquireDoneOperation{}
+		return op
 	}
-	return &xxx_EntryObjectInquireDoneOperation{
-		InquireContext: o.InquireContext,
-	}
+	o.InquireContext = op.InquireContext
+	return op
 }
 
 func (o *EntryObjectInquireDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_EntryObjectInquireDoneOperation) {
@@ -1509,7 +1532,7 @@ func (o *EntryObjectInquireDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.InquireContext = op.InquireContext
 }
 func (o *EntryObjectInquireDoneRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EntryObjectInquireDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EntryObjectInquireDoneOperation{}
@@ -1533,14 +1556,16 @@ type EntryObjectInquireDoneResponse struct {
 	Status uint16 `idl:"name:status" json:"status"`
 }
 
-func (o *EntryObjectInquireDoneResponse) xxx_ToOp(ctx context.Context) *xxx_EntryObjectInquireDoneOperation {
+func (o *EntryObjectInquireDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_EntryObjectInquireDoneOperation) *xxx_EntryObjectInquireDoneOperation {
+	if op == nil {
+		op = &xxx_EntryObjectInquireDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_EntryObjectInquireDoneOperation{}
+		return op
 	}
-	return &xxx_EntryObjectInquireDoneOperation{
-		InquireContext: o.InquireContext,
-		Status:         o.Status,
-	}
+	o.InquireContext = op.InquireContext
+	o.Status = op.Status
+	return op
 }
 
 func (o *EntryObjectInquireDoneResponse) xxx_FromOp(ctx context.Context, op *xxx_EntryObjectInquireDoneOperation) {
@@ -1551,7 +1576,7 @@ func (o *EntryObjectInquireDoneResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Status = op.Status
 }
 func (o *EntryObjectInquireDoneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EntryObjectInquireDoneResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EntryObjectInquireDoneOperation{}
@@ -1709,14 +1734,16 @@ type EntryObjectInquireBeginRequest struct {
 	EntryName string `idl:"name:EntryName" json:"entry_name"`
 }
 
-func (o *EntryObjectInquireBeginRequest) xxx_ToOp(ctx context.Context) *xxx_EntryObjectInquireBeginOperation {
+func (o *EntryObjectInquireBeginRequest) xxx_ToOp(ctx context.Context, op *xxx_EntryObjectInquireBeginOperation) *xxx_EntryObjectInquireBeginOperation {
+	if op == nil {
+		op = &xxx_EntryObjectInquireBeginOperation{}
+	}
 	if o == nil {
-		return &xxx_EntryObjectInquireBeginOperation{}
+		return op
 	}
-	return &xxx_EntryObjectInquireBeginOperation{
-		EntryNameSyntax: o.EntryNameSyntax,
-		EntryName:       o.EntryName,
-	}
+	o.EntryNameSyntax = op.EntryNameSyntax
+	o.EntryName = op.EntryName
+	return op
 }
 
 func (o *EntryObjectInquireBeginRequest) xxx_FromOp(ctx context.Context, op *xxx_EntryObjectInquireBeginOperation) {
@@ -1727,7 +1754,7 @@ func (o *EntryObjectInquireBeginRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.EntryName = op.EntryName
 }
 func (o *EntryObjectInquireBeginRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EntryObjectInquireBeginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EntryObjectInquireBeginOperation{}
@@ -1750,14 +1777,16 @@ type EntryObjectInquireBeginResponse struct {
 	Status uint16 `idl:"name:status" json:"status"`
 }
 
-func (o *EntryObjectInquireBeginResponse) xxx_ToOp(ctx context.Context) *xxx_EntryObjectInquireBeginOperation {
+func (o *EntryObjectInquireBeginResponse) xxx_ToOp(ctx context.Context, op *xxx_EntryObjectInquireBeginOperation) *xxx_EntryObjectInquireBeginOperation {
+	if op == nil {
+		op = &xxx_EntryObjectInquireBeginOperation{}
+	}
 	if o == nil {
-		return &xxx_EntryObjectInquireBeginOperation{}
+		return op
 	}
-	return &xxx_EntryObjectInquireBeginOperation{
-		InquireContext: o.InquireContext,
-		Status:         o.Status,
-	}
+	o.InquireContext = op.InquireContext
+	o.Status = op.Status
+	return op
 }
 
 func (o *EntryObjectInquireBeginResponse) xxx_FromOp(ctx context.Context, op *xxx_EntryObjectInquireBeginOperation) {
@@ -1768,7 +1797,7 @@ func (o *EntryObjectInquireBeginResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Status = op.Status
 }
 func (o *EntryObjectInquireBeginResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EntryObjectInquireBeginResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EntryObjectInquireBeginOperation{}

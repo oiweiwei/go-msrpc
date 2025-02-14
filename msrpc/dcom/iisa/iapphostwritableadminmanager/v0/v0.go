@@ -79,7 +79,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) AppHostAdminManager() iap
 }
 
 func (o *xxx_DefaultAppHostWritableAdminManagerClient) CommitChanges(ctx context.Context, in *CommitChangesRequest, opts ...dcerpc.CallOption) (*CommitChangesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -99,7 +99,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) CommitChanges(ctx context
 }
 
 func (o *xxx_DefaultAppHostWritableAdminManagerClient) GetCommitPath(ctx context.Context, in *GetCommitPathRequest, opts ...dcerpc.CallOption) (*GetCommitPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +119,7 @@ func (o *xxx_DefaultAppHostWritableAdminManagerClient) GetCommitPath(ctx context
 }
 
 func (o *xxx_DefaultAppHostWritableAdminManagerClient) SetCommitPath(ctx context.Context, in *SetCommitPathRequest, opts ...dcerpc.CallOption) (*SetCommitPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -305,13 +305,15 @@ type CommitChangesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CommitChangesRequest) xxx_ToOp(ctx context.Context) *xxx_CommitChangesOperation {
+func (o *CommitChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitChangesOperation) *xxx_CommitChangesOperation {
+	if op == nil {
+		op = &xxx_CommitChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitChangesOperation{}
+		return op
 	}
-	return &xxx_CommitChangesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CommitChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitChangesOperation) {
@@ -321,7 +323,7 @@ func (o *CommitChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitCha
 	o.This = op.This
 }
 func (o *CommitChangesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CommitChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitChangesOperation{}
@@ -340,14 +342,16 @@ type CommitChangesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CommitChangesResponse) xxx_ToOp(ctx context.Context) *xxx_CommitChangesOperation {
+func (o *CommitChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitChangesOperation) *xxx_CommitChangesOperation {
+	if op == nil {
+		op = &xxx_CommitChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitChangesOperation{}
+		return op
 	}
-	return &xxx_CommitChangesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CommitChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitChangesOperation) {
@@ -358,7 +362,7 @@ func (o *CommitChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitCh
 	o.Return = op.Return
 }
 func (o *CommitChangesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CommitChangesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitChangesOperation{}
@@ -541,13 +545,15 @@ type GetCommitPathRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetCommitPathRequest) xxx_ToOp(ctx context.Context) *xxx_GetCommitPathOperation {
+func (o *GetCommitPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCommitPathOperation) *xxx_GetCommitPathOperation {
+	if op == nil {
+		op = &xxx_GetCommitPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCommitPathOperation{}
+		return op
 	}
-	return &xxx_GetCommitPathOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetCommitPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCommitPathOperation) {
@@ -557,7 +563,7 @@ func (o *GetCommitPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCommit
 	o.This = op.This
 }
 func (o *GetCommitPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCommitPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCommitPathOperation{}
@@ -577,15 +583,17 @@ type GetCommitPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCommitPathResponse) xxx_ToOp(ctx context.Context) *xxx_GetCommitPathOperation {
+func (o *GetCommitPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCommitPathOperation) *xxx_GetCommitPathOperation {
+	if op == nil {
+		op = &xxx_GetCommitPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCommitPathOperation{}
+		return op
 	}
-	return &xxx_GetCommitPathOperation{
-		That:       o.That,
-		CommitPath: o.CommitPath,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CommitPath = op.CommitPath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCommitPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCommitPathOperation) {
@@ -597,7 +605,7 @@ func (o *GetCommitPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCommi
 	o.Return = op.Return
 }
 func (o *GetCommitPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCommitPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCommitPathOperation{}
@@ -781,14 +789,16 @@ type SetCommitPathRequest struct {
 	CommitPath *oaut.String   `idl:"name:bstrCommitPath" json:"commit_path"`
 }
 
-func (o *SetCommitPathRequest) xxx_ToOp(ctx context.Context) *xxx_SetCommitPathOperation {
+func (o *SetCommitPathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCommitPathOperation) *xxx_SetCommitPathOperation {
+	if op == nil {
+		op = &xxx_SetCommitPathOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCommitPathOperation{}
+		return op
 	}
-	return &xxx_SetCommitPathOperation{
-		This:       o.This,
-		CommitPath: o.CommitPath,
-	}
+	o.This = op.This
+	o.CommitPath = op.CommitPath
+	return op
 }
 
 func (o *SetCommitPathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCommitPathOperation) {
@@ -799,7 +809,7 @@ func (o *SetCommitPathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCommit
 	o.CommitPath = op.CommitPath
 }
 func (o *SetCommitPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetCommitPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCommitPathOperation{}
@@ -818,14 +828,16 @@ type SetCommitPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetCommitPathResponse) xxx_ToOp(ctx context.Context) *xxx_SetCommitPathOperation {
+func (o *SetCommitPathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCommitPathOperation) *xxx_SetCommitPathOperation {
+	if op == nil {
+		op = &xxx_SetCommitPathOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCommitPathOperation{}
+		return op
 	}
-	return &xxx_SetCommitPathOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetCommitPathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCommitPathOperation) {
@@ -836,7 +848,7 @@ func (o *SetCommitPathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCommi
 	o.Return = op.Return
 }
 func (o *SetCommitPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetCommitPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCommitPathOperation{}

@@ -64,40 +64,73 @@ func AppHostMethodInstanceServerHandle(ctx context.Context, o AppHostMethodInsta
 	}
 	switch opNum {
 	case 3: // Input
-		in := &GetInputRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInputOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInput(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInputRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInput(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Output
-		in := &GetOutputRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOutputOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOutput(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOutputRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOutput(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Execute
-		in := &ExecuteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Execute(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Execute(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // SetMetadata
-		in := &SetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostMethodInstance
+type UnimplementedAppHostMethodInstanceServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostMethodInstanceServer) GetInput(context.Context, *GetInputRequest) (*GetInputResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodInstanceServer) GetOutput(context.Context, *GetOutputRequest) (*GetOutputResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodInstanceServer) Execute(context.Context, *ExecuteRequest) (*ExecuteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodInstanceServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodInstanceServer) SetMetadata(context.Context, *SetMetadataRequest) (*SetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostMethodInstanceServer = (*UnimplementedAppHostMethodInstanceServer)(nil)

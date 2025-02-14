@@ -73,7 +73,7 @@ func (o *xxx_DefaultWCOSmartEnumClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultWCOSmartEnumClient) Next(ctx context.Context, in *NextRequest, opts ...dcerpc.CallOption) (*NextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -408,16 +408,18 @@ type NextRequest struct {
 	Count     uint32         `idl:"name:uCount" json:"count"`
 }
 
-func (o *NextRequest) xxx_ToOp(ctx context.Context) *xxx_NextOperation {
+func (o *NextRequest) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx_NextOperation {
+	if op == nil {
+		op = &xxx_NextOperation{}
+	}
 	if o == nil {
-		return &xxx_NextOperation{}
+		return op
 	}
-	return &xxx_NextOperation{
-		This:      o.This,
-		ProxyGUID: o.ProxyGUID,
-		Timeout:   o.Timeout,
-		Count:     o.Count,
-	}
+	o.This = op.This
+	o.ProxyGUID = op.ProxyGUID
+	o.Timeout = op.Timeout
+	o.Count = op.Count
+	return op
 }
 
 func (o *NextRequest) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
@@ -430,7 +432,7 @@ func (o *NextRequest) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.Count = op.Count
 }
 func (o *NextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NextOperation{}
@@ -452,17 +454,19 @@ type NextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NextResponse) xxx_ToOp(ctx context.Context) *xxx_NextOperation {
+func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx_NextOperation {
+	if op == nil {
+		op = &xxx_NextOperation{}
+	}
 	if o == nil {
-		return &xxx_NextOperation{}
+		return op
 	}
-	return &xxx_NextOperation{
-		That:       o.That,
-		Returned:   o.Returned,
-		BufferSize: o.BufferSize,
-		Buffer:     o.Buffer,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Returned = op.Returned
+	o.BufferSize = op.BufferSize
+	o.Buffer = op.Buffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
@@ -476,7 +480,7 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.Return = op.Return
 }
 func (o *NextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NextOperation{}

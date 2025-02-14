@@ -14,7 +14,7 @@ func (o *xxx_SecureChannelClient) AccountDeltas(ctx context.Context, in *Account
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.AccountDeltas(ctx, in, opts...)
@@ -23,7 +23,7 @@ func (o *xxx_SecureChannelClient) AccountDeltas(ctx context.Context, in *Account
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -36,7 +36,7 @@ func (o *xxx_SecureChannelClient) AccountSync(ctx context.Context, in *AccountSy
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.AccountSync(ctx, in, opts...)
@@ -45,7 +45,7 @@ func (o *xxx_SecureChannelClient) AccountSync(ctx context.Context, in *AccountSy
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -58,7 +58,7 @@ func (o *xxx_SecureChannelClient) ChainSetClientAttributes(ctx context.Context, 
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.ChainSetClientAttributes(ctx, in, opts...)
@@ -67,7 +67,7 @@ func (o *xxx_SecureChannelClient) ChainSetClientAttributes(ctx context.Context, 
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -80,7 +80,7 @@ func (o *xxx_SecureChannelClient) DatabaseDeltas(ctx context.Context, in *Databa
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.DatabaseDeltas(ctx, in, opts...)
@@ -89,7 +89,7 @@ func (o *xxx_SecureChannelClient) DatabaseDeltas(ctx context.Context, in *Databa
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -102,7 +102,7 @@ func (o *xxx_SecureChannelClient) DatabaseRedo(ctx context.Context, in *Database
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.DatabaseRedo(ctx, in, opts...)
@@ -111,7 +111,7 @@ func (o *xxx_SecureChannelClient) DatabaseRedo(ctx context.Context, in *Database
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -124,7 +124,7 @@ func (o *xxx_SecureChannelClient) DatabaseSync(ctx context.Context, in *Database
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.DatabaseSync(ctx, in, opts...)
@@ -133,7 +133,7 @@ func (o *xxx_SecureChannelClient) DatabaseSync(ctx context.Context, in *Database
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -146,7 +146,7 @@ func (o *xxx_SecureChannelClient) DatabaseSync2(ctx context.Context, in *Databas
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.DatabaseSync2(ctx, in, opts...)
@@ -155,7 +155,7 @@ func (o *xxx_SecureChannelClient) DatabaseSync2(ctx context.Context, in *Databas
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -168,7 +168,7 @@ func (o *xxx_SecureChannelClient) GetCapabilities(ctx context.Context, in *GetCa
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.GetCapabilities(ctx, in, opts...)
@@ -177,7 +177,7 @@ func (o *xxx_SecureChannelClient) GetCapabilities(ctx context.Context, in *GetCa
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -190,7 +190,7 @@ func (o *xxx_SecureChannelClient) GetDomainInfo(ctx context.Context, in *GetDoma
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.GetDomainInfo(ctx, in, opts...)
@@ -199,7 +199,7 @@ func (o *xxx_SecureChannelClient) GetDomainInfo(ctx context.Context, in *GetDoma
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -212,7 +212,7 @@ func (o *xxx_SecureChannelClient) SAMLogoff(ctx context.Context, in *SAMLogoffRe
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.SAMLogoff(ctx, in, opts...)
@@ -221,7 +221,7 @@ func (o *xxx_SecureChannelClient) SAMLogoff(ctx context.Context, in *SAMLogoffRe
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -234,7 +234,7 @@ func (o *xxx_SecureChannelClient) SAMLogon(ctx context.Context, in *SAMLogonRequ
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.SAMLogon(ctx, in, opts...)
@@ -243,7 +243,7 @@ func (o *xxx_SecureChannelClient) SAMLogon(ctx context.Context, in *SAMLogonRequ
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil
@@ -256,7 +256,7 @@ func (o *xxx_SecureChannelClient) SAMLogonWithFlags(ctx context.Context, in *SAM
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.SAMLogonWithFlags(ctx, in, opts...)
@@ -265,7 +265,7 @@ func (o *xxx_SecureChannelClient) SAMLogonWithFlags(ctx context.Context, in *SAM
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil

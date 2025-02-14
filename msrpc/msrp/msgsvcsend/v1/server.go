@@ -84,12 +84,24 @@ func NewMsgsvcsendServerHandle(o MsgsvcsendServer) dcerpc.ServerHandle {
 func MsgsvcsendServerHandle(ctx context.Context, o MsgsvcsendServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NetrSendMessage
-		in := &SendMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented msgsvcsend
+type UnimplementedMsgsvcsendServer struct {
+}
+
+func (UnimplementedMsgsvcsendServer) SendMessage(context.Context, *SendMessageRequest) (*SendMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ MsgsvcsendServer = (*UnimplementedMsgsvcsendServer)(nil)

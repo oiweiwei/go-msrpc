@@ -123,7 +123,7 @@ type xxx_DefaultIrpcRemoteObjectClient struct {
 }
 
 func (o *xxx_DefaultIrpcRemoteObjectClient) Create(ctx context.Context, in *CreateRequest, opts ...dcerpc.CallOption) (*CreateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func (o *xxx_DefaultIrpcRemoteObjectClient) Create(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultIrpcRemoteObjectClient) Delete(ctx context.Context, in *DeleteRequest, opts ...dcerpc.CallOption) (*DeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -248,11 +248,14 @@ func (o *xxx_CreateOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 type CreateRequest struct {
 }
 
-func (o *CreateRequest) xxx_ToOp(ctx context.Context) *xxx_CreateOperation {
-	if o == nil {
-		return &xxx_CreateOperation{}
+func (o *CreateRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateOperation) *xxx_CreateOperation {
+	if op == nil {
+		op = &xxx_CreateOperation{}
 	}
-	return &xxx_CreateOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *CreateRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateOperation) {
@@ -261,7 +264,7 @@ func (o *CreateRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateOperation)
 	}
 }
 func (o *CreateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateOperation{}
@@ -281,14 +284,16 @@ type CreateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateResponse) xxx_ToOp(ctx context.Context) *xxx_CreateOperation {
+func (o *CreateResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateOperation) *xxx_CreateOperation {
+	if op == nil {
+		op = &xxx_CreateOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateOperation{}
+		return op
 	}
-	return &xxx_CreateOperation{
-		RemoteObject: o.RemoteObject,
-		Return:       o.Return,
-	}
+	o.RemoteObject = op.RemoteObject
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateOperation) {
@@ -299,7 +304,7 @@ func (o *CreateResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateOperation
 	o.Return = op.Return
 }
 func (o *CreateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateOperation{}
@@ -411,13 +416,15 @@ type DeleteRequest struct {
 	RemoteObject *RemoteObject `idl:"name:ppRemoteObj" json:"remote_object"`
 }
 
-func (o *DeleteRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteOperation {
+func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *xxx_DeleteOperation {
+	if op == nil {
+		op = &xxx_DeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteOperation{}
+		return op
 	}
-	return &xxx_DeleteOperation{
-		RemoteObject: o.RemoteObject,
-	}
+	o.RemoteObject = op.RemoteObject
+	return op
 }
 
 func (o *DeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation) {
@@ -427,7 +434,7 @@ func (o *DeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation)
 	o.RemoteObject = op.RemoteObject
 }
 func (o *DeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteOperation{}
@@ -448,13 +455,15 @@ type DeleteResponse struct {
 	RemoteObject *RemoteObject `idl:"name:ppRemoteObj" json:"remote_object"`
 }
 
-func (o *DeleteResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteOperation {
+func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *xxx_DeleteOperation {
+	if op == nil {
+		op = &xxx_DeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteOperation{}
+		return op
 	}
-	return &xxx_DeleteOperation{
-		RemoteObject: o.RemoteObject,
-	}
+	o.RemoteObject = op.RemoteObject
+	return op
 }
 
 func (o *DeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation) {
@@ -464,7 +473,7 @@ func (o *DeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation
 	o.RemoteObject = op.RemoteObject
 }
 func (o *DeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteOperation{}

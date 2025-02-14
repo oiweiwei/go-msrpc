@@ -49,12 +49,24 @@ func NewISDKeyServerHandle(o ISDKeyServer) dcerpc.ServerHandle {
 func ISDKeyServerHandle(ctx context.Context, o ISDKeyServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // GetKey
-		in := &GetKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ISDKey
+type UnimplementedISDKeyServer struct {
+}
+
+func (UnimplementedISDKeyServer) GetKey(context.Context, *GetKeyRequest) (*GetKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ISDKeyServer = (*UnimplementedISDKeyServer)(nil)

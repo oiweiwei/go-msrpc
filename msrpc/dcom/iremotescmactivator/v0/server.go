@@ -66,19 +66,36 @@ func RemoteSCMActivatorServerHandle(ctx context.Context, o RemoteSCMActivatorSer
 		// Opnum2NotUsedOnWire
 		return nil, nil
 	case 3: // RemoteGetClassObject
-		in := &RemoteGetClassObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteGetClassObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteGetClassObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteGetClassObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteGetClassObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RemoteCreateInstance
-		in := &RemoteCreateInstanceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteCreateInstanceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteCreateInstance(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteCreateInstanceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteCreateInstance(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRemoteSCMActivator
+type UnimplementedRemoteSCMActivatorServer struct {
+}
+
+func (UnimplementedRemoteSCMActivatorServer) RemoteGetClassObject(context.Context, *RemoteGetClassObjectRequest) (*RemoteGetClassObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteSCMActivatorServer) RemoteCreateInstance(context.Context, *RemoteCreateInstanceRequest) (*RemoteCreateInstanceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteSCMActivatorServer = (*UnimplementedRemoteSCMActivatorServer)(nil)

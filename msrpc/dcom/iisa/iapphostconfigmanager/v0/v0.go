@@ -78,7 +78,7 @@ func (o *xxx_DefaultAppHostConfigManagerClient) Unknown() iunknown.UnknownClient
 }
 
 func (o *xxx_DefaultAppHostConfigManagerClient) GetConfigFile(ctx context.Context, in *GetConfigFileRequest, opts ...dcerpc.CallOption) (*GetConfigFileResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -98,7 +98,7 @@ func (o *xxx_DefaultAppHostConfigManagerClient) GetConfigFile(ctx context.Contex
 }
 
 func (o *xxx_DefaultAppHostConfigManagerClient) GetUniqueConfigPath(ctx context.Context, in *GetUniqueConfigPathRequest, opts ...dcerpc.CallOption) (*GetUniqueConfigPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -379,14 +379,16 @@ type GetConfigFileRequest struct {
 	ConfigPath *oaut.String   `idl:"name:bstrConfigPath" json:"config_path"`
 }
 
-func (o *GetConfigFileRequest) xxx_ToOp(ctx context.Context) *xxx_GetConfigFileOperation {
+func (o *GetConfigFileRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigFileOperation) *xxx_GetConfigFileOperation {
+	if op == nil {
+		op = &xxx_GetConfigFileOperation{}
+	}
 	if o == nil {
-		return &xxx_GetConfigFileOperation{}
+		return op
 	}
-	return &xxx_GetConfigFileOperation{
-		This:       o.This,
-		ConfigPath: o.ConfigPath,
-	}
+	o.This = op.This
+	o.ConfigPath = op.ConfigPath
+	return op
 }
 
 func (o *GetConfigFileRequest) xxx_FromOp(ctx context.Context, op *xxx_GetConfigFileOperation) {
@@ -397,7 +399,7 @@ func (o *GetConfigFileRequest) xxx_FromOp(ctx context.Context, op *xxx_GetConfig
 	o.ConfigPath = op.ConfigPath
 }
 func (o *GetConfigFileRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetConfigFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetConfigFileOperation{}
@@ -417,15 +419,17 @@ type GetConfigFileResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetConfigFileResponse) xxx_ToOp(ctx context.Context) *xxx_GetConfigFileOperation {
+func (o *GetConfigFileResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigFileOperation) *xxx_GetConfigFileOperation {
+	if op == nil {
+		op = &xxx_GetConfigFileOperation{}
+	}
 	if o == nil {
-		return &xxx_GetConfigFileOperation{}
+		return op
 	}
-	return &xxx_GetConfigFileOperation{
-		That:       o.That,
-		ConfigFile: o.ConfigFile,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.ConfigFile = op.ConfigFile
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetConfigFileResponse) xxx_FromOp(ctx context.Context, op *xxx_GetConfigFileOperation) {
@@ -437,7 +441,7 @@ func (o *GetConfigFileResponse) xxx_FromOp(ctx context.Context, op *xxx_GetConfi
 	o.Return = op.Return
 }
 func (o *GetConfigFileResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetConfigFileResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetConfigFileOperation{}
@@ -668,14 +672,16 @@ type GetUniqueConfigPathRequest struct {
 	ConfigPath *oaut.String   `idl:"name:bstrConfigPath" json:"config_path"`
 }
 
-func (o *GetUniqueConfigPathRequest) xxx_ToOp(ctx context.Context) *xxx_GetUniqueConfigPathOperation {
+func (o *GetUniqueConfigPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueConfigPathOperation) *xxx_GetUniqueConfigPathOperation {
+	if op == nil {
+		op = &xxx_GetUniqueConfigPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUniqueConfigPathOperation{}
+		return op
 	}
-	return &xxx_GetUniqueConfigPathOperation{
-		This:       o.This,
-		ConfigPath: o.ConfigPath,
-	}
+	o.This = op.This
+	o.ConfigPath = op.ConfigPath
+	return op
 }
 
 func (o *GetUniqueConfigPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueConfigPathOperation) {
@@ -686,7 +692,7 @@ func (o *GetUniqueConfigPathRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.ConfigPath = op.ConfigPath
 }
 func (o *GetUniqueConfigPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUniqueConfigPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUniqueConfigPathOperation{}
@@ -706,15 +712,17 @@ type GetUniqueConfigPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUniqueConfigPathResponse) xxx_ToOp(ctx context.Context) *xxx_GetUniqueConfigPathOperation {
+func (o *GetUniqueConfigPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueConfigPathOperation) *xxx_GetUniqueConfigPathOperation {
+	if op == nil {
+		op = &xxx_GetUniqueConfigPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUniqueConfigPathOperation{}
+		return op
 	}
-	return &xxx_GetUniqueConfigPathOperation{
-		That:       o.That,
-		UniquePath: o.UniquePath,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.UniquePath = op.UniquePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUniqueConfigPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueConfigPathOperation) {
@@ -726,7 +734,7 @@ func (o *GetUniqueConfigPathResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetUniqueConfigPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUniqueConfigPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUniqueConfigPathOperation{}

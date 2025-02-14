@@ -63,12 +63,14 @@ func HwProviderServerHandle(ctx context.Context, o HwProviderServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // QuerySubSystems
-		in := &QuerySubSystemsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySubSystemsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySubSystems(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySubSystemsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySubSystems(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Opnum04NotUsedOnWire
 		// Opnum04NotUsedOnWire
 		return nil, nil
@@ -78,3 +80,14 @@ func HwProviderServerHandle(ctx context.Context, o HwProviderServer, opNum int, 
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsHwProvider
+type UnimplementedHwProviderServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedHwProviderServer) QuerySubSystems(context.Context, *QuerySubSystemsRequest) (*QuerySubSystemsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ HwProviderServer = (*UnimplementedHwProviderServer)(nil)

@@ -249,7 +249,7 @@ type xxx_DefaultWitnessClient struct {
 }
 
 func (o *xxx_DefaultWitnessClient) GetInterfaceList(ctx context.Context, in *GetInterfaceListRequest, opts ...dcerpc.CallOption) (*GetInterfaceListResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -262,7 +262,7 @@ func (o *xxx_DefaultWitnessClient) GetInterfaceList(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultWitnessClient) Register(ctx context.Context, in *RegisterRequest, opts ...dcerpc.CallOption) (*RegisterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -275,7 +275,7 @@ func (o *xxx_DefaultWitnessClient) Register(ctx context.Context, in *RegisterReq
 }
 
 func (o *xxx_DefaultWitnessClient) Unregister(ctx context.Context, in *UnregisterRequest, opts ...dcerpc.CallOption) (*UnregisterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -288,7 +288,7 @@ func (o *xxx_DefaultWitnessClient) Unregister(ctx context.Context, in *Unregiste
 }
 
 func (o *xxx_DefaultWitnessClient) AsyncNotify(ctx context.Context, in *AsyncNotifyRequest, opts ...dcerpc.CallOption) (*AsyncNotifyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -301,7 +301,7 @@ func (o *xxx_DefaultWitnessClient) AsyncNotify(ctx context.Context, in *AsyncNot
 }
 
 func (o *xxx_DefaultWitnessClient) RegisterEx(ctx context.Context, in *RegisterExRequest, opts ...dcerpc.CallOption) (*RegisterExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -443,11 +443,14 @@ func (o *xxx_GetInterfaceListOperation) UnmarshalNDRResponse(ctx context.Context
 type GetInterfaceListRequest struct {
 }
 
-func (o *GetInterfaceListRequest) xxx_ToOp(ctx context.Context) *xxx_GetInterfaceListOperation {
-	if o == nil {
-		return &xxx_GetInterfaceListOperation{}
+func (o *GetInterfaceListRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInterfaceListOperation) *xxx_GetInterfaceListOperation {
+	if op == nil {
+		op = &xxx_GetInterfaceListOperation{}
 	}
-	return &xxx_GetInterfaceListOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *GetInterfaceListRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInterfaceListOperation) {
@@ -456,7 +459,7 @@ func (o *GetInterfaceListRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInt
 	}
 }
 func (o *GetInterfaceListRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetInterfaceListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInterfaceListOperation{}
@@ -476,14 +479,16 @@ type GetInterfaceListResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetInterfaceListResponse) xxx_ToOp(ctx context.Context) *xxx_GetInterfaceListOperation {
+func (o *GetInterfaceListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInterfaceListOperation) *xxx_GetInterfaceListOperation {
+	if op == nil {
+		op = &xxx_GetInterfaceListOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInterfaceListOperation{}
+		return op
 	}
-	return &xxx_GetInterfaceListOperation{
-		InterfaceList: o.InterfaceList,
-		Return:        o.Return,
-	}
+	o.InterfaceList = op.InterfaceList
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetInterfaceListResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInterfaceListOperation) {
@@ -494,7 +499,7 @@ func (o *GetInterfaceListResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIn
 	o.Return = op.Return
 }
 func (o *GetInterfaceListResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetInterfaceListResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInterfaceListOperation{}
@@ -730,16 +735,18 @@ type RegisterRequest struct {
 	ClientComputerName string `idl:"name:ClientComputerName;string;pointer:unique" json:"client_computer_name"`
 }
 
-func (o *RegisterRequest) xxx_ToOp(ctx context.Context) *xxx_RegisterOperation {
+func (o *RegisterRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterOperation) *xxx_RegisterOperation {
+	if op == nil {
+		op = &xxx_RegisterOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterOperation{}
+		return op
 	}
-	return &xxx_RegisterOperation{
-		Version:            o.Version,
-		NetName:            o.NetName,
-		IPAddress:          o.IPAddress,
-		ClientComputerName: o.ClientComputerName,
-	}
+	o.Version = op.Version
+	o.NetName = op.NetName
+	o.IPAddress = op.IPAddress
+	o.ClientComputerName = op.ClientComputerName
+	return op
 }
 
 func (o *RegisterRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterOperation) {
@@ -752,7 +759,7 @@ func (o *RegisterRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterOperat
 	o.ClientComputerName = op.ClientComputerName
 }
 func (o *RegisterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterOperation{}
@@ -772,14 +779,16 @@ type RegisterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterOperation {
+func (o *RegisterResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterOperation) *xxx_RegisterOperation {
+	if op == nil {
+		op = &xxx_RegisterOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterOperation{}
+		return op
 	}
-	return &xxx_RegisterOperation{
-		Context: o.Context,
-		Return:  o.Return,
-	}
+	o.Context = op.Context
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterOperation) {
@@ -790,7 +799,7 @@ func (o *RegisterResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterOpera
 	o.Return = op.Return
 }
 func (o *RegisterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterOperation{}
@@ -891,13 +900,15 @@ type UnregisterRequest struct {
 	Context *dcetypes.ContextHandle `idl:"name:pContext" json:"context"`
 }
 
-func (o *UnregisterRequest) xxx_ToOp(ctx context.Context) *xxx_UnregisterOperation {
+func (o *UnregisterRequest) xxx_ToOp(ctx context.Context, op *xxx_UnregisterOperation) *xxx_UnregisterOperation {
+	if op == nil {
+		op = &xxx_UnregisterOperation{}
+	}
 	if o == nil {
-		return &xxx_UnregisterOperation{}
+		return op
 	}
-	return &xxx_UnregisterOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *UnregisterRequest) xxx_FromOp(ctx context.Context, op *xxx_UnregisterOperation) {
@@ -907,7 +918,7 @@ func (o *UnregisterRequest) xxx_FromOp(ctx context.Context, op *xxx_UnregisterOp
 	o.Context = op.Context
 }
 func (o *UnregisterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UnregisterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnregisterOperation{}
@@ -924,13 +935,15 @@ type UnregisterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UnregisterResponse) xxx_ToOp(ctx context.Context) *xxx_UnregisterOperation {
+func (o *UnregisterResponse) xxx_ToOp(ctx context.Context, op *xxx_UnregisterOperation) *xxx_UnregisterOperation {
+	if op == nil {
+		op = &xxx_UnregisterOperation{}
+	}
 	if o == nil {
-		return &xxx_UnregisterOperation{}
+		return op
 	}
-	return &xxx_UnregisterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *UnregisterResponse) xxx_FromOp(ctx context.Context, op *xxx_UnregisterOperation) {
@@ -940,7 +953,7 @@ func (o *UnregisterResponse) xxx_FromOp(ctx context.Context, op *xxx_UnregisterO
 	o.Return = op.Return
 }
 func (o *UnregisterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UnregisterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnregisterOperation{}
@@ -1088,13 +1101,15 @@ type AsyncNotifyRequest struct {
 	Context *swn.Shared `idl:"name:pContext" json:"context"`
 }
 
-func (o *AsyncNotifyRequest) xxx_ToOp(ctx context.Context) *xxx_AsyncNotifyOperation {
+func (o *AsyncNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_AsyncNotifyOperation) *xxx_AsyncNotifyOperation {
+	if op == nil {
+		op = &xxx_AsyncNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_AsyncNotifyOperation{}
+		return op
 	}
-	return &xxx_AsyncNotifyOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *AsyncNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_AsyncNotifyOperation) {
@@ -1104,7 +1119,7 @@ func (o *AsyncNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_AsyncNotify
 	o.Context = op.Context
 }
 func (o *AsyncNotifyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AsyncNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AsyncNotifyOperation{}
@@ -1123,14 +1138,16 @@ type AsyncNotifyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AsyncNotifyResponse) xxx_ToOp(ctx context.Context) *xxx_AsyncNotifyOperation {
+func (o *AsyncNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_AsyncNotifyOperation) *xxx_AsyncNotifyOperation {
+	if op == nil {
+		op = &xxx_AsyncNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_AsyncNotifyOperation{}
+		return op
 	}
-	return &xxx_AsyncNotifyOperation{
-		Response: o.Response,
-		Return:   o.Return,
-	}
+	o.Response = op.Response
+	o.Return = op.Return
+	return op
 }
 
 func (o *AsyncNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_AsyncNotifyOperation) {
@@ -1141,7 +1158,7 @@ func (o *AsyncNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_AsyncNotif
 	o.Return = op.Return
 }
 func (o *AsyncNotifyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AsyncNotifyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AsyncNotifyOperation{}
@@ -1461,19 +1478,21 @@ type RegisterExRequest struct {
 	KeepAliveTimeout uint32 `idl:"name:KeepAliveTimeout" json:"keep_alive_timeout"`
 }
 
-func (o *RegisterExRequest) xxx_ToOp(ctx context.Context) *xxx_RegisterExOperation {
+func (o *RegisterExRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterExOperation) *xxx_RegisterExOperation {
+	if op == nil {
+		op = &xxx_RegisterExOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterExOperation{}
+		return op
 	}
-	return &xxx_RegisterExOperation{
-		Version:            o.Version,
-		NetName:            o.NetName,
-		ShareName:          o.ShareName,
-		IPAddress:          o.IPAddress,
-		ClientComputerName: o.ClientComputerName,
-		Flags:              o.Flags,
-		KeepAliveTimeout:   o.KeepAliveTimeout,
-	}
+	o.Version = op.Version
+	o.NetName = op.NetName
+	o.ShareName = op.ShareName
+	o.IPAddress = op.IPAddress
+	o.ClientComputerName = op.ClientComputerName
+	o.Flags = op.Flags
+	o.KeepAliveTimeout = op.KeepAliveTimeout
+	return op
 }
 
 func (o *RegisterExRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterExOperation) {
@@ -1489,7 +1508,7 @@ func (o *RegisterExRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterExOp
 	o.KeepAliveTimeout = op.KeepAliveTimeout
 }
 func (o *RegisterExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterExOperation{}
@@ -1509,14 +1528,16 @@ type RegisterExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterExResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterExOperation {
+func (o *RegisterExResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterExOperation) *xxx_RegisterExOperation {
+	if op == nil {
+		op = &xxx_RegisterExOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterExOperation{}
+		return op
 	}
-	return &xxx_RegisterExOperation{
-		Context: o.Context,
-		Return:  o.Return,
-	}
+	o.Context = op.Context
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterExResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterExOperation) {
@@ -1527,7 +1548,7 @@ func (o *RegisterExResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterExO
 	o.Return = op.Return
 }
 func (o *RegisterExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterExOperation{}

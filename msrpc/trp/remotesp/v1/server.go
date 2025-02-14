@@ -87,26 +87,48 @@ func NewRemotespServerHandle(o RemotespServer) dcerpc.ServerHandle {
 func RemotespServerHandle(ctx context.Context, o RemotespServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RemoteSPAttach
-		in := &AttachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AttachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Attach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AttachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Attach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RemoteSPEventProc
-		in := &EventProcRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EventProcOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EventProc(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EventProcRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EventProc(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // RemoteSPDetach
-		in := &DetachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DetachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Detach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DetachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Detach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented remotesp
+type UnimplementedRemotespServer struct {
+}
+
+func (UnimplementedRemotespServer) Attach(context.Context, *AttachRequest) (*AttachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemotespServer) EventProc(context.Context, *EventProcRequest) (*EventProcResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemotespServer) Detach(context.Context, *DetachRequest) (*DetachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemotespServer = (*UnimplementedRemotespServer)(nil)

@@ -61,26 +61,49 @@ func RemoteUnknownServerHandle(ctx context.Context, o RemoteUnknownServer, opNum
 	}
 	switch opNum {
 	case 3: // RemQueryInterface
-		in := &RemoteQueryInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteQueryInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteQueryInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteQueryInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteQueryInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RemAddRef
-		in := &RemoteAddReferenceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteAddReferenceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteAddReference(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteAddReferenceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteAddReference(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RemRelease
-		in := &RemoteReleaseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteReleaseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteRelease(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteReleaseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteRelease(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRemUnknown
+type UnimplementedRemoteUnknownServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedRemoteUnknownServer) RemoteQueryInterface(context.Context, *RemoteQueryInterfaceRequest) (*RemoteQueryInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteUnknownServer) RemoteAddReference(context.Context, *RemoteAddReferenceRequest) (*RemoteAddReferenceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteUnknownServer) RemoteRelease(context.Context, *RemoteReleaseRequest) (*RemoteReleaseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteUnknownServer = (*UnimplementedRemoteUnknownServer)(nil)

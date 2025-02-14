@@ -97,19 +97,37 @@ func TypeCompServerHandle(ctx context.Context, o TypeCompServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // Bind
-		in := &BindRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Bind(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Bind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // BindType
-		in := &BindTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BindTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BindType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BindTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BindType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITypeComp
+type UnimplementedTypeCompServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedTypeCompServer) Bind(context.Context, *BindRequest) (*BindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeCompServer) BindType(context.Context, *BindTypeRequest) (*BindTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TypeCompServer = (*UnimplementedTypeCompServer)(nil)

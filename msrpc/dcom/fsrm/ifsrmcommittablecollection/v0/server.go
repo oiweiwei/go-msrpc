@@ -52,12 +52,25 @@ func CommittableCollectionServerHandle(ctx context.Context, o CommittableCollect
 	}
 	switch opNum {
 	case 18: // Commit
-		in := &CommitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Commit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Commit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmCommittableCollection
+type UnimplementedCommittableCollectionServer struct {
+	ifsrmmutablecollection.UnimplementedMutableCollectionServer
+}
+
+func (UnimplementedCommittableCollectionServer) Commit(context.Context, *CommitRequest) (*CommitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CommittableCollectionServer = (*UnimplementedCommittableCollectionServer)(nil)

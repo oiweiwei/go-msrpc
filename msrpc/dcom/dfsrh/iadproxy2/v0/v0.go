@@ -79,7 +79,7 @@ func (o *xxx_DefaultIADProxy2Client) IADProxy() iadproxy.IADProxyClient {
 }
 
 func (o *xxx_DefaultIADProxy2Client) CreateObject2(ctx context.Context, in *CreateObject2Request, opts ...dcerpc.CallOption) (*CreateObject2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -99,7 +99,7 @@ func (o *xxx_DefaultIADProxy2Client) CreateObject2(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultIADProxy2Client) DeleteObject2(ctx context.Context, in *DeleteObject2Request, opts ...dcerpc.CallOption) (*DeleteObject2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +119,7 @@ func (o *xxx_DefaultIADProxy2Client) DeleteObject2(ctx context.Context, in *Dele
 }
 
 func (o *xxx_DefaultIADProxy2Client) ModifyObject2(ctx context.Context, in *ModifyObject2Request, opts ...dcerpc.CallOption) (*ModifyObject2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -562,18 +562,20 @@ type CreateObject2Request struct {
 	NetworkNameResourceName        *oaut.String    `idl:"name:networkNameResourceName" json:"network_name_resource_name"`
 }
 
-func (o *CreateObject2Request) xxx_ToOp(ctx context.Context) *xxx_CreateObject2Operation {
+func (o *CreateObject2Request) xxx_ToOp(ctx context.Context, op *xxx_CreateObject2Operation) *xxx_CreateObject2Operation {
+	if op == nil {
+		op = &xxx_CreateObject2Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateObject2Operation{}
+		return op
 	}
-	return &xxx_CreateObject2Operation{
-		This:                           o.This,
-		DomainControllerName:           o.DomainControllerName,
-		DistinguishedName:              o.DistinguishedName,
-		Attributes:                     o.Attributes,
-		VerifyNameDomainControllerName: o.VerifyNameDomainControllerName,
-		NetworkNameResourceName:        o.NetworkNameResourceName,
-	}
+	o.This = op.This
+	o.DomainControllerName = op.DomainControllerName
+	o.DistinguishedName = op.DistinguishedName
+	o.Attributes = op.Attributes
+	o.VerifyNameDomainControllerName = op.VerifyNameDomainControllerName
+	o.NetworkNameResourceName = op.NetworkNameResourceName
+	return op
 }
 
 func (o *CreateObject2Request) xxx_FromOp(ctx context.Context, op *xxx_CreateObject2Operation) {
@@ -588,7 +590,7 @@ func (o *CreateObject2Request) xxx_FromOp(ctx context.Context, op *xxx_CreateObj
 	o.NetworkNameResourceName = op.NetworkNameResourceName
 }
 func (o *CreateObject2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateObject2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateObject2Operation{}
@@ -607,14 +609,16 @@ type CreateObject2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateObject2Response) xxx_ToOp(ctx context.Context) *xxx_CreateObject2Operation {
+func (o *CreateObject2Response) xxx_ToOp(ctx context.Context, op *xxx_CreateObject2Operation) *xxx_CreateObject2Operation {
+	if op == nil {
+		op = &xxx_CreateObject2Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateObject2Operation{}
+		return op
 	}
-	return &xxx_CreateObject2Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateObject2Response) xxx_FromOp(ctx context.Context, op *xxx_CreateObject2Operation) {
@@ -625,7 +629,7 @@ func (o *CreateObject2Response) xxx_FromOp(ctx context.Context, op *xxx_CreateOb
 	o.Return = op.Return
 }
 func (o *CreateObject2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateObject2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateObject2Operation{}
@@ -903,16 +907,18 @@ type DeleteObject2Request struct {
 	NetworkNameResourceName *oaut.String   `idl:"name:networkNameResourceName" json:"network_name_resource_name"`
 }
 
-func (o *DeleteObject2Request) xxx_ToOp(ctx context.Context) *xxx_DeleteObject2Operation {
+func (o *DeleteObject2Request) xxx_ToOp(ctx context.Context, op *xxx_DeleteObject2Operation) *xxx_DeleteObject2Operation {
+	if op == nil {
+		op = &xxx_DeleteObject2Operation{}
+	}
 	if o == nil {
-		return &xxx_DeleteObject2Operation{}
+		return op
 	}
-	return &xxx_DeleteObject2Operation{
-		This:                    o.This,
-		DomainControllerName:    o.DomainControllerName,
-		DistinguishedName:       o.DistinguishedName,
-		NetworkNameResourceName: o.NetworkNameResourceName,
-	}
+	o.This = op.This
+	o.DomainControllerName = op.DomainControllerName
+	o.DistinguishedName = op.DistinguishedName
+	o.NetworkNameResourceName = op.NetworkNameResourceName
+	return op
 }
 
 func (o *DeleteObject2Request) xxx_FromOp(ctx context.Context, op *xxx_DeleteObject2Operation) {
@@ -925,7 +931,7 @@ func (o *DeleteObject2Request) xxx_FromOp(ctx context.Context, op *xxx_DeleteObj
 	o.NetworkNameResourceName = op.NetworkNameResourceName
 }
 func (o *DeleteObject2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteObject2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteObject2Operation{}
@@ -944,14 +950,16 @@ type DeleteObject2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteObject2Response) xxx_ToOp(ctx context.Context) *xxx_DeleteObject2Operation {
+func (o *DeleteObject2Response) xxx_ToOp(ctx context.Context, op *xxx_DeleteObject2Operation) *xxx_DeleteObject2Operation {
+	if op == nil {
+		op = &xxx_DeleteObject2Operation{}
+	}
 	if o == nil {
-		return &xxx_DeleteObject2Operation{}
+		return op
 	}
-	return &xxx_DeleteObject2Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteObject2Response) xxx_FromOp(ctx context.Context, op *xxx_DeleteObject2Operation) {
@@ -962,7 +970,7 @@ func (o *DeleteObject2Response) xxx_FromOp(ctx context.Context, op *xxx_DeleteOb
 	o.Return = op.Return
 }
 func (o *DeleteObject2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteObject2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteObject2Operation{}
@@ -1307,17 +1315,19 @@ type ModifyObject2Request struct {
 	NetworkNameResourceName *oaut.String    `idl:"name:networkNameResourceName" json:"network_name_resource_name"`
 }
 
-func (o *ModifyObject2Request) xxx_ToOp(ctx context.Context) *xxx_ModifyObject2Operation {
+func (o *ModifyObject2Request) xxx_ToOp(ctx context.Context, op *xxx_ModifyObject2Operation) *xxx_ModifyObject2Operation {
+	if op == nil {
+		op = &xxx_ModifyObject2Operation{}
+	}
 	if o == nil {
-		return &xxx_ModifyObject2Operation{}
+		return op
 	}
-	return &xxx_ModifyObject2Operation{
-		This:                    o.This,
-		DomainControllerName:    o.DomainControllerName,
-		DistinguishedName:       o.DistinguishedName,
-		Attributes:              o.Attributes,
-		NetworkNameResourceName: o.NetworkNameResourceName,
-	}
+	o.This = op.This
+	o.DomainControllerName = op.DomainControllerName
+	o.DistinguishedName = op.DistinguishedName
+	o.Attributes = op.Attributes
+	o.NetworkNameResourceName = op.NetworkNameResourceName
+	return op
 }
 
 func (o *ModifyObject2Request) xxx_FromOp(ctx context.Context, op *xxx_ModifyObject2Operation) {
@@ -1331,7 +1341,7 @@ func (o *ModifyObject2Request) xxx_FromOp(ctx context.Context, op *xxx_ModifyObj
 	o.NetworkNameResourceName = op.NetworkNameResourceName
 }
 func (o *ModifyObject2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyObject2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyObject2Operation{}
@@ -1350,14 +1360,16 @@ type ModifyObject2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyObject2Response) xxx_ToOp(ctx context.Context) *xxx_ModifyObject2Operation {
+func (o *ModifyObject2Response) xxx_ToOp(ctx context.Context, op *xxx_ModifyObject2Operation) *xxx_ModifyObject2Operation {
+	if op == nil {
+		op = &xxx_ModifyObject2Operation{}
+	}
 	if o == nil {
-		return &xxx_ModifyObject2Operation{}
+		return op
 	}
-	return &xxx_ModifyObject2Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyObject2Response) xxx_FromOp(ctx context.Context, op *xxx_ModifyObject2Operation) {
@@ -1368,7 +1380,7 @@ func (o *ModifyObject2Response) xxx_FromOp(ctx context.Context, op *xxx_ModifyOb
 	o.Return = op.Return
 }
 func (o *ModifyObject2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyObject2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyObject2Operation{}

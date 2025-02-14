@@ -307,33 +307,41 @@ func ClusterSetupServerHandle(ctx context.Context, o ClusterSetupServer, opNum i
 	}
 	switch opNum {
 	case 3: // ConfigSvcSecret
-		in := &ConfigServiceSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConfigServiceSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConfigServiceSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConfigServiceSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConfigServiceSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RetrieveSvcSecret
-		in := &RetrieveServiceSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetrieveServiceSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetrieveServiceSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetrieveServiceSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrieveServiceSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RetrieveHostLabel
-		in := &RetrieveHostLabelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetrieveHostLabelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetrieveHostLabel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetrieveHostLabelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrieveHostLabel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetFunctionalLevel
-		in := &GetFunctionalLevelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFunctionalLevelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFunctionalLevel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFunctionalLevelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFunctionalLevel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum7Reserved
 		// Opnum7Reserved
 		return nil, nil
@@ -341,57 +349,112 @@ func ClusterSetupServerHandle(ctx context.Context, o ClusterSetupServer, opNum i
 		// Opnum8Reserved
 		return nil, nil
 	case 9: // ConfigClusterCert
-		in := &ConfigClusterCertRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConfigClusterCertOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConfigClusterCert(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConfigClusterCertRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConfigClusterCert(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RetrieveClusterCert
-		in := &RetrieveClusterCertRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetrieveClusterCertOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetrieveClusterCert(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetrieveClusterCertRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrieveClusterCert(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // GenerateClusterCert
-		in := &GenerateClusterCertRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateClusterCertOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateClusterCert(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateClusterCertRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterCert(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // GetUpgradeVersion
-		in := &GetUpgradeVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUpgradeVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUpgradeVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUpgradeVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUpgradeVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Opnum13Reserved
 		// Opnum13Reserved
 		return nil, nil
 	case 14: // ConfigClusterCerV2
-		in := &ConfigClusterCerV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConfigClusterCerV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConfigClusterCerV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConfigClusterCerV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConfigClusterCerV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // RetrieveClusterCertV2
-		in := &RetrieveClusterCertV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetrieveClusterCertV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetrieveClusterCertV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetrieveClusterCertV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrieveClusterCertV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // GenerateClusterCertV2
-		in := &GenerateClusterCertV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateClusterCertV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateClusterCertV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateClusterCertV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterCertV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterSetup
+type UnimplementedClusterSetupServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterSetupServer) ConfigServiceSecret(context.Context, *ConfigServiceSecretRequest) (*ConfigServiceSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) RetrieveServiceSecret(context.Context, *RetrieveServiceSecretRequest) (*RetrieveServiceSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) RetrieveHostLabel(context.Context, *RetrieveHostLabelRequest) (*RetrieveHostLabelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) GetFunctionalLevel(context.Context, *GetFunctionalLevelRequest) (*GetFunctionalLevelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) ConfigClusterCert(context.Context, *ConfigClusterCertRequest) (*ConfigClusterCertResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) RetrieveClusterCert(context.Context, *RetrieveClusterCertRequest) (*RetrieveClusterCertResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) GenerateClusterCert(context.Context, *GenerateClusterCertRequest) (*GenerateClusterCertResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) GetUpgradeVersion(context.Context, *GetUpgradeVersionRequest) (*GetUpgradeVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) ConfigClusterCerV2(context.Context, *ConfigClusterCerV2Request) (*ConfigClusterCerV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) RetrieveClusterCertV2(context.Context, *RetrieveClusterCertV2Request) (*RetrieveClusterCertV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterSetupServer) GenerateClusterCertV2(context.Context, *GenerateClusterCertV2Request) (*GenerateClusterCertV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterSetupServer = (*UnimplementedClusterSetupServer)(nil)

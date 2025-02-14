@@ -287,42 +287,50 @@ func IISCertObjectServerHandle(ctx context.Context, o IISCertObjectServer, opNum
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	case 10: // InstanceName
-		in := &SetInstanceNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInstanceNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInstanceName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInstanceNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInstanceName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Opnum11NotUsedOnWire
 		// Opnum11NotUsedOnWire
 		return nil, nil
 	case 12: // IsInstalledRemote
-		in := &IsInstalledRemoteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsInstalledRemoteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsInstalledRemote(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsInstalledRemoteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsInstalledRemote(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Opnum13NotUsedOnWire
 		// Opnum13NotUsedOnWire
 		return nil, nil
 	case 14: // IsExportableRemote
-		in := &IsExportableRemoteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsExportableRemoteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsExportableRemote(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsExportableRemoteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsExportableRemote(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Opnum15NotUsedOnWire
 		// Opnum15NotUsedOnWire
 		return nil, nil
 	case 16: // GetCertInfoRemote
-		in := &GetCertInfoRemoteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCertInfoRemoteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCertInfoRemote(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCertInfoRemoteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCertInfoRemote(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Opnum17NotUsedOnWire
 		// Opnum17NotUsedOnWire
 		return nil, nil
@@ -339,29 +347,64 @@ func IISCertObjectServerHandle(ctx context.Context, o IISCertObjectServer, opNum
 		// Opnum21NotUsedOnWire
 		return nil, nil
 	case 22: // ImportFromBlob
-		in := &ImportFromBlobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportFromBlobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportFromBlob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportFromBlobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportFromBlob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // ImportFromBlobGetHash
-		in := &ImportFromBlobGetHashRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportFromBlobGetHashOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportFromBlobGetHash(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportFromBlobGetHashRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportFromBlobGetHash(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // Opnum24NotUsedOnWire
 		// Opnum24NotUsedOnWire
 		return nil, nil
 	case 25: // ExportToBlob
-		in := &ExportToBlobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportToBlobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExportToBlob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportToBlobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportToBlob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IIISCertObj
+type UnimplementedIISCertObjectServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedIISCertObjectServer) SetInstanceName(context.Context, *SetInstanceNameRequest) (*SetInstanceNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISCertObjectServer) IsInstalledRemote(context.Context, *IsInstalledRemoteRequest) (*IsInstalledRemoteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISCertObjectServer) IsExportableRemote(context.Context, *IsExportableRemoteRequest) (*IsExportableRemoteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISCertObjectServer) GetCertInfoRemote(context.Context, *GetCertInfoRemoteRequest) (*GetCertInfoRemoteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISCertObjectServer) ImportFromBlob(context.Context, *ImportFromBlobRequest) (*ImportFromBlobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISCertObjectServer) ImportFromBlobGetHash(context.Context, *ImportFromBlobGetHashRequest) (*ImportFromBlobGetHashResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISCertObjectServer) ExportToBlob(context.Context, *ExportToBlobRequest) (*ExportToBlobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IISCertObjectServer = (*UnimplementedIISCertObjectServer)(nil)

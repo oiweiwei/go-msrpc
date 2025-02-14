@@ -117,7 +117,7 @@ func (o *xxx_DefaultClusterUpdateClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterUpdateClient) GetUpdates(ctx context.Context, in *GetUpdatesRequest, opts ...dcerpc.CallOption) (*GetUpdatesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultClusterUpdateClient) GetUpdates(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultClusterUpdateClient) Count(ctx context.Context, in *CountRequest, opts ...dcerpc.CallOption) (*CountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -381,13 +381,15 @@ type GetUpdatesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetUpdatesRequest) xxx_ToOp(ctx context.Context) *xxx_GetUpdatesOperation {
+func (o *GetUpdatesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUpdatesOperation) *xxx_GetUpdatesOperation {
+	if op == nil {
+		op = &xxx_GetUpdatesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUpdatesOperation{}
+		return op
 	}
-	return &xxx_GetUpdatesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetUpdatesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUpdatesOperation) {
@@ -397,7 +399,7 @@ func (o *GetUpdatesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUpdatesOp
 	o.This = op.This
 }
 func (o *GetUpdatesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUpdatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUpdatesOperation{}
@@ -460,16 +462,18 @@ type GetUpdatesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUpdatesResponse) xxx_ToOp(ctx context.Context) *xxx_GetUpdatesOperation {
+func (o *GetUpdatesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUpdatesOperation) *xxx_GetUpdatesOperation {
+	if op == nil {
+		op = &xxx_GetUpdatesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUpdatesOperation{}
+		return op
 	}
-	return &xxx_GetUpdatesOperation{
-		That:        o.That,
-		UpdateCount: o.UpdateCount,
-		Updates:     o.Updates,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.UpdateCount = op.UpdateCount
+	o.Updates = op.Updates
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUpdatesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUpdatesOperation) {
@@ -482,7 +486,7 @@ func (o *GetUpdatesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUpdatesO
 	o.Return = op.Return
 }
 func (o *GetUpdatesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUpdatesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUpdatesOperation{}
@@ -629,13 +633,15 @@ type CountRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CountRequest) xxx_ToOp(ctx context.Context) *xxx_CountOperation {
+func (o *CountRequest) xxx_ToOp(ctx context.Context, op *xxx_CountOperation) *xxx_CountOperation {
+	if op == nil {
+		op = &xxx_CountOperation{}
+	}
 	if o == nil {
-		return &xxx_CountOperation{}
+		return op
 	}
-	return &xxx_CountOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CountRequest) xxx_FromOp(ctx context.Context, op *xxx_CountOperation) {
@@ -645,7 +651,7 @@ func (o *CountRequest) xxx_FromOp(ctx context.Context, op *xxx_CountOperation) {
 	o.This = op.This
 }
 func (o *CountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CountOperation{}
@@ -666,15 +672,17 @@ type CountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CountResponse) xxx_ToOp(ctx context.Context) *xxx_CountOperation {
+func (o *CountResponse) xxx_ToOp(ctx context.Context, op *xxx_CountOperation) *xxx_CountOperation {
+	if op == nil {
+		op = &xxx_CountOperation{}
+	}
 	if o == nil {
-		return &xxx_CountOperation{}
+		return op
 	}
-	return &xxx_CountOperation{
-		That:   o.That,
-		Count:  o.Count,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Count = op.Count
+	o.Return = op.Return
+	return op
 }
 
 func (o *CountResponse) xxx_FromOp(ctx context.Context, op *xxx_CountOperation) {
@@ -686,7 +694,7 @@ func (o *CountResponse) xxx_FromOp(ctx context.Context, op *xxx_CountOperation) 
 	o.Return = op.Return
 }
 func (o *CountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CountOperation{}

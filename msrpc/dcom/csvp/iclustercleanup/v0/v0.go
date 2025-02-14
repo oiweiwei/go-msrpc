@@ -125,7 +125,7 @@ func (o *xxx_DefaultClusterCleanupClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterCleanupClient) CleanupEvictedNode(ctx context.Context, in *CleanupEvictedNodeRequest, opts ...dcerpc.CallOption) (*CleanupEvictedNodeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -145,7 +145,7 @@ func (o *xxx_DefaultClusterCleanupClient) CleanupEvictedNode(ctx context.Context
 }
 
 func (o *xxx_DefaultClusterCleanupClient) ClearPR(ctx context.Context, in *ClearPRRequest, opts ...dcerpc.CallOption) (*ClearPRResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -395,16 +395,18 @@ type CleanupEvictedNodeRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *CleanupEvictedNodeRequest) xxx_ToOp(ctx context.Context) *xxx_CleanupEvictedNodeOperation {
+func (o *CleanupEvictedNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanupEvictedNodeOperation) *xxx_CleanupEvictedNodeOperation {
+	if op == nil {
+		op = &xxx_CleanupEvictedNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanupEvictedNodeOperation{}
+		return op
 	}
-	return &xxx_CleanupEvictedNodeOperation{
-		This:               o.This,
-		DelayBeforeCleanup: o.DelayBeforeCleanup,
-		Timeout:            o.Timeout,
-		Flags:              o.Flags,
-	}
+	o.This = op.This
+	o.DelayBeforeCleanup = op.DelayBeforeCleanup
+	o.Timeout = op.Timeout
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *CleanupEvictedNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanupEvictedNodeOperation) {
@@ -417,7 +419,7 @@ func (o *CleanupEvictedNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_Clea
 	o.Flags = op.Flags
 }
 func (o *CleanupEvictedNodeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CleanupEvictedNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanupEvictedNodeOperation{}
@@ -436,14 +438,16 @@ type CleanupEvictedNodeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CleanupEvictedNodeResponse) xxx_ToOp(ctx context.Context) *xxx_CleanupEvictedNodeOperation {
+func (o *CleanupEvictedNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanupEvictedNodeOperation) *xxx_CleanupEvictedNodeOperation {
+	if op == nil {
+		op = &xxx_CleanupEvictedNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanupEvictedNodeOperation{}
+		return op
 	}
-	return &xxx_CleanupEvictedNodeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CleanupEvictedNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanupEvictedNodeOperation) {
@@ -454,7 +458,7 @@ func (o *CleanupEvictedNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_Cle
 	o.Return = op.Return
 }
 func (o *CleanupEvictedNodeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CleanupEvictedNodeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanupEvictedNodeOperation{}
@@ -603,14 +607,16 @@ type ClearPRRequest struct {
 	DeviceNumber uint32 `idl:"name:DeviceNumber" json:"device_number"`
 }
 
-func (o *ClearPRRequest) xxx_ToOp(ctx context.Context) *xxx_ClearPROperation {
+func (o *ClearPRRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearPROperation) *xxx_ClearPROperation {
+	if op == nil {
+		op = &xxx_ClearPROperation{}
+	}
 	if o == nil {
-		return &xxx_ClearPROperation{}
+		return op
 	}
-	return &xxx_ClearPROperation{
-		This:         o.This,
-		DeviceNumber: o.DeviceNumber,
-	}
+	o.This = op.This
+	o.DeviceNumber = op.DeviceNumber
+	return op
 }
 
 func (o *ClearPRRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearPROperation) {
@@ -621,7 +627,7 @@ func (o *ClearPRRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearPROperatio
 	o.DeviceNumber = op.DeviceNumber
 }
 func (o *ClearPRRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearPRRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearPROperation{}
@@ -640,14 +646,16 @@ type ClearPRResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearPRResponse) xxx_ToOp(ctx context.Context) *xxx_ClearPROperation {
+func (o *ClearPRResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearPROperation) *xxx_ClearPROperation {
+	if op == nil {
+		op = &xxx_ClearPROperation{}
+	}
 	if o == nil {
-		return &xxx_ClearPROperation{}
+		return op
 	}
-	return &xxx_ClearPROperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearPRResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearPROperation) {
@@ -658,7 +666,7 @@ func (o *ClearPRResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearPROperati
 	o.Return = op.Return
 }
 func (o *ClearPRResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearPRResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearPROperation{}

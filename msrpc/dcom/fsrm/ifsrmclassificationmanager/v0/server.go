@@ -445,194 +445,337 @@ func ClassificationManagerServerHandle(ctx context.Context, o ClassificationMana
 	}
 	switch opNum {
 	case 7: // ClassificationReportFormats
-		in := &GetClassificationReportFormatsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassificationReportFormatsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassificationReportFormats(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassificationReportFormatsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassificationReportFormats(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ClassificationReportFormats
-		in := &SetClassificationReportFormatsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClassificationReportFormatsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClassificationReportFormats(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClassificationReportFormatsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClassificationReportFormats(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Logging
-		in := &GetLoggingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLoggingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogging(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLoggingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogging(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Logging
-		in := &SetLoggingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLoggingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogging(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLoggingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogging(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ClassificationReportMailTo
-		in := &GetClassificationReportMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassificationReportMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassificationReportMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassificationReportMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassificationReportMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // ClassificationReportMailTo
-		in := &SetClassificationReportMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClassificationReportMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClassificationReportMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClassificationReportMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClassificationReportMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ClassificationReportEnabled
-		in := &GetClassificationReportEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassificationReportEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassificationReportEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassificationReportEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassificationReportEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // ClassificationReportEnabled
-		in := &SetClassificationReportEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClassificationReportEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClassificationReportEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClassificationReportEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClassificationReportEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // ClassificationLastReportPathWithoutExtension
-		in := &GetClassificationLastReportPathWithoutExtensionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassificationLastReportPathWithoutExtensionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassificationLastReportPathWithoutExtension(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassificationLastReportPathWithoutExtensionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassificationLastReportPathWithoutExtension(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // ClassificationLastError
-		in := &GetClassificationLastErrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassificationLastErrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassificationLastError(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassificationLastErrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassificationLastError(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // ClassificationRunningStatus
-		in := &GetClassificationRunningStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassificationRunningStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassificationRunningStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassificationRunningStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassificationRunningStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // EnumPropertyDefinitions
-		in := &EnumPropertyDefinitionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPropertyDefinitionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPropertyDefinitions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPropertyDefinitionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPropertyDefinitions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // CreatePropertyDefinition
-		in := &CreatePropertyDefinitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePropertyDefinitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePropertyDefinition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePropertyDefinitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePropertyDefinition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // GetPropertyDefinition
-		in := &GetPropertyDefinitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyDefinitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyDefinition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyDefinitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyDefinition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // EnumRules
-		in := &EnumRulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // CreateRule
-		in := &CreateRuleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateRuleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateRule(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRuleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateRule(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // GetRule
-		in := &GetRuleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRuleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRule(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRuleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRule(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // EnumModuleDefinitions
-		in := &EnumModuleDefinitionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumModuleDefinitionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumModuleDefinitions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumModuleDefinitionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumModuleDefinitions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // CreateModuleDefinition
-		in := &CreateModuleDefinitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateModuleDefinitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateModuleDefinition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateModuleDefinitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateModuleDefinition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // GetModuleDefinition
-		in := &GetModuleDefinitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetModuleDefinitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetModuleDefinition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetModuleDefinitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetModuleDefinition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // RunClassification
-		in := &RunClassificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RunClassificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RunClassification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RunClassificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RunClassification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // WaitForClassificationCompletion
-		in := &WaitForClassificationCompletionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitForClassificationCompletionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WaitForClassificationCompletion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitForClassificationCompletionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForClassificationCompletion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // CancelClassification
-		in := &CancelClassificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelClassificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CancelClassification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelClassificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CancelClassification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // EnumFileProperties
-		in := &EnumFilePropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFilePropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumFileProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFilePropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFileProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // GetFileProperty
-		in := &GetFilePropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilePropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilePropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // SetFileProperty
-		in := &SetFilePropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilePropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilePropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // ClearFileProperty
-		in := &ClearFilePropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearFilePropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearFileProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearFilePropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearFileProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmClassificationManager
+type UnimplementedClassificationManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedClassificationManagerServer) GetClassificationReportFormats(context.Context, *GetClassificationReportFormatsRequest) (*GetClassificationReportFormatsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) SetClassificationReportFormats(context.Context, *SetClassificationReportFormatsRequest) (*SetClassificationReportFormatsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetLogging(context.Context, *GetLoggingRequest) (*GetLoggingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) SetLogging(context.Context, *SetLoggingRequest) (*SetLoggingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetClassificationReportMailTo(context.Context, *GetClassificationReportMailToRequest) (*GetClassificationReportMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) SetClassificationReportMailTo(context.Context, *SetClassificationReportMailToRequest) (*SetClassificationReportMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetClassificationReportEnabled(context.Context, *GetClassificationReportEnabledRequest) (*GetClassificationReportEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) SetClassificationReportEnabled(context.Context, *SetClassificationReportEnabledRequest) (*SetClassificationReportEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetClassificationLastReportPathWithoutExtension(context.Context, *GetClassificationLastReportPathWithoutExtensionRequest) (*GetClassificationLastReportPathWithoutExtensionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetClassificationLastError(context.Context, *GetClassificationLastErrorRequest) (*GetClassificationLastErrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetClassificationRunningStatus(context.Context, *GetClassificationRunningStatusRequest) (*GetClassificationRunningStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) EnumPropertyDefinitions(context.Context, *EnumPropertyDefinitionsRequest) (*EnumPropertyDefinitionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) CreatePropertyDefinition(context.Context, *CreatePropertyDefinitionRequest) (*CreatePropertyDefinitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetPropertyDefinition(context.Context, *GetPropertyDefinitionRequest) (*GetPropertyDefinitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) EnumRules(context.Context, *EnumRulesRequest) (*EnumRulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) CreateRule(context.Context, *CreateRuleRequest) (*CreateRuleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetRule(context.Context, *GetRuleRequest) (*GetRuleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) EnumModuleDefinitions(context.Context, *EnumModuleDefinitionsRequest) (*EnumModuleDefinitionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) CreateModuleDefinition(context.Context, *CreateModuleDefinitionRequest) (*CreateModuleDefinitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetModuleDefinition(context.Context, *GetModuleDefinitionRequest) (*GetModuleDefinitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) RunClassification(context.Context, *RunClassificationRequest) (*RunClassificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) WaitForClassificationCompletion(context.Context, *WaitForClassificationCompletionRequest) (*WaitForClassificationCompletionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) CancelClassification(context.Context, *CancelClassificationRequest) (*CancelClassificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) EnumFileProperties(context.Context, *EnumFilePropertiesRequest) (*EnumFilePropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) GetFileProperty(context.Context, *GetFilePropertyRequest) (*GetFilePropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) SetFileProperty(context.Context, *SetFilePropertyRequest) (*SetFilePropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationManagerServer) ClearFileProperty(context.Context, *ClearFilePropertyRequest) (*ClearFilePropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClassificationManagerServer = (*UnimplementedClassificationManagerServer)(nil)

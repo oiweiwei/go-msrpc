@@ -96,26 +96,48 @@ func NewTapsrvServerHandle(o TapsrvServer) dcerpc.ServerHandle {
 func TapsrvServerHandle(ctx context.Context, o TapsrvServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // ClientAttach
-		in := &ClientAttachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClientAttachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClientAttach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClientAttachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClientAttach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // ClientRequest
-		in := &ClientRequestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClientRequestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClientRequest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClientRequestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClientRequest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // ClientDetach
-		in := &ClientDetachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClientDetachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClientDetach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClientDetachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClientDetach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented tapsrv
+type UnimplementedTapsrvServer struct {
+}
+
+func (UnimplementedTapsrvServer) ClientAttach(context.Context, *ClientAttachRequest) (*ClientAttachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTapsrvServer) ClientRequest(context.Context, *ClientRequestRequest) (*ClientRequestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTapsrvServer) ClientDetach(context.Context, *ClientDetachRequest) (*ClientDetachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TapsrvServer = (*UnimplementedTapsrvServer)(nil)

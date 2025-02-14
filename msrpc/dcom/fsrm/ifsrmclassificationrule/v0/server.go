@@ -67,47 +67,85 @@ func ClassificationRuleServerHandle(ctx context.Context, o ClassificationRuleSer
 	}
 	switch opNum {
 	case 24: // ExecutionOption
-		in := &GetExecutionOptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExecutionOptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExecutionOption(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExecutionOptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExecutionOption(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // ExecutionOption
-		in := &SetExecutionOptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExecutionOptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExecutionOption(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExecutionOptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExecutionOption(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // PropertyAffected
-		in := &GetPropertyAffectedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyAffectedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyAffected(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyAffectedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyAffected(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // PropertyAffected
-		in := &SetPropertyAffectedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPropertyAffectedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPropertyAffected(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPropertyAffectedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPropertyAffected(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Value
-		in := &GetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Value
-		in := &SetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmClassificationRule
+type UnimplementedClassificationRuleServer struct {
+	ifsrmrule.UnimplementedRuleServer
+}
+
+func (UnimplementedClassificationRuleServer) GetExecutionOption(context.Context, *GetExecutionOptionRequest) (*GetExecutionOptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationRuleServer) SetExecutionOption(context.Context, *SetExecutionOptionRequest) (*SetExecutionOptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationRuleServer) GetPropertyAffected(context.Context, *GetPropertyAffectedRequest) (*GetPropertyAffectedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationRuleServer) SetPropertyAffected(context.Context, *SetPropertyAffectedRequest) (*SetPropertyAffectedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationRuleServer) GetValue(context.Context, *GetValueRequest) (*GetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassificationRuleServer) SetValue(context.Context, *SetValueRequest) (*SetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClassificationRuleServer = (*UnimplementedClassificationRuleServer)(nil)

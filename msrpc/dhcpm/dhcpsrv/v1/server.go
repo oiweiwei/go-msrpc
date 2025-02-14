@@ -1575,362 +1575,624 @@ func NewDHCPServerServerHandle(o DHCPServerServer) dcerpc.ServerHandle {
 func DHCPServerServerHandle(ctx context.Context, o DHCPServerServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_DhcpCreateSubnet
-		in := &CreateSubnetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateSubnetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateSubnet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateSubnetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateSubnet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // R_DhcpSetSubnetInfo
-		in := &SetSubnetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubnetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubnetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubnetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubnetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // R_DhcpGetSubnetInfo
-		in := &GetSubnetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubnetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubnetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubnetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubnetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // R_DhcpEnumSubnets
-		in := &EnumSubnetsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumSubnetsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumSubnets(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumSubnetsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumSubnets(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // R_DhcpAddSubnetElement
-		in := &AddSubnetElementRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddSubnetElementOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddSubnetElement(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddSubnetElementRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddSubnetElement(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // R_DhcpEnumSubnetElements
-		in := &EnumSubnetElementsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumSubnetElementsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumSubnetElements(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumSubnetElementsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumSubnetElements(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // R_DhcpRemoveSubnetElement
-		in := &RemoveSubnetElementRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveSubnetElementOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveSubnetElement(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveSubnetElementRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveSubnetElement(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // R_DhcpDeleteSubnet
-		in := &DeleteSubnetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteSubnetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteSubnet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteSubnetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteSubnet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // R_DhcpCreateOption
-		in := &CreateOptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateOptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateOption(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateOptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateOption(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_DhcpSetOptionInfo
-		in := &SetOptionInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOptionInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOptionInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOptionInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOptionInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_DhcpGetOptionInfo
-		in := &GetOptionInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOptionInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOptionInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOptionInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOptionInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // R_DhcpRemoveOption
-		in := &RemoveOptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveOption(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveOptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveOption(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_DhcpSetOptionValue
-		in := &SetOptionValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOptionValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOptionValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOptionValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOptionValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // R_DhcpGetOptionValue
-		in := &GetOptionValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOptionValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOptionValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOptionValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOptionValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // R_DhcpEnumOptionValues
-		in := &EnumOptionValuesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumOptionValuesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumOptionValues(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumOptionValuesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumOptionValues(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // R_DhcpRemoveOptionValue
-		in := &RemoveOptionValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOptionValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveOptionValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveOptionValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveOptionValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // R_DhcpCreateClientInfo
-		in := &CreateClientInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateClientInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateClientInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateClientInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateClientInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // R_DhcpSetClientInfo
-		in := &SetClientInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClientInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClientInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClientInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClientInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // R_DhcpGetClientInfo
-		in := &GetClientInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClientInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClientInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClientInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClientInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // R_DhcpDeleteClientInfo
-		in := &DeleteClientInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteClientInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteClientInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteClientInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteClientInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // R_DhcpEnumSubnetClients
-		in := &EnumSubnetClientsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumSubnetClientsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumSubnetClients(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumSubnetClientsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumSubnetClients(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // R_DhcpGetClientOptions
-		in := &GetClientOptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClientOptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClientOptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClientOptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClientOptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // R_DhcpGetMibInfo
-		in := &GetMIBInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMIBInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMIBInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMIBInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMIBInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // R_DhcpEnumOptions
-		in := &EnumOptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumOptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumOptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumOptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumOptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // R_DhcpSetOptionValues
-		in := &SetOptionValuesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOptionValuesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOptionValues(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOptionValuesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOptionValues(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // R_DhcpServerSetConfig
-		in := &ServerSetConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerSetConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerSetConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerSetConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerSetConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // R_DhcpServerGetConfig
-		in := &ServerGetConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerGetConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerGetConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerGetConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerGetConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // R_DhcpScanDatabase
-		in := &ScanDatabaseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ScanDatabaseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ScanDatabase(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ScanDatabaseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ScanDatabase(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // R_DhcpGetVersion
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // R_DhcpAddSubnetElementV4
-		in := &AddSubnetElementV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddSubnetElementV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddSubnetElementV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddSubnetElementV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddSubnetElementV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // R_DhcpEnumSubnetElementsV4
-		in := &EnumSubnetElementsV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumSubnetElementsV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumSubnetElementsV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumSubnetElementsV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumSubnetElementsV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // R_DhcpRemoveSubnetElementV4
-		in := &RemoveSubnetElementV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveSubnetElementV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveSubnetElementV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveSubnetElementV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveSubnetElementV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // R_DhcpCreateClientInfoV4
-		in := &CreateClientInfoV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateClientInfoV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateClientInfoV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateClientInfoV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateClientInfoV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // R_DhcpSetClientInfoV4
-		in := &SetClientInfoV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClientInfoV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClientInfoV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClientInfoV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClientInfoV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // R_DhcpGetClientInfoV4
-		in := &GetClientInfoV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClientInfoV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClientInfoV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClientInfoV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClientInfoV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // R_DhcpEnumSubnetClientsV4
-		in := &EnumSubnetClientsV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumSubnetClientsV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumSubnetClientsV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumSubnetClientsV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumSubnetClientsV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // R_DhcpSetSuperScopeV4
-		in := &SetSuperScopeV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSuperScopeV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSuperScopeV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSuperScopeV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSuperScopeV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // R_DhcpGetSuperScopeInfoV4
-		in := &GetSuperScopeInfoV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSuperScopeInfoV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSuperScopeInfoV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSuperScopeInfoV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSuperScopeInfoV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // R_DhcpDeleteSuperScopeV4
-		in := &DeleteSuperScopeV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteSuperScopeV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteSuperScopeV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteSuperScopeV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteSuperScopeV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // R_DhcpServerSetConfigV4
-		in := &ServerSetConfigV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerSetConfigV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerSetConfigV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerSetConfigV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerSetConfigV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // R_DhcpServerGetConfigV4
-		in := &ServerGetConfigV4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerGetConfigV4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerGetConfigV4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerGetConfigV4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerGetConfigV4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // R_DhcpServerSetConfigVQ
-		in := &ServerSetConfigVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerSetConfigVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerSetConfigVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerSetConfigVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerSetConfigVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // R_DhcpServerGetConfigVQ
-		in := &ServerGetConfigVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerGetConfigVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerGetConfigVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerGetConfigVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerGetConfigVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // R_DhcpGetMibInfoVQ
-		in := &GetMIBInfoVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMIBInfoVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMIBInfoVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMIBInfoVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMIBInfoVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // R_DhcpCreateClientInfoVQ
-		in := &CreateClientInfoVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateClientInfoVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateClientInfoVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateClientInfoVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateClientInfoVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // R_DhcpSetClientInfoVQ
-		in := &SetClientInfoVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClientInfoVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClientInfoVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClientInfoVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClientInfoVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // R_DhcpGetClientInfoVQ
-		in := &GetClientInfoVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClientInfoVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClientInfoVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClientInfoVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClientInfoVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // R_DhcpEnumSubnetClientsVQ
-		in := &EnumSubnetClientsVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumSubnetClientsVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumSubnetClientsVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumSubnetClientsVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumSubnetClientsVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // R_DhcpCreateSubnetVQ
-		in := &CreateSubnetVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateSubnetVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateSubnetVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateSubnetVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateSubnetVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // R_DhcpGetSubnetInfoVQ
-		in := &GetSubnetInfoVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubnetInfoVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubnetInfoVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubnetInfoVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubnetInfoVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // R_DhcpSetSubnetInfoVQ
-		in := &SetSubnetInfoVQRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubnetInfoVQOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubnetInfoVQ(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubnetInfoVQRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubnetInfoVQ(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented dhcpsrv
+type UnimplementedDHCPServerServer struct {
+}
+
+func (UnimplementedDHCPServerServer) CreateSubnet(context.Context, *CreateSubnetRequest) (*CreateSubnetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetSubnetInfo(context.Context, *SetSubnetInfoRequest) (*SetSubnetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetSubnetInfo(context.Context, *GetSubnetInfoRequest) (*GetSubnetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumSubnets(context.Context, *EnumSubnetsRequest) (*EnumSubnetsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) AddSubnetElement(context.Context, *AddSubnetElementRequest) (*AddSubnetElementResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumSubnetElements(context.Context, *EnumSubnetElementsRequest) (*EnumSubnetElementsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) RemoveSubnetElement(context.Context, *RemoveSubnetElementRequest) (*RemoveSubnetElementResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) DeleteSubnet(context.Context, *DeleteSubnetRequest) (*DeleteSubnetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) CreateOption(context.Context, *CreateOptionRequest) (*CreateOptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetOptionInfo(context.Context, *SetOptionInfoRequest) (*SetOptionInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetOptionInfo(context.Context, *GetOptionInfoRequest) (*GetOptionInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) RemoveOption(context.Context, *RemoveOptionRequest) (*RemoveOptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetOptionValue(context.Context, *SetOptionValueRequest) (*SetOptionValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetOptionValue(context.Context, *GetOptionValueRequest) (*GetOptionValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumOptionValues(context.Context, *EnumOptionValuesRequest) (*EnumOptionValuesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) RemoveOptionValue(context.Context, *RemoveOptionValueRequest) (*RemoveOptionValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) CreateClientInfo(context.Context, *CreateClientInfoRequest) (*CreateClientInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetClientInfo(context.Context, *SetClientInfoRequest) (*SetClientInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetClientInfo(context.Context, *GetClientInfoRequest) (*GetClientInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) DeleteClientInfo(context.Context, *DeleteClientInfoRequest) (*DeleteClientInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumSubnetClients(context.Context, *EnumSubnetClientsRequest) (*EnumSubnetClientsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetClientOptions(context.Context, *GetClientOptionsRequest) (*GetClientOptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetMIBInfo(context.Context, *GetMIBInfoRequest) (*GetMIBInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumOptions(context.Context, *EnumOptionsRequest) (*EnumOptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetOptionValues(context.Context, *SetOptionValuesRequest) (*SetOptionValuesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ServerSetConfig(context.Context, *ServerSetConfigRequest) (*ServerSetConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ServerGetConfig(context.Context, *ServerGetConfigRequest) (*ServerGetConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ScanDatabase(context.Context, *ScanDatabaseRequest) (*ScanDatabaseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) AddSubnetElementV4(context.Context, *AddSubnetElementV4Request) (*AddSubnetElementV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumSubnetElementsV4(context.Context, *EnumSubnetElementsV4Request) (*EnumSubnetElementsV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) RemoveSubnetElementV4(context.Context, *RemoveSubnetElementV4Request) (*RemoveSubnetElementV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) CreateClientInfoV4(context.Context, *CreateClientInfoV4Request) (*CreateClientInfoV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetClientInfoV4(context.Context, *SetClientInfoV4Request) (*SetClientInfoV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetClientInfoV4(context.Context, *GetClientInfoV4Request) (*GetClientInfoV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumSubnetClientsV4(context.Context, *EnumSubnetClientsV4Request) (*EnumSubnetClientsV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetSuperScopeV4(context.Context, *SetSuperScopeV4Request) (*SetSuperScopeV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetSuperScopeInfoV4(context.Context, *GetSuperScopeInfoV4Request) (*GetSuperScopeInfoV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) DeleteSuperScopeV4(context.Context, *DeleteSuperScopeV4Request) (*DeleteSuperScopeV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ServerSetConfigV4(context.Context, *ServerSetConfigV4Request) (*ServerSetConfigV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ServerGetConfigV4(context.Context, *ServerGetConfigV4Request) (*ServerGetConfigV4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ServerSetConfigVQ(context.Context, *ServerSetConfigVQRequest) (*ServerSetConfigVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) ServerGetConfigVQ(context.Context, *ServerGetConfigVQRequest) (*ServerGetConfigVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetMIBInfoVQ(context.Context, *GetMIBInfoVQRequest) (*GetMIBInfoVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) CreateClientInfoVQ(context.Context, *CreateClientInfoVQRequest) (*CreateClientInfoVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetClientInfoVQ(context.Context, *SetClientInfoVQRequest) (*SetClientInfoVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetClientInfoVQ(context.Context, *GetClientInfoVQRequest) (*GetClientInfoVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) EnumSubnetClientsVQ(context.Context, *EnumSubnetClientsVQRequest) (*EnumSubnetClientsVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) CreateSubnetVQ(context.Context, *CreateSubnetVQRequest) (*CreateSubnetVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) GetSubnetInfoVQ(context.Context, *GetSubnetInfoVQRequest) (*GetSubnetInfoVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDHCPServerServer) SetSubnetInfoVQ(context.Context, *SetSubnetInfoVQRequest) (*SetSubnetInfoVQResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DHCPServerServer = (*UnimplementedDHCPServerServer)(nil)

@@ -73,26 +73,49 @@ func CertRequestDServerHandle(ctx context.Context, o CertRequestDServer, opNum i
 	}
 	switch opNum {
 	case 3: // Request
-		in := &RequestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RequestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Request(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RequestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Request(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetCACert
-		in := &GetCACertRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCACertOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCACert(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCACertRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCACert(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Ping
-		in := &PingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Ping(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Ping(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICertRequestD
+type UnimplementedCertRequestDServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCertRequestDServer) Request(context.Context, *RequestRequest) (*RequestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertRequestDServer) GetCACert(context.Context, *GetCACertRequest) (*GetCACertResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertRequestDServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CertRequestDServer = (*UnimplementedCertRequestDServer)(nil)

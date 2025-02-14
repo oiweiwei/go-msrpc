@@ -76,40 +76,73 @@ func ActionServerHandle(ctx context.Context, o ActionServer, opNum int, r ndr.Re
 	}
 	switch opNum {
 	case 7: // Id
-		in := &GetIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ActionType
-		in := &GetActionTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RunLimitInterval
-		in := &GetRunLimitIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRunLimitIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRunLimitInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRunLimitIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRunLimitInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RunLimitInterval
-		in := &SetRunLimitIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRunLimitIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRunLimitInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRunLimitIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRunLimitInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmAction
+type UnimplementedActionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedActionServer) GetID(context.Context, *GetIDRequest) (*GetIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionServer) GetActionType(context.Context, *GetActionTypeRequest) (*GetActionTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionServer) GetRunLimitInterval(context.Context, *GetRunLimitIntervalRequest) (*GetRunLimitIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionServer) SetRunLimitInterval(context.Context, *SetRunLimitIntervalRequest) (*SetRunLimitIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActionServer = (*UnimplementedActionServer)(nil)

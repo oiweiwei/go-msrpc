@@ -58,26 +58,49 @@ func AppHostMethodServerHandle(ctx context.Context, o AppHostMethodServer, opNum
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Schema
-		in := &GetSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // CreateInstance
-		in := &CreateInstanceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateInstanceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateInstance(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateInstanceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateInstance(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostMethod
+type UnimplementedAppHostMethodServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostMethodServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodServer) GetSchema(context.Context, *GetSchemaRequest) (*GetSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodServer) CreateInstance(context.Context, *CreateInstanceRequest) (*CreateInstanceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostMethodServer = (*UnimplementedAppHostMethodServer)(nil)

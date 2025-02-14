@@ -94,7 +94,7 @@ type xxx_DefaultMsgsvcsendClient struct {
 }
 
 func (o *xxx_DefaultMsgsvcsendClient) SendMessage(ctx context.Context, in *SendMessageRequest, opts ...dcerpc.CallOption) (*SendMessageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -240,15 +240,17 @@ type SendMessageRequest struct {
 	Text string `idl:"name:Text;string" json:"text"`
 }
 
-func (o *SendMessageRequest) xxx_ToOp(ctx context.Context) *xxx_SendMessageOperation {
+func (o *SendMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessageOperation) *xxx_SendMessageOperation {
+	if op == nil {
+		op = &xxx_SendMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_SendMessageOperation{}
+		return op
 	}
-	return &xxx_SendMessageOperation{
-		From: o.From,
-		To:   o.To,
-		Text: o.Text,
-	}
+	o.From = op.From
+	o.To = op.To
+	o.Text = op.Text
+	return op
 }
 
 func (o *SendMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_SendMessageOperation) {
@@ -260,7 +262,7 @@ func (o *SendMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_SendMessage
 	o.Text = op.Text
 }
 func (o *SendMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SendMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendMessageOperation{}
@@ -277,13 +279,15 @@ type SendMessageResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SendMessageResponse) xxx_ToOp(ctx context.Context) *xxx_SendMessageOperation {
+func (o *SendMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_SendMessageOperation) *xxx_SendMessageOperation {
+	if op == nil {
+		op = &xxx_SendMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_SendMessageOperation{}
+		return op
 	}
-	return &xxx_SendMessageOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SendMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_SendMessageOperation) {
@@ -293,7 +297,7 @@ func (o *SendMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_SendMessag
 	o.Return = op.Return
 }
 func (o *SendMessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SendMessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendMessageOperation{}

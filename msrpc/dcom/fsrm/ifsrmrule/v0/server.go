@@ -111,89 +111,157 @@ func RuleServerHandle(ctx context.Context, o RuleServer, opNum int, r ndr.Reader
 	}
 	switch opNum {
 	case 12: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // RuleType
-		in := &GetRuleTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRuleTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRuleType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRuleTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRuleType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // ModuleDefinitionName
-		in := &GetModuleDefinitionNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetModuleDefinitionNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetModuleDefinitionName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetModuleDefinitionNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetModuleDefinitionName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // ModuleDefinitionName
-		in := &SetModuleDefinitionNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetModuleDefinitionNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetModuleDefinitionName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetModuleDefinitionNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetModuleDefinitionName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // NamespaceRoots
-		in := &GetNamespaceRootsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNamespaceRootsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNamespaceRoots(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNamespaceRootsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNamespaceRoots(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // NamespaceRoots
-		in := &SetNamespaceRootsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNamespaceRootsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNamespaceRoots(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNamespaceRootsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNamespaceRoots(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // RuleFlags
-		in := &GetRuleFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRuleFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRuleFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRuleFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRuleFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // RuleFlags
-		in := &SetRuleFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRuleFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRuleFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRuleFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRuleFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Parameters
-		in := &GetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // Parameters
-		in := &SetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // LastModified
-		in := &GetLastModifiedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastModifiedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastModified(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastModifiedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastModified(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmRule
+type UnimplementedRuleServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedRuleServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) GetRuleType(context.Context, *GetRuleTypeRequest) (*GetRuleTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) GetModuleDefinitionName(context.Context, *GetModuleDefinitionNameRequest) (*GetModuleDefinitionNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) SetModuleDefinitionName(context.Context, *SetModuleDefinitionNameRequest) (*SetModuleDefinitionNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) GetNamespaceRoots(context.Context, *GetNamespaceRootsRequest) (*GetNamespaceRootsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) SetNamespaceRoots(context.Context, *SetNamespaceRootsRequest) (*SetNamespaceRootsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) GetRuleFlags(context.Context, *GetRuleFlagsRequest) (*GetRuleFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) SetRuleFlags(context.Context, *SetRuleFlagsRequest) (*SetRuleFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) GetParameters(context.Context, *GetParametersRequest) (*GetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) SetParameters(context.Context, *SetParametersRequest) (*SetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRuleServer) GetLastModified(context.Context, *GetLastModifiedRequest) (*GetLastModifiedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RuleServer = (*UnimplementedRuleServer)(nil)

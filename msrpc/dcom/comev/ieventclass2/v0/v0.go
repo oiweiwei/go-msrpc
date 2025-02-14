@@ -94,7 +94,7 @@ func (o *xxx_DefaultEventClass2Client) EventClass() ieventclass.EventClassClient
 }
 
 func (o *xxx_DefaultEventClass2Client) GetPublisherID(ctx context.Context, in *GetPublisherIDRequest, opts ...dcerpc.CallOption) (*GetPublisherIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -114,7 +114,7 @@ func (o *xxx_DefaultEventClass2Client) GetPublisherID(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultEventClass2Client) SetPublisherID(ctx context.Context, in *SetPublisherIDRequest, opts ...dcerpc.CallOption) (*SetPublisherIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -134,7 +134,7 @@ func (o *xxx_DefaultEventClass2Client) SetPublisherID(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultEventClass2Client) GetMultiInterfacePublisherFilterClassID(ctx context.Context, in *GetMultiInterfacePublisherFilterClassIDRequest, opts ...dcerpc.CallOption) (*GetMultiInterfacePublisherFilterClassIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -154,7 +154,7 @@ func (o *xxx_DefaultEventClass2Client) GetMultiInterfacePublisherFilterClassID(c
 }
 
 func (o *xxx_DefaultEventClass2Client) SetMultiInterfacePublisherFilterClassID(ctx context.Context, in *SetMultiInterfacePublisherFilterClassIDRequest, opts ...dcerpc.CallOption) (*SetMultiInterfacePublisherFilterClassIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -174,7 +174,7 @@ func (o *xxx_DefaultEventClass2Client) SetMultiInterfacePublisherFilterClassID(c
 }
 
 func (o *xxx_DefaultEventClass2Client) GetAllowInProcessActivation(ctx context.Context, in *GetAllowInProcessActivationRequest, opts ...dcerpc.CallOption) (*GetAllowInProcessActivationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -194,7 +194,7 @@ func (o *xxx_DefaultEventClass2Client) GetAllowInProcessActivation(ctx context.C
 }
 
 func (o *xxx_DefaultEventClass2Client) SetAllowInProcessActivation(ctx context.Context, in *SetAllowInProcessActivationRequest, opts ...dcerpc.CallOption) (*SetAllowInProcessActivationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -214,7 +214,7 @@ func (o *xxx_DefaultEventClass2Client) SetAllowInProcessActivation(ctx context.C
 }
 
 func (o *xxx_DefaultEventClass2Client) GetFireInParallel(ctx context.Context, in *GetFireInParallelRequest, opts ...dcerpc.CallOption) (*GetFireInParallelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -234,7 +234,7 @@ func (o *xxx_DefaultEventClass2Client) GetFireInParallel(ctx context.Context, in
 }
 
 func (o *xxx_DefaultEventClass2Client) SetFireInParallel(ctx context.Context, in *SetFireInParallelRequest, opts ...dcerpc.CallOption) (*SetFireInParallelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -465,13 +465,15 @@ type GetPublisherIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPublisherIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetPublisherIDOperation {
+func (o *GetPublisherIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPublisherIDOperation) *xxx_GetPublisherIDOperation {
+	if op == nil {
+		op = &xxx_GetPublisherIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPublisherIDOperation{}
+		return op
 	}
-	return &xxx_GetPublisherIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPublisherIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPublisherIDOperation) {
@@ -481,7 +483,7 @@ func (o *GetPublisherIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPubli
 	o.This = op.This
 }
 func (o *GetPublisherIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPublisherIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPublisherIDOperation{}
@@ -501,15 +503,17 @@ type GetPublisherIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPublisherIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetPublisherIDOperation {
+func (o *GetPublisherIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPublisherIDOperation) *xxx_GetPublisherIDOperation {
+	if op == nil {
+		op = &xxx_GetPublisherIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPublisherIDOperation{}
+		return op
 	}
-	return &xxx_GetPublisherIDOperation{
-		That:        o.That,
-		PublisherID: o.PublisherID,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.PublisherID = op.PublisherID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPublisherIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPublisherIDOperation) {
@@ -521,7 +525,7 @@ func (o *GetPublisherIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPubl
 	o.Return = op.Return
 }
 func (o *GetPublisherIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPublisherIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPublisherIDOperation{}
@@ -703,14 +707,16 @@ type SetPublisherIDRequest struct {
 	PublisherID *oaut.String   `idl:"name:bstrPublisherID" json:"publisher_id"`
 }
 
-func (o *SetPublisherIDRequest) xxx_ToOp(ctx context.Context) *xxx_SetPublisherIDOperation {
+func (o *SetPublisherIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPublisherIDOperation) *xxx_SetPublisherIDOperation {
+	if op == nil {
+		op = &xxx_SetPublisherIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPublisherIDOperation{}
+		return op
 	}
-	return &xxx_SetPublisherIDOperation{
-		This:        o.This,
-		PublisherID: o.PublisherID,
-	}
+	o.This = op.This
+	o.PublisherID = op.PublisherID
+	return op
 }
 
 func (o *SetPublisherIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPublisherIDOperation) {
@@ -721,7 +727,7 @@ func (o *SetPublisherIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPubli
 	o.PublisherID = op.PublisherID
 }
 func (o *SetPublisherIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPublisherIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPublisherIDOperation{}
@@ -740,14 +746,16 @@ type SetPublisherIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPublisherIDResponse) xxx_ToOp(ctx context.Context) *xxx_SetPublisherIDOperation {
+func (o *SetPublisherIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPublisherIDOperation) *xxx_SetPublisherIDOperation {
+	if op == nil {
+		op = &xxx_SetPublisherIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPublisherIDOperation{}
+		return op
 	}
-	return &xxx_SetPublisherIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPublisherIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPublisherIDOperation) {
@@ -758,7 +766,7 @@ func (o *SetPublisherIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPubl
 	o.Return = op.Return
 }
 func (o *SetPublisherIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPublisherIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPublisherIDOperation{}
@@ -941,13 +949,15 @@ type GetMultiInterfacePublisherFilterClassIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMultiInterfacePublisherFilterClassIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetMultiInterfacePublisherFilterClassIDOperation {
+func (o *GetMultiInterfacePublisherFilterClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMultiInterfacePublisherFilterClassIDOperation) *xxx_GetMultiInterfacePublisherFilterClassIDOperation {
+	if op == nil {
+		op = &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
+		return op
 	}
-	return &xxx_GetMultiInterfacePublisherFilterClassIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMultiInterfacePublisherFilterClassIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMultiInterfacePublisherFilterClassIDOperation) {
@@ -957,7 +967,7 @@ func (o *GetMultiInterfacePublisherFilterClassIDRequest) xxx_FromOp(ctx context.
 	o.This = op.This
 }
 func (o *GetMultiInterfacePublisherFilterClassIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMultiInterfacePublisherFilterClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
@@ -977,15 +987,17 @@ type GetMultiInterfacePublisherFilterClassIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMultiInterfacePublisherFilterClassIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetMultiInterfacePublisherFilterClassIDOperation {
+func (o *GetMultiInterfacePublisherFilterClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMultiInterfacePublisherFilterClassIDOperation) *xxx_GetMultiInterfacePublisherFilterClassIDOperation {
+	if op == nil {
+		op = &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
+		return op
 	}
-	return &xxx_GetMultiInterfacePublisherFilterClassIDOperation{
-		That:                   o.That,
-		PublisherFilterClassID: o.PublisherFilterClassID,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.PublisherFilterClassID = op.PublisherFilterClassID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMultiInterfacePublisherFilterClassIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMultiInterfacePublisherFilterClassIDOperation) {
@@ -997,7 +1009,7 @@ func (o *GetMultiInterfacePublisherFilterClassIDResponse) xxx_FromOp(ctx context
 	o.Return = op.Return
 }
 func (o *GetMultiInterfacePublisherFilterClassIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMultiInterfacePublisherFilterClassIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
@@ -1181,14 +1193,16 @@ type SetMultiInterfacePublisherFilterClassIDRequest struct {
 	PublisherFilterClassID *oaut.String   `idl:"name:bstrPubFilCLSID" json:"publisher_filter_class_id"`
 }
 
-func (o *SetMultiInterfacePublisherFilterClassIDRequest) xxx_ToOp(ctx context.Context) *xxx_SetMultiInterfacePublisherFilterClassIDOperation {
+func (o *SetMultiInterfacePublisherFilterClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMultiInterfacePublisherFilterClassIDOperation) *xxx_SetMultiInterfacePublisherFilterClassIDOperation {
+	if op == nil {
+		op = &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
+		return op
 	}
-	return &xxx_SetMultiInterfacePublisherFilterClassIDOperation{
-		This:                   o.This,
-		PublisherFilterClassID: o.PublisherFilterClassID,
-	}
+	o.This = op.This
+	o.PublisherFilterClassID = op.PublisherFilterClassID
+	return op
 }
 
 func (o *SetMultiInterfacePublisherFilterClassIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMultiInterfacePublisherFilterClassIDOperation) {
@@ -1199,7 +1213,7 @@ func (o *SetMultiInterfacePublisherFilterClassIDRequest) xxx_FromOp(ctx context.
 	o.PublisherFilterClassID = op.PublisherFilterClassID
 }
 func (o *SetMultiInterfacePublisherFilterClassIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMultiInterfacePublisherFilterClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
@@ -1218,14 +1232,16 @@ type SetMultiInterfacePublisherFilterClassIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMultiInterfacePublisherFilterClassIDResponse) xxx_ToOp(ctx context.Context) *xxx_SetMultiInterfacePublisherFilterClassIDOperation {
+func (o *SetMultiInterfacePublisherFilterClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMultiInterfacePublisherFilterClassIDOperation) *xxx_SetMultiInterfacePublisherFilterClassIDOperation {
+	if op == nil {
+		op = &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
+		return op
 	}
-	return &xxx_SetMultiInterfacePublisherFilterClassIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMultiInterfacePublisherFilterClassIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMultiInterfacePublisherFilterClassIDOperation) {
@@ -1236,7 +1252,7 @@ func (o *SetMultiInterfacePublisherFilterClassIDResponse) xxx_FromOp(ctx context
 	o.Return = op.Return
 }
 func (o *SetMultiInterfacePublisherFilterClassIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMultiInterfacePublisherFilterClassIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
@@ -1393,13 +1409,15 @@ type GetAllowInProcessActivationRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAllowInProcessActivationRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllowInProcessActivationOperation {
+func (o *GetAllowInProcessActivationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllowInProcessActivationOperation) *xxx_GetAllowInProcessActivationOperation {
+	if op == nil {
+		op = &xxx_GetAllowInProcessActivationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowInProcessActivationOperation{}
+		return op
 	}
-	return &xxx_GetAllowInProcessActivationOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAllowInProcessActivationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllowInProcessActivationOperation) {
@@ -1409,7 +1427,7 @@ func (o *GetAllowInProcessActivationRequest) xxx_FromOp(ctx context.Context, op 
 	o.This = op.This
 }
 func (o *GetAllowInProcessActivationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllowInProcessActivationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowInProcessActivationOperation{}
@@ -1429,15 +1447,17 @@ type GetAllowInProcessActivationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllowInProcessActivationResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllowInProcessActivationOperation {
+func (o *GetAllowInProcessActivationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllowInProcessActivationOperation) *xxx_GetAllowInProcessActivationOperation {
+	if op == nil {
+		op = &xxx_GetAllowInProcessActivationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowInProcessActivationOperation{}
+		return op
 	}
-	return &xxx_GetAllowInProcessActivationOperation{
-		That:                     o.That,
-		AllowInProcessActivation: o.AllowInProcessActivation,
-		Return:                   o.Return,
-	}
+	o.That = op.That
+	o.AllowInProcessActivation = op.AllowInProcessActivation
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllowInProcessActivationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllowInProcessActivationOperation) {
@@ -1449,7 +1469,7 @@ func (o *GetAllowInProcessActivationResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *GetAllowInProcessActivationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllowInProcessActivationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowInProcessActivationOperation{}
@@ -1607,14 +1627,16 @@ type SetAllowInProcessActivationRequest struct {
 	AllowInProcessActivation bool           `idl:"name:fAllowInprocActivation" json:"allow_in_process_activation"`
 }
 
-func (o *SetAllowInProcessActivationRequest) xxx_ToOp(ctx context.Context) *xxx_SetAllowInProcessActivationOperation {
+func (o *SetAllowInProcessActivationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAllowInProcessActivationOperation) *xxx_SetAllowInProcessActivationOperation {
+	if op == nil {
+		op = &xxx_SetAllowInProcessActivationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowInProcessActivationOperation{}
+		return op
 	}
-	return &xxx_SetAllowInProcessActivationOperation{
-		This:                     o.This,
-		AllowInProcessActivation: o.AllowInProcessActivation,
-	}
+	o.This = op.This
+	o.AllowInProcessActivation = op.AllowInProcessActivation
+	return op
 }
 
 func (o *SetAllowInProcessActivationRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAllowInProcessActivationOperation) {
@@ -1625,7 +1647,7 @@ func (o *SetAllowInProcessActivationRequest) xxx_FromOp(ctx context.Context, op 
 	o.AllowInProcessActivation = op.AllowInProcessActivation
 }
 func (o *SetAllowInProcessActivationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAllowInProcessActivationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowInProcessActivationOperation{}
@@ -1644,14 +1666,16 @@ type SetAllowInProcessActivationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAllowInProcessActivationResponse) xxx_ToOp(ctx context.Context) *xxx_SetAllowInProcessActivationOperation {
+func (o *SetAllowInProcessActivationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAllowInProcessActivationOperation) *xxx_SetAllowInProcessActivationOperation {
+	if op == nil {
+		op = &xxx_SetAllowInProcessActivationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowInProcessActivationOperation{}
+		return op
 	}
-	return &xxx_SetAllowInProcessActivationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAllowInProcessActivationResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAllowInProcessActivationOperation) {
@@ -1662,7 +1686,7 @@ func (o *SetAllowInProcessActivationResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *SetAllowInProcessActivationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAllowInProcessActivationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowInProcessActivationOperation{}
@@ -1817,13 +1841,15 @@ type GetFireInParallelRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetFireInParallelRequest) xxx_ToOp(ctx context.Context) *xxx_GetFireInParallelOperation {
+func (o *GetFireInParallelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFireInParallelOperation) *xxx_GetFireInParallelOperation {
+	if op == nil {
+		op = &xxx_GetFireInParallelOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFireInParallelOperation{}
+		return op
 	}
-	return &xxx_GetFireInParallelOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetFireInParallelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFireInParallelOperation) {
@@ -1833,7 +1859,7 @@ func (o *GetFireInParallelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFi
 	o.This = op.This
 }
 func (o *GetFireInParallelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFireInParallelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFireInParallelOperation{}
@@ -1853,15 +1879,17 @@ type GetFireInParallelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFireInParallelResponse) xxx_ToOp(ctx context.Context) *xxx_GetFireInParallelOperation {
+func (o *GetFireInParallelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFireInParallelOperation) *xxx_GetFireInParallelOperation {
+	if op == nil {
+		op = &xxx_GetFireInParallelOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFireInParallelOperation{}
+		return op
 	}
-	return &xxx_GetFireInParallelOperation{
-		That:           o.That,
-		FireInParallel: o.FireInParallel,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.FireInParallel = op.FireInParallel
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFireInParallelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFireInParallelOperation) {
@@ -1873,7 +1901,7 @@ func (o *GetFireInParallelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetF
 	o.Return = op.Return
 }
 func (o *GetFireInParallelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFireInParallelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFireInParallelOperation{}
@@ -2029,14 +2057,16 @@ type SetFireInParallelRequest struct {
 	FireInParallel bool           `idl:"name:fFireInParallel" json:"fire_in_parallel"`
 }
 
-func (o *SetFireInParallelRequest) xxx_ToOp(ctx context.Context) *xxx_SetFireInParallelOperation {
+func (o *SetFireInParallelRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFireInParallelOperation) *xxx_SetFireInParallelOperation {
+	if op == nil {
+		op = &xxx_SetFireInParallelOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFireInParallelOperation{}
+		return op
 	}
-	return &xxx_SetFireInParallelOperation{
-		This:           o.This,
-		FireInParallel: o.FireInParallel,
-	}
+	o.This = op.This
+	o.FireInParallel = op.FireInParallel
+	return op
 }
 
 func (o *SetFireInParallelRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFireInParallelOperation) {
@@ -2047,7 +2077,7 @@ func (o *SetFireInParallelRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFi
 	o.FireInParallel = op.FireInParallel
 }
 func (o *SetFireInParallelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFireInParallelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFireInParallelOperation{}
@@ -2066,14 +2096,16 @@ type SetFireInParallelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFireInParallelResponse) xxx_ToOp(ctx context.Context) *xxx_SetFireInParallelOperation {
+func (o *SetFireInParallelResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFireInParallelOperation) *xxx_SetFireInParallelOperation {
+	if op == nil {
+		op = &xxx_SetFireInParallelOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFireInParallelOperation{}
+		return op
 	}
-	return &xxx_SetFireInParallelOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFireInParallelResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFireInParallelOperation) {
@@ -2084,7 +2116,7 @@ func (o *SetFireInParallelResponse) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Return = op.Return
 }
 func (o *SetFireInParallelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFireInParallelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFireInParallelOperation{}

@@ -89,7 +89,7 @@ func (o *xxx_DefaultServiceUninstallDiskClient) Unknown() iunknown.UnknownClient
 }
 
 func (o *xxx_DefaultServiceUninstallDiskClient) GetDiskIDFromLUNInfo(ctx context.Context, in *GetDiskIDFromLUNInfoRequest, opts ...dcerpc.CallOption) (*GetDiskIDFromLUNInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -109,7 +109,7 @@ func (o *xxx_DefaultServiceUninstallDiskClient) GetDiskIDFromLUNInfo(ctx context
 }
 
 func (o *xxx_DefaultServiceUninstallDiskClient) UninstallDisks(ctx context.Context, in *UninstallDisksRequest, opts ...dcerpc.CallOption) (*UninstallDisksResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -348,14 +348,16 @@ type GetDiskIDFromLUNInfoRequest struct {
 	LUNInfo *vds.LUNInformation `idl:"name:pLunInfo" json:"lun_info"`
 }
 
-func (o *GetDiskIDFromLUNInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetDiskIDFromLUNInfoOperation {
+func (o *GetDiskIDFromLUNInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDiskIDFromLUNInfoOperation) *xxx_GetDiskIDFromLUNInfoOperation {
+	if op == nil {
+		op = &xxx_GetDiskIDFromLUNInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDiskIDFromLUNInfoOperation{}
+		return op
 	}
-	return &xxx_GetDiskIDFromLUNInfoOperation{
-		This:    o.This,
-		LUNInfo: o.LUNInfo,
-	}
+	o.This = op.This
+	o.LUNInfo = op.LUNInfo
+	return op
 }
 
 func (o *GetDiskIDFromLUNInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDiskIDFromLUNInfoOperation) {
@@ -366,7 +368,7 @@ func (o *GetDiskIDFromLUNInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.LUNInfo = op.LUNInfo
 }
 func (o *GetDiskIDFromLUNInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDiskIDFromLUNInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDiskIDFromLUNInfoOperation{}
@@ -389,15 +391,17 @@ type GetDiskIDFromLUNInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDiskIDFromLUNInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetDiskIDFromLUNInfoOperation {
+func (o *GetDiskIDFromLUNInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDiskIDFromLUNInfoOperation) *xxx_GetDiskIDFromLUNInfoOperation {
+	if op == nil {
+		op = &xxx_GetDiskIDFromLUNInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDiskIDFromLUNInfoOperation{}
+		return op
 	}
-	return &xxx_GetDiskIDFromLUNInfoOperation{
-		That:   o.That,
-		DiskID: o.DiskID,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.DiskID = op.DiskID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDiskIDFromLUNInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDiskIDFromLUNInfoOperation) {
@@ -409,7 +413,7 @@ func (o *GetDiskIDFromLUNInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetDiskIDFromLUNInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDiskIDFromLUNInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDiskIDFromLUNInfoOperation{}
@@ -695,16 +699,18 @@ type UninstallDisksRequest struct {
 	Force bool `idl:"name:bForce" json:"force"`
 }
 
-func (o *UninstallDisksRequest) xxx_ToOp(ctx context.Context) *xxx_UninstallDisksOperation {
+func (o *UninstallDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_UninstallDisksOperation) *xxx_UninstallDisksOperation {
+	if op == nil {
+		op = &xxx_UninstallDisksOperation{}
+	}
 	if o == nil {
-		return &xxx_UninstallDisksOperation{}
+		return op
 	}
-	return &xxx_UninstallDisksOperation{
-		This:        o.This,
-		DiskIDArray: o.DiskIDArray,
-		Count:       o.Count,
-		Force:       o.Force,
-	}
+	o.This = op.This
+	o.DiskIDArray = op.DiskIDArray
+	o.Count = op.Count
+	o.Force = op.Force
+	return op
 }
 
 func (o *UninstallDisksRequest) xxx_FromOp(ctx context.Context, op *xxx_UninstallDisksOperation) {
@@ -717,7 +723,7 @@ func (o *UninstallDisksRequest) xxx_FromOp(ctx context.Context, op *xxx_Uninstal
 	o.Force = op.Force
 }
 func (o *UninstallDisksRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UninstallDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UninstallDisksOperation{}
@@ -746,16 +752,18 @@ type UninstallDisksResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UninstallDisksResponse) xxx_ToOp(ctx context.Context) *xxx_UninstallDisksOperation {
+func (o *UninstallDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_UninstallDisksOperation) *xxx_UninstallDisksOperation {
+	if op == nil {
+		op = &xxx_UninstallDisksOperation{}
+	}
 	if o == nil {
-		return &xxx_UninstallDisksOperation{}
+		return op
 	}
-	return &xxx_UninstallDisksOperation{
-		That:    o.That,
-		Reboot:  o.Reboot,
-		Results: o.Results,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Reboot = op.Reboot
+	o.Results = op.Results
+	o.Return = op.Return
+	return op
 }
 
 func (o *UninstallDisksResponse) xxx_FromOp(ctx context.Context, op *xxx_UninstallDisksOperation) {
@@ -768,7 +776,7 @@ func (o *UninstallDisksResponse) xxx_FromOp(ctx context.Context, op *xxx_Uninsta
 	o.Return = op.Return
 }
 func (o *UninstallDisksResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UninstallDisksResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UninstallDisksOperation{}

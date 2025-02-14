@@ -105,33 +105,61 @@ func MutableCollectionServerHandle(ctx context.Context, o MutableCollectionServe
 	}
 	switch opNum {
 	case 14: // Add
-		in := &AddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Add(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Add(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Remove
-		in := &RemoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Remove(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Remove(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // RemoveById
-		in := &RemoveByIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveByIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveByID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveByIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveByID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Clone
-		in := &CloneRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloneOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clone(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloneRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clone(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmMutableCollection
+type UnimplementedMutableCollectionServer struct {
+	ifsrmcollection.UnimplementedCollectionServer
+}
+
+func (UnimplementedMutableCollectionServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMutableCollectionServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMutableCollectionServer) RemoveByID(context.Context, *RemoveByIDRequest) (*RemoveByIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMutableCollectionServer) Clone(context.Context, *CloneRequest) (*CloneResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ MutableCollectionServer = (*UnimplementedMutableCollectionServer)(nil)

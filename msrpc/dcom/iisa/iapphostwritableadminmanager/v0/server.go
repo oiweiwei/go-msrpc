@@ -58,26 +58,49 @@ func AppHostWritableAdminManagerServerHandle(ctx context.Context, o AppHostWrita
 	}
 	switch opNum {
 	case 7: // CommitChanges
-		in := &CommitChangesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitChangesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CommitChanges(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitChangesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CommitChanges(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // CommitPath
-		in := &GetCommitPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCommitPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCommitPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCommitPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCommitPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // CommitPath
-		in := &SetCommitPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCommitPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCommitPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCommitPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCommitPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostWritableAdminManager
+type UnimplementedAppHostWritableAdminManagerServer struct {
+	iapphostadminmanager.UnimplementedAppHostAdminManagerServer
+}
+
+func (UnimplementedAppHostWritableAdminManagerServer) CommitChanges(context.Context, *CommitChangesRequest) (*CommitChangesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostWritableAdminManagerServer) GetCommitPath(context.Context, *GetCommitPathRequest) (*GetCommitPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostWritableAdminManagerServer) SetCommitPath(context.Context, *SetCommitPathRequest) (*SetCommitPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostWritableAdminManagerServer = (*UnimplementedAppHostWritableAdminManagerServer)(nil)

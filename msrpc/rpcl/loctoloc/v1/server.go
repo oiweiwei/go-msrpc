@@ -129,54 +129,96 @@ func NewLocToLocServerHandle(o LocToLocServer) dcerpc.ServerHandle {
 func LocToLocServerHandle(ctx context.Context, o LocToLocServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // I_nsi_lookup_begin
-		in := &LookupBeginRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupBeginOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupBegin(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupBeginRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupBegin(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // I_nsi_lookup_done
-		in := &LookupDoneRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupDoneOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupDone(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupDoneRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupDone(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // I_nsi_lookup_next
-		in := &LookupNextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // I_nsi_entry_object_inq_next
-		in := &EntryObjectInquireNextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EntryObjectInquireNextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EntryObjectInquireNext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EntryObjectInquireNextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EntryObjectInquireNext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // I_nsi_ping_locator
-		in := &PingLocatorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PingLocatorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PingLocator(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PingLocatorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PingLocator(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // I_nsi_entry_object_inq_done
-		in := &EntryObjectInquireDoneRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EntryObjectInquireDoneOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EntryObjectInquireDone(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EntryObjectInquireDoneRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EntryObjectInquireDone(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // I_nsi_entry_object_inq_begin
-		in := &EntryObjectInquireBeginRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EntryObjectInquireBeginOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EntryObjectInquireBegin(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EntryObjectInquireBeginRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EntryObjectInquireBegin(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented LocToLoc
+type UnimplementedLocToLocServer struct {
+}
+
+func (UnimplementedLocToLocServer) LookupBegin(context.Context, *LookupBeginRequest) (*LookupBeginResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLocToLocServer) LookupDone(context.Context, *LookupDoneRequest) (*LookupDoneResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLocToLocServer) LookupNext(context.Context, *LookupNextRequest) (*LookupNextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLocToLocServer) EntryObjectInquireNext(context.Context, *EntryObjectInquireNextRequest) (*EntryObjectInquireNextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLocToLocServer) PingLocator(context.Context, *PingLocatorRequest) (*PingLocatorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLocToLocServer) EntryObjectInquireDone(context.Context, *EntryObjectInquireDoneRequest) (*EntryObjectInquireDoneResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLocToLocServer) EntryObjectInquireBegin(context.Context, *EntryObjectInquireBeginRequest) (*EntryObjectInquireBeginResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LocToLocServer = (*UnimplementedLocToLocServer)(nil)

@@ -107,61 +107,109 @@ func ContainerControl2ServerHandle(ctx context.Context, o ContainerControl2Serve
 	}
 	switch opNum {
 	case 3: // ShutdownContainer
-		in := &ShutdownContainerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShutdownContainerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShutdownContainer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShutdownContainerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShutdownContainer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // PauseContainer
-		in := &PauseContainerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PauseContainerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PauseContainer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PauseContainerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PauseContainer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ResumeContainer
-		in := &ResumeContainerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResumeContainerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResumeContainer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResumeContainerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResumeContainer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // IsContainerPaused
-		in := &IsContainerPausedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsContainerPausedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsContainerPaused(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsContainerPausedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsContainerPaused(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetRunningContainers
-		in := &GetRunningContainersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRunningContainersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRunningContainers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRunningContainersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRunningContainers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetContainerIDFromProcessID
-		in := &GetContainerIDFromProcessIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetContainerIDFromProcessIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetContainerIDFromProcessID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetContainerIDFromProcessIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetContainerIDFromProcessID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RecycleContainer
-		in := &RecycleContainerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RecycleContainerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RecycleContainer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RecycleContainerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RecycleContainer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetContainerIDFromConglomerationID
-		in := &GetContainerIDFromConglomerationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetContainerIDFromConglomerationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetContainerIDFromConglomerationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetContainerIDFromConglomerationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetContainerIDFromConglomerationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IContainerControl2
+type UnimplementedContainerControl2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedContainerControl2Server) ShutdownContainer(context.Context, *ShutdownContainerRequest) (*ShutdownContainerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) PauseContainer(context.Context, *PauseContainerRequest) (*PauseContainerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) ResumeContainer(context.Context, *ResumeContainerRequest) (*ResumeContainerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) IsContainerPaused(context.Context, *IsContainerPausedRequest) (*IsContainerPausedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) GetRunningContainers(context.Context, *GetRunningContainersRequest) (*GetRunningContainersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) GetContainerIDFromProcessID(context.Context, *GetContainerIDFromProcessIDRequest) (*GetContainerIDFromProcessIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) RecycleContainer(context.Context, *RecycleContainerRequest) (*RecycleContainerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControl2Server) GetContainerIDFromConglomerationID(context.Context, *GetContainerIDFromConglomerationIDRequest) (*GetContainerIDFromConglomerationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ContainerControl2Server = (*UnimplementedContainerControl2Server)(nil)

@@ -278,166 +278,289 @@ func ServicesServerHandle(ctx context.Context, o ServicesServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // OpenNamespace
-		in := &OpenNamespaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNamespaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNamespace(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNamespaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNamespace(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CancelAsyncCall
-		in := &CancelAsyncCallRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelAsyncCallOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CancelAsyncCall(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelAsyncCallRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CancelAsyncCall(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // QueryObjectSink
-		in := &QueryObjectSinkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryObjectSinkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryObjectSink(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryObjectSinkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryObjectSink(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetObject
-		in := &GetObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetObjectAsync
-		in := &GetObjectAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // PutClass
-		in := &PutClassRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutClassOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutClass(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutClassRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutClass(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // PutClassAsync
-		in := &PutClassAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutClassAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutClassAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutClassAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutClassAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // DeleteClass
-		in := &DeleteClassRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteClassOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteClass(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteClassRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteClass(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // DeleteClassAsync
-		in := &DeleteClassAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteClassAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteClassAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteClassAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteClassAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // CreateClassEnum
-		in := &CreateClassEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateClassEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateClassEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateClassEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateClassEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // CreateClassEnumAsync
-		in := &CreateClassEnumAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateClassEnumAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateClassEnumAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateClassEnumAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateClassEnumAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // PutInstance
-		in := &PutInstanceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutInstanceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutInstance(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutInstanceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutInstance(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // PutInstanceAsync
-		in := &PutInstanceAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutInstanceAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutInstanceAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutInstanceAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutInstanceAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // DeleteInstance
-		in := &DeleteInstanceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteInstanceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteInstance(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteInstanceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteInstance(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // DeleteInstanceAsync
-		in := &DeleteInstanceAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteInstanceAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteInstanceAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteInstanceAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteInstanceAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // CreateInstanceEnum
-		in := &CreateInstanceEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateInstanceEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateInstanceEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateInstanceEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateInstanceEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // CreateInstanceEnumAsync
-		in := &CreateInstanceEnumAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateInstanceEnumAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateInstanceEnumAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateInstanceEnumAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateInstanceEnumAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // ExecQuery
-		in := &ExecQueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecQueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecQuery(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecQueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecQuery(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // ExecQueryAsync
-		in := &ExecQueryAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecQueryAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecQueryAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecQueryAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecQueryAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // ExecNotificationQuery
-		in := &ExecNotificationQueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecNotificationQueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecNotificationQuery(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecNotificationQueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecNotificationQuery(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // ExecNotificationQueryAsync
-		in := &ExecNotificationQueryAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecNotificationQueryAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecNotificationQueryAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecNotificationQueryAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecNotificationQueryAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // ExecMethod
-		in := &ExecMethodRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecMethodOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecMethod(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecMethodRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecMethod(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // ExecMethodAsync
-		in := &ExecMethodAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecMethodAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecMethodAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecMethodAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecMethodAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemServices
+type UnimplementedServicesServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServicesServer) OpenNamespace(context.Context, *OpenNamespaceRequest) (*OpenNamespaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) CancelAsyncCall(context.Context, *CancelAsyncCallRequest) (*CancelAsyncCallResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) QueryObjectSink(context.Context, *QueryObjectSinkRequest) (*QueryObjectSinkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) GetObjectAsync(context.Context, *GetObjectAsyncRequest) (*GetObjectAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) PutClass(context.Context, *PutClassRequest) (*PutClassResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) PutClassAsync(context.Context, *PutClassAsyncRequest) (*PutClassAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) DeleteClass(context.Context, *DeleteClassRequest) (*DeleteClassResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) DeleteClassAsync(context.Context, *DeleteClassAsyncRequest) (*DeleteClassAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) CreateClassEnum(context.Context, *CreateClassEnumRequest) (*CreateClassEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) CreateClassEnumAsync(context.Context, *CreateClassEnumAsyncRequest) (*CreateClassEnumAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) PutInstance(context.Context, *PutInstanceRequest) (*PutInstanceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) PutInstanceAsync(context.Context, *PutInstanceAsyncRequest) (*PutInstanceAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) DeleteInstance(context.Context, *DeleteInstanceRequest) (*DeleteInstanceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) DeleteInstanceAsync(context.Context, *DeleteInstanceAsyncRequest) (*DeleteInstanceAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) CreateInstanceEnum(context.Context, *CreateInstanceEnumRequest) (*CreateInstanceEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) CreateInstanceEnumAsync(context.Context, *CreateInstanceEnumAsyncRequest) (*CreateInstanceEnumAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) ExecQuery(context.Context, *ExecQueryRequest) (*ExecQueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) ExecQueryAsync(context.Context, *ExecQueryAsyncRequest) (*ExecQueryAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) ExecNotificationQuery(context.Context, *ExecNotificationQueryRequest) (*ExecNotificationQueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) ExecNotificationQueryAsync(context.Context, *ExecNotificationQueryAsyncRequest) (*ExecNotificationQueryAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) ExecMethod(context.Context, *ExecMethodRequest) (*ExecMethodResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServicesServer) ExecMethodAsync(context.Context, *ExecMethodAsyncRequest) (*ExecMethodAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServicesServer = (*UnimplementedServicesServer)(nil)

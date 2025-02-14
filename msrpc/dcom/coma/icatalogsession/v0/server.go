@@ -96,19 +96,37 @@ func CatalogSessionServerHandle(ctx context.Context, o CatalogSessionServer, opN
 		// Opnum6NotUsedOnWire
 		return nil, nil
 	case 7: // InitializeSession
-		in := &InitializeSessionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeSessionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeSession(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeSessionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeSession(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetServerInformation
-		in := &GetServerInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalogSession
+type UnimplementedCatalogSessionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalogSessionServer) InitializeSession(context.Context, *InitializeSessionRequest) (*InitializeSessionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogSessionServer) GetServerInformation(context.Context, *GetServerInformationRequest) (*GetServerInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CatalogSessionServer = (*UnimplementedCatalogSessionServer)(nil)

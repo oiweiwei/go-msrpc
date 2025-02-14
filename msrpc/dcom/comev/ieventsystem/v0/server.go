@@ -133,47 +133,85 @@ func EventSystemServerHandle(ctx context.Context, o EventSystemServer, opNum int
 	}
 	switch opNum {
 	case 7: // Query
-		in := &QueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Store
-		in := &StoreRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StoreOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Store(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StoreRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Store(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Remove
-		in := &RemoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Remove(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Remove(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // EventObjectChangeEventClassID
-		in := &GetEventObjectChangeEventClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventObjectChangeEventClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventObjectChangeEventClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventObjectChangeEventClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventObjectChangeEventClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // QueryS
-		in := &QuerySRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryS(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryS(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // RemoveS
-		in := &RemoveSRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveSOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveS(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveSRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveS(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventSystem
+type UnimplementedEventSystemServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedEventSystemServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSystemServer) Store(context.Context, *StoreRequest) (*StoreResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSystemServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSystemServer) GetEventObjectChangeEventClassID(context.Context, *GetEventObjectChangeEventClassIDRequest) (*GetEventObjectChangeEventClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSystemServer) QueryS(context.Context, *QuerySRequest) (*QuerySResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSystemServer) RemoveS(context.Context, *RemoveSRequest) (*RemoveSResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventSystemServer = (*UnimplementedEventSystemServer)(nil)

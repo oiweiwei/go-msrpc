@@ -74,33 +74,61 @@ func PropertyDefinitionValueServerHandle(ctx context.Context, o PropertyDefiniti
 	}
 	switch opNum {
 	case 7: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // DisplayName
-		in := &GetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // UniqueID
-		in := &GetUniqueIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUniqueIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUniqueID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUniqueIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUniqueID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmPropertyDefinitionValue
+type UnimplementedPropertyDefinitionValueServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedPropertyDefinitionValueServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionValueServer) GetDisplayName(context.Context, *GetDisplayNameRequest) (*GetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionValueServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionValueServer) GetUniqueID(context.Context, *GetUniqueIDRequest) (*GetUniqueIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PropertyDefinitionValueServer = (*UnimplementedPropertyDefinitionValueServer)(nil)

@@ -413,7 +413,7 @@ func (o *xxx_DefaultTypeInfo2Client) TypeInfo() itypeinfo.TypeInfoClient {
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetTypeKind(ctx context.Context, in *GetTypeKindRequest, opts ...dcerpc.CallOption) (*GetTypeKindResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -433,7 +433,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetTypeKind(ctx context.Context, in *GetTyp
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetTypeFlags(ctx context.Context, in *GetTypeFlagsRequest, opts ...dcerpc.CallOption) (*GetTypeFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -453,7 +453,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetTypeFlags(ctx context.Context, in *GetTy
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetFuncIndexOfMemberIDs(ctx context.Context, in *GetFuncIndexOfMemberIDsRequest, opts ...dcerpc.CallOption) (*GetFuncIndexOfMemberIDsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -473,7 +473,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetFuncIndexOfMemberIDs(ctx context.Context
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetVarIndexOfMemberIDs(ctx context.Context, in *GetVarIndexOfMemberIDsRequest, opts ...dcerpc.CallOption) (*GetVarIndexOfMemberIDsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -493,7 +493,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetVarIndexOfMemberIDs(ctx context.Context,
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetCustomData(ctx context.Context, in *GetCustomDataRequest, opts ...dcerpc.CallOption) (*GetCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -513,7 +513,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetCustomData(ctx context.Context, in *GetC
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetFuncCustomData(ctx context.Context, in *GetFuncCustomDataRequest, opts ...dcerpc.CallOption) (*GetFuncCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -533,7 +533,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetFuncCustomData(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetParamCustomData(ctx context.Context, in *GetParamCustomDataRequest, opts ...dcerpc.CallOption) (*GetParamCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -553,7 +553,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetParamCustomData(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetVarCustomData(ctx context.Context, in *GetVarCustomDataRequest, opts ...dcerpc.CallOption) (*GetVarCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -573,7 +573,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetVarCustomData(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetImplTypeCustomData(ctx context.Context, in *GetImplTypeCustomDataRequest, opts ...dcerpc.CallOption) (*GetImplTypeCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -593,7 +593,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetImplTypeCustomData(ctx context.Context, 
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetDocumentation2(ctx context.Context, in *GetDocumentation2Request, opts ...dcerpc.CallOption) (*GetDocumentation2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -613,7 +613,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetDocumentation2(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetAllCustomData(ctx context.Context, in *GetAllCustomDataRequest, opts ...dcerpc.CallOption) (*GetAllCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -633,7 +633,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllCustomData(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetAllFuncCustomData(ctx context.Context, in *GetAllFuncCustomDataRequest, opts ...dcerpc.CallOption) (*GetAllFuncCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -653,7 +653,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllFuncCustomData(ctx context.Context, i
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetAllParamCustomData(ctx context.Context, in *GetAllParamCustomDataRequest, opts ...dcerpc.CallOption) (*GetAllParamCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -673,7 +673,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllParamCustomData(ctx context.Context, 
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetAllVarCustomData(ctx context.Context, in *GetAllVarCustomDataRequest, opts ...dcerpc.CallOption) (*GetAllVarCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -693,7 +693,7 @@ func (o *xxx_DefaultTypeInfo2Client) GetAllVarCustomData(ctx context.Context, in
 }
 
 func (o *xxx_DefaultTypeInfo2Client) GetAllImplTypeCustomData(ctx context.Context, in *GetAllImplTypeCustomDataRequest, opts ...dcerpc.CallOption) (*GetAllImplTypeCustomDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -890,13 +890,15 @@ type GetTypeKindRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetTypeKindRequest) xxx_ToOp(ctx context.Context) *xxx_GetTypeKindOperation {
+func (o *GetTypeKindRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeKindOperation) *xxx_GetTypeKindOperation {
+	if op == nil {
+		op = &xxx_GetTypeKindOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTypeKindOperation{}
+		return op
 	}
-	return &xxx_GetTypeKindOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetTypeKindRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTypeKindOperation) {
@@ -906,7 +908,7 @@ func (o *GetTypeKindRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTypeKind
 	o.This = op.This
 }
 func (o *GetTypeKindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTypeKindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTypeKindOperation{}
@@ -928,15 +930,17 @@ type GetTypeKindResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTypeKindResponse) xxx_ToOp(ctx context.Context) *xxx_GetTypeKindOperation {
+func (o *GetTypeKindResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeKindOperation) *xxx_GetTypeKindOperation {
+	if op == nil {
+		op = &xxx_GetTypeKindOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTypeKindOperation{}
+		return op
 	}
-	return &xxx_GetTypeKindOperation{
-		That:     o.That,
-		TypeKind: o.TypeKind,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.TypeKind = op.TypeKind
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTypeKindResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTypeKindOperation) {
@@ -948,7 +952,7 @@ func (o *GetTypeKindResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTypeKin
 	o.Return = op.Return
 }
 func (o *GetTypeKindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTypeKindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTypeKindOperation{}
@@ -1095,13 +1099,15 @@ type GetTypeFlagsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetTypeFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_GetTypeFlagsOperation {
+func (o *GetTypeFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeFlagsOperation) *xxx_GetTypeFlagsOperation {
+	if op == nil {
+		op = &xxx_GetTypeFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTypeFlagsOperation{}
+		return op
 	}
-	return &xxx_GetTypeFlagsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetTypeFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTypeFlagsOperation) {
@@ -1111,7 +1117,7 @@ func (o *GetTypeFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTypeFla
 	o.This = op.This
 }
 func (o *GetTypeFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTypeFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTypeFlagsOperation{}
@@ -1133,15 +1139,17 @@ type GetTypeFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTypeFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_GetTypeFlagsOperation {
+func (o *GetTypeFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeFlagsOperation) *xxx_GetTypeFlagsOperation {
+	if op == nil {
+		op = &xxx_GetTypeFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTypeFlagsOperation{}
+		return op
 	}
-	return &xxx_GetTypeFlagsOperation{
-		That:      o.That,
-		TypeFlags: o.TypeFlags,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.TypeFlags = op.TypeFlags
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTypeFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTypeFlagsOperation) {
@@ -1153,7 +1161,7 @@ func (o *GetTypeFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTypeFl
 	o.Return = op.Return
 }
 func (o *GetTypeFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTypeFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTypeFlagsOperation{}
@@ -1333,15 +1341,17 @@ type GetFuncIndexOfMemberIDsRequest struct {
 	InvKind oaut.InvokeKind `idl:"name:invKind" json:"inv_kind"`
 }
 
-func (o *GetFuncIndexOfMemberIDsRequest) xxx_ToOp(ctx context.Context) *xxx_GetFuncIndexOfMemberIDsOperation {
+func (o *GetFuncIndexOfMemberIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFuncIndexOfMemberIDsOperation) *xxx_GetFuncIndexOfMemberIDsOperation {
+	if op == nil {
+		op = &xxx_GetFuncIndexOfMemberIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFuncIndexOfMemberIDsOperation{}
+		return op
 	}
-	return &xxx_GetFuncIndexOfMemberIDsOperation{
-		This:     o.This,
-		MemberID: o.MemberID,
-		InvKind:  o.InvKind,
-	}
+	o.This = op.This
+	o.MemberID = op.MemberID
+	o.InvKind = op.InvKind
+	return op
 }
 
 func (o *GetFuncIndexOfMemberIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFuncIndexOfMemberIDsOperation) {
@@ -1353,7 +1363,7 @@ func (o *GetFuncIndexOfMemberIDsRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.InvKind = op.InvKind
 }
 func (o *GetFuncIndexOfMemberIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFuncIndexOfMemberIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFuncIndexOfMemberIDsOperation{}
@@ -1380,15 +1390,17 @@ type GetFuncIndexOfMemberIDsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFuncIndexOfMemberIDsResponse) xxx_ToOp(ctx context.Context) *xxx_GetFuncIndexOfMemberIDsOperation {
+func (o *GetFuncIndexOfMemberIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFuncIndexOfMemberIDsOperation) *xxx_GetFuncIndexOfMemberIDsOperation {
+	if op == nil {
+		op = &xxx_GetFuncIndexOfMemberIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFuncIndexOfMemberIDsOperation{}
+		return op
 	}
-	return &xxx_GetFuncIndexOfMemberIDsOperation{
-		That:      o.That,
-		FuncIndex: o.FuncIndex,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.FuncIndex = op.FuncIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFuncIndexOfMemberIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFuncIndexOfMemberIDsOperation) {
@@ -1400,7 +1412,7 @@ func (o *GetFuncIndexOfMemberIDsResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *GetFuncIndexOfMemberIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFuncIndexOfMemberIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFuncIndexOfMemberIDsOperation{}
@@ -1564,14 +1576,16 @@ type GetVarIndexOfMemberIDsRequest struct {
 	MemberID int32 `idl:"name:memid" json:"member_id"`
 }
 
-func (o *GetVarIndexOfMemberIDsRequest) xxx_ToOp(ctx context.Context) *xxx_GetVarIndexOfMemberIDsOperation {
+func (o *GetVarIndexOfMemberIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVarIndexOfMemberIDsOperation) *xxx_GetVarIndexOfMemberIDsOperation {
+	if op == nil {
+		op = &xxx_GetVarIndexOfMemberIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVarIndexOfMemberIDsOperation{}
+		return op
 	}
-	return &xxx_GetVarIndexOfMemberIDsOperation{
-		This:     o.This,
-		MemberID: o.MemberID,
-	}
+	o.This = op.This
+	o.MemberID = op.MemberID
+	return op
 }
 
 func (o *GetVarIndexOfMemberIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVarIndexOfMemberIDsOperation) {
@@ -1582,7 +1596,7 @@ func (o *GetVarIndexOfMemberIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.MemberID = op.MemberID
 }
 func (o *GetVarIndexOfMemberIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVarIndexOfMemberIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVarIndexOfMemberIDsOperation{}
@@ -1605,15 +1619,17 @@ type GetVarIndexOfMemberIDsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVarIndexOfMemberIDsResponse) xxx_ToOp(ctx context.Context) *xxx_GetVarIndexOfMemberIDsOperation {
+func (o *GetVarIndexOfMemberIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVarIndexOfMemberIDsOperation) *xxx_GetVarIndexOfMemberIDsOperation {
+	if op == nil {
+		op = &xxx_GetVarIndexOfMemberIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVarIndexOfMemberIDsOperation{}
+		return op
 	}
-	return &xxx_GetVarIndexOfMemberIDsOperation{
-		That:     o.That,
-		VarIndex: o.VarIndex,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.VarIndex = op.VarIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVarIndexOfMemberIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVarIndexOfMemberIDsOperation) {
@@ -1625,7 +1641,7 @@ func (o *GetVarIndexOfMemberIDsResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetVarIndexOfMemberIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVarIndexOfMemberIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVarIndexOfMemberIDsOperation{}
@@ -1833,14 +1849,16 @@ type GetCustomDataRequest struct {
 	GUID *dtyp.GUID `idl:"name:guid" json:"guid"`
 }
 
-func (o *GetCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetCustomDataOperation {
+func (o *GetCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCustomDataOperation) *xxx_GetCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetCustomDataOperation{
-		This: o.This,
-		GUID: o.GUID,
-	}
+	o.This = op.This
+	o.GUID = op.GUID
+	return op
 }
 
 func (o *GetCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCustomDataOperation) {
@@ -1851,7 +1869,7 @@ func (o *GetCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCustom
 	o.GUID = op.GUID
 }
 func (o *GetCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCustomDataOperation{}
@@ -1877,15 +1895,17 @@ type GetCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetCustomDataOperation {
+func (o *GetCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCustomDataOperation) *xxx_GetCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetCustomDataOperation{
-		That:     o.That,
-		VarValue: o.VarValue,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.VarValue = op.VarValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCustomDataOperation) {
@@ -1897,7 +1917,7 @@ func (o *GetCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCusto
 	o.Return = op.Return
 }
 func (o *GetCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCustomDataOperation{}
@@ -2120,15 +2140,17 @@ type GetFuncCustomDataRequest struct {
 	GUID *dtyp.GUID `idl:"name:guid" json:"guid"`
 }
 
-func (o *GetFuncCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetFuncCustomDataOperation {
+func (o *GetFuncCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFuncCustomDataOperation) *xxx_GetFuncCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetFuncCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFuncCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetFuncCustomDataOperation{
-		This:  o.This,
-		Index: o.Index,
-		GUID:  o.GUID,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	o.GUID = op.GUID
+	return op
 }
 
 func (o *GetFuncCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFuncCustomDataOperation) {
@@ -2140,7 +2162,7 @@ func (o *GetFuncCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFu
 	o.GUID = op.GUID
 }
 func (o *GetFuncCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFuncCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFuncCustomDataOperation{}
@@ -2162,15 +2184,17 @@ type GetFuncCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFuncCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetFuncCustomDataOperation {
+func (o *GetFuncCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFuncCustomDataOperation) *xxx_GetFuncCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetFuncCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFuncCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetFuncCustomDataOperation{
-		That:     o.That,
-		VarValue: o.VarValue,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.VarValue = op.VarValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFuncCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFuncCustomDataOperation) {
@@ -2182,7 +2206,7 @@ func (o *GetFuncCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetF
 	o.Return = op.Return
 }
 func (o *GetFuncCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFuncCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFuncCustomDataOperation{}
@@ -2423,16 +2447,18 @@ type GetParamCustomDataRequest struct {
 	GUID *dtyp.GUID `idl:"name:guid" json:"guid"`
 }
 
-func (o *GetParamCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetParamCustomDataOperation {
+func (o *GetParamCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetParamCustomDataOperation) *xxx_GetParamCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetParamCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetParamCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetParamCustomDataOperation{
-		This:       o.This,
-		IndexFunc:  o.IndexFunc,
-		IndexParam: o.IndexParam,
-		GUID:       o.GUID,
-	}
+	o.This = op.This
+	o.IndexFunc = op.IndexFunc
+	o.IndexParam = op.IndexParam
+	o.GUID = op.GUID
+	return op
 }
 
 func (o *GetParamCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetParamCustomDataOperation) {
@@ -2445,7 +2471,7 @@ func (o *GetParamCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetP
 	o.GUID = op.GUID
 }
 func (o *GetParamCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetParamCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetParamCustomDataOperation{}
@@ -2467,15 +2493,17 @@ type GetParamCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetParamCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetParamCustomDataOperation {
+func (o *GetParamCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetParamCustomDataOperation) *xxx_GetParamCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetParamCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetParamCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetParamCustomDataOperation{
-		That:     o.That,
-		VarValue: o.VarValue,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.VarValue = op.VarValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetParamCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetParamCustomDataOperation) {
@@ -2487,7 +2515,7 @@ func (o *GetParamCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetParamCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetParamCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetParamCustomDataOperation{}
@@ -2710,15 +2738,17 @@ type GetVarCustomDataRequest struct {
 	GUID *dtyp.GUID `idl:"name:guid" json:"guid"`
 }
 
-func (o *GetVarCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetVarCustomDataOperation {
+func (o *GetVarCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVarCustomDataOperation) *xxx_GetVarCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetVarCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVarCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetVarCustomDataOperation{
-		This:  o.This,
-		Index: o.Index,
-		GUID:  o.GUID,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	o.GUID = op.GUID
+	return op
 }
 
 func (o *GetVarCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVarCustomDataOperation) {
@@ -2730,7 +2760,7 @@ func (o *GetVarCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVar
 	o.GUID = op.GUID
 }
 func (o *GetVarCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVarCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVarCustomDataOperation{}
@@ -2752,15 +2782,17 @@ type GetVarCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVarCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetVarCustomDataOperation {
+func (o *GetVarCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVarCustomDataOperation) *xxx_GetVarCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetVarCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVarCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetVarCustomDataOperation{
-		That:     o.That,
-		VarValue: o.VarValue,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.VarValue = op.VarValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVarCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVarCustomDataOperation) {
@@ -2772,7 +2804,7 @@ func (o *GetVarCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVa
 	o.Return = op.Return
 }
 func (o *GetVarCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVarCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVarCustomDataOperation{}
@@ -2997,15 +3029,17 @@ type GetImplTypeCustomDataRequest struct {
 	GUID *dtyp.GUID `idl:"name:guid" json:"guid"`
 }
 
-func (o *GetImplTypeCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetImplTypeCustomDataOperation {
+func (o *GetImplTypeCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImplTypeCustomDataOperation) *xxx_GetImplTypeCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetImplTypeCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetImplTypeCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetImplTypeCustomDataOperation{
-		This:  o.This,
-		Index: o.Index,
-		GUID:  o.GUID,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	o.GUID = op.GUID
+	return op
 }
 
 func (o *GetImplTypeCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetImplTypeCustomDataOperation) {
@@ -3017,7 +3051,7 @@ func (o *GetImplTypeCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.GUID = op.GUID
 }
 func (o *GetImplTypeCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetImplTypeCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetImplTypeCustomDataOperation{}
@@ -3039,15 +3073,17 @@ type GetImplTypeCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetImplTypeCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetImplTypeCustomDataOperation {
+func (o *GetImplTypeCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetImplTypeCustomDataOperation) *xxx_GetImplTypeCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetImplTypeCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetImplTypeCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetImplTypeCustomDataOperation{
-		That:     o.That,
-		VarValue: o.VarValue,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.VarValue = op.VarValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetImplTypeCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetImplTypeCustomDataOperation) {
@@ -3059,7 +3095,7 @@ func (o *GetImplTypeCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetImplTypeCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetImplTypeCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetImplTypeCustomDataOperation{}
@@ -3365,16 +3401,18 @@ type GetDocumentation2Request struct {
 	PointerFlags uint32 `idl:"name:refPtrFlags" json:"pointer_flags"`
 }
 
-func (o *GetDocumentation2Request) xxx_ToOp(ctx context.Context) *xxx_GetDocumentation2Operation {
+func (o *GetDocumentation2Request) xxx_ToOp(ctx context.Context, op *xxx_GetDocumentation2Operation) *xxx_GetDocumentation2Operation {
+	if op == nil {
+		op = &xxx_GetDocumentation2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetDocumentation2Operation{}
+		return op
 	}
-	return &xxx_GetDocumentation2Operation{
-		This:         o.This,
-		MemberID:     o.MemberID,
-		LocaleID:     o.LocaleID,
-		PointerFlags: o.PointerFlags,
-	}
+	o.This = op.This
+	o.MemberID = op.MemberID
+	o.LocaleID = op.LocaleID
+	o.PointerFlags = op.PointerFlags
+	return op
 }
 
 func (o *GetDocumentation2Request) xxx_FromOp(ctx context.Context, op *xxx_GetDocumentation2Operation) {
@@ -3387,7 +3425,7 @@ func (o *GetDocumentation2Request) xxx_FromOp(ctx context.Context, op *xxx_GetDo
 	o.PointerFlags = op.PointerFlags
 }
 func (o *GetDocumentation2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDocumentation2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDocumentation2Operation{}
@@ -3432,17 +3470,19 @@ type GetDocumentation2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDocumentation2Response) xxx_ToOp(ctx context.Context) *xxx_GetDocumentation2Operation {
+func (o *GetDocumentation2Response) xxx_ToOp(ctx context.Context, op *xxx_GetDocumentation2Operation) *xxx_GetDocumentation2Operation {
+	if op == nil {
+		op = &xxx_GetDocumentation2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetDocumentation2Operation{}
+		return op
 	}
-	return &xxx_GetDocumentation2Operation{
-		That:              o.That,
-		HelpString:        o.HelpString,
-		HelpStringContext: o.HelpStringContext,
-		HelpStringDLL:     o.HelpStringDLL,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.HelpString = op.HelpString
+	o.HelpStringContext = op.HelpStringContext
+	o.HelpStringDLL = op.HelpStringDLL
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDocumentation2Response) xxx_FromOp(ctx context.Context, op *xxx_GetDocumentation2Operation) {
@@ -3456,7 +3496,7 @@ func (o *GetDocumentation2Response) xxx_FromOp(ctx context.Context, op *xxx_GetD
 	o.Return = op.Return
 }
 func (o *GetDocumentation2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDocumentation2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDocumentation2Operation{}
@@ -3618,13 +3658,15 @@ type GetAllCustomDataRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAllCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllCustomDataOperation {
+func (o *GetAllCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllCustomDataOperation) *xxx_GetAllCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllCustomDataOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAllCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllCustomDataOperation) {
@@ -3634,7 +3676,7 @@ func (o *GetAllCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAll
 	o.This = op.This
 }
 func (o *GetAllCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllCustomDataOperation{}
@@ -3663,15 +3705,17 @@ type GetAllCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllCustomDataOperation {
+func (o *GetAllCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllCustomDataOperation) *xxx_GetAllCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllCustomDataOperation{
-		That:       o.That,
-		CustomData: o.CustomData,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CustomData = op.CustomData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllCustomDataOperation) {
@@ -3683,7 +3727,7 @@ func (o *GetAllCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAl
 	o.Return = op.Return
 }
 func (o *GetAllCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllCustomDataOperation{}
@@ -3864,14 +3908,16 @@ type GetAllFuncCustomDataRequest struct {
 	Index uint32 `idl:"name:index" json:"index"`
 }
 
-func (o *GetAllFuncCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllFuncCustomDataOperation {
+func (o *GetAllFuncCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllFuncCustomDataOperation) *xxx_GetAllFuncCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllFuncCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllFuncCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllFuncCustomDataOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *GetAllFuncCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllFuncCustomDataOperation) {
@@ -3882,7 +3928,7 @@ func (o *GetAllFuncCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Index = op.Index
 }
 func (o *GetAllFuncCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllFuncCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllFuncCustomDataOperation{}
@@ -3906,15 +3952,17 @@ type GetAllFuncCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllFuncCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllFuncCustomDataOperation {
+func (o *GetAllFuncCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllFuncCustomDataOperation) *xxx_GetAllFuncCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllFuncCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllFuncCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllFuncCustomDataOperation{
-		That:       o.That,
-		CustomData: o.CustomData,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CustomData = op.CustomData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllFuncCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllFuncCustomDataOperation) {
@@ -3926,7 +3974,7 @@ func (o *GetAllFuncCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetAllFuncCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllFuncCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllFuncCustomDataOperation{}
@@ -4125,15 +4173,17 @@ type GetAllParamCustomDataRequest struct {
 	IndexParam uint32 `idl:"name:indexParam" json:"index_param"`
 }
 
-func (o *GetAllParamCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllParamCustomDataOperation {
+func (o *GetAllParamCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllParamCustomDataOperation) *xxx_GetAllParamCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllParamCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllParamCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllParamCustomDataOperation{
-		This:       o.This,
-		IndexFunc:  o.IndexFunc,
-		IndexParam: o.IndexParam,
-	}
+	o.This = op.This
+	o.IndexFunc = op.IndexFunc
+	o.IndexParam = op.IndexParam
+	return op
 }
 
 func (o *GetAllParamCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllParamCustomDataOperation) {
@@ -4145,7 +4195,7 @@ func (o *GetAllParamCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.IndexParam = op.IndexParam
 }
 func (o *GetAllParamCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllParamCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllParamCustomDataOperation{}
@@ -4169,15 +4219,17 @@ type GetAllParamCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllParamCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllParamCustomDataOperation {
+func (o *GetAllParamCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllParamCustomDataOperation) *xxx_GetAllParamCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllParamCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllParamCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllParamCustomDataOperation{
-		That:       o.That,
-		CustomData: o.CustomData,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CustomData = op.CustomData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllParamCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllParamCustomDataOperation) {
@@ -4189,7 +4241,7 @@ func (o *GetAllParamCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetAllParamCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllParamCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllParamCustomDataOperation{}
@@ -4368,14 +4420,16 @@ type GetAllVarCustomDataRequest struct {
 	Index uint32 `idl:"name:index" json:"index"`
 }
 
-func (o *GetAllVarCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllVarCustomDataOperation {
+func (o *GetAllVarCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllVarCustomDataOperation) *xxx_GetAllVarCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllVarCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllVarCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllVarCustomDataOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *GetAllVarCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllVarCustomDataOperation) {
@@ -4386,7 +4440,7 @@ func (o *GetAllVarCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Index = op.Index
 }
 func (o *GetAllVarCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllVarCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllVarCustomDataOperation{}
@@ -4410,15 +4464,17 @@ type GetAllVarCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllVarCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllVarCustomDataOperation {
+func (o *GetAllVarCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllVarCustomDataOperation) *xxx_GetAllVarCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllVarCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllVarCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllVarCustomDataOperation{
-		That:       o.That,
-		CustomData: o.CustomData,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CustomData = op.CustomData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllVarCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllVarCustomDataOperation) {
@@ -4430,7 +4486,7 @@ func (o *GetAllVarCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetAllVarCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllVarCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllVarCustomDataOperation{}
@@ -4611,14 +4667,16 @@ type GetAllImplTypeCustomDataRequest struct {
 	Index uint32 `idl:"name:index" json:"index"`
 }
 
-func (o *GetAllImplTypeCustomDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllImplTypeCustomDataOperation {
+func (o *GetAllImplTypeCustomDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllImplTypeCustomDataOperation) *xxx_GetAllImplTypeCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllImplTypeCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllImplTypeCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllImplTypeCustomDataOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *GetAllImplTypeCustomDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllImplTypeCustomDataOperation) {
@@ -4629,7 +4687,7 @@ func (o *GetAllImplTypeCustomDataRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.Index = op.Index
 }
 func (o *GetAllImplTypeCustomDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllImplTypeCustomDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllImplTypeCustomDataOperation{}
@@ -4653,15 +4711,17 @@ type GetAllImplTypeCustomDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllImplTypeCustomDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllImplTypeCustomDataOperation {
+func (o *GetAllImplTypeCustomDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllImplTypeCustomDataOperation) *xxx_GetAllImplTypeCustomDataOperation {
+	if op == nil {
+		op = &xxx_GetAllImplTypeCustomDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllImplTypeCustomDataOperation{}
+		return op
 	}
-	return &xxx_GetAllImplTypeCustomDataOperation{
-		That:       o.That,
-		CustomData: o.CustomData,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CustomData = op.CustomData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllImplTypeCustomDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllImplTypeCustomDataOperation) {
@@ -4673,7 +4733,7 @@ func (o *GetAllImplTypeCustomDataResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GetAllImplTypeCustomDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllImplTypeCustomDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllImplTypeCustomDataOperation{}

@@ -73,7 +73,7 @@ func (o *xxx_DefaultVolume2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolume2Client) GetProperties2(ctx context.Context, in *GetProperties2Request, opts ...dcerpc.CallOption) (*GetProperties2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -285,13 +285,15 @@ type GetProperties2Request struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetProperties2Request) xxx_ToOp(ctx context.Context) *xxx_GetProperties2Operation {
+func (o *GetProperties2Request) xxx_ToOp(ctx context.Context, op *xxx_GetProperties2Operation) *xxx_GetProperties2Operation {
+	if op == nil {
+		op = &xxx_GetProperties2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetProperties2Operation{}
+		return op
 	}
-	return &xxx_GetProperties2Operation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetProperties2Request) xxx_FromOp(ctx context.Context, op *xxx_GetProperties2Operation) {
@@ -301,7 +303,7 @@ func (o *GetProperties2Request) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.This = op.This
 }
 func (o *GetProperties2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetProperties2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProperties2Operation{}
@@ -321,15 +323,17 @@ type GetProperties2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetProperties2Response) xxx_ToOp(ctx context.Context) *xxx_GetProperties2Operation {
+func (o *GetProperties2Response) xxx_ToOp(ctx context.Context, op *xxx_GetProperties2Operation) *xxx_GetProperties2Operation {
+	if op == nil {
+		op = &xxx_GetProperties2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetProperties2Operation{}
+		return op
 	}
-	return &xxx_GetProperties2Operation{
-		That:             o.That,
-		VolumeProperties: o.VolumeProperties,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.VolumeProperties = op.VolumeProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetProperties2Response) xxx_FromOp(ctx context.Context, op *xxx_GetProperties2Operation) {
@@ -341,7 +345,7 @@ func (o *GetProperties2Response) xxx_FromOp(ctx context.Context, op *xxx_GetProp
 	o.Return = op.Return
 }
 func (o *GetProperties2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetProperties2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProperties2Operation{}

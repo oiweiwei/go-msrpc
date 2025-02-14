@@ -104,26 +104,49 @@ func CatalogUtilsServerHandle(ctx context.Context, o CatalogUtilsServer, opNum i
 	}
 	switch opNum {
 	case 3: // ValidateUser
-		in := &ValidateUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ValidateUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ValidateUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ValidateUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidateUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // WaitForEndWrites
-		in := &WaitForEndWritesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitForEndWritesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WaitForEndWrites(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitForEndWritesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForEndWrites(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetEventClassesForIID
-		in := &GetEventClassesForIIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassesForIIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassesForIID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassesForIIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassesForIID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalogUtils
+type UnimplementedCatalogUtilsServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalogUtilsServer) ValidateUser(context.Context, *ValidateUserRequest) (*ValidateUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtilsServer) WaitForEndWrites(context.Context, *WaitForEndWritesRequest) (*WaitForEndWritesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtilsServer) GetEventClassesForIID(context.Context, *GetEventClassesForIIDRequest) (*GetEventClassesForIIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CatalogUtilsServer = (*UnimplementedCatalogUtilsServer)(nil)

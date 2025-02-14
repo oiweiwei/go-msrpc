@@ -166,7 +166,7 @@ func (o *xxx_DefaultAdvancedDiskClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) GetPartitionProperties(ctx context.Context, in *GetPartitionPropertiesRequest, opts ...dcerpc.CallOption) (*GetPartitionPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -186,7 +186,7 @@ func (o *xxx_DefaultAdvancedDiskClient) GetPartitionProperties(ctx context.Conte
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) QueryPartitions(ctx context.Context, in *QueryPartitionsRequest, opts ...dcerpc.CallOption) (*QueryPartitionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -206,7 +206,7 @@ func (o *xxx_DefaultAdvancedDiskClient) QueryPartitions(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) CreatePartition(ctx context.Context, in *CreatePartitionRequest, opts ...dcerpc.CallOption) (*CreatePartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -226,7 +226,7 @@ func (o *xxx_DefaultAdvancedDiskClient) CreatePartition(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) DeletePartition(ctx context.Context, in *DeletePartitionRequest, opts ...dcerpc.CallOption) (*DeletePartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -246,7 +246,7 @@ func (o *xxx_DefaultAdvancedDiskClient) DeletePartition(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) ChangeAttributes(ctx context.Context, in *ChangeAttributesRequest, opts ...dcerpc.CallOption) (*ChangeAttributesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -266,7 +266,7 @@ func (o *xxx_DefaultAdvancedDiskClient) ChangeAttributes(ctx context.Context, in
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) AssignDriveLetter(ctx context.Context, in *AssignDriveLetterRequest, opts ...dcerpc.CallOption) (*AssignDriveLetterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -286,7 +286,7 @@ func (o *xxx_DefaultAdvancedDiskClient) AssignDriveLetter(ctx context.Context, i
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) DeleteDriveLetter(ctx context.Context, in *DeleteDriveLetterRequest, opts ...dcerpc.CallOption) (*DeleteDriveLetterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -306,7 +306,7 @@ func (o *xxx_DefaultAdvancedDiskClient) DeleteDriveLetter(ctx context.Context, i
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) GetDriveLetter(ctx context.Context, in *GetDriveLetterRequest, opts ...dcerpc.CallOption) (*GetDriveLetterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -326,7 +326,7 @@ func (o *xxx_DefaultAdvancedDiskClient) GetDriveLetter(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) FormatPartition(ctx context.Context, in *FormatPartitionRequest, opts ...dcerpc.CallOption) (*FormatPartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -346,7 +346,7 @@ func (o *xxx_DefaultAdvancedDiskClient) FormatPartition(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultAdvancedDiskClient) Clean(ctx context.Context, in *CleanRequest, opts ...dcerpc.CallOption) (*CleanResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -570,14 +570,16 @@ type GetPartitionPropertiesRequest struct {
 	Offset uint64 `idl:"name:ullOffset" json:"offset"`
 }
 
-func (o *GetPartitionPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPartitionPropertiesOperation {
+func (o *GetPartitionPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPartitionPropertiesOperation) *xxx_GetPartitionPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPartitionPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPartitionPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPartitionPropertiesOperation{
-		This:   o.This,
-		Offset: o.Offset,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	return op
 }
 
 func (o *GetPartitionPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPartitionPropertiesOperation) {
@@ -588,7 +590,7 @@ func (o *GetPartitionPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Offset = op.Offset
 }
 func (o *GetPartitionPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPartitionPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPartitionPropertiesOperation{}
@@ -610,15 +612,17 @@ type GetPartitionPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPartitionPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPartitionPropertiesOperation {
+func (o *GetPartitionPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPartitionPropertiesOperation) *xxx_GetPartitionPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPartitionPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPartitionPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPartitionPropertiesOperation{
-		That:              o.That,
-		PartitionProperty: o.PartitionProperty,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.PartitionProperty = op.PartitionProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPartitionPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPartitionPropertiesOperation) {
@@ -630,7 +634,7 @@ func (o *GetPartitionPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetPartitionPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPartitionPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPartitionPropertiesOperation{}
@@ -860,13 +864,15 @@ type QueryPartitionsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryPartitionsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryPartitionsOperation {
+func (o *QueryPartitionsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPartitionsOperation) *xxx_QueryPartitionsOperation {
+	if op == nil {
+		op = &xxx_QueryPartitionsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPartitionsOperation{}
+		return op
 	}
-	return &xxx_QueryPartitionsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryPartitionsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPartitionsOperation) {
@@ -876,7 +882,7 @@ func (o *QueryPartitionsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPa
 	o.This = op.This
 }
 func (o *QueryPartitionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryPartitionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPartitionsOperation{}
@@ -901,16 +907,18 @@ type QueryPartitionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryPartitionsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryPartitionsOperation {
+func (o *QueryPartitionsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPartitionsOperation) *xxx_QueryPartitionsOperation {
+	if op == nil {
+		op = &xxx_QueryPartitionsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPartitionsOperation{}
+		return op
 	}
-	return &xxx_QueryPartitionsOperation{
-		That:                   o.That,
-		PartitionPropertyArray: o.PartitionPropertyArray,
-		NumberOfPartitions:     o.NumberOfPartitions,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.PartitionPropertyArray = op.PartitionPropertyArray
+	o.NumberOfPartitions = op.NumberOfPartitions
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryPartitionsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryPartitionsOperation) {
@@ -923,7 +931,7 @@ func (o *QueryPartitionsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryP
 	o.Return = op.Return
 }
 func (o *QueryPartitionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryPartitionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPartitionsOperation{}
@@ -1160,16 +1168,18 @@ type CreatePartitionRequest struct {
 	Parameters *vds.CreatePartitionParameters `idl:"name:para" json:"parameters"`
 }
 
-func (o *CreatePartitionRequest) xxx_ToOp(ctx context.Context) *xxx_CreatePartitionOperation {
+func (o *CreatePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePartitionOperation) *xxx_CreatePartitionOperation {
+	if op == nil {
+		op = &xxx_CreatePartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePartitionOperation{}
+		return op
 	}
-	return &xxx_CreatePartitionOperation{
-		This:       o.This,
-		Offset:     o.Offset,
-		Size:       o.Size,
-		Parameters: o.Parameters,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Size = op.Size
+	o.Parameters = op.Parameters
+	return op
 }
 
 func (o *CreatePartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreatePartitionOperation) {
@@ -1182,7 +1192,7 @@ func (o *CreatePartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateP
 	o.Parameters = op.Parameters
 }
 func (o *CreatePartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreatePartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePartitionOperation{}
@@ -1207,15 +1217,17 @@ type CreatePartitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreatePartitionResponse) xxx_ToOp(ctx context.Context) *xxx_CreatePartitionOperation {
+func (o *CreatePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePartitionOperation) *xxx_CreatePartitionOperation {
+	if op == nil {
+		op = &xxx_CreatePartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePartitionOperation{}
+		return op
 	}
-	return &xxx_CreatePartitionOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreatePartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreatePartitionOperation) {
@@ -1227,7 +1239,7 @@ func (o *CreatePartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Return = op.Return
 }
 func (o *CreatePartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreatePartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePartitionOperation{}
@@ -1411,16 +1423,18 @@ type DeletePartitionRequest struct {
 	ForceProtected int32 `idl:"name:bForceProtected" json:"force_protected"`
 }
 
-func (o *DeletePartitionRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePartitionOperation {
+func (o *DeletePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePartitionOperation) *xxx_DeletePartitionOperation {
+	if op == nil {
+		op = &xxx_DeletePartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePartitionOperation{}
+		return op
 	}
-	return &xxx_DeletePartitionOperation{
-		This:           o.This,
-		Offset:         o.Offset,
-		Force:          o.Force,
-		ForceProtected: o.ForceProtected,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Force = op.Force
+	o.ForceProtected = op.ForceProtected
+	return op
 }
 
 func (o *DeletePartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePartitionOperation) {
@@ -1433,7 +1447,7 @@ func (o *DeletePartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteP
 	o.ForceProtected = op.ForceProtected
 }
 func (o *DeletePartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePartitionOperation{}
@@ -1452,14 +1466,16 @@ type DeletePartitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePartitionResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePartitionOperation {
+func (o *DeletePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePartitionOperation) *xxx_DeletePartitionOperation {
+	if op == nil {
+		op = &xxx_DeletePartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePartitionOperation{}
+		return op
 	}
-	return &xxx_DeletePartitionOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePartitionOperation) {
@@ -1470,7 +1486,7 @@ func (o *DeletePartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeletePartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePartitionOperation{}
@@ -1647,15 +1663,17 @@ type ChangeAttributesRequest struct {
 	Parameters *vds.ChangeAttributesParameters `idl:"name:para" json:"parameters"`
 }
 
-func (o *ChangeAttributesRequest) xxx_ToOp(ctx context.Context) *xxx_ChangeAttributesOperation {
+func (o *ChangeAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeAttributesOperation) *xxx_ChangeAttributesOperation {
+	if op == nil {
+		op = &xxx_ChangeAttributesOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeAttributesOperation{}
+		return op
 	}
-	return &xxx_ChangeAttributesOperation{
-		This:       o.This,
-		Offset:     o.Offset,
-		Parameters: o.Parameters,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Parameters = op.Parameters
+	return op
 }
 
 func (o *ChangeAttributesRequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeAttributesOperation) {
@@ -1667,7 +1685,7 @@ func (o *ChangeAttributesRequest) xxx_FromOp(ctx context.Context, op *xxx_Change
 	o.Parameters = op.Parameters
 }
 func (o *ChangeAttributesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangeAttributesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeAttributesOperation{}
@@ -1686,14 +1704,16 @@ type ChangeAttributesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangeAttributesResponse) xxx_ToOp(ctx context.Context) *xxx_ChangeAttributesOperation {
+func (o *ChangeAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeAttributesOperation) *xxx_ChangeAttributesOperation {
+	if op == nil {
+		op = &xxx_ChangeAttributesOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeAttributesOperation{}
+		return op
 	}
-	return &xxx_ChangeAttributesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangeAttributesResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeAttributesOperation) {
@@ -1704,7 +1724,7 @@ func (o *ChangeAttributesResponse) xxx_FromOp(ctx context.Context, op *xxx_Chang
 	o.Return = op.Return
 }
 func (o *ChangeAttributesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangeAttributesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeAttributesOperation{}
@@ -1872,15 +1892,17 @@ type AssignDriveLetterRequest struct {
 	Letter uint16 `idl:"name:wcLetter" json:"letter"`
 }
 
-func (o *AssignDriveLetterRequest) xxx_ToOp(ctx context.Context) *xxx_AssignDriveLetterOperation {
+func (o *AssignDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_AssignDriveLetterOperation) *xxx_AssignDriveLetterOperation {
+	if op == nil {
+		op = &xxx_AssignDriveLetterOperation{}
+	}
 	if o == nil {
-		return &xxx_AssignDriveLetterOperation{}
+		return op
 	}
-	return &xxx_AssignDriveLetterOperation{
-		This:   o.This,
-		Offset: o.Offset,
-		Letter: o.Letter,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Letter = op.Letter
+	return op
 }
 
 func (o *AssignDriveLetterRequest) xxx_FromOp(ctx context.Context, op *xxx_AssignDriveLetterOperation) {
@@ -1892,7 +1914,7 @@ func (o *AssignDriveLetterRequest) xxx_FromOp(ctx context.Context, op *xxx_Assig
 	o.Letter = op.Letter
 }
 func (o *AssignDriveLetterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AssignDriveLetterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AssignDriveLetterOperation{}
@@ -1911,14 +1933,16 @@ type AssignDriveLetterResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AssignDriveLetterResponse) xxx_ToOp(ctx context.Context) *xxx_AssignDriveLetterOperation {
+func (o *AssignDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_AssignDriveLetterOperation) *xxx_AssignDriveLetterOperation {
+	if op == nil {
+		op = &xxx_AssignDriveLetterOperation{}
+	}
 	if o == nil {
-		return &xxx_AssignDriveLetterOperation{}
+		return op
 	}
-	return &xxx_AssignDriveLetterOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AssignDriveLetterResponse) xxx_FromOp(ctx context.Context, op *xxx_AssignDriveLetterOperation) {
@@ -1929,7 +1953,7 @@ func (o *AssignDriveLetterResponse) xxx_FromOp(ctx context.Context, op *xxx_Assi
 	o.Return = op.Return
 }
 func (o *AssignDriveLetterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AssignDriveLetterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AssignDriveLetterOperation{}
@@ -2097,15 +2121,17 @@ type DeleteDriveLetterRequest struct {
 	Letter uint16 `idl:"name:wcLetter" json:"letter"`
 }
 
-func (o *DeleteDriveLetterRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteDriveLetterOperation {
+func (o *DeleteDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteDriveLetterOperation) *xxx_DeleteDriveLetterOperation {
+	if op == nil {
+		op = &xxx_DeleteDriveLetterOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteDriveLetterOperation{}
+		return op
 	}
-	return &xxx_DeleteDriveLetterOperation{
-		This:   o.This,
-		Offset: o.Offset,
-		Letter: o.Letter,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Letter = op.Letter
+	return op
 }
 
 func (o *DeleteDriveLetterRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteDriveLetterOperation) {
@@ -2117,7 +2143,7 @@ func (o *DeleteDriveLetterRequest) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.Letter = op.Letter
 }
 func (o *DeleteDriveLetterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteDriveLetterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteDriveLetterOperation{}
@@ -2136,14 +2162,16 @@ type DeleteDriveLetterResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteDriveLetterResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteDriveLetterOperation {
+func (o *DeleteDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteDriveLetterOperation) *xxx_DeleteDriveLetterOperation {
+	if op == nil {
+		op = &xxx_DeleteDriveLetterOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteDriveLetterOperation{}
+		return op
 	}
-	return &xxx_DeleteDriveLetterOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteDriveLetterResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteDriveLetterOperation) {
@@ -2154,7 +2182,7 @@ func (o *DeleteDriveLetterResponse) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.Return = op.Return
 }
 func (o *DeleteDriveLetterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteDriveLetterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteDriveLetterOperation{}
@@ -2319,14 +2347,16 @@ type GetDriveLetterRequest struct {
 	Offset uint64 `idl:"name:ullOffset" json:"offset"`
 }
 
-func (o *GetDriveLetterRequest) xxx_ToOp(ctx context.Context) *xxx_GetDriveLetterOperation {
+func (o *GetDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDriveLetterOperation) *xxx_GetDriveLetterOperation {
+	if op == nil {
+		op = &xxx_GetDriveLetterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDriveLetterOperation{}
+		return op
 	}
-	return &xxx_GetDriveLetterOperation{
-		This:   o.This,
-		Offset: o.Offset,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	return op
 }
 
 func (o *GetDriveLetterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDriveLetterOperation) {
@@ -2337,7 +2367,7 @@ func (o *GetDriveLetterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDrive
 	o.Offset = op.Offset
 }
 func (o *GetDriveLetterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDriveLetterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDriveLetterOperation{}
@@ -2359,15 +2389,17 @@ type GetDriveLetterResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDriveLetterResponse) xxx_ToOp(ctx context.Context) *xxx_GetDriveLetterOperation {
+func (o *GetDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDriveLetterOperation) *xxx_GetDriveLetterOperation {
+	if op == nil {
+		op = &xxx_GetDriveLetterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDriveLetterOperation{}
+		return op
 	}
-	return &xxx_GetDriveLetterOperation{
-		That:   o.That,
-		Letter: o.Letter,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Letter = op.Letter
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDriveLetterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDriveLetterOperation) {
@@ -2379,7 +2411,7 @@ func (o *GetDriveLetterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDriv
 	o.Return = op.Return
 }
 func (o *GetDriveLetterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDriveLetterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDriveLetterOperation{}
@@ -2674,20 +2706,22 @@ type FormatPartitionRequest struct {
 	EnableCompression int32 `idl:"name:bEnableCompression" json:"enable_compression"`
 }
 
-func (o *FormatPartitionRequest) xxx_ToOp(ctx context.Context) *xxx_FormatPartitionOperation {
+func (o *FormatPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatPartitionOperation) *xxx_FormatPartitionOperation {
+	if op == nil {
+		op = &xxx_FormatPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatPartitionOperation{}
+		return op
 	}
-	return &xxx_FormatPartitionOperation{
-		This:               o.This,
-		Offset:             o.Offset,
-		Type:               o.Type,
-		Label:              o.Label,
-		UnitAllocationSize: o.UnitAllocationSize,
-		Force:              o.Force,
-		QuickFormat:        o.QuickFormat,
-		EnableCompression:  o.EnableCompression,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Type = op.Type
+	o.Label = op.Label
+	o.UnitAllocationSize = op.UnitAllocationSize
+	o.Force = op.Force
+	o.QuickFormat = op.QuickFormat
+	o.EnableCompression = op.EnableCompression
+	return op
 }
 
 func (o *FormatPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatPartitionOperation) {
@@ -2704,7 +2738,7 @@ func (o *FormatPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatP
 	o.EnableCompression = op.EnableCompression
 }
 func (o *FormatPartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FormatPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatPartitionOperation{}
@@ -2727,15 +2761,17 @@ type FormatPartitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FormatPartitionResponse) xxx_ToOp(ctx context.Context) *xxx_FormatPartitionOperation {
+func (o *FormatPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatPartitionOperation) *xxx_FormatPartitionOperation {
+	if op == nil {
+		op = &xxx_FormatPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatPartitionOperation{}
+		return op
 	}
-	return &xxx_FormatPartitionOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *FormatPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_FormatPartitionOperation) {
@@ -2747,7 +2783,7 @@ func (o *FormatPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_Format
 	o.Return = op.Return
 }
 func (o *FormatPartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FormatPartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatPartitionOperation{}
@@ -2979,16 +3015,18 @@ type CleanRequest struct {
 	FullClean int32 `idl:"name:bFullClean" json:"full_clean"`
 }
 
-func (o *CleanRequest) xxx_ToOp(ctx context.Context) *xxx_CleanOperation {
+func (o *CleanRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanOperation) *xxx_CleanOperation {
+	if op == nil {
+		op = &xxx_CleanOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanOperation{}
+		return op
 	}
-	return &xxx_CleanOperation{
-		This:      o.This,
-		Force:     o.Force,
-		ForceOEM:  o.ForceOEM,
-		FullClean: o.FullClean,
-	}
+	o.This = op.This
+	o.Force = op.Force
+	o.ForceOEM = op.ForceOEM
+	o.FullClean = op.FullClean
+	return op
 }
 
 func (o *CleanRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanOperation) {
@@ -3001,7 +3039,7 @@ func (o *CleanRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanOperation) {
 	o.FullClean = op.FullClean
 }
 func (o *CleanRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CleanRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanOperation{}
@@ -3024,15 +3062,17 @@ type CleanResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CleanResponse) xxx_ToOp(ctx context.Context) *xxx_CleanOperation {
+func (o *CleanResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanOperation) *xxx_CleanOperation {
+	if op == nil {
+		op = &xxx_CleanOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanOperation{}
+		return op
 	}
-	return &xxx_CleanOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *CleanResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanOperation) {
@@ -3044,7 +3084,7 @@ func (o *CleanResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanOperation) 
 	o.Return = op.Return
 }
 func (o *CleanResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CleanResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanOperation{}

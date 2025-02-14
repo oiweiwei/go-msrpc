@@ -160,7 +160,7 @@ type xxx_DefaultTapsrvClient struct {
 }
 
 func (o *xxx_DefaultTapsrvClient) ClientAttach(ctx context.Context, in *ClientAttachRequest, opts ...dcerpc.CallOption) (*ClientAttachResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -173,7 +173,7 @@ func (o *xxx_DefaultTapsrvClient) ClientAttach(ctx context.Context, in *ClientAt
 }
 
 func (o *xxx_DefaultTapsrvClient) ClientRequest(ctx context.Context, in *ClientRequestRequest, opts ...dcerpc.CallOption) (*ClientRequestResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -183,7 +183,7 @@ func (o *xxx_DefaultTapsrvClient) ClientRequest(ctx context.Context, in *ClientR
 }
 
 func (o *xxx_DefaultTapsrvClient) ClientDetach(ctx context.Context, in *ClientDetachRequest, opts ...dcerpc.CallOption) (*ClientDetachResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -383,15 +383,17 @@ type ClientAttachRequest struct {
 	Machine string `idl:"name:pszMachine;string" json:"machine"`
 }
 
-func (o *ClientAttachRequest) xxx_ToOp(ctx context.Context) *xxx_ClientAttachOperation {
+func (o *ClientAttachRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientAttachOperation) *xxx_ClientAttachOperation {
+	if op == nil {
+		op = &xxx_ClientAttachOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientAttachOperation{}
+		return op
 	}
-	return &xxx_ClientAttachOperation{
-		ProcessID:  o.ProcessID,
-		DomainUser: o.DomainUser,
-		Machine:    o.Machine,
-	}
+	o.ProcessID = op.ProcessID
+	o.DomainUser = op.DomainUser
+	o.Machine = op.Machine
+	return op
 }
 
 func (o *ClientAttachRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientAttachOperation) {
@@ -403,7 +405,7 @@ func (o *ClientAttachRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientAtta
 	o.Machine = op.Machine
 }
 func (o *ClientAttachRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClientAttachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientAttachOperation{}
@@ -428,15 +430,17 @@ type ClientAttachResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClientAttachResponse) xxx_ToOp(ctx context.Context) *xxx_ClientAttachOperation {
+func (o *ClientAttachResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientAttachOperation) *xxx_ClientAttachOperation {
+	if op == nil {
+		op = &xxx_ClientAttachOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientAttachOperation{}
+		return op
 	}
-	return &xxx_ClientAttachOperation{
-		Context:          o.Context,
-		AsyncEventsEvent: o.AsyncEventsEvent,
-		Return:           o.Return,
-	}
+	o.Context = op.Context
+	o.AsyncEventsEvent = op.AsyncEventsEvent
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClientAttachResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientAttachOperation) {
@@ -448,7 +452,7 @@ func (o *ClientAttachResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientAtt
 	o.Return = op.Return
 }
 func (o *ClientAttachResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClientAttachResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientAttachOperation{}
@@ -723,16 +727,18 @@ type ClientRequestRequest struct {
 	UsedSize int32 `idl:"name:plUsedSize" json:"used_size"`
 }
 
-func (o *ClientRequestRequest) xxx_ToOp(ctx context.Context) *xxx_ClientRequestOperation {
+func (o *ClientRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientRequestOperation) *xxx_ClientRequestOperation {
+	if op == nil {
+		op = &xxx_ClientRequestOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientRequestOperation{}
+		return op
 	}
-	return &xxx_ClientRequestOperation{
-		Context:    o.Context,
-		Buffer:     o.Buffer,
-		NeededSize: o.NeededSize,
-		UsedSize:   o.UsedSize,
-	}
+	o.Context = op.Context
+	o.Buffer = op.Buffer
+	o.NeededSize = op.NeededSize
+	o.UsedSize = op.UsedSize
+	return op
 }
 
 func (o *ClientRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientRequestOperation) {
@@ -745,7 +751,7 @@ func (o *ClientRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientReq
 	o.UsedSize = op.UsedSize
 }
 func (o *ClientRequestRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClientRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientRequestOperation{}
@@ -768,14 +774,16 @@ type ClientRequestResponse struct {
 	UsedSize int32 `idl:"name:plUsedSize" json:"used_size"`
 }
 
-func (o *ClientRequestResponse) xxx_ToOp(ctx context.Context) *xxx_ClientRequestOperation {
+func (o *ClientRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientRequestOperation) *xxx_ClientRequestOperation {
+	if op == nil {
+		op = &xxx_ClientRequestOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientRequestOperation{}
+		return op
 	}
-	return &xxx_ClientRequestOperation{
-		Buffer:   o.Buffer,
-		UsedSize: o.UsedSize,
-	}
+	o.Buffer = op.Buffer
+	o.UsedSize = op.UsedSize
+	return op
 }
 
 func (o *ClientRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientRequestOperation) {
@@ -786,7 +794,7 @@ func (o *ClientRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientRe
 	o.UsedSize = op.UsedSize
 }
 func (o *ClientRequestResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClientRequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientRequestOperation{}
@@ -899,13 +907,15 @@ type ClientDetachRequest struct {
 	Context *Type `idl:"name:pphContext" json:"context"`
 }
 
-func (o *ClientDetachRequest) xxx_ToOp(ctx context.Context) *xxx_ClientDetachOperation {
+func (o *ClientDetachRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientDetachOperation) *xxx_ClientDetachOperation {
+	if op == nil {
+		op = &xxx_ClientDetachOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientDetachOperation{}
+		return op
 	}
-	return &xxx_ClientDetachOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *ClientDetachRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientDetachOperation) {
@@ -915,7 +925,7 @@ func (o *ClientDetachRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientDeta
 	o.Context = op.Context
 }
 func (o *ClientDetachRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClientDetachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientDetachOperation{}
@@ -937,13 +947,15 @@ type ClientDetachResponse struct {
 	Context *Type `idl:"name:pphContext" json:"context"`
 }
 
-func (o *ClientDetachResponse) xxx_ToOp(ctx context.Context) *xxx_ClientDetachOperation {
+func (o *ClientDetachResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientDetachOperation) *xxx_ClientDetachOperation {
+	if op == nil {
+		op = &xxx_ClientDetachOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientDetachOperation{}
+		return op
 	}
-	return &xxx_ClientDetachOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *ClientDetachResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientDetachOperation) {
@@ -953,7 +965,7 @@ func (o *ClientDetachResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientDet
 	o.Context = op.Context
 }
 func (o *ClientDetachResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClientDetachResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientDetachOperation{}

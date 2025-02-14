@@ -100,26 +100,49 @@ func PCHCollectionServerHandle(ctx context.Context, o PCHCollectionServer, opNum
 	}
 	switch opNum {
 	case 7: // _NewEnum
-		in := &Get_NewEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Get_NewEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Get_NewEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Get_NewEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Get_NewEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IPCHCollection
+type UnimplementedPCHCollectionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedPCHCollectionServer) Get_NewEnum(context.Context, *Get_NewEnumRequest) (*Get_NewEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPCHCollectionServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPCHCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PCHCollectionServer = (*UnimplementedPCHCollectionServer)(nil)

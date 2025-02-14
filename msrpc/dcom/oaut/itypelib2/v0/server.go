@@ -105,33 +105,61 @@ func TypeLib2ServerHandle(ctx context.Context, o TypeLib2Server, opNum int, r nd
 	}
 	switch opNum {
 	case 13: // GetCustData
-		in := &GetCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // GetLibStatistics
-		in := &GetLibStatisticsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLibStatisticsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLibStatistics(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLibStatisticsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLibStatistics(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // GetDocumentation2
-		in := &GetDocumentation2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDocumentation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDocumentation2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDocumentation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDocumentation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // GetAllCustData
-		in := &GetAllCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITypeLib2
+type UnimplementedTypeLib2Server struct {
+	itypelib.UnimplementedTypeLibServer
+}
+
+func (UnimplementedTypeLib2Server) GetCustomData(context.Context, *GetCustomDataRequest) (*GetCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLib2Server) GetLibStatistics(context.Context, *GetLibStatisticsRequest) (*GetLibStatisticsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLib2Server) GetDocumentation2(context.Context, *GetDocumentation2Request) (*GetDocumentation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLib2Server) GetAllCustomData(context.Context, *GetAllCustomDataRequest) (*GetAllCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TypeLib2Server = (*UnimplementedTypeLib2Server)(nil)

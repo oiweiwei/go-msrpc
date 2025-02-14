@@ -261,7 +261,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) IMSAdminBaseW() imsadminbasew.IMSAdmin
 }
 
 func (o *xxx_DefaultIMSAdminBase2WClient) BackupWithPassword(ctx context.Context, in *BackupWithPasswordRequest, opts ...dcerpc.CallOption) (*BackupWithPasswordResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -281,7 +281,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) BackupWithPassword(ctx context.Context
 }
 
 func (o *xxx_DefaultIMSAdminBase2WClient) RestoreWithPassword(ctx context.Context, in *RestoreWithPasswordRequest, opts ...dcerpc.CallOption) (*RestoreWithPasswordResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -301,7 +301,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) RestoreWithPassword(ctx context.Contex
 }
 
 func (o *xxx_DefaultIMSAdminBase2WClient) Export(ctx context.Context, in *ExportRequest, opts ...dcerpc.CallOption) (*ExportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -321,7 +321,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) Export(ctx context.Context, in *Export
 }
 
 func (o *xxx_DefaultIMSAdminBase2WClient) Import(ctx context.Context, in *ImportRequest, opts ...dcerpc.CallOption) (*ImportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -341,7 +341,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) Import(ctx context.Context, in *Import
 }
 
 func (o *xxx_DefaultIMSAdminBase2WClient) RestoreHistory(ctx context.Context, in *RestoreHistoryRequest, opts ...dcerpc.CallOption) (*RestoreHistoryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -361,7 +361,7 @@ func (o *xxx_DefaultIMSAdminBase2WClient) RestoreHistory(ctx context.Context, in
 }
 
 func (o *xxx_DefaultIMSAdminBase2WClient) EnumHistory(ctx context.Context, in *EnumHistoryRequest, opts ...dcerpc.CallOption) (*EnumHistoryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -687,17 +687,19 @@ type BackupWithPasswordRequest struct {
 	Password string `idl:"name:pszPasswd;string;pointer:unique" json:"password"`
 }
 
-func (o *BackupWithPasswordRequest) xxx_ToOp(ctx context.Context) *xxx_BackupWithPasswordOperation {
+func (o *BackupWithPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupWithPasswordOperation) *xxx_BackupWithPasswordOperation {
+	if op == nil {
+		op = &xxx_BackupWithPasswordOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupWithPasswordOperation{}
+		return op
 	}
-	return &xxx_BackupWithPasswordOperation{
-		This:       o.This,
-		BackupName: o.BackupName,
-		Version:    o.Version,
-		Flags:      o.Flags,
-		Password:   o.Password,
-	}
+	o.This = op.This
+	o.BackupName = op.BackupName
+	o.Version = op.Version
+	o.Flags = op.Flags
+	o.Password = op.Password
+	return op
 }
 
 func (o *BackupWithPasswordRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupWithPasswordOperation) {
@@ -711,7 +713,7 @@ func (o *BackupWithPasswordRequest) xxx_FromOp(ctx context.Context, op *xxx_Back
 	o.Password = op.Password
 }
 func (o *BackupWithPasswordRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BackupWithPasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupWithPasswordOperation{}
@@ -730,14 +732,16 @@ type BackupWithPasswordResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BackupWithPasswordResponse) xxx_ToOp(ctx context.Context) *xxx_BackupWithPasswordOperation {
+func (o *BackupWithPasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupWithPasswordOperation) *xxx_BackupWithPasswordOperation {
+	if op == nil {
+		op = &xxx_BackupWithPasswordOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupWithPasswordOperation{}
+		return op
 	}
-	return &xxx_BackupWithPasswordOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *BackupWithPasswordResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupWithPasswordOperation) {
@@ -748,7 +752,7 @@ func (o *BackupWithPasswordResponse) xxx_FromOp(ctx context.Context, op *xxx_Bac
 	o.Return = op.Return
 }
 func (o *BackupWithPasswordResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BackupWithPasswordResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupWithPasswordOperation{}
@@ -1008,17 +1012,19 @@ type RestoreWithPasswordRequest struct {
 	Password string `idl:"name:pszPasswd;string;pointer:unique" json:"password"`
 }
 
-func (o *RestoreWithPasswordRequest) xxx_ToOp(ctx context.Context) *xxx_RestoreWithPasswordOperation {
+func (o *RestoreWithPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreWithPasswordOperation) *xxx_RestoreWithPasswordOperation {
+	if op == nil {
+		op = &xxx_RestoreWithPasswordOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreWithPasswordOperation{}
+		return op
 	}
-	return &xxx_RestoreWithPasswordOperation{
-		This:       o.This,
-		BackupName: o.BackupName,
-		Version:    o.Version,
-		Flags:      o.Flags,
-		Password:   o.Password,
-	}
+	o.This = op.This
+	o.BackupName = op.BackupName
+	o.Version = op.Version
+	o.Flags = op.Flags
+	o.Password = op.Password
+	return op
 }
 
 func (o *RestoreWithPasswordRequest) xxx_FromOp(ctx context.Context, op *xxx_RestoreWithPasswordOperation) {
@@ -1032,7 +1038,7 @@ func (o *RestoreWithPasswordRequest) xxx_FromOp(ctx context.Context, op *xxx_Res
 	o.Password = op.Password
 }
 func (o *RestoreWithPasswordRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RestoreWithPasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreWithPasswordOperation{}
@@ -1051,14 +1057,16 @@ type RestoreWithPasswordResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RestoreWithPasswordResponse) xxx_ToOp(ctx context.Context) *xxx_RestoreWithPasswordOperation {
+func (o *RestoreWithPasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreWithPasswordOperation) *xxx_RestoreWithPasswordOperation {
+	if op == nil {
+		op = &xxx_RestoreWithPasswordOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreWithPasswordOperation{}
+		return op
 	}
-	return &xxx_RestoreWithPasswordOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RestoreWithPasswordResponse) xxx_FromOp(ctx context.Context, op *xxx_RestoreWithPasswordOperation) {
@@ -1069,7 +1077,7 @@ func (o *RestoreWithPasswordResponse) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.Return = op.Return
 }
 func (o *RestoreWithPasswordResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RestoreWithPasswordResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreWithPasswordOperation{}
@@ -1354,17 +1362,19 @@ type ExportRequest struct {
 	Flags uint32 `idl:"name:dwMDFlags" json:"flags"`
 }
 
-func (o *ExportRequest) xxx_ToOp(ctx context.Context) *xxx_ExportOperation {
+func (o *ExportRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportOperation) *xxx_ExportOperation {
+	if op == nil {
+		op = &xxx_ExportOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportOperation{}
+		return op
 	}
-	return &xxx_ExportOperation{
-		This:       o.This,
-		Password:   o.Password,
-		FileName:   o.FileName,
-		SourcePath: o.SourcePath,
-		Flags:      o.Flags,
-	}
+	o.This = op.This
+	o.Password = op.Password
+	o.FileName = op.FileName
+	o.SourcePath = op.SourcePath
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ExportRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportOperation) {
@@ -1378,7 +1388,7 @@ func (o *ExportRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportOperation)
 	o.Flags = op.Flags
 }
 func (o *ExportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportOperation{}
@@ -1397,14 +1407,16 @@ type ExportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExportResponse) xxx_ToOp(ctx context.Context) *xxx_ExportOperation {
+func (o *ExportResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportOperation) *xxx_ExportOperation {
+	if op == nil {
+		op = &xxx_ExportOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportOperation{}
+		return op
 	}
-	return &xxx_ExportOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExportResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportOperation) {
@@ -1415,7 +1427,7 @@ func (o *ExportResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportOperation
 	o.Return = op.Return
 }
 func (o *ExportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportOperation{}
@@ -1750,18 +1762,20 @@ type ImportRequest struct {
 	Flags uint32 `idl:"name:dwMDFlags" json:"flags"`
 }
 
-func (o *ImportRequest) xxx_ToOp(ctx context.Context) *xxx_ImportOperation {
+func (o *ImportRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportOperation) *xxx_ImportOperation {
+	if op == nil {
+		op = &xxx_ImportOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportOperation{}
+		return op
 	}
-	return &xxx_ImportOperation{
-		This:            o.This,
-		Password:        o.Password,
-		FileName:        o.FileName,
-		SourcePath:      o.SourcePath,
-		DestinationPath: o.DestinationPath,
-		Flags:           o.Flags,
-	}
+	o.This = op.This
+	o.Password = op.Password
+	o.FileName = op.FileName
+	o.SourcePath = op.SourcePath
+	o.DestinationPath = op.DestinationPath
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ImportRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportOperation) {
@@ -1776,7 +1790,7 @@ func (o *ImportRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportOperation)
 	o.Flags = op.Flags
 }
 func (o *ImportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ImportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportOperation{}
@@ -1795,14 +1809,16 @@ type ImportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ImportResponse) xxx_ToOp(ctx context.Context) *xxx_ImportOperation {
+func (o *ImportResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportOperation) *xxx_ImportOperation {
+	if op == nil {
+		op = &xxx_ImportOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportOperation{}
+		return op
 	}
-	return &xxx_ImportOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ImportResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportOperation) {
@@ -1813,7 +1829,7 @@ func (o *ImportResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportOperation
 	o.Return = op.Return
 }
 func (o *ImportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ImportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportOperation{}
@@ -2049,17 +2065,19 @@ type RestoreHistoryRequest struct {
 	Flags uint32 `idl:"name:dwMDFlags" json:"flags"`
 }
 
-func (o *RestoreHistoryRequest) xxx_ToOp(ctx context.Context) *xxx_RestoreHistoryOperation {
+func (o *RestoreHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreHistoryOperation) *xxx_RestoreHistoryOperation {
+	if op == nil {
+		op = &xxx_RestoreHistoryOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreHistoryOperation{}
+		return op
 	}
-	return &xxx_RestoreHistoryOperation{
-		This:            o.This,
-		HistoryLocation: o.HistoryLocation,
-		MajorVersion:    o.MajorVersion,
-		MinorVersion:    o.MinorVersion,
-		Flags:           o.Flags,
-	}
+	o.This = op.This
+	o.HistoryLocation = op.HistoryLocation
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *RestoreHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_RestoreHistoryOperation) {
@@ -2073,7 +2091,7 @@ func (o *RestoreHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_RestoreH
 	o.Flags = op.Flags
 }
 func (o *RestoreHistoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RestoreHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreHistoryOperation{}
@@ -2092,14 +2110,16 @@ type RestoreHistoryResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RestoreHistoryResponse) xxx_ToOp(ctx context.Context) *xxx_RestoreHistoryOperation {
+func (o *RestoreHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreHistoryOperation) *xxx_RestoreHistoryOperation {
+	if op == nil {
+		op = &xxx_RestoreHistoryOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreHistoryOperation{}
+		return op
 	}
-	return &xxx_RestoreHistoryOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RestoreHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_RestoreHistoryOperation) {
@@ -2110,7 +2130,7 @@ func (o *RestoreHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_Restore
 	o.Return = op.Return
 }
 func (o *RestoreHistoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RestoreHistoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreHistoryOperation{}
@@ -2421,15 +2441,17 @@ type EnumHistoryRequest struct {
 	EnumIndex uint32 `idl:"name:dwMDEnumIndex" json:"enum_index"`
 }
 
-func (o *EnumHistoryRequest) xxx_ToOp(ctx context.Context) *xxx_EnumHistoryOperation {
+func (o *EnumHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumHistoryOperation) *xxx_EnumHistoryOperation {
+	if op == nil {
+		op = &xxx_EnumHistoryOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumHistoryOperation{}
+		return op
 	}
-	return &xxx_EnumHistoryOperation{
-		This:            o.This,
-		HistoryLocation: o.HistoryLocation,
-		EnumIndex:       o.EnumIndex,
-	}
+	o.This = op.This
+	o.HistoryLocation = op.HistoryLocation
+	o.EnumIndex = op.EnumIndex
+	return op
 }
 
 func (o *EnumHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumHistoryOperation) {
@@ -2441,7 +2463,7 @@ func (o *EnumHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumHistory
 	o.EnumIndex = op.EnumIndex
 }
 func (o *EnumHistoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumHistoryOperation{}
@@ -2468,18 +2490,20 @@ type EnumHistoryResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumHistoryResponse) xxx_ToOp(ctx context.Context) *xxx_EnumHistoryOperation {
+func (o *EnumHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumHistoryOperation) *xxx_EnumHistoryOperation {
+	if op == nil {
+		op = &xxx_EnumHistoryOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumHistoryOperation{}
+		return op
 	}
-	return &xxx_EnumHistoryOperation{
-		That:            o.That,
-		HistoryLocation: o.HistoryLocation,
-		MajorVersion:    o.MajorVersion,
-		MinorVersion:    o.MinorVersion,
-		HistoryTime:     o.HistoryTime,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.HistoryLocation = op.HistoryLocation
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	o.HistoryTime = op.HistoryTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumHistoryOperation) {
@@ -2494,7 +2518,7 @@ func (o *EnumHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumHistor
 	o.Return = op.Return
 }
 func (o *EnumHistoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumHistoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumHistoryOperation{}

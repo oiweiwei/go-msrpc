@@ -111,19 +111,37 @@ func RemoteAssistanceServerServerHandle(ctx context.Context, o RemoteAssistanceS
 	}
 	switch opNum {
 	case 7: // GetNoviceUserInfo
-		in := &GetNoviceUserInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNoviceUserInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNoviceUserInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNoviceUserInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNoviceUserInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetSessionInfo
-		in := &GetSessionInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSessionInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSessionInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSessionInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRASrv
+type UnimplementedRemoteAssistanceServerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedRemoteAssistanceServerServer) GetNoviceUserInfo(context.Context, *GetNoviceUserInfoRequest) (*GetNoviceUserInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteAssistanceServerServer) GetSessionInfo(context.Context, *GetSessionInfoRequest) (*GetSessionInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteAssistanceServerServer = (*UnimplementedRemoteAssistanceServerServer)(nil)

@@ -132,7 +132,7 @@ func (o *xxx_DefaultRemoteAssistanceServerClient) Dispatch() idispatch.DispatchC
 }
 
 func (o *xxx_DefaultRemoteAssistanceServerClient) GetNoviceUserInfo(ctx context.Context, in *GetNoviceUserInfoRequest, opts ...dcerpc.CallOption) (*GetNoviceUserInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -152,7 +152,7 @@ func (o *xxx_DefaultRemoteAssistanceServerClient) GetNoviceUserInfo(ctx context.
 }
 
 func (o *xxx_DefaultRemoteAssistanceServerClient) GetSessionInfo(ctx context.Context, in *GetSessionInfoRequest, opts ...dcerpc.CallOption) (*GetSessionInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -414,14 +414,16 @@ type GetNoviceUserInfoRequest struct {
 	Name string `idl:"name:szName" json:"name"`
 }
 
-func (o *GetNoviceUserInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetNoviceUserInfoOperation {
+func (o *GetNoviceUserInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNoviceUserInfoOperation) *xxx_GetNoviceUserInfoOperation {
+	if op == nil {
+		op = &xxx_GetNoviceUserInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNoviceUserInfoOperation{}
+		return op
 	}
-	return &xxx_GetNoviceUserInfoOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *GetNoviceUserInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNoviceUserInfoOperation) {
@@ -432,7 +434,7 @@ func (o *GetNoviceUserInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNo
 	o.Name = op.Name
 }
 func (o *GetNoviceUserInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNoviceUserInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNoviceUserInfoOperation{}
@@ -454,15 +456,17 @@ type GetNoviceUserInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNoviceUserInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetNoviceUserInfoOperation {
+func (o *GetNoviceUserInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNoviceUserInfoOperation) *xxx_GetNoviceUserInfoOperation {
+	if op == nil {
+		op = &xxx_GetNoviceUserInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNoviceUserInfoOperation{}
+		return op
 	}
-	return &xxx_GetNoviceUserInfoOperation{
-		That:   o.That,
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNoviceUserInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNoviceUserInfoOperation) {
@@ -474,7 +478,7 @@ func (o *GetNoviceUserInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetN
 	o.Return = op.Return
 }
 func (o *GetNoviceUserInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNoviceUserInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNoviceUserInfoOperation{}
@@ -734,15 +738,17 @@ type GetSessionInfoRequest struct {
 	Count int32 `idl:"name:Count" json:"count"`
 }
 
-func (o *GetSessionInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetSessionInfoOperation {
+func (o *GetSessionInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSessionInfoOperation) *xxx_GetSessionInfoOperation {
+	if op == nil {
+		op = &xxx_GetSessionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSessionInfoOperation{}
+		return op
 	}
-	return &xxx_GetSessionInfoOperation{
-		This:      o.This,
-		UserNames: o.UserNames,
-		Count:     o.Count,
-	}
+	o.This = op.This
+	o.UserNames = op.UserNames
+	o.Count = op.Count
+	return op
 }
 
 func (o *GetSessionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessionInfoOperation) {
@@ -754,7 +760,7 @@ func (o *GetSessionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSessi
 	o.Count = op.Count
 }
 func (o *GetSessionInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSessionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSessionInfoOperation{}
@@ -781,16 +787,18 @@ type GetSessionInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSessionInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetSessionInfoOperation {
+func (o *GetSessionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSessionInfoOperation) *xxx_GetSessionInfoOperation {
+	if op == nil {
+		op = &xxx_GetSessionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSessionInfoOperation{}
+		return op
 	}
-	return &xxx_GetSessionInfoOperation{
-		That:      o.That,
-		UserNames: o.UserNames,
-		Count:     o.Count,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.UserNames = op.UserNames
+	o.Count = op.Count
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSessionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSessionInfoOperation) {
@@ -803,7 +811,7 @@ func (o *GetSessionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSess
 	o.Return = op.Return
 }
 func (o *GetSessionInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSessionInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSessionInfoOperation{}

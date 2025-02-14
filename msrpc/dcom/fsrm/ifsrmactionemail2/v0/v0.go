@@ -74,7 +74,7 @@ func (o *xxx_DefaultActionEmail2Client) ActionEmail() ifsrmactionemail.ActionEma
 }
 
 func (o *xxx_DefaultActionEmail2Client) GetAttachmentFileListSize(ctx context.Context, in *GetAttachmentFileListSizeRequest, opts ...dcerpc.CallOption) (*GetAttachmentFileListSizeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -94,7 +94,7 @@ func (o *xxx_DefaultActionEmail2Client) GetAttachmentFileListSize(ctx context.Co
 }
 
 func (o *xxx_DefaultActionEmail2Client) SetAttachmentFileListSize(ctx context.Context, in *SetAttachmentFileListSizeRequest, opts ...dcerpc.CallOption) (*SetAttachmentFileListSizeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -293,13 +293,15 @@ type GetAttachmentFileListSizeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAttachmentFileListSizeRequest) xxx_ToOp(ctx context.Context) *xxx_GetAttachmentFileListSizeOperation {
+func (o *GetAttachmentFileListSizeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAttachmentFileListSizeOperation) *xxx_GetAttachmentFileListSizeOperation {
+	if op == nil {
+		op = &xxx_GetAttachmentFileListSizeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAttachmentFileListSizeOperation{}
+		return op
 	}
-	return &xxx_GetAttachmentFileListSizeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAttachmentFileListSizeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAttachmentFileListSizeOperation) {
@@ -309,7 +311,7 @@ func (o *GetAttachmentFileListSizeRequest) xxx_FromOp(ctx context.Context, op *x
 	o.This = op.This
 }
 func (o *GetAttachmentFileListSizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAttachmentFileListSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAttachmentFileListSizeOperation{}
@@ -329,15 +331,17 @@ type GetAttachmentFileListSizeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAttachmentFileListSizeResponse) xxx_ToOp(ctx context.Context) *xxx_GetAttachmentFileListSizeOperation {
+func (o *GetAttachmentFileListSizeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAttachmentFileListSizeOperation) *xxx_GetAttachmentFileListSizeOperation {
+	if op == nil {
+		op = &xxx_GetAttachmentFileListSizeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAttachmentFileListSizeOperation{}
+		return op
 	}
-	return &xxx_GetAttachmentFileListSizeOperation{
-		That:                   o.That,
-		AttachmentFileListSize: o.AttachmentFileListSize,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.AttachmentFileListSize = op.AttachmentFileListSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAttachmentFileListSizeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAttachmentFileListSizeOperation) {
@@ -349,7 +353,7 @@ func (o *GetAttachmentFileListSizeResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *GetAttachmentFileListSizeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAttachmentFileListSizeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAttachmentFileListSizeOperation{}
@@ -499,14 +503,16 @@ type SetAttachmentFileListSizeRequest struct {
 	AttachmentFileListSize int32          `idl:"name:attachmentFileListSize" json:"attachment_file_list_size"`
 }
 
-func (o *SetAttachmentFileListSizeRequest) xxx_ToOp(ctx context.Context) *xxx_SetAttachmentFileListSizeOperation {
+func (o *SetAttachmentFileListSizeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAttachmentFileListSizeOperation) *xxx_SetAttachmentFileListSizeOperation {
+	if op == nil {
+		op = &xxx_SetAttachmentFileListSizeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAttachmentFileListSizeOperation{}
+		return op
 	}
-	return &xxx_SetAttachmentFileListSizeOperation{
-		This:                   o.This,
-		AttachmentFileListSize: o.AttachmentFileListSize,
-	}
+	o.This = op.This
+	o.AttachmentFileListSize = op.AttachmentFileListSize
+	return op
 }
 
 func (o *SetAttachmentFileListSizeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAttachmentFileListSizeOperation) {
@@ -517,7 +523,7 @@ func (o *SetAttachmentFileListSizeRequest) xxx_FromOp(ctx context.Context, op *x
 	o.AttachmentFileListSize = op.AttachmentFileListSize
 }
 func (o *SetAttachmentFileListSizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAttachmentFileListSizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAttachmentFileListSizeOperation{}
@@ -536,14 +542,16 @@ type SetAttachmentFileListSizeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAttachmentFileListSizeResponse) xxx_ToOp(ctx context.Context) *xxx_SetAttachmentFileListSizeOperation {
+func (o *SetAttachmentFileListSizeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAttachmentFileListSizeOperation) *xxx_SetAttachmentFileListSizeOperation {
+	if op == nil {
+		op = &xxx_SetAttachmentFileListSizeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAttachmentFileListSizeOperation{}
+		return op
 	}
-	return &xxx_SetAttachmentFileListSizeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAttachmentFileListSizeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAttachmentFileListSizeOperation) {
@@ -554,7 +562,7 @@ func (o *SetAttachmentFileListSizeResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *SetAttachmentFileListSizeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAttachmentFileListSizeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAttachmentFileListSizeOperation{}

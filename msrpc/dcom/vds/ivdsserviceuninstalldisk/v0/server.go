@@ -68,19 +68,37 @@ func ServiceUninstallDiskServerHandle(ctx context.Context, o ServiceUninstallDis
 	}
 	switch opNum {
 	case 3: // GetDiskIdFromLunInfo
-		in := &GetDiskIDFromLUNInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDiskIDFromLUNInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDiskIDFromLUNInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDiskIDFromLUNInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDiskIDFromLUNInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // UninstallDisks
-		in := &UninstallDisksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UninstallDisksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UninstallDisks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UninstallDisksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UninstallDisks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceUninstallDisk
+type UnimplementedServiceUninstallDiskServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceUninstallDiskServer) GetDiskIDFromLUNInfo(context.Context, *GetDiskIDFromLUNInfoRequest) (*GetDiskIDFromLUNInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceUninstallDiskServer) UninstallDisks(context.Context, *UninstallDisksRequest) (*UninstallDisksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceUninstallDiskServer = (*UnimplementedServiceUninstallDiskServer)(nil)

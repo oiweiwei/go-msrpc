@@ -368,7 +368,7 @@ type xxx_DefaultPerflibV2Client struct {
 }
 
 func (o *xxx_DefaultPerflibV2Client) EnumerateCounterSet(ctx context.Context, in *EnumerateCounterSetRequest, opts ...dcerpc.CallOption) (*EnumerateCounterSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -381,7 +381,7 @@ func (o *xxx_DefaultPerflibV2Client) EnumerateCounterSet(ctx context.Context, in
 }
 
 func (o *xxx_DefaultPerflibV2Client) QueryCounterSetRegistrationInfo(ctx context.Context, in *QueryCounterSetRegistrationInfoRequest, opts ...dcerpc.CallOption) (*QueryCounterSetRegistrationInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -394,7 +394,7 @@ func (o *xxx_DefaultPerflibV2Client) QueryCounterSetRegistrationInfo(ctx context
 }
 
 func (o *xxx_DefaultPerflibV2Client) EnumerateCounterSetInstances(ctx context.Context, in *EnumerateCounterSetInstancesRequest, opts ...dcerpc.CallOption) (*EnumerateCounterSetInstancesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -407,7 +407,7 @@ func (o *xxx_DefaultPerflibV2Client) EnumerateCounterSetInstances(ctx context.Co
 }
 
 func (o *xxx_DefaultPerflibV2Client) OpenQueryHandle(ctx context.Context, in *OpenQueryHandleRequest, opts ...dcerpc.CallOption) (*OpenQueryHandleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -420,7 +420,7 @@ func (o *xxx_DefaultPerflibV2Client) OpenQueryHandle(ctx context.Context, in *Op
 }
 
 func (o *xxx_DefaultPerflibV2Client) CloseQueryHandle(ctx context.Context, in *CloseQueryHandleRequest, opts ...dcerpc.CallOption) (*CloseQueryHandleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -433,7 +433,7 @@ func (o *xxx_DefaultPerflibV2Client) CloseQueryHandle(ctx context.Context, in *C
 }
 
 func (o *xxx_DefaultPerflibV2Client) QueryCounterInfo(ctx context.Context, in *QueryCounterInfoRequest, opts ...dcerpc.CallOption) (*QueryCounterInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -446,7 +446,7 @@ func (o *xxx_DefaultPerflibV2Client) QueryCounterInfo(ctx context.Context, in *Q
 }
 
 func (o *xxx_DefaultPerflibV2Client) QueryCounterData(ctx context.Context, in *QueryCounterDataRequest, opts ...dcerpc.CallOption) (*QueryCounterDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -459,7 +459,7 @@ func (o *xxx_DefaultPerflibV2Client) QueryCounterData(ctx context.Context, in *Q
 }
 
 func (o *xxx_DefaultPerflibV2Client) ValidateCounters(ctx context.Context, in *ValidateCountersRequest, opts ...dcerpc.CallOption) (*ValidateCountersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -692,14 +692,16 @@ type EnumerateCounterSetRequest struct {
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
 }
 
-func (o *EnumerateCounterSetRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateCounterSetOperation {
+func (o *EnumerateCounterSetRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateCounterSetOperation) *xxx_EnumerateCounterSetOperation {
+	if op == nil {
+		op = &xxx_EnumerateCounterSetOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateCounterSetOperation{}
+		return op
 	}
-	return &xxx_EnumerateCounterSetOperation{
-		Machine: o.Machine,
-		InSize:  o.InSize,
-	}
+	o.Machine = op.Machine
+	o.InSize = op.InSize
+	return op
 }
 
 func (o *EnumerateCounterSetRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateCounterSetOperation) {
@@ -710,7 +712,7 @@ func (o *EnumerateCounterSetRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.InSize = op.InSize
 }
 func (o *EnumerateCounterSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateCounterSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateCounterSetOperation{}
@@ -735,16 +737,18 @@ type EnumerateCounterSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateCounterSetResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateCounterSetOperation {
+func (o *EnumerateCounterSetResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateCounterSetOperation) *xxx_EnumerateCounterSetOperation {
+	if op == nil {
+		op = &xxx_EnumerateCounterSetOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateCounterSetOperation{}
+		return op
 	}
-	return &xxx_EnumerateCounterSetOperation{
-		OutSize:    o.OutSize,
-		ReturnSize: o.ReturnSize,
-		Data:       o.Data,
-		Return:     o.Return,
-	}
+	o.OutSize = op.OutSize
+	o.ReturnSize = op.ReturnSize
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateCounterSetResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateCounterSetOperation) {
@@ -757,7 +761,7 @@ func (o *EnumerateCounterSetResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumerateCounterSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateCounterSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateCounterSetOperation{}
@@ -1052,17 +1056,19 @@ type QueryCounterSetRegistrationInfoRequest struct {
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
 }
 
-func (o *QueryCounterSetRegistrationInfoRequest) xxx_ToOp(ctx context.Context) *xxx_QueryCounterSetRegistrationInfoOperation {
+func (o *QueryCounterSetRegistrationInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCounterSetRegistrationInfoOperation) *xxx_QueryCounterSetRegistrationInfoOperation {
+	if op == nil {
+		op = &xxx_QueryCounterSetRegistrationInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCounterSetRegistrationInfoOperation{}
+		return op
 	}
-	return &xxx_QueryCounterSetRegistrationInfoOperation{
-		Machine:         o.Machine,
-		CounterSetGUID:  o.CounterSetGUID,
-		RequestCode:     o.RequestCode,
-		RequestLocaleID: o.RequestLocaleID,
-		InSize:          o.InSize,
-	}
+	o.Machine = op.Machine
+	o.CounterSetGUID = op.CounterSetGUID
+	o.RequestCode = op.RequestCode
+	o.RequestLocaleID = op.RequestLocaleID
+	o.InSize = op.InSize
+	return op
 }
 
 func (o *QueryCounterSetRegistrationInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryCounterSetRegistrationInfoOperation) {
@@ -1076,7 +1082,7 @@ func (o *QueryCounterSetRegistrationInfoRequest) xxx_FromOp(ctx context.Context,
 	o.InSize = op.InSize
 }
 func (o *QueryCounterSetRegistrationInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryCounterSetRegistrationInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCounterSetRegistrationInfoOperation{}
@@ -1099,16 +1105,18 @@ type QueryCounterSetRegistrationInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryCounterSetRegistrationInfoResponse) xxx_ToOp(ctx context.Context) *xxx_QueryCounterSetRegistrationInfoOperation {
+func (o *QueryCounterSetRegistrationInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCounterSetRegistrationInfoOperation) *xxx_QueryCounterSetRegistrationInfoOperation {
+	if op == nil {
+		op = &xxx_QueryCounterSetRegistrationInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCounterSetRegistrationInfoOperation{}
+		return op
 	}
-	return &xxx_QueryCounterSetRegistrationInfoOperation{
-		OutSize:    o.OutSize,
-		ReturnSize: o.ReturnSize,
-		Data:       o.Data,
-		Return:     o.Return,
-	}
+	o.OutSize = op.OutSize
+	o.ReturnSize = op.ReturnSize
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryCounterSetRegistrationInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryCounterSetRegistrationInfoOperation) {
@@ -1121,7 +1129,7 @@ func (o *QueryCounterSetRegistrationInfoResponse) xxx_FromOp(ctx context.Context
 	o.Return = op.Return
 }
 func (o *QueryCounterSetRegistrationInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryCounterSetRegistrationInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCounterSetRegistrationInfoOperation{}
@@ -1386,15 +1394,17 @@ type EnumerateCounterSetInstancesRequest struct {
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
 }
 
-func (o *EnumerateCounterSetInstancesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateCounterSetInstancesOperation {
+func (o *EnumerateCounterSetInstancesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateCounterSetInstancesOperation) *xxx_EnumerateCounterSetInstancesOperation {
+	if op == nil {
+		op = &xxx_EnumerateCounterSetInstancesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateCounterSetInstancesOperation{}
+		return op
 	}
-	return &xxx_EnumerateCounterSetInstancesOperation{
-		Machine:        o.Machine,
-		CounterSetGUID: o.CounterSetGUID,
-		InSize:         o.InSize,
-	}
+	o.Machine = op.Machine
+	o.CounterSetGUID = op.CounterSetGUID
+	o.InSize = op.InSize
+	return op
 }
 
 func (o *EnumerateCounterSetInstancesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateCounterSetInstancesOperation) {
@@ -1406,7 +1416,7 @@ func (o *EnumerateCounterSetInstancesRequest) xxx_FromOp(ctx context.Context, op
 	o.InSize = op.InSize
 }
 func (o *EnumerateCounterSetInstancesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateCounterSetInstancesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateCounterSetInstancesOperation{}
@@ -1430,16 +1440,18 @@ type EnumerateCounterSetInstancesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateCounterSetInstancesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateCounterSetInstancesOperation {
+func (o *EnumerateCounterSetInstancesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateCounterSetInstancesOperation) *xxx_EnumerateCounterSetInstancesOperation {
+	if op == nil {
+		op = &xxx_EnumerateCounterSetInstancesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateCounterSetInstancesOperation{}
+		return op
 	}
-	return &xxx_EnumerateCounterSetInstancesOperation{
-		OutSize:    o.OutSize,
-		ReturnSize: o.ReturnSize,
-		Data:       o.Data,
-		Return:     o.Return,
-	}
+	o.OutSize = op.OutSize
+	o.ReturnSize = op.ReturnSize
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateCounterSetInstancesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateCounterSetInstancesOperation) {
@@ -1452,7 +1464,7 @@ func (o *EnumerateCounterSetInstancesResponse) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *EnumerateCounterSetInstancesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateCounterSetInstancesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateCounterSetInstancesOperation{}
@@ -1568,13 +1580,15 @@ type OpenQueryHandleRequest struct {
 	Machine string `idl:"name:szMachine;string" json:"machine"`
 }
 
-func (o *OpenQueryHandleRequest) xxx_ToOp(ctx context.Context) *xxx_OpenQueryHandleOperation {
+func (o *OpenQueryHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQueryHandleOperation) *xxx_OpenQueryHandleOperation {
+	if op == nil {
+		op = &xxx_OpenQueryHandleOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenQueryHandleOperation{}
+		return op
 	}
-	return &xxx_OpenQueryHandleOperation{
-		Machine: o.Machine,
-	}
+	o.Machine = op.Machine
+	return op
 }
 
 func (o *OpenQueryHandleRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenQueryHandleOperation) {
@@ -1584,7 +1598,7 @@ func (o *OpenQueryHandleRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenQue
 	o.Machine = op.Machine
 }
 func (o *OpenQueryHandleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenQueryHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenQueryHandleOperation{}
@@ -1603,14 +1617,16 @@ type OpenQueryHandleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenQueryHandleResponse) xxx_ToOp(ctx context.Context) *xxx_OpenQueryHandleOperation {
+func (o *OpenQueryHandleResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQueryHandleOperation) *xxx_OpenQueryHandleOperation {
+	if op == nil {
+		op = &xxx_OpenQueryHandleOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenQueryHandleOperation{}
+		return op
 	}
-	return &xxx_OpenQueryHandleOperation{
-		Query:  o.Query,
-		Return: o.Return,
-	}
+	o.Query = op.Query
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenQueryHandleResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenQueryHandleOperation) {
@@ -1621,7 +1637,7 @@ func (o *OpenQueryHandleResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenQu
 	o.Return = op.Return
 }
 func (o *OpenQueryHandleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenQueryHandleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenQueryHandleOperation{}
@@ -1746,13 +1762,15 @@ type CloseQueryHandleRequest struct {
 	Query *Query `idl:"name:phQuery" json:"query"`
 }
 
-func (o *CloseQueryHandleRequest) xxx_ToOp(ctx context.Context) *xxx_CloseQueryHandleOperation {
+func (o *CloseQueryHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseQueryHandleOperation) *xxx_CloseQueryHandleOperation {
+	if op == nil {
+		op = &xxx_CloseQueryHandleOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseQueryHandleOperation{}
+		return op
 	}
-	return &xxx_CloseQueryHandleOperation{
-		Query: o.Query,
-	}
+	o.Query = op.Query
+	return op
 }
 
 func (o *CloseQueryHandleRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseQueryHandleOperation) {
@@ -1762,7 +1780,7 @@ func (o *CloseQueryHandleRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseQ
 	o.Query = op.Query
 }
 func (o *CloseQueryHandleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseQueryHandleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseQueryHandleOperation{}
@@ -1783,14 +1801,16 @@ type CloseQueryHandleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseQueryHandleResponse) xxx_ToOp(ctx context.Context) *xxx_CloseQueryHandleOperation {
+func (o *CloseQueryHandleResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseQueryHandleOperation) *xxx_CloseQueryHandleOperation {
+	if op == nil {
+		op = &xxx_CloseQueryHandleOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseQueryHandleOperation{}
+		return op
 	}
-	return &xxx_CloseQueryHandleOperation{
-		Query:  o.Query,
-		Return: o.Return,
-	}
+	o.Query = op.Query
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseQueryHandleResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseQueryHandleOperation) {
@@ -1801,7 +1821,7 @@ func (o *CloseQueryHandleResponse) xxx_FromOp(ctx context.Context, op *xxx_Close
 	o.Return = op.Return
 }
 func (o *CloseQueryHandleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseQueryHandleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseQueryHandleOperation{}
@@ -2018,14 +2038,16 @@ type QueryCounterInfoRequest struct {
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
 }
 
-func (o *QueryCounterInfoRequest) xxx_ToOp(ctx context.Context) *xxx_QueryCounterInfoOperation {
+func (o *QueryCounterInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCounterInfoOperation) *xxx_QueryCounterInfoOperation {
+	if op == nil {
+		op = &xxx_QueryCounterInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCounterInfoOperation{}
+		return op
 	}
-	return &xxx_QueryCounterInfoOperation{
-		Query:  o.Query,
-		InSize: o.InSize,
-	}
+	o.Query = op.Query
+	o.InSize = op.InSize
+	return op
 }
 
 func (o *QueryCounterInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryCounterInfoOperation) {
@@ -2036,7 +2058,7 @@ func (o *QueryCounterInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryC
 	o.InSize = op.InSize
 }
 func (o *QueryCounterInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryCounterInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCounterInfoOperation{}
@@ -2059,16 +2081,18 @@ type QueryCounterInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryCounterInfoResponse) xxx_ToOp(ctx context.Context) *xxx_QueryCounterInfoOperation {
+func (o *QueryCounterInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCounterInfoOperation) *xxx_QueryCounterInfoOperation {
+	if op == nil {
+		op = &xxx_QueryCounterInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCounterInfoOperation{}
+		return op
 	}
-	return &xxx_QueryCounterInfoOperation{
-		OutSize:    o.OutSize,
-		ReturnSize: o.ReturnSize,
-		Data:       o.Data,
-		Return:     o.Return,
-	}
+	o.OutSize = op.OutSize
+	o.ReturnSize = op.ReturnSize
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryCounterInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryCounterInfoOperation) {
@@ -2081,7 +2105,7 @@ func (o *QueryCounterInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Query
 	o.Return = op.Return
 }
 func (o *QueryCounterInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryCounterInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCounterInfoOperation{}
@@ -2298,14 +2322,16 @@ type QueryCounterDataRequest struct {
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
 }
 
-func (o *QueryCounterDataRequest) xxx_ToOp(ctx context.Context) *xxx_QueryCounterDataOperation {
+func (o *QueryCounterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCounterDataOperation) *xxx_QueryCounterDataOperation {
+	if op == nil {
+		op = &xxx_QueryCounterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCounterDataOperation{}
+		return op
 	}
-	return &xxx_QueryCounterDataOperation{
-		Query:  o.Query,
-		InSize: o.InSize,
-	}
+	o.Query = op.Query
+	o.InSize = op.InSize
+	return op
 }
 
 func (o *QueryCounterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryCounterDataOperation) {
@@ -2316,7 +2342,7 @@ func (o *QueryCounterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryC
 	o.InSize = op.InSize
 }
 func (o *QueryCounterDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryCounterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCounterDataOperation{}
@@ -2339,16 +2365,18 @@ type QueryCounterDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryCounterDataResponse) xxx_ToOp(ctx context.Context) *xxx_QueryCounterDataOperation {
+func (o *QueryCounterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCounterDataOperation) *xxx_QueryCounterDataOperation {
+	if op == nil {
+		op = &xxx_QueryCounterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCounterDataOperation{}
+		return op
 	}
-	return &xxx_QueryCounterDataOperation{
-		OutSize:    o.OutSize,
-		ReturnSize: o.ReturnSize,
-		Data:       o.Data,
-		Return:     o.Return,
-	}
+	o.OutSize = op.OutSize
+	o.ReturnSize = op.ReturnSize
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryCounterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryCounterDataOperation) {
@@ -2361,7 +2389,7 @@ func (o *QueryCounterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Query
 	o.Return = op.Return
 }
 func (o *QueryCounterDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryCounterDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCounterDataOperation{}
@@ -2599,16 +2627,18 @@ type ValidateCountersRequest struct {
 	Add uint32 `idl:"name:dwAdd" json:"add"`
 }
 
-func (o *ValidateCountersRequest) xxx_ToOp(ctx context.Context) *xxx_ValidateCountersOperation {
+func (o *ValidateCountersRequest) xxx_ToOp(ctx context.Context, op *xxx_ValidateCountersOperation) *xxx_ValidateCountersOperation {
+	if op == nil {
+		op = &xxx_ValidateCountersOperation{}
+	}
 	if o == nil {
-		return &xxx_ValidateCountersOperation{}
+		return op
 	}
-	return &xxx_ValidateCountersOperation{
-		Query:  o.Query,
-		InSize: o.InSize,
-		Data:   o.Data,
-		Add:    o.Add,
-	}
+	o.Query = op.Query
+	o.InSize = op.InSize
+	o.Data = op.Data
+	o.Add = op.Add
+	return op
 }
 
 func (o *ValidateCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_ValidateCountersOperation) {
@@ -2621,7 +2651,7 @@ func (o *ValidateCountersRequest) xxx_FromOp(ctx context.Context, op *xxx_Valida
 	o.Add = op.Add
 }
 func (o *ValidateCountersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ValidateCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ValidateCountersOperation{}
@@ -2643,14 +2673,16 @@ type ValidateCountersResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ValidateCountersResponse) xxx_ToOp(ctx context.Context) *xxx_ValidateCountersOperation {
+func (o *ValidateCountersResponse) xxx_ToOp(ctx context.Context, op *xxx_ValidateCountersOperation) *xxx_ValidateCountersOperation {
+	if op == nil {
+		op = &xxx_ValidateCountersOperation{}
+	}
 	if o == nil {
-		return &xxx_ValidateCountersOperation{}
+		return op
 	}
-	return &xxx_ValidateCountersOperation{
-		Data:   o.Data,
-		Return: o.Return,
-	}
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *ValidateCountersResponse) xxx_FromOp(ctx context.Context, op *xxx_ValidateCountersOperation) {
@@ -2661,7 +2693,7 @@ func (o *ValidateCountersResponse) xxx_FromOp(ctx context.Context, op *xxx_Valid
 	o.Return = op.Return
 }
 func (o *ValidateCountersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ValidateCountersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ValidateCountersOperation{}

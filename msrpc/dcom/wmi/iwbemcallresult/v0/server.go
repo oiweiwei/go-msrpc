@@ -86,33 +86,61 @@ func CallResultServerHandle(ctx context.Context, o CallResultServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // GetResultObject
-		in := &GetResultObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResultObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResultObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResultObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResultObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetResultString
-		in := &GetResultStringRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResultStringOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResultString(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResultStringRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResultString(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetResultServices
-		in := &GetResultServicesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResultServicesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResultServices(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResultServicesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResultServices(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetCallStatus
-		in := &GetCallStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCallStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCallStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCallStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCallStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemCallResult
+type UnimplementedCallResultServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCallResultServer) GetResultObject(context.Context, *GetResultObjectRequest) (*GetResultObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCallResultServer) GetResultString(context.Context, *GetResultStringRequest) (*GetResultStringResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCallResultServer) GetResultServices(context.Context, *GetResultServicesRequest) (*GetResultServicesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCallResultServer) GetCallStatus(context.Context, *GetCallStatusRequest) (*GetCallStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CallResultServer = (*UnimplementedCallResultServer)(nil)

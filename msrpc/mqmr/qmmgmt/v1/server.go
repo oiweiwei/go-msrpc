@@ -111,19 +111,36 @@ func NewQmmgmtServerHandle(o QmmgmtServer) dcerpc.ServerHandle {
 func QmmgmtServerHandle(ctx context.Context, o QmmgmtServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_QMMgmtGetInfo
-		in := &ManagementGetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ManagementGetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ManagementGetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ManagementGetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ManagementGetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // R_QMMgmtAction
-		in := &ManagementActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ManagementActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ManagementAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ManagementActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ManagementAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented qmmgmt
+type UnimplementedQmmgmtServer struct {
+}
+
+func (UnimplementedQmmgmtServer) ManagementGetInfo(context.Context, *ManagementGetInfoRequest) (*ManagementGetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmmgmtServer) ManagementAction(context.Context, *ManagementActionRequest) (*ManagementActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QmmgmtServer = (*UnimplementedQmmgmtServer)(nil)

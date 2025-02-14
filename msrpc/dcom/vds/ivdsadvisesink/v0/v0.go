@@ -78,7 +78,7 @@ func (o *xxx_DefaultAdviseSinkClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAdviseSinkClient) OnNotify(ctx context.Context, in *OnNotifyRequest, opts ...dcerpc.CallOption) (*OnNotifyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -341,15 +341,17 @@ type OnNotifyRequest struct {
 	NotificationArray []*vds.Notification `idl:"name:pNotificationArray;size_is:(lNumberOfNotifications)" json:"notification_array"`
 }
 
-func (o *OnNotifyRequest) xxx_ToOp(ctx context.Context) *xxx_OnNotifyOperation {
+func (o *OnNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_OnNotifyOperation) *xxx_OnNotifyOperation {
+	if op == nil {
+		op = &xxx_OnNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_OnNotifyOperation{}
+		return op
 	}
-	return &xxx_OnNotifyOperation{
-		This:                  o.This,
-		NumberOfNotifications: o.NumberOfNotifications,
-		NotificationArray:     o.NotificationArray,
-	}
+	o.This = op.This
+	o.NumberOfNotifications = op.NumberOfNotifications
+	o.NotificationArray = op.NotificationArray
+	return op
 }
 
 func (o *OnNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_OnNotifyOperation) {
@@ -361,7 +363,7 @@ func (o *OnNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_OnNotifyOperat
 	o.NotificationArray = op.NotificationArray
 }
 func (o *OnNotifyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OnNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnNotifyOperation{}
@@ -380,14 +382,16 @@ type OnNotifyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OnNotifyResponse) xxx_ToOp(ctx context.Context) *xxx_OnNotifyOperation {
+func (o *OnNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_OnNotifyOperation) *xxx_OnNotifyOperation {
+	if op == nil {
+		op = &xxx_OnNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_OnNotifyOperation{}
+		return op
 	}
-	return &xxx_OnNotifyOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OnNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_OnNotifyOperation) {
@@ -398,7 +402,7 @@ func (o *OnNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_OnNotifyOpera
 	o.Return = op.Return
 }
 func (o *OnNotifyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OnNotifyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnNotifyOperation{}

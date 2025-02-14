@@ -183,120 +183,208 @@ func ServiceServerHandle(ctx context.Context, o ServiceServer, opNum int, r ndr.
 	}
 	switch opNum {
 	case 3: // IsServiceReady
-		in := &IsServiceReadyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsServiceReadyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsServiceReady(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsServiceReadyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsServiceReady(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // WaitForServiceReady
-		in := &WaitForServiceReadyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitForServiceReadyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WaitForServiceReady(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitForServiceReadyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForServiceReady(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // QueryProviders
-		in := &QueryProvidersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryProvidersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryProviders(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryProvidersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryProviders(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum07NotUsedOnWire
 		// Opnum07NotUsedOnWire
 		return nil, nil
 	case 8: // QueryUnallocatedDisks
-		in := &QueryUnallocatedDisksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryUnallocatedDisksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryUnallocatedDisks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryUnallocatedDisksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryUnallocatedDisks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetObject
-		in := &GetObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // QueryDriveLetters
-		in := &QueryDriveLettersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryDriveLettersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryDriveLetters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryDriveLettersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryDriveLetters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // QueryFileSystemTypes
-		in := &QueryFileSystemTypesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryFileSystemTypesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryFileSystemTypes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryFileSystemTypesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryFileSystemTypes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Reenumerate
-		in := &ReenumerateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReenumerateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Reenumerate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReenumerateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Reenumerate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Refresh
-		in := &RefreshRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Refresh(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Refresh(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // CleanupObsoleteMountPoints
-		in := &CleanupObsoleteMountPointsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CleanupObsoleteMountPointsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CleanupObsoleteMountPoints(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CleanupObsoleteMountPointsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CleanupObsoleteMountPoints(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Advise
-		in := &AdviseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AdviseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Advise(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AdviseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Advise(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Unadvise
-		in := &UnadviseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnadviseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Unadvise(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnadviseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Unadvise(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Reboot
-		in := &RebootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RebootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Reboot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RebootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Reboot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // SetFlags
-		in := &SetFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // ClearFlags
-		in := &ClearFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsService
+type UnimplementedServiceServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceServer) IsServiceReady(context.Context, *IsServiceReadyRequest) (*IsServiceReadyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) WaitForServiceReady(context.Context, *WaitForServiceReadyRequest) (*WaitForServiceReadyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) QueryProviders(context.Context, *QueryProvidersRequest) (*QueryProvidersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) QueryUnallocatedDisks(context.Context, *QueryUnallocatedDisksRequest) (*QueryUnallocatedDisksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) QueryDriveLetters(context.Context, *QueryDriveLettersRequest) (*QueryDriveLettersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) QueryFileSystemTypes(context.Context, *QueryFileSystemTypesRequest) (*QueryFileSystemTypesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) Reenumerate(context.Context, *ReenumerateRequest) (*ReenumerateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) CleanupObsoleteMountPoints(context.Context, *CleanupObsoleteMountPointsRequest) (*CleanupObsoleteMountPointsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) Advise(context.Context, *AdviseRequest) (*AdviseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) Unadvise(context.Context, *UnadviseRequest) (*UnadviseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) Reboot(context.Context, *RebootRequest) (*RebootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) SetFlags(context.Context, *SetFlagsRequest) (*SetFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceServer) ClearFlags(context.Context, *ClearFlagsRequest) (*ClearFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceServer = (*UnimplementedServiceServer)(nil)

@@ -89,7 +89,7 @@ func (o *xxx_DefaultWAMAdmin2Client) WAMAdmin() iwamadmin.WAMAdminClient {
 }
 
 func (o *xxx_DefaultWAMAdmin2Client) AppCreate2(ctx context.Context, in *AppCreate2Request, opts ...dcerpc.CallOption) (*AppCreate2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -344,15 +344,17 @@ type AppCreate2Request struct {
 	AppMode uint32 `idl:"name:dwAppMode" json:"app_mode"`
 }
 
-func (o *AppCreate2Request) xxx_ToOp(ctx context.Context) *xxx_AppCreate2Operation {
+func (o *AppCreate2Request) xxx_ToOp(ctx context.Context, op *xxx_AppCreate2Operation) *xxx_AppCreate2Operation {
+	if op == nil {
+		op = &xxx_AppCreate2Operation{}
+	}
 	if o == nil {
-		return &xxx_AppCreate2Operation{}
+		return op
 	}
-	return &xxx_AppCreate2Operation{
-		This:    o.This,
-		Path:    o.Path,
-		AppMode: o.AppMode,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.AppMode = op.AppMode
+	return op
 }
 
 func (o *AppCreate2Request) xxx_FromOp(ctx context.Context, op *xxx_AppCreate2Operation) {
@@ -364,7 +366,7 @@ func (o *AppCreate2Request) xxx_FromOp(ctx context.Context, op *xxx_AppCreate2Op
 	o.AppMode = op.AppMode
 }
 func (o *AppCreate2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppCreate2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppCreate2Operation{}
@@ -383,14 +385,16 @@ type AppCreate2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppCreate2Response) xxx_ToOp(ctx context.Context) *xxx_AppCreate2Operation {
+func (o *AppCreate2Response) xxx_ToOp(ctx context.Context, op *xxx_AppCreate2Operation) *xxx_AppCreate2Operation {
+	if op == nil {
+		op = &xxx_AppCreate2Operation{}
+	}
 	if o == nil {
-		return &xxx_AppCreate2Operation{}
+		return op
 	}
-	return &xxx_AppCreate2Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppCreate2Response) xxx_FromOp(ctx context.Context, op *xxx_AppCreate2Operation) {
@@ -401,7 +405,7 @@ func (o *AppCreate2Response) xxx_FromOp(ctx context.Context, op *xxx_AppCreate2O
 	o.Return = op.Return
 }
 func (o *AppCreate2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppCreate2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppCreate2Operation{}

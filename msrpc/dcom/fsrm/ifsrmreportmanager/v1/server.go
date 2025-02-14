@@ -234,75 +234,133 @@ func ReportManagerServerHandle(ctx context.Context, o ReportManagerServer, opNum
 	}
 	switch opNum {
 	case 7: // EnumReportJobs
-		in := &EnumReportJobsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumReportJobsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumReportJobs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumReportJobsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumReportJobs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // CreateReportJob
-		in := &CreateReportJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateReportJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateReportJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateReportJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateReportJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetReportJob
-		in := &GetReportJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReportJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReportJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetOutputDirectory
-		in := &GetOutputDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOutputDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOutputDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOutputDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOutputDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // SetOutputDirectory
-		in := &SetOutputDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOutputDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOutputDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOutputDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOutputDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // IsFilterValidForReportType
-		in := &IsFilterValidForReportTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsFilterValidForReportTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsFilterValidForReportType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsFilterValidForReportTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsFilterValidForReportType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // GetDefaultFilter
-		in := &GetDefaultFilterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDefaultFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDefaultFilter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDefaultFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDefaultFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // SetDefaultFilter
-		in := &SetDefaultFilterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDefaultFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDefaultFilter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDefaultFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDefaultFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // GetReportSizeLimit
-		in := &GetReportSizeLimitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportSizeLimitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReportSizeLimit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportSizeLimitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReportSizeLimit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // SetReportSizeLimit
-		in := &SetReportSizeLimitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetReportSizeLimitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetReportSizeLimit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetReportSizeLimitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetReportSizeLimit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmReportManager
+type UnimplementedReportManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedReportManagerServer) EnumReportJobs(context.Context, *EnumReportJobsRequest) (*EnumReportJobsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) CreateReportJob(context.Context, *CreateReportJobRequest) (*CreateReportJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) GetReportJob(context.Context, *GetReportJobRequest) (*GetReportJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) GetOutputDirectory(context.Context, *GetOutputDirectoryRequest) (*GetOutputDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) SetOutputDirectory(context.Context, *SetOutputDirectoryRequest) (*SetOutputDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) IsFilterValidForReportType(context.Context, *IsFilterValidForReportTypeRequest) (*IsFilterValidForReportTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) GetDefaultFilter(context.Context, *GetDefaultFilterRequest) (*GetDefaultFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) SetDefaultFilter(context.Context, *SetDefaultFilterRequest) (*SetDefaultFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) GetReportSizeLimit(context.Context, *GetReportSizeLimitRequest) (*GetReportSizeLimitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportManagerServer) SetReportSizeLimit(context.Context, *SetReportSizeLimitRequest) (*SetReportSizeLimitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ReportManagerServer = (*UnimplementedReportManagerServer)(nil)

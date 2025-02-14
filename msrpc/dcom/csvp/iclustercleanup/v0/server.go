@@ -106,19 +106,37 @@ func ClusterCleanupServerHandle(ctx context.Context, o ClusterCleanupServer, opN
 	}
 	switch opNum {
 	case 3: // CleanUpEvictedNode
-		in := &CleanupEvictedNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CleanupEvictedNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CleanupEvictedNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CleanupEvictedNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CleanupEvictedNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // ClearPR
-		in := &ClearPRRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearPROperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearPR(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearPRRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearPR(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterCleanup
+type UnimplementedClusterCleanupServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterCleanupServer) CleanupEvictedNode(context.Context, *CleanupEvictedNodeRequest) (*CleanupEvictedNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterCleanupServer) ClearPR(context.Context, *ClearPRRequest) (*ClearPRResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterCleanupServer = (*UnimplementedClusterCleanupServer)(nil)

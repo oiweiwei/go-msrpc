@@ -132,54 +132,97 @@ func CollectionServerHandle(ctx context.Context, o CollectionServer, opNum int, 
 	}
 	switch opNum {
 	case 7: // _NewEnum
-		in := &Get_NewEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Get_NewEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Get_NewEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Get_NewEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Get_NewEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // State
-		in := &GetStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Cancel
-		in := &CancelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Cancel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Cancel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // WaitForCompletion
-		in := &WaitForCompletionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitForCompletionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WaitForCompletion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitForCompletionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForCompletion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // GetById
-		in := &GetByIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetByIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetByID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetByIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetByID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmCollection
+type UnimplementedCollectionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedCollectionServer) Get_NewEnum(context.Context, *Get_NewEnumRequest) (*Get_NewEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCollectionServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCollectionServer) GetState(context.Context, *GetStateRequest) (*GetStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCollectionServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCollectionServer) WaitForCompletion(context.Context, *WaitForCompletionRequest) (*WaitForCompletionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCollectionServer) GetByID(context.Context, *GetByIDRequest) (*GetByIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CollectionServer = (*UnimplementedCollectionServer)(nil)

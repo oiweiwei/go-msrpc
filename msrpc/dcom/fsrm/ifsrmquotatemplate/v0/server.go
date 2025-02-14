@@ -61,33 +61,61 @@ func QuotaTemplateServerHandle(ctx context.Context, o QuotaTemplateServer, opNum
 	}
 	switch opNum {
 	case 22: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // CopyTemplate
-		in := &CopyTemplateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CopyTemplateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CopyTemplate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CopyTemplateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CopyTemplate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // CommitAndUpdateDerived
-		in := &CommitAndUpdateDerivedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitAndUpdateDerivedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CommitAndUpdateDerived(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitAndUpdateDerivedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CommitAndUpdateDerived(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuotaTemplate
+type UnimplementedQuotaTemplateServer struct {
+	ifsrmquotabase.UnimplementedQuotaBaseServer
+}
+
+func (UnimplementedQuotaTemplateServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateServer) CopyTemplate(context.Context, *CopyTemplateRequest) (*CopyTemplateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateServer) CommitAndUpdateDerived(context.Context, *CommitAndUpdateDerivedRequest) (*CommitAndUpdateDerivedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaTemplateServer = (*UnimplementedQuotaTemplateServer)(nil)

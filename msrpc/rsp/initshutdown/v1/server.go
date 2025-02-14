@@ -60,26 +60,48 @@ func NewInitShutdownServerHandle(o InitShutdownServer) dcerpc.ServerHandle {
 func InitShutdownServerHandle(ctx context.Context, o InitShutdownServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // BaseInitiateShutdown
-		in := &BaseInitiateShutdownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseInitiateShutdownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseInitiateShutdown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseInitiateShutdownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseInitiateShutdown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // BaseAbortShutdown
-		in := &BaseAbortShutdownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseAbortShutdownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseAbortShutdown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseAbortShutdownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseAbortShutdown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // BaseInitiateShutdownEx
-		in := &BaseInitiateShutdownExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseInitiateShutdownExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseInitiateShutdownEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseInitiateShutdownExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseInitiateShutdownEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented InitShutdown
+type UnimplementedInitShutdownServer struct {
+}
+
+func (UnimplementedInitShutdownServer) BaseInitiateShutdown(context.Context, *BaseInitiateShutdownRequest) (*BaseInitiateShutdownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInitShutdownServer) BaseAbortShutdown(context.Context, *BaseAbortShutdownRequest) (*BaseAbortShutdownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInitShutdownServer) BaseInitiateShutdownEx(context.Context, *BaseInitiateShutdownExRequest) (*BaseInitiateShutdownExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ InitShutdownServer = (*UnimplementedInitShutdownServer)(nil)

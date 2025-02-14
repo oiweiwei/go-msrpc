@@ -86,7 +86,7 @@ type xxx_DefaultAsyncemsmdbClient struct {
 }
 
 func (o *xxx_DefaultAsyncemsmdbClient) DoAsyncWaitEx(ctx context.Context, in *DoAsyncWaitExRequest, opts ...dcerpc.CallOption) (*DoAsyncWaitExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -236,14 +236,16 @@ type DoAsyncWaitExRequest struct {
 	FlagsIn uint32 `idl:"name:ulFlagsIn" json:"flags_in"`
 }
 
-func (o *DoAsyncWaitExRequest) xxx_ToOp(ctx context.Context) *xxx_DoAsyncWaitExOperation {
+func (o *DoAsyncWaitExRequest) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncWaitExOperation) *xxx_DoAsyncWaitExOperation {
+	if op == nil {
+		op = &xxx_DoAsyncWaitExOperation{}
+	}
 	if o == nil {
-		return &xxx_DoAsyncWaitExOperation{}
+		return op
 	}
-	return &xxx_DoAsyncWaitExOperation{
-		AsyncSession: o.AsyncSession,
-		FlagsIn:      o.FlagsIn,
-	}
+	o.AsyncSession = op.AsyncSession
+	o.FlagsIn = op.FlagsIn
+	return op
 }
 
 func (o *DoAsyncWaitExRequest) xxx_FromOp(ctx context.Context, op *xxx_DoAsyncWaitExOperation) {
@@ -254,7 +256,7 @@ func (o *DoAsyncWaitExRequest) xxx_FromOp(ctx context.Context, op *xxx_DoAsyncWa
 	o.FlagsIn = op.FlagsIn
 }
 func (o *DoAsyncWaitExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DoAsyncWaitExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoAsyncWaitExOperation{}
@@ -287,14 +289,16 @@ type DoAsyncWaitExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DoAsyncWaitExResponse) xxx_ToOp(ctx context.Context) *xxx_DoAsyncWaitExOperation {
+func (o *DoAsyncWaitExResponse) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncWaitExOperation) *xxx_DoAsyncWaitExOperation {
+	if op == nil {
+		op = &xxx_DoAsyncWaitExOperation{}
+	}
 	if o == nil {
-		return &xxx_DoAsyncWaitExOperation{}
+		return op
 	}
-	return &xxx_DoAsyncWaitExOperation{
-		FlagsOut: o.FlagsOut,
-		Return:   o.Return,
-	}
+	o.FlagsOut = op.FlagsOut
+	o.Return = op.Return
+	return op
 }
 
 func (o *DoAsyncWaitExResponse) xxx_FromOp(ctx context.Context, op *xxx_DoAsyncWaitExOperation) {
@@ -305,7 +309,7 @@ func (o *DoAsyncWaitExResponse) xxx_FromOp(ctx context.Context, op *xxx_DoAsyncW
 	o.Return = op.Return
 }
 func (o *DoAsyncWaitExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DoAsyncWaitExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoAsyncWaitExOperation{}

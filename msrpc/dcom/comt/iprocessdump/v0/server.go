@@ -65,19 +65,37 @@ func ProcessDumpServerHandle(ctx context.Context, o ProcessDumpServer, opNum int
 	}
 	switch opNum {
 	case 7: // IsSupported
-		in := &IsSupportedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsSupportedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsSupported(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsSupportedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsSupported(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // DumpProcess
-		in := &DumpProcessRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DumpProcessOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DumpProcess(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DumpProcessRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DumpProcess(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IProcessDump
+type UnimplementedProcessDumpServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedProcessDumpServer) IsSupported(context.Context, *IsSupportedRequest) (*IsSupportedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedProcessDumpServer) DumpProcess(context.Context, *DumpProcessRequest) (*DumpProcessResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ProcessDumpServer = (*UnimplementedProcessDumpServer)(nil)

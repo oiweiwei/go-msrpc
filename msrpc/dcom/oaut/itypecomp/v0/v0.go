@@ -118,7 +118,7 @@ func (o *xxx_DefaultTypeCompClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultTypeCompClient) Bind(ctx context.Context, in *BindRequest, opts ...dcerpc.CallOption) (*BindResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -138,7 +138,7 @@ func (o *xxx_DefaultTypeCompClient) Bind(ctx context.Context, in *BindRequest, o
 }
 
 func (o *xxx_DefaultTypeCompClient) BindType(ctx context.Context, in *BindTypeRequest, opts ...dcerpc.CallOption) (*BindTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -588,16 +588,18 @@ type BindRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *BindRequest) xxx_ToOp(ctx context.Context) *xxx_BindOperation {
+func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
 	if o == nil {
-		return &xxx_BindOperation{}
+		return op
 	}
-	return &xxx_BindOperation{
-		This:      o.This,
-		Name:      o.Name,
-		HashValue: o.HashValue,
-		Flags:     o.Flags,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	o.HashValue = op.HashValue
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
@@ -610,7 +612,7 @@ func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
 	o.Flags = op.Flags
 }
 func (o *BindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindOperation{}
@@ -675,19 +677,21 @@ type BindResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BindResponse) xxx_ToOp(ctx context.Context) *xxx_BindOperation {
+func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
 	if o == nil {
-		return &xxx_BindOperation{}
+		return op
 	}
-	return &xxx_BindOperation{
-		That:     o.That,
-		TypeInfo: o.TypeInfo,
-		DescKind: o.DescKind,
-		FuncDesc: o.FuncDesc,
-		VarDesc:  o.VarDesc,
-		TypeComp: o.TypeComp,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.TypeInfo = op.TypeInfo
+	o.DescKind = op.DescKind
+	o.FuncDesc = op.FuncDesc
+	o.VarDesc = op.VarDesc
+	o.TypeComp = op.TypeComp
+	o.Return = op.Return
+	return op
 }
 
 func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
@@ -703,7 +707,7 @@ func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
 	o.Return = op.Return
 }
 func (o *BindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindOperation{}
@@ -916,15 +920,17 @@ type BindTypeRequest struct {
 	HashValue uint32 `idl:"name:lHashVal" json:"hash_value"`
 }
 
-func (o *BindTypeRequest) xxx_ToOp(ctx context.Context) *xxx_BindTypeOperation {
+func (o *BindTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_BindTypeOperation) *xxx_BindTypeOperation {
+	if op == nil {
+		op = &xxx_BindTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_BindTypeOperation{}
+		return op
 	}
-	return &xxx_BindTypeOperation{
-		This:      o.This,
-		Name:      o.Name,
-		HashValue: o.HashValue,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	o.HashValue = op.HashValue
+	return op
 }
 
 func (o *BindTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_BindTypeOperation) {
@@ -936,7 +942,7 @@ func (o *BindTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_BindTypeOperat
 	o.HashValue = op.HashValue
 }
 func (o *BindTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BindTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindTypeOperation{}
@@ -962,15 +968,17 @@ type BindTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BindTypeResponse) xxx_ToOp(ctx context.Context) *xxx_BindTypeOperation {
+func (o *BindTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_BindTypeOperation) *xxx_BindTypeOperation {
+	if op == nil {
+		op = &xxx_BindTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_BindTypeOperation{}
+		return op
 	}
-	return &xxx_BindTypeOperation{
-		That:     o.That,
-		TypeInfo: o.TypeInfo,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.TypeInfo = op.TypeInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *BindTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_BindTypeOperation) {
@@ -982,7 +990,7 @@ func (o *BindTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_BindTypeOpera
 	o.Return = op.Return
 }
 func (o *BindTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BindTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindTypeOperation{}

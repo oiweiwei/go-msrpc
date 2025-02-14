@@ -97,7 +97,7 @@ func (o *xxx_DefaultAsyncClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAsyncClient) Cancel(ctx context.Context, in *CancelRequest, opts ...dcerpc.CallOption) (*CancelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -117,7 +117,7 @@ func (o *xxx_DefaultAsyncClient) Cancel(ctx context.Context, in *CancelRequest, 
 }
 
 func (o *xxx_DefaultAsyncClient) Wait(ctx context.Context, in *WaitRequest, opts ...dcerpc.CallOption) (*WaitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultAsyncClient) Wait(ctx context.Context, in *WaitRequest, opts
 }
 
 func (o *xxx_DefaultAsyncClient) QueryStatus(ctx context.Context, in *QueryStatusRequest, opts ...dcerpc.CallOption) (*QueryStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -321,13 +321,15 @@ type CancelRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CancelRequest) xxx_ToOp(ctx context.Context) *xxx_CancelOperation {
+func (o *CancelRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) *xxx_CancelOperation {
+	if op == nil {
+		op = &xxx_CancelOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelOperation{}
+		return op
 	}
-	return &xxx_CancelOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CancelRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelOperation) {
@@ -337,7 +339,7 @@ func (o *CancelRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelOperation)
 	o.This = op.This
 }
 func (o *CancelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CancelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelOperation{}
@@ -356,14 +358,16 @@ type CancelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CancelResponse) xxx_ToOp(ctx context.Context) *xxx_CancelOperation {
+func (o *CancelResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) *xxx_CancelOperation {
+	if op == nil {
+		op = &xxx_CancelOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelOperation{}
+		return op
 	}
-	return &xxx_CancelOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CancelResponse) xxx_FromOp(ctx context.Context, op *xxx_CancelOperation) {
@@ -374,7 +378,7 @@ func (o *CancelResponse) xxx_FromOp(ctx context.Context, op *xxx_CancelOperation
 	o.Return = op.Return
 }
 func (o *CancelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CancelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelOperation{}
@@ -549,13 +553,15 @@ type WaitRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *WaitRequest) xxx_ToOp(ctx context.Context) *xxx_WaitOperation {
+func (o *WaitRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitOperation) *xxx_WaitOperation {
+	if op == nil {
+		op = &xxx_WaitOperation{}
+	}
 	if o == nil {
-		return &xxx_WaitOperation{}
+		return op
 	}
-	return &xxx_WaitOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *WaitRequest) xxx_FromOp(ctx context.Context, op *xxx_WaitOperation) {
@@ -565,7 +571,7 @@ func (o *WaitRequest) xxx_FromOp(ctx context.Context, op *xxx_WaitOperation) {
 	o.This = op.This
 }
 func (o *WaitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WaitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WaitOperation{}
@@ -594,16 +600,18 @@ type WaitResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WaitResponse) xxx_ToOp(ctx context.Context) *xxx_WaitOperation {
+func (o *WaitResponse) xxx_ToOp(ctx context.Context, op *xxx_WaitOperation) *xxx_WaitOperation {
+	if op == nil {
+		op = &xxx_WaitOperation{}
+	}
 	if o == nil {
-		return &xxx_WaitOperation{}
+		return op
 	}
-	return &xxx_WaitOperation{
-		That:        o.That,
-		HResult:     o.HResult,
-		AsyncOutput: o.AsyncOutput,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.HResult = op.HResult
+	o.AsyncOutput = op.AsyncOutput
+	o.Return = op.Return
+	return op
 }
 
 func (o *WaitResponse) xxx_FromOp(ctx context.Context, op *xxx_WaitOperation) {
@@ -616,7 +624,7 @@ func (o *WaitResponse) xxx_FromOp(ctx context.Context, op *xxx_WaitOperation) {
 	o.Return = op.Return
 }
 func (o *WaitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WaitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WaitOperation{}
@@ -776,13 +784,15 @@ type QueryStatusRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryStatusRequest) xxx_ToOp(ctx context.Context) *xxx_QueryStatusOperation {
+func (o *QueryStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryStatusOperation) *xxx_QueryStatusOperation {
+	if op == nil {
+		op = &xxx_QueryStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryStatusOperation{}
+		return op
 	}
-	return &xxx_QueryStatusOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryStatusOperation) {
@@ -792,7 +802,7 @@ func (o *QueryStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryStatus
 	o.This = op.This
 }
 func (o *QueryStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryStatusOperation{}
@@ -819,16 +829,18 @@ type QueryStatusResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryStatusResponse) xxx_ToOp(ctx context.Context) *xxx_QueryStatusOperation {
+func (o *QueryStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryStatusOperation) *xxx_QueryStatusOperation {
+	if op == nil {
+		op = &xxx_QueryStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryStatusOperation{}
+		return op
 	}
-	return &xxx_QueryStatusOperation{
-		That:             o.That,
-		HResult:          o.HResult,
-		PercentCompleted: o.PercentCompleted,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.HResult = op.HResult
+	o.PercentCompleted = op.PercentCompleted
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryStatusOperation) {
@@ -841,7 +853,7 @@ func (o *QueryStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryStatu
 	o.Return = op.Return
 }
 func (o *QueryStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryStatusOperation{}

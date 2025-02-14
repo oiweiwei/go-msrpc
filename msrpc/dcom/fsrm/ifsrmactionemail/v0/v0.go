@@ -112,7 +112,7 @@ func (o *xxx_DefaultActionEmailClient) Action() ifsrmaction.ActionClient {
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMailFrom(ctx context.Context, in *GetMailFromRequest, opts ...dcerpc.CallOption) (*GetMailFromResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -132,7 +132,7 @@ func (o *xxx_DefaultActionEmailClient) GetMailFrom(ctx context.Context, in *GetM
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMailFrom(ctx context.Context, in *SetMailFromRequest, opts ...dcerpc.CallOption) (*SetMailFromResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -152,7 +152,7 @@ func (o *xxx_DefaultActionEmailClient) SetMailFrom(ctx context.Context, in *SetM
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMailReplyTo(ctx context.Context, in *GetMailReplyToRequest, opts ...dcerpc.CallOption) (*GetMailReplyToResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -172,7 +172,7 @@ func (o *xxx_DefaultActionEmailClient) GetMailReplyTo(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMailReplyTo(ctx context.Context, in *SetMailReplyToRequest, opts ...dcerpc.CallOption) (*SetMailReplyToResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -192,7 +192,7 @@ func (o *xxx_DefaultActionEmailClient) SetMailReplyTo(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMailTo(ctx context.Context, in *GetMailToRequest, opts ...dcerpc.CallOption) (*GetMailToResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -212,7 +212,7 @@ func (o *xxx_DefaultActionEmailClient) GetMailTo(ctx context.Context, in *GetMai
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMailTo(ctx context.Context, in *SetMailToRequest, opts ...dcerpc.CallOption) (*SetMailToResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -232,7 +232,7 @@ func (o *xxx_DefaultActionEmailClient) SetMailTo(ctx context.Context, in *SetMai
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMailCC(ctx context.Context, in *GetMailCCRequest, opts ...dcerpc.CallOption) (*GetMailCCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -252,7 +252,7 @@ func (o *xxx_DefaultActionEmailClient) GetMailCC(ctx context.Context, in *GetMai
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMailCC(ctx context.Context, in *SetMailCCRequest, opts ...dcerpc.CallOption) (*SetMailCCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -272,7 +272,7 @@ func (o *xxx_DefaultActionEmailClient) SetMailCC(ctx context.Context, in *SetMai
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMailBCC(ctx context.Context, in *GetMailBCCRequest, opts ...dcerpc.CallOption) (*GetMailBCCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -292,7 +292,7 @@ func (o *xxx_DefaultActionEmailClient) GetMailBCC(ctx context.Context, in *GetMa
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMailBCC(ctx context.Context, in *SetMailBCCRequest, opts ...dcerpc.CallOption) (*SetMailBCCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -312,7 +312,7 @@ func (o *xxx_DefaultActionEmailClient) SetMailBCC(ctx context.Context, in *SetMa
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMailSubject(ctx context.Context, in *GetMailSubjectRequest, opts ...dcerpc.CallOption) (*GetMailSubjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -332,7 +332,7 @@ func (o *xxx_DefaultActionEmailClient) GetMailSubject(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMailSubject(ctx context.Context, in *SetMailSubjectRequest, opts ...dcerpc.CallOption) (*SetMailSubjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -352,7 +352,7 @@ func (o *xxx_DefaultActionEmailClient) SetMailSubject(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultActionEmailClient) GetMessageText(ctx context.Context, in *GetMessageTextRequest, opts ...dcerpc.CallOption) (*GetMessageTextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -372,7 +372,7 @@ func (o *xxx_DefaultActionEmailClient) GetMessageText(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultActionEmailClient) SetMessageText(ctx context.Context, in *SetMessageTextRequest, opts ...dcerpc.CallOption) (*SetMessageTextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -603,13 +603,15 @@ type GetMailFromRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMailFromRequest) xxx_ToOp(ctx context.Context) *xxx_GetMailFromOperation {
+func (o *GetMailFromRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailFromOperation) *xxx_GetMailFromOperation {
+	if op == nil {
+		op = &xxx_GetMailFromOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailFromOperation{}
+		return op
 	}
-	return &xxx_GetMailFromOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMailFromRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailFromOperation) {
@@ -619,7 +621,7 @@ func (o *GetMailFromRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailFrom
 	o.This = op.This
 }
 func (o *GetMailFromRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMailFromRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailFromOperation{}
@@ -639,15 +641,17 @@ type GetMailFromResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMailFromResponse) xxx_ToOp(ctx context.Context) *xxx_GetMailFromOperation {
+func (o *GetMailFromResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailFromOperation) *xxx_GetMailFromOperation {
+	if op == nil {
+		op = &xxx_GetMailFromOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailFromOperation{}
+		return op
 	}
-	return &xxx_GetMailFromOperation{
-		That:     o.That,
-		MailFrom: o.MailFrom,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.MailFrom = op.MailFrom
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMailFromResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailFromOperation) {
@@ -659,7 +663,7 @@ func (o *GetMailFromResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailFro
 	o.Return = op.Return
 }
 func (o *GetMailFromResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMailFromResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailFromOperation{}
@@ -841,14 +845,16 @@ type SetMailFromRequest struct {
 	MailFrom *oaut.String   `idl:"name:mailFrom" json:"mail_from"`
 }
 
-func (o *SetMailFromRequest) xxx_ToOp(ctx context.Context) *xxx_SetMailFromOperation {
+func (o *SetMailFromRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailFromOperation) *xxx_SetMailFromOperation {
+	if op == nil {
+		op = &xxx_SetMailFromOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailFromOperation{}
+		return op
 	}
-	return &xxx_SetMailFromOperation{
-		This:     o.This,
-		MailFrom: o.MailFrom,
-	}
+	o.This = op.This
+	o.MailFrom = op.MailFrom
+	return op
 }
 
 func (o *SetMailFromRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailFromOperation) {
@@ -859,7 +865,7 @@ func (o *SetMailFromRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailFrom
 	o.MailFrom = op.MailFrom
 }
 func (o *SetMailFromRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMailFromRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailFromOperation{}
@@ -878,14 +884,16 @@ type SetMailFromResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMailFromResponse) xxx_ToOp(ctx context.Context) *xxx_SetMailFromOperation {
+func (o *SetMailFromResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailFromOperation) *xxx_SetMailFromOperation {
+	if op == nil {
+		op = &xxx_SetMailFromOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailFromOperation{}
+		return op
 	}
-	return &xxx_SetMailFromOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMailFromResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailFromOperation) {
@@ -896,7 +904,7 @@ func (o *SetMailFromResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailFro
 	o.Return = op.Return
 }
 func (o *SetMailFromResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMailFromResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailFromOperation{}
@@ -1077,13 +1085,15 @@ type GetMailReplyToRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMailReplyToRequest) xxx_ToOp(ctx context.Context) *xxx_GetMailReplyToOperation {
+func (o *GetMailReplyToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailReplyToOperation) *xxx_GetMailReplyToOperation {
+	if op == nil {
+		op = &xxx_GetMailReplyToOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailReplyToOperation{}
+		return op
 	}
-	return &xxx_GetMailReplyToOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMailReplyToRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailReplyToOperation) {
@@ -1093,7 +1103,7 @@ func (o *GetMailReplyToRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailR
 	o.This = op.This
 }
 func (o *GetMailReplyToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMailReplyToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailReplyToOperation{}
@@ -1113,15 +1123,17 @@ type GetMailReplyToResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMailReplyToResponse) xxx_ToOp(ctx context.Context) *xxx_GetMailReplyToOperation {
+func (o *GetMailReplyToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailReplyToOperation) *xxx_GetMailReplyToOperation {
+	if op == nil {
+		op = &xxx_GetMailReplyToOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailReplyToOperation{}
+		return op
 	}
-	return &xxx_GetMailReplyToOperation{
-		That:        o.That,
-		MailReplyTo: o.MailReplyTo,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.MailReplyTo = op.MailReplyTo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMailReplyToResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailReplyToOperation) {
@@ -1133,7 +1145,7 @@ func (o *GetMailReplyToResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMail
 	o.Return = op.Return
 }
 func (o *GetMailReplyToResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMailReplyToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailReplyToOperation{}
@@ -1315,14 +1327,16 @@ type SetMailReplyToRequest struct {
 	MailReplyTo *oaut.String   `idl:"name:mailReplyTo" json:"mail_reply_to"`
 }
 
-func (o *SetMailReplyToRequest) xxx_ToOp(ctx context.Context) *xxx_SetMailReplyToOperation {
+func (o *SetMailReplyToRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailReplyToOperation) *xxx_SetMailReplyToOperation {
+	if op == nil {
+		op = &xxx_SetMailReplyToOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailReplyToOperation{}
+		return op
 	}
-	return &xxx_SetMailReplyToOperation{
-		This:        o.This,
-		MailReplyTo: o.MailReplyTo,
-	}
+	o.This = op.This
+	o.MailReplyTo = op.MailReplyTo
+	return op
 }
 
 func (o *SetMailReplyToRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailReplyToOperation) {
@@ -1333,7 +1347,7 @@ func (o *SetMailReplyToRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailR
 	o.MailReplyTo = op.MailReplyTo
 }
 func (o *SetMailReplyToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMailReplyToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailReplyToOperation{}
@@ -1352,14 +1366,16 @@ type SetMailReplyToResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMailReplyToResponse) xxx_ToOp(ctx context.Context) *xxx_SetMailReplyToOperation {
+func (o *SetMailReplyToResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailReplyToOperation) *xxx_SetMailReplyToOperation {
+	if op == nil {
+		op = &xxx_SetMailReplyToOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailReplyToOperation{}
+		return op
 	}
-	return &xxx_SetMailReplyToOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMailReplyToResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailReplyToOperation) {
@@ -1370,7 +1386,7 @@ func (o *SetMailReplyToResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMail
 	o.Return = op.Return
 }
 func (o *SetMailReplyToResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMailReplyToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailReplyToOperation{}
@@ -1551,13 +1567,15 @@ type GetMailToRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMailToRequest) xxx_ToOp(ctx context.Context) *xxx_GetMailToOperation {
+func (o *GetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOperation) *xxx_GetMailToOperation {
+	if op == nil {
+		op = &xxx_GetMailToOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailToOperation{}
+		return op
 	}
-	return &xxx_GetMailToOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMailToRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailToOperation) {
@@ -1567,7 +1585,7 @@ func (o *GetMailToRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailToOper
 	o.This = op.This
 }
 func (o *GetMailToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMailToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailToOperation{}
@@ -1587,15 +1605,17 @@ type GetMailToResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMailToResponse) xxx_ToOp(ctx context.Context) *xxx_GetMailToOperation {
+func (o *GetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailToOperation) *xxx_GetMailToOperation {
+	if op == nil {
+		op = &xxx_GetMailToOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailToOperation{}
+		return op
 	}
-	return &xxx_GetMailToOperation{
-		That:   o.That,
-		MailTo: o.MailTo,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.MailTo = op.MailTo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMailToResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailToOperation) {
@@ -1607,7 +1627,7 @@ func (o *GetMailToResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailToOpe
 	o.Return = op.Return
 }
 func (o *GetMailToResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMailToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailToOperation{}
@@ -1789,14 +1809,16 @@ type SetMailToRequest struct {
 	MailTo *oaut.String   `idl:"name:mailTo" json:"mail_to"`
 }
 
-func (o *SetMailToRequest) xxx_ToOp(ctx context.Context) *xxx_SetMailToOperation {
+func (o *SetMailToRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOperation) *xxx_SetMailToOperation {
+	if op == nil {
+		op = &xxx_SetMailToOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailToOperation{}
+		return op
 	}
-	return &xxx_SetMailToOperation{
-		This:   o.This,
-		MailTo: o.MailTo,
-	}
+	o.This = op.This
+	o.MailTo = op.MailTo
+	return op
 }
 
 func (o *SetMailToRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailToOperation) {
@@ -1807,7 +1829,7 @@ func (o *SetMailToRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailToOper
 	o.MailTo = op.MailTo
 }
 func (o *SetMailToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMailToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailToOperation{}
@@ -1826,14 +1848,16 @@ type SetMailToResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMailToResponse) xxx_ToOp(ctx context.Context) *xxx_SetMailToOperation {
+func (o *SetMailToResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailToOperation) *xxx_SetMailToOperation {
+	if op == nil {
+		op = &xxx_SetMailToOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailToOperation{}
+		return op
 	}
-	return &xxx_SetMailToOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMailToResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailToOperation) {
@@ -1844,7 +1868,7 @@ func (o *SetMailToResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailToOpe
 	o.Return = op.Return
 }
 func (o *SetMailToResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMailToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailToOperation{}
@@ -2025,13 +2049,15 @@ type GetMailCCRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMailCCRequest) xxx_ToOp(ctx context.Context) *xxx_GetMailCCOperation {
+func (o *GetMailCCRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailCCOperation) *xxx_GetMailCCOperation {
+	if op == nil {
+		op = &xxx_GetMailCCOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailCCOperation{}
+		return op
 	}
-	return &xxx_GetMailCCOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMailCCRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailCCOperation) {
@@ -2041,7 +2067,7 @@ func (o *GetMailCCRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailCCOper
 	o.This = op.This
 }
 func (o *GetMailCCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMailCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailCCOperation{}
@@ -2061,15 +2087,17 @@ type GetMailCCResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMailCCResponse) xxx_ToOp(ctx context.Context) *xxx_GetMailCCOperation {
+func (o *GetMailCCResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailCCOperation) *xxx_GetMailCCOperation {
+	if op == nil {
+		op = &xxx_GetMailCCOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailCCOperation{}
+		return op
 	}
-	return &xxx_GetMailCCOperation{
-		That:   o.That,
-		MailCC: o.MailCC,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.MailCC = op.MailCC
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMailCCResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailCCOperation) {
@@ -2081,7 +2109,7 @@ func (o *GetMailCCResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailCCOpe
 	o.Return = op.Return
 }
 func (o *GetMailCCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMailCCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailCCOperation{}
@@ -2263,14 +2291,16 @@ type SetMailCCRequest struct {
 	MailCC *oaut.String   `idl:"name:mailCc" json:"mail_cc"`
 }
 
-func (o *SetMailCCRequest) xxx_ToOp(ctx context.Context) *xxx_SetMailCCOperation {
+func (o *SetMailCCRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailCCOperation) *xxx_SetMailCCOperation {
+	if op == nil {
+		op = &xxx_SetMailCCOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailCCOperation{}
+		return op
 	}
-	return &xxx_SetMailCCOperation{
-		This:   o.This,
-		MailCC: o.MailCC,
-	}
+	o.This = op.This
+	o.MailCC = op.MailCC
+	return op
 }
 
 func (o *SetMailCCRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailCCOperation) {
@@ -2281,7 +2311,7 @@ func (o *SetMailCCRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailCCOper
 	o.MailCC = op.MailCC
 }
 func (o *SetMailCCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMailCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailCCOperation{}
@@ -2300,14 +2330,16 @@ type SetMailCCResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMailCCResponse) xxx_ToOp(ctx context.Context) *xxx_SetMailCCOperation {
+func (o *SetMailCCResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailCCOperation) *xxx_SetMailCCOperation {
+	if op == nil {
+		op = &xxx_SetMailCCOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailCCOperation{}
+		return op
 	}
-	return &xxx_SetMailCCOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMailCCResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailCCOperation) {
@@ -2318,7 +2350,7 @@ func (o *SetMailCCResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailCCOpe
 	o.Return = op.Return
 }
 func (o *SetMailCCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMailCCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailCCOperation{}
@@ -2499,13 +2531,15 @@ type GetMailBCCRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMailBCCRequest) xxx_ToOp(ctx context.Context) *xxx_GetMailBCCOperation {
+func (o *GetMailBCCRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailBCCOperation) *xxx_GetMailBCCOperation {
+	if op == nil {
+		op = &xxx_GetMailBCCOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailBCCOperation{}
+		return op
 	}
-	return &xxx_GetMailBCCOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMailBCCRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailBCCOperation) {
@@ -2515,7 +2549,7 @@ func (o *GetMailBCCRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailBCCOp
 	o.This = op.This
 }
 func (o *GetMailBCCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMailBCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailBCCOperation{}
@@ -2535,15 +2569,17 @@ type GetMailBCCResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMailBCCResponse) xxx_ToOp(ctx context.Context) *xxx_GetMailBCCOperation {
+func (o *GetMailBCCResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailBCCOperation) *xxx_GetMailBCCOperation {
+	if op == nil {
+		op = &xxx_GetMailBCCOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailBCCOperation{}
+		return op
 	}
-	return &xxx_GetMailBCCOperation{
-		That:    o.That,
-		MailBCC: o.MailBCC,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.MailBCC = op.MailBCC
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMailBCCResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailBCCOperation) {
@@ -2555,7 +2591,7 @@ func (o *GetMailBCCResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailBCCO
 	o.Return = op.Return
 }
 func (o *GetMailBCCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMailBCCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailBCCOperation{}
@@ -2737,14 +2773,16 @@ type SetMailBCCRequest struct {
 	MailBCC *oaut.String   `idl:"name:mailBcc" json:"mail_bcc"`
 }
 
-func (o *SetMailBCCRequest) xxx_ToOp(ctx context.Context) *xxx_SetMailBCCOperation {
+func (o *SetMailBCCRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailBCCOperation) *xxx_SetMailBCCOperation {
+	if op == nil {
+		op = &xxx_SetMailBCCOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailBCCOperation{}
+		return op
 	}
-	return &xxx_SetMailBCCOperation{
-		This:    o.This,
-		MailBCC: o.MailBCC,
-	}
+	o.This = op.This
+	o.MailBCC = op.MailBCC
+	return op
 }
 
 func (o *SetMailBCCRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailBCCOperation) {
@@ -2755,7 +2793,7 @@ func (o *SetMailBCCRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailBCCOp
 	o.MailBCC = op.MailBCC
 }
 func (o *SetMailBCCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMailBCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailBCCOperation{}
@@ -2774,14 +2812,16 @@ type SetMailBCCResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMailBCCResponse) xxx_ToOp(ctx context.Context) *xxx_SetMailBCCOperation {
+func (o *SetMailBCCResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailBCCOperation) *xxx_SetMailBCCOperation {
+	if op == nil {
+		op = &xxx_SetMailBCCOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailBCCOperation{}
+		return op
 	}
-	return &xxx_SetMailBCCOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMailBCCResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailBCCOperation) {
@@ -2792,7 +2832,7 @@ func (o *SetMailBCCResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailBCCO
 	o.Return = op.Return
 }
 func (o *SetMailBCCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMailBCCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailBCCOperation{}
@@ -2973,13 +3013,15 @@ type GetMailSubjectRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMailSubjectRequest) xxx_ToOp(ctx context.Context) *xxx_GetMailSubjectOperation {
+func (o *GetMailSubjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailSubjectOperation) *xxx_GetMailSubjectOperation {
+	if op == nil {
+		op = &xxx_GetMailSubjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailSubjectOperation{}
+		return op
 	}
-	return &xxx_GetMailSubjectOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMailSubjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailSubjectOperation) {
@@ -2989,7 +3031,7 @@ func (o *GetMailSubjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMailS
 	o.This = op.This
 }
 func (o *GetMailSubjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMailSubjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailSubjectOperation{}
@@ -3009,15 +3051,17 @@ type GetMailSubjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMailSubjectResponse) xxx_ToOp(ctx context.Context) *xxx_GetMailSubjectOperation {
+func (o *GetMailSubjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailSubjectOperation) *xxx_GetMailSubjectOperation {
+	if op == nil {
+		op = &xxx_GetMailSubjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMailSubjectOperation{}
+		return op
 	}
-	return &xxx_GetMailSubjectOperation{
-		That:        o.That,
-		MailSubject: o.MailSubject,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.MailSubject = op.MailSubject
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMailSubjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMailSubjectOperation) {
@@ -3029,7 +3073,7 @@ func (o *GetMailSubjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMail
 	o.Return = op.Return
 }
 func (o *GetMailSubjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMailSubjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMailSubjectOperation{}
@@ -3211,14 +3255,16 @@ type SetMailSubjectRequest struct {
 	MailSubject *oaut.String   `idl:"name:mailSubject" json:"mail_subject"`
 }
 
-func (o *SetMailSubjectRequest) xxx_ToOp(ctx context.Context) *xxx_SetMailSubjectOperation {
+func (o *SetMailSubjectRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailSubjectOperation) *xxx_SetMailSubjectOperation {
+	if op == nil {
+		op = &xxx_SetMailSubjectOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailSubjectOperation{}
+		return op
 	}
-	return &xxx_SetMailSubjectOperation{
-		This:        o.This,
-		MailSubject: o.MailSubject,
-	}
+	o.This = op.This
+	o.MailSubject = op.MailSubject
+	return op
 }
 
 func (o *SetMailSubjectRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailSubjectOperation) {
@@ -3229,7 +3275,7 @@ func (o *SetMailSubjectRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMailS
 	o.MailSubject = op.MailSubject
 }
 func (o *SetMailSubjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMailSubjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailSubjectOperation{}
@@ -3248,14 +3294,16 @@ type SetMailSubjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMailSubjectResponse) xxx_ToOp(ctx context.Context) *xxx_SetMailSubjectOperation {
+func (o *SetMailSubjectResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailSubjectOperation) *xxx_SetMailSubjectOperation {
+	if op == nil {
+		op = &xxx_SetMailSubjectOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMailSubjectOperation{}
+		return op
 	}
-	return &xxx_SetMailSubjectOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMailSubjectResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMailSubjectOperation) {
@@ -3266,7 +3314,7 @@ func (o *SetMailSubjectResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMail
 	o.Return = op.Return
 }
 func (o *SetMailSubjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMailSubjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMailSubjectOperation{}
@@ -3447,13 +3495,15 @@ type GetMessageTextRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMessageTextRequest) xxx_ToOp(ctx context.Context) *xxx_GetMessageTextOperation {
+func (o *GetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMessageTextOperation) *xxx_GetMessageTextOperation {
+	if op == nil {
+		op = &xxx_GetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMessageTextOperation{}
+		return op
 	}
-	return &xxx_GetMessageTextOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMessageTextOperation) {
@@ -3463,7 +3513,7 @@ func (o *GetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMessa
 	o.This = op.This
 }
 func (o *GetMessageTextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMessageTextOperation{}
@@ -3483,15 +3533,17 @@ type GetMessageTextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMessageTextResponse) xxx_ToOp(ctx context.Context) *xxx_GetMessageTextOperation {
+func (o *GetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMessageTextOperation) *xxx_GetMessageTextOperation {
+	if op == nil {
+		op = &xxx_GetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMessageTextOperation{}
+		return op
 	}
-	return &xxx_GetMessageTextOperation{
-		That:        o.That,
-		MessageText: o.MessageText,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.MessageText = op.MessageText
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMessageTextOperation) {
@@ -3503,7 +3555,7 @@ func (o *GetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMess
 	o.Return = op.Return
 }
 func (o *GetMessageTextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMessageTextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMessageTextOperation{}
@@ -3685,14 +3737,16 @@ type SetMessageTextRequest struct {
 	MessageText *oaut.String   `idl:"name:messageText" json:"message_text"`
 }
 
-func (o *SetMessageTextRequest) xxx_ToOp(ctx context.Context) *xxx_SetMessageTextOperation {
+func (o *SetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMessageTextOperation) *xxx_SetMessageTextOperation {
+	if op == nil {
+		op = &xxx_SetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMessageTextOperation{}
+		return op
 	}
-	return &xxx_SetMessageTextOperation{
-		This:        o.This,
-		MessageText: o.MessageText,
-	}
+	o.This = op.This
+	o.MessageText = op.MessageText
+	return op
 }
 
 func (o *SetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMessageTextOperation) {
@@ -3703,7 +3757,7 @@ func (o *SetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMessa
 	o.MessageText = op.MessageText
 }
 func (o *SetMessageTextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMessageTextOperation{}
@@ -3722,14 +3776,16 @@ type SetMessageTextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMessageTextResponse) xxx_ToOp(ctx context.Context) *xxx_SetMessageTextOperation {
+func (o *SetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMessageTextOperation) *xxx_SetMessageTextOperation {
+	if op == nil {
+		op = &xxx_SetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMessageTextOperation{}
+		return op
 	}
-	return &xxx_SetMessageTextOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMessageTextOperation) {
@@ -3740,7 +3796,7 @@ func (o *SetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMess
 	o.Return = op.Return
 }
 func (o *SetMessageTextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMessageTextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMessageTextOperation{}

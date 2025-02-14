@@ -557,106 +557,134 @@ func NewDscommServerHandle(o DscommServer) dcerpc.ServerHandle {
 func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // S_DSCreateObject
-		in := &CreateObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // S_DSDeleteObject
-		in := &DeleteObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // S_DSGetProps
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // S_DSSetProps
-		in := &SetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // S_DSGetObjectSecurity
-		in := &GetObjectSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // S_DSSetObjectSecurity
-		in := &SetObjectSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetObjectSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetObjectSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetObjectSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetObjectSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // S_DSLookupBegin
-		in := &LookupBeginRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupBeginOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupBegin(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupBeginRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupBegin(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // S_DSLookupNext
-		in := &LookupNextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // S_DSLookupEnd
-		in := &LookupEndRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupEndOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupEnd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupEndRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupEnd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Opnum9NotUsedOnWire
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	case 10: // S_DSDeleteObjectGuid
-		in := &DeleteObjectGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteObjectGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteObjectGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteObjectGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteObjectGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // S_DSGetPropsGuid
-		in := &GetPropertiesGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertiesGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertiesGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // S_DSSetPropsGuid
-		in := &SetPropertiesGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPropertiesGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPropertiesGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPropertiesGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPropertiesGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // S_DSGetObjectSecurityGuid
-		in := &GetObjectSecurityGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectSecurityGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectSecurityGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectSecurityGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectSecurityGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // S_DSSetObjectSecurityGuid
-		in := &SetObjectSecurityGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetObjectSecurityGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetObjectSecurityGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetObjectSecurityGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetObjectSecurityGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Opnum15NotUsedOnWire
 		// Opnum15NotUsedOnWire
 		return nil, nil
@@ -670,61 +698,77 @@ func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Re
 		// Opnum18NotUsedOnWire
 		return nil, nil
 	case 19: // S_DSQMSetMachineProperties
-		in := &QMSetMachinePropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QMSetMachinePropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QMSetMachineProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QMSetMachinePropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QMSetMachineProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // S_DSCreateServersCache
-		in := &CreateServersCacheRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateServersCacheOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateServersCache(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateServersCacheRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateServersCache(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // S_DSQMSetMachinePropertiesSignProc
-		in := &QMSetMachinePropertiesSignProcRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QMSetMachinePropertiesSignProcOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QMSetMachinePropertiesSignProc(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QMSetMachinePropertiesSignProcRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QMSetMachinePropertiesSignProc(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // S_DSQMGetObjectSecurity
-		in := &QMGetObjectSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QMGetObjectSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QMGetObjectSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QMGetObjectSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QMGetObjectSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // S_DSQMGetObjectSecurityChallengeResponceProc
-		in := &QMGetObjectSecurityChallengeResponseProcRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QMGetObjectSecurityChallengeResponseProcOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QMGetObjectSecurityChallengeResponseProc(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QMGetObjectSecurityChallengeResponseProcRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QMGetObjectSecurityChallengeResponseProc(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // S_InitSecCtx
-		in := &InitSecurityContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitSecurityContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitSecurityContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitSecurityContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitSecurityContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // S_DSValidateServer
-		in := &ValidateServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ValidateServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ValidateServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ValidateServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidateServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // S_DSCloseServerHandle
-		in := &CloseServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // Opnum24NotUsedOnWire
 		// Opnum24NotUsedOnWire
 		return nil, nil
@@ -735,12 +779,90 @@ func DscommServerHandle(ctx context.Context, o DscommServer, opNum int, r ndr.Re
 		// Opnum26NotUsedOnWire
 		return nil, nil
 	case 30: // S_DSGetServerPort
-		in := &GetServerPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented dscomm
+type UnimplementedDscommServer struct {
+}
+
+func (UnimplementedDscommServer) CreateObject(context.Context, *CreateObjectRequest) (*CreateObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) SetProperties(context.Context, *SetPropertiesRequest) (*SetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) GetObjectSecurity(context.Context, *GetObjectSecurityRequest) (*GetObjectSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) SetObjectSecurity(context.Context, *SetObjectSecurityRequest) (*SetObjectSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) LookupBegin(context.Context, *LookupBeginRequest) (*LookupBeginResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) LookupNext(context.Context, *LookupNextRequest) (*LookupNextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) LookupEnd(context.Context, *LookupEndRequest) (*LookupEndResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) DeleteObjectGUID(context.Context, *DeleteObjectGUIDRequest) (*DeleteObjectGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) GetPropertiesGUID(context.Context, *GetPropertiesGUIDRequest) (*GetPropertiesGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) SetPropertiesGUID(context.Context, *SetPropertiesGUIDRequest) (*SetPropertiesGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) GetObjectSecurityGUID(context.Context, *GetObjectSecurityGUIDRequest) (*GetObjectSecurityGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) SetObjectSecurityGUID(context.Context, *SetObjectSecurityGUIDRequest) (*SetObjectSecurityGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) QMSetMachineProperties(context.Context, *QMSetMachinePropertiesRequest) (*QMSetMachinePropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) CreateServersCache(context.Context, *CreateServersCacheRequest) (*CreateServersCacheResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) QMSetMachinePropertiesSignProc(context.Context, *QMSetMachinePropertiesSignProcRequest) (*QMSetMachinePropertiesSignProcResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) QMGetObjectSecurity(context.Context, *QMGetObjectSecurityRequest) (*QMGetObjectSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) QMGetObjectSecurityChallengeResponseProc(context.Context, *QMGetObjectSecurityChallengeResponseProcRequest) (*QMGetObjectSecurityChallengeResponseProcResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) InitSecurityContext(context.Context, *InitSecurityContextRequest) (*InitSecurityContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) ValidateServer(context.Context, *ValidateServerRequest) (*ValidateServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) CloseServer(context.Context, *CloseServerRequest) (*CloseServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscommServer) GetServerPort(context.Context, *GetServerPortRequest) (*GetServerPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DscommServer = (*UnimplementedDscommServer)(nil)

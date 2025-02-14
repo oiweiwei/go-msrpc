@@ -97,7 +97,7 @@ type xxx_DefaultWinsi2Client struct {
 }
 
 func (o *xxx_DefaultWinsi2Client) TombstoneDBRecords(ctx context.Context, in *TombstoneDBRecordsRequest, opts ...dcerpc.CallOption) (*TombstoneDBRecordsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -110,7 +110,7 @@ func (o *xxx_DefaultWinsi2Client) TombstoneDBRecords(ctx context.Context, in *To
 }
 
 func (o *xxx_DefaultWinsi2Client) CheckAccess(ctx context.Context, in *CheckAccessRequest, opts ...dcerpc.CallOption) (*CheckAccessResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -276,15 +276,17 @@ type TombstoneDBRecordsRequest struct {
 	MaxVersNo *raiw.VersNo `idl:"name:MaxVersNo" json:"max_vers_no"`
 }
 
-func (o *TombstoneDBRecordsRequest) xxx_ToOp(ctx context.Context) *xxx_TombstoneDBRecordsOperation {
+func (o *TombstoneDBRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_TombstoneDBRecordsOperation) *xxx_TombstoneDBRecordsOperation {
+	if op == nil {
+		op = &xxx_TombstoneDBRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_TombstoneDBRecordsOperation{}
+		return op
 	}
-	return &xxx_TombstoneDBRecordsOperation{
-		WINSAddr:  o.WINSAddr,
-		MinVersNo: o.MinVersNo,
-		MaxVersNo: o.MaxVersNo,
-	}
+	o.WINSAddr = op.WINSAddr
+	o.MinVersNo = op.MinVersNo
+	o.MaxVersNo = op.MaxVersNo
+	return op
 }
 
 func (o *TombstoneDBRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_TombstoneDBRecordsOperation) {
@@ -296,7 +298,7 @@ func (o *TombstoneDBRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_Tomb
 	o.MaxVersNo = op.MaxVersNo
 }
 func (o *TombstoneDBRecordsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TombstoneDBRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TombstoneDBRecordsOperation{}
@@ -313,13 +315,15 @@ type TombstoneDBRecordsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TombstoneDBRecordsResponse) xxx_ToOp(ctx context.Context) *xxx_TombstoneDBRecordsOperation {
+func (o *TombstoneDBRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_TombstoneDBRecordsOperation) *xxx_TombstoneDBRecordsOperation {
+	if op == nil {
+		op = &xxx_TombstoneDBRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_TombstoneDBRecordsOperation{}
+		return op
 	}
-	return &xxx_TombstoneDBRecordsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *TombstoneDBRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_TombstoneDBRecordsOperation) {
@@ -329,7 +333,7 @@ func (o *TombstoneDBRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_Tom
 	o.Return = op.Return
 }
 func (o *TombstoneDBRecordsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TombstoneDBRecordsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TombstoneDBRecordsOperation{}
@@ -418,11 +422,14 @@ func (o *xxx_CheckAccessOperation) UnmarshalNDRResponse(ctx context.Context, w n
 type CheckAccessRequest struct {
 }
 
-func (o *CheckAccessRequest) xxx_ToOp(ctx context.Context) *xxx_CheckAccessOperation {
-	if o == nil {
-		return &xxx_CheckAccessOperation{}
+func (o *CheckAccessRequest) xxx_ToOp(ctx context.Context, op *xxx_CheckAccessOperation) *xxx_CheckAccessOperation {
+	if op == nil {
+		op = &xxx_CheckAccessOperation{}
 	}
-	return &xxx_CheckAccessOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *CheckAccessRequest) xxx_FromOp(ctx context.Context, op *xxx_CheckAccessOperation) {
@@ -431,7 +438,7 @@ func (o *CheckAccessRequest) xxx_FromOp(ctx context.Context, op *xxx_CheckAccess
 	}
 }
 func (o *CheckAccessRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CheckAccessRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CheckAccessOperation{}
@@ -464,14 +471,16 @@ type CheckAccessResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CheckAccessResponse) xxx_ToOp(ctx context.Context) *xxx_CheckAccessOperation {
+func (o *CheckAccessResponse) xxx_ToOp(ctx context.Context, op *xxx_CheckAccessOperation) *xxx_CheckAccessOperation {
+	if op == nil {
+		op = &xxx_CheckAccessOperation{}
+	}
 	if o == nil {
-		return &xxx_CheckAccessOperation{}
+		return op
 	}
-	return &xxx_CheckAccessOperation{
-		Access: o.Access,
-		Return: o.Return,
-	}
+	o.Access = op.Access
+	o.Return = op.Return
+	return op
 }
 
 func (o *CheckAccessResponse) xxx_FromOp(ctx context.Context, op *xxx_CheckAccessOperation) {
@@ -482,7 +491,7 @@ func (o *CheckAccessResponse) xxx_FromOp(ctx context.Context, op *xxx_CheckAcces
 	o.Return = op.Return
 }
 func (o *CheckAccessResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CheckAccessResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CheckAccessOperation{}

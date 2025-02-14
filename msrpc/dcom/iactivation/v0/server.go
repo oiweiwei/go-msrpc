@@ -45,12 +45,24 @@ func NewActivationServerHandle(o ActivationServer) dcerpc.ServerHandle {
 func ActivationServerHandle(ctx context.Context, o ActivationServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RemoteActivation
-		in := &RemoteActivationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteActivationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteActivation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteActivationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteActivation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IActivation
+type UnimplementedActivationServer struct {
+}
+
+func (UnimplementedActivationServer) RemoteActivation(context.Context, *RemoteActivationRequest) (*RemoteActivationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActivationServer = (*UnimplementedActivationServer)(nil)

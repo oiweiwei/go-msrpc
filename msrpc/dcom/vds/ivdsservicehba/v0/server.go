@@ -58,12 +58,25 @@ func ServiceHBAServerHandle(ctx context.Context, o ServiceHBAServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // QueryHbaPorts
-		in := &QueryHBAPortsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryHBAPortsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryHBAPorts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryHBAPortsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryHBAPorts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceHba
+type UnimplementedServiceHBAServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceHBAServer) QueryHBAPorts(context.Context, *QueryHBAPortsRequest) (*QueryHBAPortsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceHBAServer = (*UnimplementedServiceHBAServer)(nil)

@@ -86,7 +86,7 @@ type xxx_DefaultSasecClient struct {
 }
 
 func (o *xxx_DefaultSasecClient) SetAccountInformation(ctx context.Context, in *SetAccountInformationRequest, opts ...dcerpc.CallOption) (*SetAccountInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -99,7 +99,7 @@ func (o *xxx_DefaultSasecClient) SetAccountInformation(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSasecClient) SetNSAccountInformation(ctx context.Context, in *SetNSAccountInformationRequest, opts ...dcerpc.CallOption) (*SetNSAccountInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -112,7 +112,7 @@ func (o *xxx_DefaultSasecClient) SetNSAccountInformation(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSasecClient) GetNSAccountInformation(ctx context.Context, in *GetNSAccountInformationRequest, opts ...dcerpc.CallOption) (*GetNSAccountInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -125,7 +125,7 @@ func (o *xxx_DefaultSasecClient) GetNSAccountInformation(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSasecClient) GetAccountInformation(ctx context.Context, in *GetAccountInformationRequest, opts ...dcerpc.CallOption) (*GetAccountInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -370,17 +370,19 @@ type SetAccountInformationRequest struct {
 	JobFlags uint32 `idl:"name:dwJobFlags" json:"job_flags"`
 }
 
-func (o *SetAccountInformationRequest) xxx_ToOp(ctx context.Context) *xxx_SetAccountInformationOperation {
+func (o *SetAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAccountInformationOperation) *xxx_SetAccountInformationOperation {
+	if op == nil {
+		op = &xxx_SetAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAccountInformationOperation{}
+		return op
 	}
-	return &xxx_SetAccountInformationOperation{
-		Handle:   o.Handle,
-		JobName:  o.JobName,
-		Account:  o.Account,
-		Password: o.Password,
-		JobFlags: o.JobFlags,
-	}
+	o.Handle = op.Handle
+	o.JobName = op.JobName
+	o.Account = op.Account
+	o.Password = op.Password
+	o.JobFlags = op.JobFlags
+	return op
 }
 
 func (o *SetAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAccountInformationOperation) {
@@ -394,7 +396,7 @@ func (o *SetAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.JobFlags = op.JobFlags
 }
 func (o *SetAccountInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAccountInformationOperation{}
@@ -411,13 +413,15 @@ type SetAccountInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAccountInformationResponse) xxx_ToOp(ctx context.Context) *xxx_SetAccountInformationOperation {
+func (o *SetAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAccountInformationOperation) *xxx_SetAccountInformationOperation {
+	if op == nil {
+		op = &xxx_SetAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAccountInformationOperation{}
+		return op
 	}
-	return &xxx_SetAccountInformationOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAccountInformationOperation) {
@@ -427,7 +431,7 @@ func (o *SetAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *SetAccountInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAccountInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAccountInformationOperation{}
@@ -628,15 +632,17 @@ type SetNSAccountInformationRequest struct {
 	Password string `idl:"name:pwszPassword;string;pointer:unique" json:"password"`
 }
 
-func (o *SetNSAccountInformationRequest) xxx_ToOp(ctx context.Context) *xxx_SetNSAccountInformationOperation {
+func (o *SetNSAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNSAccountInformationOperation) *xxx_SetNSAccountInformationOperation {
+	if op == nil {
+		op = &xxx_SetNSAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNSAccountInformationOperation{}
+		return op
 	}
-	return &xxx_SetNSAccountInformationOperation{
-		Handle:   o.Handle,
-		Account:  o.Account,
-		Password: o.Password,
-	}
+	o.Handle = op.Handle
+	o.Account = op.Account
+	o.Password = op.Password
+	return op
 }
 
 func (o *SetNSAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNSAccountInformationOperation) {
@@ -648,7 +654,7 @@ func (o *SetNSAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.Password = op.Password
 }
 func (o *SetNSAccountInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetNSAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNSAccountInformationOperation{}
@@ -665,13 +671,15 @@ type SetNSAccountInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetNSAccountInformationResponse) xxx_ToOp(ctx context.Context) *xxx_SetNSAccountInformationOperation {
+func (o *SetNSAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNSAccountInformationOperation) *xxx_SetNSAccountInformationOperation {
+	if op == nil {
+		op = &xxx_SetNSAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNSAccountInformationOperation{}
+		return op
 	}
-	return &xxx_SetNSAccountInformationOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetNSAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNSAccountInformationOperation) {
@@ -681,7 +689,7 @@ func (o *SetNSAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *SetNSAccountInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetNSAccountInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNSAccountInformationOperation{}
@@ -932,15 +940,17 @@ type GetNSAccountInformationRequest struct {
 	Buffer string `idl:"name:wszBuffer;size_is:(ccBufferSize)" json:"buffer"`
 }
 
-func (o *GetNSAccountInformationRequest) xxx_ToOp(ctx context.Context) *xxx_GetNSAccountInformationOperation {
+func (o *GetNSAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNSAccountInformationOperation) *xxx_GetNSAccountInformationOperation {
+	if op == nil {
+		op = &xxx_GetNSAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNSAccountInformationOperation{}
+		return op
 	}
-	return &xxx_GetNSAccountInformationOperation{
-		Handle:     o.Handle,
-		BufferSize: o.BufferSize,
-		Buffer:     o.Buffer,
-	}
+	o.Handle = op.Handle
+	o.BufferSize = op.BufferSize
+	o.Buffer = op.Buffer
+	return op
 }
 
 func (o *GetNSAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNSAccountInformationOperation) {
@@ -952,7 +962,7 @@ func (o *GetNSAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.Buffer = op.Buffer
 }
 func (o *GetNSAccountInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNSAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNSAccountInformationOperation{}
@@ -973,14 +983,16 @@ type GetNSAccountInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNSAccountInformationResponse) xxx_ToOp(ctx context.Context) *xxx_GetNSAccountInformationOperation {
+func (o *GetNSAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNSAccountInformationOperation) *xxx_GetNSAccountInformationOperation {
+	if op == nil {
+		op = &xxx_GetNSAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNSAccountInformationOperation{}
+		return op
 	}
-	return &xxx_GetNSAccountInformationOperation{
-		Buffer: o.Buffer,
-		Return: o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNSAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNSAccountInformationOperation) {
@@ -991,7 +1003,7 @@ func (o *GetNSAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *GetNSAccountInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNSAccountInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNSAccountInformationOperation{}
@@ -1257,16 +1269,18 @@ type GetAccountInformationRequest struct {
 	Buffer string `idl:"name:wszBuffer;size_is:(ccBufferSize)" json:"buffer"`
 }
 
-func (o *GetAccountInformationRequest) xxx_ToOp(ctx context.Context) *xxx_GetAccountInformationOperation {
+func (o *GetAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAccountInformationOperation) *xxx_GetAccountInformationOperation {
+	if op == nil {
+		op = &xxx_GetAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAccountInformationOperation{}
+		return op
 	}
-	return &xxx_GetAccountInformationOperation{
-		Handle:     o.Handle,
-		JobName:    o.JobName,
-		BufferSize: o.BufferSize,
-		Buffer:     o.Buffer,
-	}
+	o.Handle = op.Handle
+	o.JobName = op.JobName
+	o.BufferSize = op.BufferSize
+	o.Buffer = op.Buffer
+	return op
 }
 
 func (o *GetAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAccountInformationOperation) {
@@ -1279,7 +1293,7 @@ func (o *GetAccountInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Buffer = op.Buffer
 }
 func (o *GetAccountInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAccountInformationOperation{}
@@ -1300,14 +1314,16 @@ type GetAccountInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAccountInformationResponse) xxx_ToOp(ctx context.Context) *xxx_GetAccountInformationOperation {
+func (o *GetAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAccountInformationOperation) *xxx_GetAccountInformationOperation {
+	if op == nil {
+		op = &xxx_GetAccountInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAccountInformationOperation{}
+		return op
 	}
-	return &xxx_GetAccountInformationOperation{
-		Buffer: o.Buffer,
-		Return: o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAccountInformationOperation) {
@@ -1318,7 +1334,7 @@ func (o *GetAccountInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetAccountInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAccountInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAccountInformationOperation{}

@@ -8500,7 +8500,7 @@ type xxx_DefaultSvcctlClient struct {
 }
 
 func (o *xxx_DefaultSvcctlClient) CloseService(ctx context.Context, in *CloseServiceRequest, opts ...dcerpc.CallOption) (*CloseServiceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8513,7 +8513,7 @@ func (o *xxx_DefaultSvcctlClient) CloseService(ctx context.Context, in *CloseSer
 }
 
 func (o *xxx_DefaultSvcctlClient) ControlService(ctx context.Context, in *ControlServiceRequest, opts ...dcerpc.CallOption) (*ControlServiceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8526,7 +8526,7 @@ func (o *xxx_DefaultSvcctlClient) ControlService(ctx context.Context, in *Contro
 }
 
 func (o *xxx_DefaultSvcctlClient) DeleteService(ctx context.Context, in *DeleteServiceRequest, opts ...dcerpc.CallOption) (*DeleteServiceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8539,7 +8539,7 @@ func (o *xxx_DefaultSvcctlClient) DeleteService(ctx context.Context, in *DeleteS
 }
 
 func (o *xxx_DefaultSvcctlClient) LockServiceDatabase(ctx context.Context, in *LockServiceDatabaseRequest, opts ...dcerpc.CallOption) (*LockServiceDatabaseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8552,7 +8552,7 @@ func (o *xxx_DefaultSvcctlClient) LockServiceDatabase(ctx context.Context, in *L
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceObjectSecurity(ctx context.Context, in *QueryServiceObjectSecurityRequest, opts ...dcerpc.CallOption) (*QueryServiceObjectSecurityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8565,7 +8565,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceObjectSecurity(ctx context.Context
 }
 
 func (o *xxx_DefaultSvcctlClient) SetServiceObjectSecurity(ctx context.Context, in *SetServiceObjectSecurityRequest, opts ...dcerpc.CallOption) (*SetServiceObjectSecurityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8578,7 +8578,7 @@ func (o *xxx_DefaultSvcctlClient) SetServiceObjectSecurity(ctx context.Context, 
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceStatus(ctx context.Context, in *QueryServiceStatusRequest, opts ...dcerpc.CallOption) (*QueryServiceStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8591,7 +8591,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceStatus(ctx context.Context, in *Qu
 }
 
 func (o *xxx_DefaultSvcctlClient) SetServiceStatus(ctx context.Context, in *SetServiceStatusRequest, opts ...dcerpc.CallOption) (*SetServiceStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8604,7 +8604,7 @@ func (o *xxx_DefaultSvcctlClient) SetServiceStatus(ctx context.Context, in *SetS
 }
 
 func (o *xxx_DefaultSvcctlClient) UnlockServiceDatabase(ctx context.Context, in *UnlockServiceDatabaseRequest, opts ...dcerpc.CallOption) (*UnlockServiceDatabaseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8617,7 +8617,7 @@ func (o *xxx_DefaultSvcctlClient) UnlockServiceDatabase(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultSvcctlClient) NotifyBootConfigStatus(ctx context.Context, in *NotifyBootConfigStatusRequest, opts ...dcerpc.CallOption) (*NotifyBootConfigStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8630,7 +8630,7 @@ func (o *xxx_DefaultSvcctlClient) NotifyBootConfigStatus(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSvcctlClient) ChangeServiceConfigW(ctx context.Context, in *ChangeServiceConfigWRequest, opts ...dcerpc.CallOption) (*ChangeServiceConfigWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8643,7 +8643,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfigW(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSvcctlClient) CreateServiceW(ctx context.Context, in *CreateServiceWRequest, opts ...dcerpc.CallOption) (*CreateServiceWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8656,7 +8656,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceW(ctx context.Context, in *Create
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumDependentServicesW(ctx context.Context, in *EnumDependentServicesWRequest, opts ...dcerpc.CallOption) (*EnumDependentServicesWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8669,7 +8669,7 @@ func (o *xxx_DefaultSvcctlClient) EnumDependentServicesW(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumServicesStatusW(ctx context.Context, in *EnumServicesStatusWRequest, opts ...dcerpc.CallOption) (*EnumServicesStatusWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8682,7 +8682,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusW(ctx context.Context, in *E
 }
 
 func (o *xxx_DefaultSvcctlClient) OpenSCMW(ctx context.Context, in *OpenSCMWRequest, opts ...dcerpc.CallOption) (*OpenSCMWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8695,7 +8695,7 @@ func (o *xxx_DefaultSvcctlClient) OpenSCMW(ctx context.Context, in *OpenSCMWRequ
 }
 
 func (o *xxx_DefaultSvcctlClient) OpenServiceW(ctx context.Context, in *OpenServiceWRequest, opts ...dcerpc.CallOption) (*OpenServiceWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8708,7 +8708,7 @@ func (o *xxx_DefaultSvcctlClient) OpenServiceW(ctx context.Context, in *OpenServ
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceConfigW(ctx context.Context, in *QueryServiceConfigWRequest, opts ...dcerpc.CallOption) (*QueryServiceConfigWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8721,7 +8721,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfigW(ctx context.Context, in *Q
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceLockStatusW(ctx context.Context, in *QueryServiceLockStatusWRequest, opts ...dcerpc.CallOption) (*QueryServiceLockStatusWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8734,7 +8734,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceLockStatusW(ctx context.Context, i
 }
 
 func (o *xxx_DefaultSvcctlClient) StartServiceW(ctx context.Context, in *StartServiceWRequest, opts ...dcerpc.CallOption) (*StartServiceWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8747,7 +8747,7 @@ func (o *xxx_DefaultSvcctlClient) StartServiceW(ctx context.Context, in *StartSe
 }
 
 func (o *xxx_DefaultSvcctlClient) GetServiceDisplayNameW(ctx context.Context, in *GetServiceDisplayNameWRequest, opts ...dcerpc.CallOption) (*GetServiceDisplayNameWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8760,7 +8760,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceDisplayNameW(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSvcctlClient) GetServiceKeyNameW(ctx context.Context, in *GetServiceKeyNameWRequest, opts ...dcerpc.CallOption) (*GetServiceKeyNameWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8773,7 +8773,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceKeyNameW(ctx context.Context, in *Ge
 }
 
 func (o *xxx_DefaultSvcctlClient) ChangeServiceConfigA(ctx context.Context, in *ChangeServiceConfigARequest, opts ...dcerpc.CallOption) (*ChangeServiceConfigAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8786,7 +8786,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfigA(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSvcctlClient) CreateServiceA(ctx context.Context, in *CreateServiceARequest, opts ...dcerpc.CallOption) (*CreateServiceAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8799,7 +8799,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceA(ctx context.Context, in *Create
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumDependentServicesA(ctx context.Context, in *EnumDependentServicesARequest, opts ...dcerpc.CallOption) (*EnumDependentServicesAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8812,7 +8812,7 @@ func (o *xxx_DefaultSvcctlClient) EnumDependentServicesA(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumServicesStatusA(ctx context.Context, in *EnumServicesStatusARequest, opts ...dcerpc.CallOption) (*EnumServicesStatusAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8825,7 +8825,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusA(ctx context.Context, in *E
 }
 
 func (o *xxx_DefaultSvcctlClient) OpenSCMA(ctx context.Context, in *OpenSCMARequest, opts ...dcerpc.CallOption) (*OpenSCMAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8838,7 +8838,7 @@ func (o *xxx_DefaultSvcctlClient) OpenSCMA(ctx context.Context, in *OpenSCMARequ
 }
 
 func (o *xxx_DefaultSvcctlClient) OpenServiceA(ctx context.Context, in *OpenServiceARequest, opts ...dcerpc.CallOption) (*OpenServiceAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8851,7 +8851,7 @@ func (o *xxx_DefaultSvcctlClient) OpenServiceA(ctx context.Context, in *OpenServ
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceConfigA(ctx context.Context, in *QueryServiceConfigARequest, opts ...dcerpc.CallOption) (*QueryServiceConfigAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8864,7 +8864,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfigA(ctx context.Context, in *Q
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceLockStatusA(ctx context.Context, in *QueryServiceLockStatusARequest, opts ...dcerpc.CallOption) (*QueryServiceLockStatusAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8877,7 +8877,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceLockStatusA(ctx context.Context, i
 }
 
 func (o *xxx_DefaultSvcctlClient) StartServiceA(ctx context.Context, in *StartServiceARequest, opts ...dcerpc.CallOption) (*StartServiceAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8890,7 +8890,7 @@ func (o *xxx_DefaultSvcctlClient) StartServiceA(ctx context.Context, in *StartSe
 }
 
 func (o *xxx_DefaultSvcctlClient) GetServiceDisplayNameA(ctx context.Context, in *GetServiceDisplayNameARequest, opts ...dcerpc.CallOption) (*GetServiceDisplayNameAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8903,7 +8903,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceDisplayNameA(ctx context.Context, in
 }
 
 func (o *xxx_DefaultSvcctlClient) GetServiceKeyNameA(ctx context.Context, in *GetServiceKeyNameARequest, opts ...dcerpc.CallOption) (*GetServiceKeyNameAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8916,7 +8916,7 @@ func (o *xxx_DefaultSvcctlClient) GetServiceKeyNameA(ctx context.Context, in *Ge
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumServiceGroupW(ctx context.Context, in *EnumServiceGroupWRequest, opts ...dcerpc.CallOption) (*EnumServiceGroupWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8929,7 +8929,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServiceGroupW(ctx context.Context, in *Enu
 }
 
 func (o *xxx_DefaultSvcctlClient) ChangeServiceConfig2A(ctx context.Context, in *ChangeServiceConfig2ARequest, opts ...dcerpc.CallOption) (*ChangeServiceConfig2AResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8942,7 +8942,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfig2A(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultSvcctlClient) ChangeServiceConfig2W(ctx context.Context, in *ChangeServiceConfig2WRequest, opts ...dcerpc.CallOption) (*ChangeServiceConfig2WResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8955,7 +8955,7 @@ func (o *xxx_DefaultSvcctlClient) ChangeServiceConfig2W(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceConfig2A(ctx context.Context, in *QueryServiceConfig2ARequest, opts ...dcerpc.CallOption) (*QueryServiceConfig2AResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8968,7 +8968,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfig2A(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceConfig2W(ctx context.Context, in *QueryServiceConfig2WRequest, opts ...dcerpc.CallOption) (*QueryServiceConfig2WResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8981,7 +8981,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfig2W(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceStatusEx(ctx context.Context, in *QueryServiceStatusExRequest, opts ...dcerpc.CallOption) (*QueryServiceStatusExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -8994,7 +8994,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceStatusEx(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumServicesStatusExA(ctx context.Context, in *EnumServicesStatusExARequest, opts ...dcerpc.CallOption) (*EnumServicesStatusExAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9007,7 +9007,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusExA(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultSvcctlClient) EnumServicesStatusExW(ctx context.Context, in *EnumServicesStatusExWRequest, opts ...dcerpc.CallOption) (*EnumServicesStatusExWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9020,7 +9020,7 @@ func (o *xxx_DefaultSvcctlClient) EnumServicesStatusExW(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultSvcctlClient) CreateServiceWOW64A(ctx context.Context, in *CreateServiceWOW64ARequest, opts ...dcerpc.CallOption) (*CreateServiceWOW64AResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9033,7 +9033,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceWOW64A(ctx context.Context, in *C
 }
 
 func (o *xxx_DefaultSvcctlClient) CreateServiceWOW64W(ctx context.Context, in *CreateServiceWOW64WRequest, opts ...dcerpc.CallOption) (*CreateServiceWOW64WResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9046,7 +9046,7 @@ func (o *xxx_DefaultSvcctlClient) CreateServiceWOW64W(ctx context.Context, in *C
 }
 
 func (o *xxx_DefaultSvcctlClient) NotifyServiceStatusChange(ctx context.Context, in *NotifyServiceStatusChangeRequest, opts ...dcerpc.CallOption) (*NotifyServiceStatusChangeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9059,7 +9059,7 @@ func (o *xxx_DefaultSvcctlClient) NotifyServiceStatusChange(ctx context.Context,
 }
 
 func (o *xxx_DefaultSvcctlClient) GetNotifyResults(ctx context.Context, in *GetNotifyResultsRequest, opts ...dcerpc.CallOption) (*GetNotifyResultsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9072,7 +9072,7 @@ func (o *xxx_DefaultSvcctlClient) GetNotifyResults(ctx context.Context, in *GetN
 }
 
 func (o *xxx_DefaultSvcctlClient) CloseNotify(ctx context.Context, in *CloseNotifyRequest, opts ...dcerpc.CallOption) (*CloseNotifyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9085,7 +9085,7 @@ func (o *xxx_DefaultSvcctlClient) CloseNotify(ctx context.Context, in *CloseNoti
 }
 
 func (o *xxx_DefaultSvcctlClient) ControlServiceExA(ctx context.Context, in *ControlServiceExARequest, opts ...dcerpc.CallOption) (*ControlServiceExAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9098,7 +9098,7 @@ func (o *xxx_DefaultSvcctlClient) ControlServiceExA(ctx context.Context, in *Con
 }
 
 func (o *xxx_DefaultSvcctlClient) ControlServiceExW(ctx context.Context, in *ControlServiceExWRequest, opts ...dcerpc.CallOption) (*ControlServiceExWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9111,7 +9111,7 @@ func (o *xxx_DefaultSvcctlClient) ControlServiceExW(ctx context.Context, in *Con
 }
 
 func (o *xxx_DefaultSvcctlClient) QueryServiceConfigEx(ctx context.Context, in *QueryServiceConfigExRequest, opts ...dcerpc.CallOption) (*QueryServiceConfigExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9124,7 +9124,7 @@ func (o *xxx_DefaultSvcctlClient) QueryServiceConfigEx(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSvcctlClient) CreateWOWService(ctx context.Context, in *CreateWOWServiceRequest, opts ...dcerpc.CallOption) (*CreateWOWServiceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9137,7 +9137,7 @@ func (o *xxx_DefaultSvcctlClient) CreateWOWService(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultSvcctlClient) OpenSCM2(ctx context.Context, in *OpenSCM2Request, opts ...dcerpc.CallOption) (*OpenSCM2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9277,13 +9277,15 @@ type CloseServiceRequest struct {
 	ServiceObject *Handle `idl:"name:hSCObject" json:"service_object"`
 }
 
-func (o *CloseServiceRequest) xxx_ToOp(ctx context.Context) *xxx_CloseServiceOperation {
+func (o *CloseServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseServiceOperation) *xxx_CloseServiceOperation {
+	if op == nil {
+		op = &xxx_CloseServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseServiceOperation{}
+		return op
 	}
-	return &xxx_CloseServiceOperation{
-		ServiceObject: o.ServiceObject,
-	}
+	o.ServiceObject = op.ServiceObject
+	return op
 }
 
 func (o *CloseServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseServiceOperation) {
@@ -9293,7 +9295,7 @@ func (o *CloseServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseServi
 	o.ServiceObject = op.ServiceObject
 }
 func (o *CloseServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseServiceOperation{}
@@ -9314,14 +9316,16 @@ type CloseServiceResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseServiceResponse) xxx_ToOp(ctx context.Context) *xxx_CloseServiceOperation {
+func (o *CloseServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseServiceOperation) *xxx_CloseServiceOperation {
+	if op == nil {
+		op = &xxx_CloseServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseServiceOperation{}
+		return op
 	}
-	return &xxx_CloseServiceOperation{
-		ServiceObject: o.ServiceObject,
-		Return:        o.Return,
-	}
+	o.ServiceObject = op.ServiceObject
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseServiceOperation) {
@@ -9332,7 +9336,7 @@ func (o *CloseServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseServ
 	o.Return = op.Return
 }
 func (o *CloseServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseServiceOperation{}
@@ -9529,14 +9533,16 @@ type ControlServiceRequest struct {
 	Control uint32 `idl:"name:dwControl" json:"control"`
 }
 
-func (o *ControlServiceRequest) xxx_ToOp(ctx context.Context) *xxx_ControlServiceOperation {
+func (o *ControlServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_ControlServiceOperation) *xxx_ControlServiceOperation {
+	if op == nil {
+		op = &xxx_ControlServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_ControlServiceOperation{}
+		return op
 	}
-	return &xxx_ControlServiceOperation{
-		Service: o.Service,
-		Control: o.Control,
-	}
+	o.Service = op.Service
+	o.Control = op.Control
+	return op
 }
 
 func (o *ControlServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_ControlServiceOperation) {
@@ -9547,7 +9553,7 @@ func (o *ControlServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_ControlS
 	o.Control = op.Control
 }
 func (o *ControlServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ControlServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ControlServiceOperation{}
@@ -9568,14 +9574,16 @@ type ControlServiceResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ControlServiceResponse) xxx_ToOp(ctx context.Context) *xxx_ControlServiceOperation {
+func (o *ControlServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_ControlServiceOperation) *xxx_ControlServiceOperation {
+	if op == nil {
+		op = &xxx_ControlServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_ControlServiceOperation{}
+		return op
 	}
-	return &xxx_ControlServiceOperation{
-		ServiceStatus: o.ServiceStatus,
-		Return:        o.Return,
-	}
+	o.ServiceStatus = op.ServiceStatus
+	o.Return = op.Return
+	return op
 }
 
 func (o *ControlServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_ControlServiceOperation) {
@@ -9586,7 +9594,7 @@ func (o *ControlServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_Control
 	o.Return = op.Return
 }
 func (o *ControlServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ControlServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ControlServiceOperation{}
@@ -9689,13 +9697,15 @@ type DeleteServiceRequest struct {
 	Service *Handle `idl:"name:hService" json:"service"`
 }
 
-func (o *DeleteServiceRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteServiceOperation {
+func (o *DeleteServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteServiceOperation) *xxx_DeleteServiceOperation {
+	if op == nil {
+		op = &xxx_DeleteServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteServiceOperation{}
+		return op
 	}
-	return &xxx_DeleteServiceOperation{
-		Service: o.Service,
-	}
+	o.Service = op.Service
+	return op
 }
 
 func (o *DeleteServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteServiceOperation) {
@@ -9705,7 +9715,7 @@ func (o *DeleteServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteSer
 	o.Service = op.Service
 }
 func (o *DeleteServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteServiceOperation{}
@@ -9722,13 +9732,15 @@ type DeleteServiceResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteServiceResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteServiceOperation {
+func (o *DeleteServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteServiceOperation) *xxx_DeleteServiceOperation {
+	if op == nil {
+		op = &xxx_DeleteServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteServiceOperation{}
+		return op
 	}
-	return &xxx_DeleteServiceOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteServiceOperation) {
@@ -9738,7 +9750,7 @@ func (o *DeleteServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteSe
 	o.Return = op.Return
 }
 func (o *DeleteServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteServiceOperation{}
@@ -9863,13 +9875,15 @@ type LockServiceDatabaseRequest struct {
 	ServiceManager *Handle `idl:"name:hSCManager" json:"service_manager"`
 }
 
-func (o *LockServiceDatabaseRequest) xxx_ToOp(ctx context.Context) *xxx_LockServiceDatabaseOperation {
+func (o *LockServiceDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_LockServiceDatabaseOperation) *xxx_LockServiceDatabaseOperation {
+	if op == nil {
+		op = &xxx_LockServiceDatabaseOperation{}
+	}
 	if o == nil {
-		return &xxx_LockServiceDatabaseOperation{}
+		return op
 	}
-	return &xxx_LockServiceDatabaseOperation{
-		ServiceManager: o.ServiceManager,
-	}
+	o.ServiceManager = op.ServiceManager
+	return op
 }
 
 func (o *LockServiceDatabaseRequest) xxx_FromOp(ctx context.Context, op *xxx_LockServiceDatabaseOperation) {
@@ -9879,7 +9893,7 @@ func (o *LockServiceDatabaseRequest) xxx_FromOp(ctx context.Context, op *xxx_Loc
 	o.ServiceManager = op.ServiceManager
 }
 func (o *LockServiceDatabaseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LockServiceDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LockServiceDatabaseOperation{}
@@ -9899,14 +9913,16 @@ type LockServiceDatabaseResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LockServiceDatabaseResponse) xxx_ToOp(ctx context.Context) *xxx_LockServiceDatabaseOperation {
+func (o *LockServiceDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_LockServiceDatabaseOperation) *xxx_LockServiceDatabaseOperation {
+	if op == nil {
+		op = &xxx_LockServiceDatabaseOperation{}
+	}
 	if o == nil {
-		return &xxx_LockServiceDatabaseOperation{}
+		return op
 	}
-	return &xxx_LockServiceDatabaseOperation{
-		Lock:   o.Lock,
-		Return: o.Return,
-	}
+	o.Lock = op.Lock
+	o.Return = op.Return
+	return op
 }
 
 func (o *LockServiceDatabaseResponse) xxx_FromOp(ctx context.Context, op *xxx_LockServiceDatabaseOperation) {
@@ -9917,7 +9933,7 @@ func (o *LockServiceDatabaseResponse) xxx_FromOp(ctx context.Context, op *xxx_Lo
 	o.Return = op.Return
 }
 func (o *LockServiceDatabaseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LockServiceDatabaseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LockServiceDatabaseOperation{}
@@ -10115,15 +10131,17 @@ type QueryServiceObjectSecurityRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceObjectSecurityRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceObjectSecurityOperation {
+func (o *QueryServiceObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceObjectSecurityOperation) *xxx_QueryServiceObjectSecurityOperation {
+	if op == nil {
+		op = &xxx_QueryServiceObjectSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceObjectSecurityOperation{}
+		return op
 	}
-	return &xxx_QueryServiceObjectSecurityOperation{
-		Service:             o.Service,
-		SecurityInformation: o.SecurityInformation,
-		BufferLength:        o.BufferLength,
-	}
+	o.Service = op.Service
+	o.SecurityInformation = op.SecurityInformation
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceObjectSecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceObjectSecurityOperation) {
@@ -10135,7 +10153,7 @@ func (o *QueryServiceObjectSecurityRequest) xxx_FromOp(ctx context.Context, op *
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceObjectSecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceObjectSecurityOperation{}
@@ -10159,15 +10177,17 @@ type QueryServiceObjectSecurityResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceObjectSecurityOperation {
+func (o *QueryServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceObjectSecurityOperation) *xxx_QueryServiceObjectSecurityOperation {
+	if op == nil {
+		op = &xxx_QueryServiceObjectSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceObjectSecurityOperation{}
+		return op
 	}
-	return &xxx_QueryServiceObjectSecurityOperation{
-		SecurityDescriptor: o.SecurityDescriptor,
-		BytesNeededLength:  o.BytesNeededLength,
-		Return:             o.Return,
-	}
+	o.SecurityDescriptor = op.SecurityDescriptor
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceObjectSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceObjectSecurityOperation) {
@@ -10179,7 +10199,7 @@ func (o *QueryServiceObjectSecurityResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *QueryServiceObjectSecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceObjectSecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceObjectSecurityOperation{}
@@ -10366,16 +10386,18 @@ type SetServiceObjectSecurityRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *SetServiceObjectSecurityRequest) xxx_ToOp(ctx context.Context) *xxx_SetServiceObjectSecurityOperation {
+func (o *SetServiceObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetServiceObjectSecurityOperation) *xxx_SetServiceObjectSecurityOperation {
+	if op == nil {
+		op = &xxx_SetServiceObjectSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_SetServiceObjectSecurityOperation{}
+		return op
 	}
-	return &xxx_SetServiceObjectSecurityOperation{
-		Service:             o.Service,
-		SecurityInformation: o.SecurityInformation,
-		SecurityDescriptor:  o.SecurityDescriptor,
-		BufferLength:        o.BufferLength,
-	}
+	o.Service = op.Service
+	o.SecurityInformation = op.SecurityInformation
+	o.SecurityDescriptor = op.SecurityDescriptor
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *SetServiceObjectSecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_SetServiceObjectSecurityOperation) {
@@ -10388,7 +10410,7 @@ func (o *SetServiceObjectSecurityRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.BufferLength = op.BufferLength
 }
 func (o *SetServiceObjectSecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetServiceObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetServiceObjectSecurityOperation{}
@@ -10405,13 +10427,15 @@ type SetServiceObjectSecurityResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context) *xxx_SetServiceObjectSecurityOperation {
+func (o *SetServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetServiceObjectSecurityOperation) *xxx_SetServiceObjectSecurityOperation {
+	if op == nil {
+		op = &xxx_SetServiceObjectSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_SetServiceObjectSecurityOperation{}
+		return op
 	}
-	return &xxx_SetServiceObjectSecurityOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetServiceObjectSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_SetServiceObjectSecurityOperation) {
@@ -10421,7 +10445,7 @@ func (o *SetServiceObjectSecurityResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *SetServiceObjectSecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetServiceObjectSecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetServiceObjectSecurityOperation{}
@@ -10546,13 +10570,15 @@ type QueryServiceStatusRequest struct {
 	Service *Handle `idl:"name:hService" json:"service"`
 }
 
-func (o *QueryServiceStatusRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceStatusOperation {
+func (o *QueryServiceStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceStatusOperation) *xxx_QueryServiceStatusOperation {
+	if op == nil {
+		op = &xxx_QueryServiceStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceStatusOperation{}
+		return op
 	}
-	return &xxx_QueryServiceStatusOperation{
-		Service: o.Service,
-	}
+	o.Service = op.Service
+	return op
 }
 
 func (o *QueryServiceStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceStatusOperation) {
@@ -10562,7 +10588,7 @@ func (o *QueryServiceStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_Quer
 	o.Service = op.Service
 }
 func (o *QueryServiceStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceStatusOperation{}
@@ -10582,14 +10608,16 @@ type QueryServiceStatusResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceStatusResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceStatusOperation {
+func (o *QueryServiceStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceStatusOperation) *xxx_QueryServiceStatusOperation {
+	if op == nil {
+		op = &xxx_QueryServiceStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceStatusOperation{}
+		return op
 	}
-	return &xxx_QueryServiceStatusOperation{
-		ServiceStatus: o.ServiceStatus,
-		Return:        o.Return,
-	}
+	o.ServiceStatus = op.ServiceStatus
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceStatusOperation) {
@@ -10600,7 +10628,7 @@ func (o *QueryServiceStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.Return = op.Return
 }
 func (o *QueryServiceStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceStatusOperation{}
@@ -10728,14 +10756,16 @@ type SetServiceStatusRequest struct {
 	ServiceStatus *ServiceStatus `idl:"name:lpServiceStatus" json:"service_status"`
 }
 
-func (o *SetServiceStatusRequest) xxx_ToOp(ctx context.Context) *xxx_SetServiceStatusOperation {
+func (o *SetServiceStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_SetServiceStatusOperation) *xxx_SetServiceStatusOperation {
+	if op == nil {
+		op = &xxx_SetServiceStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_SetServiceStatusOperation{}
+		return op
 	}
-	return &xxx_SetServiceStatusOperation{
-		Service:       o.Service,
-		ServiceStatus: o.ServiceStatus,
-	}
+	o.Service = op.Service
+	o.ServiceStatus = op.ServiceStatus
+	return op
 }
 
 func (o *SetServiceStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_SetServiceStatusOperation) {
@@ -10746,7 +10776,7 @@ func (o *SetServiceStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSer
 	o.ServiceStatus = op.ServiceStatus
 }
 func (o *SetServiceStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetServiceStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetServiceStatusOperation{}
@@ -10763,13 +10793,15 @@ type SetServiceStatusResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetServiceStatusResponse) xxx_ToOp(ctx context.Context) *xxx_SetServiceStatusOperation {
+func (o *SetServiceStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_SetServiceStatusOperation) *xxx_SetServiceStatusOperation {
+	if op == nil {
+		op = &xxx_SetServiceStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_SetServiceStatusOperation{}
+		return op
 	}
-	return &xxx_SetServiceStatusOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetServiceStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_SetServiceStatusOperation) {
@@ -10779,7 +10811,7 @@ func (o *SetServiceStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSe
 	o.Return = op.Return
 }
 func (o *SetServiceStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetServiceStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetServiceStatusOperation{}
@@ -10903,13 +10935,15 @@ type UnlockServiceDatabaseRequest struct {
 	Lock *Lock `idl:"name:Lock" json:"lock"`
 }
 
-func (o *UnlockServiceDatabaseRequest) xxx_ToOp(ctx context.Context) *xxx_UnlockServiceDatabaseOperation {
+func (o *UnlockServiceDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_UnlockServiceDatabaseOperation) *xxx_UnlockServiceDatabaseOperation {
+	if op == nil {
+		op = &xxx_UnlockServiceDatabaseOperation{}
+	}
 	if o == nil {
-		return &xxx_UnlockServiceDatabaseOperation{}
+		return op
 	}
-	return &xxx_UnlockServiceDatabaseOperation{
-		Lock: o.Lock,
-	}
+	o.Lock = op.Lock
+	return op
 }
 
 func (o *UnlockServiceDatabaseRequest) xxx_FromOp(ctx context.Context, op *xxx_UnlockServiceDatabaseOperation) {
@@ -10919,7 +10953,7 @@ func (o *UnlockServiceDatabaseRequest) xxx_FromOp(ctx context.Context, op *xxx_U
 	o.Lock = op.Lock
 }
 func (o *UnlockServiceDatabaseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UnlockServiceDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnlockServiceDatabaseOperation{}
@@ -10939,14 +10973,16 @@ type UnlockServiceDatabaseResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UnlockServiceDatabaseResponse) xxx_ToOp(ctx context.Context) *xxx_UnlockServiceDatabaseOperation {
+func (o *UnlockServiceDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_UnlockServiceDatabaseOperation) *xxx_UnlockServiceDatabaseOperation {
+	if op == nil {
+		op = &xxx_UnlockServiceDatabaseOperation{}
+	}
 	if o == nil {
-		return &xxx_UnlockServiceDatabaseOperation{}
+		return op
 	}
-	return &xxx_UnlockServiceDatabaseOperation{
-		Lock:   o.Lock,
-		Return: o.Return,
-	}
+	o.Lock = op.Lock
+	o.Return = op.Return
+	return op
 }
 
 func (o *UnlockServiceDatabaseResponse) xxx_FromOp(ctx context.Context, op *xxx_UnlockServiceDatabaseOperation) {
@@ -10957,7 +10993,7 @@ func (o *UnlockServiceDatabaseResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *UnlockServiceDatabaseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UnlockServiceDatabaseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnlockServiceDatabaseOperation{}
@@ -11107,14 +11143,16 @@ type NotifyBootConfigStatusRequest struct {
 	BootAcceptable uint32 `idl:"name:BootAcceptable" json:"boot_acceptable"`
 }
 
-func (o *NotifyBootConfigStatusRequest) xxx_ToOp(ctx context.Context) *xxx_NotifyBootConfigStatusOperation {
+func (o *NotifyBootConfigStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_NotifyBootConfigStatusOperation) *xxx_NotifyBootConfigStatusOperation {
+	if op == nil {
+		op = &xxx_NotifyBootConfigStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_NotifyBootConfigStatusOperation{}
+		return op
 	}
-	return &xxx_NotifyBootConfigStatusOperation{
-		MachineName:    o.MachineName,
-		BootAcceptable: o.BootAcceptable,
-	}
+	o.MachineName = op.MachineName
+	o.BootAcceptable = op.BootAcceptable
+	return op
 }
 
 func (o *NotifyBootConfigStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_NotifyBootConfigStatusOperation) {
@@ -11125,7 +11163,7 @@ func (o *NotifyBootConfigStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.BootAcceptable = op.BootAcceptable
 }
 func (o *NotifyBootConfigStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NotifyBootConfigStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NotifyBootConfigStatusOperation{}
@@ -11142,13 +11180,15 @@ type NotifyBootConfigStatusResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NotifyBootConfigStatusResponse) xxx_ToOp(ctx context.Context) *xxx_NotifyBootConfigStatusOperation {
+func (o *NotifyBootConfigStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_NotifyBootConfigStatusOperation) *xxx_NotifyBootConfigStatusOperation {
+	if op == nil {
+		op = &xxx_NotifyBootConfigStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_NotifyBootConfigStatusOperation{}
+		return op
 	}
-	return &xxx_NotifyBootConfigStatusOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *NotifyBootConfigStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_NotifyBootConfigStatusOperation) {
@@ -11158,7 +11198,7 @@ func (o *NotifyBootConfigStatusResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *NotifyBootConfigStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NotifyBootConfigStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NotifyBootConfigStatusOperation{}
@@ -11833,25 +11873,27 @@ type ChangeServiceConfigWRequest struct {
 	DisplayName string `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
 }
 
-func (o *ChangeServiceConfigWRequest) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfigWOperation {
+func (o *ChangeServiceConfigWRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfigWOperation) *xxx_ChangeServiceConfigWOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfigWOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfigWOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfigWOperation{
-		Service:          o.Service,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-		DisplayName:      o.DisplayName,
-	}
+	o.Service = op.Service
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	o.DisplayName = op.DisplayName
+	return op
 }
 
 func (o *ChangeServiceConfigWRequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfigWOperation) {
@@ -11873,7 +11915,7 @@ func (o *ChangeServiceConfigWRequest) xxx_FromOp(ctx context.Context, op *xxx_Ch
 	o.DisplayName = op.DisplayName
 }
 func (o *ChangeServiceConfigWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangeServiceConfigWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfigWOperation{}
@@ -11894,14 +11936,16 @@ type ChangeServiceConfigWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangeServiceConfigWResponse) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfigWOperation {
+func (o *ChangeServiceConfigWResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfigWOperation) *xxx_ChangeServiceConfigWOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfigWOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfigWOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfigWOperation{
-		TagID:  o.TagID,
-		Return: o.Return,
-	}
+	o.TagID = op.TagID
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangeServiceConfigWResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfigWOperation) {
@@ -11912,7 +11956,7 @@ func (o *ChangeServiceConfigWResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *ChangeServiceConfigWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangeServiceConfigWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfigWOperation{}
@@ -12594,27 +12638,29 @@ type CreateServiceWRequest struct {
 	PasswordSize uint32 `idl:"name:dwPwSize" json:"password_size"`
 }
 
-func (o *CreateServiceWRequest) xxx_ToOp(ctx context.Context) *xxx_CreateServiceWOperation {
+func (o *CreateServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceWOperation) *xxx_CreateServiceWOperation {
+	if op == nil {
+		op = &xxx_CreateServiceWOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceWOperation{}
+		return op
 	}
-	return &xxx_CreateServiceWOperation{
-		ServiceManager:   o.ServiceManager,
-		ServiceName:      o.ServiceName,
-		DisplayName:      o.DisplayName,
-		DesiredAccess:    o.DesiredAccess,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DisplayName = op.DisplayName
+	o.DesiredAccess = op.DesiredAccess
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	return op
 }
 
 func (o *CreateServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceWOperation) {
@@ -12638,7 +12684,7 @@ func (o *CreateServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSe
 	o.PasswordSize = op.PasswordSize
 }
 func (o *CreateServiceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateServiceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceWOperation{}
@@ -12661,15 +12707,17 @@ type CreateServiceWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateServiceWResponse) xxx_ToOp(ctx context.Context) *xxx_CreateServiceWOperation {
+func (o *CreateServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceWOperation) *xxx_CreateServiceWOperation {
+	if op == nil {
+		op = &xxx_CreateServiceWOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceWOperation{}
+		return op
 	}
-	return &xxx_CreateServiceWOperation{
-		TagID:   o.TagID,
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.TagID = op.TagID
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceWOperation) {
@@ -12681,7 +12729,7 @@ func (o *CreateServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateS
 	o.Return = op.Return
 }
 func (o *CreateServiceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateServiceWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceWOperation{}
@@ -12912,15 +12960,17 @@ type EnumDependentServicesWRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *EnumDependentServicesWRequest) xxx_ToOp(ctx context.Context) *xxx_EnumDependentServicesWOperation {
+func (o *EnumDependentServicesWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumDependentServicesWOperation) *xxx_EnumDependentServicesWOperation {
+	if op == nil {
+		op = &xxx_EnumDependentServicesWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumDependentServicesWOperation{}
+		return op
 	}
-	return &xxx_EnumDependentServicesWOperation{
-		Service:      o.Service,
-		ServiceState: o.ServiceState,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumDependentServicesWRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumDependentServicesWOperation) {
@@ -12932,7 +12982,7 @@ func (o *EnumDependentServicesWRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumDependentServicesWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumDependentServicesWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumDependentServicesWOperation{}
@@ -12959,16 +13009,18 @@ type EnumDependentServicesWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumDependentServicesWResponse) xxx_ToOp(ctx context.Context) *xxx_EnumDependentServicesWOperation {
+func (o *EnumDependentServicesWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumDependentServicesWOperation) *xxx_EnumDependentServicesWOperation {
+	if op == nil {
+		op = &xxx_EnumDependentServicesWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumDependentServicesWOperation{}
+		return op
 	}
-	return &xxx_EnumDependentServicesWOperation{
-		Services:          o.Services,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		Return:            o.Return,
-	}
+	o.Services = op.Services
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumDependentServicesWResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumDependentServicesWOperation) {
@@ -12981,7 +13033,7 @@ func (o *EnumDependentServicesWResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *EnumDependentServicesWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumDependentServicesWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumDependentServicesWOperation{}
@@ -13313,17 +13365,19 @@ type EnumServicesStatusWRequest struct {
 	ResumeIndex uint32 `idl:"name:lpResumeIndex;pointer:unique" json:"resume_index"`
 }
 
-func (o *EnumServicesStatusWRequest) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusWOperation {
+func (o *EnumServicesStatusWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusWOperation) *xxx_EnumServicesStatusWOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusWOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusWOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceType:    o.ServiceType,
-		ServiceState:   o.ServiceState,
-		BufferLength:   o.BufferLength,
-		ResumeIndex:    o.ResumeIndex,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceType = op.ServiceType
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	o.ResumeIndex = op.ResumeIndex
+	return op
 }
 
 func (o *EnumServicesStatusWRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusWOperation) {
@@ -13337,7 +13391,7 @@ func (o *EnumServicesStatusWRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.ResumeIndex = op.ResumeIndex
 }
 func (o *EnumServicesStatusWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumServicesStatusWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusWOperation{}
@@ -13370,17 +13424,19 @@ type EnumServicesStatusWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumServicesStatusWResponse) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusWOperation {
+func (o *EnumServicesStatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusWOperation) *xxx_EnumServicesStatusWOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusWOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusWOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		ResumeIndex:       o.ResumeIndex,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.ResumeIndex = op.ResumeIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumServicesStatusWResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusWOperation) {
@@ -13394,7 +13450,7 @@ func (o *EnumServicesStatusWResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumServicesStatusWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumServicesStatusWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusWOperation{}
@@ -13597,15 +13653,17 @@ type OpenSCMWRequest struct {
 	DesiredAccess uint32 `idl:"name:dwDesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenSCMWRequest) xxx_ToOp(ctx context.Context) *xxx_OpenSCMWOperation {
+func (o *OpenSCMWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMWOperation) *xxx_OpenSCMWOperation {
+	if op == nil {
+		op = &xxx_OpenSCMWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSCMWOperation{}
+		return op
 	}
-	return &xxx_OpenSCMWOperation{
-		MachineName:   o.MachineName,
-		DatabaseName:  o.DatabaseName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.MachineName = op.MachineName
+	o.DatabaseName = op.DatabaseName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenSCMWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMWOperation) {
@@ -13617,7 +13675,7 @@ func (o *OpenSCMWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMWOperat
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenSCMWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenSCMWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSCMWOperation{}
@@ -13637,14 +13695,16 @@ type OpenSCMWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenSCMWResponse) xxx_ToOp(ctx context.Context) *xxx_OpenSCMWOperation {
+func (o *OpenSCMWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMWOperation) *xxx_OpenSCMWOperation {
+	if op == nil {
+		op = &xxx_OpenSCMWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSCMWOperation{}
+		return op
 	}
-	return &xxx_OpenSCMWOperation{
-		SCM:    o.SCM,
-		Return: o.Return,
-	}
+	o.SCM = op.SCM
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenSCMWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMWOperation) {
@@ -13655,7 +13715,7 @@ func (o *OpenSCMWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMWOpera
 	o.Return = op.Return
 }
 func (o *OpenSCMWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenSCMWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSCMWOperation{}
@@ -13816,15 +13876,17 @@ type OpenServiceWRequest struct {
 	DesiredAccess uint32 `idl:"name:dwDesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenServiceWRequest) xxx_ToOp(ctx context.Context) *xxx_OpenServiceWOperation {
+func (o *OpenServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenServiceWOperation) *xxx_OpenServiceWOperation {
+	if op == nil {
+		op = &xxx_OpenServiceWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenServiceWOperation{}
+		return op
 	}
-	return &xxx_OpenServiceWOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceName:    o.ServiceName,
-		DesiredAccess:  o.DesiredAccess,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenServiceWOperation) {
@@ -13836,7 +13898,7 @@ func (o *OpenServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenServic
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenServiceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenServiceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenServiceWOperation{}
@@ -13856,14 +13918,16 @@ type OpenServiceWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenServiceWResponse) xxx_ToOp(ctx context.Context) *xxx_OpenServiceWOperation {
+func (o *OpenServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenServiceWOperation) *xxx_OpenServiceWOperation {
+	if op == nil {
+		op = &xxx_OpenServiceWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenServiceWOperation{}
+		return op
 	}
-	return &xxx_OpenServiceWOperation{
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenServiceWOperation) {
@@ -13874,7 +13938,7 @@ func (o *OpenServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenServi
 	o.Return = op.Return
 }
 func (o *OpenServiceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenServiceWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenServiceWOperation{}
@@ -14036,14 +14100,16 @@ type QueryServiceConfigWRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceConfigWRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfigWOperation {
+func (o *QueryServiceConfigWRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfigWOperation) *xxx_QueryServiceConfigWOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfigWOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfigWOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfigWOperation{
-		Service:      o.Service,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceConfigWRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfigWOperation) {
@@ -14054,7 +14120,7 @@ func (o *QueryServiceConfigWRequest) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceConfigWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceConfigWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfigWOperation{}
@@ -14078,15 +14144,17 @@ type QueryServiceConfigWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceConfigWResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfigWOperation {
+func (o *QueryServiceConfigWResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfigWOperation) *xxx_QueryServiceConfigWOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfigWOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfigWOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfigWOperation{
-		ServiceConfig:     o.ServiceConfig,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.ServiceConfig = op.ServiceConfig
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceConfigWResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfigWOperation) {
@@ -14098,7 +14166,7 @@ func (o *QueryServiceConfigWResponse) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.Return = op.Return
 }
 func (o *QueryServiceConfigWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceConfigWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfigWOperation{}
@@ -14262,14 +14330,16 @@ type QueryServiceLockStatusWRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceLockStatusWRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceLockStatusWOperation {
+func (o *QueryServiceLockStatusWRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceLockStatusWOperation) *xxx_QueryServiceLockStatusWOperation {
+	if op == nil {
+		op = &xxx_QueryServiceLockStatusWOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceLockStatusWOperation{}
+		return op
 	}
-	return &xxx_QueryServiceLockStatusWOperation{
-		ServiceManager: o.ServiceManager,
-		BufferLength:   o.BufferLength,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceLockStatusWRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceLockStatusWOperation) {
@@ -14280,7 +14350,7 @@ func (o *QueryServiceLockStatusWRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceLockStatusWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceLockStatusWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceLockStatusWOperation{}
@@ -14304,15 +14374,17 @@ type QueryServiceLockStatusWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceLockStatusWResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceLockStatusWOperation {
+func (o *QueryServiceLockStatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceLockStatusWOperation) *xxx_QueryServiceLockStatusWOperation {
+	if op == nil {
+		op = &xxx_QueryServiceLockStatusWOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceLockStatusWOperation{}
+		return op
 	}
-	return &xxx_QueryServiceLockStatusWOperation{
-		LockStatus:        o.LockStatus,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.LockStatus = op.LockStatus
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceLockStatusWResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceLockStatusWOperation) {
@@ -14324,7 +14396,7 @@ func (o *QueryServiceLockStatusWResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *QueryServiceLockStatusWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceLockStatusWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceLockStatusWOperation{}
@@ -14532,15 +14604,17 @@ type StartServiceWRequest struct {
 	Argv []*UnicodeString `idl:"name:argv;size_is:(argc);pointer:unique" json:"argv"`
 }
 
-func (o *StartServiceWRequest) xxx_ToOp(ctx context.Context) *xxx_StartServiceWOperation {
+func (o *StartServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_StartServiceWOperation) *xxx_StartServiceWOperation {
+	if op == nil {
+		op = &xxx_StartServiceWOperation{}
+	}
 	if o == nil {
-		return &xxx_StartServiceWOperation{}
+		return op
 	}
-	return &xxx_StartServiceWOperation{
-		Service: o.Service,
-		Argc:    o.Argc,
-		Argv:    o.Argv,
-	}
+	o.Service = op.Service
+	o.Argc = op.Argc
+	o.Argv = op.Argv
+	return op
 }
 
 func (o *StartServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_StartServiceWOperation) {
@@ -14552,7 +14626,7 @@ func (o *StartServiceWRequest) xxx_FromOp(ctx context.Context, op *xxx_StartServ
 	o.Argv = op.Argv
 }
 func (o *StartServiceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartServiceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartServiceWOperation{}
@@ -14569,13 +14643,15 @@ type StartServiceWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartServiceWResponse) xxx_ToOp(ctx context.Context) *xxx_StartServiceWOperation {
+func (o *StartServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_StartServiceWOperation) *xxx_StartServiceWOperation {
+	if op == nil {
+		op = &xxx_StartServiceWOperation{}
+	}
 	if o == nil {
-		return &xxx_StartServiceWOperation{}
+		return op
 	}
-	return &xxx_StartServiceWOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_StartServiceWOperation) {
@@ -14585,7 +14661,7 @@ func (o *StartServiceWResponse) xxx_FromOp(ctx context.Context, op *xxx_StartSer
 	o.Return = op.Return
 }
 func (o *StartServiceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartServiceWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartServiceWOperation{}
@@ -14817,15 +14893,17 @@ type GetServiceDisplayNameWRequest struct {
 	BufferLength uint32 `idl:"name:lpcchBuffer" json:"buffer_length"`
 }
 
-func (o *GetServiceDisplayNameWRequest) xxx_ToOp(ctx context.Context) *xxx_GetServiceDisplayNameWOperation {
+func (o *GetServiceDisplayNameWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServiceDisplayNameWOperation) *xxx_GetServiceDisplayNameWOperation {
+	if op == nil {
+		op = &xxx_GetServiceDisplayNameWOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceDisplayNameWOperation{}
+		return op
 	}
-	return &xxx_GetServiceDisplayNameWOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceName:    o.ServiceName,
-		BufferLength:   o.BufferLength,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetServiceDisplayNameWRequest) xxx_FromOp(ctx context.Context, op *xxx_GetServiceDisplayNameWOperation) {
@@ -14837,7 +14915,7 @@ func (o *GetServiceDisplayNameWRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.BufferLength = op.BufferLength
 }
 func (o *GetServiceDisplayNameWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetServiceDisplayNameWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceDisplayNameWOperation{}
@@ -14861,15 +14939,17 @@ type GetServiceDisplayNameWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetServiceDisplayNameWResponse) xxx_ToOp(ctx context.Context) *xxx_GetServiceDisplayNameWOperation {
+func (o *GetServiceDisplayNameWResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServiceDisplayNameWOperation) *xxx_GetServiceDisplayNameWOperation {
+	if op == nil {
+		op = &xxx_GetServiceDisplayNameWOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceDisplayNameWOperation{}
+		return op
 	}
-	return &xxx_GetServiceDisplayNameWOperation{
-		DisplayName:  o.DisplayName,
-		BufferLength: o.BufferLength,
-		Return:       o.Return,
-	}
+	o.DisplayName = op.DisplayName
+	o.BufferLength = op.BufferLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetServiceDisplayNameWResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServiceDisplayNameWOperation) {
@@ -14881,7 +14961,7 @@ func (o *GetServiceDisplayNameWResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetServiceDisplayNameWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetServiceDisplayNameWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceDisplayNameWOperation{}
@@ -15111,15 +15191,17 @@ type GetServiceKeyNameWRequest struct {
 	BufferLength uint32 `idl:"name:lpcchBuffer" json:"buffer_length"`
 }
 
-func (o *GetServiceKeyNameWRequest) xxx_ToOp(ctx context.Context) *xxx_GetServiceKeyNameWOperation {
+func (o *GetServiceKeyNameWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServiceKeyNameWOperation) *xxx_GetServiceKeyNameWOperation {
+	if op == nil {
+		op = &xxx_GetServiceKeyNameWOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceKeyNameWOperation{}
+		return op
 	}
-	return &xxx_GetServiceKeyNameWOperation{
-		ServiceManager: o.ServiceManager,
-		DisplayName:    o.DisplayName,
-		BufferLength:   o.BufferLength,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.DisplayName = op.DisplayName
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetServiceKeyNameWRequest) xxx_FromOp(ctx context.Context, op *xxx_GetServiceKeyNameWOperation) {
@@ -15131,7 +15213,7 @@ func (o *GetServiceKeyNameWRequest) xxx_FromOp(ctx context.Context, op *xxx_GetS
 	o.BufferLength = op.BufferLength
 }
 func (o *GetServiceKeyNameWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetServiceKeyNameWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceKeyNameWOperation{}
@@ -15155,15 +15237,17 @@ type GetServiceKeyNameWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetServiceKeyNameWResponse) xxx_ToOp(ctx context.Context) *xxx_GetServiceKeyNameWOperation {
+func (o *GetServiceKeyNameWResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServiceKeyNameWOperation) *xxx_GetServiceKeyNameWOperation {
+	if op == nil {
+		op = &xxx_GetServiceKeyNameWOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceKeyNameWOperation{}
+		return op
 	}
-	return &xxx_GetServiceKeyNameWOperation{
-		ServiceName:  o.ServiceName,
-		BufferLength: o.BufferLength,
-		Return:       o.Return,
-	}
+	o.ServiceName = op.ServiceName
+	o.BufferLength = op.BufferLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetServiceKeyNameWResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServiceKeyNameWOperation) {
@@ -15175,7 +15259,7 @@ func (o *GetServiceKeyNameWResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetServiceKeyNameWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetServiceKeyNameWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceKeyNameWOperation{}
@@ -15849,25 +15933,27 @@ type ChangeServiceConfigARequest struct {
 	DisplayName string `idl:"name:lpDisplayName;string;pointer:unique" json:"display_name"`
 }
 
-func (o *ChangeServiceConfigARequest) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfigAOperation {
+func (o *ChangeServiceConfigARequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfigAOperation) *xxx_ChangeServiceConfigAOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfigAOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfigAOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfigAOperation{
-		Service:          o.Service,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-		DisplayName:      o.DisplayName,
-	}
+	o.Service = op.Service
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	o.DisplayName = op.DisplayName
+	return op
 }
 
 func (o *ChangeServiceConfigARequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfigAOperation) {
@@ -15889,7 +15975,7 @@ func (o *ChangeServiceConfigARequest) xxx_FromOp(ctx context.Context, op *xxx_Ch
 	o.DisplayName = op.DisplayName
 }
 func (o *ChangeServiceConfigARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangeServiceConfigARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfigAOperation{}
@@ -15910,14 +15996,16 @@ type ChangeServiceConfigAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangeServiceConfigAResponse) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfigAOperation {
+func (o *ChangeServiceConfigAResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfigAOperation) *xxx_ChangeServiceConfigAOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfigAOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfigAOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfigAOperation{
-		TagID:  o.TagID,
-		Return: o.Return,
-	}
+	o.TagID = op.TagID
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangeServiceConfigAResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfigAOperation) {
@@ -15928,7 +16016,7 @@ func (o *ChangeServiceConfigAResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *ChangeServiceConfigAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangeServiceConfigAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfigAOperation{}
@@ -16611,27 +16699,29 @@ type CreateServiceARequest struct {
 	PasswordSize uint32 `idl:"name:dwPwSize" json:"password_size"`
 }
 
-func (o *CreateServiceARequest) xxx_ToOp(ctx context.Context) *xxx_CreateServiceAOperation {
+func (o *CreateServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceAOperation) *xxx_CreateServiceAOperation {
+	if op == nil {
+		op = &xxx_CreateServiceAOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceAOperation{}
+		return op
 	}
-	return &xxx_CreateServiceAOperation{
-		ServiceManager:   o.ServiceManager,
-		ServiceName:      o.ServiceName,
-		DisplayName:      o.DisplayName,
-		DesiredAccess:    o.DesiredAccess,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DisplayName = op.DisplayName
+	o.DesiredAccess = op.DesiredAccess
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	return op
 }
 
 func (o *CreateServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceAOperation) {
@@ -16655,7 +16745,7 @@ func (o *CreateServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSe
 	o.PasswordSize = op.PasswordSize
 }
 func (o *CreateServiceARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateServiceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceAOperation{}
@@ -16678,15 +16768,17 @@ type CreateServiceAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateServiceAResponse) xxx_ToOp(ctx context.Context) *xxx_CreateServiceAOperation {
+func (o *CreateServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceAOperation) *xxx_CreateServiceAOperation {
+	if op == nil {
+		op = &xxx_CreateServiceAOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceAOperation{}
+		return op
 	}
-	return &xxx_CreateServiceAOperation{
-		TagID:   o.TagID,
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.TagID = op.TagID
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceAOperation) {
@@ -16698,7 +16790,7 @@ func (o *CreateServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateS
 	o.Return = op.Return
 }
 func (o *CreateServiceAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateServiceAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceAOperation{}
@@ -16930,15 +17022,17 @@ type EnumDependentServicesARequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *EnumDependentServicesARequest) xxx_ToOp(ctx context.Context) *xxx_EnumDependentServicesAOperation {
+func (o *EnumDependentServicesARequest) xxx_ToOp(ctx context.Context, op *xxx_EnumDependentServicesAOperation) *xxx_EnumDependentServicesAOperation {
+	if op == nil {
+		op = &xxx_EnumDependentServicesAOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumDependentServicesAOperation{}
+		return op
 	}
-	return &xxx_EnumDependentServicesAOperation{
-		Service:      o.Service,
-		ServiceState: o.ServiceState,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumDependentServicesARequest) xxx_FromOp(ctx context.Context, op *xxx_EnumDependentServicesAOperation) {
@@ -16950,7 +17044,7 @@ func (o *EnumDependentServicesARequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumDependentServicesARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumDependentServicesARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumDependentServicesAOperation{}
@@ -16977,16 +17071,18 @@ type EnumDependentServicesAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumDependentServicesAResponse) xxx_ToOp(ctx context.Context) *xxx_EnumDependentServicesAOperation {
+func (o *EnumDependentServicesAResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumDependentServicesAOperation) *xxx_EnumDependentServicesAOperation {
+	if op == nil {
+		op = &xxx_EnumDependentServicesAOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumDependentServicesAOperation{}
+		return op
 	}
-	return &xxx_EnumDependentServicesAOperation{
-		Services:          o.Services,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		Return:            o.Return,
-	}
+	o.Services = op.Services
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumDependentServicesAResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumDependentServicesAOperation) {
@@ -16999,7 +17095,7 @@ func (o *EnumDependentServicesAResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *EnumDependentServicesAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumDependentServicesAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumDependentServicesAOperation{}
@@ -17330,17 +17426,19 @@ type EnumServicesStatusARequest struct {
 	ResumeIndex uint32 `idl:"name:lpResumeIndex;pointer:unique" json:"resume_index"`
 }
 
-func (o *EnumServicesStatusARequest) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusAOperation {
+func (o *EnumServicesStatusARequest) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusAOperation) *xxx_EnumServicesStatusAOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusAOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusAOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusAOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceType:    o.ServiceType,
-		ServiceState:   o.ServiceState,
-		BufferLength:   o.BufferLength,
-		ResumeIndex:    o.ResumeIndex,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceType = op.ServiceType
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	o.ResumeIndex = op.ResumeIndex
+	return op
 }
 
 func (o *EnumServicesStatusARequest) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusAOperation) {
@@ -17354,7 +17452,7 @@ func (o *EnumServicesStatusARequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.ResumeIndex = op.ResumeIndex
 }
 func (o *EnumServicesStatusARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumServicesStatusARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusAOperation{}
@@ -17388,17 +17486,19 @@ type EnumServicesStatusAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumServicesStatusAResponse) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusAOperation {
+func (o *EnumServicesStatusAResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusAOperation) *xxx_EnumServicesStatusAOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusAOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusAOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusAOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		ResumeIndex:       o.ResumeIndex,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.ResumeIndex = op.ResumeIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumServicesStatusAResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusAOperation) {
@@ -17412,7 +17512,7 @@ func (o *EnumServicesStatusAResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumServicesStatusAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumServicesStatusAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusAOperation{}
@@ -17615,15 +17715,17 @@ type OpenSCMARequest struct {
 	DesiredAccess uint32 `idl:"name:dwDesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenSCMARequest) xxx_ToOp(ctx context.Context) *xxx_OpenSCMAOperation {
+func (o *OpenSCMARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMAOperation) *xxx_OpenSCMAOperation {
+	if op == nil {
+		op = &xxx_OpenSCMAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSCMAOperation{}
+		return op
 	}
-	return &xxx_OpenSCMAOperation{
-		MachineName:   o.MachineName,
-		DatabaseName:  o.DatabaseName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.MachineName = op.MachineName
+	o.DatabaseName = op.DatabaseName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenSCMARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMAOperation) {
@@ -17635,7 +17737,7 @@ func (o *OpenSCMARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMAOperat
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenSCMARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenSCMARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSCMAOperation{}
@@ -17655,14 +17757,16 @@ type OpenSCMAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenSCMAResponse) xxx_ToOp(ctx context.Context) *xxx_OpenSCMAOperation {
+func (o *OpenSCMAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMAOperation) *xxx_OpenSCMAOperation {
+	if op == nil {
+		op = &xxx_OpenSCMAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSCMAOperation{}
+		return op
 	}
-	return &xxx_OpenSCMAOperation{
-		SCM:    o.SCM,
-		Return: o.Return,
-	}
+	o.SCM = op.SCM
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenSCMAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMAOperation) {
@@ -17673,7 +17777,7 @@ func (o *OpenSCMAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSCMAOpera
 	o.Return = op.Return
 }
 func (o *OpenSCMAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenSCMAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSCMAOperation{}
@@ -17831,15 +17935,17 @@ type OpenServiceARequest struct {
 	DesiredAccess uint32 `idl:"name:dwDesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenServiceARequest) xxx_ToOp(ctx context.Context) *xxx_OpenServiceAOperation {
+func (o *OpenServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenServiceAOperation) *xxx_OpenServiceAOperation {
+	if op == nil {
+		op = &xxx_OpenServiceAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenServiceAOperation{}
+		return op
 	}
-	return &xxx_OpenServiceAOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceName:    o.ServiceName,
-		DesiredAccess:  o.DesiredAccess,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenServiceAOperation) {
@@ -17851,7 +17957,7 @@ func (o *OpenServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenServic
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenServiceARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenServiceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenServiceAOperation{}
@@ -17871,14 +17977,16 @@ type OpenServiceAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenServiceAResponse) xxx_ToOp(ctx context.Context) *xxx_OpenServiceAOperation {
+func (o *OpenServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenServiceAOperation) *xxx_OpenServiceAOperation {
+	if op == nil {
+		op = &xxx_OpenServiceAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenServiceAOperation{}
+		return op
 	}
-	return &xxx_OpenServiceAOperation{
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenServiceAOperation) {
@@ -17889,7 +17997,7 @@ func (o *OpenServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenServi
 	o.Return = op.Return
 }
 func (o *OpenServiceAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenServiceAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenServiceAOperation{}
@@ -18051,14 +18159,16 @@ type QueryServiceConfigARequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceConfigARequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfigAOperation {
+func (o *QueryServiceConfigARequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfigAOperation) *xxx_QueryServiceConfigAOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfigAOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfigAOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfigAOperation{
-		Service:      o.Service,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceConfigARequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfigAOperation) {
@@ -18069,7 +18179,7 @@ func (o *QueryServiceConfigARequest) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceConfigARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceConfigARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfigAOperation{}
@@ -18092,15 +18202,17 @@ type QueryServiceConfigAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceConfigAResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfigAOperation {
+func (o *QueryServiceConfigAResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfigAOperation) *xxx_QueryServiceConfigAOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfigAOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfigAOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfigAOperation{
-		ServiceConfig:     o.ServiceConfig,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.ServiceConfig = op.ServiceConfig
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceConfigAResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfigAOperation) {
@@ -18112,7 +18224,7 @@ func (o *QueryServiceConfigAResponse) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.Return = op.Return
 }
 func (o *QueryServiceConfigAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceConfigAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfigAOperation{}
@@ -18276,14 +18388,16 @@ type QueryServiceLockStatusARequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceLockStatusARequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceLockStatusAOperation {
+func (o *QueryServiceLockStatusARequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceLockStatusAOperation) *xxx_QueryServiceLockStatusAOperation {
+	if op == nil {
+		op = &xxx_QueryServiceLockStatusAOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceLockStatusAOperation{}
+		return op
 	}
-	return &xxx_QueryServiceLockStatusAOperation{
-		ServiceManager: o.ServiceManager,
-		BufferLength:   o.BufferLength,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceLockStatusARequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceLockStatusAOperation) {
@@ -18294,7 +18408,7 @@ func (o *QueryServiceLockStatusARequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceLockStatusARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceLockStatusARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceLockStatusAOperation{}
@@ -18318,15 +18432,17 @@ type QueryServiceLockStatusAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceLockStatusAResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceLockStatusAOperation {
+func (o *QueryServiceLockStatusAResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceLockStatusAOperation) *xxx_QueryServiceLockStatusAOperation {
+	if op == nil {
+		op = &xxx_QueryServiceLockStatusAOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceLockStatusAOperation{}
+		return op
 	}
-	return &xxx_QueryServiceLockStatusAOperation{
-		LockStatus:        o.LockStatus,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.LockStatus = op.LockStatus
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceLockStatusAResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceLockStatusAOperation) {
@@ -18338,7 +18454,7 @@ func (o *QueryServiceLockStatusAResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *QueryServiceLockStatusAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceLockStatusAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceLockStatusAOperation{}
@@ -18546,15 +18662,17 @@ type StartServiceARequest struct {
 	Argv []*String `idl:"name:argv;size_is:(argc);pointer:unique" json:"argv"`
 }
 
-func (o *StartServiceARequest) xxx_ToOp(ctx context.Context) *xxx_StartServiceAOperation {
+func (o *StartServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_StartServiceAOperation) *xxx_StartServiceAOperation {
+	if op == nil {
+		op = &xxx_StartServiceAOperation{}
+	}
 	if o == nil {
-		return &xxx_StartServiceAOperation{}
+		return op
 	}
-	return &xxx_StartServiceAOperation{
-		Service: o.Service,
-		Argc:    o.Argc,
-		Argv:    o.Argv,
-	}
+	o.Service = op.Service
+	o.Argc = op.Argc
+	o.Argv = op.Argv
+	return op
 }
 
 func (o *StartServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_StartServiceAOperation) {
@@ -18566,7 +18684,7 @@ func (o *StartServiceARequest) xxx_FromOp(ctx context.Context, op *xxx_StartServ
 	o.Argv = op.Argv
 }
 func (o *StartServiceARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartServiceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartServiceAOperation{}
@@ -18583,13 +18701,15 @@ type StartServiceAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartServiceAResponse) xxx_ToOp(ctx context.Context) *xxx_StartServiceAOperation {
+func (o *StartServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_StartServiceAOperation) *xxx_StartServiceAOperation {
+	if op == nil {
+		op = &xxx_StartServiceAOperation{}
+	}
 	if o == nil {
-		return &xxx_StartServiceAOperation{}
+		return op
 	}
-	return &xxx_StartServiceAOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_StartServiceAOperation) {
@@ -18599,7 +18719,7 @@ func (o *StartServiceAResponse) xxx_FromOp(ctx context.Context, op *xxx_StartSer
 	o.Return = op.Return
 }
 func (o *StartServiceAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartServiceAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartServiceAOperation{}
@@ -18829,15 +18949,17 @@ type GetServiceDisplayNameARequest struct {
 	BufferLength uint32 `idl:"name:lpcchBuffer" json:"buffer_length"`
 }
 
-func (o *GetServiceDisplayNameARequest) xxx_ToOp(ctx context.Context) *xxx_GetServiceDisplayNameAOperation {
+func (o *GetServiceDisplayNameARequest) xxx_ToOp(ctx context.Context, op *xxx_GetServiceDisplayNameAOperation) *xxx_GetServiceDisplayNameAOperation {
+	if op == nil {
+		op = &xxx_GetServiceDisplayNameAOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceDisplayNameAOperation{}
+		return op
 	}
-	return &xxx_GetServiceDisplayNameAOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceName:    o.ServiceName,
-		BufferLength:   o.BufferLength,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetServiceDisplayNameARequest) xxx_FromOp(ctx context.Context, op *xxx_GetServiceDisplayNameAOperation) {
@@ -18849,7 +18971,7 @@ func (o *GetServiceDisplayNameARequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.BufferLength = op.BufferLength
 }
 func (o *GetServiceDisplayNameARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetServiceDisplayNameARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceDisplayNameAOperation{}
@@ -18873,15 +18995,17 @@ type GetServiceDisplayNameAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetServiceDisplayNameAResponse) xxx_ToOp(ctx context.Context) *xxx_GetServiceDisplayNameAOperation {
+func (o *GetServiceDisplayNameAResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServiceDisplayNameAOperation) *xxx_GetServiceDisplayNameAOperation {
+	if op == nil {
+		op = &xxx_GetServiceDisplayNameAOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceDisplayNameAOperation{}
+		return op
 	}
-	return &xxx_GetServiceDisplayNameAOperation{
-		DisplayName:  o.DisplayName,
-		BufferLength: o.BufferLength,
-		Return:       o.Return,
-	}
+	o.DisplayName = op.DisplayName
+	o.BufferLength = op.BufferLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetServiceDisplayNameAResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServiceDisplayNameAOperation) {
@@ -18893,7 +19017,7 @@ func (o *GetServiceDisplayNameAResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetServiceDisplayNameAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetServiceDisplayNameAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceDisplayNameAOperation{}
@@ -19121,15 +19245,17 @@ type GetServiceKeyNameARequest struct {
 	BufferLength uint32 `idl:"name:lpcchBuffer" json:"buffer_length"`
 }
 
-func (o *GetServiceKeyNameARequest) xxx_ToOp(ctx context.Context) *xxx_GetServiceKeyNameAOperation {
+func (o *GetServiceKeyNameARequest) xxx_ToOp(ctx context.Context, op *xxx_GetServiceKeyNameAOperation) *xxx_GetServiceKeyNameAOperation {
+	if op == nil {
+		op = &xxx_GetServiceKeyNameAOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceKeyNameAOperation{}
+		return op
 	}
-	return &xxx_GetServiceKeyNameAOperation{
-		ServiceManager: o.ServiceManager,
-		DisplayName:    o.DisplayName,
-		BufferLength:   o.BufferLength,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.DisplayName = op.DisplayName
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetServiceKeyNameARequest) xxx_FromOp(ctx context.Context, op *xxx_GetServiceKeyNameAOperation) {
@@ -19141,7 +19267,7 @@ func (o *GetServiceKeyNameARequest) xxx_FromOp(ctx context.Context, op *xxx_GetS
 	o.BufferLength = op.BufferLength
 }
 func (o *GetServiceKeyNameARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetServiceKeyNameARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceKeyNameAOperation{}
@@ -19165,15 +19291,17 @@ type GetServiceKeyNameAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetServiceKeyNameAResponse) xxx_ToOp(ctx context.Context) *xxx_GetServiceKeyNameAOperation {
+func (o *GetServiceKeyNameAResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServiceKeyNameAOperation) *xxx_GetServiceKeyNameAOperation {
+	if op == nil {
+		op = &xxx_GetServiceKeyNameAOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServiceKeyNameAOperation{}
+		return op
 	}
-	return &xxx_GetServiceKeyNameAOperation{
-		KeyName:      o.KeyName,
-		BufferLength: o.BufferLength,
-		Return:       o.Return,
-	}
+	o.KeyName = op.KeyName
+	o.BufferLength = op.BufferLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetServiceKeyNameAResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServiceKeyNameAOperation) {
@@ -19185,7 +19313,7 @@ func (o *GetServiceKeyNameAResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetServiceKeyNameAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetServiceKeyNameAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServiceKeyNameAOperation{}
@@ -19559,18 +19687,20 @@ type EnumServiceGroupWRequest struct {
 	GroupName string `idl:"name:pszGroupName;string;pointer:unique" json:"group_name"`
 }
 
-func (o *EnumServiceGroupWRequest) xxx_ToOp(ctx context.Context) *xxx_EnumServiceGroupWOperation {
+func (o *EnumServiceGroupWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumServiceGroupWOperation) *xxx_EnumServiceGroupWOperation {
+	if op == nil {
+		op = &xxx_EnumServiceGroupWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServiceGroupWOperation{}
+		return op
 	}
-	return &xxx_EnumServiceGroupWOperation{
-		ServiceManager: o.ServiceManager,
-		ServiceType:    o.ServiceType,
-		ServiceState:   o.ServiceState,
-		BufferLength:   o.BufferLength,
-		ResumeIndex:    o.ResumeIndex,
-		GroupName:      o.GroupName,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceType = op.ServiceType
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	o.ResumeIndex = op.ResumeIndex
+	o.GroupName = op.GroupName
+	return op
 }
 
 func (o *EnumServiceGroupWRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumServiceGroupWOperation) {
@@ -19585,7 +19715,7 @@ func (o *EnumServiceGroupWRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumS
 	o.GroupName = op.GroupName
 }
 func (o *EnumServiceGroupWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumServiceGroupWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServiceGroupWOperation{}
@@ -19619,17 +19749,19 @@ type EnumServiceGroupWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumServiceGroupWResponse) xxx_ToOp(ctx context.Context) *xxx_EnumServiceGroupWOperation {
+func (o *EnumServiceGroupWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumServiceGroupWOperation) *xxx_EnumServiceGroupWOperation {
+	if op == nil {
+		op = &xxx_EnumServiceGroupWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServiceGroupWOperation{}
+		return op
 	}
-	return &xxx_EnumServiceGroupWOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		ResumeIndex:       o.ResumeIndex,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.ResumeIndex = op.ResumeIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumServiceGroupWResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumServiceGroupWOperation) {
@@ -19643,7 +19775,7 @@ func (o *EnumServiceGroupWResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumServiceGroupWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumServiceGroupWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServiceGroupWOperation{}
@@ -19779,14 +19911,16 @@ type ChangeServiceConfig2ARequest struct {
 	Info *ConfigInfoA `idl:"name:Info" json:"info"`
 }
 
-func (o *ChangeServiceConfig2ARequest) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfig2AOperation {
+func (o *ChangeServiceConfig2ARequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfig2AOperation) *xxx_ChangeServiceConfig2AOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfig2AOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfig2AOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfig2AOperation{
-		Service: o.Service,
-		Info:    o.Info,
-	}
+	o.Service = op.Service
+	o.Info = op.Info
+	return op
 }
 
 func (o *ChangeServiceConfig2ARequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfig2AOperation) {
@@ -19797,7 +19931,7 @@ func (o *ChangeServiceConfig2ARequest) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Info = op.Info
 }
 func (o *ChangeServiceConfig2ARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangeServiceConfig2ARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfig2AOperation{}
@@ -19814,13 +19948,15 @@ type ChangeServiceConfig2AResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangeServiceConfig2AResponse) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfig2AOperation {
+func (o *ChangeServiceConfig2AResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfig2AOperation) *xxx_ChangeServiceConfig2AOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfig2AOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfig2AOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfig2AOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangeServiceConfig2AResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfig2AOperation) {
@@ -19830,7 +19966,7 @@ func (o *ChangeServiceConfig2AResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ChangeServiceConfig2AResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangeServiceConfig2AResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfig2AOperation{}
@@ -19966,14 +20102,16 @@ type ChangeServiceConfig2WRequest struct {
 	Info *ConfigInfoW `idl:"name:Info" json:"info"`
 }
 
-func (o *ChangeServiceConfig2WRequest) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfig2WOperation {
+func (o *ChangeServiceConfig2WRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfig2WOperation) *xxx_ChangeServiceConfig2WOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfig2WOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfig2WOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfig2WOperation{
-		Service: o.Service,
-		Info:    o.Info,
-	}
+	o.Service = op.Service
+	o.Info = op.Info
+	return op
 }
 
 func (o *ChangeServiceConfig2WRequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfig2WOperation) {
@@ -19984,7 +20122,7 @@ func (o *ChangeServiceConfig2WRequest) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Info = op.Info
 }
 func (o *ChangeServiceConfig2WRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangeServiceConfig2WRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfig2WOperation{}
@@ -20001,13 +20139,15 @@ type ChangeServiceConfig2WResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangeServiceConfig2WResponse) xxx_ToOp(ctx context.Context) *xxx_ChangeServiceConfig2WOperation {
+func (o *ChangeServiceConfig2WResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeServiceConfig2WOperation) *xxx_ChangeServiceConfig2WOperation {
+	if op == nil {
+		op = &xxx_ChangeServiceConfig2WOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeServiceConfig2WOperation{}
+		return op
 	}
-	return &xxx_ChangeServiceConfig2WOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangeServiceConfig2WResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeServiceConfig2WOperation) {
@@ -20017,7 +20157,7 @@ func (o *ChangeServiceConfig2WResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ChangeServiceConfig2WResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangeServiceConfig2WResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeServiceConfig2WOperation{}
@@ -20241,15 +20381,17 @@ type QueryServiceConfig2ARequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceConfig2ARequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfig2AOperation {
+func (o *QueryServiceConfig2ARequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfig2AOperation) *xxx_QueryServiceConfig2AOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfig2AOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfig2AOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfig2AOperation{
-		Service:      o.Service,
-		InfoLevel:    o.InfoLevel,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.InfoLevel = op.InfoLevel
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceConfig2ARequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfig2AOperation) {
@@ -20261,7 +20403,7 @@ func (o *QueryServiceConfig2ARequest) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceConfig2ARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceConfig2ARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfig2AOperation{}
@@ -20285,15 +20427,17 @@ type QueryServiceConfig2AResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceConfig2AResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfig2AOperation {
+func (o *QueryServiceConfig2AResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfig2AOperation) *xxx_QueryServiceConfig2AOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfig2AOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfig2AOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfig2AOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceConfig2AResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfig2AOperation) {
@@ -20305,7 +20449,7 @@ func (o *QueryServiceConfig2AResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Return = op.Return
 }
 func (o *QueryServiceConfig2AResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceConfig2AResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfig2AOperation{}
@@ -20531,15 +20675,17 @@ type QueryServiceConfig2WRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceConfig2WRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfig2WOperation {
+func (o *QueryServiceConfig2WRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfig2WOperation) *xxx_QueryServiceConfig2WOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfig2WOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfig2WOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfig2WOperation{
-		Service:      o.Service,
-		InfoLevel:    o.InfoLevel,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.InfoLevel = op.InfoLevel
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceConfig2WRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfig2WOperation) {
@@ -20551,7 +20697,7 @@ func (o *QueryServiceConfig2WRequest) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceConfig2WRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceConfig2WRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfig2WOperation{}
@@ -20575,15 +20721,17 @@ type QueryServiceConfig2WResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceConfig2WResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfig2WOperation {
+func (o *QueryServiceConfig2WResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfig2WOperation) *xxx_QueryServiceConfig2WOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfig2WOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfig2WOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfig2WOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceConfig2WResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfig2WOperation) {
@@ -20595,7 +20743,7 @@ func (o *QueryServiceConfig2WResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Return = op.Return
 }
 func (o *QueryServiceConfig2WResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceConfig2WResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfig2WOperation{}
@@ -20793,15 +20941,17 @@ type QueryServiceStatusExRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *QueryServiceStatusExRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceStatusExOperation {
+func (o *QueryServiceStatusExRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceStatusExOperation) *xxx_QueryServiceStatusExOperation {
+	if op == nil {
+		op = &xxx_QueryServiceStatusExOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceStatusExOperation{}
+		return op
 	}
-	return &xxx_QueryServiceStatusExOperation{
-		Service:      o.Service,
-		InfoLevel:    o.InfoLevel,
-		BufferLength: o.BufferLength,
-	}
+	o.Service = op.Service
+	o.InfoLevel = op.InfoLevel
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *QueryServiceStatusExRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceStatusExOperation) {
@@ -20813,7 +20963,7 @@ func (o *QueryServiceStatusExRequest) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.BufferLength = op.BufferLength
 }
 func (o *QueryServiceStatusExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceStatusExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceStatusExOperation{}
@@ -20837,15 +20987,17 @@ type QueryServiceStatusExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceStatusExResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceStatusExOperation {
+func (o *QueryServiceStatusExResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceStatusExOperation) *xxx_QueryServiceStatusExOperation {
+	if op == nil {
+		op = &xxx_QueryServiceStatusExOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceStatusExOperation{}
+		return op
 	}
-	return &xxx_QueryServiceStatusExOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceStatusExResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceStatusExOperation) {
@@ -20857,7 +21009,7 @@ func (o *QueryServiceStatusExResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Return = op.Return
 }
 func (o *QueryServiceStatusExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceStatusExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceStatusExOperation{}
@@ -21248,19 +21400,21 @@ type EnumServicesStatusExARequest struct {
 	GroupName string `idl:"name:pszGroupName;string;pointer:unique" json:"group_name"`
 }
 
-func (o *EnumServicesStatusExARequest) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusExAOperation {
+func (o *EnumServicesStatusExARequest) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusExAOperation) *xxx_EnumServicesStatusExAOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusExAOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusExAOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusExAOperation{
-		ServiceManager: o.ServiceManager,
-		InfoLevel:      o.InfoLevel,
-		ServiceType:    o.ServiceType,
-		ServiceState:   o.ServiceState,
-		BufferLength:   o.BufferLength,
-		ResumeIndex:    o.ResumeIndex,
-		GroupName:      o.GroupName,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.InfoLevel = op.InfoLevel
+	o.ServiceType = op.ServiceType
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	o.ResumeIndex = op.ResumeIndex
+	o.GroupName = op.GroupName
+	return op
 }
 
 func (o *EnumServicesStatusExARequest) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusExAOperation) {
@@ -21276,7 +21430,7 @@ func (o *EnumServicesStatusExARequest) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.GroupName = op.GroupName
 }
 func (o *EnumServicesStatusExARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumServicesStatusExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusExAOperation{}
@@ -21309,17 +21463,19 @@ type EnumServicesStatusExAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumServicesStatusExAResponse) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusExAOperation {
+func (o *EnumServicesStatusExAResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusExAOperation) *xxx_EnumServicesStatusExAOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusExAOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusExAOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusExAOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		ResumeIndex:       o.ResumeIndex,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.ResumeIndex = op.ResumeIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumServicesStatusExAResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusExAOperation) {
@@ -21333,7 +21489,7 @@ func (o *EnumServicesStatusExAResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *EnumServicesStatusExAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumServicesStatusExAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusExAOperation{}
@@ -21724,19 +21880,21 @@ type EnumServicesStatusExWRequest struct {
 	GroupName string `idl:"name:pszGroupName;string;pointer:unique" json:"group_name"`
 }
 
-func (o *EnumServicesStatusExWRequest) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusExWOperation {
+func (o *EnumServicesStatusExWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusExWOperation) *xxx_EnumServicesStatusExWOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusExWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusExWOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusExWOperation{
-		ServiceManager: o.ServiceManager,
-		InfoLevel:      o.InfoLevel,
-		ServiceType:    o.ServiceType,
-		ServiceState:   o.ServiceState,
-		BufferLength:   o.BufferLength,
-		ResumeIndex:    o.ResumeIndex,
-		GroupName:      o.GroupName,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.InfoLevel = op.InfoLevel
+	o.ServiceType = op.ServiceType
+	o.ServiceState = op.ServiceState
+	o.BufferLength = op.BufferLength
+	o.ResumeIndex = op.ResumeIndex
+	o.GroupName = op.GroupName
+	return op
 }
 
 func (o *EnumServicesStatusExWRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusExWOperation) {
@@ -21752,7 +21910,7 @@ func (o *EnumServicesStatusExWRequest) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.GroupName = op.GroupName
 }
 func (o *EnumServicesStatusExWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumServicesStatusExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusExWOperation{}
@@ -21786,17 +21944,19 @@ type EnumServicesStatusExWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumServicesStatusExWResponse) xxx_ToOp(ctx context.Context) *xxx_EnumServicesStatusExWOperation {
+func (o *EnumServicesStatusExWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumServicesStatusExWOperation) *xxx_EnumServicesStatusExWOperation {
+	if op == nil {
+		op = &xxx_EnumServicesStatusExWOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumServicesStatusExWOperation{}
+		return op
 	}
-	return &xxx_EnumServicesStatusExWOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		ServicesReturned:  o.ServicesReturned,
-		ResumeIndex:       o.ResumeIndex,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.ServicesReturned = op.ServicesReturned
+	o.ResumeIndex = op.ResumeIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumServicesStatusExWResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumServicesStatusExWOperation) {
@@ -21810,7 +21970,7 @@ func (o *EnumServicesStatusExWResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *EnumServicesStatusExWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumServicesStatusExWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumServicesStatusExWOperation{}
@@ -22492,27 +22652,29 @@ type CreateServiceWOW64ARequest struct {
 	PasswordSize uint32 `idl:"name:dwPwSize" json:"password_size"`
 }
 
-func (o *CreateServiceWOW64ARequest) xxx_ToOp(ctx context.Context) *xxx_CreateServiceWOW64AOperation {
+func (o *CreateServiceWOW64ARequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceWOW64AOperation) *xxx_CreateServiceWOW64AOperation {
+	if op == nil {
+		op = &xxx_CreateServiceWOW64AOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceWOW64AOperation{}
+		return op
 	}
-	return &xxx_CreateServiceWOW64AOperation{
-		ServiceManager:   o.ServiceManager,
-		ServiceName:      o.ServiceName,
-		DisplayName:      o.DisplayName,
-		DesiredAccess:    o.DesiredAccess,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DisplayName = op.DisplayName
+	o.DesiredAccess = op.DesiredAccess
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	return op
 }
 
 func (o *CreateServiceWOW64ARequest) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceWOW64AOperation) {
@@ -22536,7 +22698,7 @@ func (o *CreateServiceWOW64ARequest) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.PasswordSize = op.PasswordSize
 }
 func (o *CreateServiceWOW64ARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateServiceWOW64ARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceWOW64AOperation{}
@@ -22559,15 +22721,17 @@ type CreateServiceWOW64AResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateServiceWOW64AResponse) xxx_ToOp(ctx context.Context) *xxx_CreateServiceWOW64AOperation {
+func (o *CreateServiceWOW64AResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceWOW64AOperation) *xxx_CreateServiceWOW64AOperation {
+	if op == nil {
+		op = &xxx_CreateServiceWOW64AOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceWOW64AOperation{}
+		return op
 	}
-	return &xxx_CreateServiceWOW64AOperation{
-		TagID:   o.TagID,
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.TagID = op.TagID
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateServiceWOW64AResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceWOW64AOperation) {
@@ -22579,7 +22743,7 @@ func (o *CreateServiceWOW64AResponse) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Return = op.Return
 }
 func (o *CreateServiceWOW64AResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateServiceWOW64AResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceWOW64AOperation{}
@@ -23261,27 +23425,29 @@ type CreateServiceWOW64WRequest struct {
 	PasswordSize uint32 `idl:"name:dwPwSize" json:"password_size"`
 }
 
-func (o *CreateServiceWOW64WRequest) xxx_ToOp(ctx context.Context) *xxx_CreateServiceWOW64WOperation {
+func (o *CreateServiceWOW64WRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceWOW64WOperation) *xxx_CreateServiceWOW64WOperation {
+	if op == nil {
+		op = &xxx_CreateServiceWOW64WOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceWOW64WOperation{}
+		return op
 	}
-	return &xxx_CreateServiceWOW64WOperation{
-		ServiceManager:   o.ServiceManager,
-		ServiceName:      o.ServiceName,
-		DisplayName:      o.DisplayName,
-		DesiredAccess:    o.DesiredAccess,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DisplayName = op.DisplayName
+	o.DesiredAccess = op.DesiredAccess
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	return op
 }
 
 func (o *CreateServiceWOW64WRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceWOW64WOperation) {
@@ -23305,7 +23471,7 @@ func (o *CreateServiceWOW64WRequest) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.PasswordSize = op.PasswordSize
 }
 func (o *CreateServiceWOW64WRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateServiceWOW64WRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceWOW64WOperation{}
@@ -23328,15 +23494,17 @@ type CreateServiceWOW64WResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateServiceWOW64WResponse) xxx_ToOp(ctx context.Context) *xxx_CreateServiceWOW64WOperation {
+func (o *CreateServiceWOW64WResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateServiceWOW64WOperation) *xxx_CreateServiceWOW64WOperation {
+	if op == nil {
+		op = &xxx_CreateServiceWOW64WOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateServiceWOW64WOperation{}
+		return op
 	}
-	return &xxx_CreateServiceWOW64WOperation{
-		TagID:   o.TagID,
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.TagID = op.TagID
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateServiceWOW64WResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateServiceWOW64WOperation) {
@@ -23348,7 +23516,7 @@ func (o *CreateServiceWOW64WResponse) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Return = op.Return
 }
 func (o *CreateServiceWOW64WResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateServiceWOW64WResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateServiceWOW64WOperation{}
@@ -23576,15 +23744,17 @@ type NotifyServiceStatusChangeRequest struct {
 	ClientProcessGUID *dtyp.GUID `idl:"name:pClientProcessGuid" json:"client_process_guid"`
 }
 
-func (o *NotifyServiceStatusChangeRequest) xxx_ToOp(ctx context.Context) *xxx_NotifyServiceStatusChangeOperation {
+func (o *NotifyServiceStatusChangeRequest) xxx_ToOp(ctx context.Context, op *xxx_NotifyServiceStatusChangeOperation) *xxx_NotifyServiceStatusChangeOperation {
+	if op == nil {
+		op = &xxx_NotifyServiceStatusChangeOperation{}
+	}
 	if o == nil {
-		return &xxx_NotifyServiceStatusChangeOperation{}
+		return op
 	}
-	return &xxx_NotifyServiceStatusChangeOperation{
-		Service:           o.Service,
-		NotifyParams:      o.NotifyParams,
-		ClientProcessGUID: o.ClientProcessGUID,
-	}
+	o.Service = op.Service
+	o.NotifyParams = op.NotifyParams
+	o.ClientProcessGUID = op.ClientProcessGUID
+	return op
 }
 
 func (o *NotifyServiceStatusChangeRequest) xxx_FromOp(ctx context.Context, op *xxx_NotifyServiceStatusChangeOperation) {
@@ -23596,7 +23766,7 @@ func (o *NotifyServiceStatusChangeRequest) xxx_FromOp(ctx context.Context, op *x
 	o.ClientProcessGUID = op.ClientProcessGUID
 }
 func (o *NotifyServiceStatusChangeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NotifyServiceStatusChangeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NotifyServiceStatusChangeOperation{}
@@ -23620,16 +23790,18 @@ type NotifyServiceStatusChangeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NotifyServiceStatusChangeResponse) xxx_ToOp(ctx context.Context) *xxx_NotifyServiceStatusChangeOperation {
+func (o *NotifyServiceStatusChangeResponse) xxx_ToOp(ctx context.Context, op *xxx_NotifyServiceStatusChangeOperation) *xxx_NotifyServiceStatusChangeOperation {
+	if op == nil {
+		op = &xxx_NotifyServiceStatusChangeOperation{}
+	}
 	if o == nil {
-		return &xxx_NotifyServiceStatusChangeOperation{}
+		return op
 	}
-	return &xxx_NotifyServiceStatusChangeOperation{
-		SCMProcessGUID:    o.SCMProcessGUID,
-		CreateRemoteQueue: o.CreateRemoteQueue,
-		Notify:            o.Notify,
-		Return:            o.Return,
-	}
+	o.SCMProcessGUID = op.SCMProcessGUID
+	o.CreateRemoteQueue = op.CreateRemoteQueue
+	o.Notify = op.Notify
+	o.Return = op.Return
+	return op
 }
 
 func (o *NotifyServiceStatusChangeResponse) xxx_FromOp(ctx context.Context, op *xxx_NotifyServiceStatusChangeOperation) {
@@ -23642,7 +23814,7 @@ func (o *NotifyServiceStatusChangeResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *NotifyServiceStatusChangeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NotifyServiceStatusChangeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NotifyServiceStatusChangeOperation{}
@@ -23791,13 +23963,15 @@ type GetNotifyResultsRequest struct {
 	Notify *Notify `idl:"name:hNotify" json:"notify"`
 }
 
-func (o *GetNotifyResultsRequest) xxx_ToOp(ctx context.Context) *xxx_GetNotifyResultsOperation {
+func (o *GetNotifyResultsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNotifyResultsOperation) *xxx_GetNotifyResultsOperation {
+	if op == nil {
+		op = &xxx_GetNotifyResultsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNotifyResultsOperation{}
+		return op
 	}
-	return &xxx_GetNotifyResultsOperation{
-		Notify: o.Notify,
-	}
+	o.Notify = op.Notify
+	return op
 }
 
 func (o *GetNotifyResultsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNotifyResultsOperation) {
@@ -23807,7 +23981,7 @@ func (o *GetNotifyResultsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNot
 	o.Notify = op.Notify
 }
 func (o *GetNotifyResultsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNotifyResultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNotifyResultsOperation{}
@@ -23827,14 +24001,16 @@ type GetNotifyResultsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNotifyResultsResponse) xxx_ToOp(ctx context.Context) *xxx_GetNotifyResultsOperation {
+func (o *GetNotifyResultsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNotifyResultsOperation) *xxx_GetNotifyResultsOperation {
+	if op == nil {
+		op = &xxx_GetNotifyResultsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNotifyResultsOperation{}
+		return op
 	}
-	return &xxx_GetNotifyResultsOperation{
-		NotifyParams: o.NotifyParams,
-		Return:       o.Return,
-	}
+	o.NotifyParams = op.NotifyParams
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNotifyResultsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNotifyResultsOperation) {
@@ -23845,7 +24021,7 @@ func (o *GetNotifyResultsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNo
 	o.Return = op.Return
 }
 func (o *GetNotifyResultsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNotifyResultsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNotifyResultsOperation{}
@@ -23989,13 +24165,15 @@ type CloseNotifyRequest struct {
 	Notify *Notify `idl:"name:phNotify" json:"notify"`
 }
 
-func (o *CloseNotifyRequest) xxx_ToOp(ctx context.Context) *xxx_CloseNotifyOperation {
+func (o *CloseNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseNotifyOperation) *xxx_CloseNotifyOperation {
+	if op == nil {
+		op = &xxx_CloseNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseNotifyOperation{}
+		return op
 	}
-	return &xxx_CloseNotifyOperation{
-		Notify: o.Notify,
-	}
+	o.Notify = op.Notify
+	return op
 }
 
 func (o *CloseNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseNotifyOperation) {
@@ -24005,7 +24183,7 @@ func (o *CloseNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseNotify
 	o.Notify = op.Notify
 }
 func (o *CloseNotifyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseNotifyOperation{}
@@ -24028,15 +24206,17 @@ type CloseNotifyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseNotifyResponse) xxx_ToOp(ctx context.Context) *xxx_CloseNotifyOperation {
+func (o *CloseNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseNotifyOperation) *xxx_CloseNotifyOperation {
+	if op == nil {
+		op = &xxx_CloseNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseNotifyOperation{}
+		return op
 	}
-	return &xxx_CloseNotifyOperation{
-		Notify:   o.Notify,
-		ApcFired: o.ApcFired,
-		Return:   o.Return,
-	}
+	o.Notify = op.Notify
+	o.ApcFired = op.ApcFired
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseNotifyOperation) {
@@ -24048,7 +24228,7 @@ func (o *CloseNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseNotif
 	o.Return = op.Return
 }
 func (o *CloseNotifyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseNotifyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseNotifyOperation{}
@@ -24302,16 +24482,18 @@ type ControlServiceExARequest struct {
 	ControlInParams *ServiceControlInParamsA `idl:"name:pControlInParams;switch_is:dwInfoLevel" json:"control_in_params"`
 }
 
-func (o *ControlServiceExARequest) xxx_ToOp(ctx context.Context) *xxx_ControlServiceExAOperation {
+func (o *ControlServiceExARequest) xxx_ToOp(ctx context.Context, op *xxx_ControlServiceExAOperation) *xxx_ControlServiceExAOperation {
+	if op == nil {
+		op = &xxx_ControlServiceExAOperation{}
+	}
 	if o == nil {
-		return &xxx_ControlServiceExAOperation{}
+		return op
 	}
-	return &xxx_ControlServiceExAOperation{
-		Service:         o.Service,
-		Control:         o.Control,
-		InfoLevel:       o.InfoLevel,
-		ControlInParams: o.ControlInParams,
-	}
+	o.Service = op.Service
+	o.Control = op.Control
+	o.InfoLevel = op.InfoLevel
+	o.ControlInParams = op.ControlInParams
+	return op
 }
 
 func (o *ControlServiceExARequest) xxx_FromOp(ctx context.Context, op *xxx_ControlServiceExAOperation) {
@@ -24324,7 +24506,7 @@ func (o *ControlServiceExARequest) xxx_FromOp(ctx context.Context, op *xxx_Contr
 	o.ControlInParams = op.ControlInParams
 }
 func (o *ControlServiceExARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ControlServiceExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ControlServiceExAOperation{}
@@ -24344,14 +24526,16 @@ type ControlServiceExAResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ControlServiceExAResponse) xxx_ToOp(ctx context.Context) *xxx_ControlServiceExAOperation {
+func (o *ControlServiceExAResponse) xxx_ToOp(ctx context.Context, op *xxx_ControlServiceExAOperation) *xxx_ControlServiceExAOperation {
+	if op == nil {
+		op = &xxx_ControlServiceExAOperation{}
+	}
 	if o == nil {
-		return &xxx_ControlServiceExAOperation{}
+		return op
 	}
-	return &xxx_ControlServiceExAOperation{
-		ControlOutParams: o.ControlOutParams,
-		Return:           o.Return,
-	}
+	o.ControlOutParams = op.ControlOutParams
+	o.Return = op.Return
+	return op
 }
 
 func (o *ControlServiceExAResponse) xxx_FromOp(ctx context.Context, op *xxx_ControlServiceExAOperation) {
@@ -24362,7 +24546,7 @@ func (o *ControlServiceExAResponse) xxx_FromOp(ctx context.Context, op *xxx_Cont
 	o.Return = op.Return
 }
 func (o *ControlServiceExAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ControlServiceExAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ControlServiceExAOperation{}
@@ -24616,16 +24800,18 @@ type ControlServiceExWRequest struct {
 	ControlInParams *ServiceControlInParamsW `idl:"name:pControlInParams;switch_is:dwInfoLevel" json:"control_in_params"`
 }
 
-func (o *ControlServiceExWRequest) xxx_ToOp(ctx context.Context) *xxx_ControlServiceExWOperation {
+func (o *ControlServiceExWRequest) xxx_ToOp(ctx context.Context, op *xxx_ControlServiceExWOperation) *xxx_ControlServiceExWOperation {
+	if op == nil {
+		op = &xxx_ControlServiceExWOperation{}
+	}
 	if o == nil {
-		return &xxx_ControlServiceExWOperation{}
+		return op
 	}
-	return &xxx_ControlServiceExWOperation{
-		Service:         o.Service,
-		Control:         o.Control,
-		InfoLevel:       o.InfoLevel,
-		ControlInParams: o.ControlInParams,
-	}
+	o.Service = op.Service
+	o.Control = op.Control
+	o.InfoLevel = op.InfoLevel
+	o.ControlInParams = op.ControlInParams
+	return op
 }
 
 func (o *ControlServiceExWRequest) xxx_FromOp(ctx context.Context, op *xxx_ControlServiceExWOperation) {
@@ -24638,7 +24824,7 @@ func (o *ControlServiceExWRequest) xxx_FromOp(ctx context.Context, op *xxx_Contr
 	o.ControlInParams = op.ControlInParams
 }
 func (o *ControlServiceExWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ControlServiceExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ControlServiceExWOperation{}
@@ -24658,14 +24844,16 @@ type ControlServiceExWResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ControlServiceExWResponse) xxx_ToOp(ctx context.Context) *xxx_ControlServiceExWOperation {
+func (o *ControlServiceExWResponse) xxx_ToOp(ctx context.Context, op *xxx_ControlServiceExWOperation) *xxx_ControlServiceExWOperation {
+	if op == nil {
+		op = &xxx_ControlServiceExWOperation{}
+	}
 	if o == nil {
-		return &xxx_ControlServiceExWOperation{}
+		return op
 	}
-	return &xxx_ControlServiceExWOperation{
-		ControlOutParams: o.ControlOutParams,
-		Return:           o.Return,
-	}
+	o.ControlOutParams = op.ControlOutParams
+	o.Return = op.Return
+	return op
 }
 
 func (o *ControlServiceExWResponse) xxx_FromOp(ctx context.Context, op *xxx_ControlServiceExWOperation) {
@@ -24676,7 +24864,7 @@ func (o *ControlServiceExWResponse) xxx_FromOp(ctx context.Context, op *xxx_Cont
 	o.Return = op.Return
 }
 func (o *ControlServiceExWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ControlServiceExWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ControlServiceExWOperation{}
@@ -24825,14 +25013,16 @@ type QueryServiceConfigExRequest struct {
 	InfoLevel uint32 `idl:"name:dwInfoLevel" json:"info_level"`
 }
 
-func (o *QueryServiceConfigExRequest) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfigExOperation {
+func (o *QueryServiceConfigExRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfigExOperation) *xxx_QueryServiceConfigExOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfigExOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfigExOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfigExOperation{
-		Service:   o.Service,
-		InfoLevel: o.InfoLevel,
-	}
+	o.Service = op.Service
+	o.InfoLevel = op.InfoLevel
+	return op
 }
 
 func (o *QueryServiceConfigExRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfigExOperation) {
@@ -24843,7 +25033,7 @@ func (o *QueryServiceConfigExRequest) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.InfoLevel = op.InfoLevel
 }
 func (o *QueryServiceConfigExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryServiceConfigExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfigExOperation{}
@@ -24863,14 +25053,16 @@ type QueryServiceConfigExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryServiceConfigExResponse) xxx_ToOp(ctx context.Context) *xxx_QueryServiceConfigExOperation {
+func (o *QueryServiceConfigExResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryServiceConfigExOperation) *xxx_QueryServiceConfigExOperation {
+	if op == nil {
+		op = &xxx_QueryServiceConfigExOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryServiceConfigExOperation{}
+		return op
 	}
-	return &xxx_QueryServiceConfigExOperation{
-		Info:   o.Info,
-		Return: o.Return,
-	}
+	o.Info = op.Info
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryServiceConfigExResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryServiceConfigExOperation) {
@@ -24881,7 +25073,7 @@ func (o *QueryServiceConfigExResponse) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Return = op.Return
 }
 func (o *QueryServiceConfigExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryServiceConfigExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryServiceConfigExOperation{}
@@ -25652,28 +25844,30 @@ type CreateWOWServiceRequest struct {
 	ServiceWOWType uint16 `idl:"name:dwServiceWowType" json:"service_wow_type"`
 }
 
-func (o *CreateWOWServiceRequest) xxx_ToOp(ctx context.Context) *xxx_CreateWOWServiceOperation {
+func (o *CreateWOWServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateWOWServiceOperation) *xxx_CreateWOWServiceOperation {
+	if op == nil {
+		op = &xxx_CreateWOWServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateWOWServiceOperation{}
+		return op
 	}
-	return &xxx_CreateWOWServiceOperation{
-		ServiceManager:   o.ServiceManager,
-		ServiceName:      o.ServiceName,
-		DisplayName:      o.DisplayName,
-		DesiredAccess:    o.DesiredAccess,
-		ServiceType:      o.ServiceType,
-		StartType:        o.StartType,
-		ErrorControl:     o.ErrorControl,
-		BinaryPathName:   o.BinaryPathName,
-		LoadOrderGroup:   o.LoadOrderGroup,
-		TagID:            o.TagID,
-		Dependencies:     o.Dependencies,
-		DependSize:       o.DependSize,
-		ServiceStartName: o.ServiceStartName,
-		Password:         o.Password,
-		PasswordSize:     o.PasswordSize,
-		ServiceWOWType:   o.ServiceWOWType,
-	}
+	o.ServiceManager = op.ServiceManager
+	o.ServiceName = op.ServiceName
+	o.DisplayName = op.DisplayName
+	o.DesiredAccess = op.DesiredAccess
+	o.ServiceType = op.ServiceType
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.BinaryPathName = op.BinaryPathName
+	o.LoadOrderGroup = op.LoadOrderGroup
+	o.TagID = op.TagID
+	o.Dependencies = op.Dependencies
+	o.DependSize = op.DependSize
+	o.ServiceStartName = op.ServiceStartName
+	o.Password = op.Password
+	o.PasswordSize = op.PasswordSize
+	o.ServiceWOWType = op.ServiceWOWType
+	return op
 }
 
 func (o *CreateWOWServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateWOWServiceOperation) {
@@ -25698,7 +25892,7 @@ func (o *CreateWOWServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.ServiceWOWType = op.ServiceWOWType
 }
 func (o *CreateWOWServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateWOWServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateWOWServiceOperation{}
@@ -25721,15 +25915,17 @@ type CreateWOWServiceResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateWOWServiceResponse) xxx_ToOp(ctx context.Context) *xxx_CreateWOWServiceOperation {
+func (o *CreateWOWServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateWOWServiceOperation) *xxx_CreateWOWServiceOperation {
+	if op == nil {
+		op = &xxx_CreateWOWServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateWOWServiceOperation{}
+		return op
 	}
-	return &xxx_CreateWOWServiceOperation{
-		TagID:   o.TagID,
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.TagID = op.TagID
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateWOWServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateWOWServiceOperation) {
@@ -25741,7 +25937,7 @@ func (o *CreateWOWServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.Return = op.Return
 }
 func (o *CreateWOWServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateWOWServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateWOWServiceOperation{}
@@ -25895,14 +26091,16 @@ type OpenSCM2Request struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenSCM2Request) xxx_ToOp(ctx context.Context) *xxx_OpenSCM2Operation {
+func (o *OpenSCM2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenSCM2Operation) *xxx_OpenSCM2Operation {
+	if op == nil {
+		op = &xxx_OpenSCM2Operation{}
+	}
 	if o == nil {
-		return &xxx_OpenSCM2Operation{}
+		return op
 	}
-	return &xxx_OpenSCM2Operation{
-		DatabaseName:  o.DatabaseName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.DatabaseName = op.DatabaseName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenSCM2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenSCM2Operation) {
@@ -25913,7 +26111,7 @@ func (o *OpenSCM2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenSCM2Operat
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenSCM2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenSCM2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSCM2Operation{}
@@ -25931,14 +26129,16 @@ type OpenSCM2Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenSCM2Response) xxx_ToOp(ctx context.Context) *xxx_OpenSCM2Operation {
+func (o *OpenSCM2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenSCM2Operation) *xxx_OpenSCM2Operation {
+	if op == nil {
+		op = &xxx_OpenSCM2Operation{}
+	}
 	if o == nil {
-		return &xxx_OpenSCM2Operation{}
+		return op
 	}
-	return &xxx_OpenSCM2Operation{
-		SCM:    o.SCM,
-		Return: o.Return,
-	}
+	o.SCM = op.SCM
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenSCM2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenSCM2Operation) {
@@ -25949,7 +26149,7 @@ func (o *OpenSCM2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenSCM2Opera
 	o.Return = op.Return
 }
 func (o *OpenSCM2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenSCM2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSCM2Operation{}

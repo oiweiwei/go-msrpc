@@ -666,7 +666,7 @@ type xxx_DefaultIrpcAsyncNotifyClient struct {
 }
 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) RegisterClient(ctx context.Context, in *RegisterClientRequest, opts ...dcerpc.CallOption) (*RegisterClientResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -679,7 +679,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) RegisterClient(ctx context.Context, i
 }
 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) UnregisterClient(ctx context.Context, in *UnregisterClientRequest, opts ...dcerpc.CallOption) (*UnregisterClientResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -692,7 +692,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) UnregisterClient(ctx context.Context,
 }
 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNewChannel(ctx context.Context, in *GetNewChannelRequest, opts ...dcerpc.CallOption) (*GetNewChannelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -705,7 +705,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNewChannel(ctx context.Context, in
 }
 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNotificationSendResponse(ctx context.Context, in *GetNotificationSendResponseRequest, opts ...dcerpc.CallOption) (*GetNotificationSendResponseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -718,7 +718,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNotificationSendResponse(ctx conte
 }
 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNotification(ctx context.Context, in *GetNotificationRequest, opts ...dcerpc.CallOption) (*GetNotificationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -731,7 +731,7 @@ func (o *xxx_DefaultIrpcAsyncNotifyClient) GetNotification(ctx context.Context, 
 }
 
 func (o *xxx_DefaultIrpcAsyncNotifyClient) CloseChannel(ctx context.Context, in *CloseChannelRequest, opts ...dcerpc.CallOption) (*CloseChannelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1006,17 +1006,19 @@ type RegisterClientRequest struct {
 	ConversationStyle ConversationStyle `idl:"name:conversationStyle" json:"conversation_style"`
 }
 
-func (o *RegisterClientRequest) xxx_ToOp(ctx context.Context) *xxx_RegisterClientOperation {
+func (o *RegisterClientRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterClientOperation) *xxx_RegisterClientOperation {
+	if op == nil {
+		op = &xxx_RegisterClientOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterClientOperation{}
+		return op
 	}
-	return &xxx_RegisterClientOperation{
-		RegistrationObject: o.RegistrationObject,
-		Name:               o.Name,
-		InNotificationType: o.InNotificationType,
-		NotifyFilter:       o.NotifyFilter,
-		ConversationStyle:  o.ConversationStyle,
-	}
+	o.RegistrationObject = op.RegistrationObject
+	o.Name = op.Name
+	o.InNotificationType = op.InNotificationType
+	o.NotifyFilter = op.NotifyFilter
+	o.ConversationStyle = op.ConversationStyle
+	return op
 }
 
 func (o *RegisterClientRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterClientOperation) {
@@ -1030,7 +1032,7 @@ func (o *RegisterClientRequest) xxx_FromOp(ctx context.Context, op *xxx_Register
 	o.ConversationStyle = op.ConversationStyle
 }
 func (o *RegisterClientRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterClientRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterClientOperation{}
@@ -1050,14 +1052,16 @@ type RegisterClientResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterClientResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterClientOperation {
+func (o *RegisterClientResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterClientOperation) *xxx_RegisterClientOperation {
+	if op == nil {
+		op = &xxx_RegisterClientOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterClientOperation{}
+		return op
 	}
-	return &xxx_RegisterClientOperation{
-		RemoteServerReferral: o.RemoteServerReferral,
-		Return:               o.Return,
-	}
+	o.RemoteServerReferral = op.RemoteServerReferral
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterClientResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterClientOperation) {
@@ -1068,7 +1072,7 @@ func (o *RegisterClientResponse) xxx_FromOp(ctx context.Context, op *xxx_Registe
 	o.Return = op.Return
 }
 func (o *RegisterClientResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterClientResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterClientOperation{}
@@ -1172,13 +1176,15 @@ type UnregisterClientRequest struct {
 	RegistrationObject *irpcremoteobject.RemoteObject `idl:"name:pRegistrationObj" json:"registration_object"`
 }
 
-func (o *UnregisterClientRequest) xxx_ToOp(ctx context.Context) *xxx_UnregisterClientOperation {
+func (o *UnregisterClientRequest) xxx_ToOp(ctx context.Context, op *xxx_UnregisterClientOperation) *xxx_UnregisterClientOperation {
+	if op == nil {
+		op = &xxx_UnregisterClientOperation{}
+	}
 	if o == nil {
-		return &xxx_UnregisterClientOperation{}
+		return op
 	}
-	return &xxx_UnregisterClientOperation{
-		RegistrationObject: o.RegistrationObject,
-	}
+	o.RegistrationObject = op.RegistrationObject
+	return op
 }
 
 func (o *UnregisterClientRequest) xxx_FromOp(ctx context.Context, op *xxx_UnregisterClientOperation) {
@@ -1188,7 +1194,7 @@ func (o *UnregisterClientRequest) xxx_FromOp(ctx context.Context, op *xxx_Unregi
 	o.RegistrationObject = op.RegistrationObject
 }
 func (o *UnregisterClientRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UnregisterClientRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnregisterClientOperation{}
@@ -1205,13 +1211,15 @@ type UnregisterClientResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UnregisterClientResponse) xxx_ToOp(ctx context.Context) *xxx_UnregisterClientOperation {
+func (o *UnregisterClientResponse) xxx_ToOp(ctx context.Context, op *xxx_UnregisterClientOperation) *xxx_UnregisterClientOperation {
+	if op == nil {
+		op = &xxx_UnregisterClientOperation{}
+	}
 	if o == nil {
-		return &xxx_UnregisterClientOperation{}
+		return op
 	}
-	return &xxx_UnregisterClientOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *UnregisterClientResponse) xxx_FromOp(ctx context.Context, op *xxx_UnregisterClientOperation) {
@@ -1221,7 +1229,7 @@ func (o *UnregisterClientResponse) xxx_FromOp(ctx context.Context, op *xxx_Unreg
 	o.Return = op.Return
 }
 func (o *UnregisterClientResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UnregisterClientResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnregisterClientOperation{}
@@ -1422,13 +1430,15 @@ type GetNewChannelRequest struct {
 	RemoteObject *irpcremoteobject.RemoteObject `idl:"name:pRemoteObj" json:"remote_object"`
 }
 
-func (o *GetNewChannelRequest) xxx_ToOp(ctx context.Context) *xxx_GetNewChannelOperation {
+func (o *GetNewChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNewChannelOperation) *xxx_GetNewChannelOperation {
+	if op == nil {
+		op = &xxx_GetNewChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNewChannelOperation{}
+		return op
 	}
-	return &xxx_GetNewChannelOperation{
-		RemoteObject: o.RemoteObject,
-	}
+	o.RemoteObject = op.RemoteObject
+	return op
 }
 
 func (o *GetNewChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNewChannelOperation) {
@@ -1438,7 +1448,7 @@ func (o *GetNewChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNewCha
 	o.RemoteObject = op.RemoteObject
 }
 func (o *GetNewChannelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNewChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNewChannelOperation{}
@@ -1462,15 +1472,17 @@ type GetNewChannelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNewChannelResponse) xxx_ToOp(ctx context.Context) *xxx_GetNewChannelOperation {
+func (o *GetNewChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNewChannelOperation) *xxx_GetNewChannelOperation {
+	if op == nil {
+		op = &xxx_GetNewChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNewChannelOperation{}
+		return op
 	}
-	return &xxx_GetNewChannelOperation{
-		NumberOfChannels: o.NumberOfChannels,
-		ChannelContext:   o.ChannelContext,
-		Return:           o.Return,
-	}
+	o.NumberOfChannels = op.NumberOfChannels
+	o.ChannelContext = op.ChannelContext
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNewChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNewChannelOperation) {
@@ -1482,7 +1494,7 @@ func (o *GetNewChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNewCh
 	o.Return = op.Return
 }
 func (o *GetNewChannelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNewChannelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNewChannelOperation{}
@@ -1895,16 +1907,18 @@ type GetNotificationSendResponseRequest struct {
 	InNotificationData []byte `idl:"name:pInNotificationData;size_is:(InSize);pointer:unique" json:"in_notification_data"`
 }
 
-func (o *GetNotificationSendResponseRequest) xxx_ToOp(ctx context.Context) *xxx_GetNotificationSendResponseOperation {
+func (o *GetNotificationSendResponseRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNotificationSendResponseOperation) *xxx_GetNotificationSendResponseOperation {
+	if op == nil {
+		op = &xxx_GetNotificationSendResponseOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNotificationSendResponseOperation{}
+		return op
 	}
-	return &xxx_GetNotificationSendResponseOperation{
-		Channel:            o.Channel,
-		InNotificationType: o.InNotificationType,
-		InSize:             o.InSize,
-		InNotificationData: o.InNotificationData,
-	}
+	o.Channel = op.Channel
+	o.InNotificationType = op.InNotificationType
+	o.InSize = op.InSize
+	o.InNotificationData = op.InNotificationData
+	return op
 }
 
 func (o *GetNotificationSendResponseRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNotificationSendResponseOperation) {
@@ -1917,7 +1931,7 @@ func (o *GetNotificationSendResponseRequest) xxx_FromOp(ctx context.Context, op 
 	o.InNotificationData = op.InNotificationData
 }
 func (o *GetNotificationSendResponseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNotificationSendResponseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNotificationSendResponseOperation{}
@@ -1962,17 +1976,19 @@ type GetNotificationSendResponseResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNotificationSendResponseResponse) xxx_ToOp(ctx context.Context) *xxx_GetNotificationSendResponseOperation {
+func (o *GetNotificationSendResponseResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNotificationSendResponseOperation) *xxx_GetNotificationSendResponseOperation {
+	if op == nil {
+		op = &xxx_GetNotificationSendResponseOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNotificationSendResponseOperation{}
+		return op
 	}
-	return &xxx_GetNotificationSendResponseOperation{
-		Channel:             o.Channel,
-		OutNotificationType: o.OutNotificationType,
-		OutSize:             o.OutSize,
-		OutNotificationData: o.OutNotificationData,
-		Return:              o.Return,
-	}
+	o.Channel = op.Channel
+	o.OutNotificationType = op.OutNotificationType
+	o.OutSize = op.OutSize
+	o.OutNotificationData = op.OutNotificationData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNotificationSendResponseResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNotificationSendResponseOperation) {
@@ -1986,7 +2002,7 @@ func (o *GetNotificationSendResponseResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *GetNotificationSendResponseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNotificationSendResponseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNotificationSendResponseOperation{}
@@ -2224,13 +2240,15 @@ type GetNotificationRequest struct {
 	RemoteObject *irpcremoteobject.RemoteObject `idl:"name:pRemoteObj" json:"remote_object"`
 }
 
-func (o *GetNotificationRequest) xxx_ToOp(ctx context.Context) *xxx_GetNotificationOperation {
+func (o *GetNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNotificationOperation) *xxx_GetNotificationOperation {
+	if op == nil {
+		op = &xxx_GetNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNotificationOperation{}
+		return op
 	}
-	return &xxx_GetNotificationOperation{
-		RemoteObject: o.RemoteObject,
-	}
+	o.RemoteObject = op.RemoteObject
+	return op
 }
 
 func (o *GetNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNotificationOperation) {
@@ -2240,7 +2258,7 @@ func (o *GetNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNoti
 	o.RemoteObject = op.RemoteObject
 }
 func (o *GetNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNotificationOperation{}
@@ -2270,16 +2288,18 @@ type GetNotificationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNotificationResponse) xxx_ToOp(ctx context.Context) *xxx_GetNotificationOperation {
+func (o *GetNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNotificationOperation) *xxx_GetNotificationOperation {
+	if op == nil {
+		op = &xxx_GetNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNotificationOperation{}
+		return op
 	}
-	return &xxx_GetNotificationOperation{
-		OutNotificationType: o.OutNotificationType,
-		OutSize:             o.OutSize,
-		OutNotificationData: o.OutNotificationData,
-		Return:              o.Return,
-	}
+	o.OutNotificationType = op.OutNotificationType
+	o.OutSize = op.OutSize
+	o.OutNotificationData = op.OutNotificationData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNotificationOperation) {
@@ -2292,7 +2312,7 @@ func (o *GetNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNot
 	o.Return = op.Return
 }
 func (o *GetNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNotificationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNotificationOperation{}
@@ -2550,16 +2570,18 @@ type CloseChannelRequest struct {
 	Reason []byte `idl:"name:pReason;size_is:(InSize);pointer:unique" json:"reason"`
 }
 
-func (o *CloseChannelRequest) xxx_ToOp(ctx context.Context) *xxx_CloseChannelOperation {
+func (o *CloseChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseChannelOperation) *xxx_CloseChannelOperation {
+	if op == nil {
+		op = &xxx_CloseChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseChannelOperation{}
+		return op
 	}
-	return &xxx_CloseChannelOperation{
-		Channel:            o.Channel,
-		InNotificationType: o.InNotificationType,
-		InSize:             o.InSize,
-		Reason:             o.Reason,
-	}
+	o.Channel = op.Channel
+	o.InNotificationType = op.InNotificationType
+	o.InSize = op.InSize
+	o.Reason = op.Reason
+	return op
 }
 
 func (o *CloseChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseChannelOperation) {
@@ -2572,7 +2594,7 @@ func (o *CloseChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseChann
 	o.Reason = op.Reason
 }
 func (o *CloseChannelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseChannelOperation{}
@@ -2594,14 +2616,16 @@ type CloseChannelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseChannelResponse) xxx_ToOp(ctx context.Context) *xxx_CloseChannelOperation {
+func (o *CloseChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseChannelOperation) *xxx_CloseChannelOperation {
+	if op == nil {
+		op = &xxx_CloseChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseChannelOperation{}
+		return op
 	}
-	return &xxx_CloseChannelOperation{
-		Channel: o.Channel,
-		Return:  o.Return,
-	}
+	o.Channel = op.Channel
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseChannelOperation) {
@@ -2612,7 +2636,7 @@ func (o *CloseChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseChan
 	o.Return = op.Return
 }
 func (o *CloseChannelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseChannelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseChannelOperation{}

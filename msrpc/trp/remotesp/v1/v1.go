@@ -151,7 +151,7 @@ type xxx_DefaultRemotespClient struct {
 }
 
 func (o *xxx_DefaultRemotespClient) Attach(ctx context.Context, in *AttachRequest, opts ...dcerpc.CallOption) (*AttachResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -164,7 +164,7 @@ func (o *xxx_DefaultRemotespClient) Attach(ctx context.Context, in *AttachReques
 }
 
 func (o *xxx_DefaultRemotespClient) EventProc(ctx context.Context, in *EventProcRequest, opts ...dcerpc.CallOption) (*EventProcResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -174,7 +174,7 @@ func (o *xxx_DefaultRemotespClient) EventProc(ctx context.Context, in *EventProc
 }
 
 func (o *xxx_DefaultRemotespClient) Detach(ctx context.Context, in *DetachRequest, opts ...dcerpc.CallOption) (*DetachResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -286,11 +286,14 @@ func (o *xxx_AttachOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 type AttachRequest struct {
 }
 
-func (o *AttachRequest) xxx_ToOp(ctx context.Context) *xxx_AttachOperation {
-	if o == nil {
-		return &xxx_AttachOperation{}
+func (o *AttachRequest) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) *xxx_AttachOperation {
+	if op == nil {
+		op = &xxx_AttachOperation{}
 	}
-	return &xxx_AttachOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *AttachRequest) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation) {
@@ -299,7 +302,7 @@ func (o *AttachRequest) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation)
 	}
 }
 func (o *AttachRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AttachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AttachOperation{}
@@ -318,14 +321,16 @@ type AttachResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AttachResponse) xxx_ToOp(ctx context.Context) *xxx_AttachOperation {
+func (o *AttachResponse) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) *xxx_AttachOperation {
+	if op == nil {
+		op = &xxx_AttachOperation{}
+	}
 	if o == nil {
-		return &xxx_AttachOperation{}
+		return op
 	}
-	return &xxx_AttachOperation{
-		Context: o.Context,
-		Return:  o.Return,
-	}
+	o.Context = op.Context
+	o.Return = op.Return
+	return op
 }
 
 func (o *AttachResponse) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation) {
@@ -336,7 +341,7 @@ func (o *AttachResponse) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation
 	o.Return = op.Return
 }
 func (o *AttachResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AttachResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AttachOperation{}
@@ -513,15 +518,17 @@ type EventProcRequest struct {
 	Size int32 `idl:"name:lSize" json:"size"`
 }
 
-func (o *EventProcRequest) xxx_ToOp(ctx context.Context) *xxx_EventProcOperation {
+func (o *EventProcRequest) xxx_ToOp(ctx context.Context, op *xxx_EventProcOperation) *xxx_EventProcOperation {
+	if op == nil {
+		op = &xxx_EventProcOperation{}
+	}
 	if o == nil {
-		return &xxx_EventProcOperation{}
+		return op
 	}
-	return &xxx_EventProcOperation{
-		Context: o.Context,
-		Buffer:  o.Buffer,
-		Size:    o.Size,
-	}
+	o.Context = op.Context
+	o.Buffer = op.Buffer
+	o.Size = op.Size
+	return op
 }
 
 func (o *EventProcRequest) xxx_FromOp(ctx context.Context, op *xxx_EventProcOperation) {
@@ -533,7 +540,7 @@ func (o *EventProcRequest) xxx_FromOp(ctx context.Context, op *xxx_EventProcOper
 	o.Size = op.Size
 }
 func (o *EventProcRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EventProcRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EventProcOperation{}
@@ -548,11 +555,14 @@ func (o *EventProcRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 type EventProcResponse struct {
 }
 
-func (o *EventProcResponse) xxx_ToOp(ctx context.Context) *xxx_EventProcOperation {
-	if o == nil {
-		return &xxx_EventProcOperation{}
+func (o *EventProcResponse) xxx_ToOp(ctx context.Context, op *xxx_EventProcOperation) *xxx_EventProcOperation {
+	if op == nil {
+		op = &xxx_EventProcOperation{}
 	}
-	return &xxx_EventProcOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *EventProcResponse) xxx_FromOp(ctx context.Context, op *xxx_EventProcOperation) {
@@ -561,7 +571,7 @@ func (o *EventProcResponse) xxx_FromOp(ctx context.Context, op *xxx_EventProcOpe
 	}
 }
 func (o *EventProcResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EventProcResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EventProcOperation{}
@@ -674,13 +684,15 @@ type DetachRequest struct {
 	Context *Type2 `idl:"name:pphContext" json:"context"`
 }
 
-func (o *DetachRequest) xxx_ToOp(ctx context.Context) *xxx_DetachOperation {
+func (o *DetachRequest) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) *xxx_DetachOperation {
+	if op == nil {
+		op = &xxx_DetachOperation{}
+	}
 	if o == nil {
-		return &xxx_DetachOperation{}
+		return op
 	}
-	return &xxx_DetachOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *DetachRequest) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation) {
@@ -690,7 +702,7 @@ func (o *DetachRequest) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation)
 	o.Context = op.Context
 }
 func (o *DetachRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DetachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DetachOperation{}
@@ -712,13 +724,15 @@ type DetachResponse struct {
 	Context *Type2 `idl:"name:pphContext" json:"context"`
 }
 
-func (o *DetachResponse) xxx_ToOp(ctx context.Context) *xxx_DetachOperation {
+func (o *DetachResponse) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) *xxx_DetachOperation {
+	if op == nil {
+		op = &xxx_DetachOperation{}
+	}
 	if o == nil {
-		return &xxx_DetachOperation{}
+		return op
 	}
-	return &xxx_DetachOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *DetachResponse) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation) {
@@ -728,7 +742,7 @@ func (o *DetachResponse) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation
 	o.Context = op.Context
 }
 func (o *DetachResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DetachResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DetachOperation{}

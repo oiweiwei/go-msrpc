@@ -76,68 +76,121 @@ func AppHostSectionDefinitionServerHandle(ctx context.Context, o AppHostSectionD
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Type
-		in := &GetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Type
-		in := &SetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // OverrideModeDefault
-		in := &GetOverrideModeDefaultRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOverrideModeDefaultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOverrideModeDefault(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOverrideModeDefaultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOverrideModeDefault(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // OverrideModeDefault
-		in := &SetOverrideModeDefaultRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOverrideModeDefaultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOverrideModeDefault(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOverrideModeDefaultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOverrideModeDefault(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // AllowDefinition
-		in := &GetAllowDefinitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllowDefinitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllowDefinition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllowDefinitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllowDefinition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // AllowDefinition
-		in := &SetAllowDefinitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAllowDefinitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAllowDefinition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAllowDefinitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAllowDefinition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // AllowLocation
-		in := &GetAllowLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllowLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllowLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllowLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllowLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // AllowLocation
-		in := &SetAllowLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAllowLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAllowLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAllowLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAllowLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostSectionDefinition
+type UnimplementedAppHostSectionDefinitionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostSectionDefinitionServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) SetType(context.Context, *SetTypeRequest) (*SetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) GetOverrideModeDefault(context.Context, *GetOverrideModeDefaultRequest) (*GetOverrideModeDefaultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) SetOverrideModeDefault(context.Context, *SetOverrideModeDefaultRequest) (*SetOverrideModeDefaultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) GetAllowDefinition(context.Context, *GetAllowDefinitionRequest) (*GetAllowDefinitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) SetAllowDefinition(context.Context, *SetAllowDefinitionRequest) (*SetAllowDefinitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) GetAllowLocation(context.Context, *GetAllowLocationRequest) (*GetAllowLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionServer) SetAllowLocation(context.Context, *SetAllowLocationRequest) (*SetAllowLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostSectionDefinitionServer = (*UnimplementedAppHostSectionDefinitionServer)(nil)

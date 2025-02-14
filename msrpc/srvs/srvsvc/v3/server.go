@@ -1058,343 +1058,585 @@ func SrvsvcServerHandle(ctx context.Context, o SrvsvcServer, opNum int, r ndr.Re
 		// Opnum7NotUsedOnWire
 		return nil, nil
 	case 8: // NetrConnectionEnum
-		in := &ConnectionEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConnectionEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConnectionEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConnectionEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConnectionEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // NetrFileEnum
-		in := &FileEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FileEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FileEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FileEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FileEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // NetrFileGetInfo
-		in := &FileGetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FileGetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FileGetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FileGetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FileGetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // NetrFileClose
-		in := &FileCloseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FileCloseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FileClose(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FileCloseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FileClose(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // NetrSessionEnum
-		in := &SessionEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SessionEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SessionEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SessionEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SessionEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // NetrSessionDel
-		in := &SessionDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SessionDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SessionDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SessionDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SessionDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // NetrShareAdd
-		in := &ShareAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // NetrShareEnum
-		in := &ShareEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // NetrShareGetInfo
-		in := &ShareGetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareGetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareGetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareGetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareGetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // NetrShareSetInfo
-		in := &ShareSetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareSetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareSetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareSetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareSetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // NetrShareDel
-		in := &ShareDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // NetrShareDelSticky
-		in := &ShareDeleteStickyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareDeleteStickyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareDeleteSticky(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareDeleteStickyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareDeleteSticky(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // NetrShareCheck
-		in := &ShareCheckRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareCheckOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareCheck(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareCheckRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareCheck(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // NetrServerGetInfo
-		in := &GetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // NetrServerSetInfo
-		in := &SetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // NetrServerDiskEnum
-		in := &DiskEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DiskEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DiskEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DiskEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DiskEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // NetrServerStatisticsGet
-		in := &StatisticsGetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StatisticsGetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StatisticsGet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StatisticsGetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StatisticsGet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // NetrServerTransportAdd
-		in := &TransportAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // NetrServerTransportEnum
-		in := &TransportEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // NetrServerTransportDel
-		in := &TransportDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // NetrRemoteTOD
-		in := &RemoteToDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteToDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteToD(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteToDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteToD(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Opnum29NotUsedOnWire
 		// Opnum29NotUsedOnWire
 		return nil, nil
 	case 30: // NetprPathType
-		in := &PathTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PathTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PathType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PathTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PathType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // NetprPathCanonicalize
-		in := &PathCanonicalizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PathCanonicalizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PathCanonicalize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PathCanonicalizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PathCanonicalize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // NetprPathCompare
-		in := &PathCompareRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PathCompareOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PathCompare(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PathCompareRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PathCompare(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // NetprNameValidate
-		in := &NameValidateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NameValidateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NameValidate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NameValidateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NameValidate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // NetprNameCanonicalize
-		in := &NameCanonicalizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NameCanonicalizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NameCanonicalize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NameCanonicalizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NameCanonicalize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // NetprNameCompare
-		in := &NameCompareRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NameCompareOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NameCompare(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NameCompareRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NameCompare(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // NetrShareEnumSticky
-		in := &ShareEnumStickyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareEnumStickyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareEnumSticky(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareEnumStickyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareEnumSticky(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // NetrShareDelStart
-		in := &ShareDeleteStartRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareDeleteStartOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareDeleteStart(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareDeleteStartRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareDeleteStart(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // NetrShareDelCommit
-		in := &ShareDeleteCommitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareDeleteCommitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareDeleteCommit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareDeleteCommitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareDeleteCommit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // NetrpGetFileSecurity
-		in := &GetFileSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // NetrpSetFileSecurity
-		in := &SetFileSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // NetrServerTransportAddEx
-		in := &TransportAddExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportAddExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportAddEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportAddExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportAddEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // Opnum42NotUsedOnWire
 		// Opnum42NotUsedOnWire
 		return nil, nil
 	case 43: // NetrDfsGetVersion
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // NetrDfsCreateLocalPartition
-		in := &CreateLocalPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateLocalPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateLocalPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateLocalPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateLocalPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // NetrDfsDeleteLocalPartition
-		in := &DeleteLocalPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteLocalPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteLocalPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteLocalPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteLocalPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // NetrDfsSetLocalVolumeState
-		in := &SetLocalVolumeStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLocalVolumeStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLocalVolumeState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLocalVolumeStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLocalVolumeState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // Opnum47NotUsedOnWire
 		// Opnum47NotUsedOnWire
 		return nil, nil
 	case 48: // NetrDfsCreateExitPoint
-		in := &CreateExitPointRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateExitPointOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateExitPoint(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateExitPointRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateExitPoint(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // NetrDfsDeleteExitPoint
-		in := &DeleteExitPointRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteExitPointOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteExitPoint(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteExitPointRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteExitPoint(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // NetrDfsModifyPrefix
-		in := &ModifyPrefixRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyPrefixOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyPrefix(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyPrefixRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyPrefix(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // NetrDfsFixLocalVolume
-		in := &FixLocalVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FixLocalVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FixLocalVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FixLocalVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FixLocalVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // NetrDfsManagerReportSiteInfo
-		in := &ManagerReportSiteInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ManagerReportSiteInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ManagerReportSiteInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ManagerReportSiteInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ManagerReportSiteInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // NetrServerTransportDelEx
-		in := &TransportDeleteExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportDeleteExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportDeleteEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportDeleteExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportDeleteEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // NetrServerAliasAdd
-		in := &AliasAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AliasAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AliasAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AliasAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AliasAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // NetrServerAliasEnum
-		in := &AliasEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AliasEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AliasEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AliasEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AliasEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // NetrServerAliasDel
-		in := &AliasDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AliasDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AliasDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AliasDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AliasDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // NetrShareDelEx
-		in := &ShareDeleteExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShareDeleteExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShareDeleteEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShareDeleteExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShareDeleteEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented srvsvc
+type UnimplementedSrvsvcServer struct {
+}
+
+func (UnimplementedSrvsvcServer) ConnectionEnum(context.Context, *ConnectionEnumRequest) (*ConnectionEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) FileEnum(context.Context, *FileEnumRequest) (*FileEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) FileGetInfo(context.Context, *FileGetInfoRequest) (*FileGetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) FileClose(context.Context, *FileCloseRequest) (*FileCloseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) SessionEnum(context.Context, *SessionEnumRequest) (*SessionEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) SessionDelete(context.Context, *SessionDeleteRequest) (*SessionDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareAdd(context.Context, *ShareAddRequest) (*ShareAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareEnum(context.Context, *ShareEnumRequest) (*ShareEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareGetInfo(context.Context, *ShareGetInfoRequest) (*ShareGetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareSetInfo(context.Context, *ShareSetInfoRequest) (*ShareSetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareDelete(context.Context, *ShareDeleteRequest) (*ShareDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareDeleteSticky(context.Context, *ShareDeleteStickyRequest) (*ShareDeleteStickyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareCheck(context.Context, *ShareCheckRequest) (*ShareCheckResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) GetInfo(context.Context, *GetInfoRequest) (*GetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) SetInfo(context.Context, *SetInfoRequest) (*SetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) DiskEnum(context.Context, *DiskEnumRequest) (*DiskEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) StatisticsGet(context.Context, *StatisticsGetRequest) (*StatisticsGetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) TransportAdd(context.Context, *TransportAddRequest) (*TransportAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) TransportEnum(context.Context, *TransportEnumRequest) (*TransportEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) TransportDelete(context.Context, *TransportDeleteRequest) (*TransportDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) RemoteToD(context.Context, *RemoteToDRequest) (*RemoteToDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) PathType(context.Context, *PathTypeRequest) (*PathTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) PathCanonicalize(context.Context, *PathCanonicalizeRequest) (*PathCanonicalizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) PathCompare(context.Context, *PathCompareRequest) (*PathCompareResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) NameValidate(context.Context, *NameValidateRequest) (*NameValidateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) NameCanonicalize(context.Context, *NameCanonicalizeRequest) (*NameCanonicalizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) NameCompare(context.Context, *NameCompareRequest) (*NameCompareResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareEnumSticky(context.Context, *ShareEnumStickyRequest) (*ShareEnumStickyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareDeleteStart(context.Context, *ShareDeleteStartRequest) (*ShareDeleteStartResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareDeleteCommit(context.Context, *ShareDeleteCommitRequest) (*ShareDeleteCommitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) GetFileSecurity(context.Context, *GetFileSecurityRequest) (*GetFileSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) SetFileSecurity(context.Context, *SetFileSecurityRequest) (*SetFileSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) TransportAddEx(context.Context, *TransportAddExRequest) (*TransportAddExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) CreateLocalPartition(context.Context, *CreateLocalPartitionRequest) (*CreateLocalPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) DeleteLocalPartition(context.Context, *DeleteLocalPartitionRequest) (*DeleteLocalPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) SetLocalVolumeState(context.Context, *SetLocalVolumeStateRequest) (*SetLocalVolumeStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) CreateExitPoint(context.Context, *CreateExitPointRequest) (*CreateExitPointResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) DeleteExitPoint(context.Context, *DeleteExitPointRequest) (*DeleteExitPointResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ModifyPrefix(context.Context, *ModifyPrefixRequest) (*ModifyPrefixResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) FixLocalVolume(context.Context, *FixLocalVolumeRequest) (*FixLocalVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ManagerReportSiteInfo(context.Context, *ManagerReportSiteInfoRequest) (*ManagerReportSiteInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) TransportDeleteEx(context.Context, *TransportDeleteExRequest) (*TransportDeleteExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) AliasAdd(context.Context, *AliasAddRequest) (*AliasAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) AliasEnum(context.Context, *AliasEnumRequest) (*AliasEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) AliasDelete(context.Context, *AliasDeleteRequest) (*AliasDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSrvsvcServer) ShareDeleteEx(context.Context, *ShareDeleteExRequest) (*ShareDeleteExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SrvsvcServer = (*UnimplementedSrvsvcServer)(nil)

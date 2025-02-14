@@ -168,7 +168,7 @@ func (o *xxx_DefaultClusterLogClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterLogClient) GenerateClusterLog(ctx context.Context, in *GenerateClusterLogRequest, opts ...dcerpc.CallOption) (*GenerateClusterLogResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -188,7 +188,7 @@ func (o *xxx_DefaultClusterLogClient) GenerateClusterLog(ctx context.Context, in
 }
 
 func (o *xxx_DefaultClusterLogClient) GenerateTimeSpanLog(ctx context.Context, in *GenerateTimeSpanLogRequest, opts ...dcerpc.CallOption) (*GenerateTimeSpanLogResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -208,7 +208,7 @@ func (o *xxx_DefaultClusterLogClient) GenerateTimeSpanLog(ctx context.Context, i
 }
 
 func (o *xxx_DefaultClusterLogClient) GenerateClusterLogInLocalTime(ctx context.Context, in *GenerateClusterLogInLocalTimeRequest, opts ...dcerpc.CallOption) (*GenerateClusterLogInLocalTimeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -228,7 +228,7 @@ func (o *xxx_DefaultClusterLogClient) GenerateClusterLogInLocalTime(ctx context.
 }
 
 func (o *xxx_DefaultClusterLogClient) GenerateTimeSpanLogInLocalTime(ctx context.Context, in *GenerateTimeSpanLogInLocalTimeRequest, opts ...dcerpc.CallOption) (*GenerateTimeSpanLogInLocalTimeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -461,13 +461,15 @@ type GenerateClusterLogRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GenerateClusterLogRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterLogOperation {
+func (o *GenerateClusterLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) *xxx_GenerateClusterLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterLogOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterLogOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GenerateClusterLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) {
@@ -477,7 +479,7 @@ func (o *GenerateClusterLogRequest) xxx_FromOp(ctx context.Context, op *xxx_Gene
 	o.This = op.This
 }
 func (o *GenerateClusterLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateClusterLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterLogOperation{}
@@ -504,15 +506,17 @@ type GenerateClusterLogResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateClusterLogResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterLogOperation {
+func (o *GenerateClusterLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) *xxx_GenerateClusterLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterLogOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterLogOperation{
-		That:        o.That,
-		LogFilePath: o.LogFilePath,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateClusterLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) {
@@ -524,7 +528,7 @@ func (o *GenerateClusterLogResponse) xxx_FromOp(ctx context.Context, op *xxx_Gen
 	o.Return = op.Return
 }
 func (o *GenerateClusterLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateClusterLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterLogOperation{}
@@ -724,14 +728,16 @@ type GenerateTimeSpanLogRequest struct {
 	SpanMinutes uint32 `idl:"name:SpanMinutes" json:"span_minutes"`
 }
 
-func (o *GenerateTimeSpanLogRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateTimeSpanLogOperation {
+func (o *GenerateTimeSpanLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateTimeSpanLogOperation) *xxx_GenerateTimeSpanLogOperation {
+	if op == nil {
+		op = &xxx_GenerateTimeSpanLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateTimeSpanLogOperation{}
+		return op
 	}
-	return &xxx_GenerateTimeSpanLogOperation{
-		This:        o.This,
-		SpanMinutes: o.SpanMinutes,
-	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	return op
 }
 
 func (o *GenerateTimeSpanLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateTimeSpanLogOperation) {
@@ -742,7 +748,7 @@ func (o *GenerateTimeSpanLogRequest) xxx_FromOp(ctx context.Context, op *xxx_Gen
 	o.SpanMinutes = op.SpanMinutes
 }
 func (o *GenerateTimeSpanLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateTimeSpanLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateTimeSpanLogOperation{}
@@ -764,15 +770,17 @@ type GenerateTimeSpanLogResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateTimeSpanLogResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateTimeSpanLogOperation {
+func (o *GenerateTimeSpanLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateTimeSpanLogOperation) *xxx_GenerateTimeSpanLogOperation {
+	if op == nil {
+		op = &xxx_GenerateTimeSpanLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateTimeSpanLogOperation{}
+		return op
 	}
-	return &xxx_GenerateTimeSpanLogOperation{
-		That:        o.That,
-		LogFilePath: o.LogFilePath,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateTimeSpanLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateTimeSpanLogOperation) {
@@ -784,7 +792,7 @@ func (o *GenerateTimeSpanLogResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GenerateTimeSpanLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateTimeSpanLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateTimeSpanLogOperation{}
@@ -967,13 +975,15 @@ type GenerateClusterLogInLocalTimeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GenerateClusterLogInLocalTimeRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterLogInLocalTimeOperation {
+func (o *GenerateClusterLogInLocalTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterLogInLocalTimeOperation) *xxx_GenerateClusterLogInLocalTimeOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterLogInLocalTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterLogInLocalTimeOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterLogInLocalTimeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GenerateClusterLogInLocalTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterLogInLocalTimeOperation) {
@@ -983,7 +993,7 @@ func (o *GenerateClusterLogInLocalTimeRequest) xxx_FromOp(ctx context.Context, o
 	o.This = op.This
 }
 func (o *GenerateClusterLogInLocalTimeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateClusterLogInLocalTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterLogInLocalTimeOperation{}
@@ -1010,15 +1020,17 @@ type GenerateClusterLogInLocalTimeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateClusterLogInLocalTimeResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterLogInLocalTimeOperation {
+func (o *GenerateClusterLogInLocalTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterLogInLocalTimeOperation) *xxx_GenerateClusterLogInLocalTimeOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterLogInLocalTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterLogInLocalTimeOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterLogInLocalTimeOperation{
-		That:        o.That,
-		LogFilePath: o.LogFilePath,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateClusterLogInLocalTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterLogInLocalTimeOperation) {
@@ -1030,7 +1042,7 @@ func (o *GenerateClusterLogInLocalTimeResponse) xxx_FromOp(ctx context.Context, 
 	o.Return = op.Return
 }
 func (o *GenerateClusterLogInLocalTimeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateClusterLogInLocalTimeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterLogInLocalTimeOperation{}
@@ -1230,14 +1242,16 @@ type GenerateTimeSpanLogInLocalTimeRequest struct {
 	SpanMinutes uint32 `idl:"name:SpanMinutes" json:"span_minutes"`
 }
 
-func (o *GenerateTimeSpanLogInLocalTimeRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateTimeSpanLogInLocalTimeOperation {
+func (o *GenerateTimeSpanLogInLocalTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateTimeSpanLogInLocalTimeOperation) *xxx_GenerateTimeSpanLogInLocalTimeOperation {
+	if op == nil {
+		op = &xxx_GenerateTimeSpanLogInLocalTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateTimeSpanLogInLocalTimeOperation{}
+		return op
 	}
-	return &xxx_GenerateTimeSpanLogInLocalTimeOperation{
-		This:        o.This,
-		SpanMinutes: o.SpanMinutes,
-	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	return op
 }
 
 func (o *GenerateTimeSpanLogInLocalTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateTimeSpanLogInLocalTimeOperation) {
@@ -1248,7 +1262,7 @@ func (o *GenerateTimeSpanLogInLocalTimeRequest) xxx_FromOp(ctx context.Context, 
 	o.SpanMinutes = op.SpanMinutes
 }
 func (o *GenerateTimeSpanLogInLocalTimeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateTimeSpanLogInLocalTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateTimeSpanLogInLocalTimeOperation{}
@@ -1270,15 +1284,17 @@ type GenerateTimeSpanLogInLocalTimeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateTimeSpanLogInLocalTimeResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateTimeSpanLogInLocalTimeOperation {
+func (o *GenerateTimeSpanLogInLocalTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateTimeSpanLogInLocalTimeOperation) *xxx_GenerateTimeSpanLogInLocalTimeOperation {
+	if op == nil {
+		op = &xxx_GenerateTimeSpanLogInLocalTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateTimeSpanLogInLocalTimeOperation{}
+		return op
 	}
-	return &xxx_GenerateTimeSpanLogInLocalTimeOperation{
-		That:        o.That,
-		LogFilePath: o.LogFilePath,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateTimeSpanLogInLocalTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateTimeSpanLogInLocalTimeOperation) {
@@ -1290,7 +1306,7 @@ func (o *GenerateTimeSpanLogInLocalTimeResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *GenerateTimeSpanLogInLocalTimeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateTimeSpanLogInLocalTimeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateTimeSpanLogInLocalTimeOperation{}

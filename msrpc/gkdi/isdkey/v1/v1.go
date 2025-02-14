@@ -61,7 +61,7 @@ type xxx_DefaultISDKeyClient struct {
 }
 
 func (o *xxx_DefaultISDKeyClient) GetKey(ctx context.Context, in *GetKeyRequest, opts ...dcerpc.CallOption) (*GetKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -407,18 +407,20 @@ type GetKeyRequest struct {
 	L2KeyID int32 `idl:"name:L2KeyID" json:"l2_key_id"`
 }
 
-func (o *GetKeyRequest) xxx_ToOp(ctx context.Context) *xxx_GetKeyOperation {
+func (o *GetKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetKeyOperation) *xxx_GetKeyOperation {
+	if op == nil {
+		op = &xxx_GetKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetKeyOperation{}
+		return op
 	}
-	return &xxx_GetKeyOperation{
-		TargetSDLength: o.TargetSDLength,
-		TargetSD:       o.TargetSD,
-		RootKeyID:      o.RootKeyID,
-		L0KeyID:        o.L0KeyID,
-		L1KeyID:        o.L1KeyID,
-		L2KeyID:        o.L2KeyID,
-	}
+	o.TargetSDLength = op.TargetSDLength
+	o.TargetSD = op.TargetSD
+	o.RootKeyID = op.RootKeyID
+	o.L0KeyID = op.L0KeyID
+	o.L1KeyID = op.L1KeyID
+	o.L2KeyID = op.L2KeyID
+	return op
 }
 
 func (o *GetKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetKeyOperation) {
@@ -433,7 +435,7 @@ func (o *GetKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetKeyOperation)
 	o.L2KeyID = op.L2KeyID
 }
 func (o *GetKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetKeyOperation{}
@@ -457,15 +459,17 @@ type GetKeyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetKeyResponse) xxx_ToOp(ctx context.Context) *xxx_GetKeyOperation {
+func (o *GetKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetKeyOperation) *xxx_GetKeyOperation {
+	if op == nil {
+		op = &xxx_GetKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetKeyOperation{}
+		return op
 	}
-	return &xxx_GetKeyOperation{
-		OutLength: o.OutLength,
-		Out:       o.Out,
-		Return:    o.Return,
-	}
+	o.OutLength = op.OutLength
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetKeyOperation) {
@@ -477,7 +481,7 @@ func (o *GetKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetKeyOperation
 	o.Return = op.Return
 }
 func (o *GetKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetKeyOperation{}

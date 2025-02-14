@@ -84,7 +84,7 @@ func (o *xxx_DefaultCatalog64BitSupportClient) Unknown() iunknown.UnknownClient 
 }
 
 func (o *xxx_DefaultCatalog64BitSupportClient) SupportsMultipleBitness(ctx context.Context, in *SupportsMultipleBitnessRequest, opts ...dcerpc.CallOption) (*SupportsMultipleBitnessResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultCatalog64BitSupportClient) SupportsMultipleBitness(ctx conte
 }
 
 func (o *xxx_DefaultCatalog64BitSupportClient) Initialize64BitQueryCellSupport(ctx context.Context, in *Initialize64BitQueryCellSupportRequest, opts ...dcerpc.CallOption) (*Initialize64BitQueryCellSupportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -311,13 +311,15 @@ type SupportsMultipleBitnessRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *SupportsMultipleBitnessRequest) xxx_ToOp(ctx context.Context) *xxx_SupportsMultipleBitnessOperation {
+func (o *SupportsMultipleBitnessRequest) xxx_ToOp(ctx context.Context, op *xxx_SupportsMultipleBitnessOperation) *xxx_SupportsMultipleBitnessOperation {
+	if op == nil {
+		op = &xxx_SupportsMultipleBitnessOperation{}
+	}
 	if o == nil {
-		return &xxx_SupportsMultipleBitnessOperation{}
+		return op
 	}
-	return &xxx_SupportsMultipleBitnessOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *SupportsMultipleBitnessRequest) xxx_FromOp(ctx context.Context, op *xxx_SupportsMultipleBitnessOperation) {
@@ -327,7 +329,7 @@ func (o *SupportsMultipleBitnessRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.This = op.This
 }
 func (o *SupportsMultipleBitnessRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SupportsMultipleBitnessRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SupportsMultipleBitnessOperation{}
@@ -349,15 +351,17 @@ type SupportsMultipleBitnessResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SupportsMultipleBitnessResponse) xxx_ToOp(ctx context.Context) *xxx_SupportsMultipleBitnessOperation {
+func (o *SupportsMultipleBitnessResponse) xxx_ToOp(ctx context.Context, op *xxx_SupportsMultipleBitnessOperation) *xxx_SupportsMultipleBitnessOperation {
+	if op == nil {
+		op = &xxx_SupportsMultipleBitnessOperation{}
+	}
 	if o == nil {
-		return &xxx_SupportsMultipleBitnessOperation{}
+		return op
 	}
-	return &xxx_SupportsMultipleBitnessOperation{
-		That:                    o.That,
-		SupportsMultipleBitness: o.SupportsMultipleBitness,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.SupportsMultipleBitness = op.SupportsMultipleBitness
+	o.Return = op.Return
+	return op
 }
 
 func (o *SupportsMultipleBitnessResponse) xxx_FromOp(ctx context.Context, op *xxx_SupportsMultipleBitnessOperation) {
@@ -369,7 +373,7 @@ func (o *SupportsMultipleBitnessResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *SupportsMultipleBitnessResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SupportsMultipleBitnessResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SupportsMultipleBitnessOperation{}
@@ -550,14 +554,16 @@ type Initialize64BitQueryCellSupportRequest struct {
 	ClientSupports64BitQueryCells bool `idl:"name:bClientSupports64BitQueryCells" json:"client_supports64_bit_query_cells"`
 }
 
-func (o *Initialize64BitQueryCellSupportRequest) xxx_ToOp(ctx context.Context) *xxx_Initialize64BitQueryCellSupportOperation {
+func (o *Initialize64BitQueryCellSupportRequest) xxx_ToOp(ctx context.Context, op *xxx_Initialize64BitQueryCellSupportOperation) *xxx_Initialize64BitQueryCellSupportOperation {
+	if op == nil {
+		op = &xxx_Initialize64BitQueryCellSupportOperation{}
+	}
 	if o == nil {
-		return &xxx_Initialize64BitQueryCellSupportOperation{}
+		return op
 	}
-	return &xxx_Initialize64BitQueryCellSupportOperation{
-		This:                          o.This,
-		ClientSupports64BitQueryCells: o.ClientSupports64BitQueryCells,
-	}
+	o.This = op.This
+	o.ClientSupports64BitQueryCells = op.ClientSupports64BitQueryCells
+	return op
 }
 
 func (o *Initialize64BitQueryCellSupportRequest) xxx_FromOp(ctx context.Context, op *xxx_Initialize64BitQueryCellSupportOperation) {
@@ -568,7 +574,7 @@ func (o *Initialize64BitQueryCellSupportRequest) xxx_FromOp(ctx context.Context,
 	o.ClientSupports64BitQueryCells = op.ClientSupports64BitQueryCells
 }
 func (o *Initialize64BitQueryCellSupportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *Initialize64BitQueryCellSupportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_Initialize64BitQueryCellSupportOperation{}
@@ -591,15 +597,17 @@ type Initialize64BitQueryCellSupportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *Initialize64BitQueryCellSupportResponse) xxx_ToOp(ctx context.Context) *xxx_Initialize64BitQueryCellSupportOperation {
+func (o *Initialize64BitQueryCellSupportResponse) xxx_ToOp(ctx context.Context, op *xxx_Initialize64BitQueryCellSupportOperation) *xxx_Initialize64BitQueryCellSupportOperation {
+	if op == nil {
+		op = &xxx_Initialize64BitQueryCellSupportOperation{}
+	}
 	if o == nil {
-		return &xxx_Initialize64BitQueryCellSupportOperation{}
+		return op
 	}
-	return &xxx_Initialize64BitQueryCellSupportOperation{
-		That:                          o.That,
-		ServerSupports64BitQueryCells: o.ServerSupports64BitQueryCells,
-		Return:                        o.Return,
-	}
+	o.That = op.That
+	o.ServerSupports64BitQueryCells = op.ServerSupports64BitQueryCells
+	o.Return = op.Return
+	return op
 }
 
 func (o *Initialize64BitQueryCellSupportResponse) xxx_FromOp(ctx context.Context, op *xxx_Initialize64BitQueryCellSupportOperation) {
@@ -611,7 +619,7 @@ func (o *Initialize64BitQueryCellSupportResponse) xxx_FromOp(ctx context.Context
 	o.Return = op.Return
 }
 func (o *Initialize64BitQueryCellSupportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *Initialize64BitQueryCellSupportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_Initialize64BitQueryCellSupportOperation{}

@@ -72,12 +72,14 @@ func Import2ServerHandle(ctx context.Context, o Import2Server, opNum int, r ndr.
 	}
 	switch opNum {
 	case 3: // SetPartition
-		in := &SetPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Opnum4NotUsedOnWire
 		// Opnum4NotUsedOnWire
 		return nil, nil
@@ -87,3 +89,14 @@ func Import2ServerHandle(ctx context.Context, o Import2Server, opNum int, r ndr.
 	}
 	return nil, nil
 }
+
+// Unimplemented IImport2
+type UnimplementedImport2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedImport2Server) SetPartition(context.Context, *SetPartitionRequest) (*SetPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Import2Server = (*UnimplementedImport2Server)(nil)

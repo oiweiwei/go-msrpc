@@ -84,7 +84,7 @@ func (o *xxx_DefaultHwProviderClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultHwProviderClient) QuerySubSystems(ctx context.Context, in *QuerySubSystemsRequest, opts ...dcerpc.CallOption) (*QuerySubSystemsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -315,13 +315,15 @@ type QuerySubSystemsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QuerySubSystemsRequest) xxx_ToOp(ctx context.Context) *xxx_QuerySubSystemsOperation {
+func (o *QuerySubSystemsRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySubSystemsOperation) *xxx_QuerySubSystemsOperation {
+	if op == nil {
+		op = &xxx_QuerySubSystemsOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySubSystemsOperation{}
+		return op
 	}
-	return &xxx_QuerySubSystemsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QuerySubSystemsRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySubSystemsOperation) {
@@ -331,7 +333,7 @@ func (o *QuerySubSystemsRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySu
 	o.This = op.This
 }
 func (o *QuerySubSystemsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QuerySubSystemsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySubSystemsOperation{}
@@ -355,15 +357,17 @@ type QuerySubSystemsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QuerySubSystemsResponse) xxx_ToOp(ctx context.Context) *xxx_QuerySubSystemsOperation {
+func (o *QuerySubSystemsResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySubSystemsOperation) *xxx_QuerySubSystemsOperation {
+	if op == nil {
+		op = &xxx_QuerySubSystemsOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySubSystemsOperation{}
+		return op
 	}
-	return &xxx_QuerySubSystemsOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QuerySubSystemsResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySubSystemsOperation) {
@@ -375,7 +379,7 @@ func (o *QuerySubSystemsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryS
 	o.Return = op.Return
 }
 func (o *QuerySubSystemsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QuerySubSystemsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySubSystemsOperation{}

@@ -158,7 +158,7 @@ func (o *xxx_DefaultReportSchedulerClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultReportSchedulerClient) VerifyNamespaces(ctx context.Context, in *VerifyNamespacesRequest, opts ...dcerpc.CallOption) (*VerifyNamespacesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -178,7 +178,7 @@ func (o *xxx_DefaultReportSchedulerClient) VerifyNamespaces(ctx context.Context,
 }
 
 func (o *xxx_DefaultReportSchedulerClient) CreateScheduleTask(ctx context.Context, in *CreateScheduleTaskRequest, opts ...dcerpc.CallOption) (*CreateScheduleTaskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -198,7 +198,7 @@ func (o *xxx_DefaultReportSchedulerClient) CreateScheduleTask(ctx context.Contex
 }
 
 func (o *xxx_DefaultReportSchedulerClient) ModifyScheduleTask(ctx context.Context, in *ModifyScheduleTaskRequest, opts ...dcerpc.CallOption) (*ModifyScheduleTaskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -218,7 +218,7 @@ func (o *xxx_DefaultReportSchedulerClient) ModifyScheduleTask(ctx context.Contex
 }
 
 func (o *xxx_DefaultReportSchedulerClient) DeleteScheduleTask(ctx context.Context, in *DeleteScheduleTaskRequest, opts ...dcerpc.CallOption) (*DeleteScheduleTaskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -457,14 +457,16 @@ type VerifyNamespacesRequest struct {
 	NamespacesSafeArray *oaut.Variant `idl:"name:namespacesSafeArray" json:"namespaces_safe_array"`
 }
 
-func (o *VerifyNamespacesRequest) xxx_ToOp(ctx context.Context) *xxx_VerifyNamespacesOperation {
+func (o *VerifyNamespacesRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyNamespacesOperation) *xxx_VerifyNamespacesOperation {
+	if op == nil {
+		op = &xxx_VerifyNamespacesOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyNamespacesOperation{}
+		return op
 	}
-	return &xxx_VerifyNamespacesOperation{
-		This:                o.This,
-		NamespacesSafeArray: o.NamespacesSafeArray,
-	}
+	o.This = op.This
+	o.NamespacesSafeArray = op.NamespacesSafeArray
+	return op
 }
 
 func (o *VerifyNamespacesRequest) xxx_FromOp(ctx context.Context, op *xxx_VerifyNamespacesOperation) {
@@ -475,7 +477,7 @@ func (o *VerifyNamespacesRequest) xxx_FromOp(ctx context.Context, op *xxx_Verify
 	o.NamespacesSafeArray = op.NamespacesSafeArray
 }
 func (o *VerifyNamespacesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *VerifyNamespacesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyNamespacesOperation{}
@@ -494,14 +496,16 @@ type VerifyNamespacesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *VerifyNamespacesResponse) xxx_ToOp(ctx context.Context) *xxx_VerifyNamespacesOperation {
+func (o *VerifyNamespacesResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyNamespacesOperation) *xxx_VerifyNamespacesOperation {
+	if op == nil {
+		op = &xxx_VerifyNamespacesOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyNamespacesOperation{}
+		return op
 	}
-	return &xxx_VerifyNamespacesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *VerifyNamespacesResponse) xxx_FromOp(ctx context.Context, op *xxx_VerifyNamespacesOperation) {
@@ -512,7 +516,7 @@ func (o *VerifyNamespacesResponse) xxx_FromOp(ctx context.Context, op *xxx_Verif
 	o.Return = op.Return
 }
 func (o *VerifyNamespacesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *VerifyNamespacesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyNamespacesOperation{}
@@ -798,16 +802,18 @@ type CreateScheduleTaskRequest struct {
 	SerializedTask *oaut.String `idl:"name:serializedTask" json:"serialized_task"`
 }
 
-func (o *CreateScheduleTaskRequest) xxx_ToOp(ctx context.Context) *xxx_CreateScheduleTaskOperation {
+func (o *CreateScheduleTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateScheduleTaskOperation) *xxx_CreateScheduleTaskOperation {
+	if op == nil {
+		op = &xxx_CreateScheduleTaskOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateScheduleTaskOperation{}
+		return op
 	}
-	return &xxx_CreateScheduleTaskOperation{
-		This:                o.This,
-		TaskName:            o.TaskName,
-		NamespacesSafeArray: o.NamespacesSafeArray,
-		SerializedTask:      o.SerializedTask,
-	}
+	o.This = op.This
+	o.TaskName = op.TaskName
+	o.NamespacesSafeArray = op.NamespacesSafeArray
+	o.SerializedTask = op.SerializedTask
+	return op
 }
 
 func (o *CreateScheduleTaskRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateScheduleTaskOperation) {
@@ -820,7 +826,7 @@ func (o *CreateScheduleTaskRequest) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.SerializedTask = op.SerializedTask
 }
 func (o *CreateScheduleTaskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateScheduleTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateScheduleTaskOperation{}
@@ -839,14 +845,16 @@ type CreateScheduleTaskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateScheduleTaskResponse) xxx_ToOp(ctx context.Context) *xxx_CreateScheduleTaskOperation {
+func (o *CreateScheduleTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateScheduleTaskOperation) *xxx_CreateScheduleTaskOperation {
+	if op == nil {
+		op = &xxx_CreateScheduleTaskOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateScheduleTaskOperation{}
+		return op
 	}
-	return &xxx_CreateScheduleTaskOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateScheduleTaskResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateScheduleTaskOperation) {
@@ -857,7 +865,7 @@ func (o *CreateScheduleTaskResponse) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.Return = op.Return
 }
 func (o *CreateScheduleTaskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateScheduleTaskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateScheduleTaskOperation{}
@@ -1143,16 +1151,18 @@ type ModifyScheduleTaskRequest struct {
 	SerializedTask *oaut.String `idl:"name:serializedTask" json:"serialized_task"`
 }
 
-func (o *ModifyScheduleTaskRequest) xxx_ToOp(ctx context.Context) *xxx_ModifyScheduleTaskOperation {
+func (o *ModifyScheduleTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyScheduleTaskOperation) *xxx_ModifyScheduleTaskOperation {
+	if op == nil {
+		op = &xxx_ModifyScheduleTaskOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyScheduleTaskOperation{}
+		return op
 	}
-	return &xxx_ModifyScheduleTaskOperation{
-		This:                o.This,
-		TaskName:            o.TaskName,
-		NamespacesSafeArray: o.NamespacesSafeArray,
-		SerializedTask:      o.SerializedTask,
-	}
+	o.This = op.This
+	o.TaskName = op.TaskName
+	o.NamespacesSafeArray = op.NamespacesSafeArray
+	o.SerializedTask = op.SerializedTask
+	return op
 }
 
 func (o *ModifyScheduleTaskRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyScheduleTaskOperation) {
@@ -1165,7 +1175,7 @@ func (o *ModifyScheduleTaskRequest) xxx_FromOp(ctx context.Context, op *xxx_Modi
 	o.SerializedTask = op.SerializedTask
 }
 func (o *ModifyScheduleTaskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyScheduleTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyScheduleTaskOperation{}
@@ -1184,14 +1194,16 @@ type ModifyScheduleTaskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyScheduleTaskResponse) xxx_ToOp(ctx context.Context) *xxx_ModifyScheduleTaskOperation {
+func (o *ModifyScheduleTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyScheduleTaskOperation) *xxx_ModifyScheduleTaskOperation {
+	if op == nil {
+		op = &xxx_ModifyScheduleTaskOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyScheduleTaskOperation{}
+		return op
 	}
-	return &xxx_ModifyScheduleTaskOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyScheduleTaskResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyScheduleTaskOperation) {
@@ -1202,7 +1214,7 @@ func (o *ModifyScheduleTaskResponse) xxx_FromOp(ctx context.Context, op *xxx_Mod
 	o.Return = op.Return
 }
 func (o *ModifyScheduleTaskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyScheduleTaskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyScheduleTaskOperation{}
@@ -1387,14 +1399,16 @@ type DeleteScheduleTaskRequest struct {
 	TaskName *oaut.String `idl:"name:taskName" json:"task_name"`
 }
 
-func (o *DeleteScheduleTaskRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteScheduleTaskOperation {
+func (o *DeleteScheduleTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteScheduleTaskOperation) *xxx_DeleteScheduleTaskOperation {
+	if op == nil {
+		op = &xxx_DeleteScheduleTaskOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteScheduleTaskOperation{}
+		return op
 	}
-	return &xxx_DeleteScheduleTaskOperation{
-		This:     o.This,
-		TaskName: o.TaskName,
-	}
+	o.This = op.This
+	o.TaskName = op.TaskName
+	return op
 }
 
 func (o *DeleteScheduleTaskRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteScheduleTaskOperation) {
@@ -1405,7 +1419,7 @@ func (o *DeleteScheduleTaskRequest) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.TaskName = op.TaskName
 }
 func (o *DeleteScheduleTaskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteScheduleTaskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteScheduleTaskOperation{}
@@ -1424,14 +1438,16 @@ type DeleteScheduleTaskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteScheduleTaskResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteScheduleTaskOperation {
+func (o *DeleteScheduleTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteScheduleTaskOperation) *xxx_DeleteScheduleTaskOperation {
+	if op == nil {
+		op = &xxx_DeleteScheduleTaskOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteScheduleTaskOperation{}
+		return op
 	}
-	return &xxx_DeleteScheduleTaskOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteScheduleTaskResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteScheduleTaskOperation) {
@@ -1442,7 +1458,7 @@ func (o *DeleteScheduleTaskResponse) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.Return = op.Return
 }
 func (o *DeleteScheduleTaskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteScheduleTaskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteScheduleTaskOperation{}

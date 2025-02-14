@@ -65,19 +65,37 @@ func SwProviderServerHandle(ctx context.Context, o SwProviderServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // QueryPacks
-		in := &QueryPacksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryPacksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryPacks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryPacksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryPacks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CreatePack
-		in := &CreatePackRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePackOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePack(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePackRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePack(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsSwProvider
+type UnimplementedSwProviderServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedSwProviderServer) QueryPacks(context.Context, *QueryPacksRequest) (*QueryPacksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSwProviderServer) CreatePack(context.Context, *CreatePackRequest) (*CreatePackResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SwProviderServer = (*UnimplementedSwProviderServer)(nil)

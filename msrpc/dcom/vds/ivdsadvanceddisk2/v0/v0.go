@@ -81,7 +81,7 @@ func (o *xxx_DefaultAdvancedDisk2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAdvancedDisk2Client) ChangePartitionType(ctx context.Context, in *ChangePartitionTypeRequest, opts ...dcerpc.CallOption) (*ChangePartitionTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -328,16 +328,18 @@ type ChangePartitionTypeRequest struct {
 	Parameters *vds.ChangePartitionTypeParameters `idl:"name:para" json:"parameters"`
 }
 
-func (o *ChangePartitionTypeRequest) xxx_ToOp(ctx context.Context) *xxx_ChangePartitionTypeOperation {
+func (o *ChangePartitionTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangePartitionTypeOperation) *xxx_ChangePartitionTypeOperation {
+	if op == nil {
+		op = &xxx_ChangePartitionTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangePartitionTypeOperation{}
+		return op
 	}
-	return &xxx_ChangePartitionTypeOperation{
-		This:       o.This,
-		Offset:     o.Offset,
-		Force:      o.Force,
-		Parameters: o.Parameters,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Force = op.Force
+	o.Parameters = op.Parameters
+	return op
 }
 
 func (o *ChangePartitionTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_ChangePartitionTypeOperation) {
@@ -350,7 +352,7 @@ func (o *ChangePartitionTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_Cha
 	o.Parameters = op.Parameters
 }
 func (o *ChangePartitionTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangePartitionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangePartitionTypeOperation{}
@@ -369,14 +371,16 @@ type ChangePartitionTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangePartitionTypeResponse) xxx_ToOp(ctx context.Context) *xxx_ChangePartitionTypeOperation {
+func (o *ChangePartitionTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangePartitionTypeOperation) *xxx_ChangePartitionTypeOperation {
+	if op == nil {
+		op = &xxx_ChangePartitionTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangePartitionTypeOperation{}
+		return op
 	}
-	return &xxx_ChangePartitionTypeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangePartitionTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangePartitionTypeOperation) {
@@ -387,7 +391,7 @@ func (o *ChangePartitionTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_Ch
 	o.Return = op.Return
 }
 func (o *ChangePartitionTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangePartitionTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangePartitionTypeOperation{}

@@ -88,22 +88,40 @@ func RemoteRefresherServerHandle(ctx context.Context, o RemoteRefresherServer, o
 	}
 	switch opNum {
 	case 3: // RemoteRefresh
-		in := &RemoteRefreshRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteRefreshOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteRefresh(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteRefreshRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteRefresh(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // StopRefreshing
-		in := &StopRefreshingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopRefreshingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StopRefreshing(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopRefreshingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StopRefreshing(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemRemoteRefresher
+type UnimplementedRemoteRefresherServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedRemoteRefresherServer) RemoteRefresh(context.Context, *RemoteRefreshRequest) (*RemoteRefreshResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteRefresherServer) StopRefreshing(context.Context, *StopRefreshingRequest) (*StopRefreshingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteRefresherServer = (*UnimplementedRemoteRefresherServer)(nil)

@@ -86,7 +86,7 @@ func (o *xxx_DefaultRegisterClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultRegisterClient) RegisterModule(ctx context.Context, in *RegisterModuleRequest, opts ...dcerpc.CallOption) (*RegisterModuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -926,19 +926,21 @@ type RegisterModuleRequest struct {
 	RequestedCount uint32 `idl:"name:cRequested" json:"requested_count"`
 }
 
-func (o *RegisterModuleRequest) xxx_ToOp(ctx context.Context) *xxx_RegisterModuleOperation {
+func (o *RegisterModuleRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterModuleOperation) *xxx_RegisterModuleOperation {
+	if op == nil {
+		op = &xxx_RegisterModuleOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterModuleOperation{}
+		return op
 	}
-	return &xxx_RegisterModuleOperation{
-		This:              o.This,
-		ConglomerationID:  o.ConglomerationID,
-		Modules:           o.Modules,
-		ModulesCount:      o.ModulesCount,
-		Flags:             o.Flags,
-		RequestedClassIDs: o.RequestedClassIDs,
-		RequestedCount:    o.RequestedCount,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	o.Modules = op.Modules
+	o.ModulesCount = op.ModulesCount
+	o.Flags = op.Flags
+	o.RequestedClassIDs = op.RequestedClassIDs
+	o.RequestedCount = op.RequestedCount
+	return op
 }
 
 func (o *RegisterModuleRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterModuleOperation) {
@@ -954,7 +956,7 @@ func (o *RegisterModuleRequest) xxx_FromOp(ctx context.Context, op *xxx_Register
 	o.RequestedCount = op.RequestedCount
 }
 func (o *RegisterModuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterModuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterModuleOperation{}
@@ -997,20 +999,22 @@ type RegisterModuleResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterModuleResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterModuleOperation {
+func (o *RegisterModuleResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterModuleOperation) *xxx_RegisterModuleOperation {
+	if op == nil {
+		op = &xxx_RegisterModuleOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterModuleOperation{}
+		return op
 	}
-	return &xxx_RegisterModuleOperation{
-		That:           o.That,
-		ModuleFlags:    o.ModuleFlags,
-		ResultsCount:   o.ResultsCount,
-		ResultClassIDs: o.ResultClassIDs,
-		ResultNames:    o.ResultNames,
-		ResultFlags:    o.ResultFlags,
-		ResultHRs:      o.ResultHRs,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.ModuleFlags = op.ModuleFlags
+	o.ResultsCount = op.ResultsCount
+	o.ResultClassIDs = op.ResultClassIDs
+	o.ResultNames = op.ResultNames
+	o.ResultFlags = op.ResultFlags
+	o.ResultHRs = op.ResultHRs
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterModuleResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterModuleOperation) {
@@ -1027,7 +1031,7 @@ func (o *RegisterModuleResponse) xxx_FromOp(ctx context.Context, op *xxx_Registe
 	o.Return = op.Return
 }
 func (o *RegisterModuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterModuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterModuleOperation{}

@@ -173,7 +173,7 @@ func (o *xxx_DefaultPCHServiceClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultPCHServiceClient) RemoteConnectionParameters(ctx context.Context, in *RemoteConnectionParametersRequest, opts ...dcerpc.CallOption) (*RemoteConnectionParametersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -193,7 +193,7 @@ func (o *xxx_DefaultPCHServiceClient) RemoteConnectionParameters(ctx context.Con
 }
 
 func (o *xxx_DefaultPCHServiceClient) RemoteUserSessionInfo(ctx context.Context, in *RemoteUserSessionInfoRequest, opts ...dcerpc.CallOption) (*RemoteUserSessionInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -597,17 +597,19 @@ type RemoteConnectionParametersRequest struct {
 	UserHelpBlob *oaut.String `idl:"name:bstrUserHelpBlob" json:"user_help_blob"`
 }
 
-func (o *RemoteConnectionParametersRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteConnectionParametersOperation {
+func (o *RemoteConnectionParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteConnectionParametersOperation) *xxx_RemoteConnectionParametersOperation {
+	if op == nil {
+		op = &xxx_RemoteConnectionParametersOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteConnectionParametersOperation{}
+		return op
 	}
-	return &xxx_RemoteConnectionParametersOperation{
-		This:         o.This,
-		UserName:     o.UserName,
-		DomainName:   o.DomainName,
-		SessionID:    o.SessionID,
-		UserHelpBlob: o.UserHelpBlob,
-	}
+	o.This = op.This
+	o.UserName = op.UserName
+	o.DomainName = op.DomainName
+	o.SessionID = op.SessionID
+	o.UserHelpBlob = op.UserHelpBlob
+	return op
 }
 
 func (o *RemoteConnectionParametersRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteConnectionParametersOperation) {
@@ -621,7 +623,7 @@ func (o *RemoteConnectionParametersRequest) xxx_FromOp(ctx context.Context, op *
 	o.UserHelpBlob = op.UserHelpBlob
 }
 func (o *RemoteConnectionParametersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteConnectionParametersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteConnectionParametersOperation{}
@@ -643,15 +645,17 @@ type RemoteConnectionParametersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteConnectionParametersResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteConnectionParametersOperation {
+func (o *RemoteConnectionParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteConnectionParametersOperation) *xxx_RemoteConnectionParametersOperation {
+	if op == nil {
+		op = &xxx_RemoteConnectionParametersOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteConnectionParametersOperation{}
+		return op
 	}
-	return &xxx_RemoteConnectionParametersOperation{
-		That:             o.That,
-		ConnectionString: o.ConnectionString,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.ConnectionString = op.ConnectionString
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteConnectionParametersResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteConnectionParametersOperation) {
@@ -663,7 +667,7 @@ func (o *RemoteConnectionParametersResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *RemoteConnectionParametersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteConnectionParametersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteConnectionParametersOperation{}
@@ -846,13 +850,15 @@ type RemoteUserSessionInfoRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RemoteUserSessionInfoRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteUserSessionInfoOperation {
+func (o *RemoteUserSessionInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteUserSessionInfoOperation) *xxx_RemoteUserSessionInfoOperation {
+	if op == nil {
+		op = &xxx_RemoteUserSessionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteUserSessionInfoOperation{}
+		return op
 	}
-	return &xxx_RemoteUserSessionInfoOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RemoteUserSessionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteUserSessionInfoOperation) {
@@ -862,7 +868,7 @@ func (o *RemoteUserSessionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.This = op.This
 }
 func (o *RemoteUserSessionInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteUserSessionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteUserSessionInfoOperation{}
@@ -884,15 +890,17 @@ type RemoteUserSessionInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteUserSessionInfoResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteUserSessionInfoOperation {
+func (o *RemoteUserSessionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteUserSessionInfoOperation) *xxx_RemoteUserSessionInfoOperation {
+	if op == nil {
+		op = &xxx_RemoteUserSessionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteUserSessionInfoOperation{}
+		return op
 	}
-	return &xxx_RemoteUserSessionInfoOperation{
-		That:   o.That,
-		Value:  o.Value,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Value = op.Value
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteUserSessionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteUserSessionInfoOperation) {
@@ -904,7 +912,7 @@ func (o *RemoteUserSessionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *RemoteUserSessionInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteUserSessionInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteUserSessionInfoOperation{}

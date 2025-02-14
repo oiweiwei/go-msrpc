@@ -69,7 +69,7 @@ type xxx_DefaultRemoteSCMActivatorClient struct {
 }
 
 func (o *xxx_DefaultRemoteSCMActivatorClient) RemoteGetClassObject(ctx context.Context, in *RemoteGetClassObjectRequest, opts ...dcerpc.CallOption) (*RemoteGetClassObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (o *xxx_DefaultRemoteSCMActivatorClient) RemoteGetClassObject(ctx context.C
 }
 
 func (o *xxx_DefaultRemoteSCMActivatorClient) RemoteCreateInstance(ctx context.Context, in *RemoteCreateInstanceRequest, opts ...dcerpc.CallOption) (*RemoteCreateInstanceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -362,14 +362,16 @@ type RemoteGetClassObjectRequest struct {
 	ActPropertiesIn *dcom.InterfacePointer `idl:"name:pActProperties;pointer:unique" json:"act_properties_in"`
 }
 
-func (o *RemoteGetClassObjectRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteGetClassObjectOperation {
+func (o *RemoteGetClassObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteGetClassObjectOperation) *xxx_RemoteGetClassObjectOperation {
+	if op == nil {
+		op = &xxx_RemoteGetClassObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteGetClassObjectOperation{}
+		return op
 	}
-	return &xxx_RemoteGetClassObjectOperation{
-		ORPCThis:        o.ORPCThis,
-		ActPropertiesIn: o.ActPropertiesIn,
-	}
+	o.ORPCThis = op.ORPCThis
+	o.ActPropertiesIn = op.ActPropertiesIn
+	return op
 }
 
 func (o *RemoteGetClassObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteGetClassObjectOperation) {
@@ -380,7 +382,7 @@ func (o *RemoteGetClassObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.ActPropertiesIn = op.ActPropertiesIn
 }
 func (o *RemoteGetClassObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteGetClassObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteGetClassObjectOperation{}
@@ -420,15 +422,17 @@ type RemoteGetClassObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteGetClassObjectResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteGetClassObjectOperation {
+func (o *RemoteGetClassObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteGetClassObjectOperation) *xxx_RemoteGetClassObjectOperation {
+	if op == nil {
+		op = &xxx_RemoteGetClassObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteGetClassObjectOperation{}
+		return op
 	}
-	return &xxx_RemoteGetClassObjectOperation{
-		ORPCThat:         o.ORPCThat,
-		ActPropertiesOut: o.ActPropertiesOut,
-		Return:           o.Return,
-	}
+	o.ORPCThat = op.ORPCThat
+	o.ActPropertiesOut = op.ActPropertiesOut
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteGetClassObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteGetClassObjectOperation) {
@@ -440,7 +444,7 @@ func (o *RemoteGetClassObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.Return = op.Return
 }
 func (o *RemoteGetClassObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteGetClassObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteGetClassObjectOperation{}
@@ -752,15 +756,17 @@ type RemoteCreateInstanceRequest struct {
 	ActPropertiesIn *dcom.InterfacePointer `idl:"name:pActProperties;pointer:unique" json:"act_properties_in"`
 }
 
-func (o *RemoteCreateInstanceRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteCreateInstanceOperation {
+func (o *RemoteCreateInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteCreateInstanceOperation) *xxx_RemoteCreateInstanceOperation {
+	if op == nil {
+		op = &xxx_RemoteCreateInstanceOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteCreateInstanceOperation{}
+		return op
 	}
-	return &xxx_RemoteCreateInstanceOperation{
-		ORPCThis:        o.ORPCThis,
-		UnknownOuter:    o.UnknownOuter,
-		ActPropertiesIn: o.ActPropertiesIn,
-	}
+	o.ORPCThis = op.ORPCThis
+	o.UnknownOuter = op.UnknownOuter
+	o.ActPropertiesIn = op.ActPropertiesIn
+	return op
 }
 
 func (o *RemoteCreateInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteCreateInstanceOperation) {
@@ -772,7 +778,7 @@ func (o *RemoteCreateInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.ActPropertiesIn = op.ActPropertiesIn
 }
 func (o *RemoteCreateInstanceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteCreateInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteCreateInstanceOperation{}
@@ -812,15 +818,17 @@ type RemoteCreateInstanceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteCreateInstanceResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteCreateInstanceOperation {
+func (o *RemoteCreateInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteCreateInstanceOperation) *xxx_RemoteCreateInstanceOperation {
+	if op == nil {
+		op = &xxx_RemoteCreateInstanceOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteCreateInstanceOperation{}
+		return op
 	}
-	return &xxx_RemoteCreateInstanceOperation{
-		ORPCThat:         o.ORPCThat,
-		ActPropertiesOut: o.ActPropertiesOut,
-		Return:           o.Return,
-	}
+	o.ORPCThat = op.ORPCThat
+	o.ActPropertiesOut = op.ActPropertiesOut
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteCreateInstanceResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteCreateInstanceOperation) {
@@ -832,7 +840,7 @@ func (o *RemoteCreateInstanceResponse) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.Return = op.Return
 }
 func (o *RemoteCreateInstanceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteCreateInstanceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteCreateInstanceOperation{}

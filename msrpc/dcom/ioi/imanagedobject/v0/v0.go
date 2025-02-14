@@ -109,7 +109,7 @@ func (o *xxx_DefaultManagedObjectClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultManagedObjectClient) GetSerializedBuffer(ctx context.Context, in *GetSerializedBufferRequest, opts ...dcerpc.CallOption) (*GetSerializedBufferResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -129,7 +129,7 @@ func (o *xxx_DefaultManagedObjectClient) GetSerializedBuffer(ctx context.Context
 }
 
 func (o *xxx_DefaultManagedObjectClient) GetObjectIdentity(ctx context.Context, in *GetObjectIdentityRequest, opts ...dcerpc.CallOption) (*GetObjectIdentityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -362,13 +362,15 @@ type GetSerializedBufferRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSerializedBufferRequest) xxx_ToOp(ctx context.Context) *xxx_GetSerializedBufferOperation {
+func (o *GetSerializedBufferRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSerializedBufferOperation) *xxx_GetSerializedBufferOperation {
+	if op == nil {
+		op = &xxx_GetSerializedBufferOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSerializedBufferOperation{}
+		return op
 	}
-	return &xxx_GetSerializedBufferOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSerializedBufferRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSerializedBufferOperation) {
@@ -378,7 +380,7 @@ func (o *GetSerializedBufferRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.This = op.This
 }
 func (o *GetSerializedBufferRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSerializedBufferRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSerializedBufferOperation{}
@@ -398,15 +400,17 @@ type GetSerializedBufferResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSerializedBufferResponse) xxx_ToOp(ctx context.Context) *xxx_GetSerializedBufferOperation {
+func (o *GetSerializedBufferResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSerializedBufferOperation) *xxx_GetSerializedBufferOperation {
+	if op == nil {
+		op = &xxx_GetSerializedBufferOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSerializedBufferOperation{}
+		return op
 	}
-	return &xxx_GetSerializedBufferOperation{
-		That:   o.That,
-		String: o.String,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.String = op.String
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSerializedBufferResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSerializedBufferOperation) {
@@ -418,7 +422,7 @@ func (o *GetSerializedBufferResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetSerializedBufferResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSerializedBufferResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSerializedBufferOperation{}
@@ -627,13 +631,15 @@ type GetObjectIdentityRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetObjectIdentityRequest) xxx_ToOp(ctx context.Context) *xxx_GetObjectIdentityOperation {
+func (o *GetObjectIdentityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectIdentityOperation) *xxx_GetObjectIdentityOperation {
+	if op == nil {
+		op = &xxx_GetObjectIdentityOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectIdentityOperation{}
+		return op
 	}
-	return &xxx_GetObjectIdentityOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetObjectIdentityRequest) xxx_FromOp(ctx context.Context, op *xxx_GetObjectIdentityOperation) {
@@ -643,7 +649,7 @@ func (o *GetObjectIdentityRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOb
 	o.This = op.This
 }
 func (o *GetObjectIdentityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetObjectIdentityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectIdentityOperation{}
@@ -673,17 +679,19 @@ type GetObjectIdentityResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetObjectIdentityResponse) xxx_ToOp(ctx context.Context) *xxx_GetObjectIdentityOperation {
+func (o *GetObjectIdentityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObjectIdentityOperation) *xxx_GetObjectIdentityOperation {
+	if op == nil {
+		op = &xxx_GetObjectIdentityOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectIdentityOperation{}
+		return op
 	}
-	return &xxx_GetObjectIdentityOperation{
-		That:        o.That,
-		GUID:        o.GUID,
-		AppDomainID: o.AppDomainID,
-		CCW:         o.CCW,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.GUID = op.GUID
+	o.AppDomainID = op.AppDomainID
+	o.CCW = op.CCW
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetObjectIdentityResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObjectIdentityOperation) {
@@ -697,7 +705,7 @@ func (o *GetObjectIdentityResponse) xxx_FromOp(ctx context.Context, op *xxx_GetO
 	o.Return = op.Return
 }
 func (o *GetObjectIdentityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetObjectIdentityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectIdentityOperation{}

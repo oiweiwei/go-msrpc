@@ -466,50 +466,87 @@ func NewIrpcAsyncNotifyServerHandle(o IrpcAsyncNotifyServer) dcerpc.ServerHandle
 func IrpcAsyncNotifyServerHandle(ctx context.Context, o IrpcAsyncNotifyServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // IRPCAsyncNotify_RegisterClient
-		in := &RegisterClientRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterClientOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterClient(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterClientRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterClient(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // IRPCAsyncNotify_UnregisterClient
-		in := &UnregisterClientRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnregisterClientOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnregisterClient(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnregisterClientRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnregisterClient(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // Opnum2NotUsedOnWire
 		// Opnum2NotUsedOnWire
 		return nil, nil
 	case 3: // IRPCAsyncNotify_GetNewChannel
-		in := &GetNewChannelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNewChannelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNewChannel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNewChannelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNewChannel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // IRPCAsyncNotify_GetNotificationSendResponse
-		in := &GetNotificationSendResponseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotificationSendResponseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotificationSendResponse(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotificationSendResponseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotificationSendResponse(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // IRPCAsyncNotify_GetNotification
-		in := &GetNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // IRPCAsyncNotify_CloseChannel
-		in := &CloseChannelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseChannelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseChannel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseChannelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseChannel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRPCAsyncNotify
+type UnimplementedIrpcAsyncNotifyServer struct {
+}
+
+func (UnimplementedIrpcAsyncNotifyServer) RegisterClient(context.Context, *RegisterClientRequest) (*RegisterClientResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIrpcAsyncNotifyServer) UnregisterClient(context.Context, *UnregisterClientRequest) (*UnregisterClientResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIrpcAsyncNotifyServer) GetNewChannel(context.Context, *GetNewChannelRequest) (*GetNewChannelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIrpcAsyncNotifyServer) GetNotificationSendResponse(context.Context, *GetNotificationSendResponseRequest) (*GetNotificationSendResponseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIrpcAsyncNotifyServer) GetNotification(context.Context, *GetNotificationRequest) (*GetNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIrpcAsyncNotifyServer) CloseChannel(context.Context, *CloseChannelRequest) (*CloseChannelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IrpcAsyncNotifyServer = (*UnimplementedIrpcAsyncNotifyServer)(nil)

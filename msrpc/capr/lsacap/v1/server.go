@@ -49,12 +49,24 @@ func NewLsacapServerHandle(o LsacapServer) dcerpc.ServerHandle {
 func LsacapServerHandle(ctx context.Context, o LsacapServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // LsarGetAvailableCAPIDs
-		in := &GetAvailableCapIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAvailableCapIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAvailableCapIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAvailableCapIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAvailableCapIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented lsacap
+type UnimplementedLsacapServer struct {
+}
+
+func (UnimplementedLsacapServer) GetAvailableCapIDs(context.Context, *GetAvailableCapIDsRequest) (*GetAvailableCapIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LsacapServer = (*UnimplementedLsacapServer)(nil)

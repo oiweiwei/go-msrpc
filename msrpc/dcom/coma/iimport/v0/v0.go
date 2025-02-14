@@ -115,7 +115,7 @@ func (o *xxx_DefaultImportClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultImportClient) ImportFromFile(ctx context.Context, in *ImportFromFileRequest, opts ...dcerpc.CallOption) (*ImportFromFileResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -135,7 +135,7 @@ func (o *xxx_DefaultImportClient) ImportFromFile(ctx context.Context, in *Import
 }
 
 func (o *xxx_DefaultImportClient) QueryFile(ctx context.Context, in *QueryFileRequest, opts ...dcerpc.CallOption) (*QueryFileResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -1085,19 +1085,21 @@ type ImportFromFileRequest struct {
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *ImportFromFileRequest) xxx_ToOp(ctx context.Context) *xxx_ImportFromFileOperation {
+func (o *ImportFromFileRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFromFileOperation) *xxx_ImportFromFileOperation {
+	if op == nil {
+		op = &xxx_ImportFromFileOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFromFileOperation{}
+		return op
 	}
-	return &xxx_ImportFromFileOperation{
-		This:              o.This,
-		ModuleDestination: o.ModuleDestination,
-		InstallerPackage:  o.InstallerPackage,
-		User:              o.User,
-		Password:          o.Password,
-		RemoteServerName:  o.RemoteServerName,
-		Flags:             o.Flags,
-	}
+	o.This = op.This
+	o.ModuleDestination = op.ModuleDestination
+	o.InstallerPackage = op.InstallerPackage
+	o.User = op.User
+	o.Password = op.Password
+	o.RemoteServerName = op.RemoteServerName
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ImportFromFileRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportFromFileOperation) {
@@ -1113,7 +1115,7 @@ func (o *ImportFromFileRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportFr
 	o.Flags = op.Flags
 }
 func (o *ImportFromFileRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ImportFromFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFromFileOperation{}
@@ -1165,22 +1167,24 @@ type ImportFromFileResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ImportFromFileResponse) xxx_ToOp(ctx context.Context) *xxx_ImportFromFileOperation {
+func (o *ImportFromFileResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportFromFileOperation) *xxx_ImportFromFileOperation {
+	if op == nil {
+		op = &xxx_ImportFromFileOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFromFileOperation{}
+		return op
 	}
-	return &xxx_ImportFromFileOperation{
-		That:            o.That,
-		ModulesCount:    o.ModulesCount,
-		ModuleFlags:     o.ModuleFlags,
-		Modules:         o.Modules,
-		ComponentsCount: o.ComponentsCount,
-		ResultClassIDs:  o.ResultClassIDs,
-		ResultNames:     o.ResultNames,
-		ResultFlags:     o.ResultFlags,
-		ResultHRs:       o.ResultHRs,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.ModulesCount = op.ModulesCount
+	o.ModuleFlags = op.ModuleFlags
+	o.Modules = op.Modules
+	o.ComponentsCount = op.ComponentsCount
+	o.ResultClassIDs = op.ResultClassIDs
+	o.ResultNames = op.ResultNames
+	o.ResultFlags = op.ResultFlags
+	o.ResultHRs = op.ResultHRs
+	o.Return = op.Return
+	return op
 }
 
 func (o *ImportFromFileResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportFromFileOperation) {
@@ -1199,7 +1203,7 @@ func (o *ImportFromFileResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportF
 	o.Return = op.Return
 }
 func (o *ImportFromFileResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ImportFromFileResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFromFileOperation{}
@@ -1680,14 +1684,16 @@ type QueryFileRequest struct {
 	InstallerPackage string `idl:"name:pwszInstallerPackage;string" json:"installer_package"`
 }
 
-func (o *QueryFileRequest) xxx_ToOp(ctx context.Context) *xxx_QueryFileOperation {
+func (o *QueryFileRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFileOperation) *xxx_QueryFileOperation {
+	if op == nil {
+		op = &xxx_QueryFileOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFileOperation{}
+		return op
 	}
-	return &xxx_QueryFileOperation{
-		This:             o.This,
-		InstallerPackage: o.InstallerPackage,
-	}
+	o.This = op.This
+	o.InstallerPackage = op.InstallerPackage
+	return op
 }
 
 func (o *QueryFileRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryFileOperation) {
@@ -1698,7 +1704,7 @@ func (o *QueryFileRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryFileOper
 	o.InstallerPackage = op.InstallerPackage
 }
 func (o *QueryFileRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFileOperation{}
@@ -1744,21 +1750,23 @@ type QueryFileResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFileResponse) xxx_ToOp(ctx context.Context) *xxx_QueryFileOperation {
+func (o *QueryFileResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFileOperation) *xxx_QueryFileOperation {
+	if op == nil {
+		op = &xxx_QueryFileOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFileOperation{}
+		return op
 	}
-	return &xxx_QueryFileOperation{
-		That:            o.That,
-		Conglomerations: o.Conglomerations,
-		Names:           o.Names,
-		Descriptions:    o.Descriptions,
-		Users:           o.Users,
-		IsProxy:         o.IsProxy,
-		ModulesCount:    o.ModulesCount,
-		Modules:         o.Modules,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.Conglomerations = op.Conglomerations
+	o.Names = op.Names
+	o.Descriptions = op.Descriptions
+	o.Users = op.Users
+	o.IsProxy = op.IsProxy
+	o.ModulesCount = op.ModulesCount
+	o.Modules = op.Modules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFileResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryFileOperation) {
@@ -1776,7 +1784,7 @@ func (o *QueryFileResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryFileOpe
 	o.Return = op.Return
 }
 func (o *QueryFileResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFileResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFileOperation{}

@@ -119,131 +119,229 @@ func CertAdminD2ServerHandle(ctx context.Context, o CertAdminD2Server, opNum int
 	}
 	switch opNum {
 	case 31: // PublishCRLs
-		in := &PublishCRLsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PublishCRLsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PublishCRLs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PublishCRLsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PublishCRLs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // GetCAProperty
-		in := &GetCAPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCAPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCAProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCAPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCAProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // SetCAProperty
-		in := &SetCAPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCAPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCAProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCAPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCAProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // GetCAPropertyInfo
-		in := &GetCAPropertyInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCAPropertyInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCAPropertyInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCAPropertyInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCAPropertyInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // EnumViewColumnTable
-		in := &EnumViewColumnTableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumViewColumnTableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumViewColumnTable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumViewColumnTableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumViewColumnTable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // GetCASecurity
-		in := &GetCASecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCASecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCASecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCASecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCASecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // SetCASecurity
-		in := &SetCASecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCASecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCASecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCASecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCASecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // Ping2
-		in := &Ping2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Ping2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Ping2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Ping2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Ping2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // GetArchivedKey
-		in := &GetArchivedKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetArchivedKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetArchivedKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetArchivedKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetArchivedKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // GetAuditFilter
-		in := &GetAuditFilterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAuditFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAuditFilter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAuditFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAuditFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // SetAuditFilter
-		in := &SetAuditFilterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAuditFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAuditFilter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAuditFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAuditFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // GetOfficerRights
-		in := &GetOfficerRightsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOfficerRightsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOfficerRights(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOfficerRightsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOfficerRights(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // SetOfficerRights
-		in := &SetOfficerRightsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOfficerRightsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOfficerRights(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOfficerRightsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOfficerRights(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // GetConfigEntry
-		in := &GetConfigEntryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigEntryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfigEntry(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigEntryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfigEntry(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // SetConfigEntry
-		in := &SetConfigEntryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetConfigEntryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetConfigEntry(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetConfigEntryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetConfigEntry(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // ImportKey
-		in := &ImportKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // GetMyRoles
-		in := &GetMyRolesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMyRolesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMyRoles(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMyRolesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMyRoles(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // DeleteRow
-		in := &DeleteRowRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteRowOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteRow(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRowRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteRow(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICertAdminD2
+type UnimplementedCertAdminD2Server struct {
+	icertadmind.UnimplementedCertAdminDServer
+}
+
+func (UnimplementedCertAdminD2Server) PublishCRLs(context.Context, *PublishCRLsRequest) (*PublishCRLsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetCAProperty(context.Context, *GetCAPropertyRequest) (*GetCAPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) SetCAProperty(context.Context, *SetCAPropertyRequest) (*SetCAPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetCAPropertyInfo(context.Context, *GetCAPropertyInfoRequest) (*GetCAPropertyInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) EnumViewColumnTable(context.Context, *EnumViewColumnTableRequest) (*EnumViewColumnTableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetCASecurity(context.Context, *GetCASecurityRequest) (*GetCASecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) SetCASecurity(context.Context, *SetCASecurityRequest) (*SetCASecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) Ping2(context.Context, *Ping2Request) (*Ping2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetArchivedKey(context.Context, *GetArchivedKeyRequest) (*GetArchivedKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetAuditFilter(context.Context, *GetAuditFilterRequest) (*GetAuditFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) SetAuditFilter(context.Context, *SetAuditFilterRequest) (*SetAuditFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetOfficerRights(context.Context, *GetOfficerRightsRequest) (*GetOfficerRightsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) SetOfficerRights(context.Context, *SetOfficerRightsRequest) (*SetOfficerRightsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetConfigEntry(context.Context, *GetConfigEntryRequest) (*GetConfigEntryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) SetConfigEntry(context.Context, *SetConfigEntryRequest) (*SetConfigEntryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) ImportKey(context.Context, *ImportKeyRequest) (*ImportKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) GetMyRoles(context.Context, *GetMyRolesRequest) (*GetMyRolesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminD2Server) DeleteRow(context.Context, *DeleteRowRequest) (*DeleteRowResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CertAdminD2Server = (*UnimplementedCertAdminD2Server)(nil)

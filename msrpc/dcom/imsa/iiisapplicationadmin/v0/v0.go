@@ -234,7 +234,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) Unknown() iunknown.UnknownClient 
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) CreateApplication(ctx context.Context, in *CreateApplicationRequest, opts ...dcerpc.CallOption) (*CreateApplicationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -254,7 +254,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) CreateApplication(ctx context.Con
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) DeleteApplication(ctx context.Context, in *DeleteApplicationRequest, opts ...dcerpc.CallOption) (*DeleteApplicationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -274,7 +274,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) DeleteApplication(ctx context.Con
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) CreateApplicationPool(ctx context.Context, in *CreateApplicationPoolRequest, opts ...dcerpc.CallOption) (*CreateApplicationPoolResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -294,7 +294,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) CreateApplicationPool(ctx context
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) DeleteApplicationPool(ctx context.Context, in *DeleteApplicationPoolRequest, opts ...dcerpc.CallOption) (*DeleteApplicationPoolResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -314,7 +314,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) DeleteApplicationPool(ctx context
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) EnumerateApplicationsInPool(ctx context.Context, in *EnumerateApplicationsInPoolRequest, opts ...dcerpc.CallOption) (*EnumerateApplicationsInPoolResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -334,7 +334,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) EnumerateApplicationsInPool(ctx c
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) RecycleApplicationPool(ctx context.Context, in *RecycleApplicationPoolRequest, opts ...dcerpc.CallOption) (*RecycleApplicationPoolResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -354,7 +354,7 @@ func (o *xxx_DefaultIISApplicationAdminClient) RecycleApplicationPool(ctx contex
 }
 
 func (o *xxx_DefaultIISApplicationAdminClient) GetProcessMode(ctx context.Context, in *GetProcessModeRequest, opts ...dcerpc.CallOption) (*GetProcessModeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -676,17 +676,19 @@ type CreateApplicationRequest struct {
 	CreatePool bool `idl:"name:fCreatePool" json:"create_pool"`
 }
 
-func (o *CreateApplicationRequest) xxx_ToOp(ctx context.Context) *xxx_CreateApplicationOperation {
+func (o *CreateApplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateApplicationOperation) *xxx_CreateApplicationOperation {
+	if op == nil {
+		op = &xxx_CreateApplicationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateApplicationOperation{}
+		return op
 	}
-	return &xxx_CreateApplicationOperation{
-		This:       o.This,
-		Path:       o.Path,
-		AppMode:    o.AppMode,
-		AppPoolID:  o.AppPoolID,
-		CreatePool: o.CreatePool,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.AppMode = op.AppMode
+	o.AppPoolID = op.AppPoolID
+	o.CreatePool = op.CreatePool
+	return op
 }
 
 func (o *CreateApplicationRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateApplicationOperation) {
@@ -700,7 +702,7 @@ func (o *CreateApplicationRequest) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.CreatePool = op.CreatePool
 }
 func (o *CreateApplicationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateApplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateApplicationOperation{}
@@ -719,14 +721,16 @@ type CreateApplicationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateApplicationResponse) xxx_ToOp(ctx context.Context) *xxx_CreateApplicationOperation {
+func (o *CreateApplicationResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateApplicationOperation) *xxx_CreateApplicationOperation {
+	if op == nil {
+		op = &xxx_CreateApplicationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateApplicationOperation{}
+		return op
 	}
-	return &xxx_CreateApplicationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateApplicationResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateApplicationOperation) {
@@ -737,7 +741,7 @@ func (o *CreateApplicationResponse) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.Return = op.Return
 }
 func (o *CreateApplicationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateApplicationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateApplicationOperation{}
@@ -938,15 +942,17 @@ type DeleteApplicationRequest struct {
 	Recursive bool `idl:"name:fRecursive" json:"recursive"`
 }
 
-func (o *DeleteApplicationRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteApplicationOperation {
+func (o *DeleteApplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteApplicationOperation) *xxx_DeleteApplicationOperation {
+	if op == nil {
+		op = &xxx_DeleteApplicationOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteApplicationOperation{}
+		return op
 	}
-	return &xxx_DeleteApplicationOperation{
-		This:      o.This,
-		Path:      o.Path,
-		Recursive: o.Recursive,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Recursive = op.Recursive
+	return op
 }
 
 func (o *DeleteApplicationRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteApplicationOperation) {
@@ -958,7 +964,7 @@ func (o *DeleteApplicationRequest) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.Recursive = op.Recursive
 }
 func (o *DeleteApplicationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteApplicationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteApplicationOperation{}
@@ -977,14 +983,16 @@ type DeleteApplicationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteApplicationResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteApplicationOperation {
+func (o *DeleteApplicationResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteApplicationOperation) *xxx_DeleteApplicationOperation {
+	if op == nil {
+		op = &xxx_DeleteApplicationOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteApplicationOperation{}
+		return op
 	}
-	return &xxx_DeleteApplicationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteApplicationResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteApplicationOperation) {
@@ -995,7 +1003,7 @@ func (o *DeleteApplicationResponse) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.Return = op.Return
 }
 func (o *DeleteApplicationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteApplicationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteApplicationOperation{}
@@ -1172,14 +1180,16 @@ type CreateApplicationPoolRequest struct {
 	Pool string `idl:"name:szPool;string;pointer:unique" json:"pool"`
 }
 
-func (o *CreateApplicationPoolRequest) xxx_ToOp(ctx context.Context) *xxx_CreateApplicationPoolOperation {
+func (o *CreateApplicationPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateApplicationPoolOperation) *xxx_CreateApplicationPoolOperation {
+	if op == nil {
+		op = &xxx_CreateApplicationPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateApplicationPoolOperation{}
+		return op
 	}
-	return &xxx_CreateApplicationPoolOperation{
-		This: o.This,
-		Pool: o.Pool,
-	}
+	o.This = op.This
+	o.Pool = op.Pool
+	return op
 }
 
 func (o *CreateApplicationPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateApplicationPoolOperation) {
@@ -1190,7 +1200,7 @@ func (o *CreateApplicationPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Pool = op.Pool
 }
 func (o *CreateApplicationPoolRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateApplicationPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateApplicationPoolOperation{}
@@ -1209,14 +1219,16 @@ type CreateApplicationPoolResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateApplicationPoolResponse) xxx_ToOp(ctx context.Context) *xxx_CreateApplicationPoolOperation {
+func (o *CreateApplicationPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateApplicationPoolOperation) *xxx_CreateApplicationPoolOperation {
+	if op == nil {
+		op = &xxx_CreateApplicationPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateApplicationPoolOperation{}
+		return op
 	}
-	return &xxx_CreateApplicationPoolOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateApplicationPoolResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateApplicationPoolOperation) {
@@ -1227,7 +1239,7 @@ func (o *CreateApplicationPoolResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *CreateApplicationPoolResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateApplicationPoolResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateApplicationPoolOperation{}
@@ -1404,14 +1416,16 @@ type DeleteApplicationPoolRequest struct {
 	Pool string `idl:"name:szPool;string;pointer:unique" json:"pool"`
 }
 
-func (o *DeleteApplicationPoolRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteApplicationPoolOperation {
+func (o *DeleteApplicationPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteApplicationPoolOperation) *xxx_DeleteApplicationPoolOperation {
+	if op == nil {
+		op = &xxx_DeleteApplicationPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteApplicationPoolOperation{}
+		return op
 	}
-	return &xxx_DeleteApplicationPoolOperation{
-		This: o.This,
-		Pool: o.Pool,
-	}
+	o.This = op.This
+	o.Pool = op.Pool
+	return op
 }
 
 func (o *DeleteApplicationPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteApplicationPoolOperation) {
@@ -1422,7 +1436,7 @@ func (o *DeleteApplicationPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_D
 	o.Pool = op.Pool
 }
 func (o *DeleteApplicationPoolRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteApplicationPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteApplicationPoolOperation{}
@@ -1441,14 +1455,16 @@ type DeleteApplicationPoolResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteApplicationPoolResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteApplicationPoolOperation {
+func (o *DeleteApplicationPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteApplicationPoolOperation) *xxx_DeleteApplicationPoolOperation {
+	if op == nil {
+		op = &xxx_DeleteApplicationPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteApplicationPoolOperation{}
+		return op
 	}
-	return &xxx_DeleteApplicationPoolOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteApplicationPoolResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteApplicationPoolOperation) {
@@ -1459,7 +1475,7 @@ func (o *DeleteApplicationPoolResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *DeleteApplicationPoolResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteApplicationPoolResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteApplicationPoolOperation{}
@@ -1683,14 +1699,16 @@ type EnumerateApplicationsInPoolRequest struct {
 	Pool string `idl:"name:szPool;string;pointer:unique" json:"pool"`
 }
 
-func (o *EnumerateApplicationsInPoolRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateApplicationsInPoolOperation {
+func (o *EnumerateApplicationsInPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateApplicationsInPoolOperation) *xxx_EnumerateApplicationsInPoolOperation {
+	if op == nil {
+		op = &xxx_EnumerateApplicationsInPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateApplicationsInPoolOperation{}
+		return op
 	}
-	return &xxx_EnumerateApplicationsInPoolOperation{
-		This: o.This,
-		Pool: o.Pool,
-	}
+	o.This = op.This
+	o.Pool = op.Pool
+	return op
 }
 
 func (o *EnumerateApplicationsInPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateApplicationsInPoolOperation) {
@@ -1701,7 +1719,7 @@ func (o *EnumerateApplicationsInPoolRequest) xxx_FromOp(ctx context.Context, op 
 	o.Pool = op.Pool
 }
 func (o *EnumerateApplicationsInPoolRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateApplicationsInPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateApplicationsInPoolOperation{}
@@ -1725,15 +1743,17 @@ type EnumerateApplicationsInPoolResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateApplicationsInPoolResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateApplicationsInPoolOperation {
+func (o *EnumerateApplicationsInPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateApplicationsInPoolOperation) *xxx_EnumerateApplicationsInPoolOperation {
+	if op == nil {
+		op = &xxx_EnumerateApplicationsInPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateApplicationsInPoolOperation{}
+		return op
 	}
-	return &xxx_EnumerateApplicationsInPoolOperation{
-		That:   o.That,
-		Buffer: o.Buffer,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Buffer = op.Buffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateApplicationsInPoolResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateApplicationsInPoolOperation) {
@@ -1745,7 +1765,7 @@ func (o *EnumerateApplicationsInPoolResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *EnumerateApplicationsInPoolResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateApplicationsInPoolResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateApplicationsInPoolOperation{}
@@ -1922,14 +1942,16 @@ type RecycleApplicationPoolRequest struct {
 	Pool string `idl:"name:szPool;string;pointer:unique" json:"pool"`
 }
 
-func (o *RecycleApplicationPoolRequest) xxx_ToOp(ctx context.Context) *xxx_RecycleApplicationPoolOperation {
+func (o *RecycleApplicationPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_RecycleApplicationPoolOperation) *xxx_RecycleApplicationPoolOperation {
+	if op == nil {
+		op = &xxx_RecycleApplicationPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_RecycleApplicationPoolOperation{}
+		return op
 	}
-	return &xxx_RecycleApplicationPoolOperation{
-		This: o.This,
-		Pool: o.Pool,
-	}
+	o.This = op.This
+	o.Pool = op.Pool
+	return op
 }
 
 func (o *RecycleApplicationPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_RecycleApplicationPoolOperation) {
@@ -1940,7 +1962,7 @@ func (o *RecycleApplicationPoolRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Pool = op.Pool
 }
 func (o *RecycleApplicationPoolRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RecycleApplicationPoolRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RecycleApplicationPoolOperation{}
@@ -1959,14 +1981,16 @@ type RecycleApplicationPoolResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RecycleApplicationPoolResponse) xxx_ToOp(ctx context.Context) *xxx_RecycleApplicationPoolOperation {
+func (o *RecycleApplicationPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_RecycleApplicationPoolOperation) *xxx_RecycleApplicationPoolOperation {
+	if op == nil {
+		op = &xxx_RecycleApplicationPoolOperation{}
+	}
 	if o == nil {
-		return &xxx_RecycleApplicationPoolOperation{}
+		return op
 	}
-	return &xxx_RecycleApplicationPoolOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RecycleApplicationPoolResponse) xxx_FromOp(ctx context.Context, op *xxx_RecycleApplicationPoolOperation) {
@@ -1977,7 +2001,7 @@ func (o *RecycleApplicationPoolResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *RecycleApplicationPoolResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RecycleApplicationPoolResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RecycleApplicationPoolOperation{}
@@ -2126,13 +2150,15 @@ type GetProcessModeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetProcessModeRequest) xxx_ToOp(ctx context.Context) *xxx_GetProcessModeOperation {
+func (o *GetProcessModeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProcessModeOperation) *xxx_GetProcessModeOperation {
+	if op == nil {
+		op = &xxx_GetProcessModeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetProcessModeOperation{}
+		return op
 	}
-	return &xxx_GetProcessModeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetProcessModeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProcessModeOperation) {
@@ -2142,7 +2168,7 @@ func (o *GetProcessModeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProce
 	o.This = op.This
 }
 func (o *GetProcessModeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetProcessModeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProcessModeOperation{}
@@ -2176,15 +2202,17 @@ type GetProcessModeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetProcessModeResponse) xxx_ToOp(ctx context.Context) *xxx_GetProcessModeOperation {
+func (o *GetProcessModeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetProcessModeOperation) *xxx_GetProcessModeOperation {
+	if op == nil {
+		op = &xxx_GetProcessModeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetProcessModeOperation{}
+		return op
 	}
-	return &xxx_GetProcessModeOperation{
-		That:   o.That,
-		Mode:   o.Mode,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Mode = op.Mode
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetProcessModeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetProcessModeOperation) {
@@ -2196,7 +2224,7 @@ func (o *GetProcessModeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetProc
 	o.Return = op.Return
 }
 func (o *GetProcessModeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetProcessModeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProcessModeOperation{}

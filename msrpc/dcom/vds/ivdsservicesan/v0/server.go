@@ -65,19 +65,37 @@ func ServiceSANServerHandle(ctx context.Context, o ServiceSANServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // GetSANPolicy
-		in := &GetSANPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSANPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSANPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSANPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSANPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SetSANPolicy
-		in := &SetSANPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSANPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSANPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSANPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSANPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceSAN
+type UnimplementedServiceSANServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceSANServer) GetSANPolicy(context.Context, *GetSANPolicyRequest) (*GetSANPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceSANServer) SetSANPolicy(context.Context, *SetSANPolicyRequest) (*SetSANPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceSANServer = (*UnimplementedServiceSANServer)(nil)

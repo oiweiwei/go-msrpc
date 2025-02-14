@@ -82,7 +82,7 @@ func (o *xxx_DefaultAdvancedDisk3Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAdvancedDisk3Client) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -102,7 +102,7 @@ func (o *xxx_DefaultAdvancedDisk3Client) GetProperties(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultAdvancedDisk3Client) GetUniqueID(ctx context.Context, in *GetUniqueIDRequest, opts ...dcerpc.CallOption) (*GetUniqueIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -314,13 +314,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -330,7 +332,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -350,15 +352,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:                 o.That,
-		AdvancedDiskProperty: o.AdvancedDiskProperty,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.AdvancedDiskProperty = op.AdvancedDiskProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -370,7 +374,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -542,13 +546,15 @@ type GetUniqueIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetUniqueIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetUniqueIDOperation {
+func (o *GetUniqueIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDOperation) *xxx_GetUniqueIDOperation {
+	if op == nil {
+		op = &xxx_GetUniqueIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUniqueIDOperation{}
+		return op
 	}
-	return &xxx_GetUniqueIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetUniqueIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueIDOperation) {
@@ -558,7 +564,7 @@ func (o *GetUniqueIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueID
 	o.This = op.This
 }
 func (o *GetUniqueIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUniqueIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUniqueIDOperation{}
@@ -580,15 +586,17 @@ type GetUniqueIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUniqueIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetUniqueIDOperation {
+func (o *GetUniqueIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDOperation) *xxx_GetUniqueIDOperation {
+	if op == nil {
+		op = &xxx_GetUniqueIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUniqueIDOperation{}
+		return op
 	}
-	return &xxx_GetUniqueIDOperation{
-		That:   o.That,
-		ID:     o.ID,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.ID = op.ID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUniqueIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueIDOperation) {
@@ -600,7 +608,7 @@ func (o *GetUniqueIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueI
 	o.Return = op.Return
 }
 func (o *GetUniqueIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUniqueIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUniqueIDOperation{}

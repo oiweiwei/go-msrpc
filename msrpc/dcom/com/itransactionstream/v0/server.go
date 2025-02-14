@@ -83,33 +83,61 @@ func TransactionStreamServerHandle(ctx context.Context, o TransactionStreamServe
 	}
 	switch opNum {
 	case 3: // GetSeqAndTxViaExport
-		in := &GetSeqAndTxViaExportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSeqAndTxViaExportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSeqAndTxViaExport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSeqAndTxViaExportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSeqAndTxViaExport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetSeqAndTxViaTransmitter
-		in := &GetSeqAndTxViaTransmitterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSeqAndTxViaTransmitterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSeqAndTxViaTransmitter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSeqAndTxViaTransmitterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSeqAndTxViaTransmitter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetTxViaExport
-		in := &GetTxViaExportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTxViaExportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTxViaExport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTxViaExportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTxViaExport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetTxViaTransmitter
-		in := &GetTxViaTransmitterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTxViaTransmitterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTxViaTransmitter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTxViaTransmitterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTxViaTransmitter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITransactionStream
+type UnimplementedTransactionStreamServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedTransactionStreamServer) GetSeqAndTxViaExport(context.Context, *GetSeqAndTxViaExportRequest) (*GetSeqAndTxViaExportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTransactionStreamServer) GetSeqAndTxViaTransmitter(context.Context, *GetSeqAndTxViaTransmitterRequest) (*GetSeqAndTxViaTransmitterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTransactionStreamServer) GetTxViaExport(context.Context, *GetTxViaExportRequest) (*GetTxViaExportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTransactionStreamServer) GetTxViaTransmitter(context.Context, *GetTxViaTransmitterRequest) (*GetTxViaTransmitterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TransactionStreamServer = (*UnimplementedTransactionStreamServer)(nil)

@@ -79,33 +79,61 @@ func PropertyServerHandle(ctx context.Context, o PropertyServer, opNum int, r nd
 	}
 	switch opNum {
 	case 7: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Value
-		in := &GetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Sources
-		in := &GetSourcesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSourcesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSources(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSourcesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSources(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // PropertyFlags
-		in := &GetPropertyFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmProperty
+type UnimplementedPropertyServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedPropertyServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyServer) GetValue(context.Context, *GetValueRequest) (*GetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyServer) GetSources(context.Context, *GetSourcesRequest) (*GetSourcesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyServer) GetPropertyFlags(context.Context, *GetPropertyFlagsRequest) (*GetPropertyFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PropertyServer = (*UnimplementedPropertyServer)(nil)

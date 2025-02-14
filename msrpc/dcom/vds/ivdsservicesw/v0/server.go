@@ -57,12 +57,25 @@ func ServiceSwServerHandle(ctx context.Context, o ServiceSwServer, opNum int, r 
 	}
 	switch opNum {
 	case 3: // GetDiskObject
-		in := &GetDiskObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDiskObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDiskObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDiskObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDiskObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceSw
+type UnimplementedServiceSwServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceSwServer) GetDiskObject(context.Context, *GetDiskObjectRequest) (*GetDiskObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceSwServer = (*UnimplementedServiceSwServer)(nil)

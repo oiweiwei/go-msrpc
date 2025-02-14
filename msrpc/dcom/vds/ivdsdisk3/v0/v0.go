@@ -87,7 +87,7 @@ func (o *xxx_DefaultDisk3Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDisk3Client) GetProperties2(ctx context.Context, in *GetProperties2Request, opts ...dcerpc.CallOption) (*GetProperties2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -107,7 +107,7 @@ func (o *xxx_DefaultDisk3Client) GetProperties2(ctx context.Context, in *GetProp
 }
 
 func (o *xxx_DefaultDisk3Client) QueryFreeExtents(ctx context.Context, in *QueryFreeExtentsRequest, opts ...dcerpc.CallOption) (*QueryFreeExtentsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -319,13 +319,15 @@ type GetProperties2Request struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetProperties2Request) xxx_ToOp(ctx context.Context) *xxx_GetProperties2Operation {
+func (o *GetProperties2Request) xxx_ToOp(ctx context.Context, op *xxx_GetProperties2Operation) *xxx_GetProperties2Operation {
+	if op == nil {
+		op = &xxx_GetProperties2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetProperties2Operation{}
+		return op
 	}
-	return &xxx_GetProperties2Operation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetProperties2Request) xxx_FromOp(ctx context.Context, op *xxx_GetProperties2Operation) {
@@ -335,7 +337,7 @@ func (o *GetProperties2Request) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.This = op.This
 }
 func (o *GetProperties2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetProperties2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProperties2Operation{}
@@ -355,15 +357,17 @@ type GetProperties2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetProperties2Response) xxx_ToOp(ctx context.Context) *xxx_GetProperties2Operation {
+func (o *GetProperties2Response) xxx_ToOp(ctx context.Context, op *xxx_GetProperties2Operation) *xxx_GetProperties2Operation {
+	if op == nil {
+		op = &xxx_GetProperties2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetProperties2Operation{}
+		return op
 	}
-	return &xxx_GetProperties2Operation{
-		That:           o.That,
-		DiskProperties: o.DiskProperties,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.DiskProperties = op.DiskProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetProperties2Response) xxx_FromOp(ctx context.Context, op *xxx_GetProperties2Operation) {
@@ -375,7 +379,7 @@ func (o *GetProperties2Response) xxx_FromOp(ctx context.Context, op *xxx_GetProp
 	o.Return = op.Return
 }
 func (o *GetProperties2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetProperties2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProperties2Operation{}
@@ -620,14 +624,16 @@ type QueryFreeExtentsRequest struct {
 	Align uint32 `idl:"name:ulAlign" json:"align"`
 }
 
-func (o *QueryFreeExtentsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryFreeExtentsOperation {
+func (o *QueryFreeExtentsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFreeExtentsOperation) *xxx_QueryFreeExtentsOperation {
+	if op == nil {
+		op = &xxx_QueryFreeExtentsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFreeExtentsOperation{}
+		return op
 	}
-	return &xxx_QueryFreeExtentsOperation{
-		This:  o.This,
-		Align: o.Align,
-	}
+	o.This = op.This
+	o.Align = op.Align
+	return op
 }
 
 func (o *QueryFreeExtentsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryFreeExtentsOperation) {
@@ -638,7 +644,7 @@ func (o *QueryFreeExtentsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryF
 	o.Align = op.Align
 }
 func (o *QueryFreeExtentsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFreeExtentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFreeExtentsOperation{}
@@ -663,16 +669,18 @@ type QueryFreeExtentsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFreeExtentsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryFreeExtentsOperation {
+func (o *QueryFreeExtentsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFreeExtentsOperation) *xxx_QueryFreeExtentsOperation {
+	if op == nil {
+		op = &xxx_QueryFreeExtentsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFreeExtentsOperation{}
+		return op
 	}
-	return &xxx_QueryFreeExtentsOperation{
-		That:                o.That,
-		FreeExtentArray:     o.FreeExtentArray,
-		NumberOfFreeExtents: o.NumberOfFreeExtents,
-		Return:              o.Return,
-	}
+	o.That = op.That
+	o.FreeExtentArray = op.FreeExtentArray
+	o.NumberOfFreeExtents = op.NumberOfFreeExtents
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFreeExtentsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryFreeExtentsOperation) {
@@ -685,7 +693,7 @@ func (o *QueryFreeExtentsResponse) xxx_FromOp(ctx context.Context, op *xxx_Query
 	o.Return = op.Return
 }
 func (o *QueryFreeExtentsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFreeExtentsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFreeExtentsOperation{}

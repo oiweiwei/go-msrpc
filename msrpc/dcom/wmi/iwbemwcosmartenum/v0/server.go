@@ -52,12 +52,25 @@ func WCOSmartEnumServerHandle(ctx context.Context, o WCOSmartEnumServer, opNum i
 	}
 	switch opNum {
 	case 3: // Next
-		in := &NextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Next(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Next(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemWCOSmartEnum
+type UnimplementedWCOSmartEnumServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedWCOSmartEnumServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WCOSmartEnumServer = (*UnimplementedWCOSmartEnumServer)(nil)

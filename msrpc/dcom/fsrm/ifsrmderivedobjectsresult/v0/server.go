@@ -81,19 +81,37 @@ func DerivedObjectsResultServerHandle(ctx context.Context, o DerivedObjectsResul
 	}
 	switch opNum {
 	case 7: // DerivedObjects
-		in := &GetDerivedObjectsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDerivedObjectsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDerivedObjects(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDerivedObjectsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDerivedObjects(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Results
-		in := &GetResultsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResultsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResults(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResultsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResults(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmDerivedObjectsResult
+type UnimplementedDerivedObjectsResultServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedDerivedObjectsResultServer) GetDerivedObjects(context.Context, *GetDerivedObjectsRequest) (*GetDerivedObjectsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDerivedObjectsResultServer) GetResults(context.Context, *GetResultsRequest) (*GetResultsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DerivedObjectsResultServer = (*UnimplementedDerivedObjectsResultServer)(nil)

@@ -55,19 +55,37 @@ func FileGroupImportedServerHandle(ctx context.Context, o FileGroupImportedServe
 	}
 	switch opNum {
 	case 18: // OverwriteOnCommit
-		in := &GetOverwriteOnCommitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOverwriteOnCommitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOverwriteOnCommit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOverwriteOnCommitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOverwriteOnCommit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // OverwriteOnCommit
-		in := &SetOverwriteOnCommitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOverwriteOnCommitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOverwriteOnCommit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOverwriteOnCommitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOverwriteOnCommit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileGroupImported
+type UnimplementedFileGroupImportedServer struct {
+	ifsrmfilegroup.UnimplementedFileGroupServer
+}
+
+func (UnimplementedFileGroupImportedServer) GetOverwriteOnCommit(context.Context, *GetOverwriteOnCommitRequest) (*GetOverwriteOnCommitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupImportedServer) SetOverwriteOnCommit(context.Context, *SetOverwriteOnCommitRequest) (*SetOverwriteOnCommitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileGroupImportedServer = (*UnimplementedFileGroupImportedServer)(nil)

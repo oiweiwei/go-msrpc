@@ -91,7 +91,7 @@ func (o *xxx_DefaultQuotaManagerExClient) QuotaManager() ifsrmquotamanager.Quota
 }
 
 func (o *xxx_DefaultQuotaManagerExClient) IsAffectedByQuota(ctx context.Context, in *IsAffectedByQuotaRequest, opts ...dcerpc.CallOption) (*IsAffectedByQuotaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -357,15 +357,17 @@ type IsAffectedByQuotaRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *IsAffectedByQuotaRequest) xxx_ToOp(ctx context.Context) *xxx_IsAffectedByQuotaOperation {
+func (o *IsAffectedByQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_IsAffectedByQuotaOperation) *xxx_IsAffectedByQuotaOperation {
+	if op == nil {
+		op = &xxx_IsAffectedByQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_IsAffectedByQuotaOperation{}
+		return op
 	}
-	return &xxx_IsAffectedByQuotaOperation{
-		This:    o.This,
-		Path:    o.Path,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Options = op.Options
+	return op
 }
 
 func (o *IsAffectedByQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_IsAffectedByQuotaOperation) {
@@ -377,7 +379,7 @@ func (o *IsAffectedByQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_IsAff
 	o.Options = op.Options
 }
 func (o *IsAffectedByQuotaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsAffectedByQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsAffectedByQuotaOperation{}
@@ -399,15 +401,17 @@ type IsAffectedByQuotaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsAffectedByQuotaResponse) xxx_ToOp(ctx context.Context) *xxx_IsAffectedByQuotaOperation {
+func (o *IsAffectedByQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_IsAffectedByQuotaOperation) *xxx_IsAffectedByQuotaOperation {
+	if op == nil {
+		op = &xxx_IsAffectedByQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_IsAffectedByQuotaOperation{}
+		return op
 	}
-	return &xxx_IsAffectedByQuotaOperation{
-		That:     o.That,
-		Affected: o.Affected,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.Affected = op.Affected
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsAffectedByQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_IsAffectedByQuotaOperation) {
@@ -419,7 +423,7 @@ func (o *IsAffectedByQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_IsAf
 	o.Return = op.Return
 }
 func (o *IsAffectedByQuotaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsAffectedByQuotaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsAffectedByQuotaOperation{}

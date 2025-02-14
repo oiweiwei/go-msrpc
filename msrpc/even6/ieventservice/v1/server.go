@@ -312,208 +312,360 @@ func NewEventServiceServerHandle(o EventServiceServer) dcerpc.ServerHandle {
 func EventServiceServerHandle(ctx context.Context, o EventServiceServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // EvtRpcRegisterRemoteSubscription
-		in := &RegisterRemoteSubscriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterRemoteSubscriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterRemoteSubscription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterRemoteSubscriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterRemoteSubscription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // EvtRpcRemoteSubscriptionNextAsync
-		in := &RemoteSubscriptionNextAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteSubscriptionNextAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteSubscriptionNextAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteSubscriptionNextAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteSubscriptionNextAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // EvtRpcRemoteSubscriptionNext
-		in := &RemoteSubscriptionNextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteSubscriptionNextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteSubscriptionNext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteSubscriptionNextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteSubscriptionNext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // EvtRpcRemoteSubscriptionWaitAsync
-		in := &RemoteSubscriptionWaitAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteSubscriptionWaitAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteSubscriptionWaitAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteSubscriptionWaitAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteSubscriptionWaitAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // EvtRpcRegisterControllableOperation
-		in := &RegisterControllableOperationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterControllableOperationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterControllableOperation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterControllableOperationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterControllableOperation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // EvtRpcRegisterLogQuery
-		in := &RegisterLogQueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterLogQueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterLogQuery(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterLogQueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterLogQuery(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // EvtRpcClearLog
-		in := &ClearLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // EvtRpcExportLog
-		in := &ExportLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExportLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // EvtRpcLocalizeExportLog
-		in := &LocalizeExportLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LocalizeExportLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LocalizeExportLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LocalizeExportLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LocalizeExportLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // EvtRpcMessageRender
-		in := &MessageRenderRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageRenderOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MessageRender(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageRenderRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MessageRender(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // EvtRpcMessageRenderDefault
-		in := &MessageRenderDefaultRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageRenderDefaultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MessageRenderDefault(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageRenderDefaultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MessageRenderDefault(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // EvtRpcQueryNext
-		in := &QueryNextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryNextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryNext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryNextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryNext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // EvtRpcQuerySeek
-		in := &QuerySeekRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySeekOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySeek(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySeekRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySeek(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // EvtRpcClose
-		in := &CloseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Close(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Close(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // EvtRpcCancel
-		in := &CancelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Cancel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Cancel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // EvtRpcAssertConfig
-		in := &AssertConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AssertConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AssertConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AssertConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AssertConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // EvtRpcRetractConfig
-		in := &RetractConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetractConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetractConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetractConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetractConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // EvtRpcOpenLogHandle
-		in := &OpenLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // EvtRpcGetLogFileInfo
-		in := &GetLogFileInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogFileInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogFileInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogFileInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogFileInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // EvtRpcGetChannelList
-		in := &GetChannelListRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetChannelListOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetChannelList(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetChannelListRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetChannelList(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // EvtRpcGetChannelConfig
-		in := &GetChannelConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetChannelConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetChannelConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetChannelConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetChannelConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // EvtRpcPutChannelConfig
-		in := &PutChannelConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutChannelConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutChannelConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutChannelConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutChannelConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // EvtRpcGetPublisherList
-		in := &GetPublisherListRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherListOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherList(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherListRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherList(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // EvtRpcGetPublisherListForChannel
-		in := &GetPublisherListForChannelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherListForChannelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherListForChannel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherListForChannelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherListForChannel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // EvtRpcGetPublisherMetadata
-		in := &GetPublisherMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // EvtRpcGetPublisherResourceMetadata
-		in := &GetPublisherResourceMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherResourceMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherResourceMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherResourceMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherResourceMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // EvtRpcGetEventMetadataEnum
-		in := &GetEventMetadataEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventMetadataEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventMetadataEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventMetadataEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventMetadataEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // EvtRpcGetNextEventMetadata
-		in := &GetNextEventMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNextEventMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNextEventMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNextEventMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNextEventMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // EvtRpcGetClassicLogDisplayName
-		in := &GetClassicLogDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClassicLogDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClassicLogDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClassicLogDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClassicLogDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventService
+type UnimplementedEventServiceServer struct {
+}
+
+func (UnimplementedEventServiceServer) RegisterRemoteSubscription(context.Context, *RegisterRemoteSubscriptionRequest) (*RegisterRemoteSubscriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) RemoteSubscriptionNextAsync(context.Context, *RemoteSubscriptionNextAsyncRequest) (*RemoteSubscriptionNextAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) RemoteSubscriptionNext(context.Context, *RemoteSubscriptionNextRequest) (*RemoteSubscriptionNextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) RemoteSubscriptionWaitAsync(context.Context, *RemoteSubscriptionWaitAsyncRequest) (*RemoteSubscriptionWaitAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) RegisterControllableOperation(context.Context, *RegisterControllableOperationRequest) (*RegisterControllableOperationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) RegisterLogQuery(context.Context, *RegisterLogQueryRequest) (*RegisterLogQueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) ClearLog(context.Context, *ClearLogRequest) (*ClearLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) ExportLog(context.Context, *ExportLogRequest) (*ExportLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) LocalizeExportLog(context.Context, *LocalizeExportLogRequest) (*LocalizeExportLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) MessageRender(context.Context, *MessageRenderRequest) (*MessageRenderResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) MessageRenderDefault(context.Context, *MessageRenderDefaultRequest) (*MessageRenderDefaultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) QueryNext(context.Context, *QueryNextRequest) (*QueryNextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) QuerySeek(context.Context, *QuerySeekRequest) (*QuerySeekResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) AssertConfig(context.Context, *AssertConfigRequest) (*AssertConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) RetractConfig(context.Context, *RetractConfigRequest) (*RetractConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) OpenLog(context.Context, *OpenLogRequest) (*OpenLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetLogFileInfo(context.Context, *GetLogFileInfoRequest) (*GetLogFileInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetChannelList(context.Context, *GetChannelListRequest) (*GetChannelListResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetChannelConfig(context.Context, *GetChannelConfigRequest) (*GetChannelConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) PutChannelConfig(context.Context, *PutChannelConfigRequest) (*PutChannelConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetPublisherList(context.Context, *GetPublisherListRequest) (*GetPublisherListResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetPublisherListForChannel(context.Context, *GetPublisherListForChannelRequest) (*GetPublisherListForChannelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetPublisherMetadata(context.Context, *GetPublisherMetadataRequest) (*GetPublisherMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetPublisherResourceMetadata(context.Context, *GetPublisherResourceMetadataRequest) (*GetPublisherResourceMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetEventMetadataEnum(context.Context, *GetEventMetadataEnumRequest) (*GetEventMetadataEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetNextEventMetadata(context.Context, *GetNextEventMetadataRequest) (*GetNextEventMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventServiceServer) GetClassicLogDisplayName(context.Context, *GetClassicLogDisplayNameRequest) (*GetClassicLogDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventServiceServer = (*UnimplementedEventServiceServer)(nil)

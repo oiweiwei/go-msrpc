@@ -128,7 +128,7 @@ func (o *xxx_DefaultMutableCollectionClient) Collection() ifsrmcollection.Collec
 }
 
 func (o *xxx_DefaultMutableCollectionClient) Add(ctx context.Context, in *AddRequest, opts ...dcerpc.CallOption) (*AddResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -148,7 +148,7 @@ func (o *xxx_DefaultMutableCollectionClient) Add(ctx context.Context, in *AddReq
 }
 
 func (o *xxx_DefaultMutableCollectionClient) Remove(ctx context.Context, in *RemoveRequest, opts ...dcerpc.CallOption) (*RemoveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -168,7 +168,7 @@ func (o *xxx_DefaultMutableCollectionClient) Remove(ctx context.Context, in *Rem
 }
 
 func (o *xxx_DefaultMutableCollectionClient) RemoveByID(ctx context.Context, in *RemoveByIDRequest, opts ...dcerpc.CallOption) (*RemoveByIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -188,7 +188,7 @@ func (o *xxx_DefaultMutableCollectionClient) RemoveByID(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultMutableCollectionClient) Clone(ctx context.Context, in *CloneRequest, opts ...dcerpc.CallOption) (*CloneResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -403,14 +403,16 @@ type AddRequest struct {
 	Item *oaut.Variant `idl:"name:item" json:"item"`
 }
 
-func (o *AddRequest) xxx_ToOp(ctx context.Context) *xxx_AddOperation {
+func (o *AddRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_AddOperation {
+	if op == nil {
+		op = &xxx_AddOperation{}
+	}
 	if o == nil {
-		return &xxx_AddOperation{}
+		return op
 	}
-	return &xxx_AddOperation{
-		This: o.This,
-		Item: o.Item,
-	}
+	o.This = op.This
+	o.Item = op.Item
+	return op
 }
 
 func (o *AddRequest) xxx_FromOp(ctx context.Context, op *xxx_AddOperation) {
@@ -421,7 +423,7 @@ func (o *AddRequest) xxx_FromOp(ctx context.Context, op *xxx_AddOperation) {
 	o.Item = op.Item
 }
 func (o *AddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddOperation{}
@@ -440,14 +442,16 @@ type AddResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddResponse) xxx_ToOp(ctx context.Context) *xxx_AddOperation {
+func (o *AddResponse) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_AddOperation {
+	if op == nil {
+		op = &xxx_AddOperation{}
+	}
 	if o == nil {
-		return &xxx_AddOperation{}
+		return op
 	}
-	return &xxx_AddOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddResponse) xxx_FromOp(ctx context.Context, op *xxx_AddOperation) {
@@ -458,7 +462,7 @@ func (o *AddResponse) xxx_FromOp(ctx context.Context, op *xxx_AddOperation) {
 	o.Return = op.Return
 }
 func (o *AddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddOperation{}
@@ -608,14 +612,16 @@ type RemoveRequest struct {
 	Index int32 `idl:"name:index" json:"index"`
 }
 
-func (o *RemoveRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveOperation {
+func (o *RemoveRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *xxx_RemoveOperation {
+	if op == nil {
+		op = &xxx_RemoveOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOperation{}
+		return op
 	}
-	return &xxx_RemoveOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *RemoveRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation) {
@@ -626,7 +632,7 @@ func (o *RemoveRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation)
 	o.Index = op.Index
 }
 func (o *RemoveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOperation{}
@@ -645,14 +651,16 @@ type RemoveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveOperation {
+func (o *RemoveResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *xxx_RemoveOperation {
+	if op == nil {
+		op = &xxx_RemoveOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOperation{}
+		return op
 	}
-	return &xxx_RemoveOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation) {
@@ -663,7 +671,7 @@ func (o *RemoveResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation
 	o.Return = op.Return
 }
 func (o *RemoveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOperation{}
@@ -821,14 +829,16 @@ type RemoveByIDRequest struct {
 	ID *fsrm.ObjectID `idl:"name:id" json:"id"`
 }
 
-func (o *RemoveByIDRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveByIDOperation {
+func (o *RemoveByIDRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveByIDOperation) *xxx_RemoveByIDOperation {
+	if op == nil {
+		op = &xxx_RemoveByIDOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveByIDOperation{}
+		return op
 	}
-	return &xxx_RemoveByIDOperation{
-		This: o.This,
-		ID:   o.ID,
-	}
+	o.This = op.This
+	o.ID = op.ID
+	return op
 }
 
 func (o *RemoveByIDRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveByIDOperation) {
@@ -839,7 +849,7 @@ func (o *RemoveByIDRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveByIDOp
 	o.ID = op.ID
 }
 func (o *RemoveByIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveByIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveByIDOperation{}
@@ -858,14 +868,16 @@ type RemoveByIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveByIDResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveByIDOperation {
+func (o *RemoveByIDResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveByIDOperation) *xxx_RemoveByIDOperation {
+	if op == nil {
+		op = &xxx_RemoveByIDOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveByIDOperation{}
+		return op
 	}
-	return &xxx_RemoveByIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveByIDResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveByIDOperation) {
@@ -876,7 +888,7 @@ func (o *RemoveByIDResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveByIDO
 	o.Return = op.Return
 }
 func (o *RemoveByIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveByIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveByIDOperation{}
@@ -1057,13 +1069,15 @@ type CloneRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CloneRequest) xxx_ToOp(ctx context.Context) *xxx_CloneOperation {
+func (o *CloneRequest) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xxx_CloneOperation {
+	if op == nil {
+		op = &xxx_CloneOperation{}
+	}
 	if o == nil {
-		return &xxx_CloneOperation{}
+		return op
 	}
-	return &xxx_CloneOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CloneRequest) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) {
@@ -1073,7 +1087,7 @@ func (o *CloneRequest) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) {
 	o.This = op.This
 }
 func (o *CloneRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloneOperation{}
@@ -1096,15 +1110,17 @@ type CloneResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloneResponse) xxx_ToOp(ctx context.Context) *xxx_CloneOperation {
+func (o *CloneResponse) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xxx_CloneOperation {
+	if op == nil {
+		op = &xxx_CloneOperation{}
+	}
 	if o == nil {
-		return &xxx_CloneOperation{}
+		return op
 	}
-	return &xxx_CloneOperation{
-		That:       o.That,
-		Collection: o.Collection,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Collection = op.Collection
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloneResponse) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) {
@@ -1116,7 +1132,7 @@ func (o *CloneResponse) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) 
 	o.Return = op.Return
 }
 func (o *CloneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloneResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloneOperation{}

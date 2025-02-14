@@ -65,19 +65,37 @@ func RemoteDispatchServerHandle(ctx context.Context, o RemoteDispatchServer, opN
 	}
 	switch opNum {
 	case 7: // RemoteDispatchAutoDone
-		in := &RemoteDispatchAutoDoneRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteDispatchAutoDoneOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteDispatchAutoDone(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteDispatchAutoDoneRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteDispatchAutoDone(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RemoteDispatchNotAutoDone
-		in := &RemoteDispatchNotAutoDoneRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteDispatchNotAutoDoneOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteDispatchNotAutoDone(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteDispatchNotAutoDoneRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteDispatchNotAutoDone(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRemoteDispatch
+type UnimplementedRemoteDispatchServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedRemoteDispatchServer) RemoteDispatchAutoDone(context.Context, *RemoteDispatchAutoDoneRequest) (*RemoteDispatchAutoDoneResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteDispatchServer) RemoteDispatchNotAutoDone(context.Context, *RemoteDispatchNotAutoDoneRequest) (*RemoteDispatchNotAutoDoneResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteDispatchServer = (*UnimplementedRemoteDispatchServer)(nil)

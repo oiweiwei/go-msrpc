@@ -133,7 +133,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) Dispatch() idispatch.Dispatc
 }
 
 func (o *xxx_DefaultFileManagementJobManagerClient) GetActionVariables(ctx context.Context, in *GetActionVariablesRequest, opts ...dcerpc.CallOption) (*GetActionVariablesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -153,7 +153,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) GetActionVariables(ctx conte
 }
 
 func (o *xxx_DefaultFileManagementJobManagerClient) GetActionVariableDescriptions(ctx context.Context, in *GetActionVariableDescriptionsRequest, opts ...dcerpc.CallOption) (*GetActionVariableDescriptionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -173,7 +173,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) GetActionVariableDescription
 }
 
 func (o *xxx_DefaultFileManagementJobManagerClient) EnumFileManagementJobs(ctx context.Context, in *EnumFileManagementJobsRequest, opts ...dcerpc.CallOption) (*EnumFileManagementJobsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -193,7 +193,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) EnumFileManagementJobs(ctx c
 }
 
 func (o *xxx_DefaultFileManagementJobManagerClient) CreateFileManagementJob(ctx context.Context, in *CreateFileManagementJobRequest, opts ...dcerpc.CallOption) (*CreateFileManagementJobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -213,7 +213,7 @@ func (o *xxx_DefaultFileManagementJobManagerClient) CreateFileManagementJob(ctx 
 }
 
 func (o *xxx_DefaultFileManagementJobManagerClient) GetFileManagementJob(ctx context.Context, in *GetFileManagementJobRequest, opts ...dcerpc.CallOption) (*GetFileManagementJobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -446,13 +446,15 @@ type GetActionVariablesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionVariablesOperation {
+func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariablesOperation) *xxx_GetActionVariablesOperation {
+	if op == nil {
+		op = &xxx_GetActionVariablesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariablesOperation{}
+		return op
 	}
-	return &xxx_GetActionVariablesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionVariablesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariablesOperation) {
@@ -462,7 +464,7 @@ func (o *GetActionVariablesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.This = op.This
 }
 func (o *GetActionVariablesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionVariablesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariablesOperation{}
@@ -482,15 +484,17 @@ type GetActionVariablesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionVariablesOperation {
+func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariablesOperation) *xxx_GetActionVariablesOperation {
+	if op == nil {
+		op = &xxx_GetActionVariablesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariablesOperation{}
+		return op
 	}
-	return &xxx_GetActionVariablesOperation{
-		That:      o.That,
-		Variables: o.Variables,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Variables = op.Variables
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionVariablesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariablesOperation) {
@@ -502,7 +506,7 @@ func (o *GetActionVariablesResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetActionVariablesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionVariablesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariablesOperation{}
@@ -685,13 +689,15 @@ type GetActionVariableDescriptionsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionVariableDescriptionsOperation {
+func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) *xxx_GetActionVariableDescriptionsOperation {
+	if op == nil {
+		op = &xxx_GetActionVariableDescriptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariableDescriptionsOperation{}
+		return op
 	}
-	return &xxx_GetActionVariableDescriptionsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionVariableDescriptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) {
@@ -701,7 +707,7 @@ func (o *GetActionVariableDescriptionsRequest) xxx_FromOp(ctx context.Context, o
 	o.This = op.This
 }
 func (o *GetActionVariableDescriptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionVariableDescriptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariableDescriptionsOperation{}
@@ -721,15 +727,17 @@ type GetActionVariableDescriptionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionVariableDescriptionsOperation {
+func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) *xxx_GetActionVariableDescriptionsOperation {
+	if op == nil {
+		op = &xxx_GetActionVariableDescriptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariableDescriptionsOperation{}
+		return op
 	}
-	return &xxx_GetActionVariableDescriptionsOperation{
-		That:         o.That,
-		Descriptions: o.Descriptions,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.Descriptions = op.Descriptions
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionVariableDescriptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) {
@@ -741,7 +749,7 @@ func (o *GetActionVariableDescriptionsResponse) xxx_FromOp(ctx context.Context, 
 	o.Return = op.Return
 }
 func (o *GetActionVariableDescriptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionVariableDescriptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariableDescriptionsOperation{}
@@ -940,14 +948,16 @@ type EnumFileManagementJobsRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumFileManagementJobsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumFileManagementJobsOperation {
+func (o *EnumFileManagementJobsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFileManagementJobsOperation) *xxx_EnumFileManagementJobsOperation {
+	if op == nil {
+		op = &xxx_EnumFileManagementJobsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileManagementJobsOperation{}
+		return op
 	}
-	return &xxx_EnumFileManagementJobsOperation{
-		This:    o.This,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumFileManagementJobsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFileManagementJobsOperation) {
@@ -958,7 +968,7 @@ func (o *EnumFileManagementJobsRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Options = op.Options
 }
 func (o *EnumFileManagementJobsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFileManagementJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileManagementJobsOperation{}
@@ -981,15 +991,17 @@ type EnumFileManagementJobsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFileManagementJobsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumFileManagementJobsOperation {
+func (o *EnumFileManagementJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFileManagementJobsOperation) *xxx_EnumFileManagementJobsOperation {
+	if op == nil {
+		op = &xxx_EnumFileManagementJobsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileManagementJobsOperation{}
+		return op
 	}
-	return &xxx_EnumFileManagementJobsOperation{
-		That:               o.That,
-		FileManagementJobs: o.FileManagementJobs,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.FileManagementJobs = op.FileManagementJobs
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFileManagementJobsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFileManagementJobsOperation) {
@@ -1001,7 +1013,7 @@ func (o *EnumFileManagementJobsResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *EnumFileManagementJobsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFileManagementJobsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileManagementJobsOperation{}
@@ -1184,13 +1196,15 @@ type CreateFileManagementJobRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateFileManagementJobRequest) xxx_ToOp(ctx context.Context) *xxx_CreateFileManagementJobOperation {
+func (o *CreateFileManagementJobRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFileManagementJobOperation) *xxx_CreateFileManagementJobOperation {
+	if op == nil {
+		op = &xxx_CreateFileManagementJobOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileManagementJobOperation{}
+		return op
 	}
-	return &xxx_CreateFileManagementJobOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateFileManagementJobRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateFileManagementJobOperation) {
@@ -1200,7 +1214,7 @@ func (o *CreateFileManagementJobRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.This = op.This
 }
 func (o *CreateFileManagementJobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateFileManagementJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileManagementJobOperation{}
@@ -1225,15 +1239,17 @@ type CreateFileManagementJobResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateFileManagementJobResponse) xxx_ToOp(ctx context.Context) *xxx_CreateFileManagementJobOperation {
+func (o *CreateFileManagementJobResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFileManagementJobOperation) *xxx_CreateFileManagementJobOperation {
+	if op == nil {
+		op = &xxx_CreateFileManagementJobOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileManagementJobOperation{}
+		return op
 	}
-	return &xxx_CreateFileManagementJobOperation{
-		That:              o.That,
-		FileManagementJob: o.FileManagementJob,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.FileManagementJob = op.FileManagementJob
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateFileManagementJobResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateFileManagementJobOperation) {
@@ -1245,7 +1261,7 @@ func (o *CreateFileManagementJobResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *CreateFileManagementJobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateFileManagementJobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileManagementJobOperation{}
@@ -1477,14 +1493,16 @@ type GetFileManagementJobRequest struct {
 	Name *oaut.String `idl:"name:name" json:"name"`
 }
 
-func (o *GetFileManagementJobRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileManagementJobOperation {
+func (o *GetFileManagementJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileManagementJobOperation) *xxx_GetFileManagementJobOperation {
+	if op == nil {
+		op = &xxx_GetFileManagementJobOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileManagementJobOperation{}
+		return op
 	}
-	return &xxx_GetFileManagementJobOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *GetFileManagementJobRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileManagementJobOperation) {
@@ -1495,7 +1513,7 @@ func (o *GetFileManagementJobRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Name = op.Name
 }
 func (o *GetFileManagementJobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileManagementJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileManagementJobOperation{}
@@ -1519,15 +1537,17 @@ type GetFileManagementJobResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileManagementJobResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileManagementJobOperation {
+func (o *GetFileManagementJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileManagementJobOperation) *xxx_GetFileManagementJobOperation {
+	if op == nil {
+		op = &xxx_GetFileManagementJobOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileManagementJobOperation{}
+		return op
 	}
-	return &xxx_GetFileManagementJobOperation{
-		That:              o.That,
-		FileManagementJob: o.FileManagementJob,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.FileManagementJob = op.FileManagementJob
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileManagementJobResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileManagementJobOperation) {
@@ -1539,7 +1559,7 @@ func (o *GetFileManagementJobResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetFileManagementJobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileManagementJobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileManagementJobOperation{}

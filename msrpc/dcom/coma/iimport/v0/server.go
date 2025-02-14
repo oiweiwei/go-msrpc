@@ -94,19 +94,23 @@ func ImportServerHandle(ctx context.Context, o ImportServer, opNum int, r ndr.Re
 	}
 	switch opNum {
 	case 3: // ImportFromFile
-		in := &ImportFromFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportFromFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportFromFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportFromFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportFromFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // QueryFile
-		in := &QueryFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
@@ -116,3 +120,17 @@ func ImportServerHandle(ctx context.Context, o ImportServer, opNum int, r ndr.Re
 	}
 	return nil, nil
 }
+
+// Unimplemented IImport
+type UnimplementedImportServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedImportServer) ImportFromFile(context.Context, *ImportFromFileRequest) (*ImportFromFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedImportServer) QueryFile(context.Context, *QueryFileRequest) (*QueryFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ImportServer = (*UnimplementedImportServer)(nil)

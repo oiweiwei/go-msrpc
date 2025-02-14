@@ -71,19 +71,37 @@ func RemovableServerHandle(ctx context.Context, o RemovableServer, opNum int, r 
 	}
 	switch opNum {
 	case 3: // QueryMedia
-		in := &QueryMediaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryMediaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryMedia(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryMediaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryMedia(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Eject
-		in := &EjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Eject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Eject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsRemovable
+type UnimplementedRemovableServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedRemovableServer) QueryMedia(context.Context, *QueryMediaRequest) (*QueryMediaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemovableServer) Eject(context.Context, *EjectRequest) (*EjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemovableServer = (*UnimplementedRemovableServer)(nil)

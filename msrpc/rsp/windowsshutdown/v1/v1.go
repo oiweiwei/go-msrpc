@@ -65,7 +65,7 @@ type xxx_DefaultWindowsShutdownClient struct {
 }
 
 func (o *xxx_DefaultWindowsShutdownClient) InitiateShutdown(ctx context.Context, in *InitiateShutdownRequest, opts ...dcerpc.CallOption) (*InitiateShutdownResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -78,7 +78,7 @@ func (o *xxx_DefaultWindowsShutdownClient) InitiateShutdown(ctx context.Context,
 }
 
 func (o *xxx_DefaultWindowsShutdownClient) AbortShutdown(ctx context.Context, in *AbortShutdownRequest, opts ...dcerpc.CallOption) (*AbortShutdownResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -363,17 +363,19 @@ type InitiateShutdownRequest struct {
 	ClientHint *rsp.UnicodeString `idl:"name:lpClientHint;pointer:unique" json:"client_hint"`
 }
 
-func (o *InitiateShutdownRequest) xxx_ToOp(ctx context.Context) *xxx_InitiateShutdownOperation {
+func (o *InitiateShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_InitiateShutdownOperation) *xxx_InitiateShutdownOperation {
+	if op == nil {
+		op = &xxx_InitiateShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_InitiateShutdownOperation{}
+		return op
 	}
-	return &xxx_InitiateShutdownOperation{
-		Message:      o.Message,
-		GracePeriod:  o.GracePeriod,
-		ShudownFlags: o.ShudownFlags,
-		Reason:       o.Reason,
-		ClientHint:   o.ClientHint,
-	}
+	o.Message = op.Message
+	o.GracePeriod = op.GracePeriod
+	o.ShudownFlags = op.ShudownFlags
+	o.Reason = op.Reason
+	o.ClientHint = op.ClientHint
+	return op
 }
 
 func (o *InitiateShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx_InitiateShutdownOperation) {
@@ -387,7 +389,7 @@ func (o *InitiateShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx_Initia
 	o.ClientHint = op.ClientHint
 }
 func (o *InitiateShutdownRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InitiateShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitiateShutdownOperation{}
@@ -404,13 +406,15 @@ type InitiateShutdownResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InitiateShutdownResponse) xxx_ToOp(ctx context.Context) *xxx_InitiateShutdownOperation {
+func (o *InitiateShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_InitiateShutdownOperation) *xxx_InitiateShutdownOperation {
+	if op == nil {
+		op = &xxx_InitiateShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_InitiateShutdownOperation{}
+		return op
 	}
-	return &xxx_InitiateShutdownOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *InitiateShutdownResponse) xxx_FromOp(ctx context.Context, op *xxx_InitiateShutdownOperation) {
@@ -420,7 +424,7 @@ func (o *InitiateShutdownResponse) xxx_FromOp(ctx context.Context, op *xxx_Initi
 	o.Return = op.Return
 }
 func (o *InitiateShutdownResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InitiateShutdownResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitiateShutdownOperation{}
@@ -546,13 +550,15 @@ type AbortShutdownRequest struct {
 	ClientHint *rsp.UnicodeString `idl:"name:lpClientHint;pointer:unique" json:"client_hint"`
 }
 
-func (o *AbortShutdownRequest) xxx_ToOp(ctx context.Context) *xxx_AbortShutdownOperation {
+func (o *AbortShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortShutdownOperation) *xxx_AbortShutdownOperation {
+	if op == nil {
+		op = &xxx_AbortShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_AbortShutdownOperation{}
+		return op
 	}
-	return &xxx_AbortShutdownOperation{
-		ClientHint: o.ClientHint,
-	}
+	o.ClientHint = op.ClientHint
+	return op
 }
 
 func (o *AbortShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx_AbortShutdownOperation) {
@@ -562,7 +568,7 @@ func (o *AbortShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx_AbortShut
 	o.ClientHint = op.ClientHint
 }
 func (o *AbortShutdownRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AbortShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AbortShutdownOperation{}
@@ -579,13 +585,15 @@ type AbortShutdownResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AbortShutdownResponse) xxx_ToOp(ctx context.Context) *xxx_AbortShutdownOperation {
+func (o *AbortShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortShutdownOperation) *xxx_AbortShutdownOperation {
+	if op == nil {
+		op = &xxx_AbortShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_AbortShutdownOperation{}
+		return op
 	}
-	return &xxx_AbortShutdownOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AbortShutdownResponse) xxx_FromOp(ctx context.Context, op *xxx_AbortShutdownOperation) {
@@ -595,7 +603,7 @@ func (o *AbortShutdownResponse) xxx_FromOp(ctx context.Context, op *xxx_AbortShu
 	o.Return = op.Return
 }
 func (o *AbortShutdownResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AbortShutdownResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AbortShutdownOperation{}

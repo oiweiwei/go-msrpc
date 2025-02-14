@@ -222,7 +222,7 @@ type xxx_DefaultNetEventForwarderClient struct {
 }
 
 func (o *xxx_DefaultNetEventForwarderClient) OpenSession(ctx context.Context, in *OpenSessionRequest, opts ...dcerpc.CallOption) (*OpenSessionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -235,7 +235,7 @@ func (o *xxx_DefaultNetEventForwarderClient) OpenSession(ctx context.Context, in
 }
 
 func (o *xxx_DefaultNetEventForwarderClient) ReceiveData(ctx context.Context, in *ReceiveDataRequest, opts ...dcerpc.CallOption) (*ReceiveDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -248,7 +248,7 @@ func (o *xxx_DefaultNetEventForwarderClient) ReceiveData(ctx context.Context, in
 }
 
 func (o *xxx_DefaultNetEventForwarderClient) CloseSession(ctx context.Context, in *CloseSessionRequest, opts ...dcerpc.CallOption) (*CloseSessionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -376,13 +376,15 @@ type OpenSessionRequest struct {
 	LoggerName string `idl:"name:LoggerName;string" json:"logger_name"`
 }
 
-func (o *OpenSessionRequest) xxx_ToOp(ctx context.Context) *xxx_OpenSessionOperation {
+func (o *OpenSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionOperation) *xxx_OpenSessionOperation {
+	if op == nil {
+		op = &xxx_OpenSessionOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSessionOperation{}
+		return op
 	}
-	return &xxx_OpenSessionOperation{
-		LoggerName: o.LoggerName,
-	}
+	o.LoggerName = op.LoggerName
+	return op
 }
 
 func (o *OpenSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSessionOperation) {
@@ -392,7 +394,7 @@ func (o *OpenSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSession
 	o.LoggerName = op.LoggerName
 }
 func (o *OpenSessionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSessionOperation{}
@@ -410,14 +412,16 @@ type OpenSessionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenSessionResponse) xxx_ToOp(ctx context.Context) *xxx_OpenSessionOperation {
+func (o *OpenSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSessionOperation) *xxx_OpenSessionOperation {
+	if op == nil {
+		op = &xxx_OpenSessionOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSessionOperation{}
+		return op
 	}
-	return &xxx_OpenSessionOperation{
-		SessionHandle: o.SessionHandle,
-		Return:        o.Return,
-	}
+	o.SessionHandle = op.SessionHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSessionOperation) {
@@ -428,7 +432,7 @@ func (o *OpenSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSessio
 	o.Return = op.Return
 }
 func (o *OpenSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSessionOperation{}
@@ -557,13 +561,15 @@ type ReceiveDataRequest struct {
 	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
 }
 
-func (o *ReceiveDataRequest) xxx_ToOp(ctx context.Context) *xxx_ReceiveDataOperation {
+func (o *ReceiveDataRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveDataOperation) *xxx_ReceiveDataOperation {
+	if op == nil {
+		op = &xxx_ReceiveDataOperation{}
+	}
 	if o == nil {
-		return &xxx_ReceiveDataOperation{}
+		return op
 	}
-	return &xxx_ReceiveDataOperation{
-		SessionHandle: o.SessionHandle,
-	}
+	o.SessionHandle = op.SessionHandle
+	return op
 }
 
 func (o *ReceiveDataRequest) xxx_FromOp(ctx context.Context, op *xxx_ReceiveDataOperation) {
@@ -573,7 +579,7 @@ func (o *ReceiveDataRequest) xxx_FromOp(ctx context.Context, op *xxx_ReceiveData
 	o.SessionHandle = op.SessionHandle
 }
 func (o *ReceiveDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReceiveDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReceiveDataOperation{}
@@ -591,14 +597,16 @@ type ReceiveDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReceiveDataResponse) xxx_ToOp(ctx context.Context) *xxx_ReceiveDataOperation {
+func (o *ReceiveDataResponse) xxx_ToOp(ctx context.Context, op *xxx_ReceiveDataOperation) *xxx_ReceiveDataOperation {
+	if op == nil {
+		op = &xxx_ReceiveDataOperation{}
+	}
 	if o == nil {
-		return &xxx_ReceiveDataOperation{}
+		return op
 	}
-	return &xxx_ReceiveDataOperation{
-		EventBuffer: o.EventBuffer,
-		Return:      o.Return,
-	}
+	o.EventBuffer = op.EventBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReceiveDataResponse) xxx_FromOp(ctx context.Context, op *xxx_ReceiveDataOperation) {
@@ -609,7 +617,7 @@ func (o *ReceiveDataResponse) xxx_FromOp(ctx context.Context, op *xxx_ReceiveDat
 	o.Return = op.Return
 }
 func (o *ReceiveDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReceiveDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReceiveDataOperation{}
@@ -718,13 +726,15 @@ type CloseSessionRequest struct {
 	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
 }
 
-func (o *CloseSessionRequest) xxx_ToOp(ctx context.Context) *xxx_CloseSessionOperation {
+func (o *CloseSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseSessionOperation) *xxx_CloseSessionOperation {
+	if op == nil {
+		op = &xxx_CloseSessionOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseSessionOperation{}
+		return op
 	}
-	return &xxx_CloseSessionOperation{
-		SessionHandle: o.SessionHandle,
-	}
+	o.SessionHandle = op.SessionHandle
+	return op
 }
 
 func (o *CloseSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseSessionOperation) {
@@ -734,7 +744,7 @@ func (o *CloseSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseSessi
 	o.SessionHandle = op.SessionHandle
 }
 func (o *CloseSessionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseSessionOperation{}
@@ -750,13 +760,15 @@ type CloseSessionResponse struct {
 	SessionHandle *Session `idl:"name:SessionHandle" json:"session_handle"`
 }
 
-func (o *CloseSessionResponse) xxx_ToOp(ctx context.Context) *xxx_CloseSessionOperation {
+func (o *CloseSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseSessionOperation) *xxx_CloseSessionOperation {
+	if op == nil {
+		op = &xxx_CloseSessionOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseSessionOperation{}
+		return op
 	}
-	return &xxx_CloseSessionOperation{
-		SessionHandle: o.SessionHandle,
-	}
+	o.SessionHandle = op.SessionHandle
+	return op
 }
 
 func (o *CloseSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseSessionOperation) {
@@ -766,7 +778,7 @@ func (o *CloseSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseSess
 	o.SessionHandle = op.SessionHandle
 }
 func (o *CloseSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseSessionOperation{}

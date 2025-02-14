@@ -76,68 +76,121 @@ func AppHostPropertyServerHandle(ctx context.Context, o AppHostPropertyServer, o
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Value
-		in := &GetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Value
-		in := &SetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Clear
-		in := &ClearRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clear(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clear(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // StringValue
-		in := &GetStringValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStringValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStringValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStringValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStringValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Exception
-		in := &GetExceptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExceptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetException(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExceptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetException(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // SetMetadata
-		in := &SetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Schema
-		in := &GetSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostProperty
+type UnimplementedAppHostPropertyServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostPropertyServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) GetValue(context.Context, *GetValueRequest) (*GetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) SetValue(context.Context, *SetValueRequest) (*SetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) Clear(context.Context, *ClearRequest) (*ClearResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) GetStringValue(context.Context, *GetStringValueRequest) (*GetStringValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) GetException(context.Context, *GetExceptionRequest) (*GetExceptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) SetMetadata(context.Context, *SetMetadataRequest) (*SetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyServer) GetSchema(context.Context, *GetSchemaRequest) (*GetSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostPropertyServer = (*UnimplementedAppHostPropertyServer)(nil)

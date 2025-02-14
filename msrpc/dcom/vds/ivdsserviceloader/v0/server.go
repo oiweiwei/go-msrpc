@@ -58,12 +58,25 @@ func ServiceLoaderServerHandle(ctx context.Context, o ServiceLoaderServer, opNum
 	}
 	switch opNum {
 	case 3: // LoadService
-		in := &LoadServiceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LoadServiceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LoadService(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LoadServiceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LoadService(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceLoader
+type UnimplementedServiceLoaderServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceLoaderServer) LoadService(context.Context, *LoadServiceRequest) (*LoadServiceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceLoaderServer = (*UnimplementedServiceLoaderServer)(nil)

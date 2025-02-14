@@ -87,7 +87,7 @@ func (o *xxx_DefaultExport2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultExport2Client) ExportPartition(ctx context.Context, in *ExportPartitionRequest, opts ...dcerpc.CallOption) (*ExportPartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -359,16 +359,18 @@ type ExportPartitionRequest struct {
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *ExportPartitionRequest) xxx_ToOp(ctx context.Context) *xxx_ExportPartitionOperation {
+func (o *ExportPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportPartitionOperation) *xxx_ExportPartitionOperation {
+	if op == nil {
+		op = &xxx_ExportPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportPartitionOperation{}
+		return op
 	}
-	return &xxx_ExportPartitionOperation{
-		This:             o.This,
-		PartitionID:      o.PartitionID,
-		InstallerPackage: o.InstallerPackage,
-		Flags:            o.Flags,
-	}
+	o.This = op.This
+	o.PartitionID = op.PartitionID
+	o.InstallerPackage = op.InstallerPackage
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ExportPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportPartitionOperation) {
@@ -381,7 +383,7 @@ func (o *ExportPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportP
 	o.Flags = op.Flags
 }
 func (o *ExportPartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExportPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportPartitionOperation{}
@@ -400,14 +402,16 @@ type ExportPartitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExportPartitionResponse) xxx_ToOp(ctx context.Context) *xxx_ExportPartitionOperation {
+func (o *ExportPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportPartitionOperation) *xxx_ExportPartitionOperation {
+	if op == nil {
+		op = &xxx_ExportPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportPartitionOperation{}
+		return op
 	}
-	return &xxx_ExportPartitionOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExportPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportPartitionOperation) {
@@ -418,7 +422,7 @@ func (o *ExportPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_Export
 	o.Return = op.Return
 }
 func (o *ExportPartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExportPartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportPartitionOperation{}

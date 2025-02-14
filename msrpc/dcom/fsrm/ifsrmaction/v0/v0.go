@@ -97,7 +97,7 @@ func (o *xxx_DefaultActionClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultActionClient) GetID(ctx context.Context, in *GetIDRequest, opts ...dcerpc.CallOption) (*GetIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -117,7 +117,7 @@ func (o *xxx_DefaultActionClient) GetID(ctx context.Context, in *GetIDRequest, o
 }
 
 func (o *xxx_DefaultActionClient) GetActionType(ctx context.Context, in *GetActionTypeRequest, opts ...dcerpc.CallOption) (*GetActionTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultActionClient) GetActionType(ctx context.Context, in *GetActi
 }
 
 func (o *xxx_DefaultActionClient) GetRunLimitInterval(ctx context.Context, in *GetRunLimitIntervalRequest, opts ...dcerpc.CallOption) (*GetRunLimitIntervalResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -157,7 +157,7 @@ func (o *xxx_DefaultActionClient) GetRunLimitInterval(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultActionClient) SetRunLimitInterval(ctx context.Context, in *SetRunLimitIntervalRequest, opts ...dcerpc.CallOption) (*SetRunLimitIntervalResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -177,7 +177,7 @@ func (o *xxx_DefaultActionClient) SetRunLimitInterval(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultActionClient) Delete(ctx context.Context, in *DeleteRequest, opts ...dcerpc.CallOption) (*DeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -383,13 +383,15 @@ type GetIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetIDOperation {
+func (o *GetIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *xxx_GetIDOperation {
+	if op == nil {
+		op = &xxx_GetIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIDOperation{}
+		return op
 	}
-	return &xxx_GetIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIDOperation) {
@@ -399,7 +401,7 @@ func (o *GetIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIDOperation) {
 	o.This = op.This
 }
 func (o *GetIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIDOperation{}
@@ -419,15 +421,17 @@ type GetIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetIDOperation {
+func (o *GetIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *xxx_GetIDOperation {
+	if op == nil {
+		op = &xxx_GetIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIDOperation{}
+		return op
 	}
-	return &xxx_GetIDOperation{
-		That:   o.That,
-		ID:     o.ID,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.ID = op.ID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIDOperation) {
@@ -439,7 +443,7 @@ func (o *GetIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIDOperation) 
 	o.Return = op.Return
 }
 func (o *GetIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIDOperation{}
@@ -586,13 +590,15 @@ type GetActionTypeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionTypeRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionTypeOperation {
+func (o *GetActionTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionTypeOperation) *xxx_GetActionTypeOperation {
+	if op == nil {
+		op = &xxx_GetActionTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionTypeOperation{}
+		return op
 	}
-	return &xxx_GetActionTypeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionTypeOperation) {
@@ -602,7 +608,7 @@ func (o *GetActionTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAction
 	o.This = op.This
 }
 func (o *GetActionTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionTypeOperation{}
@@ -624,15 +630,17 @@ type GetActionTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionTypeResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionTypeOperation {
+func (o *GetActionTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionTypeOperation) *xxx_GetActionTypeOperation {
+	if op == nil {
+		op = &xxx_GetActionTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionTypeOperation{}
+		return op
 	}
-	return &xxx_GetActionTypeOperation{
-		That:       o.That,
-		ActionType: o.ActionType,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.ActionType = op.ActionType
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionTypeOperation) {
@@ -644,7 +652,7 @@ func (o *GetActionTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActio
 	o.Return = op.Return
 }
 func (o *GetActionTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionTypeOperation{}
@@ -791,13 +799,15 @@ type GetRunLimitIntervalRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetRunLimitIntervalRequest) xxx_ToOp(ctx context.Context) *xxx_GetRunLimitIntervalOperation {
+func (o *GetRunLimitIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRunLimitIntervalOperation) *xxx_GetRunLimitIntervalOperation {
+	if op == nil {
+		op = &xxx_GetRunLimitIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRunLimitIntervalOperation{}
+		return op
 	}
-	return &xxx_GetRunLimitIntervalOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetRunLimitIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRunLimitIntervalOperation) {
@@ -807,7 +817,7 @@ func (o *GetRunLimitIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.This = op.This
 }
 func (o *GetRunLimitIntervalRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRunLimitIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRunLimitIntervalOperation{}
@@ -827,15 +837,17 @@ type GetRunLimitIntervalResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRunLimitIntervalResponse) xxx_ToOp(ctx context.Context) *xxx_GetRunLimitIntervalOperation {
+func (o *GetRunLimitIntervalResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRunLimitIntervalOperation) *xxx_GetRunLimitIntervalOperation {
+	if op == nil {
+		op = &xxx_GetRunLimitIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRunLimitIntervalOperation{}
+		return op
 	}
-	return &xxx_GetRunLimitIntervalOperation{
-		That:    o.That,
-		Minutes: o.Minutes,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Minutes = op.Minutes
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRunLimitIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRunLimitIntervalOperation) {
@@ -847,7 +859,7 @@ func (o *GetRunLimitIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetRunLimitIntervalResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRunLimitIntervalResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRunLimitIntervalOperation{}
@@ -995,14 +1007,16 @@ type SetRunLimitIntervalRequest struct {
 	Minutes int32          `idl:"name:minutes" json:"minutes"`
 }
 
-func (o *SetRunLimitIntervalRequest) xxx_ToOp(ctx context.Context) *xxx_SetRunLimitIntervalOperation {
+func (o *SetRunLimitIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRunLimitIntervalOperation) *xxx_SetRunLimitIntervalOperation {
+	if op == nil {
+		op = &xxx_SetRunLimitIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_SetRunLimitIntervalOperation{}
+		return op
 	}
-	return &xxx_SetRunLimitIntervalOperation{
-		This:    o.This,
-		Minutes: o.Minutes,
-	}
+	o.This = op.This
+	o.Minutes = op.Minutes
+	return op
 }
 
 func (o *SetRunLimitIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_SetRunLimitIntervalOperation) {
@@ -1013,7 +1027,7 @@ func (o *SetRunLimitIntervalRequest) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Minutes = op.Minutes
 }
 func (o *SetRunLimitIntervalRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetRunLimitIntervalRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetRunLimitIntervalOperation{}
@@ -1032,14 +1046,16 @@ type SetRunLimitIntervalResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetRunLimitIntervalResponse) xxx_ToOp(ctx context.Context) *xxx_SetRunLimitIntervalOperation {
+func (o *SetRunLimitIntervalResponse) xxx_ToOp(ctx context.Context, op *xxx_SetRunLimitIntervalOperation) *xxx_SetRunLimitIntervalOperation {
+	if op == nil {
+		op = &xxx_SetRunLimitIntervalOperation{}
+	}
 	if o == nil {
-		return &xxx_SetRunLimitIntervalOperation{}
+		return op
 	}
-	return &xxx_SetRunLimitIntervalOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetRunLimitIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_SetRunLimitIntervalOperation) {
@@ -1050,7 +1066,7 @@ func (o *SetRunLimitIntervalResponse) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Return = op.Return
 }
 func (o *SetRunLimitIntervalResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetRunLimitIntervalResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetRunLimitIntervalOperation{}
@@ -1184,13 +1200,15 @@ type DeleteRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *DeleteRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteOperation {
+func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *xxx_DeleteOperation {
+	if op == nil {
+		op = &xxx_DeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteOperation{}
+		return op
 	}
-	return &xxx_DeleteOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *DeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation) {
@@ -1200,7 +1218,7 @@ func (o *DeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation)
 	o.This = op.This
 }
 func (o *DeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteOperation{}
@@ -1219,14 +1237,16 @@ type DeleteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteOperation {
+func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *xxx_DeleteOperation {
+	if op == nil {
+		op = &xxx_DeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteOperation{}
+		return op
 	}
-	return &xxx_DeleteOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation) {
@@ -1237,7 +1257,7 @@ func (o *DeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation
 	o.Return = op.Return
 }
 func (o *DeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteOperation{}

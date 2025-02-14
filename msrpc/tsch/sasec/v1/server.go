@@ -64,33 +64,60 @@ func NewSasecServerHandle(o SasecServer) dcerpc.ServerHandle {
 func SasecServerHandle(ctx context.Context, o SasecServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // SASetAccountInformation
-		in := &SetAccountInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAccountInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAccountInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAccountInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAccountInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // SASetNSAccountInformation
-		in := &SetNSAccountInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNSAccountInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNSAccountInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNSAccountInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNSAccountInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // SAGetNSAccountInformation
-		in := &GetNSAccountInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNSAccountInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNSAccountInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNSAccountInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNSAccountInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // SAGetAccountInformation
-		in := &GetAccountInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAccountInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAccountInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAccountInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAccountInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented sasec
+type UnimplementedSasecServer struct {
+}
+
+func (UnimplementedSasecServer) SetAccountInformation(context.Context, *SetAccountInformationRequest) (*SetAccountInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSasecServer) SetNSAccountInformation(context.Context, *SetNSAccountInformationRequest) (*SetNSAccountInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSasecServer) GetNSAccountInformation(context.Context, *GetNSAccountInformationRequest) (*GetNSAccountInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSasecServer) GetAccountInformation(context.Context, *GetAccountInformationRequest) (*GetAccountInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SasecServer = (*UnimplementedSasecServer)(nil)

@@ -218,19 +218,23 @@ func WinregServerHandle(ctx context.Context, o WinregServer, opNum int, r ndr.Re
 		// Opnum23NotImplemented
 		return nil, nil
 	case 24: // BaseInitiateSystemShutdown
-		in := &BaseInitiateSystemShutdownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseInitiateSystemShutdownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseInitiateSystemShutdown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseInitiateSystemShutdownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseInitiateSystemShutdown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // BaseAbortSystemShutdown
-		in := &BaseAbortSystemShutdownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseAbortSystemShutdownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseAbortSystemShutdown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseAbortSystemShutdownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseAbortSystemShutdown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // Opnum26NotImplemented
 		// Opnum26NotImplemented
 		return nil, nil
@@ -244,12 +248,30 @@ func WinregServerHandle(ctx context.Context, o WinregServer, opNum int, r ndr.Re
 		// Opnum29NotImplemented
 		return nil, nil
 	case 30: // BaseInitiateSystemShutdownEx
-		in := &BaseInitiateSystemShutdownExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseInitiateSystemShutdownExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseInitiateSystemShutdownEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseInitiateSystemShutdownExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseInitiateSystemShutdownEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented winreg
+type UnimplementedWinregServer struct {
+}
+
+func (UnimplementedWinregServer) BaseInitiateSystemShutdown(context.Context, *BaseInitiateSystemShutdownRequest) (*BaseInitiateSystemShutdownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseAbortSystemShutdown(context.Context, *BaseAbortSystemShutdownRequest) (*BaseAbortSystemShutdownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseInitiateSystemShutdownEx(context.Context, *BaseInitiateSystemShutdownExRequest) (*BaseInitiateSystemShutdownExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WinregServer = (*UnimplementedWinregServer)(nil)

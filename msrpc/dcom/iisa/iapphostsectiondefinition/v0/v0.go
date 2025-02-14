@@ -97,7 +97,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) Unknown() iunknown.UnknownCl
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) GetName(ctx context.Context, in *GetNameRequest, opts ...dcerpc.CallOption) (*GetNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -117,7 +117,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetName(ctx context.Context,
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) GetType(ctx context.Context, in *GetTypeRequest, opts ...dcerpc.CallOption) (*GetTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetType(ctx context.Context,
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) SetType(ctx context.Context, in *SetTypeRequest, opts ...dcerpc.CallOption) (*SetTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -157,7 +157,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetType(ctx context.Context,
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) GetOverrideModeDefault(ctx context.Context, in *GetOverrideModeDefaultRequest, opts ...dcerpc.CallOption) (*GetOverrideModeDefaultResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -177,7 +177,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetOverrideModeDefault(ctx c
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) SetOverrideModeDefault(ctx context.Context, in *SetOverrideModeDefaultRequest, opts ...dcerpc.CallOption) (*SetOverrideModeDefaultResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -197,7 +197,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetOverrideModeDefault(ctx c
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) GetAllowDefinition(ctx context.Context, in *GetAllowDefinitionRequest, opts ...dcerpc.CallOption) (*GetAllowDefinitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -217,7 +217,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetAllowDefinition(ctx conte
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) SetAllowDefinition(ctx context.Context, in *SetAllowDefinitionRequest, opts ...dcerpc.CallOption) (*SetAllowDefinitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -237,7 +237,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) SetAllowDefinition(ctx conte
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) GetAllowLocation(ctx context.Context, in *GetAllowLocationRequest, opts ...dcerpc.CallOption) (*GetAllowLocationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -257,7 +257,7 @@ func (o *xxx_DefaultAppHostSectionDefinitionClient) GetAllowLocation(ctx context
 }
 
 func (o *xxx_DefaultAppHostSectionDefinitionClient) SetAllowLocation(ctx context.Context, in *SetAllowLocationRequest, opts ...dcerpc.CallOption) (*SetAllowLocationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -488,13 +488,15 @@ type GetNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -504,7 +506,7 @@ func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperatio
 	o.This = op.This
 }
 func (o *GetNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -524,15 +526,17 @@ type GetNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		That:   o.That,
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -544,7 +548,7 @@ func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperati
 	o.Return = op.Return
 }
 func (o *GetNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -725,13 +729,15 @@ type GetTypeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetTypeRequest) xxx_ToOp(ctx context.Context) *xxx_GetTypeOperation {
+func (o *GetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation) *xxx_GetTypeOperation {
+	if op == nil {
+		op = &xxx_GetTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTypeOperation{}
+		return op
 	}
-	return &xxx_GetTypeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTypeOperation) {
@@ -741,7 +747,7 @@ func (o *GetTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTypeOperatio
 	o.This = op.This
 }
 func (o *GetTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTypeOperation{}
@@ -761,15 +767,17 @@ type GetTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTypeResponse) xxx_ToOp(ctx context.Context) *xxx_GetTypeOperation {
+func (o *GetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation) *xxx_GetTypeOperation {
+	if op == nil {
+		op = &xxx_GetTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTypeOperation{}
+		return op
 	}
-	return &xxx_GetTypeOperation{
-		That:   o.That,
-		Type:   o.Type,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Type = op.Type
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTypeOperation) {
@@ -781,7 +789,7 @@ func (o *GetTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTypeOperati
 	o.Return = op.Return
 }
 func (o *GetTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTypeOperation{}
@@ -963,14 +971,16 @@ type SetTypeRequest struct {
 	Type *oaut.String   `idl:"name:bstrType" json:"type"`
 }
 
-func (o *SetTypeRequest) xxx_ToOp(ctx context.Context) *xxx_SetTypeOperation {
+func (o *SetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation) *xxx_SetTypeOperation {
+	if op == nil {
+		op = &xxx_SetTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetTypeOperation{}
+		return op
 	}
-	return &xxx_SetTypeOperation{
-		This: o.This,
-		Type: o.Type,
-	}
+	o.This = op.This
+	o.Type = op.Type
+	return op
 }
 
 func (o *SetTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetTypeOperation) {
@@ -981,7 +991,7 @@ func (o *SetTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetTypeOperatio
 	o.Type = op.Type
 }
 func (o *SetTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetTypeOperation{}
@@ -1000,14 +1010,16 @@ type SetTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetTypeResponse) xxx_ToOp(ctx context.Context) *xxx_SetTypeOperation {
+func (o *SetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation) *xxx_SetTypeOperation {
+	if op == nil {
+		op = &xxx_SetTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetTypeOperation{}
+		return op
 	}
-	return &xxx_SetTypeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetTypeOperation) {
@@ -1018,7 +1030,7 @@ func (o *SetTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetTypeOperati
 	o.Return = op.Return
 }
 func (o *SetTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetTypeOperation{}
@@ -1201,13 +1213,15 @@ type GetOverrideModeDefaultRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetOverrideModeDefaultRequest) xxx_ToOp(ctx context.Context) *xxx_GetOverrideModeDefaultOperation {
+func (o *GetOverrideModeDefaultRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOverrideModeDefaultOperation) *xxx_GetOverrideModeDefaultOperation {
+	if op == nil {
+		op = &xxx_GetOverrideModeDefaultOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOverrideModeDefaultOperation{}
+		return op
 	}
-	return &xxx_GetOverrideModeDefaultOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetOverrideModeDefaultRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOverrideModeDefaultOperation) {
@@ -1217,7 +1231,7 @@ func (o *GetOverrideModeDefaultRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *GetOverrideModeDefaultRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetOverrideModeDefaultRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOverrideModeDefaultOperation{}
@@ -1237,15 +1251,17 @@ type GetOverrideModeDefaultResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetOverrideModeDefaultResponse) xxx_ToOp(ctx context.Context) *xxx_GetOverrideModeDefaultOperation {
+func (o *GetOverrideModeDefaultResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOverrideModeDefaultOperation) *xxx_GetOverrideModeDefaultOperation {
+	if op == nil {
+		op = &xxx_GetOverrideModeDefaultOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOverrideModeDefaultOperation{}
+		return op
 	}
-	return &xxx_GetOverrideModeDefaultOperation{
-		That:                o.That,
-		OverrideModeDefault: o.OverrideModeDefault,
-		Return:              o.Return,
-	}
+	o.That = op.That
+	o.OverrideModeDefault = op.OverrideModeDefault
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetOverrideModeDefaultResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOverrideModeDefaultOperation) {
@@ -1257,7 +1273,7 @@ func (o *GetOverrideModeDefaultResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetOverrideModeDefaultResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetOverrideModeDefaultResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOverrideModeDefaultOperation{}
@@ -1441,14 +1457,16 @@ type SetOverrideModeDefaultRequest struct {
 	OverrideModeDefault *oaut.String   `idl:"name:bstrOverrideModeDefault" json:"override_mode_default"`
 }
 
-func (o *SetOverrideModeDefaultRequest) xxx_ToOp(ctx context.Context) *xxx_SetOverrideModeDefaultOperation {
+func (o *SetOverrideModeDefaultRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOverrideModeDefaultOperation) *xxx_SetOverrideModeDefaultOperation {
+	if op == nil {
+		op = &xxx_SetOverrideModeDefaultOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOverrideModeDefaultOperation{}
+		return op
 	}
-	return &xxx_SetOverrideModeDefaultOperation{
-		This:                o.This,
-		OverrideModeDefault: o.OverrideModeDefault,
-	}
+	o.This = op.This
+	o.OverrideModeDefault = op.OverrideModeDefault
+	return op
 }
 
 func (o *SetOverrideModeDefaultRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOverrideModeDefaultOperation) {
@@ -1459,7 +1477,7 @@ func (o *SetOverrideModeDefaultRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.OverrideModeDefault = op.OverrideModeDefault
 }
 func (o *SetOverrideModeDefaultRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetOverrideModeDefaultRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOverrideModeDefaultOperation{}
@@ -1478,14 +1496,16 @@ type SetOverrideModeDefaultResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetOverrideModeDefaultResponse) xxx_ToOp(ctx context.Context) *xxx_SetOverrideModeDefaultOperation {
+func (o *SetOverrideModeDefaultResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOverrideModeDefaultOperation) *xxx_SetOverrideModeDefaultOperation {
+	if op == nil {
+		op = &xxx_SetOverrideModeDefaultOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOverrideModeDefaultOperation{}
+		return op
 	}
-	return &xxx_SetOverrideModeDefaultOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetOverrideModeDefaultResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOverrideModeDefaultOperation) {
@@ -1496,7 +1516,7 @@ func (o *SetOverrideModeDefaultResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *SetOverrideModeDefaultResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetOverrideModeDefaultResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOverrideModeDefaultOperation{}
@@ -1679,13 +1699,15 @@ type GetAllowDefinitionRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAllowDefinitionRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllowDefinitionOperation {
+func (o *GetAllowDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllowDefinitionOperation) *xxx_GetAllowDefinitionOperation {
+	if op == nil {
+		op = &xxx_GetAllowDefinitionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowDefinitionOperation{}
+		return op
 	}
-	return &xxx_GetAllowDefinitionOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAllowDefinitionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllowDefinitionOperation) {
@@ -1695,7 +1717,7 @@ func (o *GetAllowDefinitionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.This = op.This
 }
 func (o *GetAllowDefinitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllowDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowDefinitionOperation{}
@@ -1715,15 +1737,17 @@ type GetAllowDefinitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllowDefinitionResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllowDefinitionOperation {
+func (o *GetAllowDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllowDefinitionOperation) *xxx_GetAllowDefinitionOperation {
+	if op == nil {
+		op = &xxx_GetAllowDefinitionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowDefinitionOperation{}
+		return op
 	}
-	return &xxx_GetAllowDefinitionOperation{
-		That:            o.That,
-		AllowDefinition: o.AllowDefinition,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.AllowDefinition = op.AllowDefinition
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllowDefinitionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllowDefinitionOperation) {
@@ -1735,7 +1759,7 @@ func (o *GetAllowDefinitionResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetAllowDefinitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllowDefinitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowDefinitionOperation{}
@@ -1919,14 +1943,16 @@ type SetAllowDefinitionRequest struct {
 	AllowDefinition *oaut.String   `idl:"name:bstrAllowDefinition" json:"allow_definition"`
 }
 
-func (o *SetAllowDefinitionRequest) xxx_ToOp(ctx context.Context) *xxx_SetAllowDefinitionOperation {
+func (o *SetAllowDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAllowDefinitionOperation) *xxx_SetAllowDefinitionOperation {
+	if op == nil {
+		op = &xxx_SetAllowDefinitionOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowDefinitionOperation{}
+		return op
 	}
-	return &xxx_SetAllowDefinitionOperation{
-		This:            o.This,
-		AllowDefinition: o.AllowDefinition,
-	}
+	o.This = op.This
+	o.AllowDefinition = op.AllowDefinition
+	return op
 }
 
 func (o *SetAllowDefinitionRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAllowDefinitionOperation) {
@@ -1937,7 +1963,7 @@ func (o *SetAllowDefinitionRequest) xxx_FromOp(ctx context.Context, op *xxx_SetA
 	o.AllowDefinition = op.AllowDefinition
 }
 func (o *SetAllowDefinitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAllowDefinitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowDefinitionOperation{}
@@ -1956,14 +1982,16 @@ type SetAllowDefinitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAllowDefinitionResponse) xxx_ToOp(ctx context.Context) *xxx_SetAllowDefinitionOperation {
+func (o *SetAllowDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAllowDefinitionOperation) *xxx_SetAllowDefinitionOperation {
+	if op == nil {
+		op = &xxx_SetAllowDefinitionOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowDefinitionOperation{}
+		return op
 	}
-	return &xxx_SetAllowDefinitionOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAllowDefinitionResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAllowDefinitionOperation) {
@@ -1974,7 +2002,7 @@ func (o *SetAllowDefinitionResponse) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetAllowDefinitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAllowDefinitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowDefinitionOperation{}
@@ -2157,13 +2185,15 @@ type GetAllowLocationRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAllowLocationRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllowLocationOperation {
+func (o *GetAllowLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllowLocationOperation) *xxx_GetAllowLocationOperation {
+	if op == nil {
+		op = &xxx_GetAllowLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowLocationOperation{}
+		return op
 	}
-	return &xxx_GetAllowLocationOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAllowLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllowLocationOperation) {
@@ -2173,7 +2203,7 @@ func (o *GetAllowLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAll
 	o.This = op.This
 }
 func (o *GetAllowLocationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllowLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowLocationOperation{}
@@ -2193,15 +2223,17 @@ type GetAllowLocationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllowLocationResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllowLocationOperation {
+func (o *GetAllowLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllowLocationOperation) *xxx_GetAllowLocationOperation {
+	if op == nil {
+		op = &xxx_GetAllowLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowLocationOperation{}
+		return op
 	}
-	return &xxx_GetAllowLocationOperation{
-		That:          o.That,
-		AllowLocation: o.AllowLocation,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.AllowLocation = op.AllowLocation
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllowLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllowLocationOperation) {
@@ -2213,7 +2245,7 @@ func (o *GetAllowLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAl
 	o.Return = op.Return
 }
 func (o *GetAllowLocationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllowLocationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowLocationOperation{}
@@ -2397,14 +2429,16 @@ type SetAllowLocationRequest struct {
 	AllowLocation *oaut.String   `idl:"name:bstrAllowLocation" json:"allow_location"`
 }
 
-func (o *SetAllowLocationRequest) xxx_ToOp(ctx context.Context) *xxx_SetAllowLocationOperation {
+func (o *SetAllowLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAllowLocationOperation) *xxx_SetAllowLocationOperation {
+	if op == nil {
+		op = &xxx_SetAllowLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowLocationOperation{}
+		return op
 	}
-	return &xxx_SetAllowLocationOperation{
-		This:          o.This,
-		AllowLocation: o.AllowLocation,
-	}
+	o.This = op.This
+	o.AllowLocation = op.AllowLocation
+	return op
 }
 
 func (o *SetAllowLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAllowLocationOperation) {
@@ -2415,7 +2449,7 @@ func (o *SetAllowLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAll
 	o.AllowLocation = op.AllowLocation
 }
 func (o *SetAllowLocationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAllowLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowLocationOperation{}
@@ -2434,14 +2468,16 @@ type SetAllowLocationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAllowLocationResponse) xxx_ToOp(ctx context.Context) *xxx_SetAllowLocationOperation {
+func (o *SetAllowLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAllowLocationOperation) *xxx_SetAllowLocationOperation {
+	if op == nil {
+		op = &xxx_SetAllowLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowLocationOperation{}
+		return op
 	}
-	return &xxx_SetAllowLocationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAllowLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAllowLocationOperation) {
@@ -2452,7 +2488,7 @@ func (o *SetAllowLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAl
 	o.Return = op.Return
 }
 func (o *SetAllowLocationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAllowLocationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowLocationOperation{}

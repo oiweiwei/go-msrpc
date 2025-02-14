@@ -73,61 +73,109 @@ func SAFSessionServerHandle(ctx context.Context, o SAFSessionServer, opNum int, 
 	}
 	switch opNum {
 	case 7: // SessionID
-		in := &GetSessionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSessionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSessionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSessionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SessionID
-		in := &SetSessionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSessionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSessionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSessionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSessionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // SessionState
-		in := &GetSessionStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSessionStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSessionState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSessionStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSessionState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // SessionState
-		in := &SetSessionStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSessionStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSessionState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSessionStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSessionState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // DomainName
-		in := &GetDomainNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDomainNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDomainName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDomainNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDomainName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // DomainName
-		in := &SetDomainNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDomainNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDomainName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDomainNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDomainName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // UserName
-		in := &GetUserNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUserNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUserName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUserNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // UserName
-		in := &SetUserNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetUserNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetUserName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetUserNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetUserName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ISAFSession
+type UnimplementedSAFSessionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedSAFSessionServer) GetSessionID(context.Context, *GetSessionIDRequest) (*GetSessionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) SetSessionID(context.Context, *SetSessionIDRequest) (*SetSessionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) GetSessionState(context.Context, *GetSessionStateRequest) (*GetSessionStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) SetSessionState(context.Context, *SetSessionStateRequest) (*SetSessionStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) GetDomainName(context.Context, *GetDomainNameRequest) (*GetDomainNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) SetDomainName(context.Context, *SetDomainNameRequest) (*SetDomainNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) GetUserName(context.Context, *GetUserNameRequest) (*GetUserNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSAFSessionServer) SetUserName(context.Context, *SetUserNameRequest) (*SetUserNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SAFSessionServer = (*UnimplementedSAFSessionServer)(nil)

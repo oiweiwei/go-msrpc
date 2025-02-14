@@ -70,54 +70,97 @@ func AppHostConfigExceptionServerHandle(ctx context.Context, o AppHostConfigExce
 	}
 	switch opNum {
 	case 3: // LineNumber
-		in := &GetLineNumberRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLineNumberOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLineNumber(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLineNumberRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLineNumber(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // FileName
-		in := &GetFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ConfigPath
-		in := &GetConfigPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfigPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfigPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ErrorLine
-		in := &GetErrorLineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetErrorLineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetErrorLine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetErrorLineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetErrorLine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // PreErrorLine
-		in := &GetPreErrorLineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPreErrorLineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPreErrorLine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPreErrorLineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPreErrorLine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // PostErrorLine
-		in := &GetPostErrorLineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPostErrorLineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPostErrorLine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPostErrorLineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPostErrorLine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // ErrorString
-		in := &GetErrorStringRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetErrorStringOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetErrorString(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetErrorStringRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetErrorString(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostConfigException
+type UnimplementedAppHostConfigExceptionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostConfigExceptionServer) GetLineNumber(context.Context, *GetLineNumberRequest) (*GetLineNumberResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigExceptionServer) GetFileName(context.Context, *GetFileNameRequest) (*GetFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigExceptionServer) GetConfigPath(context.Context, *GetConfigPathRequest) (*GetConfigPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigExceptionServer) GetErrorLine(context.Context, *GetErrorLineRequest) (*GetErrorLineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigExceptionServer) GetPreErrorLine(context.Context, *GetPreErrorLineRequest) (*GetPreErrorLineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigExceptionServer) GetPostErrorLine(context.Context, *GetPostErrorLineRequest) (*GetPostErrorLineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigExceptionServer) GetErrorString(context.Context, *GetErrorStringRequest) (*GetErrorStringResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostConfigExceptionServer = (*UnimplementedAppHostConfigExceptionServer)(nil)

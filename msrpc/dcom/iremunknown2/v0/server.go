@@ -54,12 +54,25 @@ func RemoteUnknown2ServerHandle(ctx context.Context, o RemoteUnknown2Server, opN
 	}
 	switch opNum {
 	case 6: // RemQueryInterface2
-		in := &RemoteQueryInterface2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteQueryInterface2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteQueryInterface2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteQueryInterface2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteQueryInterface2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRemUnknown2
+type UnimplementedRemoteUnknown2Server struct {
+	iremunknown.UnimplementedRemoteUnknownServer
+}
+
+func (UnimplementedRemoteUnknown2Server) RemoteQueryInterface2(context.Context, *RemoteQueryInterface2Request) (*RemoteQueryInterface2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteUnknown2Server = (*UnimplementedRemoteUnknown2Server)(nil)

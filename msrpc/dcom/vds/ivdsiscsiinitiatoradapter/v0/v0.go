@@ -88,7 +88,7 @@ func (o *xxx_DefaultISCSIInitiatorAdapterClient) Unknown() iunknown.UnknownClien
 }
 
 func (o *xxx_DefaultISCSIInitiatorAdapterClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -108,7 +108,7 @@ func (o *xxx_DefaultISCSIInitiatorAdapterClient) GetProperties(ctx context.Conte
 }
 
 func (o *xxx_DefaultISCSIInitiatorAdapterClient) QueryInitiatorPortals(ctx context.Context, in *QueryInitiatorPortalsRequest, opts ...dcerpc.CallOption) (*QueryInitiatorPortalsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -322,13 +322,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -338,7 +340,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -358,15 +360,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:                     o.That,
-		InitiatorAdapterProperty: o.InitiatorAdapterProperty,
-		Return:                   o.Return,
-	}
+	o.That = op.That
+	o.InitiatorAdapterProperty = op.InitiatorAdapterProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -378,7 +382,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -561,13 +565,15 @@ type QueryInitiatorPortalsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryInitiatorPortalsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryInitiatorPortalsOperation {
+func (o *QueryInitiatorPortalsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryInitiatorPortalsOperation) *xxx_QueryInitiatorPortalsOperation {
+	if op == nil {
+		op = &xxx_QueryInitiatorPortalsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInitiatorPortalsOperation{}
+		return op
 	}
-	return &xxx_QueryInitiatorPortalsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryInitiatorPortalsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryInitiatorPortalsOperation) {
@@ -577,7 +583,7 @@ func (o *QueryInitiatorPortalsRequest) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.This = op.This
 }
 func (o *QueryInitiatorPortalsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryInitiatorPortalsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInitiatorPortalsOperation{}
@@ -601,15 +607,17 @@ type QueryInitiatorPortalsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryInitiatorPortalsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryInitiatorPortalsOperation {
+func (o *QueryInitiatorPortalsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryInitiatorPortalsOperation) *xxx_QueryInitiatorPortalsOperation {
+	if op == nil {
+		op = &xxx_QueryInitiatorPortalsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInitiatorPortalsOperation{}
+		return op
 	}
-	return &xxx_QueryInitiatorPortalsOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryInitiatorPortalsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryInitiatorPortalsOperation) {
@@ -621,7 +629,7 @@ func (o *QueryInitiatorPortalsResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryInitiatorPortalsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryInitiatorPortalsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInitiatorPortalsOperation{}

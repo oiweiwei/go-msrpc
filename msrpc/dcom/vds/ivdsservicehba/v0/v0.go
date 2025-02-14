@@ -79,7 +79,7 @@ func (o *xxx_DefaultServiceHBAClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServiceHBAClient) QueryHBAPorts(ctx context.Context, in *QueryHBAPortsRequest, opts ...dcerpc.CallOption) (*QueryHBAPortsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -310,13 +310,15 @@ type QueryHBAPortsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryHBAPortsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryHBAPortsOperation {
+func (o *QueryHBAPortsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryHBAPortsOperation) *xxx_QueryHBAPortsOperation {
+	if op == nil {
+		op = &xxx_QueryHBAPortsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryHBAPortsOperation{}
+		return op
 	}
-	return &xxx_QueryHBAPortsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryHBAPortsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryHBAPortsOperation) {
@@ -326,7 +328,7 @@ func (o *QueryHBAPortsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryHBAP
 	o.This = op.This
 }
 func (o *QueryHBAPortsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryHBAPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryHBAPortsOperation{}
@@ -350,15 +352,17 @@ type QueryHBAPortsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryHBAPortsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryHBAPortsOperation {
+func (o *QueryHBAPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryHBAPortsOperation) *xxx_QueryHBAPortsOperation {
+	if op == nil {
+		op = &xxx_QueryHBAPortsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryHBAPortsOperation{}
+		return op
 	}
-	return &xxx_QueryHBAPortsOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryHBAPortsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryHBAPortsOperation) {
@@ -370,7 +374,7 @@ func (o *QueryHBAPortsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryHBA
 	o.Return = op.Return
 }
 func (o *QueryHBAPortsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryHBAPortsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryHBAPortsOperation{}

@@ -311,295 +311,377 @@ func NewSamrServerHandle(o SamrServer) dcerpc.ServerHandle {
 func SamrServerHandle(ctx context.Context, o SamrServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // SamrConnect
-		in := &ConnectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConnectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Connect(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConnectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Connect(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // SamrCloseHandle
-		in := &CloseHandleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseHandleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseHandle(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseHandleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseHandle(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // SamrSetSecurityObject
-		in := &SetSecurityObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurityObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurityObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // SamrQuerySecurityObject
-		in := &QuerySecurityObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySecurityObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySecurityObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySecurityObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySecurityObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Opnum4NotUsedOnWire
 		// Opnum4NotUsedOnWire
 		return nil, nil
 	case 5: // SamrLookupDomainInSamServer
-		in := &LookupDomainInSAMServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupDomainInSAMServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupDomainInSAMServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupDomainInSAMServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupDomainInSAMServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // SamrEnumerateDomainsInSamServer
-		in := &EnumerateDomainsInSAMServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateDomainsInSAMServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateDomainsInSAMServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateDomainsInSAMServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateDomainsInSAMServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // SamrOpenDomain
-		in := &OpenDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SamrQueryInformationDomain
-		in := &QueryInformationDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // SamrSetInformationDomain
-		in := &SetInformationDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // SamrCreateGroupInDomain
-		in := &CreateGroupInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroupInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroupInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // SamrEnumerateGroupsInDomain
-		in := &EnumerateGroupsInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateGroupsInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateGroupsInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateGroupsInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateGroupsInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // SamrCreateUserInDomain
-		in := &CreateUserInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateUserInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateUserInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateUserInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateUserInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // SamrEnumerateUsersInDomain
-		in := &EnumerateUsersInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateUsersInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateUsersInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateUsersInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateUsersInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // SamrCreateAliasInDomain
-		in := &CreateAliasInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateAliasInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateAliasInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateAliasInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateAliasInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // SamrEnumerateAliasesInDomain
-		in := &EnumerateAliasesInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateAliasesInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateAliasesInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateAliasesInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateAliasesInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // SamrGetAliasMembership
-		in := &GetAliasMembershipRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAliasMembershipOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAliasMembership(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAliasMembershipRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAliasMembership(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // SamrLookupNamesInDomain
-		in := &LookupNamesInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNamesInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNamesInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNamesInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNamesInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // SamrLookupIdsInDomain
-		in := &LookupIDsInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupIDsInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupIDsInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupIDsInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupIDsInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // SamrOpenGroup
-		in := &OpenGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // SamrQueryInformationGroup
-		in := &QueryInformationGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // SamrSetInformationGroup
-		in := &SetInformationGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // SamrAddMemberToGroup
-		in := &AddMemberToGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddMemberToGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddMemberToGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddMemberToGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddMemberToGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // SamrDeleteGroup
-		in := &DeleteGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // SamrRemoveMemberFromGroup
-		in := &RemoveMemberFromGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMemberFromGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMemberFromGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMemberFromGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMemberFromGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // SamrGetMembersInGroup
-		in := &GetMembersInGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMembersInGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMembersInGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMembersInGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMembersInGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // SamrSetMemberAttributesOfGroup
-		in := &SetMemberAttributesOfGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMemberAttributesOfGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMemberAttributesOfGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMemberAttributesOfGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMemberAttributesOfGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // SamrOpenAlias
-		in := &OpenAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // SamrQueryInformationAlias
-		in := &QueryInformationAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // SamrSetInformationAlias
-		in := &SetInformationAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // SamrDeleteAlias
-		in := &DeleteAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // SamrAddMemberToAlias
-		in := &AddMemberToAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddMemberToAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddMemberToAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddMemberToAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddMemberToAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // SamrRemoveMemberFromAlias
-		in := &RemoveMemberFromAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMemberFromAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMemberFromAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMemberFromAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMemberFromAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // SamrGetMembersInAlias
-		in := &GetMembersInAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMembersInAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMembersInAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMembersInAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMembersInAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // SamrOpenUser
-		in := &OpenUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // SamrDeleteUser
-		in := &DeleteUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // SamrQueryInformationUser
-		in := &QueryInformationUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // SamrSetInformationUser
-		in := &SetInformationUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // SamrChangePasswordUser
-		in := &ChangePasswordUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangePasswordUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangePasswordUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangePasswordUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangePasswordUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // SamrGetGroupsForUser
-		in := &GetGroupsForUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGroupsForUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGroupsForUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGroupsForUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGroupsForUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // SamrQueryDisplayInformation
-		in := &QueryDisplayInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryDisplayInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryDisplayInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryDisplayInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryDisplayInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // SamrGetDisplayEnumerationIndex
-		in := &GetDisplayEnumerationIndexRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayEnumerationIndexOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayEnumerationIndex(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayEnumerationIndexRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayEnumerationIndex(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // Opnum42NotUsedOnWire
 		// Opnum42NotUsedOnWire
 		return nil, nil
@@ -607,110 +689,140 @@ func SamrServerHandle(ctx context.Context, o SamrServer, opNum int, r ndr.Reader
 		// Opnum43NotUsedOnWire
 		return nil, nil
 	case 44: // SamrGetUserDomainPasswordInformation
-		in := &GetUserDomainPasswordInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUserDomainPasswordInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUserDomainPasswordInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUserDomainPasswordInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserDomainPasswordInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // SamrRemoveMemberFromForeignDomain
-		in := &RemoveMemberFromForeignDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMemberFromForeignDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMemberFromForeignDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMemberFromForeignDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMemberFromForeignDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // SamrQueryInformationDomain2
-		in := &QueryInformationDomain2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationDomain2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationDomain2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationDomain2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationDomain2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // SamrQueryInformationUser2
-		in := &QueryInformationUser2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationUser2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationUser2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationUser2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationUser2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // SamrQueryDisplayInformation2
-		in := &QueryDisplayInformation2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryDisplayInformation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryDisplayInformation2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryDisplayInformation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryDisplayInformation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // SamrGetDisplayEnumerationIndex2
-		in := &GetDisplayEnumerationIndex2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayEnumerationIndex2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayEnumerationIndex2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayEnumerationIndex2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayEnumerationIndex2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // SamrCreateUser2InDomain
-		in := &CreateUser2InDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateUser2InDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateUser2InDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateUser2InDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateUser2InDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // SamrQueryDisplayInformation3
-		in := &QueryDisplayInformation3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryDisplayInformation3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryDisplayInformation3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryDisplayInformation3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryDisplayInformation3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // SamrAddMultipleMembersToAlias
-		in := &AddMultipleMembersToAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddMultipleMembersToAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddMultipleMembersToAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddMultipleMembersToAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddMultipleMembersToAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // SamrRemoveMultipleMembersFromAlias
-		in := &RemoveMultipleMembersFromAliasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMultipleMembersFromAliasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMultipleMembersFromAlias(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMultipleMembersFromAliasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMultipleMembersFromAlias(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // SamrOemChangePasswordUser2
-		in := &OEMChangePasswordUser2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OEMChangePasswordUser2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OEMChangePasswordUser2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OEMChangePasswordUser2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OEMChangePasswordUser2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // SamrUnicodeChangePasswordUser2
-		in := &UnicodeChangePasswordUser2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnicodeChangePasswordUser2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnicodeChangePasswordUser2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnicodeChangePasswordUser2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnicodeChangePasswordUser2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // SamrGetDomainPasswordInformation
-		in := &GetDomainPasswordInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDomainPasswordInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDomainPasswordInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDomainPasswordInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDomainPasswordInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // SamrConnect2
-		in := &Connect2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Connect2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Connect2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Connect2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Connect2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // SamrSetInformationUser2
-		in := &SetInformationUser2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationUser2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationUser2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationUser2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationUser2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // Opnum59NotUsedOnWire
 		// Opnum59NotUsedOnWire
 		return nil, nil
@@ -721,43 +833,53 @@ func SamrServerHandle(ctx context.Context, o SamrServer, opNum int, r ndr.Reader
 		// Opnum61NotUsedOnWire
 		return nil, nil
 	case 62: // SamrConnect4
-		in := &Connect4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Connect4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Connect4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Connect4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Connect4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 63: // Opnum63NotUsedOnWire
 		// Opnum63NotUsedOnWire
 		return nil, nil
 	case 64: // SamrConnect5
-		in := &Connect5Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Connect5Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Connect5(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Connect5Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Connect5(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 65: // SamrRidToSid
-		in := &RIDToSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RIDToSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RIDToSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RIDToSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RIDToSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // SamrSetDSRMPassword
-		in := &SetDSRMPasswordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDSRMPasswordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDSRMPassword(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDSRMPasswordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDSRMPassword(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 67: // SamrValidatePassword
-		in := &ValidatePasswordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ValidatePasswordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ValidatePassword(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ValidatePasswordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidatePassword(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 68: // Opnum68NotUsedOnWire
 		// Opnum68NotUsedOnWire
 		return nil, nil
@@ -767,3 +889,193 @@ func SamrServerHandle(ctx context.Context, o SamrServer, opNum int, r ndr.Reader
 	}
 	return nil, nil
 }
+
+// Unimplemented samr
+type UnimplementedSamrServer struct {
+}
+
+func (UnimplementedSamrServer) Connect(context.Context, *ConnectRequest) (*ConnectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) CloseHandle(context.Context, *CloseHandleRequest) (*CloseHandleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetSecurityObject(context.Context, *SetSecurityObjectRequest) (*SetSecurityObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QuerySecurityObject(context.Context, *QuerySecurityObjectRequest) (*QuerySecurityObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) LookupDomainInSAMServer(context.Context, *LookupDomainInSAMServerRequest) (*LookupDomainInSAMServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) EnumerateDomainsInSAMServer(context.Context, *EnumerateDomainsInSAMServerRequest) (*EnumerateDomainsInSAMServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) OpenDomain(context.Context, *OpenDomainRequest) (*OpenDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryInformationDomain(context.Context, *QueryInformationDomainRequest) (*QueryInformationDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetInformationDomain(context.Context, *SetInformationDomainRequest) (*SetInformationDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) CreateGroupInDomain(context.Context, *CreateGroupInDomainRequest) (*CreateGroupInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) EnumerateGroupsInDomain(context.Context, *EnumerateGroupsInDomainRequest) (*EnumerateGroupsInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) CreateUserInDomain(context.Context, *CreateUserInDomainRequest) (*CreateUserInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) EnumerateUsersInDomain(context.Context, *EnumerateUsersInDomainRequest) (*EnumerateUsersInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) CreateAliasInDomain(context.Context, *CreateAliasInDomainRequest) (*CreateAliasInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) EnumerateAliasesInDomain(context.Context, *EnumerateAliasesInDomainRequest) (*EnumerateAliasesInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetAliasMembership(context.Context, *GetAliasMembershipRequest) (*GetAliasMembershipResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) LookupNamesInDomain(context.Context, *LookupNamesInDomainRequest) (*LookupNamesInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) LookupIDsInDomain(context.Context, *LookupIDsInDomainRequest) (*LookupIDsInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) OpenGroup(context.Context, *OpenGroupRequest) (*OpenGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryInformationGroup(context.Context, *QueryInformationGroupRequest) (*QueryInformationGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetInformationGroup(context.Context, *SetInformationGroupRequest) (*SetInformationGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) AddMemberToGroup(context.Context, *AddMemberToGroupRequest) (*AddMemberToGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) RemoveMemberFromGroup(context.Context, *RemoveMemberFromGroupRequest) (*RemoveMemberFromGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetMembersInGroup(context.Context, *GetMembersInGroupRequest) (*GetMembersInGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetMemberAttributesOfGroup(context.Context, *SetMemberAttributesOfGroupRequest) (*SetMemberAttributesOfGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) OpenAlias(context.Context, *OpenAliasRequest) (*OpenAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryInformationAlias(context.Context, *QueryInformationAliasRequest) (*QueryInformationAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetInformationAlias(context.Context, *SetInformationAliasRequest) (*SetInformationAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) DeleteAlias(context.Context, *DeleteAliasRequest) (*DeleteAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) AddMemberToAlias(context.Context, *AddMemberToAliasRequest) (*AddMemberToAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) RemoveMemberFromAlias(context.Context, *RemoveMemberFromAliasRequest) (*RemoveMemberFromAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetMembersInAlias(context.Context, *GetMembersInAliasRequest) (*GetMembersInAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) OpenUser(context.Context, *OpenUserRequest) (*OpenUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) DeleteUser(context.Context, *DeleteUserRequest) (*DeleteUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryInformationUser(context.Context, *QueryInformationUserRequest) (*QueryInformationUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetInformationUser(context.Context, *SetInformationUserRequest) (*SetInformationUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) ChangePasswordUser(context.Context, *ChangePasswordUserRequest) (*ChangePasswordUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetGroupsForUser(context.Context, *GetGroupsForUserRequest) (*GetGroupsForUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryDisplayInformation(context.Context, *QueryDisplayInformationRequest) (*QueryDisplayInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetDisplayEnumerationIndex(context.Context, *GetDisplayEnumerationIndexRequest) (*GetDisplayEnumerationIndexResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetUserDomainPasswordInformation(context.Context, *GetUserDomainPasswordInformationRequest) (*GetUserDomainPasswordInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) RemoveMemberFromForeignDomain(context.Context, *RemoveMemberFromForeignDomainRequest) (*RemoveMemberFromForeignDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryInformationDomain2(context.Context, *QueryInformationDomain2Request) (*QueryInformationDomain2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryInformationUser2(context.Context, *QueryInformationUser2Request) (*QueryInformationUser2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryDisplayInformation2(context.Context, *QueryDisplayInformation2Request) (*QueryDisplayInformation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetDisplayEnumerationIndex2(context.Context, *GetDisplayEnumerationIndex2Request) (*GetDisplayEnumerationIndex2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) CreateUser2InDomain(context.Context, *CreateUser2InDomainRequest) (*CreateUser2InDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) QueryDisplayInformation3(context.Context, *QueryDisplayInformation3Request) (*QueryDisplayInformation3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) AddMultipleMembersToAlias(context.Context, *AddMultipleMembersToAliasRequest) (*AddMultipleMembersToAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) RemoveMultipleMembersFromAlias(context.Context, *RemoveMultipleMembersFromAliasRequest) (*RemoveMultipleMembersFromAliasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) OEMChangePasswordUser2(context.Context, *OEMChangePasswordUser2Request) (*OEMChangePasswordUser2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) UnicodeChangePasswordUser2(context.Context, *UnicodeChangePasswordUser2Request) (*UnicodeChangePasswordUser2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) GetDomainPasswordInformation(context.Context, *GetDomainPasswordInformationRequest) (*GetDomainPasswordInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) Connect2(context.Context, *Connect2Request) (*Connect2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetInformationUser2(context.Context, *SetInformationUser2Request) (*SetInformationUser2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) Connect4(context.Context, *Connect4Request) (*Connect4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) Connect5(context.Context, *Connect5Request) (*Connect5Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) RIDToSID(context.Context, *RIDToSIDRequest) (*RIDToSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) SetDSRMPassword(context.Context, *SetDSRMPasswordRequest) (*SetDSRMPasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSamrServer) ValidatePassword(context.Context, *ValidatePasswordRequest) (*ValidatePasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SamrServer = (*UnimplementedSamrServer)(nil)

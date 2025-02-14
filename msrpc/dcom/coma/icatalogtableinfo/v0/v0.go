@@ -80,7 +80,7 @@ func (o *xxx_DefaultCatalogTableInfoClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCatalogTableInfoClient) GetClientTableInfo(ctx context.Context, in *GetClientTableInfoRequest, opts ...dcerpc.CallOption) (*GetClientTableInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -922,21 +922,23 @@ type GetClientTableInfoRequest struct {
 	QueryFormat uint32 `idl:"name:eQueryFormat" json:"query_format"`
 }
 
-func (o *GetClientTableInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetClientTableInfoOperation {
+func (o *GetClientTableInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetClientTableInfoOperation) *xxx_GetClientTableInfoOperation {
+	if op == nil {
+		op = &xxx_GetClientTableInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientTableInfoOperation{}
+		return op
 	}
-	return &xxx_GetClientTableInfoOperation{
-		This:                  o.This,
-		CatalogID:             o.CatalogID,
-		TableID:               o.TableID,
-		TableFlags:            o.TableFlags,
-		QueryCellArray:        o.QueryCellArray,
-		QueryCellArrayLength:  o.QueryCellArrayLength,
-		QueryComparison:       o.QueryComparison,
-		QueryComparisonLength: o.QueryComparisonLength,
-		QueryFormat:           o.QueryFormat,
-	}
+	o.This = op.This
+	o.CatalogID = op.CatalogID
+	o.TableID = op.TableID
+	o.TableFlags = op.TableFlags
+	o.QueryCellArray = op.QueryCellArray
+	o.QueryCellArrayLength = op.QueryCellArrayLength
+	o.QueryComparison = op.QueryComparison
+	o.QueryComparisonLength = op.QueryComparisonLength
+	o.QueryFormat = op.QueryFormat
+	return op
 }
 
 func (o *GetClientTableInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClientTableInfoOperation) {
@@ -954,7 +956,7 @@ func (o *GetClientTableInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetC
 	o.QueryFormat = op.QueryFormat
 }
 func (o *GetClientTableInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetClientTableInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientTableInfoOperation{}
@@ -998,21 +1000,23 @@ type GetClientTableInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetClientTableInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetClientTableInfoOperation {
+func (o *GetClientTableInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClientTableInfoOperation) *xxx_GetClientTableInfoOperation {
+	if op == nil {
+		op = &xxx_GetClientTableInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientTableInfoOperation{}
+		return op
 	}
-	return &xxx_GetClientTableInfoOperation{
-		That:               o.That,
-		RequiredFixedGUID:  o.RequiredFixedGUID,
-		AuxiliaryGUID:      o.AuxiliaryGUID,
-		AuxiliaryGUIDCount: o.AuxiliaryGUIDCount,
-		PropertyMeta:       o.PropertyMeta,
-		PropertiesCount:    o.PropertiesCount,
-		IIDs:               o.IIDs,
-		Interface:          o.Interface,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.RequiredFixedGUID = op.RequiredFixedGUID
+	o.AuxiliaryGUID = op.AuxiliaryGUID
+	o.AuxiliaryGUIDCount = op.AuxiliaryGUIDCount
+	o.PropertyMeta = op.PropertyMeta
+	o.PropertiesCount = op.PropertiesCount
+	o.IIDs = op.IIDs
+	o.Interface = op.Interface
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetClientTableInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetClientTableInfoOperation) {
@@ -1030,7 +1034,7 @@ func (o *GetClientTableInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetClientTableInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetClientTableInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientTableInfoOperation{}

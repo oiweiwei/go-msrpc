@@ -42,3 +42,9 @@ func ExtendedErrorServerHandle(ctx context.Context, o ExtendedErrorServer, opNum
 	}
 	return nil, nil
 }
+
+// Unimplemented ExtendedError
+type UnimplementedExtendedErrorServer struct {
+}
+
+var _ ExtendedErrorServer = (*UnimplementedExtendedErrorServer)(nil)

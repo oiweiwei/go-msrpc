@@ -61,33 +61,61 @@ func DataFactoryServerHandle(ctx context.Context, o DataFactoryServer, opNum int
 	}
 	switch opNum {
 	case 3: // Query
-		in := &QueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SubmitChanges
-		in := &SubmitChangesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SubmitChangesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SubmitChanges(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SubmitChangesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SubmitChanges(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ConvertToString
-		in := &ConvertToStringRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConvertToStringOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConvertToString(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConvertToStringRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConvertToString(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // CreateRecordSet
-		in := &CreateRecordSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateRecordSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateRecordSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRecordSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateRecordSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataFactory
+type UnimplementedDataFactoryServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDataFactoryServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataFactoryServer) SubmitChanges(context.Context, *SubmitChangesRequest) (*SubmitChangesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataFactoryServer) ConvertToString(context.Context, *ConvertToStringRequest) (*ConvertToStringResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataFactoryServer) CreateRecordSet(context.Context, *CreateRecordSetRequest) (*CreateRecordSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataFactoryServer = (*UnimplementedDataFactoryServer)(nil)

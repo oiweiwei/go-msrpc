@@ -79,29 +79,52 @@ func GetTrackingDataServerHandle(ctx context.Context, o GetTrackingDataServer, o
 		// Opnum3NotUsedOnWire
 		return nil, nil
 	case 4: // GetContainerData
-		in := &GetContainerDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetContainerDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetContainerData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetContainerDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetContainerData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetComponentDataByContainer
-		in := &GetComponentDataByContainerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetComponentDataByContainerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetComponentDataByContainer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetComponentDataByContainerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetComponentDataByContainer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetComponentDataByContainerAndCLSID
-		in := &GetComponentDataByContainerAndClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetComponentDataByContainerAndClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetComponentDataByContainerAndClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetComponentDataByContainerAndClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetComponentDataByContainerAndClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum7NotUsedOnWire
 		// Opnum7NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IGetTrackingData
+type UnimplementedGetTrackingDataServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedGetTrackingDataServer) GetContainerData(context.Context, *GetContainerDataRequest) (*GetContainerDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedGetTrackingDataServer) GetComponentDataByContainer(context.Context, *GetComponentDataByContainerRequest) (*GetComponentDataByContainerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedGetTrackingDataServer) GetComponentDataByContainerAndClassID(context.Context, *GetComponentDataByContainerAndClassIDRequest) (*GetComponentDataByContainerAndClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ GetTrackingDataServer = (*UnimplementedGetTrackingDataServer)(nil)

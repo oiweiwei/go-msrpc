@@ -81,54 +81,97 @@ func DiskServerHandle(ctx context.Context, o DiskServer, opNum int, r ndr.Reader
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetPack
-		in := &GetPackRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPackOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPack(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPackRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPack(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetIdentificationData
-		in := &GetIdentificationDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIdentificationDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIdentificationData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIdentificationDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIdentificationData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // QueryExtents
-		in := &QueryExtentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryExtentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryExtents(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryExtentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryExtents(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // ConvertStyle
-		in := &ConvertStyleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConvertStyleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConvertStyle(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConvertStyleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConvertStyle(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SetFlags
-		in := &SetFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // ClearFlags
-		in := &ClearFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsDisk
+type UnimplementedDiskServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDiskServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskServer) GetPack(context.Context, *GetPackRequest) (*GetPackResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskServer) GetIdentificationData(context.Context, *GetIdentificationDataRequest) (*GetIdentificationDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskServer) QueryExtents(context.Context, *QueryExtentsRequest) (*QueryExtentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskServer) ConvertStyle(context.Context, *ConvertStyleRequest) (*ConvertStyleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskServer) SetFlags(context.Context, *SetFlagsRequest) (*SetFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskServer) ClearFlags(context.Context, *ClearFlagsRequest) (*ClearFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DiskServer = (*UnimplementedDiskServer)(nil)

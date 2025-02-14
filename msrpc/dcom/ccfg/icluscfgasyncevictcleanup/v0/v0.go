@@ -73,7 +73,7 @@ func (o *xxx_DefaultAsyncEvictCleanupClient) Dispatch() idispatch.DispatchClient
 }
 
 func (o *xxx_DefaultAsyncEvictCleanupClient) CleanupNode(ctx context.Context, in *CleanupNodeRequest, opts ...dcerpc.CallOption) (*CleanupNodeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -335,16 +335,18 @@ type CleanupNodeRequest struct {
 	TimeoutIn         int32          `idl:"name:nTimeoutIn" json:"timeout_in"`
 }
 
-func (o *CleanupNodeRequest) xxx_ToOp(ctx context.Context) *xxx_CleanupNodeOperation {
+func (o *CleanupNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeOperation) *xxx_CleanupNodeOperation {
+	if op == nil {
+		op = &xxx_CleanupNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanupNodeOperation{}
+		return op
 	}
-	return &xxx_CleanupNodeOperation{
-		This:              o.This,
-		EvictedNodeNameIn: o.EvictedNodeNameIn,
-		DelayIn:           o.DelayIn,
-		TimeoutIn:         o.TimeoutIn,
-	}
+	o.This = op.This
+	o.EvictedNodeNameIn = op.EvictedNodeNameIn
+	o.DelayIn = op.DelayIn
+	o.TimeoutIn = op.TimeoutIn
+	return op
 }
 
 func (o *CleanupNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanupNodeOperation) {
@@ -357,7 +359,7 @@ func (o *CleanupNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanupNode
 	o.TimeoutIn = op.TimeoutIn
 }
 func (o *CleanupNodeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CleanupNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanupNodeOperation{}
@@ -376,14 +378,16 @@ type CleanupNodeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CleanupNodeResponse) xxx_ToOp(ctx context.Context) *xxx_CleanupNodeOperation {
+func (o *CleanupNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeOperation) *xxx_CleanupNodeOperation {
+	if op == nil {
+		op = &xxx_CleanupNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanupNodeOperation{}
+		return op
 	}
-	return &xxx_CleanupNodeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CleanupNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanupNodeOperation) {
@@ -394,7 +398,7 @@ func (o *CleanupNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanupNod
 	o.Return = op.Return
 }
 func (o *CleanupNodeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CleanupNodeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanupNodeOperation{}

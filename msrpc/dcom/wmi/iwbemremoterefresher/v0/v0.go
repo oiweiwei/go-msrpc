@@ -110,7 +110,7 @@ func (o *xxx_DefaultRemoteRefresherClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultRemoteRefresherClient) RemoteRefresh(ctx context.Context, in *RemoteRefreshRequest, opts ...dcerpc.CallOption) (*RemoteRefreshResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -130,7 +130,7 @@ func (o *xxx_DefaultRemoteRefresherClient) RemoteRefresh(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteRefresherClient) StopRefreshing(ctx context.Context, in *StopRefreshingRequest, opts ...dcerpc.CallOption) (*StopRefreshingResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -425,14 +425,16 @@ type RemoteRefreshRequest struct {
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 }
 
-func (o *RemoteRefreshRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteRefreshOperation {
+func (o *RemoteRefreshRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteRefreshOperation) *xxx_RemoteRefreshOperation {
+	if op == nil {
+		op = &xxx_RemoteRefreshOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteRefreshOperation{}
+		return op
 	}
-	return &xxx_RemoteRefreshOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *RemoteRefreshRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteRefreshOperation) {
@@ -443,7 +445,7 @@ func (o *RemoteRefreshRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteRef
 	o.Flags = op.Flags
 }
 func (o *RemoteRefreshRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteRefreshRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteRefreshOperation{}
@@ -469,16 +471,18 @@ type RemoteRefreshResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteRefreshResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteRefreshOperation {
+func (o *RemoteRefreshResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteRefreshOperation) *xxx_RemoteRefreshOperation {
+	if op == nil {
+		op = &xxx_RemoteRefreshOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteRefreshOperation{}
+		return op
 	}
-	return &xxx_RemoteRefreshOperation{
-		That:          o.That,
-		ObjectsLength: o.ObjectsLength,
-		Objects:       o.Objects,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.ObjectsLength = op.ObjectsLength
+	o.Objects = op.Objects
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteRefreshResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteRefreshOperation) {
@@ -491,7 +495,7 @@ func (o *RemoteRefreshResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteRe
 	o.Return = op.Return
 }
 func (o *RemoteRefreshResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteRefreshResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteRefreshOperation{}
@@ -714,16 +718,18 @@ type StopRefreshingRequest struct {
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 }
 
-func (o *StopRefreshingRequest) xxx_ToOp(ctx context.Context) *xxx_StopRefreshingOperation {
+func (o *StopRefreshingRequest) xxx_ToOp(ctx context.Context, op *xxx_StopRefreshingOperation) *xxx_StopRefreshingOperation {
+	if op == nil {
+		op = &xxx_StopRefreshingOperation{}
+	}
 	if o == nil {
-		return &xxx_StopRefreshingOperation{}
+		return op
 	}
-	return &xxx_StopRefreshingOperation{
-		This:      o.This,
-		IDsLength: o.IDsLength,
-		IDs:       o.IDs,
-		Flags:     o.Flags,
-	}
+	o.This = op.This
+	o.IDsLength = op.IDsLength
+	o.IDs = op.IDs
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *StopRefreshingRequest) xxx_FromOp(ctx context.Context, op *xxx_StopRefreshingOperation) {
@@ -736,7 +742,7 @@ func (o *StopRefreshingRequest) xxx_FromOp(ctx context.Context, op *xxx_StopRefr
 	o.Flags = op.Flags
 }
 func (o *StopRefreshingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StopRefreshingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StopRefreshingOperation{}
@@ -755,14 +761,16 @@ type StopRefreshingResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StopRefreshingResponse) xxx_ToOp(ctx context.Context) *xxx_StopRefreshingOperation {
+func (o *StopRefreshingResponse) xxx_ToOp(ctx context.Context, op *xxx_StopRefreshingOperation) *xxx_StopRefreshingOperation {
+	if op == nil {
+		op = &xxx_StopRefreshingOperation{}
+	}
 	if o == nil {
-		return &xxx_StopRefreshingOperation{}
+		return op
 	}
-	return &xxx_StopRefreshingOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *StopRefreshingResponse) xxx_FromOp(ctx context.Context, op *xxx_StopRefreshingOperation) {
@@ -773,7 +781,7 @@ func (o *StopRefreshingResponse) xxx_FromOp(ctx context.Context, op *xxx_StopRef
 	o.Return = op.Return
 }
 func (o *StopRefreshingResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StopRefreshingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StopRefreshingOperation{}

@@ -124,68 +124,121 @@ func ReportServerHandle(ctx context.Context, o ReportServer, opNum int, r ndr.Re
 	}
 	switch opNum {
 	case 7: // Type
-		in := &GetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Description
-		in := &SetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // LastGeneratedFileNamePrefix
-		in := &GetLastGeneratedFileNamePrefixRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastGeneratedFileNamePrefixOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastGeneratedFileNamePrefix(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastGeneratedFileNamePrefixRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastGeneratedFileNamePrefix(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // GetFilter
-		in := &GetFilterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFilter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // SetFilter
-		in := &SetFilterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFilter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFilter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmReport
+type UnimplementedReportServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedReportServer) GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) SetDescription(context.Context, *SetDescriptionRequest) (*SetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) GetLastGeneratedFileNamePrefix(context.Context, *GetLastGeneratedFileNamePrefixRequest) (*GetLastGeneratedFileNamePrefixResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) GetFilter(context.Context, *GetFilterRequest) (*GetFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) SetFilter(context.Context, *SetFilterRequest) (*SetFilterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ReportServer = (*UnimplementedReportServer)(nil)

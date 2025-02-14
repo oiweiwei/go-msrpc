@@ -79,7 +79,7 @@ func (o *xxx_DefaultDiskPartitionMF2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDiskPartitionMF2Client) FormatPartitionEx2(ctx context.Context, in *FormatPartitionEx2Request, opts ...dcerpc.CallOption) (*FormatPartitionEx2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -461,19 +461,21 @@ type FormatPartitionEx2Request struct {
 	Options uint32 `idl:"name:Options" json:"options"`
 }
 
-func (o *FormatPartitionEx2Request) xxx_ToOp(ctx context.Context) *xxx_FormatPartitionEx2Operation {
+func (o *FormatPartitionEx2Request) xxx_ToOp(ctx context.Context, op *xxx_FormatPartitionEx2Operation) *xxx_FormatPartitionEx2Operation {
+	if op == nil {
+		op = &xxx_FormatPartitionEx2Operation{}
+	}
 	if o == nil {
-		return &xxx_FormatPartitionEx2Operation{}
+		return op
 	}
-	return &xxx_FormatPartitionEx2Operation{
-		This:                      o.This,
-		Offset:                    o.Offset,
-		FileSystemTypeName:        o.FileSystemTypeName,
-		FileSystemRevision:        o.FileSystemRevision,
-		DesiredUnitAllocationSize: o.DesiredUnitAllocationSize,
-		Label:                     o.Label,
-		Options:                   o.Options,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.FileSystemTypeName = op.FileSystemTypeName
+	o.FileSystemRevision = op.FileSystemRevision
+	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
+	o.Label = op.Label
+	o.Options = op.Options
+	return op
 }
 
 func (o *FormatPartitionEx2Request) xxx_FromOp(ctx context.Context, op *xxx_FormatPartitionEx2Operation) {
@@ -489,7 +491,7 @@ func (o *FormatPartitionEx2Request) xxx_FromOp(ctx context.Context, op *xxx_Form
 	o.Options = op.Options
 }
 func (o *FormatPartitionEx2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FormatPartitionEx2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatPartitionEx2Operation{}
@@ -512,15 +514,17 @@ type FormatPartitionEx2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FormatPartitionEx2Response) xxx_ToOp(ctx context.Context) *xxx_FormatPartitionEx2Operation {
+func (o *FormatPartitionEx2Response) xxx_ToOp(ctx context.Context, op *xxx_FormatPartitionEx2Operation) *xxx_FormatPartitionEx2Operation {
+	if op == nil {
+		op = &xxx_FormatPartitionEx2Operation{}
+	}
 	if o == nil {
-		return &xxx_FormatPartitionEx2Operation{}
+		return op
 	}
-	return &xxx_FormatPartitionEx2Operation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *FormatPartitionEx2Response) xxx_FromOp(ctx context.Context, op *xxx_FormatPartitionEx2Operation) {
@@ -532,7 +536,7 @@ func (o *FormatPartitionEx2Response) xxx_FromOp(ctx context.Context, op *xxx_For
 	o.Return = op.Return
 }
 func (o *FormatPartitionEx2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FormatPartitionEx2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatPartitionEx2Operation{}

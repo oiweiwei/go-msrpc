@@ -222,71 +222,124 @@ func TypeLibServerHandle(ctx context.Context, o TypeLibServer, opNum int, r ndr.
 	}
 	switch opNum {
 	case 3: // GetTypeInfoCount
-		in := &GetTypeInfoCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeInfoCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeInfoCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeInfoCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeInfoCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetTypeInfo
-		in := &GetTypeInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetTypeInfoType
-		in := &GetTypeInfoTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeInfoTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeInfoType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeInfoTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeInfoType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetTypeInfoOfGuid
-		in := &GetTypeInfoOfGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeInfoOfGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeInfoOfGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeInfoOfGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeInfoOfGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetLibAttr
-		in := &GetLibAttributeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLibAttributeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLibAttribute(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLibAttributeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLibAttribute(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetTypeComp
-		in := &GetTypeCompRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeCompOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeComp(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeCompRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeComp(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetDocumentation
-		in := &GetDocumentationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDocumentationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDocumentation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDocumentationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDocumentation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // IsName
-		in := &IsNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // FindName
-		in := &FindNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FindNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FindName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FindNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FindName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Opnum12NotUsedOnWire
 		// Opnum12NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented ITypeLib
+type UnimplementedTypeLibServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedTypeLibServer) GetTypeInfoCount(context.Context, *GetTypeInfoCountRequest) (*GetTypeInfoCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) GetTypeInfo(context.Context, *GetTypeInfoRequest) (*GetTypeInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) GetTypeInfoType(context.Context, *GetTypeInfoTypeRequest) (*GetTypeInfoTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) GetTypeInfoOfGUID(context.Context, *GetTypeInfoOfGUIDRequest) (*GetTypeInfoOfGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) GetLibAttribute(context.Context, *GetLibAttributeRequest) (*GetLibAttributeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) GetTypeComp(context.Context, *GetTypeCompRequest) (*GetTypeCompResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) GetDocumentation(context.Context, *GetDocumentationRequest) (*GetDocumentationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) IsName(context.Context, *IsNameRequest) (*IsNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeLibServer) FindName(context.Context, *FindNameRequest) (*FindNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TypeLibServer = (*UnimplementedTypeLibServer)(nil)

@@ -119,12 +119,14 @@ func BrowserServerHandle(ctx context.Context, o BrowserServer, opNum int, r ndr.
 		// Opnum1NotUsedOnWire
 		return nil, nil
 	case 2: // I_BrowserrQueryOtherDomains
-		in := &QueryOtherDomainsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryOtherDomainsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryOtherDomains(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryOtherDomainsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryOtherDomains(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // Opnum3NotUsedOnWire
 		// Opnum3NotUsedOnWire
 		return nil, nil
@@ -155,3 +157,13 @@ func BrowserServerHandle(ctx context.Context, o BrowserServer, opNum int, r ndr.
 	}
 	return nil, nil
 }
+
+// Unimplemented browser
+type UnimplementedBrowserServer struct {
+}
+
+func (UnimplementedBrowserServer) QueryOtherDomains(context.Context, *QueryOtherDomainsRequest) (*QueryOtherDomainsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ BrowserServer = (*UnimplementedBrowserServer)(nil)

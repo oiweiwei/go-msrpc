@@ -174,201 +174,349 @@ func CertAdminDServerHandle(ctx context.Context, o CertAdminDServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // SetExtension
-		in := &SetExtensionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExtensionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExtension(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExtensionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExtension(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SetAttributes
-		in := &SetAttributesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAttributesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAttributes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAttributesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAttributes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ResubmitRequest
-		in := &ResubmitRequestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResubmitRequestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResubmitRequest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResubmitRequestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResubmitRequest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // DenyRequest
-		in := &DenyRequestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DenyRequestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DenyRequest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DenyRequestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DenyRequest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // IsValidCertificate
-		in := &IsValidCertificateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsValidCertificateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsValidCertificate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsValidCertificateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsValidCertificate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // PublishCRL
-		in := &PublishCRLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PublishCRLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PublishCRL(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PublishCRLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PublishCRL(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetCRL
-		in := &GetCRLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCRLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCRL(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCRLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCRL(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RevokeCertificate
-		in := &RevokeCertificateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RevokeCertificateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RevokeCertificate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RevokeCertificateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RevokeCertificate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // EnumViewColumn
-		in := &EnumViewColumnRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumViewColumnOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumViewColumn(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumViewColumnRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumViewColumn(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // GetViewDefaultColumnSet
-		in := &GetViewDefaultColumnSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetViewDefaultColumnSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetViewDefaultColumnSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetViewDefaultColumnSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetViewDefaultColumnSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // EnumAttributesOrExtensions
-		in := &EnumAttributesOrExtensionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumAttributesOrExtensionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumAttributesOrExtensions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumAttributesOrExtensionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumAttributesOrExtensions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // OpenView
-		in := &OpenViewRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenViewOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenView(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenViewRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenView(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // EnumView
-		in := &EnumViewRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumViewOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumView(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumViewRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumView(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // CloseView
-		in := &CloseViewRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseViewOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseView(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseViewRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseView(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // ServerControl
-		in := &ServerControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // Ping
-		in := &PingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Ping(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Ping(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // GetServerState
-		in := &GetServerStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // BackupPrepare
-		in := &BackupPrepareRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupPrepareOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupPrepare(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupPrepareRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupPrepare(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // BackupEnd
-		in := &BackupEndRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupEndOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupEnd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupEndRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupEnd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // BackupGetAttachmentInformation
-		in := &BackupGetAttachmentInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupGetAttachmentInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupGetAttachmentInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupGetAttachmentInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupGetAttachmentInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // BackupGetBackupLogs
-		in := &BackupGetBackupLogsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupGetBackupLogsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupGetBackupLogs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupGetBackupLogsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupGetBackupLogs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // BackupOpenFile
-		in := &BackupOpenFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupOpenFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupOpenFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupOpenFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupOpenFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // BackupReadFile
-		in := &BackupReadFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupReadFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupReadFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupReadFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupReadFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // BackupCloseFile
-		in := &BackupCloseFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupCloseFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupCloseFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupCloseFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupCloseFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // BackupTruncateLogs
-		in := &BackupTruncateLogsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupTruncateLogsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupTruncateLogs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupTruncateLogsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupTruncateLogs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // ImportCertificate
-		in := &ImportCertificateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportCertificateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportCertificate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportCertificateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportCertificate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // BackupGetDynamicFiles
-		in := &BackupGetDynamicFilesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupGetDynamicFilesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupGetDynamicFiles(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupGetDynamicFilesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupGetDynamicFiles(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // RestoreGetDatabaseLocations
-		in := &RestoreGetDatabaseLocationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestoreGetDatabaseLocationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RestoreGetDatabaseLocations(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestoreGetDatabaseLocationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RestoreGetDatabaseLocations(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICertAdminD
+type UnimplementedCertAdminDServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCertAdminDServer) SetExtension(context.Context, *SetExtensionRequest) (*SetExtensionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) SetAttributes(context.Context, *SetAttributesRequest) (*SetAttributesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) ResubmitRequest(context.Context, *ResubmitRequestRequest) (*ResubmitRequestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) DenyRequest(context.Context, *DenyRequestRequest) (*DenyRequestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) IsValidCertificate(context.Context, *IsValidCertificateRequest) (*IsValidCertificateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) PublishCRL(context.Context, *PublishCRLRequest) (*PublishCRLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) GetCRL(context.Context, *GetCRLRequest) (*GetCRLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) RevokeCertificate(context.Context, *RevokeCertificateRequest) (*RevokeCertificateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) EnumViewColumn(context.Context, *EnumViewColumnRequest) (*EnumViewColumnResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) GetViewDefaultColumnSet(context.Context, *GetViewDefaultColumnSetRequest) (*GetViewDefaultColumnSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) EnumAttributesOrExtensions(context.Context, *EnumAttributesOrExtensionsRequest) (*EnumAttributesOrExtensionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) OpenView(context.Context, *OpenViewRequest) (*OpenViewResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) EnumView(context.Context, *EnumViewRequest) (*EnumViewResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) CloseView(context.Context, *CloseViewRequest) (*CloseViewResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) ServerControl(context.Context, *ServerControlRequest) (*ServerControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) GetServerState(context.Context, *GetServerStateRequest) (*GetServerStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupPrepare(context.Context, *BackupPrepareRequest) (*BackupPrepareResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupEnd(context.Context, *BackupEndRequest) (*BackupEndResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupGetAttachmentInformation(context.Context, *BackupGetAttachmentInformationRequest) (*BackupGetAttachmentInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupGetBackupLogs(context.Context, *BackupGetBackupLogsRequest) (*BackupGetBackupLogsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupOpenFile(context.Context, *BackupOpenFileRequest) (*BackupOpenFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupReadFile(context.Context, *BackupReadFileRequest) (*BackupReadFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupCloseFile(context.Context, *BackupCloseFileRequest) (*BackupCloseFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupTruncateLogs(context.Context, *BackupTruncateLogsRequest) (*BackupTruncateLogsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) ImportCertificate(context.Context, *ImportCertificateRequest) (*ImportCertificateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) BackupGetDynamicFiles(context.Context, *BackupGetDynamicFilesRequest) (*BackupGetDynamicFilesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertAdminDServer) RestoreGetDatabaseLocations(context.Context, *RestoreGetDatabaseLocationsRequest) (*RestoreGetDatabaseLocationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CertAdminDServer = (*UnimplementedCertAdminDServer)(nil)

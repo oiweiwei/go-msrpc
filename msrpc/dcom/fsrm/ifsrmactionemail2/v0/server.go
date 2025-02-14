@@ -55,19 +55,37 @@ func ActionEmail2ServerHandle(ctx context.Context, o ActionEmail2Server, opNum i
 	}
 	switch opNum {
 	case 26: // AttachmentFileListSize
-		in := &GetAttachmentFileListSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAttachmentFileListSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAttachmentFileListSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAttachmentFileListSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAttachmentFileListSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // AttachmentFileListSize
-		in := &SetAttachmentFileListSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAttachmentFileListSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAttachmentFileListSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAttachmentFileListSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAttachmentFileListSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmActionEmail2
+type UnimplementedActionEmail2Server struct {
+	ifsrmactionemail.UnimplementedActionEmailServer
+}
+
+func (UnimplementedActionEmail2Server) GetAttachmentFileListSize(context.Context, *GetAttachmentFileListSizeRequest) (*GetAttachmentFileListSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmail2Server) SetAttachmentFileListSize(context.Context, *SetAttachmentFileListSizeRequest) (*SetAttachmentFileListSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActionEmail2Server = (*UnimplementedActionEmail2Server)(nil)

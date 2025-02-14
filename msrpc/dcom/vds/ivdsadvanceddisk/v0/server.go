@@ -145,75 +145,133 @@ func AdvancedDiskServerHandle(ctx context.Context, o AdvancedDiskServer, opNum i
 	}
 	switch opNum {
 	case 3: // GetPartitionProperties
-		in := &GetPartitionPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPartitionPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPartitionProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPartitionPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPartitionProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // QueryPartitions
-		in := &QueryPartitionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryPartitionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryPartitions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryPartitionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryPartitions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // CreatePartition
-		in := &CreatePartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // DeletePartition
-		in := &DeletePartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // ChangeAttributes
-		in := &ChangeAttributesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeAttributesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeAttributes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeAttributesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeAttributes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // AssignDriveLetter
-		in := &AssignDriveLetterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AssignDriveLetterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AssignDriveLetter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AssignDriveLetterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AssignDriveLetter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // DeleteDriveLetter
-		in := &DeleteDriveLetterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteDriveLetterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteDriveLetter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteDriveLetterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteDriveLetter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetDriveLetter
-		in := &GetDriveLetterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDriveLetterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDriveLetter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDriveLetterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDriveLetter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // FormatPartition
-		in := &FormatPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FormatPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FormatPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Clean
-		in := &CleanRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CleanOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clean(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CleanRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clean(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsAdvancedDisk
+type UnimplementedAdvancedDiskServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAdvancedDiskServer) GetPartitionProperties(context.Context, *GetPartitionPropertiesRequest) (*GetPartitionPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) QueryPartitions(context.Context, *QueryPartitionsRequest) (*QueryPartitionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) CreatePartition(context.Context, *CreatePartitionRequest) (*CreatePartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) DeletePartition(context.Context, *DeletePartitionRequest) (*DeletePartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) ChangeAttributes(context.Context, *ChangeAttributesRequest) (*ChangeAttributesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) AssignDriveLetter(context.Context, *AssignDriveLetterRequest) (*AssignDriveLetterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) DeleteDriveLetter(context.Context, *DeleteDriveLetterRequest) (*DeleteDriveLetterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) GetDriveLetter(context.Context, *GetDriveLetterRequest) (*GetDriveLetterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) FormatPartition(context.Context, *FormatPartitionRequest) (*FormatPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDiskServer) Clean(context.Context, *CleanRequest) (*CleanResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AdvancedDiskServer = (*UnimplementedAdvancedDiskServer)(nil)

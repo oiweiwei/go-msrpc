@@ -158,7 +158,7 @@ type xxx_DefaultWinregClient struct {
 }
 
 func (o *xxx_DefaultWinregClient) BaseInitiateSystemShutdown(ctx context.Context, in *BaseInitiateSystemShutdownRequest, opts ...dcerpc.CallOption) (*BaseInitiateSystemShutdownResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -171,7 +171,7 @@ func (o *xxx_DefaultWinregClient) BaseInitiateSystemShutdown(ctx context.Context
 }
 
 func (o *xxx_DefaultWinregClient) BaseAbortSystemShutdown(ctx context.Context, in *BaseAbortSystemShutdownRequest, opts ...dcerpc.CallOption) (*BaseAbortSystemShutdownResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -184,7 +184,7 @@ func (o *xxx_DefaultWinregClient) BaseAbortSystemShutdown(ctx context.Context, i
 }
 
 func (o *xxx_DefaultWinregClient) BaseInitiateSystemShutdownEx(ctx context.Context, in *BaseInitiateSystemShutdownExRequest, opts ...dcerpc.CallOption) (*BaseInitiateSystemShutdownExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -415,17 +415,19 @@ type BaseInitiateSystemShutdownRequest struct {
 	RebootAfterShutdown uint8 `idl:"name:bRebootAfterShutdown" json:"reboot_after_shutdown"`
 }
 
-func (o *BaseInitiateSystemShutdownRequest) xxx_ToOp(ctx context.Context) *xxx_BaseInitiateSystemShutdownOperation {
+func (o *BaseInitiateSystemShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownOperation) *xxx_BaseInitiateSystemShutdownOperation {
+	if op == nil {
+		op = &xxx_BaseInitiateSystemShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseInitiateSystemShutdownOperation{}
+		return op
 	}
-	return &xxx_BaseInitiateSystemShutdownOperation{
-		ServerName:          o.ServerName,
-		Message:             o.Message,
-		Timeout:             o.Timeout,
-		ForceAppsClosed:     o.ForceAppsClosed,
-		RebootAfterShutdown: o.RebootAfterShutdown,
-	}
+	o.ServerName = op.ServerName
+	o.Message = op.Message
+	o.Timeout = op.Timeout
+	o.ForceAppsClosed = op.ForceAppsClosed
+	o.RebootAfterShutdown = op.RebootAfterShutdown
+	return op
 }
 
 func (o *BaseInitiateSystemShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownOperation) {
@@ -439,7 +441,7 @@ func (o *BaseInitiateSystemShutdownRequest) xxx_FromOp(ctx context.Context, op *
 	o.RebootAfterShutdown = op.RebootAfterShutdown
 }
 func (o *BaseInitiateSystemShutdownRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseInitiateSystemShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseInitiateSystemShutdownOperation{}
@@ -456,13 +458,15 @@ type BaseInitiateSystemShutdownResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseInitiateSystemShutdownResponse) xxx_ToOp(ctx context.Context) *xxx_BaseInitiateSystemShutdownOperation {
+func (o *BaseInitiateSystemShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownOperation) *xxx_BaseInitiateSystemShutdownOperation {
+	if op == nil {
+		op = &xxx_BaseInitiateSystemShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseInitiateSystemShutdownOperation{}
+		return op
 	}
-	return &xxx_BaseInitiateSystemShutdownOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseInitiateSystemShutdownResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownOperation) {
@@ -472,7 +476,7 @@ func (o *BaseInitiateSystemShutdownResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *BaseInitiateSystemShutdownResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseInitiateSystemShutdownResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseInitiateSystemShutdownOperation{}
@@ -590,13 +594,15 @@ type BaseAbortSystemShutdownRequest struct {
 	ServerName string `idl:"name:ServerName;pointer:unique" json:"server_name"`
 }
 
-func (o *BaseAbortSystemShutdownRequest) xxx_ToOp(ctx context.Context) *xxx_BaseAbortSystemShutdownOperation {
+func (o *BaseAbortSystemShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseAbortSystemShutdownOperation) *xxx_BaseAbortSystemShutdownOperation {
+	if op == nil {
+		op = &xxx_BaseAbortSystemShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseAbortSystemShutdownOperation{}
+		return op
 	}
-	return &xxx_BaseAbortSystemShutdownOperation{
-		ServerName: o.ServerName,
-	}
+	o.ServerName = op.ServerName
+	return op
 }
 
 func (o *BaseAbortSystemShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseAbortSystemShutdownOperation) {
@@ -606,7 +612,7 @@ func (o *BaseAbortSystemShutdownRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.ServerName = op.ServerName
 }
 func (o *BaseAbortSystemShutdownRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseAbortSystemShutdownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseAbortSystemShutdownOperation{}
@@ -623,13 +629,15 @@ type BaseAbortSystemShutdownResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseAbortSystemShutdownResponse) xxx_ToOp(ctx context.Context) *xxx_BaseAbortSystemShutdownOperation {
+func (o *BaseAbortSystemShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseAbortSystemShutdownOperation) *xxx_BaseAbortSystemShutdownOperation {
+	if op == nil {
+		op = &xxx_BaseAbortSystemShutdownOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseAbortSystemShutdownOperation{}
+		return op
 	}
-	return &xxx_BaseAbortSystemShutdownOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseAbortSystemShutdownResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseAbortSystemShutdownOperation) {
@@ -639,7 +647,7 @@ func (o *BaseAbortSystemShutdownResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *BaseAbortSystemShutdownResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseAbortSystemShutdownResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseAbortSystemShutdownOperation{}
@@ -869,18 +877,20 @@ type BaseInitiateSystemShutdownExRequest struct {
 	Reason uint32 `idl:"name:dwReason" json:"reason"`
 }
 
-func (o *BaseInitiateSystemShutdownExRequest) xxx_ToOp(ctx context.Context) *xxx_BaseInitiateSystemShutdownExOperation {
+func (o *BaseInitiateSystemShutdownExRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownExOperation) *xxx_BaseInitiateSystemShutdownExOperation {
+	if op == nil {
+		op = &xxx_BaseInitiateSystemShutdownExOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseInitiateSystemShutdownExOperation{}
+		return op
 	}
-	return &xxx_BaseInitiateSystemShutdownExOperation{
-		ServerName:          o.ServerName,
-		Message:             o.Message,
-		Timeout:             o.Timeout,
-		ForceAppsClosed:     o.ForceAppsClosed,
-		RebootAfterShutdown: o.RebootAfterShutdown,
-		Reason:              o.Reason,
-	}
+	o.ServerName = op.ServerName
+	o.Message = op.Message
+	o.Timeout = op.Timeout
+	o.ForceAppsClosed = op.ForceAppsClosed
+	o.RebootAfterShutdown = op.RebootAfterShutdown
+	o.Reason = op.Reason
+	return op
 }
 
 func (o *BaseInitiateSystemShutdownExRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownExOperation) {
@@ -895,7 +905,7 @@ func (o *BaseInitiateSystemShutdownExRequest) xxx_FromOp(ctx context.Context, op
 	o.Reason = op.Reason
 }
 func (o *BaseInitiateSystemShutdownExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseInitiateSystemShutdownExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseInitiateSystemShutdownExOperation{}
@@ -912,13 +922,15 @@ type BaseInitiateSystemShutdownExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseInitiateSystemShutdownExResponse) xxx_ToOp(ctx context.Context) *xxx_BaseInitiateSystemShutdownExOperation {
+func (o *BaseInitiateSystemShutdownExResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownExOperation) *xxx_BaseInitiateSystemShutdownExOperation {
+	if op == nil {
+		op = &xxx_BaseInitiateSystemShutdownExOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseInitiateSystemShutdownExOperation{}
+		return op
 	}
-	return &xxx_BaseInitiateSystemShutdownExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseInitiateSystemShutdownExResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseInitiateSystemShutdownExOperation) {
@@ -928,7 +940,7 @@ func (o *BaseInitiateSystemShutdownExResponse) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *BaseInitiateSystemShutdownExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseInitiateSystemShutdownExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseInitiateSystemShutdownExOperation{}

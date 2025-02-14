@@ -171,7 +171,7 @@ func (o *xxx_DefaultFileGroupManagerClient) Dispatch() idispatch.DispatchClient 
 }
 
 func (o *xxx_DefaultFileGroupManagerClient) CreateFileGroup(ctx context.Context, in *CreateFileGroupRequest, opts ...dcerpc.CallOption) (*CreateFileGroupResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -191,7 +191,7 @@ func (o *xxx_DefaultFileGroupManagerClient) CreateFileGroup(ctx context.Context,
 }
 
 func (o *xxx_DefaultFileGroupManagerClient) GetFileGroup(ctx context.Context, in *GetFileGroupRequest, opts ...dcerpc.CallOption) (*GetFileGroupResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -211,7 +211,7 @@ func (o *xxx_DefaultFileGroupManagerClient) GetFileGroup(ctx context.Context, in
 }
 
 func (o *xxx_DefaultFileGroupManagerClient) EnumFileGroups(ctx context.Context, in *EnumFileGroupsRequest, opts ...dcerpc.CallOption) (*EnumFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -231,7 +231,7 @@ func (o *xxx_DefaultFileGroupManagerClient) EnumFileGroups(ctx context.Context, 
 }
 
 func (o *xxx_DefaultFileGroupManagerClient) ExportFileGroups(ctx context.Context, in *ExportFileGroupsRequest, opts ...dcerpc.CallOption) (*ExportFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -251,7 +251,7 @@ func (o *xxx_DefaultFileGroupManagerClient) ExportFileGroups(ctx context.Context
 }
 
 func (o *xxx_DefaultFileGroupManagerClient) ImportFileGroups(ctx context.Context, in *ImportFileGroupsRequest, opts ...dcerpc.CallOption) (*ImportFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -484,13 +484,15 @@ type CreateFileGroupRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateFileGroupRequest) xxx_ToOp(ctx context.Context) *xxx_CreateFileGroupOperation {
+func (o *CreateFileGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFileGroupOperation) *xxx_CreateFileGroupOperation {
+	if op == nil {
+		op = &xxx_CreateFileGroupOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileGroupOperation{}
+		return op
 	}
-	return &xxx_CreateFileGroupOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateFileGroupRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateFileGroupOperation) {
@@ -500,7 +502,7 @@ func (o *CreateFileGroupRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateF
 	o.This = op.This
 }
 func (o *CreateFileGroupRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateFileGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileGroupOperation{}
@@ -525,15 +527,17 @@ type CreateFileGroupResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateFileGroupResponse) xxx_ToOp(ctx context.Context) *xxx_CreateFileGroupOperation {
+func (o *CreateFileGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFileGroupOperation) *xxx_CreateFileGroupOperation {
+	if op == nil {
+		op = &xxx_CreateFileGroupOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileGroupOperation{}
+		return op
 	}
-	return &xxx_CreateFileGroupOperation{
-		That:      o.That,
-		FileGroup: o.FileGroup,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.FileGroup = op.FileGroup
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateFileGroupResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateFileGroupOperation) {
@@ -545,7 +549,7 @@ func (o *CreateFileGroupResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Return = op.Return
 }
 func (o *CreateFileGroupResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateFileGroupResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileGroupOperation{}
@@ -776,14 +780,16 @@ type GetFileGroupRequest struct {
 	Name *oaut.String `idl:"name:name" json:"name"`
 }
 
-func (o *GetFileGroupRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileGroupOperation {
+func (o *GetFileGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileGroupOperation) *xxx_GetFileGroupOperation {
+	if op == nil {
+		op = &xxx_GetFileGroupOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileGroupOperation{}
+		return op
 	}
-	return &xxx_GetFileGroupOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *GetFileGroupRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileGroupOperation) {
@@ -794,7 +800,7 @@ func (o *GetFileGroupRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileGro
 	o.Name = op.Name
 }
 func (o *GetFileGroupRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileGroupOperation{}
@@ -817,15 +823,17 @@ type GetFileGroupResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileGroupResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileGroupOperation {
+func (o *GetFileGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileGroupOperation) *xxx_GetFileGroupOperation {
+	if op == nil {
+		op = &xxx_GetFileGroupOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileGroupOperation{}
+		return op
 	}
-	return &xxx_GetFileGroupOperation{
-		That:      o.That,
-		FileGroup: o.FileGroup,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.FileGroup = op.FileGroup
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileGroupResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileGroupOperation) {
@@ -837,7 +845,7 @@ func (o *GetFileGroupResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileGr
 	o.Return = op.Return
 }
 func (o *GetFileGroupResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileGroupResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileGroupOperation{}
@@ -1036,14 +1044,16 @@ type EnumFileGroupsRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumFileGroupsOperation {
+func (o *EnumFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFileGroupsOperation) *xxx_EnumFileGroupsOperation {
+	if op == nil {
+		op = &xxx_EnumFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileGroupsOperation{}
+		return op
 	}
-	return &xxx_EnumFileGroupsOperation{
-		This:    o.This,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFileGroupsOperation) {
@@ -1054,7 +1064,7 @@ func (o *EnumFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFile
 	o.Options = op.Options
 }
 func (o *EnumFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileGroupsOperation{}
@@ -1077,15 +1087,17 @@ type EnumFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumFileGroupsOperation {
+func (o *EnumFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFileGroupsOperation) *xxx_EnumFileGroupsOperation {
+	if op == nil {
+		op = &xxx_EnumFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileGroupsOperation{}
+		return op
 	}
-	return &xxx_EnumFileGroupsOperation{
-		That:       o.That,
-		FileGroups: o.FileGroups,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.FileGroups = op.FileGroups
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFileGroupsOperation) {
@@ -1097,7 +1109,7 @@ func (o *EnumFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFil
 	o.Return = op.Return
 }
 func (o *EnumFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileGroupsOperation{}
@@ -1330,14 +1342,16 @@ type ExportFileGroupsRequest struct {
 	FileGroupNamesArray *oaut.Variant `idl:"name:fileGroupNamesArray" json:"file_group_names_array"`
 }
 
-func (o *ExportFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_ExportFileGroupsOperation {
+func (o *ExportFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportFileGroupsOperation) *xxx_ExportFileGroupsOperation {
+	if op == nil {
+		op = &xxx_ExportFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportFileGroupsOperation{}
+		return op
 	}
-	return &xxx_ExportFileGroupsOperation{
-		This:                o.This,
-		FileGroupNamesArray: o.FileGroupNamesArray,
-	}
+	o.This = op.This
+	o.FileGroupNamesArray = op.FileGroupNamesArray
+	return op
 }
 
 func (o *ExportFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportFileGroupsOperation) {
@@ -1348,7 +1362,7 @@ func (o *ExportFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_Export
 	o.FileGroupNamesArray = op.FileGroupNamesArray
 }
 func (o *ExportFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExportFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportFileGroupsOperation{}
@@ -1370,15 +1384,17 @@ type ExportFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExportFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_ExportFileGroupsOperation {
+func (o *ExportFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportFileGroupsOperation) *xxx_ExportFileGroupsOperation {
+	if op == nil {
+		op = &xxx_ExportFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportFileGroupsOperation{}
+		return op
 	}
-	return &xxx_ExportFileGroupsOperation{
-		That:                 o.That,
-		SerializedFileGroups: o.SerializedFileGroups,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.SerializedFileGroups = op.SerializedFileGroups
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExportFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportFileGroupsOperation) {
@@ -1390,7 +1406,7 @@ func (o *ExportFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_Expor
 	o.Return = op.Return
 }
 func (o *ExportFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExportFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportFileGroupsOperation{}
@@ -1673,15 +1689,17 @@ type ImportFileGroupsRequest struct {
 	FileGroupNamesArray *oaut.Variant `idl:"name:fileGroupNamesArray" json:"file_group_names_array"`
 }
 
-func (o *ImportFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_ImportFileGroupsOperation {
+func (o *ImportFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFileGroupsOperation) *xxx_ImportFileGroupsOperation {
+	if op == nil {
+		op = &xxx_ImportFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFileGroupsOperation{}
+		return op
 	}
-	return &xxx_ImportFileGroupsOperation{
-		This:                 o.This,
-		SerializedFileGroups: o.SerializedFileGroups,
-		FileGroupNamesArray:  o.FileGroupNamesArray,
-	}
+	o.This = op.This
+	o.SerializedFileGroups = op.SerializedFileGroups
+	o.FileGroupNamesArray = op.FileGroupNamesArray
+	return op
 }
 
 func (o *ImportFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportFileGroupsOperation) {
@@ -1693,7 +1711,7 @@ func (o *ImportFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_Import
 	o.FileGroupNamesArray = op.FileGroupNamesArray
 }
 func (o *ImportFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ImportFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFileGroupsOperation{}
@@ -1717,15 +1735,17 @@ type ImportFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ImportFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_ImportFileGroupsOperation {
+func (o *ImportFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportFileGroupsOperation) *xxx_ImportFileGroupsOperation {
+	if op == nil {
+		op = &xxx_ImportFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFileGroupsOperation{}
+		return op
 	}
-	return &xxx_ImportFileGroupsOperation{
-		That:       o.That,
-		FileGroups: o.FileGroups,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.FileGroups = op.FileGroups
+	o.Return = op.Return
+	return op
 }
 
 func (o *ImportFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportFileGroupsOperation) {
@@ -1737,7 +1757,7 @@ func (o *ImportFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_Impor
 	o.Return = op.Return
 }
 func (o *ImportFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ImportFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFileGroupsOperation{}

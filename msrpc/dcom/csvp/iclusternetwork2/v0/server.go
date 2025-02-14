@@ -268,64 +268,112 @@ func ClusterNetwork2ServerHandle(ctx context.Context, o ClusterNetwork2Server, o
 	}
 	switch opNum {
 	case 3: // SendRTMessage
-		in := &SendRTMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendRTMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendRTMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendRTMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendRTMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // InitializeNode
-		in := &InitializeNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetIpConfigSerialized
-		in := &GetIPConfigSerializedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIPConfigSerializedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIPConfigSerialized(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIPConfigSerializedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIPConfigSerialized(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // CleanupNode
-		in := &CleanupNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CleanupNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CleanupNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CleanupNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CleanupNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // QueryFirewallConfiguration
-		in := &QueryFirewallConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryFirewallConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryFirewallConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryFirewallConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryFirewallConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ProcessAddRoutes
-		in := &ProcessAddRoutesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ProcessAddRoutesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ProcessAddRoutes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ProcessAddRoutesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ProcessAddRoutes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetAddRoutesStatus
-		in := &GetAddRoutesStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAddRoutesStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAddRoutesStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAddRoutesStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAddRoutesStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Opnum10Reserved
 		// Opnum10Reserved
 		return nil, nil
 	case 11: // CancelAddRoutesRequest
-		in := &CancelAddRoutesRequestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelAddRoutesRequestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CancelAddRoutesRequest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelAddRoutesRequestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CancelAddRoutesRequest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterNetwork2
+type UnimplementedClusterNetwork2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterNetwork2Server) SendRTMessage(context.Context, *SendRTMessageRequest) (*SendRTMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) InitializeNode(context.Context, *InitializeNodeRequest) (*InitializeNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) GetIPConfigSerialized(context.Context, *GetIPConfigSerializedRequest) (*GetIPConfigSerializedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) CleanupNode(context.Context, *CleanupNodeRequest) (*CleanupNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) QueryFirewallConfiguration(context.Context, *QueryFirewallConfigurationRequest) (*QueryFirewallConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) ProcessAddRoutes(context.Context, *ProcessAddRoutesRequest) (*ProcessAddRoutesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) GetAddRoutesStatus(context.Context, *GetAddRoutesStatusRequest) (*GetAddRoutesStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterNetwork2Server) CancelAddRoutesRequest(context.Context, *CancelAddRoutesRequestRequest) (*CancelAddRoutesRequestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterNetwork2Server = (*UnimplementedClusterNetwork2Server)(nil)

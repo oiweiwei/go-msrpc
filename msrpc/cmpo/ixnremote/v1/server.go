@@ -453,61 +453,108 @@ func NewIxnRemoteServerHandle(o IxnRemoteServer) dcerpc.ServerHandle {
 func IxnRemoteServerHandle(ctx context.Context, o IxnRemoteServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // Poke
-		in := &PokeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PokeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Poke(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PokeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Poke(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // BuildContext
-		in := &BuildContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BuildContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BuildContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BuildContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BuildContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NegotiateResources
-		in := &NegotiateResourcesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NegotiateResourcesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NegotiateResources(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NegotiateResourcesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NegotiateResources(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // SendReceive
-		in := &SendReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // TearDownContext
-		in := &TearDownContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TearDownContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TearDownContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TearDownContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TearDownContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // BeginTearDown
-		in := &BeginTearDownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BeginTearDownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BeginTearDown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BeginTearDownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BeginTearDown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // PokeW
-		in := &PokeWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PokeWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PokeW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PokeWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PokeW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // BuildContextW
-		in := &BuildContextWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BuildContextWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BuildContextW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BuildContextWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BuildContextW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IXnRemote
+type UnimplementedIxnRemoteServer struct {
+}
+
+func (UnimplementedIxnRemoteServer) Poke(context.Context, *PokeRequest) (*PokeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) BuildContext(context.Context, *BuildContextRequest) (*BuildContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) NegotiateResources(context.Context, *NegotiateResourcesRequest) (*NegotiateResourcesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) SendReceive(context.Context, *SendReceiveRequest) (*SendReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) TearDownContext(context.Context, *TearDownContextRequest) (*TearDownContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) BeginTearDown(context.Context, *BeginTearDownRequest) (*BeginTearDownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) PokeW(context.Context, *PokeWRequest) (*PokeWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIxnRemoteServer) BuildContextW(context.Context, *BuildContextWRequest) (*BuildContextWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IxnRemoteServer = (*UnimplementedIxnRemoteServer)(nil)

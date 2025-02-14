@@ -126,7 +126,7 @@ func (o *xxx_DefaultRefreshingServicesClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultRefreshingServicesClient) AddObjectToRefresher(ctx context.Context, in *AddObjectToRefresherRequest, opts ...dcerpc.CallOption) (*AddObjectToRefresherResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -146,7 +146,7 @@ func (o *xxx_DefaultRefreshingServicesClient) AddObjectToRefresher(ctx context.C
 }
 
 func (o *xxx_DefaultRefreshingServicesClient) AddObjectToRefresherByTemplate(ctx context.Context, in *AddObjectToRefresherByTemplateRequest, opts ...dcerpc.CallOption) (*AddObjectToRefresherByTemplateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -166,7 +166,7 @@ func (o *xxx_DefaultRefreshingServicesClient) AddObjectToRefresherByTemplate(ctx
 }
 
 func (o *xxx_DefaultRefreshingServicesClient) AddEnumToRefresher(ctx context.Context, in *AddEnumToRefresherRequest, opts ...dcerpc.CallOption) (*AddEnumToRefresherResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -186,7 +186,7 @@ func (o *xxx_DefaultRefreshingServicesClient) AddEnumToRefresher(ctx context.Con
 }
 
 func (o *xxx_DefaultRefreshingServicesClient) RemoveObjectFromRefresher(ctx context.Context, in *RemoveObjectFromRefresherRequest, opts ...dcerpc.CallOption) (*RemoveObjectFromRefresherResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -206,7 +206,7 @@ func (o *xxx_DefaultRefreshingServicesClient) RemoveObjectFromRefresher(ctx cont
 }
 
 func (o *xxx_DefaultRefreshingServicesClient) GetRemoteRefresher(ctx context.Context, in *GetRemoteRefresherRequest, opts ...dcerpc.CallOption) (*GetRemoteRefresherResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -226,7 +226,7 @@ func (o *xxx_DefaultRefreshingServicesClient) GetRemoteRefresher(ctx context.Con
 }
 
 func (o *xxx_DefaultRefreshingServicesClient) ReconnectRemoteRefresher(ctx context.Context, in *ReconnectRemoteRefresherRequest, opts ...dcerpc.CallOption) (*ReconnectRemoteRefresherResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -583,18 +583,20 @@ type AddObjectToRefresherRequest struct {
 	ClientRefresherVersion uint32 `idl:"name:dwClientRefrVersion" json:"client_refresher_version"`
 }
 
-func (o *AddObjectToRefresherRequest) xxx_ToOp(ctx context.Context) *xxx_AddObjectToRefresherOperation {
+func (o *AddObjectToRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_AddObjectToRefresherOperation) *xxx_AddObjectToRefresherOperation {
+	if op == nil {
+		op = &xxx_AddObjectToRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_AddObjectToRefresherOperation{}
+		return op
 	}
-	return &xxx_AddObjectToRefresherOperation{
-		This:                   o.This,
-		RefresherID:            o.RefresherID,
-		Path:                   o.Path,
-		Flags:                  o.Flags,
-		Context:                o.Context,
-		ClientRefresherVersion: o.ClientRefresherVersion,
-	}
+	o.This = op.This
+	o.RefresherID = op.RefresherID
+	o.Path = op.Path
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ClientRefresherVersion = op.ClientRefresherVersion
+	return op
 }
 
 func (o *AddObjectToRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_AddObjectToRefresherOperation) {
@@ -609,7 +611,7 @@ func (o *AddObjectToRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_Ad
 	o.ClientRefresherVersion = op.ClientRefresherVersion
 }
 func (o *AddObjectToRefresherRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddObjectToRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddObjectToRefresherOperation{}
@@ -635,16 +637,18 @@ type AddObjectToRefresherResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddObjectToRefresherResponse) xxx_ToOp(ctx context.Context) *xxx_AddObjectToRefresherOperation {
+func (o *AddObjectToRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_AddObjectToRefresherOperation) *xxx_AddObjectToRefresherOperation {
+	if op == nil {
+		op = &xxx_AddObjectToRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_AddObjectToRefresherOperation{}
+		return op
 	}
-	return &xxx_AddObjectToRefresherOperation{
-		That:                   o.That,
-		Info:                   o.Info,
-		ServerRefresherVersion: o.ServerRefresherVersion,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.Info = op.Info
+	o.ServerRefresherVersion = op.ServerRefresherVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddObjectToRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_AddObjectToRefresherOperation) {
@@ -657,7 +661,7 @@ func (o *AddObjectToRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_A
 	o.Return = op.Return
 }
 func (o *AddObjectToRefresherResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddObjectToRefresherResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddObjectToRefresherOperation{}
@@ -999,18 +1003,20 @@ type AddObjectToRefresherByTemplateRequest struct {
 	ClientRefresherVersion uint32 `idl:"name:dwClientRefrVersion" json:"client_refresher_version"`
 }
 
-func (o *AddObjectToRefresherByTemplateRequest) xxx_ToOp(ctx context.Context) *xxx_AddObjectToRefresherByTemplateOperation {
+func (o *AddObjectToRefresherByTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_AddObjectToRefresherByTemplateOperation) *xxx_AddObjectToRefresherByTemplateOperation {
+	if op == nil {
+		op = &xxx_AddObjectToRefresherByTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_AddObjectToRefresherByTemplateOperation{}
+		return op
 	}
-	return &xxx_AddObjectToRefresherByTemplateOperation{
-		This:                   o.This,
-		RefresherID:            o.RefresherID,
-		Template:               o.Template,
-		Flags:                  o.Flags,
-		Context:                o.Context,
-		ClientRefresherVersion: o.ClientRefresherVersion,
-	}
+	o.This = op.This
+	o.RefresherID = op.RefresherID
+	o.Template = op.Template
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ClientRefresherVersion = op.ClientRefresherVersion
+	return op
 }
 
 func (o *AddObjectToRefresherByTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_AddObjectToRefresherByTemplateOperation) {
@@ -1025,7 +1031,7 @@ func (o *AddObjectToRefresherByTemplateRequest) xxx_FromOp(ctx context.Context, 
 	o.ClientRefresherVersion = op.ClientRefresherVersion
 }
 func (o *AddObjectToRefresherByTemplateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddObjectToRefresherByTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddObjectToRefresherByTemplateOperation{}
@@ -1051,16 +1057,18 @@ type AddObjectToRefresherByTemplateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddObjectToRefresherByTemplateResponse) xxx_ToOp(ctx context.Context) *xxx_AddObjectToRefresherByTemplateOperation {
+func (o *AddObjectToRefresherByTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_AddObjectToRefresherByTemplateOperation) *xxx_AddObjectToRefresherByTemplateOperation {
+	if op == nil {
+		op = &xxx_AddObjectToRefresherByTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_AddObjectToRefresherByTemplateOperation{}
+		return op
 	}
-	return &xxx_AddObjectToRefresherByTemplateOperation{
-		That:                   o.That,
-		Info:                   o.Info,
-		ServerRefresherVersion: o.ServerRefresherVersion,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.Info = op.Info
+	o.ServerRefresherVersion = op.ServerRefresherVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddObjectToRefresherByTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_AddObjectToRefresherByTemplateOperation) {
@@ -1073,7 +1081,7 @@ func (o *AddObjectToRefresherByTemplateResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *AddObjectToRefresherByTemplateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddObjectToRefresherByTemplateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddObjectToRefresherByTemplateOperation{}
@@ -1380,18 +1388,20 @@ type AddEnumToRefresherRequest struct {
 	ClientRefresherVersion uint32 `idl:"name:dwClientRefrVersion" json:"client_refresher_version"`
 }
 
-func (o *AddEnumToRefresherRequest) xxx_ToOp(ctx context.Context) *xxx_AddEnumToRefresherOperation {
+func (o *AddEnumToRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_AddEnumToRefresherOperation) *xxx_AddEnumToRefresherOperation {
+	if op == nil {
+		op = &xxx_AddEnumToRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_AddEnumToRefresherOperation{}
+		return op
 	}
-	return &xxx_AddEnumToRefresherOperation{
-		This:                   o.This,
-		RefresherID:            o.RefresherID,
-		Class:                  o.Class,
-		Flags:                  o.Flags,
-		Context:                o.Context,
-		ClientRefresherVersion: o.ClientRefresherVersion,
-	}
+	o.This = op.This
+	o.RefresherID = op.RefresherID
+	o.Class = op.Class
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ClientRefresherVersion = op.ClientRefresherVersion
+	return op
 }
 
 func (o *AddEnumToRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_AddEnumToRefresherOperation) {
@@ -1406,7 +1416,7 @@ func (o *AddEnumToRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_AddE
 	o.ClientRefresherVersion = op.ClientRefresherVersion
 }
 func (o *AddEnumToRefresherRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddEnumToRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddEnumToRefresherOperation{}
@@ -1432,16 +1442,18 @@ type AddEnumToRefresherResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddEnumToRefresherResponse) xxx_ToOp(ctx context.Context) *xxx_AddEnumToRefresherOperation {
+func (o *AddEnumToRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_AddEnumToRefresherOperation) *xxx_AddEnumToRefresherOperation {
+	if op == nil {
+		op = &xxx_AddEnumToRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_AddEnumToRefresherOperation{}
+		return op
 	}
-	return &xxx_AddEnumToRefresherOperation{
-		That:                   o.That,
-		Info:                   o.Info,
-		ServerRefresherVersion: o.ServerRefresherVersion,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.Info = op.Info
+	o.ServerRefresherVersion = op.ServerRefresherVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddEnumToRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_AddEnumToRefresherOperation) {
@@ -1454,7 +1466,7 @@ func (o *AddEnumToRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddEnumToRefresherResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddEnumToRefresherResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddEnumToRefresherOperation{}
@@ -1682,17 +1694,19 @@ type RemoveObjectFromRefresherRequest struct {
 	ClientRefresherVersion uint32 `idl:"name:dwClientRefrVersion" json:"client_refresher_version"`
 }
 
-func (o *RemoveObjectFromRefresherRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveObjectFromRefresherOperation {
+func (o *RemoveObjectFromRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveObjectFromRefresherOperation) *xxx_RemoveObjectFromRefresherOperation {
+	if op == nil {
+		op = &xxx_RemoveObjectFromRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveObjectFromRefresherOperation{}
+		return op
 	}
-	return &xxx_RemoveObjectFromRefresherOperation{
-		This:                   o.This,
-		RefresherID:            o.RefresherID,
-		ID:                     o.ID,
-		Flags:                  o.Flags,
-		ClientRefresherVersion: o.ClientRefresherVersion,
-	}
+	o.This = op.This
+	o.RefresherID = op.RefresherID
+	o.ID = op.ID
+	o.Flags = op.Flags
+	o.ClientRefresherVersion = op.ClientRefresherVersion
+	return op
 }
 
 func (o *RemoveObjectFromRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveObjectFromRefresherOperation) {
@@ -1706,7 +1720,7 @@ func (o *RemoveObjectFromRefresherRequest) xxx_FromOp(ctx context.Context, op *x
 	o.ClientRefresherVersion = op.ClientRefresherVersion
 }
 func (o *RemoveObjectFromRefresherRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveObjectFromRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveObjectFromRefresherOperation{}
@@ -1728,15 +1742,17 @@ type RemoveObjectFromRefresherResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveObjectFromRefresherResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveObjectFromRefresherOperation {
+func (o *RemoveObjectFromRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveObjectFromRefresherOperation) *xxx_RemoveObjectFromRefresherOperation {
+	if op == nil {
+		op = &xxx_RemoveObjectFromRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveObjectFromRefresherOperation{}
+		return op
 	}
-	return &xxx_RemoveObjectFromRefresherOperation{
-		That:                   o.That,
-		ServerRefresherVersion: o.ServerRefresherVersion,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.ServerRefresherVersion = op.ServerRefresherVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveObjectFromRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveObjectFromRefresherOperation) {
@@ -1748,7 +1764,7 @@ func (o *RemoveObjectFromRefresherResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *RemoveObjectFromRefresherResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveObjectFromRefresherResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveObjectFromRefresherOperation{}
@@ -2029,16 +2045,18 @@ type GetRemoteRefresherRequest struct {
 	ClientRefresherVersion uint32 `idl:"name:dwClientRefrVersion" json:"client_refresher_version"`
 }
 
-func (o *GetRemoteRefresherRequest) xxx_ToOp(ctx context.Context) *xxx_GetRemoteRefresherOperation {
+func (o *GetRemoteRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRemoteRefresherOperation) *xxx_GetRemoteRefresherOperation {
+	if op == nil {
+		op = &xxx_GetRemoteRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRemoteRefresherOperation{}
+		return op
 	}
-	return &xxx_GetRemoteRefresherOperation{
-		This:                   o.This,
-		RefresherID:            o.RefresherID,
-		Flags:                  o.Flags,
-		ClientRefresherVersion: o.ClientRefresherVersion,
-	}
+	o.This = op.This
+	o.RefresherID = op.RefresherID
+	o.Flags = op.Flags
+	o.ClientRefresherVersion = op.ClientRefresherVersion
+	return op
 }
 
 func (o *GetRemoteRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRemoteRefresherOperation) {
@@ -2051,7 +2069,7 @@ func (o *GetRemoteRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_GetR
 	o.ClientRefresherVersion = op.ClientRefresherVersion
 }
 func (o *GetRemoteRefresherRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRemoteRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRemoteRefresherOperation{}
@@ -2080,17 +2098,19 @@ type GetRemoteRefresherResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRemoteRefresherResponse) xxx_ToOp(ctx context.Context) *xxx_GetRemoteRefresherOperation {
+func (o *GetRemoteRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRemoteRefresherOperation) *xxx_GetRemoteRefresherOperation {
+	if op == nil {
+		op = &xxx_GetRemoteRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRemoteRefresherOperation{}
+		return op
 	}
-	return &xxx_GetRemoteRefresherOperation{
-		That:                   o.That,
-		RemoteRefresher:        o.RemoteRefresher,
-		GUID:                   o.GUID,
-		ServerRefresherVersion: o.ServerRefresherVersion,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.RemoteRefresher = op.RemoteRefresher
+	o.GUID = op.GUID
+	o.ServerRefresherVersion = op.ServerRefresherVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRemoteRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRemoteRefresherOperation) {
@@ -2104,7 +2124,7 @@ func (o *GetRemoteRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetRemoteRefresherResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRemoteRefresherResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRemoteRefresherOperation{}
@@ -2516,19 +2536,21 @@ type ReconnectRemoteRefresherRequest struct {
 	ReconnectResults []*wmi.ReconnectResults `idl:"name:apReconnectResults;size_is:(lNumObjects)" json:"reconnect_results"`
 }
 
-func (o *ReconnectRemoteRefresherRequest) xxx_ToOp(ctx context.Context) *xxx_ReconnectRemoteRefresherOperation {
+func (o *ReconnectRemoteRefresherRequest) xxx_ToOp(ctx context.Context, op *xxx_ReconnectRemoteRefresherOperation) *xxx_ReconnectRemoteRefresherOperation {
+	if op == nil {
+		op = &xxx_ReconnectRemoteRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_ReconnectRemoteRefresherOperation{}
+		return op
 	}
-	return &xxx_ReconnectRemoteRefresherOperation{
-		This:                   o.This,
-		RefresherID:            o.RefresherID,
-		Flags:                  o.Flags,
-		ObjectsLength:          o.ObjectsLength,
-		ClientRefresherVersion: o.ClientRefresherVersion,
-		ReconnectInfo:          o.ReconnectInfo,
-		ReconnectResults:       o.ReconnectResults,
-	}
+	o.This = op.This
+	o.RefresherID = op.RefresherID
+	o.Flags = op.Flags
+	o.ObjectsLength = op.ObjectsLength
+	o.ClientRefresherVersion = op.ClientRefresherVersion
+	o.ReconnectInfo = op.ReconnectInfo
+	o.ReconnectResults = op.ReconnectResults
+	return op
 }
 
 func (o *ReconnectRemoteRefresherRequest) xxx_FromOp(ctx context.Context, op *xxx_ReconnectRemoteRefresherOperation) {
@@ -2544,7 +2566,7 @@ func (o *ReconnectRemoteRefresherRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.ReconnectResults = op.ReconnectResults
 }
 func (o *ReconnectRemoteRefresherRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReconnectRemoteRefresherRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReconnectRemoteRefresherOperation{}
@@ -2570,16 +2592,18 @@ type ReconnectRemoteRefresherResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReconnectRemoteRefresherResponse) xxx_ToOp(ctx context.Context) *xxx_ReconnectRemoteRefresherOperation {
+func (o *ReconnectRemoteRefresherResponse) xxx_ToOp(ctx context.Context, op *xxx_ReconnectRemoteRefresherOperation) *xxx_ReconnectRemoteRefresherOperation {
+	if op == nil {
+		op = &xxx_ReconnectRemoteRefresherOperation{}
+	}
 	if o == nil {
-		return &xxx_ReconnectRemoteRefresherOperation{}
+		return op
 	}
-	return &xxx_ReconnectRemoteRefresherOperation{
-		That:                   o.That,
-		ReconnectResults:       o.ReconnectResults,
-		ServerRefresherVersion: o.ServerRefresherVersion,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.ReconnectResults = op.ReconnectResults
+	o.ServerRefresherVersion = op.ServerRefresherVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReconnectRemoteRefresherResponse) xxx_FromOp(ctx context.Context, op *xxx_ReconnectRemoteRefresherOperation) {
@@ -2592,7 +2616,7 @@ func (o *ReconnectRemoteRefresherResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *ReconnectRemoteRefresherResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReconnectRemoteRefresherResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReconnectRemoteRefresherOperation{}

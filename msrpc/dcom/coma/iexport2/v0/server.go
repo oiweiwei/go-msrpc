@@ -66,12 +66,25 @@ func Export2ServerHandle(ctx context.Context, o Export2Server, opNum int, r ndr.
 	}
 	switch opNum {
 	case 3: // ExportPartition
-		in := &ExportPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExportPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IExport2
+type UnimplementedExport2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedExport2Server) ExportPartition(context.Context, *ExportPartitionRequest) (*ExportPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Export2Server = (*UnimplementedExport2Server)(nil)

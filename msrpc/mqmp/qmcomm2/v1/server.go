@@ -111,33 +111,60 @@ func NewQmcomm2ServerHandle(o Qmcomm2Server) dcerpc.ServerHandle {
 func Qmcomm2ServerHandle(ctx context.Context, o Qmcomm2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // QMSendMessageInternalEx
-		in := &QMSendMessageInternalExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QMSendMessageInternalExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QMSendMessageInternalEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QMSendMessageInternalExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QMSendMessageInternalEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // rpc_ACSendMessageEx
-		in := &SendMessageExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendMessageExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendMessageEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendMessageExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendMessageEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // rpc_ACReceiveMessageEx
-		in := &ReceiveMessageExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReceiveMessageExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReceiveMessageEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReceiveMessageExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReceiveMessageEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // rpc_ACCreateCursorEx
-		in := &CreateCursorExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateCursorExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateCursorEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateCursorExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateCursorEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented qmcomm2
+type UnimplementedQmcomm2Server struct {
+}
+
+func (UnimplementedQmcomm2Server) QMSendMessageInternalEx(context.Context, *QMSendMessageInternalExRequest) (*QMSendMessageInternalExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcomm2Server) SendMessageEx(context.Context, *SendMessageExRequest) (*SendMessageExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcomm2Server) ReceiveMessageEx(context.Context, *ReceiveMessageExRequest) (*ReceiveMessageExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcomm2Server) CreateCursorEx(context.Context, *CreateCursorExRequest) (*CreateCursorExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Qmcomm2Server = (*UnimplementedQmcomm2Server)(nil)

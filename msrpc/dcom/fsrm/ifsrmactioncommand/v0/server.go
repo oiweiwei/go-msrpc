@@ -91,103 +91,181 @@ func ActionCommandServerHandle(ctx context.Context, o ActionCommandServer, opNum
 	}
 	switch opNum {
 	case 12: // ExecutablePath
-		in := &GetExecutablePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExecutablePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExecutablePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExecutablePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExecutablePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ExecutablePath
-		in := &SetExecutablePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExecutablePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExecutablePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExecutablePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExecutablePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Arguments
-		in := &GetArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Arguments
-		in := &SetArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Account
-		in := &GetAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Account
-		in := &SetAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // WorkingDirectory
-		in := &GetWorkingDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetWorkingDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetWorkingDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetWorkingDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetWorkingDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // WorkingDirectory
-		in := &SetWorkingDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetWorkingDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetWorkingDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetWorkingDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetWorkingDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // MonitorCommand
-		in := &GetMonitorCommandRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMonitorCommandOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMonitorCommand(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMonitorCommandRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMonitorCommand(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // MonitorCommand
-		in := &SetMonitorCommandRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMonitorCommandOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMonitorCommand(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMonitorCommandRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMonitorCommand(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // KillTimeOut
-		in := &GetKillTimeoutRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKillTimeoutOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKillTimeout(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKillTimeoutRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKillTimeout(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // KillTimeOut
-		in := &SetKillTimeoutRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetKillTimeoutOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetKillTimeout(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetKillTimeoutRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetKillTimeout(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // LogResult
-		in := &GetLogResultRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogResultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogResult(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogResultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogResult(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // LogResult
-		in := &SetLogResultRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogResultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogResult(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogResultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogResult(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmActionCommand
+type UnimplementedActionCommandServer struct {
+	ifsrmaction.UnimplementedActionServer
+}
+
+func (UnimplementedActionCommandServer) GetExecutablePath(context.Context, *GetExecutablePathRequest) (*GetExecutablePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetExecutablePath(context.Context, *SetExecutablePathRequest) (*SetExecutablePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) GetArguments(context.Context, *GetArgumentsRequest) (*GetArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetArguments(context.Context, *SetArgumentsRequest) (*SetArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetAccount(context.Context, *SetAccountRequest) (*SetAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) GetWorkingDirectory(context.Context, *GetWorkingDirectoryRequest) (*GetWorkingDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetWorkingDirectory(context.Context, *SetWorkingDirectoryRequest) (*SetWorkingDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) GetMonitorCommand(context.Context, *GetMonitorCommandRequest) (*GetMonitorCommandResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetMonitorCommand(context.Context, *SetMonitorCommandRequest) (*SetMonitorCommandResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) GetKillTimeout(context.Context, *GetKillTimeoutRequest) (*GetKillTimeoutResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetKillTimeout(context.Context, *SetKillTimeoutRequest) (*SetKillTimeoutResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) GetLogResult(context.Context, *GetLogResultRequest) (*GetLogResultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionCommandServer) SetLogResult(context.Context, *SetLogResultRequest) (*SetLogResultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActionCommandServer = (*UnimplementedActionCommandServer)(nil)

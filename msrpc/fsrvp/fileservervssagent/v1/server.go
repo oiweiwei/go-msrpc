@@ -336,96 +336,168 @@ func NewFileServerVSSAgentServerHandle(o FileServerVSSAgentServer) dcerpc.Server
 func FileServerVSSAgentServerHandle(ctx context.Context, o FileServerVSSAgentServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // GetSupportedVersion
-		in := &GetSupportedVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSupportedVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSupportedVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSupportedVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSupportedVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // SetContext
-		in := &SetContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // StartShadowCopySet
-		in := &StartShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // AddToShadowCopySet
-		in := &AddToShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddToShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddToShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddToShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddToShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CommitShadowCopySet
-		in := &CommitShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CommitShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CommitShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ExposeShadowCopySet
-		in := &ExposeShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExposeShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExposeShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExposeShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExposeShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // RecoveryCompleteShadowCopySet
-		in := &RecoveryCompleteShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RecoveryCompleteShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RecoveryCompleteShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RecoveryCompleteShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RecoveryCompleteShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // AbortShadowCopySet
-		in := &AbortShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AbortShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AbortShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AbortShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AbortShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // IsPathSupported
-		in := &IsPathSupportedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsPathSupportedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsPathSupported(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsPathSupportedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsPathSupported(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // IsPathShadowCopied
-		in := &IsPathShadowCopiedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsPathShadowCopiedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsPathShadowCopied(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsPathShadowCopiedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsPathShadowCopied(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetShareMapping
-		in := &GetShareMappingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetShareMappingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetShareMapping(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetShareMappingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetShareMapping(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // DeleteShareMapping
-		in := &DeleteShareMappingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteShareMappingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteShareMapping(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteShareMappingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteShareMapping(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // PrepareShadowCopySet
-		in := &PrepareShadowCopySetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PrepareShadowCopySetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PrepareShadowCopySet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PrepareShadowCopySetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PrepareShadowCopySet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented FileServerVssAgent
+type UnimplementedFileServerVSSAgentServer struct {
+}
+
+func (UnimplementedFileServerVSSAgentServer) GetSupportedVersion(context.Context, *GetSupportedVersionRequest) (*GetSupportedVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) SetContext(context.Context, *SetContextRequest) (*SetContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) StartShadowCopySet(context.Context, *StartShadowCopySetRequest) (*StartShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) AddToShadowCopySet(context.Context, *AddToShadowCopySetRequest) (*AddToShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) CommitShadowCopySet(context.Context, *CommitShadowCopySetRequest) (*CommitShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) ExposeShadowCopySet(context.Context, *ExposeShadowCopySetRequest) (*ExposeShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) RecoveryCompleteShadowCopySet(context.Context, *RecoveryCompleteShadowCopySetRequest) (*RecoveryCompleteShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) AbortShadowCopySet(context.Context, *AbortShadowCopySetRequest) (*AbortShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) IsPathSupported(context.Context, *IsPathSupportedRequest) (*IsPathSupportedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) IsPathShadowCopied(context.Context, *IsPathShadowCopiedRequest) (*IsPathShadowCopiedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) GetShareMapping(context.Context, *GetShareMappingRequest) (*GetShareMappingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) DeleteShareMapping(context.Context, *DeleteShareMappingRequest) (*DeleteShareMappingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileServerVSSAgentServer) PrepareShadowCopySet(context.Context, *PrepareShadowCopySetRequest) (*PrepareShadowCopySetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileServerVSSAgentServer = (*UnimplementedFileServerVSSAgentServer)(nil)

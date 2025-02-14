@@ -73,7 +73,7 @@ func (o *xxx_DefaultAppHostChangeHandlerClient) Unknown() iunknown.UnknownClient
 }
 
 func (o *xxx_DefaultAppHostChangeHandlerClient) OnSectionChanges(ctx context.Context, in *OnSectionChangesRequest, opts ...dcerpc.CallOption) (*OnSectionChangesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -355,15 +355,17 @@ type OnSectionChangesRequest struct {
 	ConfigPath  *oaut.String   `idl:"name:bstrConfigPath" json:"config_path"`
 }
 
-func (o *OnSectionChangesRequest) xxx_ToOp(ctx context.Context) *xxx_OnSectionChangesOperation {
+func (o *OnSectionChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_OnSectionChangesOperation) *xxx_OnSectionChangesOperation {
+	if op == nil {
+		op = &xxx_OnSectionChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_OnSectionChangesOperation{}
+		return op
 	}
-	return &xxx_OnSectionChangesOperation{
-		This:        o.This,
-		SectionName: o.SectionName,
-		ConfigPath:  o.ConfigPath,
-	}
+	o.This = op.This
+	o.SectionName = op.SectionName
+	o.ConfigPath = op.ConfigPath
+	return op
 }
 
 func (o *OnSectionChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_OnSectionChangesOperation) {
@@ -375,7 +377,7 @@ func (o *OnSectionChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_OnSect
 	o.ConfigPath = op.ConfigPath
 }
 func (o *OnSectionChangesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OnSectionChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnSectionChangesOperation{}
@@ -394,14 +396,16 @@ type OnSectionChangesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OnSectionChangesResponse) xxx_ToOp(ctx context.Context) *xxx_OnSectionChangesOperation {
+func (o *OnSectionChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_OnSectionChangesOperation) *xxx_OnSectionChangesOperation {
+	if op == nil {
+		op = &xxx_OnSectionChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_OnSectionChangesOperation{}
+		return op
 	}
-	return &xxx_OnSectionChangesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OnSectionChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_OnSectionChangesOperation) {
@@ -412,7 +416,7 @@ func (o *OnSectionChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_OnSec
 	o.Return = op.Return
 }
 func (o *OnSectionChangesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OnSectionChangesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnSectionChangesOperation{}

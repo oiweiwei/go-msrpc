@@ -3129,7 +3129,7 @@ type xxx_DefaultRemoteFwClient struct {
 }
 
 func (o *xxx_DefaultRemoteFwClient) OpenPolicyStore(ctx context.Context, in *OpenPolicyStoreRequest, opts ...dcerpc.CallOption) (*OpenPolicyStoreResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3142,7 +3142,7 @@ func (o *xxx_DefaultRemoteFwClient) OpenPolicyStore(ctx context.Context, in *Ope
 }
 
 func (o *xxx_DefaultRemoteFwClient) ClosePolicyStore(ctx context.Context, in *ClosePolicyStoreRequest, opts ...dcerpc.CallOption) (*ClosePolicyStoreResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3155,7 +3155,7 @@ func (o *xxx_DefaultRemoteFwClient) ClosePolicyStore(ctx context.Context, in *Cl
 }
 
 func (o *xxx_DefaultRemoteFwClient) RestoreDefaults(ctx context.Context, in *RestoreDefaultsRequest, opts ...dcerpc.CallOption) (*RestoreDefaultsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3168,7 +3168,7 @@ func (o *xxx_DefaultRemoteFwClient) RestoreDefaults(ctx context.Context, in *Res
 }
 
 func (o *xxx_DefaultRemoteFwClient) GetGlobalConfig(ctx context.Context, in *GetGlobalConfigRequest, opts ...dcerpc.CallOption) (*GetGlobalConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3181,7 +3181,7 @@ func (o *xxx_DefaultRemoteFwClient) GetGlobalConfig(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetGlobalConfig(ctx context.Context, in *SetGlobalConfigRequest, opts ...dcerpc.CallOption) (*SetGlobalConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3194,7 +3194,7 @@ func (o *xxx_DefaultRemoteFwClient) SetGlobalConfig(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule(ctx context.Context, in *AddFirewallRuleRequest, opts ...dcerpc.CallOption) (*AddFirewallRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3207,7 +3207,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule(ctx context.Context, in *Add
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule(ctx context.Context, in *SetFirewallRuleRequest, opts ...dcerpc.CallOption) (*SetFirewallRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3220,7 +3220,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteFirewallRule(ctx context.Context, in *DeleteFirewallRuleRequest, opts ...dcerpc.CallOption) (*DeleteFirewallRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3233,7 +3233,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteFirewallRule(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteAllFirewallRules(ctx context.Context, in *DeleteAllFirewallRulesRequest, opts ...dcerpc.CallOption) (*DeleteAllFirewallRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3246,7 +3246,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllFirewallRules(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules(ctx context.Context, in *EnumFirewallRulesRequest, opts ...dcerpc.CallOption) (*EnumFirewallRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3259,7 +3259,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules(ctx context.Context, in *E
 }
 
 func (o *xxx_DefaultRemoteFwClient) GetConfig(ctx context.Context, in *GetConfigRequest, opts ...dcerpc.CallOption) (*GetConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3272,7 +3272,7 @@ func (o *xxx_DefaultRemoteFwClient) GetConfig(ctx context.Context, in *GetConfig
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetConfig(ctx context.Context, in *SetConfigRequest, opts ...dcerpc.CallOption) (*SetConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3285,7 +3285,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConfig(ctx context.Context, in *SetConfig
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule(ctx context.Context, in *AddConnectionSecurityRuleRequest, opts ...dcerpc.CallOption) (*AddConnectionSecurityRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3298,7 +3298,7 @@ func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule(ctx context.Context, in *SetConnectionSecurityRuleRequest, opts ...dcerpc.CallOption) (*SetConnectionSecurityRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3311,7 +3311,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteConnectionSecurityRule(ctx context.Context, in *DeleteConnectionSecurityRuleRequest, opts ...dcerpc.CallOption) (*DeleteConnectionSecurityRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3324,7 +3324,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteConnectionSecurityRule(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteAllConnectionSecurityRules(ctx context.Context, in *DeleteAllConnectionSecurityRulesRequest, opts ...dcerpc.CallOption) (*DeleteAllConnectionSecurityRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3337,7 +3337,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllConnectionSecurityRules(ctx context
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules(ctx context.Context, in *EnumConnectionSecurityRulesRequest, opts ...dcerpc.CallOption) (*EnumConnectionSecurityRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3350,7 +3350,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules(ctx context.Cont
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet(ctx context.Context, in *AddAuthenticationSetRequest, opts ...dcerpc.CallOption) (*AddAuthenticationSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3363,7 +3363,7 @@ func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet(ctx context.Context, in *SetAuthenticationSetRequest, opts ...dcerpc.CallOption) (*SetAuthenticationSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3376,7 +3376,7 @@ func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteAuthenticationSet(ctx context.Context, in *DeleteAuthenticationSetRequest, opts ...dcerpc.CallOption) (*DeleteAuthenticationSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3389,7 +3389,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAuthenticationSet(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteAllAuthenticationSets(ctx context.Context, in *DeleteAllAuthenticationSetsRequest, opts ...dcerpc.CallOption) (*DeleteAllAuthenticationSetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3402,7 +3402,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllAuthenticationSets(ctx context.Cont
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets(ctx context.Context, in *EnumAuthenticationSetsRequest, opts ...dcerpc.CallOption) (*EnumAuthenticationSetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3415,7 +3415,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddCryptoSet(ctx context.Context, in *AddCryptoSetRequest, opts ...dcerpc.CallOption) (*AddCryptoSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3428,7 +3428,7 @@ func (o *xxx_DefaultRemoteFwClient) AddCryptoSet(ctx context.Context, in *AddCry
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetCryptoSet(ctx context.Context, in *SetCryptoSetRequest, opts ...dcerpc.CallOption) (*SetCryptoSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3441,7 +3441,7 @@ func (o *xxx_DefaultRemoteFwClient) SetCryptoSet(ctx context.Context, in *SetCry
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteCryptoSet(ctx context.Context, in *DeleteCryptoSetRequest, opts ...dcerpc.CallOption) (*DeleteCryptoSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3454,7 +3454,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteCryptoSet(ctx context.Context, in *Del
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteAllCryptoSets(ctx context.Context, in *DeleteAllCryptoSetsRequest, opts ...dcerpc.CallOption) (*DeleteAllCryptoSetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3467,7 +3467,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllCryptoSets(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumCryptoSets(ctx context.Context, in *EnumCryptoSetsRequest, opts ...dcerpc.CallOption) (*EnumCryptoSetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3480,7 +3480,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumCryptoSets(ctx context.Context, in *Enum
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumPhase1SAs(ctx context.Context, in *EnumPhase1SAsRequest, opts ...dcerpc.CallOption) (*EnumPhase1SAsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3493,7 +3493,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumPhase1SAs(ctx context.Context, in *EnumP
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumPhase2SAs(ctx context.Context, in *EnumPhase2SAsRequest, opts ...dcerpc.CallOption) (*EnumPhase2SAsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3506,7 +3506,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumPhase2SAs(ctx context.Context, in *EnumP
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeletePhase1SAs(ctx context.Context, in *DeletePhase1SAsRequest, opts ...dcerpc.CallOption) (*DeletePhase1SAsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3519,7 +3519,7 @@ func (o *xxx_DefaultRemoteFwClient) DeletePhase1SAs(ctx context.Context, in *Del
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeletePhase2SAs(ctx context.Context, in *DeletePhase2SAsRequest, opts ...dcerpc.CallOption) (*DeletePhase2SAsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3532,7 +3532,7 @@ func (o *xxx_DefaultRemoteFwClient) DeletePhase2SAs(ctx context.Context, in *Del
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumProducts(ctx context.Context, in *EnumProductsRequest, opts ...dcerpc.CallOption) (*EnumProductsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3545,7 +3545,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumProducts(ctx context.Context, in *EnumPr
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddMainModeRule(ctx context.Context, in *AddMainModeRuleRequest, opts ...dcerpc.CallOption) (*AddMainModeRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3558,7 +3558,7 @@ func (o *xxx_DefaultRemoteFwClient) AddMainModeRule(ctx context.Context, in *Add
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetMainModeRule(ctx context.Context, in *SetMainModeRuleRequest, opts ...dcerpc.CallOption) (*SetMainModeRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3571,7 +3571,7 @@ func (o *xxx_DefaultRemoteFwClient) SetMainModeRule(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteMainModeRule(ctx context.Context, in *DeleteMainModeRuleRequest, opts ...dcerpc.CallOption) (*DeleteMainModeRuleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3584,7 +3584,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteMainModeRule(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) DeleteAllMainModeRules(ctx context.Context, in *DeleteAllMainModeRulesRequest, opts ...dcerpc.CallOption) (*DeleteAllMainModeRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3597,7 +3597,7 @@ func (o *xxx_DefaultRemoteFwClient) DeleteAllMainModeRules(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumMainModeRules(ctx context.Context, in *EnumMainModeRulesRequest, opts ...dcerpc.CallOption) (*EnumMainModeRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3610,7 +3610,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumMainModeRules(ctx context.Context, in *E
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules(ctx context.Context, in *QueryFirewallRulesRequest, opts ...dcerpc.CallOption) (*QueryFirewallRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3623,7 +3623,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryConnectionSecurityRules210(ctx context.Context, in *QueryConnectionSecurityRules210Request, opts ...dcerpc.CallOption) (*QueryConnectionSecurityRules210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3636,7 +3636,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryConnectionSecurityRules210(ctx context.
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryMainModeRules(ctx context.Context, in *QueryMainModeRulesRequest, opts ...dcerpc.CallOption) (*QueryMainModeRulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3649,7 +3649,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryMainModeRules(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryAuthenticationSets(ctx context.Context, in *QueryAuthenticationSetsRequest, opts ...dcerpc.CallOption) (*QueryAuthenticationSetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3662,7 +3662,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryAuthenticationSets(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryCryptoSets(ctx context.Context, in *QueryCryptoSetsRequest, opts ...dcerpc.CallOption) (*QueryCryptoSetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3675,7 +3675,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryCryptoSets(ctx context.Context, in *Que
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumNetworks(ctx context.Context, in *EnumNetworksRequest, opts ...dcerpc.CallOption) (*EnumNetworksResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3688,7 +3688,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumNetworks(ctx context.Context, in *EnumNe
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumAdapters(ctx context.Context, in *EnumAdaptersRequest, opts ...dcerpc.CallOption) (*EnumAdaptersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3701,7 +3701,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAdapters(ctx context.Context, in *EnumAd
 }
 
 func (o *xxx_DefaultRemoteFwClient) GetGlobalConfig210(ctx context.Context, in *GetGlobalConfig210Request, opts ...dcerpc.CallOption) (*GetGlobalConfig210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3714,7 +3714,7 @@ func (o *xxx_DefaultRemoteFwClient) GetGlobalConfig210(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) GetConfig210(ctx context.Context, in *GetConfig210Request, opts ...dcerpc.CallOption) (*GetConfig210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3727,7 +3727,7 @@ func (o *xxx_DefaultRemoteFwClient) GetConfig210(ctx context.Context, in *GetCon
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule210(ctx context.Context, in *AddFirewallRule210Request, opts ...dcerpc.CallOption) (*AddFirewallRule210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3740,7 +3740,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule210(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule210(ctx context.Context, in *SetFirewallRule210Request, opts ...dcerpc.CallOption) (*SetFirewallRule210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3753,7 +3753,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule210(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules210(ctx context.Context, in *EnumFirewallRules210Request, opts ...dcerpc.CallOption) (*EnumFirewallRules210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3766,7 +3766,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules210(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule210(ctx context.Context, in *AddConnectionSecurityRule210Request, opts ...dcerpc.CallOption) (*AddConnectionSecurityRule210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3779,7 +3779,7 @@ func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule210(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule210(ctx context.Context, in *SetConnectionSecurityRule210Request, opts ...dcerpc.CallOption) (*SetConnectionSecurityRule210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3792,7 +3792,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule210(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules210(ctx context.Context, in *EnumConnectionSecurityRules210Request, opts ...dcerpc.CallOption) (*EnumConnectionSecurityRules210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3805,7 +3805,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules210(ctx context.C
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet210(ctx context.Context, in *AddAuthenticationSet210Request, opts ...dcerpc.CallOption) (*AddAuthenticationSet210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3818,7 +3818,7 @@ func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet210(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet210(ctx context.Context, in *SetAuthenticationSet210Request, opts ...dcerpc.CallOption) (*SetAuthenticationSet210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3831,7 +3831,7 @@ func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet210(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets210(ctx context.Context, in *EnumAuthenticationSets210Request, opts ...dcerpc.CallOption) (*EnumAuthenticationSets210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3844,7 +3844,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets210(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddCryptoSet210(ctx context.Context, in *AddCryptoSet210Request, opts ...dcerpc.CallOption) (*AddCryptoSet210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3857,7 +3857,7 @@ func (o *xxx_DefaultRemoteFwClient) AddCryptoSet210(ctx context.Context, in *Add
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetCryptoSet210(ctx context.Context, in *SetCryptoSet210Request, opts ...dcerpc.CallOption) (*SetCryptoSet210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3870,7 +3870,7 @@ func (o *xxx_DefaultRemoteFwClient) SetCryptoSet210(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumCryptoSets210(ctx context.Context, in *EnumCryptoSets210Request, opts ...dcerpc.CallOption) (*EnumCryptoSets210Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3883,7 +3883,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumCryptoSets210(ctx context.Context, in *E
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule220(ctx context.Context, in *AddConnectionSecurityRule220Request, opts ...dcerpc.CallOption) (*AddConnectionSecurityRule220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3896,7 +3896,7 @@ func (o *xxx_DefaultRemoteFwClient) AddConnectionSecurityRule220(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule220(ctx context.Context, in *SetConnectionSecurityRule220Request, opts ...dcerpc.CallOption) (*SetConnectionSecurityRule220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3909,7 +3909,7 @@ func (o *xxx_DefaultRemoteFwClient) SetConnectionSecurityRule220(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules220(ctx context.Context, in *EnumConnectionSecurityRules220Request, opts ...dcerpc.CallOption) (*EnumConnectionSecurityRules220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3922,7 +3922,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumConnectionSecurityRules220(ctx context.C
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryConnectionSecurityRules220(ctx context.Context, in *QueryConnectionSecurityRules220Request, opts ...dcerpc.CallOption) (*QueryConnectionSecurityRules220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3935,7 +3935,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryConnectionSecurityRules220(ctx context.
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet220(ctx context.Context, in *AddAuthenticationSet220Request, opts ...dcerpc.CallOption) (*AddAuthenticationSet220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3948,7 +3948,7 @@ func (o *xxx_DefaultRemoteFwClient) AddAuthenticationSet220(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet220(ctx context.Context, in *SetAuthenticationSet220Request, opts ...dcerpc.CallOption) (*SetAuthenticationSet220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3961,7 +3961,7 @@ func (o *xxx_DefaultRemoteFwClient) SetAuthenticationSet220(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets220(ctx context.Context, in *EnumAuthenticationSets220Request, opts ...dcerpc.CallOption) (*EnumAuthenticationSets220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3974,7 +3974,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumAuthenticationSets220(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryAuthenticationSets220(ctx context.Context, in *QueryAuthenticationSets220Request, opts ...dcerpc.CallOption) (*QueryAuthenticationSets220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3987,7 +3987,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryAuthenticationSets220(ctx context.Conte
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule220(ctx context.Context, in *AddFirewallRule220Request, opts ...dcerpc.CallOption) (*AddFirewallRule220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4000,7 +4000,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule220(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule220(ctx context.Context, in *SetFirewallRule220Request, opts ...dcerpc.CallOption) (*SetFirewallRule220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4013,7 +4013,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule220(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules220(ctx context.Context, in *EnumFirewallRules220Request, opts ...dcerpc.CallOption) (*EnumFirewallRules220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4026,7 +4026,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules220(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules220(ctx context.Context, in *QueryFirewallRules220Request, opts ...dcerpc.CallOption) (*QueryFirewallRules220Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4039,7 +4039,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules220(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule224(ctx context.Context, in *AddFirewallRule224Request, opts ...dcerpc.CallOption) (*AddFirewallRule224Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4052,7 +4052,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule224(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule224(ctx context.Context, in *SetFirewallRule224Request, opts ...dcerpc.CallOption) (*SetFirewallRule224Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4065,7 +4065,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule224(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules224(ctx context.Context, in *EnumFirewallRules224Request, opts ...dcerpc.CallOption) (*EnumFirewallRules224Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4078,7 +4078,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules224(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules224(ctx context.Context, in *QueryFirewallRules224Request, opts ...dcerpc.CallOption) (*QueryFirewallRules224Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4091,7 +4091,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules224(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule225(ctx context.Context, in *AddFirewallRule225Request, opts ...dcerpc.CallOption) (*AddFirewallRule225Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4104,7 +4104,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule225(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule225(ctx context.Context, in *SetFirewallRule225Request, opts ...dcerpc.CallOption) (*SetFirewallRule225Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4117,7 +4117,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule225(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules225(ctx context.Context, in *EnumFirewallRules225Request, opts ...dcerpc.CallOption) (*EnumFirewallRules225Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4130,7 +4130,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules225(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules225(ctx context.Context, in *QueryFirewallRules225Request, opts ...dcerpc.CallOption) (*QueryFirewallRules225Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4143,7 +4143,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules225(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule226(ctx context.Context, in *AddFirewallRule226Request, opts ...dcerpc.CallOption) (*AddFirewallRule226Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4156,7 +4156,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule226(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule226(ctx context.Context, in *SetFirewallRule226Request, opts ...dcerpc.CallOption) (*SetFirewallRule226Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4169,7 +4169,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule226(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules226(ctx context.Context, in *EnumFirewallRules226Request, opts ...dcerpc.CallOption) (*EnumFirewallRules226Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4182,7 +4182,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules226(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules226(ctx context.Context, in *QueryFirewallRules226Request, opts ...dcerpc.CallOption) (*QueryFirewallRules226Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4195,7 +4195,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules226(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule227(ctx context.Context, in *AddFirewallRule227Request, opts ...dcerpc.CallOption) (*AddFirewallRule227Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4208,7 +4208,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule227(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule227(ctx context.Context, in *SetFirewallRule227Request, opts ...dcerpc.CallOption) (*SetFirewallRule227Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4221,7 +4221,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule227(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules227(ctx context.Context, in *EnumFirewallRules227Request, opts ...dcerpc.CallOption) (*EnumFirewallRules227Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4234,7 +4234,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules227(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules227(ctx context.Context, in *QueryFirewallRules227Request, opts ...dcerpc.CallOption) (*QueryFirewallRules227Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4247,7 +4247,7 @@ func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules227(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteFwClient) AddFirewallRule231(ctx context.Context, in *AddFirewallRule231Request, opts ...dcerpc.CallOption) (*AddFirewallRule231Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4260,7 +4260,7 @@ func (o *xxx_DefaultRemoteFwClient) AddFirewallRule231(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) SetFirewallRule231(ctx context.Context, in *SetFirewallRule231Request, opts ...dcerpc.CallOption) (*SetFirewallRule231Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4273,7 +4273,7 @@ func (o *xxx_DefaultRemoteFwClient) SetFirewallRule231(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules231(ctx context.Context, in *EnumFirewallRules231Request, opts ...dcerpc.CallOption) (*EnumFirewallRules231Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4286,7 +4286,7 @@ func (o *xxx_DefaultRemoteFwClient) EnumFirewallRules231(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteFwClient) QueryFirewallRules231(ctx context.Context, in *QueryFirewallRules231Request, opts ...dcerpc.CallOption) (*QueryFirewallRules231Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4473,16 +4473,18 @@ type OpenPolicyStoreRequest struct {
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *OpenPolicyStoreRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPolicyStoreOperation {
+func (o *OpenPolicyStoreRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyStoreOperation) *xxx_OpenPolicyStoreOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyStoreOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicyStoreOperation{}
+		return op
 	}
-	return &xxx_OpenPolicyStoreOperation{
-		BinaryVersion: o.BinaryVersion,
-		StoreType:     o.StoreType,
-		AccessRight:   o.AccessRight,
-		Flags:         o.Flags,
-	}
+	o.BinaryVersion = op.BinaryVersion
+	o.StoreType = op.StoreType
+	o.AccessRight = op.AccessRight
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *OpenPolicyStoreRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyStoreOperation) {
@@ -4495,7 +4497,7 @@ func (o *OpenPolicyStoreRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPol
 	o.Flags = op.Flags
 }
 func (o *OpenPolicyStoreRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPolicyStoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicyStoreOperation{}
@@ -4515,14 +4517,16 @@ type OpenPolicyStoreResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPolicyStoreResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPolicyStoreOperation {
+func (o *OpenPolicyStoreResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyStoreOperation) *xxx_OpenPolicyStoreOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyStoreOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicyStoreOperation{}
+		return op
 	}
-	return &xxx_OpenPolicyStoreOperation{
-		PolicyStore: o.PolicyStore,
-		Return:      o.Return,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPolicyStoreResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyStoreOperation) {
@@ -4533,7 +4537,7 @@ func (o *OpenPolicyStoreResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPo
 	o.Return = op.Return
 }
 func (o *OpenPolicyStoreResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPolicyStoreResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicyStoreOperation{}
@@ -4659,13 +4663,15 @@ type ClosePolicyStoreRequest struct {
 	PolicyStore *PolicyStore `idl:"name:phPolicyStore" json:"policy_store"`
 }
 
-func (o *ClosePolicyStoreRequest) xxx_ToOp(ctx context.Context) *xxx_ClosePolicyStoreOperation {
+func (o *ClosePolicyStoreRequest) xxx_ToOp(ctx context.Context, op *xxx_ClosePolicyStoreOperation) *xxx_ClosePolicyStoreOperation {
+	if op == nil {
+		op = &xxx_ClosePolicyStoreOperation{}
+	}
 	if o == nil {
-		return &xxx_ClosePolicyStoreOperation{}
+		return op
 	}
-	return &xxx_ClosePolicyStoreOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *ClosePolicyStoreRequest) xxx_FromOp(ctx context.Context, op *xxx_ClosePolicyStoreOperation) {
@@ -4675,7 +4681,7 @@ func (o *ClosePolicyStoreRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseP
 	o.PolicyStore = op.PolicyStore
 }
 func (o *ClosePolicyStoreRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClosePolicyStoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClosePolicyStoreOperation{}
@@ -4697,14 +4703,16 @@ type ClosePolicyStoreResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClosePolicyStoreResponse) xxx_ToOp(ctx context.Context) *xxx_ClosePolicyStoreOperation {
+func (o *ClosePolicyStoreResponse) xxx_ToOp(ctx context.Context, op *xxx_ClosePolicyStoreOperation) *xxx_ClosePolicyStoreOperation {
+	if op == nil {
+		op = &xxx_ClosePolicyStoreOperation{}
+	}
 	if o == nil {
-		return &xxx_ClosePolicyStoreOperation{}
+		return op
 	}
-	return &xxx_ClosePolicyStoreOperation{
-		PolicyStore: o.PolicyStore,
-		Return:      o.Return,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClosePolicyStoreResponse) xxx_FromOp(ctx context.Context, op *xxx_ClosePolicyStoreOperation) {
@@ -4715,7 +4723,7 @@ func (o *ClosePolicyStoreResponse) xxx_FromOp(ctx context.Context, op *xxx_Close
 	o.Return = op.Return
 }
 func (o *ClosePolicyStoreResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClosePolicyStoreResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClosePolicyStoreOperation{}
@@ -4791,11 +4799,14 @@ func (o *xxx_RestoreDefaultsOperation) UnmarshalNDRResponse(ctx context.Context,
 type RestoreDefaultsRequest struct {
 }
 
-func (o *RestoreDefaultsRequest) xxx_ToOp(ctx context.Context) *xxx_RestoreDefaultsOperation {
-	if o == nil {
-		return &xxx_RestoreDefaultsOperation{}
+func (o *RestoreDefaultsRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreDefaultsOperation) *xxx_RestoreDefaultsOperation {
+	if op == nil {
+		op = &xxx_RestoreDefaultsOperation{}
 	}
-	return &xxx_RestoreDefaultsOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *RestoreDefaultsRequest) xxx_FromOp(ctx context.Context, op *xxx_RestoreDefaultsOperation) {
@@ -4804,7 +4815,7 @@ func (o *RestoreDefaultsRequest) xxx_FromOp(ctx context.Context, op *xxx_Restore
 	}
 }
 func (o *RestoreDefaultsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RestoreDefaultsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreDefaultsOperation{}
@@ -4821,13 +4832,15 @@ type RestoreDefaultsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RestoreDefaultsResponse) xxx_ToOp(ctx context.Context) *xxx_RestoreDefaultsOperation {
+func (o *RestoreDefaultsResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreDefaultsOperation) *xxx_RestoreDefaultsOperation {
+	if op == nil {
+		op = &xxx_RestoreDefaultsOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreDefaultsOperation{}
+		return op
 	}
-	return &xxx_RestoreDefaultsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RestoreDefaultsResponse) xxx_FromOp(ctx context.Context, op *xxx_RestoreDefaultsOperation) {
@@ -4837,7 +4850,7 @@ func (o *RestoreDefaultsResponse) xxx_FromOp(ctx context.Context, op *xxx_Restor
 	o.Return = op.Return
 }
 func (o *RestoreDefaultsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RestoreDefaultsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreDefaultsOperation{}
@@ -5232,19 +5245,21 @@ type GetGlobalConfigRequest struct {
 	TransmittedLength uint32 `idl:"name:pcbTransmittedLen" json:"transmitted_length"`
 }
 
-func (o *GetGlobalConfigRequest) xxx_ToOp(ctx context.Context) *xxx_GetGlobalConfigOperation {
+func (o *GetGlobalConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGlobalConfigOperation) *xxx_GetGlobalConfigOperation {
+	if op == nil {
+		op = &xxx_GetGlobalConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_GetGlobalConfigOperation{}
+		return op
 	}
-	return &xxx_GetGlobalConfigOperation{
-		BinaryVersion:     o.BinaryVersion,
-		StoreType:         o.StoreType,
-		ConfigID:          o.ConfigID,
-		Flags:             o.Flags,
-		Buffer:            o.Buffer,
-		DataLength:        o.DataLength,
-		TransmittedLength: o.TransmittedLength,
-	}
+	o.BinaryVersion = op.BinaryVersion
+	o.StoreType = op.StoreType
+	o.ConfigID = op.ConfigID
+	o.Flags = op.Flags
+	o.Buffer = op.Buffer
+	o.DataLength = op.DataLength
+	o.TransmittedLength = op.TransmittedLength
+	return op
 }
 
 func (o *GetGlobalConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_GetGlobalConfigOperation) {
@@ -5260,7 +5275,7 @@ func (o *GetGlobalConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_GetGlob
 	o.TransmittedLength = op.TransmittedLength
 }
 func (o *GetGlobalConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetGlobalConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetGlobalConfigOperation{}
@@ -5289,16 +5304,18 @@ type GetGlobalConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetGlobalConfigResponse) xxx_ToOp(ctx context.Context) *xxx_GetGlobalConfigOperation {
+func (o *GetGlobalConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGlobalConfigOperation) *xxx_GetGlobalConfigOperation {
+	if op == nil {
+		op = &xxx_GetGlobalConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_GetGlobalConfigOperation{}
+		return op
 	}
-	return &xxx_GetGlobalConfigOperation{
-		Buffer:            o.Buffer,
-		TransmittedLength: o.TransmittedLength,
-		RequiredLength:    o.RequiredLength,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.TransmittedLength = op.TransmittedLength
+	o.RequiredLength = op.RequiredLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetGlobalConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_GetGlobalConfigOperation) {
@@ -5311,7 +5328,7 @@ func (o *GetGlobalConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_GetGlo
 	o.Return = op.Return
 }
 func (o *GetGlobalConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetGlobalConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetGlobalConfigOperation{}
@@ -5535,17 +5552,19 @@ type SetGlobalConfigRequest struct {
 	BufferSize uint32 `idl:"name:dwBufSize" json:"buffer_size"`
 }
 
-func (o *SetGlobalConfigRequest) xxx_ToOp(ctx context.Context) *xxx_SetGlobalConfigOperation {
+func (o *SetGlobalConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_SetGlobalConfigOperation) *xxx_SetGlobalConfigOperation {
+	if op == nil {
+		op = &xxx_SetGlobalConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_SetGlobalConfigOperation{}
+		return op
 	}
-	return &xxx_SetGlobalConfigOperation{
-		BinaryVersion: o.BinaryVersion,
-		StoreType:     o.StoreType,
-		ConfigID:      o.ConfigID,
-		Buffer:        o.Buffer,
-		BufferSize:    o.BufferSize,
-	}
+	o.BinaryVersion = op.BinaryVersion
+	o.StoreType = op.StoreType
+	o.ConfigID = op.ConfigID
+	o.Buffer = op.Buffer
+	o.BufferSize = op.BufferSize
+	return op
 }
 
 func (o *SetGlobalConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_SetGlobalConfigOperation) {
@@ -5559,7 +5578,7 @@ func (o *SetGlobalConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_SetGlob
 	o.BufferSize = op.BufferSize
 }
 func (o *SetGlobalConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetGlobalConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetGlobalConfigOperation{}
@@ -5576,13 +5595,15 @@ type SetGlobalConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetGlobalConfigResponse) xxx_ToOp(ctx context.Context) *xxx_SetGlobalConfigOperation {
+func (o *SetGlobalConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_SetGlobalConfigOperation) *xxx_SetGlobalConfigOperation {
+	if op == nil {
+		op = &xxx_SetGlobalConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_SetGlobalConfigOperation{}
+		return op
 	}
-	return &xxx_SetGlobalConfigOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetGlobalConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_SetGlobalConfigOperation) {
@@ -5592,7 +5613,7 @@ func (o *SetGlobalConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_SetGlo
 	o.Return = op.Return
 }
 func (o *SetGlobalConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetGlobalConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetGlobalConfigOperation{}
@@ -5727,14 +5748,16 @@ type AddFirewallRuleRequest struct {
 	Rule *fasp.Rule20 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRuleRequest) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRuleOperation {
+func (o *AddFirewallRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRuleOperation) *xxx_AddFirewallRuleOperation {
+	if op == nil {
+		op = &xxx_AddFirewallRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRuleOperation{}
+		return op
 	}
-	return &xxx_AddFirewallRuleOperation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRuleOperation) {
@@ -5745,7 +5768,7 @@ func (o *AddFirewallRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_AddFire
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRuleOperation{}
@@ -5762,13 +5785,15 @@ type AddFirewallRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRuleResponse) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRuleOperation {
+func (o *AddFirewallRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRuleOperation) *xxx_AddFirewallRuleOperation {
+	if op == nil {
+		op = &xxx_AddFirewallRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRuleOperation{}
+		return op
 	}
-	return &xxx_AddFirewallRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRuleOperation) {
@@ -5778,7 +5803,7 @@ func (o *AddFirewallRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_AddFir
 	o.Return = op.Return
 }
 func (o *AddFirewallRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRuleOperation{}
@@ -5913,14 +5938,16 @@ type SetFirewallRuleRequest struct {
 	Rule *fasp.Rule20 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRuleRequest) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRuleOperation {
+func (o *SetFirewallRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRuleOperation) *xxx_SetFirewallRuleOperation {
+	if op == nil {
+		op = &xxx_SetFirewallRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRuleOperation{}
+		return op
 	}
-	return &xxx_SetFirewallRuleOperation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRuleOperation) {
@@ -5931,7 +5958,7 @@ func (o *SetFirewallRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFire
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRuleOperation{}
@@ -5948,13 +5975,15 @@ type SetFirewallRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRuleResponse) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRuleOperation {
+func (o *SetFirewallRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRuleOperation) *xxx_SetFirewallRuleOperation {
+	if op == nil {
+		op = &xxx_SetFirewallRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRuleOperation{}
+		return op
 	}
-	return &xxx_SetFirewallRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRuleOperation) {
@@ -5964,7 +5993,7 @@ func (o *SetFirewallRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFir
 	o.Return = op.Return
 }
 func (o *SetFirewallRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRuleOperation{}
@@ -6084,14 +6113,16 @@ type DeleteFirewallRuleRequest struct {
 	RuleID string `idl:"name:wszRuleID;string;pointer:ref" json:"rule_id"`
 }
 
-func (o *DeleteFirewallRuleRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteFirewallRuleOperation {
+func (o *DeleteFirewallRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteFirewallRuleOperation) *xxx_DeleteFirewallRuleOperation {
+	if op == nil {
+		op = &xxx_DeleteFirewallRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteFirewallRuleOperation{}
+		return op
 	}
-	return &xxx_DeleteFirewallRuleOperation{
-		PolicyStore: o.PolicyStore,
-		RuleID:      o.RuleID,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.RuleID = op.RuleID
+	return op
 }
 
 func (o *DeleteFirewallRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteFirewallRuleOperation) {
@@ -6102,7 +6133,7 @@ func (o *DeleteFirewallRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.RuleID = op.RuleID
 }
 func (o *DeleteFirewallRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteFirewallRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteFirewallRuleOperation{}
@@ -6119,13 +6150,15 @@ type DeleteFirewallRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteFirewallRuleResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteFirewallRuleOperation {
+func (o *DeleteFirewallRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteFirewallRuleOperation) *xxx_DeleteFirewallRuleOperation {
+	if op == nil {
+		op = &xxx_DeleteFirewallRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteFirewallRuleOperation{}
+		return op
 	}
-	return &xxx_DeleteFirewallRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteFirewallRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteFirewallRuleOperation) {
@@ -6135,7 +6168,7 @@ func (o *DeleteFirewallRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.Return = op.Return
 }
 func (o *DeleteFirewallRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteFirewallRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteFirewallRuleOperation{}
@@ -6239,13 +6272,15 @@ type DeleteAllFirewallRulesRequest struct {
 	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
 }
 
-func (o *DeleteAllFirewallRulesRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAllFirewallRulesOperation {
+func (o *DeleteAllFirewallRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllFirewallRulesOperation) *xxx_DeleteAllFirewallRulesOperation {
+	if op == nil {
+		op = &xxx_DeleteAllFirewallRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllFirewallRulesOperation{}
+		return op
 	}
-	return &xxx_DeleteAllFirewallRulesOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *DeleteAllFirewallRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllFirewallRulesOperation) {
@@ -6255,7 +6290,7 @@ func (o *DeleteAllFirewallRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.PolicyStore = op.PolicyStore
 }
 func (o *DeleteAllFirewallRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAllFirewallRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllFirewallRulesOperation{}
@@ -6272,13 +6307,15 @@ type DeleteAllFirewallRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAllFirewallRulesResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAllFirewallRulesOperation {
+func (o *DeleteAllFirewallRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllFirewallRulesOperation) *xxx_DeleteAllFirewallRulesOperation {
+	if op == nil {
+		op = &xxx_DeleteAllFirewallRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllFirewallRulesOperation{}
+		return op
 	}
-	return &xxx_DeleteAllFirewallRulesOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAllFirewallRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllFirewallRulesOperation) {
@@ -6288,7 +6325,7 @@ func (o *DeleteAllFirewallRulesResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *DeleteAllFirewallRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAllFirewallRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllFirewallRulesOperation{}
@@ -6506,16 +6543,18 @@ type EnumFirewallRulesRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRulesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRulesOperation {
+func (o *EnumFirewallRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRulesOperation) *xxx_EnumFirewallRulesOperation {
+	if op == nil {
+		op = &xxx_EnumFirewallRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRulesOperation{}
+		return op
 	}
-	return &xxx_EnumFirewallRulesOperation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRulesOperation) {
@@ -6528,7 +6567,7 @@ func (o *EnumFirewallRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumF
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRulesOperation{}
@@ -6551,15 +6590,17 @@ type EnumFirewallRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRulesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRulesOperation {
+func (o *EnumFirewallRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRulesOperation) *xxx_EnumFirewallRulesOperation {
+	if op == nil {
+		op = &xxx_EnumFirewallRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRulesOperation{}
+		return op
 	}
-	return &xxx_EnumFirewallRulesOperation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRulesOperation) {
@@ -6571,7 +6612,7 @@ func (o *EnumFirewallRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumFirewallRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRulesOperation{}
@@ -6976,19 +7017,21 @@ type GetConfigRequest struct {
 	TransmittedLength uint32 `idl:"name:pcbTransmittedLen" json:"transmitted_length"`
 }
 
-func (o *GetConfigRequest) xxx_ToOp(ctx context.Context) *xxx_GetConfigOperation {
+func (o *GetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigOperation) *xxx_GetConfigOperation {
+	if op == nil {
+		op = &xxx_GetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_GetConfigOperation{}
+		return op
 	}
-	return &xxx_GetConfigOperation{
-		PolicyStore:       o.PolicyStore,
-		ConfigID:          o.ConfigID,
-		Profile:           o.Profile,
-		Flags:             o.Flags,
-		Buffer:            o.Buffer,
-		DataLength:        o.DataLength,
-		TransmittedLength: o.TransmittedLength,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.ConfigID = op.ConfigID
+	o.Profile = op.Profile
+	o.Flags = op.Flags
+	o.Buffer = op.Buffer
+	o.DataLength = op.DataLength
+	o.TransmittedLength = op.TransmittedLength
+	return op
 }
 
 func (o *GetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_GetConfigOperation) {
@@ -7004,7 +7047,7 @@ func (o *GetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_GetConfigOper
 	o.TransmittedLength = op.TransmittedLength
 }
 func (o *GetConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetConfigOperation{}
@@ -7033,16 +7076,18 @@ type GetConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetConfigResponse) xxx_ToOp(ctx context.Context) *xxx_GetConfigOperation {
+func (o *GetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigOperation) *xxx_GetConfigOperation {
+	if op == nil {
+		op = &xxx_GetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_GetConfigOperation{}
+		return op
 	}
-	return &xxx_GetConfigOperation{
-		Buffer:            o.Buffer,
-		TransmittedLength: o.TransmittedLength,
-		RequiredLength:    o.RequiredLength,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.TransmittedLength = op.TransmittedLength
+	o.RequiredLength = op.RequiredLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_GetConfigOperation) {
@@ -7055,7 +7100,7 @@ func (o *GetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_GetConfigOpe
 	o.Return = op.Return
 }
 func (o *GetConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetConfigOperation{}
@@ -7245,17 +7290,19 @@ type SetConfigRequest struct {
 	BufferSize uint32 `idl:"name:dwBufSize" json:"buffer_size"`
 }
 
-func (o *SetConfigRequest) xxx_ToOp(ctx context.Context) *xxx_SetConfigOperation {
+func (o *SetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConfigOperation) *xxx_SetConfigOperation {
+	if op == nil {
+		op = &xxx_SetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_SetConfigOperation{}
+		return op
 	}
-	return &xxx_SetConfigOperation{
-		PolicyStore: o.PolicyStore,
-		ConfigID:    o.ConfigID,
-		Profile:     o.Profile,
-		Config:      o.Config,
-		BufferSize:  o.BufferSize,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.ConfigID = op.ConfigID
+	o.Profile = op.Profile
+	o.Config = op.Config
+	o.BufferSize = op.BufferSize
+	return op
 }
 
 func (o *SetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_SetConfigOperation) {
@@ -7269,7 +7316,7 @@ func (o *SetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_SetConfigOper
 	o.BufferSize = op.BufferSize
 }
 func (o *SetConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConfigOperation{}
@@ -7286,13 +7333,15 @@ type SetConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetConfigResponse) xxx_ToOp(ctx context.Context) *xxx_SetConfigOperation {
+func (o *SetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_SetConfigOperation) *xxx_SetConfigOperation {
+	if op == nil {
+		op = &xxx_SetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_SetConfigOperation{}
+		return op
 	}
-	return &xxx_SetConfigOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_SetConfigOperation) {
@@ -7302,7 +7351,7 @@ func (o *SetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_SetConfigOpe
 	o.Return = op.Return
 }
 func (o *SetConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConfigOperation{}
@@ -7435,14 +7484,16 @@ type AddConnectionSecurityRuleRequest struct {
 	Rule *fasp.CSRule20 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context) *xxx_AddConnectionSecurityRuleOperation {
+func (o *AddConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_AddConnectionSecurityRuleOperation) *xxx_AddConnectionSecurityRuleOperation {
+	if op == nil {
+		op = &xxx_AddConnectionSecurityRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_AddConnectionSecurityRuleOperation{}
+		return op
 	}
-	return &xxx_AddConnectionSecurityRuleOperation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddConnectionSecurityRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_AddConnectionSecurityRuleOperation) {
@@ -7453,7 +7504,7 @@ func (o *AddConnectionSecurityRuleRequest) xxx_FromOp(ctx context.Context, op *x
 	o.Rule = op.Rule
 }
 func (o *AddConnectionSecurityRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddConnectionSecurityRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddConnectionSecurityRuleOperation{}
@@ -7470,13 +7521,15 @@ type AddConnectionSecurityRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context) *xxx_AddConnectionSecurityRuleOperation {
+func (o *AddConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_AddConnectionSecurityRuleOperation) *xxx_AddConnectionSecurityRuleOperation {
+	if op == nil {
+		op = &xxx_AddConnectionSecurityRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_AddConnectionSecurityRuleOperation{}
+		return op
 	}
-	return &xxx_AddConnectionSecurityRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddConnectionSecurityRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_AddConnectionSecurityRuleOperation) {
@@ -7486,7 +7539,7 @@ func (o *AddConnectionSecurityRuleResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *AddConnectionSecurityRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddConnectionSecurityRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddConnectionSecurityRuleOperation{}
@@ -7619,14 +7672,16 @@ type SetConnectionSecurityRuleRequest struct {
 	Rule *fasp.CSRule20 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context) *xxx_SetConnectionSecurityRuleOperation {
+func (o *SetConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConnectionSecurityRuleOperation) *xxx_SetConnectionSecurityRuleOperation {
+	if op == nil {
+		op = &xxx_SetConnectionSecurityRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_SetConnectionSecurityRuleOperation{}
+		return op
 	}
-	return &xxx_SetConnectionSecurityRuleOperation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetConnectionSecurityRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_SetConnectionSecurityRuleOperation) {
@@ -7637,7 +7692,7 @@ func (o *SetConnectionSecurityRuleRequest) xxx_FromOp(ctx context.Context, op *x
 	o.Rule = op.Rule
 }
 func (o *SetConnectionSecurityRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetConnectionSecurityRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConnectionSecurityRuleOperation{}
@@ -7654,13 +7709,15 @@ type SetConnectionSecurityRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context) *xxx_SetConnectionSecurityRuleOperation {
+func (o *SetConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_SetConnectionSecurityRuleOperation) *xxx_SetConnectionSecurityRuleOperation {
+	if op == nil {
+		op = &xxx_SetConnectionSecurityRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_SetConnectionSecurityRuleOperation{}
+		return op
 	}
-	return &xxx_SetConnectionSecurityRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetConnectionSecurityRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_SetConnectionSecurityRuleOperation) {
@@ -7670,7 +7727,7 @@ func (o *SetConnectionSecurityRuleResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *SetConnectionSecurityRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetConnectionSecurityRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConnectionSecurityRuleOperation{}
@@ -7787,14 +7844,16 @@ type DeleteConnectionSecurityRuleRequest struct {
 	RuleID string `idl:"name:pRuleId;string;pointer:ref" json:"rule_id"`
 }
 
-func (o *DeleteConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteConnectionSecurityRuleOperation {
+func (o *DeleteConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteConnectionSecurityRuleOperation) *xxx_DeleteConnectionSecurityRuleOperation {
+	if op == nil {
+		op = &xxx_DeleteConnectionSecurityRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteConnectionSecurityRuleOperation{}
+		return op
 	}
-	return &xxx_DeleteConnectionSecurityRuleOperation{
-		PolicyStore: o.PolicyStore,
-		RuleID:      o.RuleID,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.RuleID = op.RuleID
+	return op
 }
 
 func (o *DeleteConnectionSecurityRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteConnectionSecurityRuleOperation) {
@@ -7805,7 +7864,7 @@ func (o *DeleteConnectionSecurityRuleRequest) xxx_FromOp(ctx context.Context, op
 	o.RuleID = op.RuleID
 }
 func (o *DeleteConnectionSecurityRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteConnectionSecurityRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteConnectionSecurityRuleOperation{}
@@ -7822,13 +7881,15 @@ type DeleteConnectionSecurityRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteConnectionSecurityRuleOperation {
+func (o *DeleteConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteConnectionSecurityRuleOperation) *xxx_DeleteConnectionSecurityRuleOperation {
+	if op == nil {
+		op = &xxx_DeleteConnectionSecurityRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteConnectionSecurityRuleOperation{}
+		return op
 	}
-	return &xxx_DeleteConnectionSecurityRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteConnectionSecurityRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteConnectionSecurityRuleOperation) {
@@ -7838,7 +7899,7 @@ func (o *DeleteConnectionSecurityRuleResponse) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *DeleteConnectionSecurityRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteConnectionSecurityRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteConnectionSecurityRuleOperation{}
@@ -7939,13 +8000,15 @@ type DeleteAllConnectionSecurityRulesRequest struct {
 	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
 }
 
-func (o *DeleteAllConnectionSecurityRulesRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAllConnectionSecurityRulesOperation {
+func (o *DeleteAllConnectionSecurityRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllConnectionSecurityRulesOperation) *xxx_DeleteAllConnectionSecurityRulesOperation {
+	if op == nil {
+		op = &xxx_DeleteAllConnectionSecurityRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllConnectionSecurityRulesOperation{}
+		return op
 	}
-	return &xxx_DeleteAllConnectionSecurityRulesOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *DeleteAllConnectionSecurityRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllConnectionSecurityRulesOperation) {
@@ -7955,7 +8018,7 @@ func (o *DeleteAllConnectionSecurityRulesRequest) xxx_FromOp(ctx context.Context
 	o.PolicyStore = op.PolicyStore
 }
 func (o *DeleteAllConnectionSecurityRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAllConnectionSecurityRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllConnectionSecurityRulesOperation{}
@@ -7972,13 +8035,15 @@ type DeleteAllConnectionSecurityRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAllConnectionSecurityRulesResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAllConnectionSecurityRulesOperation {
+func (o *DeleteAllConnectionSecurityRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllConnectionSecurityRulesOperation) *xxx_DeleteAllConnectionSecurityRulesOperation {
+	if op == nil {
+		op = &xxx_DeleteAllConnectionSecurityRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllConnectionSecurityRulesOperation{}
+		return op
 	}
-	return &xxx_DeleteAllConnectionSecurityRulesOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAllConnectionSecurityRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllConnectionSecurityRulesOperation) {
@@ -7988,7 +8053,7 @@ func (o *DeleteAllConnectionSecurityRulesResponse) xxx_FromOp(ctx context.Contex
 	o.Return = op.Return
 }
 func (o *DeleteAllConnectionSecurityRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAllConnectionSecurityRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllConnectionSecurityRulesOperation{}
@@ -8202,16 +8267,18 @@ type EnumConnectionSecurityRulesRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumConnectionSecurityRulesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumConnectionSecurityRulesOperation {
+func (o *EnumConnectionSecurityRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumConnectionSecurityRulesOperation) *xxx_EnumConnectionSecurityRulesOperation {
+	if op == nil {
+		op = &xxx_EnumConnectionSecurityRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumConnectionSecurityRulesOperation{}
+		return op
 	}
-	return &xxx_EnumConnectionSecurityRulesOperation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumConnectionSecurityRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumConnectionSecurityRulesOperation) {
@@ -8224,7 +8291,7 @@ func (o *EnumConnectionSecurityRulesRequest) xxx_FromOp(ctx context.Context, op 
 	o.Flags = op.Flags
 }
 func (o *EnumConnectionSecurityRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumConnectionSecurityRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumConnectionSecurityRulesOperation{}
@@ -8247,15 +8314,17 @@ type EnumConnectionSecurityRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumConnectionSecurityRulesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumConnectionSecurityRulesOperation {
+func (o *EnumConnectionSecurityRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumConnectionSecurityRulesOperation) *xxx_EnumConnectionSecurityRulesOperation {
+	if op == nil {
+		op = &xxx_EnumConnectionSecurityRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumConnectionSecurityRulesOperation{}
+		return op
 	}
-	return &xxx_EnumConnectionSecurityRulesOperation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumConnectionSecurityRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumConnectionSecurityRulesOperation) {
@@ -8267,7 +8336,7 @@ func (o *EnumConnectionSecurityRulesResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *EnumConnectionSecurityRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumConnectionSecurityRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumConnectionSecurityRulesOperation{}
@@ -8400,14 +8469,16 @@ type AddAuthenticationSetRequest struct {
 	Auth *fasp.AuthSet210 `idl:"name:pAuth" json:"auth"`
 }
 
-func (o *AddAuthenticationSetRequest) xxx_ToOp(ctx context.Context) *xxx_AddAuthenticationSetOperation {
+func (o *AddAuthenticationSetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddAuthenticationSetOperation) *xxx_AddAuthenticationSetOperation {
+	if op == nil {
+		op = &xxx_AddAuthenticationSetOperation{}
+	}
 	if o == nil {
-		return &xxx_AddAuthenticationSetOperation{}
+		return op
 	}
-	return &xxx_AddAuthenticationSetOperation{
-		PolicyStore: o.PolicyStore,
-		Auth:        o.Auth,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Auth = op.Auth
+	return op
 }
 
 func (o *AddAuthenticationSetRequest) xxx_FromOp(ctx context.Context, op *xxx_AddAuthenticationSetOperation) {
@@ -8418,7 +8489,7 @@ func (o *AddAuthenticationSetRequest) xxx_FromOp(ctx context.Context, op *xxx_Ad
 	o.Auth = op.Auth
 }
 func (o *AddAuthenticationSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddAuthenticationSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAuthenticationSetOperation{}
@@ -8435,13 +8506,15 @@ type AddAuthenticationSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddAuthenticationSetResponse) xxx_ToOp(ctx context.Context) *xxx_AddAuthenticationSetOperation {
+func (o *AddAuthenticationSetResponse) xxx_ToOp(ctx context.Context, op *xxx_AddAuthenticationSetOperation) *xxx_AddAuthenticationSetOperation {
+	if op == nil {
+		op = &xxx_AddAuthenticationSetOperation{}
+	}
 	if o == nil {
-		return &xxx_AddAuthenticationSetOperation{}
+		return op
 	}
-	return &xxx_AddAuthenticationSetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddAuthenticationSetResponse) xxx_FromOp(ctx context.Context, op *xxx_AddAuthenticationSetOperation) {
@@ -8451,7 +8524,7 @@ func (o *AddAuthenticationSetResponse) xxx_FromOp(ctx context.Context, op *xxx_A
 	o.Return = op.Return
 }
 func (o *AddAuthenticationSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddAuthenticationSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAuthenticationSetOperation{}
@@ -8584,14 +8657,16 @@ type SetAuthenticationSetRequest struct {
 	Auth *fasp.AuthSet210 `idl:"name:pAuth" json:"auth"`
 }
 
-func (o *SetAuthenticationSetRequest) xxx_ToOp(ctx context.Context) *xxx_SetAuthenticationSetOperation {
+func (o *SetAuthenticationSetRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAuthenticationSetOperation) *xxx_SetAuthenticationSetOperation {
+	if op == nil {
+		op = &xxx_SetAuthenticationSetOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAuthenticationSetOperation{}
+		return op
 	}
-	return &xxx_SetAuthenticationSetOperation{
-		PolicyStore: o.PolicyStore,
-		Auth:        o.Auth,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Auth = op.Auth
+	return op
 }
 
 func (o *SetAuthenticationSetRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAuthenticationSetOperation) {
@@ -8602,7 +8677,7 @@ func (o *SetAuthenticationSetRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Auth = op.Auth
 }
 func (o *SetAuthenticationSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAuthenticationSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAuthenticationSetOperation{}
@@ -8619,13 +8694,15 @@ type SetAuthenticationSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAuthenticationSetResponse) xxx_ToOp(ctx context.Context) *xxx_SetAuthenticationSetOperation {
+func (o *SetAuthenticationSetResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAuthenticationSetOperation) *xxx_SetAuthenticationSetOperation {
+	if op == nil {
+		op = &xxx_SetAuthenticationSetOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAuthenticationSetOperation{}
+		return op
 	}
-	return &xxx_SetAuthenticationSetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAuthenticationSetResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAuthenticationSetOperation) {
@@ -8635,7 +8712,7 @@ func (o *SetAuthenticationSetResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetAuthenticationSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAuthenticationSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAuthenticationSetOperation{}
@@ -8771,15 +8848,17 @@ type DeleteAuthenticationSetRequest struct {
 	SetID string `idl:"name:wszSetId;string;pointer:ref" json:"set_id"`
 }
 
-func (o *DeleteAuthenticationSetRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAuthenticationSetOperation {
+func (o *DeleteAuthenticationSetRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAuthenticationSetOperation) *xxx_DeleteAuthenticationSetOperation {
+	if op == nil {
+		op = &xxx_DeleteAuthenticationSetOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAuthenticationSetOperation{}
+		return op
 	}
-	return &xxx_DeleteAuthenticationSetOperation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-		SetID:       o.SetID,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.SetID = op.SetID
+	return op
 }
 
 func (o *DeleteAuthenticationSetRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAuthenticationSetOperation) {
@@ -8791,7 +8870,7 @@ func (o *DeleteAuthenticationSetRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.SetID = op.SetID
 }
 func (o *DeleteAuthenticationSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAuthenticationSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAuthenticationSetOperation{}
@@ -8808,13 +8887,15 @@ type DeleteAuthenticationSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAuthenticationSetResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAuthenticationSetOperation {
+func (o *DeleteAuthenticationSetResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAuthenticationSetOperation) *xxx_DeleteAuthenticationSetOperation {
+	if op == nil {
+		op = &xxx_DeleteAuthenticationSetOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAuthenticationSetOperation{}
+		return op
 	}
-	return &xxx_DeleteAuthenticationSetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAuthenticationSetResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAuthenticationSetOperation) {
@@ -8824,7 +8905,7 @@ func (o *DeleteAuthenticationSetResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *DeleteAuthenticationSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAuthenticationSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAuthenticationSetOperation{}
@@ -8944,14 +9025,16 @@ type DeleteAllAuthenticationSetsRequest struct {
 	IPsecPhase fasp.IPsecPhase `idl:"name:IpSecPhase" json:"ipsec_phase"`
 }
 
-func (o *DeleteAllAuthenticationSetsRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAllAuthenticationSetsOperation {
+func (o *DeleteAllAuthenticationSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllAuthenticationSetsOperation) *xxx_DeleteAllAuthenticationSetsOperation {
+	if op == nil {
+		op = &xxx_DeleteAllAuthenticationSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllAuthenticationSetsOperation{}
+		return op
 	}
-	return &xxx_DeleteAllAuthenticationSetsOperation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	return op
 }
 
 func (o *DeleteAllAuthenticationSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllAuthenticationSetsOperation) {
@@ -8962,7 +9045,7 @@ func (o *DeleteAllAuthenticationSetsRequest) xxx_FromOp(ctx context.Context, op 
 	o.IPsecPhase = op.IPsecPhase
 }
 func (o *DeleteAllAuthenticationSetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAllAuthenticationSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllAuthenticationSetsOperation{}
@@ -8979,13 +9062,15 @@ type DeleteAllAuthenticationSetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAllAuthenticationSetsResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAllAuthenticationSetsOperation {
+func (o *DeleteAllAuthenticationSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllAuthenticationSetsOperation) *xxx_DeleteAllAuthenticationSetsOperation {
+	if op == nil {
+		op = &xxx_DeleteAllAuthenticationSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllAuthenticationSetsOperation{}
+		return op
 	}
-	return &xxx_DeleteAllAuthenticationSetsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAllAuthenticationSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllAuthenticationSetsOperation) {
@@ -8995,7 +9080,7 @@ func (o *DeleteAllAuthenticationSetsResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *DeleteAllAuthenticationSetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAllAuthenticationSetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllAuthenticationSetsOperation{}
@@ -9210,16 +9295,18 @@ type EnumAuthenticationSetsRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumAuthenticationSetsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumAuthenticationSetsOperation {
+func (o *EnumAuthenticationSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumAuthenticationSetsOperation) *xxx_EnumAuthenticationSetsOperation {
+	if op == nil {
+		op = &xxx_EnumAuthenticationSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumAuthenticationSetsOperation{}
+		return op
 	}
-	return &xxx_EnumAuthenticationSetsOperation{
-		PolicyStore:      o.PolicyStore,
-		IPsecPhase:       o.IPsecPhase,
-		FilteredByStatus: o.FilteredByStatus,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.FilteredByStatus = op.FilteredByStatus
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumAuthenticationSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumAuthenticationSetsOperation) {
@@ -9232,7 +9319,7 @@ func (o *EnumAuthenticationSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Flags = op.Flags
 }
 func (o *EnumAuthenticationSetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumAuthenticationSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAuthenticationSetsOperation{}
@@ -9255,15 +9342,17 @@ type EnumAuthenticationSetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumAuthenticationSetsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumAuthenticationSetsOperation {
+func (o *EnumAuthenticationSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumAuthenticationSetsOperation) *xxx_EnumAuthenticationSetsOperation {
+	if op == nil {
+		op = &xxx_EnumAuthenticationSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumAuthenticationSetsOperation{}
+		return op
 	}
-	return &xxx_EnumAuthenticationSetsOperation{
-		AuthSetsLength: o.AuthSetsLength,
-		Auth:           o.Auth,
-		Return:         o.Return,
-	}
+	o.AuthSetsLength = op.AuthSetsLength
+	o.Auth = op.Auth
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumAuthenticationSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumAuthenticationSetsOperation) {
@@ -9275,7 +9364,7 @@ func (o *EnumAuthenticationSetsResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *EnumAuthenticationSetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumAuthenticationSetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAuthenticationSetsOperation{}
@@ -9406,14 +9495,16 @@ type AddCryptoSetRequest struct {
 	Crypto *fasp.CryptoSet `idl:"name:pCrypto" json:"crypto"`
 }
 
-func (o *AddCryptoSetRequest) xxx_ToOp(ctx context.Context) *xxx_AddCryptoSetOperation {
+func (o *AddCryptoSetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddCryptoSetOperation) *xxx_AddCryptoSetOperation {
+	if op == nil {
+		op = &xxx_AddCryptoSetOperation{}
+	}
 	if o == nil {
-		return &xxx_AddCryptoSetOperation{}
+		return op
 	}
-	return &xxx_AddCryptoSetOperation{
-		PolicyStore: o.PolicyStore,
-		Crypto:      o.Crypto,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Crypto = op.Crypto
+	return op
 }
 
 func (o *AddCryptoSetRequest) xxx_FromOp(ctx context.Context, op *xxx_AddCryptoSetOperation) {
@@ -9424,7 +9515,7 @@ func (o *AddCryptoSetRequest) xxx_FromOp(ctx context.Context, op *xxx_AddCryptoS
 	o.Crypto = op.Crypto
 }
 func (o *AddCryptoSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddCryptoSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddCryptoSetOperation{}
@@ -9441,13 +9532,15 @@ type AddCryptoSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddCryptoSetResponse) xxx_ToOp(ctx context.Context) *xxx_AddCryptoSetOperation {
+func (o *AddCryptoSetResponse) xxx_ToOp(ctx context.Context, op *xxx_AddCryptoSetOperation) *xxx_AddCryptoSetOperation {
+	if op == nil {
+		op = &xxx_AddCryptoSetOperation{}
+	}
 	if o == nil {
-		return &xxx_AddCryptoSetOperation{}
+		return op
 	}
-	return &xxx_AddCryptoSetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddCryptoSetResponse) xxx_FromOp(ctx context.Context, op *xxx_AddCryptoSetOperation) {
@@ -9457,7 +9550,7 @@ func (o *AddCryptoSetResponse) xxx_FromOp(ctx context.Context, op *xxx_AddCrypto
 	o.Return = op.Return
 }
 func (o *AddCryptoSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddCryptoSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddCryptoSetOperation{}
@@ -9588,14 +9681,16 @@ type SetCryptoSetRequest struct {
 	Crypto *fasp.CryptoSet `idl:"name:pCrypto" json:"crypto"`
 }
 
-func (o *SetCryptoSetRequest) xxx_ToOp(ctx context.Context) *xxx_SetCryptoSetOperation {
+func (o *SetCryptoSetRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCryptoSetOperation) *xxx_SetCryptoSetOperation {
+	if op == nil {
+		op = &xxx_SetCryptoSetOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCryptoSetOperation{}
+		return op
 	}
-	return &xxx_SetCryptoSetOperation{
-		PolicyStore: o.PolicyStore,
-		Crypto:      o.Crypto,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Crypto = op.Crypto
+	return op
 }
 
 func (o *SetCryptoSetRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCryptoSetOperation) {
@@ -9606,7 +9701,7 @@ func (o *SetCryptoSetRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCryptoS
 	o.Crypto = op.Crypto
 }
 func (o *SetCryptoSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetCryptoSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCryptoSetOperation{}
@@ -9623,13 +9718,15 @@ type SetCryptoSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetCryptoSetResponse) xxx_ToOp(ctx context.Context) *xxx_SetCryptoSetOperation {
+func (o *SetCryptoSetResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCryptoSetOperation) *xxx_SetCryptoSetOperation {
+	if op == nil {
+		op = &xxx_SetCryptoSetOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCryptoSetOperation{}
+		return op
 	}
-	return &xxx_SetCryptoSetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetCryptoSetResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCryptoSetOperation) {
@@ -9639,7 +9736,7 @@ func (o *SetCryptoSetResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCrypto
 	o.Return = op.Return
 }
 func (o *SetCryptoSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetCryptoSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCryptoSetOperation{}
@@ -9773,15 +9870,17 @@ type DeleteCryptoSetRequest struct {
 	SetID string `idl:"name:wszSetId;string;pointer:ref" json:"set_id"`
 }
 
-func (o *DeleteCryptoSetRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteCryptoSetOperation {
+func (o *DeleteCryptoSetRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteCryptoSetOperation) *xxx_DeleteCryptoSetOperation {
+	if op == nil {
+		op = &xxx_DeleteCryptoSetOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteCryptoSetOperation{}
+		return op
 	}
-	return &xxx_DeleteCryptoSetOperation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-		SetID:       o.SetID,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.SetID = op.SetID
+	return op
 }
 
 func (o *DeleteCryptoSetRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteCryptoSetOperation) {
@@ -9793,7 +9892,7 @@ func (o *DeleteCryptoSetRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteC
 	o.SetID = op.SetID
 }
 func (o *DeleteCryptoSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteCryptoSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteCryptoSetOperation{}
@@ -9810,13 +9909,15 @@ type DeleteCryptoSetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteCryptoSetResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteCryptoSetOperation {
+func (o *DeleteCryptoSetResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteCryptoSetOperation) *xxx_DeleteCryptoSetOperation {
+	if op == nil {
+		op = &xxx_DeleteCryptoSetOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteCryptoSetOperation{}
+		return op
 	}
-	return &xxx_DeleteCryptoSetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteCryptoSetResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteCryptoSetOperation) {
@@ -9826,7 +9927,7 @@ func (o *DeleteCryptoSetResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeleteCryptoSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteCryptoSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteCryptoSetOperation{}
@@ -9946,14 +10047,16 @@ type DeleteAllCryptoSetsRequest struct {
 	IPsecPhase fasp.IPsecPhase `idl:"name:IpSecPhase" json:"ipsec_phase"`
 }
 
-func (o *DeleteAllCryptoSetsRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAllCryptoSetsOperation {
+func (o *DeleteAllCryptoSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllCryptoSetsOperation) *xxx_DeleteAllCryptoSetsOperation {
+	if op == nil {
+		op = &xxx_DeleteAllCryptoSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllCryptoSetsOperation{}
+		return op
 	}
-	return &xxx_DeleteAllCryptoSetsOperation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	return op
 }
 
 func (o *DeleteAllCryptoSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllCryptoSetsOperation) {
@@ -9964,7 +10067,7 @@ func (o *DeleteAllCryptoSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.IPsecPhase = op.IPsecPhase
 }
 func (o *DeleteAllCryptoSetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAllCryptoSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllCryptoSetsOperation{}
@@ -9981,13 +10084,15 @@ type DeleteAllCryptoSetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAllCryptoSetsResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAllCryptoSetsOperation {
+func (o *DeleteAllCryptoSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllCryptoSetsOperation) *xxx_DeleteAllCryptoSetsOperation {
+	if op == nil {
+		op = &xxx_DeleteAllCryptoSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllCryptoSetsOperation{}
+		return op
 	}
-	return &xxx_DeleteAllCryptoSetsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAllCryptoSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllCryptoSetsOperation) {
@@ -9997,7 +10102,7 @@ func (o *DeleteAllCryptoSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Return = op.Return
 }
 func (o *DeleteAllCryptoSetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAllCryptoSetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllCryptoSetsOperation{}
@@ -10210,16 +10315,18 @@ type EnumCryptoSetsRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumCryptoSetsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumCryptoSetsOperation {
+func (o *EnumCryptoSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumCryptoSetsOperation) *xxx_EnumCryptoSetsOperation {
+	if op == nil {
+		op = &xxx_EnumCryptoSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumCryptoSetsOperation{}
+		return op
 	}
-	return &xxx_EnumCryptoSetsOperation{
-		PolicyStore:      o.PolicyStore,
-		IPsecPhase:       o.IPsecPhase,
-		FilteredByStatus: o.FilteredByStatus,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.FilteredByStatus = op.FilteredByStatus
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumCryptoSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumCryptoSetsOperation) {
@@ -10232,7 +10339,7 @@ func (o *EnumCryptoSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumCryp
 	o.Flags = op.Flags
 }
 func (o *EnumCryptoSetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumCryptoSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumCryptoSetsOperation{}
@@ -10255,15 +10362,17 @@ type EnumCryptoSetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumCryptoSetsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumCryptoSetsOperation {
+func (o *EnumCryptoSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumCryptoSetsOperation) *xxx_EnumCryptoSetsOperation {
+	if op == nil {
+		op = &xxx_EnumCryptoSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumCryptoSetsOperation{}
+		return op
 	}
-	return &xxx_EnumCryptoSetsOperation{
-		SetsLength: o.SetsLength,
-		CryptoSets: o.CryptoSets,
-		Return:     o.Return,
-	}
+	o.SetsLength = op.SetsLength
+	o.CryptoSets = op.CryptoSets
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumCryptoSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumCryptoSetsOperation) {
@@ -10275,7 +10384,7 @@ func (o *EnumCryptoSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumCry
 	o.Return = op.Return
 }
 func (o *EnumCryptoSetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumCryptoSetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumCryptoSetsOperation{}
@@ -10522,14 +10631,16 @@ type EnumPhase1SAsRequest struct {
 	Endpoints *fasp.Endpoints `idl:"name:pEndpoints;pointer:unique" json:"endpoints"`
 }
 
-func (o *EnumPhase1SAsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPhase1SAsOperation {
+func (o *EnumPhase1SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase1SAsOperation) *xxx_EnumPhase1SAsOperation {
+	if op == nil {
+		op = &xxx_EnumPhase1SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPhase1SAsOperation{}
+		return op
 	}
-	return &xxx_EnumPhase1SAsOperation{
-		PolicyStore: o.PolicyStore,
-		Endpoints:   o.Endpoints,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Endpoints = op.Endpoints
+	return op
 }
 
 func (o *EnumPhase1SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPhase1SAsOperation) {
@@ -10540,7 +10651,7 @@ func (o *EnumPhase1SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPhase
 	o.Endpoints = op.Endpoints
 }
 func (o *EnumPhase1SAsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPhase1SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPhase1SAsOperation{}
@@ -10563,15 +10674,17 @@ type EnumPhase1SAsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPhase1SAsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPhase1SAsOperation {
+func (o *EnumPhase1SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase1SAsOperation) *xxx_EnumPhase1SAsOperation {
+	if op == nil {
+		op = &xxx_EnumPhase1SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPhase1SAsOperation{}
+		return op
 	}
-	return &xxx_EnumPhase1SAsOperation{
-		SAsLength: o.SAsLength,
-		SAs:       o.SAs,
-		Return:    o.Return,
-	}
+	o.SAsLength = op.SAsLength
+	o.SAs = op.SAs
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPhase1SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPhase1SAsOperation) {
@@ -10583,7 +10696,7 @@ func (o *EnumPhase1SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPhas
 	o.Return = op.Return
 }
 func (o *EnumPhase1SAsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPhase1SAsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPhase1SAsOperation{}
@@ -10831,14 +10944,16 @@ type EnumPhase2SAsRequest struct {
 	Endpoints *fasp.Endpoints `idl:"name:pEndpoints;pointer:unique" json:"endpoints"`
 }
 
-func (o *EnumPhase2SAsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPhase2SAsOperation {
+func (o *EnumPhase2SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase2SAsOperation) *xxx_EnumPhase2SAsOperation {
+	if op == nil {
+		op = &xxx_EnumPhase2SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPhase2SAsOperation{}
+		return op
 	}
-	return &xxx_EnumPhase2SAsOperation{
-		PolicyStore: o.PolicyStore,
-		Endpoints:   o.Endpoints,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Endpoints = op.Endpoints
+	return op
 }
 
 func (o *EnumPhase2SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPhase2SAsOperation) {
@@ -10849,7 +10964,7 @@ func (o *EnumPhase2SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPhase
 	o.Endpoints = op.Endpoints
 }
 func (o *EnumPhase2SAsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPhase2SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPhase2SAsOperation{}
@@ -10872,15 +10987,17 @@ type EnumPhase2SAsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPhase2SAsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPhase2SAsOperation {
+func (o *EnumPhase2SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase2SAsOperation) *xxx_EnumPhase2SAsOperation {
+	if op == nil {
+		op = &xxx_EnumPhase2SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPhase2SAsOperation{}
+		return op
 	}
-	return &xxx_EnumPhase2SAsOperation{
-		SAsLength: o.SAsLength,
-		SAs:       o.SAs,
-		Return:    o.Return,
-	}
+	o.SAsLength = op.SAsLength
+	o.SAs = op.SAs
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPhase2SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPhase2SAsOperation) {
@@ -10892,7 +11009,7 @@ func (o *EnumPhase2SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPhas
 	o.Return = op.Return
 }
 func (o *EnumPhase2SAsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPhase2SAsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPhase2SAsOperation{}
@@ -11044,14 +11161,16 @@ type DeletePhase1SAsRequest struct {
 	Endpoints *fasp.Endpoints `idl:"name:pEndpoints;pointer:unique" json:"endpoints"`
 }
 
-func (o *DeletePhase1SAsRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePhase1SAsOperation {
+func (o *DeletePhase1SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePhase1SAsOperation) *xxx_DeletePhase1SAsOperation {
+	if op == nil {
+		op = &xxx_DeletePhase1SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePhase1SAsOperation{}
+		return op
 	}
-	return &xxx_DeletePhase1SAsOperation{
-		PolicyStore: o.PolicyStore,
-		Endpoints:   o.Endpoints,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Endpoints = op.Endpoints
+	return op
 }
 
 func (o *DeletePhase1SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePhase1SAsOperation) {
@@ -11062,7 +11181,7 @@ func (o *DeletePhase1SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteP
 	o.Endpoints = op.Endpoints
 }
 func (o *DeletePhase1SAsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePhase1SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePhase1SAsOperation{}
@@ -11079,13 +11198,15 @@ type DeletePhase1SAsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePhase1SAsResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePhase1SAsOperation {
+func (o *DeletePhase1SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePhase1SAsOperation) *xxx_DeletePhase1SAsOperation {
+	if op == nil {
+		op = &xxx_DeletePhase1SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePhase1SAsOperation{}
+		return op
 	}
-	return &xxx_DeletePhase1SAsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePhase1SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePhase1SAsOperation) {
@@ -11095,7 +11216,7 @@ func (o *DeletePhase1SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeletePhase1SAsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePhase1SAsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePhase1SAsOperation{}
@@ -11247,14 +11368,16 @@ type DeletePhase2SAsRequest struct {
 	Endpoints *fasp.Endpoints `idl:"name:pEndpoints;pointer:unique" json:"endpoints"`
 }
 
-func (o *DeletePhase2SAsRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePhase2SAsOperation {
+func (o *DeletePhase2SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePhase2SAsOperation) *xxx_DeletePhase2SAsOperation {
+	if op == nil {
+		op = &xxx_DeletePhase2SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePhase2SAsOperation{}
+		return op
 	}
-	return &xxx_DeletePhase2SAsOperation{
-		PolicyStore: o.PolicyStore,
-		Endpoints:   o.Endpoints,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Endpoints = op.Endpoints
+	return op
 }
 
 func (o *DeletePhase2SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePhase2SAsOperation) {
@@ -11265,7 +11388,7 @@ func (o *DeletePhase2SAsRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteP
 	o.Endpoints = op.Endpoints
 }
 func (o *DeletePhase2SAsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePhase2SAsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePhase2SAsOperation{}
@@ -11282,13 +11405,15 @@ type DeletePhase2SAsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePhase2SAsResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePhase2SAsOperation {
+func (o *DeletePhase2SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePhase2SAsOperation) *xxx_DeletePhase2SAsOperation {
+	if op == nil {
+		op = &xxx_DeletePhase2SAsOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePhase2SAsOperation{}
+		return op
 	}
-	return &xxx_DeletePhase2SAsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePhase2SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePhase2SAsOperation) {
@@ -11298,7 +11423,7 @@ func (o *DeletePhase2SAsResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeletePhase2SAsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePhase2SAsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePhase2SAsOperation{}
@@ -11493,13 +11618,15 @@ type EnumProductsRequest struct {
 	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
 }
 
-func (o *EnumProductsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumProductsOperation {
+func (o *EnumProductsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumProductsOperation) *xxx_EnumProductsOperation {
+	if op == nil {
+		op = &xxx_EnumProductsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumProductsOperation{}
+		return op
 	}
-	return &xxx_EnumProductsOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *EnumProductsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumProductsOperation) {
@@ -11509,7 +11636,7 @@ func (o *EnumProductsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumProduc
 	o.PolicyStore = op.PolicyStore
 }
 func (o *EnumProductsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumProductsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumProductsOperation{}
@@ -11532,15 +11659,17 @@ type EnumProductsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumProductsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumProductsOperation {
+func (o *EnumProductsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumProductsOperation) *xxx_EnumProductsOperation {
+	if op == nil {
+		op = &xxx_EnumProductsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumProductsOperation{}
+		return op
 	}
-	return &xxx_EnumProductsOperation{
-		ProductsLength: o.ProductsLength,
-		Products:       o.Products,
-		Return:         o.Return,
-	}
+	o.ProductsLength = op.ProductsLength
+	o.Products = op.Products
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumProductsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumProductsOperation) {
@@ -11552,7 +11681,7 @@ func (o *EnumProductsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumProdu
 	o.Return = op.Return
 }
 func (o *EnumProductsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumProductsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumProductsOperation{}
@@ -11696,14 +11825,16 @@ type AddMainModeRuleRequest struct {
 	MMRule *fasp.MMRule `idl:"name:pMMRule" json:"mm_rule"`
 }
 
-func (o *AddMainModeRuleRequest) xxx_ToOp(ctx context.Context) *xxx_AddMainModeRuleOperation {
+func (o *AddMainModeRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMainModeRuleOperation) *xxx_AddMainModeRuleOperation {
+	if op == nil {
+		op = &xxx_AddMainModeRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_AddMainModeRuleOperation{}
+		return op
 	}
-	return &xxx_AddMainModeRuleOperation{
-		PolicyStore: o.PolicyStore,
-		MMRule:      o.MMRule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.MMRule = op.MMRule
+	return op
 }
 
 func (o *AddMainModeRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_AddMainModeRuleOperation) {
@@ -11714,7 +11845,7 @@ func (o *AddMainModeRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_AddMain
 	o.MMRule = op.MMRule
 }
 func (o *AddMainModeRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddMainModeRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddMainModeRuleOperation{}
@@ -11734,14 +11865,16 @@ type AddMainModeRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddMainModeRuleResponse) xxx_ToOp(ctx context.Context) *xxx_AddMainModeRuleOperation {
+func (o *AddMainModeRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMainModeRuleOperation) *xxx_AddMainModeRuleOperation {
+	if op == nil {
+		op = &xxx_AddMainModeRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_AddMainModeRuleOperation{}
+		return op
 	}
-	return &xxx_AddMainModeRuleOperation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddMainModeRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_AddMainModeRuleOperation) {
@@ -11752,7 +11885,7 @@ func (o *AddMainModeRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_AddMai
 	o.Return = op.Return
 }
 func (o *AddMainModeRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddMainModeRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddMainModeRuleOperation{}
@@ -11896,14 +12029,16 @@ type SetMainModeRuleRequest struct {
 	MMRule *fasp.MMRule `idl:"name:pMMRule" json:"mm_rule"`
 }
 
-func (o *SetMainModeRuleRequest) xxx_ToOp(ctx context.Context) *xxx_SetMainModeRuleOperation {
+func (o *SetMainModeRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMainModeRuleOperation) *xxx_SetMainModeRuleOperation {
+	if op == nil {
+		op = &xxx_SetMainModeRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMainModeRuleOperation{}
+		return op
 	}
-	return &xxx_SetMainModeRuleOperation{
-		PolicyStore: o.PolicyStore,
-		MMRule:      o.MMRule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.MMRule = op.MMRule
+	return op
 }
 
 func (o *SetMainModeRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMainModeRuleOperation) {
@@ -11914,7 +12049,7 @@ func (o *SetMainModeRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMain
 	o.MMRule = op.MMRule
 }
 func (o *SetMainModeRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMainModeRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMainModeRuleOperation{}
@@ -11934,14 +12069,16 @@ type SetMainModeRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMainModeRuleResponse) xxx_ToOp(ctx context.Context) *xxx_SetMainModeRuleOperation {
+func (o *SetMainModeRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMainModeRuleOperation) *xxx_SetMainModeRuleOperation {
+	if op == nil {
+		op = &xxx_SetMainModeRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMainModeRuleOperation{}
+		return op
 	}
-	return &xxx_SetMainModeRuleOperation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMainModeRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMainModeRuleOperation) {
@@ -11952,7 +12089,7 @@ func (o *SetMainModeRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMai
 	o.Return = op.Return
 }
 func (o *SetMainModeRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMainModeRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMainModeRuleOperation{}
@@ -12069,14 +12206,16 @@ type DeleteMainModeRuleRequest struct {
 	RuleID string `idl:"name:pRuleId;string;pointer:ref" json:"rule_id"`
 }
 
-func (o *DeleteMainModeRuleRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteMainModeRuleOperation {
+func (o *DeleteMainModeRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteMainModeRuleOperation) *xxx_DeleteMainModeRuleOperation {
+	if op == nil {
+		op = &xxx_DeleteMainModeRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteMainModeRuleOperation{}
+		return op
 	}
-	return &xxx_DeleteMainModeRuleOperation{
-		PolicyStore: o.PolicyStore,
-		RuleID:      o.RuleID,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.RuleID = op.RuleID
+	return op
 }
 
 func (o *DeleteMainModeRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteMainModeRuleOperation) {
@@ -12087,7 +12226,7 @@ func (o *DeleteMainModeRuleRequest) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.RuleID = op.RuleID
 }
 func (o *DeleteMainModeRuleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteMainModeRuleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteMainModeRuleOperation{}
@@ -12104,13 +12243,15 @@ type DeleteMainModeRuleResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteMainModeRuleResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteMainModeRuleOperation {
+func (o *DeleteMainModeRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteMainModeRuleOperation) *xxx_DeleteMainModeRuleOperation {
+	if op == nil {
+		op = &xxx_DeleteMainModeRuleOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteMainModeRuleOperation{}
+		return op
 	}
-	return &xxx_DeleteMainModeRuleOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteMainModeRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteMainModeRuleOperation) {
@@ -12120,7 +12261,7 @@ func (o *DeleteMainModeRuleResponse) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.Return = op.Return
 }
 func (o *DeleteMainModeRuleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteMainModeRuleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteMainModeRuleOperation{}
@@ -12221,13 +12362,15 @@ type DeleteAllMainModeRulesRequest struct {
 	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
 }
 
-func (o *DeleteAllMainModeRulesRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAllMainModeRulesOperation {
+func (o *DeleteAllMainModeRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllMainModeRulesOperation) *xxx_DeleteAllMainModeRulesOperation {
+	if op == nil {
+		op = &xxx_DeleteAllMainModeRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllMainModeRulesOperation{}
+		return op
 	}
-	return &xxx_DeleteAllMainModeRulesOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *DeleteAllMainModeRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllMainModeRulesOperation) {
@@ -12237,7 +12380,7 @@ func (o *DeleteAllMainModeRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.PolicyStore = op.PolicyStore
 }
 func (o *DeleteAllMainModeRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAllMainModeRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllMainModeRulesOperation{}
@@ -12254,13 +12397,15 @@ type DeleteAllMainModeRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAllMainModeRulesResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAllMainModeRulesOperation {
+func (o *DeleteAllMainModeRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllMainModeRulesOperation) *xxx_DeleteAllMainModeRulesOperation {
+	if op == nil {
+		op = &xxx_DeleteAllMainModeRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAllMainModeRulesOperation{}
+		return op
 	}
-	return &xxx_DeleteAllMainModeRulesOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAllMainModeRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAllMainModeRulesOperation) {
@@ -12270,7 +12415,7 @@ func (o *DeleteAllMainModeRulesResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *DeleteAllMainModeRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAllMainModeRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAllMainModeRulesOperation{}
@@ -12484,16 +12629,18 @@ type EnumMainModeRulesRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumMainModeRulesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumMainModeRulesOperation {
+func (o *EnumMainModeRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMainModeRulesOperation) *xxx_EnumMainModeRulesOperation {
+	if op == nil {
+		op = &xxx_EnumMainModeRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumMainModeRulesOperation{}
+		return op
 	}
-	return &xxx_EnumMainModeRulesOperation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumMainModeRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumMainModeRulesOperation) {
@@ -12506,7 +12653,7 @@ func (o *EnumMainModeRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumM
 	o.Flags = op.Flags
 }
 func (o *EnumMainModeRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumMainModeRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumMainModeRulesOperation{}
@@ -12529,15 +12676,17 @@ type EnumMainModeRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumMainModeRulesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumMainModeRulesOperation {
+func (o *EnumMainModeRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMainModeRulesOperation) *xxx_EnumMainModeRulesOperation {
+	if op == nil {
+		op = &xxx_EnumMainModeRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumMainModeRulesOperation{}
+		return op
 	}
-	return &xxx_EnumMainModeRulesOperation{
-		RulesLength: o.RulesLength,
-		MMRules:     o.MMRules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.MMRules = op.MMRules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumMainModeRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumMainModeRulesOperation) {
@@ -12549,7 +12698,7 @@ func (o *EnumMainModeRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumMainModeRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumMainModeRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumMainModeRulesOperation{}
@@ -12759,15 +12908,17 @@ type QueryFirewallRulesRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRulesRequest) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRulesOperation {
+func (o *QueryFirewallRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRulesOperation) *xxx_QueryFirewallRulesOperation {
+	if op == nil {
+		op = &xxx_QueryFirewallRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRulesOperation{}
+		return op
 	}
-	return &xxx_QueryFirewallRulesOperation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRulesOperation) {
@@ -12779,7 +12930,7 @@ func (o *QueryFirewallRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_Quer
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRulesOperation{}
@@ -12800,15 +12951,17 @@ type QueryFirewallRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRulesResponse) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRulesOperation {
+func (o *QueryFirewallRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRulesOperation) *xxx_QueryFirewallRulesOperation {
+	if op == nil {
+		op = &xxx_QueryFirewallRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRulesOperation{}
+		return op
 	}
-	return &xxx_QueryFirewallRulesOperation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRulesOperation) {
@@ -12820,7 +12973,7 @@ func (o *QueryFirewallRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.Return = op.Return
 }
 func (o *QueryFirewallRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRulesOperation{}
@@ -13024,15 +13177,17 @@ type QueryConnectionSecurityRules210Request struct {
 	Flags       uint16       `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryConnectionSecurityRules210Request) xxx_ToOp(ctx context.Context) *xxx_QueryConnectionSecurityRules210Operation {
+func (o *QueryConnectionSecurityRules210Request) xxx_ToOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules210Operation) *xxx_QueryConnectionSecurityRules210Operation {
+	if op == nil {
+		op = &xxx_QueryConnectionSecurityRules210Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryConnectionSecurityRules210Operation{}
+		return op
 	}
-	return &xxx_QueryConnectionSecurityRules210Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryConnectionSecurityRules210Request) xxx_FromOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules210Operation) {
@@ -13044,7 +13199,7 @@ func (o *QueryConnectionSecurityRules210Request) xxx_FromOp(ctx context.Context,
 	o.Flags = op.Flags
 }
 func (o *QueryConnectionSecurityRules210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryConnectionSecurityRules210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryConnectionSecurityRules210Operation{}
@@ -13063,15 +13218,17 @@ type QueryConnectionSecurityRules210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryConnectionSecurityRules210Response) xxx_ToOp(ctx context.Context) *xxx_QueryConnectionSecurityRules210Operation {
+func (o *QueryConnectionSecurityRules210Response) xxx_ToOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules210Operation) *xxx_QueryConnectionSecurityRules210Operation {
+	if op == nil {
+		op = &xxx_QueryConnectionSecurityRules210Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryConnectionSecurityRules210Operation{}
+		return op
 	}
-	return &xxx_QueryConnectionSecurityRules210Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryConnectionSecurityRules210Response) xxx_FromOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules210Operation) {
@@ -13083,7 +13240,7 @@ func (o *QueryConnectionSecurityRules210Response) xxx_FromOp(ctx context.Context
 	o.Return = op.Return
 }
 func (o *QueryConnectionSecurityRules210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryConnectionSecurityRules210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryConnectionSecurityRules210Operation{}
@@ -13293,15 +13450,17 @@ type QueryMainModeRulesRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryMainModeRulesRequest) xxx_ToOp(ctx context.Context) *xxx_QueryMainModeRulesOperation {
+func (o *QueryMainModeRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryMainModeRulesOperation) *xxx_QueryMainModeRulesOperation {
+	if op == nil {
+		op = &xxx_QueryMainModeRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryMainModeRulesOperation{}
+		return op
 	}
-	return &xxx_QueryMainModeRulesOperation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryMainModeRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryMainModeRulesOperation) {
@@ -13313,7 +13472,7 @@ func (o *QueryMainModeRulesRequest) xxx_FromOp(ctx context.Context, op *xxx_Quer
 	o.Flags = op.Flags
 }
 func (o *QueryMainModeRulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryMainModeRulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryMainModeRulesOperation{}
@@ -13336,15 +13495,17 @@ type QueryMainModeRulesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryMainModeRulesResponse) xxx_ToOp(ctx context.Context) *xxx_QueryMainModeRulesOperation {
+func (o *QueryMainModeRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryMainModeRulesOperation) *xxx_QueryMainModeRulesOperation {
+	if op == nil {
+		op = &xxx_QueryMainModeRulesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryMainModeRulesOperation{}
+		return op
 	}
-	return &xxx_QueryMainModeRulesOperation{
-		RulesLength: o.RulesLength,
-		MMRules:     o.MMRules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.MMRules = op.MMRules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryMainModeRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryMainModeRulesOperation) {
@@ -13356,7 +13517,7 @@ func (o *QueryMainModeRulesResponse) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.Return = op.Return
 }
 func (o *QueryMainModeRulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryMainModeRulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryMainModeRulesOperation{}
@@ -13585,16 +13746,18 @@ type QueryAuthenticationSetsRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryAuthenticationSetsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryAuthenticationSetsOperation {
+func (o *QueryAuthenticationSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryAuthenticationSetsOperation) *xxx_QueryAuthenticationSetsOperation {
+	if op == nil {
+		op = &xxx_QueryAuthenticationSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryAuthenticationSetsOperation{}
+		return op
 	}
-	return &xxx_QueryAuthenticationSetsOperation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryAuthenticationSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryAuthenticationSetsOperation) {
@@ -13607,7 +13770,7 @@ func (o *QueryAuthenticationSetsRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.Flags = op.Flags
 }
 func (o *QueryAuthenticationSetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryAuthenticationSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryAuthenticationSetsOperation{}
@@ -13630,15 +13793,17 @@ type QueryAuthenticationSetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryAuthenticationSetsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryAuthenticationSetsOperation {
+func (o *QueryAuthenticationSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryAuthenticationSetsOperation) *xxx_QueryAuthenticationSetsOperation {
+	if op == nil {
+		op = &xxx_QueryAuthenticationSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryAuthenticationSetsOperation{}
+		return op
 	}
-	return &xxx_QueryAuthenticationSetsOperation{
-		SetsLength: o.SetsLength,
-		AuthSets:   o.AuthSets,
-		Return:     o.Return,
-	}
+	o.SetsLength = op.SetsLength
+	o.AuthSets = op.AuthSets
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryAuthenticationSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryAuthenticationSetsOperation) {
@@ -13650,7 +13815,7 @@ func (o *QueryAuthenticationSetsResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *QueryAuthenticationSetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryAuthenticationSetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryAuthenticationSetsOperation{}
@@ -13877,16 +14042,18 @@ type QueryCryptoSetsRequest struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryCryptoSetsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryCryptoSetsOperation {
+func (o *QueryCryptoSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCryptoSetsOperation) *xxx_QueryCryptoSetsOperation {
+	if op == nil {
+		op = &xxx_QueryCryptoSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCryptoSetsOperation{}
+		return op
 	}
-	return &xxx_QueryCryptoSetsOperation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryCryptoSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryCryptoSetsOperation) {
@@ -13899,7 +14066,7 @@ func (o *QueryCryptoSetsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryCr
 	o.Flags = op.Flags
 }
 func (o *QueryCryptoSetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryCryptoSetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCryptoSetsOperation{}
@@ -13922,15 +14089,17 @@ type QueryCryptoSetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryCryptoSetsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryCryptoSetsOperation {
+func (o *QueryCryptoSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCryptoSetsOperation) *xxx_QueryCryptoSetsOperation {
+	if op == nil {
+		op = &xxx_QueryCryptoSetsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryCryptoSetsOperation{}
+		return op
 	}
-	return &xxx_QueryCryptoSetsOperation{
-		SetsLength: o.SetsLength,
-		CryptoSets: o.CryptoSets,
-		Return:     o.Return,
-	}
+	o.SetsLength = op.SetsLength
+	o.CryptoSets = op.CryptoSets
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryCryptoSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryCryptoSetsOperation) {
@@ -13942,7 +14111,7 @@ func (o *QueryCryptoSetsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryC
 	o.Return = op.Return
 }
 func (o *QueryCryptoSetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryCryptoSetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryCryptoSetsOperation{}
@@ -14137,13 +14306,15 @@ type EnumNetworksRequest struct {
 	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
 }
 
-func (o *EnumNetworksRequest) xxx_ToOp(ctx context.Context) *xxx_EnumNetworksOperation {
+func (o *EnumNetworksRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumNetworksOperation) *xxx_EnumNetworksOperation {
+	if op == nil {
+		op = &xxx_EnumNetworksOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumNetworksOperation{}
+		return op
 	}
-	return &xxx_EnumNetworksOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *EnumNetworksRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumNetworksOperation) {
@@ -14153,7 +14324,7 @@ func (o *EnumNetworksRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumNetwor
 	o.PolicyStore = op.PolicyStore
 }
 func (o *EnumNetworksRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumNetworksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumNetworksOperation{}
@@ -14176,15 +14347,17 @@ type EnumNetworksResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumNetworksResponse) xxx_ToOp(ctx context.Context) *xxx_EnumNetworksOperation {
+func (o *EnumNetworksResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumNetworksOperation) *xxx_EnumNetworksOperation {
+	if op == nil {
+		op = &xxx_EnumNetworksOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumNetworksOperation{}
+		return op
 	}
-	return &xxx_EnumNetworksOperation{
-		NetworksLength: o.NetworksLength,
-		Networks:       o.Networks,
-		Return:         o.Return,
-	}
+	o.NetworksLength = op.NetworksLength
+	o.Networks = op.Networks
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumNetworksResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumNetworksOperation) {
@@ -14196,7 +14369,7 @@ func (o *EnumNetworksResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumNetwo
 	o.Return = op.Return
 }
 func (o *EnumNetworksResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumNetworksResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumNetworksOperation{}
@@ -14391,13 +14564,15 @@ type EnumAdaptersRequest struct {
 	PolicyStore *PolicyStore `idl:"name:hPolicyStore" json:"policy_store"`
 }
 
-func (o *EnumAdaptersRequest) xxx_ToOp(ctx context.Context) *xxx_EnumAdaptersOperation {
+func (o *EnumAdaptersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumAdaptersOperation) *xxx_EnumAdaptersOperation {
+	if op == nil {
+		op = &xxx_EnumAdaptersOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumAdaptersOperation{}
+		return op
 	}
-	return &xxx_EnumAdaptersOperation{
-		PolicyStore: o.PolicyStore,
-	}
+	o.PolicyStore = op.PolicyStore
+	return op
 }
 
 func (o *EnumAdaptersRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumAdaptersOperation) {
@@ -14407,7 +14582,7 @@ func (o *EnumAdaptersRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumAdapte
 	o.PolicyStore = op.PolicyStore
 }
 func (o *EnumAdaptersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumAdaptersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAdaptersOperation{}
@@ -14430,15 +14605,17 @@ type EnumAdaptersResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumAdaptersResponse) xxx_ToOp(ctx context.Context) *xxx_EnumAdaptersOperation {
+func (o *EnumAdaptersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumAdaptersOperation) *xxx_EnumAdaptersOperation {
+	if op == nil {
+		op = &xxx_EnumAdaptersOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumAdaptersOperation{}
+		return op
 	}
-	return &xxx_EnumAdaptersOperation{
-		AdaptersLength: o.AdaptersLength,
-		Adapters:       o.Adapters,
-		Return:         o.Return,
-	}
+	o.AdaptersLength = op.AdaptersLength
+	o.Adapters = op.Adapters
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumAdaptersResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumAdaptersOperation) {
@@ -14450,7 +14627,7 @@ func (o *EnumAdaptersResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumAdapt
 	o.Return = op.Return
 }
 func (o *EnumAdaptersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumAdaptersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAdaptersOperation{}
@@ -14859,19 +15036,21 @@ type GetGlobalConfig210Request struct {
 	TransmittedLength uint32 `idl:"name:pcbTransmittedLen" json:"transmitted_length"`
 }
 
-func (o *GetGlobalConfig210Request) xxx_ToOp(ctx context.Context) *xxx_GetGlobalConfig210Operation {
+func (o *GetGlobalConfig210Request) xxx_ToOp(ctx context.Context, op *xxx_GetGlobalConfig210Operation) *xxx_GetGlobalConfig210Operation {
+	if op == nil {
+		op = &xxx_GetGlobalConfig210Operation{}
+	}
 	if o == nil {
-		return &xxx_GetGlobalConfig210Operation{}
+		return op
 	}
-	return &xxx_GetGlobalConfig210Operation{
-		BinaryVersion:     o.BinaryVersion,
-		StoreType:         o.StoreType,
-		ConfigID:          o.ConfigID,
-		Flags:             o.Flags,
-		Buffer:            o.Buffer,
-		DataLength:        o.DataLength,
-		TransmittedLength: o.TransmittedLength,
-	}
+	o.BinaryVersion = op.BinaryVersion
+	o.StoreType = op.StoreType
+	o.ConfigID = op.ConfigID
+	o.Flags = op.Flags
+	o.Buffer = op.Buffer
+	o.DataLength = op.DataLength
+	o.TransmittedLength = op.TransmittedLength
+	return op
 }
 
 func (o *GetGlobalConfig210Request) xxx_FromOp(ctx context.Context, op *xxx_GetGlobalConfig210Operation) {
@@ -14887,7 +15066,7 @@ func (o *GetGlobalConfig210Request) xxx_FromOp(ctx context.Context, op *xxx_GetG
 	o.TransmittedLength = op.TransmittedLength
 }
 func (o *GetGlobalConfig210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetGlobalConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetGlobalConfig210Operation{}
@@ -14919,17 +15098,19 @@ type GetGlobalConfig210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetGlobalConfig210Response) xxx_ToOp(ctx context.Context) *xxx_GetGlobalConfig210Operation {
+func (o *GetGlobalConfig210Response) xxx_ToOp(ctx context.Context, op *xxx_GetGlobalConfig210Operation) *xxx_GetGlobalConfig210Operation {
+	if op == nil {
+		op = &xxx_GetGlobalConfig210Operation{}
+	}
 	if o == nil {
-		return &xxx_GetGlobalConfig210Operation{}
+		return op
 	}
-	return &xxx_GetGlobalConfig210Operation{
-		Buffer:            o.Buffer,
-		TransmittedLength: o.TransmittedLength,
-		RequiredLength:    o.RequiredLength,
-		Origin:            o.Origin,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.TransmittedLength = op.TransmittedLength
+	o.RequiredLength = op.RequiredLength
+	o.Origin = op.Origin
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetGlobalConfig210Response) xxx_FromOp(ctx context.Context, op *xxx_GetGlobalConfig210Operation) {
@@ -14943,7 +15124,7 @@ func (o *GetGlobalConfig210Response) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetGlobalConfig210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetGlobalConfig210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetGlobalConfig210Operation{}
@@ -15360,19 +15541,21 @@ type GetConfig210Request struct {
 	TransmittedLength uint32 `idl:"name:pcbTransmittedLen" json:"transmitted_length"`
 }
 
-func (o *GetConfig210Request) xxx_ToOp(ctx context.Context) *xxx_GetConfig210Operation {
+func (o *GetConfig210Request) xxx_ToOp(ctx context.Context, op *xxx_GetConfig210Operation) *xxx_GetConfig210Operation {
+	if op == nil {
+		op = &xxx_GetConfig210Operation{}
+	}
 	if o == nil {
-		return &xxx_GetConfig210Operation{}
+		return op
 	}
-	return &xxx_GetConfig210Operation{
-		PolicyStore:       o.PolicyStore,
-		ConfigID:          o.ConfigID,
-		Profile:           o.Profile,
-		Flags:             o.Flags,
-		Buffer:            o.Buffer,
-		DataLength:        o.DataLength,
-		TransmittedLength: o.TransmittedLength,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.ConfigID = op.ConfigID
+	o.Profile = op.Profile
+	o.Flags = op.Flags
+	o.Buffer = op.Buffer
+	o.DataLength = op.DataLength
+	o.TransmittedLength = op.TransmittedLength
+	return op
 }
 
 func (o *GetConfig210Request) xxx_FromOp(ctx context.Context, op *xxx_GetConfig210Operation) {
@@ -15388,7 +15571,7 @@ func (o *GetConfig210Request) xxx_FromOp(ctx context.Context, op *xxx_GetConfig2
 	o.TransmittedLength = op.TransmittedLength
 }
 func (o *GetConfig210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetConfig210Operation{}
@@ -15420,17 +15603,19 @@ type GetConfig210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetConfig210Response) xxx_ToOp(ctx context.Context) *xxx_GetConfig210Operation {
+func (o *GetConfig210Response) xxx_ToOp(ctx context.Context, op *xxx_GetConfig210Operation) *xxx_GetConfig210Operation {
+	if op == nil {
+		op = &xxx_GetConfig210Operation{}
+	}
 	if o == nil {
-		return &xxx_GetConfig210Operation{}
+		return op
 	}
-	return &xxx_GetConfig210Operation{
-		Buffer:            o.Buffer,
-		TransmittedLength: o.TransmittedLength,
-		RequiredLength:    o.RequiredLength,
-		Origin:            o.Origin,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.TransmittedLength = op.TransmittedLength
+	o.RequiredLength = op.RequiredLength
+	o.Origin = op.Origin
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetConfig210Response) xxx_FromOp(ctx context.Context, op *xxx_GetConfig210Operation) {
@@ -15444,7 +15629,7 @@ func (o *GetConfig210Response) xxx_FromOp(ctx context.Context, op *xxx_GetConfig
 	o.Return = op.Return
 }
 func (o *GetConfig210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetConfig210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetConfig210Operation{}
@@ -15593,14 +15778,16 @@ type AddFirewallRule210Request struct {
 	Rule *fasp.Rule210 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule210Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule210Operation {
+func (o *AddFirewallRule210Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule210Operation) *xxx_AddFirewallRule210Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule210Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule210Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule210Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule210Operation) {
@@ -15611,7 +15798,7 @@ func (o *AddFirewallRule210Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule210Operation{}
@@ -15631,14 +15818,16 @@ type AddFirewallRule210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule210Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule210Operation {
+func (o *AddFirewallRule210Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule210Operation) *xxx_AddFirewallRule210Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule210Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule210Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule210Operation) {
@@ -15649,7 +15838,7 @@ func (o *AddFirewallRule210Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule210Operation{}
@@ -15798,14 +15987,16 @@ type SetFirewallRule210Request struct {
 	Rule *fasp.Rule210 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule210Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule210Operation {
+func (o *SetFirewallRule210Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule210Operation) *xxx_SetFirewallRule210Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule210Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule210Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule210Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule210Operation) {
@@ -15816,7 +16007,7 @@ func (o *SetFirewallRule210Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule210Operation{}
@@ -15836,14 +16027,16 @@ type SetFirewallRule210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule210Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule210Operation {
+func (o *SetFirewallRule210Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule210Operation) *xxx_SetFirewallRule210Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule210Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule210Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule210Operation) {
@@ -15854,7 +16047,7 @@ func (o *SetFirewallRule210Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule210Operation{}
@@ -16071,16 +16264,18 @@ type EnumFirewallRules210Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules210Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules210Operation {
+func (o *EnumFirewallRules210Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules210Operation) *xxx_EnumFirewallRules210Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules210Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules210Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules210Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules210Operation) {
@@ -16093,7 +16288,7 @@ func (o *EnumFirewallRules210Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules210Operation{}
@@ -16116,15 +16311,17 @@ type EnumFirewallRules210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules210Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules210Operation {
+func (o *EnumFirewallRules210Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules210Operation) *xxx_EnumFirewallRules210Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules210Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules210Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules210Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules210Operation) {
@@ -16136,7 +16333,7 @@ func (o *EnumFirewallRules210Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules210Operation{}
@@ -16285,14 +16482,16 @@ type AddConnectionSecurityRule210Request struct {
 	Rule *fasp.CSRule210 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddConnectionSecurityRule210Request) xxx_ToOp(ctx context.Context) *xxx_AddConnectionSecurityRule210Operation {
+func (o *AddConnectionSecurityRule210Request) xxx_ToOp(ctx context.Context, op *xxx_AddConnectionSecurityRule210Operation) *xxx_AddConnectionSecurityRule210Operation {
+	if op == nil {
+		op = &xxx_AddConnectionSecurityRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddConnectionSecurityRule210Operation{}
+		return op
 	}
-	return &xxx_AddConnectionSecurityRule210Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddConnectionSecurityRule210Request) xxx_FromOp(ctx context.Context, op *xxx_AddConnectionSecurityRule210Operation) {
@@ -16303,7 +16502,7 @@ func (o *AddConnectionSecurityRule210Request) xxx_FromOp(ctx context.Context, op
 	o.Rule = op.Rule
 }
 func (o *AddConnectionSecurityRule210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddConnectionSecurityRule210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddConnectionSecurityRule210Operation{}
@@ -16323,14 +16522,16 @@ type AddConnectionSecurityRule210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddConnectionSecurityRule210Response) xxx_ToOp(ctx context.Context) *xxx_AddConnectionSecurityRule210Operation {
+func (o *AddConnectionSecurityRule210Response) xxx_ToOp(ctx context.Context, op *xxx_AddConnectionSecurityRule210Operation) *xxx_AddConnectionSecurityRule210Operation {
+	if op == nil {
+		op = &xxx_AddConnectionSecurityRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddConnectionSecurityRule210Operation{}
+		return op
 	}
-	return &xxx_AddConnectionSecurityRule210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddConnectionSecurityRule210Response) xxx_FromOp(ctx context.Context, op *xxx_AddConnectionSecurityRule210Operation) {
@@ -16341,7 +16542,7 @@ func (o *AddConnectionSecurityRule210Response) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *AddConnectionSecurityRule210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddConnectionSecurityRule210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddConnectionSecurityRule210Operation{}
@@ -16490,14 +16691,16 @@ type SetConnectionSecurityRule210Request struct {
 	Rule *fasp.CSRule210 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetConnectionSecurityRule210Request) xxx_ToOp(ctx context.Context) *xxx_SetConnectionSecurityRule210Operation {
+func (o *SetConnectionSecurityRule210Request) xxx_ToOp(ctx context.Context, op *xxx_SetConnectionSecurityRule210Operation) *xxx_SetConnectionSecurityRule210Operation {
+	if op == nil {
+		op = &xxx_SetConnectionSecurityRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetConnectionSecurityRule210Operation{}
+		return op
 	}
-	return &xxx_SetConnectionSecurityRule210Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetConnectionSecurityRule210Request) xxx_FromOp(ctx context.Context, op *xxx_SetConnectionSecurityRule210Operation) {
@@ -16508,7 +16711,7 @@ func (o *SetConnectionSecurityRule210Request) xxx_FromOp(ctx context.Context, op
 	o.Rule = op.Rule
 }
 func (o *SetConnectionSecurityRule210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetConnectionSecurityRule210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConnectionSecurityRule210Operation{}
@@ -16528,14 +16731,16 @@ type SetConnectionSecurityRule210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetConnectionSecurityRule210Response) xxx_ToOp(ctx context.Context) *xxx_SetConnectionSecurityRule210Operation {
+func (o *SetConnectionSecurityRule210Response) xxx_ToOp(ctx context.Context, op *xxx_SetConnectionSecurityRule210Operation) *xxx_SetConnectionSecurityRule210Operation {
+	if op == nil {
+		op = &xxx_SetConnectionSecurityRule210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetConnectionSecurityRule210Operation{}
+		return op
 	}
-	return &xxx_SetConnectionSecurityRule210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetConnectionSecurityRule210Response) xxx_FromOp(ctx context.Context, op *xxx_SetConnectionSecurityRule210Operation) {
@@ -16546,7 +16751,7 @@ func (o *SetConnectionSecurityRule210Response) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *SetConnectionSecurityRule210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetConnectionSecurityRule210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConnectionSecurityRule210Operation{}
@@ -16763,16 +16968,18 @@ type EnumConnectionSecurityRules210Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumConnectionSecurityRules210Request) xxx_ToOp(ctx context.Context) *xxx_EnumConnectionSecurityRules210Operation {
+func (o *EnumConnectionSecurityRules210Request) xxx_ToOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules210Operation) *xxx_EnumConnectionSecurityRules210Operation {
+	if op == nil {
+		op = &xxx_EnumConnectionSecurityRules210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumConnectionSecurityRules210Operation{}
+		return op
 	}
-	return &xxx_EnumConnectionSecurityRules210Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumConnectionSecurityRules210Request) xxx_FromOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules210Operation) {
@@ -16785,7 +16992,7 @@ func (o *EnumConnectionSecurityRules210Request) xxx_FromOp(ctx context.Context, 
 	o.Flags = op.Flags
 }
 func (o *EnumConnectionSecurityRules210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumConnectionSecurityRules210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumConnectionSecurityRules210Operation{}
@@ -16808,15 +17015,17 @@ type EnumConnectionSecurityRules210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumConnectionSecurityRules210Response) xxx_ToOp(ctx context.Context) *xxx_EnumConnectionSecurityRules210Operation {
+func (o *EnumConnectionSecurityRules210Response) xxx_ToOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules210Operation) *xxx_EnumConnectionSecurityRules210Operation {
+	if op == nil {
+		op = &xxx_EnumConnectionSecurityRules210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumConnectionSecurityRules210Operation{}
+		return op
 	}
-	return &xxx_EnumConnectionSecurityRules210Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumConnectionSecurityRules210Response) xxx_FromOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules210Operation) {
@@ -16828,7 +17037,7 @@ func (o *EnumConnectionSecurityRules210Response) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *EnumConnectionSecurityRules210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumConnectionSecurityRules210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumConnectionSecurityRules210Operation{}
@@ -16974,14 +17183,16 @@ type AddAuthenticationSet210Request struct {
 	Auth *fasp.AuthSet210 `idl:"name:pAuth" json:"auth"`
 }
 
-func (o *AddAuthenticationSet210Request) xxx_ToOp(ctx context.Context) *xxx_AddAuthenticationSet210Operation {
+func (o *AddAuthenticationSet210Request) xxx_ToOp(ctx context.Context, op *xxx_AddAuthenticationSet210Operation) *xxx_AddAuthenticationSet210Operation {
+	if op == nil {
+		op = &xxx_AddAuthenticationSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddAuthenticationSet210Operation{}
+		return op
 	}
-	return &xxx_AddAuthenticationSet210Operation{
-		PolicyStore: o.PolicyStore,
-		Auth:        o.Auth,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Auth = op.Auth
+	return op
 }
 
 func (o *AddAuthenticationSet210Request) xxx_FromOp(ctx context.Context, op *xxx_AddAuthenticationSet210Operation) {
@@ -16992,7 +17203,7 @@ func (o *AddAuthenticationSet210Request) xxx_FromOp(ctx context.Context, op *xxx
 	o.Auth = op.Auth
 }
 func (o *AddAuthenticationSet210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddAuthenticationSet210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAuthenticationSet210Operation{}
@@ -17012,14 +17223,16 @@ type AddAuthenticationSet210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddAuthenticationSet210Response) xxx_ToOp(ctx context.Context) *xxx_AddAuthenticationSet210Operation {
+func (o *AddAuthenticationSet210Response) xxx_ToOp(ctx context.Context, op *xxx_AddAuthenticationSet210Operation) *xxx_AddAuthenticationSet210Operation {
+	if op == nil {
+		op = &xxx_AddAuthenticationSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddAuthenticationSet210Operation{}
+		return op
 	}
-	return &xxx_AddAuthenticationSet210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddAuthenticationSet210Response) xxx_FromOp(ctx context.Context, op *xxx_AddAuthenticationSet210Operation) {
@@ -17030,7 +17243,7 @@ func (o *AddAuthenticationSet210Response) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *AddAuthenticationSet210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddAuthenticationSet210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAuthenticationSet210Operation{}
@@ -17176,14 +17389,16 @@ type SetAuthenticationSet210Request struct {
 	Auth *fasp.AuthSet210 `idl:"name:pAuth" json:"auth"`
 }
 
-func (o *SetAuthenticationSet210Request) xxx_ToOp(ctx context.Context) *xxx_SetAuthenticationSet210Operation {
+func (o *SetAuthenticationSet210Request) xxx_ToOp(ctx context.Context, op *xxx_SetAuthenticationSet210Operation) *xxx_SetAuthenticationSet210Operation {
+	if op == nil {
+		op = &xxx_SetAuthenticationSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetAuthenticationSet210Operation{}
+		return op
 	}
-	return &xxx_SetAuthenticationSet210Operation{
-		PolicyStore: o.PolicyStore,
-		Auth:        o.Auth,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Auth = op.Auth
+	return op
 }
 
 func (o *SetAuthenticationSet210Request) xxx_FromOp(ctx context.Context, op *xxx_SetAuthenticationSet210Operation) {
@@ -17194,7 +17409,7 @@ func (o *SetAuthenticationSet210Request) xxx_FromOp(ctx context.Context, op *xxx
 	o.Auth = op.Auth
 }
 func (o *SetAuthenticationSet210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAuthenticationSet210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAuthenticationSet210Operation{}
@@ -17214,14 +17429,16 @@ type SetAuthenticationSet210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAuthenticationSet210Response) xxx_ToOp(ctx context.Context) *xxx_SetAuthenticationSet210Operation {
+func (o *SetAuthenticationSet210Response) xxx_ToOp(ctx context.Context, op *xxx_SetAuthenticationSet210Operation) *xxx_SetAuthenticationSet210Operation {
+	if op == nil {
+		op = &xxx_SetAuthenticationSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetAuthenticationSet210Operation{}
+		return op
 	}
-	return &xxx_SetAuthenticationSet210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAuthenticationSet210Response) xxx_FromOp(ctx context.Context, op *xxx_SetAuthenticationSet210Operation) {
@@ -17232,7 +17449,7 @@ func (o *SetAuthenticationSet210Response) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *SetAuthenticationSet210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAuthenticationSet210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAuthenticationSet210Operation{}
@@ -17450,16 +17667,18 @@ type EnumAuthenticationSets210Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumAuthenticationSets210Request) xxx_ToOp(ctx context.Context) *xxx_EnumAuthenticationSets210Operation {
+func (o *EnumAuthenticationSets210Request) xxx_ToOp(ctx context.Context, op *xxx_EnumAuthenticationSets210Operation) *xxx_EnumAuthenticationSets210Operation {
+	if op == nil {
+		op = &xxx_EnumAuthenticationSets210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumAuthenticationSets210Operation{}
+		return op
 	}
-	return &xxx_EnumAuthenticationSets210Operation{
-		PolicyStore:      o.PolicyStore,
-		IPsecPhase:       o.IPsecPhase,
-		FilteredByStatus: o.FilteredByStatus,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.FilteredByStatus = op.FilteredByStatus
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumAuthenticationSets210Request) xxx_FromOp(ctx context.Context, op *xxx_EnumAuthenticationSets210Operation) {
@@ -17472,7 +17691,7 @@ func (o *EnumAuthenticationSets210Request) xxx_FromOp(ctx context.Context, op *x
 	o.Flags = op.Flags
 }
 func (o *EnumAuthenticationSets210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumAuthenticationSets210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAuthenticationSets210Operation{}
@@ -17495,15 +17714,17 @@ type EnumAuthenticationSets210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumAuthenticationSets210Response) xxx_ToOp(ctx context.Context) *xxx_EnumAuthenticationSets210Operation {
+func (o *EnumAuthenticationSets210Response) xxx_ToOp(ctx context.Context, op *xxx_EnumAuthenticationSets210Operation) *xxx_EnumAuthenticationSets210Operation {
+	if op == nil {
+		op = &xxx_EnumAuthenticationSets210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumAuthenticationSets210Operation{}
+		return op
 	}
-	return &xxx_EnumAuthenticationSets210Operation{
-		AuthSetsLength: o.AuthSetsLength,
-		Auth:           o.Auth,
-		Return:         o.Return,
-	}
+	o.AuthSetsLength = op.AuthSetsLength
+	o.Auth = op.Auth
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumAuthenticationSets210Response) xxx_FromOp(ctx context.Context, op *xxx_EnumAuthenticationSets210Operation) {
@@ -17515,7 +17736,7 @@ func (o *EnumAuthenticationSets210Response) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *EnumAuthenticationSets210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumAuthenticationSets210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAuthenticationSets210Operation{}
@@ -17659,14 +17880,16 @@ type AddCryptoSet210Request struct {
 	Crypto *fasp.CryptoSet `idl:"name:pCrypto" json:"crypto"`
 }
 
-func (o *AddCryptoSet210Request) xxx_ToOp(ctx context.Context) *xxx_AddCryptoSet210Operation {
+func (o *AddCryptoSet210Request) xxx_ToOp(ctx context.Context, op *xxx_AddCryptoSet210Operation) *xxx_AddCryptoSet210Operation {
+	if op == nil {
+		op = &xxx_AddCryptoSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddCryptoSet210Operation{}
+		return op
 	}
-	return &xxx_AddCryptoSet210Operation{
-		PolicyStore: o.PolicyStore,
-		Crypto:      o.Crypto,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Crypto = op.Crypto
+	return op
 }
 
 func (o *AddCryptoSet210Request) xxx_FromOp(ctx context.Context, op *xxx_AddCryptoSet210Operation) {
@@ -17677,7 +17900,7 @@ func (o *AddCryptoSet210Request) xxx_FromOp(ctx context.Context, op *xxx_AddCryp
 	o.Crypto = op.Crypto
 }
 func (o *AddCryptoSet210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddCryptoSet210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddCryptoSet210Operation{}
@@ -17697,14 +17920,16 @@ type AddCryptoSet210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddCryptoSet210Response) xxx_ToOp(ctx context.Context) *xxx_AddCryptoSet210Operation {
+func (o *AddCryptoSet210Response) xxx_ToOp(ctx context.Context, op *xxx_AddCryptoSet210Operation) *xxx_AddCryptoSet210Operation {
+	if op == nil {
+		op = &xxx_AddCryptoSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_AddCryptoSet210Operation{}
+		return op
 	}
-	return &xxx_AddCryptoSet210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddCryptoSet210Response) xxx_FromOp(ctx context.Context, op *xxx_AddCryptoSet210Operation) {
@@ -17715,7 +17940,7 @@ func (o *AddCryptoSet210Response) xxx_FromOp(ctx context.Context, op *xxx_AddCry
 	o.Return = op.Return
 }
 func (o *AddCryptoSet210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddCryptoSet210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddCryptoSet210Operation{}
@@ -17859,14 +18084,16 @@ type SetCryptoSet210Request struct {
 	Crypto *fasp.CryptoSet `idl:"name:pCrypto" json:"crypto"`
 }
 
-func (o *SetCryptoSet210Request) xxx_ToOp(ctx context.Context) *xxx_SetCryptoSet210Operation {
+func (o *SetCryptoSet210Request) xxx_ToOp(ctx context.Context, op *xxx_SetCryptoSet210Operation) *xxx_SetCryptoSet210Operation {
+	if op == nil {
+		op = &xxx_SetCryptoSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetCryptoSet210Operation{}
+		return op
 	}
-	return &xxx_SetCryptoSet210Operation{
-		PolicyStore: o.PolicyStore,
-		Crypto:      o.Crypto,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Crypto = op.Crypto
+	return op
 }
 
 func (o *SetCryptoSet210Request) xxx_FromOp(ctx context.Context, op *xxx_SetCryptoSet210Operation) {
@@ -17877,7 +18104,7 @@ func (o *SetCryptoSet210Request) xxx_FromOp(ctx context.Context, op *xxx_SetCryp
 	o.Crypto = op.Crypto
 }
 func (o *SetCryptoSet210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetCryptoSet210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCryptoSet210Operation{}
@@ -17897,14 +18124,16 @@ type SetCryptoSet210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetCryptoSet210Response) xxx_ToOp(ctx context.Context) *xxx_SetCryptoSet210Operation {
+func (o *SetCryptoSet210Response) xxx_ToOp(ctx context.Context, op *xxx_SetCryptoSet210Operation) *xxx_SetCryptoSet210Operation {
+	if op == nil {
+		op = &xxx_SetCryptoSet210Operation{}
+	}
 	if o == nil {
-		return &xxx_SetCryptoSet210Operation{}
+		return op
 	}
-	return &xxx_SetCryptoSet210Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetCryptoSet210Response) xxx_FromOp(ctx context.Context, op *xxx_SetCryptoSet210Operation) {
@@ -17915,7 +18144,7 @@ func (o *SetCryptoSet210Response) xxx_FromOp(ctx context.Context, op *xxx_SetCry
 	o.Return = op.Return
 }
 func (o *SetCryptoSet210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetCryptoSet210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCryptoSet210Operation{}
@@ -18133,16 +18362,18 @@ type EnumCryptoSets210Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumCryptoSets210Request) xxx_ToOp(ctx context.Context) *xxx_EnumCryptoSets210Operation {
+func (o *EnumCryptoSets210Request) xxx_ToOp(ctx context.Context, op *xxx_EnumCryptoSets210Operation) *xxx_EnumCryptoSets210Operation {
+	if op == nil {
+		op = &xxx_EnumCryptoSets210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumCryptoSets210Operation{}
+		return op
 	}
-	return &xxx_EnumCryptoSets210Operation{
-		PolicyStore:      o.PolicyStore,
-		IPsecPhase:       o.IPsecPhase,
-		FilteredByStatus: o.FilteredByStatus,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.FilteredByStatus = op.FilteredByStatus
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumCryptoSets210Request) xxx_FromOp(ctx context.Context, op *xxx_EnumCryptoSets210Operation) {
@@ -18155,7 +18386,7 @@ func (o *EnumCryptoSets210Request) xxx_FromOp(ctx context.Context, op *xxx_EnumC
 	o.Flags = op.Flags
 }
 func (o *EnumCryptoSets210Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumCryptoSets210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumCryptoSets210Operation{}
@@ -18178,15 +18409,17 @@ type EnumCryptoSets210Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumCryptoSets210Response) xxx_ToOp(ctx context.Context) *xxx_EnumCryptoSets210Operation {
+func (o *EnumCryptoSets210Response) xxx_ToOp(ctx context.Context, op *xxx_EnumCryptoSets210Operation) *xxx_EnumCryptoSets210Operation {
+	if op == nil {
+		op = &xxx_EnumCryptoSets210Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumCryptoSets210Operation{}
+		return op
 	}
-	return &xxx_EnumCryptoSets210Operation{
-		SetsLength: o.SetsLength,
-		CryptoSets: o.CryptoSets,
-		Return:     o.Return,
-	}
+	o.SetsLength = op.SetsLength
+	o.CryptoSets = op.CryptoSets
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumCryptoSets210Response) xxx_FromOp(ctx context.Context, op *xxx_EnumCryptoSets210Operation) {
@@ -18198,7 +18431,7 @@ func (o *EnumCryptoSets210Response) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumCryptoSets210Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumCryptoSets210Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumCryptoSets210Operation{}
@@ -18347,14 +18580,16 @@ type AddConnectionSecurityRule220Request struct {
 	Rule *fasp.CSRule `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddConnectionSecurityRule220Request) xxx_ToOp(ctx context.Context) *xxx_AddConnectionSecurityRule220Operation {
+func (o *AddConnectionSecurityRule220Request) xxx_ToOp(ctx context.Context, op *xxx_AddConnectionSecurityRule220Operation) *xxx_AddConnectionSecurityRule220Operation {
+	if op == nil {
+		op = &xxx_AddConnectionSecurityRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_AddConnectionSecurityRule220Operation{}
+		return op
 	}
-	return &xxx_AddConnectionSecurityRule220Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddConnectionSecurityRule220Request) xxx_FromOp(ctx context.Context, op *xxx_AddConnectionSecurityRule220Operation) {
@@ -18365,7 +18600,7 @@ func (o *AddConnectionSecurityRule220Request) xxx_FromOp(ctx context.Context, op
 	o.Rule = op.Rule
 }
 func (o *AddConnectionSecurityRule220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddConnectionSecurityRule220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddConnectionSecurityRule220Operation{}
@@ -18385,14 +18620,16 @@ type AddConnectionSecurityRule220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddConnectionSecurityRule220Response) xxx_ToOp(ctx context.Context) *xxx_AddConnectionSecurityRule220Operation {
+func (o *AddConnectionSecurityRule220Response) xxx_ToOp(ctx context.Context, op *xxx_AddConnectionSecurityRule220Operation) *xxx_AddConnectionSecurityRule220Operation {
+	if op == nil {
+		op = &xxx_AddConnectionSecurityRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_AddConnectionSecurityRule220Operation{}
+		return op
 	}
-	return &xxx_AddConnectionSecurityRule220Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddConnectionSecurityRule220Response) xxx_FromOp(ctx context.Context, op *xxx_AddConnectionSecurityRule220Operation) {
@@ -18403,7 +18640,7 @@ func (o *AddConnectionSecurityRule220Response) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *AddConnectionSecurityRule220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddConnectionSecurityRule220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddConnectionSecurityRule220Operation{}
@@ -18552,14 +18789,16 @@ type SetConnectionSecurityRule220Request struct {
 	Rule *fasp.CSRule `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetConnectionSecurityRule220Request) xxx_ToOp(ctx context.Context) *xxx_SetConnectionSecurityRule220Operation {
+func (o *SetConnectionSecurityRule220Request) xxx_ToOp(ctx context.Context, op *xxx_SetConnectionSecurityRule220Operation) *xxx_SetConnectionSecurityRule220Operation {
+	if op == nil {
+		op = &xxx_SetConnectionSecurityRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_SetConnectionSecurityRule220Operation{}
+		return op
 	}
-	return &xxx_SetConnectionSecurityRule220Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetConnectionSecurityRule220Request) xxx_FromOp(ctx context.Context, op *xxx_SetConnectionSecurityRule220Operation) {
@@ -18570,7 +18809,7 @@ func (o *SetConnectionSecurityRule220Request) xxx_FromOp(ctx context.Context, op
 	o.Rule = op.Rule
 }
 func (o *SetConnectionSecurityRule220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetConnectionSecurityRule220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConnectionSecurityRule220Operation{}
@@ -18590,14 +18829,16 @@ type SetConnectionSecurityRule220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetConnectionSecurityRule220Response) xxx_ToOp(ctx context.Context) *xxx_SetConnectionSecurityRule220Operation {
+func (o *SetConnectionSecurityRule220Response) xxx_ToOp(ctx context.Context, op *xxx_SetConnectionSecurityRule220Operation) *xxx_SetConnectionSecurityRule220Operation {
+	if op == nil {
+		op = &xxx_SetConnectionSecurityRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_SetConnectionSecurityRule220Operation{}
+		return op
 	}
-	return &xxx_SetConnectionSecurityRule220Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetConnectionSecurityRule220Response) xxx_FromOp(ctx context.Context, op *xxx_SetConnectionSecurityRule220Operation) {
@@ -18608,7 +18849,7 @@ func (o *SetConnectionSecurityRule220Response) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *SetConnectionSecurityRule220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetConnectionSecurityRule220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetConnectionSecurityRule220Operation{}
@@ -18825,16 +19066,18 @@ type EnumConnectionSecurityRules220Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumConnectionSecurityRules220Request) xxx_ToOp(ctx context.Context) *xxx_EnumConnectionSecurityRules220Operation {
+func (o *EnumConnectionSecurityRules220Request) xxx_ToOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules220Operation) *xxx_EnumConnectionSecurityRules220Operation {
+	if op == nil {
+		op = &xxx_EnumConnectionSecurityRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumConnectionSecurityRules220Operation{}
+		return op
 	}
-	return &xxx_EnumConnectionSecurityRules220Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumConnectionSecurityRules220Request) xxx_FromOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules220Operation) {
@@ -18847,7 +19090,7 @@ func (o *EnumConnectionSecurityRules220Request) xxx_FromOp(ctx context.Context, 
 	o.Flags = op.Flags
 }
 func (o *EnumConnectionSecurityRules220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumConnectionSecurityRules220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumConnectionSecurityRules220Operation{}
@@ -18870,15 +19113,17 @@ type EnumConnectionSecurityRules220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumConnectionSecurityRules220Response) xxx_ToOp(ctx context.Context) *xxx_EnumConnectionSecurityRules220Operation {
+func (o *EnumConnectionSecurityRules220Response) xxx_ToOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules220Operation) *xxx_EnumConnectionSecurityRules220Operation {
+	if op == nil {
+		op = &xxx_EnumConnectionSecurityRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumConnectionSecurityRules220Operation{}
+		return op
 	}
-	return &xxx_EnumConnectionSecurityRules220Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumConnectionSecurityRules220Response) xxx_FromOp(ctx context.Context, op *xxx_EnumConnectionSecurityRules220Operation) {
@@ -18890,7 +19135,7 @@ func (o *EnumConnectionSecurityRules220Response) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *EnumConnectionSecurityRules220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumConnectionSecurityRules220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumConnectionSecurityRules220Operation{}
@@ -19100,15 +19345,17 @@ type QueryConnectionSecurityRules220Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryConnectionSecurityRules220Request) xxx_ToOp(ctx context.Context) *xxx_QueryConnectionSecurityRules220Operation {
+func (o *QueryConnectionSecurityRules220Request) xxx_ToOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules220Operation) *xxx_QueryConnectionSecurityRules220Operation {
+	if op == nil {
+		op = &xxx_QueryConnectionSecurityRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryConnectionSecurityRules220Operation{}
+		return op
 	}
-	return &xxx_QueryConnectionSecurityRules220Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryConnectionSecurityRules220Request) xxx_FromOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules220Operation) {
@@ -19120,7 +19367,7 @@ func (o *QueryConnectionSecurityRules220Request) xxx_FromOp(ctx context.Context,
 	o.Flags = op.Flags
 }
 func (o *QueryConnectionSecurityRules220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryConnectionSecurityRules220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryConnectionSecurityRules220Operation{}
@@ -19143,15 +19390,17 @@ type QueryConnectionSecurityRules220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryConnectionSecurityRules220Response) xxx_ToOp(ctx context.Context) *xxx_QueryConnectionSecurityRules220Operation {
+func (o *QueryConnectionSecurityRules220Response) xxx_ToOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules220Operation) *xxx_QueryConnectionSecurityRules220Operation {
+	if op == nil {
+		op = &xxx_QueryConnectionSecurityRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryConnectionSecurityRules220Operation{}
+		return op
 	}
-	return &xxx_QueryConnectionSecurityRules220Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryConnectionSecurityRules220Response) xxx_FromOp(ctx context.Context, op *xxx_QueryConnectionSecurityRules220Operation) {
@@ -19163,7 +19412,7 @@ func (o *QueryConnectionSecurityRules220Response) xxx_FromOp(ctx context.Context
 	o.Return = op.Return
 }
 func (o *QueryConnectionSecurityRules220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryConnectionSecurityRules220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryConnectionSecurityRules220Operation{}
@@ -19309,14 +19558,16 @@ type AddAuthenticationSet220Request struct {
 	Auth *fasp.AuthSet `idl:"name:pAuth" json:"auth"`
 }
 
-func (o *AddAuthenticationSet220Request) xxx_ToOp(ctx context.Context) *xxx_AddAuthenticationSet220Operation {
+func (o *AddAuthenticationSet220Request) xxx_ToOp(ctx context.Context, op *xxx_AddAuthenticationSet220Operation) *xxx_AddAuthenticationSet220Operation {
+	if op == nil {
+		op = &xxx_AddAuthenticationSet220Operation{}
+	}
 	if o == nil {
-		return &xxx_AddAuthenticationSet220Operation{}
+		return op
 	}
-	return &xxx_AddAuthenticationSet220Operation{
-		PolicyStore: o.PolicyStore,
-		Auth:        o.Auth,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Auth = op.Auth
+	return op
 }
 
 func (o *AddAuthenticationSet220Request) xxx_FromOp(ctx context.Context, op *xxx_AddAuthenticationSet220Operation) {
@@ -19327,7 +19578,7 @@ func (o *AddAuthenticationSet220Request) xxx_FromOp(ctx context.Context, op *xxx
 	o.Auth = op.Auth
 }
 func (o *AddAuthenticationSet220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddAuthenticationSet220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAuthenticationSet220Operation{}
@@ -19347,14 +19598,16 @@ type AddAuthenticationSet220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddAuthenticationSet220Response) xxx_ToOp(ctx context.Context) *xxx_AddAuthenticationSet220Operation {
+func (o *AddAuthenticationSet220Response) xxx_ToOp(ctx context.Context, op *xxx_AddAuthenticationSet220Operation) *xxx_AddAuthenticationSet220Operation {
+	if op == nil {
+		op = &xxx_AddAuthenticationSet220Operation{}
+	}
 	if o == nil {
-		return &xxx_AddAuthenticationSet220Operation{}
+		return op
 	}
-	return &xxx_AddAuthenticationSet220Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddAuthenticationSet220Response) xxx_FromOp(ctx context.Context, op *xxx_AddAuthenticationSet220Operation) {
@@ -19365,7 +19618,7 @@ func (o *AddAuthenticationSet220Response) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *AddAuthenticationSet220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddAuthenticationSet220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAuthenticationSet220Operation{}
@@ -19511,14 +19764,16 @@ type SetAuthenticationSet220Request struct {
 	Auth *fasp.AuthSet `idl:"name:pAuth" json:"auth"`
 }
 
-func (o *SetAuthenticationSet220Request) xxx_ToOp(ctx context.Context) *xxx_SetAuthenticationSet220Operation {
+func (o *SetAuthenticationSet220Request) xxx_ToOp(ctx context.Context, op *xxx_SetAuthenticationSet220Operation) *xxx_SetAuthenticationSet220Operation {
+	if op == nil {
+		op = &xxx_SetAuthenticationSet220Operation{}
+	}
 	if o == nil {
-		return &xxx_SetAuthenticationSet220Operation{}
+		return op
 	}
-	return &xxx_SetAuthenticationSet220Operation{
-		PolicyStore: o.PolicyStore,
-		Auth:        o.Auth,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Auth = op.Auth
+	return op
 }
 
 func (o *SetAuthenticationSet220Request) xxx_FromOp(ctx context.Context, op *xxx_SetAuthenticationSet220Operation) {
@@ -19529,7 +19784,7 @@ func (o *SetAuthenticationSet220Request) xxx_FromOp(ctx context.Context, op *xxx
 	o.Auth = op.Auth
 }
 func (o *SetAuthenticationSet220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAuthenticationSet220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAuthenticationSet220Operation{}
@@ -19549,14 +19804,16 @@ type SetAuthenticationSet220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAuthenticationSet220Response) xxx_ToOp(ctx context.Context) *xxx_SetAuthenticationSet220Operation {
+func (o *SetAuthenticationSet220Response) xxx_ToOp(ctx context.Context, op *xxx_SetAuthenticationSet220Operation) *xxx_SetAuthenticationSet220Operation {
+	if op == nil {
+		op = &xxx_SetAuthenticationSet220Operation{}
+	}
 	if o == nil {
-		return &xxx_SetAuthenticationSet220Operation{}
+		return op
 	}
-	return &xxx_SetAuthenticationSet220Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAuthenticationSet220Response) xxx_FromOp(ctx context.Context, op *xxx_SetAuthenticationSet220Operation) {
@@ -19567,7 +19824,7 @@ func (o *SetAuthenticationSet220Response) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *SetAuthenticationSet220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAuthenticationSet220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAuthenticationSet220Operation{}
@@ -19782,16 +20039,18 @@ type EnumAuthenticationSets220Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumAuthenticationSets220Request) xxx_ToOp(ctx context.Context) *xxx_EnumAuthenticationSets220Operation {
+func (o *EnumAuthenticationSets220Request) xxx_ToOp(ctx context.Context, op *xxx_EnumAuthenticationSets220Operation) *xxx_EnumAuthenticationSets220Operation {
+	if op == nil {
+		op = &xxx_EnumAuthenticationSets220Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumAuthenticationSets220Operation{}
+		return op
 	}
-	return &xxx_EnumAuthenticationSets220Operation{
-		PolicyStore:      o.PolicyStore,
-		IPsecPhase:       o.IPsecPhase,
-		FilteredByStatus: o.FilteredByStatus,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.FilteredByStatus = op.FilteredByStatus
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumAuthenticationSets220Request) xxx_FromOp(ctx context.Context, op *xxx_EnumAuthenticationSets220Operation) {
@@ -19804,7 +20063,7 @@ func (o *EnumAuthenticationSets220Request) xxx_FromOp(ctx context.Context, op *x
 	o.Flags = op.Flags
 }
 func (o *EnumAuthenticationSets220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumAuthenticationSets220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAuthenticationSets220Operation{}
@@ -19828,15 +20087,17 @@ type EnumAuthenticationSets220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumAuthenticationSets220Response) xxx_ToOp(ctx context.Context) *xxx_EnumAuthenticationSets220Operation {
+func (o *EnumAuthenticationSets220Response) xxx_ToOp(ctx context.Context, op *xxx_EnumAuthenticationSets220Operation) *xxx_EnumAuthenticationSets220Operation {
+	if op == nil {
+		op = &xxx_EnumAuthenticationSets220Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumAuthenticationSets220Operation{}
+		return op
 	}
-	return &xxx_EnumAuthenticationSets220Operation{
-		AuthSetsLength: o.AuthSetsLength,
-		Auth:           o.Auth,
-		Return:         o.Return,
-	}
+	o.AuthSetsLength = op.AuthSetsLength
+	o.Auth = op.Auth
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumAuthenticationSets220Response) xxx_FromOp(ctx context.Context, op *xxx_EnumAuthenticationSets220Operation) {
@@ -19848,7 +20109,7 @@ func (o *EnumAuthenticationSets220Response) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *EnumAuthenticationSets220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumAuthenticationSets220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAuthenticationSets220Operation{}
@@ -20075,16 +20336,18 @@ type QueryAuthenticationSets220Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryAuthenticationSets220Request) xxx_ToOp(ctx context.Context) *xxx_QueryAuthenticationSets220Operation {
+func (o *QueryAuthenticationSets220Request) xxx_ToOp(ctx context.Context, op *xxx_QueryAuthenticationSets220Operation) *xxx_QueryAuthenticationSets220Operation {
+	if op == nil {
+		op = &xxx_QueryAuthenticationSets220Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryAuthenticationSets220Operation{}
+		return op
 	}
-	return &xxx_QueryAuthenticationSets220Operation{
-		PolicyStore: o.PolicyStore,
-		IPsecPhase:  o.IPsecPhase,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.IPsecPhase = op.IPsecPhase
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryAuthenticationSets220Request) xxx_FromOp(ctx context.Context, op *xxx_QueryAuthenticationSets220Operation) {
@@ -20097,7 +20360,7 @@ func (o *QueryAuthenticationSets220Request) xxx_FromOp(ctx context.Context, op *
 	o.Flags = op.Flags
 }
 func (o *QueryAuthenticationSets220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryAuthenticationSets220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryAuthenticationSets220Operation{}
@@ -20120,15 +20383,17 @@ type QueryAuthenticationSets220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryAuthenticationSets220Response) xxx_ToOp(ctx context.Context) *xxx_QueryAuthenticationSets220Operation {
+func (o *QueryAuthenticationSets220Response) xxx_ToOp(ctx context.Context, op *xxx_QueryAuthenticationSets220Operation) *xxx_QueryAuthenticationSets220Operation {
+	if op == nil {
+		op = &xxx_QueryAuthenticationSets220Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryAuthenticationSets220Operation{}
+		return op
 	}
-	return &xxx_QueryAuthenticationSets220Operation{
-		SetsLength: o.SetsLength,
-		AuthSets:   o.AuthSets,
-		Return:     o.Return,
-	}
+	o.SetsLength = op.SetsLength
+	o.AuthSets = op.AuthSets
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryAuthenticationSets220Response) xxx_FromOp(ctx context.Context, op *xxx_QueryAuthenticationSets220Operation) {
@@ -20140,7 +20405,7 @@ func (o *QueryAuthenticationSets220Response) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *QueryAuthenticationSets220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryAuthenticationSets220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryAuthenticationSets220Operation{}
@@ -20289,14 +20554,16 @@ type AddFirewallRule220Request struct {
 	Rule *fasp.Rule220 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule220Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule220Operation {
+func (o *AddFirewallRule220Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule220Operation) *xxx_AddFirewallRule220Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule220Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule220Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule220Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule220Operation) {
@@ -20307,7 +20574,7 @@ func (o *AddFirewallRule220Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule220Operation{}
@@ -20327,14 +20594,16 @@ type AddFirewallRule220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule220Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule220Operation {
+func (o *AddFirewallRule220Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule220Operation) *xxx_AddFirewallRule220Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule220Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule220Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule220Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule220Operation) {
@@ -20345,7 +20614,7 @@ func (o *AddFirewallRule220Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule220Operation{}
@@ -20494,14 +20763,16 @@ type SetFirewallRule220Request struct {
 	Rule *fasp.Rule220 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule220Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule220Operation {
+func (o *SetFirewallRule220Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule220Operation) *xxx_SetFirewallRule220Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule220Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule220Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule220Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule220Operation) {
@@ -20512,7 +20783,7 @@ func (o *SetFirewallRule220Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule220Operation{}
@@ -20532,14 +20803,16 @@ type SetFirewallRule220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule220Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule220Operation {
+func (o *SetFirewallRule220Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule220Operation) *xxx_SetFirewallRule220Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule220Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule220Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule220Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule220Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule220Operation) {
@@ -20550,7 +20823,7 @@ func (o *SetFirewallRule220Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule220Operation{}
@@ -20767,16 +21040,18 @@ type EnumFirewallRules220Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules220Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules220Operation {
+func (o *EnumFirewallRules220Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules220Operation) *xxx_EnumFirewallRules220Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules220Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules220Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules220Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules220Operation) {
@@ -20789,7 +21064,7 @@ func (o *EnumFirewallRules220Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules220Operation{}
@@ -20812,15 +21087,17 @@ type EnumFirewallRules220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules220Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules220Operation {
+func (o *EnumFirewallRules220Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules220Operation) *xxx_EnumFirewallRules220Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules220Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules220Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules220Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules220Operation) {
@@ -20832,7 +21109,7 @@ func (o *EnumFirewallRules220Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules220Operation{}
@@ -21042,15 +21319,17 @@ type QueryFirewallRules220Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRules220Request) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules220Operation {
+func (o *QueryFirewallRules220Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules220Operation) *xxx_QueryFirewallRules220Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules220Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules220Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRules220Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules220Operation) {
@@ -21062,7 +21341,7 @@ func (o *QueryFirewallRules220Request) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRules220Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRules220Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules220Operation{}
@@ -21085,15 +21364,17 @@ type QueryFirewallRules220Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRules220Response) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules220Operation {
+func (o *QueryFirewallRules220Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules220Operation) *xxx_QueryFirewallRules220Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules220Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules220Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules220Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRules220Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules220Operation) {
@@ -21105,7 +21386,7 @@ func (o *QueryFirewallRules220Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryFirewallRules220Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRules220Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules220Operation{}
@@ -21254,14 +21535,16 @@ type AddFirewallRule224Request struct {
 	Rule *fasp.Rule224 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule224Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule224Operation {
+func (o *AddFirewallRule224Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule224Operation) *xxx_AddFirewallRule224Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule224Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule224Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule224Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule224Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule224Operation) {
@@ -21272,7 +21555,7 @@ func (o *AddFirewallRule224Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule224Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule224Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule224Operation{}
@@ -21292,14 +21575,16 @@ type AddFirewallRule224Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule224Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule224Operation {
+func (o *AddFirewallRule224Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule224Operation) *xxx_AddFirewallRule224Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule224Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule224Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule224Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule224Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule224Operation) {
@@ -21310,7 +21595,7 @@ func (o *AddFirewallRule224Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule224Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule224Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule224Operation{}
@@ -21459,14 +21744,16 @@ type SetFirewallRule224Request struct {
 	Rule *fasp.Rule224 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule224Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule224Operation {
+func (o *SetFirewallRule224Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule224Operation) *xxx_SetFirewallRule224Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule224Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule224Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule224Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule224Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule224Operation) {
@@ -21477,7 +21764,7 @@ func (o *SetFirewallRule224Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule224Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule224Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule224Operation{}
@@ -21497,14 +21784,16 @@ type SetFirewallRule224Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule224Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule224Operation {
+func (o *SetFirewallRule224Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule224Operation) *xxx_SetFirewallRule224Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule224Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule224Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule224Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule224Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule224Operation) {
@@ -21515,7 +21804,7 @@ func (o *SetFirewallRule224Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule224Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule224Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule224Operation{}
@@ -21733,16 +22022,18 @@ type EnumFirewallRules224Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules224Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules224Operation {
+func (o *EnumFirewallRules224Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules224Operation) *xxx_EnumFirewallRules224Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules224Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules224Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules224Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules224Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules224Operation) {
@@ -21755,7 +22046,7 @@ func (o *EnumFirewallRules224Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules224Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules224Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules224Operation{}
@@ -21778,15 +22069,17 @@ type EnumFirewallRules224Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules224Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules224Operation {
+func (o *EnumFirewallRules224Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules224Operation) *xxx_EnumFirewallRules224Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules224Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules224Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules224Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules224Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules224Operation) {
@@ -21798,7 +22091,7 @@ func (o *EnumFirewallRules224Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules224Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules224Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules224Operation{}
@@ -22012,15 +22305,17 @@ type QueryFirewallRules224Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRules224Request) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules224Operation {
+func (o *QueryFirewallRules224Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules224Operation) *xxx_QueryFirewallRules224Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules224Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules224Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules224Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRules224Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules224Operation) {
@@ -22032,7 +22327,7 @@ func (o *QueryFirewallRules224Request) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRules224Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRules224Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules224Operation{}
@@ -22055,15 +22350,17 @@ type QueryFirewallRules224Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRules224Response) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules224Operation {
+func (o *QueryFirewallRules224Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules224Operation) *xxx_QueryFirewallRules224Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules224Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules224Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules224Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRules224Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules224Operation) {
@@ -22075,7 +22372,7 @@ func (o *QueryFirewallRules224Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryFirewallRules224Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRules224Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules224Operation{}
@@ -22225,14 +22522,16 @@ type AddFirewallRule225Request struct {
 	Rule *fasp.Rule225 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule225Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule225Operation {
+func (o *AddFirewallRule225Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule225Operation) *xxx_AddFirewallRule225Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule225Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule225Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule225Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule225Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule225Operation) {
@@ -22243,7 +22542,7 @@ func (o *AddFirewallRule225Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule225Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule225Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule225Operation{}
@@ -22263,14 +22562,16 @@ type AddFirewallRule225Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule225Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule225Operation {
+func (o *AddFirewallRule225Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule225Operation) *xxx_AddFirewallRule225Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule225Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule225Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule225Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule225Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule225Operation) {
@@ -22281,7 +22582,7 @@ func (o *AddFirewallRule225Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule225Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule225Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule225Operation{}
@@ -22431,14 +22732,16 @@ type SetFirewallRule225Request struct {
 	Rule *fasp.Rule225 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule225Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule225Operation {
+func (o *SetFirewallRule225Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule225Operation) *xxx_SetFirewallRule225Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule225Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule225Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule225Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule225Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule225Operation) {
@@ -22449,7 +22752,7 @@ func (o *SetFirewallRule225Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule225Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule225Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule225Operation{}
@@ -22469,14 +22772,16 @@ type SetFirewallRule225Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule225Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule225Operation {
+func (o *SetFirewallRule225Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule225Operation) *xxx_SetFirewallRule225Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule225Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule225Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule225Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule225Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule225Operation) {
@@ -22487,7 +22792,7 @@ func (o *SetFirewallRule225Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule225Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule225Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule225Operation{}
@@ -22705,16 +23010,18 @@ type EnumFirewallRules225Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules225Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules225Operation {
+func (o *EnumFirewallRules225Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules225Operation) *xxx_EnumFirewallRules225Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules225Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules225Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules225Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules225Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules225Operation) {
@@ -22727,7 +23034,7 @@ func (o *EnumFirewallRules225Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules225Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules225Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules225Operation{}
@@ -22750,15 +23057,17 @@ type EnumFirewallRules225Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules225Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules225Operation {
+func (o *EnumFirewallRules225Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules225Operation) *xxx_EnumFirewallRules225Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules225Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules225Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules225Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules225Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules225Operation) {
@@ -22770,7 +23079,7 @@ func (o *EnumFirewallRules225Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules225Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules225Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules225Operation{}
@@ -22984,15 +23293,17 @@ type QueryFirewallRules225Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRules225Request) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules225Operation {
+func (o *QueryFirewallRules225Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules225Operation) *xxx_QueryFirewallRules225Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules225Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules225Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules225Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRules225Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules225Operation) {
@@ -23004,7 +23315,7 @@ func (o *QueryFirewallRules225Request) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRules225Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRules225Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules225Operation{}
@@ -23027,15 +23338,17 @@ type QueryFirewallRules225Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRules225Response) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules225Operation {
+func (o *QueryFirewallRules225Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules225Operation) *xxx_QueryFirewallRules225Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules225Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules225Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules225Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRules225Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules225Operation) {
@@ -23047,7 +23360,7 @@ func (o *QueryFirewallRules225Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryFirewallRules225Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRules225Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules225Operation{}
@@ -23196,14 +23509,16 @@ type AddFirewallRule226Request struct {
 	Rule *fasp.Rule226 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule226Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule226Operation {
+func (o *AddFirewallRule226Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule226Operation) *xxx_AddFirewallRule226Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule226Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule226Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule226Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule226Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule226Operation) {
@@ -23214,7 +23529,7 @@ func (o *AddFirewallRule226Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule226Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule226Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule226Operation{}
@@ -23234,14 +23549,16 @@ type AddFirewallRule226Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule226Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule226Operation {
+func (o *AddFirewallRule226Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule226Operation) *xxx_AddFirewallRule226Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule226Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule226Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule226Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule226Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule226Operation) {
@@ -23252,7 +23569,7 @@ func (o *AddFirewallRule226Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule226Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule226Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule226Operation{}
@@ -23401,14 +23718,16 @@ type SetFirewallRule226Request struct {
 	Rule *fasp.Rule226 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule226Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule226Operation {
+func (o *SetFirewallRule226Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule226Operation) *xxx_SetFirewallRule226Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule226Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule226Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule226Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule226Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule226Operation) {
@@ -23419,7 +23738,7 @@ func (o *SetFirewallRule226Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule226Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule226Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule226Operation{}
@@ -23439,14 +23758,16 @@ type SetFirewallRule226Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule226Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule226Operation {
+func (o *SetFirewallRule226Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule226Operation) *xxx_SetFirewallRule226Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule226Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule226Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule226Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule226Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule226Operation) {
@@ -23457,7 +23778,7 @@ func (o *SetFirewallRule226Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule226Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule226Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule226Operation{}
@@ -23675,16 +23996,18 @@ type EnumFirewallRules226Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules226Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules226Operation {
+func (o *EnumFirewallRules226Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules226Operation) *xxx_EnumFirewallRules226Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules226Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules226Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules226Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules226Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules226Operation) {
@@ -23697,7 +24020,7 @@ func (o *EnumFirewallRules226Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules226Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules226Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules226Operation{}
@@ -23720,15 +24043,17 @@ type EnumFirewallRules226Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules226Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules226Operation {
+func (o *EnumFirewallRules226Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules226Operation) *xxx_EnumFirewallRules226Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules226Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules226Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules226Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules226Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules226Operation) {
@@ -23740,7 +24065,7 @@ func (o *EnumFirewallRules226Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules226Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules226Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules226Operation{}
@@ -23954,15 +24279,17 @@ type QueryFirewallRules226Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRules226Request) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules226Operation {
+func (o *QueryFirewallRules226Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules226Operation) *xxx_QueryFirewallRules226Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules226Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules226Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules226Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRules226Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules226Operation) {
@@ -23974,7 +24301,7 @@ func (o *QueryFirewallRules226Request) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRules226Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRules226Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules226Operation{}
@@ -23997,15 +24324,17 @@ type QueryFirewallRules226Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRules226Response) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules226Operation {
+func (o *QueryFirewallRules226Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules226Operation) *xxx_QueryFirewallRules226Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules226Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules226Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules226Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRules226Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules226Operation) {
@@ -24017,7 +24346,7 @@ func (o *QueryFirewallRules226Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryFirewallRules226Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRules226Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules226Operation{}
@@ -24167,14 +24496,16 @@ type AddFirewallRule227Request struct {
 	Rule *fasp.Rule227 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule227Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule227Operation {
+func (o *AddFirewallRule227Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule227Operation) *xxx_AddFirewallRule227Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule227Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule227Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule227Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule227Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule227Operation) {
@@ -24185,7 +24516,7 @@ func (o *AddFirewallRule227Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule227Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule227Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule227Operation{}
@@ -24205,14 +24536,16 @@ type AddFirewallRule227Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule227Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule227Operation {
+func (o *AddFirewallRule227Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule227Operation) *xxx_AddFirewallRule227Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule227Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule227Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule227Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule227Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule227Operation) {
@@ -24223,7 +24556,7 @@ func (o *AddFirewallRule227Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule227Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule227Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule227Operation{}
@@ -24373,14 +24706,16 @@ type SetFirewallRule227Request struct {
 	Rule *fasp.Rule227 `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule227Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule227Operation {
+func (o *SetFirewallRule227Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule227Operation) *xxx_SetFirewallRule227Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule227Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule227Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule227Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule227Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule227Operation) {
@@ -24391,7 +24726,7 @@ func (o *SetFirewallRule227Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule227Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule227Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule227Operation{}
@@ -24411,14 +24746,16 @@ type SetFirewallRule227Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule227Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule227Operation {
+func (o *SetFirewallRule227Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule227Operation) *xxx_SetFirewallRule227Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule227Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule227Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule227Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule227Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule227Operation) {
@@ -24429,7 +24766,7 @@ func (o *SetFirewallRule227Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule227Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule227Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule227Operation{}
@@ -24647,16 +24984,18 @@ type EnumFirewallRules227Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules227Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules227Operation {
+func (o *EnumFirewallRules227Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules227Operation) *xxx_EnumFirewallRules227Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules227Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules227Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules227Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules227Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules227Operation) {
@@ -24669,7 +25008,7 @@ func (o *EnumFirewallRules227Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules227Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules227Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules227Operation{}
@@ -24692,15 +25031,17 @@ type EnumFirewallRules227Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules227Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules227Operation {
+func (o *EnumFirewallRules227Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules227Operation) *xxx_EnumFirewallRules227Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules227Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules227Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules227Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules227Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules227Operation) {
@@ -24712,7 +25053,7 @@ func (o *EnumFirewallRules227Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules227Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules227Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules227Operation{}
@@ -24926,15 +25267,17 @@ type QueryFirewallRules227Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRules227Request) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules227Operation {
+func (o *QueryFirewallRules227Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules227Operation) *xxx_QueryFirewallRules227Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules227Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules227Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules227Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRules227Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules227Operation) {
@@ -24946,7 +25289,7 @@ func (o *QueryFirewallRules227Request) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRules227Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRules227Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules227Operation{}
@@ -24969,15 +25312,17 @@ type QueryFirewallRules227Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRules227Response) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules227Operation {
+func (o *QueryFirewallRules227Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules227Operation) *xxx_QueryFirewallRules227Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules227Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules227Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules227Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRules227Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules227Operation) {
@@ -24989,7 +25334,7 @@ func (o *QueryFirewallRules227Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryFirewallRules227Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRules227Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules227Operation{}
@@ -25139,14 +25484,16 @@ type AddFirewallRule231Request struct {
 	Rule *fasp.Rule `idl:"name:pRule" json:"rule"`
 }
 
-func (o *AddFirewallRule231Request) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule231Operation {
+func (o *AddFirewallRule231Request) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule231Operation) *xxx_AddFirewallRule231Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule231Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule231Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule231Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *AddFirewallRule231Request) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule231Operation) {
@@ -25157,7 +25504,7 @@ func (o *AddFirewallRule231Request) xxx_FromOp(ctx context.Context, op *xxx_AddF
 	o.Rule = op.Rule
 }
 func (o *AddFirewallRule231Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFirewallRule231Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule231Operation{}
@@ -25177,14 +25524,16 @@ type AddFirewallRule231Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFirewallRule231Response) xxx_ToOp(ctx context.Context) *xxx_AddFirewallRule231Operation {
+func (o *AddFirewallRule231Response) xxx_ToOp(ctx context.Context, op *xxx_AddFirewallRule231Operation) *xxx_AddFirewallRule231Operation {
+	if op == nil {
+		op = &xxx_AddFirewallRule231Operation{}
+	}
 	if o == nil {
-		return &xxx_AddFirewallRule231Operation{}
+		return op
 	}
-	return &xxx_AddFirewallRule231Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFirewallRule231Response) xxx_FromOp(ctx context.Context, op *xxx_AddFirewallRule231Operation) {
@@ -25195,7 +25544,7 @@ func (o *AddFirewallRule231Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddFirewallRule231Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFirewallRule231Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFirewallRule231Operation{}
@@ -25345,14 +25694,16 @@ type SetFirewallRule231Request struct {
 	Rule *fasp.Rule `idl:"name:pRule" json:"rule"`
 }
 
-func (o *SetFirewallRule231Request) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule231Operation {
+func (o *SetFirewallRule231Request) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule231Operation) *xxx_SetFirewallRule231Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule231Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule231Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule231Operation{
-		PolicyStore: o.PolicyStore,
-		Rule:        o.Rule,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Rule = op.Rule
+	return op
 }
 
 func (o *SetFirewallRule231Request) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule231Operation) {
@@ -25363,7 +25714,7 @@ func (o *SetFirewallRule231Request) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Rule = op.Rule
 }
 func (o *SetFirewallRule231Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFirewallRule231Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule231Operation{}
@@ -25383,14 +25734,16 @@ type SetFirewallRule231Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFirewallRule231Response) xxx_ToOp(ctx context.Context) *xxx_SetFirewallRule231Operation {
+func (o *SetFirewallRule231Response) xxx_ToOp(ctx context.Context, op *xxx_SetFirewallRule231Operation) *xxx_SetFirewallRule231Operation {
+	if op == nil {
+		op = &xxx_SetFirewallRule231Operation{}
+	}
 	if o == nil {
-		return &xxx_SetFirewallRule231Operation{}
+		return op
 	}
-	return &xxx_SetFirewallRule231Operation{
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFirewallRule231Response) xxx_FromOp(ctx context.Context, op *xxx_SetFirewallRule231Operation) {
@@ -25401,7 +25754,7 @@ func (o *SetFirewallRule231Response) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFirewallRule231Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFirewallRule231Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFirewallRule231Operation{}
@@ -25619,16 +25972,18 @@ type EnumFirewallRules231Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *EnumFirewallRules231Request) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules231Operation {
+func (o *EnumFirewallRules231Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules231Operation) *xxx_EnumFirewallRules231Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules231Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules231Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules231Operation{
-		PolicyStore:      o.PolicyStore,
-		FilteredByStatus: o.FilteredByStatus,
-		ProfileFilter:    o.ProfileFilter,
-		Flags:            o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.FilteredByStatus = op.FilteredByStatus
+	o.ProfileFilter = op.ProfileFilter
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *EnumFirewallRules231Request) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules231Operation) {
@@ -25641,7 +25996,7 @@ func (o *EnumFirewallRules231Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Flags = op.Flags
 }
 func (o *EnumFirewallRules231Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFirewallRules231Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules231Operation{}
@@ -25664,15 +26019,17 @@ type EnumFirewallRules231Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFirewallRules231Response) xxx_ToOp(ctx context.Context) *xxx_EnumFirewallRules231Operation {
+func (o *EnumFirewallRules231Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFirewallRules231Operation) *xxx_EnumFirewallRules231Operation {
+	if op == nil {
+		op = &xxx_EnumFirewallRules231Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumFirewallRules231Operation{}
+		return op
 	}
-	return &xxx_EnumFirewallRules231Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFirewallRules231Response) xxx_FromOp(ctx context.Context, op *xxx_EnumFirewallRules231Operation) {
@@ -25684,7 +26041,7 @@ func (o *EnumFirewallRules231Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumFirewallRules231Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFirewallRules231Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFirewallRules231Operation{}
@@ -25898,15 +26255,17 @@ type QueryFirewallRules231Request struct {
 	Flags uint16 `idl:"name:wFlags" json:"flags"`
 }
 
-func (o *QueryFirewallRules231Request) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules231Operation {
+func (o *QueryFirewallRules231Request) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules231Operation) *xxx_QueryFirewallRules231Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules231Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules231Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules231Operation{
-		PolicyStore: o.PolicyStore,
-		Query:       o.Query,
-		Flags:       o.Flags,
-	}
+	o.PolicyStore = op.PolicyStore
+	o.Query = op.Query
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryFirewallRules231Request) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules231Operation) {
@@ -25918,7 +26277,7 @@ func (o *QueryFirewallRules231Request) xxx_FromOp(ctx context.Context, op *xxx_Q
 	o.Flags = op.Flags
 }
 func (o *QueryFirewallRules231Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallRules231Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules231Operation{}
@@ -25941,15 +26300,17 @@ type QueryFirewallRules231Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallRules231Response) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallRules231Operation {
+func (o *QueryFirewallRules231Response) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallRules231Operation) *xxx_QueryFirewallRules231Operation {
+	if op == nil {
+		op = &xxx_QueryFirewallRules231Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallRules231Operation{}
+		return op
 	}
-	return &xxx_QueryFirewallRules231Operation{
-		RulesLength: o.RulesLength,
-		Rules:       o.Rules,
-		Return:      o.Return,
-	}
+	o.RulesLength = op.RulesLength
+	o.Rules = op.Rules
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallRules231Response) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallRules231Operation) {
@@ -25961,7 +26322,7 @@ func (o *QueryFirewallRules231Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *QueryFirewallRules231Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallRules231Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallRules231Operation{}

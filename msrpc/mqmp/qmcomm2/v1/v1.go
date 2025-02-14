@@ -125,7 +125,7 @@ type xxx_DefaultQmcomm2Client struct {
 }
 
 func (o *xxx_DefaultQmcomm2Client) QMSendMessageInternalEx(ctx context.Context, in *QMSendMessageInternalExRequest, opts ...dcerpc.CallOption) (*QMSendMessageInternalExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -138,7 +138,7 @@ func (o *xxx_DefaultQmcomm2Client) QMSendMessageInternalEx(ctx context.Context, 
 }
 
 func (o *xxx_DefaultQmcomm2Client) SendMessageEx(ctx context.Context, in *SendMessageExRequest, opts ...dcerpc.CallOption) (*SendMessageExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -151,7 +151,7 @@ func (o *xxx_DefaultQmcomm2Client) SendMessageEx(ctx context.Context, in *SendMe
 }
 
 func (o *xxx_DefaultQmcomm2Client) ReceiveMessageEx(ctx context.Context, in *ReceiveMessageExRequest, opts ...dcerpc.CallOption) (*ReceiveMessageExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -164,7 +164,7 @@ func (o *xxx_DefaultQmcomm2Client) ReceiveMessageEx(ctx context.Context, in *Rec
 }
 
 func (o *xxx_DefaultQmcomm2Client) CreateCursorEx(ctx context.Context, in *CreateCursorExRequest, opts ...dcerpc.CallOption) (*CreateCursorExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -420,15 +420,17 @@ type QMSendMessageInternalExRequest struct {
 	MessageID *mqmq.ObjectID `idl:"name:pMessageID;pointer:unique" json:"message_id"`
 }
 
-func (o *QMSendMessageInternalExRequest) xxx_ToOp(ctx context.Context) *xxx_QMSendMessageInternalExOperation {
+func (o *QMSendMessageInternalExRequest) xxx_ToOp(ctx context.Context, op *xxx_QMSendMessageInternalExOperation) *xxx_QMSendMessageInternalExOperation {
+	if op == nil {
+		op = &xxx_QMSendMessageInternalExOperation{}
+	}
 	if o == nil {
-		return &xxx_QMSendMessageInternalExOperation{}
+		return op
 	}
-	return &xxx_QMSendMessageInternalExOperation{
-		QueueFormat: o.QueueFormat,
-		Ptb:         o.Ptb,
-		MessageID:   o.MessageID,
-	}
+	o.QueueFormat = op.QueueFormat
+	o.Ptb = op.Ptb
+	o.MessageID = op.MessageID
+	return op
 }
 
 func (o *QMSendMessageInternalExRequest) xxx_FromOp(ctx context.Context, op *xxx_QMSendMessageInternalExOperation) {
@@ -440,7 +442,7 @@ func (o *QMSendMessageInternalExRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.MessageID = op.MessageID
 }
 func (o *QMSendMessageInternalExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QMSendMessageInternalExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QMSendMessageInternalExOperation{}
@@ -460,14 +462,16 @@ type QMSendMessageInternalExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QMSendMessageInternalExResponse) xxx_ToOp(ctx context.Context) *xxx_QMSendMessageInternalExOperation {
+func (o *QMSendMessageInternalExResponse) xxx_ToOp(ctx context.Context, op *xxx_QMSendMessageInternalExOperation) *xxx_QMSendMessageInternalExOperation {
+	if op == nil {
+		op = &xxx_QMSendMessageInternalExOperation{}
+	}
 	if o == nil {
-		return &xxx_QMSendMessageInternalExOperation{}
+		return op
 	}
-	return &xxx_QMSendMessageInternalExOperation{
-		MessageID: o.MessageID,
-		Return:    o.Return,
-	}
+	o.MessageID = op.MessageID
+	o.Return = op.Return
+	return op
 }
 
 func (o *QMSendMessageInternalExResponse) xxx_FromOp(ctx context.Context, op *xxx_QMSendMessageInternalExOperation) {
@@ -478,7 +482,7 @@ func (o *QMSendMessageInternalExResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *QMSendMessageInternalExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QMSendMessageInternalExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QMSendMessageInternalExOperation{}
@@ -894,15 +898,17 @@ type SendMessageExRequest struct {
 	MessageID *mqmq.ObjectID `idl:"name:pMessageID;pointer:unique" json:"message_id"`
 }
 
-func (o *SendMessageExRequest) xxx_ToOp(ctx context.Context) *xxx_SendMessageExOperation {
+func (o *SendMessageExRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessageExOperation) *xxx_SendMessageExOperation {
+	if op == nil {
+		op = &xxx_SendMessageExOperation{}
+	}
 	if o == nil {
-		return &xxx_SendMessageExOperation{}
+		return op
 	}
-	return &xxx_SendMessageExOperation{
-		Queue:     o.Queue,
-		Ptb:       o.Ptb,
-		MessageID: o.MessageID,
-	}
+	o.Queue = op.Queue
+	o.Ptb = op.Ptb
+	o.MessageID = op.MessageID
+	return op
 }
 
 func (o *SendMessageExRequest) xxx_FromOp(ctx context.Context, op *xxx_SendMessageExOperation) {
@@ -914,7 +920,7 @@ func (o *SendMessageExRequest) xxx_FromOp(ctx context.Context, op *xxx_SendMessa
 	o.MessageID = op.MessageID
 }
 func (o *SendMessageExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SendMessageExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendMessageExOperation{}
@@ -935,14 +941,16 @@ type SendMessageExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SendMessageExResponse) xxx_ToOp(ctx context.Context) *xxx_SendMessageExOperation {
+func (o *SendMessageExResponse) xxx_ToOp(ctx context.Context, op *xxx_SendMessageExOperation) *xxx_SendMessageExOperation {
+	if op == nil {
+		op = &xxx_SendMessageExOperation{}
+	}
 	if o == nil {
-		return &xxx_SendMessageExOperation{}
+		return op
 	}
-	return &xxx_SendMessageExOperation{
-		MessageID: o.MessageID,
-		Return:    o.Return,
-	}
+	o.MessageID = op.MessageID
+	o.Return = op.Return
+	return op
 }
 
 func (o *SendMessageExResponse) xxx_FromOp(ctx context.Context, op *xxx_SendMessageExOperation) {
@@ -953,7 +961,7 @@ func (o *SendMessageExResponse) xxx_FromOp(ctx context.Context, op *xxx_SendMess
 	o.Return = op.Return
 }
 func (o *SendMessageExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SendMessageExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendMessageExOperation{}
@@ -1367,14 +1375,16 @@ type ReceiveMessageExRequest struct {
 	Ptb *qmcomm.TransferBufferV2 `idl:"name:ptb" json:"ptb"`
 }
 
-func (o *ReceiveMessageExRequest) xxx_ToOp(ctx context.Context) *xxx_ReceiveMessageExOperation {
+func (o *ReceiveMessageExRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveMessageExOperation) *xxx_ReceiveMessageExOperation {
+	if op == nil {
+		op = &xxx_ReceiveMessageExOperation{}
+	}
 	if o == nil {
-		return &xxx_ReceiveMessageExOperation{}
+		return op
 	}
-	return &xxx_ReceiveMessageExOperation{
-		HQMContext: o.HQMContext,
-		Ptb:        o.Ptb,
-	}
+	o.HQMContext = op.HQMContext
+	o.Ptb = op.Ptb
+	return op
 }
 
 func (o *ReceiveMessageExRequest) xxx_FromOp(ctx context.Context, op *xxx_ReceiveMessageExOperation) {
@@ -1385,7 +1395,7 @@ func (o *ReceiveMessageExRequest) xxx_FromOp(ctx context.Context, op *xxx_Receiv
 	o.Ptb = op.Ptb
 }
 func (o *ReceiveMessageExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReceiveMessageExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReceiveMessageExOperation{}
@@ -1666,14 +1676,16 @@ type ReceiveMessageExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReceiveMessageExResponse) xxx_ToOp(ctx context.Context) *xxx_ReceiveMessageExOperation {
+func (o *ReceiveMessageExResponse) xxx_ToOp(ctx context.Context, op *xxx_ReceiveMessageExOperation) *xxx_ReceiveMessageExOperation {
+	if op == nil {
+		op = &xxx_ReceiveMessageExOperation{}
+	}
 	if o == nil {
-		return &xxx_ReceiveMessageExOperation{}
+		return op
 	}
-	return &xxx_ReceiveMessageExOperation{
-		Ptb:    o.Ptb,
-		Return: o.Return,
-	}
+	o.Ptb = op.Ptb
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReceiveMessageExResponse) xxx_FromOp(ctx context.Context, op *xxx_ReceiveMessageExOperation) {
@@ -1684,7 +1696,7 @@ func (o *ReceiveMessageExResponse) xxx_FromOp(ctx context.Context, op *xxx_Recei
 	o.Return = op.Return
 }
 func (o *ReceiveMessageExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReceiveMessageExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReceiveMessageExOperation{}
@@ -1833,14 +1845,16 @@ type CreateCursorExRequest struct {
 	Pcc *qmcomm.CreateRemoteCursor `idl:"name:pcc" json:"pcc"`
 }
 
-func (o *CreateCursorExRequest) xxx_ToOp(ctx context.Context) *xxx_CreateCursorExOperation {
+func (o *CreateCursorExRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCursorExOperation) *xxx_CreateCursorExOperation {
+	if op == nil {
+		op = &xxx_CreateCursorExOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateCursorExOperation{}
+		return op
 	}
-	return &xxx_CreateCursorExOperation{
-		Queue: o.Queue,
-		Pcc:   o.Pcc,
-	}
+	o.Queue = op.Queue
+	o.Pcc = op.Pcc
+	return op
 }
 
 func (o *CreateCursorExRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateCursorExOperation) {
@@ -1851,7 +1865,7 @@ func (o *CreateCursorExRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateCu
 	o.Pcc = op.Pcc
 }
 func (o *CreateCursorExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateCursorExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateCursorExOperation{}
@@ -1871,14 +1885,16 @@ type CreateCursorExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateCursorExResponse) xxx_ToOp(ctx context.Context) *xxx_CreateCursorExOperation {
+func (o *CreateCursorExResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateCursorExOperation) *xxx_CreateCursorExOperation {
+	if op == nil {
+		op = &xxx_CreateCursorExOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateCursorExOperation{}
+		return op
 	}
-	return &xxx_CreateCursorExOperation{
-		Pcc:    o.Pcc,
-		Return: o.Return,
-	}
+	o.Pcc = op.Pcc
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateCursorExResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateCursorExOperation) {
@@ -1889,7 +1905,7 @@ func (o *CreateCursorExResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateC
 	o.Return = op.Return
 }
 func (o *CreateCursorExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateCursorExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateCursorExOperation{}

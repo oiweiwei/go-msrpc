@@ -231,138 +231,240 @@ func NewDNSServerServerHandle(o DNSServerServer) dcerpc.ServerHandle {
 func DNSServerServerHandle(ctx context.Context, o DNSServerServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_DnssrvOperation
-		in := &OperationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OperationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Operation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OperationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Operation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // R_DnssrvQuery
-		in := &QueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // R_DnssrvComplexOperation
-		in := &ComplexOperationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ComplexOperationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ComplexOperation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ComplexOperationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ComplexOperation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // R_DnssrvEnumRecords
-		in := &EnumRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // R_DnssrvUpdateRecord
-		in := &UpdateRecordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateRecordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateRecord(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateRecordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateRecord(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // R_DnssrvOperation2
-		in := &Operation2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Operation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Operation2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Operation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Operation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // R_DnssrvQuery2
-		in := &Query2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Query2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Query2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // R_DnssrvComplexOperation2
-		in := &ComplexOperation2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ComplexOperation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ComplexOperation2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ComplexOperation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ComplexOperation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // R_DnssrvEnumRecords2
-		in := &EnumRecords2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRecords2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRecords2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRecords2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRecords2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_DnssrvUpdateRecord2
-		in := &UpdateRecord2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateRecord2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateRecord2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateRecord2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateRecord2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_DnssrvUpdateRecord3
-		in := &UpdateRecord3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateRecord3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateRecord3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateRecord3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateRecord3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // R_DnssrvEnumRecords3
-		in := &EnumRecords3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRecords3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRecords3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRecords3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRecords3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_DnssrvOperation3
-		in := &Operation3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Operation3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Operation3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Operation3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Operation3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // R_DnssrvQuery3
-		in := &Query3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Query3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Query3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // R_DnssrvComplexOperation3
-		in := &ComplexOperation3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ComplexOperation3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ComplexOperation3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ComplexOperation3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ComplexOperation3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // R_DnssrvOperation4
-		in := &Operation4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Operation4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Operation4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Operation4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Operation4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // R_DnssrvQuery4
-		in := &Query4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Query4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Query4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // R_DnssrvUpdateRecord4
-		in := &UpdateRecord4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateRecord4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateRecord4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateRecord4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateRecord4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // R_DnssrvEnumRecords4
-		in := &EnumRecords4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRecords4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRecords4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRecords4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRecords4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented DnsServer
+type UnimplementedDNSServerServer struct {
+}
+
+func (UnimplementedDNSServerServer) Operation(context.Context, *OperationRequest) (*OperationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) ComplexOperation(context.Context, *ComplexOperationRequest) (*ComplexOperationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) EnumRecords(context.Context, *EnumRecordsRequest) (*EnumRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) UpdateRecord(context.Context, *UpdateRecordRequest) (*UpdateRecordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Operation2(context.Context, *Operation2Request) (*Operation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Query2(context.Context, *Query2Request) (*Query2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) ComplexOperation2(context.Context, *ComplexOperation2Request) (*ComplexOperation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) EnumRecords2(context.Context, *EnumRecords2Request) (*EnumRecords2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) UpdateRecord2(context.Context, *UpdateRecord2Request) (*UpdateRecord2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) UpdateRecord3(context.Context, *UpdateRecord3Request) (*UpdateRecord3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) EnumRecords3(context.Context, *EnumRecords3Request) (*EnumRecords3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Operation3(context.Context, *Operation3Request) (*Operation3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Query3(context.Context, *Query3Request) (*Query3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) ComplexOperation3(context.Context, *ComplexOperation3Request) (*ComplexOperation3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Operation4(context.Context, *Operation4Request) (*Operation4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) Query4(context.Context, *Query4Request) (*Query4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) UpdateRecord4(context.Context, *UpdateRecord4Request) (*UpdateRecord4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDNSServerServer) EnumRecords4(context.Context, *EnumRecords4Request) (*EnumRecords4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DNSServerServer = (*UnimplementedDNSServerServer)(nil)

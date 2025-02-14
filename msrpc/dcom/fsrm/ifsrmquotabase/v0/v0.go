@@ -199,7 +199,7 @@ func (o *xxx_DefaultQuotaBaseClient) Object() ifsrmobject.ObjectClient {
 }
 
 func (o *xxx_DefaultQuotaBaseClient) GetQuotaLimit(ctx context.Context, in *GetQuotaLimitRequest, opts ...dcerpc.CallOption) (*GetQuotaLimitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -219,7 +219,7 @@ func (o *xxx_DefaultQuotaBaseClient) GetQuotaLimit(ctx context.Context, in *GetQ
 }
 
 func (o *xxx_DefaultQuotaBaseClient) SetQuotaLimit(ctx context.Context, in *SetQuotaLimitRequest, opts ...dcerpc.CallOption) (*SetQuotaLimitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -239,7 +239,7 @@ func (o *xxx_DefaultQuotaBaseClient) SetQuotaLimit(ctx context.Context, in *SetQ
 }
 
 func (o *xxx_DefaultQuotaBaseClient) GetQuotaFlags(ctx context.Context, in *GetQuotaFlagsRequest, opts ...dcerpc.CallOption) (*GetQuotaFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -259,7 +259,7 @@ func (o *xxx_DefaultQuotaBaseClient) GetQuotaFlags(ctx context.Context, in *GetQ
 }
 
 func (o *xxx_DefaultQuotaBaseClient) SetQuotaFlags(ctx context.Context, in *SetQuotaFlagsRequest, opts ...dcerpc.CallOption) (*SetQuotaFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -279,7 +279,7 @@ func (o *xxx_DefaultQuotaBaseClient) SetQuotaFlags(ctx context.Context, in *SetQ
 }
 
 func (o *xxx_DefaultQuotaBaseClient) GetThresholds(ctx context.Context, in *GetThresholdsRequest, opts ...dcerpc.CallOption) (*GetThresholdsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -299,7 +299,7 @@ func (o *xxx_DefaultQuotaBaseClient) GetThresholds(ctx context.Context, in *GetT
 }
 
 func (o *xxx_DefaultQuotaBaseClient) AddThreshold(ctx context.Context, in *AddThresholdRequest, opts ...dcerpc.CallOption) (*AddThresholdResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -319,7 +319,7 @@ func (o *xxx_DefaultQuotaBaseClient) AddThreshold(ctx context.Context, in *AddTh
 }
 
 func (o *xxx_DefaultQuotaBaseClient) DeleteThreshold(ctx context.Context, in *DeleteThresholdRequest, opts ...dcerpc.CallOption) (*DeleteThresholdResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -339,7 +339,7 @@ func (o *xxx_DefaultQuotaBaseClient) DeleteThreshold(ctx context.Context, in *De
 }
 
 func (o *xxx_DefaultQuotaBaseClient) ModifyThreshold(ctx context.Context, in *ModifyThresholdRequest, opts ...dcerpc.CallOption) (*ModifyThresholdResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -359,7 +359,7 @@ func (o *xxx_DefaultQuotaBaseClient) ModifyThreshold(ctx context.Context, in *Mo
 }
 
 func (o *xxx_DefaultQuotaBaseClient) CreateThresholdAction(ctx context.Context, in *CreateThresholdActionRequest, opts ...dcerpc.CallOption) (*CreateThresholdActionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -379,7 +379,7 @@ func (o *xxx_DefaultQuotaBaseClient) CreateThresholdAction(ctx context.Context, 
 }
 
 func (o *xxx_DefaultQuotaBaseClient) EnumThresholdActions(ctx context.Context, in *EnumThresholdActionsRequest, opts ...dcerpc.CallOption) (*EnumThresholdActionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -610,13 +610,15 @@ type GetQuotaLimitRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetQuotaLimitRequest) xxx_ToOp(ctx context.Context) *xxx_GetQuotaLimitOperation {
+func (o *GetQuotaLimitRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaLimitOperation) *xxx_GetQuotaLimitOperation {
+	if op == nil {
+		op = &xxx_GetQuotaLimitOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaLimitOperation{}
+		return op
 	}
-	return &xxx_GetQuotaLimitOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetQuotaLimitRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaLimitOperation) {
@@ -626,7 +628,7 @@ func (o *GetQuotaLimitRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaL
 	o.This = op.This
 }
 func (o *GetQuotaLimitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetQuotaLimitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaLimitOperation{}
@@ -646,15 +648,17 @@ type GetQuotaLimitResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetQuotaLimitResponse) xxx_ToOp(ctx context.Context) *xxx_GetQuotaLimitOperation {
+func (o *GetQuotaLimitResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaLimitOperation) *xxx_GetQuotaLimitOperation {
+	if op == nil {
+		op = &xxx_GetQuotaLimitOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaLimitOperation{}
+		return op
 	}
-	return &xxx_GetQuotaLimitOperation{
-		That:       o.That,
-		QuotaLimit: o.QuotaLimit,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.QuotaLimit = op.QuotaLimit
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetQuotaLimitResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaLimitOperation) {
@@ -666,7 +670,7 @@ func (o *GetQuotaLimitResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuota
 	o.Return = op.Return
 }
 func (o *GetQuotaLimitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetQuotaLimitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaLimitOperation{}
@@ -829,14 +833,16 @@ type SetQuotaLimitRequest struct {
 	QuotaLimit *oaut.Variant  `idl:"name:quotaLimit" json:"quota_limit"`
 }
 
-func (o *SetQuotaLimitRequest) xxx_ToOp(ctx context.Context) *xxx_SetQuotaLimitOperation {
+func (o *SetQuotaLimitRequest) xxx_ToOp(ctx context.Context, op *xxx_SetQuotaLimitOperation) *xxx_SetQuotaLimitOperation {
+	if op == nil {
+		op = &xxx_SetQuotaLimitOperation{}
+	}
 	if o == nil {
-		return &xxx_SetQuotaLimitOperation{}
+		return op
 	}
-	return &xxx_SetQuotaLimitOperation{
-		This:       o.This,
-		QuotaLimit: o.QuotaLimit,
-	}
+	o.This = op.This
+	o.QuotaLimit = op.QuotaLimit
+	return op
 }
 
 func (o *SetQuotaLimitRequest) xxx_FromOp(ctx context.Context, op *xxx_SetQuotaLimitOperation) {
@@ -847,7 +853,7 @@ func (o *SetQuotaLimitRequest) xxx_FromOp(ctx context.Context, op *xxx_SetQuotaL
 	o.QuotaLimit = op.QuotaLimit
 }
 func (o *SetQuotaLimitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetQuotaLimitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetQuotaLimitOperation{}
@@ -866,14 +872,16 @@ type SetQuotaLimitResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetQuotaLimitResponse) xxx_ToOp(ctx context.Context) *xxx_SetQuotaLimitOperation {
+func (o *SetQuotaLimitResponse) xxx_ToOp(ctx context.Context, op *xxx_SetQuotaLimitOperation) *xxx_SetQuotaLimitOperation {
+	if op == nil {
+		op = &xxx_SetQuotaLimitOperation{}
+	}
 	if o == nil {
-		return &xxx_SetQuotaLimitOperation{}
+		return op
 	}
-	return &xxx_SetQuotaLimitOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetQuotaLimitResponse) xxx_FromOp(ctx context.Context, op *xxx_SetQuotaLimitOperation) {
@@ -884,7 +892,7 @@ func (o *SetQuotaLimitResponse) xxx_FromOp(ctx context.Context, op *xxx_SetQuota
 	o.Return = op.Return
 }
 func (o *SetQuotaLimitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetQuotaLimitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetQuotaLimitOperation{}
@@ -1031,13 +1039,15 @@ type GetQuotaFlagsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetQuotaFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_GetQuotaFlagsOperation {
+func (o *GetQuotaFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaFlagsOperation) *xxx_GetQuotaFlagsOperation {
+	if op == nil {
+		op = &xxx_GetQuotaFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaFlagsOperation{}
+		return op
 	}
-	return &xxx_GetQuotaFlagsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetQuotaFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaFlagsOperation) {
@@ -1047,7 +1057,7 @@ func (o *GetQuotaFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaF
 	o.This = op.This
 }
 func (o *GetQuotaFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetQuotaFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaFlagsOperation{}
@@ -1067,15 +1077,17 @@ type GetQuotaFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetQuotaFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_GetQuotaFlagsOperation {
+func (o *GetQuotaFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaFlagsOperation) *xxx_GetQuotaFlagsOperation {
+	if op == nil {
+		op = &xxx_GetQuotaFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaFlagsOperation{}
+		return op
 	}
-	return &xxx_GetQuotaFlagsOperation{
-		That:       o.That,
-		QuotaFlags: o.QuotaFlags,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.QuotaFlags = op.QuotaFlags
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetQuotaFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaFlagsOperation) {
@@ -1087,7 +1099,7 @@ func (o *GetQuotaFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuota
 	o.Return = op.Return
 }
 func (o *GetQuotaFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetQuotaFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaFlagsOperation{}
@@ -1235,14 +1247,16 @@ type SetQuotaFlagsRequest struct {
 	QuotaFlags int32          `idl:"name:quotaFlags" json:"quota_flags"`
 }
 
-func (o *SetQuotaFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_SetQuotaFlagsOperation {
+func (o *SetQuotaFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetQuotaFlagsOperation) *xxx_SetQuotaFlagsOperation {
+	if op == nil {
+		op = &xxx_SetQuotaFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetQuotaFlagsOperation{}
+		return op
 	}
-	return &xxx_SetQuotaFlagsOperation{
-		This:       o.This,
-		QuotaFlags: o.QuotaFlags,
-	}
+	o.This = op.This
+	o.QuotaFlags = op.QuotaFlags
+	return op
 }
 
 func (o *SetQuotaFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetQuotaFlagsOperation) {
@@ -1253,7 +1267,7 @@ func (o *SetQuotaFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetQuotaF
 	o.QuotaFlags = op.QuotaFlags
 }
 func (o *SetQuotaFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetQuotaFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetQuotaFlagsOperation{}
@@ -1272,14 +1286,16 @@ type SetQuotaFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetQuotaFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_SetQuotaFlagsOperation {
+func (o *SetQuotaFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetQuotaFlagsOperation) *xxx_SetQuotaFlagsOperation {
+	if op == nil {
+		op = &xxx_SetQuotaFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetQuotaFlagsOperation{}
+		return op
 	}
-	return &xxx_SetQuotaFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetQuotaFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetQuotaFlagsOperation) {
@@ -1290,7 +1306,7 @@ func (o *SetQuotaFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetQuota
 	o.Return = op.Return
 }
 func (o *SetQuotaFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetQuotaFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetQuotaFlagsOperation{}
@@ -1471,13 +1487,15 @@ type GetThresholdsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetThresholdsRequest) xxx_ToOp(ctx context.Context) *xxx_GetThresholdsOperation {
+func (o *GetThresholdsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetThresholdsOperation) *xxx_GetThresholdsOperation {
+	if op == nil {
+		op = &xxx_GetThresholdsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetThresholdsOperation{}
+		return op
 	}
-	return &xxx_GetThresholdsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetThresholdsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetThresholdsOperation) {
@@ -1487,7 +1505,7 @@ func (o *GetThresholdsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetThresh
 	o.This = op.This
 }
 func (o *GetThresholdsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetThresholdsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetThresholdsOperation{}
@@ -1510,15 +1528,17 @@ type GetThresholdsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetThresholdsResponse) xxx_ToOp(ctx context.Context) *xxx_GetThresholdsOperation {
+func (o *GetThresholdsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetThresholdsOperation) *xxx_GetThresholdsOperation {
+	if op == nil {
+		op = &xxx_GetThresholdsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetThresholdsOperation{}
+		return op
 	}
-	return &xxx_GetThresholdsOperation{
-		That:       o.That,
-		Thresholds: o.Thresholds,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Thresholds = op.Thresholds
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetThresholdsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetThresholdsOperation) {
@@ -1530,7 +1550,7 @@ func (o *GetThresholdsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetThres
 	o.Return = op.Return
 }
 func (o *GetThresholdsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetThresholdsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetThresholdsOperation{}
@@ -1679,14 +1699,16 @@ type AddThresholdRequest struct {
 	Threshold int32 `idl:"name:threshold" json:"threshold"`
 }
 
-func (o *AddThresholdRequest) xxx_ToOp(ctx context.Context) *xxx_AddThresholdOperation {
+func (o *AddThresholdRequest) xxx_ToOp(ctx context.Context, op *xxx_AddThresholdOperation) *xxx_AddThresholdOperation {
+	if op == nil {
+		op = &xxx_AddThresholdOperation{}
+	}
 	if o == nil {
-		return &xxx_AddThresholdOperation{}
+		return op
 	}
-	return &xxx_AddThresholdOperation{
-		This:      o.This,
-		Threshold: o.Threshold,
-	}
+	o.This = op.This
+	o.Threshold = op.Threshold
+	return op
 }
 
 func (o *AddThresholdRequest) xxx_FromOp(ctx context.Context, op *xxx_AddThresholdOperation) {
@@ -1697,7 +1719,7 @@ func (o *AddThresholdRequest) xxx_FromOp(ctx context.Context, op *xxx_AddThresho
 	o.Threshold = op.Threshold
 }
 func (o *AddThresholdRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddThresholdRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddThresholdOperation{}
@@ -1716,14 +1738,16 @@ type AddThresholdResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddThresholdResponse) xxx_ToOp(ctx context.Context) *xxx_AddThresholdOperation {
+func (o *AddThresholdResponse) xxx_ToOp(ctx context.Context, op *xxx_AddThresholdOperation) *xxx_AddThresholdOperation {
+	if op == nil {
+		op = &xxx_AddThresholdOperation{}
+	}
 	if o == nil {
-		return &xxx_AddThresholdOperation{}
+		return op
 	}
-	return &xxx_AddThresholdOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddThresholdResponse) xxx_FromOp(ctx context.Context, op *xxx_AddThresholdOperation) {
@@ -1734,7 +1758,7 @@ func (o *AddThresholdResponse) xxx_FromOp(ctx context.Context, op *xxx_AddThresh
 	o.Return = op.Return
 }
 func (o *AddThresholdResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddThresholdResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddThresholdOperation{}
@@ -1883,14 +1907,16 @@ type DeleteThresholdRequest struct {
 	Threshold int32 `idl:"name:threshold" json:"threshold"`
 }
 
-func (o *DeleteThresholdRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteThresholdOperation {
+func (o *DeleteThresholdRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteThresholdOperation) *xxx_DeleteThresholdOperation {
+	if op == nil {
+		op = &xxx_DeleteThresholdOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteThresholdOperation{}
+		return op
 	}
-	return &xxx_DeleteThresholdOperation{
-		This:      o.This,
-		Threshold: o.Threshold,
-	}
+	o.This = op.This
+	o.Threshold = op.Threshold
+	return op
 }
 
 func (o *DeleteThresholdRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteThresholdOperation) {
@@ -1901,7 +1927,7 @@ func (o *DeleteThresholdRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteT
 	o.Threshold = op.Threshold
 }
 func (o *DeleteThresholdRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteThresholdRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteThresholdOperation{}
@@ -1920,14 +1946,16 @@ type DeleteThresholdResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteThresholdResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteThresholdOperation {
+func (o *DeleteThresholdResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteThresholdOperation) *xxx_DeleteThresholdOperation {
+	if op == nil {
+		op = &xxx_DeleteThresholdOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteThresholdOperation{}
+		return op
 	}
-	return &xxx_DeleteThresholdOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteThresholdResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteThresholdOperation) {
@@ -1938,7 +1966,7 @@ func (o *DeleteThresholdResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeleteThresholdResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteThresholdResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteThresholdOperation{}
@@ -2102,15 +2130,17 @@ type ModifyThresholdRequest struct {
 	NewThreshold int32 `idl:"name:newThreshold" json:"new_threshold"`
 }
 
-func (o *ModifyThresholdRequest) xxx_ToOp(ctx context.Context) *xxx_ModifyThresholdOperation {
+func (o *ModifyThresholdRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyThresholdOperation) *xxx_ModifyThresholdOperation {
+	if op == nil {
+		op = &xxx_ModifyThresholdOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyThresholdOperation{}
+		return op
 	}
-	return &xxx_ModifyThresholdOperation{
-		This:         o.This,
-		Threshold:    o.Threshold,
-		NewThreshold: o.NewThreshold,
-	}
+	o.This = op.This
+	o.Threshold = op.Threshold
+	o.NewThreshold = op.NewThreshold
+	return op
 }
 
 func (o *ModifyThresholdRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyThresholdOperation) {
@@ -2122,7 +2152,7 @@ func (o *ModifyThresholdRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyT
 	o.NewThreshold = op.NewThreshold
 }
 func (o *ModifyThresholdRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyThresholdRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyThresholdOperation{}
@@ -2141,14 +2171,16 @@ type ModifyThresholdResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyThresholdResponse) xxx_ToOp(ctx context.Context) *xxx_ModifyThresholdOperation {
+func (o *ModifyThresholdResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyThresholdOperation) *xxx_ModifyThresholdOperation {
+	if op == nil {
+		op = &xxx_ModifyThresholdOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyThresholdOperation{}
+		return op
 	}
-	return &xxx_ModifyThresholdOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyThresholdResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyThresholdOperation) {
@@ -2159,7 +2191,7 @@ func (o *ModifyThresholdResponse) xxx_FromOp(ctx context.Context, op *xxx_Modify
 	o.Return = op.Return
 }
 func (o *ModifyThresholdResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyThresholdResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyThresholdOperation{}
@@ -2372,15 +2404,17 @@ type CreateThresholdActionRequest struct {
 	ActionType fsrm.ActionType `idl:"name:actionType" json:"action_type"`
 }
 
-func (o *CreateThresholdActionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateThresholdActionOperation {
+func (o *CreateThresholdActionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateThresholdActionOperation) *xxx_CreateThresholdActionOperation {
+	if op == nil {
+		op = &xxx_CreateThresholdActionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateThresholdActionOperation{}
+		return op
 	}
-	return &xxx_CreateThresholdActionOperation{
-		This:       o.This,
-		Threshold:  o.Threshold,
-		ActionType: o.ActionType,
-	}
+	o.This = op.This
+	o.Threshold = op.Threshold
+	o.ActionType = op.ActionType
+	return op
 }
 
 func (o *CreateThresholdActionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateThresholdActionOperation) {
@@ -2392,7 +2426,7 @@ func (o *CreateThresholdActionRequest) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.ActionType = op.ActionType
 }
 func (o *CreateThresholdActionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateThresholdActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateThresholdActionOperation{}
@@ -2415,15 +2449,17 @@ type CreateThresholdActionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateThresholdActionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateThresholdActionOperation {
+func (o *CreateThresholdActionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateThresholdActionOperation) *xxx_CreateThresholdActionOperation {
+	if op == nil {
+		op = &xxx_CreateThresholdActionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateThresholdActionOperation{}
+		return op
 	}
-	return &xxx_CreateThresholdActionOperation{
-		That:   o.That,
-		Action: o.Action,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Action = op.Action
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateThresholdActionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateThresholdActionOperation) {
@@ -2435,7 +2471,7 @@ func (o *CreateThresholdActionResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *CreateThresholdActionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateThresholdActionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateThresholdActionOperation{}
@@ -2633,14 +2669,16 @@ type EnumThresholdActionsRequest struct {
 	Threshold int32 `idl:"name:threshold" json:"threshold"`
 }
 
-func (o *EnumThresholdActionsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumThresholdActionsOperation {
+func (o *EnumThresholdActionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumThresholdActionsOperation) *xxx_EnumThresholdActionsOperation {
+	if op == nil {
+		op = &xxx_EnumThresholdActionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumThresholdActionsOperation{}
+		return op
 	}
-	return &xxx_EnumThresholdActionsOperation{
-		This:      o.This,
-		Threshold: o.Threshold,
-	}
+	o.This = op.This
+	o.Threshold = op.Threshold
+	return op
 }
 
 func (o *EnumThresholdActionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumThresholdActionsOperation) {
@@ -2651,7 +2689,7 @@ func (o *EnumThresholdActionsRequest) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Threshold = op.Threshold
 }
 func (o *EnumThresholdActionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumThresholdActionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumThresholdActionsOperation{}
@@ -2675,15 +2713,17 @@ type EnumThresholdActionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumThresholdActionsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumThresholdActionsOperation {
+func (o *EnumThresholdActionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumThresholdActionsOperation) *xxx_EnumThresholdActionsOperation {
+	if op == nil {
+		op = &xxx_EnumThresholdActionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumThresholdActionsOperation{}
+		return op
 	}
-	return &xxx_EnumThresholdActionsOperation{
-		That:    o.That,
-		Actions: o.Actions,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Actions = op.Actions
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumThresholdActionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumThresholdActionsOperation) {
@@ -2695,7 +2735,7 @@ func (o *EnumThresholdActionsResponse) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumThresholdActionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumThresholdActionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumThresholdActionsOperation{}

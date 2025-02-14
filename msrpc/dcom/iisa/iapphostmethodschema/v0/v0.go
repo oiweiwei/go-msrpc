@@ -84,7 +84,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) Unknown() iunknown.UnknownClient 
 }
 
 func (o *xxx_DefaultAppHostMethodSchemaClient) GetName(ctx context.Context, in *GetNameRequest, opts ...dcerpc.CallOption) (*GetNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetName(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultAppHostMethodSchemaClient) GetInputSchema(ctx context.Context, in *GetInputSchemaRequest, opts ...dcerpc.CallOption) (*GetInputSchemaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetInputSchema(ctx context.Contex
 }
 
 func (o *xxx_DefaultAppHostMethodSchemaClient) GetOutputSchema(ctx context.Context, in *GetOutputSchemaRequest, opts ...dcerpc.CallOption) (*GetOutputSchemaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -144,7 +144,7 @@ func (o *xxx_DefaultAppHostMethodSchemaClient) GetOutputSchema(ctx context.Conte
 }
 
 func (o *xxx_DefaultAppHostMethodSchemaClient) GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...dcerpc.CallOption) (*GetMetadataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -375,13 +375,15 @@ type GetNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -391,7 +393,7 @@ func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperatio
 	o.This = op.This
 }
 func (o *GetNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -411,15 +413,17 @@ type GetNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		That:   o.That,
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -431,7 +435,7 @@ func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperati
 	o.Return = op.Return
 }
 func (o *GetNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -612,13 +616,15 @@ type GetInputSchemaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetInputSchemaRequest) xxx_ToOp(ctx context.Context) *xxx_GetInputSchemaOperation {
+func (o *GetInputSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInputSchemaOperation) *xxx_GetInputSchemaOperation {
+	if op == nil {
+		op = &xxx_GetInputSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInputSchemaOperation{}
+		return op
 	}
-	return &xxx_GetInputSchemaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetInputSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInputSchemaOperation) {
@@ -628,7 +634,7 @@ func (o *GetInputSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInput
 	o.This = op.This
 }
 func (o *GetInputSchemaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetInputSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInputSchemaOperation{}
@@ -648,15 +654,17 @@ type GetInputSchemaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetInputSchemaResponse) xxx_ToOp(ctx context.Context) *xxx_GetInputSchemaOperation {
+func (o *GetInputSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInputSchemaOperation) *xxx_GetInputSchemaOperation {
+	if op == nil {
+		op = &xxx_GetInputSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInputSchemaOperation{}
+		return op
 	}
-	return &xxx_GetInputSchemaOperation{
-		That:        o.That,
-		InputSchema: o.InputSchema,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.InputSchema = op.InputSchema
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetInputSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInputSchemaOperation) {
@@ -668,7 +676,7 @@ func (o *GetInputSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInpu
 	o.Return = op.Return
 }
 func (o *GetInputSchemaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetInputSchemaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInputSchemaOperation{}
@@ -851,13 +859,15 @@ type GetOutputSchemaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetOutputSchemaRequest) xxx_ToOp(ctx context.Context) *xxx_GetOutputSchemaOperation {
+func (o *GetOutputSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOutputSchemaOperation) *xxx_GetOutputSchemaOperation {
+	if op == nil {
+		op = &xxx_GetOutputSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOutputSchemaOperation{}
+		return op
 	}
-	return &xxx_GetOutputSchemaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetOutputSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOutputSchemaOperation) {
@@ -867,7 +877,7 @@ func (o *GetOutputSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOutp
 	o.This = op.This
 }
 func (o *GetOutputSchemaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetOutputSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOutputSchemaOperation{}
@@ -887,15 +897,17 @@ type GetOutputSchemaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetOutputSchemaResponse) xxx_ToOp(ctx context.Context) *xxx_GetOutputSchemaOperation {
+func (o *GetOutputSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOutputSchemaOperation) *xxx_GetOutputSchemaOperation {
+	if op == nil {
+		op = &xxx_GetOutputSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOutputSchemaOperation{}
+		return op
 	}
-	return &xxx_GetOutputSchemaOperation{
-		That:         o.That,
-		OutputSchema: o.OutputSchema,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.OutputSchema = op.OutputSchema
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetOutputSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOutputSchemaOperation) {
@@ -907,7 +919,7 @@ func (o *GetOutputSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOut
 	o.Return = op.Return
 }
 func (o *GetOutputSchemaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetOutputSchemaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOutputSchemaOperation{}
@@ -1136,14 +1148,16 @@ type GetMetadataRequest struct {
 	MetadataType *oaut.String   `idl:"name:bstrMetadataType" json:"metadata_type"`
 }
 
-func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context) *xxx_GetMetadataOperation {
+func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOperation) *xxx_GetMetadataOperation {
+	if op == nil {
+		op = &xxx_GetMetadataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMetadataOperation{}
+		return op
 	}
-	return &xxx_GetMetadataOperation{
-		This:         o.This,
-		MetadataType: o.MetadataType,
-	}
+	o.This = op.This
+	o.MetadataType = op.MetadataType
+	return op
 }
 
 func (o *GetMetadataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMetadataOperation) {
@@ -1154,7 +1168,7 @@ func (o *GetMetadataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMetadata
 	o.MetadataType = op.MetadataType
 }
 func (o *GetMetadataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMetadataOperation{}
@@ -1174,15 +1188,17 @@ type GetMetadataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context) *xxx_GetMetadataOperation {
+func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOperation) *xxx_GetMetadataOperation {
+	if op == nil {
+		op = &xxx_GetMetadataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMetadataOperation{}
+		return op
 	}
-	return &xxx_GetMetadataOperation{
-		That:   o.That,
-		Value:  o.Value,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Value = op.Value
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMetadataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMetadataOperation) {
@@ -1194,7 +1210,7 @@ func (o *GetMetadataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMetadat
 	o.Return = op.Return
 }
 func (o *GetMetadataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMetadataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMetadataOperation{}

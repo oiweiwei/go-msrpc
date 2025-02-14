@@ -81,7 +81,7 @@ func (o *xxx_DefaultEventSystem2Client) EventSystem() ieventsystem.EventSystemCl
 }
 
 func (o *xxx_DefaultEventSystem2Client) GetVersion(ctx context.Context, in *GetVersionRequest, opts ...dcerpc.CallOption) (*GetVersionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -101,7 +101,7 @@ func (o *xxx_DefaultEventSystem2Client) GetVersion(ctx context.Context, in *GetV
 }
 
 func (o *xxx_DefaultEventSystem2Client) VerifyTransientSubscribers(ctx context.Context, in *VerifyTransientSubscribersRequest, opts ...dcerpc.CallOption) (*VerifyTransientSubscribersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -298,13 +298,15 @@ type GetVersionRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetVersionRequest) xxx_ToOp(ctx context.Context) *xxx_GetVersionOperation {
+func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
+	if op == nil {
+		op = &xxx_GetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVersionOperation{}
+		return op
 	}
-	return &xxx_GetVersionOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
@@ -314,7 +316,7 @@ func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOp
 	o.This = op.This
 }
 func (o *GetVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVersionOperation{}
@@ -351,15 +353,17 @@ type GetVersionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVersionResponse) xxx_ToOp(ctx context.Context) *xxx_GetVersionOperation {
+func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
+	if op == nil {
+		op = &xxx_GetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVersionOperation{}
+		return op
 	}
-	return &xxx_GetVersionOperation{
-		That:    o.That,
-		Version: o.Version,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Version = op.Version
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
@@ -371,7 +375,7 @@ func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionO
 	o.Return = op.Return
 }
 func (o *GetVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVersionOperation{}
@@ -507,13 +511,15 @@ type VerifyTransientSubscribersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *VerifyTransientSubscribersRequest) xxx_ToOp(ctx context.Context) *xxx_VerifyTransientSubscribersOperation {
+func (o *VerifyTransientSubscribersRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyTransientSubscribersOperation) *xxx_VerifyTransientSubscribersOperation {
+	if op == nil {
+		op = &xxx_VerifyTransientSubscribersOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyTransientSubscribersOperation{}
+		return op
 	}
-	return &xxx_VerifyTransientSubscribersOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *VerifyTransientSubscribersRequest) xxx_FromOp(ctx context.Context, op *xxx_VerifyTransientSubscribersOperation) {
@@ -523,7 +529,7 @@ func (o *VerifyTransientSubscribersRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *VerifyTransientSubscribersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *VerifyTransientSubscribersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyTransientSubscribersOperation{}
@@ -542,14 +548,16 @@ type VerifyTransientSubscribersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *VerifyTransientSubscribersResponse) xxx_ToOp(ctx context.Context) *xxx_VerifyTransientSubscribersOperation {
+func (o *VerifyTransientSubscribersResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyTransientSubscribersOperation) *xxx_VerifyTransientSubscribersOperation {
+	if op == nil {
+		op = &xxx_VerifyTransientSubscribersOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyTransientSubscribersOperation{}
+		return op
 	}
-	return &xxx_VerifyTransientSubscribersOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *VerifyTransientSubscribersResponse) xxx_FromOp(ctx context.Context, op *xxx_VerifyTransientSubscribersOperation) {
@@ -560,7 +568,7 @@ func (o *VerifyTransientSubscribersResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *VerifyTransientSubscribersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *VerifyTransientSubscribersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyTransientSubscribersOperation{}

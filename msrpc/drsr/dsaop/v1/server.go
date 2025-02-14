@@ -50,19 +50,36 @@ func NewDsaopServerHandle(o DsaopServer) dcerpc.ServerHandle {
 func DsaopServerHandle(ctx context.Context, o DsaopServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // IDL_DSAPrepareScript
-		in := &PrepareScriptRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PrepareScriptOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PrepareScript(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PrepareScriptRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PrepareScript(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // IDL_DSAExecuteScript
-		in := &ExecuteScriptRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteScriptOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecuteScript(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteScriptRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecuteScript(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented dsaop
+type UnimplementedDsaopServer struct {
+}
+
+func (UnimplementedDsaopServer) PrepareScript(context.Context, *PrepareScriptRequest) (*PrepareScriptResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDsaopServer) ExecuteScript(context.Context, *ExecuteScriptRequest) (*ExecuteScriptResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DsaopServer = (*UnimplementedDsaopServer)(nil)

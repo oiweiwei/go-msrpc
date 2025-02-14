@@ -74,7 +74,7 @@ func (o *xxx_DefaultIDMNotifyClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultIDMNotifyClient) ObjectsChanged(ctx context.Context, in *ObjectsChangedRequest, opts ...dcerpc.CallOption) (*ObjectsChangedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -419,15 +419,17 @@ type ObjectsChangedRequest struct {
 	ByteStream []byte `idl:"name:ByteStream;size_is:(ByteCount)" json:"byte_stream"`
 }
 
-func (o *ObjectsChangedRequest) xxx_ToOp(ctx context.Context) *xxx_ObjectsChangedOperation {
+func (o *ObjectsChangedRequest) xxx_ToOp(ctx context.Context, op *xxx_ObjectsChangedOperation) *xxx_ObjectsChangedOperation {
+	if op == nil {
+		op = &xxx_ObjectsChangedOperation{}
+	}
 	if o == nil {
-		return &xxx_ObjectsChangedOperation{}
+		return op
 	}
-	return &xxx_ObjectsChangedOperation{
-		This:       o.This,
-		ByteCount:  o.ByteCount,
-		ByteStream: o.ByteStream,
-	}
+	o.This = op.This
+	o.ByteCount = op.ByteCount
+	o.ByteStream = op.ByteStream
+	return op
 }
 
 func (o *ObjectsChangedRequest) xxx_FromOp(ctx context.Context, op *xxx_ObjectsChangedOperation) {
@@ -439,7 +441,7 @@ func (o *ObjectsChangedRequest) xxx_FromOp(ctx context.Context, op *xxx_ObjectsC
 	o.ByteStream = op.ByteStream
 }
 func (o *ObjectsChangedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ObjectsChangedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ObjectsChangedOperation{}
@@ -458,14 +460,16 @@ type ObjectsChangedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ObjectsChangedResponse) xxx_ToOp(ctx context.Context) *xxx_ObjectsChangedOperation {
+func (o *ObjectsChangedResponse) xxx_ToOp(ctx context.Context, op *xxx_ObjectsChangedOperation) *xxx_ObjectsChangedOperation {
+	if op == nil {
+		op = &xxx_ObjectsChangedOperation{}
+	}
 	if o == nil {
-		return &xxx_ObjectsChangedOperation{}
+		return op
 	}
-	return &xxx_ObjectsChangedOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ObjectsChangedResponse) xxx_FromOp(ctx context.Context, op *xxx_ObjectsChangedOperation) {
@@ -476,7 +480,7 @@ func (o *ObjectsChangedResponse) xxx_FromOp(ctx context.Context, op *xxx_Objects
 	o.Return = op.Return
 }
 func (o *ObjectsChangedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ObjectsChangedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ObjectsChangedOperation{}

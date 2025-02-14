@@ -78,19 +78,37 @@ func VolumeClient4ServerHandle(ctx context.Context, o VolumeClient4Server, opNum
 	}
 	switch opNum {
 	case 3: // RefreshEx
-		in := &RefreshExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RefreshEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RefreshEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetVolumeDeviceName
-		in := &GetVolumeDeviceNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVolumeDeviceNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVolumeDeviceName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVolumeDeviceNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVolumeDeviceName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVolumeClient4
+type UnimplementedVolumeClient4Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeClient4Server) RefreshEx(context.Context, *RefreshExRequest) (*RefreshExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient4Server) GetVolumeDeviceName(context.Context, *GetVolumeDeviceNameRequest) (*GetVolumeDeviceNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeClient4Server = (*UnimplementedVolumeClient4Server)(nil)

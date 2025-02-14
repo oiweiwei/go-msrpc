@@ -1020,26 +1020,32 @@ func NewWkssvcServerHandle(o WkssvcServer) dcerpc.ServerHandle {
 func WkssvcServerHandle(ctx context.Context, o WkssvcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NetrWkstaGetInfo
-		in := &GetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // NetrWkstaSetInfo
-		in := &SetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NetrWkstaUserEnum
-		in := &UserEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UserEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UserEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UserEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UserEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // Opnum3NotUsedOnWire
 		// Opnum3NotUsedOnWire
 		return nil, nil
@@ -1047,64 +1053,80 @@ func WkssvcServerHandle(ctx context.Context, o WkssvcServer, opNum int, r ndr.Re
 		// Opnum4NotUsedOnWire
 		return nil, nil
 	case 5: // NetrWkstaTransportEnum
-		in := &TransportEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // NetrWkstaTransportAdd
-		in := &TransportAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // NetrWkstaTransportDel
-		in := &TransportDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TransportDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TransportDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TransportDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TransportDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // NetrUseAdd
-		in := &UseAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UseAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UseAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UseAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UseAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // NetrUseGetInfo
-		in := &UseGetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UseGetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UseGetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UseGetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UseGetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // NetrUseDel
-		in := &UseDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UseDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UseDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UseDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UseDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // NetrUseEnum
-		in := &UseEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UseEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UseEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UseEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UseEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Opnum12NotUsedOnWire
 		// Opnum12NotUsedOnWire
 		return nil, nil
 	case 13: // NetrWorkstationStatisticsGet
-		in := &WorkstationStatisticsGetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WorkstationStatisticsGetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WorkstationStatisticsGet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WorkstationStatisticsGetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WorkstationStatisticsGet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Opnum14NotUsedOnWire
 		// Opnum14NotUsedOnWire
 		return nil, nil
@@ -1124,78 +1146,168 @@ func WkssvcServerHandle(ctx context.Context, o WkssvcServer, opNum int, r ndr.Re
 		// Opnum19NotUsedOnWire
 		return nil, nil
 	case 20: // NetrGetJoinInformation
-		in := &GetJoinInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJoinInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJoinInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJoinInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJoinInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Opnum21NotUsedOnWire
 		// Opnum21NotUsedOnWire
 		return nil, nil
 	case 22: // NetrJoinDomain2
-		in := &JoinDomain2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_JoinDomain2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.JoinDomain2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &JoinDomain2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.JoinDomain2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // NetrUnjoinDomain2
-		in := &UnjoinDomain2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnjoinDomain2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnjoinDomain2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnjoinDomain2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnjoinDomain2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // NetrRenameMachineInDomain2
-		in := &RenameMachineInDomain2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RenameMachineInDomain2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RenameMachineInDomain2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RenameMachineInDomain2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RenameMachineInDomain2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // NetrValidateName2
-		in := &ValidateName2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ValidateName2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ValidateName2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ValidateName2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidateName2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // NetrGetJoinableOUs2
-		in := &GetJoinableOUs2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJoinableOUs2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJoinableOUs2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJoinableOUs2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJoinableOUs2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // NetrAddAlternateComputerName
-		in := &AddAlternateComputerNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddAlternateComputerNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddAlternateComputerName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddAlternateComputerNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddAlternateComputerName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // NetrRemoveAlternateComputerName
-		in := &RemoveAlternateComputerNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveAlternateComputerNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveAlternateComputerName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveAlternateComputerNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveAlternateComputerName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // NetrSetPrimaryComputerName
-		in := &SetPrimaryComputerNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPrimaryComputerNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPrimaryComputerName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPrimaryComputerNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPrimaryComputerName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // NetrEnumerateComputerNames
-		in := &EnumerateComputerNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateComputerNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateComputerNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateComputerNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateComputerNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented wkssvc
+type UnimplementedWkssvcServer struct {
+}
+
+func (UnimplementedWkssvcServer) GetInfo(context.Context, *GetInfoRequest) (*GetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) SetInfo(context.Context, *SetInfoRequest) (*SetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UserEnum(context.Context, *UserEnumRequest) (*UserEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) TransportEnum(context.Context, *TransportEnumRequest) (*TransportEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) TransportAdd(context.Context, *TransportAddRequest) (*TransportAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) TransportDelete(context.Context, *TransportDeleteRequest) (*TransportDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UseAdd(context.Context, *UseAddRequest) (*UseAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UseGetInfo(context.Context, *UseGetInfoRequest) (*UseGetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UseDelete(context.Context, *UseDeleteRequest) (*UseDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UseEnum(context.Context, *UseEnumRequest) (*UseEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) WorkstationStatisticsGet(context.Context, *WorkstationStatisticsGetRequest) (*WorkstationStatisticsGetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) GetJoinInformation(context.Context, *GetJoinInformationRequest) (*GetJoinInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) JoinDomain2(context.Context, *JoinDomain2Request) (*JoinDomain2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) UnjoinDomain2(context.Context, *UnjoinDomain2Request) (*UnjoinDomain2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) RenameMachineInDomain2(context.Context, *RenameMachineInDomain2Request) (*RenameMachineInDomain2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) ValidateName2(context.Context, *ValidateName2Request) (*ValidateName2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) GetJoinableOUs2(context.Context, *GetJoinableOUs2Request) (*GetJoinableOUs2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) AddAlternateComputerName(context.Context, *AddAlternateComputerNameRequest) (*AddAlternateComputerNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) RemoveAlternateComputerName(context.Context, *RemoveAlternateComputerNameRequest) (*RemoveAlternateComputerNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) SetPrimaryComputerName(context.Context, *SetPrimaryComputerNameRequest) (*SetPrimaryComputerNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWkssvcServer) EnumerateComputerNames(context.Context, *EnumerateComputerNamesRequest) (*EnumerateComputerNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WkssvcServer = (*UnimplementedWkssvcServer)(nil)

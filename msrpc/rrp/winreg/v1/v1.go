@@ -1403,7 +1403,7 @@ type xxx_DefaultWinregClient struct {
 }
 
 func (o *xxx_DefaultWinregClient) OpenClassesRoot(ctx context.Context, in *OpenClassesRootRequest, opts ...dcerpc.CallOption) (*OpenClassesRootResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1416,7 +1416,7 @@ func (o *xxx_DefaultWinregClient) OpenClassesRoot(ctx context.Context, in *OpenC
 }
 
 func (o *xxx_DefaultWinregClient) OpenCurrentUser(ctx context.Context, in *OpenCurrentUserRequest, opts ...dcerpc.CallOption) (*OpenCurrentUserResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1429,7 +1429,7 @@ func (o *xxx_DefaultWinregClient) OpenCurrentUser(ctx context.Context, in *OpenC
 }
 
 func (o *xxx_DefaultWinregClient) OpenLocalMachine(ctx context.Context, in *OpenLocalMachineRequest, opts ...dcerpc.CallOption) (*OpenLocalMachineResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1442,7 +1442,7 @@ func (o *xxx_DefaultWinregClient) OpenLocalMachine(ctx context.Context, in *Open
 }
 
 func (o *xxx_DefaultWinregClient) OpenPerformanceData(ctx context.Context, in *OpenPerformanceDataRequest, opts ...dcerpc.CallOption) (*OpenPerformanceDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1455,7 +1455,7 @@ func (o *xxx_DefaultWinregClient) OpenPerformanceData(ctx context.Context, in *O
 }
 
 func (o *xxx_DefaultWinregClient) OpenUsers(ctx context.Context, in *OpenUsersRequest, opts ...dcerpc.CallOption) (*OpenUsersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1468,7 +1468,7 @@ func (o *xxx_DefaultWinregClient) OpenUsers(ctx context.Context, in *OpenUsersRe
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegCloseKey(ctx context.Context, in *BaseRegCloseKeyRequest, opts ...dcerpc.CallOption) (*BaseRegCloseKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1481,7 +1481,7 @@ func (o *xxx_DefaultWinregClient) BaseRegCloseKey(ctx context.Context, in *BaseR
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegCreateKey(ctx context.Context, in *BaseRegCreateKeyRequest, opts ...dcerpc.CallOption) (*BaseRegCreateKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1494,7 +1494,7 @@ func (o *xxx_DefaultWinregClient) BaseRegCreateKey(ctx context.Context, in *Base
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegDeleteKey(ctx context.Context, in *BaseRegDeleteKeyRequest, opts ...dcerpc.CallOption) (*BaseRegDeleteKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1507,7 +1507,7 @@ func (o *xxx_DefaultWinregClient) BaseRegDeleteKey(ctx context.Context, in *Base
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegDeleteValue(ctx context.Context, in *BaseRegDeleteValueRequest, opts ...dcerpc.CallOption) (*BaseRegDeleteValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1520,7 +1520,7 @@ func (o *xxx_DefaultWinregClient) BaseRegDeleteValue(ctx context.Context, in *Ba
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegEnumKey(ctx context.Context, in *BaseRegEnumKeyRequest, opts ...dcerpc.CallOption) (*BaseRegEnumKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1533,7 +1533,7 @@ func (o *xxx_DefaultWinregClient) BaseRegEnumKey(ctx context.Context, in *BaseRe
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegEnumValue(ctx context.Context, in *BaseRegEnumValueRequest, opts ...dcerpc.CallOption) (*BaseRegEnumValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1546,7 +1546,7 @@ func (o *xxx_DefaultWinregClient) BaseRegEnumValue(ctx context.Context, in *Base
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegFlushKey(ctx context.Context, in *BaseRegFlushKeyRequest, opts ...dcerpc.CallOption) (*BaseRegFlushKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1559,7 +1559,7 @@ func (o *xxx_DefaultWinregClient) BaseRegFlushKey(ctx context.Context, in *BaseR
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegGetKeySecurity(ctx context.Context, in *BaseRegGetKeySecurityRequest, opts ...dcerpc.CallOption) (*BaseRegGetKeySecurityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1572,7 +1572,7 @@ func (o *xxx_DefaultWinregClient) BaseRegGetKeySecurity(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegLoadKey(ctx context.Context, in *BaseRegLoadKeyRequest, opts ...dcerpc.CallOption) (*BaseRegLoadKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1585,7 +1585,7 @@ func (o *xxx_DefaultWinregClient) BaseRegLoadKey(ctx context.Context, in *BaseRe
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegOpenKey(ctx context.Context, in *BaseRegOpenKeyRequest, opts ...dcerpc.CallOption) (*BaseRegOpenKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1598,7 +1598,7 @@ func (o *xxx_DefaultWinregClient) BaseRegOpenKey(ctx context.Context, in *BaseRe
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegQueryInfoKey(ctx context.Context, in *BaseRegQueryInfoKeyRequest, opts ...dcerpc.CallOption) (*BaseRegQueryInfoKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1611,7 +1611,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryInfoKey(ctx context.Context, in *B
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegQueryValue(ctx context.Context, in *BaseRegQueryValueRequest, opts ...dcerpc.CallOption) (*BaseRegQueryValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1624,7 +1624,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryValue(ctx context.Context, in *Bas
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegReplaceKey(ctx context.Context, in *BaseRegReplaceKeyRequest, opts ...dcerpc.CallOption) (*BaseRegReplaceKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1637,7 +1637,7 @@ func (o *xxx_DefaultWinregClient) BaseRegReplaceKey(ctx context.Context, in *Bas
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegRestoreKey(ctx context.Context, in *BaseRegRestoreKeyRequest, opts ...dcerpc.CallOption) (*BaseRegRestoreKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1650,7 +1650,7 @@ func (o *xxx_DefaultWinregClient) BaseRegRestoreKey(ctx context.Context, in *Bas
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegSaveKey(ctx context.Context, in *BaseRegSaveKeyRequest, opts ...dcerpc.CallOption) (*BaseRegSaveKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1663,7 +1663,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSaveKey(ctx context.Context, in *BaseRe
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegSetKeySecurity(ctx context.Context, in *BaseRegSetKeySecurityRequest, opts ...dcerpc.CallOption) (*BaseRegSetKeySecurityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1676,7 +1676,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSetKeySecurity(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegSetValue(ctx context.Context, in *BaseRegSetValueRequest, opts ...dcerpc.CallOption) (*BaseRegSetValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1689,7 +1689,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSetValue(ctx context.Context, in *BaseR
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegUnloadKey(ctx context.Context, in *BaseRegUnloadKeyRequest, opts ...dcerpc.CallOption) (*BaseRegUnloadKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1702,7 +1702,7 @@ func (o *xxx_DefaultWinregClient) BaseRegUnloadKey(ctx context.Context, in *Base
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegGetVersion(ctx context.Context, in *BaseRegGetVersionRequest, opts ...dcerpc.CallOption) (*BaseRegGetVersionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1715,7 +1715,7 @@ func (o *xxx_DefaultWinregClient) BaseRegGetVersion(ctx context.Context, in *Bas
 }
 
 func (o *xxx_DefaultWinregClient) OpenCurrentConfig(ctx context.Context, in *OpenCurrentConfigRequest, opts ...dcerpc.CallOption) (*OpenCurrentConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1728,7 +1728,7 @@ func (o *xxx_DefaultWinregClient) OpenCurrentConfig(ctx context.Context, in *Ope
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegQueryMultipleValues(ctx context.Context, in *BaseRegQueryMultipleValuesRequest, opts ...dcerpc.CallOption) (*BaseRegQueryMultipleValuesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1741,7 +1741,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryMultipleValues(ctx context.Context
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegSaveKeyEx(ctx context.Context, in *BaseRegSaveKeyExRequest, opts ...dcerpc.CallOption) (*BaseRegSaveKeyExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1754,7 +1754,7 @@ func (o *xxx_DefaultWinregClient) BaseRegSaveKeyEx(ctx context.Context, in *Base
 }
 
 func (o *xxx_DefaultWinregClient) OpenPerformanceText(ctx context.Context, in *OpenPerformanceTextRequest, opts ...dcerpc.CallOption) (*OpenPerformanceTextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1767,7 +1767,7 @@ func (o *xxx_DefaultWinregClient) OpenPerformanceText(ctx context.Context, in *O
 }
 
 func (o *xxx_DefaultWinregClient) OpenPerformanceNlsText(ctx context.Context, in *OpenPerformanceNlsTextRequest, opts ...dcerpc.CallOption) (*OpenPerformanceNlsTextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1780,7 +1780,7 @@ func (o *xxx_DefaultWinregClient) OpenPerformanceNlsText(ctx context.Context, in
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegQueryMultipleValues2(ctx context.Context, in *BaseRegQueryMultipleValues2Request, opts ...dcerpc.CallOption) (*BaseRegQueryMultipleValues2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1793,7 +1793,7 @@ func (o *xxx_DefaultWinregClient) BaseRegQueryMultipleValues2(ctx context.Contex
 }
 
 func (o *xxx_DefaultWinregClient) BaseRegDeleteKeyEx(ctx context.Context, in *BaseRegDeleteKeyExRequest, opts ...dcerpc.CallOption) (*BaseRegDeleteKeyExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1965,14 +1965,16 @@ type OpenClassesRootRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenClassesRootRequest) xxx_ToOp(ctx context.Context) *xxx_OpenClassesRootOperation {
+func (o *OpenClassesRootRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenClassesRootOperation) *xxx_OpenClassesRootOperation {
+	if op == nil {
+		op = &xxx_OpenClassesRootOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenClassesRootOperation{}
+		return op
 	}
-	return &xxx_OpenClassesRootOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenClassesRootRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenClassesRootOperation) {
@@ -1983,7 +1985,7 @@ func (o *OpenClassesRootRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenCla
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenClassesRootRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenClassesRootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenClassesRootOperation{}
@@ -2003,14 +2005,16 @@ type OpenClassesRootResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenClassesRootResponse) xxx_ToOp(ctx context.Context) *xxx_OpenClassesRootOperation {
+func (o *OpenClassesRootResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenClassesRootOperation) *xxx_OpenClassesRootOperation {
+	if op == nil {
+		op = &xxx_OpenClassesRootOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenClassesRootOperation{}
+		return op
 	}
-	return &xxx_OpenClassesRootOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenClassesRootResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenClassesRootOperation) {
@@ -2021,7 +2025,7 @@ func (o *OpenClassesRootResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenCl
 	o.Return = op.Return
 }
 func (o *OpenClassesRootResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenClassesRootResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenClassesRootOperation{}
@@ -2177,14 +2181,16 @@ type OpenCurrentUserRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenCurrentUserRequest) xxx_ToOp(ctx context.Context) *xxx_OpenCurrentUserOperation {
+func (o *OpenCurrentUserRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenCurrentUserOperation) *xxx_OpenCurrentUserOperation {
+	if op == nil {
+		op = &xxx_OpenCurrentUserOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenCurrentUserOperation{}
+		return op
 	}
-	return &xxx_OpenCurrentUserOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenCurrentUserRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenCurrentUserOperation) {
@@ -2195,7 +2201,7 @@ func (o *OpenCurrentUserRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenCur
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenCurrentUserRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenCurrentUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenCurrentUserOperation{}
@@ -2215,14 +2221,16 @@ type OpenCurrentUserResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenCurrentUserResponse) xxx_ToOp(ctx context.Context) *xxx_OpenCurrentUserOperation {
+func (o *OpenCurrentUserResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenCurrentUserOperation) *xxx_OpenCurrentUserOperation {
+	if op == nil {
+		op = &xxx_OpenCurrentUserOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenCurrentUserOperation{}
+		return op
 	}
-	return &xxx_OpenCurrentUserOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenCurrentUserResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenCurrentUserOperation) {
@@ -2233,7 +2241,7 @@ func (o *OpenCurrentUserResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenCu
 	o.Return = op.Return
 }
 func (o *OpenCurrentUserResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenCurrentUserResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenCurrentUserOperation{}
@@ -2389,14 +2397,16 @@ type OpenLocalMachineRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenLocalMachineRequest) xxx_ToOp(ctx context.Context) *xxx_OpenLocalMachineOperation {
+func (o *OpenLocalMachineRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenLocalMachineOperation) *xxx_OpenLocalMachineOperation {
+	if op == nil {
+		op = &xxx_OpenLocalMachineOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenLocalMachineOperation{}
+		return op
 	}
-	return &xxx_OpenLocalMachineOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenLocalMachineRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenLocalMachineOperation) {
@@ -2407,7 +2417,7 @@ func (o *OpenLocalMachineRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenLo
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenLocalMachineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenLocalMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenLocalMachineOperation{}
@@ -2427,14 +2437,16 @@ type OpenLocalMachineResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenLocalMachineResponse) xxx_ToOp(ctx context.Context) *xxx_OpenLocalMachineOperation {
+func (o *OpenLocalMachineResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenLocalMachineOperation) *xxx_OpenLocalMachineOperation {
+	if op == nil {
+		op = &xxx_OpenLocalMachineOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenLocalMachineOperation{}
+		return op
 	}
-	return &xxx_OpenLocalMachineOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenLocalMachineResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenLocalMachineOperation) {
@@ -2445,7 +2457,7 @@ func (o *OpenLocalMachineResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenL
 	o.Return = op.Return
 }
 func (o *OpenLocalMachineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenLocalMachineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenLocalMachineOperation{}
@@ -2599,14 +2611,16 @@ type OpenPerformanceDataRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenPerformanceDataRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPerformanceDataOperation {
+func (o *OpenPerformanceDataRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPerformanceDataOperation) *xxx_OpenPerformanceDataOperation {
+	if op == nil {
+		op = &xxx_OpenPerformanceDataOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPerformanceDataOperation{}
+		return op
 	}
-	return &xxx_OpenPerformanceDataOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPerformanceDataRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPerformanceDataOperation) {
@@ -2617,7 +2631,7 @@ func (o *OpenPerformanceDataRequest) xxx_FromOp(ctx context.Context, op *xxx_Ope
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPerformanceDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPerformanceDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPerformanceDataOperation{}
@@ -2637,14 +2651,16 @@ type OpenPerformanceDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPerformanceDataResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPerformanceDataOperation {
+func (o *OpenPerformanceDataResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPerformanceDataOperation) *xxx_OpenPerformanceDataOperation {
+	if op == nil {
+		op = &xxx_OpenPerformanceDataOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPerformanceDataOperation{}
+		return op
 	}
-	return &xxx_OpenPerformanceDataOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPerformanceDataResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPerformanceDataOperation) {
@@ -2655,7 +2671,7 @@ func (o *OpenPerformanceDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Op
 	o.Return = op.Return
 }
 func (o *OpenPerformanceDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPerformanceDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPerformanceDataOperation{}
@@ -2811,14 +2827,16 @@ type OpenUsersRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenUsersRequest) xxx_ToOp(ctx context.Context) *xxx_OpenUsersOperation {
+func (o *OpenUsersRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenUsersOperation) *xxx_OpenUsersOperation {
+	if op == nil {
+		op = &xxx_OpenUsersOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenUsersOperation{}
+		return op
 	}
-	return &xxx_OpenUsersOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenUsersRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenUsersOperation) {
@@ -2829,7 +2847,7 @@ func (o *OpenUsersRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenUsersOper
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenUsersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenUsersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenUsersOperation{}
@@ -2849,14 +2867,16 @@ type OpenUsersResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenUsersResponse) xxx_ToOp(ctx context.Context) *xxx_OpenUsersOperation {
+func (o *OpenUsersResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenUsersOperation) *xxx_OpenUsersOperation {
+	if op == nil {
+		op = &xxx_OpenUsersOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenUsersOperation{}
+		return op
 	}
-	return &xxx_OpenUsersOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenUsersResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenUsersOperation) {
@@ -2867,7 +2887,7 @@ func (o *OpenUsersResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenUsersOpe
 	o.Return = op.Return
 }
 func (o *OpenUsersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenUsersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenUsersOperation{}
@@ -2991,13 +3011,15 @@ type BaseRegCloseKeyRequest struct {
 	Key *Key `idl:"name:hKey" json:"key"`
 }
 
-func (o *BaseRegCloseKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegCloseKeyOperation {
+func (o *BaseRegCloseKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegCloseKeyOperation) *xxx_BaseRegCloseKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegCloseKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegCloseKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegCloseKeyOperation{
-		Key: o.Key,
-	}
+	o.Key = op.Key
+	return op
 }
 
 func (o *BaseRegCloseKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegCloseKeyOperation) {
@@ -3007,7 +3029,7 @@ func (o *BaseRegCloseKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.Key = op.Key
 }
 func (o *BaseRegCloseKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegCloseKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegCloseKeyOperation{}
@@ -3029,14 +3051,16 @@ type BaseRegCloseKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegCloseKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegCloseKeyOperation {
+func (o *BaseRegCloseKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegCloseKeyOperation) *xxx_BaseRegCloseKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegCloseKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegCloseKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegCloseKeyOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegCloseKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegCloseKeyOperation) {
@@ -3047,7 +3071,7 @@ func (o *BaseRegCloseKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Return = op.Return
 }
 func (o *BaseRegCloseKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegCloseKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegCloseKeyOperation{}
@@ -3412,19 +3436,21 @@ type BaseRegCreateKeyRequest struct {
 	Disposition uint32 `idl:"name:lpdwDisposition;pointer:unique" json:"disposition"`
 }
 
-func (o *BaseRegCreateKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegCreateKeyOperation {
+func (o *BaseRegCreateKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegCreateKeyOperation) *xxx_BaseRegCreateKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegCreateKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegCreateKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegCreateKeyOperation{
-		Key:                o.Key,
-		SubKey:             o.SubKey,
-		Class:              o.Class,
-		Options:            o.Options,
-		DesiredAccess:      o.DesiredAccess,
-		SecurityAttributes: o.SecurityAttributes,
-		Disposition:        o.Disposition,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	o.Class = op.Class
+	o.Options = op.Options
+	o.DesiredAccess = op.DesiredAccess
+	o.SecurityAttributes = op.SecurityAttributes
+	o.Disposition = op.Disposition
+	return op
 }
 
 func (o *BaseRegCreateKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegCreateKeyOperation) {
@@ -3440,7 +3466,7 @@ func (o *BaseRegCreateKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Disposition = op.Disposition
 }
 func (o *BaseRegCreateKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegCreateKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegCreateKeyOperation{}
@@ -3475,15 +3501,17 @@ type BaseRegCreateKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegCreateKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegCreateKeyOperation {
+func (o *BaseRegCreateKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegCreateKeyOperation) *xxx_BaseRegCreateKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegCreateKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegCreateKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegCreateKeyOperation{
-		ResultKey:   o.ResultKey,
-		Disposition: o.Disposition,
-		Return:      o.Return,
-	}
+	o.ResultKey = op.ResultKey
+	o.Disposition = op.Disposition
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegCreateKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegCreateKeyOperation) {
@@ -3495,7 +3523,7 @@ func (o *BaseRegCreateKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Return = op.Return
 }
 func (o *BaseRegCreateKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegCreateKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegCreateKeyOperation{}
@@ -3629,14 +3657,16 @@ type BaseRegDeleteKeyRequest struct {
 	SubKey *UnicodeString `idl:"name:lpSubKey" json:"sub_key"`
 }
 
-func (o *BaseRegDeleteKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegDeleteKeyOperation {
+func (o *BaseRegDeleteKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegDeleteKeyOperation) *xxx_BaseRegDeleteKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegDeleteKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegDeleteKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegDeleteKeyOperation{
-		Key:    o.Key,
-		SubKey: o.SubKey,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	return op
 }
 
 func (o *BaseRegDeleteKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegDeleteKeyOperation) {
@@ -3647,7 +3677,7 @@ func (o *BaseRegDeleteKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.SubKey = op.SubKey
 }
 func (o *BaseRegDeleteKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegDeleteKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegDeleteKeyOperation{}
@@ -3664,13 +3694,15 @@ type BaseRegDeleteKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegDeleteKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegDeleteKeyOperation {
+func (o *BaseRegDeleteKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegDeleteKeyOperation) *xxx_BaseRegDeleteKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegDeleteKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegDeleteKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegDeleteKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegDeleteKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegDeleteKeyOperation) {
@@ -3680,7 +3712,7 @@ func (o *BaseRegDeleteKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Return = op.Return
 }
 func (o *BaseRegDeleteKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegDeleteKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegDeleteKeyOperation{}
@@ -3815,14 +3847,16 @@ type BaseRegDeleteValueRequest struct {
 	ValueName *UnicodeString `idl:"name:lpValueName" json:"value_name"`
 }
 
-func (o *BaseRegDeleteValueRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegDeleteValueOperation {
+func (o *BaseRegDeleteValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegDeleteValueOperation) *xxx_BaseRegDeleteValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegDeleteValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegDeleteValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegDeleteValueOperation{
-		Key:       o.Key,
-		ValueName: o.ValueName,
-	}
+	o.Key = op.Key
+	o.ValueName = op.ValueName
+	return op
 }
 
 func (o *BaseRegDeleteValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegDeleteValueOperation) {
@@ -3833,7 +3867,7 @@ func (o *BaseRegDeleteValueRequest) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.ValueName = op.ValueName
 }
 func (o *BaseRegDeleteValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegDeleteValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegDeleteValueOperation{}
@@ -3850,13 +3884,15 @@ type BaseRegDeleteValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegDeleteValueResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegDeleteValueOperation {
+func (o *BaseRegDeleteValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegDeleteValueOperation) *xxx_BaseRegDeleteValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegDeleteValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegDeleteValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegDeleteValueOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegDeleteValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegDeleteValueOperation) {
@@ -3866,7 +3902,7 @@ func (o *BaseRegDeleteValueResponse) xxx_FromOp(ctx context.Context, op *xxx_Bas
 	o.Return = op.Return
 }
 func (o *BaseRegDeleteValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegDeleteValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegDeleteValueOperation{}
@@ -4240,17 +4276,19 @@ type BaseRegEnumKeyRequest struct {
 	LastWriteTime *dtyp.Filetime `idl:"name:lpftLastWriteTime;pointer:unique" json:"last_write_time"`
 }
 
-func (o *BaseRegEnumKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegEnumKeyOperation {
+func (o *BaseRegEnumKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegEnumKeyOperation) *xxx_BaseRegEnumKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegEnumKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegEnumKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegEnumKeyOperation{
-		Key:           o.Key,
-		Index:         o.Index,
-		NameIn:        o.NameIn,
-		ClassIn:       o.ClassIn,
-		LastWriteTime: o.LastWriteTime,
-	}
+	o.Key = op.Key
+	o.Index = op.Index
+	o.NameIn = op.NameIn
+	o.ClassIn = op.ClassIn
+	o.LastWriteTime = op.LastWriteTime
+	return op
 }
 
 func (o *BaseRegEnumKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegEnumKeyOperation) {
@@ -4264,7 +4302,7 @@ func (o *BaseRegEnumKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegE
 	o.LastWriteTime = op.LastWriteTime
 }
 func (o *BaseRegEnumKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegEnumKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegEnumKeyOperation{}
@@ -4290,16 +4328,18 @@ type BaseRegEnumKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegEnumKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegEnumKeyOperation {
+func (o *BaseRegEnumKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegEnumKeyOperation) *xxx_BaseRegEnumKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegEnumKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegEnumKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegEnumKeyOperation{
-		NameOut:       o.NameOut,
-		ClassOut:      o.ClassOut,
-		LastWriteTime: o.LastWriteTime,
-		Return:        o.Return,
-	}
+	o.NameOut = op.NameOut
+	o.ClassOut = op.ClassOut
+	o.LastWriteTime = op.LastWriteTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegEnumKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegEnumKeyOperation) {
@@ -4312,7 +4352,7 @@ func (o *BaseRegEnumKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.Return = op.Return
 }
 func (o *BaseRegEnumKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegEnumKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegEnumKeyOperation{}
@@ -4890,19 +4930,21 @@ type BaseRegEnumValueRequest struct {
 	Length uint32 `idl:"name:lpcbLen;pointer:unique" json:"length"`
 }
 
-func (o *BaseRegEnumValueRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegEnumValueOperation {
+func (o *BaseRegEnumValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegEnumValueOperation) *xxx_BaseRegEnumValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegEnumValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegEnumValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegEnumValueOperation{
-		Key:         o.Key,
-		Index:       o.Index,
-		ValueNameIn: o.ValueNameIn,
-		Type:        o.Type,
-		Data:        o.Data,
-		DataLength:  o.DataLength,
-		Length:      o.Length,
-	}
+	o.Key = op.Key
+	o.Index = op.Index
+	o.ValueNameIn = op.ValueNameIn
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	o.Length = op.Length
+	return op
 }
 
 func (o *BaseRegEnumValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegEnumValueOperation) {
@@ -4918,7 +4960,7 @@ func (o *BaseRegEnumValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Length = op.Length
 }
 func (o *BaseRegEnumValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegEnumValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegEnumValueOperation{}
@@ -4948,18 +4990,20 @@ type BaseRegEnumValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegEnumValueResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegEnumValueOperation {
+func (o *BaseRegEnumValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegEnumValueOperation) *xxx_BaseRegEnumValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegEnumValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegEnumValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegEnumValueOperation{
-		ValueNameOut: o.ValueNameOut,
-		Type:         o.Type,
-		Data:         o.Data,
-		DataLength:   o.DataLength,
-		Length:       o.Length,
-		Return:       o.Return,
-	}
+	o.ValueNameOut = op.ValueNameOut
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	o.Length = op.Length
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegEnumValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegEnumValueOperation) {
@@ -4974,7 +5018,7 @@ func (o *BaseRegEnumValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Return = op.Return
 }
 func (o *BaseRegEnumValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegEnumValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegEnumValueOperation{}
@@ -5077,13 +5121,15 @@ type BaseRegFlushKeyRequest struct {
 	Key *Key `idl:"name:hKey" json:"key"`
 }
 
-func (o *BaseRegFlushKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegFlushKeyOperation {
+func (o *BaseRegFlushKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegFlushKeyOperation) *xxx_BaseRegFlushKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegFlushKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegFlushKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegFlushKeyOperation{
-		Key: o.Key,
-	}
+	o.Key = op.Key
+	return op
 }
 
 func (o *BaseRegFlushKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegFlushKeyOperation) {
@@ -5093,7 +5139,7 @@ func (o *BaseRegFlushKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.Key = op.Key
 }
 func (o *BaseRegFlushKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegFlushKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegFlushKeyOperation{}
@@ -5110,13 +5156,15 @@ type BaseRegFlushKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegFlushKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegFlushKeyOperation {
+func (o *BaseRegFlushKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegFlushKeyOperation) *xxx_BaseRegFlushKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegFlushKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegFlushKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegFlushKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegFlushKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegFlushKeyOperation) {
@@ -5126,7 +5174,7 @@ func (o *BaseRegFlushKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Return = op.Return
 }
 func (o *BaseRegFlushKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegFlushKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegFlushKeyOperation{}
@@ -5310,15 +5358,17 @@ type BaseRegGetKeySecurityRequest struct {
 	SecurityDescriptorIn *SecurityDescriptor `idl:"name:pRpcSecurityDescriptorIn" json:"security_descriptor_in"`
 }
 
-func (o *BaseRegGetKeySecurityRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegGetKeySecurityOperation {
+func (o *BaseRegGetKeySecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegGetKeySecurityOperation) *xxx_BaseRegGetKeySecurityOperation {
+	if op == nil {
+		op = &xxx_BaseRegGetKeySecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegGetKeySecurityOperation{}
+		return op
 	}
-	return &xxx_BaseRegGetKeySecurityOperation{
-		Key:                  o.Key,
-		SecurityInformation:  o.SecurityInformation,
-		SecurityDescriptorIn: o.SecurityDescriptorIn,
-	}
+	o.Key = op.Key
+	o.SecurityInformation = op.SecurityInformation
+	o.SecurityDescriptorIn = op.SecurityDescriptorIn
+	return op
 }
 
 func (o *BaseRegGetKeySecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegGetKeySecurityOperation) {
@@ -5330,7 +5380,7 @@ func (o *BaseRegGetKeySecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_B
 	o.SecurityDescriptorIn = op.SecurityDescriptorIn
 }
 func (o *BaseRegGetKeySecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegGetKeySecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegGetKeySecurityOperation{}
@@ -5350,14 +5400,16 @@ type BaseRegGetKeySecurityResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegGetKeySecurityResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegGetKeySecurityOperation {
+func (o *BaseRegGetKeySecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegGetKeySecurityOperation) *xxx_BaseRegGetKeySecurityOperation {
+	if op == nil {
+		op = &xxx_BaseRegGetKeySecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegGetKeySecurityOperation{}
+		return op
 	}
-	return &xxx_BaseRegGetKeySecurityOperation{
-		SecurityDescriptorOut: o.SecurityDescriptorOut,
-		Return:                o.Return,
-	}
+	o.SecurityDescriptorOut = op.SecurityDescriptorOut
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegGetKeySecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegGetKeySecurityOperation) {
@@ -5368,7 +5420,7 @@ func (o *BaseRegGetKeySecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *BaseRegGetKeySecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegGetKeySecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegGetKeySecurityOperation{}
@@ -5538,15 +5590,17 @@ type BaseRegLoadKeyRequest struct {
 	File *UnicodeString `idl:"name:lpFile" json:"file"`
 }
 
-func (o *BaseRegLoadKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegLoadKeyOperation {
+func (o *BaseRegLoadKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegLoadKeyOperation) *xxx_BaseRegLoadKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegLoadKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegLoadKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegLoadKeyOperation{
-		Key:    o.Key,
-		SubKey: o.SubKey,
-		File:   o.File,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	o.File = op.File
+	return op
 }
 
 func (o *BaseRegLoadKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegLoadKeyOperation) {
@@ -5558,7 +5612,7 @@ func (o *BaseRegLoadKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegL
 	o.File = op.File
 }
 func (o *BaseRegLoadKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegLoadKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegLoadKeyOperation{}
@@ -5575,13 +5629,15 @@ type BaseRegLoadKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegLoadKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegLoadKeyOperation {
+func (o *BaseRegLoadKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegLoadKeyOperation) *xxx_BaseRegLoadKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegLoadKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegLoadKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegLoadKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegLoadKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegLoadKeyOperation) {
@@ -5591,7 +5647,7 @@ func (o *BaseRegLoadKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.Return = op.Return
 }
 func (o *BaseRegLoadKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegLoadKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegLoadKeyOperation{}
@@ -5796,16 +5852,18 @@ type BaseRegOpenKeyRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *BaseRegOpenKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegOpenKeyOperation {
+func (o *BaseRegOpenKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegOpenKeyOperation) *xxx_BaseRegOpenKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegOpenKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegOpenKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegOpenKeyOperation{
-		Key:           o.Key,
-		SubKey:        o.SubKey,
-		Options:       o.Options,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	o.Options = op.Options
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *BaseRegOpenKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegOpenKeyOperation) {
@@ -5818,7 +5876,7 @@ func (o *BaseRegOpenKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegO
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *BaseRegOpenKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegOpenKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegOpenKeyOperation{}
@@ -5838,14 +5896,16 @@ type BaseRegOpenKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegOpenKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegOpenKeyOperation {
+func (o *BaseRegOpenKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegOpenKeyOperation) *xxx_BaseRegOpenKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegOpenKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegOpenKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegOpenKeyOperation{
-		ResultKey: o.ResultKey,
-		Return:    o.Return,
-	}
+	o.ResultKey = op.ResultKey
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegOpenKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegOpenKeyOperation) {
@@ -5856,7 +5916,7 @@ func (o *BaseRegOpenKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.Return = op.Return
 }
 func (o *BaseRegOpenKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegOpenKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegOpenKeyOperation{}
@@ -6132,14 +6192,16 @@ type BaseRegQueryInfoKeyRequest struct {
 	ClassIn *UnicodeString `idl:"name:lpClassIn" json:"class_in"`
 }
 
-func (o *BaseRegQueryInfoKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryInfoKeyOperation {
+func (o *BaseRegQueryInfoKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryInfoKeyOperation) *xxx_BaseRegQueryInfoKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegQueryInfoKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryInfoKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegQueryInfoKeyOperation{
-		Key:     o.Key,
-		ClassIn: o.ClassIn,
-	}
+	o.Key = op.Key
+	o.ClassIn = op.ClassIn
+	return op
 }
 
 func (o *BaseRegQueryInfoKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryInfoKeyOperation) {
@@ -6150,7 +6212,7 @@ func (o *BaseRegQueryInfoKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_Bas
 	o.ClassIn = op.ClassIn
 }
 func (o *BaseRegQueryInfoKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegQueryInfoKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryInfoKeyOperation{}
@@ -6196,22 +6258,24 @@ type BaseRegQueryInfoKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegQueryInfoKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryInfoKeyOperation {
+func (o *BaseRegQueryInfoKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryInfoKeyOperation) *xxx_BaseRegQueryInfoKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegQueryInfoKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryInfoKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegQueryInfoKeyOperation{
-		ClassOut:                 o.ClassOut,
-		SubKeysCount:             o.SubKeysCount,
-		MaxSubKeyLength:          o.MaxSubKeyLength,
-		MaxClassLength:           o.MaxClassLength,
-		ValuesCount:              o.ValuesCount,
-		MaxValueNameLength:       o.MaxValueNameLength,
-		MaxValueLength:           o.MaxValueLength,
-		SecurityDescriptorLength: o.SecurityDescriptorLength,
-		LastWriteTime:            o.LastWriteTime,
-		Return:                   o.Return,
-	}
+	o.ClassOut = op.ClassOut
+	o.SubKeysCount = op.SubKeysCount
+	o.MaxSubKeyLength = op.MaxSubKeyLength
+	o.MaxClassLength = op.MaxClassLength
+	o.ValuesCount = op.ValuesCount
+	o.MaxValueNameLength = op.MaxValueNameLength
+	o.MaxValueLength = op.MaxValueLength
+	o.SecurityDescriptorLength = op.SecurityDescriptorLength
+	o.LastWriteTime = op.LastWriteTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegQueryInfoKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryInfoKeyOperation) {
@@ -6230,7 +6294,7 @@ func (o *BaseRegQueryInfoKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_Ba
 	o.Return = op.Return
 }
 func (o *BaseRegQueryInfoKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegQueryInfoKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryInfoKeyOperation{}
@@ -6774,18 +6838,20 @@ type BaseRegQueryValueRequest struct {
 	Length uint32 `idl:"name:lpcbLen;pointer:unique" json:"length"`
 }
 
-func (o *BaseRegQueryValueRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryValueOperation {
+func (o *BaseRegQueryValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryValueOperation) *xxx_BaseRegQueryValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegQueryValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegQueryValueOperation{
-		Key:        o.Key,
-		ValueName:  o.ValueName,
-		Type:       o.Type,
-		Data:       o.Data,
-		DataLength: o.DataLength,
-		Length:     o.Length,
-	}
+	o.Key = op.Key
+	o.ValueName = op.ValueName
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	o.Length = op.Length
+	return op
 }
 
 func (o *BaseRegQueryValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryValueOperation) {
@@ -6800,7 +6866,7 @@ func (o *BaseRegQueryValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Length = op.Length
 }
 func (o *BaseRegQueryValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegQueryValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryValueOperation{}
@@ -6837,17 +6903,19 @@ type BaseRegQueryValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegQueryValueResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryValueOperation {
+func (o *BaseRegQueryValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryValueOperation) *xxx_BaseRegQueryValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegQueryValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegQueryValueOperation{
-		Type:       o.Type,
-		Data:       o.Data,
-		DataLength: o.DataLength,
-		Length:     o.Length,
-		Return:     o.Return,
-	}
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	o.Length = op.Length
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegQueryValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryValueOperation) {
@@ -6861,7 +6929,7 @@ func (o *BaseRegQueryValueResponse) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.Return = op.Return
 }
 func (o *BaseRegQueryValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegQueryValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryValueOperation{}
@@ -7061,16 +7129,18 @@ type BaseRegReplaceKeyRequest struct {
 	OldFile *UnicodeString `idl:"name:lpOldFile" json:"old_file"`
 }
 
-func (o *BaseRegReplaceKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegReplaceKeyOperation {
+func (o *BaseRegReplaceKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegReplaceKeyOperation) *xxx_BaseRegReplaceKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegReplaceKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegReplaceKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegReplaceKeyOperation{
-		Key:     o.Key,
-		SubKey:  o.SubKey,
-		NewFile: o.NewFile,
-		OldFile: o.OldFile,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	o.NewFile = op.NewFile
+	o.OldFile = op.OldFile
+	return op
 }
 
 func (o *BaseRegReplaceKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegReplaceKeyOperation) {
@@ -7083,7 +7153,7 @@ func (o *BaseRegReplaceKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.OldFile = op.OldFile
 }
 func (o *BaseRegReplaceKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegReplaceKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegReplaceKeyOperation{}
@@ -7100,13 +7170,15 @@ type BaseRegReplaceKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegReplaceKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegReplaceKeyOperation {
+func (o *BaseRegReplaceKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegReplaceKeyOperation) *xxx_BaseRegReplaceKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegReplaceKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegReplaceKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegReplaceKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegReplaceKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegReplaceKeyOperation) {
@@ -7116,7 +7188,7 @@ func (o *BaseRegReplaceKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.Return = op.Return
 }
 func (o *BaseRegReplaceKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegReplaceKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegReplaceKeyOperation{}
@@ -7291,15 +7363,17 @@ type BaseRegRestoreKeyRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *BaseRegRestoreKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegRestoreKeyOperation {
+func (o *BaseRegRestoreKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegRestoreKeyOperation) *xxx_BaseRegRestoreKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegRestoreKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegRestoreKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegRestoreKeyOperation{
-		Key:   o.Key,
-		File:  o.File,
-		Flags: o.Flags,
-	}
+	o.Key = op.Key
+	o.File = op.File
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *BaseRegRestoreKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegRestoreKeyOperation) {
@@ -7311,7 +7385,7 @@ func (o *BaseRegRestoreKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Flags = op.Flags
 }
 func (o *BaseRegRestoreKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegRestoreKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegRestoreKeyOperation{}
@@ -7328,13 +7402,15 @@ type BaseRegRestoreKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegRestoreKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegRestoreKeyOperation {
+func (o *BaseRegRestoreKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegRestoreKeyOperation) *xxx_BaseRegRestoreKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegRestoreKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegRestoreKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegRestoreKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegRestoreKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegRestoreKeyOperation) {
@@ -7344,7 +7420,7 @@ func (o *BaseRegRestoreKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.Return = op.Return
 }
 func (o *BaseRegRestoreKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegRestoreKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegRestoreKeyOperation{}
@@ -7528,15 +7604,17 @@ type BaseRegSaveKeyRequest struct {
 	SecurityAttributes *SecurityAttributes `idl:"name:pSecurityAttributes;pointer:unique" json:"security_attributes"`
 }
 
-func (o *BaseRegSaveKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegSaveKeyOperation {
+func (o *BaseRegSaveKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSaveKeyOperation) *xxx_BaseRegSaveKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegSaveKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSaveKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegSaveKeyOperation{
-		Key:                o.Key,
-		File:               o.File,
-		SecurityAttributes: o.SecurityAttributes,
-	}
+	o.Key = op.Key
+	o.File = op.File
+	o.SecurityAttributes = op.SecurityAttributes
+	return op
 }
 
 func (o *BaseRegSaveKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSaveKeyOperation) {
@@ -7548,7 +7626,7 @@ func (o *BaseRegSaveKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegS
 	o.SecurityAttributes = op.SecurityAttributes
 }
 func (o *BaseRegSaveKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegSaveKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSaveKeyOperation{}
@@ -7565,13 +7643,15 @@ type BaseRegSaveKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegSaveKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegSaveKeyOperation {
+func (o *BaseRegSaveKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSaveKeyOperation) *xxx_BaseRegSaveKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegSaveKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSaveKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegSaveKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegSaveKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSaveKeyOperation) {
@@ -7581,7 +7661,7 @@ func (o *BaseRegSaveKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.Return = op.Return
 }
 func (o *BaseRegSaveKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegSaveKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSaveKeyOperation{}
@@ -7733,15 +7813,17 @@ type BaseRegSetKeySecurityRequest struct {
 	SecurityDescriptor *SecurityDescriptor `idl:"name:pRpcSecurityDescriptor" json:"security_descriptor"`
 }
 
-func (o *BaseRegSetKeySecurityRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegSetKeySecurityOperation {
+func (o *BaseRegSetKeySecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSetKeySecurityOperation) *xxx_BaseRegSetKeySecurityOperation {
+	if op == nil {
+		op = &xxx_BaseRegSetKeySecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSetKeySecurityOperation{}
+		return op
 	}
-	return &xxx_BaseRegSetKeySecurityOperation{
-		Key:                 o.Key,
-		SecurityInformation: o.SecurityInformation,
-		SecurityDescriptor:  o.SecurityDescriptor,
-	}
+	o.Key = op.Key
+	o.SecurityInformation = op.SecurityInformation
+	o.SecurityDescriptor = op.SecurityDescriptor
+	return op
 }
 
 func (o *BaseRegSetKeySecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSetKeySecurityOperation) {
@@ -7753,7 +7835,7 @@ func (o *BaseRegSetKeySecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_B
 	o.SecurityDescriptor = op.SecurityDescriptor
 }
 func (o *BaseRegSetKeySecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegSetKeySecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSetKeySecurityOperation{}
@@ -7770,13 +7852,15 @@ type BaseRegSetKeySecurityResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegSetKeySecurityResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegSetKeySecurityOperation {
+func (o *BaseRegSetKeySecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSetKeySecurityOperation) *xxx_BaseRegSetKeySecurityOperation {
+	if op == nil {
+		op = &xxx_BaseRegSetKeySecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSetKeySecurityOperation{}
+		return op
 	}
-	return &xxx_BaseRegSetKeySecurityOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegSetKeySecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSetKeySecurityOperation) {
@@ -7786,7 +7870,7 @@ func (o *BaseRegSetKeySecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *BaseRegSetKeySecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegSetKeySecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSetKeySecurityOperation{}
@@ -8002,17 +8086,19 @@ type BaseRegSetValueRequest struct {
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
 }
 
-func (o *BaseRegSetValueRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegSetValueOperation {
+func (o *BaseRegSetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSetValueOperation) *xxx_BaseRegSetValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegSetValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSetValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegSetValueOperation{
-		Key:        o.Key,
-		ValueName:  o.ValueName,
-		Type:       o.Type,
-		Data:       o.Data,
-		DataLength: o.DataLength,
-	}
+	o.Key = op.Key
+	o.ValueName = op.ValueName
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	return op
 }
 
 func (o *BaseRegSetValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSetValueOperation) {
@@ -8026,7 +8112,7 @@ func (o *BaseRegSetValueRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseReg
 	o.DataLength = op.DataLength
 }
 func (o *BaseRegSetValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegSetValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSetValueOperation{}
@@ -8043,13 +8129,15 @@ type BaseRegSetValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegSetValueResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegSetValueOperation {
+func (o *BaseRegSetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSetValueOperation) *xxx_BaseRegSetValueOperation {
+	if op == nil {
+		op = &xxx_BaseRegSetValueOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSetValueOperation{}
+		return op
 	}
-	return &xxx_BaseRegSetValueOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegSetValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSetValueOperation) {
@@ -8059,7 +8147,7 @@ func (o *BaseRegSetValueResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Return = op.Return
 }
 func (o *BaseRegSetValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegSetValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSetValueOperation{}
@@ -8192,14 +8280,16 @@ type BaseRegUnloadKeyRequest struct {
 	SubKey *UnicodeString `idl:"name:lpSubKey" json:"sub_key"`
 }
 
-func (o *BaseRegUnloadKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegUnloadKeyOperation {
+func (o *BaseRegUnloadKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegUnloadKeyOperation) *xxx_BaseRegUnloadKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegUnloadKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegUnloadKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegUnloadKeyOperation{
-		Key:    o.Key,
-		SubKey: o.SubKey,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	return op
 }
 
 func (o *BaseRegUnloadKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegUnloadKeyOperation) {
@@ -8210,7 +8300,7 @@ func (o *BaseRegUnloadKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.SubKey = op.SubKey
 }
 func (o *BaseRegUnloadKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegUnloadKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegUnloadKeyOperation{}
@@ -8227,13 +8317,15 @@ type BaseRegUnloadKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegUnloadKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegUnloadKeyOperation {
+func (o *BaseRegUnloadKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegUnloadKeyOperation) *xxx_BaseRegUnloadKeyOperation {
+	if op == nil {
+		op = &xxx_BaseRegUnloadKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegUnloadKeyOperation{}
+		return op
 	}
-	return &xxx_BaseRegUnloadKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegUnloadKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegUnloadKeyOperation) {
@@ -8243,7 +8335,7 @@ func (o *BaseRegUnloadKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Return = op.Return
 }
 func (o *BaseRegUnloadKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegUnloadKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegUnloadKeyOperation{}
@@ -8359,13 +8451,15 @@ type BaseRegGetVersionRequest struct {
 	Key *Key `idl:"name:hKey" json:"key"`
 }
 
-func (o *BaseRegGetVersionRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegGetVersionOperation {
+func (o *BaseRegGetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegGetVersionOperation) *xxx_BaseRegGetVersionOperation {
+	if op == nil {
+		op = &xxx_BaseRegGetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegGetVersionOperation{}
+		return op
 	}
-	return &xxx_BaseRegGetVersionOperation{
-		Key: o.Key,
-	}
+	o.Key = op.Key
+	return op
 }
 
 func (o *BaseRegGetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegGetVersionOperation) {
@@ -8375,7 +8469,7 @@ func (o *BaseRegGetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Key = op.Key
 }
 func (o *BaseRegGetVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegGetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegGetVersionOperation{}
@@ -8395,14 +8489,16 @@ type BaseRegGetVersionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegGetVersionResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegGetVersionOperation {
+func (o *BaseRegGetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegGetVersionOperation) *xxx_BaseRegGetVersionOperation {
+	if op == nil {
+		op = &xxx_BaseRegGetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegGetVersionOperation{}
+		return op
 	}
-	return &xxx_BaseRegGetVersionOperation{
-		Version: o.Version,
-		Return:  o.Return,
-	}
+	o.Version = op.Version
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegGetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegGetVersionOperation) {
@@ -8413,7 +8509,7 @@ func (o *BaseRegGetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.Return = op.Return
 }
 func (o *BaseRegGetVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegGetVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegGetVersionOperation{}
@@ -8569,14 +8665,16 @@ type OpenCurrentConfigRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenCurrentConfigRequest) xxx_ToOp(ctx context.Context) *xxx_OpenCurrentConfigOperation {
+func (o *OpenCurrentConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenCurrentConfigOperation) *xxx_OpenCurrentConfigOperation {
+	if op == nil {
+		op = &xxx_OpenCurrentConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenCurrentConfigOperation{}
+		return op
 	}
-	return &xxx_OpenCurrentConfigOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenCurrentConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenCurrentConfigOperation) {
@@ -8587,7 +8685,7 @@ func (o *OpenCurrentConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenC
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenCurrentConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenCurrentConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenCurrentConfigOperation{}
@@ -8606,14 +8704,16 @@ type OpenCurrentConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenCurrentConfigResponse) xxx_ToOp(ctx context.Context) *xxx_OpenCurrentConfigOperation {
+func (o *OpenCurrentConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenCurrentConfigOperation) *xxx_OpenCurrentConfigOperation {
+	if op == nil {
+		op = &xxx_OpenCurrentConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenCurrentConfigOperation{}
+		return op
 	}
-	return &xxx_OpenCurrentConfigOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenCurrentConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenCurrentConfigOperation) {
@@ -8624,7 +8724,7 @@ func (o *OpenCurrentConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_Open
 	o.Return = op.Return
 }
 func (o *OpenCurrentConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenCurrentConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenCurrentConfigOperation{}
@@ -9139,17 +9239,19 @@ type BaseRegQueryMultipleValuesRequest struct {
 	TotalSize uint32 `idl:"name:ldwTotsize;pointer:ref" json:"total_size"`
 }
 
-func (o *BaseRegQueryMultipleValuesRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryMultipleValuesOperation {
+func (o *BaseRegQueryMultipleValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValuesOperation) *xxx_BaseRegQueryMultipleValuesOperation {
+	if op == nil {
+		op = &xxx_BaseRegQueryMultipleValuesOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryMultipleValuesOperation{}
+		return op
 	}
-	return &xxx_BaseRegQueryMultipleValuesOperation{
-		Key:         o.Key,
-		ValueListIn: o.ValueListIn,
-		ValsLength:  o.ValsLength,
-		Buffer:      o.Buffer,
-		TotalSize:   o.TotalSize,
-	}
+	o.Key = op.Key
+	o.ValueListIn = op.ValueListIn
+	o.ValsLength = op.ValsLength
+	o.Buffer = op.Buffer
+	o.TotalSize = op.TotalSize
+	return op
 }
 
 func (o *BaseRegQueryMultipleValuesRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValuesOperation) {
@@ -9163,7 +9265,7 @@ func (o *BaseRegQueryMultipleValuesRequest) xxx_FromOp(ctx context.Context, op *
 	o.TotalSize = op.TotalSize
 }
 func (o *BaseRegQueryMultipleValuesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegQueryMultipleValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryMultipleValuesOperation{}
@@ -9188,16 +9290,18 @@ type BaseRegQueryMultipleValuesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegQueryMultipleValuesResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryMultipleValuesOperation {
+func (o *BaseRegQueryMultipleValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValuesOperation) *xxx_BaseRegQueryMultipleValuesOperation {
+	if op == nil {
+		op = &xxx_BaseRegQueryMultipleValuesOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryMultipleValuesOperation{}
+		return op
 	}
-	return &xxx_BaseRegQueryMultipleValuesOperation{
-		ValueListOut: o.ValueListOut,
-		Buffer:       o.Buffer,
-		TotalSize:    o.TotalSize,
-		Return:       o.Return,
-	}
+	o.ValueListOut = op.ValueListOut
+	o.Buffer = op.Buffer
+	o.TotalSize = op.TotalSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegQueryMultipleValuesResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValuesOperation) {
@@ -9210,7 +9314,7 @@ func (o *BaseRegQueryMultipleValuesResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *BaseRegQueryMultipleValuesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegQueryMultipleValuesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryMultipleValuesOperation{}
@@ -9425,16 +9529,18 @@ type BaseRegSaveKeyExRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *BaseRegSaveKeyExRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegSaveKeyExOperation {
+func (o *BaseRegSaveKeyExRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSaveKeyExOperation) *xxx_BaseRegSaveKeyExOperation {
+	if op == nil {
+		op = &xxx_BaseRegSaveKeyExOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSaveKeyExOperation{}
+		return op
 	}
-	return &xxx_BaseRegSaveKeyExOperation{
-		Key:                o.Key,
-		File:               o.File,
-		SecurityAttributes: o.SecurityAttributes,
-		Flags:              o.Flags,
-	}
+	o.Key = op.Key
+	o.File = op.File
+	o.SecurityAttributes = op.SecurityAttributes
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *BaseRegSaveKeyExRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSaveKeyExOperation) {
@@ -9447,7 +9553,7 @@ func (o *BaseRegSaveKeyExRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRe
 	o.Flags = op.Flags
 }
 func (o *BaseRegSaveKeyExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegSaveKeyExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSaveKeyExOperation{}
@@ -9464,13 +9570,15 @@ type BaseRegSaveKeyExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegSaveKeyExResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegSaveKeyExOperation {
+func (o *BaseRegSaveKeyExResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegSaveKeyExOperation) *xxx_BaseRegSaveKeyExOperation {
+	if op == nil {
+		op = &xxx_BaseRegSaveKeyExOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegSaveKeyExOperation{}
+		return op
 	}
-	return &xxx_BaseRegSaveKeyExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegSaveKeyExResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegSaveKeyExOperation) {
@@ -9480,7 +9588,7 @@ func (o *BaseRegSaveKeyExResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseR
 	o.Return = op.Return
 }
 func (o *BaseRegSaveKeyExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegSaveKeyExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegSaveKeyExOperation{}
@@ -9634,14 +9742,16 @@ type OpenPerformanceTextRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenPerformanceTextRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPerformanceTextOperation {
+func (o *OpenPerformanceTextRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPerformanceTextOperation) *xxx_OpenPerformanceTextOperation {
+	if op == nil {
+		op = &xxx_OpenPerformanceTextOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPerformanceTextOperation{}
+		return op
 	}
-	return &xxx_OpenPerformanceTextOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPerformanceTextRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPerformanceTextOperation) {
@@ -9652,7 +9762,7 @@ func (o *OpenPerformanceTextRequest) xxx_FromOp(ctx context.Context, op *xxx_Ope
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPerformanceTextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPerformanceTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPerformanceTextOperation{}
@@ -9671,14 +9781,16 @@ type OpenPerformanceTextResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPerformanceTextResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPerformanceTextOperation {
+func (o *OpenPerformanceTextResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPerformanceTextOperation) *xxx_OpenPerformanceTextOperation {
+	if op == nil {
+		op = &xxx_OpenPerformanceTextOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPerformanceTextOperation{}
+		return op
 	}
-	return &xxx_OpenPerformanceTextOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPerformanceTextResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPerformanceTextOperation) {
@@ -9689,7 +9801,7 @@ func (o *OpenPerformanceTextResponse) xxx_FromOp(ctx context.Context, op *xxx_Op
 	o.Return = op.Return
 }
 func (o *OpenPerformanceTextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPerformanceTextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPerformanceTextOperation{}
@@ -9845,14 +9957,16 @@ type OpenPerformanceNlsTextRequest struct {
 	DesiredAccess uint32 `idl:"name:samDesired" json:"desired_access"`
 }
 
-func (o *OpenPerformanceNlsTextRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPerformanceNlsTextOperation {
+func (o *OpenPerformanceNlsTextRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPerformanceNlsTextOperation) *xxx_OpenPerformanceNlsTextOperation {
+	if op == nil {
+		op = &xxx_OpenPerformanceNlsTextOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPerformanceNlsTextOperation{}
+		return op
 	}
-	return &xxx_OpenPerformanceNlsTextOperation{
-		ServerName:    o.ServerName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.ServerName = op.ServerName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPerformanceNlsTextRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPerformanceNlsTextOperation) {
@@ -9863,7 +9977,7 @@ func (o *OpenPerformanceNlsTextRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPerformanceNlsTextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPerformanceNlsTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPerformanceNlsTextOperation{}
@@ -9883,14 +9997,16 @@ type OpenPerformanceNlsTextResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPerformanceNlsTextResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPerformanceNlsTextOperation {
+func (o *OpenPerformanceNlsTextResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPerformanceNlsTextOperation) *xxx_OpenPerformanceNlsTextOperation {
+	if op == nil {
+		op = &xxx_OpenPerformanceNlsTextOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPerformanceNlsTextOperation{}
+		return op
 	}
-	return &xxx_OpenPerformanceNlsTextOperation{
-		Key:    o.Key,
-		Return: o.Return,
-	}
+	o.Key = op.Key
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPerformanceNlsTextResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPerformanceNlsTextOperation) {
@@ -9901,7 +10017,7 @@ func (o *OpenPerformanceNlsTextResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *OpenPerformanceNlsTextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPerformanceNlsTextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPerformanceNlsTextOperation{}
@@ -10410,17 +10526,19 @@ type BaseRegQueryMultipleValues2Request struct {
 	TotalSize uint32 `idl:"name:ldwTotsize" json:"total_size"`
 }
 
-func (o *BaseRegQueryMultipleValues2Request) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryMultipleValues2Operation {
+func (o *BaseRegQueryMultipleValues2Request) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValues2Operation) *xxx_BaseRegQueryMultipleValues2Operation {
+	if op == nil {
+		op = &xxx_BaseRegQueryMultipleValues2Operation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryMultipleValues2Operation{}
+		return op
 	}
-	return &xxx_BaseRegQueryMultipleValues2Operation{
-		Key:         o.Key,
-		ValueListIn: o.ValueListIn,
-		ValsLength:  o.ValsLength,
-		Buffer:      o.Buffer,
-		TotalSize:   o.TotalSize,
-	}
+	o.Key = op.Key
+	o.ValueListIn = op.ValueListIn
+	o.ValsLength = op.ValsLength
+	o.Buffer = op.Buffer
+	o.TotalSize = op.TotalSize
+	return op
 }
 
 func (o *BaseRegQueryMultipleValues2Request) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValues2Operation) {
@@ -10434,7 +10552,7 @@ func (o *BaseRegQueryMultipleValues2Request) xxx_FromOp(ctx context.Context, op 
 	o.TotalSize = op.TotalSize
 }
 func (o *BaseRegQueryMultipleValues2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegQueryMultipleValues2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryMultipleValues2Operation{}
@@ -10461,16 +10579,18 @@ type BaseRegQueryMultipleValues2Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegQueryMultipleValues2Response) xxx_ToOp(ctx context.Context) *xxx_BaseRegQueryMultipleValues2Operation {
+func (o *BaseRegQueryMultipleValues2Response) xxx_ToOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValues2Operation) *xxx_BaseRegQueryMultipleValues2Operation {
+	if op == nil {
+		op = &xxx_BaseRegQueryMultipleValues2Operation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegQueryMultipleValues2Operation{}
+		return op
 	}
-	return &xxx_BaseRegQueryMultipleValues2Operation{
-		ValueListOut: o.ValueListOut,
-		Buffer:       o.Buffer,
-		RequiredSize: o.RequiredSize,
-		Return:       o.Return,
-	}
+	o.ValueListOut = op.ValueListOut
+	o.Buffer = op.Buffer
+	o.RequiredSize = op.RequiredSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegQueryMultipleValues2Response) xxx_FromOp(ctx context.Context, op *xxx_BaseRegQueryMultipleValues2Operation) {
@@ -10483,7 +10603,7 @@ func (o *BaseRegQueryMultipleValues2Response) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *BaseRegQueryMultipleValues2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegQueryMultipleValues2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegQueryMultipleValues2Operation{}
@@ -10659,15 +10779,17 @@ type BaseRegDeleteKeyExRequest struct {
 	AccessMask uint32 `idl:"name:AccessMask" json:"access_mask"`
 }
 
-func (o *BaseRegDeleteKeyExRequest) xxx_ToOp(ctx context.Context) *xxx_BaseRegDeleteKeyExOperation {
+func (o *BaseRegDeleteKeyExRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseRegDeleteKeyExOperation) *xxx_BaseRegDeleteKeyExOperation {
+	if op == nil {
+		op = &xxx_BaseRegDeleteKeyExOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegDeleteKeyExOperation{}
+		return op
 	}
-	return &xxx_BaseRegDeleteKeyExOperation{
-		Key:        o.Key,
-		SubKey:     o.SubKey,
-		AccessMask: o.AccessMask,
-	}
+	o.Key = op.Key
+	o.SubKey = op.SubKey
+	o.AccessMask = op.AccessMask
+	return op
 }
 
 func (o *BaseRegDeleteKeyExRequest) xxx_FromOp(ctx context.Context, op *xxx_BaseRegDeleteKeyExOperation) {
@@ -10679,7 +10801,7 @@ func (o *BaseRegDeleteKeyExRequest) xxx_FromOp(ctx context.Context, op *xxx_Base
 	o.AccessMask = op.AccessMask
 }
 func (o *BaseRegDeleteKeyExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BaseRegDeleteKeyExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegDeleteKeyExOperation{}
@@ -10696,13 +10818,15 @@ type BaseRegDeleteKeyExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BaseRegDeleteKeyExResponse) xxx_ToOp(ctx context.Context) *xxx_BaseRegDeleteKeyExOperation {
+func (o *BaseRegDeleteKeyExResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseRegDeleteKeyExOperation) *xxx_BaseRegDeleteKeyExOperation {
+	if op == nil {
+		op = &xxx_BaseRegDeleteKeyExOperation{}
+	}
 	if o == nil {
-		return &xxx_BaseRegDeleteKeyExOperation{}
+		return op
 	}
-	return &xxx_BaseRegDeleteKeyExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BaseRegDeleteKeyExResponse) xxx_FromOp(ctx context.Context, op *xxx_BaseRegDeleteKeyExOperation) {
@@ -10712,7 +10836,7 @@ func (o *BaseRegDeleteKeyExResponse) xxx_FromOp(ctx context.Context, op *xxx_Bas
 	o.Return = op.Return
 }
 func (o *BaseRegDeleteKeyExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BaseRegDeleteKeyExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BaseRegDeleteKeyExOperation{}

@@ -465,12 +465,14 @@ func NewLsarpcServerHandle(o LsarpcServer) dcerpc.ServerHandle {
 func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // LsarClose
-		in := &CloseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Close(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Close(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // Opnum1NotUsedOnWire
 		// Opnum1NotUsedOnWire
 		return nil, nil
@@ -487,12 +489,14 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Opnum5NotUsedOnWire
 		return nil, nil
 	case 6: // LsarOpenPolicy
-		in := &OpenPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Lsar_LSA_DP_7
 		// Lsar_LSA_DP_7
 		return nil, nil
@@ -515,19 +519,23 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Lsar_LSA_DP_13
 		return nil, nil
 	case 14: // LsarLookupNames
-		in := &LookupNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // LsarLookupSids
-		in := &LookupSIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupSIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupSIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupSIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupSIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Lsar_LSA_DP_16
 		// Lsar_LSA_DP_16
 		return nil, nil
@@ -613,19 +621,23 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Lsar_LSA_DP_43
 		return nil, nil
 	case 44: // LsarOpenPolicy2
-		in := &OpenPolicy2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPolicy2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPolicy2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPolicy2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPolicy2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // LsarGetUserName
-		in := &GetUserNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUserNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUserName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUserNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // Lsar_LSA_DP_46
 		// Lsar_LSA_DP_46
 		return nil, nil
@@ -660,19 +672,23 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Opnum56NotUsedOnWire
 		return nil, nil
 	case 57: // LsarLookupSids2
-		in := &LookupSids2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupSids2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupSids2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupSids2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupSids2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // LsarLookupNames2
-		in := &LookupNames2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNames2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNames2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNames2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNames2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // Lsar_LSA_DP_59
 		// Lsar_LSA_DP_59
 		return nil, nil
@@ -701,12 +717,14 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Opnum67NotUsedOnWire
 		return nil, nil
 	case 68: // LsarLookupNames3
-		in := &LookupNames3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNames3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNames3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNames3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNames3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 69: // Opnum69NotUsedOnWire
 		// Opnum69NotUsedOnWire
 		return nil, nil
@@ -729,19 +747,63 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Opnum75NotUsedOnWire
 		return nil, nil
 	case 76: // LsarLookupSids3
-		in := &LookupSids3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupSids3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupSids3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupSids3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupSids3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 77: // LsarLookupNames4
-		in := &LookupNames4Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupNames4Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupNames4(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupNames4Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupNames4(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented lsarpc
+type UnimplementedLsarpcServer struct {
+}
+
+func (UnimplementedLsarpcServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenPolicy(context.Context, *OpenPolicyRequest) (*OpenPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupNames(context.Context, *LookupNamesRequest) (*LookupNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupSIDs(context.Context, *LookupSIDsRequest) (*LookupSIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenPolicy2(context.Context, *OpenPolicy2Request) (*OpenPolicy2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) GetUserName(context.Context, *GetUserNameRequest) (*GetUserNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupSids2(context.Context, *LookupSids2Request) (*LookupSids2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupNames2(context.Context, *LookupNames2Request) (*LookupNames2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupNames3(context.Context, *LookupNames3Request) (*LookupNames3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupSids3(context.Context, *LookupSids3Request) (*LookupSids3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupNames4(context.Context, *LookupNames4Request) (*LookupNames4Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LsarpcServer = (*UnimplementedLsarpcServer)(nil)

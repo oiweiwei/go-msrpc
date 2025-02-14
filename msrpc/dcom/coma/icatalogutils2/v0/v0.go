@@ -162,7 +162,7 @@ func (o *xxx_DefaultCatalogUtils2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) CopyConglomerations(ctx context.Context, in *CopyConglomerationsRequest, opts ...dcerpc.CallOption) (*CopyConglomerationsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -182,7 +182,7 @@ func (o *xxx_DefaultCatalogUtils2Client) CopyConglomerations(ctx context.Context
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) CopyComponentConfiguration(ctx context.Context, in *CopyComponentConfigurationRequest, opts ...dcerpc.CallOption) (*CopyComponentConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -202,7 +202,7 @@ func (o *xxx_DefaultCatalogUtils2Client) CopyComponentConfiguration(ctx context.
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) AliasComponent(ctx context.Context, in *AliasComponentRequest, opts ...dcerpc.CallOption) (*AliasComponentResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -222,7 +222,7 @@ func (o *xxx_DefaultCatalogUtils2Client) AliasComponent(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) MoveComponentConfiguration(ctx context.Context, in *MoveComponentConfigurationRequest, opts ...dcerpc.CallOption) (*MoveComponentConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -242,7 +242,7 @@ func (o *xxx_DefaultCatalogUtils2Client) MoveComponentConfiguration(ctx context.
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) GetEventClassesForIid2(ctx context.Context, in *GetEventClassesForIid2Request, opts ...dcerpc.CallOption) (*GetEventClassesForIid2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -262,7 +262,7 @@ func (o *xxx_DefaultCatalogUtils2Client) GetEventClassesForIid2(ctx context.Cont
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) IsSafeToDelete(ctx context.Context, in *IsSafeToDeleteRequest, opts ...dcerpc.CallOption) (*IsSafeToDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -282,7 +282,7 @@ func (o *xxx_DefaultCatalogUtils2Client) IsSafeToDelete(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) FlushPartitionCache(ctx context.Context, in *FlushPartitionCacheRequest, opts ...dcerpc.CallOption) (*FlushPartitionCacheResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -302,7 +302,7 @@ func (o *xxx_DefaultCatalogUtils2Client) FlushPartitionCache(ctx context.Context
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) EnumerateSRPLevels(ctx context.Context, in *EnumerateSRPLevelsRequest, opts ...dcerpc.CallOption) (*EnumerateSRPLevelsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -322,7 +322,7 @@ func (o *xxx_DefaultCatalogUtils2Client) EnumerateSRPLevels(ctx context.Context,
 }
 
 func (o *xxx_DefaultCatalogUtils2Client) GetComponentVersions(ctx context.Context, in *GetComponentVersionsRequest, opts ...dcerpc.CallOption) (*GetComponentVersionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -635,17 +635,19 @@ type CopyConglomerationsRequest struct {
 	ConglomerationNamesOrIDs []string `idl:"name:ppwszConglomerationNamesOrIds;size_is:(cConglomerations, );string" json:"conglomeration_names_or_ids"`
 }
 
-func (o *CopyConglomerationsRequest) xxx_ToOp(ctx context.Context) *xxx_CopyConglomerationsOperation {
+func (o *CopyConglomerationsRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyConglomerationsOperation) *xxx_CopyConglomerationsOperation {
+	if op == nil {
+		op = &xxx_CopyConglomerationsOperation{}
+	}
 	if o == nil {
-		return &xxx_CopyConglomerationsOperation{}
+		return op
 	}
-	return &xxx_CopyConglomerationsOperation{
-		This:                     o.This,
-		SourcePartition:          o.SourcePartition,
-		DestinationPartition:     o.DestinationPartition,
-		ConglomerationsCount:     o.ConglomerationsCount,
-		ConglomerationNamesOrIDs: o.ConglomerationNamesOrIDs,
-	}
+	o.This = op.This
+	o.SourcePartition = op.SourcePartition
+	o.DestinationPartition = op.DestinationPartition
+	o.ConglomerationsCount = op.ConglomerationsCount
+	o.ConglomerationNamesOrIDs = op.ConglomerationNamesOrIDs
+	return op
 }
 
 func (o *CopyConglomerationsRequest) xxx_FromOp(ctx context.Context, op *xxx_CopyConglomerationsOperation) {
@@ -659,7 +661,7 @@ func (o *CopyConglomerationsRequest) xxx_FromOp(ctx context.Context, op *xxx_Cop
 	o.ConglomerationNamesOrIDs = op.ConglomerationNamesOrIDs
 }
 func (o *CopyConglomerationsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CopyConglomerationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CopyConglomerationsOperation{}
@@ -678,14 +680,16 @@ type CopyConglomerationsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CopyConglomerationsResponse) xxx_ToOp(ctx context.Context) *xxx_CopyConglomerationsOperation {
+func (o *CopyConglomerationsResponse) xxx_ToOp(ctx context.Context, op *xxx_CopyConglomerationsOperation) *xxx_CopyConglomerationsOperation {
+	if op == nil {
+		op = &xxx_CopyConglomerationsOperation{}
+	}
 	if o == nil {
-		return &xxx_CopyConglomerationsOperation{}
+		return op
 	}
-	return &xxx_CopyConglomerationsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CopyConglomerationsResponse) xxx_FromOp(ctx context.Context, op *xxx_CopyConglomerationsOperation) {
@@ -696,7 +700,7 @@ func (o *CopyConglomerationsResponse) xxx_FromOp(ctx context.Context, op *xxx_Co
 	o.Return = op.Return
 }
 func (o *CopyConglomerationsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CopyConglomerationsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CopyConglomerationsOperation{}
@@ -883,16 +887,18 @@ type CopyComponentConfigurationRequest struct {
 	DestinationConglomeration string `idl:"name:pwszDestConglomeration;string" json:"destination_conglomeration"`
 }
 
-func (o *CopyComponentConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_CopyComponentConfigurationOperation {
+func (o *CopyComponentConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyComponentConfigurationOperation) *xxx_CopyComponentConfigurationOperation {
+	if op == nil {
+		op = &xxx_CopyComponentConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CopyComponentConfigurationOperation{}
+		return op
 	}
-	return &xxx_CopyComponentConfigurationOperation{
-		This:                      o.This,
-		SourceConglomeration:      o.SourceConglomeration,
-		Component:                 o.Component,
-		DestinationConglomeration: o.DestinationConglomeration,
-	}
+	o.This = op.This
+	o.SourceConglomeration = op.SourceConglomeration
+	o.Component = op.Component
+	o.DestinationConglomeration = op.DestinationConglomeration
+	return op
 }
 
 func (o *CopyComponentConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_CopyComponentConfigurationOperation) {
@@ -905,7 +911,7 @@ func (o *CopyComponentConfigurationRequest) xxx_FromOp(ctx context.Context, op *
 	o.DestinationConglomeration = op.DestinationConglomeration
 }
 func (o *CopyComponentConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CopyComponentConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CopyComponentConfigurationOperation{}
@@ -924,14 +930,16 @@ type CopyComponentConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CopyComponentConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_CopyComponentConfigurationOperation {
+func (o *CopyComponentConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_CopyComponentConfigurationOperation) *xxx_CopyComponentConfigurationOperation {
+	if op == nil {
+		op = &xxx_CopyComponentConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CopyComponentConfigurationOperation{}
+		return op
 	}
-	return &xxx_CopyComponentConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CopyComponentConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_CopyComponentConfigurationOperation) {
@@ -942,7 +950,7 @@ func (o *CopyComponentConfigurationResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *CopyComponentConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CopyComponentConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CopyComponentConfigurationOperation{}
@@ -1166,18 +1174,20 @@ type AliasComponentRequest struct {
 	NewProgID string `idl:"name:pwszNewProgID;string" json:"new_prog_id"`
 }
 
-func (o *AliasComponentRequest) xxx_ToOp(ctx context.Context) *xxx_AliasComponentOperation {
+func (o *AliasComponentRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasComponentOperation) *xxx_AliasComponentOperation {
+	if op == nil {
+		op = &xxx_AliasComponentOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasComponentOperation{}
+		return op
 	}
-	return &xxx_AliasComponentOperation{
-		This:                      o.This,
-		SourceConglomeration:      o.SourceConglomeration,
-		Component:                 o.Component,
-		DestinationConglomeration: o.DestinationConglomeration,
-		NewClassID:                o.NewClassID,
-		NewProgID:                 o.NewProgID,
-	}
+	o.This = op.This
+	o.SourceConglomeration = op.SourceConglomeration
+	o.Component = op.Component
+	o.DestinationConglomeration = op.DestinationConglomeration
+	o.NewClassID = op.NewClassID
+	o.NewProgID = op.NewProgID
+	return op
 }
 
 func (o *AliasComponentRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasComponentOperation) {
@@ -1192,7 +1202,7 @@ func (o *AliasComponentRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasCom
 	o.NewProgID = op.NewProgID
 }
 func (o *AliasComponentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AliasComponentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasComponentOperation{}
@@ -1211,14 +1221,16 @@ type AliasComponentResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AliasComponentResponse) xxx_ToOp(ctx context.Context) *xxx_AliasComponentOperation {
+func (o *AliasComponentResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasComponentOperation) *xxx_AliasComponentOperation {
+	if op == nil {
+		op = &xxx_AliasComponentOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasComponentOperation{}
+		return op
 	}
-	return &xxx_AliasComponentOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AliasComponentResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasComponentOperation) {
@@ -1229,7 +1241,7 @@ func (o *AliasComponentResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasCo
 	o.Return = op.Return
 }
 func (o *AliasComponentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AliasComponentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasComponentOperation{}
@@ -1416,16 +1428,18 @@ type MoveComponentConfigurationRequest struct {
 	DestinationConglomeration string `idl:"name:pwszDestinationConglomeration;string" json:"destination_conglomeration"`
 }
 
-func (o *MoveComponentConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_MoveComponentConfigurationOperation {
+func (o *MoveComponentConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveComponentConfigurationOperation) *xxx_MoveComponentConfigurationOperation {
+	if op == nil {
+		op = &xxx_MoveComponentConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_MoveComponentConfigurationOperation{}
+		return op
 	}
-	return &xxx_MoveComponentConfigurationOperation{
-		This:                      o.This,
-		SourceConglomeration:      o.SourceConglomeration,
-		Component:                 o.Component,
-		DestinationConglomeration: o.DestinationConglomeration,
-	}
+	o.This = op.This
+	o.SourceConglomeration = op.SourceConglomeration
+	o.Component = op.Component
+	o.DestinationConglomeration = op.DestinationConglomeration
+	return op
 }
 
 func (o *MoveComponentConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_MoveComponentConfigurationOperation) {
@@ -1438,7 +1452,7 @@ func (o *MoveComponentConfigurationRequest) xxx_FromOp(ctx context.Context, op *
 	o.DestinationConglomeration = op.DestinationConglomeration
 }
 func (o *MoveComponentConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MoveComponentConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MoveComponentConfigurationOperation{}
@@ -1457,14 +1471,16 @@ type MoveComponentConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MoveComponentConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_MoveComponentConfigurationOperation {
+func (o *MoveComponentConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_MoveComponentConfigurationOperation) *xxx_MoveComponentConfigurationOperation {
+	if op == nil {
+		op = &xxx_MoveComponentConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_MoveComponentConfigurationOperation{}
+		return op
 	}
-	return &xxx_MoveComponentConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *MoveComponentConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_MoveComponentConfigurationOperation) {
@@ -1475,7 +1491,7 @@ func (o *MoveComponentConfigurationResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *MoveComponentConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MoveComponentConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MoveComponentConfigurationOperation{}
@@ -2137,15 +2153,17 @@ type GetEventClassesForIid2Request struct {
 	PartitionID *dtyp.GUID `idl:"name:PartitionId" json:"partition_id"`
 }
 
-func (o *GetEventClassesForIid2Request) xxx_ToOp(ctx context.Context) *xxx_GetEventClassesForIid2Operation {
+func (o *GetEventClassesForIid2Request) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassesForIid2Operation) *xxx_GetEventClassesForIid2Operation {
+	if op == nil {
+		op = &xxx_GetEventClassesForIid2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassesForIid2Operation{}
+		return op
 	}
-	return &xxx_GetEventClassesForIid2Operation{
-		This:        o.This,
-		IID:         o.IID,
-		PartitionID: o.PartitionID,
-	}
+	o.This = op.This
+	o.IID = op.IID
+	o.PartitionID = op.PartitionID
+	return op
 }
 
 func (o *GetEventClassesForIid2Request) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassesForIid2Operation) {
@@ -2157,7 +2175,7 @@ func (o *GetEventClassesForIid2Request) xxx_FromOp(ctx context.Context, op *xxx_
 	o.PartitionID = op.PartitionID
 }
 func (o *GetEventClassesForIid2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEventClassesForIid2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassesForIid2Operation{}
@@ -2199,20 +2217,22 @@ type GetEventClassesForIid2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEventClassesForIid2Response) xxx_ToOp(ctx context.Context) *xxx_GetEventClassesForIid2Operation {
+func (o *GetEventClassesForIid2Response) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassesForIid2Operation) *xxx_GetEventClassesForIid2Operation {
+	if op == nil {
+		op = &xxx_GetEventClassesForIid2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassesForIid2Operation{}
+		return op
 	}
-	return &xxx_GetEventClassesForIid2Operation{
-		That:              o.That,
-		ClassesCount:      o.ClassesCount,
-		ClassIDs:          o.ClassIDs,
-		ProgIDs:           o.ProgIDs,
-		Descriptions:      o.Descriptions,
-		ConglomerationIDs: o.ConglomerationIDs,
-		IsPrivate:         o.IsPrivate,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.ClassesCount = op.ClassesCount
+	o.ClassIDs = op.ClassIDs
+	o.ProgIDs = op.ProgIDs
+	o.Descriptions = op.Descriptions
+	o.ConglomerationIDs = op.ConglomerationIDs
+	o.IsPrivate = op.IsPrivate
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetEventClassesForIid2Response) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassesForIid2Operation) {
@@ -2229,7 +2249,7 @@ func (o *GetEventClassesForIid2Response) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetEventClassesForIid2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEventClassesForIid2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassesForIid2Operation{}
@@ -2424,14 +2444,16 @@ type IsSafeToDeleteRequest struct {
 	File *oaut.String   `idl:"name:bstrFile" json:"file"`
 }
 
-func (o *IsSafeToDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_IsSafeToDeleteOperation {
+func (o *IsSafeToDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_IsSafeToDeleteOperation) *xxx_IsSafeToDeleteOperation {
+	if op == nil {
+		op = &xxx_IsSafeToDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_IsSafeToDeleteOperation{}
+		return op
 	}
-	return &xxx_IsSafeToDeleteOperation{
-		This: o.This,
-		File: o.File,
-	}
+	o.This = op.This
+	o.File = op.File
+	return op
 }
 
 func (o *IsSafeToDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_IsSafeToDeleteOperation) {
@@ -2442,7 +2464,7 @@ func (o *IsSafeToDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_IsSafeTo
 	o.File = op.File
 }
 func (o *IsSafeToDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsSafeToDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsSafeToDeleteOperation{}
@@ -2462,15 +2484,17 @@ type IsSafeToDeleteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsSafeToDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_IsSafeToDeleteOperation {
+func (o *IsSafeToDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_IsSafeToDeleteOperation) *xxx_IsSafeToDeleteOperation {
+	if op == nil {
+		op = &xxx_IsSafeToDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_IsSafeToDeleteOperation{}
+		return op
 	}
-	return &xxx_IsSafeToDeleteOperation{
-		That:   o.That,
-		InUse:  o.InUse,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.InUse = op.InUse
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsSafeToDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_IsSafeToDeleteOperation) {
@@ -2482,7 +2506,7 @@ func (o *IsSafeToDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_IsSafeT
 	o.Return = op.Return
 }
 func (o *IsSafeToDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsSafeToDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsSafeToDeleteOperation{}
@@ -2618,13 +2642,15 @@ type FlushPartitionCacheRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *FlushPartitionCacheRequest) xxx_ToOp(ctx context.Context) *xxx_FlushPartitionCacheOperation {
+func (o *FlushPartitionCacheRequest) xxx_ToOp(ctx context.Context, op *xxx_FlushPartitionCacheOperation) *xxx_FlushPartitionCacheOperation {
+	if op == nil {
+		op = &xxx_FlushPartitionCacheOperation{}
+	}
 	if o == nil {
-		return &xxx_FlushPartitionCacheOperation{}
+		return op
 	}
-	return &xxx_FlushPartitionCacheOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *FlushPartitionCacheRequest) xxx_FromOp(ctx context.Context, op *xxx_FlushPartitionCacheOperation) {
@@ -2634,7 +2660,7 @@ func (o *FlushPartitionCacheRequest) xxx_FromOp(ctx context.Context, op *xxx_Flu
 	o.This = op.This
 }
 func (o *FlushPartitionCacheRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FlushPartitionCacheRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FlushPartitionCacheOperation{}
@@ -2653,14 +2679,16 @@ type FlushPartitionCacheResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FlushPartitionCacheResponse) xxx_ToOp(ctx context.Context) *xxx_FlushPartitionCacheOperation {
+func (o *FlushPartitionCacheResponse) xxx_ToOp(ctx context.Context, op *xxx_FlushPartitionCacheOperation) *xxx_FlushPartitionCacheOperation {
+	if op == nil {
+		op = &xxx_FlushPartitionCacheOperation{}
+	}
 	if o == nil {
-		return &xxx_FlushPartitionCacheOperation{}
+		return op
 	}
-	return &xxx_FlushPartitionCacheOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *FlushPartitionCacheResponse) xxx_FromOp(ctx context.Context, op *xxx_FlushPartitionCacheOperation) {
@@ -2671,7 +2699,7 @@ func (o *FlushPartitionCacheResponse) xxx_FromOp(ctx context.Context, op *xxx_Fl
 	o.Return = op.Return
 }
 func (o *FlushPartitionCacheResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FlushPartitionCacheResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FlushPartitionCacheOperation{}
@@ -2919,14 +2947,16 @@ type EnumerateSRPLevelsRequest struct {
 	Locale uint32 `idl:"name:Locale" json:"locale"`
 }
 
-func (o *EnumerateSRPLevelsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateSRPLevelsOperation {
+func (o *EnumerateSRPLevelsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateSRPLevelsOperation) *xxx_EnumerateSRPLevelsOperation {
+	if op == nil {
+		op = &xxx_EnumerateSRPLevelsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateSRPLevelsOperation{}
+		return op
 	}
-	return &xxx_EnumerateSRPLevelsOperation{
-		This:   o.This,
-		Locale: o.Locale,
-	}
+	o.This = op.This
+	o.Locale = op.Locale
+	return op
 }
 
 func (o *EnumerateSRPLevelsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateSRPLevelsOperation) {
@@ -2937,7 +2967,7 @@ func (o *EnumerateSRPLevelsRequest) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Locale = op.Locale
 }
 func (o *EnumerateSRPLevelsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateSRPLevelsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateSRPLevelsOperation{}
@@ -2963,16 +2993,18 @@ type EnumerateSRPLevelsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateSRPLevelsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateSRPLevelsOperation {
+func (o *EnumerateSRPLevelsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateSRPLevelsOperation) *xxx_EnumerateSRPLevelsOperation {
+	if op == nil {
+		op = &xxx_EnumerateSRPLevelsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateSRPLevelsOperation{}
+		return op
 	}
-	return &xxx_EnumerateSRPLevelsOperation{
-		That:        o.That,
-		LevelsCount: o.LevelsCount,
-		SRPLevels:   o.SRPLevels,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LevelsCount = op.LevelsCount
+	o.SRPLevels = op.SRPLevels
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateSRPLevelsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateSRPLevelsOperation) {
@@ -2985,7 +3017,7 @@ func (o *EnumerateSRPLevelsResponse) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.Return = op.Return
 }
 func (o *EnumerateSRPLevelsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateSRPLevelsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateSRPLevelsOperation{}
@@ -3473,14 +3505,16 @@ type GetComponentVersionsRequest struct {
 	ClassIDOrProgID string `idl:"name:pwszClsidOrProgId" json:"class_id_or_prog_id"`
 }
 
-func (o *GetComponentVersionsRequest) xxx_ToOp(ctx context.Context) *xxx_GetComponentVersionsOperation {
+func (o *GetComponentVersionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetComponentVersionsOperation) *xxx_GetComponentVersionsOperation {
+	if op == nil {
+		op = &xxx_GetComponentVersionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentVersionsOperation{}
+		return op
 	}
-	return &xxx_GetComponentVersionsOperation{
-		This:            o.This,
-		ClassIDOrProgID: o.ClassIDOrProgID,
-	}
+	o.This = op.This
+	o.ClassIDOrProgID = op.ClassIDOrProgID
+	return op
 }
 
 func (o *GetComponentVersionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetComponentVersionsOperation) {
@@ -3491,7 +3525,7 @@ func (o *GetComponentVersionsRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.ClassIDOrProgID = op.ClassIDOrProgID
 }
 func (o *GetComponentVersionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetComponentVersionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentVersionsOperation{}
@@ -3529,19 +3563,21 @@ type GetComponentVersionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetComponentVersionsResponse) xxx_ToOp(ctx context.Context) *xxx_GetComponentVersionsOperation {
+func (o *GetComponentVersionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComponentVersionsOperation) *xxx_GetComponentVersionsOperation {
+	if op == nil {
+		op = &xxx_GetComponentVersionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentVersionsOperation{}
+		return op
 	}
-	return &xxx_GetComponentVersionsOperation{
-		That:              o.That,
-		Versions:          o.Versions,
-		PartitionIDs:      o.PartitionIDs,
-		ConglomerationIDs: o.ConglomerationIDs,
-		IsPrivate:         o.IsPrivate,
-		Bitness:           o.Bitness,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.Versions = op.Versions
+	o.PartitionIDs = op.PartitionIDs
+	o.ConglomerationIDs = op.ConglomerationIDs
+	o.IsPrivate = op.IsPrivate
+	o.Bitness = op.Bitness
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetComponentVersionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetComponentVersionsOperation) {
@@ -3557,7 +3593,7 @@ func (o *GetComponentVersionsResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetComponentVersionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetComponentVersionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentVersionsOperation{}

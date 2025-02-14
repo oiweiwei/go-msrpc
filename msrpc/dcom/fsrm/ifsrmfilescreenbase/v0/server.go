@@ -95,47 +95,85 @@ func FileScreenBaseServerHandle(ctx context.Context, o FileScreenBaseServer, opN
 	}
 	switch opNum {
 	case 12: // BlockedFileGroups
-		in := &GetBlockedFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBlockedFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBlockedFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBlockedFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBlockedFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // BlockedFileGroups
-		in := &SetBlockedFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetBlockedFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetBlockedFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetBlockedFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetBlockedFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // FileScreenFlags
-		in := &GetFileScreenFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileScreenFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileScreenFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileScreenFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileScreenFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // FileScreenFlags
-		in := &SetFileScreenFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileScreenFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileScreenFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileScreenFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileScreenFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // CreateAction
-		in := &CreateActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // EnumActions
-		in := &EnumActionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumActionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumActions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumActionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumActions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileScreenBase
+type UnimplementedFileScreenBaseServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedFileScreenBaseServer) GetBlockedFileGroups(context.Context, *GetBlockedFileGroupsRequest) (*GetBlockedFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenBaseServer) SetBlockedFileGroups(context.Context, *SetBlockedFileGroupsRequest) (*SetBlockedFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenBaseServer) GetFileScreenFlags(context.Context, *GetFileScreenFlagsRequest) (*GetFileScreenFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenBaseServer) SetFileScreenFlags(context.Context, *SetFileScreenFlagsRequest) (*SetFileScreenFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenBaseServer) CreateAction(context.Context, *CreateActionRequest) (*CreateActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenBaseServer) EnumActions(context.Context, *EnumActionsRequest) (*EnumActionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileScreenBaseServer = (*UnimplementedFileScreenBaseServer)(nil)

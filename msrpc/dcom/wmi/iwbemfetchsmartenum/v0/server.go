@@ -57,12 +57,25 @@ func FetchSmartEnumServerHandle(ctx context.Context, o FetchSmartEnumServer, opN
 	}
 	switch opNum {
 	case 3: // GetSmartEnum
-		in := &GetSmartEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSmartEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSmartEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSmartEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSmartEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemFetchSmartEnum
+type UnimplementedFetchSmartEnumServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedFetchSmartEnumServer) GetSmartEnum(context.Context, *GetSmartEnumRequest) (*GetSmartEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FetchSmartEnumServer = (*UnimplementedFetchSmartEnumServer)(nil)

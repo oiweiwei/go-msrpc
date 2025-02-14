@@ -190,47 +190,85 @@ func WAMAdminServerHandle(ctx context.Context, o WAMAdminServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // AppCreate
-		in := &AppCreateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppCreateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppCreate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppCreateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppCreate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // AppDelete
-		in := &AppDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AppUnLoad
-		in := &AppUnloadRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppUnloadOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppUnload(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppUnloadRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppUnload(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // AppGetStatus
-		in := &AppGetStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppGetStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppGetStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppGetStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppGetStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // AppDeleteRecoverable
-		in := &AppDeleteRecoverableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppDeleteRecoverableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppDeleteRecoverable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppDeleteRecoverableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppDeleteRecoverable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // AppRecover
-		in := &AppRecoverRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppRecoverOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppRecover(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppRecoverRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppRecover(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWamAdmin
+type UnimplementedWAMAdminServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedWAMAdminServer) AppCreate(context.Context, *AppCreateRequest) (*AppCreateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWAMAdminServer) AppDelete(context.Context, *AppDeleteRequest) (*AppDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWAMAdminServer) AppUnload(context.Context, *AppUnloadRequest) (*AppUnloadResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWAMAdminServer) AppGetStatus(context.Context, *AppGetStatusRequest) (*AppGetStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWAMAdminServer) AppDeleteRecoverable(context.Context, *AppDeleteRecoverableRequest) (*AppDeleteRecoverableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWAMAdminServer) AppRecover(context.Context, *AppRecoverRequest) (*AppRecoverResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WAMAdminServer = (*UnimplementedWAMAdminServer)(nil)

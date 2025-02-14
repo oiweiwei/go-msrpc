@@ -49,12 +49,24 @@ func NewBitsPeerAuthServerHandle(o BitsPeerAuthServer) dcerpc.ServerHandle {
 func BitsPeerAuthServerHandle(ctx context.Context, o BitsPeerAuthServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // ExchangePublicKeys
-		in := &ExchangePublicKeysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExchangePublicKeysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExchangePublicKeys(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExchangePublicKeysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExchangePublicKeys(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented BitsPeerAuth
+type UnimplementedBitsPeerAuthServer struct {
+}
+
+func (UnimplementedBitsPeerAuthServer) ExchangePublicKeys(context.Context, *ExchangePublicKeysRequest) (*ExchangePublicKeysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ BitsPeerAuthServer = (*UnimplementedBitsPeerAuthServer)(nil)

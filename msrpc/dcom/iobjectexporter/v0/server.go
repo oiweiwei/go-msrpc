@@ -68,47 +68,84 @@ func NewObjectExporterServerHandle(o ObjectExporterServer) dcerpc.ServerHandle {
 func ObjectExporterServerHandle(ctx context.Context, o ObjectExporterServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // ResolveOxid
-		in := &ResolveOXIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResolveOXIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResolveOXID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResolveOXIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResolveOXID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // SimplePing
-		in := &SimplePingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SimplePingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SimplePing(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SimplePingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SimplePing(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // ComplexPing
-		in := &ComplexPingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ComplexPingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ComplexPing(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ComplexPingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ComplexPing(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // ServerAlive
-		in := &ServerAliveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerAliveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerAlive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerAliveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerAlive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // ResolveOxid2
-		in := &ResolveOxid2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResolveOxid2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResolveOxid2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResolveOxid2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResolveOxid2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ServerAlive2
-		in := &ServerAlive2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerAlive2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerAlive2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerAlive2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerAlive2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IObjectExporter
+type UnimplementedObjectExporterServer struct {
+}
+
+func (UnimplementedObjectExporterServer) ResolveOXID(context.Context, *ResolveOXIDRequest) (*ResolveOXIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectExporterServer) SimplePing(context.Context, *SimplePingRequest) (*SimplePingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectExporterServer) ComplexPing(context.Context, *ComplexPingRequest) (*ComplexPingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectExporterServer) ServerAlive(context.Context, *ServerAliveRequest) (*ServerAliveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectExporterServer) ResolveOxid2(context.Context, *ResolveOxid2Request) (*ResolveOxid2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectExporterServer) ServerAlive2(context.Context, *ServerAlive2Request) (*ServerAlive2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ObjectExporterServer = (*UnimplementedObjectExporterServer)(nil)

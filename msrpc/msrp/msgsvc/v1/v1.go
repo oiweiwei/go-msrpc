@@ -1115,7 +1115,7 @@ type xxx_DefaultMsgsvcClient struct {
 }
 
 func (o *xxx_DefaultMsgsvcClient) MessageNameAdd(ctx context.Context, in *MessageNameAddRequest, opts ...dcerpc.CallOption) (*MessageNameAddResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1128,7 +1128,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameAdd(ctx context.Context, in *Messag
 }
 
 func (o *xxx_DefaultMsgsvcClient) MessageNameEnum(ctx context.Context, in *MessageNameEnumRequest, opts ...dcerpc.CallOption) (*MessageNameEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1141,7 +1141,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameEnum(ctx context.Context, in *Messa
 }
 
 func (o *xxx_DefaultMsgsvcClient) MessageNameGetInfo(ctx context.Context, in *MessageNameGetInfoRequest, opts ...dcerpc.CallOption) (*MessageNameGetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1154,7 +1154,7 @@ func (o *xxx_DefaultMsgsvcClient) MessageNameGetInfo(ctx context.Context, in *Me
 }
 
 func (o *xxx_DefaultMsgsvcClient) MessageNameDelete(ctx context.Context, in *MessageNameDeleteRequest, opts ...dcerpc.CallOption) (*MessageNameDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1307,14 +1307,16 @@ type MessageNameAddRequest struct {
 	MessageName string `idl:"name:MsgName;string" json:"message_name"`
 }
 
-func (o *MessageNameAddRequest) xxx_ToOp(ctx context.Context) *xxx_MessageNameAddOperation {
+func (o *MessageNameAddRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNameAddOperation) *xxx_MessageNameAddOperation {
+	if op == nil {
+		op = &xxx_MessageNameAddOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameAddOperation{}
+		return op
 	}
-	return &xxx_MessageNameAddOperation{
-		ServerName:  o.ServerName,
-		MessageName: o.MessageName,
-	}
+	o.ServerName = op.ServerName
+	o.MessageName = op.MessageName
+	return op
 }
 
 func (o *MessageNameAddRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageNameAddOperation) {
@@ -1325,7 +1327,7 @@ func (o *MessageNameAddRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageN
 	o.MessageName = op.MessageName
 }
 func (o *MessageNameAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MessageNameAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameAddOperation{}
@@ -1342,13 +1344,15 @@ type MessageNameAddResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MessageNameAddResponse) xxx_ToOp(ctx context.Context) *xxx_MessageNameAddOperation {
+func (o *MessageNameAddResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageNameAddOperation) *xxx_MessageNameAddOperation {
+	if op == nil {
+		op = &xxx_MessageNameAddOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameAddOperation{}
+		return op
 	}
-	return &xxx_MessageNameAddOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *MessageNameAddResponse) xxx_FromOp(ctx context.Context, op *xxx_MessageNameAddOperation) {
@@ -1358,7 +1362,7 @@ func (o *MessageNameAddResponse) xxx_FromOp(ctx context.Context, op *xxx_Message
 	o.Return = op.Return
 }
 func (o *MessageNameAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MessageNameAddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameAddOperation{}
@@ -1635,16 +1639,18 @@ type MessageNameEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *MessageNameEnumRequest) xxx_ToOp(ctx context.Context) *xxx_MessageNameEnumOperation {
+func (o *MessageNameEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNameEnumOperation) *xxx_MessageNameEnumOperation {
+	if op == nil {
+		op = &xxx_MessageNameEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameEnumOperation{}
+		return op
 	}
-	return &xxx_MessageNameEnumOperation{
-		ServerName:    o.ServerName,
-		Info:          o.Info,
-		PrefMaxLength: o.PrefMaxLength,
-		Resume:        o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Info = op.Info
+	o.PrefMaxLength = op.PrefMaxLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *MessageNameEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageNameEnumOperation) {
@@ -1657,7 +1663,7 @@ func (o *MessageNameEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Message
 	o.Resume = op.Resume
 }
 func (o *MessageNameEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MessageNameEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameEnumOperation{}
@@ -1686,16 +1692,18 @@ type MessageNameEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MessageNameEnumResponse) xxx_ToOp(ctx context.Context) *xxx_MessageNameEnumOperation {
+func (o *MessageNameEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageNameEnumOperation) *xxx_MessageNameEnumOperation {
+	if op == nil {
+		op = &xxx_MessageNameEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameEnumOperation{}
+		return op
 	}
-	return &xxx_MessageNameEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *MessageNameEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_MessageNameEnumOperation) {
@@ -1708,7 +1716,7 @@ func (o *MessageNameEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Messag
 	o.Return = op.Return
 }
 func (o *MessageNameEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MessageNameEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameEnumOperation{}
@@ -1891,15 +1899,17 @@ type MessageNameGetInfoRequest struct {
 	Level uint32 `idl:"name:Level" json:"level"`
 }
 
-func (o *MessageNameGetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_MessageNameGetInfoOperation {
+func (o *MessageNameGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNameGetInfoOperation) *xxx_MessageNameGetInfoOperation {
+	if op == nil {
+		op = &xxx_MessageNameGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameGetInfoOperation{}
+		return op
 	}
-	return &xxx_MessageNameGetInfoOperation{
-		ServerName:  o.ServerName,
-		MessageName: o.MessageName,
-		Level:       o.Level,
-	}
+	o.ServerName = op.ServerName
+	o.MessageName = op.MessageName
+	o.Level = op.Level
+	return op
 }
 
 func (o *MessageNameGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageNameGetInfoOperation) {
@@ -1911,7 +1921,7 @@ func (o *MessageNameGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Mess
 	o.Level = op.Level
 }
 func (o *MessageNameGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MessageNameGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameGetInfoOperation{}
@@ -1930,14 +1940,16 @@ type MessageNameGetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MessageNameGetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_MessageNameGetInfoOperation {
+func (o *MessageNameGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageNameGetInfoOperation) *xxx_MessageNameGetInfoOperation {
+	if op == nil {
+		op = &xxx_MessageNameGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameGetInfoOperation{}
+		return op
 	}
-	return &xxx_MessageNameGetInfoOperation{
-		Info:   o.Info,
-		Return: o.Return,
-	}
+	o.Info = op.Info
+	o.Return = op.Return
+	return op
 }
 
 func (o *MessageNameGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_MessageNameGetInfoOperation) {
@@ -1948,7 +1960,7 @@ func (o *MessageNameGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Mes
 	o.Return = op.Return
 }
 func (o *MessageNameGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MessageNameGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameGetInfoOperation{}
@@ -2083,14 +2095,16 @@ type MessageNameDeleteRequest struct {
 	MessageName string `idl:"name:MsgName;string" json:"message_name"`
 }
 
-func (o *MessageNameDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_MessageNameDeleteOperation {
+func (o *MessageNameDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageNameDeleteOperation) *xxx_MessageNameDeleteOperation {
+	if op == nil {
+		op = &xxx_MessageNameDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameDeleteOperation{}
+		return op
 	}
-	return &xxx_MessageNameDeleteOperation{
-		ServerName:  o.ServerName,
-		MessageName: o.MessageName,
-	}
+	o.ServerName = op.ServerName
+	o.MessageName = op.MessageName
+	return op
 }
 
 func (o *MessageNameDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageNameDeleteOperation) {
@@ -2101,7 +2115,7 @@ func (o *MessageNameDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_Messa
 	o.MessageName = op.MessageName
 }
 func (o *MessageNameDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MessageNameDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameDeleteOperation{}
@@ -2118,13 +2132,15 @@ type MessageNameDeleteResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MessageNameDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_MessageNameDeleteOperation {
+func (o *MessageNameDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageNameDeleteOperation) *xxx_MessageNameDeleteOperation {
+	if op == nil {
+		op = &xxx_MessageNameDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageNameDeleteOperation{}
+		return op
 	}
-	return &xxx_MessageNameDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *MessageNameDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_MessageNameDeleteOperation) {
@@ -2134,7 +2150,7 @@ func (o *MessageNameDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_Mess
 	o.Return = op.Return
 }
 func (o *MessageNameDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MessageNameDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageNameDeleteOperation{}

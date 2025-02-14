@@ -62,19 +62,37 @@ func EventSystem2ServerHandle(ctx context.Context, o EventSystem2Server, opNum i
 	}
 	switch opNum {
 	case 13: // GetVersion
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // VerifyTransientSubscribers
-		in := &VerifyTransientSubscribersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_VerifyTransientSubscribersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.VerifyTransientSubscribers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &VerifyTransientSubscribersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.VerifyTransientSubscribers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventSystem2
+type UnimplementedEventSystem2Server struct {
+	ieventsystem.UnimplementedEventSystemServer
+}
+
+func (UnimplementedEventSystem2Server) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSystem2Server) VerifyTransientSubscribers(context.Context, *VerifyTransientSubscribersRequest) (*VerifyTransientSubscribersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventSystem2Server = (*UnimplementedEventSystem2Server)(nil)

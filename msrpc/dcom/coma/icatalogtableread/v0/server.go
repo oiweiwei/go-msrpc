@@ -57,12 +57,25 @@ func CatalogTableReadServerHandle(ctx context.Context, o CatalogTableReadServer,
 	}
 	switch opNum {
 	case 3: // ReadTable
-		in := &ReadTableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReadTableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReadTable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReadTableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReadTable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalogTableRead
+type UnimplementedCatalogTableReadServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalogTableReadServer) ReadTable(context.Context, *ReadTableRequest) (*ReadTableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CatalogTableReadServer = (*UnimplementedCatalogTableReadServer)(nil)

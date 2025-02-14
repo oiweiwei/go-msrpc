@@ -123,7 +123,7 @@ func (o *xxx_DefaultReplicationUtilClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultReplicationUtilClient) CreateShare(ctx context.Context, in *CreateShareRequest, opts ...dcerpc.CallOption) (*CreateShareResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -143,7 +143,7 @@ func (o *xxx_DefaultReplicationUtilClient) CreateShare(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultReplicationUtilClient) CreateEmptyDir(ctx context.Context, in *CreateEmptyDirRequest, opts ...dcerpc.CallOption) (*CreateEmptyDirResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -163,7 +163,7 @@ func (o *xxx_DefaultReplicationUtilClient) CreateEmptyDir(ctx context.Context, i
 }
 
 func (o *xxx_DefaultReplicationUtilClient) RemoveShare(ctx context.Context, in *RemoveShareRequest, opts ...dcerpc.CallOption) (*RemoveShareResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -183,7 +183,7 @@ func (o *xxx_DefaultReplicationUtilClient) RemoveShare(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultReplicationUtilClient) BeginReplicationAsTarget(ctx context.Context, in *BeginReplicationAsTargetRequest, opts ...dcerpc.CallOption) (*BeginReplicationAsTargetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -203,7 +203,7 @@ func (o *xxx_DefaultReplicationUtilClient) BeginReplicationAsTarget(ctx context.
 }
 
 func (o *xxx_DefaultReplicationUtilClient) QueryConglomerationPassword(ctx context.Context, in *QueryConglomerationPasswordRequest, opts ...dcerpc.CallOption) (*QueryConglomerationPasswordResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -223,7 +223,7 @@ func (o *xxx_DefaultReplicationUtilClient) QueryConglomerationPassword(ctx conte
 }
 
 func (o *xxx_DefaultReplicationUtilClient) CreateReplicationDir(ctx context.Context, in *CreateReplicationDirRequest, opts ...dcerpc.CallOption) (*CreateReplicationDirResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -471,15 +471,17 @@ type CreateShareRequest struct {
 	Path string `idl:"name:pwszPath" json:"path"`
 }
 
-func (o *CreateShareRequest) xxx_ToOp(ctx context.Context) *xxx_CreateShareOperation {
+func (o *CreateShareRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateShareOperation) *xxx_CreateShareOperation {
+	if op == nil {
+		op = &xxx_CreateShareOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateShareOperation{}
+		return op
 	}
-	return &xxx_CreateShareOperation{
-		This:      o.This,
-		ShareName: o.ShareName,
-		Path:      o.Path,
-	}
+	o.This = op.This
+	o.ShareName = op.ShareName
+	o.Path = op.Path
+	return op
 }
 
 func (o *CreateShareRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateShareOperation) {
@@ -491,7 +493,7 @@ func (o *CreateShareRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateShare
 	o.Path = op.Path
 }
 func (o *CreateShareRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateShareRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateShareOperation{}
@@ -510,14 +512,16 @@ type CreateShareResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateShareResponse) xxx_ToOp(ctx context.Context) *xxx_CreateShareOperation {
+func (o *CreateShareResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateShareOperation) *xxx_CreateShareOperation {
+	if op == nil {
+		op = &xxx_CreateShareOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateShareOperation{}
+		return op
 	}
-	return &xxx_CreateShareOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateShareResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateShareOperation) {
@@ -528,7 +532,7 @@ func (o *CreateShareResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateShar
 	o.Return = op.Return
 }
 func (o *CreateShareResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateShareResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateShareOperation{}
@@ -691,14 +695,16 @@ type CreateEmptyDirRequest struct {
 	Path string `idl:"name:pwszPath" json:"path"`
 }
 
-func (o *CreateEmptyDirRequest) xxx_ToOp(ctx context.Context) *xxx_CreateEmptyDirOperation {
+func (o *CreateEmptyDirRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateEmptyDirOperation) *xxx_CreateEmptyDirOperation {
+	if op == nil {
+		op = &xxx_CreateEmptyDirOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateEmptyDirOperation{}
+		return op
 	}
-	return &xxx_CreateEmptyDirOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *CreateEmptyDirRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateEmptyDirOperation) {
@@ -709,7 +715,7 @@ func (o *CreateEmptyDirRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateEm
 	o.Path = op.Path
 }
 func (o *CreateEmptyDirRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateEmptyDirRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateEmptyDirOperation{}
@@ -728,14 +734,16 @@ type CreateEmptyDirResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateEmptyDirResponse) xxx_ToOp(ctx context.Context) *xxx_CreateEmptyDirOperation {
+func (o *CreateEmptyDirResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateEmptyDirOperation) *xxx_CreateEmptyDirOperation {
+	if op == nil {
+		op = &xxx_CreateEmptyDirOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateEmptyDirOperation{}
+		return op
 	}
-	return &xxx_CreateEmptyDirOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateEmptyDirResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateEmptyDirOperation) {
@@ -746,7 +754,7 @@ func (o *CreateEmptyDirResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateE
 	o.Return = op.Return
 }
 func (o *CreateEmptyDirResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateEmptyDirResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateEmptyDirOperation{}
@@ -922,14 +930,16 @@ type RemoveShareRequest struct {
 	ShareName string `idl:"name:pwszShareName" json:"share_name"`
 }
 
-func (o *RemoveShareRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveShareOperation {
+func (o *RemoveShareRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveShareOperation) *xxx_RemoveShareOperation {
+	if op == nil {
+		op = &xxx_RemoveShareOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveShareOperation{}
+		return op
 	}
-	return &xxx_RemoveShareOperation{
-		This:      o.This,
-		ShareName: o.ShareName,
-	}
+	o.This = op.This
+	o.ShareName = op.ShareName
+	return op
 }
 
 func (o *RemoveShareRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveShareOperation) {
@@ -940,7 +950,7 @@ func (o *RemoveShareRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveShare
 	o.ShareName = op.ShareName
 }
 func (o *RemoveShareRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveShareRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveShareOperation{}
@@ -959,14 +969,16 @@ type RemoveShareResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveShareResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveShareOperation {
+func (o *RemoveShareResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveShareOperation) *xxx_RemoveShareOperation {
+	if op == nil {
+		op = &xxx_RemoveShareOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveShareOperation{}
+		return op
 	}
-	return &xxx_RemoveShareOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveShareResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveShareOperation) {
@@ -977,7 +989,7 @@ func (o *RemoveShareResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveShar
 	o.Return = op.Return
 }
 func (o *RemoveShareResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveShareResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveShareOperation{}
@@ -1128,14 +1140,16 @@ type BeginReplicationAsTargetRequest struct {
 	BaseReplicationDir string `idl:"name:pwszBaseReplicationDir" json:"base_replication_dir"`
 }
 
-func (o *BeginReplicationAsTargetRequest) xxx_ToOp(ctx context.Context) *xxx_BeginReplicationAsTargetOperation {
+func (o *BeginReplicationAsTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_BeginReplicationAsTargetOperation) *xxx_BeginReplicationAsTargetOperation {
+	if op == nil {
+		op = &xxx_BeginReplicationAsTargetOperation{}
+	}
 	if o == nil {
-		return &xxx_BeginReplicationAsTargetOperation{}
+		return op
 	}
-	return &xxx_BeginReplicationAsTargetOperation{
-		This:               o.This,
-		BaseReplicationDir: o.BaseReplicationDir,
-	}
+	o.This = op.This
+	o.BaseReplicationDir = op.BaseReplicationDir
+	return op
 }
 
 func (o *BeginReplicationAsTargetRequest) xxx_FromOp(ctx context.Context, op *xxx_BeginReplicationAsTargetOperation) {
@@ -1146,7 +1160,7 @@ func (o *BeginReplicationAsTargetRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.BaseReplicationDir = op.BaseReplicationDir
 }
 func (o *BeginReplicationAsTargetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BeginReplicationAsTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BeginReplicationAsTargetOperation{}
@@ -1165,14 +1179,16 @@ type BeginReplicationAsTargetResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BeginReplicationAsTargetResponse) xxx_ToOp(ctx context.Context) *xxx_BeginReplicationAsTargetOperation {
+func (o *BeginReplicationAsTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_BeginReplicationAsTargetOperation) *xxx_BeginReplicationAsTargetOperation {
+	if op == nil {
+		op = &xxx_BeginReplicationAsTargetOperation{}
+	}
 	if o == nil {
-		return &xxx_BeginReplicationAsTargetOperation{}
+		return op
 	}
-	return &xxx_BeginReplicationAsTargetOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *BeginReplicationAsTargetResponse) xxx_FromOp(ctx context.Context, op *xxx_BeginReplicationAsTargetOperation) {
@@ -1183,7 +1199,7 @@ func (o *BeginReplicationAsTargetResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *BeginReplicationAsTargetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BeginReplicationAsTargetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BeginReplicationAsTargetOperation{}
@@ -1431,14 +1447,16 @@ type QueryConglomerationPasswordRequest struct {
 	ConglomerationID *dtyp.GUID `idl:"name:ConglomerationId" json:"conglomeration_id"`
 }
 
-func (o *QueryConglomerationPasswordRequest) xxx_ToOp(ctx context.Context) *xxx_QueryConglomerationPasswordOperation {
+func (o *QueryConglomerationPasswordRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryConglomerationPasswordOperation) *xxx_QueryConglomerationPasswordOperation {
+	if op == nil {
+		op = &xxx_QueryConglomerationPasswordOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryConglomerationPasswordOperation{}
+		return op
 	}
-	return &xxx_QueryConglomerationPasswordOperation{
-		This:             o.This,
-		ConglomerationID: o.ConglomerationID,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	return op
 }
 
 func (o *QueryConglomerationPasswordRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryConglomerationPasswordOperation) {
@@ -1449,7 +1467,7 @@ func (o *QueryConglomerationPasswordRequest) xxx_FromOp(ctx context.Context, op 
 	o.ConglomerationID = op.ConglomerationID
 }
 func (o *QueryConglomerationPasswordRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryConglomerationPasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryConglomerationPasswordOperation{}
@@ -1475,16 +1493,18 @@ type QueryConglomerationPasswordResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryConglomerationPasswordResponse) xxx_ToOp(ctx context.Context) *xxx_QueryConglomerationPasswordOperation {
+func (o *QueryConglomerationPasswordResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryConglomerationPasswordOperation) *xxx_QueryConglomerationPasswordOperation {
+	if op == nil {
+		op = &xxx_QueryConglomerationPasswordOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryConglomerationPasswordOperation{}
+		return op
 	}
-	return &xxx_QueryConglomerationPasswordOperation{
-		That:           o.That,
-		Password:       o.Password,
-		PasswordLength: o.PasswordLength,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.Password = op.Password
+	o.PasswordLength = op.PasswordLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryConglomerationPasswordResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryConglomerationPasswordOperation) {
@@ -1497,7 +1517,7 @@ func (o *QueryConglomerationPasswordResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *QueryConglomerationPasswordResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryConglomerationPasswordResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryConglomerationPasswordOperation{}
@@ -1671,13 +1691,15 @@ type CreateReplicationDirRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateReplicationDirRequest) xxx_ToOp(ctx context.Context) *xxx_CreateReplicationDirOperation {
+func (o *CreateReplicationDirRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateReplicationDirOperation) *xxx_CreateReplicationDirOperation {
+	if op == nil {
+		op = &xxx_CreateReplicationDirOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateReplicationDirOperation{}
+		return op
 	}
-	return &xxx_CreateReplicationDirOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateReplicationDirRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateReplicationDirOperation) {
@@ -1687,7 +1709,7 @@ func (o *CreateReplicationDirRequest) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.This = op.This
 }
 func (o *CreateReplicationDirRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateReplicationDirRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateReplicationDirOperation{}
@@ -1709,15 +1731,17 @@ type CreateReplicationDirResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateReplicationDirResponse) xxx_ToOp(ctx context.Context) *xxx_CreateReplicationDirOperation {
+func (o *CreateReplicationDirResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateReplicationDirOperation) *xxx_CreateReplicationDirOperation {
+	if op == nil {
+		op = &xxx_CreateReplicationDirOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateReplicationDirOperation{}
+		return op
 	}
-	return &xxx_CreateReplicationDirOperation{
-		That:               o.That,
-		BaseReplicationDir: o.BaseReplicationDir,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.BaseReplicationDir = op.BaseReplicationDir
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateReplicationDirResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateReplicationDirOperation) {
@@ -1729,7 +1753,7 @@ func (o *CreateReplicationDirResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *CreateReplicationDirResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateReplicationDirResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateReplicationDirOperation{}

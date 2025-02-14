@@ -56,12 +56,25 @@ func ServicedComponentInfoServerHandle(ctx context.Context, o ServicedComponentI
 	}
 	switch opNum {
 	case 3: // GetComponentInfo
-		in := &GetComponentInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetComponentInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetComponentInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetComponentInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetComponentInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IServicedComponentInfo
+type UnimplementedServicedComponentInfoServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServicedComponentInfoServer) GetComponentInfo(context.Context, *GetComponentInfoRequest) (*GetComponentInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServicedComponentInfoServer = (*UnimplementedServicedComponentInfoServer)(nil)

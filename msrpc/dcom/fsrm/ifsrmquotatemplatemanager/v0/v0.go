@@ -87,7 +87,7 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) Dispatch() idispatch.DispatchCli
 }
 
 func (o *xxx_DefaultQuotaTemplateManagerClient) CreateTemplate(ctx context.Context, in *CreateTemplateRequest, opts ...dcerpc.CallOption) (*CreateTemplateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -107,7 +107,7 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) CreateTemplate(ctx context.Conte
 }
 
 func (o *xxx_DefaultQuotaTemplateManagerClient) GetTemplate(ctx context.Context, in *GetTemplateRequest, opts ...dcerpc.CallOption) (*GetTemplateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -127,7 +127,7 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) GetTemplate(ctx context.Context,
 }
 
 func (o *xxx_DefaultQuotaTemplateManagerClient) EnumTemplates(ctx context.Context, in *EnumTemplatesRequest, opts ...dcerpc.CallOption) (*EnumTemplatesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -147,7 +147,7 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) EnumTemplates(ctx context.Contex
 }
 
 func (o *xxx_DefaultQuotaTemplateManagerClient) ExportTemplates(ctx context.Context, in *ExportTemplatesRequest, opts ...dcerpc.CallOption) (*ExportTemplatesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -167,7 +167,7 @@ func (o *xxx_DefaultQuotaTemplateManagerClient) ExportTemplates(ctx context.Cont
 }
 
 func (o *xxx_DefaultQuotaTemplateManagerClient) ImportTemplates(ctx context.Context, in *ImportTemplatesRequest, opts ...dcerpc.CallOption) (*ImportTemplatesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -400,13 +400,15 @@ type CreateTemplateRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateTemplateRequest) xxx_ToOp(ctx context.Context) *xxx_CreateTemplateOperation {
+func (o *CreateTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateTemplateOperation) *xxx_CreateTemplateOperation {
+	if op == nil {
+		op = &xxx_CreateTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTemplateOperation{}
+		return op
 	}
-	return &xxx_CreateTemplateOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateTemplateOperation) {
@@ -416,7 +418,7 @@ func (o *CreateTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateTe
 	o.This = op.This
 }
 func (o *CreateTemplateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTemplateOperation{}
@@ -436,15 +438,17 @@ type CreateTemplateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateTemplateResponse) xxx_ToOp(ctx context.Context) *xxx_CreateTemplateOperation {
+func (o *CreateTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateTemplateOperation) *xxx_CreateTemplateOperation {
+	if op == nil {
+		op = &xxx_CreateTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTemplateOperation{}
+		return op
 	}
-	return &xxx_CreateTemplateOperation{
-		That:          o.That,
-		QuotaTemplate: o.QuotaTemplate,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.QuotaTemplate = op.QuotaTemplate
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateTemplateOperation) {
@@ -456,7 +460,7 @@ func (o *CreateTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateT
 	o.Return = op.Return
 }
 func (o *CreateTemplateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateTemplateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTemplateOperation{}
@@ -687,14 +691,16 @@ type GetTemplateRequest struct {
 	Name *oaut.String   `idl:"name:name" json:"name"`
 }
 
-func (o *GetTemplateRequest) xxx_ToOp(ctx context.Context) *xxx_GetTemplateOperation {
+func (o *GetTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTemplateOperation) *xxx_GetTemplateOperation {
+	if op == nil {
+		op = &xxx_GetTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTemplateOperation{}
+		return op
 	}
-	return &xxx_GetTemplateOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *GetTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTemplateOperation) {
@@ -705,7 +711,7 @@ func (o *GetTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTemplate
 	o.Name = op.Name
 }
 func (o *GetTemplateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTemplateOperation{}
@@ -725,15 +731,17 @@ type GetTemplateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTemplateResponse) xxx_ToOp(ctx context.Context) *xxx_GetTemplateOperation {
+func (o *GetTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTemplateOperation) *xxx_GetTemplateOperation {
+	if op == nil {
+		op = &xxx_GetTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTemplateOperation{}
+		return op
 	}
-	return &xxx_GetTemplateOperation{
-		That:          o.That,
-		QuotaTemplate: o.QuotaTemplate,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.QuotaTemplate = op.QuotaTemplate
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTemplateOperation) {
@@ -745,7 +753,7 @@ func (o *GetTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTemplat
 	o.Return = op.Return
 }
 func (o *GetTemplateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTemplateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTemplateOperation{}
@@ -942,14 +950,16 @@ type EnumTemplatesRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumTemplatesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumTemplatesOperation {
+func (o *EnumTemplatesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumTemplatesOperation) *xxx_EnumTemplatesOperation {
+	if op == nil {
+		op = &xxx_EnumTemplatesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumTemplatesOperation{}
+		return op
 	}
-	return &xxx_EnumTemplatesOperation{
-		This:    o.This,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumTemplatesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumTemplatesOperation) {
@@ -960,7 +970,7 @@ func (o *EnumTemplatesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumTempl
 	o.Options = op.Options
 }
 func (o *EnumTemplatesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumTemplatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumTemplatesOperation{}
@@ -980,15 +990,17 @@ type EnumTemplatesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumTemplatesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumTemplatesOperation {
+func (o *EnumTemplatesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumTemplatesOperation) *xxx_EnumTemplatesOperation {
+	if op == nil {
+		op = &xxx_EnumTemplatesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumTemplatesOperation{}
+		return op
 	}
-	return &xxx_EnumTemplatesOperation{
-		That:           o.That,
-		QuotaTemplates: o.QuotaTemplates,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.QuotaTemplates = op.QuotaTemplates
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumTemplatesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumTemplatesOperation) {
@@ -1000,7 +1012,7 @@ func (o *EnumTemplatesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumTemp
 	o.Return = op.Return
 }
 func (o *EnumTemplatesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumTemplatesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumTemplatesOperation{}
@@ -1231,14 +1243,16 @@ type ExportTemplatesRequest struct {
 	QuotaTemplateNamesArray *oaut.Variant  `idl:"name:quotaTemplateNamesArray" json:"quota_template_names_array"`
 }
 
-func (o *ExportTemplatesRequest) xxx_ToOp(ctx context.Context) *xxx_ExportTemplatesOperation {
+func (o *ExportTemplatesRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportTemplatesOperation) *xxx_ExportTemplatesOperation {
+	if op == nil {
+		op = &xxx_ExportTemplatesOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportTemplatesOperation{}
+		return op
 	}
-	return &xxx_ExportTemplatesOperation{
-		This:                    o.This,
-		QuotaTemplateNamesArray: o.QuotaTemplateNamesArray,
-	}
+	o.This = op.This
+	o.QuotaTemplateNamesArray = op.QuotaTemplateNamesArray
+	return op
 }
 
 func (o *ExportTemplatesRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportTemplatesOperation) {
@@ -1249,7 +1263,7 @@ func (o *ExportTemplatesRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportT
 	o.QuotaTemplateNamesArray = op.QuotaTemplateNamesArray
 }
 func (o *ExportTemplatesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExportTemplatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportTemplatesOperation{}
@@ -1269,15 +1283,17 @@ type ExportTemplatesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExportTemplatesResponse) xxx_ToOp(ctx context.Context) *xxx_ExportTemplatesOperation {
+func (o *ExportTemplatesResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportTemplatesOperation) *xxx_ExportTemplatesOperation {
+	if op == nil {
+		op = &xxx_ExportTemplatesOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportTemplatesOperation{}
+		return op
 	}
-	return &xxx_ExportTemplatesOperation{
-		That:                     o.That,
-		SerializedQuotaTemplates: o.SerializedQuotaTemplates,
-		Return:                   o.Return,
-	}
+	o.That = op.That
+	o.SerializedQuotaTemplates = op.SerializedQuotaTemplates
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExportTemplatesResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportTemplatesOperation) {
@@ -1289,7 +1305,7 @@ func (o *ExportTemplatesResponse) xxx_FromOp(ctx context.Context, op *xxx_Export
 	o.Return = op.Return
 }
 func (o *ExportTemplatesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExportTemplatesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportTemplatesOperation{}
@@ -1568,15 +1584,17 @@ type ImportTemplatesRequest struct {
 	QuotaTemplateNamesArray  *oaut.Variant  `idl:"name:quotaTemplateNamesArray" json:"quota_template_names_array"`
 }
 
-func (o *ImportTemplatesRequest) xxx_ToOp(ctx context.Context) *xxx_ImportTemplatesOperation {
+func (o *ImportTemplatesRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportTemplatesOperation) *xxx_ImportTemplatesOperation {
+	if op == nil {
+		op = &xxx_ImportTemplatesOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportTemplatesOperation{}
+		return op
 	}
-	return &xxx_ImportTemplatesOperation{
-		This:                     o.This,
-		SerializedQuotaTemplates: o.SerializedQuotaTemplates,
-		QuotaTemplateNamesArray:  o.QuotaTemplateNamesArray,
-	}
+	o.This = op.This
+	o.SerializedQuotaTemplates = op.SerializedQuotaTemplates
+	o.QuotaTemplateNamesArray = op.QuotaTemplateNamesArray
+	return op
 }
 
 func (o *ImportTemplatesRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportTemplatesOperation) {
@@ -1588,7 +1606,7 @@ func (o *ImportTemplatesRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportT
 	o.QuotaTemplateNamesArray = op.QuotaTemplateNamesArray
 }
 func (o *ImportTemplatesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ImportTemplatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportTemplatesOperation{}
@@ -1608,15 +1626,17 @@ type ImportTemplatesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ImportTemplatesResponse) xxx_ToOp(ctx context.Context) *xxx_ImportTemplatesOperation {
+func (o *ImportTemplatesResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportTemplatesOperation) *xxx_ImportTemplatesOperation {
+	if op == nil {
+		op = &xxx_ImportTemplatesOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportTemplatesOperation{}
+		return op
 	}
-	return &xxx_ImportTemplatesOperation{
-		That:           o.That,
-		QuotaTemplates: o.QuotaTemplates,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.QuotaTemplates = op.QuotaTemplates
+	o.Return = op.Return
+	return op
 }
 
 func (o *ImportTemplatesResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportTemplatesOperation) {
@@ -1628,7 +1648,7 @@ func (o *ImportTemplatesResponse) xxx_FromOp(ctx context.Context, op *xxx_Import
 	o.Return = op.Return
 }
 func (o *ImportTemplatesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ImportTemplatesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportTemplatesOperation{}

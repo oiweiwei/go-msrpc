@@ -67,47 +67,85 @@ func QuotaObjectServerHandle(ctx context.Context, o QuotaObjectServer, opNum int
 	}
 	switch opNum {
 	case 22: // Path
-		in := &GetPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // UserSid
-		in := &GetUserSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUserSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUserSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUserSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // UserAccount
-		in := &GetUserAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUserAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUserAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUserAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // SourceTemplateName
-		in := &GetSourceTemplateNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSourceTemplateNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSourceTemplateName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSourceTemplateNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSourceTemplateName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // MatchesSourceTemplate
-		in := &GetMatchesSourceTemplateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMatchesSourceTemplateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMatchesSourceTemplate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMatchesSourceTemplateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMatchesSourceTemplate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // ApplyTemplate
-		in := &ApplyTemplateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ApplyTemplateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ApplyTemplate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ApplyTemplateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ApplyTemplate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuotaObject
+type UnimplementedQuotaObjectServer struct {
+	ifsrmquotabase.UnimplementedQuotaBaseServer
+}
+
+func (UnimplementedQuotaObjectServer) GetPath(context.Context, *GetPathRequest) (*GetPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaObjectServer) GetUserSID(context.Context, *GetUserSIDRequest) (*GetUserSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaObjectServer) GetUserAccount(context.Context, *GetUserAccountRequest) (*GetUserAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaObjectServer) GetSourceTemplateName(context.Context, *GetSourceTemplateNameRequest) (*GetSourceTemplateNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaObjectServer) GetMatchesSourceTemplate(context.Context, *GetMatchesSourceTemplateRequest) (*GetMatchesSourceTemplateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaObjectServer) ApplyTemplate(context.Context, *ApplyTemplateRequest) (*ApplyTemplateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaObjectServer = (*UnimplementedQuotaObjectServer)(nil)

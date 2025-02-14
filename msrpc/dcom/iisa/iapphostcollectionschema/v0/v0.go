@@ -93,7 +93,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) Unknown() iunknown.UnknownCli
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetAddElementNames(ctx context.Context, in *GetAddElementNamesRequest, opts ...dcerpc.CallOption) (*GetAddElementNamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -113,7 +113,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetAddElementNames(ctx contex
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetAddElementSchema(ctx context.Context, in *GetAddElementSchemaRequest, opts ...dcerpc.CallOption) (*GetAddElementSchemaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -133,7 +133,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetAddElementSchema(ctx conte
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetRemoveElementSchema(ctx context.Context, in *GetRemoveElementSchemaRequest, opts ...dcerpc.CallOption) (*GetRemoveElementSchemaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -153,7 +153,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetRemoveElementSchema(ctx co
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetClearElementSchema(ctx context.Context, in *GetClearElementSchemaRequest, opts ...dcerpc.CallOption) (*GetClearElementSchemaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -173,7 +173,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetClearElementSchema(ctx con
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetIsMergeAppend(ctx context.Context, in *GetIsMergeAppendRequest, opts ...dcerpc.CallOption) (*GetIsMergeAppendResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -193,7 +193,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetIsMergeAppend(ctx context.
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetMetadata(ctx context.Context, in *GetMetadataRequest, opts ...dcerpc.CallOption) (*GetMetadataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -213,7 +213,7 @@ func (o *xxx_DefaultAppHostCollectionSchemaClient) GetMetadata(ctx context.Conte
 }
 
 func (o *xxx_DefaultAppHostCollectionSchemaClient) GetDoesAllowDuplicates(ctx context.Context, in *GetDoesAllowDuplicatesRequest, opts ...dcerpc.CallOption) (*GetDoesAllowDuplicatesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -446,13 +446,15 @@ type GetAddElementNamesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAddElementNamesRequest) xxx_ToOp(ctx context.Context) *xxx_GetAddElementNamesOperation {
+func (o *GetAddElementNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAddElementNamesOperation) *xxx_GetAddElementNamesOperation {
+	if op == nil {
+		op = &xxx_GetAddElementNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAddElementNamesOperation{}
+		return op
 	}
-	return &xxx_GetAddElementNamesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAddElementNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAddElementNamesOperation) {
@@ -462,7 +464,7 @@ func (o *GetAddElementNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.This = op.This
 }
 func (o *GetAddElementNamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAddElementNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAddElementNamesOperation{}
@@ -482,15 +484,17 @@ type GetAddElementNamesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAddElementNamesResponse) xxx_ToOp(ctx context.Context) *xxx_GetAddElementNamesOperation {
+func (o *GetAddElementNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAddElementNamesOperation) *xxx_GetAddElementNamesOperation {
+	if op == nil {
+		op = &xxx_GetAddElementNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAddElementNamesOperation{}
+		return op
 	}
-	return &xxx_GetAddElementNamesOperation{
-		That:        o.That,
-		ElementName: o.ElementName,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ElementName = op.ElementName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAddElementNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAddElementNamesOperation) {
@@ -502,7 +506,7 @@ func (o *GetAddElementNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetAddElementNamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAddElementNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAddElementNamesOperation{}
@@ -733,14 +737,16 @@ type GetAddElementSchemaRequest struct {
 	ElementName *oaut.String   `idl:"name:bstrElementName" json:"element_name"`
 }
 
-func (o *GetAddElementSchemaRequest) xxx_ToOp(ctx context.Context) *xxx_GetAddElementSchemaOperation {
+func (o *GetAddElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAddElementSchemaOperation) *xxx_GetAddElementSchemaOperation {
+	if op == nil {
+		op = &xxx_GetAddElementSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAddElementSchemaOperation{}
+		return op
 	}
-	return &xxx_GetAddElementSchemaOperation{
-		This:        o.This,
-		ElementName: o.ElementName,
-	}
+	o.This = op.This
+	o.ElementName = op.ElementName
+	return op
 }
 
 func (o *GetAddElementSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAddElementSchemaOperation) {
@@ -751,7 +757,7 @@ func (o *GetAddElementSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.ElementName = op.ElementName
 }
 func (o *GetAddElementSchemaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAddElementSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAddElementSchemaOperation{}
@@ -771,15 +777,17 @@ type GetAddElementSchemaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAddElementSchemaResponse) xxx_ToOp(ctx context.Context) *xxx_GetAddElementSchemaOperation {
+func (o *GetAddElementSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAddElementSchemaOperation) *xxx_GetAddElementSchemaOperation {
+	if op == nil {
+		op = &xxx_GetAddElementSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAddElementSchemaOperation{}
+		return op
 	}
-	return &xxx_GetAddElementSchemaOperation{
-		That:   o.That,
-		Schema: o.Schema,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Schema = op.Schema
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAddElementSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAddElementSchemaOperation) {
@@ -791,7 +799,7 @@ func (o *GetAddElementSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetAddElementSchemaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAddElementSchemaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAddElementSchemaOperation{}
@@ -974,13 +982,15 @@ type GetRemoveElementSchemaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetRemoveElementSchemaRequest) xxx_ToOp(ctx context.Context) *xxx_GetRemoveElementSchemaOperation {
+func (o *GetRemoveElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRemoveElementSchemaOperation) *xxx_GetRemoveElementSchemaOperation {
+	if op == nil {
+		op = &xxx_GetRemoveElementSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRemoveElementSchemaOperation{}
+		return op
 	}
-	return &xxx_GetRemoveElementSchemaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetRemoveElementSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRemoveElementSchemaOperation) {
@@ -990,7 +1000,7 @@ func (o *GetRemoveElementSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *GetRemoveElementSchemaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRemoveElementSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRemoveElementSchemaOperation{}
@@ -1010,15 +1020,17 @@ type GetRemoveElementSchemaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRemoveElementSchemaResponse) xxx_ToOp(ctx context.Context) *xxx_GetRemoveElementSchemaOperation {
+func (o *GetRemoveElementSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRemoveElementSchemaOperation) *xxx_GetRemoveElementSchemaOperation {
+	if op == nil {
+		op = &xxx_GetRemoveElementSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRemoveElementSchemaOperation{}
+		return op
 	}
-	return &xxx_GetRemoveElementSchemaOperation{
-		That:   o.That,
-		Schema: o.Schema,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Schema = op.Schema
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRemoveElementSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRemoveElementSchemaOperation) {
@@ -1030,7 +1042,7 @@ func (o *GetRemoveElementSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetRemoveElementSchemaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRemoveElementSchemaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRemoveElementSchemaOperation{}
@@ -1213,13 +1225,15 @@ type GetClearElementSchemaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetClearElementSchemaRequest) xxx_ToOp(ctx context.Context) *xxx_GetClearElementSchemaOperation {
+func (o *GetClearElementSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetClearElementSchemaOperation) *xxx_GetClearElementSchemaOperation {
+	if op == nil {
+		op = &xxx_GetClearElementSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClearElementSchemaOperation{}
+		return op
 	}
-	return &xxx_GetClearElementSchemaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetClearElementSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClearElementSchemaOperation) {
@@ -1229,7 +1243,7 @@ func (o *GetClearElementSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetClearElementSchemaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetClearElementSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClearElementSchemaOperation{}
@@ -1249,15 +1263,17 @@ type GetClearElementSchemaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetClearElementSchemaResponse) xxx_ToOp(ctx context.Context) *xxx_GetClearElementSchemaOperation {
+func (o *GetClearElementSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClearElementSchemaOperation) *xxx_GetClearElementSchemaOperation {
+	if op == nil {
+		op = &xxx_GetClearElementSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClearElementSchemaOperation{}
+		return op
 	}
-	return &xxx_GetClearElementSchemaOperation{
-		That:   o.That,
-		Schema: o.Schema,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Schema = op.Schema
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetClearElementSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetClearElementSchemaOperation) {
@@ -1269,7 +1285,7 @@ func (o *GetClearElementSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetClearElementSchemaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetClearElementSchemaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClearElementSchemaOperation{}
@@ -1418,13 +1434,15 @@ type GetIsMergeAppendRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIsMergeAppendRequest) xxx_ToOp(ctx context.Context) *xxx_GetIsMergeAppendOperation {
+func (o *GetIsMergeAppendRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsMergeAppendOperation) *xxx_GetIsMergeAppendOperation {
+	if op == nil {
+		op = &xxx_GetIsMergeAppendOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIsMergeAppendOperation{}
+		return op
 	}
-	return &xxx_GetIsMergeAppendOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetIsMergeAppendRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsMergeAppendOperation) {
@@ -1434,7 +1452,7 @@ func (o *GetIsMergeAppendRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsM
 	o.This = op.This
 }
 func (o *GetIsMergeAppendRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIsMergeAppendRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIsMergeAppendOperation{}
@@ -1454,15 +1472,17 @@ type GetIsMergeAppendResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIsMergeAppendResponse) xxx_ToOp(ctx context.Context) *xxx_GetIsMergeAppendOperation {
+func (o *GetIsMergeAppendResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsMergeAppendOperation) *xxx_GetIsMergeAppendOperation {
+	if op == nil {
+		op = &xxx_GetIsMergeAppendOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIsMergeAppendOperation{}
+		return op
 	}
-	return &xxx_GetIsMergeAppendOperation{
-		That:          o.That,
-		IsMergeAppend: o.IsMergeAppend,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.IsMergeAppend = op.IsMergeAppend
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetIsMergeAppendResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsMergeAppendOperation) {
@@ -1474,7 +1494,7 @@ func (o *GetIsMergeAppendResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIs
 	o.Return = op.Return
 }
 func (o *GetIsMergeAppendResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIsMergeAppendResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIsMergeAppendOperation{}
@@ -1703,14 +1723,16 @@ type GetMetadataRequest struct {
 	MetadataType *oaut.String   `idl:"name:bstrMetadataType" json:"metadata_type"`
 }
 
-func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context) *xxx_GetMetadataOperation {
+func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOperation) *xxx_GetMetadataOperation {
+	if op == nil {
+		op = &xxx_GetMetadataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMetadataOperation{}
+		return op
 	}
-	return &xxx_GetMetadataOperation{
-		This:         o.This,
-		MetadataType: o.MetadataType,
-	}
+	o.This = op.This
+	o.MetadataType = op.MetadataType
+	return op
 }
 
 func (o *GetMetadataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMetadataOperation) {
@@ -1721,7 +1743,7 @@ func (o *GetMetadataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMetadata
 	o.MetadataType = op.MetadataType
 }
 func (o *GetMetadataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMetadataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMetadataOperation{}
@@ -1741,15 +1763,17 @@ type GetMetadataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context) *xxx_GetMetadataOperation {
+func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOperation) *xxx_GetMetadataOperation {
+	if op == nil {
+		op = &xxx_GetMetadataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMetadataOperation{}
+		return op
 	}
-	return &xxx_GetMetadataOperation{
-		That:   o.That,
-		Value:  o.Value,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Value = op.Value
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMetadataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMetadataOperation) {
@@ -1761,7 +1785,7 @@ func (o *GetMetadataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMetadat
 	o.Return = op.Return
 }
 func (o *GetMetadataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMetadataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMetadataOperation{}
@@ -1910,13 +1934,15 @@ type GetDoesAllowDuplicatesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetDoesAllowDuplicatesRequest) xxx_ToOp(ctx context.Context) *xxx_GetDoesAllowDuplicatesOperation {
+func (o *GetDoesAllowDuplicatesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDoesAllowDuplicatesOperation) *xxx_GetDoesAllowDuplicatesOperation {
+	if op == nil {
+		op = &xxx_GetDoesAllowDuplicatesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDoesAllowDuplicatesOperation{}
+		return op
 	}
-	return &xxx_GetDoesAllowDuplicatesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetDoesAllowDuplicatesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDoesAllowDuplicatesOperation) {
@@ -1926,7 +1952,7 @@ func (o *GetDoesAllowDuplicatesRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *GetDoesAllowDuplicatesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDoesAllowDuplicatesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDoesAllowDuplicatesOperation{}
@@ -1946,15 +1972,17 @@ type GetDoesAllowDuplicatesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDoesAllowDuplicatesResponse) xxx_ToOp(ctx context.Context) *xxx_GetDoesAllowDuplicatesOperation {
+func (o *GetDoesAllowDuplicatesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDoesAllowDuplicatesOperation) *xxx_GetDoesAllowDuplicatesOperation {
+	if op == nil {
+		op = &xxx_GetDoesAllowDuplicatesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDoesAllowDuplicatesOperation{}
+		return op
 	}
-	return &xxx_GetDoesAllowDuplicatesOperation{
-		That:            o.That,
-		AllowDuplicates: o.AllowDuplicates,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.AllowDuplicates = op.AllowDuplicates
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDoesAllowDuplicatesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDoesAllowDuplicatesOperation) {
@@ -1966,7 +1994,7 @@ func (o *GetDoesAllowDuplicatesResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetDoesAllowDuplicatesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDoesAllowDuplicatesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDoesAllowDuplicatesOperation{}

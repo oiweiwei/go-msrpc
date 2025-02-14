@@ -165,33 +165,60 @@ func NewMsgsvcServerHandle(o MsgsvcServer) dcerpc.ServerHandle {
 func MsgsvcServerHandle(ctx context.Context, o MsgsvcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NetrMessageNameAdd
-		in := &MessageNameAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageNameAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MessageNameAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageNameAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MessageNameAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // NetrMessageNameEnum
-		in := &MessageNameEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageNameEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MessageNameEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageNameEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MessageNameEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NetrMessageNameGetInfo
-		in := &MessageNameGetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageNameGetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MessageNameGetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageNameGetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MessageNameGetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // NetrMessageNameDel
-		in := &MessageNameDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MessageNameDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MessageNameDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MessageNameDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MessageNameDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented msgsvc
+type UnimplementedMsgsvcServer struct {
+}
+
+func (UnimplementedMsgsvcServer) MessageNameAdd(context.Context, *MessageNameAddRequest) (*MessageNameAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMsgsvcServer) MessageNameEnum(context.Context, *MessageNameEnumRequest) (*MessageNameEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMsgsvcServer) MessageNameGetInfo(context.Context, *MessageNameGetInfoRequest) (*MessageNameGetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedMsgsvcServer) MessageNameDelete(context.Context, *MessageNameDeleteRequest) (*MessageNameDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ MsgsvcServer = (*UnimplementedMsgsvcServer)(nil)

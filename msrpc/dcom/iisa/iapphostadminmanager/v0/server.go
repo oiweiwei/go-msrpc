@@ -61,33 +61,61 @@ func AppHostAdminManagerServerHandle(ctx context.Context, o AppHostAdminManagerS
 	}
 	switch opNum {
 	case 3: // GetAdminSection
-		in := &GetAdminSectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAdminSectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAdminSection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAdminSectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAdminSection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // SetMetadata
-		in := &SetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ConfigManager
-		in := &GetConfigManagerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigManagerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfigManager(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigManagerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfigManager(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostAdminManager
+type UnimplementedAppHostAdminManagerServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostAdminManagerServer) GetAdminSection(context.Context, *GetAdminSectionRequest) (*GetAdminSectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostAdminManagerServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostAdminManagerServer) SetMetadata(context.Context, *SetMetadataRequest) (*SetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostAdminManagerServer) GetConfigManager(context.Context, *GetConfigManagerRequest) (*GetConfigManagerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostAdminManagerServer = (*UnimplementedAppHostAdminManagerServer)(nil)

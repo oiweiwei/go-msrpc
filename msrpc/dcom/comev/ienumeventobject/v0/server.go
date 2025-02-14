@@ -107,33 +107,61 @@ func EnumEventObjectServerHandle(ctx context.Context, o EnumEventObjectServer, o
 	}
 	switch opNum {
 	case 3: // Clone
-		in := &CloneRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloneOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clone(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloneRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clone(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Next
-		in := &NextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Next(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Next(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Reset
-		in := &ResetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Reset(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Reset(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Skip
-		in := &SkipRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SkipOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Skip(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SkipRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Skip(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEnumEventObject
+type UnimplementedEnumEventObjectServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedEnumEventObjectServer) Clone(context.Context, *CloneRequest) (*CloneResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEnumEventObjectServer) Next(context.Context, *NextRequest) (*NextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEnumEventObjectServer) Reset(context.Context, *ResetRequest) (*ResetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEnumEventObjectServer) Skip(context.Context, *SkipRequest) (*SkipResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EnumEventObjectServer = (*UnimplementedEnumEventObjectServer)(nil)

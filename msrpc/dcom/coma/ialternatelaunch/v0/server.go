@@ -83,19 +83,37 @@ func AlternateLaunchServerHandle(ctx context.Context, o AlternateLaunchServer, o
 	}
 	switch opNum {
 	case 3: // CreateConfiguration
-		in := &CreateConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // DeleteConfiguration
-		in := &DeleteConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAlternateLaunch
+type UnimplementedAlternateLaunchServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAlternateLaunchServer) CreateConfiguration(context.Context, *CreateConfigurationRequest) (*CreateConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlternateLaunchServer) DeleteConfiguration(context.Context, *DeleteConfigurationRequest) (*DeleteConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AlternateLaunchServer = (*UnimplementedAlternateLaunchServer)(nil)

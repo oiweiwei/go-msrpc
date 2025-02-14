@@ -55,19 +55,37 @@ func ServerHealthReport2ServerHandle(ctx context.Context, o ServerHealthReport2S
 	}
 	switch opNum {
 	case 9: // GetReport2
-		in := &GetReport2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReport2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReport2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReport2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReport2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetCompressedReport2
-		in := &GetCompressedReport2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCompressedReport2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCompressedReport2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCompressedReport2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCompressedReport2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IServerHealthReport2
+type UnimplementedServerHealthReport2Server struct {
+	iserverhealthreport.UnimplementedServerHealthReportServer
+}
+
+func (UnimplementedServerHealthReport2Server) GetReport2(context.Context, *GetReport2Request) (*GetReport2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServerHealthReport2Server) GetCompressedReport2(context.Context, *GetCompressedReport2Request) (*GetCompressedReport2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServerHealthReport2Server = (*UnimplementedServerHealthReport2Server)(nil)

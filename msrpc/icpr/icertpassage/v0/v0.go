@@ -73,7 +73,7 @@ type xxx_DefaultCertPassageClient struct {
 }
 
 func (o *xxx_DefaultCertPassageClient) CertServerRequest(ctx context.Context, in *CertServerRequestRequest, opts ...dcerpc.CallOption) (*CertServerRequestResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -416,17 +416,19 @@ type CertServerRequestRequest struct {
 	Request *wcce.CertTransportBlob `idl:"name:pctbRequest;pointer:ref" json:"request"`
 }
 
-func (o *CertServerRequestRequest) xxx_ToOp(ctx context.Context) *xxx_CertServerRequestOperation {
+func (o *CertServerRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_CertServerRequestOperation) *xxx_CertServerRequestOperation {
+	if op == nil {
+		op = &xxx_CertServerRequestOperation{}
+	}
 	if o == nil {
-		return &xxx_CertServerRequestOperation{}
+		return op
 	}
-	return &xxx_CertServerRequestOperation{
-		Flags:      o.Flags,
-		Authority:  o.Authority,
-		RequestID:  o.RequestID,
-		Attributes: o.Attributes,
-		Request:    o.Request,
-	}
+	o.Flags = op.Flags
+	o.Authority = op.Authority
+	o.RequestID = op.RequestID
+	o.Attributes = op.Attributes
+	o.Request = op.Request
+	return op
 }
 
 func (o *CertServerRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_CertServerRequestOperation) {
@@ -440,7 +442,7 @@ func (o *CertServerRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_CertS
 	o.Request = op.Request
 }
 func (o *CertServerRequestRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CertServerRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CertServerRequestOperation{}
@@ -473,18 +475,20 @@ type CertServerRequestResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CertServerRequestResponse) xxx_ToOp(ctx context.Context) *xxx_CertServerRequestOperation {
+func (o *CertServerRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_CertServerRequestOperation) *xxx_CertServerRequestOperation {
+	if op == nil {
+		op = &xxx_CertServerRequestOperation{}
+	}
 	if o == nil {
-		return &xxx_CertServerRequestOperation{}
+		return op
 	}
-	return &xxx_CertServerRequestOperation{
-		RequestID:          o.RequestID,
-		Disposition:        o.Disposition,
-		Cert:               o.Cert,
-		EncodedCert:        o.EncodedCert,
-		DispositionMessage: o.DispositionMessage,
-		Return:             o.Return,
-	}
+	o.RequestID = op.RequestID
+	o.Disposition = op.Disposition
+	o.Cert = op.Cert
+	o.EncodedCert = op.EncodedCert
+	o.DispositionMessage = op.DispositionMessage
+	o.Return = op.Return
+	return op
 }
 
 func (o *CertServerRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_CertServerRequestOperation) {
@@ -499,7 +503,7 @@ func (o *CertServerRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_Cert
 	o.Return = op.Return
 }
 func (o *CertServerRequestResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CertServerRequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CertServerRequestOperation{}

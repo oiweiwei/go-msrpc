@@ -94,40 +94,73 @@ func VDiskProviderServerHandle(ctx context.Context, o VDiskProviderServer, opNum
 	}
 	switch opNum {
 	case 3: // QueryVDisks
-		in := &QueryVDisksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryVDisksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryVDisks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryVDisksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryVDisks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CreateVDisk
-		in := &CreateVDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateVDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateVDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateVDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateVDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AddVDisk
-		in := &AddVDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddVDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddVDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddVDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddVDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetDiskFromVDisk
-		in := &GetDiskFromVDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDiskFromVDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDiskFromVDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDiskFromVDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDiskFromVDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetVDiskFromDisk
-		in := &GetVDiskFromDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVDiskFromDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVDiskFromDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVDiskFromDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVDiskFromDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVdProvider
+type UnimplementedVDiskProviderServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVDiskProviderServer) QueryVDisks(context.Context, *QueryVDisksRequest) (*QueryVDisksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskProviderServer) CreateVDisk(context.Context, *CreateVDiskRequest) (*CreateVDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskProviderServer) AddVDisk(context.Context, *AddVDiskRequest) (*AddVDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskProviderServer) GetDiskFromVDisk(context.Context, *GetDiskFromVDiskRequest) (*GetDiskFromVDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskProviderServer) GetVDiskFromDisk(context.Context, *GetVDiskFromDiskRequest) (*GetVDiskFromDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VDiskProviderServer = (*UnimplementedVDiskProviderServer)(nil)

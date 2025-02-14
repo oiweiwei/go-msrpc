@@ -18683,7 +18683,7 @@ type xxx_DefaultSrvsvcClient struct {
 }
 
 func (o *xxx_DefaultSrvsvcClient) ConnectionEnum(ctx context.Context, in *ConnectionEnumRequest, opts ...dcerpc.CallOption) (*ConnectionEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18696,7 +18696,7 @@ func (o *xxx_DefaultSrvsvcClient) ConnectionEnum(ctx context.Context, in *Connec
 }
 
 func (o *xxx_DefaultSrvsvcClient) FileEnum(ctx context.Context, in *FileEnumRequest, opts ...dcerpc.CallOption) (*FileEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18709,7 +18709,7 @@ func (o *xxx_DefaultSrvsvcClient) FileEnum(ctx context.Context, in *FileEnumRequ
 }
 
 func (o *xxx_DefaultSrvsvcClient) FileGetInfo(ctx context.Context, in *FileGetInfoRequest, opts ...dcerpc.CallOption) (*FileGetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18722,7 +18722,7 @@ func (o *xxx_DefaultSrvsvcClient) FileGetInfo(ctx context.Context, in *FileGetIn
 }
 
 func (o *xxx_DefaultSrvsvcClient) FileClose(ctx context.Context, in *FileCloseRequest, opts ...dcerpc.CallOption) (*FileCloseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18735,7 +18735,7 @@ func (o *xxx_DefaultSrvsvcClient) FileClose(ctx context.Context, in *FileCloseRe
 }
 
 func (o *xxx_DefaultSrvsvcClient) SessionEnum(ctx context.Context, in *SessionEnumRequest, opts ...dcerpc.CallOption) (*SessionEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18748,7 +18748,7 @@ func (o *xxx_DefaultSrvsvcClient) SessionEnum(ctx context.Context, in *SessionEn
 }
 
 func (o *xxx_DefaultSrvsvcClient) SessionDelete(ctx context.Context, in *SessionDeleteRequest, opts ...dcerpc.CallOption) (*SessionDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18761,7 +18761,7 @@ func (o *xxx_DefaultSrvsvcClient) SessionDelete(ctx context.Context, in *Session
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareAdd(ctx context.Context, in *ShareAddRequest, opts ...dcerpc.CallOption) (*ShareAddResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18774,7 +18774,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareAdd(ctx context.Context, in *ShareAddRequ
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareEnum(ctx context.Context, in *ShareEnumRequest, opts ...dcerpc.CallOption) (*ShareEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18787,7 +18787,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareEnum(ctx context.Context, in *ShareEnumRe
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareGetInfo(ctx context.Context, in *ShareGetInfoRequest, opts ...dcerpc.CallOption) (*ShareGetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18800,7 +18800,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareGetInfo(ctx context.Context, in *ShareGet
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareSetInfo(ctx context.Context, in *ShareSetInfoRequest, opts ...dcerpc.CallOption) (*ShareSetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18813,7 +18813,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareSetInfo(ctx context.Context, in *ShareSet
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareDelete(ctx context.Context, in *ShareDeleteRequest, opts ...dcerpc.CallOption) (*ShareDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18826,7 +18826,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDelete(ctx context.Context, in *ShareDele
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareDeleteSticky(ctx context.Context, in *ShareDeleteStickyRequest, opts ...dcerpc.CallOption) (*ShareDeleteStickyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18839,7 +18839,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteSticky(ctx context.Context, in *Sha
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareCheck(ctx context.Context, in *ShareCheckRequest, opts ...dcerpc.CallOption) (*ShareCheckResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18852,7 +18852,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareCheck(ctx context.Context, in *ShareCheck
 }
 
 func (o *xxx_DefaultSrvsvcClient) GetInfo(ctx context.Context, in *GetInfoRequest, opts ...dcerpc.CallOption) (*GetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18865,7 +18865,7 @@ func (o *xxx_DefaultSrvsvcClient) GetInfo(ctx context.Context, in *GetInfoReques
 }
 
 func (o *xxx_DefaultSrvsvcClient) SetInfo(ctx context.Context, in *SetInfoRequest, opts ...dcerpc.CallOption) (*SetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18878,7 +18878,7 @@ func (o *xxx_DefaultSrvsvcClient) SetInfo(ctx context.Context, in *SetInfoReques
 }
 
 func (o *xxx_DefaultSrvsvcClient) DiskEnum(ctx context.Context, in *DiskEnumRequest, opts ...dcerpc.CallOption) (*DiskEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18891,7 +18891,7 @@ func (o *xxx_DefaultSrvsvcClient) DiskEnum(ctx context.Context, in *DiskEnumRequ
 }
 
 func (o *xxx_DefaultSrvsvcClient) StatisticsGet(ctx context.Context, in *StatisticsGetRequest, opts ...dcerpc.CallOption) (*StatisticsGetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18904,7 +18904,7 @@ func (o *xxx_DefaultSrvsvcClient) StatisticsGet(ctx context.Context, in *Statist
 }
 
 func (o *xxx_DefaultSrvsvcClient) TransportAdd(ctx context.Context, in *TransportAddRequest, opts ...dcerpc.CallOption) (*TransportAddResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18917,7 +18917,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportAdd(ctx context.Context, in *Transpor
 }
 
 func (o *xxx_DefaultSrvsvcClient) TransportEnum(ctx context.Context, in *TransportEnumRequest, opts ...dcerpc.CallOption) (*TransportEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18930,7 +18930,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportEnum(ctx context.Context, in *Transpo
 }
 
 func (o *xxx_DefaultSrvsvcClient) TransportDelete(ctx context.Context, in *TransportDeleteRequest, opts ...dcerpc.CallOption) (*TransportDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18943,7 +18943,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportDelete(ctx context.Context, in *Trans
 }
 
 func (o *xxx_DefaultSrvsvcClient) RemoteToD(ctx context.Context, in *RemoteToDRequest, opts ...dcerpc.CallOption) (*RemoteToDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18956,7 +18956,7 @@ func (o *xxx_DefaultSrvsvcClient) RemoteToD(ctx context.Context, in *RemoteToDRe
 }
 
 func (o *xxx_DefaultSrvsvcClient) PathType(ctx context.Context, in *PathTypeRequest, opts ...dcerpc.CallOption) (*PathTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18969,7 +18969,7 @@ func (o *xxx_DefaultSrvsvcClient) PathType(ctx context.Context, in *PathTypeRequ
 }
 
 func (o *xxx_DefaultSrvsvcClient) PathCanonicalize(ctx context.Context, in *PathCanonicalizeRequest, opts ...dcerpc.CallOption) (*PathCanonicalizeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18982,7 +18982,7 @@ func (o *xxx_DefaultSrvsvcClient) PathCanonicalize(ctx context.Context, in *Path
 }
 
 func (o *xxx_DefaultSrvsvcClient) PathCompare(ctx context.Context, in *PathCompareRequest, opts ...dcerpc.CallOption) (*PathCompareResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -18995,7 +18995,7 @@ func (o *xxx_DefaultSrvsvcClient) PathCompare(ctx context.Context, in *PathCompa
 }
 
 func (o *xxx_DefaultSrvsvcClient) NameValidate(ctx context.Context, in *NameValidateRequest, opts ...dcerpc.CallOption) (*NameValidateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19008,7 +19008,7 @@ func (o *xxx_DefaultSrvsvcClient) NameValidate(ctx context.Context, in *NameVali
 }
 
 func (o *xxx_DefaultSrvsvcClient) NameCanonicalize(ctx context.Context, in *NameCanonicalizeRequest, opts ...dcerpc.CallOption) (*NameCanonicalizeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19021,7 +19021,7 @@ func (o *xxx_DefaultSrvsvcClient) NameCanonicalize(ctx context.Context, in *Name
 }
 
 func (o *xxx_DefaultSrvsvcClient) NameCompare(ctx context.Context, in *NameCompareRequest, opts ...dcerpc.CallOption) (*NameCompareResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19034,7 +19034,7 @@ func (o *xxx_DefaultSrvsvcClient) NameCompare(ctx context.Context, in *NameCompa
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareEnumSticky(ctx context.Context, in *ShareEnumStickyRequest, opts ...dcerpc.CallOption) (*ShareEnumStickyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19047,7 +19047,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareEnumSticky(ctx context.Context, in *Share
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareDeleteStart(ctx context.Context, in *ShareDeleteStartRequest, opts ...dcerpc.CallOption) (*ShareDeleteStartResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19060,7 +19060,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteStart(ctx context.Context, in *Shar
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareDeleteCommit(ctx context.Context, in *ShareDeleteCommitRequest, opts ...dcerpc.CallOption) (*ShareDeleteCommitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19073,7 +19073,7 @@ func (o *xxx_DefaultSrvsvcClient) ShareDeleteCommit(ctx context.Context, in *Sha
 }
 
 func (o *xxx_DefaultSrvsvcClient) GetFileSecurity(ctx context.Context, in *GetFileSecurityRequest, opts ...dcerpc.CallOption) (*GetFileSecurityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19086,7 +19086,7 @@ func (o *xxx_DefaultSrvsvcClient) GetFileSecurity(ctx context.Context, in *GetFi
 }
 
 func (o *xxx_DefaultSrvsvcClient) SetFileSecurity(ctx context.Context, in *SetFileSecurityRequest, opts ...dcerpc.CallOption) (*SetFileSecurityResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19099,7 +19099,7 @@ func (o *xxx_DefaultSrvsvcClient) SetFileSecurity(ctx context.Context, in *SetFi
 }
 
 func (o *xxx_DefaultSrvsvcClient) TransportAddEx(ctx context.Context, in *TransportAddExRequest, opts ...dcerpc.CallOption) (*TransportAddExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19112,7 +19112,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportAddEx(ctx context.Context, in *Transp
 }
 
 func (o *xxx_DefaultSrvsvcClient) GetVersion(ctx context.Context, in *GetVersionRequest, opts ...dcerpc.CallOption) (*GetVersionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19125,7 +19125,7 @@ func (o *xxx_DefaultSrvsvcClient) GetVersion(ctx context.Context, in *GetVersion
 }
 
 func (o *xxx_DefaultSrvsvcClient) CreateLocalPartition(ctx context.Context, in *CreateLocalPartitionRequest, opts ...dcerpc.CallOption) (*CreateLocalPartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19138,7 +19138,7 @@ func (o *xxx_DefaultSrvsvcClient) CreateLocalPartition(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSrvsvcClient) DeleteLocalPartition(ctx context.Context, in *DeleteLocalPartitionRequest, opts ...dcerpc.CallOption) (*DeleteLocalPartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19151,7 +19151,7 @@ func (o *xxx_DefaultSrvsvcClient) DeleteLocalPartition(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultSrvsvcClient) SetLocalVolumeState(ctx context.Context, in *SetLocalVolumeStateRequest, opts ...dcerpc.CallOption) (*SetLocalVolumeStateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19164,7 +19164,7 @@ func (o *xxx_DefaultSrvsvcClient) SetLocalVolumeState(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultSrvsvcClient) CreateExitPoint(ctx context.Context, in *CreateExitPointRequest, opts ...dcerpc.CallOption) (*CreateExitPointResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19177,7 +19177,7 @@ func (o *xxx_DefaultSrvsvcClient) CreateExitPoint(ctx context.Context, in *Creat
 }
 
 func (o *xxx_DefaultSrvsvcClient) DeleteExitPoint(ctx context.Context, in *DeleteExitPointRequest, opts ...dcerpc.CallOption) (*DeleteExitPointResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19190,7 +19190,7 @@ func (o *xxx_DefaultSrvsvcClient) DeleteExitPoint(ctx context.Context, in *Delet
 }
 
 func (o *xxx_DefaultSrvsvcClient) ModifyPrefix(ctx context.Context, in *ModifyPrefixRequest, opts ...dcerpc.CallOption) (*ModifyPrefixResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19203,7 +19203,7 @@ func (o *xxx_DefaultSrvsvcClient) ModifyPrefix(ctx context.Context, in *ModifyPr
 }
 
 func (o *xxx_DefaultSrvsvcClient) FixLocalVolume(ctx context.Context, in *FixLocalVolumeRequest, opts ...dcerpc.CallOption) (*FixLocalVolumeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19216,7 +19216,7 @@ func (o *xxx_DefaultSrvsvcClient) FixLocalVolume(ctx context.Context, in *FixLoc
 }
 
 func (o *xxx_DefaultSrvsvcClient) ManagerReportSiteInfo(ctx context.Context, in *ManagerReportSiteInfoRequest, opts ...dcerpc.CallOption) (*ManagerReportSiteInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19229,7 +19229,7 @@ func (o *xxx_DefaultSrvsvcClient) ManagerReportSiteInfo(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultSrvsvcClient) TransportDeleteEx(ctx context.Context, in *TransportDeleteExRequest, opts ...dcerpc.CallOption) (*TransportDeleteExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19242,7 +19242,7 @@ func (o *xxx_DefaultSrvsvcClient) TransportDeleteEx(ctx context.Context, in *Tra
 }
 
 func (o *xxx_DefaultSrvsvcClient) AliasAdd(ctx context.Context, in *AliasAddRequest, opts ...dcerpc.CallOption) (*AliasAddResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19255,7 +19255,7 @@ func (o *xxx_DefaultSrvsvcClient) AliasAdd(ctx context.Context, in *AliasAddRequ
 }
 
 func (o *xxx_DefaultSrvsvcClient) AliasEnum(ctx context.Context, in *AliasEnumRequest, opts ...dcerpc.CallOption) (*AliasEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19268,7 +19268,7 @@ func (o *xxx_DefaultSrvsvcClient) AliasEnum(ctx context.Context, in *AliasEnumRe
 }
 
 func (o *xxx_DefaultSrvsvcClient) AliasDelete(ctx context.Context, in *AliasDeleteRequest, opts ...dcerpc.CallOption) (*AliasDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19281,7 +19281,7 @@ func (o *xxx_DefaultSrvsvcClient) AliasDelete(ctx context.Context, in *AliasDele
 }
 
 func (o *xxx_DefaultSrvsvcClient) ShareDeleteEx(ctx context.Context, in *ShareDeleteExRequest, opts ...dcerpc.CallOption) (*ShareDeleteExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -19617,17 +19617,19 @@ type ConnectionEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *ConnectionEnumRequest) xxx_ToOp(ctx context.Context) *xxx_ConnectionEnumOperation {
+func (o *ConnectionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectionEnumOperation) *xxx_ConnectionEnumOperation {
+	if op == nil {
+		op = &xxx_ConnectionEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_ConnectionEnumOperation{}
+		return op
 	}
-	return &xxx_ConnectionEnumOperation{
-		ServerName:             o.ServerName,
-		Qualifier:              o.Qualifier,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Qualifier = op.Qualifier
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *ConnectionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_ConnectionEnumOperation) {
@@ -19641,7 +19643,7 @@ func (o *ConnectionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Connecti
 	o.Resume = op.Resume
 }
 func (o *ConnectionEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConnectionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConnectionEnumOperation{}
@@ -19673,16 +19675,18 @@ type ConnectionEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConnectionEnumResponse) xxx_ToOp(ctx context.Context) *xxx_ConnectionEnumOperation {
+func (o *ConnectionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_ConnectionEnumOperation) *xxx_ConnectionEnumOperation {
+	if op == nil {
+		op = &xxx_ConnectionEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_ConnectionEnumOperation{}
+		return op
 	}
-	return &xxx_ConnectionEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConnectionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_ConnectionEnumOperation) {
@@ -19695,7 +19699,7 @@ func (o *ConnectionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Connect
 	o.Return = op.Return
 }
 func (o *ConnectionEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConnectionEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConnectionEnumOperation{}
@@ -20053,18 +20057,20 @@ type FileEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *FileEnumRequest) xxx_ToOp(ctx context.Context) *xxx_FileEnumOperation {
+func (o *FileEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_FileEnumOperation) *xxx_FileEnumOperation {
+	if op == nil {
+		op = &xxx_FileEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_FileEnumOperation{}
+		return op
 	}
-	return &xxx_FileEnumOperation{
-		ServerName:             o.ServerName,
-		BasePath:               o.BasePath,
-		UserName:               o.UserName,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.BasePath = op.BasePath
+	o.UserName = op.UserName
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *FileEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_FileEnumOperation) {
@@ -20079,7 +20085,7 @@ func (o *FileEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_FileEnumOperat
 	o.Resume = op.Resume
 }
 func (o *FileEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FileEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FileEnumOperation{}
@@ -20110,16 +20116,18 @@ type FileEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FileEnumResponse) xxx_ToOp(ctx context.Context) *xxx_FileEnumOperation {
+func (o *FileEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_FileEnumOperation) *xxx_FileEnumOperation {
+	if op == nil {
+		op = &xxx_FileEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_FileEnumOperation{}
+		return op
 	}
-	return &xxx_FileEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *FileEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_FileEnumOperation) {
@@ -20132,7 +20140,7 @@ func (o *FileEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_FileEnumOpera
 	o.Return = op.Return
 }
 func (o *FileEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FileEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FileEnumOperation{}
@@ -20324,15 +20332,17 @@ type FileGetInfoRequest struct {
 	Level uint32 `idl:"name:Level" json:"level"`
 }
 
-func (o *FileGetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_FileGetInfoOperation {
+func (o *FileGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_FileGetInfoOperation) *xxx_FileGetInfoOperation {
+	if op == nil {
+		op = &xxx_FileGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_FileGetInfoOperation{}
+		return op
 	}
-	return &xxx_FileGetInfoOperation{
-		ServerName: o.ServerName,
-		FileID:     o.FileID,
-		Level:      o.Level,
-	}
+	o.ServerName = op.ServerName
+	o.FileID = op.FileID
+	o.Level = op.Level
+	return op
 }
 
 func (o *FileGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_FileGetInfoOperation) {
@@ -20344,7 +20354,7 @@ func (o *FileGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_FileGetInfo
 	o.Level = op.Level
 }
 func (o *FileGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FileGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FileGetInfoOperation{}
@@ -20365,14 +20375,16 @@ type FileGetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FileGetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_FileGetInfoOperation {
+func (o *FileGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_FileGetInfoOperation) *xxx_FileGetInfoOperation {
+	if op == nil {
+		op = &xxx_FileGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_FileGetInfoOperation{}
+		return op
 	}
-	return &xxx_FileGetInfoOperation{
-		Info:   o.Info,
-		Return: o.Return,
-	}
+	o.Info = op.Info
+	o.Return = op.Return
+	return op
 }
 
 func (o *FileGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_FileGetInfoOperation) {
@@ -20383,7 +20395,7 @@ func (o *FileGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_FileGetInf
 	o.Return = op.Return
 }
 func (o *FileGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FileGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FileGetInfoOperation{}
@@ -20516,14 +20528,16 @@ type FileCloseRequest struct {
 	FileID uint32 `idl:"name:FileId" json:"file_id"`
 }
 
-func (o *FileCloseRequest) xxx_ToOp(ctx context.Context) *xxx_FileCloseOperation {
+func (o *FileCloseRequest) xxx_ToOp(ctx context.Context, op *xxx_FileCloseOperation) *xxx_FileCloseOperation {
+	if op == nil {
+		op = &xxx_FileCloseOperation{}
+	}
 	if o == nil {
-		return &xxx_FileCloseOperation{}
+		return op
 	}
-	return &xxx_FileCloseOperation{
-		ServerName: o.ServerName,
-		FileID:     o.FileID,
-	}
+	o.ServerName = op.ServerName
+	o.FileID = op.FileID
+	return op
 }
 
 func (o *FileCloseRequest) xxx_FromOp(ctx context.Context, op *xxx_FileCloseOperation) {
@@ -20534,7 +20548,7 @@ func (o *FileCloseRequest) xxx_FromOp(ctx context.Context, op *xxx_FileCloseOper
 	o.FileID = op.FileID
 }
 func (o *FileCloseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FileCloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FileCloseOperation{}
@@ -20551,13 +20565,15 @@ type FileCloseResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FileCloseResponse) xxx_ToOp(ctx context.Context) *xxx_FileCloseOperation {
+func (o *FileCloseResponse) xxx_ToOp(ctx context.Context, op *xxx_FileCloseOperation) *xxx_FileCloseOperation {
+	if op == nil {
+		op = &xxx_FileCloseOperation{}
+	}
 	if o == nil {
-		return &xxx_FileCloseOperation{}
+		return op
 	}
-	return &xxx_FileCloseOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *FileCloseResponse) xxx_FromOp(ctx context.Context, op *xxx_FileCloseOperation) {
@@ -20567,7 +20583,7 @@ func (o *FileCloseResponse) xxx_FromOp(ctx context.Context, op *xxx_FileCloseOpe
 	o.Return = op.Return
 }
 func (o *FileCloseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FileCloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FileCloseOperation{}
@@ -20929,18 +20945,20 @@ type SessionEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *SessionEnumRequest) xxx_ToOp(ctx context.Context) *xxx_SessionEnumOperation {
+func (o *SessionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_SessionEnumOperation) *xxx_SessionEnumOperation {
+	if op == nil {
+		op = &xxx_SessionEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_SessionEnumOperation{}
+		return op
 	}
-	return &xxx_SessionEnumOperation{
-		ServerName:             o.ServerName,
-		ClientName:             o.ClientName,
-		UserName:               o.UserName,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.ClientName = op.ClientName
+	o.UserName = op.UserName
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *SessionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_SessionEnumOperation) {
@@ -20955,7 +20973,7 @@ func (o *SessionEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_SessionEnum
 	o.Resume = op.Resume
 }
 func (o *SessionEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SessionEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SessionEnumOperation{}
@@ -20987,16 +21005,18 @@ type SessionEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SessionEnumResponse) xxx_ToOp(ctx context.Context) *xxx_SessionEnumOperation {
+func (o *SessionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_SessionEnumOperation) *xxx_SessionEnumOperation {
+	if op == nil {
+		op = &xxx_SessionEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_SessionEnumOperation{}
+		return op
 	}
-	return &xxx_SessionEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *SessionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_SessionEnumOperation) {
@@ -21009,7 +21029,7 @@ func (o *SessionEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_SessionEnu
 	o.Return = op.Return
 }
 func (o *SessionEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SessionEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SessionEnumOperation{}
@@ -21210,15 +21230,17 @@ type SessionDeleteRequest struct {
 	UserName string `idl:"name:UserName;string;pointer:unique" json:"user_name"`
 }
 
-func (o *SessionDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_SessionDeleteOperation {
+func (o *SessionDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_SessionDeleteOperation) *xxx_SessionDeleteOperation {
+	if op == nil {
+		op = &xxx_SessionDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_SessionDeleteOperation{}
+		return op
 	}
-	return &xxx_SessionDeleteOperation{
-		ServerName: o.ServerName,
-		ClientName: o.ClientName,
-		UserName:   o.UserName,
-	}
+	o.ServerName = op.ServerName
+	o.ClientName = op.ClientName
+	o.UserName = op.UserName
+	return op
 }
 
 func (o *SessionDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_SessionDeleteOperation) {
@@ -21230,7 +21252,7 @@ func (o *SessionDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_SessionDe
 	o.UserName = op.UserName
 }
 func (o *SessionDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SessionDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SessionDeleteOperation{}
@@ -21247,13 +21269,15 @@ type SessionDeleteResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SessionDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_SessionDeleteOperation {
+func (o *SessionDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_SessionDeleteOperation) *xxx_SessionDeleteOperation {
+	if op == nil {
+		op = &xxx_SessionDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_SessionDeleteOperation{}
+		return op
 	}
-	return &xxx_SessionDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SessionDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_SessionDeleteOperation) {
@@ -21263,7 +21287,7 @@ func (o *SessionDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_SessionD
 	o.Return = op.Return
 }
 func (o *SessionDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SessionDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SessionDeleteOperation{}
@@ -21512,16 +21536,18 @@ type ShareAddRequest struct {
 	ParameterError uint32 `idl:"name:ParmErr;pointer:unique" json:"parameter_error"`
 }
 
-func (o *ShareAddRequest) xxx_ToOp(ctx context.Context) *xxx_ShareAddOperation {
+func (o *ShareAddRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareAddOperation) *xxx_ShareAddOperation {
+	if op == nil {
+		op = &xxx_ShareAddOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareAddOperation{}
+		return op
 	}
-	return &xxx_ShareAddOperation{
-		ServerName:     o.ServerName,
-		Level:          o.Level,
-		Info:           o.Info,
-		ParameterError: o.ParameterError,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Info = op.Info
+	o.ParameterError = op.ParameterError
+	return op
 }
 
 func (o *ShareAddRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareAddOperation) {
@@ -21534,7 +21560,7 @@ func (o *ShareAddRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareAddOperat
 	o.ParameterError = op.ParameterError
 }
 func (o *ShareAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareAddOperation{}
@@ -21555,14 +21581,16 @@ type ShareAddResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareAddResponse) xxx_ToOp(ctx context.Context) *xxx_ShareAddOperation {
+func (o *ShareAddResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareAddOperation) *xxx_ShareAddOperation {
+	if op == nil {
+		op = &xxx_ShareAddOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareAddOperation{}
+		return op
 	}
-	return &xxx_ShareAddOperation{
-		ParameterError: o.ParameterError,
-		Return:         o.Return,
-	}
+	o.ParameterError = op.ParameterError
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareAddResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareAddOperation) {
@@ -21573,7 +21601,7 @@ func (o *ShareAddResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareAddOpera
 	o.Return = op.Return
 }
 func (o *ShareAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareAddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareAddOperation{}
@@ -21851,16 +21879,18 @@ type ShareEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *ShareEnumRequest) xxx_ToOp(ctx context.Context) *xxx_ShareEnumOperation {
+func (o *ShareEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareEnumOperation) *xxx_ShareEnumOperation {
+	if op == nil {
+		op = &xxx_ShareEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareEnumOperation{}
+		return op
 	}
-	return &xxx_ShareEnumOperation{
-		ServerName:             o.ServerName,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *ShareEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareEnumOperation) {
@@ -21873,7 +21903,7 @@ func (o *ShareEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareEnumOper
 	o.Resume = op.Resume
 }
 func (o *ShareEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareEnumOperation{}
@@ -21905,16 +21935,18 @@ type ShareEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareEnumResponse) xxx_ToOp(ctx context.Context) *xxx_ShareEnumOperation {
+func (o *ShareEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareEnumOperation) *xxx_ShareEnumOperation {
+	if op == nil {
+		op = &xxx_ShareEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareEnumOperation{}
+		return op
 	}
-	return &xxx_ShareEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareEnumOperation) {
@@ -21927,7 +21959,7 @@ func (o *ShareEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareEnumOpe
 	o.Return = op.Return
 }
 func (o *ShareEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareEnumOperation{}
@@ -22128,15 +22160,17 @@ type ShareGetInfoRequest struct {
 	Level uint32 `idl:"name:Level" json:"level"`
 }
 
-func (o *ShareGetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_ShareGetInfoOperation {
+func (o *ShareGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareGetInfoOperation) *xxx_ShareGetInfoOperation {
+	if op == nil {
+		op = &xxx_ShareGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareGetInfoOperation{}
+		return op
 	}
-	return &xxx_ShareGetInfoOperation{
-		ServerName: o.ServerName,
-		NetName:    o.NetName,
-		Level:      o.Level,
-	}
+	o.ServerName = op.ServerName
+	o.NetName = op.NetName
+	o.Level = op.Level
+	return op
 }
 
 func (o *ShareGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareGetInfoOperation) {
@@ -22148,7 +22182,7 @@ func (o *ShareGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareGetIn
 	o.Level = op.Level
 }
 func (o *ShareGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareGetInfoOperation{}
@@ -22169,14 +22203,16 @@ type ShareGetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareGetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_ShareGetInfoOperation {
+func (o *ShareGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareGetInfoOperation) *xxx_ShareGetInfoOperation {
+	if op == nil {
+		op = &xxx_ShareGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareGetInfoOperation{}
+		return op
 	}
-	return &xxx_ShareGetInfoOperation{
-		Info:   o.Info,
-		Return: o.Return,
-	}
+	o.Info = op.Info
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareGetInfoOperation) {
@@ -22187,7 +22223,7 @@ func (o *ShareGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareGetI
 	o.Return = op.Return
 }
 func (o *ShareGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareGetInfoOperation{}
@@ -22464,17 +22500,19 @@ type ShareSetInfoRequest struct {
 	ParameterError uint32 `idl:"name:ParmErr;pointer:unique" json:"parameter_error"`
 }
 
-func (o *ShareSetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_ShareSetInfoOperation {
+func (o *ShareSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareSetInfoOperation) *xxx_ShareSetInfoOperation {
+	if op == nil {
+		op = &xxx_ShareSetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareSetInfoOperation{}
+		return op
 	}
-	return &xxx_ShareSetInfoOperation{
-		ServerName:     o.ServerName,
-		NetName:        o.NetName,
-		Level:          o.Level,
-		ShareInfo:      o.ShareInfo,
-		ParameterError: o.ParameterError,
-	}
+	o.ServerName = op.ServerName
+	o.NetName = op.NetName
+	o.Level = op.Level
+	o.ShareInfo = op.ShareInfo
+	o.ParameterError = op.ParameterError
+	return op
 }
 
 func (o *ShareSetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareSetInfoOperation) {
@@ -22488,7 +22526,7 @@ func (o *ShareSetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareSetIn
 	o.ParameterError = op.ParameterError
 }
 func (o *ShareSetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareSetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareSetInfoOperation{}
@@ -22509,14 +22547,16 @@ type ShareSetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareSetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_ShareSetInfoOperation {
+func (o *ShareSetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareSetInfoOperation) *xxx_ShareSetInfoOperation {
+	if op == nil {
+		op = &xxx_ShareSetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareSetInfoOperation{}
+		return op
 	}
-	return &xxx_ShareSetInfoOperation{
-		ParameterError: o.ParameterError,
-		Return:         o.Return,
-	}
+	o.ParameterError = op.ParameterError
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareSetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareSetInfoOperation) {
@@ -22527,7 +22567,7 @@ func (o *ShareSetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareSetI
 	o.Return = op.Return
 }
 func (o *ShareSetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareSetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareSetInfoOperation{}
@@ -22677,14 +22717,16 @@ type ShareDeleteRequest struct {
 	NetName string `idl:"name:NetName;string" json:"net_name"`
 }
 
-func (o *ShareDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteOperation {
+func (o *ShareDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteOperation) *xxx_ShareDeleteOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteOperation{
-		ServerName: o.ServerName,
-		NetName:    o.NetName,
-	}
+	o.ServerName = op.ServerName
+	o.NetName = op.NetName
+	return op
 }
 
 func (o *ShareDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteOperation) {
@@ -22695,7 +22737,7 @@ func (o *ShareDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDelete
 	o.NetName = op.NetName
 }
 func (o *ShareDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteOperation{}
@@ -22712,13 +22754,15 @@ type ShareDeleteResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteOperation {
+func (o *ShareDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteOperation) *xxx_ShareDeleteOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteOperation) {
@@ -22728,7 +22772,7 @@ func (o *ShareDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDelet
 	o.Return = op.Return
 }
 func (o *ShareDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteOperation{}
@@ -22878,14 +22922,16 @@ type ShareDeleteStickyRequest struct {
 	NetName string `idl:"name:NetName;string" json:"net_name"`
 }
 
-func (o *ShareDeleteStickyRequest) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteStickyOperation {
+func (o *ShareDeleteStickyRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteStickyOperation) *xxx_ShareDeleteStickyOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteStickyOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteStickyOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteStickyOperation{
-		ServerName: o.ServerName,
-		NetName:    o.NetName,
-	}
+	o.ServerName = op.ServerName
+	o.NetName = op.NetName
+	return op
 }
 
 func (o *ShareDeleteStickyRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteStickyOperation) {
@@ -22896,7 +22942,7 @@ func (o *ShareDeleteStickyRequest) xxx_FromOp(ctx context.Context, op *xxx_Share
 	o.NetName = op.NetName
 }
 func (o *ShareDeleteStickyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareDeleteStickyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteStickyOperation{}
@@ -22913,13 +22959,15 @@ type ShareDeleteStickyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareDeleteStickyResponse) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteStickyOperation {
+func (o *ShareDeleteStickyResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteStickyOperation) *xxx_ShareDeleteStickyOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteStickyOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteStickyOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteStickyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareDeleteStickyResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteStickyOperation) {
@@ -22929,7 +22977,7 @@ func (o *ShareDeleteStickyResponse) xxx_FromOp(ctx context.Context, op *xxx_Shar
 	o.Return = op.Return
 }
 func (o *ShareDeleteStickyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareDeleteStickyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteStickyOperation{}
@@ -23076,14 +23124,16 @@ type ShareCheckRequest struct {
 	Device string `idl:"name:Device;string" json:"device"`
 }
 
-func (o *ShareCheckRequest) xxx_ToOp(ctx context.Context) *xxx_ShareCheckOperation {
+func (o *ShareCheckRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareCheckOperation) *xxx_ShareCheckOperation {
+	if op == nil {
+		op = &xxx_ShareCheckOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareCheckOperation{}
+		return op
 	}
-	return &xxx_ShareCheckOperation{
-		ServerName: o.ServerName,
-		Device:     o.Device,
-	}
+	o.ServerName = op.ServerName
+	o.Device = op.Device
+	return op
 }
 
 func (o *ShareCheckRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareCheckOperation) {
@@ -23094,7 +23144,7 @@ func (o *ShareCheckRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareCheckOp
 	o.Device = op.Device
 }
 func (o *ShareCheckRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareCheckRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareCheckOperation{}
@@ -23115,14 +23165,16 @@ type ShareCheckResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareCheckResponse) xxx_ToOp(ctx context.Context) *xxx_ShareCheckOperation {
+func (o *ShareCheckResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareCheckOperation) *xxx_ShareCheckOperation {
+	if op == nil {
+		op = &xxx_ShareCheckOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareCheckOperation{}
+		return op
 	}
-	return &xxx_ShareCheckOperation{
-		Type:   o.Type,
-		Return: o.Return,
-	}
+	o.Type = op.Type
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareCheckResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareCheckOperation) {
@@ -23133,7 +23185,7 @@ func (o *ShareCheckResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareCheckO
 	o.Return = op.Return
 }
 func (o *ShareCheckResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareCheckResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareCheckOperation{}
@@ -23317,14 +23369,16 @@ type GetInfoRequest struct {
 	Level uint32 `idl:"name:Level" json:"level"`
 }
 
-func (o *GetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetInfoOperation {
+func (o *GetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation) *xxx_GetInfoOperation {
+	if op == nil {
+		op = &xxx_GetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInfoOperation{}
+		return op
 	}
-	return &xxx_GetInfoOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	return op
 }
 
 func (o *GetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperation) {
@@ -23335,7 +23389,7 @@ func (o *GetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperatio
 	o.Level = op.Level
 }
 func (o *GetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInfoOperation{}
@@ -23356,14 +23410,16 @@ type GetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetInfoOperation {
+func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation) *xxx_GetInfoOperation {
+	if op == nil {
+		op = &xxx_GetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInfoOperation{}
+		return op
 	}
-	return &xxx_GetInfoOperation{
-		Info:   o.Info,
-		Return: o.Return,
-	}
+	o.Info = op.Info
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperation) {
@@ -23374,7 +23430,7 @@ func (o *GetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInfoOperati
 	o.Return = op.Return
 }
 func (o *GetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInfoOperation{}
@@ -23717,16 +23773,18 @@ type SetInfoRequest struct {
 	ParameterError uint32 `idl:"name:ParmErr;pointer:unique" json:"parameter_error"`
 }
 
-func (o *SetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_SetInfoOperation {
+func (o *SetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation) *xxx_SetInfoOperation {
+	if op == nil {
+		op = &xxx_SetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInfoOperation{}
+		return op
 	}
-	return &xxx_SetInfoOperation{
-		ServerName:     o.ServerName,
-		Level:          o.Level,
-		ServerInfo:     o.ServerInfo,
-		ParameterError: o.ParameterError,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.ServerInfo = op.ServerInfo
+	o.ParameterError = op.ParameterError
+	return op
 }
 
 func (o *SetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInfoOperation) {
@@ -23739,7 +23797,7 @@ func (o *SetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInfoOperatio
 	o.ParameterError = op.ParameterError
 }
 func (o *SetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInfoOperation{}
@@ -23760,14 +23818,16 @@ type SetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_SetInfoOperation {
+func (o *SetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation) *xxx_SetInfoOperation {
+	if op == nil {
+		op = &xxx_SetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInfoOperation{}
+		return op
 	}
-	return &xxx_SetInfoOperation{
-		ParameterError: o.ParameterError,
-		Return:         o.Return,
-	}
+	o.ParameterError = op.ParameterError
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInfoOperation) {
@@ -23778,7 +23838,7 @@ func (o *SetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInfoOperati
 	o.Return = op.Return
 }
 func (o *SetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInfoOperation{}
@@ -24073,17 +24133,19 @@ type DiskEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *DiskEnumRequest) xxx_ToOp(ctx context.Context) *xxx_DiskEnumOperation {
+func (o *DiskEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_DiskEnumOperation) *xxx_DiskEnumOperation {
+	if op == nil {
+		op = &xxx_DiskEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_DiskEnumOperation{}
+		return op
 	}
-	return &xxx_DiskEnumOperation{
-		ServerName:             o.ServerName,
-		Level:                  o.Level,
-		DiskInfo:               o.DiskInfo,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.DiskInfo = op.DiskInfo
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *DiskEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_DiskEnumOperation) {
@@ -24097,7 +24159,7 @@ func (o *DiskEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_DiskEnumOperat
 	o.Resume = op.Resume
 }
 func (o *DiskEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DiskEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DiskEnumOperation{}
@@ -24124,16 +24186,18 @@ type DiskEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DiskEnumResponse) xxx_ToOp(ctx context.Context) *xxx_DiskEnumOperation {
+func (o *DiskEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_DiskEnumOperation) *xxx_DiskEnumOperation {
+	if op == nil {
+		op = &xxx_DiskEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_DiskEnumOperation{}
+		return op
 	}
-	return &xxx_DiskEnumOperation{
-		DiskInfo:     o.DiskInfo,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.DiskInfo = op.DiskInfo
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *DiskEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_DiskEnumOperation) {
@@ -24146,7 +24210,7 @@ func (o *DiskEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_DiskEnumOpera
 	o.Return = op.Return
 }
 func (o *DiskEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DiskEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DiskEnumOperation{}
@@ -24382,16 +24446,18 @@ type StatisticsGetRequest struct {
 	Options uint32 `idl:"name:Options" json:"options"`
 }
 
-func (o *StatisticsGetRequest) xxx_ToOp(ctx context.Context) *xxx_StatisticsGetOperation {
+func (o *StatisticsGetRequest) xxx_ToOp(ctx context.Context, op *xxx_StatisticsGetOperation) *xxx_StatisticsGetOperation {
+	if op == nil {
+		op = &xxx_StatisticsGetOperation{}
+	}
 	if o == nil {
-		return &xxx_StatisticsGetOperation{}
+		return op
 	}
-	return &xxx_StatisticsGetOperation{
-		ServerName: o.ServerName,
-		Service:    o.Service,
-		Level:      o.Level,
-		Options:    o.Options,
-	}
+	o.ServerName = op.ServerName
+	o.Service = op.Service
+	o.Level = op.Level
+	o.Options = op.Options
+	return op
 }
 
 func (o *StatisticsGetRequest) xxx_FromOp(ctx context.Context, op *xxx_StatisticsGetOperation) {
@@ -24404,7 +24470,7 @@ func (o *StatisticsGetRequest) xxx_FromOp(ctx context.Context, op *xxx_Statistic
 	o.Options = op.Options
 }
 func (o *StatisticsGetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StatisticsGetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StatisticsGetOperation{}
@@ -24424,14 +24490,16 @@ type StatisticsGetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StatisticsGetResponse) xxx_ToOp(ctx context.Context) *xxx_StatisticsGetOperation {
+func (o *StatisticsGetResponse) xxx_ToOp(ctx context.Context, op *xxx_StatisticsGetOperation) *xxx_StatisticsGetOperation {
+	if op == nil {
+		op = &xxx_StatisticsGetOperation{}
+	}
 	if o == nil {
-		return &xxx_StatisticsGetOperation{}
+		return op
 	}
-	return &xxx_StatisticsGetOperation{
-		Info:   o.Info,
-		Return: o.Return,
-	}
+	o.Info = op.Info
+	o.Return = op.Return
+	return op
 }
 
 func (o *StatisticsGetResponse) xxx_FromOp(ctx context.Context, op *xxx_StatisticsGetOperation) {
@@ -24442,7 +24510,7 @@ func (o *StatisticsGetResponse) xxx_FromOp(ctx context.Context, op *xxx_Statisti
 	o.Return = op.Return
 }
 func (o *StatisticsGetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StatisticsGetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StatisticsGetOperation{}
@@ -24605,15 +24673,17 @@ type TransportAddRequest struct {
 	Buffer *ServerTransportInfo0 `idl:"name:Buffer" json:"buffer"`
 }
 
-func (o *TransportAddRequest) xxx_ToOp(ctx context.Context) *xxx_TransportAddOperation {
+func (o *TransportAddRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportAddOperation) *xxx_TransportAddOperation {
+	if op == nil {
+		op = &xxx_TransportAddOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportAddOperation{}
+		return op
 	}
-	return &xxx_TransportAddOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		Buffer:     o.Buffer,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Buffer = op.Buffer
+	return op
 }
 
 func (o *TransportAddRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportAddOperation) {
@@ -24625,7 +24695,7 @@ func (o *TransportAddRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportA
 	o.Buffer = op.Buffer
 }
 func (o *TransportAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TransportAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportAddOperation{}
@@ -24642,13 +24712,15 @@ type TransportAddResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TransportAddResponse) xxx_ToOp(ctx context.Context) *xxx_TransportAddOperation {
+func (o *TransportAddResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportAddOperation) *xxx_TransportAddOperation {
+	if op == nil {
+		op = &xxx_TransportAddOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportAddOperation{}
+		return op
 	}
-	return &xxx_TransportAddOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *TransportAddResponse) xxx_FromOp(ctx context.Context, op *xxx_TransportAddOperation) {
@@ -24658,7 +24730,7 @@ func (o *TransportAddResponse) xxx_FromOp(ctx context.Context, op *xxx_Transport
 	o.Return = op.Return
 }
 func (o *TransportAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TransportAddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportAddOperation{}
@@ -24937,16 +25009,18 @@ type TransportEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *TransportEnumRequest) xxx_ToOp(ctx context.Context) *xxx_TransportEnumOperation {
+func (o *TransportEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportEnumOperation) *xxx_TransportEnumOperation {
+	if op == nil {
+		op = &xxx_TransportEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportEnumOperation{}
+		return op
 	}
-	return &xxx_TransportEnumOperation{
-		ServerName:             o.ServerName,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *TransportEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportEnumOperation) {
@@ -24959,7 +25033,7 @@ func (o *TransportEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Transport
 	o.Resume = op.Resume
 }
 func (o *TransportEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TransportEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportEnumOperation{}
@@ -24992,16 +25066,18 @@ type TransportEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TransportEnumResponse) xxx_ToOp(ctx context.Context) *xxx_TransportEnumOperation {
+func (o *TransportEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportEnumOperation) *xxx_TransportEnumOperation {
+	if op == nil {
+		op = &xxx_TransportEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportEnumOperation{}
+		return op
 	}
-	return &xxx_TransportEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *TransportEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_TransportEnumOperation) {
@@ -25014,7 +25090,7 @@ func (o *TransportEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Transpor
 	o.Return = op.Return
 }
 func (o *TransportEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TransportEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportEnumOperation{}
@@ -25188,15 +25264,17 @@ type TransportDeleteRequest struct {
 	Buffer *ServerTransportInfo0 `idl:"name:Buffer" json:"buffer"`
 }
 
-func (o *TransportDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_TransportDeleteOperation {
+func (o *TransportDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportDeleteOperation) *xxx_TransportDeleteOperation {
+	if op == nil {
+		op = &xxx_TransportDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportDeleteOperation{}
+		return op
 	}
-	return &xxx_TransportDeleteOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		Buffer:     o.Buffer,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Buffer = op.Buffer
+	return op
 }
 
 func (o *TransportDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportDeleteOperation) {
@@ -25208,7 +25286,7 @@ func (o *TransportDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_Transpo
 	o.Buffer = op.Buffer
 }
 func (o *TransportDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TransportDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportDeleteOperation{}
@@ -25225,13 +25303,15 @@ type TransportDeleteResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TransportDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_TransportDeleteOperation {
+func (o *TransportDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportDeleteOperation) *xxx_TransportDeleteOperation {
+	if op == nil {
+		op = &xxx_TransportDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportDeleteOperation{}
+		return op
 	}
-	return &xxx_TransportDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *TransportDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_TransportDeleteOperation) {
@@ -25241,7 +25321,7 @@ func (o *TransportDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_Transp
 	o.Return = op.Return
 }
 func (o *TransportDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TransportDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportDeleteOperation{}
@@ -25406,13 +25486,15 @@ type RemoteToDRequest struct {
 	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 }
 
-func (o *RemoteToDRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteToDOperation {
+func (o *RemoteToDRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteToDOperation) *xxx_RemoteToDOperation {
+	if op == nil {
+		op = &xxx_RemoteToDOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteToDOperation{}
+		return op
 	}
-	return &xxx_RemoteToDOperation{
-		ServerName: o.ServerName,
-	}
+	o.ServerName = op.ServerName
+	return op
 }
 
 func (o *RemoteToDRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteToDOperation) {
@@ -25422,7 +25504,7 @@ func (o *RemoteToDRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteToDOper
 	o.ServerName = op.ServerName
 }
 func (o *RemoteToDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteToDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteToDOperation{}
@@ -25442,14 +25524,16 @@ type RemoteToDResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteToDResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteToDOperation {
+func (o *RemoteToDResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteToDOperation) *xxx_RemoteToDOperation {
+	if op == nil {
+		op = &xxx_RemoteToDOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteToDOperation{}
+		return op
 	}
-	return &xxx_RemoteToDOperation{
-		BufferPointer: o.BufferPointer,
-		Return:        o.Return,
-	}
+	o.BufferPointer = op.BufferPointer
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteToDResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteToDOperation) {
@@ -25460,7 +25544,7 @@ func (o *RemoteToDResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteToDOpe
 	o.Return = op.Return
 }
 func (o *RemoteToDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteToDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteToDOperation{}
@@ -25633,15 +25717,17 @@ type PathTypeRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *PathTypeRequest) xxx_ToOp(ctx context.Context) *xxx_PathTypeOperation {
+func (o *PathTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_PathTypeOperation) *xxx_PathTypeOperation {
+	if op == nil {
+		op = &xxx_PathTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_PathTypeOperation{}
+		return op
 	}
-	return &xxx_PathTypeOperation{
-		ServerName: o.ServerName,
-		PathName:   o.PathName,
-		Flags:      o.Flags,
-	}
+	o.ServerName = op.ServerName
+	o.PathName = op.PathName
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *PathTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_PathTypeOperation) {
@@ -25653,7 +25739,7 @@ func (o *PathTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_PathTypeOperat
 	o.Flags = op.Flags
 }
 func (o *PathTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PathTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PathTypeOperation{}
@@ -25673,14 +25759,16 @@ type PathTypeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PathTypeResponse) xxx_ToOp(ctx context.Context) *xxx_PathTypeOperation {
+func (o *PathTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_PathTypeOperation) *xxx_PathTypeOperation {
+	if op == nil {
+		op = &xxx_PathTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_PathTypeOperation{}
+		return op
 	}
-	return &xxx_PathTypeOperation{
-		PathType: o.PathType,
-		Return:   o.Return,
-	}
+	o.PathType = op.PathType
+	o.Return = op.Return
+	return op
 }
 
 func (o *PathTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_PathTypeOperation) {
@@ -25691,7 +25779,7 @@ func (o *PathTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_PathTypeOpera
 	o.Return = op.Return
 }
 func (o *PathTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PathTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PathTypeOperation{}
@@ -25951,18 +26039,20 @@ type PathCanonicalizeRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *PathCanonicalizeRequest) xxx_ToOp(ctx context.Context) *xxx_PathCanonicalizeOperation {
+func (o *PathCanonicalizeRequest) xxx_ToOp(ctx context.Context, op *xxx_PathCanonicalizeOperation) *xxx_PathCanonicalizeOperation {
+	if op == nil {
+		op = &xxx_PathCanonicalizeOperation{}
+	}
 	if o == nil {
-		return &xxx_PathCanonicalizeOperation{}
+		return op
 	}
-	return &xxx_PathCanonicalizeOperation{
-		ServerName:         o.ServerName,
-		PathName:           o.PathName,
-		OutputBufferLength: o.OutputBufferLength,
-		Prefix:             o.Prefix,
-		PathType:           o.PathType,
-		Flags:              o.Flags,
-	}
+	o.ServerName = op.ServerName
+	o.PathName = op.PathName
+	o.OutputBufferLength = op.OutputBufferLength
+	o.Prefix = op.Prefix
+	o.PathType = op.PathType
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *PathCanonicalizeRequest) xxx_FromOp(ctx context.Context, op *xxx_PathCanonicalizeOperation) {
@@ -25977,7 +26067,7 @@ func (o *PathCanonicalizeRequest) xxx_FromOp(ctx context.Context, op *xxx_PathCa
 	o.Flags = op.Flags
 }
 func (o *PathCanonicalizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PathCanonicalizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PathCanonicalizeOperation{}
@@ -26001,15 +26091,17 @@ type PathCanonicalizeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PathCanonicalizeResponse) xxx_ToOp(ctx context.Context) *xxx_PathCanonicalizeOperation {
+func (o *PathCanonicalizeResponse) xxx_ToOp(ctx context.Context, op *xxx_PathCanonicalizeOperation) *xxx_PathCanonicalizeOperation {
+	if op == nil {
+		op = &xxx_PathCanonicalizeOperation{}
+	}
 	if o == nil {
-		return &xxx_PathCanonicalizeOperation{}
+		return op
 	}
-	return &xxx_PathCanonicalizeOperation{
-		OutputBuffer: o.OutputBuffer,
-		PathType:     o.PathType,
-		Return:       o.Return,
-	}
+	o.OutputBuffer = op.OutputBuffer
+	o.PathType = op.PathType
+	o.Return = op.Return
+	return op
 }
 
 func (o *PathCanonicalizeResponse) xxx_FromOp(ctx context.Context, op *xxx_PathCanonicalizeOperation) {
@@ -26021,7 +26113,7 @@ func (o *PathCanonicalizeResponse) xxx_FromOp(ctx context.Context, op *xxx_PathC
 	o.Return = op.Return
 }
 func (o *PathCanonicalizeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PathCanonicalizeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PathCanonicalizeOperation{}
@@ -26211,17 +26303,19 @@ type PathCompareRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *PathCompareRequest) xxx_ToOp(ctx context.Context) *xxx_PathCompareOperation {
+func (o *PathCompareRequest) xxx_ToOp(ctx context.Context, op *xxx_PathCompareOperation) *xxx_PathCompareOperation {
+	if op == nil {
+		op = &xxx_PathCompareOperation{}
+	}
 	if o == nil {
-		return &xxx_PathCompareOperation{}
+		return op
 	}
-	return &xxx_PathCompareOperation{
-		ServerName: o.ServerName,
-		PathName1:  o.PathName1,
-		PathName2:  o.PathName2,
-		PathType:   o.PathType,
-		Flags:      o.Flags,
-	}
+	o.ServerName = op.ServerName
+	o.PathName1 = op.PathName1
+	o.PathName2 = op.PathName2
+	o.PathType = op.PathType
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *PathCompareRequest) xxx_FromOp(ctx context.Context, op *xxx_PathCompareOperation) {
@@ -26235,7 +26329,7 @@ func (o *PathCompareRequest) xxx_FromOp(ctx context.Context, op *xxx_PathCompare
 	o.Flags = op.Flags
 }
 func (o *PathCompareRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PathCompareRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PathCompareOperation{}
@@ -26252,13 +26346,15 @@ type PathCompareResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PathCompareResponse) xxx_ToOp(ctx context.Context) *xxx_PathCompareOperation {
+func (o *PathCompareResponse) xxx_ToOp(ctx context.Context, op *xxx_PathCompareOperation) *xxx_PathCompareOperation {
+	if op == nil {
+		op = &xxx_PathCompareOperation{}
+	}
 	if o == nil {
-		return &xxx_PathCompareOperation{}
+		return op
 	}
-	return &xxx_PathCompareOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *PathCompareResponse) xxx_FromOp(ctx context.Context, op *xxx_PathCompareOperation) {
@@ -26268,7 +26364,7 @@ func (o *PathCompareResponse) xxx_FromOp(ctx context.Context, op *xxx_PathCompar
 	o.Return = op.Return
 }
 func (o *PathCompareResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PathCompareResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PathCompareOperation{}
@@ -26431,16 +26527,18 @@ type NameValidateRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *NameValidateRequest) xxx_ToOp(ctx context.Context) *xxx_NameValidateOperation {
+func (o *NameValidateRequest) xxx_ToOp(ctx context.Context, op *xxx_NameValidateOperation) *xxx_NameValidateOperation {
+	if op == nil {
+		op = &xxx_NameValidateOperation{}
+	}
 	if o == nil {
-		return &xxx_NameValidateOperation{}
+		return op
 	}
-	return &xxx_NameValidateOperation{
-		ServerName: o.ServerName,
-		Name:       o.Name,
-		NameType:   o.NameType,
-		Flags:      o.Flags,
-	}
+	o.ServerName = op.ServerName
+	o.Name = op.Name
+	o.NameType = op.NameType
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *NameValidateRequest) xxx_FromOp(ctx context.Context, op *xxx_NameValidateOperation) {
@@ -26453,7 +26551,7 @@ func (o *NameValidateRequest) xxx_FromOp(ctx context.Context, op *xxx_NameValida
 	o.Flags = op.Flags
 }
 func (o *NameValidateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NameValidateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NameValidateOperation{}
@@ -26470,13 +26568,15 @@ type NameValidateResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NameValidateResponse) xxx_ToOp(ctx context.Context) *xxx_NameValidateOperation {
+func (o *NameValidateResponse) xxx_ToOp(ctx context.Context, op *xxx_NameValidateOperation) *xxx_NameValidateOperation {
+	if op == nil {
+		op = &xxx_NameValidateOperation{}
+	}
 	if o == nil {
-		return &xxx_NameValidateOperation{}
+		return op
 	}
-	return &xxx_NameValidateOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *NameValidateResponse) xxx_FromOp(ctx context.Context, op *xxx_NameValidateOperation) {
@@ -26486,7 +26586,7 @@ func (o *NameValidateResponse) xxx_FromOp(ctx context.Context, op *xxx_NameValid
 	o.Return = op.Return
 }
 func (o *NameValidateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NameValidateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NameValidateOperation{}
@@ -26735,17 +26835,19 @@ type NameCanonicalizeRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *NameCanonicalizeRequest) xxx_ToOp(ctx context.Context) *xxx_NameCanonicalizeOperation {
+func (o *NameCanonicalizeRequest) xxx_ToOp(ctx context.Context, op *xxx_NameCanonicalizeOperation) *xxx_NameCanonicalizeOperation {
+	if op == nil {
+		op = &xxx_NameCanonicalizeOperation{}
+	}
 	if o == nil {
-		return &xxx_NameCanonicalizeOperation{}
+		return op
 	}
-	return &xxx_NameCanonicalizeOperation{
-		ServerName:         o.ServerName,
-		Name:               o.Name,
-		OutputBufferLength: o.OutputBufferLength,
-		NameType:           o.NameType,
-		Flags:              o.Flags,
-	}
+	o.ServerName = op.ServerName
+	o.Name = op.Name
+	o.OutputBufferLength = op.OutputBufferLength
+	o.NameType = op.NameType
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *NameCanonicalizeRequest) xxx_FromOp(ctx context.Context, op *xxx_NameCanonicalizeOperation) {
@@ -26759,7 +26861,7 @@ func (o *NameCanonicalizeRequest) xxx_FromOp(ctx context.Context, op *xxx_NameCa
 	o.Flags = op.Flags
 }
 func (o *NameCanonicalizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NameCanonicalizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NameCanonicalizeOperation{}
@@ -26779,14 +26881,16 @@ type NameCanonicalizeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NameCanonicalizeResponse) xxx_ToOp(ctx context.Context) *xxx_NameCanonicalizeOperation {
+func (o *NameCanonicalizeResponse) xxx_ToOp(ctx context.Context, op *xxx_NameCanonicalizeOperation) *xxx_NameCanonicalizeOperation {
+	if op == nil {
+		op = &xxx_NameCanonicalizeOperation{}
+	}
 	if o == nil {
-		return &xxx_NameCanonicalizeOperation{}
+		return op
 	}
-	return &xxx_NameCanonicalizeOperation{
-		OutputBuffer: o.OutputBuffer,
-		Return:       o.Return,
-	}
+	o.OutputBuffer = op.OutputBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *NameCanonicalizeResponse) xxx_FromOp(ctx context.Context, op *xxx_NameCanonicalizeOperation) {
@@ -26797,7 +26901,7 @@ func (o *NameCanonicalizeResponse) xxx_FromOp(ctx context.Context, op *xxx_NameC
 	o.Return = op.Return
 }
 func (o *NameCanonicalizeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NameCanonicalizeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NameCanonicalizeOperation{}
@@ -26990,17 +27094,19 @@ type NameCompareRequest struct {
 	Flags uint32 `idl:"name:Flags" json:"flags"`
 }
 
-func (o *NameCompareRequest) xxx_ToOp(ctx context.Context) *xxx_NameCompareOperation {
+func (o *NameCompareRequest) xxx_ToOp(ctx context.Context, op *xxx_NameCompareOperation) *xxx_NameCompareOperation {
+	if op == nil {
+		op = &xxx_NameCompareOperation{}
+	}
 	if o == nil {
-		return &xxx_NameCompareOperation{}
+		return op
 	}
-	return &xxx_NameCompareOperation{
-		ServerName: o.ServerName,
-		Name1:      o.Name1,
-		Name2:      o.Name2,
-		NameType:   o.NameType,
-		Flags:      o.Flags,
-	}
+	o.ServerName = op.ServerName
+	o.Name1 = op.Name1
+	o.Name2 = op.Name2
+	o.NameType = op.NameType
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *NameCompareRequest) xxx_FromOp(ctx context.Context, op *xxx_NameCompareOperation) {
@@ -27014,7 +27120,7 @@ func (o *NameCompareRequest) xxx_FromOp(ctx context.Context, op *xxx_NameCompare
 	o.Flags = op.Flags
 }
 func (o *NameCompareRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NameCompareRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NameCompareOperation{}
@@ -27031,13 +27137,15 @@ type NameCompareResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NameCompareResponse) xxx_ToOp(ctx context.Context) *xxx_NameCompareOperation {
+func (o *NameCompareResponse) xxx_ToOp(ctx context.Context, op *xxx_NameCompareOperation) *xxx_NameCompareOperation {
+	if op == nil {
+		op = &xxx_NameCompareOperation{}
+	}
 	if o == nil {
-		return &xxx_NameCompareOperation{}
+		return op
 	}
-	return &xxx_NameCompareOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *NameCompareResponse) xxx_FromOp(ctx context.Context, op *xxx_NameCompareOperation) {
@@ -27047,7 +27155,7 @@ func (o *NameCompareResponse) xxx_FromOp(ctx context.Context, op *xxx_NameCompar
 	o.Return = op.Return
 }
 func (o *NameCompareResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NameCompareResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NameCompareOperation{}
@@ -27325,16 +27433,18 @@ type ShareEnumStickyRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *ShareEnumStickyRequest) xxx_ToOp(ctx context.Context) *xxx_ShareEnumStickyOperation {
+func (o *ShareEnumStickyRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareEnumStickyOperation) *xxx_ShareEnumStickyOperation {
+	if op == nil {
+		op = &xxx_ShareEnumStickyOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareEnumStickyOperation{}
+		return op
 	}
-	return &xxx_ShareEnumStickyOperation{
-		ServerName:             o.ServerName,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *ShareEnumStickyRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareEnumStickyOperation) {
@@ -27347,7 +27457,7 @@ func (o *ShareEnumStickyRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareEn
 	o.Resume = op.Resume
 }
 func (o *ShareEnumStickyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareEnumStickyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareEnumStickyOperation{}
@@ -27379,16 +27489,18 @@ type ShareEnumStickyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareEnumStickyResponse) xxx_ToOp(ctx context.Context) *xxx_ShareEnumStickyOperation {
+func (o *ShareEnumStickyResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareEnumStickyOperation) *xxx_ShareEnumStickyOperation {
+	if op == nil {
+		op = &xxx_ShareEnumStickyOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareEnumStickyOperation{}
+		return op
 	}
-	return &xxx_ShareEnumStickyOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareEnumStickyResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareEnumStickyOperation) {
@@ -27401,7 +27513,7 @@ func (o *ShareEnumStickyResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareE
 	o.Return = op.Return
 }
 func (o *ShareEnumStickyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareEnumStickyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareEnumStickyOperation{}
@@ -27573,14 +27685,16 @@ type ShareDeleteStartRequest struct {
 	NetName string `idl:"name:NetName;string" json:"net_name"`
 }
 
-func (o *ShareDeleteStartRequest) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteStartOperation {
+func (o *ShareDeleteStartRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteStartOperation) *xxx_ShareDeleteStartOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteStartOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteStartOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteStartOperation{
-		ServerName: o.ServerName,
-		NetName:    o.NetName,
-	}
+	o.ServerName = op.ServerName
+	o.NetName = op.NetName
+	return op
 }
 
 func (o *ShareDeleteStartRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteStartOperation) {
@@ -27591,7 +27705,7 @@ func (o *ShareDeleteStartRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareD
 	o.NetName = op.NetName
 }
 func (o *ShareDeleteStartRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareDeleteStartRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteStartOperation{}
@@ -27611,14 +27725,16 @@ type ShareDeleteStartResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareDeleteStartResponse) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteStartOperation {
+func (o *ShareDeleteStartResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteStartOperation) *xxx_ShareDeleteStartOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteStartOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteStartOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteStartOperation{
-		ContextHandle: o.ContextHandle,
-		Return:        o.Return,
-	}
+	o.ContextHandle = op.ContextHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareDeleteStartResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteStartOperation) {
@@ -27629,7 +27745,7 @@ func (o *ShareDeleteStartResponse) xxx_FromOp(ctx context.Context, op *xxx_Share
 	o.Return = op.Return
 }
 func (o *ShareDeleteStartResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareDeleteStartResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteStartOperation{}
@@ -27750,13 +27866,15 @@ type ShareDeleteCommitRequest struct {
 	ContextHandle *ShareDeleteHandle `idl:"name:ContextHandle" json:"context_handle"`
 }
 
-func (o *ShareDeleteCommitRequest) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteCommitOperation {
+func (o *ShareDeleteCommitRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteCommitOperation) *xxx_ShareDeleteCommitOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteCommitOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteCommitOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteCommitOperation{
-		ContextHandle: o.ContextHandle,
-	}
+	o.ContextHandle = op.ContextHandle
+	return op
 }
 
 func (o *ShareDeleteCommitRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteCommitOperation) {
@@ -27766,7 +27884,7 @@ func (o *ShareDeleteCommitRequest) xxx_FromOp(ctx context.Context, op *xxx_Share
 	o.ContextHandle = op.ContextHandle
 }
 func (o *ShareDeleteCommitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareDeleteCommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteCommitOperation{}
@@ -27785,14 +27903,16 @@ type ShareDeleteCommitResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareDeleteCommitResponse) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteCommitOperation {
+func (o *ShareDeleteCommitResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteCommitOperation) *xxx_ShareDeleteCommitOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteCommitOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteCommitOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteCommitOperation{
-		ContextHandle: o.ContextHandle,
-		Return:        o.Return,
-	}
+	o.ContextHandle = op.ContextHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareDeleteCommitResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteCommitOperation) {
@@ -27803,7 +27923,7 @@ func (o *ShareDeleteCommitResponse) xxx_FromOp(ctx context.Context, op *xxx_Shar
 	o.Return = op.Return
 }
 func (o *ShareDeleteCommitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareDeleteCommitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteCommitOperation{}
@@ -28042,16 +28162,18 @@ type GetFileSecurityRequest struct {
 	RequestedInformation uint32 `idl:"name:RequestedInformation" json:"requested_information"`
 }
 
-func (o *GetFileSecurityRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileSecurityOperation {
+func (o *GetFileSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileSecurityOperation) *xxx_GetFileSecurityOperation {
+	if op == nil {
+		op = &xxx_GetFileSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileSecurityOperation{}
+		return op
 	}
-	return &xxx_GetFileSecurityOperation{
-		ServerName:           o.ServerName,
-		ShareName:            o.ShareName,
-		FileName:             o.FileName,
-		RequestedInformation: o.RequestedInformation,
-	}
+	o.ServerName = op.ServerName
+	o.ShareName = op.ShareName
+	o.FileName = op.FileName
+	o.RequestedInformation = op.RequestedInformation
+	return op
 }
 
 func (o *GetFileSecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileSecurityOperation) {
@@ -28064,7 +28186,7 @@ func (o *GetFileSecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFile
 	o.RequestedInformation = op.RequestedInformation
 }
 func (o *GetFileSecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileSecurityOperation{}
@@ -28084,14 +28206,16 @@ type GetFileSecurityResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileSecurityResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileSecurityOperation {
+func (o *GetFileSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileSecurityOperation) *xxx_GetFileSecurityOperation {
+	if op == nil {
+		op = &xxx_GetFileSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileSecurityOperation{}
+		return op
 	}
-	return &xxx_GetFileSecurityOperation{
-		SecurityDescriptor: o.SecurityDescriptor,
-		Return:             o.Return,
-	}
+	o.SecurityDescriptor = op.SecurityDescriptor
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileSecurityOperation) {
@@ -28102,7 +28226,7 @@ func (o *GetFileSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFil
 	o.Return = op.Return
 }
 func (o *GetFileSecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileSecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileSecurityOperation{}
@@ -28324,17 +28448,19 @@ type SetFileSecurityRequest struct {
 	SecurityDescriptor *ADTSecurityDescriptor `idl:"name:SecurityDescriptor" json:"security_descriptor"`
 }
 
-func (o *SetFileSecurityRequest) xxx_ToOp(ctx context.Context) *xxx_SetFileSecurityOperation {
+func (o *SetFileSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFileSecurityOperation) *xxx_SetFileSecurityOperation {
+	if op == nil {
+		op = &xxx_SetFileSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFileSecurityOperation{}
+		return op
 	}
-	return &xxx_SetFileSecurityOperation{
-		ServerName:          o.ServerName,
-		ShareName:           o.ShareName,
-		FileName:            o.FileName,
-		SecurityInformation: o.SecurityInformation,
-		SecurityDescriptor:  o.SecurityDescriptor,
-	}
+	o.ServerName = op.ServerName
+	o.ShareName = op.ShareName
+	o.FileName = op.FileName
+	o.SecurityInformation = op.SecurityInformation
+	o.SecurityDescriptor = op.SecurityDescriptor
+	return op
 }
 
 func (o *SetFileSecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFileSecurityOperation) {
@@ -28348,7 +28474,7 @@ func (o *SetFileSecurityRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFile
 	o.SecurityDescriptor = op.SecurityDescriptor
 }
 func (o *SetFileSecurityRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFileSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFileSecurityOperation{}
@@ -28365,13 +28491,15 @@ type SetFileSecurityResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFileSecurityResponse) xxx_ToOp(ctx context.Context) *xxx_SetFileSecurityOperation {
+func (o *SetFileSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFileSecurityOperation) *xxx_SetFileSecurityOperation {
+	if op == nil {
+		op = &xxx_SetFileSecurityOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFileSecurityOperation{}
+		return op
 	}
-	return &xxx_SetFileSecurityOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFileSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFileSecurityOperation) {
@@ -28381,7 +28509,7 @@ func (o *SetFileSecurityResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFil
 	o.Return = op.Return
 }
 func (o *SetFileSecurityResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFileSecurityResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFileSecurityOperation{}
@@ -28563,15 +28691,17 @@ type TransportAddExRequest struct {
 	Buffer *TransportInfo `idl:"name:Buffer;switch_is:Level" json:"buffer"`
 }
 
-func (o *TransportAddExRequest) xxx_ToOp(ctx context.Context) *xxx_TransportAddExOperation {
+func (o *TransportAddExRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportAddExOperation) *xxx_TransportAddExOperation {
+	if op == nil {
+		op = &xxx_TransportAddExOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportAddExOperation{}
+		return op
 	}
-	return &xxx_TransportAddExOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		Buffer:     o.Buffer,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Buffer = op.Buffer
+	return op
 }
 
 func (o *TransportAddExRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportAddExOperation) {
@@ -28583,7 +28713,7 @@ func (o *TransportAddExRequest) xxx_FromOp(ctx context.Context, op *xxx_Transpor
 	o.Buffer = op.Buffer
 }
 func (o *TransportAddExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TransportAddExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportAddExOperation{}
@@ -28600,13 +28730,15 @@ type TransportAddExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TransportAddExResponse) xxx_ToOp(ctx context.Context) *xxx_TransportAddExOperation {
+func (o *TransportAddExResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportAddExOperation) *xxx_TransportAddExOperation {
+	if op == nil {
+		op = &xxx_TransportAddExOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportAddExOperation{}
+		return op
 	}
-	return &xxx_TransportAddExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *TransportAddExResponse) xxx_FromOp(ctx context.Context, op *xxx_TransportAddExOperation) {
@@ -28616,7 +28748,7 @@ func (o *TransportAddExResponse) xxx_FromOp(ctx context.Context, op *xxx_Transpo
 	o.Return = op.Return
 }
 func (o *TransportAddExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TransportAddExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportAddExOperation{}
@@ -28747,13 +28879,15 @@ type GetVersionRequest struct {
 	ServerName string `idl:"name:ServerName;string;pointer:unique" json:"server_name"`
 }
 
-func (o *GetVersionRequest) xxx_ToOp(ctx context.Context) *xxx_GetVersionOperation {
+func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
+	if op == nil {
+		op = &xxx_GetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVersionOperation{}
+		return op
 	}
-	return &xxx_GetVersionOperation{
-		ServerName: o.ServerName,
-	}
+	o.ServerName = op.ServerName
+	return op
 }
 
 func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
@@ -28763,7 +28897,7 @@ func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOp
 	o.ServerName = op.ServerName
 }
 func (o *GetVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVersionOperation{}
@@ -28782,14 +28916,16 @@ type GetVersionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVersionResponse) xxx_ToOp(ctx context.Context) *xxx_GetVersionOperation {
+func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
+	if op == nil {
+		op = &xxx_GetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVersionOperation{}
+		return op
 	}
-	return &xxx_GetVersionOperation{
-		Version: o.Version,
-		Return:  o.Return,
-	}
+	o.Version = op.Version
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
@@ -28800,7 +28936,7 @@ func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionO
 	o.Return = op.Return
 }
 func (o *GetVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVersionOperation{}
@@ -29040,19 +29176,21 @@ type CreateLocalPartitionRequest struct {
 	Force int32 `idl:"name:Force" json:"force"`
 }
 
-func (o *CreateLocalPartitionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateLocalPartitionOperation {
+func (o *CreateLocalPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateLocalPartitionOperation) *xxx_CreateLocalPartitionOperation {
+	if op == nil {
+		op = &xxx_CreateLocalPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateLocalPartitionOperation{}
+		return op
 	}
-	return &xxx_CreateLocalPartitionOperation{
-		ServerName:   o.ServerName,
-		ShareName:    o.ShareName,
-		EntryUID:     o.EntryUID,
-		EntryPrefix:  o.EntryPrefix,
-		ShortName:    o.ShortName,
-		RelationInfo: o.RelationInfo,
-		Force:        o.Force,
-	}
+	o.ServerName = op.ServerName
+	o.ShareName = op.ShareName
+	o.EntryUID = op.EntryUID
+	o.EntryPrefix = op.EntryPrefix
+	o.ShortName = op.ShortName
+	o.RelationInfo = op.RelationInfo
+	o.Force = op.Force
+	return op
 }
 
 func (o *CreateLocalPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateLocalPartitionOperation) {
@@ -29068,7 +29206,7 @@ func (o *CreateLocalPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Force = op.Force
 }
 func (o *CreateLocalPartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateLocalPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateLocalPartitionOperation{}
@@ -29085,13 +29223,15 @@ type CreateLocalPartitionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateLocalPartitionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateLocalPartitionOperation {
+func (o *CreateLocalPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateLocalPartitionOperation) *xxx_CreateLocalPartitionOperation {
+	if op == nil {
+		op = &xxx_CreateLocalPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateLocalPartitionOperation{}
+		return op
 	}
-	return &xxx_CreateLocalPartitionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateLocalPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateLocalPartitionOperation) {
@@ -29101,7 +29241,7 @@ func (o *CreateLocalPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *CreateLocalPartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateLocalPartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateLocalPartitionOperation{}
@@ -29263,15 +29403,17 @@ type DeleteLocalPartitionRequest struct {
 	Prefix string `idl:"name:Prefix;string" json:"prefix"`
 }
 
-func (o *DeleteLocalPartitionRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteLocalPartitionOperation {
+func (o *DeleteLocalPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteLocalPartitionOperation) *xxx_DeleteLocalPartitionOperation {
+	if op == nil {
+		op = &xxx_DeleteLocalPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteLocalPartitionOperation{}
+		return op
 	}
-	return &xxx_DeleteLocalPartitionOperation{
-		ServerName: o.ServerName,
-		UID:        o.UID,
-		Prefix:     o.Prefix,
-	}
+	o.ServerName = op.ServerName
+	o.UID = op.UID
+	o.Prefix = op.Prefix
+	return op
 }
 
 func (o *DeleteLocalPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteLocalPartitionOperation) {
@@ -29283,7 +29425,7 @@ func (o *DeleteLocalPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Prefix = op.Prefix
 }
 func (o *DeleteLocalPartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteLocalPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteLocalPartitionOperation{}
@@ -29300,13 +29442,15 @@ type DeleteLocalPartitionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteLocalPartitionResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteLocalPartitionOperation {
+func (o *DeleteLocalPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteLocalPartitionOperation) *xxx_DeleteLocalPartitionOperation {
+	if op == nil {
+		op = &xxx_DeleteLocalPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteLocalPartitionOperation{}
+		return op
 	}
-	return &xxx_DeleteLocalPartitionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteLocalPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteLocalPartitionOperation) {
@@ -29316,7 +29460,7 @@ func (o *DeleteLocalPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_D
 	o.Return = op.Return
 }
 func (o *DeleteLocalPartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteLocalPartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteLocalPartitionOperation{}
@@ -29494,16 +29638,18 @@ type SetLocalVolumeStateRequest struct {
 	State uint32 `idl:"name:State" json:"state"`
 }
 
-func (o *SetLocalVolumeStateRequest) xxx_ToOp(ctx context.Context) *xxx_SetLocalVolumeStateOperation {
+func (o *SetLocalVolumeStateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLocalVolumeStateOperation) *xxx_SetLocalVolumeStateOperation {
+	if op == nil {
+		op = &xxx_SetLocalVolumeStateOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLocalVolumeStateOperation{}
+		return op
 	}
-	return &xxx_SetLocalVolumeStateOperation{
-		ServerName: o.ServerName,
-		UID:        o.UID,
-		Prefix:     o.Prefix,
-		State:      o.State,
-	}
+	o.ServerName = op.ServerName
+	o.UID = op.UID
+	o.Prefix = op.Prefix
+	o.State = op.State
+	return op
 }
 
 func (o *SetLocalVolumeStateRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLocalVolumeStateOperation) {
@@ -29516,7 +29662,7 @@ func (o *SetLocalVolumeStateRequest) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.State = op.State
 }
 func (o *SetLocalVolumeStateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetLocalVolumeStateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLocalVolumeStateOperation{}
@@ -29533,13 +29679,15 @@ type SetLocalVolumeStateResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetLocalVolumeStateResponse) xxx_ToOp(ctx context.Context) *xxx_SetLocalVolumeStateOperation {
+func (o *SetLocalVolumeStateResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLocalVolumeStateOperation) *xxx_SetLocalVolumeStateOperation {
+	if op == nil {
+		op = &xxx_SetLocalVolumeStateOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLocalVolumeStateOperation{}
+		return op
 	}
-	return &xxx_SetLocalVolumeStateOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetLocalVolumeStateResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLocalVolumeStateOperation) {
@@ -29549,7 +29697,7 @@ func (o *SetLocalVolumeStateResponse) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Return = op.Return
 }
 func (o *SetLocalVolumeStateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetLocalVolumeStateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLocalVolumeStateOperation{}
@@ -29794,17 +29942,19 @@ type CreateExitPointRequest struct {
 	ShortPrefixLength uint32 `idl:"name:ShortPrefixLen" json:"short_prefix_length"`
 }
 
-func (o *CreateExitPointRequest) xxx_ToOp(ctx context.Context) *xxx_CreateExitPointOperation {
+func (o *CreateExitPointRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateExitPointOperation) *xxx_CreateExitPointOperation {
+	if op == nil {
+		op = &xxx_CreateExitPointOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateExitPointOperation{}
+		return op
 	}
-	return &xxx_CreateExitPointOperation{
-		ServerName:        o.ServerName,
-		UID:               o.UID,
-		Prefix:            o.Prefix,
-		Type:              o.Type,
-		ShortPrefixLength: o.ShortPrefixLength,
-	}
+	o.ServerName = op.ServerName
+	o.UID = op.UID
+	o.Prefix = op.Prefix
+	o.Type = op.Type
+	o.ShortPrefixLength = op.ShortPrefixLength
+	return op
 }
 
 func (o *CreateExitPointRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateExitPointOperation) {
@@ -29818,7 +29968,7 @@ func (o *CreateExitPointRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateE
 	o.ShortPrefixLength = op.ShortPrefixLength
 }
 func (o *CreateExitPointRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateExitPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateExitPointOperation{}
@@ -29838,14 +29988,16 @@ type CreateExitPointResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateExitPointResponse) xxx_ToOp(ctx context.Context) *xxx_CreateExitPointOperation {
+func (o *CreateExitPointResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateExitPointOperation) *xxx_CreateExitPointOperation {
+	if op == nil {
+		op = &xxx_CreateExitPointOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateExitPointOperation{}
+		return op
 	}
-	return &xxx_CreateExitPointOperation{
-		ShortPrefix: o.ShortPrefix,
-		Return:      o.Return,
-	}
+	o.ShortPrefix = op.ShortPrefix
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateExitPointResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateExitPointOperation) {
@@ -29856,7 +30008,7 @@ func (o *CreateExitPointResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Return = op.Return
 }
 func (o *CreateExitPointResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateExitPointResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateExitPointOperation{}
@@ -30031,16 +30183,18 @@ type DeleteExitPointRequest struct {
 	Type uint32 `idl:"name:Type" json:"type"`
 }
 
-func (o *DeleteExitPointRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteExitPointOperation {
+func (o *DeleteExitPointRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteExitPointOperation) *xxx_DeleteExitPointOperation {
+	if op == nil {
+		op = &xxx_DeleteExitPointOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteExitPointOperation{}
+		return op
 	}
-	return &xxx_DeleteExitPointOperation{
-		ServerName: o.ServerName,
-		UID:        o.UID,
-		Prefix:     o.Prefix,
-		Type:       o.Type,
-	}
+	o.ServerName = op.ServerName
+	o.UID = op.UID
+	o.Prefix = op.Prefix
+	o.Type = op.Type
+	return op
 }
 
 func (o *DeleteExitPointRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteExitPointOperation) {
@@ -30053,7 +30207,7 @@ func (o *DeleteExitPointRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteE
 	o.Type = op.Type
 }
 func (o *DeleteExitPointRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteExitPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteExitPointOperation{}
@@ -30070,13 +30224,15 @@ type DeleteExitPointResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteExitPointResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteExitPointOperation {
+func (o *DeleteExitPointResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteExitPointOperation) *xxx_DeleteExitPointOperation {
+	if op == nil {
+		op = &xxx_DeleteExitPointOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteExitPointOperation{}
+		return op
 	}
-	return &xxx_DeleteExitPointOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteExitPointResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteExitPointOperation) {
@@ -30086,7 +30242,7 @@ func (o *DeleteExitPointResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeleteExitPointResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteExitPointResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteExitPointOperation{}
@@ -30246,15 +30402,17 @@ type ModifyPrefixRequest struct {
 	Prefix string `idl:"name:Prefix;string" json:"prefix"`
 }
 
-func (o *ModifyPrefixRequest) xxx_ToOp(ctx context.Context) *xxx_ModifyPrefixOperation {
+func (o *ModifyPrefixRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyPrefixOperation) *xxx_ModifyPrefixOperation {
+	if op == nil {
+		op = &xxx_ModifyPrefixOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyPrefixOperation{}
+		return op
 	}
-	return &xxx_ModifyPrefixOperation{
-		ServerName: o.ServerName,
-		UID:        o.UID,
-		Prefix:     o.Prefix,
-	}
+	o.ServerName = op.ServerName
+	o.UID = op.UID
+	o.Prefix = op.Prefix
+	return op
 }
 
 func (o *ModifyPrefixRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyPrefixOperation) {
@@ -30266,7 +30424,7 @@ func (o *ModifyPrefixRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyPref
 	o.Prefix = op.Prefix
 }
 func (o *ModifyPrefixRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyPrefixRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyPrefixOperation{}
@@ -30283,13 +30441,15 @@ type ModifyPrefixResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyPrefixResponse) xxx_ToOp(ctx context.Context) *xxx_ModifyPrefixOperation {
+func (o *ModifyPrefixResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyPrefixOperation) *xxx_ModifyPrefixOperation {
+	if op == nil {
+		op = &xxx_ModifyPrefixOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyPrefixOperation{}
+		return op
 	}
-	return &xxx_ModifyPrefixOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyPrefixResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyPrefixOperation) {
@@ -30299,7 +30459,7 @@ func (o *ModifyPrefixResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyPre
 	o.Return = op.Return
 }
 func (o *ModifyPrefixResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyPrefixResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyPrefixOperation{}
@@ -30615,21 +30775,23 @@ type FixLocalVolumeRequest struct {
 	CreateDisposition uint32 `idl:"name:CreateDisposition" json:"create_disposition"`
 }
 
-func (o *FixLocalVolumeRequest) xxx_ToOp(ctx context.Context) *xxx_FixLocalVolumeOperation {
+func (o *FixLocalVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_FixLocalVolumeOperation) *xxx_FixLocalVolumeOperation {
+	if op == nil {
+		op = &xxx_FixLocalVolumeOperation{}
+	}
 	if o == nil {
-		return &xxx_FixLocalVolumeOperation{}
+		return op
 	}
-	return &xxx_FixLocalVolumeOperation{
-		ServerName:        o.ServerName,
-		VolumeName:        o.VolumeName,
-		EntryType:         o.EntryType,
-		ServiceType:       o.ServiceType,
-		StorageID:         o.StorageID,
-		EntryUID:          o.EntryUID,
-		EntryPrefix:       o.EntryPrefix,
-		RelationInfo:      o.RelationInfo,
-		CreateDisposition: o.CreateDisposition,
-	}
+	o.ServerName = op.ServerName
+	o.VolumeName = op.VolumeName
+	o.EntryType = op.EntryType
+	o.ServiceType = op.ServiceType
+	o.StorageID = op.StorageID
+	o.EntryUID = op.EntryUID
+	o.EntryPrefix = op.EntryPrefix
+	o.RelationInfo = op.RelationInfo
+	o.CreateDisposition = op.CreateDisposition
+	return op
 }
 
 func (o *FixLocalVolumeRequest) xxx_FromOp(ctx context.Context, op *xxx_FixLocalVolumeOperation) {
@@ -30647,7 +30809,7 @@ func (o *FixLocalVolumeRequest) xxx_FromOp(ctx context.Context, op *xxx_FixLocal
 	o.CreateDisposition = op.CreateDisposition
 }
 func (o *FixLocalVolumeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FixLocalVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FixLocalVolumeOperation{}
@@ -30664,13 +30826,15 @@ type FixLocalVolumeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FixLocalVolumeResponse) xxx_ToOp(ctx context.Context) *xxx_FixLocalVolumeOperation {
+func (o *FixLocalVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_FixLocalVolumeOperation) *xxx_FixLocalVolumeOperation {
+	if op == nil {
+		op = &xxx_FixLocalVolumeOperation{}
+	}
 	if o == nil {
-		return &xxx_FixLocalVolumeOperation{}
+		return op
 	}
-	return &xxx_FixLocalVolumeOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *FixLocalVolumeResponse) xxx_FromOp(ctx context.Context, op *xxx_FixLocalVolumeOperation) {
@@ -30680,7 +30844,7 @@ func (o *FixLocalVolumeResponse) xxx_FromOp(ctx context.Context, op *xxx_FixLoca
 	o.Return = op.Return
 }
 func (o *FixLocalVolumeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FixLocalVolumeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FixLocalVolumeOperation{}
@@ -30934,14 +31098,16 @@ type ManagerReportSiteInfoRequest struct {
 	SiteInfo *SiteListInfo `idl:"name:ppSiteInfo;pointer:unique" json:"site_info"`
 }
 
-func (o *ManagerReportSiteInfoRequest) xxx_ToOp(ctx context.Context) *xxx_ManagerReportSiteInfoOperation {
+func (o *ManagerReportSiteInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ManagerReportSiteInfoOperation) *xxx_ManagerReportSiteInfoOperation {
+	if op == nil {
+		op = &xxx_ManagerReportSiteInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ManagerReportSiteInfoOperation{}
+		return op
 	}
-	return &xxx_ManagerReportSiteInfoOperation{
-		ServerName: o.ServerName,
-		SiteInfo:   o.SiteInfo,
-	}
+	o.ServerName = op.ServerName
+	o.SiteInfo = op.SiteInfo
+	return op
 }
 
 func (o *ManagerReportSiteInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ManagerReportSiteInfoOperation) {
@@ -30952,7 +31118,7 @@ func (o *ManagerReportSiteInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_M
 	o.SiteInfo = op.SiteInfo
 }
 func (o *ManagerReportSiteInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ManagerReportSiteInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ManagerReportSiteInfoOperation{}
@@ -30972,14 +31138,16 @@ type ManagerReportSiteInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ManagerReportSiteInfoResponse) xxx_ToOp(ctx context.Context) *xxx_ManagerReportSiteInfoOperation {
+func (o *ManagerReportSiteInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ManagerReportSiteInfoOperation) *xxx_ManagerReportSiteInfoOperation {
+	if op == nil {
+		op = &xxx_ManagerReportSiteInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ManagerReportSiteInfoOperation{}
+		return op
 	}
-	return &xxx_ManagerReportSiteInfoOperation{
-		SiteInfo: o.SiteInfo,
-		Return:   o.Return,
-	}
+	o.SiteInfo = op.SiteInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *ManagerReportSiteInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ManagerReportSiteInfoOperation) {
@@ -30990,7 +31158,7 @@ func (o *ManagerReportSiteInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ManagerReportSiteInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ManagerReportSiteInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ManagerReportSiteInfoOperation{}
@@ -31171,15 +31339,17 @@ type TransportDeleteExRequest struct {
 	Buffer *TransportInfo `idl:"name:Buffer;switch_is:Level" json:"buffer"`
 }
 
-func (o *TransportDeleteExRequest) xxx_ToOp(ctx context.Context) *xxx_TransportDeleteExOperation {
+func (o *TransportDeleteExRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportDeleteExOperation) *xxx_TransportDeleteExOperation {
+	if op == nil {
+		op = &xxx_TransportDeleteExOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportDeleteExOperation{}
+		return op
 	}
-	return &xxx_TransportDeleteExOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		Buffer:     o.Buffer,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Buffer = op.Buffer
+	return op
 }
 
 func (o *TransportDeleteExRequest) xxx_FromOp(ctx context.Context, op *xxx_TransportDeleteExOperation) {
@@ -31191,7 +31361,7 @@ func (o *TransportDeleteExRequest) xxx_FromOp(ctx context.Context, op *xxx_Trans
 	o.Buffer = op.Buffer
 }
 func (o *TransportDeleteExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TransportDeleteExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportDeleteExOperation{}
@@ -31208,13 +31378,15 @@ type TransportDeleteExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TransportDeleteExResponse) xxx_ToOp(ctx context.Context) *xxx_TransportDeleteExOperation {
+func (o *TransportDeleteExResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportDeleteExOperation) *xxx_TransportDeleteExOperation {
+	if op == nil {
+		op = &xxx_TransportDeleteExOperation{}
+	}
 	if o == nil {
-		return &xxx_TransportDeleteExOperation{}
+		return op
 	}
-	return &xxx_TransportDeleteExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *TransportDeleteExResponse) xxx_FromOp(ctx context.Context, op *xxx_TransportDeleteExOperation) {
@@ -31224,7 +31396,7 @@ func (o *TransportDeleteExResponse) xxx_FromOp(ctx context.Context, op *xxx_Tran
 	o.Return = op.Return
 }
 func (o *TransportDeleteExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TransportDeleteExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TransportDeleteExOperation{}
@@ -31401,15 +31573,17 @@ type AliasAddRequest struct {
 	Info *ServerAliasInfo `idl:"name:InfoStruct;switch_is:Level" json:"info"`
 }
 
-func (o *AliasAddRequest) xxx_ToOp(ctx context.Context) *xxx_AliasAddOperation {
+func (o *AliasAddRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasAddOperation) *xxx_AliasAddOperation {
+	if op == nil {
+		op = &xxx_AliasAddOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasAddOperation{}
+		return op
 	}
-	return &xxx_AliasAddOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		Info:       o.Info,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Info = op.Info
+	return op
 }
 
 func (o *AliasAddRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasAddOperation) {
@@ -31421,7 +31595,7 @@ func (o *AliasAddRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasAddOperat
 	o.Info = op.Info
 }
 func (o *AliasAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AliasAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasAddOperation{}
@@ -31438,13 +31612,15 @@ type AliasAddResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AliasAddResponse) xxx_ToOp(ctx context.Context) *xxx_AliasAddOperation {
+func (o *AliasAddResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasAddOperation) *xxx_AliasAddOperation {
+	if op == nil {
+		op = &xxx_AliasAddOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasAddOperation{}
+		return op
 	}
-	return &xxx_AliasAddOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AliasAddResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasAddOperation) {
@@ -31454,7 +31630,7 @@ func (o *AliasAddResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasAddOpera
 	o.Return = op.Return
 }
 func (o *AliasAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AliasAddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasAddOperation{}
@@ -31732,16 +31908,18 @@ type AliasEnumRequest struct {
 	Resume uint32 `idl:"name:ResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *AliasEnumRequest) xxx_ToOp(ctx context.Context) *xxx_AliasEnumOperation {
+func (o *AliasEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasEnumOperation) *xxx_AliasEnumOperation {
+	if op == nil {
+		op = &xxx_AliasEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasEnumOperation{}
+		return op
 	}
-	return &xxx_AliasEnumOperation{
-		ServerName:             o.ServerName,
-		Info:                   o.Info,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.Info = op.Info
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *AliasEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasEnumOperation) {
@@ -31754,7 +31932,7 @@ func (o *AliasEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasEnumOper
 	o.Resume = op.Resume
 }
 func (o *AliasEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AliasEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasEnumOperation{}
@@ -31786,16 +31964,18 @@ type AliasEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AliasEnumResponse) xxx_ToOp(ctx context.Context) *xxx_AliasEnumOperation {
+func (o *AliasEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasEnumOperation) *xxx_AliasEnumOperation {
+	if op == nil {
+		op = &xxx_AliasEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasEnumOperation{}
+		return op
 	}
-	return &xxx_AliasEnumOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Resume:       o.Resume,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *AliasEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasEnumOperation) {
@@ -31808,7 +31988,7 @@ func (o *AliasEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasEnumOpe
 	o.Return = op.Return
 }
 func (o *AliasEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AliasEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasEnumOperation{}
@@ -31985,15 +32165,17 @@ type AliasDeleteRequest struct {
 	Info *ServerAliasInfo `idl:"name:InfoStruct;switch_is:Level" json:"info"`
 }
 
-func (o *AliasDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_AliasDeleteOperation {
+func (o *AliasDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasDeleteOperation) *xxx_AliasDeleteOperation {
+	if op == nil {
+		op = &xxx_AliasDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasDeleteOperation{}
+		return op
 	}
-	return &xxx_AliasDeleteOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		Info:       o.Info,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.Info = op.Info
+	return op
 }
 
 func (o *AliasDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasDeleteOperation) {
@@ -32005,7 +32187,7 @@ func (o *AliasDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_AliasDelete
 	o.Info = op.Info
 }
 func (o *AliasDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AliasDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasDeleteOperation{}
@@ -32022,13 +32204,15 @@ type AliasDeleteResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AliasDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_AliasDeleteOperation {
+func (o *AliasDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasDeleteOperation) *xxx_AliasDeleteOperation {
+	if op == nil {
+		op = &xxx_AliasDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_AliasDeleteOperation{}
+		return op
 	}
-	return &xxx_AliasDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AliasDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasDeleteOperation) {
@@ -32038,7 +32222,7 @@ func (o *AliasDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_AliasDelet
 	o.Return = op.Return
 }
 func (o *AliasDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AliasDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AliasDeleteOperation{}
@@ -32215,15 +32399,17 @@ type ShareDeleteExRequest struct {
 	ShareInfo *ShareInfo `idl:"name:ShareInfo;switch_is:Level" json:"share_info"`
 }
 
-func (o *ShareDeleteExRequest) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteExOperation {
+func (o *ShareDeleteExRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteExOperation) *xxx_ShareDeleteExOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteExOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteExOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteExOperation{
-		ServerName: o.ServerName,
-		Level:      o.Level,
-		ShareInfo:  o.ShareInfo,
-	}
+	o.ServerName = op.ServerName
+	o.Level = op.Level
+	o.ShareInfo = op.ShareInfo
+	return op
 }
 
 func (o *ShareDeleteExRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteExOperation) {
@@ -32235,7 +32421,7 @@ func (o *ShareDeleteExRequest) xxx_FromOp(ctx context.Context, op *xxx_ShareDele
 	o.ShareInfo = op.ShareInfo
 }
 func (o *ShareDeleteExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShareDeleteExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteExOperation{}
@@ -32252,13 +32438,15 @@ type ShareDeleteExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShareDeleteExResponse) xxx_ToOp(ctx context.Context) *xxx_ShareDeleteExOperation {
+func (o *ShareDeleteExResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteExOperation) *xxx_ShareDeleteExOperation {
+	if op == nil {
+		op = &xxx_ShareDeleteExOperation{}
+	}
 	if o == nil {
-		return &xxx_ShareDeleteExOperation{}
+		return op
 	}
-	return &xxx_ShareDeleteExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShareDeleteExResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDeleteExOperation) {
@@ -32268,7 +32456,7 @@ func (o *ShareDeleteExResponse) xxx_FromOp(ctx context.Context, op *xxx_ShareDel
 	o.Return = op.Return
 }
 func (o *ShareDeleteExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShareDeleteExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShareDeleteExOperation{}

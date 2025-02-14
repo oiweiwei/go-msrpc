@@ -379,54 +379,68 @@ func TypeInfoServerHandle(ctx context.Context, o TypeInfoServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // GetTypeAttr
-		in := &GetTypeAttributeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeAttributeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeAttribute(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeAttributeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeAttribute(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetTypeComp
-		in := &GetTypeCompRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeCompOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeComp(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeCompRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeComp(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetFuncDesc
-		in := &GetFuncDescRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFuncDescOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFuncDesc(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFuncDescRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFuncDesc(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetVarDesc
-		in := &GetVarDescRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVarDescOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVarDesc(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVarDescRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVarDesc(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetNames
-		in := &GetNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetRefTypeOfImplType
-		in := &GetReferenceTypeOfImplTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReferenceTypeOfImplTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReferenceTypeOfImplType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReferenceTypeOfImplTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReferenceTypeOfImplType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetImplTypeFlags
-		in := &GetImplTypeFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetImplTypeFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetImplTypeFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetImplTypeFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetImplTypeFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Opnum10NotUsedOnWire
 		// Opnum10NotUsedOnWire
 		return nil, nil
@@ -434,50 +448,62 @@ func TypeInfoServerHandle(ctx context.Context, o TypeInfoServer, opNum int, r nd
 		// Opnum11NotUsedOnWire
 		return nil, nil
 	case 12: // GetDocumentation
-		in := &GetDocumentationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDocumentationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDocumentation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDocumentationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDocumentation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // GetDllEntry
-		in := &GetDLLEntryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDLLEntryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDLLEntry(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDLLEntryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDLLEntry(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // GetRefTypeInfo
-		in := &GetReferenceTypeInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReferenceTypeInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReferenceTypeInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReferenceTypeInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReferenceTypeInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Opnum15NotUsedOnWire
 		// Opnum15NotUsedOnWire
 		return nil, nil
 	case 16: // CreateInstance
-		in := &CreateInstanceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateInstanceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateInstance(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateInstanceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateInstance(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // GetMops
-		in := &GetMopsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMopsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMops(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMopsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMops(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // GetContainingTypeLib
-		in := &GetContainingTypeLibRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetContainingTypeLibOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetContainingTypeLib(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetContainingTypeLibRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetContainingTypeLib(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // Opnum19NotUsedOnWire
 		// Opnum19NotUsedOnWire
 		return nil, nil
@@ -490,3 +516,50 @@ func TypeInfoServerHandle(ctx context.Context, o TypeInfoServer, opNum int, r nd
 	}
 	return nil, nil
 }
+
+// Unimplemented ITypeInfo
+type UnimplementedTypeInfoServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedTypeInfoServer) GetTypeAttribute(context.Context, *GetTypeAttributeRequest) (*GetTypeAttributeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetTypeComp(context.Context, *GetTypeCompRequest) (*GetTypeCompResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetFuncDesc(context.Context, *GetFuncDescRequest) (*GetFuncDescResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetVarDesc(context.Context, *GetVarDescRequest) (*GetVarDescResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetNames(context.Context, *GetNamesRequest) (*GetNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetReferenceTypeOfImplType(context.Context, *GetReferenceTypeOfImplTypeRequest) (*GetReferenceTypeOfImplTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetImplTypeFlags(context.Context, *GetImplTypeFlagsRequest) (*GetImplTypeFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetDocumentation(context.Context, *GetDocumentationRequest) (*GetDocumentationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetDLLEntry(context.Context, *GetDLLEntryRequest) (*GetDLLEntryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetReferenceTypeInfo(context.Context, *GetReferenceTypeInfoRequest) (*GetReferenceTypeInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) CreateInstance(context.Context, *CreateInstanceRequest) (*CreateInstanceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetMops(context.Context, *GetMopsRequest) (*GetMopsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfoServer) GetContainingTypeLib(context.Context, *GetContainingTypeLibRequest) (*GetContainingTypeLibResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TypeInfoServer = (*UnimplementedTypeInfoServer)(nil)

@@ -81,7 +81,7 @@ func (o *xxx_DefaultAutoApplyQuotaClient) QuotaObject() ifsrmquotaobject.QuotaOb
 }
 
 func (o *xxx_DefaultAutoApplyQuotaClient) GetExcludeFolders(ctx context.Context, in *GetExcludeFoldersRequest, opts ...dcerpc.CallOption) (*GetExcludeFoldersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -101,7 +101,7 @@ func (o *xxx_DefaultAutoApplyQuotaClient) GetExcludeFolders(ctx context.Context,
 }
 
 func (o *xxx_DefaultAutoApplyQuotaClient) SetExcludeFolders(ctx context.Context, in *SetExcludeFoldersRequest, opts ...dcerpc.CallOption) (*SetExcludeFoldersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -121,7 +121,7 @@ func (o *xxx_DefaultAutoApplyQuotaClient) SetExcludeFolders(ctx context.Context,
 }
 
 func (o *xxx_DefaultAutoApplyQuotaClient) CommitAndUpdateDerived(ctx context.Context, in *CommitAndUpdateDerivedRequest, opts ...dcerpc.CallOption) (*CommitAndUpdateDerivedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -354,13 +354,15 @@ type GetExcludeFoldersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetExcludeFoldersRequest) xxx_ToOp(ctx context.Context) *xxx_GetExcludeFoldersOperation {
+func (o *GetExcludeFoldersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExcludeFoldersOperation) *xxx_GetExcludeFoldersOperation {
+	if op == nil {
+		op = &xxx_GetExcludeFoldersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetExcludeFoldersOperation{}
+		return op
 	}
-	return &xxx_GetExcludeFoldersOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetExcludeFoldersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetExcludeFoldersOperation) {
@@ -370,7 +372,7 @@ func (o *GetExcludeFoldersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEx
 	o.This = op.This
 }
 func (o *GetExcludeFoldersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetExcludeFoldersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetExcludeFoldersOperation{}
@@ -390,15 +392,17 @@ type GetExcludeFoldersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetExcludeFoldersResponse) xxx_ToOp(ctx context.Context) *xxx_GetExcludeFoldersOperation {
+func (o *GetExcludeFoldersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExcludeFoldersOperation) *xxx_GetExcludeFoldersOperation {
+	if op == nil {
+		op = &xxx_GetExcludeFoldersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetExcludeFoldersOperation{}
+		return op
 	}
-	return &xxx_GetExcludeFoldersOperation{
-		That:    o.That,
-		Folders: o.Folders,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Folders = op.Folders
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetExcludeFoldersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetExcludeFoldersOperation) {
@@ -410,7 +414,7 @@ func (o *GetExcludeFoldersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetE
 	o.Return = op.Return
 }
 func (o *GetExcludeFoldersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetExcludeFoldersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetExcludeFoldersOperation{}
@@ -594,14 +598,16 @@ type SetExcludeFoldersRequest struct {
 	Folders *oaut.SafeArray `idl:"name:folders" json:"folders"`
 }
 
-func (o *SetExcludeFoldersRequest) xxx_ToOp(ctx context.Context) *xxx_SetExcludeFoldersOperation {
+func (o *SetExcludeFoldersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExcludeFoldersOperation) *xxx_SetExcludeFoldersOperation {
+	if op == nil {
+		op = &xxx_SetExcludeFoldersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetExcludeFoldersOperation{}
+		return op
 	}
-	return &xxx_SetExcludeFoldersOperation{
-		This:    o.This,
-		Folders: o.Folders,
-	}
+	o.This = op.This
+	o.Folders = op.Folders
+	return op
 }
 
 func (o *SetExcludeFoldersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetExcludeFoldersOperation) {
@@ -612,7 +618,7 @@ func (o *SetExcludeFoldersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEx
 	o.Folders = op.Folders
 }
 func (o *SetExcludeFoldersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetExcludeFoldersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetExcludeFoldersOperation{}
@@ -631,14 +637,16 @@ type SetExcludeFoldersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetExcludeFoldersResponse) xxx_ToOp(ctx context.Context) *xxx_SetExcludeFoldersOperation {
+func (o *SetExcludeFoldersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExcludeFoldersOperation) *xxx_SetExcludeFoldersOperation {
+	if op == nil {
+		op = &xxx_SetExcludeFoldersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetExcludeFoldersOperation{}
+		return op
 	}
-	return &xxx_SetExcludeFoldersOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetExcludeFoldersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetExcludeFoldersOperation) {
@@ -649,7 +657,7 @@ func (o *SetExcludeFoldersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetE
 	o.Return = op.Return
 }
 func (o *SetExcludeFoldersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetExcludeFoldersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetExcludeFoldersOperation{}
@@ -860,15 +868,17 @@ type CommitAndUpdateDerivedRequest struct {
 	ApplyOptions  fsrm.TemplateApplyOptions `idl:"name:applyOptions" json:"apply_options"`
 }
 
-func (o *CommitAndUpdateDerivedRequest) xxx_ToOp(ctx context.Context) *xxx_CommitAndUpdateDerivedOperation {
+func (o *CommitAndUpdateDerivedRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) *xxx_CommitAndUpdateDerivedOperation {
+	if op == nil {
+		op = &xxx_CommitAndUpdateDerivedOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitAndUpdateDerivedOperation{}
+		return op
 	}
-	return &xxx_CommitAndUpdateDerivedOperation{
-		This:          o.This,
-		CommitOptions: o.CommitOptions,
-		ApplyOptions:  o.ApplyOptions,
-	}
+	o.This = op.This
+	o.CommitOptions = op.CommitOptions
+	o.ApplyOptions = op.ApplyOptions
+	return op
 }
 
 func (o *CommitAndUpdateDerivedRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) {
@@ -880,7 +890,7 @@ func (o *CommitAndUpdateDerivedRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.ApplyOptions = op.ApplyOptions
 }
 func (o *CommitAndUpdateDerivedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CommitAndUpdateDerivedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitAndUpdateDerivedOperation{}
@@ -900,15 +910,17 @@ type CommitAndUpdateDerivedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CommitAndUpdateDerivedResponse) xxx_ToOp(ctx context.Context) *xxx_CommitAndUpdateDerivedOperation {
+func (o *CommitAndUpdateDerivedResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) *xxx_CommitAndUpdateDerivedOperation {
+	if op == nil {
+		op = &xxx_CommitAndUpdateDerivedOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitAndUpdateDerivedOperation{}
+		return op
 	}
-	return &xxx_CommitAndUpdateDerivedOperation{
-		That:                 o.That,
-		DerivedObjectsResult: o.DerivedObjectsResult,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.DerivedObjectsResult = op.DerivedObjectsResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *CommitAndUpdateDerivedResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) {
@@ -920,7 +932,7 @@ func (o *CommitAndUpdateDerivedResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *CommitAndUpdateDerivedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CommitAndUpdateDerivedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitAndUpdateDerivedOperation{}

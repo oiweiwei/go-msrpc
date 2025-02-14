@@ -67,47 +67,85 @@ func FileGroupServerHandle(ctx context.Context, o FileGroupServer, opNum int, r 
 	}
 	switch opNum {
 	case 12: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Members
-		in := &GetMembersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMembersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMembers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMembersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMembers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Members
-		in := &SetMembersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMembersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMembers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMembersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMembers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // NonMembers
-		in := &GetNonMembersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNonMembersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNonMembers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNonMembersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNonMembers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // NonMembers
-		in := &SetNonMembersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNonMembersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNonMembers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNonMembersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNonMembers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileGroup
+type UnimplementedFileGroupServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedFileGroupServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupServer) GetMembers(context.Context, *GetMembersRequest) (*GetMembersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupServer) SetMembers(context.Context, *SetMembersRequest) (*SetMembersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupServer) GetNonMembers(context.Context, *GetNonMembersRequest) (*GetNonMembersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupServer) SetNonMembers(context.Context, *SetNonMembersRequest) (*SetNonMembersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileGroupServer = (*UnimplementedFileGroupServer)(nil)

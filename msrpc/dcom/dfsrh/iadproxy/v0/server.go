@@ -135,26 +135,49 @@ func IADProxyServerHandle(ctx context.Context, o IADProxyServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // CreateObject
-		in := &CreateObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // DeleteObject
-		in := &DeleteObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ModifyObject
-		in := &ModifyObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IADProxy
+type UnimplementedIADProxyServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedIADProxyServer) CreateObject(context.Context, *CreateObjectRequest) (*CreateObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIADProxyServer) DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIADProxyServer) ModifyObject(context.Context, *ModifyObjectRequest) (*ModifyObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IADProxyServer = (*UnimplementedIADProxyServer)(nil)

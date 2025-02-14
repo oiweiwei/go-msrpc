@@ -112,7 +112,7 @@ func (o *xxx_DefaultPropertyDefinition2Client) PropertyDefinition() ifsrmpropert
 }
 
 func (o *xxx_DefaultPropertyDefinition2Client) GetPropertyDefinitionFlags(ctx context.Context, in *GetPropertyDefinitionFlagsRequest, opts ...dcerpc.CallOption) (*GetPropertyDefinitionFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -132,7 +132,7 @@ func (o *xxx_DefaultPropertyDefinition2Client) GetPropertyDefinitionFlags(ctx co
 }
 
 func (o *xxx_DefaultPropertyDefinition2Client) GetDisplayName(ctx context.Context, in *GetDisplayNameRequest, opts ...dcerpc.CallOption) (*GetDisplayNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -152,7 +152,7 @@ func (o *xxx_DefaultPropertyDefinition2Client) GetDisplayName(ctx context.Contex
 }
 
 func (o *xxx_DefaultPropertyDefinition2Client) SetDisplayName(ctx context.Context, in *SetDisplayNameRequest, opts ...dcerpc.CallOption) (*SetDisplayNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -172,7 +172,7 @@ func (o *xxx_DefaultPropertyDefinition2Client) SetDisplayName(ctx context.Contex
 }
 
 func (o *xxx_DefaultPropertyDefinition2Client) GetAppliesTo(ctx context.Context, in *GetAppliesToRequest, opts ...dcerpc.CallOption) (*GetAppliesToResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -192,7 +192,7 @@ func (o *xxx_DefaultPropertyDefinition2Client) GetAppliesTo(ctx context.Context,
 }
 
 func (o *xxx_DefaultPropertyDefinition2Client) GetValueDefinitions(ctx context.Context, in *GetValueDefinitionsRequest, opts ...dcerpc.CallOption) (*GetValueDefinitionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -391,13 +391,15 @@ type GetPropertyDefinitionFlagsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertyDefinitionFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertyDefinitionFlagsOperation {
+func (o *GetPropertyDefinitionFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertyDefinitionFlagsOperation) *xxx_GetPropertyDefinitionFlagsOperation {
+	if op == nil {
+		op = &xxx_GetPropertyDefinitionFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertyDefinitionFlagsOperation{}
+		return op
 	}
-	return &xxx_GetPropertyDefinitionFlagsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertyDefinitionFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertyDefinitionFlagsOperation) {
@@ -407,7 +409,7 @@ func (o *GetPropertyDefinitionFlagsRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *GetPropertyDefinitionFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertyDefinitionFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertyDefinitionFlagsOperation{}
@@ -430,15 +432,17 @@ type GetPropertyDefinitionFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertyDefinitionFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertyDefinitionFlagsOperation {
+func (o *GetPropertyDefinitionFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertyDefinitionFlagsOperation) *xxx_GetPropertyDefinitionFlagsOperation {
+	if op == nil {
+		op = &xxx_GetPropertyDefinitionFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertyDefinitionFlagsOperation{}
+		return op
 	}
-	return &xxx_GetPropertyDefinitionFlagsOperation{
-		That:                    o.That,
-		PropertyDefinitionFlags: o.PropertyDefinitionFlags,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.PropertyDefinitionFlags = op.PropertyDefinitionFlags
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertyDefinitionFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertyDefinitionFlagsOperation) {
@@ -450,7 +454,7 @@ func (o *GetPropertyDefinitionFlagsResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *GetPropertyDefinitionFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertyDefinitionFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertyDefinitionFlagsOperation{}
@@ -633,13 +637,15 @@ type GetDisplayNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetDisplayNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetDisplayNameOperation {
+func (o *GetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDisplayNameOperation) *xxx_GetDisplayNameOperation {
+	if op == nil {
+		op = &xxx_GetDisplayNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDisplayNameOperation{}
+		return op
 	}
-	return &xxx_GetDisplayNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDisplayNameOperation) {
@@ -649,7 +655,7 @@ func (o *GetDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDispl
 	o.This = op.This
 }
 func (o *GetDisplayNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDisplayNameOperation{}
@@ -669,15 +675,17 @@ type GetDisplayNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDisplayNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetDisplayNameOperation {
+func (o *GetDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDisplayNameOperation) *xxx_GetDisplayNameOperation {
+	if op == nil {
+		op = &xxx_GetDisplayNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDisplayNameOperation{}
+		return op
 	}
-	return &xxx_GetDisplayNameOperation{
-		That:   o.That,
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDisplayNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDisplayNameOperation) {
@@ -689,7 +697,7 @@ func (o *GetDisplayNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDisp
 	o.Return = op.Return
 }
 func (o *GetDisplayNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDisplayNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDisplayNameOperation{}
@@ -873,14 +881,16 @@ type SetDisplayNameRequest struct {
 	Name *oaut.String   `idl:"name:name" json:"name"`
 }
 
-func (o *SetDisplayNameRequest) xxx_ToOp(ctx context.Context) *xxx_SetDisplayNameOperation {
+func (o *SetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDisplayNameOperation) *xxx_SetDisplayNameOperation {
+	if op == nil {
+		op = &xxx_SetDisplayNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDisplayNameOperation{}
+		return op
 	}
-	return &xxx_SetDisplayNameOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *SetDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDisplayNameOperation) {
@@ -891,7 +901,7 @@ func (o *SetDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDispl
 	o.Name = op.Name
 }
 func (o *SetDisplayNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDisplayNameOperation{}
@@ -910,14 +920,16 @@ type SetDisplayNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetDisplayNameResponse) xxx_ToOp(ctx context.Context) *xxx_SetDisplayNameOperation {
+func (o *SetDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDisplayNameOperation) *xxx_SetDisplayNameOperation {
+	if op == nil {
+		op = &xxx_SetDisplayNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDisplayNameOperation{}
+		return op
 	}
-	return &xxx_SetDisplayNameOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetDisplayNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDisplayNameOperation) {
@@ -928,7 +940,7 @@ func (o *SetDisplayNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDisp
 	o.Return = op.Return
 }
 func (o *SetDisplayNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetDisplayNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDisplayNameOperation{}
@@ -1075,13 +1087,15 @@ type GetAppliesToRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAppliesToRequest) xxx_ToOp(ctx context.Context) *xxx_GetAppliesToOperation {
+func (o *GetAppliesToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAppliesToOperation) *xxx_GetAppliesToOperation {
+	if op == nil {
+		op = &xxx_GetAppliesToOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAppliesToOperation{}
+		return op
 	}
-	return &xxx_GetAppliesToOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAppliesToRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAppliesToOperation) {
@@ -1091,7 +1105,7 @@ func (o *GetAppliesToRequest) xxx_FromOp(ctx context.Context, op *xxx_GetApplies
 	o.This = op.This
 }
 func (o *GetAppliesToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAppliesToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAppliesToOperation{}
@@ -1111,15 +1125,17 @@ type GetAppliesToResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAppliesToResponse) xxx_ToOp(ctx context.Context) *xxx_GetAppliesToOperation {
+func (o *GetAppliesToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAppliesToOperation) *xxx_GetAppliesToOperation {
+	if op == nil {
+		op = &xxx_GetAppliesToOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAppliesToOperation{}
+		return op
 	}
-	return &xxx_GetAppliesToOperation{
-		That:      o.That,
-		AppliesTo: o.AppliesTo,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.AppliesTo = op.AppliesTo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAppliesToResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAppliesToOperation) {
@@ -1131,7 +1147,7 @@ func (o *GetAppliesToResponse) xxx_FromOp(ctx context.Context, op *xxx_GetApplie
 	o.Return = op.Return
 }
 func (o *GetAppliesToResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAppliesToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAppliesToOperation{}
@@ -1314,13 +1330,15 @@ type GetValueDefinitionsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetValueDefinitionsRequest) xxx_ToOp(ctx context.Context) *xxx_GetValueDefinitionsOperation {
+func (o *GetValueDefinitionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValueDefinitionsOperation) *xxx_GetValueDefinitionsOperation {
+	if op == nil {
+		op = &xxx_GetValueDefinitionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetValueDefinitionsOperation{}
+		return op
 	}
-	return &xxx_GetValueDefinitionsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetValueDefinitionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetValueDefinitionsOperation) {
@@ -1330,7 +1348,7 @@ func (o *GetValueDefinitionsRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.This = op.This
 }
 func (o *GetValueDefinitionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetValueDefinitionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetValueDefinitionsOperation{}
@@ -1352,15 +1370,17 @@ type GetValueDefinitionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetValueDefinitionsResponse) xxx_ToOp(ctx context.Context) *xxx_GetValueDefinitionsOperation {
+func (o *GetValueDefinitionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValueDefinitionsOperation) *xxx_GetValueDefinitionsOperation {
+	if op == nil {
+		op = &xxx_GetValueDefinitionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetValueDefinitionsOperation{}
+		return op
 	}
-	return &xxx_GetValueDefinitionsOperation{
-		That:             o.That,
-		ValueDefinitions: o.ValueDefinitions,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.ValueDefinitions = op.ValueDefinitions
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetValueDefinitionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetValueDefinitionsOperation) {
@@ -1372,7 +1392,7 @@ func (o *GetValueDefinitionsResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetValueDefinitionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetValueDefinitionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetValueDefinitionsOperation{}

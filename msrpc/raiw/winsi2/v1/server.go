@@ -85,19 +85,36 @@ func NewWinsi2ServerHandle(o Winsi2Server) dcerpc.ServerHandle {
 func Winsi2ServerHandle(ctx context.Context, o Winsi2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_WinsTombstoneDbRecs
-		in := &TombstoneDBRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TombstoneDBRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TombstoneDBRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TombstoneDBRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TombstoneDBRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // R_WinsCheckAccess
-		in := &CheckAccessRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CheckAccessOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CheckAccess(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CheckAccessRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CheckAccess(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented winsi2
+type UnimplementedWinsi2Server struct {
+}
+
+func (UnimplementedWinsi2Server) TombstoneDBRecords(context.Context, *TombstoneDBRecordsRequest) (*TombstoneDBRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsi2Server) CheckAccess(context.Context, *CheckAccessRequest) (*CheckAccessResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Winsi2Server = (*UnimplementedWinsi2Server)(nil)

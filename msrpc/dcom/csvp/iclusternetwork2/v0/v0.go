@@ -291,7 +291,7 @@ func (o *xxx_DefaultClusterNetwork2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) SendRTMessage(ctx context.Context, in *SendRTMessageRequest, opts ...dcerpc.CallOption) (*SendRTMessageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -311,7 +311,7 @@ func (o *xxx_DefaultClusterNetwork2Client) SendRTMessage(ctx context.Context, in
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) InitializeNode(ctx context.Context, in *InitializeNodeRequest, opts ...dcerpc.CallOption) (*InitializeNodeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -331,7 +331,7 @@ func (o *xxx_DefaultClusterNetwork2Client) InitializeNode(ctx context.Context, i
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) GetIPConfigSerialized(ctx context.Context, in *GetIPConfigSerializedRequest, opts ...dcerpc.CallOption) (*GetIPConfigSerializedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -351,7 +351,7 @@ func (o *xxx_DefaultClusterNetwork2Client) GetIPConfigSerialized(ctx context.Con
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) CleanupNode(ctx context.Context, in *CleanupNodeRequest, opts ...dcerpc.CallOption) (*CleanupNodeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -371,7 +371,7 @@ func (o *xxx_DefaultClusterNetwork2Client) CleanupNode(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) QueryFirewallConfiguration(ctx context.Context, in *QueryFirewallConfigurationRequest, opts ...dcerpc.CallOption) (*QueryFirewallConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -391,7 +391,7 @@ func (o *xxx_DefaultClusterNetwork2Client) QueryFirewallConfiguration(ctx contex
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) ProcessAddRoutes(ctx context.Context, in *ProcessAddRoutesRequest, opts ...dcerpc.CallOption) (*ProcessAddRoutesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -411,7 +411,7 @@ func (o *xxx_DefaultClusterNetwork2Client) ProcessAddRoutes(ctx context.Context,
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) GetAddRoutesStatus(ctx context.Context, in *GetAddRoutesStatusRequest, opts ...dcerpc.CallOption) (*GetAddRoutesStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -431,7 +431,7 @@ func (o *xxx_DefaultClusterNetwork2Client) GetAddRoutesStatus(ctx context.Contex
 }
 
 func (o *xxx_DefaultClusterNetwork2Client) CancelAddRoutesRequest(ctx context.Context, in *CancelAddRoutesRequestRequest, opts ...dcerpc.CallOption) (*CancelAddRoutesRequestResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -801,19 +801,21 @@ type SendRTMessageRequest struct {
 	Timeout uint32 `idl:"name:Timeout" json:"timeout"`
 }
 
-func (o *SendRTMessageRequest) xxx_ToOp(ctx context.Context) *xxx_SendRTMessageOperation {
+func (o *SendRTMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendRTMessageOperation) *xxx_SendRTMessageOperation {
+	if op == nil {
+		op = &xxx_SendRTMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_SendRTMessageOperation{}
+		return op
 	}
-	return &xxx_SendRTMessageOperation{
-		This:                 o.This,
-		SourceIPAddress:      o.SourceIPAddress,
-		DestinationIPAddress: o.DestinationIPAddress,
-		DestinationPort:      o.DestinationPort,
-		AddressFamily:        o.AddressFamily,
-		MessageSize:          o.MessageSize,
-		Timeout:              o.Timeout,
-	}
+	o.This = op.This
+	o.SourceIPAddress = op.SourceIPAddress
+	o.DestinationIPAddress = op.DestinationIPAddress
+	o.DestinationPort = op.DestinationPort
+	o.AddressFamily = op.AddressFamily
+	o.MessageSize = op.MessageSize
+	o.Timeout = op.Timeout
+	return op
 }
 
 func (o *SendRTMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_SendRTMessageOperation) {
@@ -829,7 +831,7 @@ func (o *SendRTMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_SendRTMes
 	o.Timeout = op.Timeout
 }
 func (o *SendRTMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SendRTMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendRTMessageOperation{}
@@ -852,15 +854,17 @@ type SendRTMessageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SendRTMessageResponse) xxx_ToOp(ctx context.Context) *xxx_SendRTMessageOperation {
+func (o *SendRTMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_SendRTMessageOperation) *xxx_SendRTMessageOperation {
+	if op == nil {
+		op = &xxx_SendRTMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_SendRTMessageOperation{}
+		return op
 	}
-	return &xxx_SendRTMessageOperation{
-		That:          o.That,
-		RTElapsedTime: o.RTElapsedTime,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.RTElapsedTime = op.RTElapsedTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *SendRTMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_SendRTMessageOperation) {
@@ -872,7 +876,7 @@ func (o *SendRTMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_SendRTMe
 	o.Return = op.Return
 }
 func (o *SendRTMessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SendRTMessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendRTMessageOperation{}
@@ -1073,14 +1077,16 @@ type InitializeNodeRequest struct {
 	RequestUDPPort uint16 `idl:"name:RequestUDPPort" json:"request_udp_port"`
 }
 
-func (o *InitializeNodeRequest) xxx_ToOp(ctx context.Context) *xxx_InitializeNodeOperation {
+func (o *InitializeNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeNodeOperation) *xxx_InitializeNodeOperation {
+	if op == nil {
+		op = &xxx_InitializeNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_InitializeNodeOperation{}
+		return op
 	}
-	return &xxx_InitializeNodeOperation{
-		This:           o.This,
-		RequestUDPPort: o.RequestUDPPort,
-	}
+	o.This = op.This
+	o.RequestUDPPort = op.RequestUDPPort
+	return op
 }
 
 func (o *InitializeNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_InitializeNodeOperation) {
@@ -1091,7 +1097,7 @@ func (o *InitializeNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_Initiali
 	o.RequestUDPPort = op.RequestUDPPort
 }
 func (o *InitializeNodeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InitializeNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitializeNodeOperation{}
@@ -1118,18 +1124,20 @@ type InitializeNodeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InitializeNodeResponse) xxx_ToOp(ctx context.Context) *xxx_InitializeNodeOperation {
+func (o *InitializeNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_InitializeNodeOperation) *xxx_InitializeNodeOperation {
+	if op == nil {
+		op = &xxx_InitializeNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_InitializeNodeOperation{}
+		return op
 	}
-	return &xxx_InitializeNodeOperation{
-		That:                  o.That,
-		BoundUDPPort:          o.BoundUDPPort,
-		NodeMajorVersion:      o.NodeMajorVersion,
-		NodeMinorVersion:      o.NodeMinorVersion,
-		ClusterPrepareVersion: o.ClusterPrepareVersion,
-		Return:                o.Return,
-	}
+	o.That = op.That
+	o.BoundUDPPort = op.BoundUDPPort
+	o.NodeMajorVersion = op.NodeMajorVersion
+	o.NodeMinorVersion = op.NodeMinorVersion
+	o.ClusterPrepareVersion = op.ClusterPrepareVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *InitializeNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_InitializeNodeOperation) {
@@ -1144,7 +1152,7 @@ func (o *InitializeNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_Initial
 	o.Return = op.Return
 }
 func (o *InitializeNodeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InitializeNodeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitializeNodeOperation{}
@@ -1371,14 +1379,16 @@ type GetIPConfigSerializedRequest struct {
 	ApplyClusterFilter bool `idl:"name:ApplyClusterFilter" json:"apply_cluster_filter"`
 }
 
-func (o *GetIPConfigSerializedRequest) xxx_ToOp(ctx context.Context) *xxx_GetIPConfigSerializedOperation {
+func (o *GetIPConfigSerializedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIPConfigSerializedOperation) *xxx_GetIPConfigSerializedOperation {
+	if op == nil {
+		op = &xxx_GetIPConfigSerializedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIPConfigSerializedOperation{}
+		return op
 	}
-	return &xxx_GetIPConfigSerializedOperation{
-		This:               o.This,
-		ApplyClusterFilter: o.ApplyClusterFilter,
-	}
+	o.This = op.This
+	o.ApplyClusterFilter = op.ApplyClusterFilter
+	return op
 }
 
 func (o *GetIPConfigSerializedRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIPConfigSerializedOperation) {
@@ -1389,7 +1399,7 @@ func (o *GetIPConfigSerializedRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.ApplyClusterFilter = op.ApplyClusterFilter
 }
 func (o *GetIPConfigSerializedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIPConfigSerializedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIPConfigSerializedOperation{}
@@ -1415,16 +1425,18 @@ type GetIPConfigSerializedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIPConfigSerializedResponse) xxx_ToOp(ctx context.Context) *xxx_GetIPConfigSerializedOperation {
+func (o *GetIPConfigSerializedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIPConfigSerializedOperation) *xxx_GetIPConfigSerializedOperation {
+	if op == nil {
+		op = &xxx_GetIPConfigSerializedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIPConfigSerializedOperation{}
+		return op
 	}
-	return &xxx_GetIPConfigSerializedOperation{
-		That:      o.That,
-		Data:      o.Data,
-		OutLength: o.OutLength,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Data = op.Data
+	o.OutLength = op.OutLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetIPConfigSerializedResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIPConfigSerializedOperation) {
@@ -1437,7 +1449,7 @@ func (o *GetIPConfigSerializedResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetIPConfigSerializedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIPConfigSerializedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIPConfigSerializedOperation{}
@@ -1571,13 +1583,15 @@ type CleanupNodeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CleanupNodeRequest) xxx_ToOp(ctx context.Context) *xxx_CleanupNodeOperation {
+func (o *CleanupNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeOperation) *xxx_CleanupNodeOperation {
+	if op == nil {
+		op = &xxx_CleanupNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanupNodeOperation{}
+		return op
 	}
-	return &xxx_CleanupNodeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CleanupNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanupNodeOperation) {
@@ -1587,7 +1601,7 @@ func (o *CleanupNodeRequest) xxx_FromOp(ctx context.Context, op *xxx_CleanupNode
 	o.This = op.This
 }
 func (o *CleanupNodeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CleanupNodeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanupNodeOperation{}
@@ -1606,14 +1620,16 @@ type CleanupNodeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CleanupNodeResponse) xxx_ToOp(ctx context.Context) *xxx_CleanupNodeOperation {
+func (o *CleanupNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeOperation) *xxx_CleanupNodeOperation {
+	if op == nil {
+		op = &xxx_CleanupNodeOperation{}
+	}
 	if o == nil {
-		return &xxx_CleanupNodeOperation{}
+		return op
 	}
-	return &xxx_CleanupNodeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CleanupNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanupNodeOperation) {
@@ -1624,7 +1640,7 @@ func (o *CleanupNodeResponse) xxx_FromOp(ctx context.Context, op *xxx_CleanupNod
 	o.Return = op.Return
 }
 func (o *CleanupNodeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CleanupNodeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CleanupNodeOperation{}
@@ -1786,13 +1802,15 @@ type QueryFirewallConfigurationRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryFirewallConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallConfigurationOperation {
+func (o *QueryFirewallConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallConfigurationOperation) *xxx_QueryFirewallConfigurationOperation {
+	if op == nil {
+		op = &xxx_QueryFirewallConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallConfigurationOperation{}
+		return op
 	}
-	return &xxx_QueryFirewallConfigurationOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryFirewallConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallConfigurationOperation) {
@@ -1802,7 +1820,7 @@ func (o *QueryFirewallConfigurationRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *QueryFirewallConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFirewallConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallConfigurationOperation{}
@@ -1859,16 +1877,18 @@ type QueryFirewallConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFirewallConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_QueryFirewallConfigurationOperation {
+func (o *QueryFirewallConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFirewallConfigurationOperation) *xxx_QueryFirewallConfigurationOperation {
+	if op == nil {
+		op = &xxx_QueryFirewallConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFirewallConfigurationOperation{}
+		return op
 	}
-	return &xxx_QueryFirewallConfigurationOperation{
-		That:                   o.That,
-		ServerRulesEnabled:     o.ServerRulesEnabled,
-		ManagementRulesEnabled: o.ManagementRulesEnabled,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.ServerRulesEnabled = op.ServerRulesEnabled
+	o.ManagementRulesEnabled = op.ManagementRulesEnabled
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFirewallConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryFirewallConfigurationOperation) {
@@ -1881,7 +1901,7 @@ func (o *QueryFirewallConfigurationResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *QueryFirewallConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFirewallConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFirewallConfigurationOperation{}
@@ -2047,14 +2067,16 @@ type ProcessAddRoutesRequest struct {
 	Request *csvp.AddRoutesRequest `idl:"name:request" json:"request"`
 }
 
-func (o *ProcessAddRoutesRequest) xxx_ToOp(ctx context.Context) *xxx_ProcessAddRoutesOperation {
+func (o *ProcessAddRoutesRequest) xxx_ToOp(ctx context.Context, op *xxx_ProcessAddRoutesOperation) *xxx_ProcessAddRoutesOperation {
+	if op == nil {
+		op = &xxx_ProcessAddRoutesOperation{}
+	}
 	if o == nil {
-		return &xxx_ProcessAddRoutesOperation{}
+		return op
 	}
-	return &xxx_ProcessAddRoutesOperation{
-		This:    o.This,
-		Request: o.Request,
-	}
+	o.This = op.This
+	o.Request = op.Request
+	return op
 }
 
 func (o *ProcessAddRoutesRequest) xxx_FromOp(ctx context.Context, op *xxx_ProcessAddRoutesOperation) {
@@ -2065,7 +2087,7 @@ func (o *ProcessAddRoutesRequest) xxx_FromOp(ctx context.Context, op *xxx_Proces
 	o.Request = op.Request
 }
 func (o *ProcessAddRoutesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ProcessAddRoutesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ProcessAddRoutesOperation{}
@@ -2084,14 +2106,16 @@ type ProcessAddRoutesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ProcessAddRoutesResponse) xxx_ToOp(ctx context.Context) *xxx_ProcessAddRoutesOperation {
+func (o *ProcessAddRoutesResponse) xxx_ToOp(ctx context.Context, op *xxx_ProcessAddRoutesOperation) *xxx_ProcessAddRoutesOperation {
+	if op == nil {
+		op = &xxx_ProcessAddRoutesOperation{}
+	}
 	if o == nil {
-		return &xxx_ProcessAddRoutesOperation{}
+		return op
 	}
-	return &xxx_ProcessAddRoutesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ProcessAddRoutesResponse) xxx_FromOp(ctx context.Context, op *xxx_ProcessAddRoutesOperation) {
@@ -2102,7 +2126,7 @@ func (o *ProcessAddRoutesResponse) xxx_FromOp(ctx context.Context, op *xxx_Proce
 	o.Return = op.Return
 }
 func (o *ProcessAddRoutesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ProcessAddRoutesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ProcessAddRoutesOperation{}
@@ -2266,13 +2290,15 @@ type GetAddRoutesStatusRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAddRoutesStatusRequest) xxx_ToOp(ctx context.Context) *xxx_GetAddRoutesStatusOperation {
+func (o *GetAddRoutesStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAddRoutesStatusOperation) *xxx_GetAddRoutesStatusOperation {
+	if op == nil {
+		op = &xxx_GetAddRoutesStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAddRoutesStatusOperation{}
+		return op
 	}
-	return &xxx_GetAddRoutesStatusOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAddRoutesStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAddRoutesStatusOperation) {
@@ -2282,7 +2308,7 @@ func (o *GetAddRoutesStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.This = op.This
 }
 func (o *GetAddRoutesStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAddRoutesStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAddRoutesStatusOperation{}
@@ -2303,15 +2329,17 @@ type GetAddRoutesStatusResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAddRoutesStatusResponse) xxx_ToOp(ctx context.Context) *xxx_GetAddRoutesStatusOperation {
+func (o *GetAddRoutesStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAddRoutesStatusOperation) *xxx_GetAddRoutesStatusOperation {
+	if op == nil {
+		op = &xxx_GetAddRoutesStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAddRoutesStatusOperation{}
+		return op
 	}
-	return &xxx_GetAddRoutesStatusOperation{
-		That:   o.That,
-		Reply:  o.Reply,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Reply = op.Reply
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAddRoutesStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAddRoutesStatusOperation) {
@@ -2323,7 +2351,7 @@ func (o *GetAddRoutesStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetAddRoutesStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAddRoutesStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAddRoutesStatusOperation{}
@@ -2459,13 +2487,15 @@ type CancelAddRoutesRequestRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CancelAddRoutesRequestRequest) xxx_ToOp(ctx context.Context) *xxx_CancelAddRoutesRequestOperation {
+func (o *CancelAddRoutesRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelAddRoutesRequestOperation) *xxx_CancelAddRoutesRequestOperation {
+	if op == nil {
+		op = &xxx_CancelAddRoutesRequestOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelAddRoutesRequestOperation{}
+		return op
 	}
-	return &xxx_CancelAddRoutesRequestOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CancelAddRoutesRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelAddRoutesRequestOperation) {
@@ -2475,7 +2505,7 @@ func (o *CancelAddRoutesRequestRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *CancelAddRoutesRequestRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CancelAddRoutesRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelAddRoutesRequestOperation{}
@@ -2494,14 +2524,16 @@ type CancelAddRoutesRequestResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CancelAddRoutesRequestResponse) xxx_ToOp(ctx context.Context) *xxx_CancelAddRoutesRequestOperation {
+func (o *CancelAddRoutesRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelAddRoutesRequestOperation) *xxx_CancelAddRoutesRequestOperation {
+	if op == nil {
+		op = &xxx_CancelAddRoutesRequestOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelAddRoutesRequestOperation{}
+		return op
 	}
-	return &xxx_CancelAddRoutesRequestOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CancelAddRoutesRequestResponse) xxx_FromOp(ctx context.Context, op *xxx_CancelAddRoutesRequestOperation) {
@@ -2512,7 +2544,7 @@ func (o *CancelAddRoutesRequestResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *CancelAddRoutesRequestResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CancelAddRoutesRequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelAddRoutesRequestOperation{}

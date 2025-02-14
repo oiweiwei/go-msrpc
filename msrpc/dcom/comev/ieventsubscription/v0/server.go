@@ -187,243 +187,421 @@ func EventSubscriptionServerHandle(ctx context.Context, o EventSubscriptionServe
 	}
 	switch opNum {
 	case 7: // SubscriptionID
-		in := &GetSubscriptionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriptionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriptionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriptionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriptionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SubscriptionID
-		in := &SetSubscriptionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriptionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriptionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriptionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriptionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // SubscriptionName
-		in := &GetSubscriptionNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriptionNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriptionName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriptionNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriptionName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // SubscriptionName
-		in := &SetSubscriptionNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriptionNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriptionName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriptionNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriptionName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // PublisherID
-		in := &GetPublisherIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // PublisherID
-		in := &SetPublisherIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPublisherIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPublisherID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPublisherIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPublisherID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // EventClassID
-		in := &GetEventClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // EventClassID
-		in := &SetEventClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // MethodName
-		in := &GetMethodNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMethodNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMethodName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMethodNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMethodName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // MethodName
-		in := &SetMethodNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMethodNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMethodName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMethodNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMethodName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // SubscriberCLSID
-		in := &GetSubscriberClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // SubscriberCLSID
-		in := &SetSubscriberClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriberClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriberClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriberClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriberClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // SubscriberInterface
-		in := &GetSubscriberInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // SubscriberInterface
-		in := &SetSubscriberInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriberInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriberInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriberInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriberInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // PerUser
-		in := &GetPerUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPerUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPerUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPerUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPerUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // PerUser
-		in := &SetPerUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPerUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPerUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPerUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPerUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // OwnerSID
-		in := &GetOwnerSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOwnerSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOwnerSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOwnerSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOwnerSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // OwnerSID
-		in := &SetOwnerSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOwnerSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOwnerSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOwnerSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOwnerSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // Enabled
-		in := &GetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // Enabled
-		in := &SetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Description
-		in := &SetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // MachineName
-		in := &GetMachineNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMachineNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMachineName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMachineNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMachineName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // MachineName
-		in := &SetMachineNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMachineNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMachineName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMachineNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMachineName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // GetPublisherProperty
-		in := &GetPublisherPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // PutPublisherProperty
-		in := &PutPublisherPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutPublisherPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutPublisherProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutPublisherPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutPublisherProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // RemovePublisherProperty
-		in := &RemovePublisherPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemovePublisherPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemovePublisherProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemovePublisherPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemovePublisherProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // GetPublisherPropertyCollection
-		in := &GetPublisherPropertyCollectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherPropertyCollectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherPropertyCollection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherPropertyCollectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherPropertyCollection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // GetSubscriberProperty
-		in := &GetSubscriberPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // PutSubscriberProperty
-		in := &PutSubscriberPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PutSubscriberPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PutSubscriberProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PutSubscriberPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PutSubscriberProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // RemoveSubscriberProperty
-		in := &RemoveSubscriberPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveSubscriberPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveSubscriberProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveSubscriberPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveSubscriberProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // GetSubscriberPropertyCollection
-		in := &GetSubscriberPropertyCollectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberPropertyCollectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberPropertyCollection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberPropertyCollectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberPropertyCollection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // InterfaceID
-		in := &GetInterfaceIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInterfaceIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInterfaceID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInterfaceIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInterfaceID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // InterfaceID
-		in := &SetInterfaceIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInterfaceIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInterfaceID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInterfaceIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInterfaceID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventSubscription
+type UnimplementedEventSubscriptionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedEventSubscriptionServer) GetSubscriptionID(context.Context, *GetSubscriptionIDRequest) (*GetSubscriptionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetSubscriptionID(context.Context, *SetSubscriptionIDRequest) (*SetSubscriptionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetSubscriptionName(context.Context, *GetSubscriptionNameRequest) (*GetSubscriptionNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetSubscriptionName(context.Context, *SetSubscriptionNameRequest) (*SetSubscriptionNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetPublisherID(context.Context, *GetPublisherIDRequest) (*GetPublisherIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetPublisherID(context.Context, *SetPublisherIDRequest) (*SetPublisherIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetEventClassID(context.Context, *GetEventClassIDRequest) (*GetEventClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetEventClassID(context.Context, *SetEventClassIDRequest) (*SetEventClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetMethodName(context.Context, *GetMethodNameRequest) (*GetMethodNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetMethodName(context.Context, *SetMethodNameRequest) (*SetMethodNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetSubscriberClassID(context.Context, *GetSubscriberClassIDRequest) (*GetSubscriberClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetSubscriberClassID(context.Context, *SetSubscriberClassIDRequest) (*SetSubscriberClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetSubscriberInterface(context.Context, *GetSubscriberInterfaceRequest) (*GetSubscriberInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetSubscriberInterface(context.Context, *SetSubscriberInterfaceRequest) (*SetSubscriberInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetPerUser(context.Context, *GetPerUserRequest) (*GetPerUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetPerUser(context.Context, *SetPerUserRequest) (*SetPerUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetOwnerSID(context.Context, *GetOwnerSIDRequest) (*GetOwnerSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetOwnerSID(context.Context, *SetOwnerSIDRequest) (*SetOwnerSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetEnabled(context.Context, *GetEnabledRequest) (*GetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetEnabled(context.Context, *SetEnabledRequest) (*SetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetDescription(context.Context, *SetDescriptionRequest) (*SetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetMachineName(context.Context, *GetMachineNameRequest) (*GetMachineNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetMachineName(context.Context, *SetMachineNameRequest) (*SetMachineNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetPublisherProperty(context.Context, *GetPublisherPropertyRequest) (*GetPublisherPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) PutPublisherProperty(context.Context, *PutPublisherPropertyRequest) (*PutPublisherPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) RemovePublisherProperty(context.Context, *RemovePublisherPropertyRequest) (*RemovePublisherPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetPublisherPropertyCollection(context.Context, *GetPublisherPropertyCollectionRequest) (*GetPublisherPropertyCollectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetSubscriberProperty(context.Context, *GetSubscriberPropertyRequest) (*GetSubscriberPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) PutSubscriberProperty(context.Context, *PutSubscriberPropertyRequest) (*PutSubscriberPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) RemoveSubscriberProperty(context.Context, *RemoveSubscriberPropertyRequest) (*RemoveSubscriberPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetSubscriberPropertyCollection(context.Context, *GetSubscriberPropertyCollectionRequest) (*GetSubscriberPropertyCollectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) GetInterfaceID(context.Context, *GetInterfaceIDRequest) (*GetInterfaceIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscriptionServer) SetInterfaceID(context.Context, *SetInterfaceIDRequest) (*SetInterfaceIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventSubscriptionServer = (*UnimplementedEventSubscriptionServer)(nil)

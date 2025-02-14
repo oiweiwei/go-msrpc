@@ -64,40 +64,73 @@ func ObjectServerHandle(ctx context.Context, o ObjectServer, opNum int, r ndr.Re
 	}
 	switch opNum {
 	case 7: // Id
-		in := &GetIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Description
-		in := &SetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Commit
-		in := &CommitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Commit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Commit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmObject
+type UnimplementedObjectServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedObjectServer) GetID(context.Context, *GetIDRequest) (*GetIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectServer) SetDescription(context.Context, *SetDescriptionRequest) (*SetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectServer) Commit(context.Context, *CommitRequest) (*CommitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ObjectServer = (*UnimplementedObjectServer)(nil)

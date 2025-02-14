@@ -76,19 +76,37 @@ func ObjectSinkServerHandle(ctx context.Context, o ObjectSinkServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // Indicate
-		in := &IndicateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IndicateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Indicate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IndicateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Indicate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SetStatus
-		in := &SetStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemObjectSink
+type UnimplementedObjectSinkServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedObjectSinkServer) Indicate(context.Context, *IndicateRequest) (*IndicateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedObjectSinkServer) SetStatus(context.Context, *SetStatusRequest) (*SetStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ObjectSinkServer = (*UnimplementedObjectSinkServer)(nil)

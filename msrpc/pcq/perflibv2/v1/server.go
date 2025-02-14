@@ -304,61 +304,108 @@ func NewPerflibV2ServerHandle(o PerflibV2Server) dcerpc.ServerHandle {
 func PerflibV2ServerHandle(ctx context.Context, o PerflibV2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // PerflibV2EnumerateCounterSet
-		in := &EnumerateCounterSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateCounterSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateCounterSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateCounterSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateCounterSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // PerflibV2QueryCounterSetRegistrationInfo
-		in := &QueryCounterSetRegistrationInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryCounterSetRegistrationInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryCounterSetRegistrationInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryCounterSetRegistrationInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryCounterSetRegistrationInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // PerflibV2EnumerateCounterSetInstances
-		in := &EnumerateCounterSetInstancesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateCounterSetInstancesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateCounterSetInstances(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateCounterSetInstancesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateCounterSetInstances(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // PerflibV2OpenQueryHandle
-		in := &OpenQueryHandleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenQueryHandleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenQueryHandle(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenQueryHandleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenQueryHandle(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // PerflibV2CloseQueryHandle
-		in := &CloseQueryHandleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseQueryHandleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseQueryHandle(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseQueryHandleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseQueryHandle(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // PerflibV2QueryCounterInfo
-		in := &QueryCounterInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryCounterInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryCounterInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryCounterInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryCounterInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // PerflibV2QueryCounterData
-		in := &QueryCounterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryCounterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryCounterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryCounterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryCounterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // PerflibV2ValidateCounters
-		in := &ValidateCountersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ValidateCountersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ValidateCounters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ValidateCountersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ValidateCounters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented PerflibV2
+type UnimplementedPerflibV2Server struct {
+}
+
+func (UnimplementedPerflibV2Server) EnumerateCounterSet(context.Context, *EnumerateCounterSetRequest) (*EnumerateCounterSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) QueryCounterSetRegistrationInfo(context.Context, *QueryCounterSetRegistrationInfoRequest) (*QueryCounterSetRegistrationInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) EnumerateCounterSetInstances(context.Context, *EnumerateCounterSetInstancesRequest) (*EnumerateCounterSetInstancesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) OpenQueryHandle(context.Context, *OpenQueryHandleRequest) (*OpenQueryHandleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) CloseQueryHandle(context.Context, *CloseQueryHandleRequest) (*CloseQueryHandleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) QueryCounterInfo(context.Context, *QueryCounterInfoRequest) (*QueryCounterInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) QueryCounterData(context.Context, *QueryCounterDataRequest) (*QueryCounterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerflibV2Server) ValidateCounters(context.Context, *ValidateCountersRequest) (*ValidateCountersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PerflibV2Server = (*UnimplementedPerflibV2Server)(nil)

@@ -43,12 +43,24 @@ func NewSSORemoteMasterSecretServerHandle(o SSORemoteMasterSecretServer) dcerpc.
 func SSORemoteMasterSecretServerHandle(ctx context.Context, o SSORemoteMasterSecretServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RemoteGetMasterSecret
-		in := &RemoteGetMasterSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteGetMasterSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteGetMasterSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteGetMasterSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteGetMasterSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ISingleSignonRemoteMasterSecret
+type UnimplementedSSORemoteMasterSecretServer struct {
+}
+
+func (UnimplementedSSORemoteMasterSecretServer) RemoteGetMasterSecret(context.Context, *RemoteGetMasterSecretRequest) (*RemoteGetMasterSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SSORemoteMasterSecretServer = (*UnimplementedSSORemoteMasterSecretServer)(nil)

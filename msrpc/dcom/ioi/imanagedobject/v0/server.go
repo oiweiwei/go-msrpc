@@ -88,19 +88,37 @@ func ManagedObjectServerHandle(ctx context.Context, o ManagedObjectServer, opNum
 	}
 	switch opNum {
 	case 3: // GetSerializedBuffer
-		in := &GetSerializedBufferRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSerializedBufferOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSerializedBuffer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSerializedBufferRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSerializedBuffer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetObjectIdentity
-		in := &GetObjectIdentityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectIdentityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectIdentity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectIdentityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectIdentity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IManagedObject
+type UnimplementedManagedObjectServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedManagedObjectServer) GetSerializedBuffer(context.Context, *GetSerializedBufferRequest) (*GetSerializedBufferResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedManagedObjectServer) GetObjectIdentity(context.Context, *GetObjectIdentityRequest) (*GetObjectIdentityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ManagedObjectServer = (*UnimplementedManagedObjectServer)(nil)

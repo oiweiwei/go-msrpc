@@ -61,7 +61,7 @@ type xxx_DefaultLsacapClient struct {
 }
 
 func (o *xxx_DefaultLsacapClient) GetAvailableCapIDs(ctx context.Context, in *GetAvailableCapIDsRequest, opts ...dcerpc.CallOption) (*GetAvailableCapIDsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -182,11 +182,14 @@ func (o *xxx_GetAvailableCapIDsOperation) UnmarshalNDRResponse(ctx context.Conte
 type GetAvailableCapIDsRequest struct {
 }
 
-func (o *GetAvailableCapIDsRequest) xxx_ToOp(ctx context.Context) *xxx_GetAvailableCapIDsOperation {
-	if o == nil {
-		return &xxx_GetAvailableCapIDsOperation{}
+func (o *GetAvailableCapIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAvailableCapIDsOperation) *xxx_GetAvailableCapIDsOperation {
+	if op == nil {
+		op = &xxx_GetAvailableCapIDsOperation{}
 	}
-	return &xxx_GetAvailableCapIDsOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *GetAvailableCapIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAvailableCapIDsOperation) {
@@ -195,7 +198,7 @@ func (o *GetAvailableCapIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	}
 }
 func (o *GetAvailableCapIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAvailableCapIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAvailableCapIDsOperation{}
@@ -214,14 +217,16 @@ type GetAvailableCapIDsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAvailableCapIDsResponse) xxx_ToOp(ctx context.Context) *xxx_GetAvailableCapIDsOperation {
+func (o *GetAvailableCapIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAvailableCapIDsOperation) *xxx_GetAvailableCapIDsOperation {
+	if op == nil {
+		op = &xxx_GetAvailableCapIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAvailableCapIDsOperation{}
+		return op
 	}
-	return &xxx_GetAvailableCapIDsOperation{
-		WrappedCapIDs: o.WrappedCapIDs,
-		Return:        o.Return,
-	}
+	o.WrappedCapIDs = op.WrappedCapIDs
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAvailableCapIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAvailableCapIDsOperation) {
@@ -232,7 +237,7 @@ func (o *GetAvailableCapIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetAvailableCapIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAvailableCapIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAvailableCapIDsOperation{}

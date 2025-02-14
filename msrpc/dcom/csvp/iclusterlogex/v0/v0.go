@@ -119,7 +119,7 @@ func (o *xxx_DefaultClusterLogExClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterLogExClient) GenerateClusterLog(ctx context.Context, in *GenerateClusterLogRequest, opts ...dcerpc.CallOption) (*GenerateClusterLogResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -139,7 +139,7 @@ func (o *xxx_DefaultClusterLogExClient) GenerateClusterLog(ctx context.Context, 
 }
 
 func (o *xxx_DefaultClusterLogExClient) GenerateClusterHealthLog(ctx context.Context, in *GenerateClusterHealthLogRequest, opts ...dcerpc.CallOption) (*GenerateClusterHealthLogResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -400,15 +400,17 @@ type GenerateClusterLogRequest struct {
 	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
 }
 
-func (o *GenerateClusterLogRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterLogOperation {
+func (o *GenerateClusterLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) *xxx_GenerateClusterLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterLogOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterLogOperation{
-		This:        o.This,
-		SpanMinutes: o.SpanMinutes,
-		Flags:       o.Flags,
-	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *GenerateClusterLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) {
@@ -420,7 +422,7 @@ func (o *GenerateClusterLogRequest) xxx_FromOp(ctx context.Context, op *xxx_Gene
 	o.Flags = op.Flags
 }
 func (o *GenerateClusterLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateClusterLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterLogOperation{}
@@ -447,15 +449,17 @@ type GenerateClusterLogResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateClusterLogResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterLogOperation {
+func (o *GenerateClusterLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) *xxx_GenerateClusterLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterLogOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterLogOperation{
-		That:        o.That,
-		LogFilePath: o.LogFilePath,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateClusterLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterLogOperation) {
@@ -467,7 +471,7 @@ func (o *GenerateClusterLogResponse) xxx_FromOp(ctx context.Context, op *xxx_Gen
 	o.Return = op.Return
 }
 func (o *GenerateClusterLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateClusterLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterLogOperation{}
@@ -682,15 +686,17 @@ type GenerateClusterHealthLogRequest struct {
 	Flags       csvp.ClusterLogExFlag `idl:"name:flags" json:"flags"`
 }
 
-func (o *GenerateClusterHealthLogRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterHealthLogOperation {
+func (o *GenerateClusterHealthLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterHealthLogOperation) *xxx_GenerateClusterHealthLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterHealthLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterHealthLogOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterHealthLogOperation{
-		This:        o.This,
-		SpanMinutes: o.SpanMinutes,
-		Flags:       o.Flags,
-	}
+	o.This = op.This
+	o.SpanMinutes = op.SpanMinutes
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *GenerateClusterHealthLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterHealthLogOperation) {
@@ -702,7 +708,7 @@ func (o *GenerateClusterHealthLogRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.Flags = op.Flags
 }
 func (o *GenerateClusterHealthLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateClusterHealthLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterHealthLogOperation{}
@@ -724,15 +730,17 @@ type GenerateClusterHealthLogResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateClusterHealthLogResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterHealthLogOperation {
+func (o *GenerateClusterHealthLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterHealthLogOperation) *xxx_GenerateClusterHealthLogOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterHealthLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterHealthLogOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterHealthLogOperation{
-		That:        o.That,
-		LogFilePath: o.LogFilePath,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.LogFilePath = op.LogFilePath
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateClusterHealthLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterHealthLogOperation) {
@@ -744,7 +752,7 @@ func (o *GenerateClusterHealthLogResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GenerateClusterHealthLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateClusterHealthLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterHealthLogOperation{}

@@ -79,7 +79,7 @@ func (o *xxx_DefaultAppHostPropertyExceptionClient) AppHostConfigException() iap
 }
 
 func (o *xxx_DefaultAppHostPropertyExceptionClient) GetInvalidValue(ctx context.Context, in *GetInvalidValueRequest, opts ...dcerpc.CallOption) (*GetInvalidValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -99,7 +99,7 @@ func (o *xxx_DefaultAppHostPropertyExceptionClient) GetInvalidValue(ctx context.
 }
 
 func (o *xxx_DefaultAppHostPropertyExceptionClient) GetValidationFailureReason(ctx context.Context, in *GetValidationFailureReasonRequest, opts ...dcerpc.CallOption) (*GetValidationFailureReasonResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +119,7 @@ func (o *xxx_DefaultAppHostPropertyExceptionClient) GetValidationFailureReason(c
 }
 
 func (o *xxx_DefaultAppHostPropertyExceptionClient) GetValidationFailureParameters(ctx context.Context, in *GetValidationFailureParametersRequest, opts ...dcerpc.CallOption) (*GetValidationFailureParametersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -352,13 +352,15 @@ type GetInvalidValueRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetInvalidValueRequest) xxx_ToOp(ctx context.Context) *xxx_GetInvalidValueOperation {
+func (o *GetInvalidValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInvalidValueOperation) *xxx_GetInvalidValueOperation {
+	if op == nil {
+		op = &xxx_GetInvalidValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInvalidValueOperation{}
+		return op
 	}
-	return &xxx_GetInvalidValueOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetInvalidValueRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInvalidValueOperation) {
@@ -368,7 +370,7 @@ func (o *GetInvalidValueRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInva
 	o.This = op.This
 }
 func (o *GetInvalidValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetInvalidValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInvalidValueOperation{}
@@ -388,15 +390,17 @@ type GetInvalidValueResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetInvalidValueResponse) xxx_ToOp(ctx context.Context) *xxx_GetInvalidValueOperation {
+func (o *GetInvalidValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInvalidValueOperation) *xxx_GetInvalidValueOperation {
+	if op == nil {
+		op = &xxx_GetInvalidValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInvalidValueOperation{}
+		return op
 	}
-	return &xxx_GetInvalidValueOperation{
-		That:   o.That,
-		Value:  o.Value,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Value = op.Value
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetInvalidValueResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInvalidValueOperation) {
@@ -408,7 +412,7 @@ func (o *GetInvalidValueResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInv
 	o.Return = op.Return
 }
 func (o *GetInvalidValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetInvalidValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInvalidValueOperation{}
@@ -591,13 +595,15 @@ type GetValidationFailureReasonRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetValidationFailureReasonRequest) xxx_ToOp(ctx context.Context) *xxx_GetValidationFailureReasonOperation {
+func (o *GetValidationFailureReasonRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValidationFailureReasonOperation) *xxx_GetValidationFailureReasonOperation {
+	if op == nil {
+		op = &xxx_GetValidationFailureReasonOperation{}
+	}
 	if o == nil {
-		return &xxx_GetValidationFailureReasonOperation{}
+		return op
 	}
-	return &xxx_GetValidationFailureReasonOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetValidationFailureReasonRequest) xxx_FromOp(ctx context.Context, op *xxx_GetValidationFailureReasonOperation) {
@@ -607,7 +613,7 @@ func (o *GetValidationFailureReasonRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *GetValidationFailureReasonRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetValidationFailureReasonRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetValidationFailureReasonOperation{}
@@ -627,15 +633,17 @@ type GetValidationFailureReasonResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetValidationFailureReasonResponse) xxx_ToOp(ctx context.Context) *xxx_GetValidationFailureReasonOperation {
+func (o *GetValidationFailureReasonResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValidationFailureReasonOperation) *xxx_GetValidationFailureReasonOperation {
+	if op == nil {
+		op = &xxx_GetValidationFailureReasonOperation{}
+	}
 	if o == nil {
-		return &xxx_GetValidationFailureReasonOperation{}
+		return op
 	}
-	return &xxx_GetValidationFailureReasonOperation{
-		That:             o.That,
-		ValidationReason: o.ValidationReason,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.ValidationReason = op.ValidationReason
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetValidationFailureReasonResponse) xxx_FromOp(ctx context.Context, op *xxx_GetValidationFailureReasonOperation) {
@@ -647,7 +655,7 @@ func (o *GetValidationFailureReasonResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *GetValidationFailureReasonResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetValidationFailureReasonResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetValidationFailureReasonOperation{}
@@ -830,13 +838,15 @@ type GetValidationFailureParametersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetValidationFailureParametersRequest) xxx_ToOp(ctx context.Context) *xxx_GetValidationFailureParametersOperation {
+func (o *GetValidationFailureParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValidationFailureParametersOperation) *xxx_GetValidationFailureParametersOperation {
+	if op == nil {
+		op = &xxx_GetValidationFailureParametersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetValidationFailureParametersOperation{}
+		return op
 	}
-	return &xxx_GetValidationFailureParametersOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetValidationFailureParametersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetValidationFailureParametersOperation) {
@@ -846,7 +856,7 @@ func (o *GetValidationFailureParametersRequest) xxx_FromOp(ctx context.Context, 
 	o.This = op.This
 }
 func (o *GetValidationFailureParametersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetValidationFailureParametersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetValidationFailureParametersOperation{}
@@ -866,15 +876,17 @@ type GetValidationFailureParametersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetValidationFailureParametersResponse) xxx_ToOp(ctx context.Context) *xxx_GetValidationFailureParametersOperation {
+func (o *GetValidationFailureParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValidationFailureParametersOperation) *xxx_GetValidationFailureParametersOperation {
+	if op == nil {
+		op = &xxx_GetValidationFailureParametersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetValidationFailureParametersOperation{}
+		return op
 	}
-	return &xxx_GetValidationFailureParametersOperation{
-		That:           o.That,
-		ParameterArray: o.ParameterArray,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.ParameterArray = op.ParameterArray
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetValidationFailureParametersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetValidationFailureParametersOperation) {
@@ -886,7 +898,7 @@ func (o *GetValidationFailureParametersResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *GetValidationFailureParametersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetValidationFailureParametersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetValidationFailureParametersOperation{}

@@ -109,19 +109,37 @@ func ClusterFirewallServerHandle(ctx context.Context, o ClusterFirewallServer, o
 	}
 	switch opNum {
 	case 3: // InitializeAdapterConfiguration
-		in := &InitializeAdapterConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeAdapterConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeAdapterConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeAdapterConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeAdapterConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetNextAdapterFirewallConfiguration
-		in := &GetNextAdapterFirewallConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNextAdapterFirewallConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNextAdapterFirewallConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNextAdapterFirewallConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNextAdapterFirewallConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterFirewall
+type UnimplementedClusterFirewallServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterFirewallServer) InitializeAdapterConfiguration(context.Context, *InitializeAdapterConfigurationRequest) (*InitializeAdapterConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterFirewallServer) GetNextAdapterFirewallConfiguration(context.Context, *GetNextAdapterFirewallConfigurationRequest) (*GetNextAdapterFirewallConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterFirewallServer = (*UnimplementedClusterFirewallServer)(nil)

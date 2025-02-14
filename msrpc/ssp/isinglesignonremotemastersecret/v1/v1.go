@@ -53,7 +53,7 @@ type xxx_DefaultSSORemoteMasterSecretClient struct {
 }
 
 func (o *xxx_DefaultSSORemoteMasterSecretClient) RemoteGetMasterSecret(ctx context.Context, in *RemoteGetMasterSecretRequest, opts ...dcerpc.CallOption) (*RemoteGetMasterSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -223,13 +223,15 @@ type RemoteGetMasterSecretRequest struct {
 	SecretLength uint32 `idl:"name:pcbSecret" json:"secret_length"`
 }
 
-func (o *RemoteGetMasterSecretRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteGetMasterSecretOperation {
+func (o *RemoteGetMasterSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteGetMasterSecretOperation) *xxx_RemoteGetMasterSecretOperation {
+	if op == nil {
+		op = &xxx_RemoteGetMasterSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteGetMasterSecretOperation{}
+		return op
 	}
-	return &xxx_RemoteGetMasterSecretOperation{
-		SecretLength: o.SecretLength,
-	}
+	o.SecretLength = op.SecretLength
+	return op
 }
 
 func (o *RemoteGetMasterSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteGetMasterSecretOperation) {
@@ -239,7 +241,7 @@ func (o *RemoteGetMasterSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.SecretLength = op.SecretLength
 }
 func (o *RemoteGetMasterSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteGetMasterSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteGetMasterSecretOperation{}
@@ -258,15 +260,17 @@ type RemoteGetMasterSecretResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteGetMasterSecretResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteGetMasterSecretOperation {
+func (o *RemoteGetMasterSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteGetMasterSecretOperation) *xxx_RemoteGetMasterSecretOperation {
+	if op == nil {
+		op = &xxx_RemoteGetMasterSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteGetMasterSecretOperation{}
+		return op
 	}
-	return &xxx_RemoteGetMasterSecretOperation{
-		SecretLength: o.SecretLength,
-		Secret:       o.Secret,
-		Return:       o.Return,
-	}
+	o.SecretLength = op.SecretLength
+	o.Secret = op.Secret
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteGetMasterSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteGetMasterSecretOperation) {
@@ -278,7 +282,7 @@ func (o *RemoteGetMasterSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *RemoteGetMasterSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteGetMasterSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteGetMasterSecretOperation{}

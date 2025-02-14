@@ -63,12 +63,25 @@ func IDMRemoteServerServerHandle(ctx context.Context, o IDMRemoteServerServer, o
 	}
 	switch opNum {
 	case 3: // CreateRemoteObject
-		in := &CreateRemoteObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateRemoteObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateRemoteObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRemoteObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateRemoteObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDMRemoteServer
+type UnimplementedIDMRemoteServerServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedIDMRemoteServerServer) CreateRemoteObject(context.Context, *CreateRemoteObjectRequest) (*CreateRemoteObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IDMRemoteServerServer = (*UnimplementedIDMRemoteServerServer)(nil)

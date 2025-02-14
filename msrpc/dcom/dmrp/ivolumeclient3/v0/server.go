@@ -316,372 +316,476 @@ func VolumeClient3ServerHandle(ctx context.Context, o VolumeClient3Server, opNum
 	}
 	switch opNum {
 	case 3: // EnumDisksEx
-		in := &EnumDisksExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumDisksExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumDisksEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumDisksExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumDisksEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // EnumDiskRegionsEx
-		in := &EnumDiskRegionsExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumDiskRegionsExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumDiskRegionsEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumDiskRegionsExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumDiskRegionsEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // CreatePartition
-		in := &CreatePartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // CreatePartitionAssignAndFormat
-		in := &CreatePartitionAssignAndFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePartitionAssignAndFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePartitionAssignAndFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePartitionAssignAndFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePartitionAssignAndFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // CreatePartitionAssignAndFormatEx
-		in := &CreatePartitionAssignAndFormatExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePartitionAssignAndFormatExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePartitionAssignAndFormatEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePartitionAssignAndFormatExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePartitionAssignAndFormatEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // DeletePartition
-		in := &DeletePartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // InitializeDiskStyle
-		in := &InitializeDiskStyleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeDiskStyleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeDiskStyle(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeDiskStyleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeDiskStyle(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // MarkActivePartition
-		in := &MarkActivePartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MarkActivePartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MarkActivePartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MarkActivePartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MarkActivePartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Eject
-		in := &EjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Eject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Eject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Reserved_Opnum12
 		// Reserved_Opnum12
 		return nil, nil
 	case 13: // FTEnumVolumes
-		in := &FTEnumVolumesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTEnumVolumesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTEnumVolumes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTEnumVolumesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTEnumVolumes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // FTEnumLogicalDiskMembers
-		in := &FTEnumLogicalDiskMembersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTEnumLogicalDiskMembersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTEnumLogicalDiskMembers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTEnumLogicalDiskMembersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTEnumLogicalDiskMembers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // FTDeleteVolume
-		in := &FTDeleteVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTDeleteVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTDeleteVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTDeleteVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTDeleteVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // FTBreakMirror
-		in := &FTBreakMirrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTBreakMirrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTBreakMirror(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTBreakMirrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTBreakMirror(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // FTResyncMirror
-		in := &FTResyncMirrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTResyncMirrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTResyncMirror(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTResyncMirrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTResyncMirror(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // FTRegenerateParityStripe
-		in := &FTRegenerateParityStripeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTRegenerateParityStripeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTRegenerateParityStripe(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTRegenerateParityStripeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTRegenerateParityStripe(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // FTReplaceMirrorPartition
-		in := &FTReplaceMirrorPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTReplaceMirrorPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTReplaceMirrorPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTReplaceMirrorPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTReplaceMirrorPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // FTReplaceParityStripePartition
-		in := &FTReplaceParityStripePartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTReplaceParityStripePartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTReplaceParityStripePartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTReplaceParityStripePartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTReplaceParityStripePartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // EnumDriveLetters
-		in := &EnumDriveLettersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumDriveLettersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumDriveLetters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumDriveLettersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumDriveLetters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // AssignDriveLetter
-		in := &AssignDriveLetterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AssignDriveLetterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AssignDriveLetter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AssignDriveLetterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AssignDriveLetter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // FreeDriveLetter
-		in := &FreeDriveLetterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FreeDriveLetterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FreeDriveLetter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FreeDriveLetterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FreeDriveLetter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // EnumLocalFileSystems
-		in := &EnumLocalFileSystemsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumLocalFileSystemsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumLocalFileSystems(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumLocalFileSystemsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumLocalFileSystems(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // GetInstalledFileSystems
-		in := &GetInstalledFileSystemsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInstalledFileSystemsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInstalledFileSystems(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInstalledFileSystemsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInstalledFileSystems(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // Format
-		in := &FormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Format(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Format(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // EnumVolumes
-		in := &EnumVolumesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumVolumesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumVolumes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumVolumesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumVolumes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // EnumVolumeMembers
-		in := &EnumVolumeMembersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumVolumeMembersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumVolumeMembers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumVolumeMembersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumVolumeMembers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // CreateVolume
-		in := &CreateVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // CreateVolumeAssignAndFormat
-		in := &CreateVolumeAssignAndFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateVolumeAssignAndFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateVolumeAssignAndFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateVolumeAssignAndFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateVolumeAssignAndFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // CreateVolumeAssignAndFormatEx
-		in := &CreateVolumeAssignAndFormatExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateVolumeAssignAndFormatExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateVolumeAssignAndFormatEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateVolumeAssignAndFormatExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateVolumeAssignAndFormatEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // GetVolumeMountName
-		in := &GetVolumeMountNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVolumeMountNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVolumeMountName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVolumeMountNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVolumeMountName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // GrowVolume
-		in := &GrowVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GrowVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GrowVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GrowVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GrowVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // DeleteVolume
-		in := &DeleteVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // CreatePartitionsForVolume
-		in := &CreatePartitionsForVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePartitionsForVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePartitionsForVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePartitionsForVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePartitionsForVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // DeletePartitionsForVolume
-		in := &DeletePartitionsForVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePartitionsForVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePartitionsForVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePartitionsForVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePartitionsForVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // GetMaxAdjustedFreeSpace
-		in := &GetMaxAdjustedFreeSpaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMaxAdjustedFreeSpaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMaxAdjustedFreeSpace(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMaxAdjustedFreeSpaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMaxAdjustedFreeSpace(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // AddMirror
-		in := &AddMirrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddMirrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddMirror(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddMirrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddMirror(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // RemoveMirror
-		in := &RemoveMirrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMirrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMirror(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMirrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMirror(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // SplitMirror
-		in := &SplitMirrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SplitMirrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SplitMirror(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SplitMirrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SplitMirror(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // InitializeDiskEx
-		in := &InitializeDiskExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeDiskExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeDiskEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeDiskExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeDiskEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // UninitializeDisk
-		in := &UninitializeDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UninitializeDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UninitializeDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UninitializeDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UninitializeDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // ReConnectDisk
-		in := &ReConnectDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReConnectDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReConnectDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReConnectDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReConnectDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // ImportDiskGroup
-		in := &ImportDiskGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportDiskGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportDiskGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportDiskGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportDiskGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // DiskMergeQuery
-		in := &DiskMergeQueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DiskMergeQueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DiskMergeQuery(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DiskMergeQueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DiskMergeQuery(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // DiskMerge
-		in := &DiskMergeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DiskMergeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DiskMerge(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DiskMergeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DiskMerge(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // ReAttachDisk
-		in := &ReAttachDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReAttachDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReAttachDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReAttachDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReAttachDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // ReplaceRaid5Column
-		in := &ReplaceRAID5ColumnRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReplaceRAID5ColumnOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReplaceRAID5Column(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReplaceRAID5ColumnRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReplaceRAID5Column(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // RestartVolume
-		in := &RestartVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestartVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RestartVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestartVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RestartVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // GetEncapsulateDiskInfoEx
-		in := &GetEncapsulateDiskInfoExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEncapsulateDiskInfoExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEncapsulateDiskInfoEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEncapsulateDiskInfoExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEncapsulateDiskInfoEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // EncapsulateDiskEx
-		in := &EncapsulateDiskExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EncapsulateDiskExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EncapsulateDiskEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EncapsulateDiskExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EncapsulateDiskEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // QueryChangePartitionNumbers
-		in := &QueryChangePartitionNumbersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryChangePartitionNumbersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryChangePartitionNumbers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryChangePartitionNumbersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryChangePartitionNumbers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // DeletePartitionNumberInfoFromRegistry
-		in := &DeletePartitionNumberInfoFromRegistryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePartitionNumberInfoFromRegistryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePartitionNumberInfoFromRegistry(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePartitionNumberInfoFromRegistryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePartitionNumberInfoFromRegistry(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // SetDontShow
-		in := &SetDontShowRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDontShowOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDontShow(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDontShowRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDontShow(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // GetDontShow
-		in := &GetDontShowRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDontShowOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDontShow(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDontShowRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDontShow(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // Reserved0
 		// Reserved0
 		return nil, nil
@@ -707,110 +811,349 @@ func VolumeClient3ServerHandle(ctx context.Context, o VolumeClient3Server, opNum
 		// Reserved7
 		return nil, nil
 	case 64: // EnumTasks
-		in := &EnumTasksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumTasksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumTasks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumTasksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumTasks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 65: // GetTaskDetail
-		in := &GetTaskDetailRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskDetailOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskDetail(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskDetailRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskDetail(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // AbortTask
-		in := &AbortTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AbortTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AbortTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AbortTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AbortTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 67: // HrGetErrorData
-		in := &HResultGetErrorDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_HResultGetErrorDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.HResultGetErrorData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &HResultGetErrorDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.HResultGetErrorData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 68: // Initialize
-		in := &InitializeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Initialize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Initialize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 69: // Uninitialize
-		in := &UninitializeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UninitializeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Uninitialize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UninitializeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Uninitialize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 70: // Refresh
-		in := &RefreshRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Refresh(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Refresh(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 71: // RescanDisks
-		in := &RescanDisksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RescanDisksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RescanDisks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RescanDisksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RescanDisks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 72: // RefreshFileSys
-		in := &RefreshFileSystemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshFileSystemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RefreshFileSystem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshFileSystemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RefreshFileSystem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 73: // SecureSystemPartition
-		in := &SecureSystemPartitionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SecureSystemPartitionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SecureSystemPartition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SecureSystemPartitionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SecureSystemPartition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 74: // ShutDownSystem
-		in := &ShutDownSystemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShutDownSystemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShutDownSystem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShutDownSystemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShutDownSystem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 75: // EnumAccessPath
-		in := &EnumAccessPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumAccessPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumAccessPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumAccessPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumAccessPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 76: // EnumAccessPathForVolume
-		in := &EnumAccessPathForVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumAccessPathForVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumAccessPathForVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumAccessPathForVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumAccessPathForVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 77: // AddAccessPath
-		in := &AddAccessPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddAccessPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddAccessPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddAccessPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddAccessPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 78: // DeleteAccessPath
-		in := &DeleteAccessPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteAccessPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteAccessPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteAccessPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteAccessPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVolumeClient3
+type UnimplementedVolumeClient3Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeClient3Server) EnumDisksEx(context.Context, *EnumDisksExRequest) (*EnumDisksExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumDiskRegionsEx(context.Context, *EnumDiskRegionsExRequest) (*EnumDiskRegionsExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreatePartition(context.Context, *CreatePartitionRequest) (*CreatePartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreatePartitionAssignAndFormat(context.Context, *CreatePartitionAssignAndFormatRequest) (*CreatePartitionAssignAndFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreatePartitionAssignAndFormatEx(context.Context, *CreatePartitionAssignAndFormatExRequest) (*CreatePartitionAssignAndFormatExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DeletePartition(context.Context, *DeletePartitionRequest) (*DeletePartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) InitializeDiskStyle(context.Context, *InitializeDiskStyleRequest) (*InitializeDiskStyleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) MarkActivePartition(context.Context, *MarkActivePartitionRequest) (*MarkActivePartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) Eject(context.Context, *EjectRequest) (*EjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTEnumVolumes(context.Context, *FTEnumVolumesRequest) (*FTEnumVolumesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTEnumLogicalDiskMembers(context.Context, *FTEnumLogicalDiskMembersRequest) (*FTEnumLogicalDiskMembersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTDeleteVolume(context.Context, *FTDeleteVolumeRequest) (*FTDeleteVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTBreakMirror(context.Context, *FTBreakMirrorRequest) (*FTBreakMirrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTResyncMirror(context.Context, *FTResyncMirrorRequest) (*FTResyncMirrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTRegenerateParityStripe(context.Context, *FTRegenerateParityStripeRequest) (*FTRegenerateParityStripeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTReplaceMirrorPartition(context.Context, *FTReplaceMirrorPartitionRequest) (*FTReplaceMirrorPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FTReplaceParityStripePartition(context.Context, *FTReplaceParityStripePartitionRequest) (*FTReplaceParityStripePartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumDriveLetters(context.Context, *EnumDriveLettersRequest) (*EnumDriveLettersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) AssignDriveLetter(context.Context, *AssignDriveLetterRequest) (*AssignDriveLetterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) FreeDriveLetter(context.Context, *FreeDriveLetterRequest) (*FreeDriveLetterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumLocalFileSystems(context.Context, *EnumLocalFileSystemsRequest) (*EnumLocalFileSystemsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GetInstalledFileSystems(context.Context, *GetInstalledFileSystemsRequest) (*GetInstalledFileSystemsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) Format(context.Context, *FormatRequest) (*FormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumVolumes(context.Context, *EnumVolumesRequest) (*EnumVolumesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumVolumeMembers(context.Context, *EnumVolumeMembersRequest) (*EnumVolumeMembersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreateVolume(context.Context, *CreateVolumeRequest) (*CreateVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreateVolumeAssignAndFormat(context.Context, *CreateVolumeAssignAndFormatRequest) (*CreateVolumeAssignAndFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreateVolumeAssignAndFormatEx(context.Context, *CreateVolumeAssignAndFormatExRequest) (*CreateVolumeAssignAndFormatExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GetVolumeMountName(context.Context, *GetVolumeMountNameRequest) (*GetVolumeMountNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GrowVolume(context.Context, *GrowVolumeRequest) (*GrowVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DeleteVolume(context.Context, *DeleteVolumeRequest) (*DeleteVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) CreatePartitionsForVolume(context.Context, *CreatePartitionsForVolumeRequest) (*CreatePartitionsForVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DeletePartitionsForVolume(context.Context, *DeletePartitionsForVolumeRequest) (*DeletePartitionsForVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GetMaxAdjustedFreeSpace(context.Context, *GetMaxAdjustedFreeSpaceRequest) (*GetMaxAdjustedFreeSpaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) AddMirror(context.Context, *AddMirrorRequest) (*AddMirrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) RemoveMirror(context.Context, *RemoveMirrorRequest) (*RemoveMirrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) SplitMirror(context.Context, *SplitMirrorRequest) (*SplitMirrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) InitializeDiskEx(context.Context, *InitializeDiskExRequest) (*InitializeDiskExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) UninitializeDisk(context.Context, *UninitializeDiskRequest) (*UninitializeDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) ReConnectDisk(context.Context, *ReConnectDiskRequest) (*ReConnectDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) ImportDiskGroup(context.Context, *ImportDiskGroupRequest) (*ImportDiskGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DiskMergeQuery(context.Context, *DiskMergeQueryRequest) (*DiskMergeQueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DiskMerge(context.Context, *DiskMergeRequest) (*DiskMergeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) ReAttachDisk(context.Context, *ReAttachDiskRequest) (*ReAttachDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) ReplaceRAID5Column(context.Context, *ReplaceRAID5ColumnRequest) (*ReplaceRAID5ColumnResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) RestartVolume(context.Context, *RestartVolumeRequest) (*RestartVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GetEncapsulateDiskInfoEx(context.Context, *GetEncapsulateDiskInfoExRequest) (*GetEncapsulateDiskInfoExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EncapsulateDiskEx(context.Context, *EncapsulateDiskExRequest) (*EncapsulateDiskExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) QueryChangePartitionNumbers(context.Context, *QueryChangePartitionNumbersRequest) (*QueryChangePartitionNumbersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DeletePartitionNumberInfoFromRegistry(context.Context, *DeletePartitionNumberInfoFromRegistryRequest) (*DeletePartitionNumberInfoFromRegistryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) SetDontShow(context.Context, *SetDontShowRequest) (*SetDontShowResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GetDontShow(context.Context, *GetDontShowRequest) (*GetDontShowResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumTasks(context.Context, *EnumTasksRequest) (*EnumTasksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) GetTaskDetail(context.Context, *GetTaskDetailRequest) (*GetTaskDetailResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) AbortTask(context.Context, *AbortTaskRequest) (*AbortTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) HResultGetErrorData(context.Context, *HResultGetErrorDataRequest) (*HResultGetErrorDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) Initialize(context.Context, *InitializeRequest) (*InitializeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) Uninitialize(context.Context, *UninitializeRequest) (*UninitializeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) Refresh(context.Context, *RefreshRequest) (*RefreshResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) RescanDisks(context.Context, *RescanDisksRequest) (*RescanDisksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) RefreshFileSystem(context.Context, *RefreshFileSystemRequest) (*RefreshFileSystemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) SecureSystemPartition(context.Context, *SecureSystemPartitionRequest) (*SecureSystemPartitionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) ShutDownSystem(context.Context, *ShutDownSystemRequest) (*ShutDownSystemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumAccessPath(context.Context, *EnumAccessPathRequest) (*EnumAccessPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) EnumAccessPathForVolume(context.Context, *EnumAccessPathForVolumeRequest) (*EnumAccessPathForVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) AddAccessPath(context.Context, *AddAccessPathRequest) (*AddAccessPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeClient3Server) DeleteAccessPath(context.Context, *DeleteAccessPathRequest) (*DeleteAccessPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeClient3Server = (*UnimplementedVolumeClient3Server)(nil)

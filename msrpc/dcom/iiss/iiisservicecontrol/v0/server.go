@@ -264,40 +264,73 @@ func IISServiceControlServerHandle(ctx context.Context, o IISServiceControlServe
 	}
 	switch opNum {
 	case 7: // Stop
-		in := &StopRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Stop(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Stop(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Start
-		in := &StartRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Start(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Start(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Reboot
-		in := &RebootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RebootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Reboot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RebootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Reboot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Status
-		in := &StatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Status(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Status(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Kill
-		in := &KillRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_KillOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Kill(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &KillRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Kill(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IIisServiceControl
+type UnimplementedIISServiceControlServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedIISServiceControlServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISServiceControlServer) Start(context.Context, *StartRequest) (*StartResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISServiceControlServer) Reboot(context.Context, *RebootRequest) (*RebootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISServiceControlServer) Status(context.Context, *StatusRequest) (*StatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISServiceControlServer) Kill(context.Context, *KillRequest) (*KillResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IISServiceControlServer = (*UnimplementedIISServiceControlServer)(nil)

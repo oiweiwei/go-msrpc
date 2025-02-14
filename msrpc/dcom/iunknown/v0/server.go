@@ -60,3 +60,9 @@ func UnknownServerHandle(ctx context.Context, o UnknownServer, opNum int, r ndr.
 	}
 	return nil, nil
 }
+
+// Unimplemented IUnknown
+type UnimplementedUnknownServer struct {
+}
+
+var _ UnknownServer = (*UnimplementedUnknownServer)(nil)

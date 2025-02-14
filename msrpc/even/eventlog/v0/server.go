@@ -287,138 +287,176 @@ func NewEventlogServerHandle(o EventlogServer) dcerpc.ServerHandle {
 func EventlogServerHandle(ctx context.Context, o EventlogServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // ElfrClearELFW
-		in := &ClearEventLogWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearEventLogWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearEventLogW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearEventLogWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearEventLogW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // ElfrBackupELFW
-		in := &BackupEventLogWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupEventLogWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupEventLogW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupEventLogWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupEventLogW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // ElfrCloseEL
-		in := &CloseEventLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseEventLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseEventLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseEventLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseEventLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // ElfrDeregisterEventSource
-		in := &DeregisterEventSourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeregisterEventSourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeregisterEventSource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeregisterEventSourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeregisterEventSource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // ElfrNumberOfRecords
-		in := &NumberOfRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NumberOfRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NumberOfRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NumberOfRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NumberOfRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ElfrOldestRecord
-		in := &OldestRecordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OldestRecordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OldestRecord(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OldestRecordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OldestRecord(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ElfrChangeNotify
-		in := &ChangeNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // ElfrOpenELW
-		in := &OpenEventLogWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenEventLogWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenEventLogW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenEventLogWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenEventLogW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ElfrRegisterEventSourceW
-		in := &RegisterEventSourceWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterEventSourceWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterEventSourceW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterEventSourceWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterEventSourceW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // ElfrOpenBELW
-		in := &OpenBackupEventLogWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenBackupEventLogWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenBackupEventLogW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenBackupEventLogWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenBackupEventLogW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // ElfrReadELW
-		in := &ReadEventLogWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReadEventLogWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReadEventLogW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReadEventLogWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReadEventLogW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ElfrReportEventW
-		in := &ReportEventWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReportEventWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReportEventW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReportEventWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReportEventW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // ElfrClearELFA
-		in := &ClearEventLogARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearEventLogAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearEventLogA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearEventLogARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearEventLogA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ElfrBackupELFA
-		in := &BackupEventLogARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupEventLogAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupEventLogA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupEventLogARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupEventLogA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // ElfrOpenELA
-		in := &OpenEventLogARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenEventLogAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenEventLogA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenEventLogARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenEventLogA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // ElfrRegisterEventSourceA
-		in := &RegisterEventSourceARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterEventSourceAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterEventSourceA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterEventSourceARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterEventSourceA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // ElfrOpenBELA
-		in := &OpenBackupEventLogARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenBackupEventLogAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenBackupEventLogA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenBackupEventLogARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenBackupEventLogA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // ElfrReadELA
-		in := &ReadEventLogARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReadEventLogAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReadEventLogA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReadEventLogARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReadEventLogA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // ElfrReportEventA
-		in := &ReportEventARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReportEventAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReportEventA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReportEventARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReportEventA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // Opnum19NotUsedOnWire
 		// Opnum19NotUsedOnWire
 		return nil, nil
@@ -429,36 +467,120 @@ func EventlogServerHandle(ctx context.Context, o EventlogServer, opNum int, r nd
 		// Opnum21NotUsedOnWire
 		return nil, nil
 	case 22: // ElfrGetLogInformation
-		in := &GetLogInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // Opnum23NotUsedOnWire
 		// Opnum23NotUsedOnWire
 		return nil, nil
 	case 24: // ElfrReportEventAndSourceW
-		in := &ReportEventAndSourceWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReportEventAndSourceWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReportEventAndSourceW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReportEventAndSourceWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReportEventAndSourceW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // ElfrReportEventExW
-		in := &ReportEventExWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReportEventExWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReportEventExW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReportEventExWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReportEventExW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // ElfrReportEventExA
-		in := &ReportEventExARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReportEventExAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReportEventExA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReportEventExARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReportEventExA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented eventlog
+type UnimplementedEventlogServer struct {
+}
+
+func (UnimplementedEventlogServer) ClearEventLogW(context.Context, *ClearEventLogWRequest) (*ClearEventLogWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) BackupEventLogW(context.Context, *BackupEventLogWRequest) (*BackupEventLogWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) CloseEventLog(context.Context, *CloseEventLogRequest) (*CloseEventLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) DeregisterEventSource(context.Context, *DeregisterEventSourceRequest) (*DeregisterEventSourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) NumberOfRecords(context.Context, *NumberOfRecordsRequest) (*NumberOfRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) OldestRecord(context.Context, *OldestRecordRequest) (*OldestRecordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ChangeNotify(context.Context, *ChangeNotifyRequest) (*ChangeNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) OpenEventLogW(context.Context, *OpenEventLogWRequest) (*OpenEventLogWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) RegisterEventSourceW(context.Context, *RegisterEventSourceWRequest) (*RegisterEventSourceWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) OpenBackupEventLogW(context.Context, *OpenBackupEventLogWRequest) (*OpenBackupEventLogWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReadEventLogW(context.Context, *ReadEventLogWRequest) (*ReadEventLogWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReportEventW(context.Context, *ReportEventWRequest) (*ReportEventWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ClearEventLogA(context.Context, *ClearEventLogARequest) (*ClearEventLogAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) BackupEventLogA(context.Context, *BackupEventLogARequest) (*BackupEventLogAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) OpenEventLogA(context.Context, *OpenEventLogARequest) (*OpenEventLogAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) RegisterEventSourceA(context.Context, *RegisterEventSourceARequest) (*RegisterEventSourceAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) OpenBackupEventLogA(context.Context, *OpenBackupEventLogARequest) (*OpenBackupEventLogAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReadEventLogA(context.Context, *ReadEventLogARequest) (*ReadEventLogAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReportEventA(context.Context, *ReportEventARequest) (*ReportEventAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) GetLogInformation(context.Context, *GetLogInformationRequest) (*GetLogInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReportEventAndSourceW(context.Context, *ReportEventAndSourceWRequest) (*ReportEventAndSourceWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReportEventExW(context.Context, *ReportEventExWRequest) (*ReportEventExWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventlogServer) ReportEventExA(context.Context, *ReportEventExARequest) (*ReportEventExAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventlogServer = (*UnimplementedEventlogServer)(nil)

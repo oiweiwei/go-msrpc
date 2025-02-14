@@ -283,7 +283,7 @@ func (o *xxx_DefaultIISServiceControlClient) Dispatch() idispatch.DispatchClient
 }
 
 func (o *xxx_DefaultIISServiceControlClient) Stop(ctx context.Context, in *StopRequest, opts ...dcerpc.CallOption) (*StopResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -303,7 +303,7 @@ func (o *xxx_DefaultIISServiceControlClient) Stop(ctx context.Context, in *StopR
 }
 
 func (o *xxx_DefaultIISServiceControlClient) Start(ctx context.Context, in *StartRequest, opts ...dcerpc.CallOption) (*StartResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -323,7 +323,7 @@ func (o *xxx_DefaultIISServiceControlClient) Start(ctx context.Context, in *Star
 }
 
 func (o *xxx_DefaultIISServiceControlClient) Reboot(ctx context.Context, in *RebootRequest, opts ...dcerpc.CallOption) (*RebootResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -343,7 +343,7 @@ func (o *xxx_DefaultIISServiceControlClient) Reboot(ctx context.Context, in *Reb
 }
 
 func (o *xxx_DefaultIISServiceControlClient) Status(ctx context.Context, in *StatusRequest, opts ...dcerpc.CallOption) (*StatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -363,7 +363,7 @@ func (o *xxx_DefaultIISServiceControlClient) Status(ctx context.Context, in *Sta
 }
 
 func (o *xxx_DefaultIISServiceControlClient) Kill(ctx context.Context, in *KillRequest, opts ...dcerpc.CallOption) (*KillResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -592,15 +592,17 @@ type StopRequest struct {
 	Force uint32 `idl:"name:dwForce" json:"force"`
 }
 
-func (o *StopRequest) xxx_ToOp(ctx context.Context) *xxx_StopOperation {
+func (o *StopRequest) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_StopOperation {
+	if op == nil {
+		op = &xxx_StopOperation{}
+	}
 	if o == nil {
-		return &xxx_StopOperation{}
+		return op
 	}
-	return &xxx_StopOperation{
-		This:         o.This,
-		TimeoutMsecs: o.TimeoutMsecs,
-		Force:        o.Force,
-	}
+	o.This = op.This
+	o.TimeoutMsecs = op.TimeoutMsecs
+	o.Force = op.Force
+	return op
 }
 
 func (o *StopRequest) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
@@ -612,7 +614,7 @@ func (o *StopRequest) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
 	o.Force = op.Force
 }
 func (o *StopRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StopOperation{}
@@ -631,14 +633,16 @@ type StopResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StopResponse) xxx_ToOp(ctx context.Context) *xxx_StopOperation {
+func (o *StopResponse) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_StopOperation {
+	if op == nil {
+		op = &xxx_StopOperation{}
+	}
 	if o == nil {
-		return &xxx_StopOperation{}
+		return op
 	}
-	return &xxx_StopOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *StopResponse) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
@@ -649,7 +653,7 @@ func (o *StopResponse) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
 	o.Return = op.Return
 }
 func (o *StopResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StopResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StopOperation{}
@@ -799,14 +803,16 @@ type StartRequest struct {
 	TimeoutMsecs uint32 `idl:"name:dwTimeoutMsecs" json:"timeout_msecs"`
 }
 
-func (o *StartRequest) xxx_ToOp(ctx context.Context) *xxx_StartOperation {
+func (o *StartRequest) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *xxx_StartOperation {
+	if op == nil {
+		op = &xxx_StartOperation{}
+	}
 	if o == nil {
-		return &xxx_StartOperation{}
+		return op
 	}
-	return &xxx_StartOperation{
-		This:         o.This,
-		TimeoutMsecs: o.TimeoutMsecs,
-	}
+	o.This = op.This
+	o.TimeoutMsecs = op.TimeoutMsecs
+	return op
 }
 
 func (o *StartRequest) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) {
@@ -817,7 +823,7 @@ func (o *StartRequest) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) {
 	o.TimeoutMsecs = op.TimeoutMsecs
 }
 func (o *StartRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartOperation{}
@@ -836,14 +842,16 @@ type StartResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartResponse) xxx_ToOp(ctx context.Context) *xxx_StartOperation {
+func (o *StartResponse) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *xxx_StartOperation {
+	if op == nil {
+		op = &xxx_StartOperation{}
+	}
 	if o == nil {
-		return &xxx_StartOperation{}
+		return op
 	}
-	return &xxx_StartOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartResponse) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) {
@@ -854,7 +862,7 @@ func (o *StartResponse) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) 
 	o.Return = op.Return
 }
 func (o *StartResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartOperation{}
@@ -1029,15 +1037,17 @@ type RebootRequest struct {
 	ForceAppsClosed uint32 `idl:"name:dwForceAppsClosed" json:"force_apps_closed"`
 }
 
-func (o *RebootRequest) xxx_ToOp(ctx context.Context) *xxx_RebootOperation {
+func (o *RebootRequest) xxx_ToOp(ctx context.Context, op *xxx_RebootOperation) *xxx_RebootOperation {
+	if op == nil {
+		op = &xxx_RebootOperation{}
+	}
 	if o == nil {
-		return &xxx_RebootOperation{}
+		return op
 	}
-	return &xxx_RebootOperation{
-		This:            o.This,
-		TimeoutMsecs:    o.TimeoutMsecs,
-		ForceAppsClosed: o.ForceAppsClosed,
-	}
+	o.This = op.This
+	o.TimeoutMsecs = op.TimeoutMsecs
+	o.ForceAppsClosed = op.ForceAppsClosed
+	return op
 }
 
 func (o *RebootRequest) xxx_FromOp(ctx context.Context, op *xxx_RebootOperation) {
@@ -1049,7 +1059,7 @@ func (o *RebootRequest) xxx_FromOp(ctx context.Context, op *xxx_RebootOperation)
 	o.ForceAppsClosed = op.ForceAppsClosed
 }
 func (o *RebootRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RebootRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RebootOperation{}
@@ -1068,14 +1078,16 @@ type RebootResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RebootResponse) xxx_ToOp(ctx context.Context) *xxx_RebootOperation {
+func (o *RebootResponse) xxx_ToOp(ctx context.Context, op *xxx_RebootOperation) *xxx_RebootOperation {
+	if op == nil {
+		op = &xxx_RebootOperation{}
+	}
 	if o == nil {
-		return &xxx_RebootOperation{}
+		return op
 	}
-	return &xxx_RebootOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RebootResponse) xxx_FromOp(ctx context.Context, op *xxx_RebootOperation) {
@@ -1086,7 +1098,7 @@ func (o *RebootResponse) xxx_FromOp(ctx context.Context, op *xxx_RebootOperation
 	o.Return = op.Return
 }
 func (o *RebootResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RebootResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RebootOperation{}
@@ -1316,14 +1328,16 @@ type StatusRequest struct {
 	BufferSize uint32 `idl:"name:dwBufferSize" json:"buffer_size"`
 }
 
-func (o *StatusRequest) xxx_ToOp(ctx context.Context) *xxx_StatusOperation {
+func (o *StatusRequest) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) *xxx_StatusOperation {
+	if op == nil {
+		op = &xxx_StatusOperation{}
+	}
 	if o == nil {
-		return &xxx_StatusOperation{}
+		return op
 	}
-	return &xxx_StatusOperation{
-		This:       o.This,
-		BufferSize: o.BufferSize,
-	}
+	o.This = op.This
+	o.BufferSize = op.BufferSize
+	return op
 }
 
 func (o *StatusRequest) xxx_FromOp(ctx context.Context, op *xxx_StatusOperation) {
@@ -1334,7 +1348,7 @@ func (o *StatusRequest) xxx_FromOp(ctx context.Context, op *xxx_StatusOperation)
 	o.BufferSize = op.BufferSize
 }
 func (o *StatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StatusOperation{}
@@ -1363,17 +1377,19 @@ type StatusResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StatusResponse) xxx_ToOp(ctx context.Context) *xxx_StatusOperation {
+func (o *StatusResponse) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) *xxx_StatusOperation {
+	if op == nil {
+		op = &xxx_StatusOperation{}
+	}
 	if o == nil {
-		return &xxx_StatusOperation{}
+		return op
 	}
-	return &xxx_StatusOperation{
-		That:               o.That,
-		Buffer:             o.Buffer,
-		RequiredBufferSize: o.RequiredBufferSize,
-		ServicesLength:     o.ServicesLength,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.Buffer = op.Buffer
+	o.RequiredBufferSize = op.RequiredBufferSize
+	o.ServicesLength = op.ServicesLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *StatusResponse) xxx_FromOp(ctx context.Context, op *xxx_StatusOperation) {
@@ -1387,7 +1403,7 @@ func (o *StatusResponse) xxx_FromOp(ctx context.Context, op *xxx_StatusOperation
 	o.Return = op.Return
 }
 func (o *StatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StatusOperation{}
@@ -1521,13 +1537,15 @@ type KillRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *KillRequest) xxx_ToOp(ctx context.Context) *xxx_KillOperation {
+func (o *KillRequest) xxx_ToOp(ctx context.Context, op *xxx_KillOperation) *xxx_KillOperation {
+	if op == nil {
+		op = &xxx_KillOperation{}
+	}
 	if o == nil {
-		return &xxx_KillOperation{}
+		return op
 	}
-	return &xxx_KillOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *KillRequest) xxx_FromOp(ctx context.Context, op *xxx_KillOperation) {
@@ -1537,7 +1555,7 @@ func (o *KillRequest) xxx_FromOp(ctx context.Context, op *xxx_KillOperation) {
 	o.This = op.This
 }
 func (o *KillRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *KillRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_KillOperation{}
@@ -1556,14 +1574,16 @@ type KillResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *KillResponse) xxx_ToOp(ctx context.Context) *xxx_KillOperation {
+func (o *KillResponse) xxx_ToOp(ctx context.Context, op *xxx_KillOperation) *xxx_KillOperation {
+	if op == nil {
+		op = &xxx_KillOperation{}
+	}
 	if o == nil {
-		return &xxx_KillOperation{}
+		return op
 	}
-	return &xxx_KillOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *KillResponse) xxx_FromOp(ctx context.Context, op *xxx_KillOperation) {
@@ -1574,7 +1594,7 @@ func (o *KillResponse) xxx_FromOp(ctx context.Context, op *xxx_KillOperation) {
 	o.Return = op.Return
 }
 func (o *KillResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *KillResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_KillOperation{}

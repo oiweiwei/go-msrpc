@@ -197,7 +197,7 @@ type xxx_DefaultATSvcClient struct {
 }
 
 func (o *xxx_DefaultATSvcClient) JobAdd(ctx context.Context, in *JobAddRequest, opts ...dcerpc.CallOption) (*JobAddResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -210,7 +210,7 @@ func (o *xxx_DefaultATSvcClient) JobAdd(ctx context.Context, in *JobAddRequest, 
 }
 
 func (o *xxx_DefaultATSvcClient) JobDelete(ctx context.Context, in *JobDeleteRequest, opts ...dcerpc.CallOption) (*JobDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -223,7 +223,7 @@ func (o *xxx_DefaultATSvcClient) JobDelete(ctx context.Context, in *JobDeleteReq
 }
 
 func (o *xxx_DefaultATSvcClient) JobEnum(ctx context.Context, in *JobEnumRequest, opts ...dcerpc.CallOption) (*JobEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -236,7 +236,7 @@ func (o *xxx_DefaultATSvcClient) JobEnum(ctx context.Context, in *JobEnumRequest
 }
 
 func (o *xxx_DefaultATSvcClient) JobGetInfo(ctx context.Context, in *JobGetInfoRequest, opts ...dcerpc.CallOption) (*JobGetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -415,14 +415,16 @@ type JobAddRequest struct {
 	ATInfo *tsch.ATInfo `idl:"name:pAtInfo" json:"at_info"`
 }
 
-func (o *JobAddRequest) xxx_ToOp(ctx context.Context) *xxx_JobAddOperation {
+func (o *JobAddRequest) xxx_ToOp(ctx context.Context, op *xxx_JobAddOperation) *xxx_JobAddOperation {
+	if op == nil {
+		op = &xxx_JobAddOperation{}
+	}
 	if o == nil {
-		return &xxx_JobAddOperation{}
+		return op
 	}
-	return &xxx_JobAddOperation{
-		ServerName: o.ServerName,
-		ATInfo:     o.ATInfo,
-	}
+	o.ServerName = op.ServerName
+	o.ATInfo = op.ATInfo
+	return op
 }
 
 func (o *JobAddRequest) xxx_FromOp(ctx context.Context, op *xxx_JobAddOperation) {
@@ -433,7 +435,7 @@ func (o *JobAddRequest) xxx_FromOp(ctx context.Context, op *xxx_JobAddOperation)
 	o.ATInfo = op.ATInfo
 }
 func (o *JobAddRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *JobAddRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobAddOperation{}
@@ -453,14 +455,16 @@ type JobAddResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *JobAddResponse) xxx_ToOp(ctx context.Context) *xxx_JobAddOperation {
+func (o *JobAddResponse) xxx_ToOp(ctx context.Context, op *xxx_JobAddOperation) *xxx_JobAddOperation {
+	if op == nil {
+		op = &xxx_JobAddOperation{}
+	}
 	if o == nil {
-		return &xxx_JobAddOperation{}
+		return op
 	}
-	return &xxx_JobAddOperation{
-		JobID:  o.JobID,
-		Return: o.Return,
-	}
+	o.JobID = op.JobID
+	o.Return = op.Return
+	return op
 }
 
 func (o *JobAddResponse) xxx_FromOp(ctx context.Context, op *xxx_JobAddOperation) {
@@ -471,7 +475,7 @@ func (o *JobAddResponse) xxx_FromOp(ctx context.Context, op *xxx_JobAddOperation
 	o.Return = op.Return
 }
 func (o *JobAddResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *JobAddResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobAddOperation{}
@@ -621,15 +625,17 @@ type JobDeleteRequest struct {
 	MaxJobID uint32 `idl:"name:MaxJobId" json:"max_job_id"`
 }
 
-func (o *JobDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_JobDeleteOperation {
+func (o *JobDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_JobDeleteOperation) *xxx_JobDeleteOperation {
+	if op == nil {
+		op = &xxx_JobDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_JobDeleteOperation{}
+		return op
 	}
-	return &xxx_JobDeleteOperation{
-		ServerName: o.ServerName,
-		MinJobID:   o.MinJobID,
-		MaxJobID:   o.MaxJobID,
-	}
+	o.ServerName = op.ServerName
+	o.MinJobID = op.MinJobID
+	o.MaxJobID = op.MaxJobID
+	return op
 }
 
 func (o *JobDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_JobDeleteOperation) {
@@ -641,7 +647,7 @@ func (o *JobDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_JobDeleteOper
 	o.MaxJobID = op.MaxJobID
 }
 func (o *JobDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *JobDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobDeleteOperation{}
@@ -658,13 +664,15 @@ type JobDeleteResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *JobDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_JobDeleteOperation {
+func (o *JobDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_JobDeleteOperation) *xxx_JobDeleteOperation {
+	if op == nil {
+		op = &xxx_JobDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_JobDeleteOperation{}
+		return op
 	}
-	return &xxx_JobDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *JobDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_JobDeleteOperation) {
@@ -674,7 +682,7 @@ func (o *JobDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_JobDeleteOpe
 	o.Return = op.Return
 }
 func (o *JobDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *JobDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobDeleteOperation{}
@@ -948,16 +956,18 @@ type JobEnumRequest struct {
 	Resume uint32 `idl:"name:pResumeHandle;pointer:unique" json:"resume"`
 }
 
-func (o *JobEnumRequest) xxx_ToOp(ctx context.Context) *xxx_JobEnumOperation {
+func (o *JobEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_JobEnumOperation) *xxx_JobEnumOperation {
+	if op == nil {
+		op = &xxx_JobEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_JobEnumOperation{}
+		return op
 	}
-	return &xxx_JobEnumOperation{
-		ServerName:             o.ServerName,
-		EnumContainer:          o.EnumContainer,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-		Resume:                 o.Resume,
-	}
+	o.ServerName = op.ServerName
+	o.EnumContainer = op.EnumContainer
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	o.Resume = op.Resume
+	return op
 }
 
 func (o *JobEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_JobEnumOperation) {
@@ -970,7 +980,7 @@ func (o *JobEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_JobEnumOperatio
 	o.Resume = op.Resume
 }
 func (o *JobEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *JobEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobEnumOperation{}
@@ -999,16 +1009,18 @@ type JobEnumResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *JobEnumResponse) xxx_ToOp(ctx context.Context) *xxx_JobEnumOperation {
+func (o *JobEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_JobEnumOperation) *xxx_JobEnumOperation {
+	if op == nil {
+		op = &xxx_JobEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_JobEnumOperation{}
+		return op
 	}
-	return &xxx_JobEnumOperation{
-		EnumContainer: o.EnumContainer,
-		TotalEntries:  o.TotalEntries,
-		Resume:        o.Resume,
-		Return:        o.Return,
-	}
+	o.EnumContainer = op.EnumContainer
+	o.TotalEntries = op.TotalEntries
+	o.Resume = op.Resume
+	o.Return = op.Return
+	return op
 }
 
 func (o *JobEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_JobEnumOperation) {
@@ -1021,7 +1033,7 @@ func (o *JobEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_JobEnumOperati
 	o.Return = op.Return
 }
 func (o *JobEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *JobEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobEnumOperation{}
@@ -1201,14 +1213,16 @@ type JobGetInfoRequest struct {
 	JobID uint32 `idl:"name:JobId" json:"job_id"`
 }
 
-func (o *JobGetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_JobGetInfoOperation {
+func (o *JobGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_JobGetInfoOperation) *xxx_JobGetInfoOperation {
+	if op == nil {
+		op = &xxx_JobGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_JobGetInfoOperation{}
+		return op
 	}
-	return &xxx_JobGetInfoOperation{
-		ServerName: o.ServerName,
-		JobID:      o.JobID,
-	}
+	o.ServerName = op.ServerName
+	o.JobID = op.JobID
+	return op
 }
 
 func (o *JobGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_JobGetInfoOperation) {
@@ -1219,7 +1233,7 @@ func (o *JobGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_JobGetInfoOp
 	o.JobID = op.JobID
 }
 func (o *JobGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *JobGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobGetInfoOperation{}
@@ -1238,14 +1252,16 @@ type JobGetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *JobGetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_JobGetInfoOperation {
+func (o *JobGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_JobGetInfoOperation) *xxx_JobGetInfoOperation {
+	if op == nil {
+		op = &xxx_JobGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_JobGetInfoOperation{}
+		return op
 	}
-	return &xxx_JobGetInfoOperation{
-		ATInfo: o.ATInfo,
-		Return: o.Return,
-	}
+	o.ATInfo = op.ATInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *JobGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_JobGetInfoOperation) {
@@ -1256,7 +1272,7 @@ func (o *JobGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_JobGetInfoO
 	o.Return = op.Return
 }
 func (o *JobGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *JobGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_JobGetInfoOperation{}

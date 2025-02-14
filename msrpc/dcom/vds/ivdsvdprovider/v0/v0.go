@@ -115,7 +115,7 @@ func (o *xxx_DefaultVDiskProviderClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVDiskProviderClient) QueryVDisks(ctx context.Context, in *QueryVDisksRequest, opts ...dcerpc.CallOption) (*QueryVDisksResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -135,7 +135,7 @@ func (o *xxx_DefaultVDiskProviderClient) QueryVDisks(ctx context.Context, in *Qu
 }
 
 func (o *xxx_DefaultVDiskProviderClient) CreateVDisk(ctx context.Context, in *CreateVDiskRequest, opts ...dcerpc.CallOption) (*CreateVDiskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -155,7 +155,7 @@ func (o *xxx_DefaultVDiskProviderClient) CreateVDisk(ctx context.Context, in *Cr
 }
 
 func (o *xxx_DefaultVDiskProviderClient) AddVDisk(ctx context.Context, in *AddVDiskRequest, opts ...dcerpc.CallOption) (*AddVDiskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -175,7 +175,7 @@ func (o *xxx_DefaultVDiskProviderClient) AddVDisk(ctx context.Context, in *AddVD
 }
 
 func (o *xxx_DefaultVDiskProviderClient) GetDiskFromVDisk(ctx context.Context, in *GetDiskFromVDiskRequest, opts ...dcerpc.CallOption) (*GetDiskFromVDiskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -195,7 +195,7 @@ func (o *xxx_DefaultVDiskProviderClient) GetDiskFromVDisk(ctx context.Context, i
 }
 
 func (o *xxx_DefaultVDiskProviderClient) GetVDiskFromDisk(ctx context.Context, in *GetVDiskFromDiskRequest, opts ...dcerpc.CallOption) (*GetVDiskFromDiskResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -426,13 +426,15 @@ type QueryVDisksRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryVDisksRequest) xxx_ToOp(ctx context.Context) *xxx_QueryVDisksOperation {
+func (o *QueryVDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryVDisksOperation) *xxx_QueryVDisksOperation {
+	if op == nil {
+		op = &xxx_QueryVDisksOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryVDisksOperation{}
+		return op
 	}
-	return &xxx_QueryVDisksOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryVDisksRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryVDisksOperation) {
@@ -442,7 +444,7 @@ func (o *QueryVDisksRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryVDisks
 	o.This = op.This
 }
 func (o *QueryVDisksRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryVDisksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryVDisksOperation{}
@@ -466,15 +468,17 @@ type QueryVDisksResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryVDisksResponse) xxx_ToOp(ctx context.Context) *xxx_QueryVDisksOperation {
+func (o *QueryVDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryVDisksOperation) *xxx_QueryVDisksOperation {
+	if op == nil {
+		op = &xxx_QueryVDisksOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryVDisksOperation{}
+		return op
 	}
-	return &xxx_QueryVDisksOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryVDisksResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryVDisksOperation) {
@@ -486,7 +490,7 @@ func (o *QueryVDisksResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryVDisk
 	o.Return = op.Return
 }
 func (o *QueryVDisksResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryVDisksResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryVDisksOperation{}
@@ -918,20 +922,22 @@ type CreateVDiskRequest struct {
 	Async *vds.Async `idl:"name:ppAsync;pointer:unique" json:"async"`
 }
 
-func (o *CreateVDiskRequest) xxx_ToOp(ctx context.Context) *xxx_CreateVDiskOperation {
+func (o *CreateVDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVDiskOperation) *xxx_CreateVDiskOperation {
+	if op == nil {
+		op = &xxx_CreateVDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateVDiskOperation{}
+		return op
 	}
-	return &xxx_CreateVDiskOperation{
-		This:                     o.This,
-		VirtualDeviceType:        o.VirtualDeviceType,
-		Path:                     o.Path,
-		StringSecurityDescriptor: o.StringSecurityDescriptor,
-		Flags:                    o.Flags,
-		ProviderSpecificFlags:    o.ProviderSpecificFlags,
-		CreateDiskParameters:     o.CreateDiskParameters,
-		Async:                    o.Async,
-	}
+	o.This = op.This
+	o.VirtualDeviceType = op.VirtualDeviceType
+	o.Path = op.Path
+	o.StringSecurityDescriptor = op.StringSecurityDescriptor
+	o.Flags = op.Flags
+	o.ProviderSpecificFlags = op.ProviderSpecificFlags
+	o.CreateDiskParameters = op.CreateDiskParameters
+	o.Async = op.Async
+	return op
 }
 
 func (o *CreateVDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateVDiskOperation) {
@@ -948,7 +954,7 @@ func (o *CreateVDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateVDisk
 	o.Async = op.Async
 }
 func (o *CreateVDiskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateVDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateVDiskOperation{}
@@ -971,15 +977,17 @@ type CreateVDiskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateVDiskResponse) xxx_ToOp(ctx context.Context) *xxx_CreateVDiskOperation {
+func (o *CreateVDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateVDiskOperation) *xxx_CreateVDiskOperation {
+	if op == nil {
+		op = &xxx_CreateVDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateVDiskOperation{}
+		return op
 	}
-	return &xxx_CreateVDiskOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateVDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateVDiskOperation) {
@@ -991,7 +999,7 @@ func (o *CreateVDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateVDis
 	o.Return = op.Return
 }
 func (o *CreateVDiskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateVDiskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateVDiskOperation{}
@@ -1213,15 +1221,17 @@ type AddVDiskRequest struct {
 	Path string `idl:"name:pPath;string" json:"path"`
 }
 
-func (o *AddVDiskRequest) xxx_ToOp(ctx context.Context) *xxx_AddVDiskOperation {
+func (o *AddVDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_AddVDiskOperation) *xxx_AddVDiskOperation {
+	if op == nil {
+		op = &xxx_AddVDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_AddVDiskOperation{}
+		return op
 	}
-	return &xxx_AddVDiskOperation{
-		This:              o.This,
-		VirtualDeviceType: o.VirtualDeviceType,
-		Path:              o.Path,
-	}
+	o.This = op.This
+	o.VirtualDeviceType = op.VirtualDeviceType
+	o.Path = op.Path
+	return op
 }
 
 func (o *AddVDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_AddVDiskOperation) {
@@ -1233,7 +1243,7 @@ func (o *AddVDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_AddVDiskOperat
 	o.Path = op.Path
 }
 func (o *AddVDiskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddVDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddVDiskOperation{}
@@ -1253,15 +1263,17 @@ type AddVDiskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddVDiskResponse) xxx_ToOp(ctx context.Context) *xxx_AddVDiskOperation {
+func (o *AddVDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_AddVDiskOperation) *xxx_AddVDiskOperation {
+	if op == nil {
+		op = &xxx_AddVDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_AddVDiskOperation{}
+		return op
 	}
-	return &xxx_AddVDiskOperation{
-		That:   o.That,
-		VDisk:  o.VDisk,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.VDisk = op.VDisk
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddVDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_AddVDiskOperation) {
@@ -1273,7 +1285,7 @@ func (o *AddVDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_AddVDiskOpera
 	o.Return = op.Return
 }
 func (o *AddVDiskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddVDiskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddVDiskOperation{}
@@ -1503,14 +1515,16 @@ type GetDiskFromVDiskRequest struct {
 	VDisk *vds.VDisk `idl:"name:pVDisk" json:"v_disk"`
 }
 
-func (o *GetDiskFromVDiskRequest) xxx_ToOp(ctx context.Context) *xxx_GetDiskFromVDiskOperation {
+func (o *GetDiskFromVDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDiskFromVDiskOperation) *xxx_GetDiskFromVDiskOperation {
+	if op == nil {
+		op = &xxx_GetDiskFromVDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDiskFromVDiskOperation{}
+		return op
 	}
-	return &xxx_GetDiskFromVDiskOperation{
-		This:  o.This,
-		VDisk: o.VDisk,
-	}
+	o.This = op.This
+	o.VDisk = op.VDisk
+	return op
 }
 
 func (o *GetDiskFromVDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDiskFromVDiskOperation) {
@@ -1521,7 +1535,7 @@ func (o *GetDiskFromVDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDis
 	o.VDisk = op.VDisk
 }
 func (o *GetDiskFromVDiskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDiskFromVDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDiskFromVDiskOperation{}
@@ -1541,15 +1555,17 @@ type GetDiskFromVDiskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDiskFromVDiskResponse) xxx_ToOp(ctx context.Context) *xxx_GetDiskFromVDiskOperation {
+func (o *GetDiskFromVDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDiskFromVDiskOperation) *xxx_GetDiskFromVDiskOperation {
+	if op == nil {
+		op = &xxx_GetDiskFromVDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDiskFromVDiskOperation{}
+		return op
 	}
-	return &xxx_GetDiskFromVDiskOperation{
-		That:   o.That,
-		Disk:   o.Disk,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Disk = op.Disk
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDiskFromVDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDiskFromVDiskOperation) {
@@ -1561,7 +1577,7 @@ func (o *GetDiskFromVDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDi
 	o.Return = op.Return
 }
 func (o *GetDiskFromVDiskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDiskFromVDiskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDiskFromVDiskOperation{}
@@ -1791,14 +1807,16 @@ type GetVDiskFromDiskRequest struct {
 	Disk *vds.Disk `idl:"name:pDisk" json:"disk"`
 }
 
-func (o *GetVDiskFromDiskRequest) xxx_ToOp(ctx context.Context) *xxx_GetVDiskFromDiskOperation {
+func (o *GetVDiskFromDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVDiskFromDiskOperation) *xxx_GetVDiskFromDiskOperation {
+	if op == nil {
+		op = &xxx_GetVDiskFromDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVDiskFromDiskOperation{}
+		return op
 	}
-	return &xxx_GetVDiskFromDiskOperation{
-		This: o.This,
-		Disk: o.Disk,
-	}
+	o.This = op.This
+	o.Disk = op.Disk
+	return op
 }
 
 func (o *GetVDiskFromDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVDiskFromDiskOperation) {
@@ -1809,7 +1827,7 @@ func (o *GetVDiskFromDiskRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVDi
 	o.Disk = op.Disk
 }
 func (o *GetVDiskFromDiskRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVDiskFromDiskRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVDiskFromDiskOperation{}
@@ -1829,15 +1847,17 @@ type GetVDiskFromDiskResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVDiskFromDiskResponse) xxx_ToOp(ctx context.Context) *xxx_GetVDiskFromDiskOperation {
+func (o *GetVDiskFromDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVDiskFromDiskOperation) *xxx_GetVDiskFromDiskOperation {
+	if op == nil {
+		op = &xxx_GetVDiskFromDiskOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVDiskFromDiskOperation{}
+		return op
 	}
-	return &xxx_GetVDiskFromDiskOperation{
-		That:   o.That,
-		VDisk:  o.VDisk,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.VDisk = op.VDisk
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVDiskFromDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVDiskFromDiskOperation) {
@@ -1849,7 +1869,7 @@ func (o *GetVDiskFromDiskResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVD
 	o.Return = op.Return
 }
 func (o *GetVDiskFromDiskResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVDiskFromDiskResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVDiskFromDiskOperation{}

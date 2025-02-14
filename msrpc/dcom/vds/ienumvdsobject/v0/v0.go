@@ -106,7 +106,7 @@ func (o *xxx_DefaultEnumObjectClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultEnumObjectClient) Next(ctx context.Context, in *NextRequest, opts ...dcerpc.CallOption) (*NextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -126,7 +126,7 @@ func (o *xxx_DefaultEnumObjectClient) Next(ctx context.Context, in *NextRequest,
 }
 
 func (o *xxx_DefaultEnumObjectClient) Skip(ctx context.Context, in *SkipRequest, opts ...dcerpc.CallOption) (*SkipResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -146,7 +146,7 @@ func (o *xxx_DefaultEnumObjectClient) Skip(ctx context.Context, in *SkipRequest,
 }
 
 func (o *xxx_DefaultEnumObjectClient) Reset(ctx context.Context, in *ResetRequest, opts ...dcerpc.CallOption) (*ResetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -166,7 +166,7 @@ func (o *xxx_DefaultEnumObjectClient) Reset(ctx context.Context, in *ResetReques
 }
 
 func (o *xxx_DefaultEnumObjectClient) Clone(ctx context.Context, in *CloneRequest, opts ...dcerpc.CallOption) (*CloneResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -481,14 +481,16 @@ type NextRequest struct {
 	Count uint32 `idl:"name:celt" json:"count"`
 }
 
-func (o *NextRequest) xxx_ToOp(ctx context.Context) *xxx_NextOperation {
+func (o *NextRequest) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx_NextOperation {
+	if op == nil {
+		op = &xxx_NextOperation{}
+	}
 	if o == nil {
-		return &xxx_NextOperation{}
+		return op
 	}
-	return &xxx_NextOperation{
-		This:  o.This,
-		Count: o.Count,
-	}
+	o.This = op.This
+	o.Count = op.Count
+	return op
 }
 
 func (o *NextRequest) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
@@ -499,7 +501,7 @@ func (o *NextRequest) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.Count = op.Count
 }
 func (o *NextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NextOperation{}
@@ -527,16 +529,18 @@ type NextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NextResponse) xxx_ToOp(ctx context.Context) *xxx_NextOperation {
+func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx_NextOperation {
+	if op == nil {
+		op = &xxx_NextOperation{}
+	}
 	if o == nil {
-		return &xxx_NextOperation{}
+		return op
 	}
-	return &xxx_NextOperation{
-		That:         o.That,
-		ObjectArray:  o.ObjectArray,
-		FetchedCount: o.FetchedCount,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.ObjectArray = op.ObjectArray
+	o.FetchedCount = op.FetchedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
@@ -549,7 +553,7 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.Return = op.Return
 }
 func (o *NextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NextOperation{}
@@ -698,14 +702,16 @@ type SkipRequest struct {
 	Count uint32 `idl:"name:celt" json:"count"`
 }
 
-func (o *SkipRequest) xxx_ToOp(ctx context.Context) *xxx_SkipOperation {
+func (o *SkipRequest) xxx_ToOp(ctx context.Context, op *xxx_SkipOperation) *xxx_SkipOperation {
+	if op == nil {
+		op = &xxx_SkipOperation{}
+	}
 	if o == nil {
-		return &xxx_SkipOperation{}
+		return op
 	}
-	return &xxx_SkipOperation{
-		This:  o.This,
-		Count: o.Count,
-	}
+	o.This = op.This
+	o.Count = op.Count
+	return op
 }
 
 func (o *SkipRequest) xxx_FromOp(ctx context.Context, op *xxx_SkipOperation) {
@@ -716,7 +722,7 @@ func (o *SkipRequest) xxx_FromOp(ctx context.Context, op *xxx_SkipOperation) {
 	o.Count = op.Count
 }
 func (o *SkipRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SkipRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SkipOperation{}
@@ -735,14 +741,16 @@ type SkipResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SkipResponse) xxx_ToOp(ctx context.Context) *xxx_SkipOperation {
+func (o *SkipResponse) xxx_ToOp(ctx context.Context, op *xxx_SkipOperation) *xxx_SkipOperation {
+	if op == nil {
+		op = &xxx_SkipOperation{}
+	}
 	if o == nil {
-		return &xxx_SkipOperation{}
+		return op
 	}
-	return &xxx_SkipOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SkipResponse) xxx_FromOp(ctx context.Context, op *xxx_SkipOperation) {
@@ -753,7 +761,7 @@ func (o *SkipResponse) xxx_FromOp(ctx context.Context, op *xxx_SkipOperation) {
 	o.Return = op.Return
 }
 func (o *SkipResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SkipResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SkipOperation{}
@@ -887,13 +895,15 @@ type ResetRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *ResetRequest) xxx_ToOp(ctx context.Context) *xxx_ResetOperation {
+func (o *ResetRequest) xxx_ToOp(ctx context.Context, op *xxx_ResetOperation) *xxx_ResetOperation {
+	if op == nil {
+		op = &xxx_ResetOperation{}
+	}
 	if o == nil {
-		return &xxx_ResetOperation{}
+		return op
 	}
-	return &xxx_ResetOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *ResetRequest) xxx_FromOp(ctx context.Context, op *xxx_ResetOperation) {
@@ -903,7 +913,7 @@ func (o *ResetRequest) xxx_FromOp(ctx context.Context, op *xxx_ResetOperation) {
 	o.This = op.This
 }
 func (o *ResetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResetOperation{}
@@ -922,14 +932,16 @@ type ResetResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResetResponse) xxx_ToOp(ctx context.Context) *xxx_ResetOperation {
+func (o *ResetResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetOperation) *xxx_ResetOperation {
+	if op == nil {
+		op = &xxx_ResetOperation{}
+	}
 	if o == nil {
-		return &xxx_ResetOperation{}
+		return op
 	}
-	return &xxx_ResetOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResetResponse) xxx_FromOp(ctx context.Context, op *xxx_ResetOperation) {
@@ -940,7 +952,7 @@ func (o *ResetResponse) xxx_FromOp(ctx context.Context, op *xxx_ResetOperation) 
 	o.Return = op.Return
 }
 func (o *ResetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResetOperation{}
@@ -1121,13 +1133,15 @@ type CloneRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CloneRequest) xxx_ToOp(ctx context.Context) *xxx_CloneOperation {
+func (o *CloneRequest) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xxx_CloneOperation {
+	if op == nil {
+		op = &xxx_CloneOperation{}
+	}
 	if o == nil {
-		return &xxx_CloneOperation{}
+		return op
 	}
-	return &xxx_CloneOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CloneRequest) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) {
@@ -1137,7 +1151,7 @@ func (o *CloneRequest) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) {
 	o.This = op.This
 }
 func (o *CloneRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloneOperation{}
@@ -1160,15 +1174,17 @@ type CloneResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloneResponse) xxx_ToOp(ctx context.Context) *xxx_CloneOperation {
+func (o *CloneResponse) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xxx_CloneOperation {
+	if op == nil {
+		op = &xxx_CloneOperation{}
+	}
 	if o == nil {
-		return &xxx_CloneOperation{}
+		return op
 	}
-	return &xxx_CloneOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloneResponse) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) {
@@ -1180,7 +1196,7 @@ func (o *CloneResponse) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) 
 	o.Return = op.Return
 }
 func (o *CloneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloneResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloneOperation{}

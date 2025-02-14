@@ -1334,977 +1334,1253 @@ func NewClusapi3ServerHandle(o Clusapi3Server) dcerpc.ServerHandle {
 func Clusapi3ServerHandle(ctx context.Context, o Clusapi3Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // ApiOpenCluster
-		in := &OpenClusterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenClusterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenCluster(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenClusterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenCluster(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // ApiCloseCluster
-		in := &CloseClusterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseClusterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseCluster(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseClusterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseCluster(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // ApiSetClusterName
-		in := &SetClusterNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClusterNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClusterName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClusterNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClusterName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // ApiGetClusterName
-		in := &GetClusterNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClusterNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClusterName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClusterNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClusterName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // ApiGetClusterVersion
-		in := &GetClusterVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClusterVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClusterVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClusterVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClusterVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ApiGetQuorumResource
-		in := &GetQuorumResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuorumResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuorumResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuorumResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuorumResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ApiSetQuorumResource
-		in := &SetQuorumResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetQuorumResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetQuorumResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetQuorumResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetQuorumResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // ApiCreateEnum
-		in := &CreateEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ApiOpenResource
-		in := &OpenResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // ApiCreateResource
-		in := &CreateResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // ApiDeleteResource
-		in := &DeleteResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ApiCloseResource
-		in := &CloseResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // ApiGetResourceState
-		in := &GetResourceStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResourceStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResourceState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResourceStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResourceState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ApiSetResourceName
-		in := &SetResourceNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetResourceNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetResourceName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetResourceNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetResourceName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // ApiGetResourceId
-		in := &GetResourceIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResourceIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResourceID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResourceIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResourceID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // ApiGetResourceType
-		in := &GetResourceTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResourceTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResourceType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResourceTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResourceType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // ApiFailResource
-		in := &FailResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FailResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FailResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FailResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FailResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // ApiOnlineResource
-		in := &OnlineResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnlineResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnlineResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // ApiOfflineResource
-		in := &OfflineResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OfflineResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OfflineResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // ApiAddResourceDependency
-		in := &AddResourceDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddResourceDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddResourceDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddResourceDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddResourceDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // ApiRemoveResourceDependency
-		in := &RemoveResourceDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveResourceDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveResourceDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveResourceDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveResourceDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // ApiCanResourceBeDependent
-		in := &CanResourceBeDependentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CanResourceBeDependentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CanResourceBeDependent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CanResourceBeDependentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CanResourceBeDependent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // ApiCreateResEnum
-		in := &CreateRestrictionEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateRestrictionEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateRestrictionEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRestrictionEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateRestrictionEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // ApiAddResourceNode
-		in := &AddResourceNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddResourceNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddResourceNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddResourceNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddResourceNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // ApiRemoveResourceNode
-		in := &RemoveResourceNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveResourceNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveResourceNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveResourceNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveResourceNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // ApiChangeResourceGroup
-		in := &ChangeResourceGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeResourceGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeResourceGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeResourceGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeResourceGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // ApiCreateResourceType
-		in := &CreateResourceTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateResourceTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateResourceType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateResourceTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateResourceType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // ApiDeleteResourceType
-		in := &DeleteResourceTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteResourceTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteResourceType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteResourceTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteResourceType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // ApiGetRootKey
-		in := &GetRootKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRootKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRootKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRootKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRootKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // ApiCreateKey
-		in := &CreateKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // ApiOpenKey
-		in := &OpenKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // ApiEnumKey
-		in := &EnumKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // ApiSetValue
-		in := &SetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // ApiDeleteValue
-		in := &DeleteValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // ApiQueryValue
-		in := &QueryValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // ApiDeleteKey
-		in := &DeleteKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // ApiEnumValue
-		in := &EnumValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // ApiCloseKey
-		in := &CloseKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // ApiQueryInfoKey
-		in := &QueryInfoKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInfoKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInfoKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInfoKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInfoKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // ApiSetKeySecurity
-		in := &SetKeySecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetKeySecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetKeySecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetKeySecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetKeySecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // ApiGetKeySecurity
-		in := &GetKeySecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKeySecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKeySecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKeySecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKeySecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // ApiOpenGroup
-		in := &OpenGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // ApiCreateGroup
-		in := &CreateGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // ApiDeleteGroup
-		in := &DeleteGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // ApiCloseGroup
-		in := &CloseGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // ApiGetGroupState
-		in := &GetGroupStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGroupStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGroupState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGroupStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGroupState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // ApiSetGroupName
-		in := &SetGroupNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGroupNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGroupName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGroupNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGroupName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // ApiGetGroupId
-		in := &GetGroupIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGroupIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGroupID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGroupIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGroupID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // ApiGetNodeId
-		in := &GetNodeIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNodeIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNodeID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNodeIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNodeID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // ApiOnlineGroup
-		in := &OnlineGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnlineGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnlineGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // ApiOfflineGroup
-		in := &OfflineGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OfflineGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OfflineGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // ApiMoveGroup
-		in := &MoveGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // ApiMoveGroupToNode
-		in := &MoveGroupToNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveGroupToNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveGroupToNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveGroupToNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveGroupToNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // ApiCreateGroupResourceEnum
-		in := &CreateGroupResourceEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupResourceEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroupResourceEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupResourceEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroupResourceEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // ApiSetGroupNodeList
-		in := &SetGroupNodeListRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGroupNodeListOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGroupNodeList(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGroupNodeListRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGroupNodeList(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // ApiCreateNotify
-		in := &CreateNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // ApiCloseNotify
-		in := &CloseNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // ApiAddNotifyCluster
-		in := &AddNotifyClusterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyClusterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyCluster(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyClusterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyCluster(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // ApiAddNotifyNode
-		in := &AddNotifyNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // ApiAddNotifyGroup
-		in := &AddNotifyGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // ApiAddNotifyResource
-		in := &AddNotifyResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 61: // ApiAddNotifyKey
-		in := &AddNotifyKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 62: // ApiReAddNotifyNode
-		in := &ReAddNotifyNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReAddNotifyNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReAddNotifyNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReAddNotifyNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReAddNotifyNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 63: // ApiReAddNotifyGroup
-		in := &ReAddNotifyGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReAddNotifyGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReAddNotifyGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReAddNotifyGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReAddNotifyGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 64: // ApiReAddNotifyResource
-		in := &ReAddNotifyResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReAddNotifyResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReAddNotifyResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReAddNotifyResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReAddNotifyResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 65: // ApiGetNotify
-		in := &GetNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // ApiOpenNode
-		in := &OpenNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 67: // ApiCloseNode
-		in := &CloseNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 68: // ApiGetNodeState
-		in := &GetNodeStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNodeStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNodeState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNodeStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNodeState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 69: // ApiPauseNode
-		in := &PauseNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PauseNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PauseNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PauseNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PauseNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 70: // ApiResumeNode
-		in := &ResumeNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResumeNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResumeNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResumeNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResumeNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 71: // ApiEvictNode
-		in := &EvictNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EvictNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EvictNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EvictNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EvictNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 72: // ApiNodeResourceControl
-		in := &NodeResourceControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeResourceControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeResourceControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeResourceControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeResourceControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 73: // ApiResourceControl
-		in := &ResourceControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResourceControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResourceControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResourceControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResourceControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 74: // ApiNodeResourceTypeControl
-		in := &NodeResourceTypeControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeResourceTypeControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeResourceTypeControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeResourceTypeControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeResourceTypeControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 75: // ApiResourceTypeControl
-		in := &ResourceTypeControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResourceTypeControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResourceTypeControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResourceTypeControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResourceTypeControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 76: // ApiNodeGroupControl
-		in := &NodeGroupControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeGroupControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeGroupControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeGroupControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeGroupControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 77: // ApiGroupControl
-		in := &GroupControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GroupControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GroupControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GroupControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GroupControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 78: // ApiNodeNodeControl
-		in := &NodeNodeControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeNodeControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeNodeControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeNodeControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeNodeControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 79: // ApiNodeControl
-		in := &NodeControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 80: // Opnum80NotUsedOnWire
 		// Opnum80NotUsedOnWire
 		return nil, nil
 	case 81: // ApiOpenNetwork
-		in := &OpenNetworkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNetworkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNetwork(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNetworkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNetwork(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 82: // ApiCloseNetwork
-		in := &CloseNetworkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseNetworkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseNetwork(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseNetworkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseNetwork(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 83: // ApiGetNetworkState
-		in := &GetNetworkStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetworkStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetworkState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetworkStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetworkState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 84: // ApiSetNetworkName
-		in := &SetNetworkNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNetworkNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNetworkName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNetworkNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNetworkName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 85: // ApiCreateNetworkEnum
-		in := &CreateNetworkEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNetworkEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNetworkEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNetworkEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNetworkEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 86: // ApiGetNetworkId
-		in := &GetNetworkIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetworkIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetworkID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetworkIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetworkID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 87: // ApiSetNetworkPriorityOrder
-		in := &SetNetworkPriorityOrderRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNetworkPriorityOrderOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNetworkPriorityOrder(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNetworkPriorityOrderRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNetworkPriorityOrder(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 88: // ApiNodeNetworkControl
-		in := &NodeNetworkControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeNetworkControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeNetworkControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeNetworkControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeNetworkControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 89: // ApiNetworkControl
-		in := &NetworkControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NetworkControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NetworkControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NetworkControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NetworkControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 90: // ApiAddNotifyNetwork
-		in := &AddNotifyNetworkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyNetworkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyNetwork(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyNetworkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyNetwork(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 91: // ApiReAddNotifyNetwork
-		in := &ReAddNotifyNetworkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReAddNotifyNetworkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReAddNotifyNetwork(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReAddNotifyNetworkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReAddNotifyNetwork(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 92: // ApiOpenNetInterface
-		in := &OpenNetInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNetInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNetInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNetInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNetInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 93: // ApiCloseNetInterface
-		in := &CloseNetInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseNetInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseNetInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseNetInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseNetInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 94: // ApiGetNetInterfaceState
-		in := &GetNetInterfaceStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetInterfaceStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetInterfaceState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetInterfaceStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetInterfaceState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 95: // ApiGetNetInterface
-		in := &GetNetInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 96: // ApiGetNetInterfaceId
-		in := &GetNetInterfaceIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetInterfaceIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetInterfaceID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetInterfaceIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetInterfaceID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 97: // ApiNodeNetInterfaceControl
-		in := &NodeNetInterfaceControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeNetInterfaceControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeNetInterfaceControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeNetInterfaceControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeNetInterfaceControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 98: // ApiNetInterfaceControl
-		in := &NetInterfaceControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NetInterfaceControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NetInterfaceControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NetInterfaceControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NetInterfaceControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 99: // ApiAddNotifyNetInterface
-		in := &AddNotifyNetInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyNetInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyNetInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyNetInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyNetInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 100: // ApiReAddNotifyNetInterface
-		in := &ReAddNotifyNetInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReAddNotifyNetInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReAddNotifyNetInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReAddNotifyNetInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReAddNotifyNetInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 101: // ApiCreateNodeEnum
-		in := &CreateNodeEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNodeEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNodeEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNodeEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNodeEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 102: // ApiGetClusterVersion2
-		in := &GetClusterVersion2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClusterVersion2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClusterVersion2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClusterVersion2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClusterVersion2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 103: // ApiCreateResTypeEnum
-		in := &CreateRestrictionTypeEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateRestrictionTypeEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateRestrictionTypeEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRestrictionTypeEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateRestrictionTypeEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 104: // ApiBackupClusterDatabase
-		in := &BackupClusterDatabaseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupClusterDatabaseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupClusterDatabase(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupClusterDatabaseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupClusterDatabase(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 105: // ApiNodeClusterControl
-		in := &NodeClusterControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeClusterControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeClusterControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeClusterControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeClusterControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 106: // ApiClusterControl
-		in := &ClusterControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClusterControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClusterControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClusterControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClusterControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 107: // ApiUnblockGetNotifyCall
-		in := &UnblockGetNotifyCallRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnblockGetNotifyCallOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnblockGetNotifyCall(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnblockGetNotifyCallRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnblockGetNotifyCall(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 108: // ApiSetServiceAccountPassword
-		in := &SetServiceAccountPasswordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetServiceAccountPasswordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetServiceAccountPassword(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetServiceAccountPasswordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetServiceAccountPassword(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 109: // ApiSetResourceDependencyExpression
-		in := &SetResourceDependencyExpressionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetResourceDependencyExpressionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetResourceDependencyExpression(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetResourceDependencyExpressionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetResourceDependencyExpression(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 110: // ApiGetResourceDependencyExpression
-		in := &GetResourceDependencyExpressionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResourceDependencyExpressionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResourceDependencyExpression(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResourceDependencyExpressionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResourceDependencyExpression(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 111: // Opnum111NotUsedOnWire
 		// Opnum111NotUsedOnWire
 		return nil, nil
 	case 112: // ApiGetResourceNetworkName
-		in := &GetResourceNetworkNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResourceNetworkNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResourceNetworkName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResourceNetworkNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResourceNetworkName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 113: // ApiExecuteBatch
-		in := &ExecuteBatchRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteBatchOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecuteBatch(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteBatchRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecuteBatch(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 114: // ApiCreateBatchPort
-		in := &CreateBatchPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateBatchPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateBatchPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateBatchPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateBatchPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 115: // ApiGetBatchNotification
-		in := &GetBatchNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBatchNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBatchNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBatchNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBatchNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 116: // ApiCloseBatchPort
-		in := &CloseBatchPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseBatchPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseBatchPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseBatchPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseBatchPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 117: // ApiOpenClusterEx
-		in := &OpenClusterExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenClusterExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenClusterEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenClusterExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenClusterEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 118: // ApiOpenNodeEx
-		in := &OpenNodeExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNodeExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNodeEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNodeExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNodeEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 119: // ApiOpenGroupEx
-		in := &OpenGroupExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenGroupExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenGroupEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenGroupExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenGroupEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 120: // ApiOpenResourceEx
-		in := &OpenResourceExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenResourceExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenResourceEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenResourceExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenResourceEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 121: // ApiOpenNetworkEx
-		in := &OpenNetworkExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNetworkExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNetworkEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNetworkExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNetworkEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 122: // ApiOpenNetInterfaceEx
-		in := &OpenNetInterfaceExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenNetInterfaceExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenNetInterfaceEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenNetInterfaceExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenNetInterfaceEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 123: // ApiChangeCsvState
-		in := &ChangeCSVStateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeCSVStateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeCSVState(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeCSVStateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeCSVState(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 124: // ApiCreateNodeEnumEx
-		in := &CreateNodeEnumExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNodeEnumExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNodeEnumEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNodeEnumExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNodeEnumEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 125: // ApiCreateEnumEx
-		in := &CreateEnumExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateEnumExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateEnumEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateEnumExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateEnumEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 126: // ApiPauseNodeEx
-		in := &PauseNodeExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PauseNodeExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PauseNodeEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PauseNodeExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PauseNodeEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 127: // ApiPauseNodeWithDrainTarget
-		in := &PauseNodeWithDrainTargetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PauseNodeWithDrainTargetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PauseNodeWithDrainTarget(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PauseNodeWithDrainTargetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PauseNodeWithDrainTarget(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 128: // ApiResumeNodeEx
-		in := &ResumeNodeExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResumeNodeExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResumeNodeEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResumeNodeExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResumeNodeEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 129: // ApiCreateGroupEx
-		in := &CreateGroupExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroupEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroupEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 130: // ApiOnlineGroupEx
-		in := &OnlineGroupExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineGroupExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnlineGroupEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineGroupExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnlineGroupEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 131: // ApiOfflineGroupEx
-		in := &OfflineGroupExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineGroupExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OfflineGroupEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineGroupExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OfflineGroupEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 132: // ApiMoveGroupEx
-		in := &MoveGroupExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveGroupExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveGroupEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveGroupExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveGroupEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 133: // ApiMoveGroupToNodeEx
-		in := &MoveGroupToNodeExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveGroupToNodeExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveGroupToNodeEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveGroupToNodeExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveGroupToNodeEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 134: // ApiCancelClusterGroupOperation
-		in := &CancelClusterGroupOperationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelClusterGroupOperationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CancelClusterGroupOperation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelClusterGroupOperationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CancelClusterGroupOperation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 135: // ApiOnlineResourceEx
-		in := &OnlineResourceExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineResourceExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnlineResourceEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineResourceExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnlineResourceEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 136: // ApiOfflineResourceEx
-		in := &OfflineResourceExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineResourceExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OfflineResourceEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineResourceExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OfflineResourceEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 137: // ApiCreateNotifyV2
-		in := &CreateNotifyV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNotifyV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNotifyV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNotifyV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNotifyV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 138: // ApiAddNotifyV2
-		in := &AddNotifyV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 139: // ApiGetNotifyV2
-		in := &GetNotifyV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotifyV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotifyV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotifyV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotifyV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 140: // Opnum140NotUsedOnWire
 		// Opnum140NotUsedOnWire
 		return nil, nil
@@ -2315,50 +2591,62 @@ func Clusapi3ServerHandle(ctx context.Context, o Clusapi3Server, opNum int, r nd
 		// Opnum142NotUsedOnWire
 		return nil, nil
 	case 143: // ApiCreateGroupEnum
-		in := &CreateGroupEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroupEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroupEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 144: // ApiCreateResourceEnum
-		in := &CreateResourceEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateResourceEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateResourceEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateResourceEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateResourceEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 145: // ApiExecuteReadBatch
-		in := &ExecuteReadBatchRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteReadBatchOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecuteReadBatch(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteReadBatchRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecuteReadBatch(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 146: // ApiRestartResource
-		in := &RestartResourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestartResourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RestartResource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestartResourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RestartResource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 147: // ApiGetNotifyAsync
-		in := &GetNotifyAsyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotifyAsyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotifyAsync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotifyAsyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotifyAsync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 148: // Opnum148NotUsedOnWire
 		// Opnum148NotUsedOnWire
 		return nil, nil
 	case 149: // Opnum149otUsedOnWire
-		in := &Opnum149otUsedOnWireRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Opnum149otUsedOnWireOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Opnum149otUsedOnWire(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Opnum149otUsedOnWireRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Opnum149otUsedOnWire(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 150: // Opnum150NotUsedOnWire
 		// Opnum150NotUsedOnWire
 		return nil, nil
@@ -2375,22 +2663,26 @@ func Clusapi3ServerHandle(ctx context.Context, o Clusapi3Server, opNum int, r nd
 		// Opnum154NotUsedOnWire
 		return nil, nil
 	case 155: // ApiAddNotifyResourceTypeV2
-		in := &AddNotifyResourceTypeV2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotifyResourceTypeV2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotifyResourceTypeV2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotifyResourceTypeV2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotifyResourceTypeV2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 156: // Opnum156NotUsedOnWire
 		// Opnum156NotUsedOnWire
 		return nil, nil
 	case 157: // ApiExecuteReadBatchEx
-		in := &ExecuteReadBatchExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteReadBatchExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecuteReadBatchEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteReadBatchExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecuteReadBatchEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 158: // Opnum158NotUsedOnWire
 		// Opnum158NotUsedOnWire
 		return nil, nil
@@ -2407,155 +2699,705 @@ func Clusapi3ServerHandle(ctx context.Context, o Clusapi3Server, opNum int, r nd
 		// Opnum162NotUsedOnWire
 		return nil, nil
 	case 163: // ApiCreateGroupSet
-		in := &CreateGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 164: // ApiOpenGroupSet
-		in := &OpenGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 165: // ApiCloseGroupSet
-		in := &CloseGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 166: // ApiDeleteGroupSet
-		in := &DeleteGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 167: // ApiAddGroupToGroupSet
-		in := &AddGroupToGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddGroupToGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddGroupToGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddGroupToGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddGroupToGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 168: // ApiRemoveGroupFromGroupSet
-		in := &RemoveGroupFromGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveGroupFromGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveGroupFromGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveGroupFromGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveGroupFromGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 169: // ApiMoveGroupToGroupSet
-		in := &MoveGroupToGroupSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveGroupToGroupSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveGroupToGroupSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveGroupToGroupSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveGroupToGroupSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 170: // Opnum170NotUsedOnWire
 		// Opnum170NotUsedOnWire
 		return nil, nil
 	case 171: // ApiAddGroupSetDependency
-		in := &AddGroupSetDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddGroupSetDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddGroupSetDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddGroupSetDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddGroupSetDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 172: // ApiAddGroupToGroupSetDependency
-		in := &AddGroupToGroupSetDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddGroupToGroupSetDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddGroupToGroupSetDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddGroupToGroupSetDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddGroupToGroupSetDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 173: // ApiNodeGroupSetControl
-		in := &NodeGroupSetControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NodeGroupSetControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NodeGroupSetControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NodeGroupSetControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NodeGroupSetControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 174: // ApiGroupSetControl
-		in := &GroupSetControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GroupSetControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GroupSetControl(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GroupSetControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GroupSetControl(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 175: // ApiSetGroupDependencyExpression
-		in := &SetGroupDependencyExpressionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGroupDependencyExpressionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGroupDependencyExpression(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGroupDependencyExpressionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGroupDependencyExpression(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 176: // ApiRemoveClusterGroupDependency
-		in := &RemoveClusterGroupDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveClusterGroupDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveClusterGroupDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveClusterGroupDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveClusterGroupDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 177: // ApiSetGroupSetDependencyExpression
-		in := &SetGroupSetDependencyExpressionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGroupSetDependencyExpressionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGroupSetDependencyExpression(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGroupSetDependencyExpressionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGroupSetDependencyExpression(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 178: // ApiRemoveGroupSetDependency
-		in := &RemoveGroupSetDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveGroupSetDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveGroupSetDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveGroupSetDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveGroupSetDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 179: // ApiRemoveClusterGroupToGroupSetDependency
-		in := &RemoveClusterGroupToGroupSetDependencyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveClusterGroupToGroupSetDependencyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveClusterGroupToGroupSetDependency(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveClusterGroupToGroupSetDependencyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveClusterGroupToGroupSetDependency(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 180: // ApiCreateGroupSetEnum
-		in := &CreateGroupSetEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateGroupSetEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateGroupSetEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateGroupSetEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateGroupSetEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 181: // ApiCreateNetInterfaceEnum
-		in := &CreateNetInterfaceEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNetInterfaceEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNetInterfaceEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNetInterfaceEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNetInterfaceEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 182: // ApiChangeCsvStateEx
-		in := &ChangeCSVStateExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeCSVStateExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeCSVStateEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeCSVStateExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeCSVStateEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 183: // ApiAddGroupToGroupSetEx
-		in := &AddGroupToGroupSetExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddGroupToGroupSetExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddGroupToGroupSetEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddGroupToGroupSetExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddGroupToGroupSetEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 184: // ApiChangeResourceGroupEx
-		in := &ChangeResourceGroupExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeResourceGroupExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeResourceGroupEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeResourceGroupExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeResourceGroupEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented clusapi3
+type UnimplementedClusapi3Server struct {
+}
+
+func (UnimplementedClusapi3Server) OpenCluster(context.Context, *OpenClusterRequest) (*OpenClusterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseCluster(context.Context, *CloseClusterRequest) (*CloseClusterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetClusterName(context.Context, *SetClusterNameRequest) (*SetClusterNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetClusterName(context.Context, *GetClusterNameRequest) (*GetClusterNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetClusterVersion(context.Context, *GetClusterVersionRequest) (*GetClusterVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetQuorumResource(context.Context, *GetQuorumResourceRequest) (*GetQuorumResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetQuorumResource(context.Context, *SetQuorumResourceRequest) (*SetQuorumResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateEnum(context.Context, *CreateEnumRequest) (*CreateEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenResource(context.Context, *OpenResourceRequest) (*OpenResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateResource(context.Context, *CreateResourceRequest) (*CreateResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) DeleteResource(context.Context, *DeleteResourceRequest) (*DeleteResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseResource(context.Context, *CloseResourceRequest) (*CloseResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetResourceState(context.Context, *GetResourceStateRequest) (*GetResourceStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetResourceName(context.Context, *SetResourceNameRequest) (*SetResourceNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetResourceID(context.Context, *GetResourceIDRequest) (*GetResourceIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetResourceType(context.Context, *GetResourceTypeRequest) (*GetResourceTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) FailResource(context.Context, *FailResourceRequest) (*FailResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OnlineResource(context.Context, *OnlineResourceRequest) (*OnlineResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OfflineResource(context.Context, *OfflineResourceRequest) (*OfflineResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddResourceDependency(context.Context, *AddResourceDependencyRequest) (*AddResourceDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RemoveResourceDependency(context.Context, *RemoveResourceDependencyRequest) (*RemoveResourceDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CanResourceBeDependent(context.Context, *CanResourceBeDependentRequest) (*CanResourceBeDependentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateRestrictionEnum(context.Context, *CreateRestrictionEnumRequest) (*CreateRestrictionEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddResourceNode(context.Context, *AddResourceNodeRequest) (*AddResourceNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RemoveResourceNode(context.Context, *RemoveResourceNodeRequest) (*RemoveResourceNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ChangeResourceGroup(context.Context, *ChangeResourceGroupRequest) (*ChangeResourceGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateResourceType(context.Context, *CreateResourceTypeRequest) (*CreateResourceTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) DeleteResourceType(context.Context, *DeleteResourceTypeRequest) (*DeleteResourceTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetRootKey(context.Context, *GetRootKeyRequest) (*GetRootKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateKey(context.Context, *CreateKeyRequest) (*CreateKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenKey(context.Context, *OpenKeyRequest) (*OpenKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) EnumKey(context.Context, *EnumKeyRequest) (*EnumKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetValue(context.Context, *SetValueRequest) (*SetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) DeleteValue(context.Context, *DeleteValueRequest) (*DeleteValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) QueryValue(context.Context, *QueryValueRequest) (*QueryValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) EnumValue(context.Context, *EnumValueRequest) (*EnumValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseKey(context.Context, *CloseKeyRequest) (*CloseKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) QueryInfoKey(context.Context, *QueryInfoKeyRequest) (*QueryInfoKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetKeySecurity(context.Context, *SetKeySecurityRequest) (*SetKeySecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetKeySecurity(context.Context, *GetKeySecurityRequest) (*GetKeySecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenGroup(context.Context, *OpenGroupRequest) (*OpenGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateGroup(context.Context, *CreateGroupRequest) (*CreateGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) DeleteGroup(context.Context, *DeleteGroupRequest) (*DeleteGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseGroup(context.Context, *CloseGroupRequest) (*CloseGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetGroupState(context.Context, *GetGroupStateRequest) (*GetGroupStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetGroupName(context.Context, *SetGroupNameRequest) (*SetGroupNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetGroupID(context.Context, *GetGroupIDRequest) (*GetGroupIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNodeID(context.Context, *GetNodeIDRequest) (*GetNodeIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OnlineGroup(context.Context, *OnlineGroupRequest) (*OnlineGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OfflineGroup(context.Context, *OfflineGroupRequest) (*OfflineGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) MoveGroup(context.Context, *MoveGroupRequest) (*MoveGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) MoveGroupToNode(context.Context, *MoveGroupToNodeRequest) (*MoveGroupToNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateGroupResourceEnum(context.Context, *CreateGroupResourceEnumRequest) (*CreateGroupResourceEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetGroupNodeList(context.Context, *SetGroupNodeListRequest) (*SetGroupNodeListResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateNotify(context.Context, *CreateNotifyRequest) (*CreateNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseNotify(context.Context, *CloseNotifyRequest) (*CloseNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyCluster(context.Context, *AddNotifyClusterRequest) (*AddNotifyClusterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyNode(context.Context, *AddNotifyNodeRequest) (*AddNotifyNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyGroup(context.Context, *AddNotifyGroupRequest) (*AddNotifyGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyResource(context.Context, *AddNotifyResourceRequest) (*AddNotifyResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyKey(context.Context, *AddNotifyKeyRequest) (*AddNotifyKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ReAddNotifyNode(context.Context, *ReAddNotifyNodeRequest) (*ReAddNotifyNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ReAddNotifyGroup(context.Context, *ReAddNotifyGroupRequest) (*ReAddNotifyGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ReAddNotifyResource(context.Context, *ReAddNotifyResourceRequest) (*ReAddNotifyResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNotify(context.Context, *GetNotifyRequest) (*GetNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenNode(context.Context, *OpenNodeRequest) (*OpenNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseNode(context.Context, *CloseNodeRequest) (*CloseNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNodeState(context.Context, *GetNodeStateRequest) (*GetNodeStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) PauseNode(context.Context, *PauseNodeRequest) (*PauseNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ResumeNode(context.Context, *ResumeNodeRequest) (*ResumeNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) EvictNode(context.Context, *EvictNodeRequest) (*EvictNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeResourceControl(context.Context, *NodeResourceControlRequest) (*NodeResourceControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ResourceControl(context.Context, *ResourceControlRequest) (*ResourceControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeResourceTypeControl(context.Context, *NodeResourceTypeControlRequest) (*NodeResourceTypeControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ResourceTypeControl(context.Context, *ResourceTypeControlRequest) (*ResourceTypeControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeGroupControl(context.Context, *NodeGroupControlRequest) (*NodeGroupControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GroupControl(context.Context, *GroupControlRequest) (*GroupControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeNodeControl(context.Context, *NodeNodeControlRequest) (*NodeNodeControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeControl(context.Context, *NodeControlRequest) (*NodeControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenNetwork(context.Context, *OpenNetworkRequest) (*OpenNetworkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseNetwork(context.Context, *CloseNetworkRequest) (*CloseNetworkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNetworkState(context.Context, *GetNetworkStateRequest) (*GetNetworkStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetNetworkName(context.Context, *SetNetworkNameRequest) (*SetNetworkNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateNetworkEnum(context.Context, *CreateNetworkEnumRequest) (*CreateNetworkEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNetworkID(context.Context, *GetNetworkIDRequest) (*GetNetworkIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetNetworkPriorityOrder(context.Context, *SetNetworkPriorityOrderRequest) (*SetNetworkPriorityOrderResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeNetworkControl(context.Context, *NodeNetworkControlRequest) (*NodeNetworkControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NetworkControl(context.Context, *NetworkControlRequest) (*NetworkControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyNetwork(context.Context, *AddNotifyNetworkRequest) (*AddNotifyNetworkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ReAddNotifyNetwork(context.Context, *ReAddNotifyNetworkRequest) (*ReAddNotifyNetworkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenNetInterface(context.Context, *OpenNetInterfaceRequest) (*OpenNetInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseNetInterface(context.Context, *CloseNetInterfaceRequest) (*CloseNetInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNetInterfaceState(context.Context, *GetNetInterfaceStateRequest) (*GetNetInterfaceStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNetInterface(context.Context, *GetNetInterfaceRequest) (*GetNetInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNetInterfaceID(context.Context, *GetNetInterfaceIDRequest) (*GetNetInterfaceIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeNetInterfaceControl(context.Context, *NodeNetInterfaceControlRequest) (*NodeNetInterfaceControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NetInterfaceControl(context.Context, *NetInterfaceControlRequest) (*NetInterfaceControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyNetInterface(context.Context, *AddNotifyNetInterfaceRequest) (*AddNotifyNetInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ReAddNotifyNetInterface(context.Context, *ReAddNotifyNetInterfaceRequest) (*ReAddNotifyNetInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateNodeEnum(context.Context, *CreateNodeEnumRequest) (*CreateNodeEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetClusterVersion2(context.Context, *GetClusterVersion2Request) (*GetClusterVersion2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateRestrictionTypeEnum(context.Context, *CreateRestrictionTypeEnumRequest) (*CreateRestrictionTypeEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) BackupClusterDatabase(context.Context, *BackupClusterDatabaseRequest) (*BackupClusterDatabaseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeClusterControl(context.Context, *NodeClusterControlRequest) (*NodeClusterControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ClusterControl(context.Context, *ClusterControlRequest) (*ClusterControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) UnblockGetNotifyCall(context.Context, *UnblockGetNotifyCallRequest) (*UnblockGetNotifyCallResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetServiceAccountPassword(context.Context, *SetServiceAccountPasswordRequest) (*SetServiceAccountPasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetResourceDependencyExpression(context.Context, *SetResourceDependencyExpressionRequest) (*SetResourceDependencyExpressionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetResourceDependencyExpression(context.Context, *GetResourceDependencyExpressionRequest) (*GetResourceDependencyExpressionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetResourceNetworkName(context.Context, *GetResourceNetworkNameRequest) (*GetResourceNetworkNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ExecuteBatch(context.Context, *ExecuteBatchRequest) (*ExecuteBatchResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateBatchPort(context.Context, *CreateBatchPortRequest) (*CreateBatchPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetBatchNotification(context.Context, *GetBatchNotificationRequest) (*GetBatchNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseBatchPort(context.Context, *CloseBatchPortRequest) (*CloseBatchPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenClusterEx(context.Context, *OpenClusterExRequest) (*OpenClusterExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenNodeEx(context.Context, *OpenNodeExRequest) (*OpenNodeExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenGroupEx(context.Context, *OpenGroupExRequest) (*OpenGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenResourceEx(context.Context, *OpenResourceExRequest) (*OpenResourceExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenNetworkEx(context.Context, *OpenNetworkExRequest) (*OpenNetworkExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenNetInterfaceEx(context.Context, *OpenNetInterfaceExRequest) (*OpenNetInterfaceExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ChangeCSVState(context.Context, *ChangeCSVStateRequest) (*ChangeCSVStateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateNodeEnumEx(context.Context, *CreateNodeEnumExRequest) (*CreateNodeEnumExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateEnumEx(context.Context, *CreateEnumExRequest) (*CreateEnumExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) PauseNodeEx(context.Context, *PauseNodeExRequest) (*PauseNodeExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) PauseNodeWithDrainTarget(context.Context, *PauseNodeWithDrainTargetRequest) (*PauseNodeWithDrainTargetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ResumeNodeEx(context.Context, *ResumeNodeExRequest) (*ResumeNodeExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateGroupEx(context.Context, *CreateGroupExRequest) (*CreateGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OnlineGroupEx(context.Context, *OnlineGroupExRequest) (*OnlineGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OfflineGroupEx(context.Context, *OfflineGroupExRequest) (*OfflineGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) MoveGroupEx(context.Context, *MoveGroupExRequest) (*MoveGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) MoveGroupToNodeEx(context.Context, *MoveGroupToNodeExRequest) (*MoveGroupToNodeExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CancelClusterGroupOperation(context.Context, *CancelClusterGroupOperationRequest) (*CancelClusterGroupOperationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OnlineResourceEx(context.Context, *OnlineResourceExRequest) (*OnlineResourceExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OfflineResourceEx(context.Context, *OfflineResourceExRequest) (*OfflineResourceExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateNotifyV2(context.Context, *CreateNotifyV2Request) (*CreateNotifyV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyV2(context.Context, *AddNotifyV2Request) (*AddNotifyV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNotifyV2(context.Context, *GetNotifyV2Request) (*GetNotifyV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateGroupEnum(context.Context, *CreateGroupEnumRequest) (*CreateGroupEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateResourceEnum(context.Context, *CreateResourceEnumRequest) (*CreateResourceEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ExecuteReadBatch(context.Context, *ExecuteReadBatchRequest) (*ExecuteReadBatchResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RestartResource(context.Context, *RestartResourceRequest) (*RestartResourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GetNotifyAsync(context.Context, *GetNotifyAsyncRequest) (*GetNotifyAsyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) Opnum149otUsedOnWire(context.Context, *Opnum149otUsedOnWireRequest) (*Opnum149otUsedOnWireResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddNotifyResourceTypeV2(context.Context, *AddNotifyResourceTypeV2Request) (*AddNotifyResourceTypeV2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ExecuteReadBatchEx(context.Context, *ExecuteReadBatchExRequest) (*ExecuteReadBatchExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateGroupSet(context.Context, *CreateGroupSetRequest) (*CreateGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) OpenGroupSet(context.Context, *OpenGroupSetRequest) (*OpenGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CloseGroupSet(context.Context, *CloseGroupSetRequest) (*CloseGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) DeleteGroupSet(context.Context, *DeleteGroupSetRequest) (*DeleteGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddGroupToGroupSet(context.Context, *AddGroupToGroupSetRequest) (*AddGroupToGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RemoveGroupFromGroupSet(context.Context, *RemoveGroupFromGroupSetRequest) (*RemoveGroupFromGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) MoveGroupToGroupSet(context.Context, *MoveGroupToGroupSetRequest) (*MoveGroupToGroupSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddGroupSetDependency(context.Context, *AddGroupSetDependencyRequest) (*AddGroupSetDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddGroupToGroupSetDependency(context.Context, *AddGroupToGroupSetDependencyRequest) (*AddGroupToGroupSetDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) NodeGroupSetControl(context.Context, *NodeGroupSetControlRequest) (*NodeGroupSetControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) GroupSetControl(context.Context, *GroupSetControlRequest) (*GroupSetControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetGroupDependencyExpression(context.Context, *SetGroupDependencyExpressionRequest) (*SetGroupDependencyExpressionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RemoveClusterGroupDependency(context.Context, *RemoveClusterGroupDependencyRequest) (*RemoveClusterGroupDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) SetGroupSetDependencyExpression(context.Context, *SetGroupSetDependencyExpressionRequest) (*SetGroupSetDependencyExpressionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RemoveGroupSetDependency(context.Context, *RemoveGroupSetDependencyRequest) (*RemoveGroupSetDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) RemoveClusterGroupToGroupSetDependency(context.Context, *RemoveClusterGroupToGroupSetDependencyRequest) (*RemoveClusterGroupToGroupSetDependencyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateGroupSetEnum(context.Context, *CreateGroupSetEnumRequest) (*CreateGroupSetEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) CreateNetInterfaceEnum(context.Context, *CreateNetInterfaceEnumRequest) (*CreateNetInterfaceEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ChangeCSVStateEx(context.Context, *ChangeCSVStateExRequest) (*ChangeCSVStateExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) AddGroupToGroupSetEx(context.Context, *AddGroupToGroupSetExRequest) (*AddGroupToGroupSetExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusapi3Server) ChangeResourceGroupEx(context.Context, *ChangeResourceGroupExRequest) (*ChangeResourceGroupExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Clusapi3Server = (*UnimplementedClusapi3Server)(nil)

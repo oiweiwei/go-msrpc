@@ -196,68 +196,121 @@ func FileScreenManagerServerHandle(ctx context.Context, o FileScreenManagerServe
 	}
 	switch opNum {
 	case 7: // ActionVariables
-		in := &GetActionVariablesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionVariablesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionVariables(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionVariablesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionVariables(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ActionVariableDescriptions
-		in := &GetActionVariableDescriptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionVariableDescriptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionVariableDescriptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionVariableDescriptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionVariableDescriptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // CreateFileScreen
-		in := &CreateFileScreenRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFileScreenOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFileScreen(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFileScreenRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFileScreen(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetFileScreen
-		in := &GetFileScreenRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileScreenOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileScreen(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileScreenRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileScreen(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // EnumFileScreens
-		in := &EnumFileScreensRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFileScreensOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumFileScreens(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFileScreensRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFileScreens(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // CreateFileScreenException
-		in := &CreateFileScreenExceptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFileScreenExceptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFileScreenException(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFileScreenExceptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFileScreenException(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // GetFileScreenException
-		in := &GetFileScreenExceptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileScreenExceptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileScreenException(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileScreenExceptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileScreenException(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // EnumFileScreenExceptions
-		in := &EnumFileScreenExceptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFileScreenExceptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumFileScreenExceptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFileScreenExceptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFileScreenExceptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // CreateFileScreenCollection
-		in := &CreateFileScreenCollectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFileScreenCollectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFileScreenCollection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFileScreenCollectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFileScreenCollection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileScreenManager
+type UnimplementedFileScreenManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedFileScreenManagerServer) GetActionVariables(context.Context, *GetActionVariablesRequest) (*GetActionVariablesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) GetActionVariableDescriptions(context.Context, *GetActionVariableDescriptionsRequest) (*GetActionVariableDescriptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) CreateFileScreen(context.Context, *CreateFileScreenRequest) (*CreateFileScreenResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) GetFileScreen(context.Context, *GetFileScreenRequest) (*GetFileScreenResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) EnumFileScreens(context.Context, *EnumFileScreensRequest) (*EnumFileScreensResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) CreateFileScreenException(context.Context, *CreateFileScreenExceptionRequest) (*CreateFileScreenExceptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) GetFileScreenException(context.Context, *GetFileScreenExceptionRequest) (*GetFileScreenExceptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) EnumFileScreenExceptions(context.Context, *EnumFileScreenExceptionsRequest) (*EnumFileScreenExceptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenManagerServer) CreateFileScreenCollection(context.Context, *CreateFileScreenCollectionRequest) (*CreateFileScreenCollectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileScreenManagerServer = (*UnimplementedFileScreenManagerServer)(nil)

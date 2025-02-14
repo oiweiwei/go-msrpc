@@ -56,12 +56,25 @@ func CatalogTableWriteServerHandle(ctx context.Context, o CatalogTableWriteServe
 	}
 	switch opNum {
 	case 3: // WriteTable
-		in := &WriteTableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WriteTableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WriteTable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WriteTableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WriteTable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalogTableWrite
+type UnimplementedCatalogTableWriteServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalogTableWriteServer) WriteTable(context.Context, *WriteTableRequest) (*WriteTableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CatalogTableWriteServer = (*UnimplementedCatalogTableWriteServer)(nil)

@@ -49,26 +49,48 @@ func NewNetEventForwarderServerHandle(o NetEventForwarderServer) dcerpc.ServerHa
 func NetEventForwarderServerHandle(ctx context.Context, o NetEventForwarderServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RpcNetEventOpenSession
-		in := &OpenSessionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenSessionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenSession(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenSessionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSession(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RpcNetEventReceiveData
-		in := &ReceiveDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReceiveDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReceiveData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReceiveDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReceiveData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // RpcNetEventCloseSession
-		in := &CloseSessionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseSessionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseSession(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseSessionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseSession(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented NetEventForwarder
+type UnimplementedNetEventForwarderServer struct {
+}
+
+func (UnimplementedNetEventForwarderServer) OpenSession(context.Context, *OpenSessionRequest) (*OpenSessionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetEventForwarderServer) ReceiveData(context.Context, *ReceiveDataRequest) (*ReceiveDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetEventForwarderServer) CloseSession(context.Context, *CloseSessionRequest) (*CloseSessionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ NetEventForwarderServer = (*UnimplementedNetEventForwarderServer)(nil)

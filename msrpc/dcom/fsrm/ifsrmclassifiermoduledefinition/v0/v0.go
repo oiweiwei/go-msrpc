@@ -88,7 +88,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) PipelineModuleDefinition()
 }
 
 func (o *xxx_DefaultClassifierModuleDefinitionClient) GetPropertiesAffected(ctx context.Context, in *GetPropertiesAffectedRequest, opts ...dcerpc.CallOption) (*GetPropertiesAffectedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -108,7 +108,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) GetPropertiesAffected(ctx 
 }
 
 func (o *xxx_DefaultClassifierModuleDefinitionClient) SetPropertiesAffected(ctx context.Context, in *SetPropertiesAffectedRequest, opts ...dcerpc.CallOption) (*SetPropertiesAffectedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -128,7 +128,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) SetPropertiesAffected(ctx 
 }
 
 func (o *xxx_DefaultClassifierModuleDefinitionClient) GetPropertiesUsed(ctx context.Context, in *GetPropertiesUsedRequest, opts ...dcerpc.CallOption) (*GetPropertiesUsedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -148,7 +148,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) GetPropertiesUsed(ctx cont
 }
 
 func (o *xxx_DefaultClassifierModuleDefinitionClient) SetPropertiesUsed(ctx context.Context, in *SetPropertiesUsedRequest, opts ...dcerpc.CallOption) (*SetPropertiesUsedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -168,7 +168,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) SetPropertiesUsed(ctx cont
 }
 
 func (o *xxx_DefaultClassifierModuleDefinitionClient) GetNeedsExplicitValue(ctx context.Context, in *GetNeedsExplicitValueRequest, opts ...dcerpc.CallOption) (*GetNeedsExplicitValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -188,7 +188,7 @@ func (o *xxx_DefaultClassifierModuleDefinitionClient) GetNeedsExplicitValue(ctx 
 }
 
 func (o *xxx_DefaultClassifierModuleDefinitionClient) SetNeedsExplicitValue(ctx context.Context, in *SetNeedsExplicitValueRequest, opts ...dcerpc.CallOption) (*SetNeedsExplicitValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -421,13 +421,15 @@ type GetPropertiesAffectedRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesAffectedRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesAffectedOperation {
+func (o *GetPropertiesAffectedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesAffectedOperation) *xxx_GetPropertiesAffectedOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesAffectedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesAffectedOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesAffectedOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesAffectedRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesAffectedOperation) {
@@ -437,7 +439,7 @@ func (o *GetPropertiesAffectedRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetPropertiesAffectedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesAffectedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesAffectedOperation{}
@@ -457,15 +459,17 @@ type GetPropertiesAffectedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesAffectedResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesAffectedOperation {
+func (o *GetPropertiesAffectedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesAffectedOperation) *xxx_GetPropertiesAffectedOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesAffectedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesAffectedOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesAffectedOperation{
-		That:               o.That,
-		PropertiesAffected: o.PropertiesAffected,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.PropertiesAffected = op.PropertiesAffected
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesAffectedResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesAffectedOperation) {
@@ -477,7 +481,7 @@ func (o *GetPropertiesAffectedResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetPropertiesAffectedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesAffectedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesAffectedOperation{}
@@ -661,14 +665,16 @@ type SetPropertiesAffectedRequest struct {
 	PropertiesAffected *oaut.SafeArray `idl:"name:propertiesAffected" json:"properties_affected"`
 }
 
-func (o *SetPropertiesAffectedRequest) xxx_ToOp(ctx context.Context) *xxx_SetPropertiesAffectedOperation {
+func (o *SetPropertiesAffectedRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPropertiesAffectedOperation) *xxx_SetPropertiesAffectedOperation {
+	if op == nil {
+		op = &xxx_SetPropertiesAffectedOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPropertiesAffectedOperation{}
+		return op
 	}
-	return &xxx_SetPropertiesAffectedOperation{
-		This:               o.This,
-		PropertiesAffected: o.PropertiesAffected,
-	}
+	o.This = op.This
+	o.PropertiesAffected = op.PropertiesAffected
+	return op
 }
 
 func (o *SetPropertiesAffectedRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPropertiesAffectedOperation) {
@@ -679,7 +685,7 @@ func (o *SetPropertiesAffectedRequest) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.PropertiesAffected = op.PropertiesAffected
 }
 func (o *SetPropertiesAffectedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPropertiesAffectedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPropertiesAffectedOperation{}
@@ -698,14 +704,16 @@ type SetPropertiesAffectedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPropertiesAffectedResponse) xxx_ToOp(ctx context.Context) *xxx_SetPropertiesAffectedOperation {
+func (o *SetPropertiesAffectedResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPropertiesAffectedOperation) *xxx_SetPropertiesAffectedOperation {
+	if op == nil {
+		op = &xxx_SetPropertiesAffectedOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPropertiesAffectedOperation{}
+		return op
 	}
-	return &xxx_SetPropertiesAffectedOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPropertiesAffectedResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPropertiesAffectedOperation) {
@@ -716,7 +724,7 @@ func (o *SetPropertiesAffectedResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *SetPropertiesAffectedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPropertiesAffectedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPropertiesAffectedOperation{}
@@ -899,13 +907,15 @@ type GetPropertiesUsedRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesUsedRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesUsedOperation {
+func (o *GetPropertiesUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesUsedOperation) *xxx_GetPropertiesUsedOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesUsedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesUsedOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesUsedOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesUsedRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesUsedOperation) {
@@ -915,7 +925,7 @@ func (o *GetPropertiesUsedRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	o.This = op.This
 }
 func (o *GetPropertiesUsedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesUsedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesUsedOperation{}
@@ -935,15 +945,17 @@ type GetPropertiesUsedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesUsedResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesUsedOperation {
+func (o *GetPropertiesUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesUsedOperation) *xxx_GetPropertiesUsedOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesUsedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesUsedOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesUsedOperation{
-		That:           o.That,
-		PropertiesUsed: o.PropertiesUsed,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.PropertiesUsed = op.PropertiesUsed
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesUsedResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesUsedOperation) {
@@ -955,7 +967,7 @@ func (o *GetPropertiesUsedResponse) xxx_FromOp(ctx context.Context, op *xxx_GetP
 	o.Return = op.Return
 }
 func (o *GetPropertiesUsedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesUsedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesUsedOperation{}
@@ -1139,14 +1151,16 @@ type SetPropertiesUsedRequest struct {
 	PropertiesUsed *oaut.SafeArray `idl:"name:propertiesUsed" json:"properties_used"`
 }
 
-func (o *SetPropertiesUsedRequest) xxx_ToOp(ctx context.Context) *xxx_SetPropertiesUsedOperation {
+func (o *SetPropertiesUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPropertiesUsedOperation) *xxx_SetPropertiesUsedOperation {
+	if op == nil {
+		op = &xxx_SetPropertiesUsedOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPropertiesUsedOperation{}
+		return op
 	}
-	return &xxx_SetPropertiesUsedOperation{
-		This:           o.This,
-		PropertiesUsed: o.PropertiesUsed,
-	}
+	o.This = op.This
+	o.PropertiesUsed = op.PropertiesUsed
+	return op
 }
 
 func (o *SetPropertiesUsedRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPropertiesUsedOperation) {
@@ -1157,7 +1171,7 @@ func (o *SetPropertiesUsedRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPr
 	o.PropertiesUsed = op.PropertiesUsed
 }
 func (o *SetPropertiesUsedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPropertiesUsedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPropertiesUsedOperation{}
@@ -1176,14 +1190,16 @@ type SetPropertiesUsedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPropertiesUsedResponse) xxx_ToOp(ctx context.Context) *xxx_SetPropertiesUsedOperation {
+func (o *SetPropertiesUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPropertiesUsedOperation) *xxx_SetPropertiesUsedOperation {
+	if op == nil {
+		op = &xxx_SetPropertiesUsedOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPropertiesUsedOperation{}
+		return op
 	}
-	return &xxx_SetPropertiesUsedOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPropertiesUsedResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPropertiesUsedOperation) {
@@ -1194,7 +1210,7 @@ func (o *SetPropertiesUsedResponse) xxx_FromOp(ctx context.Context, op *xxx_SetP
 	o.Return = op.Return
 }
 func (o *SetPropertiesUsedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPropertiesUsedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPropertiesUsedOperation{}
@@ -1343,13 +1359,15 @@ type GetNeedsExplicitValueRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetNeedsExplicitValueRequest) xxx_ToOp(ctx context.Context) *xxx_GetNeedsExplicitValueOperation {
+func (o *GetNeedsExplicitValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNeedsExplicitValueOperation) *xxx_GetNeedsExplicitValueOperation {
+	if op == nil {
+		op = &xxx_GetNeedsExplicitValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNeedsExplicitValueOperation{}
+		return op
 	}
-	return &xxx_GetNeedsExplicitValueOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetNeedsExplicitValueRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNeedsExplicitValueOperation) {
@@ -1359,7 +1377,7 @@ func (o *GetNeedsExplicitValueRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetNeedsExplicitValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNeedsExplicitValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNeedsExplicitValueOperation{}
@@ -1379,15 +1397,17 @@ type GetNeedsExplicitValueResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNeedsExplicitValueResponse) xxx_ToOp(ctx context.Context) *xxx_GetNeedsExplicitValueOperation {
+func (o *GetNeedsExplicitValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNeedsExplicitValueOperation) *xxx_GetNeedsExplicitValueOperation {
+	if op == nil {
+		op = &xxx_GetNeedsExplicitValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNeedsExplicitValueOperation{}
+		return op
 	}
-	return &xxx_GetNeedsExplicitValueOperation{
-		That:               o.That,
-		NeedsExplicitValue: o.NeedsExplicitValue,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.NeedsExplicitValue = op.NeedsExplicitValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNeedsExplicitValueResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNeedsExplicitValueOperation) {
@@ -1399,7 +1419,7 @@ func (o *GetNeedsExplicitValueResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetNeedsExplicitValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNeedsExplicitValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNeedsExplicitValueOperation{}
@@ -1549,14 +1569,16 @@ type SetNeedsExplicitValueRequest struct {
 	NeedsExplicitValue int16          `idl:"name:needsExplicitValue" json:"needs_explicit_value"`
 }
 
-func (o *SetNeedsExplicitValueRequest) xxx_ToOp(ctx context.Context) *xxx_SetNeedsExplicitValueOperation {
+func (o *SetNeedsExplicitValueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNeedsExplicitValueOperation) *xxx_SetNeedsExplicitValueOperation {
+	if op == nil {
+		op = &xxx_SetNeedsExplicitValueOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNeedsExplicitValueOperation{}
+		return op
 	}
-	return &xxx_SetNeedsExplicitValueOperation{
-		This:               o.This,
-		NeedsExplicitValue: o.NeedsExplicitValue,
-	}
+	o.This = op.This
+	o.NeedsExplicitValue = op.NeedsExplicitValue
+	return op
 }
 
 func (o *SetNeedsExplicitValueRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNeedsExplicitValueOperation) {
@@ -1567,7 +1589,7 @@ func (o *SetNeedsExplicitValueRequest) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.NeedsExplicitValue = op.NeedsExplicitValue
 }
 func (o *SetNeedsExplicitValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetNeedsExplicitValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNeedsExplicitValueOperation{}
@@ -1586,14 +1608,16 @@ type SetNeedsExplicitValueResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetNeedsExplicitValueResponse) xxx_ToOp(ctx context.Context) *xxx_SetNeedsExplicitValueOperation {
+func (o *SetNeedsExplicitValueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNeedsExplicitValueOperation) *xxx_SetNeedsExplicitValueOperation {
+	if op == nil {
+		op = &xxx_SetNeedsExplicitValueOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNeedsExplicitValueOperation{}
+		return op
 	}
-	return &xxx_SetNeedsExplicitValueOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetNeedsExplicitValueResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNeedsExplicitValueOperation) {
@@ -1604,7 +1628,7 @@ func (o *SetNeedsExplicitValueResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *SetNeedsExplicitValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetNeedsExplicitValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNeedsExplicitValueOperation{}

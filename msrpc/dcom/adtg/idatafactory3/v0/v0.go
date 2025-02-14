@@ -76,7 +76,7 @@ func (o *xxx_DefaultDataFactory3Client) DataFactory2() idatafactory2.DataFactory
 }
 
 func (o *xxx_DefaultDataFactory3Client) Execute(ctx context.Context, in *ExecuteRequest, opts ...dcerpc.CallOption) (*ExecuteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -96,7 +96,7 @@ func (o *xxx_DefaultDataFactory3Client) Execute(ctx context.Context, in *Execute
 }
 
 func (o *xxx_DefaultDataFactory3Client) Synchronize(ctx context.Context, in *SynchronizeRequest, opts ...dcerpc.CallOption) (*SynchronizeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -759,23 +759,25 @@ type ExecuteRequest struct {
 	Information      *oaut.Variant  `idl:"name:pInformation" json:"information"`
 }
 
-func (o *ExecuteRequest) xxx_ToOp(ctx context.Context) *xxx_ExecuteOperation {
+func (o *ExecuteRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteOperation) *xxx_ExecuteOperation {
+	if op == nil {
+		op = &xxx_ExecuteOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecuteOperation{}
+		return op
 	}
-	return &xxx_ExecuteOperation{
-		This:             o.This,
-		ConnectionString: o.ConnectionString,
-		HandlerString:    o.HandlerString,
-		QueryString:      o.QueryString,
-		MarshalOptions:   o.MarshalOptions,
-		Properties:       o.Properties,
-		TableID:          o.TableID,
-		ExecuteOptions:   o.ExecuteOptions,
-		Parameters:       o.Parameters,
-		LocaleID:         o.LocaleID,
-		Information:      o.Information,
-	}
+	o.This = op.This
+	o.ConnectionString = op.ConnectionString
+	o.HandlerString = op.HandlerString
+	o.QueryString = op.QueryString
+	o.MarshalOptions = op.MarshalOptions
+	o.Properties = op.Properties
+	o.TableID = op.TableID
+	o.ExecuteOptions = op.ExecuteOptions
+	o.Parameters = op.Parameters
+	o.LocaleID = op.LocaleID
+	o.Information = op.Information
+	return op
 }
 
 func (o *ExecuteRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecuteOperation) {
@@ -795,7 +797,7 @@ func (o *ExecuteRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecuteOperatio
 	o.Information = op.Information
 }
 func (o *ExecuteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecuteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecuteOperation{}
@@ -817,17 +819,19 @@ type ExecuteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecuteResponse) xxx_ToOp(ctx context.Context) *xxx_ExecuteOperation {
+func (o *ExecuteResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteOperation) *xxx_ExecuteOperation {
+	if op == nil {
+		op = &xxx_ExecuteOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecuteOperation{}
+		return op
 	}
-	return &xxx_ExecuteOperation{
-		That:        o.That,
-		Parameters:  o.Parameters,
-		Information: o.Information,
-		RecordSet:   o.RecordSet,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.Parameters = op.Parameters
+	o.Information = op.Information
+	o.RecordSet = op.RecordSet
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecuteResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecuteOperation) {
@@ -841,7 +845,7 @@ func (o *ExecuteResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecuteOperati
 	o.Return = op.Return
 }
 func (o *ExecuteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecuteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecuteOperation{}
@@ -1428,20 +1432,22 @@ type SynchronizeRequest struct {
 	Information        *oaut.Variant  `idl:"name:pInformation" json:"information"`
 }
 
-func (o *SynchronizeRequest) xxx_ToOp(ctx context.Context) *xxx_SynchronizeOperation {
+func (o *SynchronizeRequest) xxx_ToOp(ctx context.Context, op *xxx_SynchronizeOperation) *xxx_SynchronizeOperation {
+	if op == nil {
+		op = &xxx_SynchronizeOperation{}
+	}
 	if o == nil {
-		return &xxx_SynchronizeOperation{}
+		return op
 	}
-	return &xxx_SynchronizeOperation{
-		This:               o.This,
-		ConnectionString:   o.ConnectionString,
-		HandlerString:      o.HandlerString,
-		SynchronizeOptions: o.SynchronizeOptions,
-		RecordSet:          o.RecordSet,
-		StatusArray:        o.StatusArray,
-		LocaleID:           o.LocaleID,
-		Information:        o.Information,
-	}
+	o.This = op.This
+	o.ConnectionString = op.ConnectionString
+	o.HandlerString = op.HandlerString
+	o.SynchronizeOptions = op.SynchronizeOptions
+	o.RecordSet = op.RecordSet
+	o.StatusArray = op.StatusArray
+	o.LocaleID = op.LocaleID
+	o.Information = op.Information
+	return op
 }
 
 func (o *SynchronizeRequest) xxx_FromOp(ctx context.Context, op *xxx_SynchronizeOperation) {
@@ -1458,7 +1464,7 @@ func (o *SynchronizeRequest) xxx_FromOp(ctx context.Context, op *xxx_Synchronize
 	o.Information = op.Information
 }
 func (o *SynchronizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SynchronizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SynchronizeOperation{}
@@ -1481,18 +1487,20 @@ type SynchronizeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SynchronizeResponse) xxx_ToOp(ctx context.Context) *xxx_SynchronizeOperation {
+func (o *SynchronizeResponse) xxx_ToOp(ctx context.Context, op *xxx_SynchronizeOperation) *xxx_SynchronizeOperation {
+	if op == nil {
+		op = &xxx_SynchronizeOperation{}
+	}
 	if o == nil {
-		return &xxx_SynchronizeOperation{}
+		return op
 	}
-	return &xxx_SynchronizeOperation{
-		That:        o.That,
-		RecordSet:   o.RecordSet,
-		StatusArray: o.StatusArray,
-		Information: o.Information,
-		Result:      o.Result,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.RecordSet = op.RecordSet
+	o.StatusArray = op.StatusArray
+	o.Information = op.Information
+	o.Result = op.Result
+	o.Return = op.Return
+	return op
 }
 
 func (o *SynchronizeResponse) xxx_FromOp(ctx context.Context, op *xxx_SynchronizeOperation) {
@@ -1507,7 +1515,7 @@ func (o *SynchronizeResponse) xxx_FromOp(ctx context.Context, op *xxx_Synchroniz
 	o.Return = op.Return
 }
 func (o *SynchronizeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SynchronizeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SynchronizeOperation{}

@@ -97,7 +97,7 @@ func (o *xxx_DefaultVDiskClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVDiskClient) Open(ctx context.Context, in *OpenRequest, opts ...dcerpc.CallOption) (*OpenResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -117,7 +117,7 @@ func (o *xxx_DefaultVDiskClient) Open(ctx context.Context, in *OpenRequest, opts
 }
 
 func (o *xxx_DefaultVDiskClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultVDiskClient) GetProperties(ctx context.Context, in *GetPrope
 }
 
 func (o *xxx_DefaultVDiskClient) GetHostVolume(ctx context.Context, in *GetHostVolumeRequest, opts ...dcerpc.CallOption) (*GetHostVolumeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -157,7 +157,7 @@ func (o *xxx_DefaultVDiskClient) GetHostVolume(ctx context.Context, in *GetHostV
 }
 
 func (o *xxx_DefaultVDiskClient) GetDeviceName(ctx context.Context, in *GetDeviceNameRequest, opts ...dcerpc.CallOption) (*GetDeviceNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -444,16 +444,18 @@ type OpenRequest struct {
 	ReadWriteDepth uint32 `idl:"name:ReadWriteDepth" json:"read_write_depth"`
 }
 
-func (o *OpenRequest) xxx_ToOp(ctx context.Context) *xxx_OpenOperation {
+func (o *OpenRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenOperation) *xxx_OpenOperation {
+	if op == nil {
+		op = &xxx_OpenOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenOperation{}
+		return op
 	}
-	return &xxx_OpenOperation{
-		This:           o.This,
-		AccessMask:     o.AccessMask,
-		Flags:          o.Flags,
-		ReadWriteDepth: o.ReadWriteDepth,
-	}
+	o.This = op.This
+	o.AccessMask = op.AccessMask
+	o.Flags = op.Flags
+	o.ReadWriteDepth = op.ReadWriteDepth
+	return op
 }
 
 func (o *OpenRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenOperation) {
@@ -466,7 +468,7 @@ func (o *OpenRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenOperation) {
 	o.ReadWriteDepth = op.ReadWriteDepth
 }
 func (o *OpenRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenOperation{}
@@ -486,15 +488,17 @@ type OpenResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenResponse) xxx_ToOp(ctx context.Context) *xxx_OpenOperation {
+func (o *OpenResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenOperation) *xxx_OpenOperation {
+	if op == nil {
+		op = &xxx_OpenOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenOperation{}
+		return op
 	}
-	return &xxx_OpenOperation{
-		That:      o.That,
-		OpenVDisk: o.OpenVDisk,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.OpenVDisk = op.OpenVDisk
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenOperation) {
@@ -506,7 +510,7 @@ func (o *OpenResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenOperation) {
 	o.Return = op.Return
 }
 func (o *OpenResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenOperation{}
@@ -668,13 +672,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -684,7 +690,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -704,15 +710,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:           o.That,
-		DiskProperties: o.DiskProperties,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.DiskProperties = op.DiskProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -724,7 +732,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -905,13 +913,15 @@ type GetHostVolumeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetHostVolumeRequest) xxx_ToOp(ctx context.Context) *xxx_GetHostVolumeOperation {
+func (o *GetHostVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetHostVolumeOperation) *xxx_GetHostVolumeOperation {
+	if op == nil {
+		op = &xxx_GetHostVolumeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetHostVolumeOperation{}
+		return op
 	}
-	return &xxx_GetHostVolumeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetHostVolumeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetHostVolumeOperation) {
@@ -921,7 +931,7 @@ func (o *GetHostVolumeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetHostVo
 	o.This = op.This
 }
 func (o *GetHostVolumeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetHostVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetHostVolumeOperation{}
@@ -941,15 +951,17 @@ type GetHostVolumeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetHostVolumeResponse) xxx_ToOp(ctx context.Context) *xxx_GetHostVolumeOperation {
+func (o *GetHostVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetHostVolumeOperation) *xxx_GetHostVolumeOperation {
+	if op == nil {
+		op = &xxx_GetHostVolumeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetHostVolumeOperation{}
+		return op
 	}
-	return &xxx_GetHostVolumeOperation{
-		That:   o.That,
-		Volume: o.Volume,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Volume = op.Volume
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetHostVolumeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetHostVolumeOperation) {
@@ -961,7 +973,7 @@ func (o *GetHostVolumeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetHostV
 	o.Return = op.Return
 }
 func (o *GetHostVolumeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetHostVolumeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetHostVolumeOperation{}
@@ -1133,13 +1145,15 @@ type GetDeviceNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetDeviceNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetDeviceNameOperation {
+func (o *GetDeviceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDeviceNameOperation) *xxx_GetDeviceNameOperation {
+	if op == nil {
+		op = &xxx_GetDeviceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDeviceNameOperation{}
+		return op
 	}
-	return &xxx_GetDeviceNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetDeviceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDeviceNameOperation) {
@@ -1149,7 +1163,7 @@ func (o *GetDeviceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDevice
 	o.This = op.This
 }
 func (o *GetDeviceNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDeviceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDeviceNameOperation{}
@@ -1170,15 +1184,17 @@ type GetDeviceNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDeviceNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetDeviceNameOperation {
+func (o *GetDeviceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDeviceNameOperation) *xxx_GetDeviceNameOperation {
+	if op == nil {
+		op = &xxx_GetDeviceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDeviceNameOperation{}
+		return op
 	}
-	return &xxx_GetDeviceNameOperation{
-		That:       o.That,
-		DeviceName: o.DeviceName,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.DeviceName = op.DeviceName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDeviceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDeviceNameOperation) {
@@ -1190,7 +1206,7 @@ func (o *GetDeviceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDevic
 	o.Return = op.Return
 }
 func (o *GetDeviceNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDeviceNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDeviceNameOperation{}

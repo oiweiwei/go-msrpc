@@ -9697,7 +9697,7 @@ type xxx_DefaultLsarpcClient struct {
 }
 
 func (o *xxx_DefaultLsarpcClient) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9710,7 +9710,7 @@ func (o *xxx_DefaultLsarpcClient) Close(ctx context.Context, in *CloseRequest, o
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumeratePrivileges(ctx context.Context, in *EnumeratePrivilegesRequest, opts ...dcerpc.CallOption) (*EnumeratePrivilegesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9723,7 +9723,7 @@ func (o *xxx_DefaultLsarpcClient) EnumeratePrivileges(ctx context.Context, in *E
 }
 
 func (o *xxx_DefaultLsarpcClient) QuerySecurityObject(ctx context.Context, in *QuerySecurityObjectRequest, opts ...dcerpc.CallOption) (*QuerySecurityObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9736,7 +9736,7 @@ func (o *xxx_DefaultLsarpcClient) QuerySecurityObject(ctx context.Context, in *Q
 }
 
 func (o *xxx_DefaultLsarpcClient) SetSecurityObject(ctx context.Context, in *SetSecurityObjectRequest, opts ...dcerpc.CallOption) (*SetSecurityObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9749,7 +9749,7 @@ func (o *xxx_DefaultLsarpcClient) SetSecurityObject(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenPolicy(ctx context.Context, in *OpenPolicyRequest, opts ...dcerpc.CallOption) (*OpenPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9762,7 +9762,7 @@ func (o *xxx_DefaultLsarpcClient) OpenPolicy(ctx context.Context, in *OpenPolicy
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryInformationPolicy(ctx context.Context, in *QueryInformationPolicyRequest, opts ...dcerpc.CallOption) (*QueryInformationPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9775,7 +9775,7 @@ func (o *xxx_DefaultLsarpcClient) QueryInformationPolicy(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) SetInformationPolicy(ctx context.Context, in *SetInformationPolicyRequest, opts ...dcerpc.CallOption) (*SetInformationPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9788,7 +9788,7 @@ func (o *xxx_DefaultLsarpcClient) SetInformationPolicy(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultLsarpcClient) CreateAccount(ctx context.Context, in *CreateAccountRequest, opts ...dcerpc.CallOption) (*CreateAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9801,7 +9801,7 @@ func (o *xxx_DefaultLsarpcClient) CreateAccount(ctx context.Context, in *CreateA
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumerateAccounts(ctx context.Context, in *EnumerateAccountsRequest, opts ...dcerpc.CallOption) (*EnumerateAccountsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9814,7 +9814,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateAccounts(ctx context.Context, in *Enu
 }
 
 func (o *xxx_DefaultLsarpcClient) CreateTrustedDomain(ctx context.Context, in *CreateTrustedDomainRequest, opts ...dcerpc.CallOption) (*CreateTrustedDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9827,7 +9827,7 @@ func (o *xxx_DefaultLsarpcClient) CreateTrustedDomain(ctx context.Context, in *C
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumerateTrustedDomains(ctx context.Context, in *EnumerateTrustedDomainsRequest, opts ...dcerpc.CallOption) (*EnumerateTrustedDomainsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9840,7 +9840,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateTrustedDomains(ctx context.Context, i
 }
 
 func (o *xxx_DefaultLsarpcClient) CreateSecret(ctx context.Context, in *CreateSecretRequest, opts ...dcerpc.CallOption) (*CreateSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9853,7 +9853,7 @@ func (o *xxx_DefaultLsarpcClient) CreateSecret(ctx context.Context, in *CreateSe
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenAccount(ctx context.Context, in *OpenAccountRequest, opts ...dcerpc.CallOption) (*OpenAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9866,7 +9866,7 @@ func (o *xxx_DefaultLsarpcClient) OpenAccount(ctx context.Context, in *OpenAccou
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumeratePrivilegesAccount(ctx context.Context, in *EnumeratePrivilegesAccountRequest, opts ...dcerpc.CallOption) (*EnumeratePrivilegesAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9879,7 +9879,7 @@ func (o *xxx_DefaultLsarpcClient) EnumeratePrivilegesAccount(ctx context.Context
 }
 
 func (o *xxx_DefaultLsarpcClient) AddPrivilegesToAccount(ctx context.Context, in *AddPrivilegesToAccountRequest, opts ...dcerpc.CallOption) (*AddPrivilegesToAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9892,7 +9892,7 @@ func (o *xxx_DefaultLsarpcClient) AddPrivilegesToAccount(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) RemovePrivilegesFromAccount(ctx context.Context, in *RemovePrivilegesFromAccountRequest, opts ...dcerpc.CallOption) (*RemovePrivilegesFromAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9905,7 +9905,7 @@ func (o *xxx_DefaultLsarpcClient) RemovePrivilegesFromAccount(ctx context.Contex
 }
 
 func (o *xxx_DefaultLsarpcClient) GetSystemAccessAccount(ctx context.Context, in *GetSystemAccessAccountRequest, opts ...dcerpc.CallOption) (*GetSystemAccessAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9918,7 +9918,7 @@ func (o *xxx_DefaultLsarpcClient) GetSystemAccessAccount(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) SetSystemAccessAccount(ctx context.Context, in *SetSystemAccessAccountRequest, opts ...dcerpc.CallOption) (*SetSystemAccessAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9931,7 +9931,7 @@ func (o *xxx_DefaultLsarpcClient) SetSystemAccessAccount(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenTrustedDomain(ctx context.Context, in *OpenTrustedDomainRequest, opts ...dcerpc.CallOption) (*OpenTrustedDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9944,7 +9944,7 @@ func (o *xxx_DefaultLsarpcClient) OpenTrustedDomain(ctx context.Context, in *Ope
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryInfoTrustedDomain(ctx context.Context, in *QueryInfoTrustedDomainRequest, opts ...dcerpc.CallOption) (*QueryInfoTrustedDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9957,7 +9957,7 @@ func (o *xxx_DefaultLsarpcClient) QueryInfoTrustedDomain(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) SetInformationTrustedDomain(ctx context.Context, in *SetInformationTrustedDomainRequest, opts ...dcerpc.CallOption) (*SetInformationTrustedDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9970,7 +9970,7 @@ func (o *xxx_DefaultLsarpcClient) SetInformationTrustedDomain(ctx context.Contex
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenSecret(ctx context.Context, in *OpenSecretRequest, opts ...dcerpc.CallOption) (*OpenSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9983,7 +9983,7 @@ func (o *xxx_DefaultLsarpcClient) OpenSecret(ctx context.Context, in *OpenSecret
 }
 
 func (o *xxx_DefaultLsarpcClient) SetSecret(ctx context.Context, in *SetSecretRequest, opts ...dcerpc.CallOption) (*SetSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -9996,7 +9996,7 @@ func (o *xxx_DefaultLsarpcClient) SetSecret(ctx context.Context, in *SetSecretRe
 }
 
 func (o *xxx_DefaultLsarpcClient) QuerySecret(ctx context.Context, in *QuerySecretRequest, opts ...dcerpc.CallOption) (*QuerySecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10009,7 +10009,7 @@ func (o *xxx_DefaultLsarpcClient) QuerySecret(ctx context.Context, in *QuerySecr
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupPrivilegeValue(ctx context.Context, in *LookupPrivilegeValueRequest, opts ...dcerpc.CallOption) (*LookupPrivilegeValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10022,7 +10022,7 @@ func (o *xxx_DefaultLsarpcClient) LookupPrivilegeValue(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupPrivilegeName(ctx context.Context, in *LookupPrivilegeNameRequest, opts ...dcerpc.CallOption) (*LookupPrivilegeNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10035,7 +10035,7 @@ func (o *xxx_DefaultLsarpcClient) LookupPrivilegeName(ctx context.Context, in *L
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupPrivilegeDisplayName(ctx context.Context, in *LookupPrivilegeDisplayNameRequest, opts ...dcerpc.CallOption) (*LookupPrivilegeDisplayNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10048,7 +10048,7 @@ func (o *xxx_DefaultLsarpcClient) LookupPrivilegeDisplayName(ctx context.Context
 }
 
 func (o *xxx_DefaultLsarpcClient) DeleteObject(ctx context.Context, in *DeleteObjectRequest, opts ...dcerpc.CallOption) (*DeleteObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10061,7 +10061,7 @@ func (o *xxx_DefaultLsarpcClient) DeleteObject(ctx context.Context, in *DeleteOb
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumerateAccountsWithUserRight(ctx context.Context, in *EnumerateAccountsWithUserRightRequest, opts ...dcerpc.CallOption) (*EnumerateAccountsWithUserRightResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10074,7 +10074,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateAccountsWithUserRight(ctx context.Con
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumerateAccountRights(ctx context.Context, in *EnumerateAccountRightsRequest, opts ...dcerpc.CallOption) (*EnumerateAccountRightsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10087,7 +10087,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateAccountRights(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) AddAccountRights(ctx context.Context, in *AddAccountRightsRequest, opts ...dcerpc.CallOption) (*AddAccountRightsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10100,7 +10100,7 @@ func (o *xxx_DefaultLsarpcClient) AddAccountRights(ctx context.Context, in *AddA
 }
 
 func (o *xxx_DefaultLsarpcClient) RemoveAccountRights(ctx context.Context, in *RemoveAccountRightsRequest, opts ...dcerpc.CallOption) (*RemoveAccountRightsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10113,7 +10113,7 @@ func (o *xxx_DefaultLsarpcClient) RemoveAccountRights(ctx context.Context, in *R
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryTrustedDomainInfo(ctx context.Context, in *QueryTrustedDomainInfoRequest, opts ...dcerpc.CallOption) (*QueryTrustedDomainInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10126,7 +10126,7 @@ func (o *xxx_DefaultLsarpcClient) QueryTrustedDomainInfo(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) SetTrustedDomainInfo(ctx context.Context, in *SetTrustedDomainInfoRequest, opts ...dcerpc.CallOption) (*SetTrustedDomainInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10139,7 +10139,7 @@ func (o *xxx_DefaultLsarpcClient) SetTrustedDomainInfo(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultLsarpcClient) DeleteTrustedDomain(ctx context.Context, in *DeleteTrustedDomainRequest, opts ...dcerpc.CallOption) (*DeleteTrustedDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10152,7 +10152,7 @@ func (o *xxx_DefaultLsarpcClient) DeleteTrustedDomain(ctx context.Context, in *D
 }
 
 func (o *xxx_DefaultLsarpcClient) StorePrivateData(ctx context.Context, in *StorePrivateDataRequest, opts ...dcerpc.CallOption) (*StorePrivateDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10165,7 +10165,7 @@ func (o *xxx_DefaultLsarpcClient) StorePrivateData(ctx context.Context, in *Stor
 }
 
 func (o *xxx_DefaultLsarpcClient) RetrievePrivateData(ctx context.Context, in *RetrievePrivateDataRequest, opts ...dcerpc.CallOption) (*RetrievePrivateDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10178,7 +10178,7 @@ func (o *xxx_DefaultLsarpcClient) RetrievePrivateData(ctx context.Context, in *R
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenPolicy2(ctx context.Context, in *OpenPolicy2Request, opts ...dcerpc.CallOption) (*OpenPolicy2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10191,7 +10191,7 @@ func (o *xxx_DefaultLsarpcClient) OpenPolicy2(ctx context.Context, in *OpenPolic
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryInformationPolicy2(ctx context.Context, in *QueryInformationPolicy2Request, opts ...dcerpc.CallOption) (*QueryInformationPolicy2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10204,7 +10204,7 @@ func (o *xxx_DefaultLsarpcClient) QueryInformationPolicy2(ctx context.Context, i
 }
 
 func (o *xxx_DefaultLsarpcClient) SetInformationPolicy2(ctx context.Context, in *SetInformationPolicy2Request, opts ...dcerpc.CallOption) (*SetInformationPolicy2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10217,7 +10217,7 @@ func (o *xxx_DefaultLsarpcClient) SetInformationPolicy2(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryTrustedDomainInfoByName(ctx context.Context, in *QueryTrustedDomainInfoByNameRequest, opts ...dcerpc.CallOption) (*QueryTrustedDomainInfoByNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10230,7 +10230,7 @@ func (o *xxx_DefaultLsarpcClient) QueryTrustedDomainInfoByName(ctx context.Conte
 }
 
 func (o *xxx_DefaultLsarpcClient) SetTrustedDomainInfoByName(ctx context.Context, in *SetTrustedDomainInfoByNameRequest, opts ...dcerpc.CallOption) (*SetTrustedDomainInfoByNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10243,7 +10243,7 @@ func (o *xxx_DefaultLsarpcClient) SetTrustedDomainInfoByName(ctx context.Context
 }
 
 func (o *xxx_DefaultLsarpcClient) EnumerateTrustedDomainsEx(ctx context.Context, in *EnumerateTrustedDomainsExRequest, opts ...dcerpc.CallOption) (*EnumerateTrustedDomainsExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10256,7 +10256,7 @@ func (o *xxx_DefaultLsarpcClient) EnumerateTrustedDomainsEx(ctx context.Context,
 }
 
 func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx(ctx context.Context, in *CreateTrustedDomainExRequest, opts ...dcerpc.CallOption) (*CreateTrustedDomainExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10269,7 +10269,7 @@ func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryDomainInformationPolicy(ctx context.Context, in *QueryDomainInformationPolicyRequest, opts ...dcerpc.CallOption) (*QueryDomainInformationPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10282,7 +10282,7 @@ func (o *xxx_DefaultLsarpcClient) QueryDomainInformationPolicy(ctx context.Conte
 }
 
 func (o *xxx_DefaultLsarpcClient) SetDomainInformationPolicy(ctx context.Context, in *SetDomainInformationPolicyRequest, opts ...dcerpc.CallOption) (*SetDomainInformationPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10295,7 +10295,7 @@ func (o *xxx_DefaultLsarpcClient) SetDomainInformationPolicy(ctx context.Context
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenTrustedDomainByName(ctx context.Context, in *OpenTrustedDomainByNameRequest, opts ...dcerpc.CallOption) (*OpenTrustedDomainByNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10308,7 +10308,7 @@ func (o *xxx_DefaultLsarpcClient) OpenTrustedDomainByName(ctx context.Context, i
 }
 
 func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx2(ctx context.Context, in *CreateTrustedDomainEx2Request, opts ...dcerpc.CallOption) (*CreateTrustedDomainEx2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10321,7 +10321,7 @@ func (o *xxx_DefaultLsarpcClient) CreateTrustedDomainEx2(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLsarpcClient) QueryForestTrustInformation(ctx context.Context, in *QueryForestTrustInformationRequest, opts ...dcerpc.CallOption) (*QueryForestTrustInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10334,7 +10334,7 @@ func (o *xxx_DefaultLsarpcClient) QueryForestTrustInformation(ctx context.Contex
 }
 
 func (o *xxx_DefaultLsarpcClient) SetForestTrustInformation(ctx context.Context, in *SetForestTrustInformationRequest, opts ...dcerpc.CallOption) (*SetForestTrustInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -10472,13 +10472,15 @@ type CloseRequest struct {
 	Object *Handle `idl:"name:ObjectHandle" json:"object"`
 }
 
-func (o *CloseRequest) xxx_ToOp(ctx context.Context) *xxx_CloseOperation {
+func (o *CloseRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xxx_CloseOperation {
+	if op == nil {
+		op = &xxx_CloseOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseOperation{}
+		return op
 	}
-	return &xxx_CloseOperation{
-		Object: o.Object,
-	}
+	o.Object = op.Object
+	return op
 }
 
 func (o *CloseRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
@@ -10488,7 +10490,7 @@ func (o *CloseRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
 	o.Object = op.Object
 }
 func (o *CloseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseOperation{}
@@ -10507,14 +10509,16 @@ type CloseResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseResponse) xxx_ToOp(ctx context.Context) *xxx_CloseOperation {
+func (o *CloseResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xxx_CloseOperation {
+	if op == nil {
+		op = &xxx_CloseOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseOperation{}
+		return op
 	}
-	return &xxx_CloseOperation{
-		Object: o.Object,
-		Return: o.Return,
-	}
+	o.Object = op.Object
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
@@ -10525,7 +10529,7 @@ func (o *CloseResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) 
 	o.Return = op.Return
 }
 func (o *CloseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseOperation{}
@@ -10699,15 +10703,17 @@ type EnumeratePrivilegesRequest struct {
 	PreferredMaximumLength uint32 `idl:"name:PreferedMaximumLength" json:"preferred_maximum_length"`
 }
 
-func (o *EnumeratePrivilegesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumeratePrivilegesOperation {
+func (o *EnumeratePrivilegesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumeratePrivilegesOperation) *xxx_EnumeratePrivilegesOperation {
+	if op == nil {
+		op = &xxx_EnumeratePrivilegesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumeratePrivilegesOperation{}
+		return op
 	}
-	return &xxx_EnumeratePrivilegesOperation{
-		Policy:                 o.Policy,
-		EnumerationContext:     o.EnumerationContext,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-	}
+	o.Policy = op.Policy
+	o.EnumerationContext = op.EnumerationContext
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	return op
 }
 
 func (o *EnumeratePrivilegesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumeratePrivilegesOperation) {
@@ -10719,7 +10725,7 @@ func (o *EnumeratePrivilegesRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 }
 func (o *EnumeratePrivilegesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumeratePrivilegesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumeratePrivilegesOperation{}
@@ -10742,15 +10748,17 @@ type EnumeratePrivilegesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumeratePrivilegesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumeratePrivilegesOperation {
+func (o *EnumeratePrivilegesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumeratePrivilegesOperation) *xxx_EnumeratePrivilegesOperation {
+	if op == nil {
+		op = &xxx_EnumeratePrivilegesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumeratePrivilegesOperation{}
+		return op
 	}
-	return &xxx_EnumeratePrivilegesOperation{
-		EnumerationContext: o.EnumerationContext,
-		EnumerationBuffer:  o.EnumerationBuffer,
-		Return:             o.Return,
-	}
+	o.EnumerationContext = op.EnumerationContext
+	o.EnumerationBuffer = op.EnumerationBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumeratePrivilegesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumeratePrivilegesOperation) {
@@ -10762,7 +10770,7 @@ func (o *EnumeratePrivilegesResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumeratePrivilegesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumeratePrivilegesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumeratePrivilegesOperation{}
@@ -10927,14 +10935,16 @@ type QuerySecurityObjectRequest struct {
 	SecurityInformation uint32 `idl:"name:SecurityInformation" json:"security_information"`
 }
 
-func (o *QuerySecurityObjectRequest) xxx_ToOp(ctx context.Context) *xxx_QuerySecurityObjectOperation {
+func (o *QuerySecurityObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySecurityObjectOperation) *xxx_QuerySecurityObjectOperation {
+	if op == nil {
+		op = &xxx_QuerySecurityObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySecurityObjectOperation{}
+		return op
 	}
-	return &xxx_QuerySecurityObjectOperation{
-		Object:              o.Object,
-		SecurityInformation: o.SecurityInformation,
-	}
+	o.Object = op.Object
+	o.SecurityInformation = op.SecurityInformation
+	return op
 }
 
 func (o *QuerySecurityObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySecurityObjectOperation) {
@@ -10945,7 +10955,7 @@ func (o *QuerySecurityObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.SecurityInformation = op.SecurityInformation
 }
 func (o *QuerySecurityObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QuerySecurityObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySecurityObjectOperation{}
@@ -10965,14 +10975,16 @@ type QuerySecurityObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QuerySecurityObjectResponse) xxx_ToOp(ctx context.Context) *xxx_QuerySecurityObjectOperation {
+func (o *QuerySecurityObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySecurityObjectOperation) *xxx_QuerySecurityObjectOperation {
+	if op == nil {
+		op = &xxx_QuerySecurityObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySecurityObjectOperation{}
+		return op
 	}
-	return &xxx_QuerySecurityObjectOperation{
-		SecurityDescriptor: o.SecurityDescriptor,
-		Return:             o.Return,
-	}
+	o.SecurityDescriptor = op.SecurityDescriptor
+	o.Return = op.Return
+	return op
 }
 
 func (o *QuerySecurityObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySecurityObjectOperation) {
@@ -10983,7 +10995,7 @@ func (o *QuerySecurityObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_Qu
 	o.Return = op.Return
 }
 func (o *QuerySecurityObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QuerySecurityObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySecurityObjectOperation{}
@@ -11129,15 +11141,17 @@ type SetSecurityObjectRequest struct {
 	SecurityDescriptor *SrSecurityDescriptor `idl:"name:SecurityDescriptor" json:"security_descriptor"`
 }
 
-func (o *SetSecurityObjectRequest) xxx_ToOp(ctx context.Context) *xxx_SetSecurityObjectOperation {
+func (o *SetSecurityObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecurityObjectOperation) *xxx_SetSecurityObjectOperation {
+	if op == nil {
+		op = &xxx_SetSecurityObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSecurityObjectOperation{}
+		return op
 	}
-	return &xxx_SetSecurityObjectOperation{
-		Object:              o.Object,
-		SecurityInformation: o.SecurityInformation,
-		SecurityDescriptor:  o.SecurityDescriptor,
-	}
+	o.Object = op.Object
+	o.SecurityInformation = op.SecurityInformation
+	o.SecurityDescriptor = op.SecurityDescriptor
+	return op
 }
 
 func (o *SetSecurityObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSecurityObjectOperation) {
@@ -11149,7 +11163,7 @@ func (o *SetSecurityObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSe
 	o.SecurityDescriptor = op.SecurityDescriptor
 }
 func (o *SetSecurityObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSecurityObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSecurityObjectOperation{}
@@ -11166,13 +11180,15 @@ type SetSecurityObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSecurityObjectResponse) xxx_ToOp(ctx context.Context) *xxx_SetSecurityObjectOperation {
+func (o *SetSecurityObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSecurityObjectOperation) *xxx_SetSecurityObjectOperation {
+	if op == nil {
+		op = &xxx_SetSecurityObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSecurityObjectOperation{}
+		return op
 	}
-	return &xxx_SetSecurityObjectOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSecurityObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSecurityObjectOperation) {
@@ -11182,7 +11198,7 @@ func (o *SetSecurityObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_SetS
 	o.Return = op.Return
 }
 func (o *SetSecurityObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSecurityObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSecurityObjectOperation{}
@@ -11369,15 +11385,17 @@ type OpenPolicyRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPolicyOperation {
+func (o *OpenPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOperation) *xxx_OpenPolicyOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicyOperation{}
+		return op
 	}
-	return &xxx_OpenPolicyOperation{
-		SystemName:       o.SystemName,
-		ObjectAttributes: o.ObjectAttributes,
-		DesiredAccess:    o.DesiredAccess,
-	}
+	o.SystemName = op.SystemName
+	o.ObjectAttributes = op.ObjectAttributes
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyOperation) {
@@ -11389,7 +11407,7 @@ func (o *OpenPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyOp
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicyOperation{}
@@ -11410,14 +11428,16 @@ type OpenPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPolicyOperation {
+func (o *OpenPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOperation) *xxx_OpenPolicyOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicyOperation{}
+		return op
 	}
-	return &xxx_OpenPolicyOperation{
-		Policy: o.Policy,
-		Return: o.Return,
-	}
+	o.Policy = op.Policy
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyOperation) {
@@ -11428,7 +11448,7 @@ func (o *OpenPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyO
 	o.Return = op.Return
 }
 func (o *OpenPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicyOperation{}
@@ -11595,14 +11615,16 @@ type QueryInformationPolicyRequest struct {
 	InformationClass PolicyInformationClass `idl:"name:InformationClass" json:"information_class"`
 }
 
-func (o *QueryInformationPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_QueryInformationPolicyOperation {
+func (o *QueryInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryInformationPolicyOperation) *xxx_QueryInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_QueryInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_QueryInformationPolicyOperation{
-		Policy:           o.Policy,
-		InformationClass: o.InformationClass,
-	}
+	o.Policy = op.Policy
+	o.InformationClass = op.InformationClass
+	return op
 }
 
 func (o *QueryInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryInformationPolicyOperation) {
@@ -11613,7 +11635,7 @@ func (o *QueryInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.InformationClass = op.InformationClass
 }
 func (o *QueryInformationPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInformationPolicyOperation{}
@@ -11632,14 +11654,16 @@ type QueryInformationPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryInformationPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_QueryInformationPolicyOperation {
+func (o *QueryInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryInformationPolicyOperation) *xxx_QueryInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_QueryInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_QueryInformationPolicyOperation{
-		PolicyInformation: o.PolicyInformation,
-		Return:            o.Return,
-	}
+	o.PolicyInformation = op.PolicyInformation
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryInformationPolicyOperation) {
@@ -11650,7 +11674,7 @@ func (o *QueryInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *QueryInformationPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryInformationPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInformationPolicyOperation{}
@@ -11800,15 +11824,17 @@ type SetInformationPolicyRequest struct {
 	PolicyInformation *PolicyInformation `idl:"name:PolicyInformation;switch_is:InformationClass" json:"policy_information"`
 }
 
-func (o *SetInformationPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_SetInformationPolicyOperation {
+func (o *SetInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInformationPolicyOperation) *xxx_SetInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_SetInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_SetInformationPolicyOperation{
-		Policy:            o.Policy,
-		InformationClass:  o.InformationClass,
-		PolicyInformation: o.PolicyInformation,
-	}
+	o.Policy = op.Policy
+	o.InformationClass = op.InformationClass
+	o.PolicyInformation = op.PolicyInformation
+	return op
 }
 
 func (o *SetInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInformationPolicyOperation) {
@@ -11820,7 +11846,7 @@ func (o *SetInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.PolicyInformation = op.PolicyInformation
 }
 func (o *SetInformationPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInformationPolicyOperation{}
@@ -11837,13 +11863,15 @@ type SetInformationPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetInformationPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_SetInformationPolicyOperation {
+func (o *SetInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInformationPolicyOperation) *xxx_SetInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_SetInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_SetInformationPolicyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInformationPolicyOperation) {
@@ -11853,7 +11881,7 @@ func (o *SetInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetInformationPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetInformationPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInformationPolicyOperation{}
@@ -12015,15 +12043,17 @@ type CreateAccountRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *CreateAccountRequest) xxx_ToOp(ctx context.Context) *xxx_CreateAccountOperation {
+func (o *CreateAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateAccountOperation) *xxx_CreateAccountOperation {
+	if op == nil {
+		op = &xxx_CreateAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateAccountOperation{}
+		return op
 	}
-	return &xxx_CreateAccountOperation{
-		Policy:        o.Policy,
-		AccountSID:    o.AccountSID,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.AccountSID = op.AccountSID
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *CreateAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateAccountOperation) {
@@ -12035,7 +12065,7 @@ func (o *CreateAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateAcc
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *CreateAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateAccountOperation{}
@@ -12054,14 +12084,16 @@ type CreateAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateAccountResponse) xxx_ToOp(ctx context.Context) *xxx_CreateAccountOperation {
+func (o *CreateAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateAccountOperation) *xxx_CreateAccountOperation {
+	if op == nil {
+		op = &xxx_CreateAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateAccountOperation{}
+		return op
 	}
-	return &xxx_CreateAccountOperation{
-		Account: o.Account,
-		Return:  o.Return,
-	}
+	o.Account = op.Account
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateAccountOperation) {
@@ -12072,7 +12104,7 @@ func (o *CreateAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateAc
 	o.Return = op.Return
 }
 func (o *CreateAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateAccountOperation{}
@@ -12244,15 +12276,17 @@ type EnumerateAccountsRequest struct {
 	PreferredMaximumLength uint32 `idl:"name:PreferedMaximumLength" json:"preferred_maximum_length"`
 }
 
-func (o *EnumerateAccountsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateAccountsOperation {
+func (o *EnumerateAccountsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateAccountsOperation) *xxx_EnumerateAccountsOperation {
+	if op == nil {
+		op = &xxx_EnumerateAccountsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateAccountsOperation{}
+		return op
 	}
-	return &xxx_EnumerateAccountsOperation{
-		Policy:                 o.Policy,
-		EnumerationContext:     o.EnumerationContext,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-	}
+	o.Policy = op.Policy
+	o.EnumerationContext = op.EnumerationContext
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	return op
 }
 
 func (o *EnumerateAccountsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateAccountsOperation) {
@@ -12264,7 +12298,7 @@ func (o *EnumerateAccountsRequest) xxx_FromOp(ctx context.Context, op *xxx_Enume
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 }
 func (o *EnumerateAccountsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateAccountsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateAccountsOperation{}
@@ -12287,15 +12321,17 @@ type EnumerateAccountsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateAccountsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateAccountsOperation {
+func (o *EnumerateAccountsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateAccountsOperation) *xxx_EnumerateAccountsOperation {
+	if op == nil {
+		op = &xxx_EnumerateAccountsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateAccountsOperation{}
+		return op
 	}
-	return &xxx_EnumerateAccountsOperation{
-		EnumerationContext: o.EnumerationContext,
-		EnumerationBuffer:  o.EnumerationBuffer,
-		Return:             o.Return,
-	}
+	o.EnumerationContext = op.EnumerationContext
+	o.EnumerationBuffer = op.EnumerationBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateAccountsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateAccountsOperation) {
@@ -12307,7 +12343,7 @@ func (o *EnumerateAccountsResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumerateAccountsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateAccountsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateAccountsOperation{}
@@ -12477,15 +12513,17 @@ type CreateTrustedDomainRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *CreateTrustedDomainRequest) xxx_ToOp(ctx context.Context) *xxx_CreateTrustedDomainOperation {
+func (o *CreateTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainOperation) *xxx_CreateTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_CreateTrustedDomainOperation{
-		Policy:                   o.Policy,
-		TrustedDomainInformation: o.TrustedDomainInformation,
-		DesiredAccess:            o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *CreateTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainOperation) {
@@ -12497,7 +12535,7 @@ func (o *CreateTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *CreateTrustedDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTrustedDomainOperation{}
@@ -12516,14 +12554,16 @@ type CreateTrustedDomainResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateTrustedDomainResponse) xxx_ToOp(ctx context.Context) *xxx_CreateTrustedDomainOperation {
+func (o *CreateTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainOperation) *xxx_CreateTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_CreateTrustedDomainOperation{
-		TrustedDomain: o.TrustedDomain,
-		Return:        o.Return,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainOperation) {
@@ -12534,7 +12574,7 @@ func (o *CreateTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Return = op.Return
 }
 func (o *CreateTrustedDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateTrustedDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTrustedDomainOperation{}
@@ -12708,15 +12748,17 @@ type EnumerateTrustedDomainsRequest struct {
 	PreferredMaximumLength uint32 `idl:"name:PreferedMaximumLength" json:"preferred_maximum_length"`
 }
 
-func (o *EnumerateTrustedDomainsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateTrustedDomainsOperation {
+func (o *EnumerateTrustedDomainsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsOperation) *xxx_EnumerateTrustedDomainsOperation {
+	if op == nil {
+		op = &xxx_EnumerateTrustedDomainsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateTrustedDomainsOperation{}
+		return op
 	}
-	return &xxx_EnumerateTrustedDomainsOperation{
-		Policy:                 o.Policy,
-		EnumerationContext:     o.EnumerationContext,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-	}
+	o.Policy = op.Policy
+	o.EnumerationContext = op.EnumerationContext
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	return op
 }
 
 func (o *EnumerateTrustedDomainsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsOperation) {
@@ -12728,7 +12770,7 @@ func (o *EnumerateTrustedDomainsRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 }
 func (o *EnumerateTrustedDomainsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateTrustedDomainsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateTrustedDomainsOperation{}
@@ -12751,15 +12793,17 @@ type EnumerateTrustedDomainsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateTrustedDomainsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateTrustedDomainsOperation {
+func (o *EnumerateTrustedDomainsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsOperation) *xxx_EnumerateTrustedDomainsOperation {
+	if op == nil {
+		op = &xxx_EnumerateTrustedDomainsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateTrustedDomainsOperation{}
+		return op
 	}
-	return &xxx_EnumerateTrustedDomainsOperation{
-		EnumerationContext: o.EnumerationContext,
-		EnumerationBuffer:  o.EnumerationBuffer,
-		Return:             o.Return,
-	}
+	o.EnumerationContext = op.EnumerationContext
+	o.EnumerationBuffer = op.EnumerationBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateTrustedDomainsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsOperation) {
@@ -12771,7 +12815,7 @@ func (o *EnumerateTrustedDomainsResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *EnumerateTrustedDomainsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateTrustedDomainsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateTrustedDomainsOperation{}
@@ -12939,15 +12983,17 @@ type CreateSecretRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *CreateSecretRequest) xxx_ToOp(ctx context.Context) *xxx_CreateSecretOperation {
+func (o *CreateSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateSecretOperation) *xxx_CreateSecretOperation {
+	if op == nil {
+		op = &xxx_CreateSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateSecretOperation{}
+		return op
 	}
-	return &xxx_CreateSecretOperation{
-		Policy:        o.Policy,
-		SecretName:    o.SecretName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.SecretName = op.SecretName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *CreateSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSecretOperation) {
@@ -12959,7 +13005,7 @@ func (o *CreateSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSecr
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *CreateSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateSecretOperation{}
@@ -12978,14 +13024,16 @@ type CreateSecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateSecretResponse) xxx_ToOp(ctx context.Context) *xxx_CreateSecretOperation {
+func (o *CreateSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSecretOperation) *xxx_CreateSecretOperation {
+	if op == nil {
+		op = &xxx_CreateSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateSecretOperation{}
+		return op
 	}
-	return &xxx_CreateSecretOperation{
-		Secret: o.Secret,
-		Return: o.Return,
-	}
+	o.Secret = op.Secret
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateSecretOperation) {
@@ -12996,7 +13044,7 @@ func (o *CreateSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateSec
 	o.Return = op.Return
 }
 func (o *CreateSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateSecretOperation{}
@@ -13158,15 +13206,17 @@ type OpenAccountRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenAccountRequest) xxx_ToOp(ctx context.Context) *xxx_OpenAccountOperation {
+func (o *OpenAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenAccountOperation) *xxx_OpenAccountOperation {
+	if op == nil {
+		op = &xxx_OpenAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenAccountOperation{}
+		return op
 	}
-	return &xxx_OpenAccountOperation{
-		Policy:        o.Policy,
-		AccountSID:    o.AccountSID,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.AccountSID = op.AccountSID
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenAccountOperation) {
@@ -13178,7 +13228,7 @@ func (o *OpenAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenAccount
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenAccountOperation{}
@@ -13197,14 +13247,16 @@ type OpenAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenAccountResponse) xxx_ToOp(ctx context.Context) *xxx_OpenAccountOperation {
+func (o *OpenAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenAccountOperation) *xxx_OpenAccountOperation {
+	if op == nil {
+		op = &xxx_OpenAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenAccountOperation{}
+		return op
 	}
-	return &xxx_OpenAccountOperation{
-		Account: o.Account,
-		Return:  o.Return,
-	}
+	o.Account = op.Account
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenAccountOperation) {
@@ -13215,7 +13267,7 @@ func (o *OpenAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenAccoun
 	o.Return = op.Return
 }
 func (o *OpenAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenAccountOperation{}
@@ -13365,13 +13417,15 @@ type EnumeratePrivilegesAccountRequest struct {
 	Account *Handle `idl:"name:AccountHandle" json:"account"`
 }
 
-func (o *EnumeratePrivilegesAccountRequest) xxx_ToOp(ctx context.Context) *xxx_EnumeratePrivilegesAccountOperation {
+func (o *EnumeratePrivilegesAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumeratePrivilegesAccountOperation) *xxx_EnumeratePrivilegesAccountOperation {
+	if op == nil {
+		op = &xxx_EnumeratePrivilegesAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumeratePrivilegesAccountOperation{}
+		return op
 	}
-	return &xxx_EnumeratePrivilegesAccountOperation{
-		Account: o.Account,
-	}
+	o.Account = op.Account
+	return op
 }
 
 func (o *EnumeratePrivilegesAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumeratePrivilegesAccountOperation) {
@@ -13381,7 +13435,7 @@ func (o *EnumeratePrivilegesAccountRequest) xxx_FromOp(ctx context.Context, op *
 	o.Account = op.Account
 }
 func (o *EnumeratePrivilegesAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumeratePrivilegesAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumeratePrivilegesAccountOperation{}
@@ -13400,14 +13454,16 @@ type EnumeratePrivilegesAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumeratePrivilegesAccountResponse) xxx_ToOp(ctx context.Context) *xxx_EnumeratePrivilegesAccountOperation {
+func (o *EnumeratePrivilegesAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumeratePrivilegesAccountOperation) *xxx_EnumeratePrivilegesAccountOperation {
+	if op == nil {
+		op = &xxx_EnumeratePrivilegesAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumeratePrivilegesAccountOperation{}
+		return op
 	}
-	return &xxx_EnumeratePrivilegesAccountOperation{
-		Privileges: o.Privileges,
-		Return:     o.Return,
-	}
+	o.Privileges = op.Privileges
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumeratePrivilegesAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumeratePrivilegesAccountOperation) {
@@ -13418,7 +13474,7 @@ func (o *EnumeratePrivilegesAccountResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *EnumeratePrivilegesAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumeratePrivilegesAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumeratePrivilegesAccountOperation{}
@@ -13545,14 +13601,16 @@ type AddPrivilegesToAccountRequest struct {
 	Privileges *PrivilegeSet `idl:"name:Privileges" json:"privileges"`
 }
 
-func (o *AddPrivilegesToAccountRequest) xxx_ToOp(ctx context.Context) *xxx_AddPrivilegesToAccountOperation {
+func (o *AddPrivilegesToAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrivilegesToAccountOperation) *xxx_AddPrivilegesToAccountOperation {
+	if op == nil {
+		op = &xxx_AddPrivilegesToAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrivilegesToAccountOperation{}
+		return op
 	}
-	return &xxx_AddPrivilegesToAccountOperation{
-		Account:    o.Account,
-		Privileges: o.Privileges,
-	}
+	o.Account = op.Account
+	o.Privileges = op.Privileges
+	return op
 }
 
 func (o *AddPrivilegesToAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPrivilegesToAccountOperation) {
@@ -13563,7 +13621,7 @@ func (o *AddPrivilegesToAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Privileges = op.Privileges
 }
 func (o *AddPrivilegesToAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPrivilegesToAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrivilegesToAccountOperation{}
@@ -13580,13 +13638,15 @@ type AddPrivilegesToAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPrivilegesToAccountResponse) xxx_ToOp(ctx context.Context) *xxx_AddPrivilegesToAccountOperation {
+func (o *AddPrivilegesToAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrivilegesToAccountOperation) *xxx_AddPrivilegesToAccountOperation {
+	if op == nil {
+		op = &xxx_AddPrivilegesToAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrivilegesToAccountOperation{}
+		return op
 	}
-	return &xxx_AddPrivilegesToAccountOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPrivilegesToAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPrivilegesToAccountOperation) {
@@ -13596,7 +13656,7 @@ func (o *AddPrivilegesToAccountResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *AddPrivilegesToAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPrivilegesToAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrivilegesToAccountOperation{}
@@ -13765,15 +13825,17 @@ type RemovePrivilegesFromAccountRequest struct {
 	Privileges *PrivilegeSet `idl:"name:Privileges;pointer:unique" json:"privileges"`
 }
 
-func (o *RemovePrivilegesFromAccountRequest) xxx_ToOp(ctx context.Context) *xxx_RemovePrivilegesFromAccountOperation {
+func (o *RemovePrivilegesFromAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_RemovePrivilegesFromAccountOperation) *xxx_RemovePrivilegesFromAccountOperation {
+	if op == nil {
+		op = &xxx_RemovePrivilegesFromAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_RemovePrivilegesFromAccountOperation{}
+		return op
 	}
-	return &xxx_RemovePrivilegesFromAccountOperation{
-		Account:       o.Account,
-		AllPrivileges: o.AllPrivileges,
-		Privileges:    o.Privileges,
-	}
+	o.Account = op.Account
+	o.AllPrivileges = op.AllPrivileges
+	o.Privileges = op.Privileges
+	return op
 }
 
 func (o *RemovePrivilegesFromAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_RemovePrivilegesFromAccountOperation) {
@@ -13785,7 +13847,7 @@ func (o *RemovePrivilegesFromAccountRequest) xxx_FromOp(ctx context.Context, op 
 	o.Privileges = op.Privileges
 }
 func (o *RemovePrivilegesFromAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemovePrivilegesFromAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemovePrivilegesFromAccountOperation{}
@@ -13802,13 +13864,15 @@ type RemovePrivilegesFromAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemovePrivilegesFromAccountResponse) xxx_ToOp(ctx context.Context) *xxx_RemovePrivilegesFromAccountOperation {
+func (o *RemovePrivilegesFromAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_RemovePrivilegesFromAccountOperation) *xxx_RemovePrivilegesFromAccountOperation {
+	if op == nil {
+		op = &xxx_RemovePrivilegesFromAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_RemovePrivilegesFromAccountOperation{}
+		return op
 	}
-	return &xxx_RemovePrivilegesFromAccountOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemovePrivilegesFromAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_RemovePrivilegesFromAccountOperation) {
@@ -13818,7 +13882,7 @@ func (o *RemovePrivilegesFromAccountResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *RemovePrivilegesFromAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemovePrivilegesFromAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemovePrivilegesFromAccountOperation{}
@@ -13934,13 +13998,15 @@ type GetSystemAccessAccountRequest struct {
 	Account *Handle `idl:"name:AccountHandle" json:"account"`
 }
 
-func (o *GetSystemAccessAccountRequest) xxx_ToOp(ctx context.Context) *xxx_GetSystemAccessAccountOperation {
+func (o *GetSystemAccessAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSystemAccessAccountOperation) *xxx_GetSystemAccessAccountOperation {
+	if op == nil {
+		op = &xxx_GetSystemAccessAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSystemAccessAccountOperation{}
+		return op
 	}
-	return &xxx_GetSystemAccessAccountOperation{
-		Account: o.Account,
-	}
+	o.Account = op.Account
+	return op
 }
 
 func (o *GetSystemAccessAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSystemAccessAccountOperation) {
@@ -13950,7 +14016,7 @@ func (o *GetSystemAccessAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Account = op.Account
 }
 func (o *GetSystemAccessAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSystemAccessAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSystemAccessAccountOperation{}
@@ -13969,14 +14035,16 @@ type GetSystemAccessAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSystemAccessAccountResponse) xxx_ToOp(ctx context.Context) *xxx_GetSystemAccessAccountOperation {
+func (o *GetSystemAccessAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSystemAccessAccountOperation) *xxx_GetSystemAccessAccountOperation {
+	if op == nil {
+		op = &xxx_GetSystemAccessAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSystemAccessAccountOperation{}
+		return op
 	}
-	return &xxx_GetSystemAccessAccountOperation{
-		SystemAccess: o.SystemAccess,
-		Return:       o.Return,
-	}
+	o.SystemAccess = op.SystemAccess
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSystemAccessAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSystemAccessAccountOperation) {
@@ -13987,7 +14055,7 @@ func (o *GetSystemAccessAccountResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetSystemAccessAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSystemAccessAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSystemAccessAccountOperation{}
@@ -14105,14 +14173,16 @@ type SetSystemAccessAccountRequest struct {
 	SystemAccess uint32 `idl:"name:SystemAccess" json:"system_access"`
 }
 
-func (o *SetSystemAccessAccountRequest) xxx_ToOp(ctx context.Context) *xxx_SetSystemAccessAccountOperation {
+func (o *SetSystemAccessAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSystemAccessAccountOperation) *xxx_SetSystemAccessAccountOperation {
+	if op == nil {
+		op = &xxx_SetSystemAccessAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSystemAccessAccountOperation{}
+		return op
 	}
-	return &xxx_SetSystemAccessAccountOperation{
-		Account:      o.Account,
-		SystemAccess: o.SystemAccess,
-	}
+	o.Account = op.Account
+	o.SystemAccess = op.SystemAccess
+	return op
 }
 
 func (o *SetSystemAccessAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSystemAccessAccountOperation) {
@@ -14123,7 +14193,7 @@ func (o *SetSystemAccessAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.SystemAccess = op.SystemAccess
 }
 func (o *SetSystemAccessAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSystemAccessAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSystemAccessAccountOperation{}
@@ -14140,13 +14210,15 @@ type SetSystemAccessAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSystemAccessAccountResponse) xxx_ToOp(ctx context.Context) *xxx_SetSystemAccessAccountOperation {
+func (o *SetSystemAccessAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSystemAccessAccountOperation) *xxx_SetSystemAccessAccountOperation {
+	if op == nil {
+		op = &xxx_SetSystemAccessAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSystemAccessAccountOperation{}
+		return op
 	}
-	return &xxx_SetSystemAccessAccountOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSystemAccessAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSystemAccessAccountOperation) {
@@ -14156,7 +14228,7 @@ func (o *SetSystemAccessAccountResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *SetSystemAccessAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSystemAccessAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSystemAccessAccountOperation{}
@@ -14317,15 +14389,17 @@ type OpenTrustedDomainRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenTrustedDomainRequest) xxx_ToOp(ctx context.Context) *xxx_OpenTrustedDomainOperation {
+func (o *OpenTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenTrustedDomainOperation) *xxx_OpenTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_OpenTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_OpenTrustedDomainOperation{
-		Policy:           o.Policy,
-		TrustedDomainSID: o.TrustedDomainSID,
-		DesiredAccess:    o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainSID = op.TrustedDomainSID
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenTrustedDomainOperation) {
@@ -14337,7 +14411,7 @@ func (o *OpenTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenT
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenTrustedDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenTrustedDomainOperation{}
@@ -14356,14 +14430,16 @@ type OpenTrustedDomainResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenTrustedDomainResponse) xxx_ToOp(ctx context.Context) *xxx_OpenTrustedDomainOperation {
+func (o *OpenTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenTrustedDomainOperation) *xxx_OpenTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_OpenTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_OpenTrustedDomainOperation{
-		TrustedDomain: o.TrustedDomain,
-		Return:        o.Return,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenTrustedDomainOperation) {
@@ -14374,7 +14450,7 @@ func (o *OpenTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_Open
 	o.Return = op.Return
 }
 func (o *OpenTrustedDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenTrustedDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenTrustedDomainOperation{}
@@ -14541,14 +14617,16 @@ type QueryInfoTrustedDomainRequest struct {
 	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
 }
 
-func (o *QueryInfoTrustedDomainRequest) xxx_ToOp(ctx context.Context) *xxx_QueryInfoTrustedDomainOperation {
+func (o *QueryInfoTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryInfoTrustedDomainOperation) *xxx_QueryInfoTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_QueryInfoTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInfoTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_QueryInfoTrustedDomainOperation{
-		TrustedDomain:    o.TrustedDomain,
-		InformationClass: o.InformationClass,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.InformationClass = op.InformationClass
+	return op
 }
 
 func (o *QueryInfoTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryInfoTrustedDomainOperation) {
@@ -14559,7 +14637,7 @@ func (o *QueryInfoTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.InformationClass = op.InformationClass
 }
 func (o *QueryInfoTrustedDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryInfoTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInfoTrustedDomainOperation{}
@@ -14579,14 +14657,16 @@ type QueryInfoTrustedDomainResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryInfoTrustedDomainResponse) xxx_ToOp(ctx context.Context) *xxx_QueryInfoTrustedDomainOperation {
+func (o *QueryInfoTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryInfoTrustedDomainOperation) *xxx_QueryInfoTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_QueryInfoTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInfoTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_QueryInfoTrustedDomainOperation{
-		TrustedDomainInformation: o.TrustedDomainInformation,
-		Return:                   o.Return,
-	}
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryInfoTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryInfoTrustedDomainOperation) {
@@ -14597,7 +14677,7 @@ func (o *QueryInfoTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *QueryInfoTrustedDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryInfoTrustedDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInfoTrustedDomainOperation{}
@@ -14746,15 +14826,17 @@ type SetInformationTrustedDomainRequest struct {
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
 }
 
-func (o *SetInformationTrustedDomainRequest) xxx_ToOp(ctx context.Context) *xxx_SetInformationTrustedDomainOperation {
+func (o *SetInformationTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInformationTrustedDomainOperation) *xxx_SetInformationTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_SetInformationTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInformationTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_SetInformationTrustedDomainOperation{
-		TrustedDomain:            o.TrustedDomain,
-		InformationClass:         o.InformationClass,
-		TrustedDomainInformation: o.TrustedDomainInformation,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.InformationClass = op.InformationClass
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	return op
 }
 
 func (o *SetInformationTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInformationTrustedDomainOperation) {
@@ -14766,7 +14848,7 @@ func (o *SetInformationTrustedDomainRequest) xxx_FromOp(ctx context.Context, op 
 	o.TrustedDomainInformation = op.TrustedDomainInformation
 }
 func (o *SetInformationTrustedDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetInformationTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInformationTrustedDomainOperation{}
@@ -14783,13 +14865,15 @@ type SetInformationTrustedDomainResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetInformationTrustedDomainResponse) xxx_ToOp(ctx context.Context) *xxx_SetInformationTrustedDomainOperation {
+func (o *SetInformationTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInformationTrustedDomainOperation) *xxx_SetInformationTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_SetInformationTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInformationTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_SetInformationTrustedDomainOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetInformationTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInformationTrustedDomainOperation) {
@@ -14799,7 +14883,7 @@ func (o *SetInformationTrustedDomainResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *SetInformationTrustedDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetInformationTrustedDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInformationTrustedDomainOperation{}
@@ -14966,15 +15050,17 @@ type OpenSecretRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenSecretRequest) xxx_ToOp(ctx context.Context) *xxx_OpenSecretOperation {
+func (o *OpenSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSecretOperation) *xxx_OpenSecretOperation {
+	if op == nil {
+		op = &xxx_OpenSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSecretOperation{}
+		return op
 	}
-	return &xxx_OpenSecretOperation{
-		Policy:        o.Policy,
-		SecretName:    o.SecretName,
-		DesiredAccess: o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.SecretName = op.SecretName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSecretOperation) {
@@ -14986,7 +15072,7 @@ func (o *OpenSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenSecretOp
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSecretOperation{}
@@ -15005,14 +15091,16 @@ type OpenSecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenSecretResponse) xxx_ToOp(ctx context.Context) *xxx_OpenSecretOperation {
+func (o *OpenSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSecretOperation) *xxx_OpenSecretOperation {
+	if op == nil {
+		op = &xxx_OpenSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenSecretOperation{}
+		return op
 	}
-	return &xxx_OpenSecretOperation{
-		Secret: o.Secret,
-		Return: o.Return,
-	}
+	o.Secret = op.Secret
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSecretOperation) {
@@ -15023,7 +15111,7 @@ func (o *OpenSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenSecretO
 	o.Return = op.Return
 }
 func (o *OpenSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenSecretOperation{}
@@ -15224,15 +15312,17 @@ type SetSecretRequest struct {
 	EncryptedOldValue *CRCipherValue `idl:"name:EncryptedOldValue;pointer:unique" json:"encrypted_old_value"`
 }
 
-func (o *SetSecretRequest) xxx_ToOp(ctx context.Context) *xxx_SetSecretOperation {
+func (o *SetSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecretOperation) *xxx_SetSecretOperation {
+	if op == nil {
+		op = &xxx_SetSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSecretOperation{}
+		return op
 	}
-	return &xxx_SetSecretOperation{
-		Secret:                o.Secret,
-		EncryptedCurrentValue: o.EncryptedCurrentValue,
-		EncryptedOldValue:     o.EncryptedOldValue,
-	}
+	o.Secret = op.Secret
+	o.EncryptedCurrentValue = op.EncryptedCurrentValue
+	o.EncryptedOldValue = op.EncryptedOldValue
+	return op
 }
 
 func (o *SetSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSecretOperation) {
@@ -15244,7 +15334,7 @@ func (o *SetSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSecretOper
 	o.EncryptedOldValue = op.EncryptedOldValue
 }
 func (o *SetSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSecretOperation{}
@@ -15261,13 +15351,15 @@ type SetSecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSecretResponse) xxx_ToOp(ctx context.Context) *xxx_SetSecretOperation {
+func (o *SetSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSecretOperation) *xxx_SetSecretOperation {
+	if op == nil {
+		op = &xxx_SetSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSecretOperation{}
+		return op
 	}
-	return &xxx_SetSecretOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSecretOperation) {
@@ -15277,7 +15369,7 @@ func (o *SetSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSecretOpe
 	o.Return = op.Return
 }
 func (o *SetSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSecretOperation{}
@@ -15835,17 +15927,19 @@ type QuerySecretRequest struct {
 	OldValueSetTime *dtyp.LargeInteger `idl:"name:OldValueSetTime;pointer:unique" json:"old_value_set_time"`
 }
 
-func (o *QuerySecretRequest) xxx_ToOp(ctx context.Context) *xxx_QuerySecretOperation {
+func (o *QuerySecretRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySecretOperation) *xxx_QuerySecretOperation {
+	if op == nil {
+		op = &xxx_QuerySecretOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySecretOperation{}
+		return op
 	}
-	return &xxx_QuerySecretOperation{
-		Secret:                o.Secret,
-		EncryptedCurrentValue: o.EncryptedCurrentValue,
-		CurrentValueSetTime:   o.CurrentValueSetTime,
-		EncryptedOldValue:     o.EncryptedOldValue,
-		OldValueSetTime:       o.OldValueSetTime,
-	}
+	o.Secret = op.Secret
+	o.EncryptedCurrentValue = op.EncryptedCurrentValue
+	o.CurrentValueSetTime = op.CurrentValueSetTime
+	o.EncryptedOldValue = op.EncryptedOldValue
+	o.OldValueSetTime = op.OldValueSetTime
+	return op
 }
 
 func (o *QuerySecretRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySecretOperation) {
@@ -15859,7 +15953,7 @@ func (o *QuerySecretRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySecret
 	o.OldValueSetTime = op.OldValueSetTime
 }
 func (o *QuerySecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QuerySecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySecretOperation{}
@@ -15886,17 +15980,19 @@ type QuerySecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QuerySecretResponse) xxx_ToOp(ctx context.Context) *xxx_QuerySecretOperation {
+func (o *QuerySecretResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySecretOperation) *xxx_QuerySecretOperation {
+	if op == nil {
+		op = &xxx_QuerySecretOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySecretOperation{}
+		return op
 	}
-	return &xxx_QuerySecretOperation{
-		EncryptedCurrentValue: o.EncryptedCurrentValue,
-		CurrentValueSetTime:   o.CurrentValueSetTime,
-		EncryptedOldValue:     o.EncryptedOldValue,
-		OldValueSetTime:       o.OldValueSetTime,
-		Return:                o.Return,
-	}
+	o.EncryptedCurrentValue = op.EncryptedCurrentValue
+	o.CurrentValueSetTime = op.CurrentValueSetTime
+	o.EncryptedOldValue = op.EncryptedOldValue
+	o.OldValueSetTime = op.OldValueSetTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *QuerySecretResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySecretOperation) {
@@ -15910,7 +16006,7 @@ func (o *QuerySecretResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySecre
 	o.Return = op.Return
 }
 func (o *QuerySecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QuerySecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySecretOperation{}
@@ -16064,14 +16160,16 @@ type LookupPrivilegeValueRequest struct {
 	Name *dtyp.UnicodeString `idl:"name:Name" json:"name"`
 }
 
-func (o *LookupPrivilegeValueRequest) xxx_ToOp(ctx context.Context) *xxx_LookupPrivilegeValueOperation {
+func (o *LookupPrivilegeValueRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupPrivilegeValueOperation) *xxx_LookupPrivilegeValueOperation {
+	if op == nil {
+		op = &xxx_LookupPrivilegeValueOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupPrivilegeValueOperation{}
+		return op
 	}
-	return &xxx_LookupPrivilegeValueOperation{
-		Policy: o.Policy,
-		Name:   o.Name,
-	}
+	o.Policy = op.Policy
+	o.Name = op.Name
+	return op
 }
 
 func (o *LookupPrivilegeValueRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupPrivilegeValueOperation) {
@@ -16082,7 +16180,7 @@ func (o *LookupPrivilegeValueRequest) xxx_FromOp(ctx context.Context, op *xxx_Lo
 	o.Name = op.Name
 }
 func (o *LookupPrivilegeValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupPrivilegeValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupPrivilegeValueOperation{}
@@ -16101,14 +16199,16 @@ type LookupPrivilegeValueResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupPrivilegeValueResponse) xxx_ToOp(ctx context.Context) *xxx_LookupPrivilegeValueOperation {
+func (o *LookupPrivilegeValueResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupPrivilegeValueOperation) *xxx_LookupPrivilegeValueOperation {
+	if op == nil {
+		op = &xxx_LookupPrivilegeValueOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupPrivilegeValueOperation{}
+		return op
 	}
-	return &xxx_LookupPrivilegeValueOperation{
-		Value:  o.Value,
-		Return: o.Return,
-	}
+	o.Value = op.Value
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupPrivilegeValueResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupPrivilegeValueOperation) {
@@ -16119,7 +16219,7 @@ func (o *LookupPrivilegeValueResponse) xxx_FromOp(ctx context.Context, op *xxx_L
 	o.Return = op.Return
 }
 func (o *LookupPrivilegeValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupPrivilegeValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupPrivilegeValueOperation{}
@@ -16292,14 +16392,16 @@ type LookupPrivilegeNameRequest struct {
 	Value *dtyp.LUID `idl:"name:Value" json:"value"`
 }
 
-func (o *LookupPrivilegeNameRequest) xxx_ToOp(ctx context.Context) *xxx_LookupPrivilegeNameOperation {
+func (o *LookupPrivilegeNameRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupPrivilegeNameOperation) *xxx_LookupPrivilegeNameOperation {
+	if op == nil {
+		op = &xxx_LookupPrivilegeNameOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupPrivilegeNameOperation{}
+		return op
 	}
-	return &xxx_LookupPrivilegeNameOperation{
-		Policy: o.Policy,
-		Value:  o.Value,
-	}
+	o.Policy = op.Policy
+	o.Value = op.Value
+	return op
 }
 
 func (o *LookupPrivilegeNameRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupPrivilegeNameOperation) {
@@ -16310,7 +16412,7 @@ func (o *LookupPrivilegeNameRequest) xxx_FromOp(ctx context.Context, op *xxx_Loo
 	o.Value = op.Value
 }
 func (o *LookupPrivilegeNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupPrivilegeNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupPrivilegeNameOperation{}
@@ -16329,14 +16431,16 @@ type LookupPrivilegeNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupPrivilegeNameResponse) xxx_ToOp(ctx context.Context) *xxx_LookupPrivilegeNameOperation {
+func (o *LookupPrivilegeNameResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupPrivilegeNameOperation) *xxx_LookupPrivilegeNameOperation {
+	if op == nil {
+		op = &xxx_LookupPrivilegeNameOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupPrivilegeNameOperation{}
+		return op
 	}
-	return &xxx_LookupPrivilegeNameOperation{
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupPrivilegeNameResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupPrivilegeNameOperation) {
@@ -16347,7 +16451,7 @@ func (o *LookupPrivilegeNameResponse) xxx_FromOp(ctx context.Context, op *xxx_Lo
 	o.Return = op.Return
 }
 func (o *LookupPrivilegeNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupPrivilegeNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupPrivilegeNameOperation{}
@@ -16570,16 +16674,18 @@ type LookupPrivilegeDisplayNameRequest struct {
 	ClientSystemDefaultLanguage int16 `idl:"name:ClientSystemDefaultLanguage" json:"client_system_default_language"`
 }
 
-func (o *LookupPrivilegeDisplayNameRequest) xxx_ToOp(ctx context.Context) *xxx_LookupPrivilegeDisplayNameOperation {
+func (o *LookupPrivilegeDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupPrivilegeDisplayNameOperation) *xxx_LookupPrivilegeDisplayNameOperation {
+	if op == nil {
+		op = &xxx_LookupPrivilegeDisplayNameOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupPrivilegeDisplayNameOperation{}
+		return op
 	}
-	return &xxx_LookupPrivilegeDisplayNameOperation{
-		Policy:                      o.Policy,
-		Name:                        o.Name,
-		ClientLanguage:              o.ClientLanguage,
-		ClientSystemDefaultLanguage: o.ClientSystemDefaultLanguage,
-	}
+	o.Policy = op.Policy
+	o.Name = op.Name
+	o.ClientLanguage = op.ClientLanguage
+	o.ClientSystemDefaultLanguage = op.ClientSystemDefaultLanguage
+	return op
 }
 
 func (o *LookupPrivilegeDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupPrivilegeDisplayNameOperation) {
@@ -16592,7 +16698,7 @@ func (o *LookupPrivilegeDisplayNameRequest) xxx_FromOp(ctx context.Context, op *
 	o.ClientSystemDefaultLanguage = op.ClientSystemDefaultLanguage
 }
 func (o *LookupPrivilegeDisplayNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupPrivilegeDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupPrivilegeDisplayNameOperation{}
@@ -16614,15 +16720,17 @@ type LookupPrivilegeDisplayNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupPrivilegeDisplayNameResponse) xxx_ToOp(ctx context.Context) *xxx_LookupPrivilegeDisplayNameOperation {
+func (o *LookupPrivilegeDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupPrivilegeDisplayNameOperation) *xxx_LookupPrivilegeDisplayNameOperation {
+	if op == nil {
+		op = &xxx_LookupPrivilegeDisplayNameOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupPrivilegeDisplayNameOperation{}
+		return op
 	}
-	return &xxx_LookupPrivilegeDisplayNameOperation{
-		DisplayName:      o.DisplayName,
-		LanguageReturned: o.LanguageReturned,
-		Return:           o.Return,
-	}
+	o.DisplayName = op.DisplayName
+	o.LanguageReturned = op.LanguageReturned
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupPrivilegeDisplayNameResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupPrivilegeDisplayNameOperation) {
@@ -16634,7 +16742,7 @@ func (o *LookupPrivilegeDisplayNameResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *LookupPrivilegeDisplayNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupPrivilegeDisplayNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupPrivilegeDisplayNameOperation{}
@@ -16756,13 +16864,15 @@ type DeleteObjectRequest struct {
 	Object *Handle `idl:"name:ObjectHandle" json:"object"`
 }
 
-func (o *DeleteObjectRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteObjectOperation {
+func (o *DeleteObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjectOperation) *xxx_DeleteObjectOperation {
+	if op == nil {
+		op = &xxx_DeleteObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteObjectOperation{}
+		return op
 	}
-	return &xxx_DeleteObjectOperation{
-		Object: o.Object,
-	}
+	o.Object = op.Object
+	return op
 }
 
 func (o *DeleteObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteObjectOperation) {
@@ -16772,7 +16882,7 @@ func (o *DeleteObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteObje
 	o.Object = op.Object
 }
 func (o *DeleteObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteObjectOperation{}
@@ -16792,14 +16902,16 @@ type DeleteObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteObjectResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteObjectOperation {
+func (o *DeleteObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjectOperation) *xxx_DeleteObjectOperation {
+	if op == nil {
+		op = &xxx_DeleteObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteObjectOperation{}
+		return op
 	}
-	return &xxx_DeleteObjectOperation{
-		Object: o.Object,
-		Return: o.Return,
-	}
+	o.Object = op.Object
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteObjectOperation) {
@@ -16810,7 +16922,7 @@ func (o *DeleteObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteObj
 	o.Return = op.Return
 }
 func (o *DeleteObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteObjectOperation{}
@@ -16989,14 +17101,16 @@ type EnumerateAccountsWithUserRightRequest struct {
 	UserRight *dtyp.UnicodeString `idl:"name:UserRight;pointer:unique" json:"user_right"`
 }
 
-func (o *EnumerateAccountsWithUserRightRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateAccountsWithUserRightOperation {
+func (o *EnumerateAccountsWithUserRightRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateAccountsWithUserRightOperation) *xxx_EnumerateAccountsWithUserRightOperation {
+	if op == nil {
+		op = &xxx_EnumerateAccountsWithUserRightOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateAccountsWithUserRightOperation{}
+		return op
 	}
-	return &xxx_EnumerateAccountsWithUserRightOperation{
-		Policy:    o.Policy,
-		UserRight: o.UserRight,
-	}
+	o.Policy = op.Policy
+	o.UserRight = op.UserRight
+	return op
 }
 
 func (o *EnumerateAccountsWithUserRightRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateAccountsWithUserRightOperation) {
@@ -17007,7 +17121,7 @@ func (o *EnumerateAccountsWithUserRightRequest) xxx_FromOp(ctx context.Context, 
 	o.UserRight = op.UserRight
 }
 func (o *EnumerateAccountsWithUserRightRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateAccountsWithUserRightRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateAccountsWithUserRightOperation{}
@@ -17027,14 +17141,16 @@ type EnumerateAccountsWithUserRightResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateAccountsWithUserRightResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateAccountsWithUserRightOperation {
+func (o *EnumerateAccountsWithUserRightResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateAccountsWithUserRightOperation) *xxx_EnumerateAccountsWithUserRightOperation {
+	if op == nil {
+		op = &xxx_EnumerateAccountsWithUserRightOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateAccountsWithUserRightOperation{}
+		return op
 	}
-	return &xxx_EnumerateAccountsWithUserRightOperation{
-		EnumerationBuffer: o.EnumerationBuffer,
-		Return:            o.Return,
-	}
+	o.EnumerationBuffer = op.EnumerationBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateAccountsWithUserRightResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateAccountsWithUserRightOperation) {
@@ -17045,7 +17161,7 @@ func (o *EnumerateAccountsWithUserRightResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *EnumerateAccountsWithUserRightResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateAccountsWithUserRightResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateAccountsWithUserRightOperation{}
@@ -17199,14 +17315,16 @@ type EnumerateAccountRightsRequest struct {
 	AccountSID *dtyp.SID `idl:"name:AccountSid" json:"account_sid"`
 }
 
-func (o *EnumerateAccountRightsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateAccountRightsOperation {
+func (o *EnumerateAccountRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateAccountRightsOperation) *xxx_EnumerateAccountRightsOperation {
+	if op == nil {
+		op = &xxx_EnumerateAccountRightsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateAccountRightsOperation{}
+		return op
 	}
-	return &xxx_EnumerateAccountRightsOperation{
-		Policy:     o.Policy,
-		AccountSID: o.AccountSID,
-	}
+	o.Policy = op.Policy
+	o.AccountSID = op.AccountSID
+	return op
 }
 
 func (o *EnumerateAccountRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateAccountRightsOperation) {
@@ -17217,7 +17335,7 @@ func (o *EnumerateAccountRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.AccountSID = op.AccountSID
 }
 func (o *EnumerateAccountRightsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateAccountRightsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateAccountRightsOperation{}
@@ -17236,14 +17354,16 @@ type EnumerateAccountRightsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateAccountRightsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateAccountRightsOperation {
+func (o *EnumerateAccountRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateAccountRightsOperation) *xxx_EnumerateAccountRightsOperation {
+	if op == nil {
+		op = &xxx_EnumerateAccountRightsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateAccountRightsOperation{}
+		return op
 	}
-	return &xxx_EnumerateAccountRightsOperation{
-		UserRights: o.UserRights,
-		Return:     o.Return,
-	}
+	o.UserRights = op.UserRights
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateAccountRightsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateAccountRightsOperation) {
@@ -17254,7 +17374,7 @@ func (o *EnumerateAccountRightsResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *EnumerateAccountRightsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateAccountRightsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateAccountRightsOperation{}
@@ -17408,15 +17528,17 @@ type AddAccountRightsRequest struct {
 	UserRights *UserRightSet `idl:"name:UserRights" json:"user_rights"`
 }
 
-func (o *AddAccountRightsRequest) xxx_ToOp(ctx context.Context) *xxx_AddAccountRightsOperation {
+func (o *AddAccountRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_AddAccountRightsOperation) *xxx_AddAccountRightsOperation {
+	if op == nil {
+		op = &xxx_AddAccountRightsOperation{}
+	}
 	if o == nil {
-		return &xxx_AddAccountRightsOperation{}
+		return op
 	}
-	return &xxx_AddAccountRightsOperation{
-		Policy:     o.Policy,
-		AccountSID: o.AccountSID,
-		UserRights: o.UserRights,
-	}
+	o.Policy = op.Policy
+	o.AccountSID = op.AccountSID
+	o.UserRights = op.UserRights
+	return op
 }
 
 func (o *AddAccountRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_AddAccountRightsOperation) {
@@ -17428,7 +17550,7 @@ func (o *AddAccountRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_AddAcc
 	o.UserRights = op.UserRights
 }
 func (o *AddAccountRightsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddAccountRightsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAccountRightsOperation{}
@@ -17445,13 +17567,15 @@ type AddAccountRightsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddAccountRightsResponse) xxx_ToOp(ctx context.Context) *xxx_AddAccountRightsOperation {
+func (o *AddAccountRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_AddAccountRightsOperation) *xxx_AddAccountRightsOperation {
+	if op == nil {
+		op = &xxx_AddAccountRightsOperation{}
+	}
 	if o == nil {
-		return &xxx_AddAccountRightsOperation{}
+		return op
 	}
-	return &xxx_AddAccountRightsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddAccountRightsResponse) xxx_FromOp(ctx context.Context, op *xxx_AddAccountRightsOperation) {
@@ -17461,7 +17585,7 @@ func (o *AddAccountRightsResponse) xxx_FromOp(ctx context.Context, op *xxx_AddAc
 	o.Return = op.Return
 }
 func (o *AddAccountRightsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddAccountRightsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAccountRightsOperation{}
@@ -17632,16 +17756,18 @@ type RemoveAccountRightsRequest struct {
 	UserRights *UserRightSet `idl:"name:UserRights" json:"user_rights"`
 }
 
-func (o *RemoveAccountRightsRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveAccountRightsOperation {
+func (o *RemoveAccountRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveAccountRightsOperation) *xxx_RemoveAccountRightsOperation {
+	if op == nil {
+		op = &xxx_RemoveAccountRightsOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveAccountRightsOperation{}
+		return op
 	}
-	return &xxx_RemoveAccountRightsOperation{
-		Policy:     o.Policy,
-		AccountSID: o.AccountSID,
-		AllRights:  o.AllRights,
-		UserRights: o.UserRights,
-	}
+	o.Policy = op.Policy
+	o.AccountSID = op.AccountSID
+	o.AllRights = op.AllRights
+	o.UserRights = op.UserRights
+	return op
 }
 
 func (o *RemoveAccountRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveAccountRightsOperation) {
@@ -17654,7 +17780,7 @@ func (o *RemoveAccountRightsRequest) xxx_FromOp(ctx context.Context, op *xxx_Rem
 	o.UserRights = op.UserRights
 }
 func (o *RemoveAccountRightsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveAccountRightsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveAccountRightsOperation{}
@@ -17671,13 +17797,15 @@ type RemoveAccountRightsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveAccountRightsResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveAccountRightsOperation {
+func (o *RemoveAccountRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveAccountRightsOperation) *xxx_RemoveAccountRightsOperation {
+	if op == nil {
+		op = &xxx_RemoveAccountRightsOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveAccountRightsOperation{}
+		return op
 	}
-	return &xxx_RemoveAccountRightsOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveAccountRightsResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveAccountRightsOperation) {
@@ -17687,7 +17815,7 @@ func (o *RemoveAccountRightsResponse) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.Return = op.Return
 }
 func (o *RemoveAccountRightsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveAccountRightsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveAccountRightsOperation{}
@@ -17877,15 +18005,17 @@ type QueryTrustedDomainInfoRequest struct {
 	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
 }
 
-func (o *QueryTrustedDomainInfoRequest) xxx_ToOp(ctx context.Context) *xxx_QueryTrustedDomainInfoOperation {
+func (o *QueryTrustedDomainInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoOperation) *xxx_QueryTrustedDomainInfoOperation {
+	if op == nil {
+		op = &xxx_QueryTrustedDomainInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryTrustedDomainInfoOperation{}
+		return op
 	}
-	return &xxx_QueryTrustedDomainInfoOperation{
-		Policy:           o.Policy,
-		TrustedDomainSID: o.TrustedDomainSID,
-		InformationClass: o.InformationClass,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainSID = op.TrustedDomainSID
+	o.InformationClass = op.InformationClass
+	return op
 }
 
 func (o *QueryTrustedDomainInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoOperation) {
@@ -17897,7 +18027,7 @@ func (o *QueryTrustedDomainInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.InformationClass = op.InformationClass
 }
 func (o *QueryTrustedDomainInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryTrustedDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryTrustedDomainInfoOperation{}
@@ -17917,14 +18047,16 @@ type QueryTrustedDomainInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context) *xxx_QueryTrustedDomainInfoOperation {
+func (o *QueryTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoOperation) *xxx_QueryTrustedDomainInfoOperation {
+	if op == nil {
+		op = &xxx_QueryTrustedDomainInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryTrustedDomainInfoOperation{}
+		return op
 	}
-	return &xxx_QueryTrustedDomainInfoOperation{
-		TrustedDomainInformation: o.TrustedDomainInformation,
-		Return:                   o.Return,
-	}
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryTrustedDomainInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoOperation) {
@@ -17935,7 +18067,7 @@ func (o *QueryTrustedDomainInfoResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *QueryTrustedDomainInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryTrustedDomainInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryTrustedDomainInfoOperation{}
@@ -18109,16 +18241,18 @@ type SetTrustedDomainInfoRequest struct {
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
 }
 
-func (o *SetTrustedDomainInfoRequest) xxx_ToOp(ctx context.Context) *xxx_SetTrustedDomainInfoOperation {
+func (o *SetTrustedDomainInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTrustedDomainInfoOperation) *xxx_SetTrustedDomainInfoOperation {
+	if op == nil {
+		op = &xxx_SetTrustedDomainInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetTrustedDomainInfoOperation{}
+		return op
 	}
-	return &xxx_SetTrustedDomainInfoOperation{
-		Policy:                   o.Policy,
-		TrustedDomainSID:         o.TrustedDomainSID,
-		InformationClass:         o.InformationClass,
-		TrustedDomainInformation: o.TrustedDomainInformation,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainSID = op.TrustedDomainSID
+	o.InformationClass = op.InformationClass
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	return op
 }
 
 func (o *SetTrustedDomainInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetTrustedDomainInfoOperation) {
@@ -18131,7 +18265,7 @@ func (o *SetTrustedDomainInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.TrustedDomainInformation = op.TrustedDomainInformation
 }
 func (o *SetTrustedDomainInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetTrustedDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetTrustedDomainInfoOperation{}
@@ -18148,13 +18282,15 @@ type SetTrustedDomainInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context) *xxx_SetTrustedDomainInfoOperation {
+func (o *SetTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTrustedDomainInfoOperation) *xxx_SetTrustedDomainInfoOperation {
+	if op == nil {
+		op = &xxx_SetTrustedDomainInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetTrustedDomainInfoOperation{}
+		return op
 	}
-	return &xxx_SetTrustedDomainInfoOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetTrustedDomainInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetTrustedDomainInfoOperation) {
@@ -18164,7 +18300,7 @@ func (o *SetTrustedDomainInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetTrustedDomainInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetTrustedDomainInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetTrustedDomainInfoOperation{}
@@ -18290,14 +18426,16 @@ type DeleteTrustedDomainRequest struct {
 	TrustedDomainSID *dtyp.SID `idl:"name:TrustedDomainSid" json:"trusted_domain_sid"`
 }
 
-func (o *DeleteTrustedDomainRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteTrustedDomainOperation {
+func (o *DeleteTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteTrustedDomainOperation) *xxx_DeleteTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_DeleteTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_DeleteTrustedDomainOperation{
-		Policy:           o.Policy,
-		TrustedDomainSID: o.TrustedDomainSID,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainSID = op.TrustedDomainSID
+	return op
 }
 
 func (o *DeleteTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteTrustedDomainOperation) {
@@ -18308,7 +18446,7 @@ func (o *DeleteTrustedDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.TrustedDomainSID = op.TrustedDomainSID
 }
 func (o *DeleteTrustedDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteTrustedDomainOperation{}
@@ -18325,13 +18463,15 @@ type DeleteTrustedDomainResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteTrustedDomainResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteTrustedDomainOperation {
+func (o *DeleteTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteTrustedDomainOperation) *xxx_DeleteTrustedDomainOperation {
+	if op == nil {
+		op = &xxx_DeleteTrustedDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteTrustedDomainOperation{}
+		return op
 	}
-	return &xxx_DeleteTrustedDomainOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteTrustedDomainOperation) {
@@ -18341,7 +18481,7 @@ func (o *DeleteTrustedDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Return = op.Return
 }
 func (o *DeleteTrustedDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteTrustedDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteTrustedDomainOperation{}
@@ -18520,15 +18660,17 @@ type StorePrivateDataRequest struct {
 	EncryptedData *CRCipherValue `idl:"name:EncryptedData;pointer:unique" json:"encrypted_data"`
 }
 
-func (o *StorePrivateDataRequest) xxx_ToOp(ctx context.Context) *xxx_StorePrivateDataOperation {
+func (o *StorePrivateDataRequest) xxx_ToOp(ctx context.Context, op *xxx_StorePrivateDataOperation) *xxx_StorePrivateDataOperation {
+	if op == nil {
+		op = &xxx_StorePrivateDataOperation{}
+	}
 	if o == nil {
-		return &xxx_StorePrivateDataOperation{}
+		return op
 	}
-	return &xxx_StorePrivateDataOperation{
-		Policy:        o.Policy,
-		KeyName:       o.KeyName,
-		EncryptedData: o.EncryptedData,
-	}
+	o.Policy = op.Policy
+	o.KeyName = op.KeyName
+	o.EncryptedData = op.EncryptedData
+	return op
 }
 
 func (o *StorePrivateDataRequest) xxx_FromOp(ctx context.Context, op *xxx_StorePrivateDataOperation) {
@@ -18540,7 +18682,7 @@ func (o *StorePrivateDataRequest) xxx_FromOp(ctx context.Context, op *xxx_StoreP
 	o.EncryptedData = op.EncryptedData
 }
 func (o *StorePrivateDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StorePrivateDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StorePrivateDataOperation{}
@@ -18557,13 +18699,15 @@ type StorePrivateDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StorePrivateDataResponse) xxx_ToOp(ctx context.Context) *xxx_StorePrivateDataOperation {
+func (o *StorePrivateDataResponse) xxx_ToOp(ctx context.Context, op *xxx_StorePrivateDataOperation) *xxx_StorePrivateDataOperation {
+	if op == nil {
+		op = &xxx_StorePrivateDataOperation{}
+	}
 	if o == nil {
-		return &xxx_StorePrivateDataOperation{}
+		return op
 	}
-	return &xxx_StorePrivateDataOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *StorePrivateDataResponse) xxx_FromOp(ctx context.Context, op *xxx_StorePrivateDataOperation) {
@@ -18573,7 +18717,7 @@ func (o *StorePrivateDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Store
 	o.Return = op.Return
 }
 func (o *StorePrivateDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StorePrivateDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StorePrivateDataOperation{}
@@ -18800,15 +18944,17 @@ type RetrievePrivateDataRequest struct {
 	EncryptedData *CRCipherValue `idl:"name:EncryptedData" json:"encrypted_data"`
 }
 
-func (o *RetrievePrivateDataRequest) xxx_ToOp(ctx context.Context) *xxx_RetrievePrivateDataOperation {
+func (o *RetrievePrivateDataRequest) xxx_ToOp(ctx context.Context, op *xxx_RetrievePrivateDataOperation) *xxx_RetrievePrivateDataOperation {
+	if op == nil {
+		op = &xxx_RetrievePrivateDataOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrievePrivateDataOperation{}
+		return op
 	}
-	return &xxx_RetrievePrivateDataOperation{
-		Policy:        o.Policy,
-		KeyName:       o.KeyName,
-		EncryptedData: o.EncryptedData,
-	}
+	o.Policy = op.Policy
+	o.KeyName = op.KeyName
+	o.EncryptedData = op.EncryptedData
+	return op
 }
 
 func (o *RetrievePrivateDataRequest) xxx_FromOp(ctx context.Context, op *xxx_RetrievePrivateDataOperation) {
@@ -18820,7 +18966,7 @@ func (o *RetrievePrivateDataRequest) xxx_FromOp(ctx context.Context, op *xxx_Ret
 	o.EncryptedData = op.EncryptedData
 }
 func (o *RetrievePrivateDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RetrievePrivateDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrievePrivateDataOperation{}
@@ -18839,14 +18985,16 @@ type RetrievePrivateDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RetrievePrivateDataResponse) xxx_ToOp(ctx context.Context) *xxx_RetrievePrivateDataOperation {
+func (o *RetrievePrivateDataResponse) xxx_ToOp(ctx context.Context, op *xxx_RetrievePrivateDataOperation) *xxx_RetrievePrivateDataOperation {
+	if op == nil {
+		op = &xxx_RetrievePrivateDataOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrievePrivateDataOperation{}
+		return op
 	}
-	return &xxx_RetrievePrivateDataOperation{
-		EncryptedData: o.EncryptedData,
-		Return:        o.Return,
-	}
+	o.EncryptedData = op.EncryptedData
+	o.Return = op.Return
+	return op
 }
 
 func (o *RetrievePrivateDataResponse) xxx_FromOp(ctx context.Context, op *xxx_RetrievePrivateDataOperation) {
@@ -18857,7 +19005,7 @@ func (o *RetrievePrivateDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.Return = op.Return
 }
 func (o *RetrievePrivateDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RetrievePrivateDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrievePrivateDataOperation{}
@@ -19044,15 +19192,17 @@ type OpenPolicy2Request struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenPolicy2Request) xxx_ToOp(ctx context.Context) *xxx_OpenPolicy2Operation {
+func (o *OpenPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2Operation) *xxx_OpenPolicy2Operation {
+	if op == nil {
+		op = &xxx_OpenPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicy2Operation{}
+		return op
 	}
-	return &xxx_OpenPolicy2Operation{
-		SystemName:       o.SystemName,
-		ObjectAttributes: o.ObjectAttributes,
-		DesiredAccess:    o.DesiredAccess,
-	}
+	o.SystemName = op.SystemName
+	o.ObjectAttributes = op.ObjectAttributes
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy2Operation) {
@@ -19064,7 +19214,7 @@ func (o *OpenPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy2
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPolicy2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicy2Operation{}
@@ -19085,14 +19235,16 @@ type OpenPolicy2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPolicy2Response) xxx_ToOp(ctx context.Context) *xxx_OpenPolicy2Operation {
+func (o *OpenPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2Operation) *xxx_OpenPolicy2Operation {
+	if op == nil {
+		op = &xxx_OpenPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicy2Operation{}
+		return op
 	}
-	return &xxx_OpenPolicy2Operation{
-		Policy: o.Policy,
-		Return: o.Return,
-	}
+	o.Policy = op.Policy
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy2Operation) {
@@ -19103,7 +19255,7 @@ func (o *OpenPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy
 	o.Return = op.Return
 }
 func (o *OpenPolicy2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPolicy2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicy2Operation{}
@@ -19270,14 +19422,16 @@ type QueryInformationPolicy2Request struct {
 	InformationClass PolicyInformationClass `idl:"name:InformationClass" json:"information_class"`
 }
 
-func (o *QueryInformationPolicy2Request) xxx_ToOp(ctx context.Context) *xxx_QueryInformationPolicy2Operation {
+func (o *QueryInformationPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_QueryInformationPolicy2Operation) *xxx_QueryInformationPolicy2Operation {
+	if op == nil {
+		op = &xxx_QueryInformationPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryInformationPolicy2Operation{}
+		return op
 	}
-	return &xxx_QueryInformationPolicy2Operation{
-		Policy:           o.Policy,
-		InformationClass: o.InformationClass,
-	}
+	o.Policy = op.Policy
+	o.InformationClass = op.InformationClass
+	return op
 }
 
 func (o *QueryInformationPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_QueryInformationPolicy2Operation) {
@@ -19288,7 +19442,7 @@ func (o *QueryInformationPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx
 	o.InformationClass = op.InformationClass
 }
 func (o *QueryInformationPolicy2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryInformationPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInformationPolicy2Operation{}
@@ -19307,14 +19461,16 @@ type QueryInformationPolicy2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryInformationPolicy2Response) xxx_ToOp(ctx context.Context) *xxx_QueryInformationPolicy2Operation {
+func (o *QueryInformationPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_QueryInformationPolicy2Operation) *xxx_QueryInformationPolicy2Operation {
+	if op == nil {
+		op = &xxx_QueryInformationPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_QueryInformationPolicy2Operation{}
+		return op
 	}
-	return &xxx_QueryInformationPolicy2Operation{
-		PolicyInformation: o.PolicyInformation,
-		Return:            o.Return,
-	}
+	o.PolicyInformation = op.PolicyInformation
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryInformationPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_QueryInformationPolicy2Operation) {
@@ -19325,7 +19481,7 @@ func (o *QueryInformationPolicy2Response) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *QueryInformationPolicy2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryInformationPolicy2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInformationPolicy2Operation{}
@@ -19475,15 +19631,17 @@ type SetInformationPolicy2Request struct {
 	PolicyInformation *PolicyInformation `idl:"name:PolicyInformation;switch_is:InformationClass" json:"policy_information"`
 }
 
-func (o *SetInformationPolicy2Request) xxx_ToOp(ctx context.Context) *xxx_SetInformationPolicy2Operation {
+func (o *SetInformationPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_SetInformationPolicy2Operation) *xxx_SetInformationPolicy2Operation {
+	if op == nil {
+		op = &xxx_SetInformationPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_SetInformationPolicy2Operation{}
+		return op
 	}
-	return &xxx_SetInformationPolicy2Operation{
-		Policy:            o.Policy,
-		InformationClass:  o.InformationClass,
-		PolicyInformation: o.PolicyInformation,
-	}
+	o.Policy = op.Policy
+	o.InformationClass = op.InformationClass
+	o.PolicyInformation = op.PolicyInformation
+	return op
 }
 
 func (o *SetInformationPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_SetInformationPolicy2Operation) {
@@ -19495,7 +19653,7 @@ func (o *SetInformationPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.PolicyInformation = op.PolicyInformation
 }
 func (o *SetInformationPolicy2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetInformationPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInformationPolicy2Operation{}
@@ -19512,13 +19670,15 @@ type SetInformationPolicy2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetInformationPolicy2Response) xxx_ToOp(ctx context.Context) *xxx_SetInformationPolicy2Operation {
+func (o *SetInformationPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_SetInformationPolicy2Operation) *xxx_SetInformationPolicy2Operation {
+	if op == nil {
+		op = &xxx_SetInformationPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_SetInformationPolicy2Operation{}
+		return op
 	}
-	return &xxx_SetInformationPolicy2Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetInformationPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_SetInformationPolicy2Operation) {
@@ -19528,7 +19688,7 @@ func (o *SetInformationPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *SetInformationPolicy2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetInformationPolicy2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInformationPolicy2Operation{}
@@ -19725,15 +19885,17 @@ type QueryTrustedDomainInfoByNameRequest struct {
 	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
 }
 
-func (o *QueryTrustedDomainInfoByNameRequest) xxx_ToOp(ctx context.Context) *xxx_QueryTrustedDomainInfoByNameOperation {
+func (o *QueryTrustedDomainInfoByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoByNameOperation) *xxx_QueryTrustedDomainInfoByNameOperation {
+	if op == nil {
+		op = &xxx_QueryTrustedDomainInfoByNameOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryTrustedDomainInfoByNameOperation{}
+		return op
 	}
-	return &xxx_QueryTrustedDomainInfoByNameOperation{
-		Policy:            o.Policy,
-		TrustedDomainName: o.TrustedDomainName,
-		InformationClass:  o.InformationClass,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.InformationClass = op.InformationClass
+	return op
 }
 
 func (o *QueryTrustedDomainInfoByNameRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoByNameOperation) {
@@ -19745,7 +19907,7 @@ func (o *QueryTrustedDomainInfoByNameRequest) xxx_FromOp(ctx context.Context, op
 	o.InformationClass = op.InformationClass
 }
 func (o *QueryTrustedDomainInfoByNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryTrustedDomainInfoByNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryTrustedDomainInfoByNameOperation{}
@@ -19764,14 +19926,16 @@ type QueryTrustedDomainInfoByNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context) *xxx_QueryTrustedDomainInfoByNameOperation {
+func (o *QueryTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoByNameOperation) *xxx_QueryTrustedDomainInfoByNameOperation {
+	if op == nil {
+		op = &xxx_QueryTrustedDomainInfoByNameOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryTrustedDomainInfoByNameOperation{}
+		return op
 	}
-	return &xxx_QueryTrustedDomainInfoByNameOperation{
-		TrustedDomainInformation: o.TrustedDomainInformation,
-		Return:                   o.Return,
-	}
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryTrustedDomainInfoByNameResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryTrustedDomainInfoByNameOperation) {
@@ -19782,7 +19946,7 @@ func (o *QueryTrustedDomainInfoByNameResponse) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *QueryTrustedDomainInfoByNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryTrustedDomainInfoByNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryTrustedDomainInfoByNameOperation{}
@@ -19962,16 +20126,18 @@ type SetTrustedDomainInfoByNameRequest struct {
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
 }
 
-func (o *SetTrustedDomainInfoByNameRequest) xxx_ToOp(ctx context.Context) *xxx_SetTrustedDomainInfoByNameOperation {
+func (o *SetTrustedDomainInfoByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTrustedDomainInfoByNameOperation) *xxx_SetTrustedDomainInfoByNameOperation {
+	if op == nil {
+		op = &xxx_SetTrustedDomainInfoByNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetTrustedDomainInfoByNameOperation{}
+		return op
 	}
-	return &xxx_SetTrustedDomainInfoByNameOperation{
-		Policy:                   o.Policy,
-		TrustedDomainName:        o.TrustedDomainName,
-		InformationClass:         o.InformationClass,
-		TrustedDomainInformation: o.TrustedDomainInformation,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.InformationClass = op.InformationClass
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	return op
 }
 
 func (o *SetTrustedDomainInfoByNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetTrustedDomainInfoByNameOperation) {
@@ -19984,7 +20150,7 @@ func (o *SetTrustedDomainInfoByNameRequest) xxx_FromOp(ctx context.Context, op *
 	o.TrustedDomainInformation = op.TrustedDomainInformation
 }
 func (o *SetTrustedDomainInfoByNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetTrustedDomainInfoByNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetTrustedDomainInfoByNameOperation{}
@@ -20001,13 +20167,15 @@ type SetTrustedDomainInfoByNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context) *xxx_SetTrustedDomainInfoByNameOperation {
+func (o *SetTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTrustedDomainInfoByNameOperation) *xxx_SetTrustedDomainInfoByNameOperation {
+	if op == nil {
+		op = &xxx_SetTrustedDomainInfoByNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetTrustedDomainInfoByNameOperation{}
+		return op
 	}
-	return &xxx_SetTrustedDomainInfoByNameOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetTrustedDomainInfoByNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetTrustedDomainInfoByNameOperation) {
@@ -20017,7 +20185,7 @@ func (o *SetTrustedDomainInfoByNameResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *SetTrustedDomainInfoByNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetTrustedDomainInfoByNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetTrustedDomainInfoByNameOperation{}
@@ -20191,15 +20359,17 @@ type EnumerateTrustedDomainsExRequest struct {
 	PreferredMaximumLength uint32 `idl:"name:PreferedMaximumLength" json:"preferred_maximum_length"`
 }
 
-func (o *EnumerateTrustedDomainsExRequest) xxx_ToOp(ctx context.Context) *xxx_EnumerateTrustedDomainsExOperation {
+func (o *EnumerateTrustedDomainsExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsExOperation) *xxx_EnumerateTrustedDomainsExOperation {
+	if op == nil {
+		op = &xxx_EnumerateTrustedDomainsExOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateTrustedDomainsExOperation{}
+		return op
 	}
-	return &xxx_EnumerateTrustedDomainsExOperation{
-		Policy:                 o.Policy,
-		EnumerationContext:     o.EnumerationContext,
-		PreferredMaximumLength: o.PreferredMaximumLength,
-	}
+	o.Policy = op.Policy
+	o.EnumerationContext = op.EnumerationContext
+	o.PreferredMaximumLength = op.PreferredMaximumLength
+	return op
 }
 
 func (o *EnumerateTrustedDomainsExRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsExOperation) {
@@ -20211,7 +20381,7 @@ func (o *EnumerateTrustedDomainsExRequest) xxx_FromOp(ctx context.Context, op *x
 	o.PreferredMaximumLength = op.PreferredMaximumLength
 }
 func (o *EnumerateTrustedDomainsExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumerateTrustedDomainsExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateTrustedDomainsExOperation{}
@@ -20233,15 +20403,17 @@ type EnumerateTrustedDomainsExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumerateTrustedDomainsExResponse) xxx_ToOp(ctx context.Context) *xxx_EnumerateTrustedDomainsExOperation {
+func (o *EnumerateTrustedDomainsExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsExOperation) *xxx_EnumerateTrustedDomainsExOperation {
+	if op == nil {
+		op = &xxx_EnumerateTrustedDomainsExOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumerateTrustedDomainsExOperation{}
+		return op
 	}
-	return &xxx_EnumerateTrustedDomainsExOperation{
-		EnumerationContext: o.EnumerationContext,
-		EnumerationBuffer:  o.EnumerationBuffer,
-		Return:             o.Return,
-	}
+	o.EnumerationContext = op.EnumerationContext
+	o.EnumerationBuffer = op.EnumerationBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumerateTrustedDomainsExResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumerateTrustedDomainsExOperation) {
@@ -20253,7 +20425,7 @@ func (o *EnumerateTrustedDomainsExResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *EnumerateTrustedDomainsExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumerateTrustedDomainsExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumerateTrustedDomainsExOperation{}
@@ -20452,16 +20624,18 @@ type CreateTrustedDomainExRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *CreateTrustedDomainExRequest) xxx_ToOp(ctx context.Context) *xxx_CreateTrustedDomainExOperation {
+func (o *CreateTrustedDomainExRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainExOperation) *xxx_CreateTrustedDomainExOperation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainExOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTrustedDomainExOperation{}
+		return op
 	}
-	return &xxx_CreateTrustedDomainExOperation{
-		Policy:                    o.Policy,
-		TrustedDomainInformation:  o.TrustedDomainInformation,
-		AuthenticationInformation: o.AuthenticationInformation,
-		DesiredAccess:             o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.AuthenticationInformation = op.AuthenticationInformation
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *CreateTrustedDomainExRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainExOperation) {
@@ -20474,7 +20648,7 @@ func (o *CreateTrustedDomainExRequest) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *CreateTrustedDomainExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateTrustedDomainExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTrustedDomainExOperation{}
@@ -20493,14 +20667,16 @@ type CreateTrustedDomainExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateTrustedDomainExResponse) xxx_ToOp(ctx context.Context) *xxx_CreateTrustedDomainExOperation {
+func (o *CreateTrustedDomainExResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainExOperation) *xxx_CreateTrustedDomainExOperation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainExOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTrustedDomainExOperation{}
+		return op
 	}
-	return &xxx_CreateTrustedDomainExOperation{
-		TrustedDomain: o.TrustedDomain,
-		Return:        o.Return,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateTrustedDomainExResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainExOperation) {
@@ -20511,7 +20687,7 @@ func (o *CreateTrustedDomainExResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *CreateTrustedDomainExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateTrustedDomainExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTrustedDomainExOperation{}
@@ -20678,14 +20854,16 @@ type QueryDomainInformationPolicyRequest struct {
 	InformationClass PolicyDomainInformationClass `idl:"name:InformationClass" json:"information_class"`
 }
 
-func (o *QueryDomainInformationPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_QueryDomainInformationPolicyOperation {
+func (o *QueryDomainInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryDomainInformationPolicyOperation) *xxx_QueryDomainInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_QueryDomainInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryDomainInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_QueryDomainInformationPolicyOperation{
-		Policy:           o.Policy,
-		InformationClass: o.InformationClass,
-	}
+	o.Policy = op.Policy
+	o.InformationClass = op.InformationClass
+	return op
 }
 
 func (o *QueryDomainInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryDomainInformationPolicyOperation) {
@@ -20696,7 +20874,7 @@ func (o *QueryDomainInformationPolicyRequest) xxx_FromOp(ctx context.Context, op
 	o.InformationClass = op.InformationClass
 }
 func (o *QueryDomainInformationPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryDomainInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryDomainInformationPolicyOperation{}
@@ -20716,14 +20894,16 @@ type QueryDomainInformationPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_QueryDomainInformationPolicyOperation {
+func (o *QueryDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryDomainInformationPolicyOperation) *xxx_QueryDomainInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_QueryDomainInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryDomainInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_QueryDomainInformationPolicyOperation{
-		PolicyDomainInformation: o.PolicyDomainInformation,
-		Return:                  o.Return,
-	}
+	o.PolicyDomainInformation = op.PolicyDomainInformation
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryDomainInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryDomainInformationPolicyOperation) {
@@ -20734,7 +20914,7 @@ func (o *QueryDomainInformationPolicyResponse) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *QueryDomainInformationPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryDomainInformationPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryDomainInformationPolicyOperation{}
@@ -20903,15 +21083,17 @@ type SetDomainInformationPolicyRequest struct {
 	PolicyDomainInformation *PolicyDomainInformation `idl:"name:PolicyDomainInformation;switch_is:InformationClass;pointer:unique" json:"policy_domain_information"`
 }
 
-func (o *SetDomainInformationPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_SetDomainInformationPolicyOperation {
+func (o *SetDomainInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDomainInformationPolicyOperation) *xxx_SetDomainInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_SetDomainInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDomainInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_SetDomainInformationPolicyOperation{
-		Policy:                  o.Policy,
-		InformationClass:        o.InformationClass,
-		PolicyDomainInformation: o.PolicyDomainInformation,
-	}
+	o.Policy = op.Policy
+	o.InformationClass = op.InformationClass
+	o.PolicyDomainInformation = op.PolicyDomainInformation
+	return op
 }
 
 func (o *SetDomainInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetDomainInformationPolicyOperation) {
@@ -20923,7 +21105,7 @@ func (o *SetDomainInformationPolicyRequest) xxx_FromOp(ctx context.Context, op *
 	o.PolicyDomainInformation = op.PolicyDomainInformation
 }
 func (o *SetDomainInformationPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetDomainInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDomainInformationPolicyOperation{}
@@ -20940,13 +21122,15 @@ type SetDomainInformationPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_SetDomainInformationPolicyOperation {
+func (o *SetDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDomainInformationPolicyOperation) *xxx_SetDomainInformationPolicyOperation {
+	if op == nil {
+		op = &xxx_SetDomainInformationPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetDomainInformationPolicyOperation{}
+		return op
 	}
-	return &xxx_SetDomainInformationPolicyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetDomainInformationPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetDomainInformationPolicyOperation) {
@@ -20956,7 +21140,7 @@ func (o *SetDomainInformationPolicyResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *SetDomainInformationPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetDomainInformationPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetDomainInformationPolicyOperation{}
@@ -21125,15 +21309,17 @@ type OpenTrustedDomainByNameRequest struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenTrustedDomainByNameRequest) xxx_ToOp(ctx context.Context) *xxx_OpenTrustedDomainByNameOperation {
+func (o *OpenTrustedDomainByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenTrustedDomainByNameOperation) *xxx_OpenTrustedDomainByNameOperation {
+	if op == nil {
+		op = &xxx_OpenTrustedDomainByNameOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenTrustedDomainByNameOperation{}
+		return op
 	}
-	return &xxx_OpenTrustedDomainByNameOperation{
-		Policy:            o.Policy,
-		TrustedDomainName: o.TrustedDomainName,
-		DesiredAccess:     o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenTrustedDomainByNameRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenTrustedDomainByNameOperation) {
@@ -21145,7 +21331,7 @@ func (o *OpenTrustedDomainByNameRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenTrustedDomainByNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenTrustedDomainByNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenTrustedDomainByNameOperation{}
@@ -21164,14 +21350,16 @@ type OpenTrustedDomainByNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenTrustedDomainByNameResponse) xxx_ToOp(ctx context.Context) *xxx_OpenTrustedDomainByNameOperation {
+func (o *OpenTrustedDomainByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenTrustedDomainByNameOperation) *xxx_OpenTrustedDomainByNameOperation {
+	if op == nil {
+		op = &xxx_OpenTrustedDomainByNameOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenTrustedDomainByNameOperation{}
+		return op
 	}
-	return &xxx_OpenTrustedDomainByNameOperation{
-		TrustedDomain: o.TrustedDomain,
-		Return:        o.Return,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenTrustedDomainByNameResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenTrustedDomainByNameOperation) {
@@ -21182,7 +21370,7 @@ func (o *OpenTrustedDomainByNameResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *OpenTrustedDomainByNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenTrustedDomainByNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenTrustedDomainByNameOperation{}
@@ -21381,16 +21569,18 @@ type CreateTrustedDomainEx2Request struct {
 	DesiredAccess uint32 `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *CreateTrustedDomainEx2Request) xxx_ToOp(ctx context.Context) *xxx_CreateTrustedDomainEx2Operation {
+func (o *CreateTrustedDomainEx2Request) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainEx2Operation) *xxx_CreateTrustedDomainEx2Operation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainEx2Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateTrustedDomainEx2Operation{}
+		return op
 	}
-	return &xxx_CreateTrustedDomainEx2Operation{
-		Policy:                    o.Policy,
-		TrustedDomainInformation:  o.TrustedDomainInformation,
-		AuthenticationInformation: o.AuthenticationInformation,
-		DesiredAccess:             o.DesiredAccess,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainInformation = op.TrustedDomainInformation
+	o.AuthenticationInformation = op.AuthenticationInformation
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *CreateTrustedDomainEx2Request) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainEx2Operation) {
@@ -21403,7 +21593,7 @@ func (o *CreateTrustedDomainEx2Request) xxx_FromOp(ctx context.Context, op *xxx_
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *CreateTrustedDomainEx2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateTrustedDomainEx2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTrustedDomainEx2Operation{}
@@ -21422,14 +21612,16 @@ type CreateTrustedDomainEx2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateTrustedDomainEx2Response) xxx_ToOp(ctx context.Context) *xxx_CreateTrustedDomainEx2Operation {
+func (o *CreateTrustedDomainEx2Response) xxx_ToOp(ctx context.Context, op *xxx_CreateTrustedDomainEx2Operation) *xxx_CreateTrustedDomainEx2Operation {
+	if op == nil {
+		op = &xxx_CreateTrustedDomainEx2Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateTrustedDomainEx2Operation{}
+		return op
 	}
-	return &xxx_CreateTrustedDomainEx2Operation{
-		TrustedDomain: o.TrustedDomain,
-		Return:        o.Return,
-	}
+	o.TrustedDomain = op.TrustedDomain
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateTrustedDomainEx2Response) xxx_FromOp(ctx context.Context, op *xxx_CreateTrustedDomainEx2Operation) {
@@ -21440,7 +21632,7 @@ func (o *CreateTrustedDomainEx2Response) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *CreateTrustedDomainEx2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateTrustedDomainEx2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTrustedDomainEx2Operation{}
@@ -21635,15 +21827,17 @@ type QueryForestTrustInformationRequest struct {
 	HighestRecordType ForestTrustRecordType `idl:"name:HighestRecordType" json:"highest_record_type"`
 }
 
-func (o *QueryForestTrustInformationRequest) xxx_ToOp(ctx context.Context) *xxx_QueryForestTrustInformationOperation {
+func (o *QueryForestTrustInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryForestTrustInformationOperation) *xxx_QueryForestTrustInformationOperation {
+	if op == nil {
+		op = &xxx_QueryForestTrustInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryForestTrustInformationOperation{}
+		return op
 	}
-	return &xxx_QueryForestTrustInformationOperation{
-		Policy:            o.Policy,
-		TrustedDomainName: o.TrustedDomainName,
-		HighestRecordType: o.HighestRecordType,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.HighestRecordType = op.HighestRecordType
+	return op
 }
 
 func (o *QueryForestTrustInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryForestTrustInformationOperation) {
@@ -21655,7 +21849,7 @@ func (o *QueryForestTrustInformationRequest) xxx_FromOp(ctx context.Context, op 
 	o.HighestRecordType = op.HighestRecordType
 }
 func (o *QueryForestTrustInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryForestTrustInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryForestTrustInformationOperation{}
@@ -21674,14 +21868,16 @@ type QueryForestTrustInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryForestTrustInformationResponse) xxx_ToOp(ctx context.Context) *xxx_QueryForestTrustInformationOperation {
+func (o *QueryForestTrustInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryForestTrustInformationOperation) *xxx_QueryForestTrustInformationOperation {
+	if op == nil {
+		op = &xxx_QueryForestTrustInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryForestTrustInformationOperation{}
+		return op
 	}
-	return &xxx_QueryForestTrustInformationOperation{
-		ForestTrustInfo: o.ForestTrustInfo,
-		Return:          o.Return,
-	}
+	o.ForestTrustInfo = op.ForestTrustInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryForestTrustInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryForestTrustInformationOperation) {
@@ -21692,7 +21888,7 @@ func (o *QueryForestTrustInformationResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *QueryForestTrustInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryForestTrustInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryForestTrustInformationOperation{}
@@ -21934,17 +22130,19 @@ type SetForestTrustInformationRequest struct {
 	CheckOnly uint8 `idl:"name:CheckOnly" json:"check_only"`
 }
 
-func (o *SetForestTrustInformationRequest) xxx_ToOp(ctx context.Context) *xxx_SetForestTrustInformationOperation {
+func (o *SetForestTrustInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetForestTrustInformationOperation) *xxx_SetForestTrustInformationOperation {
+	if op == nil {
+		op = &xxx_SetForestTrustInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetForestTrustInformationOperation{}
+		return op
 	}
-	return &xxx_SetForestTrustInformationOperation{
-		Policy:            o.Policy,
-		TrustedDomainName: o.TrustedDomainName,
-		HighestRecordType: o.HighestRecordType,
-		ForestTrustInfo:   o.ForestTrustInfo,
-		CheckOnly:         o.CheckOnly,
-	}
+	o.Policy = op.Policy
+	o.TrustedDomainName = op.TrustedDomainName
+	o.HighestRecordType = op.HighestRecordType
+	o.ForestTrustInfo = op.ForestTrustInfo
+	o.CheckOnly = op.CheckOnly
+	return op
 }
 
 func (o *SetForestTrustInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_SetForestTrustInformationOperation) {
@@ -21958,7 +22156,7 @@ func (o *SetForestTrustInformationRequest) xxx_FromOp(ctx context.Context, op *x
 	o.CheckOnly = op.CheckOnly
 }
 func (o *SetForestTrustInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetForestTrustInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetForestTrustInformationOperation{}
@@ -21978,14 +22176,16 @@ type SetForestTrustInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetForestTrustInformationResponse) xxx_ToOp(ctx context.Context) *xxx_SetForestTrustInformationOperation {
+func (o *SetForestTrustInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetForestTrustInformationOperation) *xxx_SetForestTrustInformationOperation {
+	if op == nil {
+		op = &xxx_SetForestTrustInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_SetForestTrustInformationOperation{}
+		return op
 	}
-	return &xxx_SetForestTrustInformationOperation{
-		CollisionInfo: o.CollisionInfo,
-		Return:        o.Return,
-	}
+	o.CollisionInfo = op.CollisionInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetForestTrustInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_SetForestTrustInformationOperation) {
@@ -21996,7 +22196,7 @@ func (o *SetForestTrustInformationResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *SetForestTrustInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetForestTrustInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetForestTrustInformationOperation{}

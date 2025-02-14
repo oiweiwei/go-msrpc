@@ -123,7 +123,7 @@ func (o *xxx_DefaultCatalogUtilsClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCatalogUtilsClient) ValidateUser(ctx context.Context, in *ValidateUserRequest, opts ...dcerpc.CallOption) (*ValidateUserResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -143,7 +143,7 @@ func (o *xxx_DefaultCatalogUtilsClient) ValidateUser(ctx context.Context, in *Va
 }
 
 func (o *xxx_DefaultCatalogUtilsClient) WaitForEndWrites(ctx context.Context, in *WaitForEndWritesRequest, opts ...dcerpc.CallOption) (*WaitForEndWritesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -163,7 +163,7 @@ func (o *xxx_DefaultCatalogUtilsClient) WaitForEndWrites(ctx context.Context, in
 }
 
 func (o *xxx_DefaultCatalogUtilsClient) GetEventClassesForIID(ctx context.Context, in *GetEventClassesForIIDRequest, opts ...dcerpc.CallOption) (*GetEventClassesForIIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -427,15 +427,17 @@ type ValidateUserRequest struct {
 	Password string `idl:"name:pwszPassword;string;pointer:unique" json:"password"`
 }
 
-func (o *ValidateUserRequest) xxx_ToOp(ctx context.Context) *xxx_ValidateUserOperation {
+func (o *ValidateUserRequest) xxx_ToOp(ctx context.Context, op *xxx_ValidateUserOperation) *xxx_ValidateUserOperation {
+	if op == nil {
+		op = &xxx_ValidateUserOperation{}
+	}
 	if o == nil {
-		return &xxx_ValidateUserOperation{}
+		return op
 	}
-	return &xxx_ValidateUserOperation{
-		This:          o.This,
-		PrincipalName: o.PrincipalName,
-		Password:      o.Password,
-	}
+	o.This = op.This
+	o.PrincipalName = op.PrincipalName
+	o.Password = op.Password
+	return op
 }
 
 func (o *ValidateUserRequest) xxx_FromOp(ctx context.Context, op *xxx_ValidateUserOperation) {
@@ -447,7 +449,7 @@ func (o *ValidateUserRequest) xxx_FromOp(ctx context.Context, op *xxx_ValidateUs
 	o.Password = op.Password
 }
 func (o *ValidateUserRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ValidateUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ValidateUserOperation{}
@@ -466,14 +468,16 @@ type ValidateUserResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ValidateUserResponse) xxx_ToOp(ctx context.Context) *xxx_ValidateUserOperation {
+func (o *ValidateUserResponse) xxx_ToOp(ctx context.Context, op *xxx_ValidateUserOperation) *xxx_ValidateUserOperation {
+	if op == nil {
+		op = &xxx_ValidateUserOperation{}
+	}
 	if o == nil {
-		return &xxx_ValidateUserOperation{}
+		return op
 	}
-	return &xxx_ValidateUserOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ValidateUserResponse) xxx_FromOp(ctx context.Context, op *xxx_ValidateUserOperation) {
@@ -484,7 +488,7 @@ func (o *ValidateUserResponse) xxx_FromOp(ctx context.Context, op *xxx_ValidateU
 	o.Return = op.Return
 }
 func (o *ValidateUserResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ValidateUserResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ValidateUserOperation{}
@@ -618,13 +622,15 @@ type WaitForEndWritesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *WaitForEndWritesRequest) xxx_ToOp(ctx context.Context) *xxx_WaitForEndWritesOperation {
+func (o *WaitForEndWritesRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitForEndWritesOperation) *xxx_WaitForEndWritesOperation {
+	if op == nil {
+		op = &xxx_WaitForEndWritesOperation{}
+	}
 	if o == nil {
-		return &xxx_WaitForEndWritesOperation{}
+		return op
 	}
-	return &xxx_WaitForEndWritesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *WaitForEndWritesRequest) xxx_FromOp(ctx context.Context, op *xxx_WaitForEndWritesOperation) {
@@ -634,7 +640,7 @@ func (o *WaitForEndWritesRequest) xxx_FromOp(ctx context.Context, op *xxx_WaitFo
 	o.This = op.This
 }
 func (o *WaitForEndWritesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WaitForEndWritesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WaitForEndWritesOperation{}
@@ -653,14 +659,16 @@ type WaitForEndWritesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WaitForEndWritesResponse) xxx_ToOp(ctx context.Context) *xxx_WaitForEndWritesOperation {
+func (o *WaitForEndWritesResponse) xxx_ToOp(ctx context.Context, op *xxx_WaitForEndWritesOperation) *xxx_WaitForEndWritesOperation {
+	if op == nil {
+		op = &xxx_WaitForEndWritesOperation{}
+	}
 	if o == nil {
-		return &xxx_WaitForEndWritesOperation{}
+		return op
 	}
-	return &xxx_WaitForEndWritesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *WaitForEndWritesResponse) xxx_FromOp(ctx context.Context, op *xxx_WaitForEndWritesOperation) {
@@ -671,7 +679,7 @@ func (o *WaitForEndWritesResponse) xxx_FromOp(ctx context.Context, op *xxx_WaitF
 	o.Return = op.Return
 }
 func (o *WaitForEndWritesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WaitForEndWritesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WaitForEndWritesOperation{}
@@ -1141,14 +1149,16 @@ type GetEventClassesForIIDRequest struct {
 	IID string `idl:"name:wszIID;string;pointer:unique" json:"iid"`
 }
 
-func (o *GetEventClassesForIIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetEventClassesForIIDOperation {
+func (o *GetEventClassesForIIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassesForIIDOperation) *xxx_GetEventClassesForIIDOperation {
+	if op == nil {
+		op = &xxx_GetEventClassesForIIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassesForIIDOperation{}
+		return op
 	}
-	return &xxx_GetEventClassesForIIDOperation{
-		This: o.This,
-		IID:  o.IID,
-	}
+	o.This = op.This
+	o.IID = op.IID
+	return op
 }
 
 func (o *GetEventClassesForIIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassesForIIDOperation) {
@@ -1159,7 +1169,7 @@ func (o *GetEventClassesForIIDRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.IID = op.IID
 }
 func (o *GetEventClassesForIIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEventClassesForIIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassesForIIDOperation{}
@@ -1191,18 +1201,20 @@ type GetEventClassesForIIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEventClassesForIIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetEventClassesForIIDOperation {
+func (o *GetEventClassesForIIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassesForIIDOperation) *xxx_GetEventClassesForIIDOperation {
+	if op == nil {
+		op = &xxx_GetEventClassesForIIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassesForIIDOperation{}
+		return op
 	}
-	return &xxx_GetEventClassesForIIDOperation{
-		That:         o.That,
-		ClassesCount: o.ClassesCount,
-		ClassIDs:     o.ClassIDs,
-		ProgIDs:      o.ProgIDs,
-		Descriptions: o.Descriptions,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.ClassesCount = op.ClassesCount
+	o.ClassIDs = op.ClassIDs
+	o.ProgIDs = op.ProgIDs
+	o.Descriptions = op.Descriptions
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetEventClassesForIIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassesForIIDOperation) {
@@ -1217,7 +1229,7 @@ func (o *GetEventClassesForIIDResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetEventClassesForIIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEventClassesForIIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassesForIIDOperation{}

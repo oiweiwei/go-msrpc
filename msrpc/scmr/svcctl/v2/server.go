@@ -1501,349 +1501,443 @@ func NewSvcctlServerHandle(o SvcctlServer) dcerpc.ServerHandle {
 func SvcctlServerHandle(ctx context.Context, o SvcctlServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RCloseServiceHandle
-		in := &CloseServiceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseServiceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseService(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseServiceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseService(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RControlService
-		in := &ControlServiceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ControlServiceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ControlService(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ControlServiceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ControlService(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // RDeleteService
-		in := &DeleteServiceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteServiceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteService(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteServiceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteService(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // RLockServiceDatabase
-		in := &LockServiceDatabaseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LockServiceDatabaseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LockServiceDatabase(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LockServiceDatabaseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LockServiceDatabase(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RQueryServiceObjectSecurity
-		in := &QueryServiceObjectSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceObjectSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceObjectSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceObjectSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceObjectSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RSetServiceObjectSecurity
-		in := &SetServiceObjectSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetServiceObjectSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetServiceObjectSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetServiceObjectSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetServiceObjectSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // RQueryServiceStatus
-		in := &QueryServiceStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // RSetServiceStatus
-		in := &SetServiceStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetServiceStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetServiceStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetServiceStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetServiceStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RUnlockServiceDatabase
-		in := &UnlockServiceDatabaseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnlockServiceDatabaseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnlockServiceDatabase(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnlockServiceDatabaseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnlockServiceDatabase(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RNotifyBootConfigStatus
-		in := &NotifyBootConfigStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NotifyBootConfigStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NotifyBootConfigStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NotifyBootConfigStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NotifyBootConfigStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Opnum10NotUsedOnWire
 		// Opnum10NotUsedOnWire
 		return nil, nil
 	case 11: // RChangeServiceConfigW
-		in := &ChangeServiceConfigWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeServiceConfigWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeServiceConfigW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeServiceConfigWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeServiceConfigW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // RCreateServiceW
-		in := &CreateServiceWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateServiceWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateServiceW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateServiceWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateServiceW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // REnumDependentServicesW
-		in := &EnumDependentServicesWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumDependentServicesWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumDependentServicesW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumDependentServicesWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumDependentServicesW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // REnumServicesStatusW
-		in := &EnumServicesStatusWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumServicesStatusWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumServicesStatusW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumServicesStatusWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumServicesStatusW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // ROpenSCManagerW
-		in := &OpenSCMWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenSCMWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenSCMW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenSCMWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSCMW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // ROpenServiceW
-		in := &OpenServiceWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenServiceWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenServiceW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenServiceWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenServiceW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // RQueryServiceConfigW
-		in := &QueryServiceConfigWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceConfigWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceConfigW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceConfigWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceConfigW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // RQueryServiceLockStatusW
-		in := &QueryServiceLockStatusWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceLockStatusWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceLockStatusW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceLockStatusWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceLockStatusW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // RStartServiceW
-		in := &StartServiceWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartServiceWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartServiceW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartServiceWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartServiceW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // RGetServiceDisplayNameW
-		in := &GetServiceDisplayNameWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServiceDisplayNameWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServiceDisplayNameW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServiceDisplayNameWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServiceDisplayNameW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // RGetServiceKeyNameW
-		in := &GetServiceKeyNameWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServiceKeyNameWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServiceKeyNameW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServiceKeyNameWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServiceKeyNameW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // Opnum22NotUsedOnWire
 		// Opnum22NotUsedOnWire
 		return nil, nil
 	case 23: // RChangeServiceConfigA
-		in := &ChangeServiceConfigARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeServiceConfigAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeServiceConfigA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeServiceConfigARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeServiceConfigA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // RCreateServiceA
-		in := &CreateServiceARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateServiceAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateServiceA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateServiceARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateServiceA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // REnumDependentServicesA
-		in := &EnumDependentServicesARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumDependentServicesAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumDependentServicesA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumDependentServicesARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumDependentServicesA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // REnumServicesStatusA
-		in := &EnumServicesStatusARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumServicesStatusAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumServicesStatusA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumServicesStatusARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumServicesStatusA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // ROpenSCManagerA
-		in := &OpenSCMARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenSCMAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenSCMA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenSCMARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSCMA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // ROpenServiceA
-		in := &OpenServiceARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenServiceAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenServiceA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenServiceARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenServiceA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // RQueryServiceConfigA
-		in := &QueryServiceConfigARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceConfigAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceConfigA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceConfigARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceConfigA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // RQueryServiceLockStatusA
-		in := &QueryServiceLockStatusARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceLockStatusAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceLockStatusA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceLockStatusARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceLockStatusA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // RStartServiceA
-		in := &StartServiceARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartServiceAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartServiceA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartServiceARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartServiceA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // RGetServiceDisplayNameA
-		in := &GetServiceDisplayNameARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServiceDisplayNameAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServiceDisplayNameA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServiceDisplayNameARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServiceDisplayNameA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // RGetServiceKeyNameA
-		in := &GetServiceKeyNameARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServiceKeyNameAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServiceKeyNameA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServiceKeyNameARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServiceKeyNameA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // Opnum34NotUsedOnWire
 		// Opnum34NotUsedOnWire
 		return nil, nil
 	case 35: // REnumServiceGroupW
-		in := &EnumServiceGroupWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumServiceGroupWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumServiceGroupW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumServiceGroupWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumServiceGroupW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // RChangeServiceConfig2A
-		in := &ChangeServiceConfig2ARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeServiceConfig2AOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeServiceConfig2A(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeServiceConfig2ARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeServiceConfig2A(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // RChangeServiceConfig2W
-		in := &ChangeServiceConfig2WRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangeServiceConfig2WOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangeServiceConfig2W(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangeServiceConfig2WRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangeServiceConfig2W(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // RQueryServiceConfig2A
-		in := &QueryServiceConfig2ARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceConfig2AOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceConfig2A(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceConfig2ARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceConfig2A(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // RQueryServiceConfig2W
-		in := &QueryServiceConfig2WRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceConfig2WOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceConfig2W(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceConfig2WRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceConfig2W(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // RQueryServiceStatusEx
-		in := &QueryServiceStatusExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceStatusExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceStatusEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceStatusExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceStatusEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // REnumServicesStatusExA
-		in := &EnumServicesStatusExARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumServicesStatusExAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumServicesStatusExA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumServicesStatusExARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumServicesStatusExA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // REnumServicesStatusExW
-		in := &EnumServicesStatusExWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumServicesStatusExWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumServicesStatusExW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumServicesStatusExWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumServicesStatusExW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // Opnum43NotUsedOnWire
 		// Opnum43NotUsedOnWire
 		return nil, nil
 	case 44: // RCreateServiceWOW64A
-		in := &CreateServiceWOW64ARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateServiceWOW64AOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateServiceWOW64A(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateServiceWOW64ARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateServiceWOW64A(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // RCreateServiceWOW64W
-		in := &CreateServiceWOW64WRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateServiceWOW64WOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateServiceWOW64W(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateServiceWOW64WRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateServiceWOW64W(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // Opnum46NotUsedOnWire
 		// Opnum46NotUsedOnWire
 		return nil, nil
 	case 47: // RNotifyServiceStatusChange
-		in := &NotifyServiceStatusChangeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NotifyServiceStatusChangeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NotifyServiceStatusChange(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NotifyServiceStatusChangeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NotifyServiceStatusChange(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // RGetNotifyResults
-		in := &GetNotifyResultsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotifyResultsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotifyResults(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotifyResultsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotifyResults(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // RCloseNotifyHandle
-		in := &CloseNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // RControlServiceExA
-		in := &ControlServiceExARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ControlServiceExAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ControlServiceExA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ControlServiceExARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ControlServiceExA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // RControlServiceExW
-		in := &ControlServiceExWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ControlServiceExWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ControlServiceExW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ControlServiceExWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ControlServiceExW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // Opnum52NotUsedOnWire
 		// Opnum52NotUsedOnWire
 		return nil, nil
@@ -1857,12 +1951,14 @@ func SvcctlServerHandle(ctx context.Context, o SvcctlServer, opNum int, r ndr.Re
 		// Opnum55NotUsedOnWire
 		return nil, nil
 	case 56: // RQueryServiceConfigEx
-		in := &QueryServiceConfigExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryServiceConfigExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryServiceConfigEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryServiceConfigExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryServiceConfigEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // Opnum57NotUsedOnWire
 		// Opnum57NotUsedOnWire
 		return nil, nil
@@ -1873,19 +1969,180 @@ func SvcctlServerHandle(ctx context.Context, o SvcctlServer, opNum int, r ndr.Re
 		// Opnum59NotUsedOnWire
 		return nil, nil
 	case 60: // RCreateWowService
-		in := &CreateWOWServiceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateWOWServiceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateWOWService(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateWOWServiceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateWOWService(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 61: // ROpenSCManager2
-		in := &OpenSCM2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenSCM2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenSCM2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenSCM2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSCM2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented svcctl
+type UnimplementedSvcctlServer struct {
+}
+
+func (UnimplementedSvcctlServer) CloseService(context.Context, *CloseServiceRequest) (*CloseServiceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ControlService(context.Context, *ControlServiceRequest) (*ControlServiceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) DeleteService(context.Context, *DeleteServiceRequest) (*DeleteServiceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) LockServiceDatabase(context.Context, *LockServiceDatabaseRequest) (*LockServiceDatabaseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceObjectSecurity(context.Context, *QueryServiceObjectSecurityRequest) (*QueryServiceObjectSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) SetServiceObjectSecurity(context.Context, *SetServiceObjectSecurityRequest) (*SetServiceObjectSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceStatus(context.Context, *QueryServiceStatusRequest) (*QueryServiceStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) SetServiceStatus(context.Context, *SetServiceStatusRequest) (*SetServiceStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) UnlockServiceDatabase(context.Context, *UnlockServiceDatabaseRequest) (*UnlockServiceDatabaseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) NotifyBootConfigStatus(context.Context, *NotifyBootConfigStatusRequest) (*NotifyBootConfigStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ChangeServiceConfigW(context.Context, *ChangeServiceConfigWRequest) (*ChangeServiceConfigWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) CreateServiceW(context.Context, *CreateServiceWRequest) (*CreateServiceWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumDependentServicesW(context.Context, *EnumDependentServicesWRequest) (*EnumDependentServicesWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumServicesStatusW(context.Context, *EnumServicesStatusWRequest) (*EnumServicesStatusWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) OpenSCMW(context.Context, *OpenSCMWRequest) (*OpenSCMWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) OpenServiceW(context.Context, *OpenServiceWRequest) (*OpenServiceWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceConfigW(context.Context, *QueryServiceConfigWRequest) (*QueryServiceConfigWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceLockStatusW(context.Context, *QueryServiceLockStatusWRequest) (*QueryServiceLockStatusWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) StartServiceW(context.Context, *StartServiceWRequest) (*StartServiceWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) GetServiceDisplayNameW(context.Context, *GetServiceDisplayNameWRequest) (*GetServiceDisplayNameWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) GetServiceKeyNameW(context.Context, *GetServiceKeyNameWRequest) (*GetServiceKeyNameWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ChangeServiceConfigA(context.Context, *ChangeServiceConfigARequest) (*ChangeServiceConfigAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) CreateServiceA(context.Context, *CreateServiceARequest) (*CreateServiceAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumDependentServicesA(context.Context, *EnumDependentServicesARequest) (*EnumDependentServicesAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumServicesStatusA(context.Context, *EnumServicesStatusARequest) (*EnumServicesStatusAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) OpenSCMA(context.Context, *OpenSCMARequest) (*OpenSCMAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) OpenServiceA(context.Context, *OpenServiceARequest) (*OpenServiceAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceConfigA(context.Context, *QueryServiceConfigARequest) (*QueryServiceConfigAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceLockStatusA(context.Context, *QueryServiceLockStatusARequest) (*QueryServiceLockStatusAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) StartServiceA(context.Context, *StartServiceARequest) (*StartServiceAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) GetServiceDisplayNameA(context.Context, *GetServiceDisplayNameARequest) (*GetServiceDisplayNameAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) GetServiceKeyNameA(context.Context, *GetServiceKeyNameARequest) (*GetServiceKeyNameAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumServiceGroupW(context.Context, *EnumServiceGroupWRequest) (*EnumServiceGroupWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ChangeServiceConfig2A(context.Context, *ChangeServiceConfig2ARequest) (*ChangeServiceConfig2AResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ChangeServiceConfig2W(context.Context, *ChangeServiceConfig2WRequest) (*ChangeServiceConfig2WResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceConfig2A(context.Context, *QueryServiceConfig2ARequest) (*QueryServiceConfig2AResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceConfig2W(context.Context, *QueryServiceConfig2WRequest) (*QueryServiceConfig2WResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceStatusEx(context.Context, *QueryServiceStatusExRequest) (*QueryServiceStatusExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumServicesStatusExA(context.Context, *EnumServicesStatusExARequest) (*EnumServicesStatusExAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) EnumServicesStatusExW(context.Context, *EnumServicesStatusExWRequest) (*EnumServicesStatusExWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) CreateServiceWOW64A(context.Context, *CreateServiceWOW64ARequest) (*CreateServiceWOW64AResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) CreateServiceWOW64W(context.Context, *CreateServiceWOW64WRequest) (*CreateServiceWOW64WResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) NotifyServiceStatusChange(context.Context, *NotifyServiceStatusChangeRequest) (*NotifyServiceStatusChangeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) GetNotifyResults(context.Context, *GetNotifyResultsRequest) (*GetNotifyResultsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) CloseNotify(context.Context, *CloseNotifyRequest) (*CloseNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ControlServiceExA(context.Context, *ControlServiceExARequest) (*ControlServiceExAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) ControlServiceExW(context.Context, *ControlServiceExWRequest) (*ControlServiceExWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) QueryServiceConfigEx(context.Context, *QueryServiceConfigExRequest) (*QueryServiceConfigExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) CreateWOWService(context.Context, *CreateWOWServiceRequest) (*CreateWOWServiceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSvcctlServer) OpenSCM2(context.Context, *OpenSCM2Request) (*OpenSCM2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SvcctlServer = (*UnimplementedSvcctlServer)(nil)

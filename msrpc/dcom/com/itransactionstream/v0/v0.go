@@ -102,7 +102,7 @@ func (o *xxx_DefaultTransactionStreamClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultTransactionStreamClient) GetSeqAndTxViaExport(ctx context.Context, in *GetSeqAndTxViaExportRequest, opts ...dcerpc.CallOption) (*GetSeqAndTxViaExportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -122,7 +122,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetSeqAndTxViaExport(ctx context.Co
 }
 
 func (o *xxx_DefaultTransactionStreamClient) GetSeqAndTxViaTransmitter(ctx context.Context, in *GetSeqAndTxViaTransmitterRequest, opts ...dcerpc.CallOption) (*GetSeqAndTxViaTransmitterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -142,7 +142,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetSeqAndTxViaTransmitter(ctx conte
 }
 
 func (o *xxx_DefaultTransactionStreamClient) GetTxViaExport(ctx context.Context, in *GetTxViaExportRequest, opts ...dcerpc.CallOption) (*GetTxViaExportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -162,7 +162,7 @@ func (o *xxx_DefaultTransactionStreamClient) GetTxViaExport(ctx context.Context,
 }
 
 func (o *xxx_DefaultTransactionStreamClient) GetTxViaTransmitter(ctx context.Context, in *GetTxViaTransmitterRequest, opts ...dcerpc.CallOption) (*GetTxViaTransmitterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -531,16 +531,18 @@ type GetSeqAndTxViaExportRequest struct {
 	Whereabouts []byte `idl:"name:rgbWhereabouts;size_is:(ulcbWhereabouts)" json:"whereabouts"`
 }
 
-func (o *GetSeqAndTxViaExportRequest) xxx_ToOp(ctx context.Context) *xxx_GetSeqAndTxViaExportOperation {
+func (o *GetSeqAndTxViaExportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSeqAndTxViaExportOperation) *xxx_GetSeqAndTxViaExportOperation {
+	if op == nil {
+		op = &xxx_GetSeqAndTxViaExportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSeqAndTxViaExportOperation{}
+		return op
 	}
-	return &xxx_GetSeqAndTxViaExportOperation{
-		This:              o.This,
-		KnownSeq:          o.KnownSeq,
-		WhereaboutsLength: o.WhereaboutsLength,
-		Whereabouts:       o.Whereabouts,
-	}
+	o.This = op.This
+	o.KnownSeq = op.KnownSeq
+	o.WhereaboutsLength = op.WhereaboutsLength
+	o.Whereabouts = op.Whereabouts
+	return op
 }
 
 func (o *GetSeqAndTxViaExportRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSeqAndTxViaExportOperation) {
@@ -553,7 +555,7 @@ func (o *GetSeqAndTxViaExportRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Whereabouts = op.Whereabouts
 }
 func (o *GetSeqAndTxViaExportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSeqAndTxViaExportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSeqAndTxViaExportOperation{}
@@ -579,17 +581,19 @@ type GetSeqAndTxViaExportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSeqAndTxViaExportResponse) xxx_ToOp(ctx context.Context) *xxx_GetSeqAndTxViaExportOperation {
+func (o *GetSeqAndTxViaExportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSeqAndTxViaExportOperation) *xxx_GetSeqAndTxViaExportOperation {
+	if op == nil {
+		op = &xxx_GetSeqAndTxViaExportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSeqAndTxViaExportOperation{}
+		return op
 	}
-	return &xxx_GetSeqAndTxViaExportOperation{
-		That:               o.That,
-		CurrentSeq:         o.CurrentSeq,
-		ExportCookieLength: o.ExportCookieLength,
-		ExportCookie:       o.ExportCookie,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.CurrentSeq = op.CurrentSeq
+	o.ExportCookieLength = op.ExportCookieLength
+	o.ExportCookie = op.ExportCookie
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSeqAndTxViaExportResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSeqAndTxViaExportOperation) {
@@ -603,7 +607,7 @@ func (o *GetSeqAndTxViaExportResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetSeqAndTxViaExportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSeqAndTxViaExportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSeqAndTxViaExportOperation{}
@@ -854,14 +858,16 @@ type GetSeqAndTxViaTransmitterRequest struct {
 	KnownSeq uint32 `idl:"name:ulKnownSeq" json:"known_seq"`
 }
 
-func (o *GetSeqAndTxViaTransmitterRequest) xxx_ToOp(ctx context.Context) *xxx_GetSeqAndTxViaTransmitterOperation {
+func (o *GetSeqAndTxViaTransmitterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSeqAndTxViaTransmitterOperation) *xxx_GetSeqAndTxViaTransmitterOperation {
+	if op == nil {
+		op = &xxx_GetSeqAndTxViaTransmitterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSeqAndTxViaTransmitterOperation{}
+		return op
 	}
-	return &xxx_GetSeqAndTxViaTransmitterOperation{
-		This:     o.This,
-		KnownSeq: o.KnownSeq,
-	}
+	o.This = op.This
+	o.KnownSeq = op.KnownSeq
+	return op
 }
 
 func (o *GetSeqAndTxViaTransmitterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSeqAndTxViaTransmitterOperation) {
@@ -872,7 +878,7 @@ func (o *GetSeqAndTxViaTransmitterRequest) xxx_FromOp(ctx context.Context, op *x
 	o.KnownSeq = op.KnownSeq
 }
 func (o *GetSeqAndTxViaTransmitterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSeqAndTxViaTransmitterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSeqAndTxViaTransmitterOperation{}
@@ -897,17 +903,19 @@ type GetSeqAndTxViaTransmitterResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSeqAndTxViaTransmitterResponse) xxx_ToOp(ctx context.Context) *xxx_GetSeqAndTxViaTransmitterOperation {
+func (o *GetSeqAndTxViaTransmitterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSeqAndTxViaTransmitterOperation) *xxx_GetSeqAndTxViaTransmitterOperation {
+	if op == nil {
+		op = &xxx_GetSeqAndTxViaTransmitterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSeqAndTxViaTransmitterOperation{}
+		return op
 	}
-	return &xxx_GetSeqAndTxViaTransmitterOperation{
-		That:                    o.That,
-		CurrentSeq:              o.CurrentSeq,
-		TransmitterBufferLength: o.TransmitterBufferLength,
-		TransmitterBuffer:       o.TransmitterBuffer,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.CurrentSeq = op.CurrentSeq
+	o.TransmitterBufferLength = op.TransmitterBufferLength
+	o.TransmitterBuffer = op.TransmitterBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSeqAndTxViaTransmitterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSeqAndTxViaTransmitterOperation) {
@@ -921,7 +929,7 @@ func (o *GetSeqAndTxViaTransmitterResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *GetSeqAndTxViaTransmitterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSeqAndTxViaTransmitterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSeqAndTxViaTransmitterOperation{}
@@ -1224,16 +1232,18 @@ type GetTxViaExportRequest struct {
 	Whereabouts []byte `idl:"name:rgbWhereabouts;size_is:(ulcbWhereabouts)" json:"whereabouts"`
 }
 
-func (o *GetTxViaExportRequest) xxx_ToOp(ctx context.Context) *xxx_GetTxViaExportOperation {
+func (o *GetTxViaExportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTxViaExportOperation) *xxx_GetTxViaExportOperation {
+	if op == nil {
+		op = &xxx_GetTxViaExportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTxViaExportOperation{}
+		return op
 	}
-	return &xxx_GetTxViaExportOperation{
-		This:              o.This,
-		RequestSeq:        o.RequestSeq,
-		WhereaboutsLength: o.WhereaboutsLength,
-		Whereabouts:       o.Whereabouts,
-	}
+	o.This = op.This
+	o.RequestSeq = op.RequestSeq
+	o.WhereaboutsLength = op.WhereaboutsLength
+	o.Whereabouts = op.Whereabouts
+	return op
 }
 
 func (o *GetTxViaExportRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTxViaExportOperation) {
@@ -1246,7 +1256,7 @@ func (o *GetTxViaExportRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTxVia
 	o.Whereabouts = op.Whereabouts
 }
 func (o *GetTxViaExportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTxViaExportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTxViaExportOperation{}
@@ -1270,16 +1280,18 @@ type GetTxViaExportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTxViaExportResponse) xxx_ToOp(ctx context.Context) *xxx_GetTxViaExportOperation {
+func (o *GetTxViaExportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTxViaExportOperation) *xxx_GetTxViaExportOperation {
+	if op == nil {
+		op = &xxx_GetTxViaExportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTxViaExportOperation{}
+		return op
 	}
-	return &xxx_GetTxViaExportOperation{
-		That:               o.That,
-		ExportCookieLength: o.ExportCookieLength,
-		ExportCookie:       o.ExportCookie,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.ExportCookieLength = op.ExportCookieLength
+	o.ExportCookie = op.ExportCookie
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTxViaExportResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTxViaExportOperation) {
@@ -1292,7 +1304,7 @@ func (o *GetTxViaExportResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTxVi
 	o.Return = op.Return
 }
 func (o *GetTxViaExportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTxViaExportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTxViaExportOperation{}
@@ -1530,14 +1542,16 @@ type GetTxViaTransmitterRequest struct {
 	RequestSeq uint32 `idl:"name:ulRequestSeq" json:"request_seq"`
 }
 
-func (o *GetTxViaTransmitterRequest) xxx_ToOp(ctx context.Context) *xxx_GetTxViaTransmitterOperation {
+func (o *GetTxViaTransmitterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTxViaTransmitterOperation) *xxx_GetTxViaTransmitterOperation {
+	if op == nil {
+		op = &xxx_GetTxViaTransmitterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTxViaTransmitterOperation{}
+		return op
 	}
-	return &xxx_GetTxViaTransmitterOperation{
-		This:       o.This,
-		RequestSeq: o.RequestSeq,
-	}
+	o.This = op.This
+	o.RequestSeq = op.RequestSeq
+	return op
 }
 
 func (o *GetTxViaTransmitterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTxViaTransmitterOperation) {
@@ -1548,7 +1562,7 @@ func (o *GetTxViaTransmitterRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.RequestSeq = op.RequestSeq
 }
 func (o *GetTxViaTransmitterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTxViaTransmitterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTxViaTransmitterOperation{}
@@ -1571,16 +1585,18 @@ type GetTxViaTransmitterResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTxViaTransmitterResponse) xxx_ToOp(ctx context.Context) *xxx_GetTxViaTransmitterOperation {
+func (o *GetTxViaTransmitterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTxViaTransmitterOperation) *xxx_GetTxViaTransmitterOperation {
+	if op == nil {
+		op = &xxx_GetTxViaTransmitterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTxViaTransmitterOperation{}
+		return op
 	}
-	return &xxx_GetTxViaTransmitterOperation{
-		That:                    o.That,
-		TransmitterBufferLength: o.TransmitterBufferLength,
-		TransmitterBuffer:       o.TransmitterBuffer,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.TransmitterBufferLength = op.TransmitterBufferLength
+	o.TransmitterBuffer = op.TransmitterBuffer
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTxViaTransmitterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTxViaTransmitterOperation) {
@@ -1593,7 +1609,7 @@ func (o *GetTxViaTransmitterResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetTxViaTransmitterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTxViaTransmitterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTxViaTransmitterOperation{}

@@ -73,61 +73,109 @@ func EventSubscription3ServerHandle(ctx context.Context, o EventSubscription3Ser
 	}
 	switch opNum {
 	case 45: // EventClassPartitionID
-		in := &GetEventClassPartitionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassPartitionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassPartitionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassPartitionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassPartitionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // EventClassPartitionID
-		in := &SetEventClassPartitionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassPartitionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassPartitionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassPartitionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassPartitionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // EventClassApplicationID
-		in := &GetEventClassApplicationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassApplicationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassApplicationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassApplicationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassApplicationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // EventClassApplicationID
-		in := &SetEventClassApplicationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassApplicationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassApplicationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassApplicationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassApplicationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // SubscriberPartitionID
-		in := &GetSubscriberPartitionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberPartitionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberPartitionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberPartitionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberPartitionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // SubscriberPartitionID
-		in := &SetSubscriberPartitionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriberPartitionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriberPartitionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriberPartitionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriberPartitionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // SubscriberApplicationID
-		in := &GetSubscriberApplicationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberApplicationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberApplicationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberApplicationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberApplicationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // SubscriberApplicationID
-		in := &SetSubscriberApplicationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriberApplicationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriberApplicationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriberApplicationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriberApplicationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventSubscription3
+type UnimplementedEventSubscription3Server struct {
+	ieventsubscription2.UnimplementedEventSubscription2Server
+}
+
+func (UnimplementedEventSubscription3Server) GetEventClassPartitionID(context.Context, *GetEventClassPartitionIDRequest) (*GetEventClassPartitionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) SetEventClassPartitionID(context.Context, *SetEventClassPartitionIDRequest) (*SetEventClassPartitionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) GetEventClassApplicationID(context.Context, *GetEventClassApplicationIDRequest) (*GetEventClassApplicationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) SetEventClassApplicationID(context.Context, *SetEventClassApplicationIDRequest) (*SetEventClassApplicationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) GetSubscriberPartitionID(context.Context, *GetSubscriberPartitionIDRequest) (*GetSubscriberPartitionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) SetSubscriberPartitionID(context.Context, *SetSubscriberPartitionIDRequest) (*SetSubscriberPartitionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) GetSubscriberApplicationID(context.Context, *GetSubscriberApplicationIDRequest) (*GetSubscriberApplicationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription3Server) SetSubscriberApplicationID(context.Context, *SetSubscriberApplicationIDRequest) (*SetSubscriberApplicationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventSubscription3Server = (*UnimplementedEventSubscription3Server)(nil)

@@ -88,7 +88,7 @@ func (o *xxx_SecureChannelClient) {{ $m }}(ctx context.Context, in *{{ $m }}Requ
 	}
 
 	if err := o.SetAuthenticators(ctx, &in.Authenticator, &in.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	ret, err := o.LogonClient.{{ $m }}(ctx, in, opts...)
@@ -97,7 +97,7 @@ func (o *xxx_SecureChannelClient) {{ $m }}(ctx context.Context, in *{{ $m }}Requ
 	}
 
 	if err := o.VerifyAuthenticator(ctx, ret.ReturnAuthenticator); err != nil {
-		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx).OpName(), err)
+		return nil, fmt.Errorf("%s: %v", in.xxx_ToOp(ctx, nil).OpName(), err)
 	}
 
 	return ret, nil

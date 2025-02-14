@@ -90,7 +90,7 @@ func (o *xxx_DefaultFileGroupClient) Object() ifsrmobject.ObjectClient {
 }
 
 func (o *xxx_DefaultFileGroupClient) GetName(ctx context.Context, in *GetNameRequest, opts ...dcerpc.CallOption) (*GetNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -110,7 +110,7 @@ func (o *xxx_DefaultFileGroupClient) GetName(ctx context.Context, in *GetNameReq
 }
 
 func (o *xxx_DefaultFileGroupClient) SetName(ctx context.Context, in *SetNameRequest, opts ...dcerpc.CallOption) (*SetNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -130,7 +130,7 @@ func (o *xxx_DefaultFileGroupClient) SetName(ctx context.Context, in *SetNameReq
 }
 
 func (o *xxx_DefaultFileGroupClient) GetMembers(ctx context.Context, in *GetMembersRequest, opts ...dcerpc.CallOption) (*GetMembersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -150,7 +150,7 @@ func (o *xxx_DefaultFileGroupClient) GetMembers(ctx context.Context, in *GetMemb
 }
 
 func (o *xxx_DefaultFileGroupClient) SetMembers(ctx context.Context, in *SetMembersRequest, opts ...dcerpc.CallOption) (*SetMembersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -170,7 +170,7 @@ func (o *xxx_DefaultFileGroupClient) SetMembers(ctx context.Context, in *SetMemb
 }
 
 func (o *xxx_DefaultFileGroupClient) GetNonMembers(ctx context.Context, in *GetNonMembersRequest, opts ...dcerpc.CallOption) (*GetNonMembersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -190,7 +190,7 @@ func (o *xxx_DefaultFileGroupClient) GetNonMembers(ctx context.Context, in *GetN
 }
 
 func (o *xxx_DefaultFileGroupClient) SetNonMembers(ctx context.Context, in *SetNonMembersRequest, opts ...dcerpc.CallOption) (*SetNonMembersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -421,13 +421,15 @@ type GetNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -437,7 +439,7 @@ func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperatio
 	o.This = op.This
 }
 func (o *GetNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -457,15 +459,17 @@ type GetNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		That:   o.That,
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -477,7 +481,7 @@ func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperati
 	o.Return = op.Return
 }
 func (o *GetNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -659,14 +663,16 @@ type SetNameRequest struct {
 	Name *oaut.String   `idl:"name:name" json:"name"`
 }
 
-func (o *SetNameRequest) xxx_ToOp(ctx context.Context) *xxx_SetNameOperation {
+func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation) *xxx_SetNameOperation {
+	if op == nil {
+		op = &xxx_SetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNameOperation{}
+		return op
 	}
-	return &xxx_SetNameOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *SetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperation) {
@@ -677,7 +683,7 @@ func (o *SetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperatio
 	o.Name = op.Name
 }
 func (o *SetNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNameOperation{}
@@ -696,14 +702,16 @@ type SetNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetNameResponse) xxx_ToOp(ctx context.Context) *xxx_SetNameOperation {
+func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation) *xxx_SetNameOperation {
+	if op == nil {
+		op = &xxx_SetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNameOperation{}
+		return op
 	}
-	return &xxx_SetNameOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperation) {
@@ -714,7 +722,7 @@ func (o *SetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperati
 	o.Return = op.Return
 }
 func (o *SetNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNameOperation{}
@@ -895,13 +903,15 @@ type GetMembersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMembersRequest) xxx_ToOp(ctx context.Context) *xxx_GetMembersOperation {
+func (o *GetMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMembersOperation) *xxx_GetMembersOperation {
+	if op == nil {
+		op = &xxx_GetMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMembersOperation{}
+		return op
 	}
-	return &xxx_GetMembersOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMembersOperation) {
@@ -911,7 +921,7 @@ func (o *GetMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMembersOp
 	o.This = op.This
 }
 func (o *GetMembersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMembersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMembersOperation{}
@@ -931,15 +941,17 @@ type GetMembersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMembersResponse) xxx_ToOp(ctx context.Context) *xxx_GetMembersOperation {
+func (o *GetMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMembersOperation) *xxx_GetMembersOperation {
+	if op == nil {
+		op = &xxx_GetMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMembersOperation{}
+		return op
 	}
-	return &xxx_GetMembersOperation{
-		That:    o.That,
-		Members: o.Members,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Members = op.Members
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMembersOperation) {
@@ -951,7 +963,7 @@ func (o *GetMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMembersO
 	o.Return = op.Return
 }
 func (o *GetMembersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMembersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMembersOperation{}
@@ -1133,14 +1145,16 @@ type SetMembersRequest struct {
 	Members *fsrm.MutableCollection `idl:"name:members" json:"members"`
 }
 
-func (o *SetMembersRequest) xxx_ToOp(ctx context.Context) *xxx_SetMembersOperation {
+func (o *SetMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMembersOperation) *xxx_SetMembersOperation {
+	if op == nil {
+		op = &xxx_SetMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMembersOperation{}
+		return op
 	}
-	return &xxx_SetMembersOperation{
-		This:    o.This,
-		Members: o.Members,
-	}
+	o.This = op.This
+	o.Members = op.Members
+	return op
 }
 
 func (o *SetMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMembersOperation) {
@@ -1151,7 +1165,7 @@ func (o *SetMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMembersOp
 	o.Members = op.Members
 }
 func (o *SetMembersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMembersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMembersOperation{}
@@ -1170,14 +1184,16 @@ type SetMembersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMembersResponse) xxx_ToOp(ctx context.Context) *xxx_SetMembersOperation {
+func (o *SetMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMembersOperation) *xxx_SetMembersOperation {
+	if op == nil {
+		op = &xxx_SetMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMembersOperation{}
+		return op
 	}
-	return &xxx_SetMembersOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMembersOperation) {
@@ -1188,7 +1204,7 @@ func (o *SetMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMembersO
 	o.Return = op.Return
 }
 func (o *SetMembersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMembersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMembersOperation{}
@@ -1369,13 +1385,15 @@ type GetNonMembersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetNonMembersRequest) xxx_ToOp(ctx context.Context) *xxx_GetNonMembersOperation {
+func (o *GetNonMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNonMembersOperation) *xxx_GetNonMembersOperation {
+	if op == nil {
+		op = &xxx_GetNonMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNonMembersOperation{}
+		return op
 	}
-	return &xxx_GetNonMembersOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetNonMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNonMembersOperation) {
@@ -1385,7 +1403,7 @@ func (o *GetNonMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNonMem
 	o.This = op.This
 }
 func (o *GetNonMembersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNonMembersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNonMembersOperation{}
@@ -1405,15 +1423,17 @@ type GetNonMembersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNonMembersResponse) xxx_ToOp(ctx context.Context) *xxx_GetNonMembersOperation {
+func (o *GetNonMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNonMembersOperation) *xxx_GetNonMembersOperation {
+	if op == nil {
+		op = &xxx_GetNonMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNonMembersOperation{}
+		return op
 	}
-	return &xxx_GetNonMembersOperation{
-		That:       o.That,
-		NonMembers: o.NonMembers,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.NonMembers = op.NonMembers
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNonMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNonMembersOperation) {
@@ -1425,7 +1445,7 @@ func (o *GetNonMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNonMe
 	o.Return = op.Return
 }
 func (o *GetNonMembersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNonMembersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNonMembersOperation{}
@@ -1607,14 +1627,16 @@ type SetNonMembersRequest struct {
 	NonMembers *fsrm.MutableCollection `idl:"name:nonMembers" json:"non_members"`
 }
 
-func (o *SetNonMembersRequest) xxx_ToOp(ctx context.Context) *xxx_SetNonMembersOperation {
+func (o *SetNonMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNonMembersOperation) *xxx_SetNonMembersOperation {
+	if op == nil {
+		op = &xxx_SetNonMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNonMembersOperation{}
+		return op
 	}
-	return &xxx_SetNonMembersOperation{
-		This:       o.This,
-		NonMembers: o.NonMembers,
-	}
+	o.This = op.This
+	o.NonMembers = op.NonMembers
+	return op
 }
 
 func (o *SetNonMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNonMembersOperation) {
@@ -1625,7 +1647,7 @@ func (o *SetNonMembersRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNonMem
 	o.NonMembers = op.NonMembers
 }
 func (o *SetNonMembersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetNonMembersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNonMembersOperation{}
@@ -1644,14 +1666,16 @@ type SetNonMembersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetNonMembersResponse) xxx_ToOp(ctx context.Context) *xxx_SetNonMembersOperation {
+func (o *SetNonMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNonMembersOperation) *xxx_SetNonMembersOperation {
+	if op == nil {
+		op = &xxx_SetNonMembersOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNonMembersOperation{}
+		return op
 	}
-	return &xxx_SetNonMembersOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetNonMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNonMembersOperation) {
@@ -1662,7 +1686,7 @@ func (o *SetNonMembersResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNonMe
 	o.Return = op.Return
 }
 func (o *SetNonMembersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetNonMembersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNonMembersOperation{}

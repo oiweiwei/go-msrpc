@@ -73,7 +73,7 @@ func (o *xxx_DefaultCommittableCollectionClient) MutableCollection() ifsrmmutabl
 }
 
 func (o *xxx_DefaultCommittableCollectionClient) Commit(ctx context.Context, in *CommitRequest, opts ...dcerpc.CallOption) (*CommitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -318,14 +318,16 @@ type CommitRequest struct {
 	Options fsrm.CommitOptions `idl:"name:options" json:"options"`
 }
 
-func (o *CommitRequest) xxx_ToOp(ctx context.Context) *xxx_CommitOperation {
+func (o *CommitRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) *xxx_CommitOperation {
+	if op == nil {
+		op = &xxx_CommitOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitOperation{}
+		return op
 	}
-	return &xxx_CommitOperation{
-		This:    o.This,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Options = op.Options
+	return op
 }
 
 func (o *CommitRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitOperation) {
@@ -336,7 +338,7 @@ func (o *CommitRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitOperation)
 	o.Options = op.Options
 }
 func (o *CommitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitOperation{}
@@ -356,15 +358,17 @@ type CommitResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CommitResponse) xxx_ToOp(ctx context.Context) *xxx_CommitOperation {
+func (o *CommitResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) *xxx_CommitOperation {
+	if op == nil {
+		op = &xxx_CommitOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitOperation{}
+		return op
 	}
-	return &xxx_CommitOperation{
-		That:    o.That,
-		Results: o.Results,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Results = op.Results
+	o.Return = op.Return
+	return op
 }
 
 func (o *CommitResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitOperation) {
@@ -376,7 +380,7 @@ func (o *CommitResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitOperation
 	o.Return = op.Return
 }
 func (o *CommitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CommitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitOperation{}

@@ -154,7 +154,7 @@ func (o *xxx_DefaultServerHealthReportClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServerHealthReportClient) GetReport(ctx context.Context, in *GetReportRequest, opts ...dcerpc.CallOption) (*GetReportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -174,7 +174,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetReport(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultServerHealthReportClient) GetCompressedReport(ctx context.Context, in *GetCompressedReportRequest, opts ...dcerpc.CallOption) (*GetCompressedReportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -194,7 +194,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetCompressedReport(ctx context.Co
 }
 
 func (o *xxx_DefaultServerHealthReportClient) GetRawReportEx(ctx context.Context, in *GetRawReportExRequest, opts ...dcerpc.CallOption) (*GetRawReportExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -214,7 +214,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetRawReportEx(ctx context.Context
 }
 
 func (o *xxx_DefaultServerHealthReportClient) GetReferenceVersionVectors(ctx context.Context, in *GetReferenceVersionVectorsRequest, opts ...dcerpc.CallOption) (*GetReferenceVersionVectorsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -234,7 +234,7 @@ func (o *xxx_DefaultServerHealthReportClient) GetReferenceVersionVectors(ctx con
 }
 
 func (o *xxx_DefaultServerHealthReportClient) GetReferenceBacklogCounts(ctx context.Context, in *GetReferenceBacklogCountsRequest, opts ...dcerpc.CallOption) (*GetReferenceBacklogCountsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -711,17 +711,19 @@ type GetReportRequest struct {
 	Flags int32 `idl:"name:flags" json:"flags"`
 }
 
-func (o *GetReportRequest) xxx_ToOp(ctx context.Context) *xxx_GetReportOperation {
+func (o *GetReportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReportOperation) *xxx_GetReportOperation {
+	if op == nil {
+		op = &xxx_GetReportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReportOperation{}
+		return op
 	}
-	return &xxx_GetReportOperation{
-		This:                    o.This,
-		ReplicationGroupGUID:    o.ReplicationGroupGUID,
-		ReferenceMember:         o.ReferenceMember,
-		ReferenceVersionVectors: o.ReferenceVersionVectors,
-		Flags:                   o.Flags,
-	}
+	o.This = op.This
+	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	o.ReferenceMember = op.ReferenceMember
+	o.ReferenceVersionVectors = op.ReferenceVersionVectors
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *GetReportRequest) xxx_FromOp(ctx context.Context, op *xxx_GetReportOperation) {
@@ -735,7 +737,7 @@ func (o *GetReportRequest) xxx_FromOp(ctx context.Context, op *xxx_GetReportOper
 	o.Flags = op.Flags
 }
 func (o *GetReportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetReportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReportOperation{}
@@ -762,16 +764,18 @@ type GetReportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetReportResponse) xxx_ToOp(ctx context.Context) *xxx_GetReportOperation {
+func (o *GetReportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReportOperation) *xxx_GetReportOperation {
+	if op == nil {
+		op = &xxx_GetReportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReportOperation{}
+		return op
 	}
-	return &xxx_GetReportOperation{
-		That:                 o.That,
-		MemberVersionVectors: o.MemberVersionVectors,
-		ReportXML:            o.ReportXML,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.MemberVersionVectors = op.MemberVersionVectors
+	o.ReportXML = op.ReportXML
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetReportResponse) xxx_FromOp(ctx context.Context, op *xxx_GetReportOperation) {
@@ -784,7 +788,7 @@ func (o *GetReportResponse) xxx_FromOp(ctx context.Context, op *xxx_GetReportOpe
 	o.Return = op.Return
 }
 func (o *GetReportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetReportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReportOperation{}
@@ -1209,17 +1213,19 @@ type GetCompressedReportRequest struct {
 	Flags int32 `idl:"name:flags" json:"flags"`
 }
 
-func (o *GetCompressedReportRequest) xxx_ToOp(ctx context.Context) *xxx_GetCompressedReportOperation {
+func (o *GetCompressedReportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCompressedReportOperation) *xxx_GetCompressedReportOperation {
+	if op == nil {
+		op = &xxx_GetCompressedReportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCompressedReportOperation{}
+		return op
 	}
-	return &xxx_GetCompressedReportOperation{
-		This:                    o.This,
-		ReplicationGroupGUID:    o.ReplicationGroupGUID,
-		ReferenceMember:         o.ReferenceMember,
-		ReferenceVersionVectors: o.ReferenceVersionVectors,
-		Flags:                   o.Flags,
-	}
+	o.This = op.This
+	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	o.ReferenceMember = op.ReferenceMember
+	o.ReferenceVersionVectors = op.ReferenceVersionVectors
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *GetCompressedReportRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCompressedReportOperation) {
@@ -1233,7 +1239,7 @@ func (o *GetCompressedReportRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Flags = op.Flags
 }
 func (o *GetCompressedReportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCompressedReportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCompressedReportOperation{}
@@ -1265,17 +1271,19 @@ type GetCompressedReportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCompressedReportResponse) xxx_ToOp(ctx context.Context) *xxx_GetCompressedReportOperation {
+func (o *GetCompressedReportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCompressedReportOperation) *xxx_GetCompressedReportOperation {
+	if op == nil {
+		op = &xxx_GetCompressedReportOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCompressedReportOperation{}
+		return op
 	}
-	return &xxx_GetCompressedReportOperation{
-		That:                   o.That,
-		MemberVersionVectors:   o.MemberVersionVectors,
-		ReportCompressed:       o.ReportCompressed,
-		UncompressedReportSize: o.UncompressedReportSize,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.MemberVersionVectors = op.MemberVersionVectors
+	o.ReportCompressed = op.ReportCompressed
+	o.UncompressedReportSize = op.UncompressedReportSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCompressedReportResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCompressedReportOperation) {
@@ -1289,7 +1297,7 @@ func (o *GetCompressedReportResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetCompressedReportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCompressedReportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCompressedReportOperation{}
@@ -1583,15 +1591,17 @@ type GetRawReportExRequest struct {
 	ReportOptions *oaut.SafeArray `idl:"name:reportOptions" json:"report_options"`
 }
 
-func (o *GetRawReportExRequest) xxx_ToOp(ctx context.Context) *xxx_GetRawReportExOperation {
+func (o *GetRawReportExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRawReportExOperation) *xxx_GetRawReportExOperation {
+	if op == nil {
+		op = &xxx_GetRawReportExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRawReportExOperation{}
+		return op
 	}
-	return &xxx_GetRawReportExOperation{
-		This:                 o.This,
-		ReplicationGroupGUID: o.ReplicationGroupGUID,
-		ReportOptions:        o.ReportOptions,
-	}
+	o.This = op.This
+	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	o.ReportOptions = op.ReportOptions
+	return op
 }
 
 func (o *GetRawReportExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRawReportExOperation) {
@@ -1603,7 +1613,7 @@ func (o *GetRawReportExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRawRe
 	o.ReportOptions = op.ReportOptions
 }
 func (o *GetRawReportExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRawReportExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRawReportExOperation{}
@@ -1624,15 +1634,17 @@ type GetRawReportExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRawReportExResponse) xxx_ToOp(ctx context.Context) *xxx_GetRawReportExOperation {
+func (o *GetRawReportExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRawReportExOperation) *xxx_GetRawReportExOperation {
+	if op == nil {
+		op = &xxx_GetRawReportExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRawReportExOperation{}
+		return op
 	}
-	return &xxx_GetRawReportExOperation{
-		That:   o.That,
-		Report: o.Report,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Report = op.Report
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRawReportExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRawReportExOperation) {
@@ -1644,7 +1656,7 @@ func (o *GetRawReportExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRawR
 	o.Return = op.Return
 }
 func (o *GetRawReportExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRawReportExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRawReportExOperation{}
@@ -1871,14 +1883,16 @@ type GetReferenceVersionVectorsRequest struct {
 	ReplicationGroupGUID *dtyp.GUID `idl:"name:replicationGroupGuid" json:"replication_group_guid"`
 }
 
-func (o *GetReferenceVersionVectorsRequest) xxx_ToOp(ctx context.Context) *xxx_GetReferenceVersionVectorsOperation {
+func (o *GetReferenceVersionVectorsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReferenceVersionVectorsOperation) *xxx_GetReferenceVersionVectorsOperation {
+	if op == nil {
+		op = &xxx_GetReferenceVersionVectorsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReferenceVersionVectorsOperation{}
+		return op
 	}
-	return &xxx_GetReferenceVersionVectorsOperation{
-		This:                 o.This,
-		ReplicationGroupGUID: o.ReplicationGroupGUID,
-	}
+	o.This = op.This
+	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	return op
 }
 
 func (o *GetReferenceVersionVectorsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetReferenceVersionVectorsOperation) {
@@ -1889,7 +1903,7 @@ func (o *GetReferenceVersionVectorsRequest) xxx_FromOp(ctx context.Context, op *
 	o.ReplicationGroupGUID = op.ReplicationGroupGUID
 }
 func (o *GetReferenceVersionVectorsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetReferenceVersionVectorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReferenceVersionVectorsOperation{}
@@ -1912,15 +1926,17 @@ type GetReferenceVersionVectorsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetReferenceVersionVectorsResponse) xxx_ToOp(ctx context.Context) *xxx_GetReferenceVersionVectorsOperation {
+func (o *GetReferenceVersionVectorsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReferenceVersionVectorsOperation) *xxx_GetReferenceVersionVectorsOperation {
+	if op == nil {
+		op = &xxx_GetReferenceVersionVectorsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReferenceVersionVectorsOperation{}
+		return op
 	}
-	return &xxx_GetReferenceVersionVectorsOperation{
-		That:                    o.That,
-		ReferenceVersionVectors: o.ReferenceVersionVectors,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.ReferenceVersionVectors = op.ReferenceVersionVectors
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetReferenceVersionVectorsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetReferenceVersionVectorsOperation) {
@@ -1932,7 +1948,7 @@ func (o *GetReferenceVersionVectorsResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *GetReferenceVersionVectorsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetReferenceVersionVectorsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReferenceVersionVectorsOperation{}
@@ -2205,14 +2221,16 @@ type GetReferenceBacklogCountsRequest struct {
 	FlatMemberVersionVectors *oaut.SafeArray `idl:"name:flatMemberVersionVectors" json:"flat_member_version_vectors"`
 }
 
-func (o *GetReferenceBacklogCountsRequest) xxx_ToOp(ctx context.Context) *xxx_GetReferenceBacklogCountsOperation {
+func (o *GetReferenceBacklogCountsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReferenceBacklogCountsOperation) *xxx_GetReferenceBacklogCountsOperation {
+	if op == nil {
+		op = &xxx_GetReferenceBacklogCountsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReferenceBacklogCountsOperation{}
+		return op
 	}
-	return &xxx_GetReferenceBacklogCountsOperation{
-		This:                     o.This,
-		FlatMemberVersionVectors: o.FlatMemberVersionVectors,
-	}
+	o.This = op.This
+	o.FlatMemberVersionVectors = op.FlatMemberVersionVectors
+	return op
 }
 
 func (o *GetReferenceBacklogCountsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetReferenceBacklogCountsOperation) {
@@ -2223,7 +2241,7 @@ func (o *GetReferenceBacklogCountsRequest) xxx_FromOp(ctx context.Context, op *x
 	o.FlatMemberVersionVectors = op.FlatMemberVersionVectors
 }
 func (o *GetReferenceBacklogCountsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetReferenceBacklogCountsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReferenceBacklogCountsOperation{}
@@ -2248,15 +2266,17 @@ type GetReferenceBacklogCountsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetReferenceBacklogCountsResponse) xxx_ToOp(ctx context.Context) *xxx_GetReferenceBacklogCountsOperation {
+func (o *GetReferenceBacklogCountsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReferenceBacklogCountsOperation) *xxx_GetReferenceBacklogCountsOperation {
+	if op == nil {
+		op = &xxx_GetReferenceBacklogCountsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReferenceBacklogCountsOperation{}
+		return op
 	}
-	return &xxx_GetReferenceBacklogCountsOperation{
-		That:          o.That,
-		BacklogCounts: o.BacklogCounts,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.BacklogCounts = op.BacklogCounts
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetReferenceBacklogCountsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetReferenceBacklogCountsOperation) {
@@ -2268,7 +2288,7 @@ func (o *GetReferenceBacklogCountsResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *GetReferenceBacklogCountsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetReferenceBacklogCountsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReferenceBacklogCountsOperation{}

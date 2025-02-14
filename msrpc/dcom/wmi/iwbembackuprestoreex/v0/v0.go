@@ -104,7 +104,7 @@ func (o *xxx_DefaultBackupRestoreExClient) BackupRestore() iwbembackuprestore.Ba
 }
 
 func (o *xxx_DefaultBackupRestoreExClient) Pause(ctx context.Context, in *PauseRequest, opts ...dcerpc.CallOption) (*PauseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultBackupRestoreExClient) Pause(ctx context.Context, in *PauseR
 }
 
 func (o *xxx_DefaultBackupRestoreExClient) Resume(ctx context.Context, in *ResumeRequest, opts ...dcerpc.CallOption) (*ResumeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -308,13 +308,15 @@ type PauseRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *PauseRequest) xxx_ToOp(ctx context.Context) *xxx_PauseOperation {
+func (o *PauseRequest) xxx_ToOp(ctx context.Context, op *xxx_PauseOperation) *xxx_PauseOperation {
+	if op == nil {
+		op = &xxx_PauseOperation{}
+	}
 	if o == nil {
-		return &xxx_PauseOperation{}
+		return op
 	}
-	return &xxx_PauseOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *PauseRequest) xxx_FromOp(ctx context.Context, op *xxx_PauseOperation) {
@@ -324,7 +326,7 @@ func (o *PauseRequest) xxx_FromOp(ctx context.Context, op *xxx_PauseOperation) {
 	o.This = op.This
 }
 func (o *PauseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PauseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PauseOperation{}
@@ -343,14 +345,16 @@ type PauseResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PauseResponse) xxx_ToOp(ctx context.Context) *xxx_PauseOperation {
+func (o *PauseResponse) xxx_ToOp(ctx context.Context, op *xxx_PauseOperation) *xxx_PauseOperation {
+	if op == nil {
+		op = &xxx_PauseOperation{}
+	}
 	if o == nil {
-		return &xxx_PauseOperation{}
+		return op
 	}
-	return &xxx_PauseOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PauseResponse) xxx_FromOp(ctx context.Context, op *xxx_PauseOperation) {
@@ -361,7 +365,7 @@ func (o *PauseResponse) xxx_FromOp(ctx context.Context, op *xxx_PauseOperation) 
 	o.Return = op.Return
 }
 func (o *PauseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PauseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PauseOperation{}
@@ -495,13 +499,15 @@ type ResumeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *ResumeRequest) xxx_ToOp(ctx context.Context) *xxx_ResumeOperation {
+func (o *ResumeRequest) xxx_ToOp(ctx context.Context, op *xxx_ResumeOperation) *xxx_ResumeOperation {
+	if op == nil {
+		op = &xxx_ResumeOperation{}
+	}
 	if o == nil {
-		return &xxx_ResumeOperation{}
+		return op
 	}
-	return &xxx_ResumeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *ResumeRequest) xxx_FromOp(ctx context.Context, op *xxx_ResumeOperation) {
@@ -511,7 +517,7 @@ func (o *ResumeRequest) xxx_FromOp(ctx context.Context, op *xxx_ResumeOperation)
 	o.This = op.This
 }
 func (o *ResumeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResumeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResumeOperation{}
@@ -530,14 +536,16 @@ type ResumeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResumeResponse) xxx_ToOp(ctx context.Context) *xxx_ResumeOperation {
+func (o *ResumeResponse) xxx_ToOp(ctx context.Context, op *xxx_ResumeOperation) *xxx_ResumeOperation {
+	if op == nil {
+		op = &xxx_ResumeOperation{}
+	}
 	if o == nil {
-		return &xxx_ResumeOperation{}
+		return op
 	}
-	return &xxx_ResumeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResumeResponse) xxx_FromOp(ctx context.Context, op *xxx_ResumeOperation) {
@@ -548,7 +556,7 @@ func (o *ResumeResponse) xxx_FromOp(ctx context.Context, op *xxx_ResumeOperation
 	o.Return = op.Return
 }
 func (o *ResumeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResumeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResumeOperation{}

@@ -172,145 +172,252 @@ func NewTaskSchedulerServiceServerHandle(o TaskSchedulerServiceServer) dcerpc.Se
 func TaskSchedulerServiceServerHandle(ctx context.Context, o TaskSchedulerServiceServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // SchRpcHighestVersion
-		in := &HighestVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_HighestVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.HighestVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &HighestVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.HighestVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // SchRpcRegisterTask
-		in := &RegisterTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // SchRpcRetrieveTask
-		in := &RetrieveTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetrieveTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetrieveTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetrieveTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrieveTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // SchRpcCreateFolder
-		in := &CreateFolderRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFolderOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFolder(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFolderRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFolder(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SchRpcSetSecurity
-		in := &SetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // SchRpcGetSecurity
-		in := &GetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // SchRpcEnumFolders
-		in := &EnumFoldersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFoldersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumFolders(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFoldersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFolders(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // SchRpcEnumTasks
-		in := &EnumTasksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumTasksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumTasks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumTasksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumTasks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SchRpcEnumInstances
-		in := &EnumInstancesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumInstancesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumInstances(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumInstancesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumInstances(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // SchRpcGetInstanceInfo
-		in := &GetInstanceInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInstanceInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInstanceInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInstanceInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInstanceInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // SchRpcStopInstance
-		in := &StopInstanceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopInstanceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StopInstance(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopInstanceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StopInstance(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // SchRpcStop
-		in := &StopRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Stop(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Stop(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // SchRpcRun
-		in := &RunRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RunOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Run(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RunRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Run(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // SchRpcDelete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // SchRpcRename
-		in := &RenameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RenameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Rename(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RenameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Rename(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // SchRpcScheduledRuntimes
-		in := &ScheduledRuntimesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ScheduledRuntimesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ScheduledRuntimes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ScheduledRuntimesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ScheduledRuntimes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // SchRpcGetLastRunInfo
-		in := &GetLastRunInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastRunInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastRunInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastRunInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastRunInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // SchRpcGetTaskInfo
-		in := &GetTaskInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // SchRpcGetNumberOfMissedRuns
-		in := &GetNumberOfMissedRunsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNumberOfMissedRunsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNumberOfMissedRuns(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNumberOfMissedRunsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNumberOfMissedRuns(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // SchRpcEnableTask
-		in := &EnableTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnableTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnableTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnableTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnableTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITaskSchedulerService
+type UnimplementedTaskSchedulerServiceServer struct {
+}
+
+func (UnimplementedTaskSchedulerServiceServer) HighestVersion(context.Context, *HighestVersionRequest) (*HighestVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) RegisterTask(context.Context, *RegisterTaskRequest) (*RegisterTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) RetrieveTask(context.Context, *RetrieveTaskRequest) (*RetrieveTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) CreateFolder(context.Context, *CreateFolderRequest) (*CreateFolderResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) EnumFolders(context.Context, *EnumFoldersRequest) (*EnumFoldersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) EnumTasks(context.Context, *EnumTasksRequest) (*EnumTasksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) EnumInstances(context.Context, *EnumInstancesRequest) (*EnumInstancesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) GetInstanceInfo(context.Context, *GetInstanceInfoRequest) (*GetInstanceInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) StopInstance(context.Context, *StopInstanceRequest) (*StopInstanceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) Rename(context.Context, *RenameRequest) (*RenameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) ScheduledRuntimes(context.Context, *ScheduledRuntimesRequest) (*ScheduledRuntimesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) GetLastRunInfo(context.Context, *GetLastRunInfoRequest) (*GetLastRunInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) GetTaskInfo(context.Context, *GetTaskInfoRequest) (*GetTaskInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) GetNumberOfMissedRuns(context.Context, *GetNumberOfMissedRunsRequest) (*GetNumberOfMissedRunsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTaskSchedulerServiceServer) EnableTask(context.Context, *EnableTaskRequest) (*EnableTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TaskSchedulerServiceServer = (*UnimplementedTaskSchedulerServiceServer)(nil)

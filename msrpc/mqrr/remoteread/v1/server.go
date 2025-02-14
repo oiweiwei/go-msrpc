@@ -490,113 +490,195 @@ func NewRemoteReadServerHandle(o RemoteReadServer) dcerpc.ServerHandle {
 func RemoteReadServerHandle(ctx context.Context, o RemoteReadServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_GetServerPort
-		in := &GetServerPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // Opnum1NotUsedOnWire
 		// Opnum1NotUsedOnWire
 		return nil, nil
 	case 2: // R_OpenQueue
-		in := &OpenQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // R_CloseQueue
-		in := &CloseQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // R_CreateCursor
-		in := &CreateCursorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateCursorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateCursor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateCursorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateCursor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // R_CloseCursor
-		in := &CloseCursorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseCursorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseCursor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseCursorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseCursor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // R_PurgeQueue
-		in := &PurgeQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PurgeQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PurgeQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PurgeQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PurgeQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // R_StartReceive
-		in := &StartReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // R_CancelReceive
-		in := &CancelReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CancelReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CancelReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_EndReceive
-		in := &EndReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_MoveMessage
-		in := &MoveMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // R_OpenQueueForMove
-		in := &OpenQueueForMoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenQueueForMoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenQueueForMove(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenQueueForMoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenQueueForMove(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_QMEnlistRemoteTransaction
-		in := &EnlistRemoteTransactionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnlistRemoteTransactionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnlistRemoteTransaction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnlistRemoteTransactionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnlistRemoteTransaction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // R_StartTransactionalReceive
-		in := &StartTransactionalReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartTransactionalReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartTransactionalReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartTransactionalReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartTransactionalReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // R_SetUserAcknowledgementClass
-		in := &SetUserAcknowledgementClassRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetUserAcknowledgementClassOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetUserAcknowledgementClass(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetUserAcknowledgementClassRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetUserAcknowledgementClass(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // R_EndTransactionalReceive
-		in := &EndTransactionalReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndTransactionalReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndTransactionalReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndTransactionalReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndTransactionalReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented RemoteRead
+type UnimplementedRemoteReadServer struct {
+}
+
+func (UnimplementedRemoteReadServer) GetServerPort(context.Context, *GetServerPortRequest) (*GetServerPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) OpenQueue(context.Context, *OpenQueueRequest) (*OpenQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) CloseQueue(context.Context, *CloseQueueRequest) (*CloseQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) CreateCursor(context.Context, *CreateCursorRequest) (*CreateCursorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) CloseCursor(context.Context, *CloseCursorRequest) (*CloseCursorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) PurgeQueue(context.Context, *PurgeQueueRequest) (*PurgeQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) StartReceive(context.Context, *StartReceiveRequest) (*StartReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) CancelReceive(context.Context, *CancelReceiveRequest) (*CancelReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) EndReceive(context.Context, *EndReceiveRequest) (*EndReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) MoveMessage(context.Context, *MoveMessageRequest) (*MoveMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) OpenQueueForMove(context.Context, *OpenQueueForMoveRequest) (*OpenQueueForMoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) EnlistRemoteTransaction(context.Context, *EnlistRemoteTransactionRequest) (*EnlistRemoteTransactionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) StartTransactionalReceive(context.Context, *StartTransactionalReceiveRequest) (*StartTransactionalReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) SetUserAcknowledgementClass(context.Context, *SetUserAcknowledgementClassRequest) (*SetUserAcknowledgementClassResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteReadServer) EndTransactionalReceive(context.Context, *EndTransactionalReceiveRequest) (*EndTransactionalReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteReadServer = (*UnimplementedRemoteReadServer)(nil)

@@ -152,19 +152,36 @@ func NewTrksvrServerHandle(o TrksvrServer) dcerpc.ServerHandle {
 func TrksvrServerHandle(ctx context.Context, o TrksvrServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // LnkSvrMessage
-		in := &ServerMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // LnkSvrMessageCallback
-		in := &ServerMessageCallbackRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ServerMessageCallbackOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ServerMessageCallback(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ServerMessageCallbackRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ServerMessageCallback(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented trksvr
+type UnimplementedTrksvrServer struct {
+}
+
+func (UnimplementedTrksvrServer) ServerMessage(context.Context, *ServerMessageRequest) (*ServerMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTrksvrServer) ServerMessageCallback(context.Context, *ServerMessageCallbackRequest) (*ServerMessageCallbackResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TrksvrServer = (*UnimplementedTrksvrServer)(nil)

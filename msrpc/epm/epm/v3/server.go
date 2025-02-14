@@ -61,54 +61,96 @@ func NewEpmServerHandle(o EpmServer) dcerpc.ServerHandle {
 func EpmServerHandle(ctx context.Context, o EpmServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // ept_insert
-		in := &InsertRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InsertOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Insert(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InsertRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Insert(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // ept_delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // ept_lookup
-		in := &LookupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Lookup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Lookup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // ept_map
-		in := &MapRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MapOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Map(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MapRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Map(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // ept_lookup_handle_free
-		in := &LookupHandleFreeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupHandleFreeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupHandleFree(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupHandleFreeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupHandleFree(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // ept_inq_object
-		in := &InquireObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InquireObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InquireObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InquireObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InquireObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ept_mgmt_delete
-		in := &ManagementDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ManagementDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ManagementDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ManagementDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ManagementDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented epm
+type UnimplementedEpmServer struct {
+}
+
+func (UnimplementedEpmServer) Insert(context.Context, *InsertRequest) (*InsertResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEpmServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEpmServer) Lookup(context.Context, *LookupRequest) (*LookupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEpmServer) Map(context.Context, *MapRequest) (*MapResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEpmServer) LookupHandleFree(context.Context, *LookupHandleFreeRequest) (*LookupHandleFreeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEpmServer) InquireObject(context.Context, *InquireObjectRequest) (*InquireObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEpmServer) ManagementDelete(context.Context, *ManagementDeleteRequest) (*ManagementDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EpmServer = (*UnimplementedEpmServer)(nil)

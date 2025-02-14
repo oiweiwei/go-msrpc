@@ -61,33 +61,61 @@ func ActionEventLogServerHandle(ctx context.Context, o ActionEventLogServer, opN
 	}
 	switch opNum {
 	case 12: // EventType
-		in := &GetEventTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // EventType
-		in := &SetEventTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // MessageText
-		in := &GetMessageTextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMessageTextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMessageText(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMessageTextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMessageText(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // MessageText
-		in := &SetMessageTextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMessageTextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMessageText(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMessageTextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMessageText(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmActionEventLog
+type UnimplementedActionEventLogServer struct {
+	ifsrmaction.UnimplementedActionServer
+}
+
+func (UnimplementedActionEventLogServer) GetEventType(context.Context, *GetEventTypeRequest) (*GetEventTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEventLogServer) SetEventType(context.Context, *SetEventTypeRequest) (*SetEventTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEventLogServer) GetMessageText(context.Context, *GetMessageTextRequest) (*GetMessageTextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEventLogServer) SetMessageText(context.Context, *SetMessageTextRequest) (*SetMessageTextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActionEventLogServer = (*UnimplementedActionEventLogServer)(nil)

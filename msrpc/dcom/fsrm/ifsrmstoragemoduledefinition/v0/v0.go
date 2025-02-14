@@ -88,7 +88,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) PipelineModuleDefinition() if
 }
 
 func (o *xxx_DefaultStorageModuleDefinitionClient) GetCapabilities(ctx context.Context, in *GetCapabilitiesRequest, opts ...dcerpc.CallOption) (*GetCapabilitiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -108,7 +108,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) GetCapabilities(ctx context.C
 }
 
 func (o *xxx_DefaultStorageModuleDefinitionClient) SetCapabilities(ctx context.Context, in *SetCapabilitiesRequest, opts ...dcerpc.CallOption) (*SetCapabilitiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -128,7 +128,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) SetCapabilities(ctx context.C
 }
 
 func (o *xxx_DefaultStorageModuleDefinitionClient) GetStorageType(ctx context.Context, in *GetStorageTypeRequest, opts ...dcerpc.CallOption) (*GetStorageTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -148,7 +148,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) GetStorageType(ctx context.Co
 }
 
 func (o *xxx_DefaultStorageModuleDefinitionClient) SetStorageType(ctx context.Context, in *SetStorageTypeRequest, opts ...dcerpc.CallOption) (*SetStorageTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -168,7 +168,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) SetStorageType(ctx context.Co
 }
 
 func (o *xxx_DefaultStorageModuleDefinitionClient) GetUpdatesFileContent(ctx context.Context, in *GetUpdatesFileContentRequest, opts ...dcerpc.CallOption) (*GetUpdatesFileContentResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -188,7 +188,7 @@ func (o *xxx_DefaultStorageModuleDefinitionClient) GetUpdatesFileContent(ctx con
 }
 
 func (o *xxx_DefaultStorageModuleDefinitionClient) SetUpdatesFileContent(ctx context.Context, in *SetUpdatesFileContentRequest, opts ...dcerpc.CallOption) (*SetUpdatesFileContentResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -387,13 +387,15 @@ type GetCapabilitiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetCapabilitiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetCapabilitiesOperation {
+func (o *GetCapabilitiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCapabilitiesOperation) *xxx_GetCapabilitiesOperation {
+	if op == nil {
+		op = &xxx_GetCapabilitiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCapabilitiesOperation{}
+		return op
 	}
-	return &xxx_GetCapabilitiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetCapabilitiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCapabilitiesOperation) {
@@ -403,7 +405,7 @@ func (o *GetCapabilitiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCapa
 	o.This = op.This
 }
 func (o *GetCapabilitiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCapabilitiesOperation{}
@@ -423,15 +425,17 @@ type GetCapabilitiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCapabilitiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetCapabilitiesOperation {
+func (o *GetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCapabilitiesOperation) *xxx_GetCapabilitiesOperation {
+	if op == nil {
+		op = &xxx_GetCapabilitiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCapabilitiesOperation{}
+		return op
 	}
-	return &xxx_GetCapabilitiesOperation{
-		That:         o.That,
-		Capabilities: o.Capabilities,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.Capabilities = op.Capabilities
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCapabilitiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCapabilitiesOperation) {
@@ -443,7 +447,7 @@ func (o *GetCapabilitiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCap
 	o.Return = op.Return
 }
 func (o *GetCapabilitiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCapabilitiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCapabilitiesOperation{}
@@ -593,14 +597,16 @@ type SetCapabilitiesRequest struct {
 	Capabilities fsrm.StorageModuleCaps `idl:"name:capabilities" json:"capabilities"`
 }
 
-func (o *SetCapabilitiesRequest) xxx_ToOp(ctx context.Context) *xxx_SetCapabilitiesOperation {
+func (o *SetCapabilitiesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCapabilitiesOperation) *xxx_SetCapabilitiesOperation {
+	if op == nil {
+		op = &xxx_SetCapabilitiesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCapabilitiesOperation{}
+		return op
 	}
-	return &xxx_SetCapabilitiesOperation{
-		This:         o.This,
-		Capabilities: o.Capabilities,
-	}
+	o.This = op.This
+	o.Capabilities = op.Capabilities
+	return op
 }
 
 func (o *SetCapabilitiesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCapabilitiesOperation) {
@@ -611,7 +617,7 @@ func (o *SetCapabilitiesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCapa
 	o.Capabilities = op.Capabilities
 }
 func (o *SetCapabilitiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetCapabilitiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCapabilitiesOperation{}
@@ -630,14 +636,16 @@ type SetCapabilitiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetCapabilitiesResponse) xxx_ToOp(ctx context.Context) *xxx_SetCapabilitiesOperation {
+func (o *SetCapabilitiesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCapabilitiesOperation) *xxx_SetCapabilitiesOperation {
+	if op == nil {
+		op = &xxx_SetCapabilitiesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCapabilitiesOperation{}
+		return op
 	}
-	return &xxx_SetCapabilitiesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetCapabilitiesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCapabilitiesOperation) {
@@ -648,7 +656,7 @@ func (o *SetCapabilitiesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCap
 	o.Return = op.Return
 }
 func (o *SetCapabilitiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetCapabilitiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCapabilitiesOperation{}
@@ -797,13 +805,15 @@ type GetStorageTypeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetStorageTypeRequest) xxx_ToOp(ctx context.Context) *xxx_GetStorageTypeOperation {
+func (o *GetStorageTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetStorageTypeOperation) *xxx_GetStorageTypeOperation {
+	if op == nil {
+		op = &xxx_GetStorageTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetStorageTypeOperation{}
+		return op
 	}
-	return &xxx_GetStorageTypeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetStorageTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStorageTypeOperation) {
@@ -813,7 +823,7 @@ func (o *GetStorageTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetStora
 	o.This = op.This
 }
 func (o *GetStorageTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetStorageTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetStorageTypeOperation{}
@@ -833,15 +843,17 @@ type GetStorageTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetStorageTypeResponse) xxx_ToOp(ctx context.Context) *xxx_GetStorageTypeOperation {
+func (o *GetStorageTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetStorageTypeOperation) *xxx_GetStorageTypeOperation {
+	if op == nil {
+		op = &xxx_GetStorageTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetStorageTypeOperation{}
+		return op
 	}
-	return &xxx_GetStorageTypeOperation{
-		That:        o.That,
-		StorageType: o.StorageType,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.StorageType = op.StorageType
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetStorageTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStorageTypeOperation) {
@@ -853,7 +865,7 @@ func (o *GetStorageTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetStor
 	o.Return = op.Return
 }
 func (o *GetStorageTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetStorageTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetStorageTypeOperation{}
@@ -1003,14 +1015,16 @@ type SetStorageTypeRequest struct {
 	StorageType fsrm.StorageModuleType `idl:"name:storageType" json:"storage_type"`
 }
 
-func (o *SetStorageTypeRequest) xxx_ToOp(ctx context.Context) *xxx_SetStorageTypeOperation {
+func (o *SetStorageTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetStorageTypeOperation) *xxx_SetStorageTypeOperation {
+	if op == nil {
+		op = &xxx_SetStorageTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStorageTypeOperation{}
+		return op
 	}
-	return &xxx_SetStorageTypeOperation{
-		This:        o.This,
-		StorageType: o.StorageType,
-	}
+	o.This = op.This
+	o.StorageType = op.StorageType
+	return op
 }
 
 func (o *SetStorageTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStorageTypeOperation) {
@@ -1021,7 +1035,7 @@ func (o *SetStorageTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStora
 	o.StorageType = op.StorageType
 }
 func (o *SetStorageTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetStorageTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStorageTypeOperation{}
@@ -1040,14 +1054,16 @@ type SetStorageTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetStorageTypeResponse) xxx_ToOp(ctx context.Context) *xxx_SetStorageTypeOperation {
+func (o *SetStorageTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetStorageTypeOperation) *xxx_SetStorageTypeOperation {
+	if op == nil {
+		op = &xxx_SetStorageTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStorageTypeOperation{}
+		return op
 	}
-	return &xxx_SetStorageTypeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetStorageTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStorageTypeOperation) {
@@ -1058,7 +1074,7 @@ func (o *SetStorageTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStor
 	o.Return = op.Return
 }
 func (o *SetStorageTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetStorageTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStorageTypeOperation{}
@@ -1207,13 +1223,15 @@ type GetUpdatesFileContentRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetUpdatesFileContentRequest) xxx_ToOp(ctx context.Context) *xxx_GetUpdatesFileContentOperation {
+func (o *GetUpdatesFileContentRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUpdatesFileContentOperation) *xxx_GetUpdatesFileContentOperation {
+	if op == nil {
+		op = &xxx_GetUpdatesFileContentOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUpdatesFileContentOperation{}
+		return op
 	}
-	return &xxx_GetUpdatesFileContentOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetUpdatesFileContentRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUpdatesFileContentOperation) {
@@ -1223,7 +1241,7 @@ func (o *GetUpdatesFileContentRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetUpdatesFileContentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUpdatesFileContentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUpdatesFileContentOperation{}
@@ -1243,15 +1261,17 @@ type GetUpdatesFileContentResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUpdatesFileContentResponse) xxx_ToOp(ctx context.Context) *xxx_GetUpdatesFileContentOperation {
+func (o *GetUpdatesFileContentResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUpdatesFileContentOperation) *xxx_GetUpdatesFileContentOperation {
+	if op == nil {
+		op = &xxx_GetUpdatesFileContentOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUpdatesFileContentOperation{}
+		return op
 	}
-	return &xxx_GetUpdatesFileContentOperation{
-		That:               o.That,
-		UpdatesFileContent: o.UpdatesFileContent,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.UpdatesFileContent = op.UpdatesFileContent
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUpdatesFileContentResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUpdatesFileContentOperation) {
@@ -1263,7 +1283,7 @@ func (o *GetUpdatesFileContentResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetUpdatesFileContentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUpdatesFileContentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUpdatesFileContentOperation{}
@@ -1413,14 +1433,16 @@ type SetUpdatesFileContentRequest struct {
 	UpdatesFileContent int16          `idl:"name:updatesFileContent" json:"updates_file_content"`
 }
 
-func (o *SetUpdatesFileContentRequest) xxx_ToOp(ctx context.Context) *xxx_SetUpdatesFileContentOperation {
+func (o *SetUpdatesFileContentRequest) xxx_ToOp(ctx context.Context, op *xxx_SetUpdatesFileContentOperation) *xxx_SetUpdatesFileContentOperation {
+	if op == nil {
+		op = &xxx_SetUpdatesFileContentOperation{}
+	}
 	if o == nil {
-		return &xxx_SetUpdatesFileContentOperation{}
+		return op
 	}
-	return &xxx_SetUpdatesFileContentOperation{
-		This:               o.This,
-		UpdatesFileContent: o.UpdatesFileContent,
-	}
+	o.This = op.This
+	o.UpdatesFileContent = op.UpdatesFileContent
+	return op
 }
 
 func (o *SetUpdatesFileContentRequest) xxx_FromOp(ctx context.Context, op *xxx_SetUpdatesFileContentOperation) {
@@ -1431,7 +1453,7 @@ func (o *SetUpdatesFileContentRequest) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.UpdatesFileContent = op.UpdatesFileContent
 }
 func (o *SetUpdatesFileContentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetUpdatesFileContentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetUpdatesFileContentOperation{}
@@ -1450,14 +1472,16 @@ type SetUpdatesFileContentResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetUpdatesFileContentResponse) xxx_ToOp(ctx context.Context) *xxx_SetUpdatesFileContentOperation {
+func (o *SetUpdatesFileContentResponse) xxx_ToOp(ctx context.Context, op *xxx_SetUpdatesFileContentOperation) *xxx_SetUpdatesFileContentOperation {
+	if op == nil {
+		op = &xxx_SetUpdatesFileContentOperation{}
+	}
 	if o == nil {
-		return &xxx_SetUpdatesFileContentOperation{}
+		return op
 	}
-	return &xxx_SetUpdatesFileContentOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetUpdatesFileContentResponse) xxx_FromOp(ctx context.Context, op *xxx_SetUpdatesFileContentOperation) {
@@ -1468,7 +1492,7 @@ func (o *SetUpdatesFileContentResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *SetUpdatesFileContentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetUpdatesFileContentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetUpdatesFileContentOperation{}

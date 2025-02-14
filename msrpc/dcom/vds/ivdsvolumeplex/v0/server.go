@@ -75,33 +75,61 @@ func VolumePlexServerHandle(ctx context.Context, o VolumePlexServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetVolume
-		in := &GetVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // QueryExtents
-		in := &QueryExtentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryExtentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryExtents(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryExtentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryExtents(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Repair
-		in := &RepairRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RepairOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Repair(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RepairRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Repair(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolumePlex
+type UnimplementedVolumePlexServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumePlexServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumePlexServer) GetVolume(context.Context, *GetVolumeRequest) (*GetVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumePlexServer) QueryExtents(context.Context, *QueryExtentsRequest) (*QueryExtentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumePlexServer) Repair(context.Context, *RepairRequest) (*RepairResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumePlexServer = (*UnimplementedVolumePlexServer)(nil)

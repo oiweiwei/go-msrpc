@@ -83,33 +83,61 @@ func Level1LoginServerHandle(ctx context.Context, o Level1LoginServer, opNum int
 	}
 	switch opNum {
 	case 3: // EstablishPosition
-		in := &EstablishPositionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EstablishPositionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EstablishPosition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EstablishPositionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EstablishPosition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RequestChallenge
-		in := &RequestChallengeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RequestChallengeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RequestChallenge(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RequestChallengeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RequestChallenge(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // WBEMLogin
-		in := &WBEMLoginRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WBEMLoginOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WBEMLogin(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WBEMLoginRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WBEMLogin(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // NTLMLogin
-		in := &NTLMLoginRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NTLMLoginOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NTLMLogin(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NTLMLoginRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NTLMLogin(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemLevel1Login
+type UnimplementedLevel1LoginServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedLevel1LoginServer) EstablishPosition(context.Context, *EstablishPositionRequest) (*EstablishPositionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLevel1LoginServer) RequestChallenge(context.Context, *RequestChallengeRequest) (*RequestChallengeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLevel1LoginServer) WBEMLogin(context.Context, *WBEMLoginRequest) (*WBEMLoginResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLevel1LoginServer) NTLMLogin(context.Context, *NTLMLoginRequest) (*NTLMLoginResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Level1LoginServer = (*UnimplementedLevel1LoginServer)(nil)

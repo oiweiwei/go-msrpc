@@ -42,3 +42,9 @@ func ClaimsServerHandle(ctx context.Context, o ClaimsServer, opNum int, r ndr.Re
 	}
 	return nil, nil
 }
+
+// Unimplemented Claims
+type UnimplementedClaimsServer struct {
+}
+
+var _ ClaimsServer = (*UnimplementedClaimsServer)(nil)

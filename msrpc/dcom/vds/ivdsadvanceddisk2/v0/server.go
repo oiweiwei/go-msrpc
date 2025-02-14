@@ -60,12 +60,25 @@ func AdvancedDisk2ServerHandle(ctx context.Context, o AdvancedDisk2Server, opNum
 	}
 	switch opNum {
 	case 3: // ChangePartitionType
-		in := &ChangePartitionTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangePartitionTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangePartitionType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangePartitionTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangePartitionType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsAdvancedDisk2
+type UnimplementedAdvancedDisk2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAdvancedDisk2Server) ChangePartitionType(context.Context, *ChangePartitionTypeRequest) (*ChangePartitionTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AdvancedDisk2Server = (*UnimplementedAdvancedDisk2Server)(nil)
