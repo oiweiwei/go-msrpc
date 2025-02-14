@@ -428,7 +428,7 @@ func (o *GetPropertiesAffectedRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -466,9 +466,9 @@ func (o *GetPropertiesAffectedResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertiesAffected = op.PropertiesAffected
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertiesAffected = o.PropertiesAffected
+	op.Return = o.Return
 	return op
 }
 
@@ -672,8 +672,8 @@ func (o *SetPropertiesAffectedRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertiesAffected = op.PropertiesAffected
+	op.This = o.This
+	op.PropertiesAffected = o.PropertiesAffected
 	return op
 }
 
@@ -711,8 +711,8 @@ func (o *SetPropertiesAffectedResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -914,7 +914,7 @@ func (o *GetPropertiesUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -952,9 +952,9 @@ func (o *GetPropertiesUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertiesUsed = op.PropertiesUsed
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertiesUsed = o.PropertiesUsed
+	op.Return = o.Return
 	return op
 }
 
@@ -1158,8 +1158,8 @@ func (o *SetPropertiesUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_SetProp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertiesUsed = op.PropertiesUsed
+	op.This = o.This
+	op.PropertiesUsed = o.PropertiesUsed
 	return op
 }
 
@@ -1197,8 +1197,8 @@ func (o *SetPropertiesUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1366,7 +1366,7 @@ func (o *GetNeedsExplicitValueRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1404,9 +1404,9 @@ func (o *GetNeedsExplicitValueResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NeedsExplicitValue = op.NeedsExplicitValue
-	o.Return = op.Return
+	op.That = o.That
+	op.NeedsExplicitValue = o.NeedsExplicitValue
+	op.Return = o.Return
 	return op
 }
 
@@ -1576,8 +1576,8 @@ func (o *SetNeedsExplicitValueRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NeedsExplicitValue = op.NeedsExplicitValue
+	op.This = o.This
+	op.NeedsExplicitValue = o.NeedsExplicitValue
 	return op
 }
 
@@ -1615,8 +1615,8 @@ func (o *SetNeedsExplicitValueResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

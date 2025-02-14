@@ -1239,12 +1239,12 @@ func (o *OperationRequest) xxx_ToOp(ctx context.Context, op *xxx_OperationOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.Context = op.Context
-	o.Operation = op.Operation
-	o.TypeID = op.TypeID
-	o.Data = op.Data
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.Context = o.Context
+	op.Operation = o.Operation
+	op.TypeID = o.TypeID
+	op.Data = o.Data
 	return op
 }
 
@@ -1284,7 +1284,7 @@ func (o *OperationResponse) xxx_ToOp(ctx context.Context, op *xxx_OperationOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1593,9 +1593,9 @@ func (o *QueryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.Operation = op.Operation
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.Operation = o.Operation
 	return op
 }
 
@@ -1638,9 +1638,9 @@ func (o *QueryResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *x
 	if o == nil {
 		return op
 	}
-	o.TypeID = op.TypeID
-	o.Data = op.Data
-	o.Return = op.Return
+	op.TypeID = o.TypeID
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -2163,11 +2163,11 @@ func (o *ComplexOperationRequest) xxx_ToOp(ctx context.Context, op *xxx_ComplexO
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.Operation = op.Operation
-	o.TypeIn = op.TypeIn
-	o.DataIn = op.DataIn
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.Operation = o.Operation
+	op.TypeIn = o.TypeIn
+	op.DataIn = o.DataIn
 	return op
 }
 
@@ -2212,9 +2212,9 @@ func (o *ComplexOperationResponse) xxx_ToOp(ctx context.Context, op *xxx_Complex
 	if o == nil {
 		return op
 	}
-	o.TypeOut = op.TypeOut
-	o.DataOut = op.DataOut
-	o.Return = op.Return
+	op.TypeOut = o.TypeOut
+	op.DataOut = o.DataOut
+	op.Return = o.Return
 	return op
 }
 
@@ -2708,14 +2708,14 @@ func (o *EnumRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumRecordsOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.NodeName = op.NodeName
-	o.StartChild = op.StartChild
-	o.RecordType = op.RecordType
-	o.SelectFlag = op.SelectFlag
-	o.FilterStart = op.FilterStart
-	o.FilterStop = op.FilterStop
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.NodeName = o.NodeName
+	op.StartChild = o.StartChild
+	op.RecordType = o.RecordType
+	op.SelectFlag = o.SelectFlag
+	op.FilterStart = o.FilterStart
+	op.FilterStop = o.FilterStop
 	return op
 }
 
@@ -2767,9 +2767,9 @@ func (o *EnumRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumRecordsO
 	if o == nil {
 		return op
 	}
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -3083,11 +3083,11 @@ func (o *UpdateRecordRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateRecord
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.NodeName = op.NodeName
-	o.AddRecord = op.AddRecord
-	o.DeleteRecord = op.DeleteRecord
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.NodeName = o.NodeName
+	op.AddRecord = o.AddRecord
+	op.DeleteRecord = o.DeleteRecord
 	return op
 }
 
@@ -3126,7 +3126,7 @@ func (o *UpdateRecordResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateRecor
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3428,14 +3428,14 @@ func (o *Operation2Request) xxx_ToOp(ctx context.Context, op *xxx_Operation2Oper
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.Context = op.Context
-	o.Operation = op.Operation
-	o.TypeID = op.TypeID
-	o.Data = op.Data
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.Context = o.Context
+	op.Operation = o.Operation
+	op.TypeID = o.TypeID
+	op.Data = o.Data
 	return op
 }
 
@@ -3477,7 +3477,7 @@ func (o *Operation2Response) xxx_ToOp(ctx context.Context, op *xxx_Operation2Ope
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3763,11 +3763,11 @@ func (o *Query2Request) xxx_ToOp(ctx context.Context, op *xxx_Query2Operation) *
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.Operation = op.Operation
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.Operation = o.Operation
 	return op
 }
 
@@ -3808,9 +3808,9 @@ func (o *Query2Response) xxx_ToOp(ctx context.Context, op *xxx_Query2Operation) 
 	if o == nil {
 		return op
 	}
-	o.TypeID = op.TypeID
-	o.Data = op.Data
-	o.Return = op.Return
+	op.TypeID = o.TypeID
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -4145,13 +4145,13 @@ func (o *ComplexOperation2Request) xxx_ToOp(ctx context.Context, op *xxx_Complex
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.Operation = op.Operation
-	o.TypeIn = op.TypeIn
-	o.DataIn = op.DataIn
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.Operation = o.Operation
+	op.TypeIn = o.TypeIn
+	op.DataIn = o.DataIn
 	return op
 }
 
@@ -4194,9 +4194,9 @@ func (o *ComplexOperation2Response) xxx_ToOp(ctx context.Context, op *xxx_Comple
 	if o == nil {
 		return op
 	}
-	o.TypeOut = op.TypeOut
-	o.DataOut = op.DataOut
-	o.Return = op.Return
+	op.TypeOut = o.TypeOut
+	op.DataOut = o.DataOut
+	op.Return = o.Return
 	return op
 }
 
@@ -4673,16 +4673,16 @@ func (o *EnumRecords2Request) xxx_ToOp(ctx context.Context, op *xxx_EnumRecords2
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.NodeName = op.NodeName
-	o.StartChild = op.StartChild
-	o.RecordType = op.RecordType
-	o.SelectFlag = op.SelectFlag
-	o.FilterStart = op.FilterStart
-	o.FilterStop = op.FilterStop
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.NodeName = o.NodeName
+	op.StartChild = o.StartChild
+	op.RecordType = o.RecordType
+	op.SelectFlag = o.SelectFlag
+	op.FilterStart = o.FilterStart
+	op.FilterStop = o.FilterStop
 	return op
 }
 
@@ -4728,9 +4728,9 @@ func (o *EnumRecords2Response) xxx_ToOp(ctx context.Context, op *xxx_EnumRecords
 	if o == nil {
 		return op
 	}
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -5046,13 +5046,13 @@ func (o *UpdateRecord2Request) xxx_ToOp(ctx context.Context, op *xxx_UpdateRecor
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.NodeName = op.NodeName
-	o.AddRecord = op.AddRecord
-	o.DeleteRecord = op.DeleteRecord
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.NodeName = o.NodeName
+	op.AddRecord = o.AddRecord
+	op.DeleteRecord = o.DeleteRecord
 	return op
 }
 
@@ -5093,7 +5093,7 @@ func (o *UpdateRecord2Response) xxx_ToOp(ctx context.Context, op *xxx_UpdateReco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5447,14 +5447,14 @@ func (o *UpdateRecord3Request) xxx_ToOp(ctx context.Context, op *xxx_UpdateRecor
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.ZoneScope = op.ZoneScope
-	o.NodeName = op.NodeName
-	o.AddRecord = op.AddRecord
-	o.DeleteRecord = op.DeleteRecord
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.ZoneScope = o.ZoneScope
+	op.NodeName = o.NodeName
+	op.AddRecord = o.AddRecord
+	op.DeleteRecord = o.DeleteRecord
 	return op
 }
 
@@ -5496,7 +5496,7 @@ func (o *UpdateRecord3Response) xxx_ToOp(ctx context.Context, op *xxx_UpdateReco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6011,17 +6011,17 @@ func (o *EnumRecords3Request) xxx_ToOp(ctx context.Context, op *xxx_EnumRecords3
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.ZoneScope = op.ZoneScope
-	o.NodeName = op.NodeName
-	o.StartChild = op.StartChild
-	o.RecordType = op.RecordType
-	o.SelectFlag = op.SelectFlag
-	o.FilterStart = op.FilterStart
-	o.FilterStop = op.FilterStop
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.ZoneScope = o.ZoneScope
+	op.NodeName = o.NodeName
+	op.StartChild = o.StartChild
+	op.RecordType = o.RecordType
+	op.SelectFlag = o.SelectFlag
+	op.FilterStart = o.FilterStart
+	op.FilterStop = o.FilterStop
 	return op
 }
 
@@ -6068,9 +6068,9 @@ func (o *EnumRecords3Response) xxx_ToOp(ctx context.Context, op *xxx_EnumRecords
 	if o == nil {
 		return op
 	}
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -6470,15 +6470,15 @@ func (o *Operation3Request) xxx_ToOp(ctx context.Context, op *xxx_Operation3Oper
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.ZoneScopeName = op.ZoneScopeName
-	o.Context = op.Context
-	o.Operation = op.Operation
-	o.TypeID = op.TypeID
-	o.Data = op.Data
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.ZoneScopeName = o.ZoneScopeName
+	op.Context = o.Context
+	op.Operation = o.Operation
+	op.TypeID = o.TypeID
+	op.Data = o.Data
 	return op
 }
 
@@ -6521,7 +6521,7 @@ func (o *Operation3Response) xxx_ToOp(ctx context.Context, op *xxx_Operation3Ope
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6842,12 +6842,12 @@ func (o *Query3Request) xxx_ToOp(ctx context.Context, op *xxx_Query3Operation) *
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.Zone = op.Zone
-	o.ZoneScopeName = op.ZoneScopeName
-	o.Operation = op.Operation
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.Zone = o.Zone
+	op.ZoneScopeName = o.ZoneScopeName
+	op.Operation = o.Operation
 	return op
 }
 
@@ -6889,9 +6889,9 @@ func (o *Query3Response) xxx_ToOp(ctx context.Context, op *xxx_Query3Operation) 
 	if o == nil {
 		return op
 	}
-	o.TypeID = op.TypeID
-	o.Data = op.Data
-	o.Return = op.Return
+	op.TypeID = o.TypeID
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -7274,14 +7274,14 @@ func (o *ComplexOperation3Request) xxx_ToOp(ctx context.Context, op *xxx_Complex
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.VirtualizationInstanceID = op.VirtualizationInstanceID
-	o.Zone = op.Zone
-	o.Operation = op.Operation
-	o.TypeIn = op.TypeIn
-	o.DataIn = op.DataIn
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.VirtualizationInstanceID = o.VirtualizationInstanceID
+	op.Zone = o.Zone
+	op.Operation = o.Operation
+	op.TypeIn = o.TypeIn
+	op.DataIn = o.DataIn
 	return op
 }
 
@@ -7325,9 +7325,9 @@ func (o *ComplexOperation3Response) xxx_ToOp(ctx context.Context, op *xxx_Comple
 	if o == nil {
 		return op
 	}
-	o.TypeOut = op.TypeOut
-	o.DataOut = op.DataOut
-	o.Return = op.Return
+	op.TypeOut = o.TypeOut
+	op.DataOut = o.DataOut
+	op.Return = o.Return
 	return op
 }
 
@@ -7720,16 +7720,16 @@ func (o *Operation4Request) xxx_ToOp(ctx context.Context, op *xxx_Operation4Oper
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.VirtualizationInstanceID = op.VirtualizationInstanceID
-	o.Zone = op.Zone
-	o.ZoneScopeName = op.ZoneScopeName
-	o.Context = op.Context
-	o.Operation = op.Operation
-	o.TypeID = op.TypeID
-	o.Data = op.Data
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.VirtualizationInstanceID = o.VirtualizationInstanceID
+	op.Zone = o.Zone
+	op.ZoneScopeName = o.ZoneScopeName
+	op.Context = o.Context
+	op.Operation = o.Operation
+	op.TypeID = o.TypeID
+	op.Data = o.Data
 	return op
 }
 
@@ -7773,7 +7773,7 @@ func (o *Operation4Response) xxx_ToOp(ctx context.Context, op *xxx_Operation4Ope
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8144,13 +8144,13 @@ func (o *Query4Request) xxx_ToOp(ctx context.Context, op *xxx_Query4Operation) *
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.VirtualizationInstanceID = op.VirtualizationInstanceID
-	o.Zone = op.Zone
-	o.ZoneScopeName = op.ZoneScopeName
-	o.Operation = op.Operation
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.VirtualizationInstanceID = o.VirtualizationInstanceID
+	op.Zone = o.Zone
+	op.ZoneScopeName = o.ZoneScopeName
+	op.Operation = o.Operation
 	return op
 }
 
@@ -8193,9 +8193,9 @@ func (o *Query4Response) xxx_ToOp(ctx context.Context, op *xxx_Query4Operation) 
 	if o == nil {
 		return op
 	}
-	o.TypeID = op.TypeID
-	o.Data = op.Data
-	o.Return = op.Return
+	op.TypeID = o.TypeID
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -8590,15 +8590,15 @@ func (o *UpdateRecord4Request) xxx_ToOp(ctx context.Context, op *xxx_UpdateRecor
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.VirtualizationInstanceID = op.VirtualizationInstanceID
-	o.Zone = op.Zone
-	o.ZoneScope = op.ZoneScope
-	o.NodeName = op.NodeName
-	o.AddRecord = op.AddRecord
-	o.DeleteRecord = op.DeleteRecord
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.VirtualizationInstanceID = o.VirtualizationInstanceID
+	op.Zone = o.Zone
+	op.ZoneScope = o.ZoneScope
+	op.NodeName = o.NodeName
+	op.AddRecord = o.AddRecord
+	op.DeleteRecord = o.DeleteRecord
 	return op
 }
 
@@ -8641,7 +8641,7 @@ func (o *UpdateRecord4Response) xxx_ToOp(ctx context.Context, op *xxx_UpdateReco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9196,18 +9196,18 @@ func (o *EnumRecords4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumRecords4
 	if o == nil {
 		return op
 	}
-	o.ClientVersion = op.ClientVersion
-	o.SettingFlags = op.SettingFlags
-	o.ServerName = op.ServerName
-	o.VirtualizationInstanceID = op.VirtualizationInstanceID
-	o.Zone = op.Zone
-	o.ZoneScope = op.ZoneScope
-	o.NodeName = op.NodeName
-	o.StartChild = op.StartChild
-	o.RecordType = op.RecordType
-	o.SelectFlag = op.SelectFlag
-	o.FilterStart = op.FilterStart
-	o.FilterStop = op.FilterStop
+	op.ClientVersion = o.ClientVersion
+	op.SettingFlags = o.SettingFlags
+	op.ServerName = o.ServerName
+	op.VirtualizationInstanceID = o.VirtualizationInstanceID
+	op.Zone = o.Zone
+	op.ZoneScope = o.ZoneScope
+	op.NodeName = o.NodeName
+	op.StartChild = o.StartChild
+	op.RecordType = o.RecordType
+	op.SelectFlag = o.SelectFlag
+	op.FilterStart = o.FilterStart
+	op.FilterStop = o.FilterStop
 	return op
 }
 
@@ -9255,9 +9255,9 @@ func (o *EnumRecords4Response) xxx_ToOp(ctx context.Context, op *xxx_EnumRecords
 	if o == nil {
 		return op
 	}
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 

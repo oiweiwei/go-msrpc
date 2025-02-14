@@ -473,7 +473,7 @@ func (o *GetQuotaUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaUsed
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -513,9 +513,9 @@ func (o *GetQuotaUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaUse
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Used = op.Used
-	o.Return = op.Return
+	op.That = o.That
+	op.Used = o.Used
+	op.Return = o.Return
 	return op
 }
 
@@ -716,7 +716,7 @@ func (o *GetQuotaPeakUsageRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuot
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -756,9 +756,9 @@ func (o *GetQuotaPeakUsageResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PeakUsage = op.PeakUsage
-	o.Return = op.Return
+	op.That = o.That
+	op.PeakUsage = o.PeakUsage
+	op.Return = o.Return
 	return op
 }
 
@@ -927,7 +927,7 @@ func (o *GetQuotaPeakUsageTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -967,9 +967,9 @@ func (o *GetQuotaPeakUsageTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PeakUsageDateTime = op.PeakUsageDateTime
-	o.Return = op.Return
+	op.That = o.That
+	op.PeakUsageDateTime = o.PeakUsageDateTime
+	op.Return = o.Return
 	return op
 }
 
@@ -1123,7 +1123,7 @@ func (o *ResetPeakUsageRequest) xxx_ToOp(ctx context.Context, op *xxx_ResetPeakU
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1160,8 +1160,8 @@ func (o *ResetPeakUsageResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetPeak
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1316,7 +1316,7 @@ func (o *RefreshUsagePropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1353,8 +1353,8 @@ func (o *RefreshUsagePropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

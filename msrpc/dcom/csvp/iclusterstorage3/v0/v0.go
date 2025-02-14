@@ -1194,8 +1194,8 @@ func (o *GetUniqueIDs3Request) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueID
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -1249,12 +1249,12 @@ func (o *GetUniqueIDs3Response) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueI
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DeviceIDHeader = op.DeviceIDHeader
-	o.DeviceIDHeaderLength = op.DeviceIDHeaderLength
-	o.DeviceDescriptor = op.DeviceDescriptor
-	o.DeviceDescriptorLength = op.DeviceDescriptorLength
-	o.Return = op.Return
+	op.That = o.That
+	op.DeviceIDHeader = o.DeviceIDHeader
+	op.DeviceIDHeaderLength = o.DeviceIDHeaderLength
+	op.DeviceDescriptor = o.DeviceDescriptor
+	op.DeviceDescriptorLength = o.DeviceDescriptorLength
+	op.Return = o.Return
 	return op
 }
 
@@ -1413,7 +1413,7 @@ func (o *CheckNetFTBindings3Request) xxx_ToOp(ctx context.Context, op *xxx_Check
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1450,8 +1450,8 @@ func (o *CheckNetFTBindings3Response) xxx_ToOp(ctx context.Context, op *xxx_Chec
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1647,8 +1647,8 @@ func (o *CSVTestSetup3Request) xxx_ToOp(ctx context.Context, op *xxx_CSVTestSetu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TestShareGUID = op.TestShareGUID
+	op.This = o.This
+	op.TestShareGUID = o.TestShareGUID
 	return op
 }
 
@@ -1686,8 +1686,8 @@ func (o *CSVTestSetup3Response) xxx_ToOp(ctx context.Context, op *xxx_CSVTestSet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1855,7 +1855,7 @@ func (o *IsNodeClustered3Request) xxx_ToOp(ctx context.Context, op *xxx_IsNodeCl
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1895,9 +1895,9 @@ func (o *IsNodeClustered3Response) xxx_ToOp(ctx context.Context, op *xxx_IsNodeC
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IsClusterNode = op.IsClusterNode
-	o.Return = op.Return
+	op.That = o.That
+	op.IsClusterNode = o.IsClusterNode
+	op.Return = o.Return
 	return op
 }
 
@@ -2159,7 +2159,7 @@ func (o *CreateNewSMBShares3Request) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2202,10 +2202,10 @@ func (o *CreateNewSMBShares3Response) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SharePaths = op.SharePaths
-	o.NumberOfPaths = op.NumberOfPaths
-	o.Return = op.Return
+	op.That = o.That
+	op.SharePaths = o.SharePaths
+	op.NumberOfPaths = o.NumberOfPaths
+	op.Return = o.Return
 	return op
 }
 
@@ -2452,9 +2452,9 @@ func (o *ConnectToNewSMBShares3Request) xxx_ToOp(ctx context.Context, op *xxx_Co
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SharePaths = op.SharePaths
-	o.NumberOfPaths = op.NumberOfPaths
+	op.This = o.This
+	op.SharePaths = o.SharePaths
+	op.NumberOfPaths = o.NumberOfPaths
 	return op
 }
 
@@ -2493,8 +2493,8 @@ func (o *ConnectToNewSMBShares3Response) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2701,8 +2701,8 @@ func (o *GetProperties3Request) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -2742,9 +2742,9 @@ func (o *GetProperties3Response) xxx_ToOp(ctx context.Context, op *xxx_GetProper
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskProperties = op.DiskProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskProperties = o.DiskProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -2938,8 +2938,8 @@ func (o *IsReadOnly3Request) xxx_ToOp(ctx context.Context, op *xxx_IsReadOnly3Op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -2980,9 +2980,9 @@ func (o *IsReadOnly3Response) xxx_ToOp(ctx context.Context, op *xxx_IsReadOnly3O
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReadOnly = op.ReadOnly
-	o.Return = op.Return
+	op.That = o.That
+	op.ReadOnly = o.ReadOnly
+	op.Return = o.Return
 	return op
 }
 
@@ -3195,10 +3195,10 @@ func (o *PRRegister3Request) xxx_ToOp(ctx context.Context, op *xxx_PRRegister3Op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.OldPRKey = op.OldPRKey
-	o.NewPRKey = op.NewPRKey
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.OldPRKey = o.OldPRKey
+	op.NewPRKey = o.NewPRKey
 	return op
 }
 
@@ -3238,8 +3238,8 @@ func (o *PRRegister3Response) xxx_ToOp(ctx context.Context, op *xxx_PRRegister3O
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3447,9 +3447,9 @@ func (o *FindKey3Request) xxx_ToOp(ctx context.Context, op *xxx_FindKey3Operatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Key = op.Key
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Key = o.Key
 	return op
 }
 
@@ -3492,9 +3492,9 @@ func (o *FindKey3Response) xxx_ToOp(ctx context.Context, op *xxx_FindKey3Operati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Found = op.Found
-	o.Return = op.Return
+	op.That = o.That
+	op.Found = o.Found
+	op.Return = o.Return
 	return op
 }
 
@@ -3704,10 +3704,10 @@ func (o *PRPreempt3Request) xxx_ToOp(ctx context.Context, op *xxx_PRPreempt3Oper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.OwnerKey = op.OwnerKey
-	o.NewKey = op.NewKey
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.OwnerKey = o.OwnerKey
+	op.NewKey = o.NewKey
 	return op
 }
 
@@ -3747,8 +3747,8 @@ func (o *PRPreempt3Response) xxx_ToOp(ctx context.Context, op *xxx_PRPreempt3Ope
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3941,9 +3941,9 @@ func (o *PRReserve3Request) xxx_ToOp(ctx context.Context, op *xxx_PRReserve3Oper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Key = op.Key
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Key = o.Key
 	return op
 }
 
@@ -3982,8 +3982,8 @@ func (o *PRReserve3Response) xxx_ToOp(ctx context.Context, op *xxx_PRReserve3Ope
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4178,9 +4178,9 @@ func (o *IsPRPresent3Request) xxx_ToOp(ctx context.Context, op *xxx_IsPRPresent3
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Key = op.Key
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Key = o.Key
 	return op
 }
 
@@ -4219,8 +4219,8 @@ func (o *IsPRPresent3Response) xxx_ToOp(ctx context.Context, op *xxx_IsPRPresent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4413,9 +4413,9 @@ func (o *PRRelease3Request) xxx_ToOp(ctx context.Context, op *xxx_PRRelease3Oper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Key = op.Key
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Key = o.Key
 	return op
 }
 
@@ -4454,8 +4454,8 @@ func (o *PRRelease3Response) xxx_ToOp(ctx context.Context, op *xxx_PRRelease3Ope
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4648,9 +4648,9 @@ func (o *PRClear3Request) xxx_ToOp(ctx context.Context, op *xxx_PRClear3Operatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Key = op.Key
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Key = o.Key
 	return op
 }
 
@@ -4689,8 +4689,8 @@ func (o *PRClear3Response) xxx_ToOp(ctx context.Context, op *xxx_PRClear3Operati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

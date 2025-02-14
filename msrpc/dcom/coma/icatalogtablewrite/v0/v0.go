@@ -924,19 +924,19 @@ func (o *WriteTableRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteTableOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CatalogID = op.CatalogID
-	o.TableID = op.TableID
-	o.TableFlags = op.TableFlags
-	o.QueryCellArray = op.QueryCellArray
-	o.QueryCellArrayLength = op.QueryCellArrayLength
-	o.QueryComparison = op.QueryComparison
-	o.QueryComparisonLength = op.QueryComparisonLength
-	o.QueryFormat = op.QueryFormat
-	o.TableDataFixedWrite = op.TableDataFixedWrite
-	o.TableDataFixedWriteLength = op.TableDataFixedWriteLength
-	o.TableDataVariable = op.TableDataVariable
-	o.TableDataVariableLength = op.TableDataVariableLength
+	op.This = o.This
+	op.CatalogID = o.CatalogID
+	op.TableID = o.TableID
+	op.TableFlags = o.TableFlags
+	op.QueryCellArray = o.QueryCellArray
+	op.QueryCellArrayLength = o.QueryCellArrayLength
+	op.QueryComparison = o.QueryComparison
+	op.QueryComparisonLength = o.QueryComparisonLength
+	op.QueryFormat = o.QueryFormat
+	op.TableDataFixedWrite = o.TableDataFixedWrite
+	op.TableDataFixedWriteLength = o.TableDataFixedWriteLength
+	op.TableDataVariable = o.TableDataVariable
+	op.TableDataVariableLength = o.TableDataVariableLength
 	return op
 }
 
@@ -993,10 +993,10 @@ func (o *WriteTableResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteTableOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TableDetailedErrors = op.TableDetailedErrors
-	o.TableDetailedErrorsLength = op.TableDetailedErrorsLength
-	o.Return = op.Return
+	op.That = o.That
+	op.TableDetailedErrors = o.TableDetailedErrors
+	op.TableDetailedErrorsLength = o.TableDetailedErrorsLength
+	op.Return = o.Return
 	return op
 }
 

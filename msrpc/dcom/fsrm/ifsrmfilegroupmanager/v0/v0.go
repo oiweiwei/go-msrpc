@@ -491,7 +491,7 @@ func (o *CreateFileGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFil
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -534,9 +534,9 @@ func (o *CreateFileGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileGroup = op.FileGroup
-	o.Return = op.Return
+	op.That = o.That
+	op.FileGroup = o.FileGroup
+	op.Return = o.Return
 	return op
 }
 
@@ -787,8 +787,8 @@ func (o *GetFileGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileGroup
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -830,9 +830,9 @@ func (o *GetFileGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileGrou
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileGroup = op.FileGroup
-	o.Return = op.Return
+	op.That = o.That
+	op.FileGroup = o.FileGroup
+	op.Return = o.Return
 	return op
 }
 
@@ -1051,8 +1051,8 @@ func (o *EnumFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFileGr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Options = op.Options
+	op.This = o.This
+	op.Options = o.Options
 	return op
 }
 
@@ -1094,9 +1094,9 @@ func (o *EnumFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFileG
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileGroups = op.FileGroups
-	o.Return = op.Return
+	op.That = o.That
+	op.FileGroups = o.FileGroups
+	op.Return = o.Return
 	return op
 }
 
@@ -1349,8 +1349,8 @@ func (o *ExportFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportFi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FileGroupNamesArray = op.FileGroupNamesArray
+	op.This = o.This
+	op.FileGroupNamesArray = o.FileGroupNamesArray
 	return op
 }
 
@@ -1391,9 +1391,9 @@ func (o *ExportFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportF
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SerializedFileGroups = op.SerializedFileGroups
-	o.Return = op.Return
+	op.That = o.That
+	op.SerializedFileGroups = o.SerializedFileGroups
+	op.Return = o.Return
 	return op
 }
 
@@ -1696,9 +1696,9 @@ func (o *ImportFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SerializedFileGroups = op.SerializedFileGroups
-	o.FileGroupNamesArray = op.FileGroupNamesArray
+	op.This = o.This
+	op.SerializedFileGroups = o.SerializedFileGroups
+	op.FileGroupNamesArray = o.FileGroupNamesArray
 	return op
 }
 
@@ -1742,9 +1742,9 @@ func (o *ImportFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportF
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileGroups = op.FileGroups
-	o.Return = op.Return
+	op.That = o.That
+	op.FileGroups = o.FileGroups
+	op.Return = o.Return
 	return op
 }
 

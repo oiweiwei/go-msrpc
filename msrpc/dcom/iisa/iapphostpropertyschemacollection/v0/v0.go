@@ -302,7 +302,7 @@ func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -340,9 +340,9 @@ func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 
@@ -572,8 +572,8 @@ func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -612,9 +612,9 @@ func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertySchema = op.PropertySchema
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertySchema = o.PropertySchema
+	op.Return = o.Return
 	return op
 }
 

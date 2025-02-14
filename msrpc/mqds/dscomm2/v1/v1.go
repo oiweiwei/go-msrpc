@@ -610,9 +610,9 @@ func (o *GetComputerSitesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCompu
 	if o == nil {
 		return op
 	}
-	o.PathName = op.PathName
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.PathName = o.PathName
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -664,11 +664,11 @@ func (o *GetComputerSitesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComp
 	if o == nil {
 		return op
 	}
-	o.NumberOfSites = op.NumberOfSites
-	o.Sites = op.Sites
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.NumberOfSites = o.NumberOfSites
+	op.Sites = o.Sites
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -1110,13 +1110,13 @@ func (o *GetPropertiesExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProper
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -1168,10 +1168,10 @@ func (o *GetPropertiesExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrope
 	if o == nil {
 		return op
 	}
-	o.Var = op.Var
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.Var = o.Var
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -1645,13 +1645,13 @@ func (o *GetPropertiesGUIDExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPr
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.GUID = op.GUID
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ObjectType = o.ObjectType
+	op.GUID = o.GUID
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -1703,10 +1703,10 @@ func (o *GetPropertiesGUIDExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return op
 	}
-	o.Var = op.Var
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.Var = o.Var
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 
@@ -1871,8 +1871,8 @@ func (o *BeginDeleteNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_B
 	if o == nil {
 		return op
 	}
-	o.PathName = op.PathName
-	o.ServerAuth = op.ServerAuth
+	op.PathName = o.PathName
+	op.ServerAuth = o.ServerAuth
 	return op
 }
 
@@ -1912,8 +1912,8 @@ func (o *BeginDeleteNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -2034,7 +2034,7 @@ func (o *NotifyDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_NotifyDelete
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -2069,7 +2069,7 @@ func (o *NotifyDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_NotifyDelet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2200,7 +2200,7 @@ func (o *EndDeleteNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_End
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -2238,7 +2238,7 @@ func (o *EndDeleteNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -2365,7 +2365,7 @@ func (o *IsServerGCResponse) xxx_ToOp(ctx context.Context, op *xxx_IsServerGCOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2684,10 +2684,10 @@ func (o *GetGCListInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGCLi
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.DomainName = op.DomainName
-	o.ServerAuth = op.ServerAuth
-	o.ServerSignatureSize = op.ServerSignatureSize
+	op.ComputerName = o.ComputerName
+	op.DomainName = o.DomainName
+	op.ServerAuth = o.ServerAuth
+	op.ServerSignatureSize = o.ServerSignatureSize
 	return op
 }
 
@@ -2737,10 +2737,10 @@ func (o *GetGCListInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGCL
 	if o == nil {
 		return op
 	}
-	o.GCList = op.GCList
-	o.ServerSignature = op.ServerSignature
-	o.ServerSignatureSize = op.ServerSignatureSize
-	o.Return = op.Return
+	op.GCList = o.GCList
+	op.ServerSignature = o.ServerSignature
+	op.ServerSignatureSize = o.ServerSignatureSize
+	op.Return = o.Return
 	return op
 }
 

@@ -421,10 +421,10 @@ func (o *CreateFullConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationIDOrName = op.ConglomerationIDOrName
-	o.ClassIDOrProgID = op.ClassIDOrProgID
-	o.CtComponentType = op.CtComponentType
+	op.This = o.This
+	op.ConglomerationIDOrName = o.ConglomerationIDOrName
+	op.ClassIDOrProgID = o.ClassIDOrProgID
+	op.CtComponentType = o.CtComponentType
 	return op
 }
 
@@ -464,8 +464,8 @@ func (o *CreateFullConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -671,10 +671,10 @@ func (o *CreateLegacyConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationIDOrName = op.ConglomerationIDOrName
-	o.ClassIDOrProgID = op.ClassIDOrProgID
-	o.CtComponentType = op.CtComponentType
+	op.This = o.This
+	op.ConglomerationIDOrName = o.ConglomerationIDOrName
+	op.ClassIDOrProgID = o.ClassIDOrProgID
+	op.CtComponentType = o.CtComponentType
 	return op
 }
 
@@ -714,8 +714,8 @@ func (o *CreateLegacyConfigurationResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -920,10 +920,10 @@ func (o *PromoteLegacyConfigurationRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationIDOrName = op.ConglomerationIDOrName
-	o.ClassIDOrProgID = op.ClassIDOrProgID
-	o.CtComponentType = op.CtComponentType
+	op.This = o.This
+	op.ConglomerationIDOrName = o.ConglomerationIDOrName
+	op.ClassIDOrProgID = o.ClassIDOrProgID
+	op.CtComponentType = o.CtComponentType
 	return op
 }
 
@@ -963,8 +963,8 @@ func (o *PromoteLegacyConfigurationResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1799,14 +1799,14 @@ func (o *RegisterModule2Request) xxx_ToOp(ctx context.Context, op *xxx_RegisterM
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
-	o.PartitionID = op.PartitionID
-	o.Modules = op.Modules
-	o.ModulesCount = op.ModulesCount
-	o.Flags = op.Flags
-	o.RequestedClassIDs = op.RequestedClassIDs
-	o.RequestedCount = op.RequestedCount
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
+	op.PartitionID = o.PartitionID
+	op.Modules = o.Modules
+	op.ModulesCount = o.ModulesCount
+	op.Flags = o.Flags
+	op.RequestedClassIDs = o.RequestedClassIDs
+	op.RequestedCount = o.RequestedCount
 	return op
 }
 
@@ -1874,14 +1874,14 @@ func (o *RegisterModule2Response) xxx_ToOp(ctx context.Context, op *xxx_Register
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleFlags = op.ModuleFlags
-	o.ResultsCount = op.ResultsCount
-	o.ResultClassIDs = op.ResultClassIDs
-	o.ResultNames = op.ResultNames
-	o.ResultFlags = op.ResultFlags
-	o.ResultHRs = op.ResultHRs
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleFlags = o.ModuleFlags
+	op.ResultsCount = o.ResultsCount
+	op.ResultClassIDs = o.ResultClassIDs
+	op.ResultNames = o.ResultNames
+	op.ResultFlags = o.ResultFlags
+	op.ResultHRs = o.ResultHRs
+	op.Return = o.Return
 	return op
 }
 

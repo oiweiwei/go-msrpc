@@ -529,7 +529,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -567,9 +567,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PackProperty = op.PackProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.PackProperty = o.PackProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -770,7 +770,7 @@ func (o *GetProviderRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProviderOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -811,9 +811,9 @@ func (o *GetProviderResponse) xxx_ToOp(ctx context.Context, op *xxx_GetProviderO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Provider = op.Provider
-	o.Return = op.Return
+	op.That = o.That
+	op.Provider = o.Provider
+	op.Return = o.Return
 	return op
 }
 
@@ -1014,7 +1014,7 @@ func (o *QueryVolumesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryVolumes
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1056,9 +1056,9 @@ func (o *QueryVolumesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryVolume
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -1259,7 +1259,7 @@ func (o *QueryDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryDisksOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1301,9 +1301,9 @@ func (o *QueryDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryDisksOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -1611,11 +1611,11 @@ func (o *CreateVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVolume
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
-	o.InputDiskArray = op.InputDiskArray
-	o.NumberOfDisks = op.NumberOfDisks
-	o.StripeSize = op.StripeSize
+	op.This = o.This
+	op.Type = o.Type
+	op.InputDiskArray = o.InputDiskArray
+	op.NumberOfDisks = o.NumberOfDisks
+	op.StripeSize = o.StripeSize
 	return op
 }
 
@@ -1663,9 +1663,9 @@ func (o *CreateVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateVolum
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1875,10 +1875,10 @@ func (o *AddDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_AddDiskOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.PartitionStyle = op.PartitionStyle
-	o.AsHotSpare = op.AsHotSpare
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.PartitionStyle = o.PartitionStyle
+	op.AsHotSpare = o.AsHotSpare
 	return op
 }
 
@@ -1918,8 +1918,8 @@ func (o *AddDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_AddDiskOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2264,12 +2264,12 @@ func (o *MigrateDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_MigrateDisks
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskArray = op.DiskArray
-	o.NumberOfDisks = op.NumberOfDisks
-	o.TargetPack = op.TargetPack
-	o.Force = op.Force
-	o.QueryOnly = op.QueryOnly
+	op.This = o.This
+	op.DiskArray = o.DiskArray
+	op.NumberOfDisks = o.NumberOfDisks
+	op.TargetPack = o.TargetPack
+	op.Force = o.Force
+	op.QueryOnly = o.QueryOnly
 	return op
 }
 
@@ -2321,10 +2321,10 @@ func (o *MigrateDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_MigrateDisk
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Results = op.Results
-	o.RebootNeeded = op.RebootNeeded
-	o.Return = op.Return
+	op.That = o.That
+	op.Results = o.Results
+	op.RebootNeeded = o.RebootNeeded
+	op.Return = o.Return
 	return op
 }
 
@@ -2503,8 +2503,8 @@ func (o *RemoveMissingDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveM
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -2542,8 +2542,8 @@ func (o *RemoveMissingDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_Remove
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2743,7 +2743,7 @@ func (o *RecoverRequest) xxx_ToOp(ctx context.Context, op *xxx_RecoverOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2784,9 +2784,9 @@ func (o *RecoverResponse) xxx_ToOp(ctx context.Context, op *xxx_RecoverOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

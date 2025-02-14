@@ -348,7 +348,7 @@ func (o *GetEventTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventType
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -386,9 +386,9 @@ func (o *GetEventTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEventTyp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventType = op.EventType
-	o.Return = op.Return
+	op.That = o.That
+	op.EventType = o.EventType
+	op.Return = o.Return
 	return op
 }
 
@@ -556,8 +556,8 @@ func (o *SetEventTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventType
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventType = op.EventType
+	op.This = o.This
+	op.EventType = o.EventType
 	return op
 }
 
@@ -595,8 +595,8 @@ func (o *SetEventTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEventTyp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -796,7 +796,7 @@ func (o *GetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMessage
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -834,9 +834,9 @@ func (o *GetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMessag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MessageText = op.MessageText
-	o.Return = op.Return
+	op.That = o.That
+	op.MessageText = o.MessageText
+	op.Return = o.Return
 	return op
 }
 
@@ -1038,8 +1038,8 @@ func (o *SetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMessage
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MessageText = op.MessageText
+	op.This = o.This
+	op.MessageText = o.MessageText
 	return op
 }
 
@@ -1077,8 +1077,8 @@ func (o *SetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMessag
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

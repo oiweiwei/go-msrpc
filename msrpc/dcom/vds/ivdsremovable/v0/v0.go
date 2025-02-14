@@ -301,7 +301,7 @@ func (o *QueryMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryMediaOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -338,8 +338,8 @@ func (o *QueryMediaResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryMediaOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -492,7 +492,7 @@ func (o *EjectRequest) xxx_ToOp(ctx context.Context, op *xxx_EjectOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -529,8 +529,8 @@ func (o *EjectResponse) xxx_ToOp(ctx context.Context, op *xxx_EjectOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

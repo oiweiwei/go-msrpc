@@ -358,8 +358,8 @@ func (o *LoadServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_LoadServiceOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MachineName = op.MachineName
+	op.This = o.This
+	op.MachineName = o.MachineName
 	return op
 }
 
@@ -401,9 +401,9 @@ func (o *LoadServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_LoadServiceO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Service = op.Service
-	o.Return = op.Return
+	op.That = o.That
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 

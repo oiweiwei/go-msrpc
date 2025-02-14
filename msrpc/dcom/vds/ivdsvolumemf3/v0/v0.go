@@ -436,7 +436,7 @@ func (o *QueryVolumeGUIDPathnamesRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -478,10 +478,10 @@ func (o *QueryVolumeGUIDPathnamesResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PathArray = op.PathArray
-	o.NumberOfPaths = op.NumberOfPaths
-	o.Return = op.Return
+	op.That = o.That
+	op.PathArray = o.PathArray
+	op.NumberOfPaths = o.NumberOfPaths
+	op.Return = o.Return
 	return op
 }
 
@@ -817,12 +817,12 @@ func (o *FormatEx2Request) xxx_ToOp(ctx context.Context, op *xxx_FormatEx2Operat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FileSystemTypeName = op.FileSystemTypeName
-	o.FileSystemRevision = op.FileSystemRevision
-	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
-	o.Label = op.Label
-	o.Options = op.Options
+	op.This = o.This
+	op.FileSystemTypeName = o.FileSystemTypeName
+	op.FileSystemRevision = o.FileSystemRevision
+	op.DesiredUnitAllocationSize = o.DesiredUnitAllocationSize
+	op.Label = o.Label
+	op.Options = o.Options
 	return op
 }
 
@@ -868,9 +868,9 @@ func (o *FormatEx2Response) xxx_ToOp(ctx context.Context, op *xxx_FormatEx2Opera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1024,7 +1024,7 @@ func (o *OfflineVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_OfflineVolu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1061,8 +1061,8 @@ func (o *OfflineVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_OfflineVol
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

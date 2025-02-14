@@ -1170,7 +1170,7 @@ func (o *RecordActionRequest) xxx_ToOp(ctx context.Context, op *xxx_RecordAction
 	if o == nil {
 		return op
 	}
-	o.RecordAction = op.RecordAction
+	op.RecordAction = o.RecordAction
 	return op
 }
 
@@ -1345,8 +1345,8 @@ func (o *RecordActionResponse) xxx_ToOp(ctx context.Context, op *xxx_RecordActio
 	if o == nil {
 		return op
 	}
-	o.RecordAction = op.RecordAction
-	o.Return = op.Return
+	op.RecordAction = o.RecordAction
+	op.Return = o.Return
 	return op
 }
 
@@ -1515,8 +1515,8 @@ func (o *StatusRequest) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) *
 	if o == nil {
 		return op
 	}
-	o.Cmd = op.Cmd
-	o.Results = op.Results
+	op.Cmd = o.Cmd
+	op.Results = o.Results
 	return op
 }
 
@@ -1555,8 +1555,8 @@ func (o *StatusResponse) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) 
 	if o == nil {
 		return op
 	}
-	o.Results = op.Results
-	o.Return = op.Return
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 
@@ -1689,8 +1689,8 @@ func (o *TriggerRequest) xxx_ToOp(ctx context.Context, op *xxx_TriggerOperation)
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.TriggerTypeE = op.TriggerTypeE
+	op.WINSAddr = o.WINSAddr
+	op.TriggerTypeE = o.TriggerTypeE
 	return op
 }
 
@@ -1726,7 +1726,7 @@ func (o *TriggerResponse) xxx_ToOp(ctx context.Context, op *xxx_TriggerOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1886,8 +1886,8 @@ func (o *DoStaticInitRequest) xxx_ToOp(ctx context.Context, op *xxx_DoStaticInit
 	if o == nil {
 		return op
 	}
-	o.DataFilePath = op.DataFilePath
-	o.Delete = op.Delete
+	op.DataFilePath = o.DataFilePath
+	op.Delete = o.Delete
 	return op
 }
 
@@ -1923,7 +1923,7 @@ func (o *DoStaticInitResponse) xxx_ToOp(ctx context.Context, op *xxx_DoStaticIni
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2050,7 +2050,7 @@ func (o *DoScavengingResponse) xxx_ToOp(ctx context.Context, op *xxx_DoScavengin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2243,9 +2243,9 @@ func (o *GetDBRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDBRecords
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.MinVersNo = op.MinVersNo
-	o.MaxVersNo = op.MaxVersNo
+	op.WINSAddr = o.WINSAddr
+	op.MinVersNo = o.MinVersNo
+	op.MaxVersNo = o.MaxVersNo
 	return op
 }
 
@@ -2285,8 +2285,8 @@ func (o *GetDBRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDBRecord
 	if o == nil {
 		return op
 	}
-	o.Records = op.Records
-	o.Return = op.Return
+	op.Records = o.Records
+	op.Return = o.Return
 	return op
 }
 
@@ -2398,7 +2398,7 @@ func (o *TerminateRequest) xxx_ToOp(ctx context.Context, op *xxx_TerminateOperat
 	if o == nil {
 		return op
 	}
-	o.AbruptTem = op.AbruptTem
+	op.AbruptTem = o.AbruptTem
 	return op
 }
 
@@ -2433,7 +2433,7 @@ func (o *TerminateResponse) xxx_ToOp(ctx context.Context, op *xxx_TerminateOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2558,8 +2558,8 @@ func (o *BackupRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) *
 	if o == nil {
 		return op
 	}
-	o.BackupPath = op.BackupPath
-	o.Incremental = op.Incremental
+	op.BackupPath = o.BackupPath
+	op.Incremental = o.Incremental
 	return op
 }
 
@@ -2595,7 +2595,7 @@ func (o *BackupResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2760,9 +2760,9 @@ func (o *DeleteDBRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteDBR
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.MinVersNo = op.MinVersNo
-	o.MaxVersNo = op.MaxVersNo
+	op.WINSAddr = o.WINSAddr
+	op.MinVersNo = o.MinVersNo
+	op.MaxVersNo = o.MaxVersNo
 	return op
 }
 
@@ -2799,7 +2799,7 @@ func (o *DeleteDBRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteDB
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2989,10 +2989,10 @@ func (o *PullRangeRequest) xxx_ToOp(ctx context.Context, op *xxx_PullRangeOperat
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.OwnerAddr = op.OwnerAddr
-	o.MinVersNo = op.MinVersNo
-	o.MaxVersNo = op.MaxVersNo
+	op.WINSAddr = o.WINSAddr
+	op.OwnerAddr = o.OwnerAddr
+	op.MinVersNo = o.MinVersNo
+	op.MaxVersNo = o.MaxVersNo
 	return op
 }
 
@@ -3030,7 +3030,7 @@ func (o *PullRangeResponse) xxx_ToOp(ctx context.Context, op *xxx_PullRangeOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3139,7 +3139,7 @@ func (o *SetPriorityClassRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrior
 	if o == nil {
 		return op
 	}
-	o.PriorityClass = op.PriorityClass
+	op.PriorityClass = o.PriorityClass
 	return op
 }
 
@@ -3174,7 +3174,7 @@ func (o *SetPriorityClassResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrio
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3301,7 +3301,7 @@ func (o *ResetCountersResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetCount
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3411,7 +3411,7 @@ func (o *WorkerThreadUpdateRequest) xxx_ToOp(ctx context.Context, op *xxx_Worker
 	if o == nil {
 		return op
 	}
-	o.NewNumberOfNbtThreads = op.NewNumberOfNbtThreads
+	op.NewNumberOfNbtThreads = o.NewNumberOfNbtThreads
 	return op
 }
 
@@ -3446,7 +3446,7 @@ func (o *WorkerThreadUpdateResponse) xxx_ToOp(ctx context.Context, op *xxx_Worke
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3673,9 +3673,9 @@ func (o *GetNameAndAddrResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameAn
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.UNCName = op.UNCName
-	o.Return = op.Return
+	op.WINSAddr = o.WINSAddr
+	op.UNCName = o.UNCName
+	op.Return = o.Return
 	return op
 }
 
@@ -3836,8 +3836,8 @@ func (o *GetBrowserNamesOldResponse) xxx_ToOp(ctx context.Context, op *xxx_GetBr
 	if o == nil {
 		return op
 	}
-	o.Names = op.Names
-	o.Return = op.Return
+	op.Names = o.Names
+	op.Return = o.Return
 	return op
 }
 
@@ -3955,7 +3955,7 @@ func (o *DeleteWINSRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteWINSOper
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
+	op.WINSAddr = o.WINSAddr
 	return op
 }
 
@@ -3990,7 +3990,7 @@ func (o *DeleteWINSResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteWINSOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4099,7 +4099,7 @@ func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperatio
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4134,7 +4134,7 @@ func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperati
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4288,7 +4288,7 @@ func (o *GetBrowserNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetBrowse
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
+	op.Server = o.Server
 	return op
 }
 
@@ -4326,8 +4326,8 @@ func (o *GetBrowserNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetBrows
 	if o == nil {
 		return op
 	}
-	o.Names = op.Names
-	o.Return = op.Return
+	op.Names = o.Names
+	op.Return = o.Return
 	return op
 }
 
@@ -4645,12 +4645,12 @@ func (o *GetDBRecordsByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDBR
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.Location = op.Location
-	o.Name = op.Name
-	o.NameLength = op.NameLength
-	o.NumberOfRecordsDesired = op.NumberOfRecordsDesired
-	o.OnlyStatic = op.OnlyStatic
+	op.WINSAddr = o.WINSAddr
+	op.Location = o.Location
+	op.Name = o.Name
+	op.NameLength = o.NameLength
+	op.NumberOfRecordsDesired = o.NumberOfRecordsDesired
+	op.OnlyStatic = o.OnlyStatic
 	return op
 }
 
@@ -4692,8 +4692,8 @@ func (o *GetDBRecordsByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDB
 	if o == nil {
 		return op
 	}
-	o.Records = op.Records
-	o.Return = op.Return
+	op.Records = o.Records
+	op.Return = o.Return
 	return op
 }
 
@@ -4832,7 +4832,7 @@ func (o *StatusNewRequest) xxx_ToOp(ctx context.Context, op *xxx_StatusNewOperat
 	if o == nil {
 		return op
 	}
-	o.Cmd = op.Cmd
+	op.Cmd = o.Cmd
 	return op
 }
 
@@ -4870,8 +4870,8 @@ func (o *StatusNewResponse) xxx_ToOp(ctx context.Context, op *xxx_StatusNewOpera
 	if o == nil {
 		return op
 	}
-	o.Results = op.Results
-	o.Return = op.Return
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 
@@ -5071,9 +5071,9 @@ func (o *StatusWRequest) xxx_ToOp(ctx context.Context, op *xxx_StatusWOperation)
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Cmd = op.Cmd
-	o.Results = op.Results
+	op.Server = o.Server
+	op.Cmd = o.Cmd
+	op.Results = o.Results
 	return op
 }
 
@@ -5113,8 +5113,8 @@ func (o *StatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_StatusWOperation
 	if o == nil {
 		return op
 	}
-	o.Results = op.Results
-	o.Return = op.Return
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 
@@ -5234,7 +5234,7 @@ func (o *DoScavengingNewRequest) xxx_ToOp(ctx context.Context, op *xxx_DoScaveng
 	if o == nil {
 		return op
 	}
-	o.PeriodicScavengingRequest = op.PeriodicScavengingRequest
+	op.PeriodicScavengingRequest = o.PeriodicScavengingRequest
 	return op
 }
 
@@ -5269,7 +5269,7 @@ func (o *DoScavengingNewResponse) xxx_ToOp(ctx context.Context, op *xxx_DoScaven
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

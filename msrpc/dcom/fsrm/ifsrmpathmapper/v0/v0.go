@@ -379,8 +379,8 @@ func (o *GetSharePathsForLocalPathRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.LocalPath = op.LocalPath
+	op.This = o.This
+	op.LocalPath = o.LocalPath
 	return op
 }
 
@@ -421,9 +421,9 @@ func (o *GetSharePathsForLocalPathResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SharePaths = op.SharePaths
-	o.Return = op.Return
+	op.That = o.That
+	op.SharePaths = o.SharePaths
+	op.Return = o.Return
 	return op
 }
 

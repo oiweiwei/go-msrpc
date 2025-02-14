@@ -8115,7 +8115,7 @@ func (o *ManagerGetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_Manage
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8358,11 +8358,11 @@ func (o *AddRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.Comment = op.Comment
-	o.Flags = op.Flags
+	op.EntryPath = o.EntryPath
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.Comment = o.Comment
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8401,7 +8401,7 @@ func (o *AddResponse) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_A
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8596,9 +8596,9 @@ func (o *RemoveRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
+	op.EntryPath = o.EntryPath
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
 	return op
 }
 
@@ -8635,7 +8635,7 @@ func (o *RemoveResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8918,11 +8918,11 @@ func (o *SetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation)
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.Level = op.Level
-	o.Info = op.Info
+	op.EntryPath = o.EntryPath
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.Level = o.Level
+	op.Info = o.Info
 	return op
 }
 
@@ -8961,7 +8961,7 @@ func (o *SetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9245,10 +9245,10 @@ func (o *GetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation)
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.Level = op.Level
+	op.EntryPath = o.EntryPath
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.Level = o.Level
 	return op
 }
 
@@ -9289,8 +9289,8 @@ func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -9641,10 +9641,10 @@ func (o *EnumRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.Level = op.Level
-	o.PrefMaxLength = op.PrefMaxLength
-	o.Enum = op.Enum
-	o.Resume = op.Resume
+	op.Level = o.Level
+	op.PrefMaxLength = o.PrefMaxLength
+	op.Enum = o.Enum
+	op.Resume = o.Resume
 	return op
 }
 
@@ -9705,9 +9705,9 @@ func (o *EnumResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.Enum = op.Enum
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Enum = o.Enum
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -9862,9 +9862,9 @@ func (o *MoveRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.NewDFSEntryPath = op.NewDFSEntryPath
-	o.Flags = op.Flags
+	op.EntryPath = o.EntryPath
+	op.NewDFSEntryPath = o.NewDFSEntryPath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -9901,7 +9901,7 @@ func (o *MoveResponse) xxx_ToOp(ctx context.Context, op *xxx_MoveOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10266,15 +10266,15 @@ func (o *AddFTRootRequest) xxx_ToOp(ctx context.Context, op *xxx_AddFTRootOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DCName = op.DCName
-	o.RootShare = op.RootShare
-	o.FTDFSName = op.FTDFSName
-	o.Comment = op.Comment
-	o.ConfigDN = op.ConfigDN
-	o.NewFTDFS = op.NewFTDFS
-	o.Flags = op.Flags
-	o.RootList = op.RootList
+	op.ServerName = o.ServerName
+	op.DCName = o.DCName
+	op.RootShare = o.RootShare
+	op.FTDFSName = o.FTDFSName
+	op.Comment = o.Comment
+	op.ConfigDN = o.ConfigDN
+	op.NewFTDFS = o.NewFTDFS
+	op.Flags = o.Flags
+	op.RootList = o.RootList
 	return op
 }
 
@@ -10322,8 +10322,8 @@ func (o *AddFTRootResponse) xxx_ToOp(ctx context.Context, op *xxx_AddFTRootOpera
 	if o == nil {
 		return op
 	}
-	o.RootList = op.RootList
-	o.Return = op.Return
+	op.RootList = o.RootList
+	op.Return = o.Return
 	return op
 }
 
@@ -10648,12 +10648,12 @@ func (o *RemoveFTRootRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveFTRoot
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DCName = op.DCName
-	o.RootShare = op.RootShare
-	o.FTDFSName = op.FTDFSName
-	o.Flags = op.Flags
-	o.RootList = op.RootList
+	op.ServerName = o.ServerName
+	op.DCName = o.DCName
+	op.RootShare = o.RootShare
+	op.FTDFSName = o.FTDFSName
+	op.Flags = o.Flags
+	op.RootList = o.RootList
 	return op
 }
 
@@ -10698,8 +10698,8 @@ func (o *RemoveFTRootResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveFTRoo
 	if o == nil {
 		return op
 	}
-	o.RootList = op.RootList
-	o.Return = op.Return
+	op.RootList = o.RootList
+	op.Return = o.Return
 	return op
 }
 
@@ -10860,10 +10860,10 @@ func (o *AddStdRootRequest) xxx_ToOp(ctx context.Context, op *xxx_AddStdRootOper
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.RootShare = op.RootShare
-	o.Comment = op.Comment
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.RootShare = o.RootShare
+	op.Comment = o.Comment
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10901,7 +10901,7 @@ func (o *AddStdRootResponse) xxx_ToOp(ctx context.Context, op *xxx_AddStdRootOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11043,9 +11043,9 @@ func (o *RemoveStdRootRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveStdRo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.RootShare = op.RootShare
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.RootShare = o.RootShare
+	op.Flags = o.Flags
 	return op
 }
 
@@ -11082,7 +11082,7 @@ func (o *RemoveStdRootResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveStdR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11209,8 +11209,8 @@ func (o *ManagerInitializeRequest) xxx_ToOp(ctx context.Context, op *xxx_Manager
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -11246,7 +11246,7 @@ func (o *ManagerInitializeResponse) xxx_ToOp(ctx context.Context, op *xxx_Manage
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11411,10 +11411,10 @@ func (o *AddStdRootForcedRequest) xxx_ToOp(ctx context.Context, op *xxx_AddStdRo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.RootShare = op.RootShare
-	o.Comment = op.Comment
-	o.Share = op.Share
+	op.ServerName = o.ServerName
+	op.RootShare = o.RootShare
+	op.Comment = o.Comment
+	op.Share = o.Share
 	return op
 }
 
@@ -11452,7 +11452,7 @@ func (o *AddStdRootForcedResponse) xxx_ToOp(ctx context.Context, op *xxx_AddStdR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11696,10 +11696,10 @@ func (o *GetDCAddressRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDCAddress
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DCName = op.DCName
-	o.IsRoot = op.IsRoot
-	o.Timeout = op.Timeout
+	op.ServerName = o.ServerName
+	op.DCName = o.DCName
+	op.IsRoot = o.IsRoot
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -11746,10 +11746,10 @@ func (o *GetDCAddressResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDCAddres
 	if o == nil {
 		return op
 	}
-	o.DCName = op.DCName
-	o.IsRoot = op.IsRoot
-	o.Timeout = op.Timeout
-	o.Return = op.Return
+	op.DCName = o.DCName
+	op.IsRoot = o.IsRoot
+	op.Timeout = o.Timeout
+	op.Return = o.Return
 	return op
 }
 
@@ -11923,10 +11923,10 @@ func (o *SetDCAddressRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDCAddress
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.DCName = op.DCName
-	o.Timeout = op.Timeout
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.DCName = o.DCName
+	op.Timeout = o.Timeout
+	op.Flags = o.Flags
 	return op
 }
 
@@ -11964,7 +11964,7 @@ func (o *SetDCAddressResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDCAddres
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12090,8 +12090,8 @@ func (o *FlushFTTableRequest) xxx_ToOp(ctx context.Context, op *xxx_FlushFTTable
 	if o == nil {
 		return op
 	}
-	o.DCName = op.DCName
-	o.FTDFSName = op.FTDFSName
+	op.DCName = o.DCName
+	op.FTDFSName = o.FTDFSName
 	return op
 }
 
@@ -12127,7 +12127,7 @@ func (o *FlushFTTableResponse) xxx_ToOp(ctx context.Context, op *xxx_FlushFTTabl
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12522,13 +12522,13 @@ func (o *Add2Request) xxx_ToOp(ctx context.Context, op *xxx_Add2Operation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.DCName = op.DCName
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.Comment = op.Comment
-	o.Flags = op.Flags
-	o.RootList = op.RootList
+	op.EntryPath = o.EntryPath
+	op.DCName = o.DCName
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.Comment = o.Comment
+	op.Flags = o.Flags
+	op.RootList = o.RootList
 	return op
 }
 
@@ -12574,8 +12574,8 @@ func (o *Add2Response) xxx_ToOp(ctx context.Context, op *xxx_Add2Operation) *xxx
 	if o == nil {
 		return op
 	}
-	o.RootList = op.RootList
-	o.Return = op.Return
+	op.RootList = o.RootList
+	op.Return = o.Return
 	return op
 }
 
@@ -12922,11 +12922,11 @@ func (o *Remove2Request) xxx_ToOp(ctx context.Context, op *xxx_Remove2Operation)
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.DCName = op.DCName
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.RootList = op.RootList
+	op.EntryPath = o.EntryPath
+	op.DCName = o.DCName
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.RootList = o.RootList
 	return op
 }
 
@@ -12970,8 +12970,8 @@ func (o *Remove2Response) xxx_ToOp(ctx context.Context, op *xxx_Remove2Operation
 	if o == nil {
 		return op
 	}
-	o.RootList = op.RootList
-	o.Return = op.Return
+	op.RootList = o.RootList
+	op.Return = o.Return
 	return op
 }
 
@@ -13362,11 +13362,11 @@ func (o *EnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumExOperation) *
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.Level = op.Level
-	o.PrefMaxLength = op.PrefMaxLength
-	o.Enum = op.Enum
-	o.Resume = op.Resume
+	op.EntryPath = o.EntryPath
+	op.Level = o.Level
+	op.PrefMaxLength = o.PrefMaxLength
+	op.Enum = o.Enum
+	op.Resume = o.Resume
 	return op
 }
 
@@ -13427,9 +13427,9 @@ func (o *EnumExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumExOperation) 
 	if o == nil {
 		return op
 	}
-	o.Enum = op.Enum
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Enum = o.Enum
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -13867,13 +13867,13 @@ func (o *SetInfo2Request) xxx_ToOp(ctx context.Context, op *xxx_SetInfo2Operatio
 	if o == nil {
 		return op
 	}
-	o.EntryPath = op.EntryPath
-	o.DCName = op.DCName
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.Level = op.Level
-	o.DFSInfo = op.DFSInfo
-	o.RootList = op.RootList
+	op.EntryPath = o.EntryPath
+	op.DCName = o.DCName
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.Level = o.Level
+	op.DFSInfo = o.DFSInfo
+	op.RootList = o.RootList
 	return op
 }
 
@@ -13919,8 +13919,8 @@ func (o *SetInfo2Response) xxx_ToOp(ctx context.Context, op *xxx_SetInfo2Operati
 	if o == nil {
 		return op
 	}
-	o.RootList = op.RootList
-	o.Return = op.Return
+	op.RootList = o.RootList
+	op.Return = o.Return
 	return op
 }
 
@@ -14198,12 +14198,12 @@ func (o *AddRootTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddRootTarg
 	if o == nil {
 		return op
 	}
-	o.DFSPath = op.DFSPath
-	o.TargetPath = op.TargetPath
-	o.MajorVersion = op.MajorVersion
-	o.Comment = op.Comment
-	o.NewNamespace = op.NewNamespace
-	o.Flags = op.Flags
+	op.DFSPath = o.DFSPath
+	op.TargetPath = o.TargetPath
+	op.MajorVersion = o.MajorVersion
+	op.Comment = o.Comment
+	op.NewNamespace = o.NewNamespace
+	op.Flags = o.Flags
 	return op
 }
 
@@ -14243,7 +14243,7 @@ func (o *AddRootTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_AddRootTar
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14446,9 +14446,9 @@ func (o *RemoveRootTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveRo
 	if o == nil {
 		return op
 	}
-	o.DFSPath = op.DFSPath
-	o.TargetPath = op.TargetPath
-	o.Flags = op.Flags
+	op.DFSPath = o.DFSPath
+	op.TargetPath = o.TargetPath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -14485,7 +14485,7 @@ func (o *RemoveRootTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveR
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14675,8 +14675,8 @@ func (o *GetSupportedNamespaceVersionRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Origin = op.Origin
-	o.Name = op.Name
+	op.Origin = o.Origin
+	op.Name = o.Name
 	return op
 }
 
@@ -14715,8 +14715,8 @@ func (o *GetSupportedNamespaceVersionResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.VersionInfo = op.VersionInfo
-	o.Return = op.Return
+	op.VersionInfo = o.VersionInfo
+	op.Return = o.Return
 	return op
 }
 

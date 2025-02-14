@@ -298,8 +298,8 @@ func (o *SetCOMCatalogBehaviourRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RetainSubKeys = op.RetainSubKeys
+	op.This = o.This
+	op.RetainSubKeys = o.RetainSubKeys
 	return op
 }
 
@@ -337,8 +337,8 @@ func (o *SetCOMCatalogBehaviourResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

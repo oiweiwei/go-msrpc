@@ -415,8 +415,8 @@ func (o *GetPartitionFileSystemPropertiesRequest) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
+	op.This = o.This
+	op.Offset = o.Offset
 	return op
 }
 
@@ -457,9 +457,9 @@ func (o *GetPartitionFileSystemPropertiesResponse) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemProperty = op.FileSystemProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemProperty = o.FileSystemProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -669,8 +669,8 @@ func (o *GetPartitionFileSystemTypeNameRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
+	op.This = o.This
+	op.Offset = o.Offset
 	return op
 }
 
@@ -711,9 +711,9 @@ func (o *GetPartitionFileSystemTypeNameResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemTypeName = op.FileSystemTypeName
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemTypeName = o.FileSystemTypeName
+	op.Return = o.Return
 	return op
 }
 
@@ -981,8 +981,8 @@ func (o *QueryPartitionFileSystemFormatSupportRequest) xxx_ToOp(ctx context.Cont
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
+	op.This = o.This
+	op.Offset = o.Offset
 	return op
 }
 
@@ -1027,10 +1027,10 @@ func (o *QueryPartitionFileSystemFormatSupportResponse) xxx_ToOp(ctx context.Con
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemSupportProperties = op.FileSystemSupportProperties
-	o.NumberOfFileSystems = op.NumberOfFileSystems
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemSupportProperties = o.FileSystemSupportProperties
+	op.NumberOfFileSystems = o.NumberOfFileSystems
+	op.Return = o.Return
 	return op
 }
 
@@ -1415,15 +1415,15 @@ func (o *FormatPartitionExRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatP
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.FileSystemTypeName = op.FileSystemTypeName
-	o.FileSystemRevision = op.FileSystemRevision
-	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
-	o.Label = op.Label
-	o.Force = op.Force
-	o.QuickFormat = op.QuickFormat
-	o.EnableCompression = op.EnableCompression
+	op.This = o.This
+	op.Offset = o.Offset
+	op.FileSystemTypeName = o.FileSystemTypeName
+	op.FileSystemRevision = o.FileSystemRevision
+	op.DesiredUnitAllocationSize = o.DesiredUnitAllocationSize
+	op.Label = o.Label
+	op.Force = o.Force
+	op.QuickFormat = o.QuickFormat
+	op.EnableCompression = o.EnableCompression
 	return op
 }
 
@@ -1472,9 +1472,9 @@ func (o *FormatPartitionExResponse) xxx_ToOp(ctx context.Context, op *xxx_Format
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

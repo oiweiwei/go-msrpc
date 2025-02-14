@@ -375,9 +375,9 @@ func (o *InitializeSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_Initial
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VerLower = op.VerLower
-	o.VerUpper = op.VerUpper
+	op.This = o.This
+	op.VerLower = o.VerLower
+	op.VerUpper = o.VerUpper
 	return op
 }
 
@@ -419,9 +419,9 @@ func (o *InitializeSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_Initia
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VerSession = op.VerSession
-	o.Return = op.Return
+	op.That = o.That
+	op.VerSession = o.VerSession
+	op.Return = o.Return
 	return op
 }
 
@@ -670,7 +670,7 @@ func (o *GetServerInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -727,9 +727,9 @@ func (o *GetServerInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MultiplePartitionSupport = op.MultiplePartitionSupport
-	o.Return = op.Return
+	op.That = o.That
+	op.MultiplePartitionSupport = o.MultiplePartitionSupport
+	op.Return = o.Return
 	return op
 }
 

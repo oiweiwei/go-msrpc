@@ -382,7 +382,7 @@ func (o *GetEventClassPartitionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -420,9 +420,9 @@ func (o *GetEventClassPartitionIDResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventClassPartitionID = op.EventClassPartitionID
-	o.Return = op.Return
+	op.That = o.That
+	op.EventClassPartitionID = o.EventClassPartitionID
+	op.Return = o.Return
 	return op
 }
 
@@ -626,8 +626,8 @@ func (o *SetEventClassPartitionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventClassPartitionID = op.EventClassPartitionID
+	op.This = o.This
+	op.EventClassPartitionID = o.EventClassPartitionID
 	return op
 }
 
@@ -665,8 +665,8 @@ func (o *SetEventClassPartitionIDResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -868,7 +868,7 @@ func (o *GetEventClassApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -906,9 +906,9 @@ func (o *GetEventClassApplicationIDResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventClassApplicationID = op.EventClassApplicationID
-	o.Return = op.Return
+	op.That = o.That
+	op.EventClassApplicationID = o.EventClassApplicationID
+	op.Return = o.Return
 	return op
 }
 
@@ -1112,8 +1112,8 @@ func (o *SetEventClassApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventClassApplicationID = op.EventClassApplicationID
+	op.This = o.This
+	op.EventClassApplicationID = o.EventClassApplicationID
 	return op
 }
 
@@ -1151,8 +1151,8 @@ func (o *SetEventClassApplicationIDResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

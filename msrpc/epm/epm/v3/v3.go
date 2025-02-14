@@ -516,9 +516,9 @@ func (o *InsertRequest) xxx_ToOp(ctx context.Context, op *xxx_InsertOperation) *
 	if o == nil {
 		return op
 	}
-	o.EntriesLength = op.EntriesLength
-	o.Entries = op.Entries
-	o.Replace = op.Replace
+	op.EntriesLength = o.EntriesLength
+	op.Entries = o.Entries
+	op.Replace = o.Replace
 	return op
 }
 
@@ -554,7 +554,7 @@ func (o *InsertResponse) xxx_ToOp(ctx context.Context, op *xxx_InsertOperation) 
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
+	op.Status = o.Status
 	return op
 }
 
@@ -727,8 +727,8 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.EntriesLength = op.EntriesLength
-	o.Entries = op.Entries
+	op.EntriesLength = o.EntriesLength
+	op.Entries = o.Entries
 	return op
 }
 
@@ -763,7 +763,7 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
+	op.Status = o.Status
 	return op
 }
 
@@ -1136,12 +1136,12 @@ func (o *LookupRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupOperation) *
 	if o == nil {
 		return op
 	}
-	o.InquiryType = op.InquiryType
-	o.Object = op.Object
-	o.InterfaceID = op.InterfaceID
-	o.VersOption = op.VersOption
-	o.EntryHandle = op.EntryHandle
-	o.MaxEntries = op.MaxEntries
+	op.InquiryType = o.InquiryType
+	op.Object = o.Object
+	op.InterfaceID = o.InterfaceID
+	op.VersOption = o.VersOption
+	op.EntryHandle = o.EntryHandle
+	op.MaxEntries = o.MaxEntries
 	return op
 }
 
@@ -1183,10 +1183,10 @@ func (o *LookupResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupOperation) 
 	if o == nil {
 		return op
 	}
-	o.EntryHandle = op.EntryHandle
-	o.EntriesLength = op.EntriesLength
-	o.Entries = op.Entries
-	o.Status = op.Status
+	op.EntryHandle = o.EntryHandle
+	op.EntriesLength = o.EntriesLength
+	op.Entries = o.Entries
+	op.Status = o.Status
 	return op
 }
 
@@ -1553,10 +1553,10 @@ func (o *MapRequest) xxx_ToOp(ctx context.Context, op *xxx_MapOperation) *xxx_Ma
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.MapTower = op.MapTower
-	o.EntryHandle = op.EntryHandle
-	o.MaxTowers = op.MaxTowers
+	op.Object = o.Object
+	op.MapTower = o.MapTower
+	op.EntryHandle = o.EntryHandle
+	op.MaxTowers = o.MaxTowers
 	return op
 }
 
@@ -1596,10 +1596,10 @@ func (o *MapResponse) xxx_ToOp(ctx context.Context, op *xxx_MapOperation) *xxx_M
 	if o == nil {
 		return op
 	}
-	o.EntryHandle = op.EntryHandle
-	o.TowersLength = op.TowersLength
-	o.Towers = op.Towers
-	o.Status = op.Status
+	op.EntryHandle = o.EntryHandle
+	op.TowersLength = o.TowersLength
+	op.Towers = o.Towers
+	op.Status = o.Status
 	return op
 }
 
@@ -1740,7 +1740,7 @@ func (o *LookupHandleFreeRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupHa
 	if o == nil {
 		return op
 	}
-	o.EntryHandle = op.EntryHandle
+	op.EntryHandle = o.EntryHandle
 	return op
 }
 
@@ -1775,8 +1775,8 @@ func (o *LookupHandleFreeResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupH
 	if o == nil {
 		return op
 	}
-	o.EntryHandle = op.EntryHandle
-	o.Status = op.Status
+	op.EntryHandle = o.EntryHandle
+	op.Status = o.Status
 	return op
 }
 
@@ -1926,8 +1926,8 @@ func (o *InquireObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_InquireObj
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.Status = op.Status
+	op.Object = o.Object
+	op.Status = o.Status
 	return op
 }
 
@@ -2140,9 +2140,9 @@ func (o *ManagementDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_Manageme
 	if o == nil {
 		return op
 	}
-	o.ObjectSpeced = op.ObjectSpeced
-	o.Object = op.Object
-	o.Tower = op.Tower
+	op.ObjectSpeced = o.ObjectSpeced
+	op.Object = o.Object
+	op.Tower = o.Tower
 	return op
 }
 
@@ -2178,7 +2178,7 @@ func (o *ManagementDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_Managem
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
+	op.Status = o.Status
 	return op
 }
 

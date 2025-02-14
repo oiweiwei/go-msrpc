@@ -1228,7 +1228,7 @@ func (o *GetClassificationReportFormatsRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1266,9 +1266,9 @@ func (o *GetClassificationReportFormatsResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Formats = op.Formats
-	o.Return = op.Return
+	op.That = o.That
+	op.Formats = o.Formats
+	op.Return = o.Return
 	return op
 }
 
@@ -1472,8 +1472,8 @@ func (o *SetClassificationReportFormatsRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Formats = op.Formats
+	op.This = o.This
+	op.Formats = o.Formats
 	return op
 }
 
@@ -1511,8 +1511,8 @@ func (o *SetClassificationReportFormatsResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1678,7 +1678,7 @@ func (o *GetLoggingRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLoggingOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1716,9 +1716,9 @@ func (o *GetLoggingResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLoggingOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Logging = op.Logging
-	o.Return = op.Return
+	op.That = o.That
+	op.Logging = o.Logging
+	op.Return = o.Return
 	return op
 }
 
@@ -1886,8 +1886,8 @@ func (o *SetLoggingRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLoggingOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Logging = op.Logging
+	op.This = o.This
+	op.Logging = o.Logging
 	return op
 }
 
@@ -1925,8 +1925,8 @@ func (o *SetLoggingResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLoggingOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2128,7 +2128,7 @@ func (o *GetClassificationReportMailToRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2166,9 +2166,9 @@ func (o *GetClassificationReportMailToResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailTo = op.MailTo
-	o.Return = op.Return
+	op.That = o.That
+	op.MailTo = o.MailTo
+	op.Return = o.Return
 	return op
 }
 
@@ -2372,8 +2372,8 @@ func (o *SetClassificationReportMailToRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailTo = op.MailTo
+	op.This = o.This
+	op.MailTo = o.MailTo
 	return op
 }
 
@@ -2411,8 +2411,8 @@ func (o *SetClassificationReportMailToResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2580,7 +2580,7 @@ func (o *GetClassificationReportEnabledRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2618,9 +2618,9 @@ func (o *GetClassificationReportEnabledResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReportEnabled = op.ReportEnabled
-	o.Return = op.Return
+	op.That = o.That
+	op.ReportEnabled = o.ReportEnabled
+	op.Return = o.Return
 	return op
 }
 
@@ -2790,8 +2790,8 @@ func (o *SetClassificationReportEnabledRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReportEnabled = op.ReportEnabled
+	op.This = o.This
+	op.ReportEnabled = o.ReportEnabled
 	return op
 }
 
@@ -2829,8 +2829,8 @@ func (o *SetClassificationReportEnabledResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3032,7 +3032,7 @@ func (o *GetClassificationLastReportPathWithoutExtensionRequest) xxx_ToOp(ctx co
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3073,9 +3073,9 @@ func (o *GetClassificationLastReportPathWithoutExtensionResponse) xxx_ToOp(ctx c
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LastReportPath = op.LastReportPath
-	o.Return = op.Return
+	op.That = o.That
+	op.LastReportPath = o.LastReportPath
+	op.Return = o.Return
 	return op
 }
 
@@ -3278,7 +3278,7 @@ func (o *GetClassificationLastErrorRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3318,9 +3318,9 @@ func (o *GetClassificationLastErrorResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LastError = op.LastError
-	o.Return = op.Return
+	op.That = o.That
+	op.LastError = o.LastError
+	op.Return = o.Return
 	return op
 }
 
@@ -3489,7 +3489,7 @@ func (o *GetClassificationRunningStatusRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3529,9 +3529,9 @@ func (o *GetClassificationRunningStatusResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RunningStatus = op.RunningStatus
-	o.Return = op.Return
+	op.That = o.That
+	op.RunningStatus = o.RunningStatus
+	op.Return = o.Return
 	return op
 }
 
@@ -3750,8 +3750,8 @@ func (o *EnumPropertyDefinitionsRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Options = op.Options
+	op.This = o.This
+	op.Options = o.Options
 	return op
 }
 
@@ -3793,9 +3793,9 @@ func (o *EnumPropertyDefinitionsResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyDefinitions = op.PropertyDefinitions
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyDefinitions = o.PropertyDefinitions
+	op.Return = o.Return
 	return op
 }
 
@@ -3998,7 +3998,7 @@ func (o *CreatePropertyDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4041,9 +4041,9 @@ func (o *CreatePropertyDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyDefinition = op.PropertyDefinition
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyDefinition = o.PropertyDefinition
+	op.Return = o.Return
 	return op
 }
 
@@ -4295,8 +4295,8 @@ func (o *GetPropertyDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
+	op.This = o.This
+	op.PropertyName = o.PropertyName
 	return op
 }
 
@@ -4340,9 +4340,9 @@ func (o *GetPropertyDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyDefinition = op.PropertyDefinition
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyDefinition = o.PropertyDefinition
+	op.Return = o.Return
 	return op
 }
 
@@ -4575,9 +4575,9 @@ func (o *EnumRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumRulesOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RuleType = op.RuleType
-	o.Options = op.Options
+	op.This = o.This
+	op.RuleType = o.RuleType
+	op.Options = o.Options
 	return op
 }
 
@@ -4621,9 +4621,9 @@ func (o *EnumRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumRulesOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.That = o.That
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -4840,8 +4840,8 @@ func (o *CreateRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateRuleOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RuleType = op.RuleType
+	op.This = o.This
+	op.RuleType = o.RuleType
 	return op
 }
 
@@ -4884,9 +4884,9 @@ func (o *CreateRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRuleOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Rule = op.Rule
-	o.Return = op.Return
+	op.That = o.That
+	op.Rule = o.Rule
+	op.Return = o.Return
 	return op
 }
 
@@ -5152,9 +5152,9 @@ func (o *GetRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRuleOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RuleName = op.RuleName
-	o.RuleType = op.RuleType
+	op.This = o.This
+	op.RuleName = o.RuleName
+	op.RuleType = o.RuleType
 	return op
 }
 
@@ -5197,9 +5197,9 @@ func (o *GetRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRuleOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Rule = op.Rule
-	o.Return = op.Return
+	op.That = o.That
+	op.Rule = o.Rule
+	op.Return = o.Return
 	return op
 }
 
@@ -5434,9 +5434,9 @@ func (o *EnumModuleDefinitionsRequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ModuleType = op.ModuleType
-	o.Options = op.Options
+	op.This = o.This
+	op.ModuleType = o.ModuleType
+	op.Options = o.Options
 	return op
 }
 
@@ -5480,9 +5480,9 @@ func (o *EnumModuleDefinitionsResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleDefinitions = op.ModuleDefinitions
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleDefinitions = o.ModuleDefinitions
+	op.Return = o.Return
 	return op
 }
 
@@ -5702,8 +5702,8 @@ func (o *CreateModuleDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_Cr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ModuleType = op.ModuleType
+	op.This = o.This
+	op.ModuleType = o.ModuleType
 	return op
 }
 
@@ -5747,9 +5747,9 @@ func (o *CreateModuleDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleDefinition = op.ModuleDefinition
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleDefinition = o.ModuleDefinition
+	op.Return = o.Return
 	return op
 }
 
@@ -6017,9 +6017,9 @@ func (o *GetModuleDefinitionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ModuleName = op.ModuleName
-	o.ModuleType = op.ModuleType
+	op.This = o.This
+	op.ModuleName = o.ModuleName
+	op.ModuleType = o.ModuleType
 	return op
 }
 
@@ -6062,9 +6062,9 @@ func (o *GetModuleDefinitionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetM
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ModuleDefinition = op.ModuleDefinition
-	o.Return = op.Return
+	op.That = o.That
+	op.ModuleDefinition = o.ModuleDefinition
+	op.Return = o.Return
 	return op
 }
 
@@ -6268,8 +6268,8 @@ func (o *RunClassificationRequest) xxx_ToOp(ctx context.Context, op *xxx_RunClas
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Context = op.Context
+	op.This = o.This
+	op.Context = o.Context
 	return op
 }
 
@@ -6307,8 +6307,8 @@ func (o *RunClassificationResponse) xxx_ToOp(ctx context.Context, op *xxx_RunCla
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6491,8 +6491,8 @@ func (o *WaitForClassificationCompletionRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.WaitSeconds = op.WaitSeconds
+	op.This = o.This
+	op.WaitSeconds = o.WaitSeconds
 	return op
 }
 
@@ -6533,9 +6533,9 @@ func (o *WaitForClassificationCompletionResponse) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Completed = op.Completed
-	o.Return = op.Return
+	op.That = o.That
+	op.Completed = o.Completed
+	op.Return = o.Return
 	return op
 }
 
@@ -6691,7 +6691,7 @@ func (o *CancelClassificationRequest) xxx_ToOp(ctx context.Context, op *xxx_Canc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -6728,8 +6728,8 @@ func (o *CancelClassificationResponse) xxx_ToOp(ctx context.Context, op *xxx_Can
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6999,9 +6999,9 @@ func (o *EnumFilePropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FilePath = op.FilePath
-	o.Options = op.Options
+	op.This = o.This
+	op.FilePath = o.FilePath
+	op.Options = o.Options
 	return op
 }
 
@@ -7045,9 +7045,9 @@ func (o *EnumFilePropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumF
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileProperties = op.FileProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.FileProperties = o.FileProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -7367,10 +7367,10 @@ func (o *GetFilePropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFilePr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FilePath = op.FilePath
-	o.PropertyName = op.PropertyName
-	o.Options = op.Options
+	op.This = o.This
+	op.FilePath = o.FilePath
+	op.PropertyName = o.PropertyName
+	op.Options = o.Options
 	return op
 }
 
@@ -7413,9 +7413,9 @@ func (o *GetFilePropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Property = op.Property
-	o.Return = op.Return
+	op.That = o.That
+	op.Property = o.Property
+	op.Return = o.Return
 	return op
 }
 
@@ -7721,10 +7721,10 @@ func (o *SetFilePropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFilePr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FilePath = op.FilePath
-	o.PropertyName = op.PropertyName
-	o.PropertyValue = op.PropertyValue
+	op.This = o.This
+	op.FilePath = o.FilePath
+	op.PropertyName = o.PropertyName
+	op.PropertyValue = o.PropertyValue
 	return op
 }
 
@@ -7764,8 +7764,8 @@ func (o *SetFilePropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFileP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8021,9 +8021,9 @@ func (o *ClearFilePropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FilePath = op.FilePath
-	o.Property = op.Property
+	op.This = o.This
+	op.FilePath = o.FilePath
+	op.Property = o.Property
 	return op
 }
 
@@ -8062,8 +8062,8 @@ func (o *ClearFilePropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearF
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

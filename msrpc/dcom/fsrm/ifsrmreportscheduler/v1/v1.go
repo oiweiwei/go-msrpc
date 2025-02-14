@@ -464,8 +464,8 @@ func (o *VerifyNamespacesRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyNa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NamespacesSafeArray = op.NamespacesSafeArray
+	op.This = o.This
+	op.NamespacesSafeArray = o.NamespacesSafeArray
 	return op
 }
 
@@ -503,8 +503,8 @@ func (o *VerifyNamespacesResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -809,10 +809,10 @@ func (o *CreateScheduleTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TaskName = op.TaskName
-	o.NamespacesSafeArray = op.NamespacesSafeArray
-	o.SerializedTask = op.SerializedTask
+	op.This = o.This
+	op.TaskName = o.TaskName
+	op.NamespacesSafeArray = o.NamespacesSafeArray
+	op.SerializedTask = o.SerializedTask
 	return op
 }
 
@@ -852,8 +852,8 @@ func (o *CreateScheduleTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1158,10 +1158,10 @@ func (o *ModifyScheduleTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_Modify
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TaskName = op.TaskName
-	o.NamespacesSafeArray = op.NamespacesSafeArray
-	o.SerializedTask = op.SerializedTask
+	op.This = o.This
+	op.TaskName = o.TaskName
+	op.NamespacesSafeArray = o.NamespacesSafeArray
+	op.SerializedTask = o.SerializedTask
 	return op
 }
 
@@ -1201,8 +1201,8 @@ func (o *ModifyScheduleTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_Modif
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1406,8 +1406,8 @@ func (o *DeleteScheduleTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TaskName = op.TaskName
+	op.This = o.This
+	op.TaskName = o.TaskName
 	return op
 }
 
@@ -1445,8 +1445,8 @@ func (o *DeleteScheduleTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

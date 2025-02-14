@@ -375,8 +375,8 @@ func (o *StartRequest) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CSS = op.CSS
+	op.This = o.This
+	op.CSS = o.CSS
 	return op
 }
 
@@ -414,8 +414,8 @@ func (o *StartResponse) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -583,8 +583,8 @@ func (o *StopRequest) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CSS = op.CSS
+	op.This = o.This
+	op.CSS = o.CSS
 	return op
 }
 
@@ -622,8 +622,8 @@ func (o *StopResponse) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -804,8 +804,8 @@ func (o *IsInstalledRequest) xxx_ToOp(ctx context.Context, op *xxx_IsInstalledOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CSS = op.CSS
+	op.This = o.This
+	op.CSS = o.CSS
 	return op
 }
 
@@ -847,9 +847,9 @@ func (o *IsInstalledResponse) xxx_ToOp(ctx context.Context, op *xxx_IsInstalledO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Status = op.Status
-	o.Return = op.Return
+	op.That = o.That
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -1031,8 +1031,8 @@ func (o *IsRunningRequest) xxx_ToOp(ctx context.Context, op *xxx_IsRunningOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CSS = op.CSS
+	op.This = o.This
+	op.CSS = o.CSS
 	return op
 }
 
@@ -1074,9 +1074,9 @@ func (o *IsRunningResponse) xxx_ToOp(ctx context.Context, op *xxx_IsRunningOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.States = op.States
-	o.Return = op.Return
+	op.That = o.That
+	op.States = o.States
+	op.Return = o.Return
 	return op
 }
 

@@ -359,7 +359,7 @@ func (o *GetInvalidValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInvali
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -397,9 +397,9 @@ func (o *GetInvalidValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInval
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -602,7 +602,7 @@ func (o *GetValidationFailureReasonRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -640,9 +640,9 @@ func (o *GetValidationFailureReasonResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ValidationReason = op.ValidationReason
-	o.Return = op.Return
+	op.That = o.That
+	op.ValidationReason = o.ValidationReason
+	op.Return = o.Return
 	return op
 }
 
@@ -845,7 +845,7 @@ func (o *GetValidationFailureParametersRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -883,9 +883,9 @@ func (o *GetValidationFailureParametersResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ParameterArray = op.ParameterArray
-	o.Return = op.Return
+	op.That = o.That
+	op.ParameterArray = o.ParameterArray
+	op.Return = o.Return
 	return op
 }
 

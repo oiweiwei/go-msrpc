@@ -312,7 +312,7 @@ func (o *CommitChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitChang
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -349,8 +349,8 @@ func (o *CommitChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitChan
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -552,7 +552,7 @@ func (o *GetCommitPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCommitPa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -590,9 +590,9 @@ func (o *GetCommitPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCommitP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CommitPath = op.CommitPath
-	o.Return = op.Return
+	op.That = o.That
+	op.CommitPath = o.CommitPath
+	op.Return = o.Return
 	return op
 }
 
@@ -796,8 +796,8 @@ func (o *SetCommitPathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCommitPa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CommitPath = op.CommitPath
+	op.This = o.This
+	op.CommitPath = o.CommitPath
 	return op
 }
 
@@ -835,8 +835,8 @@ func (o *SetCommitPathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCommitP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -321,7 +321,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -359,9 +359,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AdvancedDiskProperty = op.AdvancedDiskProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.AdvancedDiskProperty = o.AdvancedDiskProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -553,7 +553,7 @@ func (o *GetUniqueIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -593,9 +593,9 @@ func (o *GetUniqueIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ID = op.ID
-	o.Return = op.Return
+	op.That = o.That
+	op.ID = o.ID
+	op.Return = o.Return
 	return op
 }
 

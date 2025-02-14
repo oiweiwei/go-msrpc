@@ -569,12 +569,12 @@ func (o *CreateObject2Request) xxx_ToOp(ctx context.Context, op *xxx_CreateObjec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DomainControllerName = op.DomainControllerName
-	o.DistinguishedName = op.DistinguishedName
-	o.Attributes = op.Attributes
-	o.VerifyNameDomainControllerName = op.VerifyNameDomainControllerName
-	o.NetworkNameResourceName = op.NetworkNameResourceName
+	op.This = o.This
+	op.DomainControllerName = o.DomainControllerName
+	op.DistinguishedName = o.DistinguishedName
+	op.Attributes = o.Attributes
+	op.VerifyNameDomainControllerName = o.VerifyNameDomainControllerName
+	op.NetworkNameResourceName = o.NetworkNameResourceName
 	return op
 }
 
@@ -616,8 +616,8 @@ func (o *CreateObject2Response) xxx_ToOp(ctx context.Context, op *xxx_CreateObje
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -914,10 +914,10 @@ func (o *DeleteObject2Request) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DomainControllerName = op.DomainControllerName
-	o.DistinguishedName = op.DistinguishedName
-	o.NetworkNameResourceName = op.NetworkNameResourceName
+	op.This = o.This
+	op.DomainControllerName = o.DomainControllerName
+	op.DistinguishedName = o.DistinguishedName
+	op.NetworkNameResourceName = o.NetworkNameResourceName
 	return op
 }
 
@@ -957,8 +957,8 @@ func (o *DeleteObject2Response) xxx_ToOp(ctx context.Context, op *xxx_DeleteObje
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1322,11 +1322,11 @@ func (o *ModifyObject2Request) xxx_ToOp(ctx context.Context, op *xxx_ModifyObjec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DomainControllerName = op.DomainControllerName
-	o.DistinguishedName = op.DistinguishedName
-	o.Attributes = op.Attributes
-	o.NetworkNameResourceName = op.NetworkNameResourceName
+	op.This = o.This
+	op.DomainControllerName = o.DomainControllerName
+	op.DistinguishedName = o.DistinguishedName
+	op.Attributes = o.Attributes
+	op.NetworkNameResourceName = o.NetworkNameResourceName
 	return op
 }
 
@@ -1367,8 +1367,8 @@ func (o *ModifyObject2Response) xxx_ToOp(ctx context.Context, op *xxx_ModifyObje
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -308,7 +308,7 @@ func (o *QueryMaxReclaimableBytesRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -350,9 +350,9 @@ func (o *QueryMaxReclaimableBytesResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PullMaxNumberOfReclaimableBytes = op.PullMaxNumberOfReclaimableBytes
-	o.Return = op.Return
+	op.That = o.That
+	op.PullMaxNumberOfReclaimableBytes = o.PullMaxNumberOfReclaimableBytes
+	op.Return = o.Return
 	return op
 }
 
@@ -581,9 +581,9 @@ func (o *ShrinkRequest) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DesiredNumberOfReclaimableBytes = op.DesiredNumberOfReclaimableBytes
-	o.MinNumberOfReclaimableBytes = op.MinNumberOfReclaimableBytes
+	op.This = o.This
+	op.DesiredNumberOfReclaimableBytes = o.DesiredNumberOfReclaimableBytes
+	op.MinNumberOfReclaimableBytes = o.MinNumberOfReclaimableBytes
 	return op
 }
 
@@ -623,9 +623,9 @@ func (o *ShrinkResponse) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

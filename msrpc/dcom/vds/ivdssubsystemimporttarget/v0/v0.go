@@ -337,7 +337,7 @@ func (o *GetImportTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImport
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -378,9 +378,9 @@ func (o *GetImportTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_GetImpor
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ISCSIName = op.ISCSIName
-	o.Return = op.Return
+	op.That = o.That
+	op.ISCSIName = o.ISCSIName
+	op.Return = o.Return
 	return op
 }
 
@@ -576,8 +576,8 @@ func (o *SetImportTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_SetImport
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ISCSIName = op.ISCSIName
+	op.This = o.This
+	op.ISCSIName = o.ISCSIName
 	return op
 }
 
@@ -615,8 +615,8 @@ func (o *SetImportTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_SetImpor
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

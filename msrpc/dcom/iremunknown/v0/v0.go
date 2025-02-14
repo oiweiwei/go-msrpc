@@ -512,11 +512,11 @@ func (o *RemoteQueryInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IPID = op.IPID
-	o.ReferencesCount = op.ReferencesCount
-	o.IIDsCount = op.IIDsCount
-	o.IIDs = op.IIDs
+	op.This = o.This
+	op.IPID = o.IPID
+	op.ReferencesCount = o.ReferencesCount
+	op.IIDsCount = o.IIDsCount
+	op.IIDs = o.IIDs
 	return op
 }
 
@@ -560,9 +560,9 @@ func (o *RemoteQueryInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.QueryInterfaceResults = op.QueryInterfaceResults
-	o.Return = op.Return
+	op.That = o.That
+	op.QueryInterfaceResults = o.QueryInterfaceResults
+	op.Return = o.Return
 	return op
 }
 
@@ -840,9 +840,9 @@ func (o *RemoteAddReferenceRequest) xxx_ToOp(ctx context.Context, op *xxx_Remote
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InterfaceReferencesCount = op.InterfaceReferencesCount
-	o.InterfaceReferences = op.InterfaceReferences
+	op.This = o.This
+	op.InterfaceReferencesCount = o.InterfaceReferencesCount
+	op.InterfaceReferences = o.InterfaceReferences
 	return op
 }
 
@@ -884,9 +884,9 @@ func (o *RemoteAddReferenceResponse) xxx_ToOp(ctx context.Context, op *xxx_Remot
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Results = op.Results
-	o.Return = op.Return
+	op.That = o.That
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 
@@ -1117,9 +1117,9 @@ func (o *RemoteReleaseRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteRelea
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InterfaceReferencesCount = op.InterfaceReferencesCount
-	o.InterfaceReferences = op.InterfaceReferences
+	op.This = o.This
+	op.InterfaceReferencesCount = o.InterfaceReferencesCount
+	op.InterfaceReferences = o.InterfaceReferences
 	return op
 }
 
@@ -1158,8 +1158,8 @@ func (o *RemoteReleaseResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteRele
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

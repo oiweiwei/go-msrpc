@@ -489,8 +489,8 @@ func (o *ShutdownContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_Shutdow
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
+	op.This = o.This
+	op.ContainerID = o.ContainerID
 	return op
 }
 
@@ -528,8 +528,8 @@ func (o *ShutdownContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_Shutdo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -706,8 +706,8 @@ func (o *PauseContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_PauseConta
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
+	op.This = o.This
+	op.ContainerID = o.ContainerID
 	return op
 }
 
@@ -745,8 +745,8 @@ func (o *PauseContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_PauseCont
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -925,8 +925,8 @@ func (o *ResumeContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_ResumeCon
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
+	op.This = o.This
+	op.ContainerID = o.ContainerID
 	return op
 }
 
@@ -964,8 +964,8 @@ func (o *ResumeContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_ResumeCo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1165,8 +1165,8 @@ func (o *IsContainerPausedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsConta
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
+	op.This = o.This
+	op.ContainerID = o.ContainerID
 	return op
 }
 
@@ -1207,9 +1207,9 @@ func (o *IsContainerPausedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsCont
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Paused = op.Paused
-	o.Return = op.Return
+	op.That = o.That
+	op.Paused = o.Paused
+	op.Return = o.Return
 	return op
 }
 
@@ -1510,9 +1510,9 @@ func (o *GetRunningContainersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetR
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionID = op.PartitionID
-	o.ConglomerationID = op.ConglomerationID
+	op.This = o.This
+	op.PartitionID = o.PartitionID
+	op.ConglomerationID = o.ConglomerationID
 	return op
 }
 
@@ -1557,10 +1557,10 @@ func (o *GetRunningContainersResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ContainersLength = op.ContainersLength
-	o.Containers = op.Containers
-	o.Return = op.Return
+	op.That = o.That
+	op.ContainersLength = o.ContainersLength
+	op.Containers = o.Containers
+	op.Return = o.Return
 	return op
 }
 
@@ -1779,8 +1779,8 @@ func (o *GetContainerIDFromProcessIDRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PID = op.PID
+	op.This = o.This
+	op.PID = o.PID
 	return op
 }
 
@@ -1822,9 +1822,9 @@ func (o *GetContainerIDFromProcessIDResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ContainerID = op.ContainerID
-	o.Return = op.Return
+	op.That = o.That
+	op.ContainerID = o.ContainerID
+	op.Return = o.Return
 	return op
 }
 
@@ -2020,9 +2020,9 @@ func (o *RecycleContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_RecycleC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ContainerID = op.ContainerID
-	o.ReasonCode = op.ReasonCode
+	op.This = o.This
+	op.ContainerID = o.ContainerID
+	op.ReasonCode = o.ReasonCode
 	return op
 }
 
@@ -2061,8 +2061,8 @@ func (o *RecycleContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_Recycle
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2263,8 +2263,8 @@ func (o *GetContainerIDFromConglomerationIDRequest) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
 	return op
 }
 
@@ -2306,9 +2306,9 @@ func (o *GetContainerIDFromConglomerationIDResponse) xxx_ToOp(ctx context.Contex
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ContainerID = op.ContainerID
-	o.Return = op.Return
+	op.That = o.That
+	op.ContainerID = o.ContainerID
+	op.Return = o.Return
 	return op
 }
 

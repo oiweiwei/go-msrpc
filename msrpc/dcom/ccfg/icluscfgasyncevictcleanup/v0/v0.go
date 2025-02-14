@@ -342,10 +342,10 @@ func (o *CleanupNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EvictedNodeNameIn = op.EvictedNodeNameIn
-	o.DelayIn = op.DelayIn
-	o.TimeoutIn = op.TimeoutIn
+	op.This = o.This
+	op.EvictedNodeNameIn = o.EvictedNodeNameIn
+	op.DelayIn = o.DelayIn
+	op.TimeoutIn = o.TimeoutIn
 	return op
 }
 
@@ -385,8 +385,8 @@ func (o *CleanupNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanupNodeO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

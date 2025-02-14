@@ -804,16 +804,16 @@ func (o *RemoteActivationRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteAc
 	if o == nil {
 		return op
 	}
-	o.ORPCThis = op.ORPCThis
-	o.ClassID = op.ClassID
-	o.ObjectName = op.ObjectName
-	o.ObjectStorage = op.ObjectStorage
-	o.ClientImpLevel = op.ClientImpLevel
-	o.Mode = op.Mode
-	o.Interfaces = op.Interfaces
-	o.IIDs = op.IIDs
-	o.RequestedProtocolSequencesCount = op.RequestedProtocolSequencesCount
-	o.RequestedProtocolSequences = op.RequestedProtocolSequences
+	op.ORPCThis = o.ORPCThis
+	op.ClassID = o.ClassID
+	op.ObjectName = o.ObjectName
+	op.ObjectStorage = o.ObjectStorage
+	op.ClientImpLevel = o.ClientImpLevel
+	op.Mode = o.Mode
+	op.Interfaces = o.Interfaces
+	op.IIDs = o.IIDs
+	op.RequestedProtocolSequencesCount = o.RequestedProtocolSequencesCount
+	op.RequestedProtocolSequences = o.RequestedProtocolSequences
 	return op
 }
 
@@ -888,16 +888,16 @@ func (o *RemoteActivationResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteA
 	if o == nil {
 		return op
 	}
-	o.ORPCThat = op.ORPCThat
-	o.OXID = op.OXID
-	o.OXIDBindings = op.OXIDBindings
-	o.RemoteUnknown = op.RemoteUnknown
-	o.AuthnHint = op.AuthnHint
-	o.ServerVersion = op.ServerVersion
-	o.HResult = op.HResult
-	o.InterfaceData = op.InterfaceData
-	o.Results = op.Results
-	o.Return = op.Return
+	op.ORPCThat = o.ORPCThat
+	op.OXID = o.OXID
+	op.OXIDBindings = o.OXIDBindings
+	op.RemoteUnknown = o.RemoteUnknown
+	op.AuthnHint = o.AuthnHint
+	op.ServerVersion = o.ServerVersion
+	op.HResult = o.HResult
+	op.InterfaceData = o.InterfaceData
+	op.Results = o.Results
+	op.Return = o.Return
 	return op
 }
 

@@ -1110,7 +1110,7 @@ func (o *GetSubscriptionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSubs
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1148,9 +1148,9 @@ func (o *GetSubscriptionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSub
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SubscriptionID = op.SubscriptionID
-	o.Return = op.Return
+	op.That = o.That
+	op.SubscriptionID = o.SubscriptionID
+	op.Return = o.Return
 	return op
 }
 
@@ -1354,8 +1354,8 @@ func (o *SetSubscriptionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSubs
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SubscriptionID = op.SubscriptionID
+	op.This = o.This
+	op.SubscriptionID = o.SubscriptionID
 	return op
 }
 
@@ -1393,8 +1393,8 @@ func (o *SetSubscriptionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSub
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1596,7 +1596,7 @@ func (o *GetSubscriptionNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1634,9 +1634,9 @@ func (o *GetSubscriptionNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SubscriptionName = op.SubscriptionName
-	o.Return = op.Return
+	op.That = o.That
+	op.SubscriptionName = o.SubscriptionName
+	op.Return = o.Return
 	return op
 }
 
@@ -1840,8 +1840,8 @@ func (o *SetSubscriptionNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SubscriptionName = op.SubscriptionName
+	op.This = o.This
+	op.SubscriptionName = o.SubscriptionName
 	return op
 }
 
@@ -1879,8 +1879,8 @@ func (o *SetSubscriptionNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetS
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2080,7 +2080,7 @@ func (o *GetPublisherIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPublish
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2118,9 +2118,9 @@ func (o *GetPublisherIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPublis
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PublisherID = op.PublisherID
-	o.Return = op.Return
+	op.That = o.That
+	op.PublisherID = o.PublisherID
+	op.Return = o.Return
 	return op
 }
 
@@ -2322,8 +2322,8 @@ func (o *SetPublisherIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPublish
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PublisherID = op.PublisherID
+	op.This = o.This
+	op.PublisherID = o.PublisherID
 	return op
 }
 
@@ -2361,8 +2361,8 @@ func (o *SetPublisherIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPublis
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2562,7 +2562,7 @@ func (o *GetEventClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2600,9 +2600,9 @@ func (o *GetEventClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEvent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventClassID = op.EventClassID
-	o.Return = op.Return
+	op.That = o.That
+	op.EventClassID = o.EventClassID
+	op.Return = o.Return
 	return op
 }
 
@@ -2804,8 +2804,8 @@ func (o *SetEventClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventClassID = op.EventClassID
+	op.This = o.This
+	op.EventClassID = o.EventClassID
 	return op
 }
 
@@ -2843,8 +2843,8 @@ func (o *SetEventClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEvent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3044,7 +3044,7 @@ func (o *GetMethodNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMethodNa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3082,9 +3082,9 @@ func (o *GetMethodNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMethodN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MethodName = op.MethodName
-	o.Return = op.Return
+	op.That = o.That
+	op.MethodName = o.MethodName
+	op.Return = o.Return
 	return op
 }
 
@@ -3286,8 +3286,8 @@ func (o *SetMethodNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMethodNa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MethodName = op.MethodName
+	op.This = o.This
+	op.MethodName = o.MethodName
 	return op
 }
 
@@ -3325,8 +3325,8 @@ func (o *SetMethodNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMethodN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3528,7 +3528,7 @@ func (o *GetSubscriberClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3566,9 +3566,9 @@ func (o *GetSubscriberClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SubscriberClassID = op.SubscriberClassID
-	o.Return = op.Return
+	op.That = o.That
+	op.SubscriberClassID = o.SubscriberClassID
+	op.Return = o.Return
 	return op
 }
 
@@ -3772,8 +3772,8 @@ func (o *SetSubscriberClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SubscriberClassID = op.SubscriberClassID
+	op.This = o.This
+	op.SubscriberClassID = o.SubscriberClassID
 	return op
 }
 
@@ -3811,8 +3811,8 @@ func (o *SetSubscriberClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4014,7 +4014,7 @@ func (o *GetSubscriberInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4052,9 +4052,9 @@ func (o *GetSubscriberInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SubscriberInterface = op.SubscriberInterface
-	o.Return = op.Return
+	op.That = o.That
+	op.SubscriberInterface = o.SubscriberInterface
+	op.Return = o.Return
 	return op
 }
 
@@ -4258,8 +4258,8 @@ func (o *SetSubscriberInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SubscriberInterface = op.SubscriberInterface
+	op.This = o.This
+	op.SubscriberInterface = o.SubscriberInterface
 	return op
 }
 
@@ -4297,8 +4297,8 @@ func (o *SetSubscriberInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4472,7 +4472,7 @@ func (o *GetPerUserRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPerUserOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4510,9 +4510,9 @@ func (o *GetPerUserResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPerUserOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PerUser = op.PerUser
-	o.Return = op.Return
+	op.That = o.That
+	op.PerUser = o.PerUser
+	op.Return = o.Return
 	return op
 }
 
@@ -4688,8 +4688,8 @@ func (o *SetPerUserRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPerUserOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PerUser = op.PerUser
+	op.This = o.This
+	op.PerUser = o.PerUser
 	return op
 }
 
@@ -4727,8 +4727,8 @@ func (o *SetPerUserResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPerUserOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4928,7 +4928,7 @@ func (o *GetOwnerSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOwnerSIDOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -4966,9 +4966,9 @@ func (o *GetOwnerSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOwnerSIDO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OwnerSID = op.OwnerSID
-	o.Return = op.Return
+	op.That = o.That
+	op.OwnerSID = o.OwnerSID
+	op.Return = o.Return
 	return op
 }
 
@@ -5170,8 +5170,8 @@ func (o *SetOwnerSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOwnerSIDOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.OwnerSID = op.OwnerSID
+	op.This = o.This
+	op.OwnerSID = o.OwnerSID
 	return op
 }
 
@@ -5209,8 +5209,8 @@ func (o *SetOwnerSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOwnerSIDO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5384,7 +5384,7 @@ func (o *GetEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEnabledOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -5422,9 +5422,9 @@ func (o *GetEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEnabledOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enabled = op.Enabled
-	o.Return = op.Return
+	op.That = o.That
+	op.Enabled = o.Enabled
+	op.Return = o.Return
 	return op
 }
 
@@ -5600,8 +5600,8 @@ func (o *SetEnabledRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEnabledOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Enabled = op.Enabled
+	op.This = o.This
+	op.Enabled = o.Enabled
 	return op
 }
 
@@ -5639,8 +5639,8 @@ func (o *SetEnabledResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEnabledOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5840,7 +5840,7 @@ func (o *GetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -5878,9 +5878,9 @@ func (o *GetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Description = op.Description
-	o.Return = op.Return
+	op.That = o.That
+	op.Description = o.Description
+	op.Return = o.Return
 	return op
 }
 
@@ -6082,8 +6082,8 @@ func (o *SetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Description = op.Description
+	op.This = o.This
+	op.Description = o.Description
 	return op
 }
 
@@ -6121,8 +6121,8 @@ func (o *SetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6322,7 +6322,7 @@ func (o *GetMachineNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMachine
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -6360,9 +6360,9 @@ func (o *GetMachineNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMachin
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MachineName = op.MachineName
-	o.Return = op.Return
+	op.That = o.That
+	op.MachineName = o.MachineName
+	op.Return = o.Return
 	return op
 }
 
@@ -6564,8 +6564,8 @@ func (o *SetMachineNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMachine
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MachineName = op.MachineName
+	op.This = o.This
+	op.MachineName = o.MachineName
 	return op
 }
 
@@ -6603,8 +6603,8 @@ func (o *SetMachineNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMachin
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6856,8 +6856,8 @@ func (o *GetPublisherPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
+	op.This = o.This
+	op.PropertyName = o.PropertyName
 	return op
 }
 
@@ -6898,9 +6898,9 @@ func (o *GetPublisherPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyValue = op.PropertyValue
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyValue = o.PropertyValue
+	op.Return = o.Return
 	return op
 }
 
@@ -7156,9 +7156,9 @@ func (o *PutPublisherPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_PutP
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
-	o.PropertyValue = op.PropertyValue
+	op.This = o.This
+	op.PropertyName = o.PropertyName
+	op.PropertyValue = o.PropertyValue
 	return op
 }
 
@@ -7197,8 +7197,8 @@ func (o *PutPublisherPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_Put
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7403,8 +7403,8 @@ func (o *RemovePublisherPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
+	op.This = o.This
+	op.PropertyName = o.PropertyName
 	return op
 }
 
@@ -7442,8 +7442,8 @@ func (o *RemovePublisherPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7645,7 +7645,7 @@ func (o *GetPublisherPropertyCollectionRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -7687,9 +7687,9 @@ func (o *GetPublisherPropertyCollectionResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Collection = op.Collection
-	o.Return = op.Return
+	op.That = o.That
+	op.Collection = o.Collection
+	op.Return = o.Return
 	return op
 }
 
@@ -7943,8 +7943,8 @@ func (o *GetSubscriberPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
+	op.This = o.This
+	op.PropertyName = o.PropertyName
 	return op
 }
 
@@ -7985,9 +7985,9 @@ func (o *GetSubscriberPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyValue = op.PropertyValue
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyValue = o.PropertyValue
+	op.Return = o.Return
 	return op
 }
 
@@ -8244,9 +8244,9 @@ func (o *PutSubscriberPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_Put
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
-	o.PropertyValue = op.PropertyValue
+	op.This = o.This
+	op.PropertyName = o.PropertyName
+	op.PropertyValue = o.PropertyValue
 	return op
 }
 
@@ -8285,8 +8285,8 @@ func (o *PutSubscriberPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_Pu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8492,8 +8492,8 @@ func (o *RemoveSubscriberPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PropertyName = op.PropertyName
+	op.This = o.This
+	op.PropertyName = o.PropertyName
 	return op
 }
 
@@ -8531,8 +8531,8 @@ func (o *RemoveSubscriberPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8734,7 +8734,7 @@ func (o *GetSubscriberPropertyCollectionRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -8776,9 +8776,9 @@ func (o *GetSubscriberPropertyCollectionResponse) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Collection = op.Collection
-	o.Return = op.Return
+	op.That = o.That
+	op.Collection = o.Collection
+	op.Return = o.Return
 	return op
 }
 
@@ -8979,7 +8979,7 @@ func (o *GetInterfaceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInterfa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -9017,9 +9017,9 @@ func (o *GetInterfaceIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInterf
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.InterfaceID = op.InterfaceID
-	o.Return = op.Return
+	op.That = o.That
+	op.InterfaceID = o.InterfaceID
+	op.Return = o.Return
 	return op
 }
 
@@ -9221,8 +9221,8 @@ func (o *SetInterfaceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInterfa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InterfaceID = op.InterfaceID
+	op.This = o.This
+	op.InterfaceID = o.InterfaceID
 	return op
 }
 
@@ -9260,8 +9260,8 @@ func (o *SetInterfaceIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInterf
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

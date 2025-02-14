@@ -668,8 +668,8 @@ func (o *QueryOtherDomainsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOt
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
+	op.ServerName = o.ServerName
+	op.Info = o.Info
 	return op
 }
 
@@ -713,9 +713,9 @@ func (o *QueryOtherDomainsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryO
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Return = o.Return
 	return op
 }
 

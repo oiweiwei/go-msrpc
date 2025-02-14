@@ -10479,7 +10479,7 @@ func (o *CloseRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
+	op.Object = o.Object
 	return op
 }
 
@@ -10516,8 +10516,8 @@ func (o *CloseResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *x
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.Return = op.Return
+	op.Object = o.Object
+	op.Return = o.Return
 	return op
 }
 
@@ -10710,9 +10710,9 @@ func (o *EnumeratePrivilegesRequest) xxx_ToOp(ctx context.Context, op *xxx_Enume
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Policy = o.Policy
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -10755,9 +10755,9 @@ func (o *EnumeratePrivilegesResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.EnumerationBuffer = op.EnumerationBuffer
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.EnumerationBuffer = o.EnumerationBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -10942,8 +10942,8 @@ func (o *QuerySecurityObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.SecurityInformation = op.SecurityInformation
+	op.Object = o.Object
+	op.SecurityInformation = o.SecurityInformation
 	return op
 }
 
@@ -10982,8 +10982,8 @@ func (o *QuerySecurityObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.Return = o.Return
 	return op
 }
 
@@ -11148,9 +11148,9 @@ func (o *SetSecurityObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecu
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.Object = o.Object
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -11187,7 +11187,7 @@ func (o *SetSecurityObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSec
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11392,9 +11392,9 @@ func (o *OpenPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOper
 	if o == nil {
 		return op
 	}
-	o.SystemName = op.SystemName
-	o.ObjectAttributes = op.ObjectAttributes
-	o.DesiredAccess = op.DesiredAccess
+	op.SystemName = o.SystemName
+	op.ObjectAttributes = o.ObjectAttributes
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -11435,8 +11435,8 @@ func (o *OpenPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOpe
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Return = op.Return
+	op.Policy = o.Policy
+	op.Return = o.Return
 	return op
 }
 
@@ -11622,8 +11622,8 @@ func (o *QueryInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.InformationClass = op.InformationClass
+	op.Policy = o.Policy
+	op.InformationClass = o.InformationClass
 	return op
 }
 
@@ -11661,8 +11661,8 @@ func (o *QueryInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.PolicyInformation = op.PolicyInformation
-	o.Return = op.Return
+	op.PolicyInformation = o.PolicyInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -11831,9 +11831,9 @@ func (o *SetInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetI
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.InformationClass = op.InformationClass
-	o.PolicyInformation = op.PolicyInformation
+	op.Policy = o.Policy
+	op.InformationClass = o.InformationClass
+	op.PolicyInformation = o.PolicyInformation
 	return op
 }
 
@@ -11870,7 +11870,7 @@ func (o *SetInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12050,9 +12050,9 @@ func (o *CreateAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateAccou
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.AccountSID = op.AccountSID
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.AccountSID = o.AccountSID
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -12091,8 +12091,8 @@ func (o *CreateAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateAcco
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
-	o.Return = op.Return
+	op.Account = o.Account
+	op.Return = o.Return
 	return op
 }
 
@@ -12283,9 +12283,9 @@ func (o *EnumerateAccountsRequest) xxx_ToOp(ctx context.Context, op *xxx_Enumera
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Policy = o.Policy
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -12328,9 +12328,9 @@ func (o *EnumerateAccountsResponse) xxx_ToOp(ctx context.Context, op *xxx_Enumer
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.EnumerationBuffer = op.EnumerationBuffer
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.EnumerationBuffer = o.EnumerationBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -12520,9 +12520,9 @@ func (o *CreateTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainInformation = op.TrustedDomainInformation
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -12561,8 +12561,8 @@ func (o *CreateTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.Return = op.Return
+	op.TrustedDomain = o.TrustedDomain
+	op.Return = o.Return
 	return op
 }
 
@@ -12755,9 +12755,9 @@ func (o *EnumerateTrustedDomainsRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Policy = o.Policy
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -12800,9 +12800,9 @@ func (o *EnumerateTrustedDomainsResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.EnumerationBuffer = op.EnumerationBuffer
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.EnumerationBuffer = o.EnumerationBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -12990,9 +12990,9 @@ func (o *CreateSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateSecret
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.SecretName = op.SecretName
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.SecretName = o.SecretName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -13031,8 +13031,8 @@ func (o *CreateSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSecre
 	if o == nil {
 		return op
 	}
-	o.Secret = op.Secret
-	o.Return = op.Return
+	op.Secret = o.Secret
+	op.Return = o.Return
 	return op
 }
 
@@ -13213,9 +13213,9 @@ func (o *OpenAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenAccountOp
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.AccountSID = op.AccountSID
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.AccountSID = o.AccountSID
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -13254,8 +13254,8 @@ func (o *OpenAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenAccountO
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
-	o.Return = op.Return
+	op.Account = o.Account
+	op.Return = o.Return
 	return op
 }
 
@@ -13424,7 +13424,7 @@ func (o *EnumeratePrivilegesAccountRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
+	op.Account = o.Account
 	return op
 }
 
@@ -13461,8 +13461,8 @@ func (o *EnumeratePrivilegesAccountResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Privileges = op.Privileges
-	o.Return = op.Return
+	op.Privileges = o.Privileges
+	op.Return = o.Return
 	return op
 }
 
@@ -13608,8 +13608,8 @@ func (o *AddPrivilegesToAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
-	o.Privileges = op.Privileges
+	op.Account = o.Account
+	op.Privileges = o.Privileges
 	return op
 }
 
@@ -13645,7 +13645,7 @@ func (o *AddPrivilegesToAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_A
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13832,9 +13832,9 @@ func (o *RemovePrivilegesFromAccountRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
-	o.AllPrivileges = op.AllPrivileges
-	o.Privileges = op.Privileges
+	op.Account = o.Account
+	op.AllPrivileges = o.AllPrivileges
+	op.Privileges = o.Privileges
 	return op
 }
 
@@ -13871,7 +13871,7 @@ func (o *RemovePrivilegesFromAccountResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14005,7 +14005,7 @@ func (o *GetSystemAccessAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
+	op.Account = o.Account
 	return op
 }
 
@@ -14042,8 +14042,8 @@ func (o *GetSystemAccessAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.SystemAccess = op.SystemAccess
-	o.Return = op.Return
+	op.SystemAccess = o.SystemAccess
+	op.Return = o.Return
 	return op
 }
 
@@ -14180,8 +14180,8 @@ func (o *SetSystemAccessAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Account = op.Account
-	o.SystemAccess = op.SystemAccess
+	op.Account = o.Account
+	op.SystemAccess = o.SystemAccess
 	return op
 }
 
@@ -14217,7 +14217,7 @@ func (o *SetSystemAccessAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14396,9 +14396,9 @@ func (o *OpenTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenTru
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainSID = op.TrustedDomainSID
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.TrustedDomainSID = o.TrustedDomainSID
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -14437,8 +14437,8 @@ func (o *OpenTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenTr
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.Return = op.Return
+	op.TrustedDomain = o.TrustedDomain
+	op.Return = o.Return
 	return op
 }
 
@@ -14624,8 +14624,8 @@ func (o *QueryInfoTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.InformationClass = op.InformationClass
+	op.TrustedDomain = o.TrustedDomain
+	op.InformationClass = o.InformationClass
 	return op
 }
 
@@ -14664,8 +14664,8 @@ func (o *QueryInfoTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.TrustedDomainInformation = op.TrustedDomainInformation
-	o.Return = op.Return
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -14833,9 +14833,9 @@ func (o *SetInformationTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.InformationClass = op.InformationClass
-	o.TrustedDomainInformation = op.TrustedDomainInformation
+	op.TrustedDomain = o.TrustedDomain
+	op.InformationClass = o.InformationClass
+	op.TrustedDomainInformation = o.TrustedDomainInformation
 	return op
 }
 
@@ -14872,7 +14872,7 @@ func (o *SetInformationTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15057,9 +15057,9 @@ func (o *OpenSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSecretOper
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.SecretName = op.SecretName
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.SecretName = o.SecretName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -15098,8 +15098,8 @@ func (o *OpenSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSecretOpe
 	if o == nil {
 		return op
 	}
-	o.Secret = op.Secret
-	o.Return = op.Return
+	op.Secret = o.Secret
+	op.Return = o.Return
 	return op
 }
 
@@ -15319,9 +15319,9 @@ func (o *SetSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecretOperat
 	if o == nil {
 		return op
 	}
-	o.Secret = op.Secret
-	o.EncryptedCurrentValue = op.EncryptedCurrentValue
-	o.EncryptedOldValue = op.EncryptedOldValue
+	op.Secret = o.Secret
+	op.EncryptedCurrentValue = o.EncryptedCurrentValue
+	op.EncryptedOldValue = o.EncryptedOldValue
 	return op
 }
 
@@ -15358,7 +15358,7 @@ func (o *SetSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSecretOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15934,11 +15934,11 @@ func (o *QuerySecretRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySecretOp
 	if o == nil {
 		return op
 	}
-	o.Secret = op.Secret
-	o.EncryptedCurrentValue = op.EncryptedCurrentValue
-	o.CurrentValueSetTime = op.CurrentValueSetTime
-	o.EncryptedOldValue = op.EncryptedOldValue
-	o.OldValueSetTime = op.OldValueSetTime
+	op.Secret = o.Secret
+	op.EncryptedCurrentValue = o.EncryptedCurrentValue
+	op.CurrentValueSetTime = o.CurrentValueSetTime
+	op.EncryptedOldValue = o.EncryptedOldValue
+	op.OldValueSetTime = o.OldValueSetTime
 	return op
 }
 
@@ -15987,11 +15987,11 @@ func (o *QuerySecretResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySecretO
 	if o == nil {
 		return op
 	}
-	o.EncryptedCurrentValue = op.EncryptedCurrentValue
-	o.CurrentValueSetTime = op.CurrentValueSetTime
-	o.EncryptedOldValue = op.EncryptedOldValue
-	o.OldValueSetTime = op.OldValueSetTime
-	o.Return = op.Return
+	op.EncryptedCurrentValue = o.EncryptedCurrentValue
+	op.CurrentValueSetTime = o.CurrentValueSetTime
+	op.EncryptedOldValue = o.EncryptedOldValue
+	op.OldValueSetTime = o.OldValueSetTime
+	op.Return = o.Return
 	return op
 }
 
@@ -16167,8 +16167,8 @@ func (o *LookupPrivilegeValueRequest) xxx_ToOp(ctx context.Context, op *xxx_Look
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Name = op.Name
+	op.Policy = o.Policy
+	op.Name = o.Name
 	return op
 }
 
@@ -16206,8 +16206,8 @@ func (o *LookupPrivilegeValueResponse) xxx_ToOp(ctx context.Context, op *xxx_Loo
 	if o == nil {
 		return op
 	}
-	o.Value = op.Value
-	o.Return = op.Return
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -16399,8 +16399,8 @@ func (o *LookupPrivilegeNameRequest) xxx_ToOp(ctx context.Context, op *xxx_Looku
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Value = op.Value
+	op.Policy = o.Policy
+	op.Value = o.Value
 	return op
 }
 
@@ -16438,8 +16438,8 @@ func (o *LookupPrivilegeNameResponse) xxx_ToOp(ctx context.Context, op *xxx_Look
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Return = op.Return
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -16681,10 +16681,10 @@ func (o *LookupPrivilegeDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Name = op.Name
-	o.ClientLanguage = op.ClientLanguage
-	o.ClientSystemDefaultLanguage = op.ClientSystemDefaultLanguage
+	op.Policy = o.Policy
+	op.Name = o.Name
+	op.ClientLanguage = o.ClientLanguage
+	op.ClientSystemDefaultLanguage = o.ClientSystemDefaultLanguage
 	return op
 }
 
@@ -16727,9 +16727,9 @@ func (o *LookupPrivilegeDisplayNameResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.DisplayName = op.DisplayName
-	o.LanguageReturned = op.LanguageReturned
-	o.Return = op.Return
+	op.DisplayName = o.DisplayName
+	op.LanguageReturned = o.LanguageReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -16871,7 +16871,7 @@ func (o *DeleteObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteObject
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
+	op.Object = o.Object
 	return op
 }
 
@@ -16909,8 +16909,8 @@ func (o *DeleteObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjec
 	if o == nil {
 		return op
 	}
-	o.Object = op.Object
-	o.Return = op.Return
+	op.Object = o.Object
+	op.Return = o.Return
 	return op
 }
 
@@ -17108,8 +17108,8 @@ func (o *EnumerateAccountsWithUserRightRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.UserRight = op.UserRight
+	op.Policy = o.Policy
+	op.UserRight = o.UserRight
 	return op
 }
 
@@ -17148,8 +17148,8 @@ func (o *EnumerateAccountsWithUserRightResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.EnumerationBuffer = op.EnumerationBuffer
-	o.Return = op.Return
+	op.EnumerationBuffer = o.EnumerationBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -17322,8 +17322,8 @@ func (o *EnumerateAccountRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.AccountSID = op.AccountSID
+	op.Policy = o.Policy
+	op.AccountSID = o.AccountSID
 	return op
 }
 
@@ -17361,8 +17361,8 @@ func (o *EnumerateAccountRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.UserRights = op.UserRights
-	o.Return = op.Return
+	op.UserRights = o.UserRights
+	op.Return = o.Return
 	return op
 }
 
@@ -17535,9 +17535,9 @@ func (o *AddAccountRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_AddAccou
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.AccountSID = op.AccountSID
-	o.UserRights = op.UserRights
+	op.Policy = o.Policy
+	op.AccountSID = o.AccountSID
+	op.UserRights = o.UserRights
 	return op
 }
 
@@ -17574,7 +17574,7 @@ func (o *AddAccountRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_AddAcco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17763,10 +17763,10 @@ func (o *RemoveAccountRightsRequest) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.AccountSID = op.AccountSID
-	o.AllRights = op.AllRights
-	o.UserRights = op.UserRights
+	op.Policy = o.Policy
+	op.AccountSID = o.AccountSID
+	op.AllRights = o.AllRights
+	op.UserRights = o.UserRights
 	return op
 }
 
@@ -17804,7 +17804,7 @@ func (o *RemoveAccountRightsResponse) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18012,9 +18012,9 @@ func (o *QueryTrustedDomainInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainSID = op.TrustedDomainSID
-	o.InformationClass = op.InformationClass
+	op.Policy = o.Policy
+	op.TrustedDomainSID = o.TrustedDomainSID
+	op.InformationClass = o.InformationClass
 	return op
 }
 
@@ -18054,8 +18054,8 @@ func (o *QueryTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.TrustedDomainInformation = op.TrustedDomainInformation
-	o.Return = op.Return
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -18248,10 +18248,10 @@ func (o *SetTrustedDomainInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetT
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainSID = op.TrustedDomainSID
-	o.InformationClass = op.InformationClass
-	o.TrustedDomainInformation = op.TrustedDomainInformation
+	op.Policy = o.Policy
+	op.TrustedDomainSID = o.TrustedDomainSID
+	op.InformationClass = o.InformationClass
+	op.TrustedDomainInformation = o.TrustedDomainInformation
 	return op
 }
 
@@ -18289,7 +18289,7 @@ func (o *SetTrustedDomainInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18433,8 +18433,8 @@ func (o *DeleteTrustedDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainSID = op.TrustedDomainSID
+	op.Policy = o.Policy
+	op.TrustedDomainSID = o.TrustedDomainSID
 	return op
 }
 
@@ -18470,7 +18470,7 @@ func (o *DeleteTrustedDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18667,9 +18667,9 @@ func (o *StorePrivateDataRequest) xxx_ToOp(ctx context.Context, op *xxx_StorePri
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.KeyName = op.KeyName
-	o.EncryptedData = op.EncryptedData
+	op.Policy = o.Policy
+	op.KeyName = o.KeyName
+	op.EncryptedData = o.EncryptedData
 	return op
 }
 
@@ -18706,7 +18706,7 @@ func (o *StorePrivateDataResponse) xxx_ToOp(ctx context.Context, op *xxx_StorePr
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18951,9 +18951,9 @@ func (o *RetrievePrivateDataRequest) xxx_ToOp(ctx context.Context, op *xxx_Retri
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.KeyName = op.KeyName
-	o.EncryptedData = op.EncryptedData
+	op.Policy = o.Policy
+	op.KeyName = o.KeyName
+	op.EncryptedData = o.EncryptedData
 	return op
 }
 
@@ -18992,8 +18992,8 @@ func (o *RetrievePrivateDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Retr
 	if o == nil {
 		return op
 	}
-	o.EncryptedData = op.EncryptedData
-	o.Return = op.Return
+	op.EncryptedData = o.EncryptedData
+	op.Return = o.Return
 	return op
 }
 
@@ -19199,9 +19199,9 @@ func (o *OpenPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2Op
 	if o == nil {
 		return op
 	}
-	o.SystemName = op.SystemName
-	o.ObjectAttributes = op.ObjectAttributes
-	o.DesiredAccess = op.DesiredAccess
+	op.SystemName = o.SystemName
+	op.ObjectAttributes = o.ObjectAttributes
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -19242,8 +19242,8 @@ func (o *OpenPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2O
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Return = op.Return
+	op.Policy = o.Policy
+	op.Return = o.Return
 	return op
 }
 
@@ -19429,8 +19429,8 @@ func (o *QueryInformationPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.InformationClass = op.InformationClass
+	op.Policy = o.Policy
+	op.InformationClass = o.InformationClass
 	return op
 }
 
@@ -19468,8 +19468,8 @@ func (o *QueryInformationPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.PolicyInformation = op.PolicyInformation
-	o.Return = op.Return
+	op.PolicyInformation = o.PolicyInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -19638,9 +19638,9 @@ func (o *SetInformationPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.InformationClass = op.InformationClass
-	o.PolicyInformation = op.PolicyInformation
+	op.Policy = o.Policy
+	op.InformationClass = o.InformationClass
+	op.PolicyInformation = o.PolicyInformation
 	return op
 }
 
@@ -19677,7 +19677,7 @@ func (o *SetInformationPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -19892,9 +19892,9 @@ func (o *QueryTrustedDomainInfoByNameRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainName = op.TrustedDomainName
-	o.InformationClass = op.InformationClass
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.InformationClass = o.InformationClass
 	return op
 }
 
@@ -19933,8 +19933,8 @@ func (o *QueryTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.TrustedDomainInformation = op.TrustedDomainInformation
-	o.Return = op.Return
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -20133,10 +20133,10 @@ func (o *SetTrustedDomainInfoByNameRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainName = op.TrustedDomainName
-	o.InformationClass = op.InformationClass
-	o.TrustedDomainInformation = op.TrustedDomainInformation
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.InformationClass = o.InformationClass
+	op.TrustedDomainInformation = o.TrustedDomainInformation
 	return op
 }
 
@@ -20174,7 +20174,7 @@ func (o *SetTrustedDomainInfoByNameResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20366,9 +20366,9 @@ func (o *EnumerateTrustedDomainsExRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.EnumerationContext = op.EnumerationContext
-	o.PreferredMaximumLength = op.PreferredMaximumLength
+	op.Policy = o.Policy
+	op.EnumerationContext = o.EnumerationContext
+	op.PreferredMaximumLength = o.PreferredMaximumLength
 	return op
 }
 
@@ -20410,9 +20410,9 @@ func (o *EnumerateTrustedDomainsExResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.EnumerationContext = op.EnumerationContext
-	o.EnumerationBuffer = op.EnumerationBuffer
-	o.Return = op.Return
+	op.EnumerationContext = o.EnumerationContext
+	op.EnumerationBuffer = o.EnumerationBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -20631,10 +20631,10 @@ func (o *CreateTrustedDomainExRequest) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainInformation = op.TrustedDomainInformation
-	o.AuthenticationInformation = op.AuthenticationInformation
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.AuthenticationInformation = o.AuthenticationInformation
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -20674,8 +20674,8 @@ func (o *CreateTrustedDomainExResponse) xxx_ToOp(ctx context.Context, op *xxx_Cr
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.Return = op.Return
+	op.TrustedDomain = o.TrustedDomain
+	op.Return = o.Return
 	return op
 }
 
@@ -20861,8 +20861,8 @@ func (o *QueryDomainInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.InformationClass = op.InformationClass
+	op.Policy = o.Policy
+	op.InformationClass = o.InformationClass
 	return op
 }
 
@@ -20901,8 +20901,8 @@ func (o *QueryDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.PolicyDomainInformation = op.PolicyDomainInformation
-	o.Return = op.Return
+	op.PolicyDomainInformation = o.PolicyDomainInformation
+	op.Return = o.Return
 	return op
 }
 
@@ -21090,9 +21090,9 @@ func (o *SetDomainInformationPolicyRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.InformationClass = op.InformationClass
-	o.PolicyDomainInformation = op.PolicyDomainInformation
+	op.Policy = o.Policy
+	op.InformationClass = o.InformationClass
+	op.PolicyDomainInformation = o.PolicyDomainInformation
 	return op
 }
 
@@ -21129,7 +21129,7 @@ func (o *SetDomainInformationPolicyResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21316,9 +21316,9 @@ func (o *OpenTrustedDomainByNameRequest) xxx_ToOp(ctx context.Context, op *xxx_O
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainName = op.TrustedDomainName
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -21357,8 +21357,8 @@ func (o *OpenTrustedDomainByNameResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.Return = op.Return
+	op.TrustedDomain = o.TrustedDomain
+	op.Return = o.Return
 	return op
 }
 
@@ -21576,10 +21576,10 @@ func (o *CreateTrustedDomainEx2Request) xxx_ToOp(ctx context.Context, op *xxx_Cr
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainInformation = op.TrustedDomainInformation
-	o.AuthenticationInformation = op.AuthenticationInformation
-	o.DesiredAccess = op.DesiredAccess
+	op.Policy = o.Policy
+	op.TrustedDomainInformation = o.TrustedDomainInformation
+	op.AuthenticationInformation = o.AuthenticationInformation
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -21619,8 +21619,8 @@ func (o *CreateTrustedDomainEx2Response) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.TrustedDomain = op.TrustedDomain
-	o.Return = op.Return
+	op.TrustedDomain = o.TrustedDomain
+	op.Return = o.Return
 	return op
 }
 
@@ -21834,9 +21834,9 @@ func (o *QueryForestTrustInformationRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainName = op.TrustedDomainName
-	o.HighestRecordType = op.HighestRecordType
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.HighestRecordType = o.HighestRecordType
 	return op
 }
 
@@ -21875,8 +21875,8 @@ func (o *QueryForestTrustInformationResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.ForestTrustInfo = op.ForestTrustInfo
-	o.Return = op.Return
+	op.ForestTrustInfo = o.ForestTrustInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -22137,11 +22137,11 @@ func (o *SetForestTrustInformationRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.TrustedDomainName = op.TrustedDomainName
-	o.HighestRecordType = op.HighestRecordType
-	o.ForestTrustInfo = op.ForestTrustInfo
-	o.CheckOnly = op.CheckOnly
+	op.Policy = o.Policy
+	op.TrustedDomainName = o.TrustedDomainName
+	op.HighestRecordType = o.HighestRecordType
+	op.ForestTrustInfo = o.ForestTrustInfo
+	op.CheckOnly = o.CheckOnly
 	return op
 }
 
@@ -22183,8 +22183,8 @@ func (o *SetForestTrustInformationResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.CollisionInfo = op.CollisionInfo
-	o.Return = op.Return
+	op.CollisionInfo = o.CollisionInfo
+	op.Return = o.Return
 	return op
 }
 

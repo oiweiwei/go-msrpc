@@ -434,9 +434,9 @@ func (o *ValidateUserRequest) xxx_ToOp(ctx context.Context, op *xxx_ValidateUser
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PrincipalName = op.PrincipalName
-	o.Password = op.Password
+	op.This = o.This
+	op.PrincipalName = o.PrincipalName
+	op.Password = o.Password
 	return op
 }
 
@@ -475,8 +475,8 @@ func (o *ValidateUserResponse) xxx_ToOp(ctx context.Context, op *xxx_ValidateUse
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -629,7 +629,7 @@ func (o *WaitForEndWritesRequest) xxx_ToOp(ctx context.Context, op *xxx_WaitForE
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -666,8 +666,8 @@ func (o *WaitForEndWritesResponse) xxx_ToOp(ctx context.Context, op *xxx_WaitFor
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1156,8 +1156,8 @@ func (o *GetEventClassesForIIDRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.IID = op.IID
+	op.This = o.This
+	op.IID = o.IID
 	return op
 }
 
@@ -1208,12 +1208,12 @@ func (o *GetEventClassesForIIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ClassesCount = op.ClassesCount
-	o.ClassIDs = op.ClassIDs
-	o.ProgIDs = op.ProgIDs
-	o.Descriptions = op.Descriptions
-	o.Return = op.Return
+	op.That = o.That
+	op.ClassesCount = o.ClassesCount
+	op.ClassIDs = o.ClassIDs
+	op.ProgIDs = o.ProgIDs
+	op.Descriptions = o.Descriptions
+	op.Return = o.Return
 	return op
 }
 

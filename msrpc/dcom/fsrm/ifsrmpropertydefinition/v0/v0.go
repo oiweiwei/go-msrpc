@@ -520,7 +520,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -558,9 +558,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -762,8 +762,8 @@ func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -801,8 +801,8 @@ func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -968,7 +968,7 @@ func (o *GetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1006,9 +1006,9 @@ func (o *GetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Type = op.Type
-	o.Return = op.Return
+	op.That = o.That
+	op.Type = o.Type
+	op.Return = o.Return
 	return op
 }
 
@@ -1176,8 +1176,8 @@ func (o *SetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
+	op.This = o.This
+	op.Type = o.Type
 	return op
 }
 
@@ -1215,8 +1215,8 @@ func (o *SetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1418,7 +1418,7 @@ func (o *GetPossibleValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPoss
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1456,9 +1456,9 @@ func (o *GetPossibleValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPos
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PossibleValues = op.PossibleValues
-	o.Return = op.Return
+	op.That = o.That
+	op.PossibleValues = o.PossibleValues
+	op.Return = o.Return
 	return op
 }
 
@@ -1662,8 +1662,8 @@ func (o *SetPossibleValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPoss
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PossibleValues = op.PossibleValues
+	op.This = o.This
+	op.PossibleValues = o.PossibleValues
 	return op
 }
 
@@ -1701,8 +1701,8 @@ func (o *SetPossibleValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPos
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1904,7 +1904,7 @@ func (o *GetValueDescriptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetV
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1942,9 +1942,9 @@ func (o *GetValueDescriptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ValueDescriptions = op.ValueDescriptions
-	o.Return = op.Return
+	op.That = o.That
+	op.ValueDescriptions = o.ValueDescriptions
+	op.Return = o.Return
 	return op
 }
 
@@ -2148,8 +2148,8 @@ func (o *SetValueDescriptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetV
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ValueDescriptions = op.ValueDescriptions
+	op.This = o.This
+	op.ValueDescriptions = o.ValueDescriptions
 	return op
 }
 
@@ -2187,8 +2187,8 @@ func (o *SetValueDescriptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2388,7 +2388,7 @@ func (o *GetParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetParamete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2426,9 +2426,9 @@ func (o *GetParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetParamet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Parameters = op.Parameters
-	o.Return = op.Return
+	op.That = o.That
+	op.Parameters = o.Parameters
+	op.Return = o.Return
 	return op
 }
 
@@ -2630,8 +2630,8 @@ func (o *SetParametersRequest) xxx_ToOp(ctx context.Context, op *xxx_SetParamete
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -2669,8 +2669,8 @@ func (o *SetParametersResponse) xxx_ToOp(ctx context.Context, op *xxx_SetParamet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

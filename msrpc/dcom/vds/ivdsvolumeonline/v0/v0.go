@@ -262,7 +262,7 @@ func (o *OnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -299,8 +299,8 @@ func (o *OnlineResponse) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

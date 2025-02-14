@@ -224,8 +224,8 @@ func (o *GetAvailableCapIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAv
 	if o == nil {
 		return op
 	}
-	o.WrappedCapIDs = op.WrappedCapIDs
-	o.Return = op.Return
+	op.WrappedCapIDs = o.WrappedCapIDs
+	op.Return = o.Return
 	return op
 }
 

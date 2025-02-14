@@ -291,8 +291,8 @@ func (o *CreateResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateOperation) 
 	if o == nil {
 		return op
 	}
-	o.RemoteObject = op.RemoteObject
-	o.Return = op.Return
+	op.RemoteObject = o.RemoteObject
+	op.Return = o.Return
 	return op
 }
 
@@ -423,7 +423,7 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.RemoteObject = op.RemoteObject
+	op.RemoteObject = o.RemoteObject
 	return op
 }
 
@@ -462,7 +462,7 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.RemoteObject = op.RemoteObject
+	op.RemoteObject = o.RemoteObject
 	return op
 }
 

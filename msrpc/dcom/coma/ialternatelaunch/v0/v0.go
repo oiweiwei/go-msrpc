@@ -592,15 +592,15 @@ func (o *CreateConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
-	o.ConfigurationName = op.ConfigurationName
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.Dependencies = op.Dependencies
-	o.RunAs = op.RunAs
-	o.Password = op.Password
-	o.DesktopOK = op.DesktopOK
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
+	op.ConfigurationName = o.ConfigurationName
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.Dependencies = o.Dependencies
+	op.RunAs = o.RunAs
+	op.Password = o.Password
+	op.DesktopOK = o.DesktopOK
 	return op
 }
 
@@ -645,8 +645,8 @@ func (o *CreateConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -826,8 +826,8 @@ func (o *DeleteConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
 	return op
 }
 
@@ -865,8 +865,8 @@ func (o *DeleteConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

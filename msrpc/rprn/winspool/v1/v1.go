@@ -18036,11 +18036,11 @@ func (o *EnumPrintersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinters
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.Name = op.Name
-	o.Level = op.Level
-	o.PrinterEnum = op.PrinterEnum
-	o.BufferLength = op.BufferLength
+	op.Flags = o.Flags
+	op.Name = o.Name
+	op.Level = o.Level
+	op.PrinterEnum = o.PrinterEnum
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -18088,10 +18088,10 @@ func (o *EnumPrintersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinter
 	if o == nil {
 		return op
 	}
-	o.PrinterEnum = op.PrinterEnum
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.PrinterEnum = o.PrinterEnum
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -18345,10 +18345,10 @@ func (o *OpenPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPrinterOp
 	if o == nil {
 		return op
 	}
-	o.PrinterName = op.PrinterName
-	o.DataType = op.DataType
-	o.DevModeContainer = op.DevModeContainer
-	o.AccessRequired = op.AccessRequired
+	op.PrinterName = o.PrinterName
+	op.DataType = o.DataType
+	op.DevModeContainer = o.DevModeContainer
+	op.AccessRequired = o.AccessRequired
 	return op
 }
 
@@ -18389,8 +18389,8 @@ func (o *OpenPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPrinterO
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -18622,10 +18622,10 @@ func (o *SetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.JobContainer = op.JobContainer
-	o.Command = op.Command
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.JobContainer = o.JobContainer
+	op.Command = o.Command
 	return op
 }
 
@@ -18663,7 +18663,7 @@ func (o *SetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18989,11 +18989,11 @@ func (o *GetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.Level = op.Level
-	o.Job = op.Job
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.Level = o.Level
+	op.Job = o.Job
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -19037,9 +19037,9 @@ func (o *GetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.Job = op.Job
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.Job = o.Job
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -19395,12 +19395,12 @@ func (o *EnumJobsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperatio
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.FirstJob = op.FirstJob
-	o.NoJobs = op.NoJobs
-	o.Level = op.Level
-	o.Job = op.Job
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.FirstJob = o.FirstJob
+	op.NoJobs = o.NoJobs
+	op.Level = o.Level
+	op.Job = o.Job
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -19447,10 +19447,10 @@ func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperati
 	if o == nil {
 		return op
 	}
-	o.Job = op.Job
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.Job = o.Job
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -19702,10 +19702,10 @@ func (o *AddPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterOper
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.PrinterContainer = op.PrinterContainer
-	o.DevModeContainer = op.DevModeContainer
-	o.SecurityContainer = op.SecurityContainer
+	op.Name = o.Name
+	op.PrinterContainer = o.PrinterContainer
+	op.DevModeContainer = o.DevModeContainer
+	op.SecurityContainer = o.SecurityContainer
 	return op
 }
 
@@ -19746,8 +19746,8 @@ func (o *AddPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterOpe
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -19867,7 +19867,7 @@ func (o *DeletePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrint
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -19902,7 +19902,7 @@ func (o *DeletePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20148,11 +20148,11 @@ func (o *SetPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterOper
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.PrinterContainer = op.PrinterContainer
-	o.DevModeContainer = op.DevModeContainer
-	o.SecurityContainer = op.SecurityContainer
-	o.Command = op.Command
+	op.Printer = o.Printer
+	op.PrinterContainer = o.PrinterContainer
+	op.DevModeContainer = o.DevModeContainer
+	op.SecurityContainer = o.SecurityContainer
+	op.Command = o.Command
 	return op
 }
 
@@ -20191,7 +20191,7 @@ func (o *SetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20528,10 +20528,10 @@ func (o *GetPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterOper
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Level = op.Level
-	o.PrinterBuffer = op.PrinterBuffer
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.Level = o.Level
+	op.PrinterBuffer = o.PrinterBuffer
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -20573,9 +20573,9 @@ func (o *GetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterOpe
 	if o == nil {
 		return op
 	}
-	o.PrinterBuffer = op.PrinterBuffer
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.PrinterBuffer = o.PrinterBuffer
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -20742,8 +20742,8 @@ func (o *AddPrinterDriverRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrint
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.DriverContainer = op.DriverContainer
+	op.Name = o.Name
+	op.DriverContainer = o.DriverContainer
 	return op
 }
 
@@ -20779,7 +20779,7 @@ func (o *AddPrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21179,11 +21179,11 @@ func (o *EnumPrinterDriversRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPr
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.Level = op.Level
-	o.Drivers = op.Drivers
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.Level = o.Level
+	op.Drivers = o.Drivers
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -21229,10 +21229,10 @@ func (o *EnumPrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumP
 	if o == nil {
 		return op
 	}
-	o.Drivers = op.Drivers
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.Drivers = o.Drivers
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -21604,11 +21604,11 @@ func (o *GetPrinterDriverRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrint
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Environment = op.Environment
-	o.Level = op.Level
-	o.Driver = op.Driver
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.Environment = o.Environment
+	op.Level = o.Level
+	op.Driver = o.Driver
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -21652,9 +21652,9 @@ func (o *GetPrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
-	o.Driver = op.Driver
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.Driver = o.Driver
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -22022,11 +22022,11 @@ func (o *GetPrinterDriverDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.Level = op.Level
-	o.DriverDirectory = op.DriverDirectory
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.Level = o.Level
+	op.DriverDirectory = o.DriverDirectory
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -22070,9 +22070,9 @@ func (o *GetPrinterDriverDirectoryResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.DriverDirectory = op.DriverDirectory
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.DriverDirectory = o.DriverDirectory
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -22241,9 +22241,9 @@ func (o *DeletePrinterDriverRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.DriverName = op.DriverName
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.DriverName = o.DriverName
 	return op
 }
 
@@ -22280,7 +22280,7 @@ func (o *DeletePrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22463,10 +22463,10 @@ func (o *AddPrintProcessorRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrin
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.PathName = op.PathName
-	o.PrintProcessorName = op.PrintProcessorName
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.PathName = o.PathName
+	op.PrintProcessorName = o.PrintProcessorName
 	return op
 }
 
@@ -22504,7 +22504,7 @@ func (o *AddPrintProcessorResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPri
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22883,11 +22883,11 @@ func (o *EnumPrintProcessorsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumP
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.Level = op.Level
-	o.PrintProcessorInfo = op.PrintProcessorInfo
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.Level = o.Level
+	op.PrintProcessorInfo = o.PrintProcessorInfo
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -22933,10 +22933,10 @@ func (o *EnumPrintProcessorsResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PrintProcessorInfo = op.PrintProcessorInfo
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.PrintProcessorInfo = o.PrintProcessorInfo
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -23308,11 +23308,11 @@ func (o *GetPrintProcessorDirectoryRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.Level = op.Level
-	o.PrintProcessorDirectory = op.PrintProcessorDirectory
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.Level = o.Level
+	op.PrintProcessorDirectory = o.PrintProcessorDirectory
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -23357,9 +23357,9 @@ func (o *GetPrintProcessorDirectoryResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.PrintProcessorDirectory = op.PrintProcessorDirectory
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.PrintProcessorDirectory = o.PrintProcessorDirectory
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -23526,8 +23526,8 @@ func (o *StartDocPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_StartDocP
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.DocInfoContainer = op.DocInfoContainer
+	op.Printer = o.Printer
+	op.DocInfoContainer = o.DocInfoContainer
 	return op
 }
 
@@ -23566,8 +23566,8 @@ func (o *StartDocPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_StartDoc
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.Return = op.Return
+	op.JobID = o.JobID
+	op.Return = o.Return
 	return op
 }
 
@@ -23688,7 +23688,7 @@ func (o *StartPagePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_StartPag
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -23723,7 +23723,7 @@ func (o *StartPagePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_StartPa
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -23923,9 +23923,9 @@ func (o *WritePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_WritePrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Buffer = op.Buffer
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.Buffer = o.Buffer
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -23965,8 +23965,8 @@ func (o *WritePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_WritePrinte
 	if o == nil {
 		return op
 	}
-	o.WrittenCount = op.WrittenCount
-	o.Return = op.Return
+	op.WrittenCount = o.WrittenCount
+	op.Return = o.Return
 	return op
 }
 
@@ -24087,7 +24087,7 @@ func (o *EndPagePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_EndPagePri
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -24122,7 +24122,7 @@ func (o *EndPagePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_EndPagePr
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24242,7 +24242,7 @@ func (o *AbortPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortPrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -24277,7 +24277,7 @@ func (o *AbortPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortPrinte
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24471,8 +24471,8 @@ func (o *ReadPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadPrinterOp
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -24515,9 +24515,9 @@ func (o *ReadPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadPrinterO
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.NoBytesReadCount = op.NoBytesReadCount
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.NoBytesReadCount = o.NoBytesReadCount
+	op.Return = o.Return
 	return op
 }
 
@@ -24639,7 +24639,7 @@ func (o *EndDocPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_EndDocPrint
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -24674,7 +24674,7 @@ func (o *EndDocPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_EndDocPrin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24985,10 +24985,10 @@ func (o *AddJobRequest) xxx_ToOp(ctx context.Context, op *xxx_AddJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Level = op.Level
-	o.AddJob = op.AddJob
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.Level = o.Level
+	op.AddJob = o.AddJob
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -25031,9 +25031,9 @@ func (o *AddJobResponse) xxx_ToOp(ctx context.Context, op *xxx_AddJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.AddJob = op.AddJob
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.AddJob = o.AddJob
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -25169,8 +25169,8 @@ func (o *ScheduleJobRequest) xxx_ToOp(ctx context.Context, op *xxx_ScheduleJobOp
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
+	op.Printer = o.Printer
+	op.JobID = o.JobID
 	return op
 }
 
@@ -25206,7 +25206,7 @@ func (o *ScheduleJobResponse) xxx_ToOp(ctx context.Context, op *xxx_ScheduleJobO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25432,9 +25432,9 @@ func (o *GetPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.ValueName = op.ValueName
-	o.Size = op.Size
+	op.Printer = o.Printer
+	op.ValueName = o.ValueName
+	op.Size = o.Size
 	return op
 }
 
@@ -25477,10 +25477,10 @@ func (o *GetPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinte
 	if o == nil {
 		return op
 	}
-	o.Type = op.Type
-	o.Data = op.Data
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.Type = o.Type
+	op.Data = o.Data
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -25706,11 +25706,11 @@ func (o *SetPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.ValueName = op.ValueName
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
+	op.Printer = o.Printer
+	op.ValueName = o.ValueName
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -25749,7 +25749,7 @@ func (o *SetPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrinte
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25901,8 +25901,8 @@ func (o *WaitForPrinterChangeRequest) xxx_ToOp(ctx context.Context, op *xxx_Wait
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Flags = op.Flags
+	op.Printer = o.Printer
+	op.Flags = o.Flags
 	return op
 }
 
@@ -25939,8 +25939,8 @@ func (o *WaitForPrinterChangeResponse) xxx_ToOp(ctx context.Context, op *xxx_Wai
 	if o == nil {
 		return op
 	}
-	o.FlagsOut = op.FlagsOut
-	o.Return = op.Return
+	op.FlagsOut = o.FlagsOut
+	op.Return = o.Return
 	return op
 }
 
@@ -26083,7 +26083,7 @@ func (o *ClosePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ClosePrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -26123,8 +26123,8 @@ func (o *ClosePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ClosePrinte
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Return = op.Return
+	op.Printer = o.Printer
+	op.Return = o.Return
 	return op
 }
 
@@ -26275,8 +26275,8 @@ func (o *AddFormRequest) xxx_ToOp(ctx context.Context, op *xxx_AddFormOperation)
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.FormInfoContainer = op.FormInfoContainer
+	op.Printer = o.Printer
+	op.FormInfoContainer = o.FormInfoContainer
 	return op
 }
 
@@ -26312,7 +26312,7 @@ func (o *AddFormResponse) xxx_ToOp(ctx context.Context, op *xxx_AddFormOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26448,8 +26448,8 @@ func (o *DeleteFormRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteFormOper
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.FormName = op.FormName
+	op.Printer = o.Printer
+	op.FormName = o.FormName
 	return op
 }
 
@@ -26485,7 +26485,7 @@ func (o *DeleteFormResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteFormOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26822,11 +26822,11 @@ func (o *GetFormRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFormOperation)
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.FormName = op.FormName
-	o.Level = op.Level
-	o.Form = op.Form
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.FormName = o.FormName
+	op.Level = o.Level
+	op.Form = o.Form
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -26870,9 +26870,9 @@ func (o *GetFormResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFormOperation
 	if o == nil {
 		return op
 	}
-	o.Form = op.Form
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.Form = o.Form
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -27040,9 +27040,9 @@ func (o *SetFormRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFormOperation)
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.FormName = op.FormName
-	o.FormInfoContainer = op.FormInfoContainer
+	op.Printer = o.Printer
+	op.FormName = o.FormName
+	op.FormInfoContainer = o.FormInfoContainer
 	return op
 }
 
@@ -27079,7 +27079,7 @@ func (o *SetFormResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFormOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27414,10 +27414,10 @@ func (o *EnumFormsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFormsOperat
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Level = op.Level
-	o.Form = op.Form
-	o.BufferLength = op.BufferLength
+	op.Printer = o.Printer
+	op.Level = o.Level
+	op.Form = o.Form
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -27464,10 +27464,10 @@ func (o *EnumFormsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFormsOpera
 	if o == nil {
 		return op
 	}
-	o.Form = op.Form
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.Form = o.Form
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -27818,10 +27818,10 @@ func (o *EnumPortsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOperat
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Level = op.Level
-	o.Port = op.Port
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.Level = o.Level
+	op.Port = o.Port
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -27866,10 +27866,10 @@ func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOpera
 	if o == nil {
 		return op
 	}
-	o.Port = op.Port
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.Port = o.Port
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -28223,10 +28223,10 @@ func (o *EnumMonitorsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMonitors
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Level = op.Level
-	o.Monitor = op.Monitor
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.Level = o.Level
+	op.Monitor = o.Monitor
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -28274,10 +28274,10 @@ func (o *EnumMonitorsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMonitor
 	if o == nil {
 		return op
 	}
-	o.Monitor = op.Monitor
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.Monitor = o.Monitor
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -28446,9 +28446,9 @@ func (o *DeletePortRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePortOper
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Wnd = op.Wnd
-	o.PortName = op.PortName
+	op.Name = o.Name
+	op.Wnd = o.Wnd
+	op.PortName = o.PortName
 	return op
 }
 
@@ -28485,7 +28485,7 @@ func (o *DeletePortResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePortOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28658,8 +28658,8 @@ func (o *CreatePrinterICRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePri
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.DevModeContainer = op.DevModeContainer
+	op.Printer = o.Printer
+	op.DevModeContainer = o.DevModeContainer
 	return op
 }
 
@@ -28697,8 +28697,8 @@ func (o *CreatePrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePr
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -28962,11 +28962,11 @@ func (o *PlayGDIScriptOnPrinterICRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.PrinterIC = op.PrinterIC
-	o.In = op.In
-	o.InCount = op.InCount
-	o.OutCount = op.OutCount
-	o.Ul = op.Ul
+	op.PrinterIC = o.PrinterIC
+	op.In = o.In
+	op.InCount = o.InCount
+	op.OutCount = o.OutCount
+	op.Ul = o.Ul
 	return op
 }
 
@@ -29008,8 +29008,8 @@ func (o *PlayGDIScriptOnPrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Out = op.Out
-	o.Return = op.Return
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 
@@ -29150,7 +29150,7 @@ func (o *DeletePrinterICRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePri
 	if o == nil {
 		return op
 	}
-	o.PrinterIC = op.PrinterIC
+	op.PrinterIC = o.PrinterIC
 	return op
 }
 
@@ -29188,8 +29188,8 @@ func (o *DeletePrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePr
 	if o == nil {
 		return op
 	}
-	o.PrinterIC = op.PrinterIC
-	o.Return = op.Return
+	op.PrinterIC = o.PrinterIC
+	op.Return = o.Return
 	return op
 }
 
@@ -29357,8 +29357,8 @@ func (o *AddMonitorRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMonitorOper
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.MonitorContainer = op.MonitorContainer
+	op.Name = o.Name
+	op.MonitorContainer = o.MonitorContainer
 	return op
 }
 
@@ -29394,7 +29394,7 @@ func (o *AddMonitorResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMonitorOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29586,9 +29586,9 @@ func (o *DeleteMonitorRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteMonit
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.MonitorName = op.MonitorName
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.MonitorName = o.MonitorName
 	return op
 }
 
@@ -29625,7 +29625,7 @@ func (o *DeleteMonitorResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteMoni
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29818,9 +29818,9 @@ func (o *DeletePrintProcessorRequest) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.PrintProcessorName = op.PrintProcessorName
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.PrintProcessorName = o.PrintProcessorName
 	return op
 }
 
@@ -29857,7 +29857,7 @@ func (o *DeletePrintProcessorResponse) xxx_ToOp(ctx context.Context, op *xxx_Del
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -30240,11 +30240,11 @@ func (o *EnumPrintProcessorDataTypesRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.PrintProcessorName = op.PrintProcessorName
-	o.Level = op.Level
-	o.DataTypes = op.DataTypes
-	o.BufferLength = op.BufferLength
+	op.Name = o.Name
+	op.PrintProcessorName = o.PrintProcessorName
+	op.Level = o.Level
+	op.DataTypes = o.DataTypes
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -30292,10 +30292,10 @@ func (o *EnumPrintProcessorDataTypesResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.DataTypes = op.DataTypes
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.DataTypes = o.DataTypes
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -30488,9 +30488,9 @@ func (o *ResetPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ResetPrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.DataType = op.DataType
-	o.DevModeContainer = op.DevModeContainer
+	op.Printer = o.Printer
+	op.DataType = o.DataType
+	op.DevModeContainer = o.DevModeContainer
 	return op
 }
 
@@ -30527,7 +30527,7 @@ func (o *ResetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetPrinte
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -30958,13 +30958,13 @@ func (o *GetPrinterDriver2Request) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Environment = op.Environment
-	o.Level = op.Level
-	o.Driver = op.Driver
-	o.BufferLength = op.BufferLength
-	o.ClientMajorVersion = op.ClientMajorVersion
-	o.ClientMinorVersion = op.ClientMinorVersion
+	op.Printer = o.Printer
+	op.Environment = o.Environment
+	op.Level = o.Level
+	op.Driver = o.Driver
+	op.BufferLength = o.BufferLength
+	op.ClientMajorVersion = o.ClientMajorVersion
+	op.ClientMinorVersion = o.ClientMinorVersion
 	return op
 }
 
@@ -31016,11 +31016,11 @@ func (o *GetPrinterDriver2Response) xxx_ToOp(ctx context.Context, op *xxx_GetPri
 	if o == nil {
 		return op
 	}
-	o.Driver = op.Driver
-	o.NeededLength = op.NeededLength
-	o.ServerMaxVersion = op.ServerMaxVersion
-	o.ServerMinVersion = op.ServerMinVersion
-	o.Return = op.Return
+	op.Driver = o.Driver
+	op.NeededLength = o.NeededLength
+	op.ServerMaxVersion = o.ServerMaxVersion
+	op.ServerMinVersion = o.ServerMinVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -31146,7 +31146,7 @@ func (o *FindClosePrinterChangeNotificationRequest) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -31181,7 +31181,7 @@ func (o *FindClosePrinterChangeNotificationResponse) xxx_ToOp(ctx context.Contex
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31440,11 +31440,11 @@ func (o *ReplyOpenPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ReplyOpe
 	if o == nil {
 		return op
 	}
-	o.Machine = op.Machine
-	o.PrinterRemote = op.PrinterRemote
-	o.Type = op.Type
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
+	op.Machine = o.Machine
+	op.PrinterRemote = o.PrinterRemote
+	op.Type = o.Type
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -31487,8 +31487,8 @@ func (o *ReplyOpenPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ReplyOp
 	if o == nil {
 		return op
 	}
-	o.PrinterNotify = op.PrinterNotify
-	o.Return = op.Return
+	op.PrinterNotify = o.PrinterNotify
+	op.Return = o.Return
 	return op
 }
 
@@ -31720,10 +31720,10 @@ func (o *RouterReplyPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_Router
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Flags = op.Flags
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
+	op.Notify = o.Notify
+	op.Flags = o.Flags
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -31761,7 +31761,7 @@ func (o *RouterReplyPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_Route
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31901,7 +31901,7 @@ func (o *ReplyClosePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ReplyCl
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
+	op.Notify = o.Notify
 	return op
 }
 
@@ -31939,8 +31939,8 @@ func (o *ReplyClosePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ReplyC
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Return = op.Return
+	op.Notify = o.Notify
+	op.Return = o.Return
 	return op
 }
 
@@ -32154,10 +32154,10 @@ func (o *AddPortExRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPortExOperat
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.PortContainer = op.PortContainer
-	o.PortVarContainer = op.PortVarContainer
-	o.MonitorName = op.MonitorName
+	op.Name = o.Name
+	op.PortContainer = o.PortContainer
+	op.PortVarContainer = o.PortVarContainer
+	op.MonitorName = o.MonitorName
 	return op
 }
 
@@ -32195,7 +32195,7 @@ func (o *AddPortExResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPortExOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32573,13 +32573,13 @@ func (o *RemoteFindFirstPrinterChangeNotificationRequest) xxx_ToOp(ctx context.C
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Flags = op.Flags
-	o.Options = op.Options
-	o.LocalMachine = op.LocalMachine
-	o.PrinterLocal = op.PrinterLocal
-	o.BufferLength = op.BufferLength
-	o.Buffer = op.Buffer
+	op.Printer = o.Printer
+	op.Flags = o.Flags
+	op.Options = o.Options
+	op.LocalMachine = o.LocalMachine
+	op.PrinterLocal = o.PrinterLocal
+	op.BufferLength = o.BufferLength
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -32622,8 +32622,8 @@ func (o *RemoteFindFirstPrinterChangeNotificationResponse) xxx_ToOp(ctx context.
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -32886,12 +32886,12 @@ func (o *RemoteFindFirstPrinterChangeNotificationExRequest) xxx_ToOp(ctx context
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Flags = op.Flags
-	o.Options = op.Options
-	o.LocalMachine = op.LocalMachine
-	o.PrinterLocal = op.PrinterLocal
-	o.NotifyOptions = op.NotifyOptions
+	op.Printer = o.Printer
+	op.Flags = o.Flags
+	op.Options = o.Options
+	op.LocalMachine = o.LocalMachine
+	op.PrinterLocal = o.PrinterLocal
+	op.NotifyOptions = o.NotifyOptions
 	return op
 }
 
@@ -32931,7 +32931,7 @@ func (o *RemoteFindFirstPrinterChangeNotificationExResponse) xxx_ToOp(ctx contex
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -33146,11 +33146,11 @@ func (o *RouterReplyPrinterExRequest) xxx_ToOp(ctx context.Context, op *xxx_Rout
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.Color = op.Color
-	o.Flags = op.Flags
-	o.ReplyType = op.ReplyType
-	o.Reply = op.Reply
+	op.Notify = o.Notify
+	op.Color = o.Color
+	op.Flags = o.Flags
+	op.ReplyType = o.ReplyType
+	op.Reply = o.Reply
 	return op
 }
 
@@ -33192,8 +33192,8 @@ func (o *RouterReplyPrinterExResponse) xxx_ToOp(ctx context.Context, op *xxx_Rou
 	if o == nil {
 		return op
 	}
-	o.Result = op.Result
-	o.Return = op.Return
+	op.Result = o.Result
+	op.Return = o.Return
 	return op
 }
 
@@ -33380,9 +33380,9 @@ func (o *RouterRefreshPrinterChangeNotificationRequest) xxx_ToOp(ctx context.Con
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Color = op.Color
-	o.Out = op.Out
+	op.Printer = o.Printer
+	op.Color = o.Color
+	op.Out = o.Out
 	return op
 }
 
@@ -33419,7 +33419,7 @@ func (o *RouterRefreshPrinterChangeNotificationResponse) xxx_ToOp(ctx context.Co
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -33702,11 +33702,11 @@ func (o *OpenPrinterExRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPrinter
 	if o == nil {
 		return op
 	}
-	o.PrinterName = op.PrinterName
-	o.DataType = op.DataType
-	o.DevModeContainer = op.DevModeContainer
-	o.AccessRequired = op.AccessRequired
-	o.ClientInfo = op.ClientInfo
+	op.PrinterName = o.PrinterName
+	op.DataType = o.DataType
+	op.DevModeContainer = o.DevModeContainer
+	op.AccessRequired = o.AccessRequired
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -33748,8 +33748,8 @@ func (o *OpenPrinterExResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPrinte
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -34029,11 +34029,11 @@ func (o *AddPrinterExRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterEx
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.PrinterContainer = op.PrinterContainer
-	o.DevModeContainer = op.DevModeContainer
-	o.SecurityContainer = op.SecurityContainer
-	o.ClientInfo = op.ClientInfo
+	op.Name = o.Name
+	op.PrinterContainer = o.PrinterContainer
+	op.DevModeContainer = o.DevModeContainer
+	op.SecurityContainer = o.SecurityContainer
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -34076,8 +34076,8 @@ func (o *AddPrinterExResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterE
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -34286,9 +34286,9 @@ func (o *SetPortRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation)
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.PortName = op.PortName
-	o.PortContainer = op.PortContainer
+	op.Name = o.Name
+	op.PortName = o.PortName
+	op.PortContainer = o.PortContainer
 	return op
 }
 
@@ -34325,7 +34325,7 @@ func (o *SetPortResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -34628,10 +34628,10 @@ func (o *EnumPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrint
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Index = op.Index
-	o.ValueNameInLength = op.ValueNameInLength
-	o.DataInLength = op.DataInLength
+	op.Printer = o.Printer
+	op.Index = o.Index
+	op.ValueNameInLength = o.ValueNameInLength
+	op.DataInLength = o.DataInLength
 	return op
 }
 
@@ -34679,12 +34679,12 @@ func (o *EnumPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrin
 	if o == nil {
 		return op
 	}
-	o.ValueName = op.ValueName
-	o.ValueNameOutLength = op.ValueNameOutLength
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataOutLength = op.DataOutLength
-	o.Return = op.Return
+	op.ValueName = o.ValueName
+	op.ValueNameOutLength = o.ValueNameOutLength
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataOutLength = o.DataOutLength
+	op.Return = o.Return
 	return op
 }
 
@@ -34825,8 +34825,8 @@ func (o *DeletePrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteP
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.ValueName = op.ValueName
+	op.Printer = o.Printer
+	op.ValueName = o.ValueName
 	return op
 }
 
@@ -34862,7 +34862,7 @@ func (o *DeletePrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -35102,12 +35102,12 @@ func (o *SetPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrint
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.KeyName = op.KeyName
-	o.ValueName = op.ValueName
-	o.Type = op.Type
-	o.Data = op.Data
-	o.DataLength = op.DataLength
+	op.Printer = o.Printer
+	op.KeyName = o.KeyName
+	op.ValueName = o.ValueName
+	op.Type = o.Type
+	op.Data = o.Data
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -35147,7 +35147,7 @@ func (o *SetPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -35390,10 +35390,10 @@ func (o *GetPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrint
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.KeyName = op.KeyName
-	o.ValueName = op.ValueName
-	o.Size = op.Size
+	op.Printer = o.Printer
+	op.KeyName = o.KeyName
+	op.ValueName = o.ValueName
+	op.Size = o.Size
 	return op
 }
 
@@ -35438,10 +35438,10 @@ func (o *GetPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrin
 	if o == nil {
 		return op
 	}
-	o.Type = op.Type
-	o.Data = op.Data
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.Type = o.Type
+	op.Data = o.Data
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -35667,9 +35667,9 @@ func (o *EnumPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPri
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.KeyName = op.KeyName
-	o.EnumValuesInLength = op.EnumValuesInLength
+	op.Printer = o.Printer
+	op.KeyName = o.KeyName
+	op.EnumValuesInLength = o.EnumValuesInLength
 	return op
 }
 
@@ -35711,10 +35711,10 @@ func (o *EnumPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPr
 	if o == nil {
 		return op
 	}
-	o.EnumValues = op.EnumValues
-	o.EnumValuesOutLength = op.EnumValuesOutLength
-	o.EnumValuesLength = op.EnumValuesLength
-	o.Return = op.Return
+	op.EnumValues = o.EnumValues
+	op.EnumValuesOutLength = o.EnumValuesOutLength
+	op.EnumValuesLength = o.EnumValuesLength
+	op.Return = o.Return
 	return op
 }
 
@@ -35933,9 +35933,9 @@ func (o *EnumPrinterKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinte
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.KeyName = op.KeyName
-	o.SubkeyInLength = op.SubkeyInLength
+	op.Printer = o.Printer
+	op.KeyName = o.KeyName
+	op.SubkeyInLength = o.SubkeyInLength
 	return op
 }
 
@@ -35975,9 +35975,9 @@ func (o *EnumPrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrint
 	if o == nil {
 		return op
 	}
-	o.Subkey = op.Subkey
-	o.SubkeyOutLength = op.SubkeyOutLength
-	o.Return = op.Return
+	op.Subkey = o.Subkey
+	op.SubkeyOutLength = o.SubkeyOutLength
+	op.Return = o.Return
 	return op
 }
 
@@ -36134,9 +36134,9 @@ func (o *DeletePrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.KeyName = op.KeyName
-	o.ValueName = op.ValueName
+	op.Printer = o.Printer
+	op.KeyName = o.KeyName
+	op.ValueName = o.ValueName
 	return op
 }
 
@@ -36173,7 +36173,7 @@ func (o *DeletePrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36310,8 +36310,8 @@ func (o *DeletePrinterKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePr
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.KeyName = op.KeyName
+	op.Printer = o.Printer
+	op.KeyName = o.KeyName
 	return op
 }
 
@@ -36347,7 +36347,7 @@ func (o *DeletePrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteP
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36576,11 +36576,11 @@ func (o *DeletePrinterDriverExRequest) xxx_ToOp(ctx context.Context, op *xxx_Del
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.Environment = op.Environment
-	o.DriverName = op.DriverName
-	o.DeleteFlag = op.DeleteFlag
-	o.VersionNum = op.VersionNum
+	op.Name = o.Name
+	op.Environment = o.Environment
+	op.DriverName = o.DriverName
+	op.DeleteFlag = o.DeleteFlag
+	op.VersionNum = o.VersionNum
 	return op
 }
 
@@ -36619,7 +36619,7 @@ func (o *DeletePrinterDriverExResponse) xxx_ToOp(ctx context.Context, op *xxx_De
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36806,10 +36806,10 @@ func (o *AddPerMachineConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_A
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.PrinterName = op.PrinterName
-	o.PrintServer = op.PrintServer
-	o.Provider = op.Provider
+	op.Server = o.Server
+	op.PrinterName = o.PrinterName
+	op.PrintServer = o.PrintServer
+	op.Provider = o.Provider
 	return op
 }
 
@@ -36847,7 +36847,7 @@ func (o *AddPerMachineConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36999,8 +36999,8 @@ func (o *DeletePerMachineConnectionRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.PrinterName = op.PrinterName
+	op.Server = o.Server
+	op.PrinterName = o.PrinterName
 	return op
 }
 
@@ -37036,7 +37036,7 @@ func (o *DeletePerMachineConnectionResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -37360,9 +37360,9 @@ func (o *EnumPerMachineConnectionsRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.PrinterEnum = op.PrinterEnum
-	o.BufferLength = op.BufferLength
+	op.Server = o.Server
+	op.PrinterEnum = o.PrinterEnum
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -37406,10 +37406,10 @@ func (o *EnumPerMachineConnectionsResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.PrinterEnum = op.PrinterEnum
-	o.NeededLength = op.NeededLength
-	o.ReturnedCount = op.ReturnedCount
-	o.Return = op.Return
+	op.PrinterEnum = o.PrinterEnum
+	op.NeededLength = o.NeededLength
+	op.ReturnedCount = o.ReturnedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -37733,12 +37733,12 @@ func (o *XcvDataRequest) xxx_ToOp(ctx context.Context, op *xxx_XcvDataOperation)
 	if o == nil {
 		return op
 	}
-	o.Xcv = op.Xcv
-	o.DataName = op.DataName
-	o.InputData = op.InputData
-	o.InputDataLength = op.InputDataLength
-	o.OutputDataLength = op.OutputDataLength
-	o.Status = op.Status
+	op.Xcv = o.Xcv
+	op.DataName = o.DataName
+	op.InputData = o.InputData
+	op.InputDataLength = o.InputDataLength
+	op.OutputDataLength = o.OutputDataLength
+	op.Status = o.Status
 	return op
 }
 
@@ -37788,10 +37788,10 @@ func (o *XcvDataResponse) xxx_ToOp(ctx context.Context, op *xxx_XcvDataOperation
 	if o == nil {
 		return op
 	}
-	o.OutputData = op.OutputData
-	o.OutputNeededLength = op.OutputNeededLength
-	o.Status = op.Status
-	o.Return = op.Return
+	op.OutputData = o.OutputData
+	op.OutputNeededLength = o.OutputNeededLength
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -38045,9 +38045,9 @@ func (o *AddPrinterDriverExRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPri
 	if o == nil {
 		return op
 	}
-	o.Name = op.Name
-	o.DriverContainer = op.DriverContainer
-	o.FileCopyFlags = op.FileCopyFlags
+	op.Name = o.Name
+	op.DriverContainer = o.DriverContainer
+	op.FileCopyFlags = o.FileCopyFlags
 	return op
 }
 
@@ -38084,7 +38084,7 @@ func (o *AddPrinterDriverExResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPr
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -38299,10 +38299,10 @@ func (o *FlushPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_FlushPrinter
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Buffer = op.Buffer
-	o.BufferLength = op.BufferLength
-	o.SleepCount = op.SleepCount
+	op.Printer = o.Printer
+	op.Buffer = o.Buffer
+	op.BufferLength = o.BufferLength
+	op.SleepCount = o.SleepCount
 	return op
 }
 
@@ -38343,8 +38343,8 @@ func (o *FlushPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_FlushPrinte
 	if o == nil {
 		return op
 	}
-	o.WrittenCount = op.WrittenCount
-	o.Return = op.Return
+	op.WrittenCount = o.WrittenCount
+	op.Return = o.Return
 	return op
 }
 
@@ -38618,9 +38618,9 @@ func (o *SendRecvBIDIDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SendRecv
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.Action = op.Action
-	o.RequestData = op.RequestData
+	op.Printer = o.Printer
+	op.Action = o.Action
+	op.RequestData = o.RequestData
 	return op
 }
 
@@ -38660,8 +38660,8 @@ func (o *SendRecvBIDIDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SendRec
 	if o == nil {
 		return op
 	}
-	o.ResponseData = op.ResponseData
-	o.Return = op.Return
+	op.ResponseData = o.ResponseData
+	op.Return = o.Return
 	return op
 }
 
@@ -38978,11 +38978,11 @@ func (o *GetCorePrinterDriversRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Environment = op.Environment
-	o.CoreDriversLength = op.CoreDriversLength
-	o.CoreDriverDependencies = op.CoreDriverDependencies
-	o.CorePrinterDriversCount = op.CorePrinterDriversCount
+	op.Server = o.Server
+	op.Environment = o.Environment
+	op.CoreDriversLength = o.CoreDriversLength
+	op.CoreDriverDependencies = o.CoreDriverDependencies
+	op.CorePrinterDriversCount = o.CorePrinterDriversCount
 	return op
 }
 
@@ -39024,8 +39024,8 @@ func (o *GetCorePrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.CorePrinterDrivers = op.CorePrinterDrivers
-	o.Return = op.Return
+	op.CorePrinterDrivers = o.CorePrinterDrivers
+	op.Return = o.Return
 	return op
 }
 
@@ -39428,12 +39428,12 @@ func (o *GetPrinterDriverPackagePathRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Server = op.Server
-	o.Environment = op.Environment
-	o.Language = op.Language
-	o.PackageID = op.PackageID
-	o.DriverPackageCab = op.DriverPackageCab
-	o.DriverPackageCabLength = op.DriverPackageCabLength
+	op.Server = o.Server
+	op.Environment = o.Environment
+	op.Language = o.Language
+	op.PackageID = o.PackageID
+	op.DriverPackageCab = o.DriverPackageCab
+	op.DriverPackageCabLength = o.DriverPackageCabLength
 	return op
 }
 
@@ -39481,9 +39481,9 @@ func (o *GetPrinterDriverPackagePathResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.DriverPackageCab = op.DriverPackageCab
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.DriverPackageCab = o.DriverPackageCab
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -39667,9 +39667,9 @@ func (o *GetJobNamedPropertyValueRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.Name = op.Name
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.Name = o.Name
 	return op
 }
 
@@ -39710,8 +39710,8 @@ func (o *GetJobNamedPropertyValueResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Value = op.Value
-	o.Return = op.Return
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -39883,9 +39883,9 @@ func (o *SetJobNamedPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJo
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.Property = op.Property
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.Property = o.Property
 	return op
 }
 
@@ -39922,7 +39922,7 @@ func (o *SetJobNamedPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJ
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -40076,9 +40076,9 @@ func (o *DeleteJobNamedPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_De
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.Name = op.Name
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.Name = o.Name
 	return op
 }
 
@@ -40115,7 +40115,7 @@ func (o *DeleteJobNamedPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_D
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -40349,8 +40349,8 @@ func (o *EnumJobNamedPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
+	op.Printer = o.Printer
+	op.JobID = o.JobID
 	return op
 }
 
@@ -40394,9 +40394,9 @@ func (o *EnumJobNamedPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.PropertiesCount = op.PropertiesCount
-	o.Properties = op.Properties
-	o.Return = op.Return
+	op.PropertiesCount = o.PropertiesCount
+	op.Properties = o.Properties
+	op.Return = o.Return
 	return op
 }
 
@@ -40546,8 +40546,8 @@ func (o *LogJobInfoForBranchOfficeRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.BranchOfficeJobDataContainer = op.BranchOfficeJobDataContainer
+	op.Printer = o.Printer
+	op.BranchOfficeJobDataContainer = o.BranchOfficeJobDataContainer
 	return op
 }
 
@@ -40583,7 +40583,7 @@ func (o *LogJobInfoForBranchOfficeResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -40702,7 +40702,7 @@ func (o *RegeneratePrintDeviceCapabilitiesRequest) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
+	op.Printer = o.Printer
 	return op
 }
 
@@ -40737,7 +40737,7 @@ func (o *RegeneratePrintDeviceCapabilitiesResponse) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -41060,11 +41060,11 @@ func (o *CreateJobOnPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.PDLFormat = op.PDLFormat
-	o.JobAttributeGroupBufferSize = op.JobAttributeGroupBufferSize
-	o.JobAttributeGroupBuffer = op.JobAttributeGroupBuffer
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.PDLFormat = o.PDLFormat
+	op.JobAttributeGroupBufferSize = o.JobAttributeGroupBufferSize
+	op.JobAttributeGroupBuffer = o.JobAttributeGroupBuffer
 	return op
 }
 
@@ -41105,9 +41105,9 @@ func (o *CreateJobOnPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.ResponseBufferSize = op.ResponseBufferSize
-	o.ResponseBuffer = op.ResponseBuffer
-	o.Return = op.Return
+	op.ResponseBufferSize = o.ResponseBufferSize
+	op.ResponseBuffer = o.ResponseBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -41416,10 +41416,10 @@ func (o *GetJobAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobAt
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.AttributeNameCount = op.AttributeNameCount
-	o.AttributeNames = op.AttributeNames
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.AttributeNameCount = o.AttributeNameCount
+	op.AttributeNames = o.AttributeNames
 	return op
 }
 
@@ -41459,9 +41459,9 @@ func (o *GetJobAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobA
 	if o == nil {
 		return op
 	}
-	o.ResponseBufferSize = op.ResponseBufferSize
-	o.ResponseBuffer = op.ResponseBuffer
-	o.Return = op.Return
+	op.ResponseBufferSize = o.ResponseBufferSize
+	op.ResponseBuffer = o.ResponseBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -41745,10 +41745,10 @@ func (o *SetJobAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJobAt
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobID = op.JobID
-	o.JobAttributeGroupBufferSize = op.JobAttributeGroupBufferSize
-	o.JobAttributeGroupBuffer = op.JobAttributeGroupBuffer
+	op.Printer = o.Printer
+	op.JobID = o.JobID
+	op.JobAttributeGroupBufferSize = o.JobAttributeGroupBufferSize
+	op.JobAttributeGroupBuffer = o.JobAttributeGroupBuffer
 	return op
 }
 
@@ -41788,9 +41788,9 @@ func (o *SetJobAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJobA
 	if o == nil {
 		return op
 	}
-	o.ResponseBufferSize = op.ResponseBufferSize
-	o.ResponseBuffer = op.ResponseBuffer
-	o.Return = op.Return
+	op.ResponseBufferSize = o.ResponseBufferSize
+	op.ResponseBuffer = o.ResponseBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -42087,9 +42087,9 @@ func (o *GetPrinterAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.AttributeNameCount = op.AttributeNameCount
-	o.AttributeNames = op.AttributeNames
+	op.Printer = o.Printer
+	op.AttributeNameCount = o.AttributeNameCount
+	op.AttributeNames = o.AttributeNames
 	return op
 }
 
@@ -42128,9 +42128,9 @@ func (o *GetPrinterAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.ResponseBufferSize = op.ResponseBufferSize
-	o.ResponseBuffer = op.ResponseBuffer
-	o.Return = op.Return
+	op.ResponseBufferSize = o.ResponseBufferSize
+	op.ResponseBuffer = o.ResponseBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -42402,9 +42402,9 @@ func (o *SetPrinterAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetP
 	if o == nil {
 		return op
 	}
-	o.Printer = op.Printer
-	o.JobAttributeGroupBufferSize = op.JobAttributeGroupBufferSize
-	o.JobAttributeGroupBuffer = op.JobAttributeGroupBuffer
+	op.Printer = o.Printer
+	op.JobAttributeGroupBufferSize = o.JobAttributeGroupBufferSize
+	op.JobAttributeGroupBuffer = o.JobAttributeGroupBuffer
 	return op
 }
 
@@ -42443,9 +42443,9 @@ func (o *SetPrinterAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.ResponseBufferSize = op.ResponseBufferSize
-	o.ResponseBuffer = op.ResponseBuffer
-	o.Return = op.Return
+	op.ResponseBufferSize = o.ResponseBufferSize
+	op.ResponseBuffer = o.ResponseBuffer
+	op.Return = o.Return
 	return op
 }
 

@@ -570,13 +570,13 @@ func (o *LookupBeginRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupBeginOp
 	if o == nil {
 		return op
 	}
-	o.EntryNameSyntax = op.EntryNameSyntax
-	o.EntryName = op.EntryName
-	o.InterfaceID = op.InterfaceID
-	o.TransferSyntax = op.TransferSyntax
-	o.ObjectUUID = op.ObjectUUID
-	o.BindingMaxCount = op.BindingMaxCount
-	o.MaxCacheAge = op.MaxCacheAge
+	op.EntryNameSyntax = o.EntryNameSyntax
+	op.EntryName = o.EntryName
+	op.InterfaceID = o.InterfaceID
+	op.TransferSyntax = o.TransferSyntax
+	op.ObjectUUID = o.ObjectUUID
+	op.BindingMaxCount = o.BindingMaxCount
+	op.MaxCacheAge = o.MaxCacheAge
 	return op
 }
 
@@ -623,8 +623,8 @@ func (o *LookupBeginResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupBeginO
 	if o == nil {
 		return op
 	}
-	o.ImportContext = op.ImportContext
-	o.Status = op.Status
+	op.ImportContext = o.ImportContext
+	op.Status = o.Status
 	return op
 }
 
@@ -766,7 +766,7 @@ func (o *LookupDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupDoneOper
 	if o == nil {
 		return op
 	}
-	o.ImportContext = op.ImportContext
+	op.ImportContext = o.ImportContext
 	return op
 }
 
@@ -808,8 +808,8 @@ func (o *LookupDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupDoneOpe
 	if o == nil {
 		return op
 	}
-	o.ImportContext = op.ImportContext
-	o.Status = op.Status
+	op.ImportContext = o.ImportContext
+	op.Status = o.Status
 	return op
 }
 
@@ -976,7 +976,7 @@ func (o *LookupNextRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOper
 	if o == nil {
 		return op
 	}
-	o.ImportContext = op.ImportContext
+	op.ImportContext = o.ImportContext
 	return op
 }
 
@@ -1035,8 +1035,8 @@ func (o *LookupNextResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupNextOpe
 	if o == nil {
 		return op
 	}
-	o.BindingVector = op.BindingVector
-	o.Status = op.Status
+	op.BindingVector = o.BindingVector
+	op.Status = o.Status
 	return op
 }
 
@@ -1205,7 +1205,7 @@ func (o *EntryObjectInquireNextRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.InquireContext = op.InquireContext
+	op.InquireContext = o.InquireContext
 	return op
 }
 
@@ -1246,8 +1246,8 @@ func (o *EntryObjectInquireNextResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.Vector = op.Vector
-	o.Status = op.Status
+	op.Vector = o.Vector
+	op.Status = o.Status
 	return op
 }
 
@@ -1378,7 +1378,7 @@ func (o *PingLocatorResponse) xxx_ToOp(ctx context.Context, op *xxx_PingLocatorO
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
+	op.Status = o.Status
 	return op
 }
 
@@ -1521,7 +1521,7 @@ func (o *EntryObjectInquireDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.InquireContext = op.InquireContext
+	op.InquireContext = o.InquireContext
 	return op
 }
 
@@ -1563,8 +1563,8 @@ func (o *EntryObjectInquireDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.InquireContext = op.InquireContext
-	o.Status = op.Status
+	op.InquireContext = o.InquireContext
+	op.Status = o.Status
 	return op
 }
 
@@ -1741,8 +1741,8 @@ func (o *EntryObjectInquireBeginRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.EntryNameSyntax = op.EntryNameSyntax
-	o.EntryName = op.EntryName
+	op.EntryNameSyntax = o.EntryNameSyntax
+	op.EntryName = o.EntryName
 	return op
 }
 
@@ -1784,8 +1784,8 @@ func (o *EntryObjectInquireBeginResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.InquireContext = op.InquireContext
-	o.Status = op.Status
+	op.InquireContext = o.InquireContext
+	op.Status = o.Status
 	return op
 }
 

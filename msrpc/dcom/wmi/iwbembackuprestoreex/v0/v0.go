@@ -315,7 +315,7 @@ func (o *PauseRequest) xxx_ToOp(ctx context.Context, op *xxx_PauseOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -352,8 +352,8 @@ func (o *PauseResponse) xxx_ToOp(ctx context.Context, op *xxx_PauseOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -506,7 +506,7 @@ func (o *ResumeRequest) xxx_ToOp(ctx context.Context, op *xxx_ResumeOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -543,8 +543,8 @@ func (o *ResumeResponse) xxx_ToOp(ctx context.Context, op *xxx_ResumeOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -9284,7 +9284,7 @@ func (o *CloseServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseService
 	if o == nil {
 		return op
 	}
-	o.ServiceObject = op.ServiceObject
+	op.ServiceObject = o.ServiceObject
 	return op
 }
 
@@ -9323,8 +9323,8 @@ func (o *CloseServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseServic
 	if o == nil {
 		return op
 	}
-	o.ServiceObject = op.ServiceObject
-	o.Return = op.Return
+	op.ServiceObject = o.ServiceObject
+	op.Return = o.Return
 	return op
 }
 
@@ -9540,8 +9540,8 @@ func (o *ControlServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_ControlSer
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Control = op.Control
+	op.Service = o.Service
+	op.Control = o.Control
 	return op
 }
 
@@ -9581,8 +9581,8 @@ func (o *ControlServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_ControlSe
 	if o == nil {
 		return op
 	}
-	o.ServiceStatus = op.ServiceStatus
-	o.Return = op.Return
+	op.ServiceStatus = o.ServiceStatus
+	op.Return = o.Return
 	return op
 }
 
@@ -9704,7 +9704,7 @@ func (o *DeleteServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteServi
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
+	op.Service = o.Service
 	return op
 }
 
@@ -9739,7 +9739,7 @@ func (o *DeleteServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteServ
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9882,7 +9882,7 @@ func (o *LockServiceDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_LockS
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
+	op.ServiceManager = o.ServiceManager
 	return op
 }
 
@@ -9920,8 +9920,8 @@ func (o *LockServiceDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_Lock
 	if o == nil {
 		return op
 	}
-	o.Lock = op.Lock
-	o.Return = op.Return
+	op.Lock = o.Lock
+	op.Return = o.Return
 	return op
 }
 
@@ -10138,9 +10138,9 @@ func (o *QueryServiceObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.SecurityInformation = op.SecurityInformation
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.SecurityInformation = o.SecurityInformation
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -10184,9 +10184,9 @@ func (o *QueryServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -10393,10 +10393,10 @@ func (o *SetServiceObjectSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -10434,7 +10434,7 @@ func (o *SetServiceObjectSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10577,7 +10577,7 @@ func (o *QueryServiceStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryS
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
+	op.Service = o.Service
 	return op
 }
 
@@ -10615,8 +10615,8 @@ func (o *QueryServiceStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.ServiceStatus = op.ServiceStatus
-	o.Return = op.Return
+	op.ServiceStatus = o.ServiceStatus
+	op.Return = o.Return
 	return op
 }
 
@@ -10763,8 +10763,8 @@ func (o *SetServiceStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_SetServi
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.ServiceStatus = op.ServiceStatus
+	op.Service = o.Service
+	op.ServiceStatus = o.ServiceStatus
 	return op
 }
 
@@ -10800,7 +10800,7 @@ func (o *SetServiceStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_SetServ
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10942,7 +10942,7 @@ func (o *UnlockServiceDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_Unl
 	if o == nil {
 		return op
 	}
-	o.Lock = op.Lock
+	op.Lock = o.Lock
 	return op
 }
 
@@ -10980,8 +10980,8 @@ func (o *UnlockServiceDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_Un
 	if o == nil {
 		return op
 	}
-	o.Lock = op.Lock
-	o.Return = op.Return
+	op.Lock = o.Lock
+	op.Return = o.Return
 	return op
 }
 
@@ -11150,8 +11150,8 @@ func (o *NotifyBootConfigStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_No
 	if o == nil {
 		return op
 	}
-	o.MachineName = op.MachineName
-	o.BootAcceptable = op.BootAcceptable
+	op.MachineName = o.MachineName
+	op.BootAcceptable = o.BootAcceptable
 	return op
 }
 
@@ -11187,7 +11187,7 @@ func (o *NotifyBootConfigStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_N
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11880,19 +11880,19 @@ func (o *ChangeServiceConfigWRequest) xxx_ToOp(ctx context.Context, op *xxx_Chan
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
-	o.DisplayName = op.DisplayName
+	op.Service = o.Service
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
+	op.DisplayName = o.DisplayName
 	return op
 }
 
@@ -11943,8 +11943,8 @@ func (o *ChangeServiceConfigWResponse) xxx_ToOp(ctx context.Context, op *xxx_Cha
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Return = o.Return
 	return op
 }
 
@@ -12645,21 +12645,21 @@ func (o *CreateServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServ
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DisplayName = op.DisplayName
-	o.DesiredAccess = op.DesiredAccess
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DisplayName = o.DisplayName
+	op.DesiredAccess = o.DesiredAccess
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
 	return op
 }
 
@@ -12714,9 +12714,9 @@ func (o *CreateServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSer
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Service = op.Service
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -12967,9 +12967,9 @@ func (o *EnumDependentServicesWRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -13016,10 +13016,10 @@ func (o *EnumDependentServicesWResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.Services = op.Services
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.Return = op.Return
+	op.Services = o.Services
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -13372,11 +13372,11 @@ func (o *EnumServicesStatusWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceType = op.ServiceType
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
-	o.ResumeIndex = op.ResumeIndex
+	op.ServiceManager = o.ServiceManager
+	op.ServiceType = o.ServiceType
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
+	op.ResumeIndex = o.ResumeIndex
 	return op
 }
 
@@ -13431,11 +13431,11 @@ func (o *EnumServicesStatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.ResumeIndex = op.ResumeIndex
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.ResumeIndex = o.ResumeIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -13660,9 +13660,9 @@ func (o *OpenSCMWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMWOperatio
 	if o == nil {
 		return op
 	}
-	o.MachineName = op.MachineName
-	o.DatabaseName = op.DatabaseName
-	o.DesiredAccess = op.DesiredAccess
+	op.MachineName = o.MachineName
+	op.DatabaseName = o.DatabaseName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -13702,8 +13702,8 @@ func (o *OpenSCMWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMWOperati
 	if o == nil {
 		return op
 	}
-	o.SCM = op.SCM
-	o.Return = op.Return
+	op.SCM = o.SCM
+	op.Return = o.Return
 	return op
 }
 
@@ -13883,9 +13883,9 @@ func (o *OpenServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenServiceW
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -13925,8 +13925,8 @@ func (o *OpenServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenService
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Return = op.Return
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -14107,8 +14107,8 @@ func (o *QueryServiceConfigWRequest) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -14151,9 +14151,9 @@ func (o *QueryServiceConfigWResponse) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.ServiceConfig = op.ServiceConfig
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.ServiceConfig = o.ServiceConfig
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -14337,8 +14337,8 @@ func (o *QueryServiceLockStatusWRequest) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.BufferLength = op.BufferLength
+	op.ServiceManager = o.ServiceManager
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -14381,9 +14381,9 @@ func (o *QueryServiceLockStatusWResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.LockStatus = op.LockStatus
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.LockStatus = o.LockStatus
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -14611,9 +14611,9 @@ func (o *StartServiceWRequest) xxx_ToOp(ctx context.Context, op *xxx_StartServic
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Argc = op.Argc
-	o.Argv = op.Argv
+	op.Service = o.Service
+	op.Argc = o.Argc
+	op.Argv = o.Argv
 	return op
 }
 
@@ -14650,7 +14650,7 @@ func (o *StartServiceWResponse) xxx_ToOp(ctx context.Context, op *xxx_StartServi
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14900,9 +14900,9 @@ func (o *GetServiceDisplayNameWRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.BufferLength = op.BufferLength
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -14946,9 +14946,9 @@ func (o *GetServiceDisplayNameWResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.DisplayName = op.DisplayName
-	o.BufferLength = op.BufferLength
-	o.Return = op.Return
+	op.DisplayName = o.DisplayName
+	op.BufferLength = o.BufferLength
+	op.Return = o.Return
 	return op
 }
 
@@ -15198,9 +15198,9 @@ func (o *GetServiceKeyNameWRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSer
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.DisplayName = op.DisplayName
-	o.BufferLength = op.BufferLength
+	op.ServiceManager = o.ServiceManager
+	op.DisplayName = o.DisplayName
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -15244,9 +15244,9 @@ func (o *GetServiceKeyNameWResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSe
 	if o == nil {
 		return op
 	}
-	o.ServiceName = op.ServiceName
-	o.BufferLength = op.BufferLength
-	o.Return = op.Return
+	op.ServiceName = o.ServiceName
+	op.BufferLength = o.BufferLength
+	op.Return = o.Return
 	return op
 }
 
@@ -15940,19 +15940,19 @@ func (o *ChangeServiceConfigARequest) xxx_ToOp(ctx context.Context, op *xxx_Chan
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
-	o.DisplayName = op.DisplayName
+	op.Service = o.Service
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
+	op.DisplayName = o.DisplayName
 	return op
 }
 
@@ -16003,8 +16003,8 @@ func (o *ChangeServiceConfigAResponse) xxx_ToOp(ctx context.Context, op *xxx_Cha
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Return = o.Return
 	return op
 }
 
@@ -16706,21 +16706,21 @@ func (o *CreateServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_CreateServ
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DisplayName = op.DisplayName
-	o.DesiredAccess = op.DesiredAccess
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DisplayName = o.DisplayName
+	op.DesiredAccess = o.DesiredAccess
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
 	return op
 }
 
@@ -16775,9 +16775,9 @@ func (o *CreateServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSer
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Service = op.Service
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -17029,9 +17029,9 @@ func (o *EnumDependentServicesARequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -17078,10 +17078,10 @@ func (o *EnumDependentServicesAResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.Services = op.Services
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.Return = op.Return
+	op.Services = o.Services
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -17433,11 +17433,11 @@ func (o *EnumServicesStatusARequest) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceType = op.ServiceType
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
-	o.ResumeIndex = op.ResumeIndex
+	op.ServiceManager = o.ServiceManager
+	op.ServiceType = o.ServiceType
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
+	op.ResumeIndex = o.ResumeIndex
 	return op
 }
 
@@ -17493,11 +17493,11 @@ func (o *EnumServicesStatusAResponse) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.ResumeIndex = op.ResumeIndex
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.ResumeIndex = o.ResumeIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -17722,9 +17722,9 @@ func (o *OpenSCMARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMAOperatio
 	if o == nil {
 		return op
 	}
-	o.MachineName = op.MachineName
-	o.DatabaseName = op.DatabaseName
-	o.DesiredAccess = op.DesiredAccess
+	op.MachineName = o.MachineName
+	op.DatabaseName = o.DatabaseName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -17764,8 +17764,8 @@ func (o *OpenSCMAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenSCMAOperati
 	if o == nil {
 		return op
 	}
-	o.SCM = op.SCM
-	o.Return = op.Return
+	op.SCM = o.SCM
+	op.Return = o.Return
 	return op
 }
 
@@ -17942,9 +17942,9 @@ func (o *OpenServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenServiceA
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DesiredAccess = op.DesiredAccess
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -17984,8 +17984,8 @@ func (o *OpenServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenService
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Return = op.Return
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -18166,8 +18166,8 @@ func (o *QueryServiceConfigARequest) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -18209,9 +18209,9 @@ func (o *QueryServiceConfigAResponse) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.ServiceConfig = op.ServiceConfig
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.ServiceConfig = o.ServiceConfig
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -18395,8 +18395,8 @@ func (o *QueryServiceLockStatusARequest) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.BufferLength = op.BufferLength
+	op.ServiceManager = o.ServiceManager
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -18439,9 +18439,9 @@ func (o *QueryServiceLockStatusAResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.LockStatus = op.LockStatus
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.LockStatus = o.LockStatus
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -18669,9 +18669,9 @@ func (o *StartServiceARequest) xxx_ToOp(ctx context.Context, op *xxx_StartServic
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Argc = op.Argc
-	o.Argv = op.Argv
+	op.Service = o.Service
+	op.Argc = o.Argc
+	op.Argv = o.Argv
 	return op
 }
 
@@ -18708,7 +18708,7 @@ func (o *StartServiceAResponse) xxx_ToOp(ctx context.Context, op *xxx_StartServi
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18956,9 +18956,9 @@ func (o *GetServiceDisplayNameARequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.BufferLength = op.BufferLength
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -19002,9 +19002,9 @@ func (o *GetServiceDisplayNameAResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.DisplayName = op.DisplayName
-	o.BufferLength = op.BufferLength
-	o.Return = op.Return
+	op.DisplayName = o.DisplayName
+	op.BufferLength = o.BufferLength
+	op.Return = o.Return
 	return op
 }
 
@@ -19252,9 +19252,9 @@ func (o *GetServiceKeyNameARequest) xxx_ToOp(ctx context.Context, op *xxx_GetSer
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.DisplayName = op.DisplayName
-	o.BufferLength = op.BufferLength
+	op.ServiceManager = o.ServiceManager
+	op.DisplayName = o.DisplayName
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -19298,9 +19298,9 @@ func (o *GetServiceKeyNameAResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSe
 	if o == nil {
 		return op
 	}
-	o.KeyName = op.KeyName
-	o.BufferLength = op.BufferLength
-	o.Return = op.Return
+	op.KeyName = o.KeyName
+	op.BufferLength = o.BufferLength
+	op.Return = o.Return
 	return op
 }
 
@@ -19694,12 +19694,12 @@ func (o *EnumServiceGroupWRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumSer
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceType = op.ServiceType
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
-	o.ResumeIndex = op.ResumeIndex
-	o.GroupName = op.GroupName
+	op.ServiceManager = o.ServiceManager
+	op.ServiceType = o.ServiceType
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
+	op.ResumeIndex = o.ResumeIndex
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -19756,11 +19756,11 @@ func (o *EnumServiceGroupWResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSe
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.ResumeIndex = op.ResumeIndex
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.ResumeIndex = o.ResumeIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -19918,8 +19918,8 @@ func (o *ChangeServiceConfig2ARequest) xxx_ToOp(ctx context.Context, op *xxx_Cha
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Info = op.Info
+	op.Service = o.Service
+	op.Info = o.Info
 	return op
 }
 
@@ -19955,7 +19955,7 @@ func (o *ChangeServiceConfig2AResponse) xxx_ToOp(ctx context.Context, op *xxx_Ch
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20109,8 +20109,8 @@ func (o *ChangeServiceConfig2WRequest) xxx_ToOp(ctx context.Context, op *xxx_Cha
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Info = op.Info
+	op.Service = o.Service
+	op.Info = o.Info
 	return op
 }
 
@@ -20146,7 +20146,7 @@ func (o *ChangeServiceConfig2WResponse) xxx_ToOp(ctx context.Context, op *xxx_Ch
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20388,9 +20388,9 @@ func (o *QueryServiceConfig2ARequest) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.InfoLevel = op.InfoLevel
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.InfoLevel = o.InfoLevel
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -20434,9 +20434,9 @@ func (o *QueryServiceConfig2AResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -20682,9 +20682,9 @@ func (o *QueryServiceConfig2WRequest) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.InfoLevel = op.InfoLevel
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.InfoLevel = o.InfoLevel
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -20728,9 +20728,9 @@ func (o *QueryServiceConfig2WResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -20948,9 +20948,9 @@ func (o *QueryServiceStatusExRequest) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.InfoLevel = op.InfoLevel
-	o.BufferLength = op.BufferLength
+	op.Service = o.Service
+	op.InfoLevel = o.InfoLevel
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -20994,9 +20994,9 @@ func (o *QueryServiceStatusExResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -21407,13 +21407,13 @@ func (o *EnumServicesStatusExARequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.InfoLevel = op.InfoLevel
-	o.ServiceType = op.ServiceType
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
-	o.ResumeIndex = op.ResumeIndex
-	o.GroupName = op.GroupName
+	op.ServiceManager = o.ServiceManager
+	op.InfoLevel = o.InfoLevel
+	op.ServiceType = o.ServiceType
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
+	op.ResumeIndex = o.ResumeIndex
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -21470,11 +21470,11 @@ func (o *EnumServicesStatusExAResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.ResumeIndex = op.ResumeIndex
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.ResumeIndex = o.ResumeIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -21887,13 +21887,13 @@ func (o *EnumServicesStatusExWRequest) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.InfoLevel = op.InfoLevel
-	o.ServiceType = op.ServiceType
-	o.ServiceState = op.ServiceState
-	o.BufferLength = op.BufferLength
-	o.ResumeIndex = op.ResumeIndex
-	o.GroupName = op.GroupName
+	op.ServiceManager = o.ServiceManager
+	op.InfoLevel = o.InfoLevel
+	op.ServiceType = o.ServiceType
+	op.ServiceState = o.ServiceState
+	op.BufferLength = o.BufferLength
+	op.ResumeIndex = o.ResumeIndex
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -21951,11 +21951,11 @@ func (o *EnumServicesStatusExWResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BytesNeededLength = op.BytesNeededLength
-	o.ServicesReturned = op.ServicesReturned
-	o.ResumeIndex = op.ResumeIndex
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BytesNeededLength = o.BytesNeededLength
+	op.ServicesReturned = o.ServicesReturned
+	op.ResumeIndex = o.ResumeIndex
+	op.Return = o.Return
 	return op
 }
 
@@ -22659,21 +22659,21 @@ func (o *CreateServiceWOW64ARequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DisplayName = op.DisplayName
-	o.DesiredAccess = op.DesiredAccess
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DisplayName = o.DisplayName
+	op.DesiredAccess = o.DesiredAccess
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
 	return op
 }
 
@@ -22728,9 +22728,9 @@ func (o *CreateServiceWOW64AResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Service = op.Service
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -23432,21 +23432,21 @@ func (o *CreateServiceWOW64WRequest) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DisplayName = op.DisplayName
-	o.DesiredAccess = op.DesiredAccess
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DisplayName = o.DisplayName
+	op.DesiredAccess = o.DesiredAccess
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
 	return op
 }
 
@@ -23501,9 +23501,9 @@ func (o *CreateServiceWOW64WResponse) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Service = op.Service
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -23751,9 +23751,9 @@ func (o *NotifyServiceStatusChangeRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.NotifyParams = op.NotifyParams
-	o.ClientProcessGUID = op.ClientProcessGUID
+	op.Service = o.Service
+	op.NotifyParams = o.NotifyParams
+	op.ClientProcessGUID = o.ClientProcessGUID
 	return op
 }
 
@@ -23797,10 +23797,10 @@ func (o *NotifyServiceStatusChangeResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.SCMProcessGUID = op.SCMProcessGUID
-	o.CreateRemoteQueue = op.CreateRemoteQueue
-	o.Notify = op.Notify
-	o.Return = op.Return
+	op.SCMProcessGUID = o.SCMProcessGUID
+	op.CreateRemoteQueue = o.CreateRemoteQueue
+	op.Notify = o.Notify
+	op.Return = o.Return
 	return op
 }
 
@@ -23970,7 +23970,7 @@ func (o *GetNotifyResultsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNotif
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
+	op.Notify = o.Notify
 	return op
 }
 
@@ -24008,8 +24008,8 @@ func (o *GetNotifyResultsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNoti
 	if o == nil {
 		return op
 	}
-	o.NotifyParams = op.NotifyParams
-	o.Return = op.Return
+	op.NotifyParams = o.NotifyParams
+	op.Return = o.Return
 	return op
 }
 
@@ -24172,7 +24172,7 @@ func (o *CloseNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseNotifyOp
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
+	op.Notify = o.Notify
 	return op
 }
 
@@ -24213,9 +24213,9 @@ func (o *CloseNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseNotifyO
 	if o == nil {
 		return op
 	}
-	o.Notify = op.Notify
-	o.ApcFired = op.ApcFired
-	o.Return = op.Return
+	op.Notify = o.Notify
+	op.ApcFired = o.ApcFired
+	op.Return = o.Return
 	return op
 }
 
@@ -24489,10 +24489,10 @@ func (o *ControlServiceExARequest) xxx_ToOp(ctx context.Context, op *xxx_Control
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Control = op.Control
-	o.InfoLevel = op.InfoLevel
-	o.ControlInParams = op.ControlInParams
+	op.Service = o.Service
+	op.Control = o.Control
+	op.InfoLevel = o.InfoLevel
+	op.ControlInParams = o.ControlInParams
 	return op
 }
 
@@ -24533,8 +24533,8 @@ func (o *ControlServiceExAResponse) xxx_ToOp(ctx context.Context, op *xxx_Contro
 	if o == nil {
 		return op
 	}
-	o.ControlOutParams = op.ControlOutParams
-	o.Return = op.Return
+	op.ControlOutParams = o.ControlOutParams
+	op.Return = o.Return
 	return op
 }
 
@@ -24807,10 +24807,10 @@ func (o *ControlServiceExWRequest) xxx_ToOp(ctx context.Context, op *xxx_Control
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.Control = op.Control
-	o.InfoLevel = op.InfoLevel
-	o.ControlInParams = op.ControlInParams
+	op.Service = o.Service
+	op.Control = o.Control
+	op.InfoLevel = o.InfoLevel
+	op.ControlInParams = o.ControlInParams
 	return op
 }
 
@@ -24851,8 +24851,8 @@ func (o *ControlServiceExWResponse) xxx_ToOp(ctx context.Context, op *xxx_Contro
 	if o == nil {
 		return op
 	}
-	o.ControlOutParams = op.ControlOutParams
-	o.Return = op.Return
+	op.ControlOutParams = o.ControlOutParams
+	op.Return = o.Return
 	return op
 }
 
@@ -25020,8 +25020,8 @@ func (o *QueryServiceConfigExRequest) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.Service = op.Service
-	o.InfoLevel = op.InfoLevel
+	op.Service = o.Service
+	op.InfoLevel = o.InfoLevel
 	return op
 }
 
@@ -25060,8 +25060,8 @@ func (o *QueryServiceConfigExResponse) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -25851,22 +25851,22 @@ func (o *CreateWOWServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateWO
 	if o == nil {
 		return op
 	}
-	o.ServiceManager = op.ServiceManager
-	o.ServiceName = op.ServiceName
-	o.DisplayName = op.DisplayName
-	o.DesiredAccess = op.DesiredAccess
-	o.ServiceType = op.ServiceType
-	o.StartType = op.StartType
-	o.ErrorControl = op.ErrorControl
-	o.BinaryPathName = op.BinaryPathName
-	o.LoadOrderGroup = op.LoadOrderGroup
-	o.TagID = op.TagID
-	o.Dependencies = op.Dependencies
-	o.DependSize = op.DependSize
-	o.ServiceStartName = op.ServiceStartName
-	o.Password = op.Password
-	o.PasswordSize = op.PasswordSize
-	o.ServiceWOWType = op.ServiceWOWType
+	op.ServiceManager = o.ServiceManager
+	op.ServiceName = o.ServiceName
+	op.DisplayName = o.DisplayName
+	op.DesiredAccess = o.DesiredAccess
+	op.ServiceType = o.ServiceType
+	op.StartType = o.StartType
+	op.ErrorControl = o.ErrorControl
+	op.BinaryPathName = o.BinaryPathName
+	op.LoadOrderGroup = o.LoadOrderGroup
+	op.TagID = o.TagID
+	op.Dependencies = o.Dependencies
+	op.DependSize = o.DependSize
+	op.ServiceStartName = o.ServiceStartName
+	op.Password = o.Password
+	op.PasswordSize = o.PasswordSize
+	op.ServiceWOWType = o.ServiceWOWType
 	return op
 }
 
@@ -25922,9 +25922,9 @@ func (o *CreateWOWServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateW
 	if o == nil {
 		return op
 	}
-	o.TagID = op.TagID
-	o.Service = op.Service
-	o.Return = op.Return
+	op.TagID = o.TagID
+	op.Service = o.Service
+	op.Return = o.Return
 	return op
 }
 
@@ -26098,8 +26098,8 @@ func (o *OpenSCM2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenSCM2Operatio
 	if o == nil {
 		return op
 	}
-	o.DatabaseName = op.DatabaseName
-	o.DesiredAccess = op.DesiredAccess
+	op.DatabaseName = o.DatabaseName
+	op.DesiredAccess = o.DesiredAccess
 	return op
 }
 
@@ -26136,8 +26136,8 @@ func (o *OpenSCM2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenSCM2Operati
 	if o == nil {
 		return op
 	}
-	o.SCM = op.SCM
-	o.Return = op.Return
+	op.SCM = o.SCM
+	op.Return = o.Return
 	return op
 }
 

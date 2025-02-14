@@ -1144,12 +1144,12 @@ func (o *PokeRequest) xxx_ToOp(ctx context.Context, op *xxx_PokeOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.Rank = op.Rank
-	o.CalleeUUID = op.CalleeUUID
-	o.HostName = op.HostName
-	o.UUIDString = op.UUIDString
-	o.SizeOfBlob = op.SizeOfBlob
-	o.Blob = op.Blob
+	op.Rank = o.Rank
+	op.CalleeUUID = o.CalleeUUID
+	op.HostName = o.HostName
+	op.UUIDString = o.UUIDString
+	op.SizeOfBlob = o.SizeOfBlob
+	op.Blob = o.Blob
 	return op
 }
 
@@ -1189,7 +1189,7 @@ func (o *PokeResponse) xxx_ToOp(ctx context.Context, op *xxx_PokeOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1599,16 +1599,16 @@ func (o *BuildContextRequest) xxx_ToOp(ctx context.Context, op *xxx_BuildContext
 	if o == nil {
 		return op
 	}
-	o.Rank = op.Rank
-	o.BindVersionSet = op.BindVersionSet
-	o.CalleeUUID = op.CalleeUUID
-	o.HostName = op.HostName
-	o.UUIDString = op.UUIDString
-	o.GUIDIn = op.GUIDIn
-	o.GUIDOut = op.GUIDOut
-	o.BoundVersionSet = op.BoundVersionSet
-	o.SizeOfBlob = op.SizeOfBlob
-	o.Blob = op.Blob
+	op.Rank = o.Rank
+	op.BindVersionSet = o.BindVersionSet
+	op.CalleeUUID = o.CalleeUUID
+	op.HostName = o.HostName
+	op.UUIDString = o.UUIDString
+	op.GUIDIn = o.GUIDIn
+	op.GUIDOut = o.GUIDOut
+	op.BoundVersionSet = o.BoundVersionSet
+	op.SizeOfBlob = o.SizeOfBlob
+	op.Blob = o.Blob
 	return op
 }
 
@@ -1667,10 +1667,10 @@ func (o *BuildContextResponse) xxx_ToOp(ctx context.Context, op *xxx_BuildContex
 	if o == nil {
 		return op
 	}
-	o.GUIDOut = op.GUIDOut
-	o.BoundVersionSet = op.BoundVersionSet
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.GUIDOut = o.GUIDOut
+	op.BoundVersionSet = o.BoundVersionSet
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -1863,10 +1863,10 @@ func (o *NegotiateResourcesRequest) xxx_ToOp(ctx context.Context, op *xxx_Negoti
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.ResourceType = op.ResourceType
-	o.RequestedCount = op.RequestedCount
-	o.AcceptedCount = op.AcceptedCount
+	op.Context = o.Context
+	op.ResourceType = o.ResourceType
+	op.RequestedCount = o.RequestedCount
+	op.AcceptedCount = o.AcceptedCount
 	return op
 }
 
@@ -1909,8 +1909,8 @@ func (o *NegotiateResourcesResponse) xxx_ToOp(ctx context.Context, op *xxx_Negot
 	if o == nil {
 		return op
 	}
-	o.AcceptedCount = op.AcceptedCount
-	o.Return = op.Return
+	op.AcceptedCount = o.AcceptedCount
+	op.Return = o.Return
 	return op
 }
 
@@ -2117,10 +2117,10 @@ func (o *SendReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_SendReceiveOp
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.MessagesCount = op.MessagesCount
-	o.SizeOfBoxCar = op.SizeOfBoxCar
-	o.BoxCar = op.BoxCar
+	op.Context = o.Context
+	op.MessagesCount = o.MessagesCount
+	op.SizeOfBoxCar = o.SizeOfBoxCar
+	op.BoxCar = o.BoxCar
 	return op
 }
 
@@ -2158,7 +2158,7 @@ func (o *SendReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_SendReceiveO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2359,9 +2359,9 @@ func (o *TearDownContextRequest) xxx_ToOp(ctx context.Context, op *xxx_TearDownC
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Rank = op.Rank
-	o.TearDownType = op.TearDownType
+	op.ContextHandle = o.ContextHandle
+	op.Rank = o.Rank
+	op.TearDownType = o.TearDownType
 	return op
 }
 
@@ -2403,8 +2403,8 @@ func (o *TearDownContextResponse) xxx_ToOp(ctx context.Context, op *xxx_TearDown
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -2548,8 +2548,8 @@ func (o *BeginTearDownRequest) xxx_ToOp(ctx context.Context, op *xxx_BeginTearDo
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.TearDownType = op.TearDownType
+	op.ContextHandle = o.ContextHandle
+	op.TearDownType = o.TearDownType
 	return op
 }
 
@@ -2585,7 +2585,7 @@ func (o *BeginTearDownResponse) xxx_ToOp(ctx context.Context, op *xxx_BeginTearD
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2836,12 +2836,12 @@ func (o *PokeWRequest) xxx_ToOp(ctx context.Context, op *xxx_PokeWOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.Rank = op.Rank
-	o.CalleeUUID = op.CalleeUUID
-	o.HostName = op.HostName
-	o.UUIDString = op.UUIDString
-	o.SizeOfBlob = op.SizeOfBlob
-	o.Blob = op.Blob
+	op.Rank = o.Rank
+	op.CalleeUUID = o.CalleeUUID
+	op.HostName = o.HostName
+	op.UUIDString = o.UUIDString
+	op.SizeOfBlob = o.SizeOfBlob
+	op.Blob = o.Blob
 	return op
 }
 
@@ -2881,7 +2881,7 @@ func (o *PokeWResponse) xxx_ToOp(ctx context.Context, op *xxx_PokeWOperation) *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3285,16 +3285,16 @@ func (o *BuildContextWRequest) xxx_ToOp(ctx context.Context, op *xxx_BuildContex
 	if o == nil {
 		return op
 	}
-	o.Rank = op.Rank
-	o.BindVersionSet = op.BindVersionSet
-	o.CalleeUUID = op.CalleeUUID
-	o.HostName = op.HostName
-	o.UUIDString = op.UUIDString
-	o.GUIDIn = op.GUIDIn
-	o.GUIDOut = op.GUIDOut
-	o.BoundVersionSet = op.BoundVersionSet
-	o.SizeOfBlob = op.SizeOfBlob
-	o.Blob = op.Blob
+	op.Rank = o.Rank
+	op.BindVersionSet = o.BindVersionSet
+	op.CalleeUUID = o.CalleeUUID
+	op.HostName = o.HostName
+	op.UUIDString = o.UUIDString
+	op.GUIDIn = o.GUIDIn
+	op.GUIDOut = o.GUIDOut
+	op.BoundVersionSet = o.BoundVersionSet
+	op.SizeOfBlob = o.SizeOfBlob
+	op.Blob = o.Blob
 	return op
 }
 
@@ -3353,10 +3353,10 @@ func (o *BuildContextWResponse) xxx_ToOp(ctx context.Context, op *xxx_BuildConte
 	if o == nil {
 		return op
 	}
-	o.GUIDOut = op.GUIDOut
-	o.BoundVersionSet = op.BoundVersionSet
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.GUIDOut = o.GUIDOut
+	op.BoundVersionSet = o.BoundVersionSet
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 

@@ -559,7 +559,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -597,9 +597,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VolumeProperties = op.VolumeProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.VolumeProperties = o.VolumeProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -800,7 +800,7 @@ func (o *GetPackRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -838,9 +838,9 @@ func (o *GetPackResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Pack = op.Pack
-	o.Return = op.Return
+	op.That = o.That
+	op.Pack = o.Pack
+	op.Return = o.Return
 	return op
 }
 
@@ -1041,7 +1041,7 @@ func (o *QueryPlexesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPlexesOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1083,9 +1083,9 @@ func (o *QueryPlexesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPlexesO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -1389,9 +1389,9 @@ func (o *ExtendRequest) xxx_ToOp(ctx context.Context, op *xxx_ExtendOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.InputDiskArray = op.InputDiskArray
-	o.NumberOfDisks = op.NumberOfDisks
+	op.This = o.This
+	op.InputDiskArray = o.InputDiskArray
+	op.NumberOfDisks = o.NumberOfDisks
 	return op
 }
 
@@ -1434,9 +1434,9 @@ func (o *ExtendResponse) xxx_ToOp(ctx context.Context, op *xxx_ExtendOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1651,8 +1651,8 @@ func (o *ShrinkRequest) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NumberOfBytesToRemove = op.NumberOfBytesToRemove
+	op.This = o.This
+	op.NumberOfBytesToRemove = o.NumberOfBytesToRemove
 	return op
 }
 
@@ -1691,9 +1691,9 @@ func (o *ShrinkResponse) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1918,8 +1918,8 @@ func (o *AddPlexRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPlexOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
+	op.This = o.This
+	op.VolumeID = o.VolumeID
 	return op
 }
 
@@ -1961,9 +1961,9 @@ func (o *AddPlexResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPlexOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -2188,8 +2188,8 @@ func (o *BreakPlexRequest) xxx_ToOp(ctx context.Context, op *xxx_BreakPlexOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PlexID = op.PlexID
+	op.This = o.This
+	op.PlexID = o.PlexID
 	return op
 }
 
@@ -2234,9 +2234,9 @@ func (o *BreakPlexResponse) xxx_ToOp(ctx context.Context, op *xxx_BreakPlexOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -2461,8 +2461,8 @@ func (o *RemovePlexRequest) xxx_ToOp(ctx context.Context, op *xxx_RemovePlexOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PlexID = op.PlexID
+	op.This = o.This
+	op.PlexID = o.PlexID
 	return op
 }
 
@@ -2504,9 +2504,9 @@ func (o *RemovePlexResponse) xxx_ToOp(ctx context.Context, op *xxx_RemovePlexOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -2676,8 +2676,8 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Force = op.Force
+	op.This = o.This
+	op.Force = o.Force
 	return op
 }
 
@@ -2715,8 +2715,8 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2897,9 +2897,9 @@ func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.RevertOnClose = op.RevertOnClose
+	op.This = o.This
+	op.Flags = o.Flags
+	op.RevertOnClose = o.RevertOnClose
 	return op
 }
 
@@ -2938,8 +2938,8 @@ func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3106,8 +3106,8 @@ func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3145,8 +3145,8 @@ func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

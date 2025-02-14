@@ -291,8 +291,8 @@ func (o *GetMaxAdjustedFreeSpaceRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -331,9 +331,9 @@ func (o *GetMaxAdjustedFreeSpaceResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MaxAdjustedFreeSpace = op.MaxAdjustedFreeSpace
-	o.Return = op.Return
+	op.That = o.That
+	op.MaxAdjustedFreeSpace = o.MaxAdjustedFreeSpace
+	op.Return = o.Return
 	return op
 }
 

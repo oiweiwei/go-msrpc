@@ -1803,9 +1803,9 @@ func (o *AddKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_AddKeyOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
 	return op
 }
 
@@ -1844,8 +1844,8 @@ func (o *AddKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_AddKeyOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2056,9 +2056,9 @@ func (o *DeleteKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteKeyOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
 	return op
 }
 
@@ -2097,8 +2097,8 @@ func (o *DeleteKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteKeyOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2308,9 +2308,9 @@ func (o *DeleteChildKeysRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteChi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
 	return op
 }
 
@@ -2349,8 +2349,8 @@ func (o *DeleteChildKeysResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteCh
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2628,10 +2628,10 @@ func (o *EnumKeysRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumKeysOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.EnumObjectIndex = op.EnumObjectIndex
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.EnumObjectIndex = o.EnumObjectIndex
 	return op
 }
 
@@ -2674,9 +2674,9 @@ func (o *EnumKeysResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumKeysOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -2997,13 +2997,13 @@ func (o *CopyKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyKeyOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourceHandle = op.SourceHandle
-	o.SourcePath = op.SourcePath
-	o.DestinationHandle = op.DestinationHandle
-	o.DestinationPath = op.DestinationPath
-	o.OverwriteFlag = op.OverwriteFlag
-	o.CopyFlag = op.CopyFlag
+	op.This = o.This
+	op.SourceHandle = o.SourceHandle
+	op.SourcePath = o.SourcePath
+	op.DestinationHandle = o.DestinationHandle
+	op.DestinationPath = o.DestinationPath
+	op.OverwriteFlag = o.OverwriteFlag
+	op.CopyFlag = o.CopyFlag
 	return op
 }
 
@@ -3046,8 +3046,8 @@ func (o *CopyKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_CopyKeyOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3297,10 +3297,10 @@ func (o *RenameKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameKeyOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.NewName = op.NewName
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.NewName = o.NewName
 	return op
 }
 
@@ -3340,8 +3340,8 @@ func (o *RenameKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_RenameKeyOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3581,10 +3581,10 @@ func (o *SetDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDataOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.Data = op.Data
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.Data = o.Data
 	return op
 }
 
@@ -3624,8 +3624,8 @@ func (o *SetDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDataOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3953,10 +3953,10 @@ func (o *GetDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDataOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.Data = op.Data
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.Data = o.Data
 	return op
 }
 
@@ -4005,11 +4005,11 @@ func (o *GetDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDataOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Data = op.Data
-	o.RequiredDataLength = op.RequiredDataLength
-	o.DataBlob = op.DataBlob
-	o.Return = op.Return
+	op.That = o.That
+	op.Data = o.Data
+	op.RequiredDataLength = o.RequiredDataLength
+	op.DataBlob = o.DataBlob
+	op.Return = o.Return
 	return op
 }
 
@@ -4276,11 +4276,11 @@ func (o *DeleteDataRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteDataOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.ID = op.ID
-	o.DataType = op.DataType
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.ID = o.ID
+	op.DataType = o.DataType
 	return op
 }
 
@@ -4321,8 +4321,8 @@ func (o *DeleteDataResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteDataOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4665,11 +4665,11 @@ func (o *EnumDataRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumDataOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.Data = op.Data
-	o.EnumDataIndex = op.EnumDataIndex
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.Data = o.Data
+	op.EnumDataIndex = o.EnumDataIndex
 	return op
 }
 
@@ -4719,11 +4719,11 @@ func (o *EnumDataResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumDataOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Data = op.Data
-	o.RequiredDataLength = op.RequiredDataLength
-	o.DataBlob = op.DataBlob
-	o.Return = op.Return
+	op.That = o.That
+	op.Data = o.Data
+	op.RequiredDataLength = o.RequiredDataLength
+	op.DataBlob = o.DataBlob
+	op.Return = o.Return
 	return op
 }
 
@@ -5125,13 +5125,13 @@ func (o *GetAllDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllDataOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.Attributes = op.Attributes
-	o.UserType = op.UserType
-	o.DataType = op.DataType
-	o.BufferSize = op.BufferSize
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.Attributes = o.Attributes
+	op.UserType = o.UserType
+	op.DataType = o.DataType
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -5189,12 +5189,12 @@ func (o *GetAllDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllDataOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DataEntriesLength = op.DataEntriesLength
-	o.DataSetNumber = op.DataSetNumber
-	o.RequiredBufferSize = op.RequiredBufferSize
-	o.DataBlob = op.DataBlob
-	o.Return = op.Return
+	op.That = o.That
+	op.DataEntriesLength = o.DataEntriesLength
+	op.DataSetNumber = o.DataSetNumber
+	op.RequiredBufferSize = o.RequiredBufferSize
+	op.DataBlob = o.DataBlob
+	op.Return = o.Return
 	return op
 }
 
@@ -5480,11 +5480,11 @@ func (o *DeleteAllDataRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllDa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.UserType = op.UserType
-	o.DataType = op.DataType
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.UserType = o.UserType
+	op.DataType = o.DataType
 	return op
 }
 
@@ -5525,8 +5525,8 @@ func (o *DeleteAllDataResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAllD
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5905,15 +5905,15 @@ func (o *CopyDataRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyDataOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SourceHandle = op.SourceHandle
-	o.SourcePath = op.SourcePath
-	o.DestinationHandle = op.DestinationHandle
-	o.DestinationPath = op.DestinationPath
-	o.Attributes = op.Attributes
-	o.UserType = op.UserType
-	o.DataType = op.DataType
-	o.CopyFlag = op.CopyFlag
+	op.This = o.This
+	op.SourceHandle = o.SourceHandle
+	op.SourcePath = o.SourcePath
+	op.DestinationHandle = o.DestinationHandle
+	op.DestinationPath = o.DestinationPath
+	op.Attributes = o.Attributes
+	op.UserType = o.UserType
+	op.DataType = o.DataType
+	op.CopyFlag = o.CopyFlag
 	return op
 }
 
@@ -5958,8 +5958,8 @@ func (o *CopyDataResponse) xxx_ToOp(ctx context.Context, op *xxx_CopyDataOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6304,12 +6304,12 @@ func (o *GetDataPathsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDataPaths
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.ID = op.ID
-	o.DataType = op.DataType
-	o.BufferSize = op.BufferSize
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.ID = o.ID
+	op.DataType = o.DataType
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -6359,10 +6359,10 @@ func (o *GetDataPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDataPath
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Buffer = op.Buffer
-	o.RequiredBufferSize = op.RequiredBufferSize
-	o.Return = op.Return
+	op.That = o.That
+	op.Buffer = o.Buffer
+	op.RequiredBufferSize = o.RequiredBufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -6631,11 +6631,11 @@ func (o *OpenKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenKeyOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.AccessRequested = op.AccessRequested
-	o.Timeout = op.Timeout
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.AccessRequested = o.AccessRequested
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -6678,9 +6678,9 @@ func (o *OpenKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenKeyOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MDNewHandle = op.MDNewHandle
-	o.Return = op.Return
+	op.That = o.That
+	op.MDNewHandle = o.MDNewHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -6850,8 +6850,8 @@ func (o *CloseKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseKeyOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
+	op.This = o.This
+	op.Handle = o.Handle
 	return op
 }
 
@@ -6889,8 +6889,8 @@ func (o *CloseKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseKeyOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7104,10 +7104,10 @@ func (o *ChangePermissionsRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeP
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Timeout = op.Timeout
-	o.AccessRequested = op.AccessRequested
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Timeout = o.Timeout
+	op.AccessRequested = o.AccessRequested
 	return op
 }
 
@@ -7147,8 +7147,8 @@ func (o *ChangePermissionsResponse) xxx_ToOp(ctx context.Context, op *xxx_Change
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7301,7 +7301,7 @@ func (o *SaveDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SaveDataOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -7338,8 +7338,8 @@ func (o *SaveDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SaveDataOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7530,8 +7530,8 @@ func (o *GetHandleInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetHandleIn
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
+	op.This = o.This
+	op.Handle = o.Handle
 	return op
 }
 
@@ -7572,9 +7572,9 @@ func (o *GetHandleInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetHandleI
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Info = op.Info
-	o.Return = op.Return
+	op.That = o.That
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -7743,7 +7743,7 @@ func (o *GetSystemChangeNumberRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -7783,9 +7783,9 @@ func (o *GetSystemChangeNumberResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SystemChangeNumber = op.SystemChangeNumber
-	o.Return = op.Return
+	op.That = o.That
+	op.SystemChangeNumber = o.SystemChangeNumber
+	op.Return = o.Return
 	return op
 }
 
@@ -8009,9 +8009,9 @@ func (o *GetDataSetNumberRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDataS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
 	return op
 }
 
@@ -8054,9 +8054,9 @@ func (o *GetDataSetNumberResponse) xxx_ToOp(ctx context.Context, op *xxx_GetData
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DataSetNumber = op.DataSetNumber
-	o.Return = op.Return
+	op.That = o.That
+	op.DataSetNumber = o.DataSetNumber
+	op.Return = o.Return
 	return op
 }
 
@@ -8318,11 +8318,11 @@ func (o *SetLastChangeTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLast
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.LastChangeTime = op.LastChangeTime
-	o.LocalTime = op.LocalTime
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.LastChangeTime = o.LastChangeTime
+	op.LocalTime = o.LocalTime
 	return op
 }
 
@@ -8363,8 +8363,8 @@ func (o *SetLastChangeTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLas
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8622,10 +8622,10 @@ func (o *GetLastChangeTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLast
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Handle = op.Handle
-	o.Path = op.Path
-	o.LocalTime = op.LocalTime
+	op.This = o.This
+	op.Handle = o.Handle
+	op.Path = o.Path
+	op.LocalTime = o.LocalTime
 	return op
 }
 
@@ -8668,9 +8668,9 @@ func (o *GetLastChangeTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLas
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LastChangeTime = op.LastChangeTime
-	o.Return = op.Return
+	op.That = o.That
+	op.LastChangeTime = o.LastChangeTime
+	op.Return = o.Return
 	return op
 }
 
@@ -9067,9 +9067,9 @@ func (o *KeyExchangePhase1Request) xxx_ToOp(ctx context.Context, op *xxx_KeyExch
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClientKeyExchangeKeyBlob = op.ClientKeyExchangeKeyBlob
-	o.ClientSignatureKeyBlob = op.ClientSignatureKeyBlob
+	op.This = o.This
+	op.ClientKeyExchangeKeyBlob = o.ClientKeyExchangeKeyBlob
+	op.ClientSignatureKeyBlob = o.ClientSignatureKeyBlob
 	return op
 }
 
@@ -9117,11 +9117,11 @@ func (o *KeyExchangePhase1Response) xxx_ToOp(ctx context.Context, op *xxx_KeyExc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServerKeyExchangeKeyBlob = op.ServerKeyExchangeKeyBlob
-	o.ServerSignatureKeyBlob = op.ServerSignatureKeyBlob
-	o.ServerSessionKeyBlob = op.ServerSessionKeyBlob
-	o.Return = op.Return
+	op.That = o.That
+	op.ServerKeyExchangeKeyBlob = o.ServerKeyExchangeKeyBlob
+	op.ServerSignatureKeyBlob = o.ServerSignatureKeyBlob
+	op.ServerSessionKeyBlob = o.ServerSessionKeyBlob
+	op.Return = o.Return
 	return op
 }
 
@@ -9426,9 +9426,9 @@ func (o *KeyExchangePhase2Request) xxx_ToOp(ctx context.Context, op *xxx_KeyExch
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClientSessionKeyBlob = op.ClientSessionKeyBlob
-	o.ClientHashBlob = op.ClientHashBlob
+	op.This = o.This
+	op.ClientSessionKeyBlob = o.ClientSessionKeyBlob
+	op.ClientHashBlob = o.ClientHashBlob
 	return op
 }
 
@@ -9470,9 +9470,9 @@ func (o *KeyExchangePhase2Response) xxx_ToOp(ctx context.Context, op *xxx_KeyExc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServerHashBlob = op.ServerHashBlob
-	o.Return = op.Return
+	op.That = o.That
+	op.ServerHashBlob = o.ServerHashBlob
+	op.Return = o.Return
 	return op
 }
 
@@ -9723,10 +9723,10 @@ func (o *BackupRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupName = op.BackupName
-	o.Version = op.Version
-	o.Flags = op.Flags
+	op.This = o.This
+	op.BackupName = o.BackupName
+	op.Version = o.Version
+	op.Flags = o.Flags
 	return op
 }
 
@@ -9766,8 +9766,8 @@ func (o *BackupResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -10002,10 +10002,10 @@ func (o *RestoreRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupName = op.BackupName
-	o.Version = op.Version
-	o.Flags = op.Flags
+	op.This = o.This
+	op.BackupName = o.BackupName
+	op.Version = o.Version
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10045,8 +10045,8 @@ func (o *RestoreResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -10358,9 +10358,9 @@ func (o *EnumBackupsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumBackupsOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupName = op.BackupName
-	o.EnumIndex = op.EnumIndex
+	op.This = o.This
+	op.BackupName = o.BackupName
+	op.EnumIndex = o.EnumIndex
 	return op
 }
 
@@ -10408,11 +10408,11 @@ func (o *EnumBackupsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumBackupsO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.BackupName = op.BackupName
-	o.Version = op.Version
-	o.BackupTime = op.BackupTime
-	o.Return = op.Return
+	op.That = o.That
+	op.BackupName = o.BackupName
+	op.Version = o.Version
+	op.BackupTime = o.BackupTime
+	op.Return = o.Return
 	return op
 }
 
@@ -10633,9 +10633,9 @@ func (o *DeleteBackupRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteBackup
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BackupName = op.BackupName
-	o.Version = op.Version
+	op.This = o.This
+	op.BackupName = o.BackupName
+	op.Version = o.Version
 	return op
 }
 
@@ -10674,8 +10674,8 @@ func (o *DeleteBackupResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteBacku
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -10877,7 +10877,7 @@ func (o *UnmarshalInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_Unmars
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -10916,9 +10916,9 @@ func (o *UnmarshalInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_Unmar
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Interface = op.Interface
-	o.Return = op.Return
+	op.That = o.That
+	op.Interface = o.Interface
+	op.Return = o.Return
 	return op
 }
 
@@ -11094,7 +11094,7 @@ func (o *GetServerGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServerGU
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -11133,9 +11133,9 @@ func (o *GetServerGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServerG
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServerGUID = op.ServerGUID
-	o.Return = op.Return
+	op.That = o.That
+	op.ServerGUID = o.ServerGUID
+	op.Return = o.Return
 	return op
 }
 

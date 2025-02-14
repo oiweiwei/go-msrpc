@@ -410,9 +410,9 @@ func (o *ResolveOXIDRequest) xxx_ToOp(ctx context.Context, op *xxx_ResolveOXIDOp
 	if o == nil {
 		return op
 	}
-	o.OXID = op.OXID
-	o.RequestedProtocolSequencesCount = op.RequestedProtocolSequencesCount
-	o.RequestedProtocolSequences = op.RequestedProtocolSequences
+	op.OXID = o.OXID
+	op.RequestedProtocolSequencesCount = o.RequestedProtocolSequencesCount
+	op.RequestedProtocolSequences = o.RequestedProtocolSequences
 	return op
 }
 
@@ -460,10 +460,10 @@ func (o *ResolveOXIDResponse) xxx_ToOp(ctx context.Context, op *xxx_ResolveOXIDO
 	if o == nil {
 		return op
 	}
-	o.OXIDBindings = op.OXIDBindings
-	o.RemoteUnknown = op.RemoteUnknown
-	o.AuthnHint = op.AuthnHint
-	o.Return = op.Return
+	op.OXIDBindings = o.OXIDBindings
+	op.RemoteUnknown = o.RemoteUnknown
+	op.AuthnHint = o.AuthnHint
+	op.Return = o.Return
 	return op
 }
 
@@ -576,7 +576,7 @@ func (o *SimplePingRequest) xxx_ToOp(ctx context.Context, op *xxx_SimplePingOper
 	if o == nil {
 		return op
 	}
-	o.SetID = op.SetID
+	op.SetID = o.SetID
 	return op
 }
 
@@ -611,7 +611,7 @@ func (o *SimplePingResponse) xxx_ToOp(ctx context.Context, op *xxx_SimplePingOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -896,12 +896,12 @@ func (o *ComplexPingRequest) xxx_ToOp(ctx context.Context, op *xxx_ComplexPingOp
 	if o == nil {
 		return op
 	}
-	o.SetID = op.SetID
-	o.SequenceNum = op.SequenceNum
-	o.AddToSetCount = op.AddToSetCount
-	o.DeleteFromSetCount = op.DeleteFromSetCount
-	o.AddToSet = op.AddToSet
-	o.DeleteFromSet = op.DeleteFromSet
+	op.SetID = o.SetID
+	op.SequenceNum = o.SequenceNum
+	op.AddToSetCount = o.AddToSetCount
+	op.DeleteFromSetCount = o.DeleteFromSetCount
+	op.AddToSet = o.AddToSet
+	op.DeleteFromSet = o.DeleteFromSet
 	return op
 }
 
@@ -950,9 +950,9 @@ func (o *ComplexPingResponse) xxx_ToOp(ctx context.Context, op *xxx_ComplexPingO
 	if o == nil {
 		return op
 	}
-	o.SetID = op.SetID
-	o.PingBackoffFactor = op.PingBackoffFactor
-	o.Return = op.Return
+	op.SetID = o.SetID
+	op.PingBackoffFactor = o.PingBackoffFactor
+	op.Return = o.Return
 	return op
 }
 
@@ -1081,7 +1081,7 @@ func (o *ServerAliveResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerAliveO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1362,9 +1362,9 @@ func (o *ResolveOxid2Request) xxx_ToOp(ctx context.Context, op *xxx_ResolveOxid2
 	if o == nil {
 		return op
 	}
-	o.OXID = op.OXID
-	o.RequestedProtocolSequencesCount = op.RequestedProtocolSequencesCount
-	o.RequestedProtocolSequences = op.RequestedProtocolSequences
+	op.OXID = o.OXID
+	op.RequestedProtocolSequencesCount = o.RequestedProtocolSequencesCount
+	op.RequestedProtocolSequences = o.RequestedProtocolSequences
 	return op
 }
 
@@ -1415,11 +1415,11 @@ func (o *ResolveOxid2Response) xxx_ToOp(ctx context.Context, op *xxx_ResolveOxid
 	if o == nil {
 		return op
 	}
-	o.OXIDBindings = op.OXIDBindings
-	o.RemoteUnknown = op.RemoteUnknown
-	o.AuthnHint = op.AuthnHint
-	o.COMVersion = op.COMVersion
-	o.Return = op.Return
+	op.OXIDBindings = o.OXIDBindings
+	op.RemoteUnknown = o.RemoteUnknown
+	op.AuthnHint = o.AuthnHint
+	op.COMVersion = o.COMVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -1641,9 +1641,9 @@ func (o *ServerAlive2Response) xxx_ToOp(ctx context.Context, op *xxx_ServerAlive
 	if o == nil {
 		return op
 	}
-	o.COMVersion = op.COMVersion
-	o.ObjectResolverBindings = op.ObjectResolverBindings
-	o.Return = op.Return
+	op.COMVersion = o.COMVersion
+	op.ObjectResolverBindings = o.ObjectResolverBindings
+	op.Return = o.Return
 	return op
 }
 

@@ -300,7 +300,7 @@ func (o *GetOverwriteOnCommitRequest) xxx_ToOp(ctx context.Context, op *xxx_GetO
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -338,9 +338,9 @@ func (o *GetOverwriteOnCommitResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Overwrite = op.Overwrite
-	o.Return = op.Return
+	op.That = o.That
+	op.Overwrite = o.Overwrite
+	op.Return = o.Return
 	return op
 }
 
@@ -510,8 +510,8 @@ func (o *SetOverwriteOnCommitRequest) xxx_ToOp(ctx context.Context, op *xxx_SetO
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Overwrite = op.Overwrite
+	op.This = o.This
+	op.Overwrite = o.Overwrite
 	return op
 }
 
@@ -549,8 +549,8 @@ func (o *SetOverwriteOnCommitResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

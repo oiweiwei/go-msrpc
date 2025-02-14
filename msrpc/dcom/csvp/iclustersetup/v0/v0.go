@@ -773,8 +773,8 @@ func (o *ConfigServiceSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_Confi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SecretBlob = op.SecretBlob
+	op.This = o.This
+	op.SecretBlob = o.SecretBlob
 	return op
 }
 
@@ -812,8 +812,8 @@ func (o *ConfigServiceSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_Conf
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1015,7 +1015,7 @@ func (o *RetrieveServiceSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_Ret
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1054,9 +1054,9 @@ func (o *RetrieveServiceSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SecretBlob = op.SecretBlob
-	o.Return = op.Return
+	op.That = o.That
+	op.SecretBlob = o.SecretBlob
+	op.Return = o.Return
 	return op
 }
 
@@ -1259,7 +1259,7 @@ func (o *RetrieveHostLabelRequest) xxx_ToOp(ctx context.Context, op *xxx_Retriev
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1298,9 +1298,9 @@ func (o *RetrieveHostLabelResponse) xxx_ToOp(ctx context.Context, op *xxx_Retrie
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.HostLabel = op.HostLabel
-	o.Return = op.Return
+	op.That = o.That
+	op.HostLabel = o.HostLabel
+	op.Return = o.Return
 	return op
 }
 
@@ -1469,7 +1469,7 @@ func (o *GetFunctionalLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFun
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1508,9 +1508,9 @@ func (o *GetFunctionalLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FunctionalLevel = op.FunctionalLevel
-	o.Return = op.Return
+	op.That = o.That
+	op.FunctionalLevel = o.FunctionalLevel
+	op.Return = o.Return
 	return op
 }
 
@@ -1691,8 +1691,8 @@ func (o *ConfigClusterCertRequest) xxx_ToOp(ctx context.Context, op *xxx_ConfigC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClusterCert = op.ClusterCert
+	op.This = o.This
+	op.ClusterCert = o.ClusterCert
 	return op
 }
 
@@ -1730,8 +1730,8 @@ func (o *ConfigClusterCertResponse) xxx_ToOp(ctx context.Context, op *xxx_Config
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1908,7 +1908,7 @@ func (o *RetrieveClusterCertRequest) xxx_ToOp(ctx context.Context, op *xxx_Retri
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1948,9 +1948,9 @@ func (o *RetrieveClusterCertResponse) xxx_ToOp(ctx context.Context, op *xxx_Retr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ClusterCert = op.ClusterCert
-	o.Return = op.Return
+	op.That = o.That
+	op.ClusterCert = o.ClusterCert
+	op.Return = o.Return
 	return op
 }
 
@@ -2152,8 +2152,8 @@ func (o *GenerateClusterCertRequest) xxx_ToOp(ctx context.Context, op *xxx_Gener
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClusterCert = op.ClusterCert
+	op.This = o.This
+	op.ClusterCert = o.ClusterCert
 	return op
 }
 
@@ -2194,9 +2194,9 @@ func (o *GenerateClusterCertResponse) xxx_ToOp(ctx context.Context, op *xxx_Gene
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ClusterCert = op.ClusterCert
-	o.Return = op.Return
+	op.That = o.That
+	op.ClusterCert = o.ClusterCert
+	op.Return = o.Return
 	return op
 }
 
@@ -2365,7 +2365,7 @@ func (o *GetUpgradeVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUpgr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2404,9 +2404,9 @@ func (o *GetUpgradeVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUpg
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.UpgradeVersion = op.UpgradeVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.UpgradeVersion = o.UpgradeVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -2599,9 +2599,9 @@ func (o *ConfigClusterCerV2Request) xxx_ToOp(ctx context.Context, op *xxx_Config
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClusterCert = op.ClusterCert
-	o.CertType = op.CertType
+	op.This = o.This
+	op.ClusterCert = o.ClusterCert
+	op.CertType = o.CertType
 	return op
 }
 
@@ -2640,8 +2640,8 @@ func (o *ConfigClusterCerV2Response) xxx_ToOp(ctx context.Context, op *xxx_Confi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2834,8 +2834,8 @@ func (o *RetrieveClusterCertV2Request) xxx_ToOp(ctx context.Context, op *xxx_Ret
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClusterCert = op.ClusterCert
+	op.This = o.This
+	op.ClusterCert = o.ClusterCert
 	return op
 }
 
@@ -2874,9 +2874,9 @@ func (o *RetrieveClusterCertV2Response) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CertType = op.CertType
-	o.Return = op.Return
+	op.That = o.That
+	op.CertType = o.CertType
+	op.Return = o.Return
 	return op
 }
 
@@ -3092,9 +3092,9 @@ func (o *GenerateClusterCertV2Request) xxx_ToOp(ctx context.Context, op *xxx_Gen
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClusterCert = op.ClusterCert
-	o.CertType = op.CertType
+	op.This = o.This
+	op.ClusterCert = o.ClusterCert
+	op.CertType = o.CertType
 	return op
 }
 
@@ -3136,9 +3136,9 @@ func (o *GenerateClusterCertV2Response) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ClusterCert = op.ClusterCert
-	o.Return = op.Return
+	op.That = o.That
+	op.ClusterCert = o.ClusterCert
+	op.Return = o.Return
 	return op
 }
 

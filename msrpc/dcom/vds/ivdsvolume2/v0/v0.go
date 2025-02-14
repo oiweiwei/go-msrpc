@@ -292,7 +292,7 @@ func (o *GetProperties2Request) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -330,9 +330,9 @@ func (o *GetProperties2Response) xxx_ToOp(ctx context.Context, op *xxx_GetProper
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VolumeProperties = op.VolumeProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.VolumeProperties = o.VolumeProperties
+	op.Return = o.Return
 	return op
 }
 

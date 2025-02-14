@@ -426,9 +426,9 @@ func (o *ObjectsChangedRequest) xxx_ToOp(ctx context.Context, op *xxx_ObjectsCha
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ByteCount = op.ByteCount
-	o.ByteStream = op.ByteStream
+	op.This = o.This
+	op.ByteCount = o.ByteCount
+	op.ByteStream = o.ByteStream
 	return op
 }
 
@@ -467,8 +467,8 @@ func (o *ObjectsChangedResponse) xxx_ToOp(ctx context.Context, op *xxx_ObjectsCh
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

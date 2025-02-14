@@ -318,7 +318,7 @@ func (o *SupportsMultipleBitnessRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -358,9 +358,9 @@ func (o *SupportsMultipleBitnessResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SupportsMultipleBitness = op.SupportsMultipleBitness
-	o.Return = op.Return
+	op.That = o.That
+	op.SupportsMultipleBitness = o.SupportsMultipleBitness
+	op.Return = o.Return
 	return op
 }
 
@@ -561,8 +561,8 @@ func (o *Initialize64BitQueryCellSupportRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ClientSupports64BitQueryCells = op.ClientSupports64BitQueryCells
+	op.This = o.This
+	op.ClientSupports64BitQueryCells = o.ClientSupports64BitQueryCells
 	return op
 }
 
@@ -604,9 +604,9 @@ func (o *Initialize64BitQueryCellSupportResponse) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ServerSupports64BitQueryCells = op.ServerSupports64BitQueryCells
-	o.Return = op.Return
+	op.That = o.That
+	op.ServerSupports64BitQueryCells = o.ServerSupports64BitQueryCells
+	op.Return = o.Return
 	return op
 }
 

@@ -377,11 +377,11 @@ func (o *SetAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.JobName = op.JobName
-	o.Account = op.Account
-	o.Password = op.Password
-	o.JobFlags = op.JobFlags
+	op.Handle = o.Handle
+	op.JobName = o.JobName
+	op.Account = o.Account
+	op.Password = o.Password
+	op.JobFlags = o.JobFlags
 	return op
 }
 
@@ -420,7 +420,7 @@ func (o *SetAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -639,9 +639,9 @@ func (o *SetNSAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Account = op.Account
-	o.Password = op.Password
+	op.Handle = o.Handle
+	op.Account = o.Account
+	op.Password = o.Password
 	return op
 }
 
@@ -678,7 +678,7 @@ func (o *SetNSAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -947,9 +947,9 @@ func (o *GetNSAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.BufferSize = op.BufferSize
-	o.Buffer = op.Buffer
+	op.Handle = o.Handle
+	op.BufferSize = o.BufferSize
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -990,8 +990,8 @@ func (o *GetNSAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -1276,10 +1276,10 @@ func (o *GetAccountInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.JobName = op.JobName
-	o.BufferSize = op.BufferSize
-	o.Buffer = op.Buffer
+	op.Handle = o.Handle
+	op.JobName = o.JobName
+	op.BufferSize = o.BufferSize
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -1321,8 +1321,8 @@ func (o *GetAccountInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 

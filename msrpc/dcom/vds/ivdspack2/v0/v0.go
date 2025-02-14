@@ -444,12 +444,12 @@ func (o *CreateVolume2Request) xxx_ToOp(ctx context.Context, op *xxx_CreateVolum
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
-	o.InputDiskArray = op.InputDiskArray
-	o.NumberOfDisks = op.NumberOfDisks
-	o.StripeSize = op.StripeSize
-	o.Align = op.Align
+	op.This = o.This
+	op.Type = o.Type
+	op.InputDiskArray = o.InputDiskArray
+	op.NumberOfDisks = o.NumberOfDisks
+	op.StripeSize = o.StripeSize
+	op.Align = o.Align
 	return op
 }
 
@@ -498,9 +498,9 @@ func (o *CreateVolume2Response) xxx_ToOp(ctx context.Context, op *xxx_CreateVolu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

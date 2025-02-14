@@ -358,7 +358,7 @@ func (o *InitializeAdapterConfigurationRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -400,9 +400,9 @@ func (o *InitializeAdapterConfigurationResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReturnAdaptersCount = op.ReturnAdaptersCount
-	o.Return = op.Return
+	op.That = o.That
+	op.ReturnAdaptersCount = o.ReturnAdaptersCount
+	op.Return = o.Return
 	return op
 }
 
@@ -650,8 +650,8 @@ func (o *GetNextAdapterFirewallConfigurationRequest) xxx_ToOp(ctx context.Contex
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -762,13 +762,13 @@ func (o *GetNextAdapterFirewallConfigurationResponse) xxx_ToOp(ctx context.Conte
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AdapterID = op.AdapterID
-	o.AdapterProfile = op.AdapterProfile
-	o.ServerRulesEnabled = op.ServerRulesEnabled
-	o.ManagementRulesEnabled = op.ManagementRulesEnabled
-	o.CommonRulesEnabled = op.CommonRulesEnabled
-	o.Return = op.Return
+	op.That = o.That
+	op.AdapterID = o.AdapterID
+	op.AdapterProfile = o.AdapterProfile
+	op.ServerRulesEnabled = o.ServerRulesEnabled
+	op.ManagementRulesEnabled = o.ManagementRulesEnabled
+	op.CommonRulesEnabled = o.CommonRulesEnabled
+	op.Return = o.Return
 	return op
 }
 

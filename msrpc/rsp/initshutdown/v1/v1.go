@@ -336,11 +336,11 @@ func (o *BaseInitiateShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_Base
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Message = op.Message
-	o.Timeout = op.Timeout
-	o.ForceAppsClosed = op.ForceAppsClosed
-	o.RebootAfterShutdown = op.RebootAfterShutdown
+	op.ServerName = o.ServerName
+	op.Message = o.Message
+	op.Timeout = o.Timeout
+	op.ForceAppsClosed = o.ForceAppsClosed
+	op.RebootAfterShutdown = o.RebootAfterShutdown
 	return op
 }
 
@@ -379,7 +379,7 @@ func (o *BaseInitiateShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_Bas
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -513,7 +513,7 @@ func (o *BaseAbortShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_BaseAbo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -548,7 +548,7 @@ func (o *BaseAbortShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_BaseAb
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -795,12 +795,12 @@ func (o *BaseInitiateShutdownExRequest) xxx_ToOp(ctx context.Context, op *xxx_Ba
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Message = op.Message
-	o.Timeout = op.Timeout
-	o.ForceAppsClosed = op.ForceAppsClosed
-	o.RebootAfterShutdown = op.RebootAfterShutdown
-	o.Reason = op.Reason
+	op.ServerName = o.ServerName
+	op.Message = o.Message
+	op.Timeout = o.Timeout
+	op.ForceAppsClosed = o.ForceAppsClosed
+	op.RebootAfterShutdown = o.RebootAfterShutdown
+	op.Reason = o.Reason
 	return op
 }
 
@@ -840,7 +840,7 @@ func (o *BaseInitiateShutdownExResponse) xxx_ToOp(ctx context.Context, op *xxx_B
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

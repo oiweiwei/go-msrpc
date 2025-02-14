@@ -821,8 +821,8 @@ func (o *HighestVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_HighestVe
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -1272,13 +1272,13 @@ func (o *RegisterTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterTask
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.XML = op.XML
-	o.Flags = op.Flags
-	o.SDDL = op.SDDL
-	o.LogonType = op.LogonType
-	o.CredsCount = op.CredsCount
-	o.Creds = op.Creds
+	op.Path = o.Path
+	op.XML = o.XML
+	op.Flags = o.Flags
+	op.SDDL = o.SDDL
+	op.LogonType = o.LogonType
+	op.CredsCount = o.CredsCount
+	op.Creds = o.Creds
 	return op
 }
 
@@ -1325,9 +1325,9 @@ func (o *RegisterTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterTas
 	if o == nil {
 		return op
 	}
-	o.ActualPath = op.ActualPath
-	o.ErrorInfo = op.ErrorInfo
-	o.Return = op.Return
+	op.ActualPath = o.ActualPath
+	op.ErrorInfo = o.ErrorInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1512,9 +1512,9 @@ func (o *RetrieveTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_RetrieveTask
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.LanguagesBuffer = op.LanguagesBuffer
-	o.LanguagesLength = op.LanguagesLength
+	op.Path = o.Path
+	op.LanguagesBuffer = o.LanguagesBuffer
+	op.LanguagesLength = o.LanguagesLength
 	return op
 }
 
@@ -1555,8 +1555,8 @@ func (o *RetrieveTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_RetrieveTas
 	if o == nil {
 		return op
 	}
-	o.XML = op.XML
-	o.Return = op.Return
+	op.XML = o.XML
+	op.Return = o.Return
 	return op
 }
 
@@ -1723,9 +1723,9 @@ func (o *CreateFolderRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFolder
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.SDDL = op.SDDL
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.SDDL = o.SDDL
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1762,7 +1762,7 @@ func (o *CreateFolderResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFolde
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1928,9 +1928,9 @@ func (o *SetSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecurityOp
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.SDDL = op.SDDL
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.SDDL = o.SDDL
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1967,7 +1967,7 @@ func (o *SetSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSecurityO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2133,8 +2133,8 @@ func (o *GetSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSecurityOp
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.SecurityInformation = op.SecurityInformation
+	op.Path = o.Path
+	op.SecurityInformation = o.SecurityInformation
 	return op
 }
 
@@ -2173,8 +2173,8 @@ func (o *GetSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSecurityO
 	if o == nil {
 		return op
 	}
-	o.SDDL = op.SDDL
-	o.Return = op.Return
+	op.SDDL = o.SDDL
+	op.Return = o.Return
 	return op
 }
 
@@ -2475,10 +2475,10 @@ func (o *EnumFoldersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFoldersOp
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
-	o.StartIndex = op.StartIndex
-	o.RequestedCount = op.RequestedCount
+	op.Path = o.Path
+	op.Flags = o.Flags
+	op.StartIndex = o.StartIndex
+	op.RequestedCount = o.RequestedCount
 	return op
 }
 
@@ -2524,10 +2524,10 @@ func (o *EnumFoldersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFoldersO
 	if o == nil {
 		return op
 	}
-	o.StartIndex = op.StartIndex
-	o.NamesCount = op.NamesCount
-	o.Names = op.Names
-	o.Return = op.Return
+	op.StartIndex = o.StartIndex
+	op.NamesCount = o.NamesCount
+	op.Names = o.Names
+	op.Return = o.Return
 	return op
 }
 
@@ -2826,10 +2826,10 @@ func (o *EnumTasksRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumTasksOperat
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
-	o.StartIndex = op.StartIndex
-	o.RequestedCount = op.RequestedCount
+	op.Path = o.Path
+	op.Flags = o.Flags
+	op.StartIndex = o.StartIndex
+	op.RequestedCount = o.RequestedCount
 	return op
 }
 
@@ -2876,10 +2876,10 @@ func (o *EnumTasksResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumTasksOpera
 	if o == nil {
 		return op
 	}
-	o.StartIndex = op.StartIndex
-	o.NamesCount = op.NamesCount
-	o.Names = op.Names
-	o.Return = op.Return
+	op.StartIndex = o.StartIndex
+	op.NamesCount = o.NamesCount
+	op.Names = o.Names
+	op.Return = o.Return
 	return op
 }
 
@@ -3149,8 +3149,8 @@ func (o *EnumInstancesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumInstanc
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3190,9 +3190,9 @@ func (o *EnumInstancesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumInstan
 	if o == nil {
 		return op
 	}
-	o.GUIDsCount = op.GUIDsCount
-	o.GUIDs = op.GUIDs
-	o.Return = op.Return
+	op.GUIDsCount = o.GUIDsCount
+	op.GUIDs = o.GUIDs
+	op.Return = o.Return
 	return op
 }
 
@@ -3550,7 +3550,7 @@ func (o *GetInstanceInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInstan
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
+	op.GUID = o.GUID
 	return op
 }
 
@@ -3605,14 +3605,14 @@ func (o *GetInstanceInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInsta
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.State = op.State
-	o.CurrentAction = op.CurrentAction
-	o.Info = op.Info
-	o.GroupInstancesCount = op.GroupInstancesCount
-	o.GroupInstances = op.GroupInstances
-	o.EnginePID = op.EnginePID
-	o.Return = op.Return
+	op.Path = o.Path
+	op.State = o.State
+	op.CurrentAction = o.CurrentAction
+	op.Info = o.Info
+	op.GroupInstancesCount = o.GroupInstancesCount
+	op.GroupInstances = o.GroupInstances
+	op.EnginePID = o.EnginePID
+	op.Return = o.Return
 	return op
 }
 
@@ -3754,8 +3754,8 @@ func (o *StopInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_StopInstance
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Flags = op.Flags
+	op.GUID = o.GUID
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3791,7 +3791,7 @@ func (o *StopInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_StopInstanc
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3941,8 +3941,8 @@ func (o *StopRequest) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3978,7 +3978,7 @@ func (o *StopResponse) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4322,12 +4322,12 @@ func (o *RunRequest) xxx_ToOp(ctx context.Context, op *xxx_RunOperation) *xxx_Ru
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.ArgsCount = op.ArgsCount
-	o.Args = op.Args
-	o.Flags = op.Flags
-	o.SessionID = op.SessionID
-	o.User = op.User
+	op.Path = o.Path
+	op.ArgsCount = o.ArgsCount
+	op.Args = o.Args
+	op.Flags = o.Flags
+	op.SessionID = o.SessionID
+	op.User = o.User
 	return op
 }
 
@@ -4369,8 +4369,8 @@ func (o *RunResponse) xxx_ToOp(ctx context.Context, op *xxx_RunOperation) *xxx_R
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.Return = op.Return
+	op.GUID = o.GUID
+	op.Return = o.Return
 	return op
 }
 
@@ -4497,8 +4497,8 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4534,7 +4534,7 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4674,9 +4674,9 @@ func (o *RenameRequest) xxx_ToOp(ctx context.Context, op *xxx_RenameOperation) *
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.NewName = op.NewName
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.NewName = o.NewName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4713,7 +4713,7 @@ func (o *RenameResponse) xxx_ToOp(ctx context.Context, op *xxx_RenameOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5054,11 +5054,11 @@ func (o *ScheduledRuntimesRequest) xxx_ToOp(ctx context.Context, op *xxx_Schedul
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Start = op.Start
-	o.End = op.End
-	o.Flags = op.Flags
-	o.RequestedCount = op.RequestedCount
+	op.Path = o.Path
+	op.Start = o.Start
+	op.End = o.End
+	op.Flags = o.Flags
+	op.RequestedCount = o.RequestedCount
 	return op
 }
 
@@ -5103,9 +5103,9 @@ func (o *ScheduledRuntimesResponse) xxx_ToOp(ctx context.Context, op *xxx_Schedu
 	if o == nil {
 		return op
 	}
-	o.RuntimesCount = op.RuntimesCount
-	o.Runtimes = op.Runtimes
-	o.Return = op.Return
+	op.RuntimesCount = o.RuntimesCount
+	op.Runtimes = o.Runtimes
+	op.Return = o.Return
 	return op
 }
 
@@ -5254,7 +5254,7 @@ func (o *GetLastRunInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLastRun
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
+	op.Path = o.Path
 	return op
 }
 
@@ -5297,9 +5297,9 @@ func (o *GetLastRunInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLastRu
 	if o == nil {
 		return op
 	}
-	o.LastRuntime = op.LastRuntime
-	o.LastReturnCode = op.LastReturnCode
-	o.Return = op.Return
+	op.LastRuntime = o.LastRuntime
+	op.LastReturnCode = o.LastReturnCode
+	op.Return = o.Return
 	return op
 }
 
@@ -5473,8 +5473,8 @@ func (o *GetTaskInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTaskInfoOp
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Flags = o.Flags
 	return op
 }
 
@@ -5517,9 +5517,9 @@ func (o *GetTaskInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTaskInfoO
 	if o == nil {
 		return op
 	}
-	o.Enabled = op.Enabled
-	o.State = op.State
-	o.Return = op.Return
+	op.Enabled = o.Enabled
+	op.State = o.State
+	op.Return = o.Return
 	return op
 }
 
@@ -5645,7 +5645,7 @@ func (o *GetNumberOfMissedRunsRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
+	op.Path = o.Path
 	return op
 }
 
@@ -5683,8 +5683,8 @@ func (o *GetNumberOfMissedRunsResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.NumberOfMissedRuns = op.NumberOfMissedRuns
-	o.Return = op.Return
+	op.NumberOfMissedRuns = o.NumberOfMissedRuns
+	op.Return = o.Return
 	return op
 }
 
@@ -5813,8 +5813,8 @@ func (o *EnableTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_EnableTaskOper
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Enabled = op.Enabled
+	op.Path = o.Path
+	op.Enabled = o.Enabled
 	return op
 }
 
@@ -5850,7 +5850,7 @@ func (o *EnableTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_EnableTaskOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

@@ -683,11 +683,11 @@ func (o *CreateApplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.AppMode = op.AppMode
-	o.AppPoolID = op.AppPoolID
-	o.CreatePool = op.CreatePool
+	op.This = o.This
+	op.Path = o.Path
+	op.AppMode = o.AppMode
+	op.AppPoolID = o.AppPoolID
+	op.CreatePool = o.CreatePool
 	return op
 }
 
@@ -728,8 +728,8 @@ func (o *CreateApplicationResponse) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -949,9 +949,9 @@ func (o *DeleteApplicationRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Recursive = op.Recursive
+	op.This = o.This
+	op.Path = o.Path
+	op.Recursive = o.Recursive
 	return op
 }
 
@@ -990,8 +990,8 @@ func (o *DeleteApplicationResponse) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1187,8 +1187,8 @@ func (o *CreateApplicationPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Pool = op.Pool
+	op.This = o.This
+	op.Pool = o.Pool
 	return op
 }
 
@@ -1226,8 +1226,8 @@ func (o *CreateApplicationPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_Cr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1423,8 +1423,8 @@ func (o *DeleteApplicationPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_Del
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Pool = op.Pool
+	op.This = o.This
+	op.Pool = o.Pool
 	return op
 }
 
@@ -1462,8 +1462,8 @@ func (o *DeleteApplicationPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_De
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1706,8 +1706,8 @@ func (o *EnumerateApplicationsInPoolRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Pool = op.Pool
+	op.This = o.This
+	op.Pool = o.Pool
 	return op
 }
 
@@ -1750,9 +1750,9 @@ func (o *EnumerateApplicationsInPoolResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Buffer = op.Buffer
-	o.Return = op.Return
+	op.That = o.That
+	op.Buffer = o.Buffer
+	op.Return = o.Return
 	return op
 }
 
@@ -1949,8 +1949,8 @@ func (o *RecycleApplicationPoolRequest) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Pool = op.Pool
+	op.This = o.This
+	op.Pool = o.Pool
 	return op
 }
 
@@ -1988,8 +1988,8 @@ func (o *RecycleApplicationPoolResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2157,7 +2157,7 @@ func (o *GetProcessModeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProcess
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2209,9 +2209,9 @@ func (o *GetProcessModeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetProces
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Mode = op.Mode
-	o.Return = op.Return
+	op.That = o.That
+	op.Mode = o.Mode
+	op.Return = o.Return
 	return op
 }
 

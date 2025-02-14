@@ -5946,10 +5946,10 @@ func (o *EnumSubnetClientsV5Request) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -6005,11 +6005,11 @@ func (o *EnumSubnetClientsV5Response) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClientInfo = op.ClientInfo
-	o.ClientsRead = op.ClientsRead
-	o.ClientsTotal = op.ClientsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClientInfo = o.ClientInfo
+	op.ClientsRead = o.ClientsRead
+	op.ClientsTotal = o.ClientsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -6247,10 +6247,10 @@ func (o *SetMScopeInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMScopeIn
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.MScopeInfo = op.MScopeInfo
-	o.NewScope = op.NewScope
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.MScopeInfo = o.MScopeInfo
+	op.NewScope = o.NewScope
 	return op
 }
 
@@ -6288,7 +6288,7 @@ func (o *SetMScopeInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMScopeI
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6512,8 +6512,8 @@ func (o *GetMScopeInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMScopeIn
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
 	return op
 }
 
@@ -6553,8 +6553,8 @@ func (o *GetMScopeInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMScopeI
 	if o == nil {
 		return op
 	}
-	o.MScopeInfo = op.MScopeInfo
-	o.Return = op.Return
+	op.MScopeInfo = o.MScopeInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -6815,9 +6815,9 @@ func (o *EnumMScopesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMScopesOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -6874,11 +6874,11 @@ func (o *EnumMScopesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMScopesO
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.MScopeTable = op.MScopeTable
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.MScopeTable = o.MScopeTable
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -7091,9 +7091,9 @@ func (o *AddMScopeElementRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMScop
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.AddElementInfo = op.AddElementInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.AddElementInfo = o.AddElementInfo
 	return op
 }
 
@@ -7130,7 +7130,7 @@ func (o *AddMScopeElementResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMSco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7450,11 +7450,11 @@ func (o *EnumMScopeElementsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.EnumElementType = op.EnumElementType
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.EnumElementType = o.EnumElementType
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -7518,11 +7518,11 @@ func (o *EnumMScopeElementsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumM
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumElementInfo = op.EnumElementInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumElementInfo = o.EnumElementInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -7756,10 +7756,10 @@ func (o *RemoveMScopeElementRequest) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.RemoveElementInfo = op.RemoveElementInfo
-	o.ForceFlag = op.ForceFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.RemoveElementInfo = o.RemoveElementInfo
+	op.ForceFlag = o.ForceFlag
 	return op
 }
 
@@ -7797,7 +7797,7 @@ func (o *RemoveMScopeElementResponse) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7992,9 +7992,9 @@ func (o *DeleteMScopeRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteMScope
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.ForceFlag = op.ForceFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.ForceFlag = o.ForceFlag
 	return op
 }
 
@@ -8031,7 +8031,7 @@ func (o *DeleteMScopeResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteMScop
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8273,9 +8273,9 @@ func (o *ScanMDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_ScanMDataba
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.FixFlag = op.FixFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.FixFlag = o.FixFlag
 	return op
 }
 
@@ -8316,8 +8316,8 @@ func (o *ScanMDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_ScanMDatab
 	if o == nil {
 		return op
 	}
-	o.ScanList = op.ScanList
-	o.Return = op.Return
+	op.ScanList = o.ScanList
+	op.Return = o.Return
 	return op
 }
 
@@ -8527,9 +8527,9 @@ func (o *CreateMClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateM
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -8566,7 +8566,7 @@ func (o *CreateMClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8732,8 +8732,8 @@ func (o *SetMClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMClient
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -8769,7 +8769,7 @@ func (o *SetMClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMClien
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8983,8 +8983,8 @@ func (o *GetMClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMClient
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SearchInfo = op.SearchInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SearchInfo = o.SearchInfo
 	return op
 }
 
@@ -9024,8 +9024,8 @@ func (o *GetMClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMClien
 	if o == nil {
 		return op
 	}
-	o.ClientInfo = op.ClientInfo
-	o.Return = op.Return
+	op.ClientInfo = o.ClientInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -9195,8 +9195,8 @@ func (o *DeleteMClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteM
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -9232,7 +9232,7 @@ func (o *DeleteMClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9533,10 +9533,10 @@ func (o *EnumMScopeClientsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMSc
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.MScopeName = op.MScopeName
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.MScopeName = o.MScopeName
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -9593,11 +9593,11 @@ func (o *EnumMScopeClientsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMS
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClientInfo = op.ClientInfo
-	o.ClientsRead = op.ClientsRead
-	o.ClientsTotal = op.ClientsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClientInfo = o.ClientInfo
+	op.ClientsRead = o.ClientsRead
+	op.ClientsTotal = o.ClientsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -9896,12 +9896,12 @@ func (o *CreateOptionV5Request) xxx_ToOp(ctx context.Context, op *xxx_CreateOpti
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.OptionInfo = op.OptionInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.OptionInfo = o.OptionInfo
 	return op
 }
 
@@ -9941,7 +9941,7 @@ func (o *CreateOptionV5Response) xxx_ToOp(ctx context.Context, op *xxx_CreateOpt
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10236,12 +10236,12 @@ func (o *SetOptionInfoV5Request) xxx_ToOp(ctx context.Context, op *xxx_SetOption
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.OptionInfo = op.OptionInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.OptionInfo = o.OptionInfo
 	return op
 }
 
@@ -10281,7 +10281,7 @@ func (o *SetOptionInfoV5Response) xxx_ToOp(ctx context.Context, op *xxx_SetOptio
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10592,11 +10592,11 @@ func (o *GetOptionInfoV5Request) xxx_ToOp(ctx context.Context, op *xxx_GetOption
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
 	return op
 }
 
@@ -10638,8 +10638,8 @@ func (o *GetOptionInfoV5Response) xxx_ToOp(ctx context.Context, op *xxx_GetOptio
 	if o == nil {
 		return op
 	}
-	o.OptionInfo = op.OptionInfo
-	o.Return = op.Return
+	op.OptionInfo = o.OptionInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -11013,12 +11013,12 @@ func (o *EnumOptionsV5Request) xxx_ToOp(ctx context.Context, op *xxx_EnumOptions
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -11078,11 +11078,11 @@ func (o *EnumOptionsV5Response) xxx_ToOp(ctx context.Context, op *xxx_EnumOption
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.Options = op.Options
-	o.OptionsRead = op.OptionsRead
-	o.OptionsTotal = op.OptionsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.Options = o.Options
+	op.OptionsRead = o.OptionsRead
+	op.OptionsTotal = o.OptionsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -11350,11 +11350,11 @@ func (o *RemoveOptionV5Request) xxx_ToOp(ctx context.Context, op *xxx_RemoveOpti
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
 	return op
 }
 
@@ -11393,7 +11393,7 @@ func (o *RemoveOptionV5Response) xxx_ToOp(ctx context.Context, op *xxx_RemoveOpt
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11729,13 +11729,13 @@ func (o *SetOptionValueV5Request) xxx_ToOp(ctx context.Context, op *xxx_SetOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.OptionValue = op.OptionValue
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.OptionValue = o.OptionValue
 	return op
 }
 
@@ -11776,7 +11776,7 @@ func (o *SetOptionValueV5Response) xxx_ToOp(ctx context.Context, op *xxx_SetOpti
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12091,12 +12091,12 @@ func (o *SetOptionValuesV5Request) xxx_ToOp(ctx context.Context, op *xxx_SetOpti
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.OptionValues = op.OptionValues
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.OptionValues = o.OptionValues
 	return op
 }
 
@@ -12136,7 +12136,7 @@ func (o *SetOptionValuesV5Response) xxx_ToOp(ctx context.Context, op *xxx_SetOpt
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12482,12 +12482,12 @@ func (o *GetOptionValueV5Request) xxx_ToOp(ctx context.Context, op *xxx_GetOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -12531,8 +12531,8 @@ func (o *GetOptionValueV5Response) xxx_ToOp(ctx context.Context, op *xxx_GetOpti
 	if o == nil {
 		return op
 	}
-	o.OptionValue = op.OptionValue
-	o.Return = op.Return
+	op.OptionValue = o.OptionValue
+	op.Return = o.Return
 	return op
 }
 
@@ -12939,13 +12939,13 @@ func (o *EnumOptionValuesV5Request) xxx_ToOp(ctx context.Context, op *xxx_EnumOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -13006,11 +13006,11 @@ func (o *EnumOptionValuesV5Response) xxx_ToOp(ctx context.Context, op *xxx_EnumO
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.OptionValues = op.OptionValues
-	o.OptionsRead = op.OptionsRead
-	o.OptionsTotal = op.OptionsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.OptionValues = o.OptionValues
+	op.OptionsRead = o.OptionsRead
+	op.OptionsTotal = o.OptionsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -13313,12 +13313,12 @@ func (o *RemoveOptionValueV5Request) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -13358,7 +13358,7 @@ func (o *RemoveOptionValueV5Response) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13539,8 +13539,8 @@ func (o *CreateClassRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateClassOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClassInfo = op.ClassInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClassInfo = o.ClassInfo
 	return op
 }
 
@@ -13576,7 +13576,7 @@ func (o *CreateClassResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateClassO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13757,8 +13757,8 @@ func (o *ModifyClassRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyClassOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClassInfo = op.ClassInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClassInfo = o.ClassInfo
 	return op
 }
 
@@ -13794,7 +13794,7 @@ func (o *ModifyClassResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyClassO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -13985,8 +13985,8 @@ func (o *DeleteClassRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClassName = op.ClassName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClassName = o.ClassName
 	return op
 }
 
@@ -14022,7 +14022,7 @@ func (o *DeleteClassResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14251,8 +14251,8 @@ func (o *GetClassInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetClassInfo
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.PartialClassInfo = op.PartialClassInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.PartialClassInfo = o.PartialClassInfo
 	return op
 }
 
@@ -14291,8 +14291,8 @@ func (o *GetClassInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClassInf
 	if o == nil {
 		return op
 	}
-	o.FilledClassInfo = op.FilledClassInfo
-	o.Return = op.Return
+	op.FilledClassInfo = o.FilledClassInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -14567,9 +14567,9 @@ func (o *EnumClassesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumClassesOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -14624,11 +14624,11 @@ func (o *EnumClassesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumClassesO
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClassInfoArray = op.ClassInfoArray
-	o.Read = op.Read
-	o.Total = op.Total
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClassInfoArray = o.ClassInfoArray
+	op.Read = o.Read
+	op.Total = o.Total
+	op.Return = o.Return
 	return op
 }
 
@@ -14828,8 +14828,8 @@ func (o *GetAllOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
 	return op
 }
 
@@ -14869,8 +14869,8 @@ func (o *GetAllOptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllOpti
 	if o == nil {
 		return op
 	}
-	o.Option = op.Option
-	o.Return = op.Return
+	op.Option = o.Option
+	op.Return = o.Return
 	return op
 }
 
@@ -15103,9 +15103,9 @@ func (o *GetAllOptionValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAll
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -15145,8 +15145,8 @@ func (o *GetAllOptionValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAl
 	if o == nil {
 		return op
 	}
-	o.Values = op.Values
-	o.Return = op.Return
+	op.Values = o.Values
+	op.Return = o.Return
 	return op
 }
 
@@ -15329,7 +15329,7 @@ func (o *GetMCastMIBInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMCastM
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -15367,8 +15367,8 @@ func (o *GetMCastMIBInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMCast
 	if o == nil {
 		return op
 	}
-	o.MIBInfo = op.MIBInfo
-	o.Return = op.Return
+	op.MIBInfo = o.MIBInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -15587,12 +15587,12 @@ func (o *AuditLogSetParamsRequest) xxx_ToOp(ctx context.Context, op *xxx_AuditLo
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.AuditLogDir = op.AuditLogDir
-	o.DiskCheckInterval = op.DiskCheckInterval
-	o.MaxLogFilesSize = op.MaxLogFilesSize
-	o.MinSpaceOnDisk = op.MinSpaceOnDisk
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.AuditLogDir = o.AuditLogDir
+	op.DiskCheckInterval = o.DiskCheckInterval
+	op.MaxLogFilesSize = o.MaxLogFilesSize
+	op.MinSpaceOnDisk = o.MinSpaceOnDisk
 	return op
 }
 
@@ -15632,7 +15632,7 @@ func (o *AuditLogSetParamsResponse) xxx_ToOp(ctx context.Context, op *xxx_AuditL
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15860,8 +15860,8 @@ func (o *AuditLogGetParamsRequest) xxx_ToOp(ctx context.Context, op *xxx_AuditLo
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
 	return op
 }
 
@@ -15915,11 +15915,11 @@ func (o *AuditLogGetParamsResponse) xxx_ToOp(ctx context.Context, op *xxx_AuditL
 	if o == nil {
 		return op
 	}
-	o.AuditLogDir = op.AuditLogDir
-	o.DiskCheckInterval = op.DiskCheckInterval
-	o.MaxLogFilesSize = op.MaxLogFilesSize
-	o.MinSpaceOnDisk = op.MinSpaceOnDisk
-	o.Return = op.Return
+	op.AuditLogDir = o.AuditLogDir
+	op.DiskCheckInterval = o.DiskCheckInterval
+	op.MaxLogFilesSize = o.MaxLogFilesSize
+	op.MinSpaceOnDisk = o.MinSpaceOnDisk
+	op.Return = o.Return
 	return op
 }
 
@@ -16138,8 +16138,8 @@ func (o *ServerQueryAttributeRequest) xxx_ToOp(ctx context.Context, op *xxx_Serv
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.AttributeID = op.AttributeID
+	op.ServerIPAddress = o.ServerIPAddress
+	op.AttributeID = o.AttributeID
 	return op
 }
 
@@ -16178,8 +16178,8 @@ func (o *ServerQueryAttributeResponse) xxx_ToOp(ctx context.Context, op *xxx_Ser
 	if o == nil {
 		return op
 	}
-	o.DHCPAttribute = op.DHCPAttribute
-	o.Return = op.Return
+	op.DHCPAttribute = o.DHCPAttribute
+	op.Return = o.Return
 	return op
 }
 
@@ -16449,9 +16449,9 @@ func (o *ServerQueryAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_Ser
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.AttributeCount = op.AttributeCount
-	o.DHCPAttributes = op.DHCPAttributes
+	op.ServerIPAddress = o.ServerIPAddress
+	op.AttributeCount = o.AttributeCount
+	op.DHCPAttributes = o.DHCPAttributes
 	return op
 }
 
@@ -16491,8 +16491,8 @@ func (o *ServerQueryAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.DHCPAttributeArray = op.DHCPAttributeArray
-	o.Return = op.Return
+	op.DHCPAttributeArray = o.DHCPAttributeArray
+	op.Return = o.Return
 	return op
 }
 
@@ -16645,7 +16645,7 @@ func (o *ServerRedoAuthorizationRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -16680,7 +16680,7 @@ func (o *ServerRedoAuthorizationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -16870,9 +16870,9 @@ func (o *AddSubnetElementV5Request) xxx_ToOp(ctx context.Context, op *xxx_AddSub
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.AddElementInfo = op.AddElementInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.AddElementInfo = o.AddElementInfo
 	return op
 }
 
@@ -16909,7 +16909,7 @@ func (o *AddSubnetElementV5Response) xxx_ToOp(ctx context.Context, op *xxx_AddSu
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17202,11 +17202,11 @@ func (o *EnumSubnetElementsV5Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.EnumElementType = op.EnumElementType
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.EnumElementType = o.EnumElementType
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -17268,11 +17268,11 @@ func (o *EnumSubnetElementsV5Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumElementInfo = op.EnumElementInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumElementInfo = o.EnumElementInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -17479,10 +17479,10 @@ func (o *RemoveSubnetElementV5Request) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.RemoveElementInfo = op.RemoveElementInfo
-	o.ForceFlag = op.ForceFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.RemoveElementInfo = o.RemoveElementInfo
+	op.ForceFlag = o.ForceFlag
 	return op
 }
 
@@ -17520,7 +17520,7 @@ func (o *RemoveSubnetElementV5Response) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17718,8 +17718,8 @@ func (o *GetServerBindingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
 	return op
 }
 
@@ -17758,8 +17758,8 @@ func (o *GetServerBindingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.BindElementsInfo = op.BindElementsInfo
-	o.Return = op.Return
+	op.BindElementsInfo = o.BindElementsInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -17943,9 +17943,9 @@ func (o *SetServerBindingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.BindElementsInfo = op.BindElementsInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.BindElementsInfo = o.BindElementsInfo
 	return op
 }
 
@@ -17982,7 +17982,7 @@ func (o *SetServerBindingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18262,9 +18262,9 @@ func (o *QueryDNSRegCredentialsRequest) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.UserNameSize = op.UserNameSize
-	o.DomainSize = op.DomainSize
+	op.ServerIPAddress = o.ServerIPAddress
+	op.UserNameSize = o.UserNameSize
+	op.DomainSize = o.DomainSize
 	return op
 }
 
@@ -18309,9 +18309,9 @@ func (o *QueryDNSRegCredentialsResponse) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.UserName = op.UserName
-	o.Domain = op.Domain
-	o.Return = op.Return
+	op.UserName = o.UserName
+	op.Domain = o.Domain
+	op.Return = o.Return
 	return op
 }
 
@@ -18572,10 +18572,10 @@ func (o *SetDNSRegCredentialsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetD
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.UserName = op.UserName
-	o.Domain = op.Domain
-	o.Password = op.Password
+	op.ServerIPAddress = o.ServerIPAddress
+	op.UserName = o.UserName
+	op.Domain = o.Domain
+	op.Password = o.Password
 	return op
 }
 
@@ -18613,7 +18613,7 @@ func (o *SetDNSRegCredentialsResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18763,8 +18763,8 @@ func (o *BackupDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupData
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Path = op.Path
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Path = o.Path
 	return op
 }
 
@@ -18800,7 +18800,7 @@ func (o *BackupDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupDat
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18950,8 +18950,8 @@ func (o *RestoreDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreDa
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Path = op.Path
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Path = o.Path
 	return op
 }
 
@@ -18987,7 +18987,7 @@ func (o *RestoreDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreD
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -19170,7 +19170,7 @@ func (o *GetServerSpecificStringsRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -19209,8 +19209,8 @@ func (o *GetServerSpecificStringsResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerSpecificStrings = op.ServerSpecificStrings
-	o.Return = op.Return
+	op.ServerSpecificStrings = o.ServerSpecificStrings
+	op.Return = o.Return
 	return op
 }
 
@@ -19504,12 +19504,12 @@ func (o *CreateOptionV6Request) xxx_ToOp(ctx context.Context, op *xxx_CreateOpti
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.OptionInfo = op.OptionInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.OptionInfo = o.OptionInfo
 	return op
 }
 
@@ -19549,7 +19549,7 @@ func (o *CreateOptionV6Response) xxx_ToOp(ctx context.Context, op *xxx_CreateOpt
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -19842,12 +19842,12 @@ func (o *SetOptionInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_SetOption
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.OptionInfo = op.OptionInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.OptionInfo = o.OptionInfo
 	return op
 }
 
@@ -19887,7 +19887,7 @@ func (o *SetOptionInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_SetOptio
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20196,11 +20196,11 @@ func (o *GetOptionInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetOption
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
 	return op
 }
 
@@ -20242,8 +20242,8 @@ func (o *GetOptionInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetOptio
 	if o == nil {
 		return op
 	}
-	o.OptionInfo = op.OptionInfo
-	o.Return = op.Return
+	op.OptionInfo = o.OptionInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -20614,12 +20614,12 @@ func (o *EnumOptionsV6Request) xxx_ToOp(ctx context.Context, op *xxx_EnumOptions
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -20679,11 +20679,11 @@ func (o *EnumOptionsV6Response) xxx_ToOp(ctx context.Context, op *xxx_EnumOption
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.Options = op.Options
-	o.OptionsRead = op.OptionsRead
-	o.OptionsTotal = op.OptionsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.Options = o.Options
+	op.OptionsRead = o.OptionsRead
+	op.OptionsTotal = o.OptionsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -20949,11 +20949,11 @@ func (o *RemoveOptionV6Request) xxx_ToOp(ctx context.Context, op *xxx_RemoveOpti
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
 	return op
 }
 
@@ -20992,7 +20992,7 @@ func (o *RemoveOptionV6Response) xxx_ToOp(ctx context.Context, op *xxx_RemoveOpt
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21312,13 +21312,13 @@ func (o *SetOptionValueV6Request) xxx_ToOp(ctx context.Context, op *xxx_SetOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.OptionValue = op.OptionValue
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.OptionValue = o.OptionValue
 	return op
 }
 
@@ -21359,7 +21359,7 @@ func (o *SetOptionValueV6Response) xxx_ToOp(ctx context.Context, op *xxx_SetOpti
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21758,13 +21758,13 @@ func (o *EnumOptionValuesV6Request) xxx_ToOp(ctx context.Context, op *xxx_EnumOp
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -21825,11 +21825,11 @@ func (o *EnumOptionValuesV6Response) xxx_ToOp(ctx context.Context, op *xxx_EnumO
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.OptionValues = op.OptionValues
-	o.OptionsRead = op.OptionsRead
-	o.OptionsTotal = op.OptionsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.OptionValues = o.OptionValues
+	op.OptionsRead = o.OptionsRead
+	op.OptionsTotal = o.OptionsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -22122,12 +22122,12 @@ func (o *RemoveOptionValueV6Request) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -22167,7 +22167,7 @@ func (o *RemoveOptionValueV6Response) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22363,8 +22363,8 @@ func (o *GetAllOptionsV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetAllOpt
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
 	return op
 }
 
@@ -22403,8 +22403,8 @@ func (o *GetAllOptionsV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetAllOp
 	if o == nil {
 		return op
 	}
-	o.Option = op.Option
-	o.Return = op.Return
+	op.Option = o.Option
+	op.Return = o.Return
 	return op
 }
 
@@ -22633,9 +22633,9 @@ func (o *GetAllOptionValuesV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -22676,8 +22676,8 @@ func (o *GetAllOptionValuesV6Response) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Values = op.Values
-	o.Return = op.Return
+	op.Values = o.Values
+	op.Return = o.Return
 	return op
 }
 
@@ -22870,9 +22870,9 @@ func (o *CreateSubnetV6Request) xxx_ToOp(ctx context.Context, op *xxx_CreateSubn
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.SubnetInfo = op.SubnetInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.SubnetInfo = o.SubnetInfo
 	return op
 }
 
@@ -22909,7 +22909,7 @@ func (o *CreateSubnetV6Response) xxx_ToOp(ctx context.Context, op *xxx_CreateSub
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -23166,9 +23166,9 @@ func (o *EnumSubnetsV6Request) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnets
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -23224,11 +23224,11 @@ func (o *EnumSubnetsV6Response) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnet
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumInfo = op.EnumInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumInfo = o.EnumInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -23425,9 +23425,9 @@ func (o *AddSubnetElementV6Request) xxx_ToOp(ctx context.Context, op *xxx_AddSub
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.AddElementInfo = op.AddElementInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.AddElementInfo = o.AddElementInfo
 	return op
 }
 
@@ -23464,7 +23464,7 @@ func (o *AddSubnetElementV6Response) xxx_ToOp(ctx context.Context, op *xxx_AddSu
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -23765,11 +23765,11 @@ func (o *EnumSubnetElementsV6Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.EnumElementType = op.EnumElementType
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.EnumElementType = o.EnumElementType
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -23831,11 +23831,11 @@ func (o *EnumSubnetElementsV6Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumElementInfo = op.EnumElementInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumElementInfo = o.EnumElementInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -24049,10 +24049,10 @@ func (o *RemoveSubnetElementV6Request) xxx_ToOp(ctx context.Context, op *xxx_Rem
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.RemoveElementInfo = op.RemoveElementInfo
-	o.ForceFlag = op.ForceFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.RemoveElementInfo = o.RemoveElementInfo
+	op.ForceFlag = o.ForceFlag
 	return op
 }
 
@@ -24090,7 +24090,7 @@ func (o *RemoveSubnetElementV6Response) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24264,9 +24264,9 @@ func (o *DeleteSubnetV6Request) xxx_ToOp(ctx context.Context, op *xxx_DeleteSubn
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.ForceFlag = op.ForceFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.ForceFlag = o.ForceFlag
 	return op
 }
 
@@ -24303,7 +24303,7 @@ func (o *DeleteSubnetV6Response) xxx_ToOp(ctx context.Context, op *xxx_DeleteSub
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24509,8 +24509,8 @@ func (o *GetSubnetInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetSubnet
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -24549,8 +24549,8 @@ func (o *GetSubnetInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetSubne
 	if o == nil {
 		return op
 	}
-	o.SubnetInfo = op.SubnetInfo
-	o.Return = op.Return
+	op.SubnetInfo = o.SubnetInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -24852,10 +24852,10 @@ func (o *EnumSubnetClientsV6Request) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -24911,11 +24911,11 @@ func (o *EnumSubnetClientsV6Response) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClientInfo = op.ClientInfo
-	o.ClientsRead = op.ClientsRead
-	o.ClientsTotal = op.ClientsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClientInfo = o.ClientInfo
+	op.ClientsRead = o.ClientsRead
+	op.ClientsTotal = o.ClientsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -25146,10 +25146,10 @@ func (o *ServerSetConfigV6Request) xxx_ToOp(ctx context.Context, op *xxx_ServerS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ScopeInfo = op.ScopeInfo
-	o.FieldsToSet = op.FieldsToSet
-	o.ConfigInfo = op.ConfigInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ScopeInfo = o.ScopeInfo
+	op.FieldsToSet = o.FieldsToSet
+	op.ConfigInfo = o.ConfigInfo
 	return op
 }
 
@@ -25187,7 +25187,7 @@ func (o *ServerSetConfigV6Response) xxx_ToOp(ctx context.Context, op *xxx_Server
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25395,8 +25395,8 @@ func (o *ServerGetConfigV6Request) xxx_ToOp(ctx context.Context, op *xxx_ServerG
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -25435,8 +25435,8 @@ func (o *ServerGetConfigV6Response) xxx_ToOp(ctx context.Context, op *xxx_Server
 	if o == nil {
 		return op
 	}
-	o.ConfigInfo = op.ConfigInfo
-	o.Return = op.Return
+	op.ConfigInfo = o.ConfigInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -25628,9 +25628,9 @@ func (o *SetSubnetInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_SetSubnet
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.SubnetInfo = op.SubnetInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.SubnetInfo = o.SubnetInfo
 	return op
 }
 
@@ -25667,7 +25667,7 @@ func (o *SetSubnetInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_SetSubne
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25848,7 +25848,7 @@ func (o *GetMIBInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoV6
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -25886,8 +25886,8 @@ func (o *GetMIBInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoV
 	if o == nil {
 		return op
 	}
-	o.MIBInfo = op.MIBInfo
-	o.Return = op.Return
+	op.MIBInfo = o.MIBInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -26086,8 +26086,8 @@ func (o *GetServerBindingInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26126,8 +26126,8 @@ func (o *GetServerBindingInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.BindElementsInfo = op.BindElementsInfo
-	o.Return = op.Return
+	op.BindElementsInfo = o.BindElementsInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -26311,9 +26311,9 @@ func (o *SetServerBindingInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.BindElementsInfo = op.BindElementsInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.BindElementsInfo = o.BindElementsInfo
 	return op
 }
 
@@ -26350,7 +26350,7 @@ func (o *SetServerBindingInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26516,8 +26516,8 @@ func (o *SetClientInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_SetClient
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -26553,7 +26553,7 @@ func (o *SetClientInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_SetClien
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26769,8 +26769,8 @@ func (o *GetClientInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetClient
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SearchInfo = op.SearchInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SearchInfo = o.SearchInfo
 	return op
 }
 
@@ -26810,8 +26810,8 @@ func (o *GetClientInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetClien
 	if o == nil {
 		return op
 	}
-	o.ClientInfo = op.ClientInfo
-	o.Return = op.Return
+	op.ClientInfo = o.ClientInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -26980,8 +26980,8 @@ func (o *DeleteClientInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -27017,7 +27017,7 @@ func (o *DeleteClientInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27198,8 +27198,8 @@ func (o *CreateClassV6Request) xxx_ToOp(ctx context.Context, op *xxx_CreateClass
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClassInfo = op.ClassInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClassInfo = o.ClassInfo
 	return op
 }
 
@@ -27235,7 +27235,7 @@ func (o *CreateClassV6Response) xxx_ToOp(ctx context.Context, op *xxx_CreateClas
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27416,8 +27416,8 @@ func (o *ModifyClassV6Request) xxx_ToOp(ctx context.Context, op *xxx_ModifyClass
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClassInfo = op.ClassInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClassInfo = o.ClassInfo
 	return op
 }
 
@@ -27453,7 +27453,7 @@ func (o *ModifyClassV6Response) xxx_ToOp(ctx context.Context, op *xxx_ModifyClas
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27644,8 +27644,8 @@ func (o *DeleteClassV6Request) xxx_ToOp(ctx context.Context, op *xxx_DeleteClass
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClassName = op.ClassName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClassName = o.ClassName
 	return op
 }
 
@@ -27681,7 +27681,7 @@ func (o *DeleteClassV6Response) xxx_ToOp(ctx context.Context, op *xxx_DeleteClas
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27955,9 +27955,9 @@ func (o *EnumClassesV6Request) xxx_ToOp(ctx context.Context, op *xxx_EnumClasses
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -28012,11 +28012,11 @@ func (o *EnumClassesV6Response) xxx_ToOp(ctx context.Context, op *xxx_EnumClasse
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClassInfoArray = op.ClassInfoArray
-	o.Read = op.Read
-	o.Total = op.Total
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClassInfoArray = o.ClassInfoArray
+	op.Read = o.Read
+	op.Total = o.Total
+	op.Return = o.Return
 	return op
 }
 
@@ -28336,12 +28336,12 @@ func (o *GetOptionValueV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.ClassName = op.ClassName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.ClassName = o.ClassName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -28385,8 +28385,8 @@ func (o *GetOptionValueV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetOpti
 	if o == nil {
 		return op
 	}
-	o.OptionValue = op.OptionValue
-	o.Return = op.Return
+	op.OptionValue = o.OptionValue
+	op.Return = o.Return
 	return op
 }
 
@@ -28566,9 +28566,9 @@ func (o *SetSubnetDelayOfferRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSu
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.TimeDelayInMilliseconds = op.TimeDelayInMilliseconds
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.TimeDelayInMilliseconds = o.TimeDelayInMilliseconds
 	return op
 }
 
@@ -28605,7 +28605,7 @@ func (o *SetSubnetDelayOfferResponse) xxx_ToOp(ctx context.Context, op *xxx_SetS
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28770,8 +28770,8 @@ func (o *GetSubnetDelayOfferRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSu
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -28810,8 +28810,8 @@ func (o *GetSubnetDelayOfferResponse) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.TimeDelayInMilliseconds = op.TimeDelayInMilliseconds
-	o.Return = op.Return
+	op.TimeDelayInMilliseconds = o.TimeDelayInMilliseconds
+	op.Return = o.Return
 	return op
 }
 
@@ -28993,7 +28993,7 @@ func (o *GetMIBInfoV5Request) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoV5
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -29031,8 +29031,8 @@ func (o *GetMIBInfoV5Response) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoV
 	if o == nil {
 		return op
 	}
-	o.MIBInfo = op.MIBInfo
-	o.Return = op.Return
+	op.MIBInfo = o.MIBInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -29225,9 +29225,9 @@ func (o *AddFilterV4Request) xxx_ToOp(ctx context.Context, op *xxx_AddFilterV4Op
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.AddFilterInfo = op.AddFilterInfo
-	o.ForceFlag = op.ForceFlag
+	op.ServerIPAddress = o.ServerIPAddress
+	op.AddFilterInfo = o.AddFilterInfo
+	op.ForceFlag = o.ForceFlag
 	return op
 }
 
@@ -29264,7 +29264,7 @@ func (o *AddFilterV4Response) xxx_ToOp(ctx context.Context, op *xxx_AddFilterV4O
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29425,8 +29425,8 @@ func (o *DeleteFilterV4Request) xxx_ToOp(ctx context.Context, op *xxx_DeleteFilt
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.DeleteFilterInfo = op.DeleteFilterInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.DeleteFilterInfo = o.DeleteFilterInfo
 	return op
 }
 
@@ -29462,7 +29462,7 @@ func (o *DeleteFilterV4Response) xxx_ToOp(ctx context.Context, op *xxx_DeleteFil
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29621,8 +29621,8 @@ func (o *SetFilterV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetFilterV4Op
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.GlobalFilterInfo = op.GlobalFilterInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.GlobalFilterInfo = o.GlobalFilterInfo
 	return op
 }
 
@@ -29658,7 +29658,7 @@ func (o *SetFilterV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetFilterV4O
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29814,7 +29814,7 @@ func (o *GetFilterV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetFilterV4Op
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -29854,8 +29854,8 @@ func (o *GetFilterV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetFilterV4O
 	if o == nil {
 		return op
 	}
-	o.GlobalFilterInfo = op.GlobalFilterInfo
-	o.Return = op.Return
+	op.GlobalFilterInfo = o.GlobalFilterInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -30146,10 +30146,10 @@ func (o *EnumFilterV4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumFilterV4
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
-	o.ListType = op.ListType
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
+	op.ListType = o.ListType
 	return op
 }
 
@@ -30205,11 +30205,11 @@ func (o *EnumFilterV4Response) xxx_ToOp(ctx context.Context, op *xxx_EnumFilterV
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumFilterInfo = op.EnumFilterInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumFilterInfo = o.EnumFilterInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -30472,10 +30472,10 @@ func (o *SetDNSRegCredentialsV5Request) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.UserName = op.UserName
-	o.Domain = op.Domain
-	o.Password = op.Password
+	op.ServerIPAddress = o.ServerIPAddress
+	op.UserName = o.UserName
+	op.Domain = o.Domain
+	op.Password = o.Password
 	return op
 }
 
@@ -30513,7 +30513,7 @@ func (o *SetDNSRegCredentialsV5Response) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -30788,10 +30788,10 @@ func (o *EnumSubnetClientsFilterStatusInfoRequest) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -30848,11 +30848,11 @@ func (o *EnumSubnetClientsFilterStatusInfoResponse) xxx_ToOp(ctx context.Context
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClientInfo = op.ClientInfo
-	o.ClientRead = op.ClientRead
-	o.ClientsTotal = op.ClientsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClientInfo = o.ClientInfo
+	op.ClientRead = o.ClientRead
+	op.ClientsTotal = o.ClientsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -31024,8 +31024,8 @@ func (o *FailoverCreateRelationshipV4Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Relationship = op.Relationship
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Relationship = o.Relationship
 	return op
 }
 
@@ -31061,7 +31061,7 @@ func (o *FailoverCreateRelationshipV4Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31277,9 +31277,9 @@ func (o *FailoverSetRelationshipV4Request) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.Relationship = op.Relationship
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.Relationship = o.Relationship
 	return op
 }
 
@@ -31316,7 +31316,7 @@ func (o *FailoverSetRelationshipV4Response) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31493,8 +31493,8 @@ func (o *FailoverDeleteRelationshipV4Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.RelationshipName = op.RelationshipName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.RelationshipName = o.RelationshipName
 	return op
 }
 
@@ -31530,7 +31530,7 @@ func (o *FailoverDeleteRelationshipV4Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31755,8 +31755,8 @@ func (o *FailoverGetRelationshipV4Request) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.RelationshipName = op.RelationshipName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.RelationshipName = o.RelationshipName
 	return op
 }
 
@@ -31796,8 +31796,8 @@ func (o *FailoverGetRelationshipV4Response) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Relationship = op.Relationship
-	o.Return = op.Return
+	op.Relationship = o.Relationship
+	op.Return = o.Return
 	return op
 }
 
@@ -32055,9 +32055,9 @@ func (o *FailoverEnumRelationshipV4Request) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -32112,11 +32112,11 @@ func (o *FailoverEnumRelationshipV4Response) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.Relationship = op.Relationship
-	o.RelationshipRead = op.RelationshipRead
-	o.RelationshipTotal = op.RelationshipTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.Relationship = o.Relationship
+	op.RelationshipRead = o.RelationshipRead
+	op.RelationshipTotal = o.RelationshipTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -32288,8 +32288,8 @@ func (o *FailoverAddScopeToRelationshipV4Request) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Relationship = op.Relationship
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Relationship = o.Relationship
 	return op
 }
 
@@ -32325,7 +32325,7 @@ func (o *FailoverAddScopeToRelationshipV4Response) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32493,8 +32493,8 @@ func (o *FailoverDeleteScopeFromRelationshipV4Request) xxx_ToOp(ctx context.Cont
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Relationship = op.Relationship
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Relationship = o.Relationship
 	return op
 }
 
@@ -32530,7 +32530,7 @@ func (o *FailoverDeleteScopeFromRelationshipV4Response) xxx_ToOp(ctx context.Con
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32729,8 +32729,8 @@ func (o *FailoverGetScopeRelationshipV4Request) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ScopeID = op.ScopeID
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ScopeID = o.ScopeID
 	return op
 }
 
@@ -32770,8 +32770,8 @@ func (o *FailoverGetScopeRelationshipV4Response) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.Relationship = op.Relationship
-	o.Return = op.Return
+	op.Relationship = o.Relationship
+	op.Return = o.Return
 	return op
 }
 
@@ -32972,8 +32972,8 @@ func (o *FailoverGetScopeStatisticsV4Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ScopeID = op.ScopeID
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ScopeID = o.ScopeID
 	return op
 }
 
@@ -33012,8 +33012,8 @@ func (o *FailoverGetScopeStatisticsV4Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Stats = op.Stats
-	o.Return = op.Return
+	op.Stats = o.Stats
+	op.Return = o.Return
 	return op
 }
 
@@ -33231,8 +33231,8 @@ func (o *FailoverGetClientInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_F
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SearchInfo = op.SearchInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SearchInfo = o.SearchInfo
 	return op
 }
 
@@ -33273,8 +33273,8 @@ func (o *FailoverGetClientInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ClientInfo = op.ClientInfo
-	o.Return = op.Return
+	op.ClientInfo = o.ClientInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -33424,7 +33424,7 @@ func (o *FailoverGetSystemTimeV4Request) xxx_ToOp(ctx context.Context, op *xxx_F
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -33463,8 +33463,8 @@ func (o *FailoverGetSystemTimeV4Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Time = op.Time
-	o.Return = op.Return
+	op.Time = o.Time
+	op.Return = o.Return
 	return op
 }
 
@@ -33643,8 +33643,8 @@ func (o *FailoverTriggerAddrAllocationV4Request) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.FailRelationName = op.FailRelationName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.FailRelationName = o.FailRelationName
 	return op
 }
 
@@ -33680,7 +33680,7 @@ func (o *FailoverTriggerAddrAllocationV4Response) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -34006,13 +34006,13 @@ func (o *SetOptionValueV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.PolicyName = op.PolicyName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.OptionValue = op.OptionValue
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.PolicyName = o.PolicyName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.OptionValue = o.OptionValue
 	return op
 }
 
@@ -34053,7 +34053,7 @@ func (o *SetOptionValueV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetOpti
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -34367,12 +34367,12 @@ func (o *SetOptionValuesV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetOpti
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.PolicyName = op.PolicyName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
-	o.OptionValues = op.OptionValues
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.PolicyName = o.PolicyName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
+	op.OptionValues = o.OptionValues
 	return op
 }
 
@@ -34412,7 +34412,7 @@ func (o *SetOptionValuesV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetOpt
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -34755,12 +34755,12 @@ func (o *GetOptionValueV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetOptio
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.PolicyName = op.PolicyName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.PolicyName = o.PolicyName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -34804,8 +34804,8 @@ func (o *GetOptionValueV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetOpti
 	if o == nil {
 		return op
 	}
-	o.OptionValue = op.OptionValue
-	o.Return = op.Return
+	op.OptionValue = o.OptionValue
+	op.Return = o.Return
 	return op
 }
 
@@ -35104,12 +35104,12 @@ func (o *RemoveOptionValueV4Request) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.OptionID = op.OptionID
-	o.PolicyName = op.PolicyName
-	o.VendorName = op.VendorName
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.OptionID = o.OptionID
+	op.PolicyName = o.PolicyName
+	op.VendorName = o.VendorName
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -35149,7 +35149,7 @@ func (o *RemoveOptionValueV4Response) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -35393,9 +35393,9 @@ func (o *GetAllOptionValuesV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetA
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Flags = op.Flags
-	o.ScopeInfo = op.ScopeInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Flags = o.Flags
+	op.ScopeInfo = o.ScopeInfo
 	return op
 }
 
@@ -35435,8 +35435,8 @@ func (o *GetAllOptionValuesV4Response) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Values = op.Values
-	o.Return = op.Return
+	op.Values = o.Values
+	op.Return = o.Return
 	return op
 }
 
@@ -35635,9 +35635,9 @@ func (o *QueryPolicyEnforcementV4Request) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -35677,8 +35677,8 @@ func (o *QueryPolicyEnforcementV4Response) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Enabled = op.Enabled
-	o.Return = op.Return
+	op.Enabled = o.Enabled
+	op.Return = o.Return
 	return op
 }
 
@@ -35879,10 +35879,10 @@ func (o *SetPolicyEnforcementV4Request) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
-	o.Enable = op.Enable
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
+	op.Enable = o.Enable
 	return op
 }
 
@@ -35920,7 +35920,7 @@ func (o *SetPolicyEnforcementV4Response) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36085,8 +36085,8 @@ func (o *CreatePolicyV4Request) xxx_ToOp(ctx context.Context, op *xxx_CreatePoli
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Policy = op.Policy
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Policy = o.Policy
 	return op
 }
 
@@ -36122,7 +36122,7 @@ func (o *CreatePolicyV4Response) xxx_ToOp(ctx context.Context, op *xxx_CreatePol
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36384,10 +36384,10 @@ func (o *GetPolicyV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetPolicyV4Op
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
 	return op
 }
 
@@ -36428,8 +36428,8 @@ func (o *GetPolicyV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetPolicyV4O
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Return = op.Return
+	op.Policy = o.Policy
+	op.Return = o.Return
 	return op
 }
 
@@ -36693,12 +36693,12 @@ func (o *SetPolicyV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetPolicyV4Op
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.FieldsModified = op.FieldsModified
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
-	o.Policy = op.Policy
+	op.ServerIPAddress = o.ServerIPAddress
+	op.FieldsModified = o.FieldsModified
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
+	op.Policy = o.Policy
 	return op
 }
 
@@ -36738,7 +36738,7 @@ func (o *SetPolicyV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetPolicyV4O
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -36953,10 +36953,10 @@ func (o *DeletePolicyV4Request) xxx_ToOp(ctx context.Context, op *xxx_DeletePoli
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
 	return op
 }
 
@@ -36994,7 +36994,7 @@ func (o *DeletePolicyV4Response) xxx_ToOp(ctx context.Context, op *xxx_DeletePol
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -37271,11 +37271,11 @@ func (o *EnumPoliciesV4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumPolici
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -37330,11 +37330,11 @@ func (o *EnumPoliciesV4Response) xxx_ToOp(ctx context.Context, op *xxx_EnumPolic
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumInfo = op.EnumInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumInfo = o.EnumInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -37555,10 +37555,10 @@ func (o *AddPolicyRangeV4Request) xxx_ToOp(ctx context.Context, op *xxx_AddPolic
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
-	o.Range = op.Range
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
+	op.Range = o.Range
 	return op
 }
 
@@ -37596,7 +37596,7 @@ func (o *AddPolicyRangeV4Response) xxx_ToOp(ctx context.Context, op *xxx_AddPoli
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -37815,10 +37815,10 @@ func (o *RemovePolicyRangeV4Request) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
-	o.Range = op.Range
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
+	op.Range = o.Range
 	return op
 }
 
@@ -37856,7 +37856,7 @@ func (o *RemovePolicyRangeV4Response) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -38131,10 +38131,10 @@ func (o *EnumSubnetClientsV4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumS
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -38189,11 +38189,11 @@ func (o *EnumSubnetClientsV4Response) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClientInfo = op.ClientInfo
-	o.ClientsRead = op.ClientsRead
-	o.ClientsTotal = op.ClientsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClientInfo = o.ClientInfo
+	op.ClientsRead = o.ClientsRead
+	op.ClientsTotal = o.ClientsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -38437,11 +38437,11 @@ func (o *SetStatelessStoreParamsV6Request) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerLevel = op.ServerLevel
-	o.SubnetAddress = op.SubnetAddress
-	o.FieldModified = op.FieldModified
-	o.Params = op.Params
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerLevel = o.ServerLevel
+	op.SubnetAddress = o.SubnetAddress
+	op.FieldModified = o.FieldModified
+	op.Params = o.Params
 	return op
 }
 
@@ -38480,7 +38480,7 @@ func (o *SetStatelessStoreParamsV6Response) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -38689,9 +38689,9 @@ func (o *GetStatelessStoreParamsV6Request) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerLevel = op.ServerLevel
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerLevel = o.ServerLevel
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -38731,8 +38731,8 @@ func (o *GetStatelessStoreParamsV6Response) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Params = op.Params
-	o.Return = op.Return
+	op.Params = o.Params
+	op.Return = o.Return
 	return op
 }
 
@@ -38916,7 +38916,7 @@ func (o *GetStatelessStatisticsV6Request) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
+	op.ServerIPAddress = o.ServerIPAddress
 	return op
 }
 
@@ -38954,8 +38954,8 @@ func (o *GetStatelessStatisticsV6Response) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.StatelessStats = op.StatelessStats
-	o.Return = op.Return
+	op.StatelessStats = o.StatelessStats
+	op.Return = o.Return
 	return op
 }
 
@@ -39210,10 +39210,10 @@ func (o *EnumSubnetReservationsV4Request) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -39268,11 +39268,11 @@ func (o *EnumSubnetReservationsV4Response) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumElementInfo = op.EnumElementInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumElementInfo = o.EnumElementInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -39524,11 +39524,11 @@ func (o *GetFreeIPAddressV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetFre
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ScopeID = op.ScopeID
-	o.StartIP = op.StartIP
-	o.EndIP = op.EndIP
-	o.FreeAddrLength = op.FreeAddrLength
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ScopeID = o.ScopeID
+	op.StartIP = o.StartIP
+	op.EndIP = o.EndIP
+	op.FreeAddrLength = o.FreeAddrLength
 	return op
 }
 
@@ -39568,8 +39568,8 @@ func (o *GetFreeIPAddressV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetFr
 	if o == nil {
 		return op
 	}
-	o.IPAddrList = op.IPAddrList
-	o.Return = op.Return
+	op.IPAddrList = o.IPAddrList
+	op.Return = o.Return
 	return op
 }
 
@@ -39845,11 +39845,11 @@ func (o *GetFreeIPAddressV6Request) xxx_ToOp(ctx context.Context, op *xxx_GetFre
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ScopeID = op.ScopeID
-	o.StartIP = op.StartIP
-	o.EndIP = op.EndIP
-	o.FreeAddrLength = op.FreeAddrLength
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ScopeID = o.ScopeID
+	op.StartIP = o.StartIP
+	op.EndIP = o.EndIP
+	op.FreeAddrLength = o.FreeAddrLength
 	return op
 }
 
@@ -39889,8 +39889,8 @@ func (o *GetFreeIPAddressV6Response) xxx_ToOp(ctx context.Context, op *xxx_GetFr
 	if o == nil {
 		return op
 	}
-	o.IPAddrList = op.IPAddrList
-	o.Return = op.Return
+	op.IPAddrList = o.IPAddrList
+	op.Return = o.Return
 	return op
 }
 
@@ -40064,8 +40064,8 @@ func (o *CreateClientInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -40101,7 +40101,7 @@ func (o *CreateClientInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -40316,8 +40316,8 @@ func (o *GetClientInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetClient
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SearchInfo = op.SearchInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SearchInfo = o.SearchInfo
 	return op
 }
 
@@ -40358,8 +40358,8 @@ func (o *GetClientInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetClien
 	if o == nil {
 		return op
 	}
-	o.ClientInfo = op.ClientInfo
-	o.Return = op.Return
+	op.ClientInfo = o.ClientInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -40532,8 +40532,8 @@ func (o *CreateClientInfoV6Request) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -40569,7 +40569,7 @@ func (o *CreateClientInfoV6Response) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -40734,8 +40734,8 @@ func (o *FailoverGetAddressStatusV4Request) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -40774,8 +40774,8 @@ func (o *FailoverGetAddressStatusV4Response) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -40942,8 +40942,8 @@ func (o *CreatePolicyExV4Request) xxx_ToOp(ctx context.Context, op *xxx_CreatePo
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Policy = op.Policy
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Policy = o.Policy
 	return op
 }
 
@@ -40979,7 +40979,7 @@ func (o *CreatePolicyExV4Response) xxx_ToOp(ctx context.Context, op *xxx_CreateP
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -41238,10 +41238,10 @@ func (o *GetPolicyExV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetPolicyEx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
 	return op
 }
 
@@ -41283,8 +41283,8 @@ func (o *GetPolicyExV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetPolicyE
 	if o == nil {
 		return op
 	}
-	o.Policy = op.Policy
-	o.Return = op.Return
+	op.Policy = o.Policy
+	op.Return = o.Return
 	return op
 }
 
@@ -41543,12 +41543,12 @@ func (o *SetPolicyExV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetPolicyEx
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.FieldsModified = op.FieldsModified
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
-	o.PolicyName = op.PolicyName
-	o.Policy = op.Policy
+	op.ServerIPAddress = o.ServerIPAddress
+	op.FieldsModified = o.FieldsModified
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
+	op.PolicyName = o.PolicyName
+	op.Policy = o.Policy
 	return op
 }
 
@@ -41588,7 +41588,7 @@ func (o *SetPolicyExV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetPolicyE
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -41856,11 +41856,11 @@ func (o *EnumPoliciesExV4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumPoli
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
-	o.ServerPolicy = op.ServerPolicy
-	o.SubnetAddress = op.SubnetAddress
+	op.ServerIPAddress = o.ServerIPAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
+	op.ServerPolicy = o.ServerPolicy
+	op.SubnetAddress = o.SubnetAddress
 	return op
 }
 
@@ -41909,11 +41909,11 @@ func (o *EnumPoliciesExV4Response) xxx_ToOp(ctx context.Context, op *xxx_EnumPol
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.EnumInfo = op.EnumInfo
-	o.ElementsRead = op.ElementsRead
-	o.ElementsTotal = op.ElementsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.EnumInfo = o.EnumInfo
+	op.ElementsRead = o.ElementsRead
+	op.ElementsTotal = o.ElementsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -42182,10 +42182,10 @@ func (o *EnumSubnetClientsExV4Request) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SubnetAddress = op.SubnetAddress
-	o.Resume = op.Resume
-	o.PreferredMaximum = op.PreferredMaximum
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SubnetAddress = o.SubnetAddress
+	op.Resume = o.Resume
+	op.PreferredMaximum = o.PreferredMaximum
 	return op
 }
 
@@ -42234,11 +42234,11 @@ func (o *EnumSubnetClientsExV4Response) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Resume = op.Resume
-	o.ClientInfo = op.ClientInfo
-	o.ClientsRead = op.ClientsRead
-	o.ClientsTotal = op.ClientsTotal
-	o.Return = op.Return
+	op.Resume = o.Resume
+	op.ClientInfo = o.ClientInfo
+	op.ClientsRead = o.ClientsRead
+	op.ClientsTotal = o.ClientsTotal
+	op.Return = o.Return
 	return op
 }
 
@@ -42422,8 +42422,8 @@ func (o *CreateClientInfoExV4Request) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.ClientInfo = op.ClientInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.ClientInfo = o.ClientInfo
 	return op
 }
 
@@ -42459,7 +42459,7 @@ func (o *CreateClientInfoExV4Response) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -42672,8 +42672,8 @@ func (o *GetClientInfoExV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetClie
 	if o == nil {
 		return op
 	}
-	o.ServerIPAddress = op.ServerIPAddress
-	o.SearchInfo = op.SearchInfo
+	op.ServerIPAddress = o.ServerIPAddress
+	op.SearchInfo = o.SearchInfo
 	return op
 }
 
@@ -42716,8 +42716,8 @@ func (o *GetClientInfoExV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetCli
 	if o == nil {
 		return op
 	}
-	o.ClientInfo = op.ClientInfo
-	o.Return = op.Return
+	op.ClientInfo = o.ClientInfo
+	op.Return = o.Return
 	return op
 }
 

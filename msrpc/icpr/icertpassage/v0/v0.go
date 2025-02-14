@@ -423,11 +423,11 @@ func (o *CertServerRequestRequest) xxx_ToOp(ctx context.Context, op *xxx_CertSer
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.Authority = op.Authority
-	o.RequestID = op.RequestID
-	o.Attributes = op.Attributes
-	o.Request = op.Request
+	op.Flags = o.Flags
+	op.Authority = o.Authority
+	op.RequestID = o.RequestID
+	op.Attributes = o.Attributes
+	op.Request = o.Request
 	return op
 }
 
@@ -482,12 +482,12 @@ func (o *CertServerRequestResponse) xxx_ToOp(ctx context.Context, op *xxx_CertSe
 	if o == nil {
 		return op
 	}
-	o.RequestID = op.RequestID
-	o.Disposition = op.Disposition
-	o.Cert = op.Cert
-	o.EncodedCert = op.EncodedCert
-	o.DispositionMessage = op.DispositionMessage
-	o.Return = op.Return
+	op.RequestID = o.RequestID
+	op.Disposition = o.Disposition
+	op.Cert = o.Cert
+	op.EncodedCert = o.EncodedCert
+	op.DispositionMessage = o.DispositionMessage
+	op.Return = o.Return
 	return op
 }
 

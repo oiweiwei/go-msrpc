@@ -344,7 +344,7 @@ func (o *QueryPacksRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPacksOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -386,9 +386,9 @@ func (o *QueryPacksResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPacksOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -589,7 +589,7 @@ func (o *CreatePackRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePackOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -630,9 +630,9 @@ func (o *CreatePackResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePackOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Pack = op.Pack
-	o.Return = op.Return
+	op.That = o.That
+	op.Pack = o.Pack
+	op.Return = o.Return
 	return op
 }
 

@@ -602,12 +602,12 @@ func (o *GetReport2Request) xxx_ToOp(ctx context.Context, op *xxx_GetReport2Oper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReplicationGroupGUID = op.ReplicationGroupGUID
-	o.ReferenceMember = op.ReferenceMember
-	o.ServerName = op.ServerName
-	o.ReferenceVersionVectors = op.ReferenceVersionVectors
-	o.Flags = op.Flags
+	op.This = o.This
+	op.ReplicationGroupGUID = o.ReplicationGroupGUID
+	op.ReferenceMember = o.ReferenceMember
+	op.ServerName = o.ServerName
+	op.ReferenceVersionVectors = o.ReferenceVersionVectors
+	op.Flags = o.Flags
 	return op
 }
 
@@ -651,10 +651,10 @@ func (o *GetReport2Response) xxx_ToOp(ctx context.Context, op *xxx_GetReport2Ope
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MemberVersionVectors = op.MemberVersionVectors
-	o.ReportXML = op.ReportXML
-	o.Return = op.Return
+	op.That = o.That
+	op.MemberVersionVectors = o.MemberVersionVectors
+	op.ReportXML = o.ReportXML
+	op.Return = o.Return
 	return op
 }
 
@@ -1137,12 +1137,12 @@ func (o *GetCompressedReport2Request) xxx_ToOp(ctx context.Context, op *xxx_GetC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReplicationGroupGUID = op.ReplicationGroupGUID
-	o.ReferenceMember = op.ReferenceMember
-	o.ServerName = op.ServerName
-	o.ReferenceVersionVectors = op.ReferenceVersionVectors
-	o.Flags = op.Flags
+	op.This = o.This
+	op.ReplicationGroupGUID = o.ReplicationGroupGUID
+	op.ReferenceMember = o.ReferenceMember
+	op.ServerName = o.ServerName
+	op.ReferenceVersionVectors = o.ReferenceVersionVectors
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1187,11 +1187,11 @@ func (o *GetCompressedReport2Response) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MemberVersionVectors = op.MemberVersionVectors
-	o.ReportCompressed = op.ReportCompressed
-	o.UncompressedReportSize = op.UncompressedReportSize
-	o.Return = op.Return
+	op.That = o.That
+	op.MemberVersionVectors = o.MemberVersionVectors
+	op.ReportCompressed = o.ReportCompressed
+	op.UncompressedReportSize = o.UncompressedReportSize
+	op.Return = o.Return
 	return op
 }
 

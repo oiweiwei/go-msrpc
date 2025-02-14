@@ -348,7 +348,7 @@ func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -386,9 +386,9 @@ func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Return = o.Return
 	return op
 }
 
@@ -618,8 +618,8 @@ func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VarIndex = op.VarIndex
+	op.This = o.This
+	op.VarIndex = o.VarIndex
 	return op
 }
 
@@ -658,9 +658,9 @@ func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Location = op.Location
-	o.Return = op.Return
+	op.That = o.That
+	op.Location = o.Location
+	op.Return = o.Return
 	return op
 }
 
@@ -911,8 +911,8 @@ func (o *AddLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_AddLocationOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.LocationPath = op.LocationPath
+	op.This = o.This
+	op.LocationPath = o.LocationPath
 	return op
 }
 
@@ -951,9 +951,9 @@ func (o *AddLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_AddLocationO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.NewLocation = op.NewLocation
-	o.Return = op.Return
+	op.That = o.That
+	op.NewLocation = o.NewLocation
+	op.Return = o.Return
 	return op
 }
 
@@ -1138,8 +1138,8 @@ func (o *DeleteLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteLoca
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -1177,8 +1177,8 @@ func (o *DeleteLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteLoc
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -415,7 +415,7 @@ func (o *GetLineNumberRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLineNumb
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -453,9 +453,9 @@ func (o *GetLineNumberResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLineNum
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LineNumberCount = op.LineNumberCount
-	o.Return = op.Return
+	op.That = o.That
+	op.LineNumberCount = o.LineNumberCount
+	op.Return = o.Return
 	return op
 }
 
@@ -656,7 +656,7 @@ func (o *GetFileNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileNameOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -694,9 +694,9 @@ func (o *GetFileNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileNameO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileName = op.FileName
-	o.Return = op.Return
+	op.That = o.That
+	op.FileName = o.FileName
+	op.Return = o.Return
 	return op
 }
 
@@ -897,7 +897,7 @@ func (o *GetConfigPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigPa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -935,9 +935,9 @@ func (o *GetConfigPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ConfigPath = op.ConfigPath
-	o.Return = op.Return
+	op.That = o.That
+	op.ConfigPath = o.ConfigPath
+	op.Return = o.Return
 	return op
 }
 
@@ -1138,7 +1138,7 @@ func (o *GetErrorLineRequest) xxx_ToOp(ctx context.Context, op *xxx_GetErrorLine
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1176,9 +1176,9 @@ func (o *GetErrorLineResponse) xxx_ToOp(ctx context.Context, op *xxx_GetErrorLin
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ErrorLine = op.ErrorLine
-	o.Return = op.Return
+	op.That = o.That
+	op.ErrorLine = o.ErrorLine
+	op.Return = o.Return
 	return op
 }
 
@@ -1381,7 +1381,7 @@ func (o *GetPreErrorLineRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPreErr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1419,9 +1419,9 @@ func (o *GetPreErrorLineResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPreEr
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PreErrorLine = op.PreErrorLine
-	o.Return = op.Return
+	op.That = o.That
+	op.PreErrorLine = o.PreErrorLine
+	op.Return = o.Return
 	return op
 }
 
@@ -1624,7 +1624,7 @@ func (o *GetPostErrorLineRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPostE
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1662,9 +1662,9 @@ func (o *GetPostErrorLineResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPost
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PostErrorLine = op.PostErrorLine
-	o.Return = op.Return
+	op.That = o.That
+	op.PostErrorLine = o.PostErrorLine
+	op.Return = o.Return
 	return op
 }
 
@@ -1867,7 +1867,7 @@ func (o *GetErrorStringRequest) xxx_ToOp(ctx context.Context, op *xxx_GetErrorSt
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1905,9 +1905,9 @@ func (o *GetErrorStringResponse) xxx_ToOp(ctx context.Context, op *xxx_GetErrorS
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ErrorString = op.ErrorString
-	o.Return = op.Return
+	op.That = o.That
+	op.ErrorString = o.ErrorString
+	op.Return = o.Return
 	return op
 }
 

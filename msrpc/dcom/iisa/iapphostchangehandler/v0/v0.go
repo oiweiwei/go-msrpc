@@ -362,9 +362,9 @@ func (o *OnSectionChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_OnSectio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SectionName = op.SectionName
-	o.ConfigPath = op.ConfigPath
+	op.This = o.This
+	op.SectionName = o.SectionName
+	op.ConfigPath = o.ConfigPath
 	return op
 }
 
@@ -403,8 +403,8 @@ func (o *OnSectionChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_OnSecti
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

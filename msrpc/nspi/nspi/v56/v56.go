@@ -5415,9 +5415,9 @@ func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.Stat = op.Stat
-	o.ServerGUID = op.ServerGUID
+	op.Flags = o.Flags
+	op.Stat = o.Stat
+	op.ServerGUID = o.ServerGUID
 	return op
 }
 
@@ -5459,9 +5459,9 @@ func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.ServerGUID = op.ServerGUID
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ServerGUID = o.ServerGUID
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -5618,7 +5618,7 @@ func (o *UnbindRequest) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
+	op.ContextHandle = o.ContextHandle
 	return op
 }
 
@@ -5655,8 +5655,8 @@ func (o *UnbindResponse) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) 
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -5904,9 +5904,9 @@ func (o *UpdateStatRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateStatOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.Delta = op.Delta
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.Delta = o.Delta
 	return op
 }
 
@@ -5950,9 +5950,9 @@ func (o *UpdateStatResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateStatOpe
 	if o == nil {
 		return op
 	}
-	o.Stat = op.Stat
-	o.Delta = op.Delta
-	o.Return = op.Return
+	op.Stat = o.Stat
+	op.Delta = o.Delta
+	op.Return = o.Return
 	return op
 }
 
@@ -6344,13 +6344,13 @@ func (o *QueryRowsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryRowsOperat
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.Stat = op.Stat
-	o.ETableCount = op.ETableCount
-	o.ETable = op.ETable
-	o.Count = op.Count
-	o.PropertyTags = op.PropertyTags
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.Stat = o.Stat
+	op.ETableCount = o.ETableCount
+	op.ETable = o.ETable
+	op.Count = o.Count
+	op.PropertyTags = o.PropertyTags
 	return op
 }
 
@@ -6398,9 +6398,9 @@ func (o *QueryRowsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryRowsOpera
 	if o == nil {
 		return op
 	}
-	o.Stat = op.Stat
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.Stat = o.Stat
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 
@@ -6761,11 +6761,11 @@ func (o *SeekEntriesRequest) xxx_ToOp(ctx context.Context, op *xxx_SeekEntriesOp
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.Target = op.Target
-	o.ETable = op.ETable
-	o.PropertyTags = op.PropertyTags
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.Target = o.Target
+	op.ETable = o.ETable
+	op.PropertyTags = o.PropertyTags
 	return op
 }
 
@@ -6811,9 +6811,9 @@ func (o *SeekEntriesResponse) xxx_ToOp(ctx context.Context, op *xxx_SeekEntriesO
 	if o == nil {
 		return op
 	}
-	o.Stat = op.Stat
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.Stat = o.Stat
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 
@@ -7304,12 +7304,12 @@ func (o *GetMatchesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMatchesOper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.Filter = op.Filter
-	o.PropertyName = op.PropertyName
-	o.Requested = op.Requested
-	o.PropertyTags = op.PropertyTags
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.Filter = o.Filter
+	op.PropertyName = o.PropertyName
+	op.Requested = o.Requested
+	op.PropertyTags = o.PropertyTags
 	return op
 }
 
@@ -7358,10 +7358,10 @@ func (o *GetMatchesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMatchesOpe
 	if o == nil {
 		return op
 	}
-	o.Stat = op.Stat
-	o.OutMIDs = op.OutMIDs
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.Stat = o.Stat
+	op.OutMIDs = o.OutMIDs
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 
@@ -7665,10 +7665,10 @@ func (o *ResortRestrictionRequest) xxx_ToOp(ctx context.Context, op *xxx_ResortR
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.InMIDs = op.InMIDs
-	o.OutMIDs = op.OutMIDs
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.InMIDs = o.InMIDs
+	op.OutMIDs = o.OutMIDs
 	return op
 }
 
@@ -7712,9 +7712,9 @@ func (o *ResortRestrictionResponse) xxx_ToOp(ctx context.Context, op *xxx_Resort
 	if o == nil {
 		return op
 	}
-	o.Stat = op.Stat
-	o.OutMIDs = op.OutMIDs
-	o.Return = op.Return
+	op.Stat = o.Stat
+	op.OutMIDs = o.OutMIDs
+	op.Return = o.Return
 	return op
 }
 
@@ -7928,8 +7928,8 @@ func (o *DNToMIDRequest) xxx_ToOp(ctx context.Context, op *xxx_DNToMIDOperation)
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Names = op.Names
+	op.Handle = o.Handle
+	op.Names = o.Names
 	return op
 }
 
@@ -7967,8 +7967,8 @@ func (o *DNToMIDResponse) xxx_ToOp(ctx context.Context, op *xxx_DNToMIDOperation
 	if o == nil {
 		return op
 	}
-	o.OutMIDs = op.OutMIDs
-	o.Return = op.Return
+	op.OutMIDs = o.OutMIDs
+	op.Return = o.Return
 	return op
 }
 
@@ -8181,10 +8181,10 @@ func (o *GetPropertyListRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProper
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.MID = op.MID
-	o.CodePage = op.CodePage
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.MID = o.MID
+	op.CodePage = o.CodePage
 	return op
 }
 
@@ -8224,8 +8224,8 @@ func (o *GetPropertyListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrope
 	if o == nil {
 		return op
 	}
-	o.PropertyTags = op.PropertyTags
-	o.Return = op.Return
+	op.PropertyTags = o.PropertyTags
+	op.Return = o.Return
 	return op
 }
 
@@ -8483,10 +8483,10 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.Stat = op.Stat
-	o.PropertyTags = op.PropertyTags
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.Stat = o.Stat
+	op.PropertyTags = o.PropertyTags
 	return op
 }
 
@@ -8527,8 +8527,8 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 
@@ -8731,10 +8731,10 @@ func (o *CompareMIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_CompareMIDsOp
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.MID1 = op.MID1
-	o.MID2 = op.MID2
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.MID1 = o.MID1
+	op.MID2 = o.MID2
 	return op
 }
 
@@ -8774,8 +8774,8 @@ func (o *CompareMIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_CompareMIDsO
 	if o == nil {
 		return op
 	}
-	o.Result = op.Result
-	o.Return = op.Return
+	op.Result = o.Result
+	op.Return = o.Return
 	return op
 }
 
@@ -9015,10 +9015,10 @@ func (o *ModifyPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyPr
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.PropertyTags = op.PropertyTags
-	o.Row = op.Row
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.PropertyTags = o.PropertyTags
+	op.Row = o.Row
 	return op
 }
 
@@ -9056,7 +9056,7 @@ func (o *ModifyPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyP
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9291,10 +9291,10 @@ func (o *GetSpecialTableRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSpecia
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.Stat = op.Stat
-	o.Version = op.Version
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.Stat = o.Stat
+	op.Version = o.Version
 	return op
 }
 
@@ -9338,9 +9338,9 @@ func (o *GetSpecialTableResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSpeci
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 
@@ -9612,12 +9612,12 @@ func (o *GetTemplateInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTempla
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.Type = op.Type
-	o.DN = op.DN
-	o.CodePage = op.CodePage
-	o.LocaleID = op.LocaleID
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.Type = o.Type
+	op.DN = o.DN
+	op.CodePage = o.CodePage
+	op.LocaleID = o.LocaleID
 	return op
 }
 
@@ -9660,8 +9660,8 @@ func (o *GetTemplateInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTempl
 	if o == nil {
 		return op
 	}
-	o.Data = op.Data
-	o.Return = op.Return
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -9860,11 +9860,11 @@ func (o *ModifyLinkAttributeRequest) xxx_ToOp(ctx context.Context, op *xxx_Modif
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.PropertyTag = op.PropertyTag
-	o.MID = op.MID
-	o.EntryIDs = op.EntryIDs
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.PropertyTag = o.PropertyTag
+	op.MID = o.MID
+	op.EntryIDs = o.EntryIDs
 	return op
 }
 
@@ -9903,7 +9903,7 @@ func (o *ModifyLinkAttributeResponse) xxx_ToOp(ctx context.Context, op *xxx_Modi
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10100,8 +10100,8 @@ func (o *QueryColumnsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryColumns
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
+	op.Handle = o.Handle
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10140,8 +10140,8 @@ func (o *QueryColumnsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryColumn
 	if o == nil {
 		return op
 	}
-	o.Columns = op.Columns
-	o.Return = op.Return
+	op.Columns = o.Columns
+	op.Return = o.Return
 	return op
 }
 
@@ -10470,9 +10470,9 @@ func (o *GetNamesFromIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNamesF
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.GUID = op.GUID
-	o.PropertyTags = op.PropertyTags
+	op.Handle = o.Handle
+	op.GUID = o.GUID
+	op.PropertyTags = o.PropertyTags
 	return op
 }
 
@@ -10516,9 +10516,9 @@ func (o *GetNamesFromIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNames
 	if o == nil {
 		return op
 	}
-	o.ReturnedPropertyTags = op.ReturnedPropertyTags
-	o.Names = op.Names
-	o.Return = op.Return
+	op.ReturnedPropertyTags = o.ReturnedPropertyTags
+	op.Names = o.Names
+	op.Return = o.Return
 	return op
 }
 
@@ -10821,10 +10821,10 @@ func (o *GetIDsFromNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIDsFro
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Flags = op.Flags
-	o.PropertyNamesCount = op.PropertyNamesCount
-	o.Names = op.Names
+	op.Handle = o.Handle
+	op.Flags = o.Flags
+	op.PropertyNamesCount = o.PropertyNamesCount
+	op.Names = o.Names
 	return op
 }
 
@@ -10865,8 +10865,8 @@ func (o *GetIDsFromNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDsFr
 	if o == nil {
 		return op
 	}
-	o.PropertyTags = op.PropertyTags
-	o.Return = op.Return
+	op.PropertyTags = o.PropertyTags
+	op.Return = o.Return
 	return op
 }
 
@@ -11203,10 +11203,10 @@ func (o *ResolveNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_ResolveNames
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.PropertyTags = op.PropertyTags
-	o.Strings = op.Strings
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.PropertyTags = o.PropertyTags
+	op.Strings = o.Strings
 	return op
 }
 
@@ -11250,9 +11250,9 @@ func (o *ResolveNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_ResolveName
 	if o == nil {
 		return op
 	}
-	o.MIDs = op.MIDs
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.MIDs = o.MIDs
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 
@@ -11590,10 +11590,10 @@ func (o *ResolveNamesWRequest) xxx_ToOp(ctx context.Context, op *xxx_ResolveName
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Stat = op.Stat
-	o.PropertyTags = op.PropertyTags
-	o.Strings = op.Strings
+	op.Handle = o.Handle
+	op.Stat = o.Stat
+	op.PropertyTags = o.PropertyTags
+	op.Strings = o.Strings
 	return op
 }
 
@@ -11637,9 +11637,9 @@ func (o *ResolveNamesWResponse) xxx_ToOp(ctx context.Context, op *xxx_ResolveNam
 	if o == nil {
 		return op
 	}
-	o.MIDs = op.MIDs
-	o.Rows = op.Rows
-	o.Return = op.Return
+	op.MIDs = o.MIDs
+	op.Rows = o.Rows
+	op.Return = o.Return
 	return op
 }
 

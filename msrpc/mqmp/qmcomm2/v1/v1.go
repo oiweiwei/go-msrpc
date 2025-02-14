@@ -427,9 +427,9 @@ func (o *QMSendMessageInternalExRequest) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.QueueFormat = op.QueueFormat
-	o.Ptb = op.Ptb
-	o.MessageID = op.MessageID
+	op.QueueFormat = o.QueueFormat
+	op.Ptb = o.Ptb
+	op.MessageID = o.MessageID
 	return op
 }
 
@@ -469,8 +469,8 @@ func (o *QMSendMessageInternalExResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Return = op.Return
+	op.MessageID = o.MessageID
+	op.Return = o.Return
 	return op
 }
 
@@ -905,9 +905,9 @@ func (o *SendMessageExRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessage
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.Ptb = op.Ptb
-	o.MessageID = op.MessageID
+	op.Queue = o.Queue
+	op.Ptb = o.Ptb
+	op.MessageID = o.MessageID
 	return op
 }
 
@@ -948,8 +948,8 @@ func (o *SendMessageExResponse) xxx_ToOp(ctx context.Context, op *xxx_SendMessag
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Return = op.Return
+	op.MessageID = o.MessageID
+	op.Return = o.Return
 	return op
 }
 
@@ -1382,8 +1382,8 @@ func (o *ReceiveMessageExRequest) xxx_ToOp(ctx context.Context, op *xxx_ReceiveM
 	if o == nil {
 		return op
 	}
-	o.HQMContext = op.HQMContext
-	o.Ptb = op.Ptb
+	op.HQMContext = o.HQMContext
+	op.Ptb = o.Ptb
 	return op
 }
 
@@ -1683,8 +1683,8 @@ func (o *ReceiveMessageExResponse) xxx_ToOp(ctx context.Context, op *xxx_Receive
 	if o == nil {
 		return op
 	}
-	o.Ptb = op.Ptb
-	o.Return = op.Return
+	op.Ptb = o.Ptb
+	op.Return = o.Return
 	return op
 }
 
@@ -1852,8 +1852,8 @@ func (o *CreateCursorExRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCurs
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.Pcc = op.Pcc
+	op.Queue = o.Queue
+	op.Pcc = o.Pcc
 	return op
 }
 
@@ -1892,8 +1892,8 @@ func (o *CreateCursorExResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateCur
 	if o == nil {
 		return op
 	}
-	o.Pcc = op.Pcc
-	o.Return = op.Return
+	op.Pcc = o.Pcc
+	op.Return = o.Return
 	return op
 }
 

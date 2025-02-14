@@ -308,7 +308,7 @@ func (o *RefreshExRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshExOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -345,8 +345,8 @@ func (o *RefreshExResponse) xxx_ToOp(ctx context.Context, op *xxx_RefreshExOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -609,8 +609,8 @@ func (o *GetVolumeDeviceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
+	op.This = o.This
+	op.VolumeID = o.VolumeID
 	return op
 }
 
@@ -656,10 +656,10 @@ func (o *GetVolumeDeviceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetV
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VolumeDeviceLength = op.VolumeDeviceLength
-	o.VolumeDevice = op.VolumeDevice
-	o.Return = op.Return
+	op.That = o.That
+	op.VolumeDeviceLength = o.VolumeDeviceLength
+	op.VolumeDevice = o.VolumeDevice
+	op.Return = o.Return
 	return op
 }
 

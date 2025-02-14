@@ -382,7 +382,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -420,9 +420,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -623,7 +623,7 @@ func (o *GetInputSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInputSc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -661,9 +661,9 @@ func (o *GetInputSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInputS
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.InputSchema = op.InputSchema
-	o.Return = op.Return
+	op.That = o.That
+	op.InputSchema = o.InputSchema
+	op.Return = o.Return
 	return op
 }
 
@@ -866,7 +866,7 @@ func (o *GetOutputSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOutput
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -904,9 +904,9 @@ func (o *GetOutputSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOutpu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OutputSchema = op.OutputSchema
-	o.Return = op.Return
+	op.That = o.That
+	op.OutputSchema = o.OutputSchema
+	op.Return = o.Return
 	return op
 }
 
@@ -1155,8 +1155,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -1195,9 +1195,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 

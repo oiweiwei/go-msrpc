@@ -577,8 +577,8 @@ func (o *GetPartitionPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
+	op.This = o.This
+	op.Offset = o.Offset
 	return op
 }
 
@@ -619,9 +619,9 @@ func (o *GetPartitionPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PartitionProperty = op.PartitionProperty
-	o.Return = op.Return
+	op.That = o.That
+	op.PartitionProperty = o.PartitionProperty
+	op.Return = o.Return
 	return op
 }
 
@@ -871,7 +871,7 @@ func (o *QueryPartitionsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPart
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -914,10 +914,10 @@ func (o *QueryPartitionsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPar
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PartitionPropertyArray = op.PartitionPropertyArray
-	o.NumberOfPartitions = op.NumberOfPartitions
-	o.Return = op.Return
+	op.That = o.That
+	op.PartitionPropertyArray = o.PartitionPropertyArray
+	op.NumberOfPartitions = o.NumberOfPartitions
+	op.Return = o.Return
 	return op
 }
 
@@ -1175,10 +1175,10 @@ func (o *CreatePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Size = op.Size
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Size = o.Size
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -1224,9 +1224,9 @@ func (o *CreatePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1430,10 +1430,10 @@ func (o *DeletePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Force = op.Force
-	o.ForceProtected = op.ForceProtected
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Force = o.Force
+	op.ForceProtected = o.ForceProtected
 	return op
 }
 
@@ -1473,8 +1473,8 @@ func (o *DeletePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1670,9 +1670,9 @@ func (o *ChangeAttributesRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeAt
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Parameters = op.Parameters
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Parameters = o.Parameters
 	return op
 }
 
@@ -1711,8 +1711,8 @@ func (o *ChangeAttributesResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeA
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1899,9 +1899,9 @@ func (o *AssignDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_AssignD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Letter = op.Letter
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Letter = o.Letter
 	return op
 }
 
@@ -1940,8 +1940,8 @@ func (o *AssignDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_Assign
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2128,9 +2128,9 @@ func (o *DeleteDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Letter = op.Letter
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Letter = o.Letter
 	return op
 }
 
@@ -2169,8 +2169,8 @@ func (o *DeleteDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2354,8 +2354,8 @@ func (o *GetDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDriveLe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
+	op.This = o.This
+	op.Offset = o.Offset
 	return op
 }
 
@@ -2396,9 +2396,9 @@ func (o *GetDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDriveL
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Letter = op.Letter
-	o.Return = op.Return
+	op.That = o.That
+	op.Letter = o.Letter
+	op.Return = o.Return
 	return op
 }
 
@@ -2713,14 +2713,14 @@ func (o *FormatPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatPar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Offset = op.Offset
-	o.Type = op.Type
-	o.Label = op.Label
-	o.UnitAllocationSize = op.UnitAllocationSize
-	o.Force = op.Force
-	o.QuickFormat = op.QuickFormat
-	o.EnableCompression = op.EnableCompression
+	op.This = o.This
+	op.Offset = o.Offset
+	op.Type = o.Type
+	op.Label = o.Label
+	op.UnitAllocationSize = o.UnitAllocationSize
+	op.Force = o.Force
+	op.QuickFormat = o.QuickFormat
+	op.EnableCompression = o.EnableCompression
 	return op
 }
 
@@ -2768,9 +2768,9 @@ func (o *FormatPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatPa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -3022,10 +3022,10 @@ func (o *CleanRequest) xxx_ToOp(ctx context.Context, op *xxx_CleanOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Force = op.Force
-	o.ForceOEM = op.ForceOEM
-	o.FullClean = op.FullClean
+	op.This = o.This
+	op.Force = o.Force
+	op.ForceOEM = o.ForceOEM
+	op.FullClean = o.FullClean
 	return op
 }
 
@@ -3069,9 +3069,9 @@ func (o *CleanResponse) xxx_ToOp(ctx context.Context, op *xxx_CleanOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

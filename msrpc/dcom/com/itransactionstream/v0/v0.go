@@ -538,10 +538,10 @@ func (o *GetSeqAndTxViaExportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.KnownSeq = op.KnownSeq
-	o.WhereaboutsLength = op.WhereaboutsLength
-	o.Whereabouts = op.Whereabouts
+	op.This = o.This
+	op.KnownSeq = o.KnownSeq
+	op.WhereaboutsLength = o.WhereaboutsLength
+	op.Whereabouts = o.Whereabouts
 	return op
 }
 
@@ -588,11 +588,11 @@ func (o *GetSeqAndTxViaExportResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CurrentSeq = op.CurrentSeq
-	o.ExportCookieLength = op.ExportCookieLength
-	o.ExportCookie = op.ExportCookie
-	o.Return = op.Return
+	op.That = o.That
+	op.CurrentSeq = o.CurrentSeq
+	op.ExportCookieLength = o.ExportCookieLength
+	op.ExportCookie = o.ExportCookie
+	op.Return = o.Return
 	return op
 }
 
@@ -865,8 +865,8 @@ func (o *GetSeqAndTxViaTransmitterRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.KnownSeq = op.KnownSeq
+	op.This = o.This
+	op.KnownSeq = o.KnownSeq
 	return op
 }
 
@@ -910,11 +910,11 @@ func (o *GetSeqAndTxViaTransmitterResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.CurrentSeq = op.CurrentSeq
-	o.TransmitterBufferLength = op.TransmitterBufferLength
-	o.TransmitterBuffer = op.TransmitterBuffer
-	o.Return = op.Return
+	op.That = o.That
+	op.CurrentSeq = o.CurrentSeq
+	op.TransmitterBufferLength = o.TransmitterBufferLength
+	op.TransmitterBuffer = o.TransmitterBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -1239,10 +1239,10 @@ func (o *GetTxViaExportRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTxViaEx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RequestSeq = op.RequestSeq
-	o.WhereaboutsLength = op.WhereaboutsLength
-	o.Whereabouts = op.Whereabouts
+	op.This = o.This
+	op.RequestSeq = o.RequestSeq
+	op.WhereaboutsLength = o.WhereaboutsLength
+	op.Whereabouts = o.Whereabouts
 	return op
 }
 
@@ -1287,10 +1287,10 @@ func (o *GetTxViaExportResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTxViaE
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ExportCookieLength = op.ExportCookieLength
-	o.ExportCookie = op.ExportCookie
-	o.Return = op.Return
+	op.That = o.That
+	op.ExportCookieLength = o.ExportCookieLength
+	op.ExportCookie = o.ExportCookie
+	op.Return = o.Return
 	return op
 }
 
@@ -1549,8 +1549,8 @@ func (o *GetTxViaTransmitterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RequestSeq = op.RequestSeq
+	op.This = o.This
+	op.RequestSeq = o.RequestSeq
 	return op
 }
 
@@ -1592,10 +1592,10 @@ func (o *GetTxViaTransmitterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetT
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TransmitterBufferLength = op.TransmitterBufferLength
-	o.TransmitterBuffer = op.TransmitterBuffer
-	o.Return = op.Return
+	op.That = o.That
+	op.TransmitterBufferLength = o.TransmitterBufferLength
+	op.TransmitterBuffer = o.TransmitterBuffer
+	op.Return = o.Return
 	return op
 }
 

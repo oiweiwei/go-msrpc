@@ -429,8 +429,8 @@ func (o *GetResultObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResult
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Timeout = op.Timeout
+	op.This = o.This
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -475,9 +475,9 @@ func (o *GetResultObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResul
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ResultObject = op.ResultObject
-	o.Return = op.Return
+	op.That = o.That
+	op.ResultObject = o.ResultObject
+	op.Return = o.Return
 	return op
 }
 
@@ -696,8 +696,8 @@ func (o *GetResultStringRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResult
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Timeout = op.Timeout
+	op.This = o.This
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -742,9 +742,9 @@ func (o *GetResultStringResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResul
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ResultString = op.ResultString
-	o.Return = op.Return
+	op.That = o.That
+	op.ResultString = o.ResultString
+	op.Return = o.Return
 	return op
 }
 
@@ -964,8 +964,8 @@ func (o *GetResultServicesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Timeout = op.Timeout
+	op.This = o.This
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -1009,9 +1009,9 @@ func (o *GetResultServicesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRes
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Services = op.Services
-	o.Return = op.Return
+	op.That = o.That
+	op.Services = o.Services
+	op.Return = o.Return
 	return op
 }
 
@@ -1195,8 +1195,8 @@ func (o *GetCallStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCallStat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Timeout = op.Timeout
+	op.This = o.This
+	op.Timeout = o.Timeout
 	return op
 }
 
@@ -1239,9 +1239,9 @@ func (o *GetCallStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCallSta
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Status = op.Status
-	o.Return = op.Return
+	op.That = o.That
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 

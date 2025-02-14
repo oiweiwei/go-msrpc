@@ -310,7 +310,7 @@ func (o *GetSANPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSANPolicy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -351,9 +351,9 @@ func (o *GetSANPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSANPolic
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SANPolicy = op.SANPolicy
-	o.Return = op.Return
+	op.That = o.That
+	op.SANPolicy = o.SANPolicy
+	op.Return = o.Return
 	return op
 }
 
@@ -523,8 +523,8 @@ func (o *SetSANPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSANPolicy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SANPolicy = op.SANPolicy
+	op.This = o.This
+	op.SANPolicy = o.SANPolicy
 	return op
 }
 
@@ -562,8 +562,8 @@ func (o *SetSANPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSANPolic
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

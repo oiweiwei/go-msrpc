@@ -564,9 +564,9 @@ func (o *AppCreateRequest) xxx_ToOp(ctx context.Context, op *xxx_AppCreateOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.InProc = op.InProc
+	op.This = o.This
+	op.Path = o.Path
+	op.InProc = o.InProc
 	return op
 }
 
@@ -605,8 +605,8 @@ func (o *AppCreateResponse) xxx_ToOp(ctx context.Context, op *xxx_AppCreateOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -823,9 +823,9 @@ func (o *AppDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_AppDeleteOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Recursive = op.Recursive
+	op.This = o.This
+	op.Path = o.Path
+	op.Recursive = o.Recursive
 	return op
 }
 
@@ -864,8 +864,8 @@ func (o *AppDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_AppDeleteOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1083,9 +1083,9 @@ func (o *AppUnloadRequest) xxx_ToOp(ctx context.Context, op *xxx_AppUnloadOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Recursive = op.Recursive
+	op.This = o.This
+	op.Path = o.Path
+	op.Recursive = o.Recursive
 	return op
 }
 
@@ -1124,8 +1124,8 @@ func (o *AppUnloadResponse) xxx_ToOp(ctx context.Context, op *xxx_AppUnloadOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1332,8 +1332,8 @@ func (o *AppGetStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_AppGetStatus
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -1387,9 +1387,9 @@ func (o *AppGetStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_AppGetStatu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AppStatus = op.AppStatus
-	o.Return = op.Return
+	op.That = o.That
+	op.AppStatus = o.AppStatus
+	op.Return = o.Return
 	return op
 }
 
@@ -1610,9 +1610,9 @@ func (o *AppDeleteRecoverableRequest) xxx_ToOp(ctx context.Context, op *xxx_AppD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Recursive = op.Recursive
+	op.This = o.This
+	op.Path = o.Path
+	op.Recursive = o.Recursive
 	return op
 }
 
@@ -1651,8 +1651,8 @@ func (o *AppDeleteRecoverableResponse) xxx_ToOp(ctx context.Context, op *xxx_App
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1869,9 +1869,9 @@ func (o *AppRecoverRequest) xxx_ToOp(ctx context.Context, op *xxx_AppRecoverOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.Recursive = op.Recursive
+	op.This = o.This
+	op.Path = o.Path
+	op.Recursive = o.Recursive
 	return op
 }
 
@@ -1910,8 +1910,8 @@ func (o *AppRecoverResponse) xxx_ToOp(ctx context.Context, op *xxx_AppRecoverOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

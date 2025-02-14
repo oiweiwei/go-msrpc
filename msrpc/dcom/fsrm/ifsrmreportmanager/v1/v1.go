@@ -691,8 +691,8 @@ func (o *EnumReportJobsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumReport
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Options = op.Options
+	op.This = o.This
+	op.Options = o.Options
 	return op
 }
 
@@ -734,9 +734,9 @@ func (o *EnumReportJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumRepor
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReportJobs = op.ReportJobs
-	o.Return = op.Return
+	op.That = o.That
+	op.ReportJobs = o.ReportJobs
+	op.Return = o.Return
 	return op
 }
 
@@ -939,7 +939,7 @@ func (o *CreateReportJobRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateRep
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -982,9 +982,9 @@ func (o *CreateReportJobResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReportJob = op.ReportJob
-	o.Return = op.Return
+	op.That = o.That
+	op.ReportJob = o.ReportJob
+	op.Return = o.Return
 	return op
 }
 
@@ -1235,8 +1235,8 @@ func (o *GetReportJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReportJob
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TaskName = op.TaskName
+	op.This = o.This
+	op.TaskName = o.TaskName
 	return op
 }
 
@@ -1278,9 +1278,9 @@ func (o *GetReportJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReportJo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ReportJob = op.ReportJob
-	o.Return = op.Return
+	op.That = o.That
+	op.ReportJob = o.ReportJob
+	op.Return = o.Return
 	return op
 }
 
@@ -1499,8 +1499,8 @@ func (o *GetOutputDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOut
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Context = op.Context
+	op.This = o.This
+	op.Context = o.Context
 	return op
 }
 
@@ -1541,9 +1541,9 @@ func (o *GetOutputDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Path = op.Path
-	o.Return = op.Return
+	op.That = o.That
+	op.Path = o.Path
+	op.Return = o.Return
 	return op
 }
 
@@ -1765,9 +1765,9 @@ func (o *SetOutputDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOut
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Context = op.Context
-	o.Path = op.Path
+	op.This = o.This
+	op.Context = o.Context
+	op.Path = o.Path
 	return op
 }
 
@@ -1806,8 +1806,8 @@ func (o *SetOutputDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2005,9 +2005,9 @@ func (o *IsFilterValidForReportTypeRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReportType = op.ReportType
-	o.Filter = op.Filter
+	op.This = o.This
+	op.ReportType = o.ReportType
+	op.Filter = o.Filter
 	return op
 }
 
@@ -2049,9 +2049,9 @@ func (o *IsFilterValidForReportTypeResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Valid = op.Valid
-	o.Return = op.Return
+	op.That = o.That
+	op.Valid = o.Valid
+	op.Return = o.Return
 	return op
 }
 
@@ -2284,9 +2284,9 @@ func (o *GetDefaultFilterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDefau
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReportType = op.ReportType
-	o.Filter = op.Filter
+	op.This = o.This
+	op.ReportType = o.ReportType
+	op.Filter = o.Filter
 	return op
 }
 
@@ -2328,9 +2328,9 @@ func (o *GetDefaultFilterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDefa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FilterValue = op.FilterValue
-	o.Return = op.Return
+	op.That = o.That
+	op.FilterValue = o.FilterValue
+	op.Return = o.Return
 	return op
 }
 
@@ -2547,10 +2547,10 @@ func (o *SetDefaultFilterRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDefau
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ReportType = op.ReportType
-	o.Filter = op.Filter
-	o.FilterValue = op.FilterValue
+	op.This = o.This
+	op.ReportType = o.ReportType
+	op.Filter = o.Filter
+	op.FilterValue = o.FilterValue
 	return op
 }
 
@@ -2590,8 +2590,8 @@ func (o *SetDefaultFilterResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDefa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2809,8 +2809,8 @@ func (o *GetReportSizeLimitRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRep
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Limit = op.Limit
+	op.This = o.This
+	op.Limit = o.Limit
 	return op
 }
 
@@ -2851,9 +2851,9 @@ func (o *GetReportSizeLimitResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LimitValue = op.LimitValue
-	o.Return = op.Return
+	op.That = o.That
+	op.LimitValue = o.LimitValue
+	op.Return = o.Return
 	return op
 }
 
@@ -3055,9 +3055,9 @@ func (o *SetReportSizeLimitRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRep
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Limit = op.Limit
-	o.LimitValue = op.LimitValue
+	op.This = o.This
+	op.Limit = o.Limit
+	op.LimitValue = o.LimitValue
 	return op
 }
 
@@ -3096,8 +3096,8 @@ func (o *SetReportSizeLimitResponse) xxx_ToOp(ctx context.Context, op *xxx_SetRe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

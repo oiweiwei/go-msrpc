@@ -385,10 +385,10 @@ func (o *ExportConglomerationRequest) xxx_ToOp(ctx context.Context, op *xxx_Expo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
-	o.InstallerPackage = op.InstallerPackage
-	o.Flags = op.Flags
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
+	op.InstallerPackage = o.InstallerPackage
+	op.Flags = o.Flags
 	return op
 }
 
@@ -428,8 +428,8 @@ func (o *ExportConglomerationResponse) xxx_ToOp(ctx context.Context, op *xxx_Exp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

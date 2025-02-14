@@ -4480,10 +4480,10 @@ func (o *OpenPolicyStoreRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolic
 	if o == nil {
 		return op
 	}
-	o.BinaryVersion = op.BinaryVersion
-	o.StoreType = op.StoreType
-	o.AccessRight = op.AccessRight
-	o.Flags = op.Flags
+	op.BinaryVersion = o.BinaryVersion
+	op.StoreType = o.StoreType
+	op.AccessRight = o.AccessRight
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4524,8 +4524,8 @@ func (o *OpenPolicyStoreResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPoli
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Return = op.Return
+	op.PolicyStore = o.PolicyStore
+	op.Return = o.Return
 	return op
 }
 
@@ -4670,7 +4670,7 @@ func (o *ClosePolicyStoreRequest) xxx_ToOp(ctx context.Context, op *xxx_ClosePol
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -4710,8 +4710,8 @@ func (o *ClosePolicyStoreResponse) xxx_ToOp(ctx context.Context, op *xxx_ClosePo
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Return = op.Return
+	op.PolicyStore = o.PolicyStore
+	op.Return = o.Return
 	return op
 }
 
@@ -4839,7 +4839,7 @@ func (o *RestoreDefaultsResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreD
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5252,13 +5252,13 @@ func (o *GetGlobalConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGlobal
 	if o == nil {
 		return op
 	}
-	o.BinaryVersion = op.BinaryVersion
-	o.StoreType = op.StoreType
-	o.ConfigID = op.ConfigID
-	o.Flags = op.Flags
-	o.Buffer = op.Buffer
-	o.DataLength = op.DataLength
-	o.TransmittedLength = op.TransmittedLength
+	op.BinaryVersion = o.BinaryVersion
+	op.StoreType = o.StoreType
+	op.ConfigID = o.ConfigID
+	op.Flags = o.Flags
+	op.Buffer = o.Buffer
+	op.DataLength = o.DataLength
+	op.TransmittedLength = o.TransmittedLength
 	return op
 }
 
@@ -5311,10 +5311,10 @@ func (o *GetGlobalConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGloba
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.TransmittedLength = op.TransmittedLength
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.TransmittedLength = o.TransmittedLength
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -5559,11 +5559,11 @@ func (o *SetGlobalConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_SetGlobal
 	if o == nil {
 		return op
 	}
-	o.BinaryVersion = op.BinaryVersion
-	o.StoreType = op.StoreType
-	o.ConfigID = op.ConfigID
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.BinaryVersion = o.BinaryVersion
+	op.StoreType = o.StoreType
+	op.ConfigID = o.ConfigID
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -5602,7 +5602,7 @@ func (o *SetGlobalConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_SetGloba
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5755,8 +5755,8 @@ func (o *AddFirewallRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_AddFirewa
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -5792,7 +5792,7 @@ func (o *AddFirewallRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_AddFirew
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -5945,8 +5945,8 @@ func (o *SetFirewallRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFirewa
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -5982,7 +5982,7 @@ func (o *SetFirewallRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFirew
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6120,8 +6120,8 @@ func (o *DeleteFirewallRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.RuleID = op.RuleID
+	op.PolicyStore = o.PolicyStore
+	op.RuleID = o.RuleID
 	return op
 }
 
@@ -6157,7 +6157,7 @@ func (o *DeleteFirewallRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6279,7 +6279,7 @@ func (o *DeleteAllFirewallRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_De
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -6314,7 +6314,7 @@ func (o *DeleteAllFirewallRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_D
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6550,10 +6550,10 @@ func (o *EnumFirewallRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -6597,9 +6597,9 @@ func (o *EnumFirewallRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFi
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -7024,13 +7024,13 @@ func (o *GetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfigOperat
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.ConfigID = op.ConfigID
-	o.Profile = op.Profile
-	o.Flags = op.Flags
-	o.Buffer = op.Buffer
-	o.DataLength = op.DataLength
-	o.TransmittedLength = op.TransmittedLength
+	op.PolicyStore = o.PolicyStore
+	op.ConfigID = o.ConfigID
+	op.Profile = o.Profile
+	op.Flags = o.Flags
+	op.Buffer = o.Buffer
+	op.DataLength = o.DataLength
+	op.TransmittedLength = o.TransmittedLength
 	return op
 }
 
@@ -7083,10 +7083,10 @@ func (o *GetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfigOpera
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.TransmittedLength = op.TransmittedLength
-	o.RequiredLength = op.RequiredLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.TransmittedLength = o.TransmittedLength
+	op.RequiredLength = o.RequiredLength
+	op.Return = o.Return
 	return op
 }
 
@@ -7297,11 +7297,11 @@ func (o *SetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConfigOperat
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.ConfigID = op.ConfigID
-	o.Profile = op.Profile
-	o.Config = op.Config
-	o.BufferSize = op.BufferSize
+	op.PolicyStore = o.PolicyStore
+	op.ConfigID = o.ConfigID
+	op.Profile = o.Profile
+	op.Config = o.Config
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -7340,7 +7340,7 @@ func (o *SetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_SetConfigOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7491,8 +7491,8 @@ func (o *AddConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -7528,7 +7528,7 @@ func (o *AddConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7679,8 +7679,8 @@ func (o *SetConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -7716,7 +7716,7 @@ func (o *SetConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7851,8 +7851,8 @@ func (o *DeleteConnectionSecurityRuleRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.RuleID = op.RuleID
+	op.PolicyStore = o.PolicyStore
+	op.RuleID = o.RuleID
 	return op
 }
 
@@ -7888,7 +7888,7 @@ func (o *DeleteConnectionSecurityRuleResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8007,7 +8007,7 @@ func (o *DeleteAllConnectionSecurityRulesRequest) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -8042,7 +8042,7 @@ func (o *DeleteAllConnectionSecurityRulesResponse) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8274,10 +8274,10 @@ func (o *EnumConnectionSecurityRulesRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8321,9 +8321,9 @@ func (o *EnumConnectionSecurityRulesResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -8476,8 +8476,8 @@ func (o *AddAuthenticationSetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddA
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Auth = op.Auth
+	op.PolicyStore = o.PolicyStore
+	op.Auth = o.Auth
 	return op
 }
 
@@ -8513,7 +8513,7 @@ func (o *AddAuthenticationSetResponse) xxx_ToOp(ctx context.Context, op *xxx_Add
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8664,8 +8664,8 @@ func (o *SetAuthenticationSetRequest) xxx_ToOp(ctx context.Context, op *xxx_SetA
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Auth = op.Auth
+	op.PolicyStore = o.PolicyStore
+	op.Auth = o.Auth
 	return op
 }
 
@@ -8701,7 +8701,7 @@ func (o *SetAuthenticationSetResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8855,9 +8855,9 @@ func (o *DeleteAuthenticationSetRequest) xxx_ToOp(ctx context.Context, op *xxx_D
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.SetID = op.SetID
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.SetID = o.SetID
 	return op
 }
 
@@ -8894,7 +8894,7 @@ func (o *DeleteAuthenticationSetResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9032,8 +9032,8 @@ func (o *DeleteAllAuthenticationSetsRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
 	return op
 }
 
@@ -9069,7 +9069,7 @@ func (o *DeleteAllAuthenticationSetsResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9302,10 +9302,10 @@ func (o *EnumAuthenticationSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.FilteredByStatus = op.FilteredByStatus
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.FilteredByStatus = o.FilteredByStatus
+	op.Flags = o.Flags
 	return op
 }
 
@@ -9349,9 +9349,9 @@ func (o *EnumAuthenticationSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.AuthSetsLength = op.AuthSetsLength
-	o.Auth = op.Auth
-	o.Return = op.Return
+	op.AuthSetsLength = o.AuthSetsLength
+	op.Auth = o.Auth
+	op.Return = o.Return
 	return op
 }
 
@@ -9502,8 +9502,8 @@ func (o *AddCryptoSetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddCryptoSet
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Crypto = op.Crypto
+	op.PolicyStore = o.PolicyStore
+	op.Crypto = o.Crypto
 	return op
 }
 
@@ -9539,7 +9539,7 @@ func (o *AddCryptoSetResponse) xxx_ToOp(ctx context.Context, op *xxx_AddCryptoSe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9688,8 +9688,8 @@ func (o *SetCryptoSetRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCryptoSet
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Crypto = op.Crypto
+	op.PolicyStore = o.PolicyStore
+	op.Crypto = o.Crypto
 	return op
 }
 
@@ -9725,7 +9725,7 @@ func (o *SetCryptoSetResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCryptoSe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9877,9 +9877,9 @@ func (o *DeleteCryptoSetRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteCry
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.SetID = op.SetID
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.SetID = o.SetID
 	return op
 }
 
@@ -9916,7 +9916,7 @@ func (o *DeleteCryptoSetResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteCr
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10054,8 +10054,8 @@ func (o *DeleteAllCryptoSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
 	return op
 }
 
@@ -10091,7 +10091,7 @@ func (o *DeleteAllCryptoSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10322,10 +10322,10 @@ func (o *EnumCryptoSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumCrypto
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.FilteredByStatus = op.FilteredByStatus
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.FilteredByStatus = o.FilteredByStatus
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10369,9 +10369,9 @@ func (o *EnumCryptoSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumCrypt
 	if o == nil {
 		return op
 	}
-	o.SetsLength = op.SetsLength
-	o.CryptoSets = op.CryptoSets
-	o.Return = op.Return
+	op.SetsLength = o.SetsLength
+	op.CryptoSets = o.CryptoSets
+	op.Return = o.Return
 	return op
 }
 
@@ -10638,8 +10638,8 @@ func (o *EnumPhase1SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase1S
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Endpoints = op.Endpoints
+	op.PolicyStore = o.PolicyStore
+	op.Endpoints = o.Endpoints
 	return op
 }
 
@@ -10681,9 +10681,9 @@ func (o *EnumPhase1SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase1
 	if o == nil {
 		return op
 	}
-	o.SAsLength = op.SAsLength
-	o.SAs = op.SAs
-	o.Return = op.Return
+	op.SAsLength = o.SAsLength
+	op.SAs = o.SAs
+	op.Return = o.Return
 	return op
 }
 
@@ -10951,8 +10951,8 @@ func (o *EnumPhase2SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase2S
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Endpoints = op.Endpoints
+	op.PolicyStore = o.PolicyStore
+	op.Endpoints = o.Endpoints
 	return op
 }
 
@@ -10994,9 +10994,9 @@ func (o *EnumPhase2SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPhase2
 	if o == nil {
 		return op
 	}
-	o.SAsLength = op.SAsLength
-	o.SAs = op.SAs
-	o.Return = op.Return
+	op.SAsLength = o.SAsLength
+	op.SAs = o.SAs
+	op.Return = o.Return
 	return op
 }
 
@@ -11168,8 +11168,8 @@ func (o *DeletePhase1SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePha
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Endpoints = op.Endpoints
+	op.PolicyStore = o.PolicyStore
+	op.Endpoints = o.Endpoints
 	return op
 }
 
@@ -11205,7 +11205,7 @@ func (o *DeletePhase1SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePh
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11375,8 +11375,8 @@ func (o *DeletePhase2SAsRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePha
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Endpoints = op.Endpoints
+	op.PolicyStore = o.PolicyStore
+	op.Endpoints = o.Endpoints
 	return op
 }
 
@@ -11412,7 +11412,7 @@ func (o *DeletePhase2SAsResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePh
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11625,7 +11625,7 @@ func (o *EnumProductsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumProducts
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -11666,9 +11666,9 @@ func (o *EnumProductsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumProduct
 	if o == nil {
 		return op
 	}
-	o.ProductsLength = op.ProductsLength
-	o.Products = op.Products
-	o.Return = op.Return
+	op.ProductsLength = o.ProductsLength
+	op.Products = o.Products
+	op.Return = o.Return
 	return op
 }
 
@@ -11832,8 +11832,8 @@ func (o *AddMainModeRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMainMo
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.MMRule = op.MMRule
+	op.PolicyStore = o.PolicyStore
+	op.MMRule = o.MMRule
 	return op
 }
 
@@ -11872,8 +11872,8 @@ func (o *AddMainModeRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMainM
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -12036,8 +12036,8 @@ func (o *SetMainModeRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMainMo
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.MMRule = op.MMRule
+	op.PolicyStore = o.PolicyStore
+	op.MMRule = o.MMRule
 	return op
 }
 
@@ -12076,8 +12076,8 @@ func (o *SetMainModeRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMainM
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -12213,8 +12213,8 @@ func (o *DeleteMainModeRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.RuleID = op.RuleID
+	op.PolicyStore = o.PolicyStore
+	op.RuleID = o.RuleID
 	return op
 }
 
@@ -12250,7 +12250,7 @@ func (o *DeleteMainModeRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12369,7 +12369,7 @@ func (o *DeleteAllMainModeRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_De
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -12404,7 +12404,7 @@ func (o *DeleteAllMainModeRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_D
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -12636,10 +12636,10 @@ func (o *EnumMainModeRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMai
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -12683,9 +12683,9 @@ func (o *EnumMainModeRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMa
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.MMRules = op.MMRules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.MMRules = o.MMRules
+	op.Return = o.Return
 	return op
 }
 
@@ -12915,9 +12915,9 @@ func (o *QueryFirewallRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryF
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -12958,9 +12958,9 @@ func (o *QueryFirewallRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -13184,9 +13184,9 @@ func (o *QueryConnectionSecurityRules210Request) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -13225,9 +13225,9 @@ func (o *QueryConnectionSecurityRules210Response) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -13457,9 +13457,9 @@ func (o *QueryMainModeRulesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryM
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -13502,9 +13502,9 @@ func (o *QueryMainModeRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.MMRules = op.MMRules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.MMRules = o.MMRules
+	op.Return = o.Return
 	return op
 }
 
@@ -13753,10 +13753,10 @@ func (o *QueryAuthenticationSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -13800,9 +13800,9 @@ func (o *QueryAuthenticationSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.SetsLength = op.SetsLength
-	o.AuthSets = op.AuthSets
-	o.Return = op.Return
+	op.SetsLength = o.SetsLength
+	op.AuthSets = o.AuthSets
+	op.Return = o.Return
 	return op
 }
 
@@ -14049,10 +14049,10 @@ func (o *QueryCryptoSetsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryCryp
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -14096,9 +14096,9 @@ func (o *QueryCryptoSetsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryCry
 	if o == nil {
 		return op
 	}
-	o.SetsLength = op.SetsLength
-	o.CryptoSets = op.CryptoSets
-	o.Return = op.Return
+	op.SetsLength = o.SetsLength
+	op.CryptoSets = o.CryptoSets
+	op.Return = o.Return
 	return op
 }
 
@@ -14313,7 +14313,7 @@ func (o *EnumNetworksRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumNetworks
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -14354,9 +14354,9 @@ func (o *EnumNetworksResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumNetwork
 	if o == nil {
 		return op
 	}
-	o.NetworksLength = op.NetworksLength
-	o.Networks = op.Networks
-	o.Return = op.Return
+	op.NetworksLength = o.NetworksLength
+	op.Networks = o.Networks
+	op.Return = o.Return
 	return op
 }
 
@@ -14571,7 +14571,7 @@ func (o *EnumAdaptersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumAdapters
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
+	op.PolicyStore = o.PolicyStore
 	return op
 }
 
@@ -14612,9 +14612,9 @@ func (o *EnumAdaptersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumAdapter
 	if o == nil {
 		return op
 	}
-	o.AdaptersLength = op.AdaptersLength
-	o.Adapters = op.Adapters
-	o.Return = op.Return
+	op.AdaptersLength = o.AdaptersLength
+	op.Adapters = o.Adapters
+	op.Return = o.Return
 	return op
 }
 
@@ -15043,13 +15043,13 @@ func (o *GetGlobalConfig210Request) xxx_ToOp(ctx context.Context, op *xxx_GetGlo
 	if o == nil {
 		return op
 	}
-	o.BinaryVersion = op.BinaryVersion
-	o.StoreType = op.StoreType
-	o.ConfigID = op.ConfigID
-	o.Flags = op.Flags
-	o.Buffer = op.Buffer
-	o.DataLength = op.DataLength
-	o.TransmittedLength = op.TransmittedLength
+	op.BinaryVersion = o.BinaryVersion
+	op.StoreType = o.StoreType
+	op.ConfigID = o.ConfigID
+	op.Flags = o.Flags
+	op.Buffer = o.Buffer
+	op.DataLength = o.DataLength
+	op.TransmittedLength = o.TransmittedLength
 	return op
 }
 
@@ -15105,11 +15105,11 @@ func (o *GetGlobalConfig210Response) xxx_ToOp(ctx context.Context, op *xxx_GetGl
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.TransmittedLength = op.TransmittedLength
-	o.RequiredLength = op.RequiredLength
-	o.Origin = op.Origin
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.TransmittedLength = o.TransmittedLength
+	op.RequiredLength = o.RequiredLength
+	op.Origin = o.Origin
+	op.Return = o.Return
 	return op
 }
 
@@ -15548,13 +15548,13 @@ func (o *GetConfig210Request) xxx_ToOp(ctx context.Context, op *xxx_GetConfig210
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.ConfigID = op.ConfigID
-	o.Profile = op.Profile
-	o.Flags = op.Flags
-	o.Buffer = op.Buffer
-	o.DataLength = op.DataLength
-	o.TransmittedLength = op.TransmittedLength
+	op.PolicyStore = o.PolicyStore
+	op.ConfigID = o.ConfigID
+	op.Profile = o.Profile
+	op.Flags = o.Flags
+	op.Buffer = o.Buffer
+	op.DataLength = o.DataLength
+	op.TransmittedLength = o.TransmittedLength
 	return op
 }
 
@@ -15610,11 +15610,11 @@ func (o *GetConfig210Response) xxx_ToOp(ctx context.Context, op *xxx_GetConfig21
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.TransmittedLength = op.TransmittedLength
-	o.RequiredLength = op.RequiredLength
-	o.Origin = op.Origin
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.TransmittedLength = o.TransmittedLength
+	op.RequiredLength = o.RequiredLength
+	op.Origin = o.Origin
+	op.Return = o.Return
 	return op
 }
 
@@ -15785,8 +15785,8 @@ func (o *AddFirewallRule210Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -15825,8 +15825,8 @@ func (o *AddFirewallRule210Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -15994,8 +15994,8 @@ func (o *SetFirewallRule210Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -16034,8 +16034,8 @@ func (o *SetFirewallRule210Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -16271,10 +16271,10 @@ func (o *EnumFirewallRules210Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -16318,9 +16318,9 @@ func (o *EnumFirewallRules210Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -16489,8 +16489,8 @@ func (o *AddConnectionSecurityRule210Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -16529,8 +16529,8 @@ func (o *AddConnectionSecurityRule210Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -16698,8 +16698,8 @@ func (o *SetConnectionSecurityRule210Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -16738,8 +16738,8 @@ func (o *SetConnectionSecurityRule210Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -16975,10 +16975,10 @@ func (o *EnumConnectionSecurityRules210Request) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -17022,9 +17022,9 @@ func (o *EnumConnectionSecurityRules210Response) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -17190,8 +17190,8 @@ func (o *AddAuthenticationSet210Request) xxx_ToOp(ctx context.Context, op *xxx_A
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Auth = op.Auth
+	op.PolicyStore = o.PolicyStore
+	op.Auth = o.Auth
 	return op
 }
 
@@ -17230,8 +17230,8 @@ func (o *AddAuthenticationSet210Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -17396,8 +17396,8 @@ func (o *SetAuthenticationSet210Request) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Auth = op.Auth
+	op.PolicyStore = o.PolicyStore
+	op.Auth = o.Auth
 	return op
 }
 
@@ -17436,8 +17436,8 @@ func (o *SetAuthenticationSet210Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -17674,10 +17674,10 @@ func (o *EnumAuthenticationSets210Request) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.FilteredByStatus = op.FilteredByStatus
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.FilteredByStatus = o.FilteredByStatus
+	op.Flags = o.Flags
 	return op
 }
 
@@ -17721,9 +17721,9 @@ func (o *EnumAuthenticationSets210Response) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.AuthSetsLength = op.AuthSetsLength
-	o.Auth = op.Auth
-	o.Return = op.Return
+	op.AuthSetsLength = o.AuthSetsLength
+	op.Auth = o.Auth
+	op.Return = o.Return
 	return op
 }
 
@@ -17887,8 +17887,8 @@ func (o *AddCryptoSet210Request) xxx_ToOp(ctx context.Context, op *xxx_AddCrypto
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Crypto = op.Crypto
+	op.PolicyStore = o.PolicyStore
+	op.Crypto = o.Crypto
 	return op
 }
 
@@ -17927,8 +17927,8 @@ func (o *AddCryptoSet210Response) xxx_ToOp(ctx context.Context, op *xxx_AddCrypt
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -18091,8 +18091,8 @@ func (o *SetCryptoSet210Request) xxx_ToOp(ctx context.Context, op *xxx_SetCrypto
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Crypto = op.Crypto
+	op.PolicyStore = o.PolicyStore
+	op.Crypto = o.Crypto
 	return op
 }
 
@@ -18131,8 +18131,8 @@ func (o *SetCryptoSet210Response) xxx_ToOp(ctx context.Context, op *xxx_SetCrypt
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -18369,10 +18369,10 @@ func (o *EnumCryptoSets210Request) xxx_ToOp(ctx context.Context, op *xxx_EnumCry
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.FilteredByStatus = op.FilteredByStatus
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.FilteredByStatus = o.FilteredByStatus
+	op.Flags = o.Flags
 	return op
 }
 
@@ -18416,9 +18416,9 @@ func (o *EnumCryptoSets210Response) xxx_ToOp(ctx context.Context, op *xxx_EnumCr
 	if o == nil {
 		return op
 	}
-	o.SetsLength = op.SetsLength
-	o.CryptoSets = op.CryptoSets
-	o.Return = op.Return
+	op.SetsLength = o.SetsLength
+	op.CryptoSets = o.CryptoSets
+	op.Return = o.Return
 	return op
 }
 
@@ -18587,8 +18587,8 @@ func (o *AddConnectionSecurityRule220Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -18627,8 +18627,8 @@ func (o *AddConnectionSecurityRule220Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -18796,8 +18796,8 @@ func (o *SetConnectionSecurityRule220Request) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -18836,8 +18836,8 @@ func (o *SetConnectionSecurityRule220Response) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -19073,10 +19073,10 @@ func (o *EnumConnectionSecurityRules220Request) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -19120,9 +19120,9 @@ func (o *EnumConnectionSecurityRules220Response) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -19352,9 +19352,9 @@ func (o *QueryConnectionSecurityRules220Request) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -19397,9 +19397,9 @@ func (o *QueryConnectionSecurityRules220Response) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -19565,8 +19565,8 @@ func (o *AddAuthenticationSet220Request) xxx_ToOp(ctx context.Context, op *xxx_A
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Auth = op.Auth
+	op.PolicyStore = o.PolicyStore
+	op.Auth = o.Auth
 	return op
 }
 
@@ -19605,8 +19605,8 @@ func (o *AddAuthenticationSet220Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -19771,8 +19771,8 @@ func (o *SetAuthenticationSet220Request) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Auth = op.Auth
+	op.PolicyStore = o.PolicyStore
+	op.Auth = o.Auth
 	return op
 }
 
@@ -19811,8 +19811,8 @@ func (o *SetAuthenticationSet220Response) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -20046,10 +20046,10 @@ func (o *EnumAuthenticationSets220Request) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.FilteredByStatus = op.FilteredByStatus
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.FilteredByStatus = o.FilteredByStatus
+	op.Flags = o.Flags
 	return op
 }
 
@@ -20094,9 +20094,9 @@ func (o *EnumAuthenticationSets220Response) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.AuthSetsLength = op.AuthSetsLength
-	o.Auth = op.Auth
-	o.Return = op.Return
+	op.AuthSetsLength = o.AuthSetsLength
+	op.Auth = o.Auth
+	op.Return = o.Return
 	return op
 }
 
@@ -20343,10 +20343,10 @@ func (o *QueryAuthenticationSets220Request) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.IPsecPhase = op.IPsecPhase
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.IPsecPhase = o.IPsecPhase
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -20390,9 +20390,9 @@ func (o *QueryAuthenticationSets220Response) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.SetsLength = op.SetsLength
-	o.AuthSets = op.AuthSets
-	o.Return = op.Return
+	op.SetsLength = o.SetsLength
+	op.AuthSets = o.AuthSets
+	op.Return = o.Return
 	return op
 }
 
@@ -20561,8 +20561,8 @@ func (o *AddFirewallRule220Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -20601,8 +20601,8 @@ func (o *AddFirewallRule220Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -20770,8 +20770,8 @@ func (o *SetFirewallRule220Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -20810,8 +20810,8 @@ func (o *SetFirewallRule220Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -21047,10 +21047,10 @@ func (o *EnumFirewallRules220Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -21094,9 +21094,9 @@ func (o *EnumFirewallRules220Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -21326,9 +21326,9 @@ func (o *QueryFirewallRules220Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -21371,9 +21371,9 @@ func (o *QueryFirewallRules220Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -21542,8 +21542,8 @@ func (o *AddFirewallRule224Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -21582,8 +21582,8 @@ func (o *AddFirewallRule224Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -21751,8 +21751,8 @@ func (o *SetFirewallRule224Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -21791,8 +21791,8 @@ func (o *SetFirewallRule224Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -22029,10 +22029,10 @@ func (o *EnumFirewallRules224Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -22076,9 +22076,9 @@ func (o *EnumFirewallRules224Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -22312,9 +22312,9 @@ func (o *QueryFirewallRules224Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -22357,9 +22357,9 @@ func (o *QueryFirewallRules224Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -22529,8 +22529,8 @@ func (o *AddFirewallRule225Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -22569,8 +22569,8 @@ func (o *AddFirewallRule225Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -22739,8 +22739,8 @@ func (o *SetFirewallRule225Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -22779,8 +22779,8 @@ func (o *SetFirewallRule225Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -23017,10 +23017,10 @@ func (o *EnumFirewallRules225Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -23064,9 +23064,9 @@ func (o *EnumFirewallRules225Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -23300,9 +23300,9 @@ func (o *QueryFirewallRules225Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -23345,9 +23345,9 @@ func (o *QueryFirewallRules225Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -23516,8 +23516,8 @@ func (o *AddFirewallRule226Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -23556,8 +23556,8 @@ func (o *AddFirewallRule226Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -23725,8 +23725,8 @@ func (o *SetFirewallRule226Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -23765,8 +23765,8 @@ func (o *SetFirewallRule226Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -24003,10 +24003,10 @@ func (o *EnumFirewallRules226Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -24050,9 +24050,9 @@ func (o *EnumFirewallRules226Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -24286,9 +24286,9 @@ func (o *QueryFirewallRules226Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -24331,9 +24331,9 @@ func (o *QueryFirewallRules226Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -24503,8 +24503,8 @@ func (o *AddFirewallRule227Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -24543,8 +24543,8 @@ func (o *AddFirewallRule227Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -24713,8 +24713,8 @@ func (o *SetFirewallRule227Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -24753,8 +24753,8 @@ func (o *SetFirewallRule227Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -24991,10 +24991,10 @@ func (o *EnumFirewallRules227Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -25038,9 +25038,9 @@ func (o *EnumFirewallRules227Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -25274,9 +25274,9 @@ func (o *QueryFirewallRules227Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -25319,9 +25319,9 @@ func (o *QueryFirewallRules227Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -25491,8 +25491,8 @@ func (o *AddFirewallRule231Request) xxx_ToOp(ctx context.Context, op *xxx_AddFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -25531,8 +25531,8 @@ func (o *AddFirewallRule231Response) xxx_ToOp(ctx context.Context, op *xxx_AddFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -25701,8 +25701,8 @@ func (o *SetFirewallRule231Request) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Rule = op.Rule
+	op.PolicyStore = o.PolicyStore
+	op.Rule = o.Rule
 	return op
 }
 
@@ -25741,8 +25741,8 @@ func (o *SetFirewallRule231Response) xxx_ToOp(ctx context.Context, op *xxx_SetFi
 	if o == nil {
 		return op
 	}
-	o.Status = op.Status
-	o.Return = op.Return
+	op.Status = o.Status
+	op.Return = o.Return
 	return op
 }
 
@@ -25979,10 +25979,10 @@ func (o *EnumFirewallRules231Request) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.FilteredByStatus = op.FilteredByStatus
-	o.ProfileFilter = op.ProfileFilter
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.FilteredByStatus = o.FilteredByStatus
+	op.ProfileFilter = o.ProfileFilter
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26026,9 +26026,9 @@ func (o *EnumFirewallRules231Response) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 
@@ -26262,9 +26262,9 @@ func (o *QueryFirewallRules231Request) xxx_ToOp(ctx context.Context, op *xxx_Que
 	if o == nil {
 		return op
 	}
-	o.PolicyStore = op.PolicyStore
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.PolicyStore = o.PolicyStore
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26307,9 +26307,9 @@ func (o *QueryFirewallRules231Response) xxx_ToOp(ctx context.Context, op *xxx_Qu
 	if o == nil {
 		return op
 	}
-	o.RulesLength = op.RulesLength
-	o.Rules = op.Rules
-	o.Return = op.Return
+	op.RulesLength = o.RulesLength
+	op.Rules = o.Rules
+	op.Return = o.Return
 	return op
 }
 

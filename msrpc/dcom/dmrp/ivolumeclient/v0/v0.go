@@ -1882,7 +1882,7 @@ func (o *EnumDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumDisksOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1923,10 +1923,10 @@ func (o *EnumDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumDisksOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskCount = op.DiskCount
-	o.DiskList = op.DiskList
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskCount = o.DiskCount
+	op.DiskList = o.DiskList
+	op.Return = o.Return
 	return op
 }
 
@@ -2206,9 +2206,9 @@ func (o *EnumDiskRegionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumDiskR
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.RegionsLength = op.RegionsLength
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.RegionsLength = o.RegionsLength
 	return op
 }
 
@@ -2251,10 +2251,10 @@ func (o *EnumDiskRegionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumDisk
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RegionsLength = op.RegionsLength
-	o.RegionList = op.RegionList
-	o.Return = op.Return
+	op.That = o.That
+	op.RegionsLength = o.RegionsLength
+	op.RegionList = o.RegionList
+	op.Return = o.Return
 	return op
 }
 
@@ -2454,8 +2454,8 @@ func (o *CreatePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionSpec = op.PartitionSpec
+	op.This = o.This
+	op.PartitionSpec = o.PartitionSpec
 	return op
 }
 
@@ -2494,9 +2494,9 @@ func (o *CreatePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -2768,12 +2768,12 @@ func (o *CreatePartitionAssignAndFormatRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionSpec = op.PartitionSpec
-	o.Letter = op.Letter
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.FSSpec = op.FSSpec
-	o.QuickFormat = op.QuickFormat
+	op.This = o.This
+	op.PartitionSpec = o.PartitionSpec
+	op.Letter = o.Letter
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.FSSpec = o.FSSpec
+	op.QuickFormat = o.QuickFormat
 	return op
 }
 
@@ -2816,9 +2816,9 @@ func (o *CreatePartitionAssignAndFormatResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -3174,15 +3174,15 @@ func (o *CreatePartitionAssignAndFormatExRequest) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionSpec = op.PartitionSpec
-	o.Letter = op.Letter
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.AccessPathLength = op.AccessPathLength
-	o.AccessPath = op.AccessPath
-	o.FSSpec = op.FSSpec
-	o.QuickFormat = op.QuickFormat
-	o.Flags = op.Flags
+	op.This = o.This
+	op.PartitionSpec = o.PartitionSpec
+	op.Letter = o.Letter
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.AccessPathLength = o.AccessPathLength
+	op.AccessPath = o.AccessPath
+	op.FSSpec = o.FSSpec
+	op.QuickFormat = o.QuickFormat
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3228,9 +3228,9 @@ func (o *CreatePartitionAssignAndFormatExResponse) xxx_ToOp(ctx context.Context,
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -3443,9 +3443,9 @@ func (o *DeletePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePar
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PartitionSpec = op.PartitionSpec
-	o.Force = op.Force
+	op.This = o.This
+	op.PartitionSpec = o.PartitionSpec
+	op.Force = o.Force
 	return op
 }
 
@@ -3485,9 +3485,9 @@ func (o *DeletePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePa
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -3693,9 +3693,9 @@ func (o *WriteSignatureRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteSigna
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -3737,9 +3737,9 @@ func (o *WriteSignatureResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteSign
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -3945,9 +3945,9 @@ func (o *MarkActivePartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_MarkA
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.RegionID = op.RegionID
-	o.RegionLastKnownState = op.RegionLastKnownState
+	op.This = o.This
+	op.RegionID = o.RegionID
+	op.RegionLastKnownState = o.RegionLastKnownState
 	return op
 }
 
@@ -3987,9 +3987,9 @@ func (o *MarkActivePartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_Mark
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -4193,9 +4193,9 @@ func (o *EjectRequest) xxx_ToOp(ctx context.Context, op *xxx_EjectOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -4235,9 +4235,9 @@ func (o *EjectResponse) xxx_ToOp(ctx context.Context, op *xxx_EjectOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -4500,8 +4500,8 @@ func (o *FTEnumVolumesRequest) xxx_ToOp(ctx context.Context, op *xxx_FTEnumVolum
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeCount = op.VolumeCount
+	op.This = o.This
+	op.VolumeCount = o.VolumeCount
 	return op
 }
 
@@ -4541,10 +4541,10 @@ func (o *FTEnumVolumesResponse) xxx_ToOp(ctx context.Context, op *xxx_FTEnumVolu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VolumeCount = op.VolumeCount
-	o.VolumeList = op.VolumeList
-	o.Return = op.Return
+	op.That = o.That
+	op.VolumeCount = o.VolumeCount
+	op.VolumeList = o.VolumeList
+	op.Return = o.Return
 	return op
 }
 
@@ -4815,9 +4815,9 @@ func (o *FTEnumLogicalDiskMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.MemberCount = op.MemberCount
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.MemberCount = o.MemberCount
 	return op
 }
 
@@ -4858,10 +4858,10 @@ func (o *FTEnumLogicalDiskMembersResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MemberCount = op.MemberCount
-	o.MemberList = op.MemberList
-	o.Return = op.Return
+	op.That = o.That
+	op.MemberCount = o.MemberCount
+	op.MemberList = o.MemberList
+	op.Return = o.Return
 	return op
 }
 
@@ -5080,10 +5080,10 @@ func (o *FTDeleteVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_FTDeleteVo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.Force = op.Force
-	o.VolumeLastKnownState = op.VolumeLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.Force = o.Force
+	op.VolumeLastKnownState = o.VolumeLastKnownState
 	return op
 }
 
@@ -5124,9 +5124,9 @@ func (o *FTDeleteVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_FTDeleteV
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -5344,10 +5344,10 @@ func (o *FTBreakMirrorRequest) xxx_ToOp(ctx context.Context, op *xxx_FTBreakMirr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.Force = op.Force
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.Force = o.Force
 	return op
 }
 
@@ -5388,9 +5388,9 @@ func (o *FTBreakMirrorResponse) xxx_ToOp(ctx context.Context, op *xxx_FTBreakMir
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -5594,9 +5594,9 @@ func (o *FTResyncMirrorRequest) xxx_ToOp(ctx context.Context, op *xxx_FTResyncMi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
 	return op
 }
 
@@ -5636,9 +5636,9 @@ func (o *FTResyncMirrorResponse) xxx_ToOp(ctx context.Context, op *xxx_FTResyncM
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -5844,9 +5844,9 @@ func (o *FTRegenerateParityStripeRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
 	return op
 }
 
@@ -5886,9 +5886,9 @@ func (o *FTRegenerateParityStripeResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -6164,14 +6164,14 @@ func (o *FTReplaceMirrorPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.OldMemberID = op.OldMemberID
-	o.OldMemberLastKnownState = op.OldMemberLastKnownState
-	o.NewRegionID = op.NewRegionID
-	o.NewRegionLastKnownState = op.NewRegionLastKnownState
-	o.Flags = op.Flags
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.OldMemberID = o.OldMemberID
+	op.OldMemberLastKnownState = o.OldMemberLastKnownState
+	op.NewRegionID = o.NewRegionID
+	op.NewRegionLastKnownState = o.NewRegionLastKnownState
+	op.Flags = o.Flags
 	return op
 }
 
@@ -6216,9 +6216,9 @@ func (o *FTReplaceMirrorPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -6494,14 +6494,14 @@ func (o *FTReplaceParityStripePartitionRequest) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.OldMemberID = op.OldMemberID
-	o.OldMemberLastKnownState = op.OldMemberLastKnownState
-	o.NewRegionID = op.NewRegionID
-	o.NewRegionLastKnownState = op.NewRegionLastKnownState
-	o.Flags = op.Flags
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.OldMemberID = o.OldMemberID
+	op.OldMemberLastKnownState = o.OldMemberLastKnownState
+	op.NewRegionID = o.NewRegionID
+	op.NewRegionLastKnownState = o.NewRegionLastKnownState
+	op.Flags = o.Flags
 	return op
 }
 
@@ -6546,9 +6546,9 @@ func (o *FTReplaceParityStripePartitionResponse) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -6811,8 +6811,8 @@ func (o *EnumDriveLettersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumDriv
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DriveLetterCount = op.DriveLetterCount
+	op.This = o.This
+	op.DriveLetterCount = o.DriveLetterCount
 	return op
 }
 
@@ -6852,10 +6852,10 @@ func (o *EnumDriveLettersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumDri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DriveLetterCount = op.DriveLetterCount
-	o.DriveLetterList = op.DriveLetterList
-	o.Return = op.Return
+	op.That = o.That
+	op.DriveLetterCount = o.DriveLetterCount
+	op.DriveLetterList = o.DriveLetterList
+	op.Return = o.Return
 	return op
 }
 
@@ -7104,12 +7104,12 @@ func (o *AssignDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_AssignD
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Letter = op.Letter
-	o.ForceOption = op.ForceOption
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.StorageID = op.StorageID
-	o.StorageLastKnownState = op.StorageLastKnownState
+	op.This = o.This
+	op.Letter = o.Letter
+	op.ForceOption = o.ForceOption
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.StorageID = o.StorageID
+	op.StorageLastKnownState = o.StorageLastKnownState
 	return op
 }
 
@@ -7152,9 +7152,9 @@ func (o *AssignDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_Assign
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -7400,12 +7400,12 @@ func (o *FreeDriveLetterRequest) xxx_ToOp(ctx context.Context, op *xxx_FreeDrive
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Letter = op.Letter
-	o.ForceOption = op.ForceOption
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.StorageID = op.StorageID
-	o.StorageLastKnownState = op.StorageLastKnownState
+	op.This = o.This
+	op.Letter = o.Letter
+	op.ForceOption = o.ForceOption
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.StorageID = o.StorageID
+	op.StorageLastKnownState = o.StorageLastKnownState
 	return op
 }
 
@@ -7448,9 +7448,9 @@ func (o *FreeDriveLetterResponse) xxx_ToOp(ctx context.Context, op *xxx_FreeDriv
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -7702,7 +7702,7 @@ func (o *EnumLocalFileSystemsRequest) xxx_ToOp(ctx context.Context, op *xxx_Enum
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -7741,10 +7741,10 @@ func (o *EnumLocalFileSystemsResponse) xxx_ToOp(ctx context.Context, op *xxx_Enu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemCount = op.FileSystemCount
-	o.FileSystemList = op.FileSystemList
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemCount = o.FileSystemCount
+	op.FileSystemList = o.FileSystemList
+	op.Return = o.Return
 	return op
 }
 
@@ -7997,7 +7997,7 @@ func (o *GetInstalledFileSystemsRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -8036,10 +8036,10 @@ func (o *GetInstalledFileSystemsResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FSCount = op.FSCount
-	o.FSList = op.FSList
-	o.Return = op.Return
+	op.That = o.That
+	op.FSCount = o.FSCount
+	op.FSList = o.FSList
+	op.Return = o.Return
 	return op
 }
 
@@ -8301,12 +8301,12 @@ func (o *FormatRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.StorageID = op.StorageID
-	o.FSSpec = op.FSSpec
-	o.QuickFormat = op.QuickFormat
-	o.Force = op.Force
-	o.StorageLastKnownState = op.StorageLastKnownState
+	op.This = o.This
+	op.StorageID = o.StorageID
+	op.FSSpec = o.FSSpec
+	op.QuickFormat = o.QuickFormat
+	op.Force = o.Force
+	op.StorageLastKnownState = o.StorageLastKnownState
 	return op
 }
 
@@ -8349,9 +8349,9 @@ func (o *FormatResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -8614,8 +8614,8 @@ func (o *EnumVolumesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumVolumesOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeCount = op.VolumeCount
+	op.This = o.This
+	op.VolumeCount = o.VolumeCount
 	return op
 }
 
@@ -8655,10 +8655,10 @@ func (o *EnumVolumesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumVolumesO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VolumeCount = op.VolumeCount
-	o.LDMVolumeList = op.LDMVolumeList
-	o.Return = op.Return
+	op.That = o.That
+	op.VolumeCount = o.VolumeCount
+	op.LDMVolumeList = o.LDMVolumeList
+	op.Return = o.Return
 	return op
 }
 
@@ -8929,9 +8929,9 @@ func (o *EnumVolumeMembersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumVol
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.MemberCount = op.MemberCount
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.MemberCount = o.MemberCount
 	return op
 }
 
@@ -8972,10 +8972,10 @@ func (o *EnumVolumeMembersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumVo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MemberCount = op.MemberCount
-	o.MemberList = op.MemberList
-	o.Return = op.Return
+	op.That = o.That
+	op.MemberCount = o.MemberCount
+	op.MemberList = o.MemberList
+	op.Return = o.Return
 	return op
 }
 
@@ -9248,10 +9248,10 @@ func (o *CreateVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVolume
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeSpec = op.VolumeSpec
-	o.DiskCount = op.DiskCount
-	o.DiskList = op.DiskList
+	op.This = o.This
+	op.VolumeSpec = o.VolumeSpec
+	op.DiskCount = o.DiskCount
+	op.DiskList = o.DiskList
 	return op
 }
 
@@ -9292,9 +9292,9 @@ func (o *CreateVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateVolum
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -9639,14 +9639,14 @@ func (o *CreateVolumeAssignAndFormatRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeSpec = op.VolumeSpec
-	o.DiskCount = op.DiskCount
-	o.DiskList = op.DiskList
-	o.Letter = op.Letter
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.FSSpec = op.FSSpec
-	o.QuickFormat = op.QuickFormat
+	op.This = o.This
+	op.VolumeSpec = o.VolumeSpec
+	op.DiskCount = o.DiskCount
+	op.DiskList = o.DiskList
+	op.Letter = o.Letter
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.FSSpec = o.FSSpec
+	op.QuickFormat = o.QuickFormat
 	return op
 }
 
@@ -9691,9 +9691,9 @@ func (o *CreateVolumeAssignAndFormatResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -10122,17 +10122,17 @@ func (o *CreateVolumeAssignAndFormatExRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeSpec = op.VolumeSpec
-	o.DiskCount = op.DiskCount
-	o.DiskList = op.DiskList
-	o.Letter = op.Letter
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.AccessPathLength = op.AccessPathLength
-	o.AccessPath = op.AccessPath
-	o.FSSpec = op.FSSpec
-	o.QuickFormat = op.QuickFormat
-	o.Flags = op.Flags
+	op.This = o.This
+	op.VolumeSpec = o.VolumeSpec
+	op.DiskCount = o.DiskCount
+	op.DiskList = o.DiskList
+	op.Letter = o.Letter
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.AccessPathLength = o.AccessPathLength
+	op.AccessPath = o.AccessPath
+	op.FSSpec = o.FSSpec
+	op.QuickFormat = o.QuickFormat
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10180,9 +10180,9 @@ func (o *CreateVolumeAssignAndFormatExResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -10445,8 +10445,8 @@ func (o *GetVolumeMountNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVol
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
+	op.This = o.This
+	op.VolumeID = o.VolumeID
 	return op
 }
 
@@ -10486,10 +10486,10 @@ func (o *GetVolumeMountNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVo
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MountNameLength = op.MountNameLength
-	o.MountName = op.MountName
-	o.Return = op.Return
+	op.That = o.That
+	op.MountNameLength = o.MountNameLength
+	op.MountName = o.MountName
+	op.Return = o.Return
 	return op
 }
 
@@ -10790,12 +10790,12 @@ func (o *GrowVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_GrowVolumeOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeSpec = op.VolumeSpec
-	o.DiskCount = op.DiskCount
-	o.DiskList = op.DiskList
-	o.Force = op.Force
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeSpec = o.VolumeSpec
+	op.DiskCount = o.DiskCount
+	op.DiskList = o.DiskList
+	op.Force = o.Force
 	return op
 }
 
@@ -10838,9 +10838,9 @@ func (o *GrowVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_GrowVolumeOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -11058,10 +11058,10 @@ func (o *DeleteVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteVolume
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.Force = op.Force
-	o.VolumeLastKnownState = op.VolumeLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.Force = o.Force
+	op.VolumeLastKnownState = o.VolumeLastKnownState
 	return op
 }
 
@@ -11102,9 +11102,9 @@ func (o *DeleteVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteVolum
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -11370,11 +11370,11 @@ func (o *AddMirrorRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMirrorOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.DiskSpec = op.DiskSpec
-	o.DiskNumber = op.DiskNumber
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.DiskSpec = o.DiskSpec
+	op.DiskNumber = o.DiskNumber
 	return op
 }
 
@@ -11418,11 +11418,11 @@ func (o *AddMirrorResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMirrorOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskNumber = op.DiskNumber
-	o.PartitionNumber = op.PartitionNumber
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskNumber = o.DiskNumber
+	op.PartitionNumber = o.PartitionNumber
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -11656,11 +11656,11 @@ func (o *RemoveMirrorRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveMirror
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -11702,9 +11702,9 @@ func (o *RemoveMirrorResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveMirro
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -11986,14 +11986,14 @@ func (o *SplitMirrorRequest) xxx_ToOp(ctx context.Context, op *xxx_SplitMirrorOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
-	o.Letter = op.Letter
-	o.LetterLastKnownState = op.LetterLastKnownState
-	o.TaskInfo = op.TaskInfo
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
+	op.Letter = o.Letter
+	op.LetterLastKnownState = o.LetterLastKnownState
+	op.TaskInfo = o.TaskInfo
 	return op
 }
 
@@ -12038,9 +12038,9 @@ func (o *SplitMirrorResponse) xxx_ToOp(ctx context.Context, op *xxx_SplitMirrorO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -12246,9 +12246,9 @@ func (o *InitializeDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_Initialize
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -12290,9 +12290,9 @@ func (o *InitializeDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_Initializ
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -12496,9 +12496,9 @@ func (o *UninitializeDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_Uninitia
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -12538,9 +12538,9 @@ func (o *UninitializeDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_Uniniti
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -12730,8 +12730,8 @@ func (o *ReConnectDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_ReConnectDi
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -12770,9 +12770,9 @@ func (o *ReConnectDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_ReConnectD
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -13012,9 +13012,9 @@ func (o *ImportDiskGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportDis
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskGroupIDLength = op.DiskGroupIDLength
-	o.DiskGroupID = op.DiskGroupID
+	op.This = o.This
+	op.DiskGroupIDLength = o.DiskGroupIDLength
+	op.DiskGroupID = o.DiskGroupID
 	return op
 }
 
@@ -13054,9 +13054,9 @@ func (o *ImportDiskGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportDi
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -13582,12 +13582,12 @@ func (o *DiskMergeQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_DiskMergeQ
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskGroupIDLength = op.DiskGroupIDLength
-	o.DiskGroupID = op.DiskGroupID
-	o.DisksLength = op.DisksLength
-	o.DiskList = op.DiskList
-	o.Flags = op.Flags
+	op.This = o.This
+	op.DiskGroupIDLength = o.DiskGroupIDLength
+	op.DiskGroupID = o.DiskGroupID
+	op.DisksLength = o.DisksLength
+	op.DiskList = o.DiskList
+	op.Flags = o.Flags
 	return op
 }
 
@@ -13636,15 +13636,15 @@ func (o *DiskMergeQueryResponse) xxx_ToOp(ctx context.Context, op *xxx_DiskMerge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MergeConfigTID = op.MergeConfigTID
-	o.RIDsLength = op.RIDsLength
-	o.MergeDMRIDs = op.MergeDMRIDs
-	o.ObjectsLength = op.ObjectsLength
-	o.MergeObjectInfo = op.MergeObjectInfo
-	o.Flags = op.Flags
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.MergeConfigTID = o.MergeConfigTID
+	op.RIDsLength = o.RIDsLength
+	op.MergeDMRIDs = o.MergeDMRIDs
+	op.ObjectsLength = o.ObjectsLength
+	op.MergeObjectInfo = o.MergeObjectInfo
+	op.Flags = o.Flags
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -14032,14 +14032,14 @@ func (o *DiskMergeRequest) xxx_ToOp(ctx context.Context, op *xxx_DiskMergeOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskGroupIDLength = op.DiskGroupIDLength
-	o.DiskGroupID = op.DiskGroupID
-	o.DisksLength = op.DisksLength
-	o.DiskList = op.DiskList
-	o.MergeConfigTID = op.MergeConfigTID
-	o.RIDsLength = op.RIDsLength
-	o.MergeDMRIDs = op.MergeDMRIDs
+	op.This = o.This
+	op.DiskGroupIDLength = o.DiskGroupIDLength
+	op.DiskGroupID = o.DiskGroupID
+	op.DisksLength = o.DisksLength
+	op.DiskList = o.DiskList
+	op.MergeConfigTID = o.MergeConfigTID
+	op.RIDsLength = o.RIDsLength
+	op.MergeDMRIDs = o.MergeDMRIDs
 	return op
 }
 
@@ -14084,9 +14084,9 @@ func (o *DiskMergeResponse) xxx_ToOp(ctx context.Context, op *xxx_DiskMergeOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -14290,9 +14290,9 @@ func (o *ReAttachDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_ReAttachDisk
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -14332,9 +14332,9 @@ func (o *ReAttachDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_ReAttachDis
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -14568,11 +14568,11 @@ func (o *ReplaceRAID5ColumnRequest) xxx_ToOp(ctx context.Context, op *xxx_Replac
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
-	o.NewDiskID = op.NewDiskID
-	o.DiskLastKnownState = op.DiskLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
+	op.NewDiskID = o.NewDiskID
+	op.DiskLastKnownState = o.DiskLastKnownState
 	return op
 }
 
@@ -14614,9 +14614,9 @@ func (o *ReplaceRAID5ColumnResponse) xxx_ToOp(ctx context.Context, op *xxx_Repla
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -14820,9 +14820,9 @@ func (o *RestartVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_RestartVolu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.VolumeLastKnownState = op.VolumeLastKnownState
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.VolumeLastKnownState = o.VolumeLastKnownState
 	return op
 }
 
@@ -14862,9 +14862,9 @@ func (o *RestartVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_RestartVol
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -15492,9 +15492,9 @@ func (o *GetEncapsulateDiskInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskCount = op.DiskCount
-	o.DiskSpecList = op.DiskSpecList
+	op.This = o.This
+	op.DiskCount = o.DiskCount
+	op.DiskSpecList = o.DiskSpecList
 	return op
 }
 
@@ -15632,17 +15632,17 @@ func (o *GetEncapsulateDiskInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EncapInfoFlags = op.EncapInfoFlags
-	o.AffectedDiskCount = op.AffectedDiskCount
-	o.AffectedDiskList = op.AffectedDiskList
-	o.AffectedDiskFlags = op.AffectedDiskFlags
-	o.AffectedVolumeCount = op.AffectedVolumeCount
-	o.AffectedVolumeList = op.AffectedVolumeList
-	o.AffectedRegionCount = op.AffectedRegionCount
-	o.AffectedRegionList = op.AffectedRegionList
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.EncapInfoFlags = o.EncapInfoFlags
+	op.AffectedDiskCount = o.AffectedDiskCount
+	op.AffectedDiskList = o.AffectedDiskList
+	op.AffectedDiskFlags = o.AffectedDiskFlags
+	op.AffectedVolumeCount = o.AffectedVolumeCount
+	op.AffectedVolumeList = o.AffectedVolumeList
+	op.AffectedRegionCount = o.AffectedRegionCount
+	op.AffectedRegionList = o.AffectedRegionList
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -16075,13 +16075,13 @@ func (o *EncapsulateDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_Encapsula
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AffectedDiskCount = op.AffectedDiskCount
-	o.AffectedDiskList = op.AffectedDiskList
-	o.AffectedVolumeCount = op.AffectedVolumeCount
-	o.AffectedVolumeList = op.AffectedVolumeList
-	o.AffectedRegionCount = op.AffectedRegionCount
-	o.AffectedRegionList = op.AffectedRegionList
+	op.This = o.This
+	op.AffectedDiskCount = o.AffectedDiskCount
+	op.AffectedDiskList = o.AffectedDiskList
+	op.AffectedVolumeCount = o.AffectedVolumeCount
+	op.AffectedVolumeList = o.AffectedVolumeList
+	op.AffectedRegionCount = o.AffectedRegionCount
+	op.AffectedRegionList = o.AffectedRegionList
 	return op
 }
 
@@ -16167,10 +16167,10 @@ func (o *EncapsulateDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_Encapsul
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EncapInfoFlags = op.EncapInfoFlags
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.EncapInfoFlags = o.EncapInfoFlags
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -16353,7 +16353,7 @@ func (o *QueryChangePartitionNumbersRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -16392,10 +16392,10 @@ func (o *QueryChangePartitionNumbersResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OldPartitionNumber = op.OldPartitionNumber
-	o.NewPartitionNumber = op.NewPartitionNumber
-	o.Return = op.Return
+	op.That = o.That
+	op.OldPartitionNumber = o.OldPartitionNumber
+	op.NewPartitionNumber = o.NewPartitionNumber
+	op.Return = o.Return
 	return op
 }
 
@@ -16552,7 +16552,7 @@ func (o *DeletePartitionNumberInfoFromRegistryRequest) xxx_ToOp(ctx context.Cont
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -16589,8 +16589,8 @@ func (o *DeletePartitionNumberInfoFromRegistryResponse) xxx_ToOp(ctx context.Con
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -16757,8 +16757,8 @@ func (o *SetDontShowRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDontShowOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SetNoShow = op.SetNoShow
+	op.This = o.This
+	op.SetNoShow = o.SetNoShow
 	return op
 }
 
@@ -16796,8 +16796,8 @@ func (o *SetDontShowResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDontShowO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -16963,7 +16963,7 @@ func (o *GetDontShowRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDontShowOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -17001,9 +17001,9 @@ func (o *GetDontShowResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDontShowO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.GetNoShow = op.GetNoShow
-	o.Return = op.Return
+	op.That = o.That
+	op.GetNoShow = o.GetNoShow
+	op.Return = o.Return
 	return op
 }
 
@@ -17266,8 +17266,8 @@ func (o *EnumTasksRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumTasksOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TaskCount = op.TaskCount
+	op.This = o.This
+	op.TaskCount = o.TaskCount
 	return op
 }
 
@@ -17307,10 +17307,10 @@ func (o *EnumTasksResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumTasksOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskCount = op.TaskCount
-	o.TaskList = op.TaskList
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskCount = o.TaskCount
+	op.TaskList = o.TaskList
+	op.Return = o.Return
 	return op
 }
 
@@ -17523,9 +17523,9 @@ func (o *GetTaskDetailRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTaskDeta
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ID = op.ID
-	o.TaskInfo = op.TaskInfo
+	op.This = o.This
+	op.ID = o.ID
+	op.TaskInfo = o.TaskInfo
 	return op
 }
 
@@ -17565,9 +17565,9 @@ func (o *GetTaskDetailResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTaskDet
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TaskInfo = op.TaskInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TaskInfo = o.TaskInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -17735,8 +17735,8 @@ func (o *AbortTaskRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortTaskOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ID = op.ID
+	op.This = o.This
+	op.ID = o.ID
 	return op
 }
 
@@ -17774,8 +17774,8 @@ func (o *AbortTaskResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortTaskOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -18075,9 +18075,9 @@ func (o *HResultGetErrorDataRequest) xxx_ToOp(ctx context.Context, op *xxx_HResu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.HResult = op.HResult
-	o.Flags = op.Flags
+	op.This = o.This
+	op.HResult = o.HResult
+	op.Flags = o.Flags
 	return op
 }
 
@@ -18119,11 +18119,11 @@ func (o *HResultGetErrorDataResponse) xxx_ToOp(ctx context.Context, op *xxx_HRes
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.StoredFlags = op.StoredFlags
-	o.Size = op.Size
-	o.Data = op.Data
-	o.Return = op.Return
+	op.That = o.That
+	op.StoredFlags = o.StoredFlags
+	op.Size = o.Size
+	op.Data = o.Data
+	op.Return = o.Return
 	return op
 }
 
@@ -18380,9 +18380,9 @@ func (o *InitializeRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NotificationInterface = op.NotificationInterface
-	o.RemoteCount = op.RemoteCount
+	op.This = o.This
+	op.NotificationInterface = o.NotificationInterface
+	op.RemoteCount = o.RemoteCount
 	return op
 }
 
@@ -18424,11 +18424,11 @@ func (o *InitializeResponse) xxx_ToOp(ctx context.Context, op *xxx_InitializeOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.IDLVersion = op.IDLVersion
-	o.Flags = op.Flags
-	o.ClientID = op.ClientID
-	o.Return = op.Return
+	op.That = o.That
+	op.IDLVersion = o.IDLVersion
+	op.Flags = o.Flags
+	op.ClientID = o.ClientID
+	op.Return = o.Return
 	return op
 }
 
@@ -18584,7 +18584,7 @@ func (o *UninitializeRequest) xxx_ToOp(ctx context.Context, op *xxx_Uninitialize
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -18621,8 +18621,8 @@ func (o *UninitializeResponse) xxx_ToOp(ctx context.Context, op *xxx_Uninitializ
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -18775,7 +18775,7 @@ func (o *RefreshRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -18812,8 +18812,8 @@ func (o *RefreshResponse) xxx_ToOp(ctx context.Context, op *xxx_RefreshOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -18966,7 +18966,7 @@ func (o *RescanDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_RescanDisksOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -19003,8 +19003,8 @@ func (o *RescanDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_RescanDisksO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -19157,7 +19157,7 @@ func (o *RefreshFileSystemRequest) xxx_ToOp(ctx context.Context, op *xxx_Refresh
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -19194,8 +19194,8 @@ func (o *RefreshFileSystemResponse) xxx_ToOp(ctx context.Context, op *xxx_Refres
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -19350,7 +19350,7 @@ func (o *SecureSystemPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_Sec
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -19387,8 +19387,8 @@ func (o *SecureSystemPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -19541,7 +19541,7 @@ func (o *ShutDownSystemRequest) xxx_ToOp(ctx context.Context, op *xxx_ShutDownSy
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -19578,8 +19578,8 @@ func (o *ShutDownSystemResponse) xxx_ToOp(ctx context.Context, op *xxx_ShutDownS
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -19841,8 +19841,8 @@ func (o *EnumAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumAccess
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Count = op.Count
+	op.This = o.This
+	op.Count = o.Count
 	return op
 }
 
@@ -19882,10 +19882,10 @@ func (o *EnumAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumAcces
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Paths = op.Paths
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Paths = o.Paths
+	op.Return = o.Return
 	return op
 }
 
@@ -20165,9 +20165,9 @@ func (o *EnumAccessPathForVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_E
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.Count = op.Count
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.Count = o.Count
 	return op
 }
 
@@ -20208,10 +20208,10 @@ func (o *EnumAccessPathForVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Count = op.Count
-	o.Paths = op.Paths
-	o.Return = op.Return
+	op.That = o.That
+	op.Count = o.Count
+	op.Paths = o.Paths
+	op.Return = o.Return
 	return op
 }
 
@@ -20450,10 +20450,10 @@ func (o *AddAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_AddAccessPa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PathLength = op.PathLength
-	o.Path = op.Path
-	o.TargetID = op.TargetID
+	op.This = o.This
+	op.PathLength = o.PathLength
+	op.Path = o.Path
+	op.TargetID = o.TargetID
 	return op
 }
 
@@ -20493,8 +20493,8 @@ func (o *AddAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_AddAccessP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -20731,10 +20731,10 @@ func (o *DeleteAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAc
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VolumeID = op.VolumeID
-	o.PathLength = op.PathLength
-	o.Path = op.Path
+	op.This = o.This
+	op.VolumeID = o.VolumeID
+	op.PathLength = o.PathLength
+	op.Path = o.Path
 	return op
 }
 
@@ -20774,8 +20774,8 @@ func (o *DeleteAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteA
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

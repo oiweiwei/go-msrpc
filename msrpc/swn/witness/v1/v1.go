@@ -486,8 +486,8 @@ func (o *GetInterfaceListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInte
 	if o == nil {
 		return op
 	}
-	o.InterfaceList = op.InterfaceList
-	o.Return = op.Return
+	op.InterfaceList = o.InterfaceList
+	op.Return = o.Return
 	return op
 }
 
@@ -742,10 +742,10 @@ func (o *RegisterRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterOperatio
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.NetName = op.NetName
-	o.IPAddress = op.IPAddress
-	o.ClientComputerName = op.ClientComputerName
+	op.Version = o.Version
+	op.NetName = o.NetName
+	op.IPAddress = o.IPAddress
+	op.ClientComputerName = o.ClientComputerName
 	return op
 }
 
@@ -786,8 +786,8 @@ func (o *RegisterResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterOperati
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 
@@ -907,7 +907,7 @@ func (o *UnregisterRequest) xxx_ToOp(ctx context.Context, op *xxx_UnregisterOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -942,7 +942,7 @@ func (o *UnregisterResponse) xxx_ToOp(ctx context.Context, op *xxx_UnregisterOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1108,7 +1108,7 @@ func (o *AsyncNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_AsyncNotifyOp
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -1145,8 +1145,8 @@ func (o *AsyncNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_AsyncNotifyO
 	if o == nil {
 		return op
 	}
-	o.Response = op.Response
-	o.Return = op.Return
+	op.Response = o.Response
+	op.Return = o.Return
 	return op
 }
 
@@ -1485,13 +1485,13 @@ func (o *RegisterExRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterExOper
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.NetName = op.NetName
-	o.ShareName = op.ShareName
-	o.IPAddress = op.IPAddress
-	o.ClientComputerName = op.ClientComputerName
-	o.Flags = op.Flags
-	o.KeepAliveTimeout = op.KeepAliveTimeout
+	op.Version = o.Version
+	op.NetName = o.NetName
+	op.ShareName = o.ShareName
+	op.IPAddress = o.IPAddress
+	op.ClientComputerName = o.ClientComputerName
+	op.Flags = o.Flags
+	op.KeepAliveTimeout = o.KeepAliveTimeout
 	return op
 }
 
@@ -1535,8 +1535,8 @@ func (o *RegisterExResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterExOpe
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.Return = op.Return
+	op.Context = o.Context
+	op.Return = o.Return
 	return op
 }
 

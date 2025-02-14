@@ -300,7 +300,7 @@ func (o *GetAttachmentFileListSizeRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -338,9 +338,9 @@ func (o *GetAttachmentFileListSizeResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AttachmentFileListSize = op.AttachmentFileListSize
-	o.Return = op.Return
+	op.That = o.That
+	op.AttachmentFileListSize = o.AttachmentFileListSize
+	op.Return = o.Return
 	return op
 }
 
@@ -510,8 +510,8 @@ func (o *SetAttachmentFileListSizeRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AttachmentFileListSize = op.AttachmentFileListSize
+	op.This = o.This
+	op.AttachmentFileListSize = o.AttachmentFileListSize
 	return op
 }
 
@@ -549,8 +549,8 @@ func (o *SetAttachmentFileListSizeResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

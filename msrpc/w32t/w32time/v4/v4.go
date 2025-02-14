@@ -439,8 +439,8 @@ func (o *SyncRequest) xxx_ToOp(ctx context.Context, op *xxx_SyncOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.Wait = op.Wait
-	o.Flags = op.Flags
+	op.Wait = o.Wait
+	op.Flags = o.Flags
 	return op
 }
 
@@ -476,7 +476,7 @@ func (o *SyncResponse) xxx_ToOp(ctx context.Context, op *xxx_SyncOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -605,7 +605,7 @@ func (o *GetNetlogonServiceBitsResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -778,8 +778,8 @@ func (o *QueryProviderStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.Provider = op.Provider
+	op.Flags = o.Flags
+	op.Provider = o.Provider
 	return op
 }
 
@@ -818,8 +818,8 @@ func (o *QueryProviderStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_Quer
 	if o == nil {
 		return op
 	}
-	o.ProviderInfo = op.ProviderInfo
-	o.Return = op.Return
+	op.ProviderInfo = o.ProviderInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -991,8 +991,8 @@ func (o *QuerySourceResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySourceO
 	if o == nil {
 		return op
 	}
-	o.Source = op.Source
-	o.Return = op.Return
+	op.Source = o.Source
+	op.Return = o.Return
 	return op
 }
 
@@ -1167,8 +1167,8 @@ func (o *QueryProviderConfigurationRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
-	o.Provider = op.Provider
+	op.Flags = o.Flags
+	op.Provider = o.Provider
 	return op
 }
 
@@ -1207,8 +1207,8 @@ func (o *QueryProviderConfigurationResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.ConfigurationProviderInfo = op.ConfigurationProviderInfo
-	o.Return = op.Return
+	op.ConfigurationProviderInfo = o.ConfigurationProviderInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1388,8 +1388,8 @@ func (o *QueryConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_Query
 	if o == nil {
 		return op
 	}
-	o.ConfigurationInfo = op.ConfigurationInfo
-	o.Return = op.Return
+	op.ConfigurationInfo = o.ConfigurationInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1567,8 +1567,8 @@ func (o *QueryStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryStatusO
 	if o == nil {
 		return op
 	}
-	o.StatusInfo = op.StatusInfo
-	o.Return = op.Return
+	op.StatusInfo = o.StatusInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1696,7 +1696,7 @@ func (o *LogResponse) xxx_ToOp(ctx context.Context, op *xxx_LogOperation) *xxx_L
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

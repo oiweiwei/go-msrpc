@@ -3065,10 +3065,10 @@ func (o *RegisterRemoteSubscriptionRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ChannelPath = op.ChannelPath
-	o.Query = op.Query
-	o.BookmarkXML = op.BookmarkXML
-	o.Flags = op.Flags
+	op.ChannelPath = o.ChannelPath
+	op.Query = o.Query
+	op.BookmarkXML = o.BookmarkXML
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3123,12 +3123,12 @@ func (o *RegisterRemoteSubscriptionResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Control = op.Control
-	o.QueryChannelInfoSize = op.QueryChannelInfoSize
-	o.QueryChannelInfo = op.QueryChannelInfo
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Control = o.Control
+	op.QueryChannelInfoSize = o.QueryChannelInfoSize
+	op.QueryChannelInfo = o.QueryChannelInfo
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -3543,9 +3543,9 @@ func (o *RemoteSubscriptionNextAsyncRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.RequestedRecordsLength = op.RequestedRecordsLength
-	o.Flags = op.Flags
+	op.Handle = o.Handle
+	op.RequestedRecordsLength = o.RequestedRecordsLength
+	op.Flags = o.Flags
 	return op
 }
 
@@ -3600,12 +3600,12 @@ func (o *RemoteSubscriptionNextAsyncResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.ActualRecordsLength = op.ActualRecordsLength
-	o.EventDataIndices = op.EventDataIndices
-	o.EventDataSizes = op.EventDataSizes
-	o.ResultBufferSize = op.ResultBufferSize
-	o.ResultBuffer = op.ResultBuffer
-	o.Return = op.Return
+	op.ActualRecordsLength = o.ActualRecordsLength
+	op.EventDataIndices = o.EventDataIndices
+	op.EventDataSizes = o.EventDataSizes
+	op.ResultBufferSize = o.ResultBufferSize
+	op.ResultBuffer = o.ResultBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -4036,10 +4036,10 @@ func (o *RemoteSubscriptionNextRequest) xxx_ToOp(ctx context.Context, op *xxx_Re
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.RequestedRecordsLength = op.RequestedRecordsLength
-	o.Timeout = op.Timeout
-	o.Flags = op.Flags
+	op.Handle = o.Handle
+	op.RequestedRecordsLength = o.RequestedRecordsLength
+	op.Timeout = o.Timeout
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4096,12 +4096,12 @@ func (o *RemoteSubscriptionNextResponse) xxx_ToOp(ctx context.Context, op *xxx_R
 	if o == nil {
 		return op
 	}
-	o.ActualRecordsLength = op.ActualRecordsLength
-	o.EventDataIndices = op.EventDataIndices
-	o.EventDataSizes = op.EventDataSizes
-	o.ResultBufferSize = op.ResultBufferSize
-	o.ResultBuffer = op.ResultBuffer
-	o.Return = op.Return
+	op.ActualRecordsLength = o.ActualRecordsLength
+	op.EventDataIndices = o.EventDataIndices
+	op.EventDataSizes = o.EventDataSizes
+	op.ResultBufferSize = o.ResultBufferSize
+	op.ResultBuffer = o.ResultBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -4228,7 +4228,7 @@ func (o *RemoteSubscriptionWaitAsyncRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -4263,7 +4263,7 @@ func (o *RemoteSubscriptionWaitAsyncResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -4418,8 +4418,8 @@ func (o *RegisterControllableOperationResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -4801,9 +4801,9 @@ func (o *RegisterLogQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_Register
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Query = op.Query
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Query = o.Query
+	op.Flags = o.Flags
 	return op
 }
 
@@ -4860,12 +4860,12 @@ func (o *RegisterLogQueryResponse) xxx_ToOp(ctx context.Context, op *xxx_Registe
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.OperationControl = op.OperationControl
-	o.QueryChannelInfoSize = op.QueryChannelInfoSize
-	o.QueryChannelInfo = op.QueryChannelInfo
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.OperationControl = o.OperationControl
+	op.QueryChannelInfoSize = o.QueryChannelInfoSize
+	op.QueryChannelInfo = o.QueryChannelInfo
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -5091,10 +5091,10 @@ func (o *ClearLogRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearLogOperatio
 	if o == nil {
 		return op
 	}
-	o.Control = op.Control
-	o.ChannelPath = op.ChannelPath
-	o.BackupPath = op.BackupPath
-	o.Flags = op.Flags
+	op.Control = o.Control
+	op.ChannelPath = o.ChannelPath
+	op.BackupPath = o.BackupPath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -5135,8 +5135,8 @@ func (o *ClearLogResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearLogOperati
 	if o == nil {
 		return op
 	}
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -5400,11 +5400,11 @@ func (o *ExportLogRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportLogOperat
 	if o == nil {
 		return op
 	}
-	o.Control = op.Control
-	o.ChannelPath = op.ChannelPath
-	o.Query = op.Query
-	o.BackupPath = op.BackupPath
-	o.Flags = op.Flags
+	op.Control = o.Control
+	op.ChannelPath = o.ChannelPath
+	op.Query = o.Query
+	op.BackupPath = o.BackupPath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -5450,8 +5450,8 @@ func (o *ExportLogResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportLogOpera
 	if o == nil {
 		return op
 	}
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -5646,10 +5646,10 @@ func (o *LocalizeExportLogRequest) xxx_ToOp(ctx context.Context, op *xxx_Localiz
 	if o == nil {
 		return op
 	}
-	o.Control = op.Control
-	o.LogFilePath = op.LogFilePath
-	o.Locale = op.Locale
-	o.Flags = op.Flags
+	op.Control = o.Control
+	op.LogFilePath = o.LogFilePath
+	op.Locale = o.Locale
+	op.Flags = o.Flags
 	return op
 }
 
@@ -5693,8 +5693,8 @@ func (o *LocalizeExportLogResponse) xxx_ToOp(ctx context.Context, op *xxx_Locali
 	if o == nil {
 		return op
 	}
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -6130,13 +6130,13 @@ func (o *MessageRenderRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageRend
 	if o == nil {
 		return op
 	}
-	o.PublisherConfigObject = op.PublisherConfigObject
-	o.SizeEventID = op.SizeEventID
-	o.EventID = op.EventID
-	o.MessageID = op.MessageID
-	o.Values = op.Values
-	o.Flags = op.Flags
-	o.MaxSizeString = op.MaxSizeString
+	op.PublisherConfigObject = o.PublisherConfigObject
+	op.SizeEventID = o.SizeEventID
+	op.EventID = o.EventID
+	op.MessageID = o.MessageID
+	op.Values = o.Values
+	op.Flags = o.Flags
+	op.MaxSizeString = o.MaxSizeString
 	return op
 }
 
@@ -6193,11 +6193,11 @@ func (o *MessageRenderResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageRen
 	if o == nil {
 		return op
 	}
-	o.ActualSizeString = op.ActualSizeString
-	o.NeededSizeString = op.NeededSizeString
-	o.String = op.String
-	o.Error = op.Error
-	o.Return = op.Return
+	op.ActualSizeString = o.ActualSizeString
+	op.NeededSizeString = o.NeededSizeString
+	op.String = o.String
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -6602,12 +6602,12 @@ func (o *MessageRenderDefaultRequest) xxx_ToOp(ctx context.Context, op *xxx_Mess
 	if o == nil {
 		return op
 	}
-	o.SizeEventID = op.SizeEventID
-	o.EventID = op.EventID
-	o.MessageID = op.MessageID
-	o.Values = op.Values
-	o.Flags = op.Flags
-	o.MaxSizeString = op.MaxSizeString
+	op.SizeEventID = o.SizeEventID
+	op.EventID = o.EventID
+	op.MessageID = o.MessageID
+	op.Values = o.Values
+	op.Flags = o.Flags
+	op.MaxSizeString = o.MaxSizeString
 	return op
 }
 
@@ -6668,11 +6668,11 @@ func (o *MessageRenderDefaultResponse) xxx_ToOp(ctx context.Context, op *xxx_Mes
 	if o == nil {
 		return op
 	}
-	o.ActualSizeString = op.ActualSizeString
-	o.NeededSizeString = op.NeededSizeString
-	o.String = op.String
-	o.Error = op.Error
-	o.Return = op.Return
+	op.ActualSizeString = o.ActualSizeString
+	op.NeededSizeString = o.NeededSizeString
+	op.String = o.String
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -7101,10 +7101,10 @@ func (o *QueryNextRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryNextOperat
 	if o == nil {
 		return op
 	}
-	o.LogQuery = op.LogQuery
-	o.RequestedRecordsLength = op.RequestedRecordsLength
-	o.TimeoutEnd = op.TimeoutEnd
-	o.Flags = op.Flags
+	op.LogQuery = o.LogQuery
+	op.RequestedRecordsLength = o.RequestedRecordsLength
+	op.TimeoutEnd = o.TimeoutEnd
+	op.Flags = o.Flags
 	return op
 }
 
@@ -7159,12 +7159,12 @@ func (o *QueryNextResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryNextOpera
 	if o == nil {
 		return op
 	}
-	o.ActualRecordsLength = op.ActualRecordsLength
-	o.EventDataIndices = op.EventDataIndices
-	o.EventDataSizes = op.EventDataSizes
-	o.ResultBufferSize = op.ResultBufferSize
-	o.ResultBuffer = op.ResultBuffer
-	o.Return = op.Return
+	op.ActualRecordsLength = o.ActualRecordsLength
+	op.EventDataIndices = o.EventDataIndices
+	op.EventDataSizes = o.EventDataSizes
+	op.ResultBufferSize = o.ResultBufferSize
+	op.ResultBuffer = o.ResultBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -7438,11 +7438,11 @@ func (o *QuerySeekRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySeekOperat
 	if o == nil {
 		return op
 	}
-	o.LogQuery = op.LogQuery
-	o.Pos = op.Pos
-	o.BookmarkXML = op.BookmarkXML
-	o.Timeout = op.Timeout
-	o.Flags = op.Flags
+	op.LogQuery = o.LogQuery
+	op.Pos = o.Pos
+	op.BookmarkXML = o.BookmarkXML
+	op.Timeout = o.Timeout
+	op.Flags = o.Flags
 	return op
 }
 
@@ -7489,8 +7489,8 @@ func (o *QuerySeekResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySeekOpera
 	if o == nil {
 		return op
 	}
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -7631,7 +7631,7 @@ func (o *CloseRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -7669,8 +7669,8 @@ func (o *CloseResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *x
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -7790,7 +7790,7 @@ func (o *CancelRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) *
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -7825,7 +7825,7 @@ func (o *CancelResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7963,8 +7963,8 @@ func (o *AssertConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_AssertConfig
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8000,7 +8000,7 @@ func (o *AssertConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_AssertConfi
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8139,8 +8139,8 @@ func (o *RetractConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_RetractConf
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
-	o.Flags = op.Flags
+	op.Path = o.Path
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8176,7 +8176,7 @@ func (o *RetractConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_RetractCon
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8358,8 +8358,8 @@ func (o *OpenLogRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenLogOperation)
 	if o == nil {
 		return op
 	}
-	o.Channel = op.Channel
-	o.Flags = op.Flags
+	op.Channel = o.Channel
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8403,9 +8403,9 @@ func (o *OpenLogResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenLogOperation
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -8660,9 +8660,9 @@ func (o *GetLogFileInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogFile
 	if o == nil {
 		return op
 	}
-	o.Log = op.Log
-	o.PropertyID = op.PropertyID
-	o.PropertyValueBufferSize = op.PropertyValueBufferSize
+	op.Log = o.Log
+	op.PropertyID = o.PropertyID
+	op.PropertyValueBufferSize = o.PropertyValueBufferSize
 	return op
 }
 
@@ -8704,9 +8704,9 @@ func (o *GetLogFileInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogFil
 	if o == nil {
 		return op
 	}
-	o.PropertyValueBuffer = op.PropertyValueBuffer
-	o.PropertyValueBufferLength = op.PropertyValueBufferLength
-	o.Return = op.Return
+	op.PropertyValueBuffer = o.PropertyValueBuffer
+	op.PropertyValueBufferLength = o.PropertyValueBufferLength
+	op.Return = o.Return
 	return op
 }
 
@@ -8929,7 +8929,7 @@ func (o *GetChannelListRequest) xxx_ToOp(ctx context.Context, op *xxx_GetChannel
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
+	op.Flags = o.Flags
 	return op
 }
 
@@ -8969,9 +8969,9 @@ func (o *GetChannelListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetChanne
 	if o == nil {
 		return op
 	}
-	o.ChannelPathsLength = op.ChannelPathsLength
-	o.ChannelPaths = op.ChannelPaths
-	o.Return = op.Return
+	op.ChannelPathsLength = o.ChannelPathsLength
+	op.ChannelPaths = o.ChannelPaths
+	op.Return = o.Return
 	return op
 }
 
@@ -9132,8 +9132,8 @@ func (o *GetChannelConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_GetChann
 	if o == nil {
 		return op
 	}
-	o.ChannelPath = op.ChannelPath
-	o.Flags = op.Flags
+	op.ChannelPath = o.ChannelPath
+	op.Flags = o.Flags
 	return op
 }
 
@@ -9304,8 +9304,8 @@ func (o *GetChannelConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_GetChan
 	if o == nil {
 		return op
 	}
-	o.Properties = op.Properties
-	o.Return = op.Return
+	op.Properties = o.Properties
+	op.Return = o.Return
 	return op
 }
 
@@ -9589,9 +9589,9 @@ func (o *PutChannelConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_PutChann
 	if o == nil {
 		return op
 	}
-	o.ChannelPath = op.ChannelPath
-	o.Flags = op.Flags
-	o.Properties = op.Properties
+	op.ChannelPath = o.ChannelPath
+	op.Flags = o.Flags
+	op.Properties = o.Properties
 	return op
 }
 
@@ -9634,8 +9634,8 @@ func (o *PutChannelConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_PutChan
 	if o == nil {
 		return op
 	}
-	o.Error = op.Error
-	o.Return = op.Return
+	op.Error = o.Error
+	op.Return = o.Return
 	return op
 }
 
@@ -9857,7 +9857,7 @@ func (o *GetPublisherListRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPubli
 	if o == nil {
 		return op
 	}
-	o.Flags = op.Flags
+	op.Flags = o.Flags
 	return op
 }
 
@@ -9897,9 +9897,9 @@ func (o *GetPublisherListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPubl
 	if o == nil {
 		return op
 	}
-	o.PublisherIDsLength = op.PublisherIDsLength
-	o.PublisherIDs = op.PublisherIDs
-	o.Return = op.Return
+	op.PublisherIDsLength = o.PublisherIDsLength
+	op.PublisherIDs = o.PublisherIDs
+	op.Return = o.Return
 	return op
 }
 
@@ -10138,8 +10138,8 @@ func (o *GetPublisherListForChannelRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ChannelName = op.ChannelName
-	o.Flags = op.Flags
+	op.ChannelName = o.ChannelName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10180,9 +10180,9 @@ func (o *GetPublisherListForChannelResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.PublisherIDsLength = op.PublisherIDsLength
-	o.PublisherIDs = op.PublisherIDs
-	o.Return = op.Return
+	op.PublisherIDsLength = o.PublisherIDsLength
+	op.PublisherIDs = o.PublisherIDs
+	op.Return = o.Return
 	return op
 }
 
@@ -10449,10 +10449,10 @@ func (o *GetPublisherMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return op
 	}
-	o.PublisherID = op.PublisherID
-	o.LogFilePath = op.LogFilePath
-	o.Locale = op.Locale
-	o.Flags = op.Flags
+	op.PublisherID = o.PublisherID
+	op.LogFilePath = o.LogFilePath
+	op.Locale = o.Locale
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10497,9 +10497,9 @@ func (o *GetPublisherMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.PublisherMetadataProperties = op.PublisherMetadataProperties
-	o.PublisherMetadata = op.PublisherMetadata
-	o.Return = op.Return
+	op.PublisherMetadataProperties = o.PublisherMetadataProperties
+	op.PublisherMetadata = o.PublisherMetadata
+	op.Return = o.Return
 	return op
 }
 
@@ -10701,9 +10701,9 @@ func (o *GetPublisherResourceMetadataRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.PropertyID = op.PropertyID
-	o.Flags = op.Flags
+	op.Handle = o.Handle
+	op.PropertyID = o.PropertyID
+	op.Flags = o.Flags
 	return op
 }
 
@@ -10743,8 +10743,8 @@ func (o *GetPublisherResourceMetadataResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.PublisherMetadataProperties = op.PublisherMetadataProperties
-	o.Return = op.Return
+	op.PublisherMetadataProperties = o.PublisherMetadataProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -10948,9 +10948,9 @@ func (o *GetEventMetadataEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_GetE
 	if o == nil {
 		return op
 	}
-	o.PublisherMetadata = op.PublisherMetadata
-	o.Flags = op.Flags
-	o.ReservedForFilter = op.ReservedForFilter
+	op.PublisherMetadata = o.PublisherMetadata
+	op.Flags = o.Flags
+	op.ReservedForFilter = o.ReservedForFilter
 	return op
 }
 
@@ -10990,8 +10990,8 @@ func (o *GetEventMetadataEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.EventMetadataEnum = op.EventMetadataEnum
-	o.Return = op.Return
+	op.EventMetadataEnum = o.EventMetadataEnum
+	op.Return = o.Return
 	return op
 }
 
@@ -11247,9 +11247,9 @@ func (o *GetNextEventMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetN
 	if o == nil {
 		return op
 	}
-	o.EventMetadataEnum = op.EventMetadataEnum
-	o.Flags = op.Flags
-	o.RequestedLength = op.RequestedLength
+	op.EventMetadataEnum = o.EventMetadataEnum
+	op.Flags = o.Flags
+	op.RequestedLength = o.RequestedLength
 	return op
 }
 
@@ -11292,9 +11292,9 @@ func (o *GetNextEventMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.ReturnedLength = op.ReturnedLength
-	o.EventMetadataInstances = op.EventMetadataInstances
-	o.Return = op.Return
+	op.ReturnedLength = o.ReturnedLength
+	op.EventMetadataInstances = o.EventMetadataInstances
+	op.Return = o.Return
 	return op
 }
 
@@ -11493,9 +11493,9 @@ func (o *GetClassicLogDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.LogName = op.LogName
-	o.Locale = op.Locale
-	o.Flags = op.Flags
+	op.LogName = o.LogName
+	op.Locale = o.Locale
+	op.Flags = o.Flags
 	return op
 }
 
@@ -11534,8 +11534,8 @@ func (o *GetClassicLogDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.DisplayName = op.DisplayName
-	o.Return = op.Return
+	op.DisplayName = o.DisplayName
+	op.Return = o.Return
 	return op
 }
 

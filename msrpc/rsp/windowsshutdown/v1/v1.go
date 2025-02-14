@@ -370,11 +370,11 @@ func (o *InitiateShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_Initiate
 	if o == nil {
 		return op
 	}
-	o.Message = op.Message
-	o.GracePeriod = op.GracePeriod
-	o.ShudownFlags = op.ShudownFlags
-	o.Reason = op.Reason
-	o.ClientHint = op.ClientHint
+	op.Message = o.Message
+	op.GracePeriod = o.GracePeriod
+	op.ShudownFlags = o.ShudownFlags
+	op.Reason = o.Reason
+	op.ClientHint = o.ClientHint
 	return op
 }
 
@@ -413,7 +413,7 @@ func (o *InitiateShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_Initiat
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -557,7 +557,7 @@ func (o *AbortShutdownRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortShutdo
 	if o == nil {
 		return op
 	}
-	o.ClientHint = op.ClientHint
+	op.ClientHint = o.ClientHint
 	return op
 }
 
@@ -592,7 +592,7 @@ func (o *AbortShutdownResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortShutd
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

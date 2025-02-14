@@ -422,8 +422,8 @@ func (o *JobAddRequest) xxx_ToOp(ctx context.Context, op *xxx_JobAddOperation) *
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ATInfo = op.ATInfo
+	op.ServerName = o.ServerName
+	op.ATInfo = o.ATInfo
 	return op
 }
 
@@ -462,8 +462,8 @@ func (o *JobAddResponse) xxx_ToOp(ctx context.Context, op *xxx_JobAddOperation) 
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.Return = op.Return
+	op.JobID = o.JobID
+	op.Return = o.Return
 	return op
 }
 
@@ -632,9 +632,9 @@ func (o *JobDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_JobDeleteOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.MinJobID = op.MinJobID
-	o.MaxJobID = op.MaxJobID
+	op.ServerName = o.ServerName
+	op.MinJobID = o.MinJobID
+	op.MaxJobID = o.MaxJobID
 	return op
 }
 
@@ -671,7 +671,7 @@ func (o *JobDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_JobDeleteOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -963,10 +963,10 @@ func (o *JobEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_JobEnumOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.EnumContainer = op.EnumContainer
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.EnumContainer = o.EnumContainer
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -1016,10 +1016,10 @@ func (o *JobEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_JobEnumOperation
 	if o == nil {
 		return op
 	}
-	o.EnumContainer = op.EnumContainer
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.EnumContainer = o.EnumContainer
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -1220,8 +1220,8 @@ func (o *JobGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_JobGetInfoOper
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.JobID = op.JobID
+	op.ServerName = o.ServerName
+	op.JobID = o.JobID
 	return op
 }
 
@@ -1259,8 +1259,8 @@ func (o *JobGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_JobGetInfoOpe
 	if o == nil {
 		return op
 	}
-	o.ATInfo = op.ATInfo
-	o.Return = op.Return
+	op.ATInfo = o.ATInfo
+	op.Return = o.Return
 	return op
 }
 

@@ -638,7 +638,7 @@ func (o *GetSMTPServerRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSMTPServ
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -676,9 +676,9 @@ func (o *GetSMTPServerResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSMTPSer
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SMTPServer = op.SMTPServer
-	o.Return = op.Return
+	op.That = o.That
+	op.SMTPServer = o.SMTPServer
+	op.Return = o.Return
 	return op
 }
 
@@ -880,8 +880,8 @@ func (o *SetSMTPServerRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSMTPServ
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.SMTPServer = op.SMTPServer
+	op.This = o.This
+	op.SMTPServer = o.SMTPServer
 	return op
 }
 
@@ -919,8 +919,8 @@ func (o *SetSMTPServerResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSMTPSer
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1120,7 +1120,7 @@ func (o *GetMailFromRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMailFromOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1158,9 +1158,9 @@ func (o *GetMailFromResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMailFromO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MailFrom = op.MailFrom
-	o.Return = op.Return
+	op.That = o.That
+	op.MailFrom = o.MailFrom
+	op.Return = o.Return
 	return op
 }
 
@@ -1362,8 +1362,8 @@ func (o *SetMailFromRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMailFromOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailFrom = op.MailFrom
+	op.This = o.This
+	op.MailFrom = o.MailFrom
 	return op
 }
 
@@ -1401,8 +1401,8 @@ func (o *SetMailFromResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMailFromO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1602,7 +1602,7 @@ func (o *GetAdminEmailRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAdminEma
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1640,9 +1640,9 @@ func (o *GetAdminEmailResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAdminEm
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AdminEmail = op.AdminEmail
-	o.Return = op.Return
+	op.That = o.That
+	op.AdminEmail = o.AdminEmail
+	op.Return = o.Return
 	return op
 }
 
@@ -1844,8 +1844,8 @@ func (o *SetAdminEmailRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAdminEma
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AdminEmail = op.AdminEmail
+	op.This = o.This
+	op.AdminEmail = o.AdminEmail
 	return op
 }
 
@@ -1883,8 +1883,8 @@ func (o *SetAdminEmailResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAdminEm
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2052,7 +2052,7 @@ func (o *GetDisableCommandLineRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2090,9 +2090,9 @@ func (o *GetDisableCommandLineResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DisableCommandLine = op.DisableCommandLine
-	o.Return = op.Return
+	op.That = o.That
+	op.DisableCommandLine = o.DisableCommandLine
+	op.Return = o.Return
 	return op
 }
 
@@ -2262,8 +2262,8 @@ func (o *SetDisableCommandLineRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DisableCommandLine = op.DisableCommandLine
+	op.This = o.This
+	op.DisableCommandLine = o.DisableCommandLine
 	return op
 }
 
@@ -2301,8 +2301,8 @@ func (o *SetDisableCommandLineResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2470,7 +2470,7 @@ func (o *GetEnableScreeningAuditRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2508,9 +2508,9 @@ func (o *GetEnableScreeningAuditResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EnableScreeningAudit = op.EnableScreeningAudit
-	o.Return = op.Return
+	op.That = o.That
+	op.EnableScreeningAudit = o.EnableScreeningAudit
+	op.Return = o.Return
 	return op
 }
 
@@ -2680,8 +2680,8 @@ func (o *SetEnableScreeningAuditRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EnableScreeningAudit = op.EnableScreeningAudit
+	op.This = o.This
+	op.EnableScreeningAudit = o.EnableScreeningAudit
 	return op
 }
 
@@ -2719,8 +2719,8 @@ func (o *SetEnableScreeningAuditResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2923,8 +2923,8 @@ func (o *EmailTestRequest) xxx_ToOp(ctx context.Context, op *xxx_EmailTestOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MailTo = op.MailTo
+	op.This = o.This
+	op.MailTo = o.MailTo
 	return op
 }
 
@@ -2962,8 +2962,8 @@ func (o *EmailTestResponse) xxx_ToOp(ctx context.Context, op *xxx_EmailTestOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3148,9 +3148,9 @@ func (o *SetActionRunLimitIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ActionType = op.ActionType
-	o.DelayTimeMinutes = op.DelayTimeMinutes
+	op.This = o.This
+	op.ActionType = o.ActionType
+	op.DelayTimeMinutes = o.DelayTimeMinutes
 	return op
 }
 
@@ -3189,8 +3189,8 @@ func (o *SetActionRunLimitIntervalResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3373,8 +3373,8 @@ func (o *GetActionRunLimitIntervalRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ActionType = op.ActionType
+	op.This = o.This
+	op.ActionType = o.ActionType
 	return op
 }
 
@@ -3415,9 +3415,9 @@ func (o *GetActionRunLimitIntervalResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DelayTimeMinutes = op.DelayTimeMinutes
-	o.Return = op.Return
+	op.That = o.That
+	op.DelayTimeMinutes = o.DelayTimeMinutes
+	op.Return = o.Return
 	return op
 }
 

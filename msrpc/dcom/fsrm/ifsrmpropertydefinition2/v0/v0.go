@@ -398,7 +398,7 @@ func (o *GetPropertyDefinitionFlagsRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -439,9 +439,9 @@ func (o *GetPropertyDefinitionFlagsResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PropertyDefinitionFlags = op.PropertyDefinitionFlags
-	o.Return = op.Return
+	op.That = o.That
+	op.PropertyDefinitionFlags = o.PropertyDefinitionFlags
+	op.Return = o.Return
 	return op
 }
 
@@ -644,7 +644,7 @@ func (o *GetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDisplay
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -682,9 +682,9 @@ func (o *GetDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDispla
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -888,8 +888,8 @@ func (o *SetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDisplay
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -927,8 +927,8 @@ func (o *SetDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDispla
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1094,7 +1094,7 @@ func (o *GetAppliesToRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAppliesTo
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1132,9 +1132,9 @@ func (o *GetAppliesToResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAppliesT
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AppliesTo = op.AppliesTo
-	o.Return = op.Return
+	op.That = o.That
+	op.AppliesTo = o.AppliesTo
+	op.Return = o.Return
 	return op
 }
 
@@ -1337,7 +1337,7 @@ func (o *GetValueDefinitionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1377,9 +1377,9 @@ func (o *GetValueDefinitionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetV
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ValueDefinitions = op.ValueDefinitions
-	o.Return = op.Return
+	op.That = o.That
+	op.ValueDefinitions = o.ValueDefinitions
+	op.Return = o.Return
 	return op
 }
 

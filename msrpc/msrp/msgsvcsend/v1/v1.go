@@ -247,9 +247,9 @@ func (o *SendMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SendMessageOp
 	if o == nil {
 		return op
 	}
-	o.From = op.From
-	o.To = op.To
-	o.Text = op.Text
+	op.From = o.From
+	op.To = o.To
+	op.Text = o.Text
 	return op
 }
 
@@ -286,7 +286,7 @@ func (o *SendMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_SendMessageO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

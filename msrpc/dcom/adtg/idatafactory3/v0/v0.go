@@ -766,17 +766,17 @@ func (o *ExecuteRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConnectionString = op.ConnectionString
-	o.HandlerString = op.HandlerString
-	o.QueryString = op.QueryString
-	o.MarshalOptions = op.MarshalOptions
-	o.Properties = op.Properties
-	o.TableID = op.TableID
-	o.ExecuteOptions = op.ExecuteOptions
-	o.Parameters = op.Parameters
-	o.LocaleID = op.LocaleID
-	o.Information = op.Information
+	op.This = o.This
+	op.ConnectionString = o.ConnectionString
+	op.HandlerString = o.HandlerString
+	op.QueryString = o.QueryString
+	op.MarshalOptions = o.MarshalOptions
+	op.Properties = o.Properties
+	op.TableID = o.TableID
+	op.ExecuteOptions = o.ExecuteOptions
+	op.Parameters = o.Parameters
+	op.LocaleID = o.LocaleID
+	op.Information = o.Information
 	return op
 }
 
@@ -826,11 +826,11 @@ func (o *ExecuteResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Parameters = op.Parameters
-	o.Information = op.Information
-	o.RecordSet = op.RecordSet
-	o.Return = op.Return
+	op.That = o.That
+	op.Parameters = o.Parameters
+	op.Information = o.Information
+	op.RecordSet = o.RecordSet
+	op.Return = o.Return
 	return op
 }
 
@@ -1439,14 +1439,14 @@ func (o *SynchronizeRequest) xxx_ToOp(ctx context.Context, op *xxx_SynchronizeOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConnectionString = op.ConnectionString
-	o.HandlerString = op.HandlerString
-	o.SynchronizeOptions = op.SynchronizeOptions
-	o.RecordSet = op.RecordSet
-	o.StatusArray = op.StatusArray
-	o.LocaleID = op.LocaleID
-	o.Information = op.Information
+	op.This = o.This
+	op.ConnectionString = o.ConnectionString
+	op.HandlerString = o.HandlerString
+	op.SynchronizeOptions = o.SynchronizeOptions
+	op.RecordSet = o.RecordSet
+	op.StatusArray = o.StatusArray
+	op.LocaleID = o.LocaleID
+	op.Information = o.Information
 	return op
 }
 
@@ -1494,12 +1494,12 @@ func (o *SynchronizeResponse) xxx_ToOp(ctx context.Context, op *xxx_SynchronizeO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.RecordSet = op.RecordSet
-	o.StatusArray = op.StatusArray
-	o.Information = op.Information
-	o.Result = op.Result
-	o.Return = op.Return
+	op.That = o.That
+	op.RecordSet = o.RecordSet
+	op.StatusArray = o.StatusArray
+	op.Information = o.Information
+	op.Result = o.Result
+	op.Return = o.Return
 	return op
 }
 

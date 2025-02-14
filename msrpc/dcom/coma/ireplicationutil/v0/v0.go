@@ -478,9 +478,9 @@ func (o *CreateShareRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateShareOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ShareName = op.ShareName
-	o.Path = op.Path
+	op.This = o.This
+	op.ShareName = o.ShareName
+	op.Path = o.Path
 	return op
 }
 
@@ -519,8 +519,8 @@ func (o *CreateShareResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateShareO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -702,8 +702,8 @@ func (o *CreateEmptyDirRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateEmpt
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
+	op.This = o.This
+	op.Path = o.Path
 	return op
 }
 
@@ -741,8 +741,8 @@ func (o *CreateEmptyDirResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateEmp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -937,8 +937,8 @@ func (o *RemoveShareRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveShareOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ShareName = op.ShareName
+	op.This = o.This
+	op.ShareName = o.ShareName
 	return op
 }
 
@@ -976,8 +976,8 @@ func (o *RemoveShareResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveShareO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1147,8 +1147,8 @@ func (o *BeginReplicationAsTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BaseReplicationDir = op.BaseReplicationDir
+	op.This = o.This
+	op.BaseReplicationDir = o.BaseReplicationDir
 	return op
 }
 
@@ -1186,8 +1186,8 @@ func (o *BeginReplicationAsTargetResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1454,8 +1454,8 @@ func (o *QueryConglomerationPasswordRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ConglomerationID = op.ConglomerationID
+	op.This = o.This
+	op.ConglomerationID = o.ConglomerationID
 	return op
 }
 
@@ -1500,10 +1500,10 @@ func (o *QueryConglomerationPasswordResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Password = op.Password
-	o.PasswordLength = op.PasswordLength
-	o.Return = op.Return
+	op.That = o.That
+	op.Password = o.Password
+	op.PasswordLength = o.PasswordLength
+	op.Return = o.Return
 	return op
 }
 
@@ -1698,7 +1698,7 @@ func (o *CreateReplicationDirRequest) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1738,9 +1738,9 @@ func (o *CreateReplicationDirResponse) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.BaseReplicationDir = op.BaseReplicationDir
-	o.Return = op.Return
+	op.That = o.That
+	op.BaseReplicationDir = o.BaseReplicationDir
+	op.Return = o.Return
 	return op
 }
 

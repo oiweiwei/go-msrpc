@@ -458,7 +458,7 @@ func (o *DoDisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx_DoDisconnect
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
+	op.Session = o.Session
 	return op
 }
 
@@ -498,8 +498,8 @@ func (o *DoDisconnectResponse) xxx_ToOp(ctx context.Context, op *xxx_DoDisconnec
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
-	o.Return = op.Return
+	op.Session = o.Session
+	op.Return = o.Return
 	return op
 }
 
@@ -848,13 +848,13 @@ func (o *RegisterPushNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
-	o.RPC = op.RPC
-	o.Context = op.Context
-	o.ContextLength = op.ContextLength
-	o.AdviseBits = op.AdviseBits
-	o.CallbackAddress = op.CallbackAddress
-	o.CallbackAddressLength = op.CallbackAddressLength
+	op.Session = o.Session
+	op.RPC = o.RPC
+	op.Context = o.Context
+	op.ContextLength = o.ContextLength
+	op.AdviseBits = o.AdviseBits
+	op.CallbackAddress = o.CallbackAddress
+	op.CallbackAddressLength = o.CallbackAddressLength
 	return op
 }
 
@@ -913,9 +913,9 @@ func (o *RegisterPushNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
-	o.Notification = op.Notification
-	o.Return = op.Return
+	op.Session = o.Session
+	op.Notification = o.Notification
+	op.Return = o.Return
 	return op
 }
 
@@ -1044,7 +1044,7 @@ func (o *DummyRPCResponse) xxx_ToOp(ctx context.Context, op *xxx_DummyRPCOperati
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1802,20 +1802,20 @@ func (o *DoConnectExRequest) xxx_ToOp(ctx context.Context, op *xxx_DoConnectExOp
 	if o == nil {
 		return op
 	}
-	o.UserDN = op.UserDN
-	o.Flags = op.Flags
-	o.UserDNHash = op.UserDNHash
-	o.LimitLength = op.LimitLength
-	o.CodePageID = op.CodePageID
-	o.LocalIDString = op.LocalIDString
-	o.LocalIDSort = op.LocalIDSort
-	o.RemoteSessionLink = op.RemoteSessionLink
-	o.CanConvertCodePages = op.CanConvertCodePages
-	o.ClientVersion = op.ClientVersion
-	o.Timestamp = op.Timestamp
-	o.AuxIn = op.AuxIn
-	o.AuxInLength = op.AuxInLength
-	o.AuxOutLength = op.AuxOutLength
+	op.UserDN = o.UserDN
+	op.Flags = o.Flags
+	op.UserDNHash = o.UserDNHash
+	op.LimitLength = o.LimitLength
+	op.CodePageID = o.CodePageID
+	op.LocalIDString = o.LocalIDString
+	op.LocalIDSort = o.LocalIDSort
+	op.RemoteSessionLink = o.RemoteSessionLink
+	op.CanConvertCodePages = o.CanConvertCodePages
+	op.ClientVersion = o.ClientVersion
+	op.Timestamp = o.Timestamp
+	op.AuxIn = o.AuxIn
+	op.AuxInLength = o.AuxInLength
+	op.AuxOutLength = o.AuxOutLength
 	return op
 }
 
@@ -1947,19 +1947,19 @@ func (o *DoConnectExResponse) xxx_ToOp(ctx context.Context, op *xxx_DoConnectExO
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
-	o.PollsMax = op.PollsMax
-	o.RetryCount = op.RetryCount
-	o.RetryDelay = op.RetryDelay
-	o.RemoteSession = op.RemoteSession
-	o.DNPrefix = op.DNPrefix
-	o.DisplayName = op.DisplayName
-	o.ServerVersion = op.ServerVersion
-	o.BestVersion = op.BestVersion
-	o.Timestamp = op.Timestamp
-	o.AuxOut = op.AuxOut
-	o.AuxOutLength = op.AuxOutLength
-	o.Return = op.Return
+	op.Session = o.Session
+	op.PollsMax = o.PollsMax
+	op.RetryCount = o.RetryCount
+	op.RetryDelay = o.RetryDelay
+	op.RemoteSession = o.RemoteSession
+	op.DNPrefix = o.DNPrefix
+	op.DisplayName = o.DisplayName
+	op.ServerVersion = o.ServerVersion
+	op.BestVersion = o.BestVersion
+	op.Timestamp = o.Timestamp
+	op.AuxOut = o.AuxOut
+	op.AuxOutLength = o.AuxOutLength
+	op.Return = o.Return
 	return op
 }
 
@@ -2562,14 +2562,14 @@ func (o *DoRPCExt2Request) xxx_ToOp(ctx context.Context, op *xxx_DoRPCExt2Operat
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
-	o.Flags = op.Flags
-	o.In = op.In
-	o.InLength = op.InLength
-	o.OutLength = op.OutLength
-	o.AuxIn = op.AuxIn
-	o.AuxInLength = op.AuxInLength
-	o.AuxOutLength = op.AuxOutLength
+	op.Session = o.Session
+	op.Flags = o.Flags
+	op.In = o.In
+	op.InLength = o.InLength
+	op.OutLength = o.OutLength
+	op.AuxIn = o.AuxIn
+	op.AuxInLength = o.AuxInLength
+	op.AuxOutLength = o.AuxOutLength
 	return op
 }
 
@@ -2697,14 +2697,14 @@ func (o *DoRPCExt2Response) xxx_ToOp(ctx context.Context, op *xxx_DoRPCExt2Opera
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
-	o.Flags = op.Flags
-	o.Out = op.Out
-	o.OutLength = op.OutLength
-	o.AuxOut = op.AuxOut
-	o.AuxOutLength = op.AuxOutLength
-	o.TransTime = op.TransTime
-	o.Return = op.Return
+	op.Session = o.Session
+	op.Flags = o.Flags
+	op.Out = o.Out
+	op.OutLength = o.OutLength
+	op.AuxOut = o.AuxOut
+	op.AuxOutLength = o.AuxOutLength
+	op.TransTime = o.TransTime
+	op.Return = o.Return
 	return op
 }
 
@@ -2853,7 +2853,7 @@ func (o *DoAsyncConnectExRequest) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncC
 	if o == nil {
 		return op
 	}
-	o.Session = op.Session
+	op.Session = o.Session
 	return op
 }
 
@@ -2893,8 +2893,8 @@ func (o *DoAsyncConnectExResponse) xxx_ToOp(ctx context.Context, op *xxx_DoAsync
 	if o == nil {
 		return op
 	}
-	o.AsyncSession = op.AsyncSession
-	o.Return = op.Return
+	op.AsyncSession = o.AsyncSession
+	op.Return = o.Return
 	return op
 }
 

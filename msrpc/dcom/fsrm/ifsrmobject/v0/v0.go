@@ -380,7 +380,7 @@ func (o *GetIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -418,9 +418,9 @@ func (o *GetIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ID = op.ID
-	o.Return = op.Return
+	op.That = o.That
+	op.ID = o.ID
+	op.Return = o.Return
 	return op
 }
 
@@ -621,7 +621,7 @@ func (o *GetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -659,9 +659,9 @@ func (o *GetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Description = op.Description
-	o.Return = op.Return
+	op.That = o.That
+	op.Description = o.Description
+	op.Return = o.Return
 	return op
 }
 
@@ -863,8 +863,8 @@ func (o *SetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Description = op.Description
+	op.This = o.This
+	op.Description = o.Description
 	return op
 }
 
@@ -902,8 +902,8 @@ func (o *SetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1056,7 +1056,7 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1093,8 +1093,8 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1247,7 +1247,7 @@ func (o *CommitRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1284,8 +1284,8 @@ func (o *CommitResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

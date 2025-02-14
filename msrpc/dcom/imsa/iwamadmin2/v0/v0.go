@@ -351,9 +351,9 @@ func (o *AppCreate2Request) xxx_ToOp(ctx context.Context, op *xxx_AppCreate2Oper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Path = op.Path
-	o.AppMode = op.AppMode
+	op.This = o.This
+	op.Path = o.Path
+	op.AppMode = o.AppMode
 	return op
 }
 
@@ -392,8 +392,8 @@ func (o *AppCreate2Response) xxx_ToOp(ctx context.Context, op *xxx_AppCreate2Ope
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

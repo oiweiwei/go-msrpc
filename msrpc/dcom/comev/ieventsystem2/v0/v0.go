@@ -305,7 +305,7 @@ func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -360,9 +360,9 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Version = op.Version
-	o.Return = op.Return
+	op.That = o.That
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -518,7 +518,7 @@ func (o *VerifyTransientSubscribersRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -555,8 +555,8 @@ func (o *VerifyTransientSubscribersResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

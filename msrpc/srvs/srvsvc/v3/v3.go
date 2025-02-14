@@ -19624,11 +19624,11 @@ func (o *ConnectionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_Connection
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Qualifier = op.Qualifier
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Qualifier = o.Qualifier
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -19682,10 +19682,10 @@ func (o *ConnectionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_Connectio
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -20064,12 +20064,12 @@ func (o *FileEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_FileEnumOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.BasePath = op.BasePath
-	o.UserName = op.UserName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.BasePath = o.BasePath
+	op.UserName = o.UserName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -20123,10 +20123,10 @@ func (o *FileEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_FileEnumOperati
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -20339,9 +20339,9 @@ func (o *FileGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_FileGetInfoOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.FileID = op.FileID
-	o.Level = op.Level
+	op.ServerName = o.ServerName
+	op.FileID = o.FileID
+	op.Level = o.Level
 	return op
 }
 
@@ -20382,8 +20382,8 @@ func (o *FileGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_FileGetInfoO
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -20535,8 +20535,8 @@ func (o *FileCloseRequest) xxx_ToOp(ctx context.Context, op *xxx_FileCloseOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.FileID = op.FileID
+	op.ServerName = o.ServerName
+	op.FileID = o.FileID
 	return op
 }
 
@@ -20572,7 +20572,7 @@ func (o *FileCloseResponse) xxx_ToOp(ctx context.Context, op *xxx_FileCloseOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20952,12 +20952,12 @@ func (o *SessionEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_SessionEnumOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ClientName = op.ClientName
-	o.UserName = op.UserName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.ClientName = o.ClientName
+	op.UserName = o.UserName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -21012,10 +21012,10 @@ func (o *SessionEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_SessionEnumO
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -21237,9 +21237,9 @@ func (o *SessionDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_SessionDele
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ClientName = op.ClientName
-	o.UserName = op.UserName
+	op.ServerName = o.ServerName
+	op.ClientName = o.ClientName
+	op.UserName = o.UserName
 	return op
 }
 
@@ -21276,7 +21276,7 @@ func (o *SessionDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_SessionDel
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21543,10 +21543,10 @@ func (o *ShareAddRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareAddOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Info = op.Info
-	o.ParameterError = op.ParameterError
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Info = o.Info
+	op.ParameterError = o.ParameterError
 	return op
 }
 
@@ -21588,8 +21588,8 @@ func (o *ShareAddResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareAddOperati
 	if o == nil {
 		return op
 	}
-	o.ParameterError = op.ParameterError
-	o.Return = op.Return
+	op.ParameterError = o.ParameterError
+	op.Return = o.Return
 	return op
 }
 
@@ -21886,10 +21886,10 @@ func (o *ShareEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareEnumOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -21942,10 +21942,10 @@ func (o *ShareEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareEnumOpera
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -22167,9 +22167,9 @@ func (o *ShareGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareGetInfo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NetName = op.NetName
-	o.Level = op.Level
+	op.ServerName = o.ServerName
+	op.NetName = o.NetName
+	op.Level = o.Level
 	return op
 }
 
@@ -22210,8 +22210,8 @@ func (o *ShareGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareGetInf
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -22507,11 +22507,11 @@ func (o *ShareSetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareSetInfo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NetName = op.NetName
-	o.Level = op.Level
-	o.ShareInfo = op.ShareInfo
-	o.ParameterError = op.ParameterError
+	op.ServerName = o.ServerName
+	op.NetName = o.NetName
+	op.Level = o.Level
+	op.ShareInfo = o.ShareInfo
+	op.ParameterError = o.ParameterError
 	return op
 }
 
@@ -22554,8 +22554,8 @@ func (o *ShareSetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareSetInf
 	if o == nil {
 		return op
 	}
-	o.ParameterError = op.ParameterError
-	o.Return = op.Return
+	op.ParameterError = o.ParameterError
+	op.Return = o.Return
 	return op
 }
 
@@ -22724,8 +22724,8 @@ func (o *ShareDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NetName = op.NetName
+	op.ServerName = o.ServerName
+	op.NetName = o.NetName
 	return op
 }
 
@@ -22761,7 +22761,7 @@ func (o *ShareDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDeleteO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22929,8 +22929,8 @@ func (o *ShareDeleteStickyRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDe
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NetName = op.NetName
+	op.ServerName = o.ServerName
+	op.NetName = o.NetName
 	return op
 }
 
@@ -22966,7 +22966,7 @@ func (o *ShareDeleteStickyResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareD
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -23131,8 +23131,8 @@ func (o *ShareCheckRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareCheckOper
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Device = op.Device
+	op.ServerName = o.ServerName
+	op.Device = o.Device
 	return op
 }
 
@@ -23172,8 +23172,8 @@ func (o *ShareCheckResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareCheckOpe
 	if o == nil {
 		return op
 	}
-	o.Type = op.Type
-	o.Return = op.Return
+	op.Type = o.Type
+	op.Return = o.Return
 	return op
 }
 
@@ -23376,8 +23376,8 @@ func (o *GetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
+	op.ServerName = o.ServerName
+	op.Level = o.Level
 	return op
 }
 
@@ -23417,8 +23417,8 @@ func (o *GetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInfoOperation
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -23780,10 +23780,10 @@ func (o *SetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation)
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.ServerInfo = op.ServerInfo
-	o.ParameterError = op.ParameterError
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.ServerInfo = o.ServerInfo
+	op.ParameterError = o.ParameterError
 	return op
 }
 
@@ -23825,8 +23825,8 @@ func (o *SetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInfoOperation
 	if o == nil {
 		return op
 	}
-	o.ParameterError = op.ParameterError
-	o.Return = op.Return
+	op.ParameterError = o.ParameterError
+	op.Return = o.Return
 	return op
 }
 
@@ -24140,11 +24140,11 @@ func (o *DiskEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_DiskEnumOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.DiskInfo = op.DiskInfo
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.DiskInfo = o.DiskInfo
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -24193,10 +24193,10 @@ func (o *DiskEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_DiskEnumOperati
 	if o == nil {
 		return op
 	}
-	o.DiskInfo = op.DiskInfo
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.DiskInfo = o.DiskInfo
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -24453,10 +24453,10 @@ func (o *StatisticsGetRequest) xxx_ToOp(ctx context.Context, op *xxx_StatisticsG
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Service = op.Service
-	o.Level = op.Level
-	o.Options = op.Options
+	op.ServerName = o.ServerName
+	op.Service = o.Service
+	op.Level = o.Level
+	op.Options = o.Options
 	return op
 }
 
@@ -24497,8 +24497,8 @@ func (o *StatisticsGetResponse) xxx_ToOp(ctx context.Context, op *xxx_Statistics
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.Return = op.Return
+	op.Info = o.Info
+	op.Return = o.Return
 	return op
 }
 
@@ -24680,9 +24680,9 @@ func (o *TransportAddRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportAdd
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Buffer = op.Buffer
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -24719,7 +24719,7 @@ func (o *TransportAddResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportAd
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25016,10 +25016,10 @@ func (o *TransportEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportEn
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -25073,10 +25073,10 @@ func (o *TransportEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_TransportE
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -25271,9 +25271,9 @@ func (o *TransportDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_Transport
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Buffer = op.Buffer
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -25310,7 +25310,7 @@ func (o *TransportDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_Transpor
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -25493,7 +25493,7 @@ func (o *RemoteToDRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteToDOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -25531,8 +25531,8 @@ func (o *RemoteToDResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteToDOpera
 	if o == nil {
 		return op
 	}
-	o.BufferPointer = op.BufferPointer
-	o.Return = op.Return
+	op.BufferPointer = o.BufferPointer
+	op.Return = o.Return
 	return op
 }
 
@@ -25724,9 +25724,9 @@ func (o *PathTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_PathTypeOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.PathName = op.PathName
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.PathName = o.PathName
+	op.Flags = o.Flags
 	return op
 }
 
@@ -25766,8 +25766,8 @@ func (o *PathTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_PathTypeOperati
 	if o == nil {
 		return op
 	}
-	o.PathType = op.PathType
-	o.Return = op.Return
+	op.PathType = o.PathType
+	op.Return = o.Return
 	return op
 }
 
@@ -26046,12 +26046,12 @@ func (o *PathCanonicalizeRequest) xxx_ToOp(ctx context.Context, op *xxx_PathCano
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.PathName = op.PathName
-	o.OutputBufferLength = op.OutputBufferLength
-	o.Prefix = op.Prefix
-	o.PathType = op.PathType
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.PathName = o.PathName
+	op.OutputBufferLength = o.OutputBufferLength
+	op.Prefix = o.Prefix
+	op.PathType = o.PathType
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26098,9 +26098,9 @@ func (o *PathCanonicalizeResponse) xxx_ToOp(ctx context.Context, op *xxx_PathCan
 	if o == nil {
 		return op
 	}
-	o.OutputBuffer = op.OutputBuffer
-	o.PathType = op.PathType
-	o.Return = op.Return
+	op.OutputBuffer = o.OutputBuffer
+	op.PathType = o.PathType
+	op.Return = o.Return
 	return op
 }
 
@@ -26310,11 +26310,11 @@ func (o *PathCompareRequest) xxx_ToOp(ctx context.Context, op *xxx_PathCompareOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.PathName1 = op.PathName1
-	o.PathName2 = op.PathName2
-	o.PathType = op.PathType
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.PathName1 = o.PathName1
+	op.PathName2 = o.PathName2
+	op.PathType = o.PathType
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26353,7 +26353,7 @@ func (o *PathCompareResponse) xxx_ToOp(ctx context.Context, op *xxx_PathCompareO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26534,10 +26534,10 @@ func (o *NameValidateRequest) xxx_ToOp(ctx context.Context, op *xxx_NameValidate
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Name = op.Name
-	o.NameType = op.NameType
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.Name = o.Name
+	op.NameType = o.NameType
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26575,7 +26575,7 @@ func (o *NameValidateResponse) xxx_ToOp(ctx context.Context, op *xxx_NameValidat
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26842,11 +26842,11 @@ func (o *NameCanonicalizeRequest) xxx_ToOp(ctx context.Context, op *xxx_NameCano
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Name = op.Name
-	o.OutputBufferLength = op.OutputBufferLength
-	o.NameType = op.NameType
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.Name = o.Name
+	op.OutputBufferLength = o.OutputBufferLength
+	op.NameType = o.NameType
+	op.Flags = o.Flags
 	return op
 }
 
@@ -26888,8 +26888,8 @@ func (o *NameCanonicalizeResponse) xxx_ToOp(ctx context.Context, op *xxx_NameCan
 	if o == nil {
 		return op
 	}
-	o.OutputBuffer = op.OutputBuffer
-	o.Return = op.Return
+	op.OutputBuffer = o.OutputBuffer
+	op.Return = o.Return
 	return op
 }
 
@@ -27101,11 +27101,11 @@ func (o *NameCompareRequest) xxx_ToOp(ctx context.Context, op *xxx_NameCompareOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Name1 = op.Name1
-	o.Name2 = op.Name2
-	o.NameType = op.NameType
-	o.Flags = op.Flags
+	op.ServerName = o.ServerName
+	op.Name1 = o.Name1
+	op.Name2 = o.Name2
+	op.NameType = o.NameType
+	op.Flags = o.Flags
 	return op
 }
 
@@ -27144,7 +27144,7 @@ func (o *NameCompareResponse) xxx_ToOp(ctx context.Context, op *xxx_NameCompareO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27440,10 +27440,10 @@ func (o *ShareEnumStickyRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareEnum
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -27496,10 +27496,10 @@ func (o *ShareEnumStickyResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareEnu
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -27692,8 +27692,8 @@ func (o *ShareDeleteStartRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDel
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.NetName = op.NetName
+	op.ServerName = o.ServerName
+	op.NetName = o.NetName
 	return op
 }
 
@@ -27732,8 +27732,8 @@ func (o *ShareDeleteStartResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDe
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -27873,7 +27873,7 @@ func (o *ShareDeleteCommitRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDe
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
+	op.ContextHandle = o.ContextHandle
 	return op
 }
 
@@ -27910,8 +27910,8 @@ func (o *ShareDeleteCommitResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareD
 	if o == nil {
 		return op
 	}
-	o.ContextHandle = op.ContextHandle
-	o.Return = op.Return
+	op.ContextHandle = o.ContextHandle
+	op.Return = o.Return
 	return op
 }
 
@@ -28169,10 +28169,10 @@ func (o *GetFileSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileSe
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.FileName = op.FileName
-	o.RequestedInformation = op.RequestedInformation
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.FileName = o.FileName
+	op.RequestedInformation = o.RequestedInformation
 	return op
 }
 
@@ -28213,8 +28213,8 @@ func (o *GetFileSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileS
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.Return = o.Return
 	return op
 }
 
@@ -28455,11 +28455,11 @@ func (o *SetFileSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFileSe
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.FileName = op.FileName
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.FileName = o.FileName
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -28498,7 +28498,7 @@ func (o *SetFileSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFileS
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28698,9 +28698,9 @@ func (o *TransportAddExRequest) xxx_ToOp(ctx context.Context, op *xxx_TransportA
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Buffer = op.Buffer
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -28737,7 +28737,7 @@ func (o *TransportAddExResponse) xxx_ToOp(ctx context.Context, op *xxx_Transport
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28886,7 +28886,7 @@ func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOper
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
+	op.ServerName = o.ServerName
 	return op
 }
 
@@ -28923,8 +28923,8 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -29183,13 +29183,13 @@ func (o *CreateLocalPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.ShareName = op.ShareName
-	o.EntryUID = op.EntryUID
-	o.EntryPrefix = op.EntryPrefix
-	o.ShortName = op.ShortName
-	o.RelationInfo = op.RelationInfo
-	o.Force = op.Force
+	op.ServerName = o.ServerName
+	op.ShareName = o.ShareName
+	op.EntryUID = o.EntryUID
+	op.EntryPrefix = o.EntryPrefix
+	op.ShortName = o.ShortName
+	op.RelationInfo = o.RelationInfo
+	op.Force = o.Force
 	return op
 }
 
@@ -29230,7 +29230,7 @@ func (o *CreateLocalPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29410,9 +29410,9 @@ func (o *DeleteLocalPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_Dele
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UID = op.UID
-	o.Prefix = op.Prefix
+	op.ServerName = o.ServerName
+	op.UID = o.UID
+	op.Prefix = o.Prefix
 	return op
 }
 
@@ -29449,7 +29449,7 @@ func (o *DeleteLocalPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_Del
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29645,10 +29645,10 @@ func (o *SetLocalVolumeStateRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UID = op.UID
-	o.Prefix = op.Prefix
-	o.State = op.State
+	op.ServerName = o.ServerName
+	op.UID = o.UID
+	op.Prefix = o.Prefix
+	op.State = o.State
 	return op
 }
 
@@ -29686,7 +29686,7 @@ func (o *SetLocalVolumeStateResponse) xxx_ToOp(ctx context.Context, op *xxx_SetL
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -29949,11 +29949,11 @@ func (o *CreateExitPointRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateExi
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UID = op.UID
-	o.Prefix = op.Prefix
-	o.Type = op.Type
-	o.ShortPrefixLength = op.ShortPrefixLength
+	op.ServerName = o.ServerName
+	op.UID = o.UID
+	op.Prefix = o.Prefix
+	op.Type = o.Type
+	op.ShortPrefixLength = o.ShortPrefixLength
 	return op
 }
 
@@ -29995,8 +29995,8 @@ func (o *CreateExitPointResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateEx
 	if o == nil {
 		return op
 	}
-	o.ShortPrefix = op.ShortPrefix
-	o.Return = op.Return
+	op.ShortPrefix = o.ShortPrefix
+	op.Return = o.Return
 	return op
 }
 
@@ -30190,10 +30190,10 @@ func (o *DeleteExitPointRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteExi
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UID = op.UID
-	o.Prefix = op.Prefix
-	o.Type = op.Type
+	op.ServerName = o.ServerName
+	op.UID = o.UID
+	op.Prefix = o.Prefix
+	op.Type = o.Type
 	return op
 }
 
@@ -30231,7 +30231,7 @@ func (o *DeleteExitPointResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteEx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -30409,9 +30409,9 @@ func (o *ModifyPrefixRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyPrefix
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.UID = op.UID
-	o.Prefix = op.Prefix
+	op.ServerName = o.ServerName
+	op.UID = o.UID
+	op.Prefix = o.Prefix
 	return op
 }
 
@@ -30448,7 +30448,7 @@ func (o *ModifyPrefixResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyPrefi
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -30782,15 +30782,15 @@ func (o *FixLocalVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_FixLocalVo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.VolumeName = op.VolumeName
-	o.EntryType = op.EntryType
-	o.ServiceType = op.ServiceType
-	o.StorageID = op.StorageID
-	o.EntryUID = op.EntryUID
-	o.EntryPrefix = op.EntryPrefix
-	o.RelationInfo = op.RelationInfo
-	o.CreateDisposition = op.CreateDisposition
+	op.ServerName = o.ServerName
+	op.VolumeName = o.VolumeName
+	op.EntryType = o.EntryType
+	op.ServiceType = o.ServiceType
+	op.StorageID = o.StorageID
+	op.EntryUID = o.EntryUID
+	op.EntryPrefix = o.EntryPrefix
+	op.RelationInfo = o.RelationInfo
+	op.CreateDisposition = o.CreateDisposition
 	return op
 }
 
@@ -30833,7 +30833,7 @@ func (o *FixLocalVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_FixLocalV
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31105,8 +31105,8 @@ func (o *ManagerReportSiteInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Man
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.SiteInfo = op.SiteInfo
+	op.ServerName = o.ServerName
+	op.SiteInfo = o.SiteInfo
 	return op
 }
 
@@ -31145,8 +31145,8 @@ func (o *ManagerReportSiteInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Ma
 	if o == nil {
 		return op
 	}
-	o.SiteInfo = op.SiteInfo
-	o.Return = op.Return
+	op.SiteInfo = o.SiteInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -31346,9 +31346,9 @@ func (o *TransportDeleteExRequest) xxx_ToOp(ctx context.Context, op *xxx_Transpo
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Buffer = op.Buffer
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Buffer = o.Buffer
 	return op
 }
 
@@ -31385,7 +31385,7 @@ func (o *TransportDeleteExResponse) xxx_ToOp(ctx context.Context, op *xxx_Transp
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31580,9 +31580,9 @@ func (o *AliasAddRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasAddOperatio
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Info = op.Info
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Info = o.Info
 	return op
 }
 
@@ -31619,7 +31619,7 @@ func (o *AliasAddResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasAddOperati
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -31915,10 +31915,10 @@ func (o *AliasEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasEnumOperat
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Info = op.Info
-	o.PreferredMaximumLength = op.PreferredMaximumLength
-	o.Resume = op.Resume
+	op.ServerName = o.ServerName
+	op.Info = o.Info
+	op.PreferredMaximumLength = o.PreferredMaximumLength
+	op.Resume = o.Resume
 	return op
 }
 
@@ -31971,10 +31971,10 @@ func (o *AliasEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasEnumOpera
 	if o == nil {
 		return op
 	}
-	o.Info = op.Info
-	o.TotalEntries = op.TotalEntries
-	o.Resume = op.Resume
-	o.Return = op.Return
+	op.Info = o.Info
+	op.TotalEntries = o.TotalEntries
+	op.Resume = o.Resume
+	op.Return = o.Return
 	return op
 }
 
@@ -32172,9 +32172,9 @@ func (o *AliasDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_AliasDeleteOp
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.Info = op.Info
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.Info = o.Info
 	return op
 }
 
@@ -32211,7 +32211,7 @@ func (o *AliasDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_AliasDeleteO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -32406,9 +32406,9 @@ func (o *ShareDeleteExRequest) xxx_ToOp(ctx context.Context, op *xxx_ShareDelete
 	if o == nil {
 		return op
 	}
-	o.ServerName = op.ServerName
-	o.Level = op.Level
-	o.ShareInfo = op.ShareInfo
+	op.ServerName = o.ServerName
+	op.Level = o.Level
+	op.ShareInfo = o.ShareInfo
 	return op
 }
 
@@ -32445,7 +32445,7 @@ func (o *ShareDeleteExResponse) xxx_ToOp(ctx context.Context, op *xxx_ShareDelet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

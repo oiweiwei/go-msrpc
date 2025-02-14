@@ -411,9 +411,9 @@ func (o *IndicateRequest) xxx_ToOp(ctx context.Context, op *xxx_IndicateOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ObjectCount = op.ObjectCount
-	o.ObjectArray = op.ObjectArray
+	op.This = o.This
+	op.ObjectCount = o.ObjectCount
+	op.ObjectArray = o.ObjectArray
 	return op
 }
 
@@ -452,8 +452,8 @@ func (o *IndicateResponse) xxx_ToOp(ctx context.Context, op *xxx_IndicateOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -755,11 +755,11 @@ func (o *SetStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_SetStatusOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
-	o.HResult = op.HResult
-	o.Param = op.Param
-	o.ObjectParam = op.ObjectParam
+	op.This = o.This
+	op.Flags = o.Flags
+	op.HResult = o.HResult
+	op.Param = o.Param
+	op.ObjectParam = o.ObjectParam
 	return op
 }
 
@@ -800,8 +800,8 @@ func (o *SetStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_SetStatusOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

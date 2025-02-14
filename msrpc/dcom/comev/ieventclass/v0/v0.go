@@ -570,7 +570,7 @@ func (o *GetEventClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -608,9 +608,9 @@ func (o *GetEventClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEvent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventClassID = op.EventClassID
-	o.Return = op.Return
+	op.That = o.That
+	op.EventClassID = o.EventClassID
+	op.Return = o.Return
 	return op
 }
 
@@ -812,8 +812,8 @@ func (o *SetEventClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventC
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventClassID = op.EventClassID
+	op.This = o.This
+	op.EventClassID = o.EventClassID
 	return op
 }
 
@@ -851,8 +851,8 @@ func (o *SetEventClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEvent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1052,7 +1052,7 @@ func (o *GetEventClassNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEven
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1090,9 +1090,9 @@ func (o *GetEventClassNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEve
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.EventClassName = op.EventClassName
-	o.Return = op.Return
+	op.That = o.That
+	op.EventClassName = o.EventClassName
+	op.Return = o.Return
 	return op
 }
 
@@ -1294,8 +1294,8 @@ func (o *SetEventClassNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEven
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.EventClassName = op.EventClassName
+	op.This = o.This
+	op.EventClassName = o.EventClassName
 	return op
 }
 
@@ -1333,8 +1333,8 @@ func (o *SetEventClassNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEve
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1534,7 +1534,7 @@ func (o *GetOwnerSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOwnerSIDOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1572,9 +1572,9 @@ func (o *GetOwnerSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOwnerSIDO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OwnerSID = op.OwnerSID
-	o.Return = op.Return
+	op.That = o.That
+	op.OwnerSID = o.OwnerSID
+	op.Return = o.Return
 	return op
 }
 
@@ -1776,8 +1776,8 @@ func (o *SetOwnerSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOwnerSIDOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.OwnerSID = op.OwnerSID
+	op.This = o.This
+	op.OwnerSID = o.OwnerSID
 	return op
 }
 
@@ -1815,8 +1815,8 @@ func (o *SetOwnerSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOwnerSIDO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2018,7 +2018,7 @@ func (o *GetFiringInterfaceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetF
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2056,9 +2056,9 @@ func (o *GetFiringInterfaceIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FiringInterfaceID = op.FiringInterfaceID
-	o.Return = op.Return
+	op.That = o.That
+	op.FiringInterfaceID = o.FiringInterfaceID
+	op.Return = o.Return
 	return op
 }
 
@@ -2262,8 +2262,8 @@ func (o *SetFiringInterfaceIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetF
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FiringInterfaceID = op.FiringInterfaceID
+	op.This = o.This
+	op.FiringInterfaceID = o.FiringInterfaceID
 	return op
 }
 
@@ -2301,8 +2301,8 @@ func (o *SetFiringInterfaceIDResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2502,7 +2502,7 @@ func (o *GetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2540,9 +2540,9 @@ func (o *GetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Description = op.Description
-	o.Return = op.Return
+	op.That = o.That
+	op.Description = o.Description
+	op.Return = o.Return
 	return op
 }
 
@@ -2744,8 +2744,8 @@ func (o *SetDescriptionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetDescrip
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Description = op.Description
+	op.This = o.This
+	op.Description = o.Description
 	return op
 }
 
@@ -2783,8 +2783,8 @@ func (o *SetDescriptionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetDescri
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -2984,7 +2984,7 @@ func (o *GetTypeLibRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeLibOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -3022,9 +3022,9 @@ func (o *GetTypeLibResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeLibOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeLib = op.TypeLib
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeLib = o.TypeLib
+	op.Return = o.Return
 	return op
 }
 
@@ -3226,8 +3226,8 @@ func (o *SetTypeLibRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTypeLibOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TypeLib = op.TypeLib
+	op.This = o.This
+	op.TypeLib = o.TypeLib
 	return op
 }
 
@@ -3265,8 +3265,8 @@ func (o *SetTypeLibResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTypeLibOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

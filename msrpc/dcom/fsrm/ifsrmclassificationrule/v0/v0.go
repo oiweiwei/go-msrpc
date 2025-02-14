@@ -396,7 +396,7 @@ func (o *GetExecutionOptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -434,9 +434,9 @@ func (o *GetExecutionOptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ExecutionOption = op.ExecutionOption
-	o.Return = op.Return
+	op.That = o.That
+	op.ExecutionOption = o.ExecutionOption
+	op.Return = o.Return
 	return op
 }
 
@@ -606,8 +606,8 @@ func (o *SetExecutionOptionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ExecutionOption = op.ExecutionOption
+	op.This = o.This
+	op.ExecutionOption = o.ExecutionOption
 	return op
 }
 
@@ -645,8 +645,8 @@ func (o *SetExecutionOptionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -848,7 +848,7 @@ func (o *GetPropertyAffectedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -886,9 +886,9 @@ func (o *GetPropertyAffectedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Property = op.Property
-	o.Return = op.Return
+	op.That = o.That
+	op.Property = o.Property
+	op.Return = o.Return
 	return op
 }
 
@@ -1092,8 +1092,8 @@ func (o *SetPropertyAffectedRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPr
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Property = op.Property
+	op.This = o.This
+	op.Property = o.Property
 	return op
 }
 
@@ -1131,8 +1131,8 @@ func (o *SetPropertyAffectedResponse) xxx_ToOp(ctx context.Context, op *xxx_SetP
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1332,7 +1332,7 @@ func (o *GetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1370,9 +1370,9 @@ func (o *GetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1574,8 +1574,8 @@ func (o *SetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -1613,8 +1613,8 @@ func (o *SetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

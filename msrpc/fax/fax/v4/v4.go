@@ -5696,10 +5696,10 @@ func (o *GetServicePrintersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSe
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.PrintersReturned = op.PrintersReturned
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.PrintersReturned = o.PrintersReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -5929,8 +5929,8 @@ func (o *ConnectionReferenceCountRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Connect = op.Connect
+	op.Handle = o.Handle
+	op.Connect = o.Connect
 	return op
 }
 
@@ -5986,9 +5986,9 @@ func (o *ConnectionReferenceCountResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.CanShare = op.CanShare
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.CanShare = o.CanShare
+	op.Return = o.Return
 	return op
 }
 
@@ -6157,8 +6157,8 @@ func (o *OpenPortRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPortOperatio
 	if o == nil {
 		return op
 	}
-	o.DeviceID = op.DeviceID
-	o.Flags = op.Flags
+	op.DeviceID = o.DeviceID
+	op.Flags = o.Flags
 	return op
 }
 
@@ -6198,8 +6198,8 @@ func (o *OpenPortResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPortOperati
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.Return = op.Return
+	op.FaxPort = o.FaxPort
+	op.Return = o.Return
 	return op
 }
 
@@ -6339,7 +6339,7 @@ func (o *ClosePortRequest) xxx_ToOp(ctx context.Context, op *xxx_ClosePortOperat
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
+	op.FaxPort = o.FaxPort
 	return op
 }
 
@@ -6376,8 +6376,8 @@ func (o *ClosePortResponse) xxx_ToOp(ctx context.Context, op *xxx_ClosePortOpera
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.Return = op.Return
+	op.FaxPort = o.FaxPort
+	op.Return = o.Return
 	return op
 }
 
@@ -6613,10 +6613,10 @@ func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperati
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.JobsReturned = op.JobsReturned
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.JobsReturned = o.JobsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -6815,7 +6815,7 @@ func (o *GetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
+	op.JobID = o.JobID
 	return op
 }
 
@@ -6855,9 +6855,9 @@ func (o *GetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -7004,8 +7004,8 @@ func (o *SetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) *
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.Command = op.Command
+	op.JobID = o.JobID
+	op.Command = o.Command
 	return op
 }
 
@@ -7041,7 +7041,7 @@ func (o *SetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7294,9 +7294,9 @@ func (o *GetPageDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPageDataOp
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.ImageWidth = op.ImageWidth
-	o.ImageHeight = op.ImageHeight
+	op.JobID = o.JobID
+	op.ImageWidth = o.ImageWidth
+	op.ImageHeight = o.ImageHeight
 	return op
 }
 
@@ -7345,11 +7345,11 @@ func (o *GetPageDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPageDataO
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.ImageWidth = op.ImageWidth
-	o.ImageHeight = op.ImageHeight
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.ImageWidth = o.ImageWidth
+	op.ImageHeight = o.ImageHeight
+	op.Return = o.Return
 	return op
 }
 
@@ -7559,7 +7559,7 @@ func (o *GetDeviceStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDevice
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
+	op.FaxPort = o.FaxPort
 	return op
 }
 
@@ -7602,9 +7602,9 @@ func (o *GetDeviceStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDevic
 	if o == nil {
 		return op
 	}
-	o.StatusBuffer = op.StatusBuffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.StatusBuffer = o.StatusBuffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -7715,7 +7715,7 @@ func (o *AbortRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
+	op.JobID = o.JobID
 	return op
 }
 
@@ -7750,7 +7750,7 @@ func (o *AbortResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortOperation) *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7985,10 +7985,10 @@ func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOpera
 	if o == nil {
 		return op
 	}
-	o.PortBuffer = op.PortBuffer
-	o.BufferSize = op.BufferSize
-	o.PortsReturned = op.PortsReturned
-	o.Return = op.Return
+	op.PortBuffer = o.PortBuffer
+	op.BufferSize = o.BufferSize
+	op.PortsReturned = o.PortsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -8196,7 +8196,7 @@ func (o *GetPortRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPortOperation)
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
+	op.FaxPort = o.FaxPort
 	return op
 }
 
@@ -8236,9 +8236,9 @@ func (o *GetPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPortOperation
 	if o == nil {
 		return op
 	}
-	o.PortBuffer = op.PortBuffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.PortBuffer = o.PortBuffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -8392,8 +8392,8 @@ func (o *SetPortRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation)
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.PortInfo = op.PortInfo
+	op.FaxPort = o.FaxPort
+	op.PortInfo = o.PortInfo
 	return op
 }
 
@@ -8429,7 +8429,7 @@ func (o *SetPortResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8647,7 +8647,7 @@ func (o *EnumRoutingMethodsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumRo
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
+	op.FaxPort = o.FaxPort
 	return op
 }
 
@@ -8692,10 +8692,10 @@ func (o *EnumRoutingMethodsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumR
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
-	o.PortsReturned = op.PortsReturned
-	o.Return = op.Return
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
+	op.PortsReturned = o.PortsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -8889,9 +8889,9 @@ func (o *EnableRoutingMethodRequest) xxx_ToOp(ctx context.Context, op *xxx_Enabl
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingGUID = op.RoutingGUID
-	o.Enabled = op.Enabled
+	op.FaxPort = o.FaxPort
+	op.RoutingGUID = o.RoutingGUID
+	op.Enabled = o.Enabled
 	return op
 }
 
@@ -8928,7 +8928,7 @@ func (o *EnableRoutingMethodResponse) xxx_ToOp(ctx context.Context, op *xxx_Enab
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9180,8 +9180,8 @@ func (o *GetRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRouting
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingGUID = op.RoutingGUID
+	op.FaxPort = o.FaxPort
+	op.RoutingGUID = o.RoutingGUID
 	return op
 }
 
@@ -9224,9 +9224,9 @@ func (o *GetRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRoutin
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
-	o.Return = op.Return
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -9491,10 +9491,10 @@ func (o *SetRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRouting
 	if o == nil {
 		return op
 	}
-	o.FaxPort = op.FaxPort
-	o.RoutingGUID = op.RoutingGUID
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
+	op.FaxPort = o.FaxPort
+	op.RoutingGUID = o.RoutingGUID
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
 	return op
 }
 
@@ -9532,7 +9532,7 @@ func (o *SetRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetRoutin
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9773,10 +9773,10 @@ func (o *EnumGlobalRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.RoutingInfoBuffer = op.RoutingInfoBuffer
-	o.RoutingInfoBufferSize = op.RoutingInfoBufferSize
-	o.MethodsReturned = op.MethodsReturned
-	o.Return = op.Return
+	op.RoutingInfoBuffer = o.RoutingInfoBuffer
+	op.RoutingInfoBufferSize = o.RoutingInfoBufferSize
+	op.MethodsReturned = o.MethodsReturned
+	op.Return = o.Return
 	return op
 }
 
@@ -9906,7 +9906,7 @@ func (o *SetGlobalRoutingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetG
 	if o == nil {
 		return op
 	}
-	o.RoutingInfo = op.RoutingInfo
+	op.RoutingInfo = o.RoutingInfo
 	return op
 }
 
@@ -9941,7 +9941,7 @@ func (o *SetGlobalRoutingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10161,9 +10161,9 @@ func (o *GetConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConf
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -10311,7 +10311,7 @@ func (o *SetConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_SetConfi
 	if o == nil {
 		return op
 	}
-	o.FaxConfig = op.FaxConfig
+	op.FaxConfig = o.FaxConfig
 	return op
 }
 
@@ -10346,7 +10346,7 @@ func (o *SetConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_SetConf
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10586,10 +10586,10 @@ func (o *GetLoggingCategoriesResponse) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.NumberCategories = op.NumberCategories
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.NumberCategories = o.NumberCategories
+	op.Return = o.Return
 	return op
 }
 
@@ -10804,9 +10804,9 @@ func (o *SetLoggingCategoriesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetL
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.NumberCategories = op.NumberCategories
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.NumberCategories = o.NumberCategories
 	return op
 }
 
@@ -10843,7 +10843,7 @@ func (o *SetLoggingCategoriesResponse) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11063,9 +11063,9 @@ func (o *GetSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSecurityO
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -11274,9 +11274,9 @@ func (o *SetSecurityRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSecurityOp
 	if o == nil {
 		return op
 	}
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BufferSize = op.BufferSize
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -11313,7 +11313,7 @@ func (o *SetSecurityResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSecurityO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -11628,8 +11628,8 @@ func (o *AccessCheckRequest) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckOp
 	if o == nil {
 		return op
 	}
-	o.AccessMask = op.AccessMask
-	o.Rights = op.Rights
+	op.AccessMask = o.AccessMask
+	op.Rights = o.Rights
 	return op
 }
 
@@ -11680,9 +11680,9 @@ func (o *AccessCheckResponse) xxx_ToOp(ctx context.Context, op *xxx_AccessCheckO
 	if o == nil {
 		return op
 	}
-	o.Access = op.Access
-	o.Rights = op.Rights
-	o.Return = op.Return
+	op.Access = o.Access
+	op.Rights = o.Rights
+	op.Return = o.Return
 	return op
 }
 
@@ -11858,7 +11858,7 @@ func (o *CheckServerProtocolSeqRequest) xxx_ToOp(ctx context.Context, op *xxx_Ch
 	if o == nil {
 		return op
 	}
-	o.ProtocolSeq = op.ProtocolSeq
+	op.ProtocolSeq = o.ProtocolSeq
 	return op
 }
 
@@ -11908,8 +11908,8 @@ func (o *CheckServerProtocolSeqResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.ProtocolSeq = op.ProtocolSeq
-	o.Return = op.Return
+	op.ProtocolSeq = o.ProtocolSeq
+	op.Return = o.Return
 	return op
 }
 
@@ -12360,13 +12360,13 @@ func (o *SendDocumentExRequest) xxx_ToOp(ctx context.Context, op *xxx_SendDocume
 	if o == nil {
 		return op
 	}
-	o.FileName = op.FileName
-	o.CoverPageInfoCount = op.CoverPageInfoCount
-	o.SenderProfileCount = op.SenderProfileCount
-	o.RecipientsLength = op.RecipientsLength
-	o.RecipientListCount = op.RecipientListCount
-	o.JobParams = op.JobParams
-	o.JobID = op.JobID
+	op.FileName = o.FileName
+	op.CoverPageInfoCount = o.CoverPageInfoCount
+	op.SenderProfileCount = o.SenderProfileCount
+	op.RecipientsLength = o.RecipientsLength
+	op.RecipientListCount = o.RecipientListCount
+	op.JobParams = o.JobParams
+	op.JobID = o.JobID
 	return op
 }
 
@@ -12421,10 +12421,10 @@ func (o *SendDocumentExResponse) xxx_ToOp(ctx context.Context, op *xxx_SendDocum
 	if o == nil {
 		return op
 	}
-	o.JobID = op.JobID
-	o.MessageID = op.MessageID
-	o.RecipientMessageIDs = op.RecipientMessageIDs
-	o.Return = op.Return
+	op.JobID = o.JobID
+	op.MessageID = o.MessageID
+	op.RecipientMessageIDs = o.RecipientMessageIDs
+	op.Return = o.Return
 	return op
 }
 
@@ -12640,7 +12640,7 @@ func (o *EnumJobsExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsExOper
 	if o == nil {
 		return op
 	}
-	o.JobTypes = op.JobTypes
+	op.JobTypes = o.JobTypes
 	return op
 }
 
@@ -12723,10 +12723,10 @@ func (o *EnumJobsExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsExOpe
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Jobs = op.Jobs
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Jobs = o.Jobs
+	op.Return = o.Return
 	return op
 }
 
@@ -12926,7 +12926,7 @@ func (o *GetJobExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobExOperatio
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
+	op.MessageID = o.MessageID
 	return op
 }
 
@@ -12971,9 +12971,9 @@ func (o *GetJobExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobExOperati
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -13195,9 +13195,9 @@ func (o *GetCountryListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountr
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -13430,9 +13430,9 @@ func (o *GetPersonalProfileInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Folder = op.Folder
-	o.ProfType = op.ProfType
+	op.MessageID = o.MessageID
+	op.Folder = o.Folder
+	op.ProfType = o.ProfType
 	return op
 }
 
@@ -13475,9 +13475,9 @@ func (o *GetPersonalProfileInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -13639,8 +13639,8 @@ func (o *GetQueueStatesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQueueS
 	if o == nil {
 		return op
 	}
-	o.QueueStates = op.QueueStates
-	o.Return = op.Return
+	op.QueueStates = o.QueueStates
+	op.Return = o.Return
 	return op
 }
 
@@ -13766,7 +13766,7 @@ func (o *SetQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetQueueOperatio
 	if o == nil {
 		return op
 	}
-	o.QueueStates = op.QueueStates
+	op.QueueStates = o.QueueStates
 	return op
 }
 
@@ -13801,7 +13801,7 @@ func (o *SetQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetQueueOperati
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14022,9 +14022,9 @@ func (o *GetReceiptsConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -14152,7 +14152,7 @@ func (o *SetReceiptsConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Receipts = op.Receipts
+	op.Receipts = o.Receipts
 	return op
 }
 
@@ -14187,7 +14187,7 @@ func (o *SetReceiptsConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -14344,8 +14344,8 @@ func (o *GetReceiptsOptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.ReceiptsOptions = op.ReceiptsOptions
-	o.Return = op.Return
+	op.ReceiptsOptions = o.ReceiptsOptions
+	op.Return = o.Return
 	return op
 }
 
@@ -14485,7 +14485,7 @@ func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOper
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
+	op.Version = o.Version
 	return op
 }
 
@@ -14522,8 +14522,8 @@ func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOpe
 	if o == nil {
 		return op
 	}
-	o.Version = op.Version
-	o.Return = op.Return
+	op.Version = o.Version
+	op.Return = o.Return
 	return op
 }
 
@@ -14745,9 +14745,9 @@ func (o *GetOutboxConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -14870,7 +14870,7 @@ func (o *SetOutboxConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.OutboxConfig = op.OutboxConfig
+	op.OutboxConfig = o.OutboxConfig
 	return op
 }
 
@@ -14905,7 +14905,7 @@ func (o *SetOutboxConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15059,8 +15059,8 @@ func (o *GetPersonalCoverPagesOptionResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.PersonalCreatePartitionAllowed = op.PersonalCreatePartitionAllowed
-	o.Return = op.Return
+	op.PersonalCreatePartitionAllowed = o.PersonalCreatePartitionAllowed
+	op.Return = o.Return
 	return op
 }
 
@@ -15260,7 +15260,7 @@ func (o *GetArchiveConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.Folder = op.Folder
+	op.Folder = o.Folder
 	return op
 }
 
@@ -15306,9 +15306,9 @@ func (o *GetArchiveConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -15443,8 +15443,8 @@ func (o *SetArchiveConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Folder = op.Folder
-	o.ArchiveConfig = op.ArchiveConfig
+	op.Folder = o.Folder
+	op.ArchiveConfig = o.ArchiveConfig
 	return op
 }
 
@@ -15480,7 +15480,7 @@ func (o *SetArchiveConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -15701,9 +15701,9 @@ func (o *GetActivityLoggingConfigurationResponse) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -15833,7 +15833,7 @@ func (o *SetActivityLoggingConfigurationRequest) xxx_ToOp(ctx context.Context, o
 	if o == nil {
 		return op
 	}
-	o.ActivityLogConfig = op.ActivityLogConfig
+	op.ActivityLogConfig = o.ActivityLogConfig
 	return op
 }
 
@@ -15868,7 +15868,7 @@ func (o *SetActivityLoggingConfigurationResponse) xxx_ToOp(ctx context.Context, 
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -16106,10 +16106,10 @@ func (o *EnumerateProvidersResponse) xxx_ToOp(ctx context.Context, op *xxx_Enume
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.ProvidersLength = op.ProvidersLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.ProvidersLength = o.ProvidersLength
+	op.Return = o.Return
 	return op
 }
 
@@ -16309,7 +16309,7 @@ func (o *GetPortExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPortExOperat
 	if o == nil {
 		return op
 	}
-	o.DeviceID = op.DeviceID
+	op.DeviceID = o.DeviceID
 	return op
 }
 
@@ -16348,9 +16348,9 @@ func (o *GetPortExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPortExOpera
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -16492,8 +16492,8 @@ func (o *SetPortExRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPortExOperat
 	if o == nil {
 		return op
 	}
-	o.DeviceID = op.DeviceID
-	o.PortInfo = op.PortInfo
+	op.DeviceID = o.DeviceID
+	op.PortInfo = o.PortInfo
 	return op
 }
 
@@ -16529,7 +16529,7 @@ func (o *SetPortExResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPortExOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -16767,10 +16767,10 @@ func (o *EnumPortsExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsExO
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.PortsLength = op.PortsLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.PortsLength = o.PortsLength
+	op.Return = o.Return
 	return op
 }
 
@@ -16992,8 +16992,8 @@ func (o *GetExtensionDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExten
 	if o == nil {
 		return op
 	}
-	o.DeviceID = op.DeviceID
-	o.NameGUID = op.NameGUID
+	op.DeviceID = o.DeviceID
+	op.NameGUID = o.NameGUID
 	return op
 }
 
@@ -17039,9 +17039,9 @@ func (o *GetExtensionDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExte
 	if o == nil {
 		return op
 	}
-	o.Data = op.Data
-	o.DataSize = op.DataSize
-	o.Return = op.Return
+	op.Data = o.Data
+	op.DataSize = o.DataSize
+	op.Return = o.Return
 	return op
 }
 
@@ -17268,11 +17268,11 @@ func (o *SetExtensionDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExten
 	if o == nil {
 		return op
 	}
-	o.ComputerName = op.ComputerName
-	o.DeviceID = op.DeviceID
-	o.NameGUID = op.NameGUID
-	o.Data = op.Data
-	o.DataSize = op.DataSize
+	op.ComputerName = o.ComputerName
+	op.DeviceID = o.DeviceID
+	op.NameGUID = o.NameGUID
+	op.Data = o.Data
+	op.DataSize = o.DataSize
 	return op
 }
 
@@ -17311,7 +17311,7 @@ func (o *SetExtensionDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExte
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17421,7 +17421,7 @@ func (o *AddOutboundGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOutbo
 	if o == nil {
 		return op
 	}
-	o.GroupName = op.GroupName
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -17456,7 +17456,7 @@ func (o *AddOutboundGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_AddOutb
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17580,7 +17580,7 @@ func (o *SetOutboundGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOutbo
 	if o == nil {
 		return op
 	}
-	o.Group = op.Group
+	op.Group = o.Group
 	return op
 }
 
@@ -17615,7 +17615,7 @@ func (o *SetOutboundGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOutb
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17725,7 +17725,7 @@ func (o *RemoveOutboundGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.GroupName = op.GroupName
+	op.GroupName = o.GroupName
 	return op
 }
 
@@ -17760,7 +17760,7 @@ func (o *RemoveOutboundGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_Remo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -17994,10 +17994,10 @@ func (o *EnumOutboundGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumO
 	if o == nil {
 		return op
 	}
-	o.Data = op.Data
-	o.DataSize = op.DataSize
-	o.GroupsLength = op.GroupsLength
-	o.Return = op.Return
+	op.Data = o.Data
+	op.DataSize = o.DataSize
+	op.GroupsLength = o.GroupsLength
+	op.Return = o.Return
 	return op
 }
 
@@ -18146,9 +18146,9 @@ func (o *SetDeviceOrderInGroupRequest) xxx_ToOp(ctx context.Context, op *xxx_Set
 	if o == nil {
 		return op
 	}
-	o.GroupName = op.GroupName
-	o.DeviceID = op.DeviceID
-	o.NewOrder = op.NewOrder
+	op.GroupName = o.GroupName
+	op.DeviceID = o.DeviceID
+	op.NewOrder = o.NewOrder
 	return op
 }
 
@@ -18185,7 +18185,7 @@ func (o *SetDeviceOrderInGroupResponse) xxx_ToOp(ctx context.Context, op *xxx_Se
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18395,11 +18395,11 @@ func (o *AddOutboundRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOutbou
 	if o == nil {
 		return op
 	}
-	o.AreaCode = op.AreaCode
-	o.CountryCode = op.CountryCode
-	o.DeviceID = op.DeviceID
-	o.GroupName = op.GroupName
-	o.UseGroup = op.UseGroup
+	op.AreaCode = o.AreaCode
+	op.CountryCode = o.CountryCode
+	op.DeviceID = o.DeviceID
+	op.GroupName = o.GroupName
+	op.UseGroup = o.UseGroup
 	return op
 }
 
@@ -18438,7 +18438,7 @@ func (o *AddOutboundRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_AddOutbo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18564,8 +18564,8 @@ func (o *RemoveOutboundRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_Remove
 	if o == nil {
 		return op
 	}
-	o.AreaCode = op.AreaCode
-	o.CountryCode = op.CountryCode
+	op.AreaCode = o.AreaCode
+	op.CountryCode = o.CountryCode
 	return op
 }
 
@@ -18601,7 +18601,7 @@ func (o *RemoveOutboundRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_Remov
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18726,7 +18726,7 @@ func (o *SetOutboundRuleRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOutbou
 	if o == nil {
 		return op
 	}
-	o.Rule = op.Rule
+	op.Rule = o.Rule
 	return op
 }
 
@@ -18761,7 +18761,7 @@ func (o *SetOutboundRuleResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOutbo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -18996,10 +18996,10 @@ func (o *EnumOutboundRulesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumOu
 	if o == nil {
 		return op
 	}
-	o.Data = op.Data
-	o.DataSize = op.DataSize
-	o.RulesLength = op.RulesLength
-	o.Return = op.Return
+	op.Data = o.Data
+	op.DataSize = o.DataSize
+	op.RulesLength = o.RulesLength
+	op.Return = o.Return
 	return op
 }
 
@@ -19200,12 +19200,12 @@ func (o *RegisterServiceProviderExRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
-	o.FriendlyName = op.FriendlyName
-	o.ImageName = op.ImageName
-	o.TspName = op.TspName
-	o.FspiVersion = op.FspiVersion
-	o.Capabilities = op.Capabilities
+	op.GUID = o.GUID
+	op.FriendlyName = o.FriendlyName
+	op.ImageName = o.ImageName
+	op.TspName = o.TspName
+	op.FspiVersion = o.FspiVersion
+	op.Capabilities = o.Capabilities
 	return op
 }
 
@@ -19245,7 +19245,7 @@ func (o *RegisterServiceProviderExResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -19358,7 +19358,7 @@ func (o *UnregisterServiceProviderExRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.GUID = op.GUID
+	op.GUID = o.GUID
 	return op
 }
 
@@ -19393,7 +19393,7 @@ func (o *UnregisterServiceProviderExResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -19507,7 +19507,7 @@ func (o *UnregisterRoutingExtensionRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.ExtensionName = op.ExtensionName
+	op.ExtensionName = o.ExtensionName
 	return op
 }
 
@@ -19542,7 +19542,7 @@ func (o *UnregisterRoutingExtensionResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -19675,7 +19675,7 @@ func (o *StartMessagesEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_StartMe
 	if o == nil {
 		return op
 	}
-	o.Folder = op.Folder
+	op.Folder = o.Folder
 	return op
 }
 
@@ -19712,8 +19712,8 @@ func (o *StartMessagesEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_StartM
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -19854,7 +19854,7 @@ func (o *EndMessagesEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_EndMessag
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -19892,8 +19892,8 @@ func (o *EndMessagesEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_EndMessa
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -20129,8 +20129,8 @@ func (o *EnumMessagesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMessages
 	if o == nil {
 		return op
 	}
-	o.Enum = op.Enum
-	o.MessagesLength = op.MessagesLength
+	op.Enum = o.Enum
+	op.MessagesLength = o.MessagesLength
 	return op
 }
 
@@ -20175,10 +20175,10 @@ func (o *EnumMessagesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMessage
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.MessagesRetrievedLength = op.MessagesRetrievedLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.MessagesRetrievedLength = o.MessagesRetrievedLength
+	op.Return = o.Return
 	return op
 }
 
@@ -20394,8 +20394,8 @@ func (o *GetMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMessageOper
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Folder = op.Folder
+	op.MessageID = o.MessageID
+	op.Folder = o.Folder
 	return op
 }
 
@@ -20437,9 +20437,9 @@ func (o *GetMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMessageOpe
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -20567,8 +20567,8 @@ func (o *RemoveMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveMessa
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Folder = op.Folder
+	op.MessageID = o.MessageID
+	op.Folder = o.Folder
 	return op
 }
 
@@ -20604,7 +20604,7 @@ func (o *RemoveMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveMess
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -20770,8 +20770,8 @@ func (o *StartCopyToServerRequest) xxx_ToOp(ctx context.Context, op *xxx_StartCo
 	if o == nil {
 		return op
 	}
-	o.FileExt = op.FileExt
-	o.ServerFileName = op.ServerFileName
+	op.FileExt = o.FileExt
+	op.ServerFileName = o.ServerFileName
 	return op
 }
 
@@ -20817,9 +20817,9 @@ func (o *StartCopyToServerResponse) xxx_ToOp(ctx context.Context, op *xxx_StartC
 	if o == nil {
 		return op
 	}
-	o.ServerFileName = op.ServerFileName
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.ServerFileName = o.ServerFileName
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -20971,8 +20971,8 @@ func (o *StartCopyMessageFromServerRequest) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Folder = op.Folder
+	op.MessageID = o.MessageID
+	op.Folder = o.Folder
 	return op
 }
 
@@ -21010,8 +21010,8 @@ func (o *StartCopyMessageFromServerResponse) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -21201,9 +21201,9 @@ func (o *WriteFileRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteFileOperat
 	if o == nil {
 		return op
 	}
-	o.HCopy = op.HCopy
-	o.Data = op.Data
-	o.DataSize = op.DataSize
+	op.HCopy = o.HCopy
+	op.Data = o.Data
+	op.DataSize = o.DataSize
 	return op
 }
 
@@ -21240,7 +21240,7 @@ func (o *WriteFileResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteFileOpera
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -21453,9 +21453,9 @@ func (o *ReadFileRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadFileOperatio
 	if o == nil {
 		return op
 	}
-	o.HCopy = op.HCopy
-	o.MaxDataSize = op.MaxDataSize
-	o.DataSize = op.DataSize
+	op.HCopy = o.HCopy
+	op.MaxDataSize = o.MaxDataSize
+	op.DataSize = o.DataSize
 	return op
 }
 
@@ -21502,9 +21502,9 @@ func (o *ReadFileResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadFileOperati
 	if o == nil {
 		return op
 	}
-	o.Data = op.Data
-	o.DataSize = op.DataSize
-	o.Return = op.Return
+	op.Data = o.Data
+	op.DataSize = o.DataSize
+	op.Return = o.Return
 	return op
 }
 
@@ -21645,7 +21645,7 @@ func (o *EndCopyRequest) xxx_ToOp(ctx context.Context, op *xxx_EndCopyOperation)
 	if o == nil {
 		return op
 	}
-	o.LphCopy = op.LphCopy
+	op.LphCopy = o.LphCopy
 	return op
 }
 
@@ -21682,8 +21682,8 @@ func (o *EndCopyResponse) xxx_ToOp(ctx context.Context, op *xxx_EndCopyOperation
 	if o == nil {
 		return op
 	}
-	o.LphCopy = op.LphCopy
-	o.Return = op.Return
+	op.LphCopy = o.LphCopy
+	op.Return = o.Return
 	return op
 }
 
@@ -21910,12 +21910,12 @@ func (o *StartServerNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.MachineName = op.MachineName
-	o.Endpoint = op.Endpoint
-	o.Context = op.Context
-	o.ProtocolSequenceString = op.ProtocolSequenceString
-	o.EventEx = op.EventEx
-	o.EventTypes = op.EventTypes
+	op.MachineName = o.MachineName
+	op.Endpoint = o.Endpoint
+	op.Context = o.Context
+	op.ProtocolSequenceString = o.ProtocolSequenceString
+	op.EventEx = o.EventEx
+	op.EventTypes = o.EventTypes
 	return op
 }
 
@@ -21958,8 +21958,8 @@ func (o *StartServerNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -22189,12 +22189,12 @@ func (o *StartServerNotificationExRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.MachineName = op.MachineName
-	o.Endpoint = op.Endpoint
-	o.Context = op.Context
-	o.ProtocolSeq = op.ProtocolSeq
-	o.EventEx = op.EventEx
-	o.EventTypes = op.EventTypes
+	op.MachineName = o.MachineName
+	op.Endpoint = o.Endpoint
+	op.Context = o.Context
+	op.ProtocolSeq = o.ProtocolSeq
+	op.EventEx = o.EventEx
+	op.EventTypes = o.EventTypes
 	return op
 }
 
@@ -22237,8 +22237,8 @@ func (o *StartServerNotificationExResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -22382,7 +22382,7 @@ func (o *EndServerNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_End
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
+	op.Handle = o.Handle
 	return op
 }
 
@@ -22421,8 +22421,8 @@ func (o *EndServerNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -22562,7 +22562,7 @@ func (o *GetServerActivityRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServ
 	if o == nil {
 		return op
 	}
-	o.ServerActivity = op.ServerActivity
+	op.ServerActivity = o.ServerActivity
 	return op
 }
 
@@ -22599,8 +22599,8 @@ func (o *GetServerActivityResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSer
 	if o == nil {
 		return op
 	}
-	o.ServerActivity = op.ServerActivity
-	o.Return = op.Return
+	op.ServerActivity = o.ServerActivity
+	op.Return = o.Return
 	return op
 }
 
@@ -22719,7 +22719,7 @@ func (o *SetConfigWizardUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCo
 	if o == nil {
 		return op
 	}
-	o.ConfigWizardUsed = op.ConfigWizardUsed
+	op.ConfigWizardUsed = o.ConfigWizardUsed
 	return op
 }
 
@@ -22754,7 +22754,7 @@ func (o *SetConfigWizardUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_SetC
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -22995,10 +22995,10 @@ func (o *EnumRoutingExtensionsResponse) xxx_ToOp(ctx context.Context, op *xxx_En
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.ExtsLength = op.ExtsLength
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.ExtsLength = o.ExtsLength
+	op.Return = o.Return
 	return op
 }
 
@@ -23167,7 +23167,7 @@ func (o *ConnectFaxServerRequest) xxx_ToOp(ctx context.Context, op *xxx_ConnectF
 	if o == nil {
 		return op
 	}
-	o.ClientAPIVersion = op.ClientAPIVersion
+	op.ClientAPIVersion = o.ClientAPIVersion
 	return op
 }
 
@@ -23210,9 +23210,9 @@ func (o *ConnectFaxServerResponse) xxx_ToOp(ctx context.Context, op *xxx_Connect
 	if o == nil {
 		return op
 	}
-	o.ServerAPIVersion = op.ServerAPIVersion
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.ServerAPIVersion = o.ServerAPIVersion
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -23419,7 +23419,7 @@ func (o *GetSecurityExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSecurity
 	if o == nil {
 		return op
 	}
-	o.SecurityInformation = op.SecurityInformation
+	op.SecurityInformation = o.SecurityInformation
 	return op
 }
 
@@ -23459,9 +23459,9 @@ func (o *GetSecurityExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSecurit
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -23574,7 +23574,7 @@ func (o *RefreshArchiveRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshArc
 	if o == nil {
 		return op
 	}
-	o.Folder = op.Folder
+	op.Folder = o.Folder
 	return op
 }
 
@@ -23609,7 +23609,7 @@ func (o *RefreshArchiveResponse) xxx_ToOp(ctx context.Context, op *xxx_RefreshAr
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -23719,7 +23719,7 @@ func (o *SetRecipientsLimitRequest) xxx_ToOp(ctx context.Context, op *xxx_SetRec
 	if o == nil {
 		return op
 	}
-	o.RecipientsLimit = op.RecipientsLimit
+	op.RecipientsLimit = o.RecipientsLimit
 	return op
 }
 
@@ -23754,7 +23754,7 @@ func (o *SetRecipientsLimitResponse) xxx_ToOp(ctx context.Context, op *xxx_SetRe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -23897,8 +23897,8 @@ func (o *GetRecipientsLimitResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.RecipientsLimit = op.RecipientsLimit
-	o.Return = op.Return
+	op.RecipientsLimit = o.RecipientsLimit
+	op.Return = o.Return
 	return op
 }
 
@@ -24042,8 +24042,8 @@ func (o *GetServerSKUResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServerSK
 	if o == nil {
 		return op
 	}
-	o.ServerSKU = op.ServerSKU
-	o.Return = op.Return
+	op.ServerSKU = o.ServerSKU
+	op.Return = o.Return
 	return op
 }
 
@@ -24156,7 +24156,7 @@ func (o *CheckValidFaxFolderRequest) xxx_ToOp(ctx context.Context, op *xxx_Check
 	if o == nil {
 		return op
 	}
-	o.Path = op.Path
+	op.Path = o.Path
 	return op
 }
 
@@ -24191,7 +24191,7 @@ func (o *CheckValidFaxFolderResponse) xxx_ToOp(ctx context.Context, op *xxx_Chec
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -24405,8 +24405,8 @@ func (o *GetJobEx2Request) xxx_ToOp(ctx context.Context, op *xxx_GetJobEx2Operat
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Level = op.Level
+	op.MessageID = o.MessageID
+	op.Level = o.Level
 	return op
 }
 
@@ -24447,9 +24447,9 @@ func (o *GetJobEx2Response) xxx_ToOp(ctx context.Context, op *xxx_GetJobEx2Opera
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -24748,10 +24748,10 @@ func (o *EnumJobsEx2Request) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsEx2Op
 	if o == nil {
 		return op
 	}
-	o.AllAccounts = op.AllAccounts
-	o.AccountName = op.AccountName
-	o.JobTypes = op.JobTypes
-	o.Level = op.Level
+	op.AllAccounts = o.AllAccounts
+	op.AccountName = o.AccountName
+	op.JobTypes = o.JobTypes
+	op.Level = o.Level
 	return op
 }
 
@@ -24797,10 +24797,10 @@ func (o *EnumJobsEx2Response) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsEx2O
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Jobs = op.Jobs
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Jobs = o.Jobs
+	op.Return = o.Return
 	return op
 }
 
@@ -25032,9 +25032,9 @@ func (o *GetMessageExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMessageEx
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Folder = op.Folder
-	o.Level = op.Level
+	op.MessageID = o.MessageID
+	op.Folder = o.Folder
+	op.Level = o.Level
 	return op
 }
 
@@ -25077,9 +25077,9 @@ func (o *GetMessageExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMessageE
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -25299,10 +25299,10 @@ func (o *StartMessagesEnumExRequest) xxx_ToOp(ctx context.Context, op *xxx_Start
 	if o == nil {
 		return op
 	}
-	o.AllAccounts = op.AllAccounts
-	o.AccountName = op.AccountName
-	o.Folder = op.Folder
-	o.Level = op.Level
+	op.AllAccounts = o.AllAccounts
+	op.AccountName = o.AccountName
+	op.Folder = o.Folder
+	op.Level = o.Level
 	return op
 }
 
@@ -25342,8 +25342,8 @@ func (o *StartMessagesEnumExResponse) xxx_ToOp(ctx context.Context, op *xxx_Star
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -25593,8 +25593,8 @@ func (o *EnumMessagesExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMessag
 	if o == nil {
 		return op
 	}
-	o.Enum = op.Enum
-	o.MessagesLength = op.MessagesLength
+	op.Enum = o.Enum
+	op.MessagesLength = o.MessagesLength
 	return op
 }
 
@@ -25641,11 +25641,11 @@ func (o *EnumMessagesExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMessa
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.MessagesRetrievedLength = op.MessagesRetrievedLength
-	o.Level = op.Level
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.MessagesRetrievedLength = o.MessagesRetrievedLength
+	op.Level = o.Level
+	op.Return = o.Return
 	return op
 }
 
@@ -25910,13 +25910,13 @@ func (o *StartServerNotificationEx2Request) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.AccountName = op.AccountName
-	o.MachineName = op.MachineName
-	o.Endpoint = op.Endpoint
-	o.Context = op.Context
-	o.ProtocolSequenceString = op.ProtocolSequenceString
-	o.EventTypes = op.EventTypes
-	o.Level = op.Level
+	op.AccountName = o.AccountName
+	op.MachineName = o.MachineName
+	op.Endpoint = o.Endpoint
+	op.Context = o.Context
+	op.ProtocolSequenceString = o.ProtocolSequenceString
+	op.EventTypes = o.EventTypes
+	op.Level = o.Level
 	return op
 }
 
@@ -25961,8 +25961,8 @@ func (o *StartServerNotificationEx2Response) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.Handle = op.Handle
-	o.Return = op.Return
+	op.Handle = o.Handle
+	op.Return = o.Return
 	return op
 }
 
@@ -26148,9 +26148,9 @@ func (o *CreateAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateAccou
 	if o == nil {
 		return op
 	}
-	o.Level = op.Level
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.Level = o.Level
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -26187,7 +26187,7 @@ func (o *CreateAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateAcco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26323,7 +26323,7 @@ func (o *DeleteAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAccou
 	if o == nil {
 		return op
 	}
-	o.AccountName = op.AccountName
+	op.AccountName = o.AccountName
 	return op
 }
 
@@ -26358,7 +26358,7 @@ func (o *DeleteAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAcco
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -26568,7 +26568,7 @@ func (o *EnumAccountsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumAccounts
 	if o == nil {
 		return op
 	}
-	o.Level = op.Level
+	op.Level = o.Level
 	return op
 }
 
@@ -26612,10 +26612,10 @@ func (o *EnumAccountsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumAccount
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Accounts = op.Accounts
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Accounts = o.Accounts
+	op.Return = o.Return
 	return op
 }
 
@@ -26856,8 +26856,8 @@ func (o *GetAccountInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAccount
 	if o == nil {
 		return op
 	}
-	o.AccountName = op.AccountName
-	o.Level = op.Level
+	op.AccountName = o.AccountName
+	op.Level = o.Level
 	return op
 }
 
@@ -26899,9 +26899,9 @@ func (o *GetAccountInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAccoun
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -27102,7 +27102,7 @@ func (o *GetGeneralConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_G
 	if o == nil {
 		return op
 	}
-	o.Level = op.Level
+	op.Level = o.Level
 	return op
 }
 
@@ -27149,9 +27149,9 @@ func (o *GetGeneralConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -27337,9 +27337,9 @@ func (o *SetGeneralConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_S
 	if o == nil {
 		return op
 	}
-	o.Level = op.Level
-	o.Buffer = op.Buffer
-	o.BufferSize = op.BufferSize
+	op.Level = o.Level
+	op.Buffer = o.Buffer
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -27376,7 +27376,7 @@ func (o *SetGeneralConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -27590,7 +27590,7 @@ func (o *GetSecurityEx2Request) xxx_ToOp(ctx context.Context, op *xxx_GetSecurit
 	if o == nil {
 		return op
 	}
-	o.SecurityInformation = op.SecurityInformation
+	op.SecurityInformation = o.SecurityInformation
 	return op
 }
 
@@ -27631,9 +27631,9 @@ func (o *GetSecurityEx2Response) xxx_ToOp(ctx context.Context, op *xxx_GetSecuri
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BufferSize = op.BufferSize
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BufferSize = o.BufferSize
+	op.Return = o.Return
 	return op
 }
 
@@ -27841,9 +27841,9 @@ func (o *SetSecurityEx2Request) xxx_ToOp(ctx context.Context, op *xxx_SetSecurit
 	if o == nil {
 		return op
 	}
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.BufferSize = op.BufferSize
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -27880,7 +27880,7 @@ func (o *SetSecurityEx2Response) xxx_ToOp(ctx context.Context, op *xxx_SetSecuri
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28155,8 +28155,8 @@ func (o *AccessCheckEx2Request) xxx_ToOp(ctx context.Context, op *xxx_AccessChec
 	if o == nil {
 		return op
 	}
-	o.AccessMask = op.AccessMask
-	o.Rights = op.Rights
+	op.AccessMask = o.AccessMask
+	op.Rights = o.Rights
 	return op
 }
 
@@ -28207,9 +28207,9 @@ func (o *AccessCheckEx2Response) xxx_ToOp(ctx context.Context, op *xxx_AccessChe
 	if o == nil {
 		return op
 	}
-	o.Access = op.Access
-	o.Rights = op.Rights
-	o.Return = op.Return
+	op.Access = o.Access
+	op.Rights = o.Rights
+	op.Return = o.Return
 	return op
 }
 
@@ -28352,8 +28352,8 @@ func (o *ReassignMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_ReassignM
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.ReassignInfo = op.ReassignInfo
+	op.MessageID = o.MessageID
+	op.ReassignInfo = o.ReassignInfo
 	return op
 }
 
@@ -28389,7 +28389,7 @@ func (o *ReassignMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_Reassign
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28540,9 +28540,9 @@ func (o *SetMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMessageOper
 	if o == nil {
 		return op
 	}
-	o.MessageID = op.MessageID
-	o.Folder = op.Folder
-	o.MessageProperties = op.MessageProperties
+	op.MessageID = o.MessageID
+	op.Folder = o.Folder
+	op.MessageProperties = o.MessageProperties
 	return op
 }
 
@@ -28579,7 +28579,7 @@ func (o *SetMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMessageOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -28702,7 +28702,7 @@ func (o *GetConfigOptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetConfig
 	if o == nil {
 		return op
 	}
-	o.Option = op.Option
+	op.Option = o.Option
 	return op
 }
 
@@ -28795,8 +28795,8 @@ func (o *GetConfigOptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetConfi
 	if o == nil {
 		return op
 	}
-	o.Value = op.Value
-	o.Return = op.Return
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 

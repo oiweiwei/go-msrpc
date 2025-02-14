@@ -905,7 +905,7 @@ func (o *GetPrimaryDomainInformationRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.InfoLevel = op.InfoLevel
+	op.InfoLevel = o.InfoLevel
 	return op
 }
 
@@ -945,8 +945,8 @@ func (o *GetPrimaryDomainInformationResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.DomainInfo = op.DomainInfo
-	o.Return = op.Return
+	op.DomainInfo = o.DomainInfo
+	op.Return = o.Return
 	return op
 }
 

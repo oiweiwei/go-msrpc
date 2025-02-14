@@ -410,8 +410,8 @@ func (o *AddRequest) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_Ad
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Item = op.Item
+	op.This = o.This
+	op.Item = o.Item
 	return op
 }
 
@@ -449,8 +449,8 @@ func (o *AddResponse) xxx_ToOp(ctx context.Context, op *xxx_AddOperation) *xxx_A
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -619,8 +619,8 @@ func (o *RemoveRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -658,8 +658,8 @@ func (o *RemoveResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -836,8 +836,8 @@ func (o *RemoveByIDRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveByIDOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ID = op.ID
+	op.This = o.This
+	op.ID = o.ID
 	return op
 }
 
@@ -875,8 +875,8 @@ func (o *RemoveByIDResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveByIDOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1076,7 +1076,7 @@ func (o *CloneRequest) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1117,9 +1117,9 @@ func (o *CloneResponse) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Collection = op.Collection
-	o.Return = op.Return
+	op.That = o.That
+	op.Collection = o.Collection
+	op.Return = o.Return
 	return op
 }
 

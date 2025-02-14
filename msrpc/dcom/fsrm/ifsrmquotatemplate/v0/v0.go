@@ -382,7 +382,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -420,9 +420,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -624,8 +624,8 @@ func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -663,8 +663,8 @@ func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -865,8 +865,8 @@ func (o *CopyTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyTemplate
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.QuotaTemplateName = op.QuotaTemplateName
+	op.This = o.This
+	op.QuotaTemplateName = o.QuotaTemplateName
 	return op
 }
 
@@ -904,8 +904,8 @@ func (o *CopyTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_CopyTemplat
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1135,9 +1135,9 @@ func (o *CommitAndUpdateDerivedRequest) xxx_ToOp(ctx context.Context, op *xxx_Co
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.CommitOptions = op.CommitOptions
-	o.ApplyOptions = op.ApplyOptions
+	op.This = o.This
+	op.CommitOptions = o.CommitOptions
+	op.ApplyOptions = o.ApplyOptions
 	return op
 }
 
@@ -1177,9 +1177,9 @@ func (o *CommitAndUpdateDerivedResponse) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DerivedObjectsResult = op.DerivedObjectsResult
-	o.Return = op.Return
+	op.That = o.That
+	op.DerivedObjectsResult = o.DerivedObjectsResult
+	op.Return = o.Return
 	return op
 }
 

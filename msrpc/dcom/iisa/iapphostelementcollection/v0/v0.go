@@ -417,7 +417,7 @@ func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -455,9 +455,9 @@ func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ElementCount = op.ElementCount
-	o.Return = op.Return
+	op.That = o.That
+	op.ElementCount = o.ElementCount
+	op.Return = o.Return
 	return op
 }
 
@@ -687,8 +687,8 @@ func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -727,9 +727,9 @@ func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Element = op.Element
-	o.Return = op.Return
+	op.That = o.That
+	op.Element = o.Element
+	op.Return = o.Return
 	return op
 }
 
@@ -945,9 +945,9 @@ func (o *AddElementRequest) xxx_ToOp(ctx context.Context, op *xxx_AddElementOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Element = op.Element
-	o.PositionCount = op.PositionCount
+	op.This = o.This
+	op.Element = o.Element
+	op.PositionCount = o.PositionCount
 	return op
 }
 
@@ -986,8 +986,8 @@ func (o *AddElementResponse) xxx_ToOp(ctx context.Context, op *xxx_AddElementOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1171,8 +1171,8 @@ func (o *DeleteElementRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteEleme
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -1210,8 +1210,8 @@ func (o *DeleteElementResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteElem
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1364,7 +1364,7 @@ func (o *ClearRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1401,8 +1401,8 @@ func (o *ClearResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1652,8 +1652,8 @@ func (o *CreateNewElementRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNe
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.ElementName = op.ElementName
+	op.This = o.This
+	op.ElementName = o.ElementName
 	return op
 }
 
@@ -1692,9 +1692,9 @@ func (o *CreateNewElementResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateN
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Element = op.Element
-	o.Return = op.Return
+	op.That = o.That
+	op.Element = o.Element
+	op.Return = o.Return
 	return op
 }
 
@@ -1895,7 +1895,7 @@ func (o *GetSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1933,9 +1933,9 @@ func (o *GetSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Schema = op.Schema
-	o.Return = op.Return
+	op.That = o.That
+	op.Schema = o.Schema
+	op.Return = o.Return
 	return op
 }
 

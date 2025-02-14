@@ -288,8 +288,8 @@ func (o *SetSANModeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSANModeOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Enable = op.Enable
+	op.This = o.This
+	op.Enable = o.Enable
 	return op
 }
 
@@ -327,8 +327,8 @@ func (o *SetSANModeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSANModeOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

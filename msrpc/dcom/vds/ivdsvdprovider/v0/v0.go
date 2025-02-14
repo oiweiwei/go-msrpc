@@ -433,7 +433,7 @@ func (o *QueryVDisksRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryVDisksOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -475,9 +475,9 @@ func (o *QueryVDisksResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryVDisksO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Enum = op.Enum
-	o.Return = op.Return
+	op.That = o.That
+	op.Enum = o.Enum
+	op.Return = o.Return
 	return op
 }
 
@@ -929,14 +929,14 @@ func (o *CreateVDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateVDiskOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VirtualDeviceType = op.VirtualDeviceType
-	o.Path = op.Path
-	o.StringSecurityDescriptor = op.StringSecurityDescriptor
-	o.Flags = op.Flags
-	o.ProviderSpecificFlags = op.ProviderSpecificFlags
-	o.CreateDiskParameters = op.CreateDiskParameters
-	o.Async = op.Async
+	op.This = o.This
+	op.VirtualDeviceType = o.VirtualDeviceType
+	op.Path = o.Path
+	op.StringSecurityDescriptor = o.StringSecurityDescriptor
+	op.Flags = o.Flags
+	op.ProviderSpecificFlags = o.ProviderSpecificFlags
+	op.CreateDiskParameters = o.CreateDiskParameters
+	op.Async = o.Async
 	return op
 }
 
@@ -984,9 +984,9 @@ func (o *CreateVDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateVDiskO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 
@@ -1228,9 +1228,9 @@ func (o *AddVDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_AddVDiskOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VirtualDeviceType = op.VirtualDeviceType
-	o.Path = op.Path
+	op.This = o.This
+	op.VirtualDeviceType = o.VirtualDeviceType
+	op.Path = o.Path
 	return op
 }
 
@@ -1270,9 +1270,9 @@ func (o *AddVDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_AddVDiskOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VDisk = op.VDisk
-	o.Return = op.Return
+	op.That = o.That
+	op.VDisk = o.VDisk
+	op.Return = o.Return
 	return op
 }
 
@@ -1522,8 +1522,8 @@ func (o *GetDiskFromVDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDiskF
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.VDisk = op.VDisk
+	op.This = o.This
+	op.VDisk = o.VDisk
 	return op
 }
 
@@ -1562,9 +1562,9 @@ func (o *GetDiskFromVDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDisk
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Disk = op.Disk
-	o.Return = op.Return
+	op.That = o.That
+	op.Disk = o.Disk
+	op.Return = o.Return
 	return op
 }
 
@@ -1814,8 +1814,8 @@ func (o *GetVDiskFromDiskRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVDisk
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Disk = op.Disk
+	op.This = o.This
+	op.Disk = o.Disk
 	return op
 }
 
@@ -1854,9 +1854,9 @@ func (o *GetVDiskFromDiskResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVDis
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.VDisk = op.VDisk
-	o.Return = op.Return
+	op.That = o.That
+	op.VDisk = o.VDisk
+	op.Return = o.Return
 	return op
 }
 

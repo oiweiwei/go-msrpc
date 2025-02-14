@@ -405,7 +405,7 @@ func (o *GetInputRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInputOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -443,9 +443,9 @@ func (o *GetInputResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInputOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.InputElement = op.InputElement
-	o.Return = op.Return
+	op.That = o.That
+	op.InputElement = o.InputElement
+	op.Return = o.Return
 	return op
 }
 
@@ -646,7 +646,7 @@ func (o *GetOutputRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOutputOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -684,9 +684,9 @@ func (o *GetOutputResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOutputOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.OutputElement = op.OutputElement
-	o.Return = op.Return
+	op.That = o.That
+	op.OutputElement = o.OutputElement
+	op.Return = o.Return
 	return op
 }
 
@@ -840,7 +840,7 @@ func (o *ExecuteRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -877,8 +877,8 @@ func (o *ExecuteResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1126,8 +1126,8 @@ func (o *GetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
+	op.This = o.This
+	op.MetadataType = o.MetadataType
 	return op
 }
 
@@ -1166,9 +1166,9 @@ func (o *GetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1399,9 +1399,9 @@ func (o *SetMetadataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.MetadataType = op.MetadataType
-	o.Value = op.Value
+	op.This = o.This
+	op.MetadataType = o.MetadataType
+	op.Value = o.Value
 	return op
 }
 
@@ -1440,8 +1440,8 @@ func (o *SetMetadataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMetadataO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

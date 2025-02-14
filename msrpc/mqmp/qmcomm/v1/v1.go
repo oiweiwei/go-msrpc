@@ -4875,8 +4875,8 @@ func (o *GetRemoteQueueNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRem
 	if o == nil {
 		return op
 	}
-	o.QueueID = op.QueueID
-	o.RemoteQueueName = op.RemoteQueueName
+	op.QueueID = o.QueueID
+	op.RemoteQueueName = o.RemoteQueueName
 	return op
 }
 
@@ -4915,8 +4915,8 @@ func (o *GetRemoteQueueNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRe
 	if o == nil {
 		return op
 	}
-	o.RemoteQueueName = op.RemoteQueueName
-	o.Return = op.Return
+	op.RemoteQueueName = o.RemoteQueueName
+	op.Return = o.Return
 	return op
 }
 
@@ -5259,12 +5259,12 @@ func (o *OpenRemoteQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenRemot
 	if o == nil {
 		return op
 	}
-	o.QueueFormat = op.QueueFormat
-	o.CallingProcessID = op.CallingProcessID
-	o.DesiredAccess = op.DesiredAccess
-	o.ShareMode = op.ShareMode
-	o.ClientGUID = op.ClientGUID
-	o.MQS = op.MQS
+	op.QueueFormat = o.QueueFormat
+	op.CallingProcessID = o.CallingProcessID
+	op.DesiredAccess = o.DesiredAccess
+	op.ShareMode = o.ShareMode
+	op.ClientGUID = o.ClientGUID
+	op.MQS = o.MQS
 	return op
 }
 
@@ -5319,11 +5319,11 @@ func (o *OpenRemoteQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenRemo
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
-	o.ContextID = op.ContextID
-	o.QueueID = op.QueueID
-	o.Queue = op.Queue
-	o.Return = op.Return
+	op.Context = o.Context
+	op.ContextID = o.ContextID
+	op.QueueID = o.QueueID
+	op.Queue = o.Queue
+	op.Return = o.Return
 	return op
 }
 
@@ -5457,7 +5457,7 @@ func (o *CloseRemoteQueueContextRequest) xxx_ToOp(ctx context.Context, op *xxx_C
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -5494,7 +5494,7 @@ func (o *CloseRemoteQueueContextResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -5649,8 +5649,8 @@ func (o *CreateRemoteCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_Create
 	if o == nil {
 		return op
 	}
-	o.Buffer1 = op.Buffer1
-	o.Queue = op.Queue
+	op.Buffer1 = o.Buffer1
+	op.Queue = o.Queue
 	return op
 }
 
@@ -5690,8 +5690,8 @@ func (o *CreateRemoteCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_Creat
 	if o == nil {
 		return op
 	}
-	o.Cursor = op.Cursor
-	o.Return = op.Return
+	op.Cursor = o.Cursor
+	op.Return = o.Return
 	return op
 }
 
@@ -6066,13 +6066,13 @@ func (o *CreateObjectInternalRequest) xxx_ToOp(ctx context.Context, op *xxx_Crea
 	if o == nil {
 		return op
 	}
-	o.ObjectType = op.ObjectType
-	o.PathName = op.PathName
-	o.SecurityDescriptorSize = op.SecurityDescriptorSize
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
+	op.ObjectType = o.ObjectType
+	op.PathName = o.PathName
+	op.SecurityDescriptorSize = o.SecurityDescriptorSize
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
 	return op
 }
 
@@ -6113,7 +6113,7 @@ func (o *CreateObjectInternalResponse) xxx_ToOp(ctx context.Context, op *xxx_Cre
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6355,10 +6355,10 @@ func (o *SetObjectSecurityInternalRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.SecurityInformation = op.SecurityInformation
-	o.SecurityDescriptorSize = op.SecurityDescriptorSize
-	o.SecurityDescriptor = op.SecurityDescriptor
+	op.ObjectFormat = o.ObjectFormat
+	op.SecurityInformation = o.SecurityInformation
+	op.SecurityDescriptorSize = o.SecurityDescriptorSize
+	op.SecurityDescriptor = o.SecurityDescriptor
 	return op
 }
 
@@ -6396,7 +6396,7 @@ func (o *SetObjectSecurityInternalResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -6621,9 +6621,9 @@ func (o *GetObjectSecurityInternalRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.RequestedInformation = op.RequestedInformation
-	o.Length = op.Length
+	op.ObjectFormat = o.ObjectFormat
+	op.RequestedInformation = o.RequestedInformation
+	op.Length = o.Length
 	return op
 }
 
@@ -6672,9 +6672,9 @@ func (o *GetObjectSecurityInternalResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.SecurityDescriptor = op.SecurityDescriptor
-	o.LengthNeeded = op.LengthNeeded
-	o.Return = op.Return
+	op.SecurityDescriptor = o.SecurityDescriptor
+	op.LengthNeeded = o.LengthNeeded
+	op.Return = o.Return
 	return op
 }
 
@@ -6802,7 +6802,7 @@ func (o *DeleteObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteObject
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
+	op.ObjectFormat = o.ObjectFormat
 	return op
 }
 
@@ -6837,7 +6837,7 @@ func (o *DeleteObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjec
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7171,10 +7171,10 @@ func (o *GetObjectPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOb
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
+	op.ObjectFormat = o.ObjectFormat
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
 	return op
 }
 
@@ -7219,8 +7219,8 @@ func (o *GetObjectPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetO
 	if o == nil {
 		return op
 	}
-	o.Var = op.Var
-	o.Return = op.Return
+	op.Var = o.Var
+	op.Return = o.Return
 	return op
 }
 
@@ -7496,10 +7496,10 @@ func (o *SetObjectPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOb
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.CreatePartition = op.CreatePartition
-	o.Property = op.Property
-	o.Var = op.Var
+	op.ObjectFormat = o.ObjectFormat
+	op.CreatePartition = o.CreatePartition
+	op.Property = o.Property
+	op.Var = o.Var
 	return op
 }
 
@@ -7537,7 +7537,7 @@ func (o *SetObjectPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -7711,8 +7711,8 @@ func (o *ObjectPathToObjectFormatRequest) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.PathName = op.PathName
-	o.ObjectFormat = op.ObjectFormat
+	op.PathName = o.PathName
+	op.ObjectFormat = o.ObjectFormat
 	return op
 }
 
@@ -7754,8 +7754,8 @@ func (o *ObjectPathToObjectFormatResponse) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.ObjectFormat = op.ObjectFormat
-	o.Return = op.Return
+	op.ObjectFormat = o.ObjectFormat
+	op.Return = o.Return
 	return op
 }
 
@@ -7928,7 +7928,7 @@ func (o *GetTMWhereaboutsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTMWhe
 	if o == nil {
 		return op
 	}
-	o.BufferLength = op.BufferLength
+	op.BufferLength = o.BufferLength
 	return op
 }
 
@@ -7971,9 +7971,9 @@ func (o *GetTMWhereaboutsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTMWh
 	if o == nil {
 		return op
 	}
-	o.Whereabouts = op.Whereabouts
-	o.WhereaboutsLength = op.WhereaboutsLength
-	o.Return = op.Return
+	op.Whereabouts = o.Whereabouts
+	op.WhereaboutsLength = o.WhereaboutsLength
+	op.Return = o.Return
 	return op
 }
 
@@ -8165,9 +8165,9 @@ func (o *EnlistTransactionRequest) xxx_ToOp(ctx context.Context, op *xxx_EnlistT
 	if o == nil {
 		return op
 	}
-	o.UOW = op.UOW
-	o.CookieLength = op.CookieLength
-	o.Cookie = op.Cookie
+	op.UOW = o.UOW
+	op.CookieLength = o.CookieLength
+	op.Cookie = o.Cookie
 	return op
 }
 
@@ -8204,7 +8204,7 @@ func (o *EnlistTransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_Enlist
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -8347,7 +8347,7 @@ func (o *EnlistInternalTransactionRequest) xxx_ToOp(ctx context.Context, op *xxx
 	if o == nil {
 		return op
 	}
-	o.UOW = op.UOW
+	op.UOW = o.UOW
 	return op
 }
 
@@ -8385,8 +8385,8 @@ func (o *EnlistInternalTransactionResponse) xxx_ToOp(ctx context.Context, op *xx
 	if o == nil {
 		return op
 	}
-	o.InternalTransaction = op.InternalTransaction
-	o.Return = op.Return
+	op.InternalTransaction = o.InternalTransaction
+	op.Return = o.Return
 	return op
 }
 
@@ -8529,7 +8529,7 @@ func (o *CommitTransactionRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitT
 	if o == nil {
 		return op
 	}
-	o.InternalTransaction = op.InternalTransaction
+	op.InternalTransaction = o.InternalTransaction
 	return op
 }
 
@@ -8569,8 +8569,8 @@ func (o *CommitTransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_Commit
 	if o == nil {
 		return op
 	}
-	o.InternalTransaction = op.InternalTransaction
-	o.Return = op.Return
+	op.InternalTransaction = o.InternalTransaction
+	op.Return = o.Return
 	return op
 }
 
@@ -8712,7 +8712,7 @@ func (o *AbortTransactionRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortTra
 	if o == nil {
 		return op
 	}
-	o.InternalTransaction = op.InternalTransaction
+	op.InternalTransaction = o.InternalTransaction
 	return op
 }
 
@@ -8751,8 +8751,8 @@ func (o *AbortTransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortTr
 	if o == nil {
 		return op
 	}
-	o.InternalTransaction = op.InternalTransaction
-	o.Return = op.Return
+	op.InternalTransaction = o.InternalTransaction
+	op.Return = o.Return
 	return op
 }
 
@@ -9237,16 +9237,16 @@ func (o *OpenQueueInternalRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQue
 	if o == nil {
 		return op
 	}
-	o.QueueFormat = op.QueueFormat
-	o.DesiredAccess = op.DesiredAccess
-	o.ShareMode = op.ShareMode
-	o.RemoteQueue = op.RemoteQueue
-	o.RemoteQueueName = op.RemoteQueueName
-	o.QueueID = op.QueueID
-	o.ClientGUID = op.ClientGUID
-	o.ClientName = op.ClientName
-	o.RemoteProtocol = op.RemoteProtocol
-	o.RemoteContext = op.RemoteContext
+	op.QueueFormat = o.QueueFormat
+	op.DesiredAccess = o.DesiredAccess
+	op.ShareMode = o.ShareMode
+	op.RemoteQueue = o.RemoteQueue
+	op.RemoteQueueName = o.RemoteQueueName
+	op.QueueID = o.QueueID
+	op.ClientGUID = o.ClientGUID
+	op.ClientName = o.ClientName
+	op.RemoteProtocol = o.RemoteProtocol
+	op.RemoteContext = o.RemoteContext
 	return op
 }
 
@@ -9309,10 +9309,10 @@ func (o *OpenQueueInternalResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQu
 	if o == nil {
 		return op
 	}
-	o.RemoteQueueName = op.RemoteQueueName
-	o.QMContext = op.QMContext
-	o.Queue = op.Queue
-	o.Return = op.Return
+	op.RemoteQueueName = o.RemoteQueueName
+	op.QMContext = o.QMContext
+	op.Queue = o.Queue
+	op.Return = o.Return
 	return op
 }
 
@@ -9456,7 +9456,7 @@ func (o *CloseHandleRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseHandleOp
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
+	op.Queue = o.Queue
 	return op
 }
 
@@ -9495,8 +9495,8 @@ func (o *CloseHandleResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseHandleO
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.Return = op.Return
+	op.Queue = o.Queue
+	op.Return = o.Return
 	return op
 }
 
@@ -9632,8 +9632,8 @@ func (o *CloseCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorOp
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.Cursor = op.Cursor
+	op.Queue = o.Queue
+	op.Cursor = o.Cursor
 	return op
 }
 
@@ -9669,7 +9669,7 @@ func (o *CloseCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorO
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -9822,9 +9822,9 @@ func (o *SetCursorPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCu
 	if o == nil {
 		return op
 	}
-	o.Proxy = op.Proxy
-	o.Cursor = op.Cursor
-	o.RemoteCursor = op.RemoteCursor
+	op.Proxy = o.Proxy
+	op.Cursor = o.Cursor
+	op.RemoteCursor = o.RemoteCursor
 	return op
 }
 
@@ -9861,7 +9861,7 @@ func (o *SetCursorPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetC
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10240,10 +10240,10 @@ func (o *HandleToFormatNameRequest) xxx_ToOp(ctx context.Context, op *xxx_Handle
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
-	o.FormatNameRPCBufferLength = op.FormatNameRPCBufferLength
-	o.FormatName = op.FormatName
-	o.Length = op.Length
+	op.Queue = o.Queue
+	op.FormatNameRPCBufferLength = o.FormatNameRPCBufferLength
+	op.FormatName = o.FormatName
+	op.Length = o.Length
 	return op
 }
 
@@ -10294,9 +10294,9 @@ func (o *HandleToFormatNameResponse) xxx_ToOp(ctx context.Context, op *xxx_Handl
 	if o == nil {
 		return op
 	}
-	o.FormatName = op.FormatName
-	o.Length = op.Length
-	o.Return = op.Return
+	op.FormatName = o.FormatName
+	op.Length = o.Length
+	op.Return = o.Return
 	return op
 }
 
@@ -10419,7 +10419,7 @@ func (o *PurgeQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOper
 	if o == nil {
 		return op
 	}
-	o.Queue = op.Queue
+	op.Queue = o.Queue
 	return op
 }
 
@@ -10454,7 +10454,7 @@ func (o *PurgeQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -10640,7 +10640,7 @@ func (o *QueryQMRegistryInternalRequest) xxx_ToOp(ctx context.Context, op *xxx_Q
 	if o == nil {
 		return op
 	}
-	o.QueryType = op.QueryType
+	op.QueryType = o.QueryType
 	return op
 }
 
@@ -10679,8 +10679,8 @@ func (o *QueryQMRegistryInternalResponse) xxx_ToOp(ctx context.Context, op *xxx_
 	if o == nil {
 		return op
 	}
-	o.MQISServer = op.MQISServer
-	o.Return = op.Return
+	op.MQISServer = o.MQISServer
+	op.Return = o.Return
 	return op
 }
 
@@ -10811,7 +10811,7 @@ func (o *GetRTQMServerPortRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRTQM
 	if o == nil {
 		return op
 	}
-	o.IP = op.IP
+	op.IP = o.IP
 	return op
 }
 
@@ -10846,7 +10846,7 @@ func (o *GetRTQMServerPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRTQ
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

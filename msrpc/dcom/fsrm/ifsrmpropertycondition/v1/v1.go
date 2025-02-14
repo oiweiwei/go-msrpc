@@ -451,7 +451,7 @@ func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -489,9 +489,9 @@ func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.Return = o.Return
 	return op
 }
 
@@ -693,8 +693,8 @@ func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Name = op.Name
+	op.This = o.This
+	op.Name = o.Name
 	return op
 }
 
@@ -732,8 +732,8 @@ func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -899,7 +899,7 @@ func (o *GetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -937,9 +937,9 @@ func (o *GetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Type = op.Type
-	o.Return = op.Return
+	op.That = o.That
+	op.Type = o.Type
+	op.Return = o.Return
 	return op
 }
 
@@ -1107,8 +1107,8 @@ func (o *SetTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Type = op.Type
+	op.This = o.This
+	op.Type = o.Type
 	return op
 }
 
@@ -1146,8 +1146,8 @@ func (o *SetTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetTypeOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1347,7 +1347,7 @@ func (o *GetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1385,9 +1385,9 @@ func (o *GetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Value = op.Value
-	o.Return = op.Return
+	op.That = o.That
+	op.Value = o.Value
+	op.Return = o.Return
 	return op
 }
 
@@ -1589,8 +1589,8 @@ func (o *SetValueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Value = op.Value
+	op.This = o.This
+	op.Value = o.Value
 	return op
 }
 
@@ -1628,8 +1628,8 @@ func (o *SetValueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetValueOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1782,7 +1782,7 @@ func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1819,8 +1819,8 @@ func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

@@ -614,11 +614,11 @@ func (o *CreateObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateObject
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DomainControllerName = op.DomainControllerName
-	o.DistinguishedName = op.DistinguishedName
-	o.Attributes = op.Attributes
-	o.VerifyNameDomainControllerName = op.VerifyNameDomainControllerName
+	op.This = o.This
+	op.DomainControllerName = o.DomainControllerName
+	op.DistinguishedName = o.DistinguishedName
+	op.Attributes = o.Attributes
+	op.VerifyNameDomainControllerName = o.VerifyNameDomainControllerName
 	return op
 }
 
@@ -659,8 +659,8 @@ func (o *CreateObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateObjec
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -922,9 +922,9 @@ func (o *DeleteObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteObject
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DomainControllerName = op.DomainControllerName
-	o.DistinguishedName = op.DistinguishedName
+	op.This = o.This
+	op.DomainControllerName = o.DomainControllerName
+	op.DistinguishedName = o.DistinguishedName
 	return op
 }
 
@@ -963,8 +963,8 @@ func (o *DeleteObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteObjec
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1296,10 +1296,10 @@ func (o *ModifyObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyObject
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DomainControllerName = op.DomainControllerName
-	o.DistinguishedName = op.DistinguishedName
-	o.Attributes = op.Attributes
+	op.This = o.This
+	op.DomainControllerName = o.DomainControllerName
+	op.DistinguishedName = o.DistinguishedName
+	op.Attributes = o.Attributes
 	return op
 }
 
@@ -1339,8 +1339,8 @@ func (o *ModifyObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyObjec
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

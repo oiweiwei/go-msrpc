@@ -441,7 +441,7 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -479,9 +479,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskProperties = op.DiskProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskProperties = o.DiskProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -682,7 +682,7 @@ func (o *GetPackRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -720,9 +720,9 @@ func (o *GetPackResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Pack = op.Pack
-	o.Return = op.Return
+	op.That = o.That
+	op.Pack = o.Pack
+	op.Return = o.Return
 	return op
 }
 
@@ -906,7 +906,7 @@ func (o *GetIdentificationDataRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -946,9 +946,9 @@ func (o *GetIdentificationDataResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LUNInfo = op.LUNInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.LUNInfo = o.LUNInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1198,7 +1198,7 @@ func (o *QueryExtentsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryExtents
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1237,10 +1237,10 @@ func (o *QueryExtentsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryExtent
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ExtentArray = op.ExtentArray
-	o.NumberOfExtents = op.NumberOfExtents
-	o.Return = op.Return
+	op.That = o.That
+	op.ExtentArray = o.ExtentArray
+	op.NumberOfExtents = o.NumberOfExtents
+	op.Return = o.Return
 	return op
 }
 
@@ -1411,8 +1411,8 @@ func (o *ConvertStyleRequest) xxx_ToOp(ctx context.Context, op *xxx_ConvertStyle
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NewStyle = op.NewStyle
+	op.This = o.This
+	op.NewStyle = o.NewStyle
 	return op
 }
 
@@ -1450,8 +1450,8 @@ func (o *ConvertStyleResponse) xxx_ToOp(ctx context.Context, op *xxx_ConvertStyl
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1618,8 +1618,8 @@ func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1657,8 +1657,8 @@ func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1825,8 +1825,8 @@ func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -1864,8 +1864,8 @@ func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

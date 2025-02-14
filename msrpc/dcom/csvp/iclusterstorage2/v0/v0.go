@@ -1839,10 +1839,10 @@ func (o *RawReadRequest) xxx_ToOp(ctx context.Context, op *xxx_RawReadOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Sector = op.Sector
-	o.DataLength = op.DataLength
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Sector = o.Sector
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -1889,11 +1889,11 @@ func (o *RawReadResponse) xxx_ToOp(ctx context.Context, op *xxx_RawReadOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Data = op.Data
-	o.DataReadLength = op.DataReadLength
-	o.Latency = op.Latency
-	o.Return = op.Return
+	op.That = o.That
+	op.Data = o.Data
+	op.DataReadLength = o.DataReadLength
+	op.Latency = o.Latency
+	op.Return = o.Return
 	return op
 }
 
@@ -2181,11 +2181,11 @@ func (o *RawWriteRequest) xxx_ToOp(ctx context.Context, op *xxx_RawWriteOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Sector = op.Sector
-	o.DataLength = op.DataLength
-	o.Data = op.Data
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Sector = o.Sector
+	op.DataLength = o.DataLength
+	op.Data = o.Data
 	return op
 }
 
@@ -2231,10 +2231,10 @@ func (o *RawWriteResponse) xxx_ToOp(ctx context.Context, op *xxx_RawWriteOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DataWrittenLength = op.DataWrittenLength
-	o.Latency = op.Latency
-	o.Return = op.Return
+	op.That = o.That
+	op.DataWrittenLength = o.DataWrittenLength
+	op.Latency = o.Latency
+	op.Return = o.Return
 	return op
 }
 
@@ -2428,7 +2428,7 @@ func (o *PrepareNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_PrepareNodeOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -2471,11 +2471,11 @@ func (o *PrepareNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_PrepareNodeO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MajorVersion = op.MajorVersion
-	o.MinorVersion = op.MinorVersion
-	o.ClusterPrepareVersion = op.ClusterPrepareVersion
-	o.Return = op.Return
+	op.That = o.That
+	op.MajorVersion = o.MajorVersion
+	op.MinorVersion = o.MinorVersion
+	op.ClusterPrepareVersion = o.ClusterPrepareVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -2672,8 +2672,8 @@ func (o *PrepareNodePhase2Request) xxx_ToOp(ctx context.Context, op *xxx_Prepare
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Flags = op.Flags
+	op.This = o.This
+	op.Flags = o.Flags
 	return op
 }
 
@@ -2713,9 +2713,9 @@ func (o *PrepareNodePhase2Response) xxx_ToOp(ctx context.Context, op *xxx_Prepar
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DisksLength = op.DisksLength
-	o.Return = op.Return
+	op.That = o.That
+	op.DisksLength = o.DisksLength
+	op.Return = o.Return
 	return op
 }
 
@@ -2915,8 +2915,8 @@ func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetProperti
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -2956,9 +2956,9 @@ func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropert
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskProperties = op.DiskProperties
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskProperties = o.DiskProperties
+	op.Return = o.Return
 	return op
 }
 
@@ -3138,8 +3138,8 @@ func (o *StopDefenseRequest) xxx_ToOp(ctx context.Context, op *xxx_StopDefenseOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -3177,8 +3177,8 @@ func (o *StopDefenseResponse) xxx_ToOp(ctx context.Context, op *xxx_StopDefenseO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3369,8 +3369,8 @@ func (o *OnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -3410,9 +3410,9 @@ func (o *OnlineResponse) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.MaxPartitionNumber = op.MaxPartitionNumber
-	o.Return = op.Return
+	op.That = o.That
+	op.MaxPartitionNumber = o.MaxPartitionNumber
+	op.Return = o.Return
 	return op
 }
 
@@ -3592,8 +3592,8 @@ func (o *VerifyUniqueRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyUnique
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -3631,8 +3631,8 @@ func (o *VerifyUniqueResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyUniqu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -3909,12 +3909,12 @@ func (o *WriteFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteFileDa
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Partition = op.Partition
-	o.FileName = op.FileName
-	o.DataInLength = op.DataInLength
-	o.DataIn = op.DataIn
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Partition = o.Partition
+	op.FileName = o.FileName
+	op.DataInLength = o.DataInLength
+	op.DataIn = o.DataIn
 	return op
 }
 
@@ -3956,8 +3956,8 @@ func (o *WriteFileDataResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteFileD
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4234,12 +4234,12 @@ func (o *VerifyFileDataRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyFile
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Partition = op.Partition
-	o.FileName = op.FileName
-	o.DataInLength = op.DataInLength
-	o.DataIn = op.DataIn
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Partition = o.Partition
+	op.FileName = o.FileName
+	op.DataInLength = o.DataInLength
+	op.DataIn = o.DataIn
 	return op
 }
 
@@ -4281,8 +4281,8 @@ func (o *VerifyFileDataResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyFil
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4491,10 +4491,10 @@ func (o *DeleteFileRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteFileOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Partition = op.Partition
-	o.FileName = op.FileName
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Partition = o.Partition
+	op.FileName = o.FileName
 	return op
 }
 
@@ -4534,8 +4534,8 @@ func (o *DeleteFileResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteFileOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -4713,8 +4713,8 @@ func (o *OfflineRequest) xxx_ToOp(ctx context.Context, op *xxx_OfflineOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -4752,8 +4752,8 @@ func (o *OfflineResponse) xxx_ToOp(ctx context.Context, op *xxx_OfflineOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5043,9 +5043,9 @@ func (o *GetUniqueIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDs
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.DataLength = op.DataLength
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.DataLength = o.DataLength
 	return op
 }
 
@@ -5092,11 +5092,11 @@ func (o *GetUniqueIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueID
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Data = op.Data
-	o.DataOutLength = op.DataOutLength
-	o.NeededLength = op.NeededLength
-	o.Return = op.Return
+	op.That = o.That
+	op.Data = o.Data
+	op.DataOutLength = o.DataOutLength
+	op.NeededLength = o.NeededLength
+	op.Return = o.Return
 	return op
 }
 
@@ -5276,8 +5276,8 @@ func (o *AttachRequest) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -5315,8 +5315,8 @@ func (o *AttachResponse) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5495,8 +5495,8 @@ func (o *PRArbitrateRequest) xxx_ToOp(ctx context.Context, op *xxx_PRArbitrateOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -5534,8 +5534,8 @@ func (o *PRArbitrateResponse) xxx_ToOp(ctx context.Context, op *xxx_PRArbitrateO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5712,8 +5712,8 @@ func (o *PRRegisterRequest) xxx_ToOp(ctx context.Context, op *xxx_PRRegisterOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -5751,8 +5751,8 @@ func (o *PRRegisterResponse) xxx_ToOp(ctx context.Context, op *xxx_PRRegisterOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -5931,8 +5931,8 @@ func (o *PRUnregisterRequest) xxx_ToOp(ctx context.Context, op *xxx_PRUnregister
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -5970,8 +5970,8 @@ func (o *PRUnregisterResponse) xxx_ToOp(ctx context.Context, op *xxx_PRUnregiste
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6148,8 +6148,8 @@ func (o *PRReserveRequest) xxx_ToOp(ctx context.Context, op *xxx_PRReserveOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -6187,8 +6187,8 @@ func (o *PRReserveResponse) xxx_ToOp(ctx context.Context, op *xxx_PRReserveOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6365,8 +6365,8 @@ func (o *PRReleaseRequest) xxx_ToOp(ctx context.Context, op *xxx_PRReleaseOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -6404,8 +6404,8 @@ func (o *PRReleaseResponse) xxx_ToOp(ctx context.Context, op *xxx_PRReleaseOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6600,9 +6600,9 @@ func (o *DiskPartitionIsNTFSRequest) xxx_ToOp(ctx context.Context, op *xxx_DiskP
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Partition = op.Partition
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Partition = o.Partition
 	return op
 }
 
@@ -6641,8 +6641,8 @@ func (o *DiskPartitionIsNTFSResponse) xxx_ToOp(ctx context.Context, op *xxx_Disk
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -6847,8 +6847,8 @@ func (o *GetArbSectorsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetArbSecto
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -6890,10 +6890,10 @@ func (o *GetArbSectorsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetArbSect
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.SectorX = op.SectorX
-	o.SectorY = op.SectorY
-	o.Return = op.Return
+	op.That = o.That
+	op.SectorX = o.SectorX
+	op.SectorY = o.SectorY
+	op.Return = o.Return
 	return op
 }
 
@@ -7087,8 +7087,8 @@ func (o *IsPRPresentRequest) xxx_ToOp(ctx context.Context, op *xxx_IsPRPresentOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -7142,9 +7142,9 @@ func (o *IsPRPresentResponse) xxx_ToOp(ctx context.Context, op *xxx_IsPRPresentO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Present = op.Present
-	o.Return = op.Return
+	op.That = o.That
+	op.Present = o.Present
+	op.Return = o.Return
 	return op
 }
 
@@ -7322,8 +7322,8 @@ func (o *PRPreemptRequest) xxx_ToOp(ctx context.Context, op *xxx_PRPreemptOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -7361,8 +7361,8 @@ func (o *PRPreemptResponse) xxx_ToOp(ctx context.Context, op *xxx_PRPreemptOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7539,8 +7539,8 @@ func (o *PRClearRequest) xxx_ToOp(ctx context.Context, op *xxx_PRClearOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -7578,8 +7578,8 @@ func (o *PRClearResponse) xxx_ToOp(ctx context.Context, op *xxx_PRClearOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7756,8 +7756,8 @@ func (o *IsOnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_IsOnlineOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -7795,8 +7795,8 @@ func (o *IsOnlineResponse) xxx_ToOp(ctx context.Context, op *xxx_IsOnlineOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -7973,8 +7973,8 @@ func (o *SetOnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOnlineOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -8012,8 +8012,8 @@ func (o *SetOnlineResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOnlineOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8234,9 +8234,9 @@ func (o *GetFSNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFSNameOperat
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
-	o.Partition = op.Partition
+	op.This = o.This
+	op.DiskID = o.DiskID
+	op.Partition = o.Partition
 	return op
 }
 
@@ -8294,9 +8294,9 @@ func (o *GetFSNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFSNameOpera
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FSName = op.FSName
-	o.Return = op.Return
+	op.That = o.That
+	op.FSName = o.FSName
+	op.Return = o.Return
 	return op
 }
 
@@ -8474,8 +8474,8 @@ func (o *IsReadableRequest) xxx_ToOp(ctx context.Context, op *xxx_IsReadableOper
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DiskID = op.DiskID
+	op.This = o.This
+	op.DiskID = o.DiskID
 	return op
 }
 
@@ -8513,8 +8513,8 @@ func (o *IsReadableResponse) xxx_ToOp(ctx context.Context, op *xxx_IsReadableOpe
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -8764,8 +8764,8 @@ func (o *GetDSMsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDSMsOperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Size = op.Size
+	op.This = o.This
+	op.Size = o.Size
 	return op
 }
 
@@ -8807,10 +8807,10 @@ func (o *GetDSMsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDSMsOperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.ResgisteredDSMs = op.ResgisteredDSMs
-	o.RegisteredDSMs = op.RegisteredDSMs
-	o.Return = op.Return
+	op.That = o.That
+	op.ResgisteredDSMs = o.ResgisteredDSMs
+	op.RegisteredDSMs = o.RegisteredDSMs
+	op.Return = o.Return
 	return op
 }
 

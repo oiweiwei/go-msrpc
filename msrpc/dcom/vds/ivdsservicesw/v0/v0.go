@@ -330,8 +330,8 @@ func (o *GetDiskObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDiskObje
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DeviceID = op.DeviceID
+	op.This = o.This
+	op.DeviceID = o.DeviceID
 	return op
 }
 
@@ -370,9 +370,9 @@ func (o *GetDiskObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDiskObj
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.DiskUnknown = op.DiskUnknown
-	o.Return = op.Return
+	op.That = o.That
+	op.DiskUnknown = o.DiskUnknown
+	op.Return = o.Return
 	return op
 }
 

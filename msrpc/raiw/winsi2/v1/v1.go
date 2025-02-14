@@ -283,9 +283,9 @@ func (o *TombstoneDBRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_Tombst
 	if o == nil {
 		return op
 	}
-	o.WINSAddr = op.WINSAddr
-	o.MinVersNo = op.MinVersNo
-	o.MaxVersNo = op.MaxVersNo
+	op.WINSAddr = o.WINSAddr
+	op.MinVersNo = o.MinVersNo
+	op.MaxVersNo = o.MaxVersNo
 	return op
 }
 
@@ -322,7 +322,7 @@ func (o *TombstoneDBRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_Tombs
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -478,8 +478,8 @@ func (o *CheckAccessResponse) xxx_ToOp(ctx context.Context, op *xxx_CheckAccessO
 	if o == nil {
 		return op
 	}
-	o.Access = op.Access
-	o.Return = op.Return
+	op.Access = o.Access
+	op.Return = o.Return
 	return op
 }
 

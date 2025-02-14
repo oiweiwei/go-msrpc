@@ -402,10 +402,10 @@ func (o *CleanupEvictedNodeRequest) xxx_ToOp(ctx context.Context, op *xxx_Cleanu
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DelayBeforeCleanup = op.DelayBeforeCleanup
-	o.Timeout = op.Timeout
-	o.Flags = op.Flags
+	op.This = o.This
+	op.DelayBeforeCleanup = o.DelayBeforeCleanup
+	op.Timeout = o.Timeout
+	op.Flags = o.Flags
 	return op
 }
 
@@ -445,8 +445,8 @@ func (o *CleanupEvictedNodeResponse) xxx_ToOp(ctx context.Context, op *xxx_Clean
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -614,8 +614,8 @@ func (o *ClearPRRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearPROperation)
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.DeviceNumber = op.DeviceNumber
+	op.This = o.This
+	op.DeviceNumber = o.DeviceNumber
 	return op
 }
 
@@ -653,8 +653,8 @@ func (o *ClearPRResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearPROperation
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

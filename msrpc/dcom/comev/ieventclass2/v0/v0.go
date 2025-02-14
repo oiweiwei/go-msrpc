@@ -472,7 +472,7 @@ func (o *GetPublisherIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPublish
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -510,9 +510,9 @@ func (o *GetPublisherIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPublis
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PublisherID = op.PublisherID
-	o.Return = op.Return
+	op.That = o.That
+	op.PublisherID = o.PublisherID
+	op.Return = o.Return
 	return op
 }
 
@@ -714,8 +714,8 @@ func (o *SetPublisherIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPublish
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PublisherID = op.PublisherID
+	op.This = o.This
+	op.PublisherID = o.PublisherID
 	return op
 }
 
@@ -753,8 +753,8 @@ func (o *SetPublisherIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPublis
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -956,7 +956,7 @@ func (o *GetMultiInterfacePublisherFilterClassIDRequest) xxx_ToOp(ctx context.Co
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -994,9 +994,9 @@ func (o *GetMultiInterfacePublisherFilterClassIDResponse) xxx_ToOp(ctx context.C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.PublisherFilterClassID = op.PublisherFilterClassID
-	o.Return = op.Return
+	op.That = o.That
+	op.PublisherFilterClassID = o.PublisherFilterClassID
+	op.Return = o.Return
 	return op
 }
 
@@ -1200,8 +1200,8 @@ func (o *SetMultiInterfacePublisherFilterClassIDRequest) xxx_ToOp(ctx context.Co
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.PublisherFilterClassID = op.PublisherFilterClassID
+	op.This = o.This
+	op.PublisherFilterClassID = o.PublisherFilterClassID
 	return op
 }
 
@@ -1239,8 +1239,8 @@ func (o *SetMultiInterfacePublisherFilterClassIDResponse) xxx_ToOp(ctx context.C
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1416,7 +1416,7 @@ func (o *GetAllowInProcessActivationRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1454,9 +1454,9 @@ func (o *GetAllowInProcessActivationResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.AllowInProcessActivation = op.AllowInProcessActivation
-	o.Return = op.Return
+	op.That = o.That
+	op.AllowInProcessActivation = o.AllowInProcessActivation
+	op.Return = o.Return
 	return op
 }
 
@@ -1634,8 +1634,8 @@ func (o *SetAllowInProcessActivationRequest) xxx_ToOp(ctx context.Context, op *x
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.AllowInProcessActivation = op.AllowInProcessActivation
+	op.This = o.This
+	op.AllowInProcessActivation = o.AllowInProcessActivation
 	return op
 }
 
@@ -1673,8 +1673,8 @@ func (o *SetAllowInProcessActivationResponse) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1848,7 +1848,7 @@ func (o *GetFireInParallelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFire
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1886,9 +1886,9 @@ func (o *GetFireInParallelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFir
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FireInParallel = op.FireInParallel
-	o.Return = op.Return
+	op.That = o.That
+	op.FireInParallel = o.FireInParallel
+	op.Return = o.Return
 	return op
 }
 
@@ -2064,8 +2064,8 @@ func (o *SetFireInParallelRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFire
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FireInParallel = op.FireInParallel
+	op.This = o.This
+	op.FireInParallel = o.FireInParallel
 	return op
 }
 
@@ -2103,8 +2103,8 @@ func (o *SetFireInParallelResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFir
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 

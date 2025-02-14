@@ -507,9 +507,9 @@ func (o *SearchMachineRequest) xxx_ToOp(ctx context.Context, op *xxx_SearchMachi
 	if o == nil {
 		return op
 	}
-	o.Restrictions = op.Restrictions
-	o.BirthLast = op.BirthLast
-	o.LastObjectID = op.LastObjectID
+	op.Restrictions = o.Restrictions
+	op.BirthLast = o.BirthLast
+	op.LastObjectID = o.LastObjectID
 	return op
 }
 
@@ -558,11 +558,11 @@ func (o *SearchMachineResponse) xxx_ToOp(ctx context.Context, op *xxx_SearchMach
 	if o == nil {
 		return op
 	}
-	o.BirthNext = op.BirthNext
-	o.NextObjectID = op.NextObjectID
-	o.NextMachineID = op.NextMachineID
-	o.Path = op.Path
-	o.Return = op.Return
+	op.BirthNext = o.BirthNext
+	op.NextObjectID = o.NextObjectID
+	op.NextMachineID = o.NextMachineID
+	op.Path = o.Path
+	op.Return = o.Return
 	return op
 }
 

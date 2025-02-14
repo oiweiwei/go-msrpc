@@ -414,12 +414,12 @@ func (o *GetKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetKeyOperation) *
 	if o == nil {
 		return op
 	}
-	o.TargetSDLength = op.TargetSDLength
-	o.TargetSD = op.TargetSD
-	o.RootKeyID = op.RootKeyID
-	o.L0KeyID = op.L0KeyID
-	o.L1KeyID = op.L1KeyID
-	o.L2KeyID = op.L2KeyID
+	op.TargetSDLength = o.TargetSDLength
+	op.TargetSD = o.TargetSD
+	op.RootKeyID = o.RootKeyID
+	op.L0KeyID = o.L0KeyID
+	op.L1KeyID = o.L1KeyID
+	op.L2KeyID = o.L2KeyID
 	return op
 }
 
@@ -466,9 +466,9 @@ func (o *GetKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetKeyOperation) 
 	if o == nil {
 		return op
 	}
-	o.OutLength = op.OutLength
-	o.Out = op.Out
-	o.Return = op.Return
+	op.OutLength = o.OutLength
+	op.Out = o.Out
+	op.Return = o.Return
 	return op
 }
 

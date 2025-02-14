@@ -366,7 +366,7 @@ func (o *GetFileSystemTypeNameRequest) xxx_ToOp(ctx context.Context, op *xxx_Get
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -406,9 +406,9 @@ func (o *GetFileSystemTypeNameResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemTypeName = op.FileSystemTypeName
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemTypeName = o.FileSystemTypeName
+	op.Return = o.Return
 	return op
 }
 
@@ -660,7 +660,7 @@ func (o *QueryFileSystemFormatSupportRequest) xxx_ToOp(ctx context.Context, op *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -704,10 +704,10 @@ func (o *QueryFileSystemFormatSupportResponse) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.FileSystemSupportProperties = op.FileSystemSupportProperties
-	o.NumberOfFileSystems = op.NumberOfFileSystems
-	o.Return = op.Return
+	op.That = o.That
+	op.FileSystemSupportProperties = o.FileSystemSupportProperties
+	op.NumberOfFileSystems = o.NumberOfFileSystems
+	op.Return = o.Return
 	return op
 }
 
@@ -1075,14 +1075,14 @@ func (o *FormatExRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatExOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.FileSystemTypeName = op.FileSystemTypeName
-	o.FileSystemRevision = op.FileSystemRevision
-	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
-	o.Label = op.Label
-	o.Force = op.Force
-	o.QuickFormat = op.QuickFormat
-	o.EnableCompression = op.EnableCompression
+	op.This = o.This
+	op.FileSystemTypeName = o.FileSystemTypeName
+	op.FileSystemRevision = o.FileSystemRevision
+	op.DesiredUnitAllocationSize = o.DesiredUnitAllocationSize
+	op.Label = o.Label
+	op.Force = o.Force
+	op.QuickFormat = o.QuickFormat
+	op.EnableCompression = o.EnableCompression
 	return op
 }
 
@@ -1130,9 +1130,9 @@ func (o *FormatExResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatExOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Async = op.Async
-	o.Return = op.Return
+	op.That = o.That
+	op.Async = o.Async
+	op.Return = o.Return
 	return op
 }
 

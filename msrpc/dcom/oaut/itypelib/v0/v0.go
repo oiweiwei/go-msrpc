@@ -609,7 +609,7 @@ func (o *GetTypeInfoCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeI
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -649,9 +649,9 @@ func (o *GetTypeInfoCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetType
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfoCount = op.TypeInfoCount
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfoCount = o.TypeInfoCount
+	op.Return = o.Return
 	return op
 }
 
@@ -868,8 +868,8 @@ func (o *GetTypeInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeInfoOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -918,9 +918,9 @@ func (o *GetTypeInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeInfoO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1103,8 +1103,8 @@ func (o *GetTypeInfoTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeIn
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
+	op.This = o.This
+	op.Index = o.Index
 	return op
 }
 
@@ -1145,9 +1145,9 @@ func (o *GetTypeInfoTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeI
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Kind = op.Kind
-	o.Return = op.Return
+	op.That = o.That
+	op.Kind = o.Kind
+	op.Return = o.Return
 	return op
 }
 
@@ -1372,8 +1372,8 @@ func (o *GetTypeInfoOfGUIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetType
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.GUID = op.GUID
+	op.This = o.This
+	op.GUID = o.GUID
 	return op
 }
 
@@ -1416,9 +1416,9 @@ func (o *GetTypeInfoOfGUIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTyp
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.Return = o.Return
 	return op
 }
 
@@ -1635,7 +1635,7 @@ func (o *GetLibAttributeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLibAtt
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1675,9 +1675,9 @@ func (o *GetLibAttributeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLibAt
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.LibAttribute = op.LibAttribute
-	o.Return = op.Return
+	op.That = o.That
+	op.LibAttribute = o.LibAttribute
+	op.Return = o.Return
 	return op
 }
 
@@ -1878,7 +1878,7 @@ func (o *GetTypeCompRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTypeCompOp
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1922,9 +1922,9 @@ func (o *GetTypeCompResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTypeCompO
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Comp = op.Comp
-	o.Return = op.Return
+	op.That = o.That
+	op.Comp = o.Comp
+	op.Return = o.Return
 	return op
 }
 
@@ -2308,9 +2308,9 @@ func (o *GetDocumentationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDocum
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.Index = op.Index
-	o.PointerFlags = op.PointerFlags
+	op.This = o.This
+	op.Index = o.Index
+	op.PointerFlags = o.PointerFlags
 	return op
 }
 
@@ -2387,12 +2387,12 @@ func (o *GetDocumentationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDocu
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.DocString = op.DocString
-	o.HelpContext = op.HelpContext
-	o.HelpFile = op.HelpFile
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.DocString = o.DocString
+	op.HelpContext = o.HelpContext
+	op.HelpFile = o.HelpFile
+	op.Return = o.Return
 	return op
 }
 
@@ -2649,9 +2649,9 @@ func (o *IsNameRequest) xxx_ToOp(ctx context.Context, op *xxx_IsNameOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NameBuffer = op.NameBuffer
-	o.HashValue = op.HashValue
+	op.This = o.This
+	op.NameBuffer = o.NameBuffer
+	op.HashValue = o.HashValue
 	return op
 }
 
@@ -2699,10 +2699,10 @@ func (o *IsNameResponse) xxx_ToOp(ctx context.Context, op *xxx_IsNameOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Name = op.Name
-	o.NameInLibrary = op.NameInLibrary
-	o.Return = op.Return
+	op.That = o.That
+	op.Name = o.Name
+	op.NameInLibrary = o.NameInLibrary
+	op.Return = o.Return
 	return op
 }
 
@@ -3142,10 +3142,10 @@ func (o *FindNameRequest) xxx_ToOp(ctx context.Context, op *xxx_FindNameOperatio
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.NameBuffer = op.NameBuffer
-	o.HashValue = op.HashValue
-	o.FoundCount = op.FoundCount
+	op.This = o.This
+	op.NameBuffer = o.NameBuffer
+	op.HashValue = o.HashValue
+	op.FoundCount = o.FoundCount
 	return op
 }
 
@@ -3215,12 +3215,12 @@ func (o *FindNameResponse) xxx_ToOp(ctx context.Context, op *xxx_FindNameOperati
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.TypeInfo = op.TypeInfo
-	o.MemberIDs = op.MemberIDs
-	o.FoundCount = op.FoundCount
-	o.NameInLibrary = op.NameInLibrary
-	o.Return = op.Return
+	op.That = o.That
+	op.TypeInfo = o.TypeInfo
+	op.MemberIDs = o.MemberIDs
+	op.FoundCount = o.FoundCount
+	op.NameInLibrary = o.NameInLibrary
+	op.Return = o.Return
 	return op
 }
 

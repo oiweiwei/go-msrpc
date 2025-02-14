@@ -941,9 +941,9 @@ func (o *GetSupportedVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetS
 	if o == nil {
 		return op
 	}
-	o.MinVersion = op.MinVersion
-	o.MaxVersion = op.MaxVersion
-	o.Return = op.Return
+	op.MinVersion = o.MinVersion
+	op.MaxVersion = o.MaxVersion
+	op.Return = o.Return
 	return op
 }
 
@@ -1055,7 +1055,7 @@ func (o *SetContextRequest) xxx_ToOp(ctx context.Context, op *xxx_SetContextOper
 	if o == nil {
 		return op
 	}
-	o.Context = op.Context
+	op.Context = o.Context
 	return op
 }
 
@@ -1090,7 +1090,7 @@ func (o *SetContextResponse) xxx_ToOp(ctx context.Context, op *xxx_SetContextOpe
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1232,7 +1232,7 @@ func (o *StartShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_StartS
 	if o == nil {
 		return op
 	}
-	o.ClientShadowCopySetID = op.ClientShadowCopySetID
+	op.ClientShadowCopySetID = o.ClientShadowCopySetID
 	return op
 }
 
@@ -1269,8 +1269,8 @@ func (o *StartShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_Start
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.Return = op.Return
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.Return = o.Return
 	return op
 }
 
@@ -1453,9 +1453,9 @@ func (o *AddToShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddToS
 	if o == nil {
 		return op
 	}
-	o.ClientShadowCopyID = op.ClientShadowCopyID
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.ShareName = op.ShareName
+	op.ClientShadowCopyID = o.ClientShadowCopyID
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.ShareName = o.ShareName
 	return op
 }
 
@@ -1494,8 +1494,8 @@ func (o *AddToShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_AddTo
 	if o == nil {
 		return op
 	}
-	o.ShadowCopyID = op.ShadowCopyID
-	o.Return = op.Return
+	op.ShadowCopyID = o.ShadowCopyID
+	op.Return = o.Return
 	return op
 }
 
@@ -1632,8 +1632,8 @@ func (o *CommitShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_Commi
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.TimeoutInMilliseconds = o.TimeoutInMilliseconds
 	return op
 }
 
@@ -1669,7 +1669,7 @@ func (o *CommitShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_Comm
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1805,8 +1805,8 @@ func (o *ExposeShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_Expos
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.TimeoutInMilliseconds = o.TimeoutInMilliseconds
 	return op
 }
 
@@ -1842,7 +1842,7 @@ func (o *ExposeShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_Expo
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -1962,7 +1962,7 @@ func (o *RecoveryCompleteShadowCopySetRequest) xxx_ToOp(ctx context.Context, op 
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
+	op.ShadowCopySetID = o.ShadowCopySetID
 	return op
 }
 
@@ -1997,7 +1997,7 @@ func (o *RecoveryCompleteShadowCopySetResponse) xxx_ToOp(ctx context.Context, op
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2117,7 +2117,7 @@ func (o *AbortShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortS
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
+	op.ShadowCopySetID = o.ShadowCopySetID
 	return op
 }
 
@@ -2152,7 +2152,7 @@ func (o *AbortShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_Abort
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -2322,7 +2322,7 @@ func (o *IsPathSupportedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsPathSup
 	if o == nil {
 		return op
 	}
-	o.ShareName = op.ShareName
+	op.ShareName = o.ShareName
 	return op
 }
 
@@ -2363,9 +2363,9 @@ func (o *IsPathSupportedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsPathSu
 	if o == nil {
 		return op
 	}
-	o.SupportedByThisProvider = op.SupportedByThisProvider
-	o.OwnerMachineName = op.OwnerMachineName
-	o.Return = op.Return
+	op.SupportedByThisProvider = o.SupportedByThisProvider
+	op.OwnerMachineName = o.OwnerMachineName
+	op.Return = o.Return
 	return op
 }
 
@@ -2512,7 +2512,7 @@ func (o *IsPathShadowCopiedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsPath
 	if o == nil {
 		return op
 	}
-	o.ShareName = op.ShareName
+	op.ShareName = o.ShareName
 	return op
 }
 
@@ -2554,9 +2554,9 @@ func (o *IsPathShadowCopiedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsPat
 	if o == nil {
 		return op
 	}
-	o.ShadowCopyPresent = op.ShadowCopyPresent
-	o.ShadowCopyCompatibility = op.ShadowCopyCompatibility
-	o.Return = op.Return
+	op.ShadowCopyPresent = o.ShadowCopyPresent
+	op.ShadowCopyCompatibility = o.ShadowCopyCompatibility
+	op.Return = o.Return
 	return op
 }
 
@@ -2772,10 +2772,10 @@ func (o *GetShareMappingRequest) xxx_ToOp(ctx context.Context, op *xxx_GetShareM
 	if o == nil {
 		return op
 	}
-	o.ShadowCopyID = op.ShadowCopyID
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.ShareName = op.ShareName
-	o.Level = op.Level
+	op.ShadowCopyID = o.ShadowCopyID
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.ShareName = o.ShareName
+	op.Level = o.Level
 	return op
 }
 
@@ -2816,8 +2816,8 @@ func (o *GetShareMappingResponse) xxx_ToOp(ctx context.Context, op *xxx_GetShare
 	if o == nil {
 		return op
 	}
-	o.ShareMapping = op.ShareMapping
-	o.Return = op.Return
+	op.ShareMapping = o.ShareMapping
+	op.Return = o.Return
 	return op
 }
 
@@ -2977,9 +2977,9 @@ func (o *DeleteShareMappingRequest) xxx_ToOp(ctx context.Context, op *xxx_Delete
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.ShadowCopyID = op.ShadowCopyID
-	o.ShareName = op.ShareName
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.ShadowCopyID = o.ShadowCopyID
+	op.ShareName = o.ShareName
 	return op
 }
 
@@ -3016,7 +3016,7 @@ func (o *DeleteShareMappingResponse) xxx_ToOp(ctx context.Context, op *xxx_Delet
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 
@@ -3152,8 +3152,8 @@ func (o *PrepareShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_Prep
 	if o == nil {
 		return op
 	}
-	o.ShadowCopySetID = op.ShadowCopySetID
-	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
+	op.ShadowCopySetID = o.ShadowCopySetID
+	op.TimeoutInMilliseconds = o.TimeoutInMilliseconds
 	return op
 }
 
@@ -3189,7 +3189,7 @@ func (o *PrepareShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_Pre
 	if o == nil {
 		return op
 	}
-	o.Return = op.Return
+	op.Return = o.Return
 	return op
 }
 

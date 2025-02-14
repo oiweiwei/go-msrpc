@@ -599,9 +599,9 @@ func (o *StopRequest) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TimeoutMsecs = op.TimeoutMsecs
-	o.Force = op.Force
+	op.This = o.This
+	op.TimeoutMsecs = o.TimeoutMsecs
+	op.Force = o.Force
 	return op
 }
 
@@ -640,8 +640,8 @@ func (o *StopResponse) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -810,8 +810,8 @@ func (o *StartRequest) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *xx
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TimeoutMsecs = op.TimeoutMsecs
+	op.This = o.This
+	op.TimeoutMsecs = o.TimeoutMsecs
 	return op
 }
 
@@ -849,8 +849,8 @@ func (o *StartResponse) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *x
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1044,9 +1044,9 @@ func (o *RebootRequest) xxx_ToOp(ctx context.Context, op *xxx_RebootOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.TimeoutMsecs = op.TimeoutMsecs
-	o.ForceAppsClosed = op.ForceAppsClosed
+	op.This = o.This
+	op.TimeoutMsecs = o.TimeoutMsecs
+	op.ForceAppsClosed = o.ForceAppsClosed
 	return op
 }
 
@@ -1085,8 +1085,8 @@ func (o *RebootResponse) xxx_ToOp(ctx context.Context, op *xxx_RebootOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
@@ -1335,8 +1335,8 @@ func (o *StatusRequest) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) *
 	if o == nil {
 		return op
 	}
-	o.This = op.This
-	o.BufferSize = op.BufferSize
+	op.This = o.This
+	op.BufferSize = o.BufferSize
 	return op
 }
 
@@ -1384,11 +1384,11 @@ func (o *StatusResponse) xxx_ToOp(ctx context.Context, op *xxx_StatusOperation) 
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Buffer = op.Buffer
-	o.RequiredBufferSize = op.RequiredBufferSize
-	o.ServicesLength = op.ServicesLength
-	o.Return = op.Return
+	op.That = o.That
+	op.Buffer = o.Buffer
+	op.RequiredBufferSize = o.RequiredBufferSize
+	op.ServicesLength = o.ServicesLength
+	op.Return = o.Return
 	return op
 }
 
@@ -1544,7 +1544,7 @@ func (o *KillRequest) xxx_ToOp(ctx context.Context, op *xxx_KillOperation) *xxx_
 	if o == nil {
 		return op
 	}
-	o.This = op.This
+	op.This = o.This
 	return op
 }
 
@@ -1581,8 +1581,8 @@ func (o *KillResponse) xxx_ToOp(ctx context.Context, op *xxx_KillOperation) *xxx
 	if o == nil {
 		return op
 	}
-	o.That = op.That
-	o.Return = op.Return
+	op.That = o.That
+	op.Return = o.Return
 	return op
 }
 
