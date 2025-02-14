@@ -5290,6 +5290,7 @@ func (o *GetGlobalConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type GetGlobalConfigResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// being requested.
@@ -7072,6 +7073,7 @@ func (o *GetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 type GetConfigResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// being requested.
@@ -15101,6 +15103,7 @@ func (o *GetGlobalConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Read
 type GetGlobalConfig210Response struct {
 	// XXX: cbData is an implicit input depedency for output parameters
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// that is being requested.
@@ -15616,6 +15619,7 @@ func (o *GetConfig210Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 type GetConfig210Response struct {
 	// XXX: cbData is an implicit input depedency for output parameters
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+
 	// pBuffer: This is an input/output parameter. This parameter is a pointer to the buffer
 	// that the client provides to contain the value of the profile configuration option
 	// being requested.

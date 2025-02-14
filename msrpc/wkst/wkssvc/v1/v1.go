@@ -6553,6 +6553,7 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// WkstaInfo: A pointer to the buffer that receives the data. The format of this data
 	// depends on the value of the level parameter.
 	WorkstationInfo *WorkstationInfo `idl:"name:WkstaInfo;switch_is:Level" json:"workstation_info"`
@@ -8691,6 +8692,7 @@ func (o *UseGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 type UseGetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// InfoStruct: A pointer to the buffer that specifies the data. The format of this data
 	// depends on the value of the Level parameter.
 	Info *UseInfo `idl:"name:InfoStruct;switch_is:Level" json:"info"`

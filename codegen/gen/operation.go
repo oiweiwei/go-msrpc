@@ -329,13 +329,16 @@ func (p *Generator) GenOperationStruct(ctx context.Context, op *midl.Operation, 
 
 	// generate go structure for the in/out/any parameters.
 	p.Structure(p.OpName(ctx, op, dir), func() {
-		for _, param := range p.GetOutputParamImplicitDependents(ctx, op, dir) {
-			p.P("//", "XXX:", param.Name, "is an implicit input depedency for output parameters")
-			p.NewParamGenerator(ctx, param.Type).GenStructField(ctx, &midl.Field{
-				Name:  param.Name,
-				Attrs: param.Attrs.FieldAttr,
-				Type:  param.Type,
-			})
+		if implicit := p.GetOutputParamImplicitDependents(ctx, op, dir); len(implicit) > 0 {
+			for _, param := range implicit {
+				p.P("//", "XXX:", param.Name, "is an implicit input depedency for output parameters")
+				p.NewParamGenerator(ctx, param.Type).GenStructField(ctx, &midl.Field{
+					Name:  param.Name,
+					Attrs: param.Attrs.FieldAttr,
+					Type:  param.Type,
+				})
+			}
+			p.P()
 		}
 
 		for _, param := range p.OperationParams(ctx, op) {

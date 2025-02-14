@@ -848,6 +848,7 @@ func (o *RemoteActivationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type RemoteActivationResponse struct {
 	// XXX: Interfaces is an implicit input depedency for output parameters
 	Interfaces uint32 `idl:"name:Interfaces" json:"interfaces"`
+
 	// ORPCthat:  This MUST contain an ORPCTHAT. The extensions field MUST be set to NULL.
 	ORPCThat *dcom.ORPCThat `idl:"name:ORPCthat" json:"orpc_that"`
 	// pOxid: This MUST contain an OXID value identifying the object exporter containing

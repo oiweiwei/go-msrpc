@@ -931,6 +931,7 @@ func (o *GetPrimaryDomainInformationRequest) UnmarshalNDR(ctx context.Context, r
 type GetPrimaryDomainInformationResponse struct {
 	// XXX: InfoLevel is an implicit input depedency for output parameters
 	InfoLevel PrimaryDomainInfoLevel `idl:"name:InfoLevel" json:"info_level"`
+
 	// DomainInfo: The requested information that the server provides to the client. The
 	// value of the InfoLevel parameter indicates the type of information that is requested;
 	// information is returned in the corresponding member of the DSROLER_PRIMARY_DOMAIN_INFORMATION

@@ -2075,6 +2075,7 @@ func (o *GetNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 type GetNamesResponse struct {
 	// XXX: cMaxNames is an implicit input depedency for output parameters
 	MaxNamesCount uint32 `idl:"name:cMaxNames" json:"max_names_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// rgBstrNames: MUST be set to an array of BSTR. If pcNames is 0, rgBstrNames MUST be

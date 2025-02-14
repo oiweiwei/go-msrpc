@@ -825,6 +825,7 @@ func (o *ManagementGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type ManagementGetInfoResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
 	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
+
 	// apVar: Points to an array that specifies the property values associated with the
 	// array of property identifiers. Each element in this array specifies the property
 	// value for the corresponding property identifier at the same element index in the

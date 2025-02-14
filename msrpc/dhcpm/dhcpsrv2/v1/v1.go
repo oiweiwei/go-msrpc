@@ -18294,6 +18294,7 @@ type QueryDNSRegCredentialsResponse struct {
 	UserNameSize uint32 `idl:"name:UnameSize" json:"user_name_size"`
 	// XXX: DomainSize is an implicit input depedency for output parameters
 	DomainSize uint32 `idl:"name:DomainSize" json:"domain_size"`
+
 	// Uname:  A pointer to a null-terminated Unicode string in which the DHCP server returns
 	// the user name for the DNS. The memory is allocated at the RPC client and passed to
 	// the RPC server.

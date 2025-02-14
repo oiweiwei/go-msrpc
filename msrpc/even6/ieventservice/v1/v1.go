@@ -8690,6 +8690,7 @@ func (o *GetLogFileInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type GetLogFileInfoResponse struct {
 	// XXX: propertyValueBufferSize is an implicit input depedency for output parameters
 	PropertyValueBufferSize uint32 `idl:"name:propertyValueBufferSize" json:"property_value_buffer_size"`
+
 	// propertyValueBuffer: A byte-array that contains the buffer for returned data.
 	PropertyValueBuffer []byte `idl:"name:propertyValueBuffer;size_is:(propertyValueBufferSize)" json:"property_value_buffer"`
 	// propertyValueBufferLength: A pointer to a 32-bit unsigned integer that contains the

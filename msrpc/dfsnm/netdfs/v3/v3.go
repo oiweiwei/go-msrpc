@@ -9277,6 +9277,7 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// DfsInfo: The pointer to a DFS_INFO_STRUCT union to receive the returned information.
 	// The case of the union is selected by the value of the Level parameter.
 	Info *Info `idl:"name:DfsInfo;switch_is:Level" json:"info"`

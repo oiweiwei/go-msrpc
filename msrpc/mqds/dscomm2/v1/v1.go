@@ -1148,6 +1148,7 @@ func (o *GetPropertiesExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type GetPropertiesExResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
 	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
+
 	// apVar:  MUST be set by the client to an array that holds the property values retrieved
 	// from the object. Each element MUST be set by the server to the property value for
 	// the corresponding property identifier at the same element index in aProp. The array
@@ -1693,6 +1694,7 @@ func (o *GetPropertiesGUIDExRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type GetPropertiesGUIDExResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
 	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
+
 	// apVar:  MUST be set by the client to an array that holds the property values retrieved
 	// from the object. Each element MUST be set by the server to the property value for
 	// the corresponding property identifier at the same element index in aProp. The array

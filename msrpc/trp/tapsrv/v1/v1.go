@@ -766,6 +766,7 @@ func (o *ClientRequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 type ClientRequestResponse struct {
 	// XXX: lNeededSize is an implicit input depedency for output parameters
 	NeededSize int32 `idl:"name:lNeededSize" json:"needed_size"`
+
 	// pBuffer: Packet that MUST contain event packets or function calls. The packet follows
 	// the structure of a TAPI32_MSG (section 2.2.5.2) packet. The Req_Func field of this
 	// packet contains information about the operation to be performed on the server.

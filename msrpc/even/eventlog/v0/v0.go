@@ -3300,6 +3300,7 @@ func (o *ReadEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 type ReadEventLogWResponse struct {
 	// XXX: NumberOfBytesToRead is an implicit input depedency for output parameters
 	NumberOfBytesToRead uint32 `idl:"name:NumberOfBytesToRead" json:"number_of_bytes_to_read"`
+
 	// Buffer: The buffer in which to place data read from the event log.
 	Buffer []byte `idl:"name:Buffer;size_is:(NumberOfBytesToRead)" json:"buffer"`
 	// NumberOfBytesRead: Pointer to a variable that receives the number of bytes actually
@@ -5602,6 +5603,7 @@ func (o *ReadEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 type ReadEventLogAResponse struct {
 	// XXX: NumberOfBytesToRead is an implicit input depedency for output parameters
 	NumberOfBytesToRead uint32 `idl:"name:NumberOfBytesToRead" json:"number_of_bytes_to_read"`
+
 	// Buffer: Data read from the event log.
 	Buffer []byte `idl:"name:Buffer;size_is:(NumberOfBytesToRead)" json:"buffer"`
 	// NumberOfBytesRead: Number of bytes read by the method.
@@ -6562,6 +6564,7 @@ func (o *GetLogInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type GetLogInformationResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: The event log information. This MUST point to either an EVENTLOG_FULL_INFORMATION
 	// (section 2.2.4) structure or be NULL.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`

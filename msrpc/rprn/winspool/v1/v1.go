@@ -18070,6 +18070,7 @@ func (o *EnumPrintersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 type EnumPrintersResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pPrinterEnum: A pointer to a BUFFER defined in INFO Structures Query Parameters (section
 	// 3.1.4.1.9).
 	PrinterEnum []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
@@ -19033,6 +19034,7 @@ func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetJobResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pJob: A pointer to BUFFER as specified in INFO Structures Query Parameters (section
 	// 3.1.4.1.9).
 	Job []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
@@ -19451,6 +19453,7 @@ func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 type EnumJobsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pJob: A pointer to the BUFFER structure specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Job []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
@@ -20590,6 +20593,7 @@ func (o *GetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 type GetPrinterResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pPrinter: A pointer to a BUFFER (INFO Structures Query Parameters (section 3.1.4.1.9)).
 	PrinterBuffer []byte `idl:"name:pPrinter;size_is:(cbBuf);pointer:unique" json:"printer_buffer"`
 	// pcbNeeded: A parameter specified in INFO Structures Query Parameters.
@@ -21253,6 +21257,7 @@ func (o *EnumPrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 type EnumPrinterDriversResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pDrivers: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Drivers []byte `idl:"name:pDrivers;size_is:(cbBuf);pointer:unique" json:"drivers"`
@@ -21688,6 +21693,7 @@ func (o *GetPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type GetPrinterDriverResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pDriver: An optional pointer to BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Driver []byte `idl:"name:pDriver;size_is:(cbBuf);pointer:unique" json:"driver"`
@@ -22116,6 +22122,7 @@ func (o *GetPrinterDriverDirectoryRequest) UnmarshalNDR(ctx context.Context, r n
 type GetPrinterDriverDirectoryResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pDriverDirectory: An optional pointer to BUFFER, as specified in String Query Parameters
 	// (section 3.1.4.1.7). If cbBuf is zero, this parameter SHOULD be NULL.
 	DriverDirectory []byte `idl:"name:pDriverDirectory;size_is:(cbBuf);pointer:unique" json:"driver_directory"`
@@ -22987,6 +22994,7 @@ func (o *EnumPrintProcessorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type EnumPrintProcessorsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pPrintProcessorInfo: A pointer to BUFFER as specified in INFO Structures Query Parameters,
 	// section 3.1.4.1.9
 	PrintProcessorInfo []byte `idl:"name:pPrintProcessorInfo;size_is:(cbBuf);pointer:unique" json:"print_processor_info"`
@@ -23422,6 +23430,7 @@ func (o *GetPrintProcessorDirectoryRequest) UnmarshalNDR(ctx context.Context, r 
 type GetPrintProcessorDirectoryResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pPrintProcessorDirectory: This parameter MAY be NULL if cbBuf equals zero; otherwise,
 	// it is a pointer to BUFFER as specified in String Query Parameters, section 3.1.4.1.7.
 	PrintProcessorDirectory []byte `idl:"name:pPrintProcessorDirectory;size_is:(cbBuf);pointer:unique" json:"print_processor_directory"`
@@ -24589,6 +24598,7 @@ func (o *ReadPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 type ReadPrinterResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pBuf: A pointer to a buffer that receives the printer data. If the hPrinter parameter
 	// is the handle to a port object, this method returns the data that is returned by
 	// the port monitor.
@@ -25117,6 +25127,7 @@ func (o *AddJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type AddJobResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pAddJob: A pointer to a buffer of undefined values. This value can be NULL if cbBuf
 	// is zero and Level is 0x00000001.
 	AddJob []byte `idl:"name:pAddJob;size_is:(cbBuf);pointer:unique" json:"add_job"`
@@ -25572,6 +25583,7 @@ func (o *GetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type GetPrinterDataResponse struct {
 	// XXX: nSize is an implicit input depedency for output parameters
 	Size uint32 `idl:"name:nSize" json:"size"`
+
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
 	Type uint32 `idl:"name:pType" json:"type"`
 	// pData: A pointer to BUFFER as specified in Dynamically Typed Query Parameters.
@@ -26976,6 +26988,7 @@ func (o *GetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetFormResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pForm: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Form []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
@@ -27576,6 +27589,7 @@ func (o *EnumFormsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 type EnumFormsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pForm: This parameter MAY be NULL if cbBuf equals zero; otherwise, it is a pointer
 	// to the BUFFER, as specified in INFO Structures Query Parameters, section 3.1.4.1.9.
 	Form []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
@@ -27990,6 +28004,7 @@ func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 type EnumPortsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pPort: A pointer to the BUFFER, as specified in INFO Structures Query Parameters,
 	// section 3.1.4.1.9.
 	Port []byte `idl:"name:pPort;size_is:(cbBuf);pointer:unique" json:"port"`
@@ -28405,6 +28420,7 @@ func (o *EnumMonitorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 type EnumMonitorsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pMonitor: This parameter SHOULD be ignored if cbBuf equals zero; otherwise, it is
 	// a pointer to the BUFFER, as specified in INFO Structures Query Parameters, section
 	// 3.1.4.1.9.
@@ -29156,6 +29172,7 @@ func (o *PlayGDIScriptOnPrinterICRequest) UnmarshalNDR(ctx context.Context, r nd
 type PlayGDIScriptOnPrinterICResponse struct {
 	// XXX: cOut is an implicit input depedency for output parameters
 	OutCount uint32 `idl:"name:cOut" json:"out_count"`
+
 	// pOut: A pointer to a buffer, the size and contents of which are determined by the
 	// value of the cOut parameter.
 	Out []byte `idl:"name:pOut;size_is:(cOut)" json:"out"`
@@ -30444,6 +30461,7 @@ func (o *EnumPrintProcessorDataTypesRequest) UnmarshalNDR(ctx context.Context, r
 type EnumPrintProcessorDataTypesResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pDatatypes: This parameter MAY be NULL if cbBuf equals zero; otherwise, it is a pointer
 	// to BUFFER as specified in INFO Structures Query Parameters, section 3.1.4.1.9.
 	DataTypes []byte `idl:"name:pDatatypes;size_is:(cbBuf);pointer:unique" json:"data_types"`
@@ -31176,6 +31194,7 @@ func (o *GetPrinterDriver2Request) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type GetPrinterDriver2Response struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pDriver: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	Driver []byte `idl:"name:pDriver;size_is:(cbBuf);pointer:unique" json:"driver"`
@@ -32801,6 +32820,7 @@ func (o *RemoteFindFirstPrinterChangeNotificationRequest) UnmarshalNDR(ctx conte
 type RemoteFindFirstPrinterChangeNotificationResponse struct {
 	// XXX: cbBuffer is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuffer" json:"buffer_length"`
+
 	// pBuffer: A pointer that MUST be set to NULL when sent and MUST be ignored on receipt.
 	Buffer []byte `idl:"name:pBuffer;size_is:(cbBuffer);pointer:unique" json:"buffer"`
 	// Return: The RpcRemoteFindFirstPrinterChangeNotification return value.
@@ -34862,6 +34882,7 @@ type EnumPrinterDataResponse struct {
 	ValueNameInLength uint32 `idl:"name:cbValueNameIn" json:"value_name_in_length"`
 	// XXX: cbDataIn is an implicit input depedency for output parameters
 	DataInLength uint32 `idl:"name:cbDataIn" json:"data_in_length"`
+
 	// pValueName: A pointer to a buffer that receives a string specifying the name of the
 	// configuration data value. For rules governing value names, see section 2.2.4.18.
 	ValueName          string `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
@@ -35638,6 +35659,7 @@ func (o *GetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type GetPrinterDataExResponse struct {
 	// XXX: nSize is an implicit input depedency for output parameters
 	Size uint32 `idl:"name:nSize" json:"size"`
+
 	// pType: A parameter specified in Dynamically Typed Query Parameters (section 3.1.4.1.2).
 	Type uint32 `idl:"name:pType" json:"type"`
 	// pData: A pointer to BUFFER, as specified in Dynamically Typed Query Parameters. This
@@ -35923,6 +35945,7 @@ func (o *EnumPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type EnumPrinterDataExResponse struct {
 	// XXX: cbEnumValuesIn is an implicit input depedency for output parameters
 	EnumValuesInLength uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
+
 	// pEnumValues: A pointer to BUFFER as specified in PRINTER_ENUM_VALUES Structures Query
 	// Parameters (section 3.1.4.1.10).
 	EnumValues          []byte `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
@@ -36199,6 +36222,7 @@ func (o *EnumPrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type EnumPrinterKeyResponse struct {
 	// XXX: cbSubkeyIn is an implicit input depedency for output parameters
 	SubkeyInLength uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
+
 	// pSubkey: A pointer to BUFFER as specified in String Query Parameters (section 3.1.4.1.7).
 	Subkey          string `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
 	SubkeyOutLength uint32 `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
@@ -37636,6 +37660,7 @@ func (o *EnumPerMachineConnectionsRequest) UnmarshalNDR(ctx context.Context, r n
 type EnumPerMachineConnectionsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	// pPrinterEnum: A pointer to the BUFFER, as specified in INFO Structures Query Parameters
 	// (section 3.1.4.1.9).
 	PrinterEnum []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
@@ -38025,6 +38050,7 @@ func (o *XcvDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type XcvDataResponse struct {
 	// XXX: cbOutputData is an implicit input depedency for output parameters
 	OutputDataLength uint32 `idl:"name:cbOutputData" json:"output_data_length"`
+
 	// pOutputData: A pointer to a buffer to receive output data. This parameter can be
 	// NULL if cbOutputData equals zero.
 	OutputData []byte `idl:"name:pOutputData;size_is:(cbOutputData)" json:"output_data"`
@@ -39278,6 +39304,7 @@ func (o *GetCorePrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type GetCorePrinterDriversResponse struct {
 	// XXX: cCorePrinterDrivers is an implicit input depedency for output parameters
 	CorePrinterDriversCount uint32 `idl:"name:cCorePrinterDrivers" json:"core_printer_drivers_count"`
+
 	// pCorePrinterDrivers: A pointer to a buffer that receives an array of CORE_PRINTER_DRIVER
 	// structures.
 	CorePrinterDrivers []*CorePrinterDriver `idl:"name:pCorePrinterDrivers;size_is:(cCorePrinterDrivers)" json:"core_printer_drivers"`
@@ -39740,6 +39767,7 @@ func (o *GetPrinterDriverPackagePathRequest) UnmarshalNDR(ctx context.Context, r
 type GetPrinterDriverPackagePathResponse struct {
 	// XXX: cchDriverPackageCab is an implicit input depedency for output parameters
 	DriverPackageCabLength uint32 `idl:"name:cchDriverPackageCab" json:"driver_package_cab_length"`
+
 	// pszDriverPackageCab: This parameter is a pointer to a buffer that receives a string
 	// that specifies the path name of the driver package file.<351> For rules governing
 	// path names, see section 2.2.4.9. pszDriverPackageCab MUST NOT be NULL unless cchDriverPackageCab

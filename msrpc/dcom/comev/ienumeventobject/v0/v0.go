@@ -781,6 +781,7 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type NextResponse struct {
 	// XXX: cReqElem is an implicit input depedency for output parameters
 	RequestElemCount uint32 `idl:"name:cReqElem" json:"request_elem_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// ppInterface: If the function returns a success HRESULT, this MUST contain an array

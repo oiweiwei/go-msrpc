@@ -1839,6 +1839,7 @@ func (o *RegisterModule2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type RegisterModule2Response struct {
 	// XXX: cModules is an implicit input depedency for output parameters
 	ModulesCount uint32 `idl:"name:cModules" json:"modules_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// ppModuleFlags:  A pointer to a variable that, upon successful completion, SHOULD

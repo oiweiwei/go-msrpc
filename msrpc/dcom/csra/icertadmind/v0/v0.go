@@ -7780,6 +7780,7 @@ func (o *BackupReadFileRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type BackupReadFileResponse struct {
 	// XXX: cbBuffer is an implicit input depedency for output parameters
 	BufferLength int32 `idl:"name:cbBuffer" json:"buffer_length"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbBuffer: A pointer to the buffer that receives the read data.

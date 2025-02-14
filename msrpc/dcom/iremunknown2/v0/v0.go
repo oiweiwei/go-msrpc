@@ -526,6 +526,7 @@ func (o *RemoteQueryInterface2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 type RemoteQueryInterface2Response struct {
 	// XXX: cIids is an implicit input depedency for output parameters
 	IIDsCount uint16 `idl:"name:cIids" json:"iids_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// phr:  This MUST contain an array of HRESULTs specifying the respective success or

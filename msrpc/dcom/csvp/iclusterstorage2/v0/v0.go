@@ -1871,6 +1871,7 @@ func (o *RawReadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type RawReadResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbData: The data to read from the disk.
@@ -5083,6 +5084,7 @@ func (o *GetUniqueIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 type GetUniqueIDsResponse struct {
 	// XXX: cbData is an implicit input depedency for output parameters
 	DataLength uint32 `idl:"name:cbData" json:"data_length"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbData: The output buffer for the device ID data.
@@ -8812,6 +8814,7 @@ func (o *GetDSMsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetDSMsResponse struct {
 	// XXX: Size is an implicit input depedency for output parameters
 	Size uint32 `idl:"name:Size" json:"size"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That            *dcom.ORPCThat `idl:"name:That" json:"that"`
 	ResgisteredDSMs uint32         `idl:"name:pResgisteredDsms" json:"resgistered_dsms"`

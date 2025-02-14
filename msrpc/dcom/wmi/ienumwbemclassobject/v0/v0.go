@@ -752,6 +752,7 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type NextResponse struct {
 	// XXX: uCount is an implicit input depedency for output parameters
 	Count uint32 `idl:"name:uCount" json:"count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That     *dcom.ORPCThat     `idl:"name:That" json:"that"`
 	Objects  []*wmi.ClassObject `idl:"name:apObjects;size_is:(uCount);length_is:(puReturned)" json:"objects"`

@@ -638,6 +638,7 @@ func (o *GetChildPathsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 type GetChildPathsResponse struct {
 	// XXX: cchMDBufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:cchMDBufferSize" json:"buffer_size"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pszBuffer: A pointer to a Unicode character buffer passed in by the caller to store

@@ -559,6 +559,7 @@ func (o *NextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type NextResponse struct {
 	// XXX: celt is an implicit input depedency for output parameters
 	Count uint32 `idl:"name:celt" json:"count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// rgVar: MUST be set to an array of elements that are returned from the enumeration

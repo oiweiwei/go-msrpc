@@ -6340,6 +6340,7 @@ func (o *GetDataPathsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 type GetDataPathsResponse struct {
 	// XXX: dwMDBufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:dwMDBufferSize" json:"buffer_size"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pszBuffer: A pointer to a buffer that contains the retrieved data. If the method

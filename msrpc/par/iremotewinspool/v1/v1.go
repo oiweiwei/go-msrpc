@@ -18793,6 +18793,7 @@ func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetJobResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Job          []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetJob return value.
@@ -19199,7 +19200,8 @@ func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 // EnumJobsResponse structure represents the RpcAsyncEnumJobs operation response
 type EnumJobsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Job           []byte `idl:"name:pJob;size_is:(cbBuf);pointer:unique" json:"job"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -19565,6 +19567,7 @@ func (o *AddJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type AddJobResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	AddJob       []byte `idl:"name:pAddJob;size_is:(cbBuf);pointer:unique" json:"add_job"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncAddJob return value.
@@ -20515,7 +20518,8 @@ func (o *GetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 // GetPrinterResponse structure represents the RpcAsyncGetPrinter operation response
 type GetPrinterResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	PrinterBuffer []byte `idl:"name:pPrinter;size_is:(cbBuf);pointer:unique" json:"printer_buffer"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetPrinter return value.
@@ -21858,7 +21862,8 @@ func (o *GetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetPrinterDataResponse structure represents the RpcAsyncGetPrinterData operation response
 type GetPrinterDataResponse struct {
 	// XXX: nSize is an implicit input depedency for output parameters
-	Size         uint32 `idl:"name:nSize" json:"size"`
+	Size uint32 `idl:"name:nSize" json:"size"`
+
 	Type         uint32 `idl:"name:pType" json:"type"`
 	Data         []byte `idl:"name:pData;size_is:(nSize)" json:"data"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
@@ -22153,7 +22158,8 @@ func (o *GetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetPrinterDataExResponse structure represents the RpcAsyncGetPrinterDataEx operation response
 type GetPrinterDataExResponse struct {
 	// XXX: nSize is an implicit input depedency for output parameters
-	Size         uint32 `idl:"name:nSize" json:"size"`
+	Size uint32 `idl:"name:nSize" json:"size"`
+
 	Type         uint32 `idl:"name:pType" json:"type"`
 	Data         []byte `idl:"name:pData;size_is:(nSize)" json:"data"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
@@ -23600,6 +23606,7 @@ func (o *GetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetFormResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Form         []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
 	NeededLength uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetForm return value.
@@ -24175,7 +24182,8 @@ func (o *EnumFormsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // EnumFormsResponse structure represents the RpcAsyncEnumForms operation response
 type EnumFormsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Form          []byte `idl:"name:pForm;size_is:(cbBuf);pointer:unique" json:"form"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -24641,7 +24649,8 @@ func (o *GetPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // GetPrinterDriverResponse structure represents the RpcAsyncGetPrinterDriver operation response
 type GetPrinterDriverResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength     uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Driver           []byte `idl:"name:pDriver;size_is:(cbBuf);pointer:unique" json:"driver"`
 	NeededLength     uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ServerMaxVersion uint32 `idl:"name:pdwServerMaxVersion" json:"server_max_version"`
@@ -25006,7 +25015,8 @@ type EnumPrinterDataResponse struct {
 	// XXX: cbValueNameIn is an implicit input depedency for output parameters
 	ValueNameInLength uint32 `idl:"name:cbValueNameIn" json:"value_name_in_length"`
 	// XXX: cbDataIn is an implicit input depedency for output parameters
-	DataInLength       uint32 `idl:"name:cbDataIn" json:"data_in_length"`
+	DataInLength uint32 `idl:"name:cbDataIn" json:"data_in_length"`
+
 	ValueName          string `idl:"name:pValueName;size_is:((cbValueNameIn/2))" json:"value_name"`
 	ValueNameOutLength uint32 `idl:"name:pcbValueNameOut" json:"value_name_out_length"`
 	Type               uint32 `idl:"name:pType" json:"type"`
@@ -25295,7 +25305,8 @@ func (o *EnumPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 // EnumPrinterDataExResponse structure represents the RpcAsyncEnumPrinterDataEx operation response
 type EnumPrinterDataExResponse struct {
 	// XXX: cbEnumValuesIn is an implicit input depedency for output parameters
-	EnumValuesInLength  uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
+	EnumValuesInLength uint32 `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
+
 	EnumValues          []byte `idl:"name:pEnumValues;size_is:(cbEnumValuesIn)" json:"enum_values"`
 	EnumValuesOutLength uint32 `idl:"name:pcbEnumValuesOut" json:"enum_values_out_length"`
 	EnumValuesLength    uint32 `idl:"name:numEnumValues" json:"enum_values_length"`
@@ -25567,7 +25578,8 @@ func (o *EnumPrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // EnumPrinterKeyResponse structure represents the RpcAsyncEnumPrinterKey operation response
 type EnumPrinterKeyResponse struct {
 	// XXX: cbSubkeyIn is an implicit input depedency for output parameters
-	SubkeyInLength  uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
+	SubkeyInLength uint32 `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
+
 	Subkey          string `idl:"name:pSubkey;size_is:((cbSubkeyIn/2))" json:"subkey"`
 	SubkeyOutLength uint32 `idl:"name:pcbSubkeyOut" json:"subkey_out_length"`
 	// Return: The RpcAsyncEnumPrinterKey return value.
@@ -26456,7 +26468,8 @@ func (o *XcvDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // XcvDataResponse structure represents the RpcAsyncXcvData operation response
 type XcvDataResponse struct {
 	// XXX: cbOutputData is an implicit input depedency for output parameters
-	OutputDataLength   uint32 `idl:"name:cbOutputData" json:"output_data_length"`
+	OutputDataLength uint32 `idl:"name:cbOutputData" json:"output_data_length"`
+
 	OutputData         []byte `idl:"name:pOutputData;size_is:(cbOutputData)" json:"output_data"`
 	OutputNeededLength uint32 `idl:"name:pcbOutputNeeded" json:"output_needed_length"`
 	Status             uint32 `idl:"name:pdwStatus" json:"status"`
@@ -27269,7 +27282,8 @@ func (o *PlayGDIScriptOnPrinterICRequest) UnmarshalNDR(ctx context.Context, r nd
 type PlayGDIScriptOnPrinterICResponse struct {
 	// XXX: cOut is an implicit input depedency for output parameters
 	OutCount uint32 `idl:"name:cOut" json:"out_count"`
-	Out      []byte `idl:"name:pOut;size_is:(cOut)" json:"out"`
+
+	Out []byte `idl:"name:pOut;size_is:(cOut)" json:"out"`
 	// Return: The RpcAsyncPlayGdiScriptOnPrinterIC return value.
 	Return uint32 `idl:"name:Return" json:"return"`
 }
@@ -27854,7 +27868,8 @@ func (o *EnumPrintersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // EnumPrintersResponse structure represents the RpcAsyncEnumPrinters operation response
 type EnumPrintersResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	PrinterEnum   []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -28506,7 +28521,8 @@ func (o *EnumPrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 // EnumPrinterDriversResponse structure represents the RpcAsyncEnumPrinterDrivers operation response
 type EnumPrinterDriversResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Drivers       []byte `idl:"name:pDrivers;size_is:(cbBuf);pointer:unique" json:"drivers"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -28928,7 +28944,8 @@ func (o *GetPrinterDriverDirectoryRequest) UnmarshalNDR(ctx context.Context, r n
 // GetPrinterDriverDirectoryResponse structure represents the RpcAsyncGetPrinterDriverDirectory operation response
 type GetPrinterDriverDirectoryResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength    uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	DriverDirectory []byte `idl:"name:pDriverDirectory;size_is:(cbBuf);pointer:unique" json:"driver_directory"`
 	NeededLength    uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetPrinterDriverDirectory return value.
@@ -30014,7 +30031,8 @@ func (o *EnumPrintProcessorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 // EnumPrintProcessorsResponse structure represents the RpcAsyncEnumPrintProcessors operation response
 type EnumPrintProcessorsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength       uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	PrintProcessorInfo []byte `idl:"name:pPrintProcessorInfo;size_is:(cbBuf);pointer:unique" json:"print_processor_info"`
 	NeededLength       uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount      uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -30436,7 +30454,8 @@ func (o *GetPrintProcessorDirectoryRequest) UnmarshalNDR(ctx context.Context, r 
 // GetPrintProcessorDirectoryResponse structure represents the RpcAsyncGetPrintProcessorDirectory operation response
 type GetPrintProcessorDirectoryResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength            uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	PrintProcessorDirectory []byte `idl:"name:pPrintProcessorDirectory;size_is:(cbBuf);pointer:unique" json:"print_processor_directory"`
 	NeededLength            uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	// Return: The RpcAsyncGetPrintProcessorDirectory return value.
@@ -30825,7 +30844,8 @@ func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error
 // EnumPortsResponse structure represents the RpcAsyncEnumPorts operation response
 type EnumPortsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Port          []byte `idl:"name:pPort;size_is:(cbBuf);pointer:unique" json:"port"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -31219,7 +31239,8 @@ func (o *EnumMonitorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 // EnumMonitorsResponse structure represents the RpcAsyncEnumMonitors operation response
 type EnumMonitorsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Monitor       []byte `idl:"name:pMonitor;size_is:(cbBuf);pointer:unique" json:"monitor"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -32793,7 +32814,8 @@ func (o *EnumPrintProcessorDataTypesRequest) UnmarshalNDR(ctx context.Context, r
 // EnumPrintProcessorDataTypesResponse structure represents the RpcAsyncEnumPrintProcessorDatatypes operation response
 type EnumPrintProcessorDataTypesResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	DataTypes     []byte `idl:"name:pDatatypes;size_is:(cbBuf);pointer:unique" json:"data_types"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -33575,7 +33597,8 @@ func (o *EnumPerMachineConnectionsRequest) UnmarshalNDR(ctx context.Context, r n
 // EnumPerMachineConnectionsResponse structure represents the RpcAsyncEnumPerMachineConnections operation response
 type EnumPerMachineConnectionsResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength  uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	PrinterEnum   []byte `idl:"name:pPrinterEnum;size_is:(cbBuf);pointer:unique" json:"printer_enum"`
 	NeededLength  uint32 `idl:"name:pcbNeeded" json:"needed_length"`
 	ReturnedCount uint32 `idl:"name:pcReturned" json:"returned_count"`
@@ -35542,6 +35565,7 @@ func (o *GetCorePrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type GetCorePrinterDriversResponse struct {
 	// XXX: cCorePrinterDrivers is an implicit input depedency for output parameters
 	CorePrinterDriversCount uint32 `idl:"name:cCorePrinterDrivers" json:"core_printer_drivers_count"`
+
 	// pCorePrinterDrivers: A pointer to a buffer that receives an array of CORE_PRINTER_DRIVER
 	// structures.
 	CorePrinterDrivers []*CorePrinterDriver `idl:"name:pCorePrinterDrivers;size_is:(cCorePrinterDrivers)" json:"core_printer_drivers"`
@@ -36298,6 +36322,7 @@ func (o *GetPrinterDriverPackagePathRequest) UnmarshalNDR(ctx context.Context, r
 type GetPrinterDriverPackagePathResponse struct {
 	// XXX: cchDriverPackageCab is an implicit input depedency for output parameters
 	DriverPackageCabLength uint32 `idl:"name:cchDriverPackageCab" json:"driver_package_cab_length"`
+
 	// pszDriverPackageCab: A pointer to a string that contains the path name of the driver
 	// package file.<26> For rules governing path names, see [MS-RPRN] section 2.2.4.9.
 	// The pszDriverPackageCab parameter MUST NOT be NULL unless cchDriverPackageCab is
@@ -36762,7 +36787,8 @@ func (o *ReadPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // ReadPrinterResponse structure represents the RpcAsyncReadPrinter operation response
 type ReadPrinterResponse struct {
 	// XXX: cbBuf is an implicit input depedency for output parameters
-	BufferLength     uint32 `idl:"name:cbBuf" json:"buffer_length"`
+	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
+
 	Buffer           []byte `idl:"name:pBuf;size_is:(cbBuf)" json:"buffer"`
 	NoBytesReadCount uint32 `idl:"name:pcNoBytesRead" json:"no_bytes_read_count"`
 	// Return: The RpcAsyncReadPrinter return value.

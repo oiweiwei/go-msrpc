@@ -12398,6 +12398,7 @@ func (o *SendDocumentExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type SendDocumentExResponse struct {
 	// XXX: dwNumRecipients is an implicit input depedency for output parameters
 	RecipientsLength uint32 `idl:"name:dwNumRecipients" json:"recipients_length"`
+
 	// lpdwJobId: An optional pointer to a DWORD to return the job identifier. This parameter
 	// is used for backward compatibility with FaxObs_SendDocument (section 3.1.4.2.7).
 	// The fax server MUST ignore this argument if the fax client submits a NULL pointer

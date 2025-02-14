@@ -17061,7 +17061,8 @@ func (o *QueryInformationDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type QueryInformationDomainResponse struct {
 	// XXX: DomainInformationClass is an implicit input depedency for output parameters
 	DomainInformationClass DomainInformationClass `idl:"name:DomainInformationClass" json:"domain_information_class"`
-	Buffer                 *DomainInfoBuffer      `idl:"name:Buffer;switch_is:DomainInformationClass" json:"buffer"`
+
+	Buffer *DomainInfoBuffer `idl:"name:Buffer;switch_is:DomainInformationClass" json:"buffer"`
 	// Return: The SamrQueryInformationDomain return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -20303,6 +20304,7 @@ func (o *QueryInformationGroupRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type QueryInformationGroupResponse struct {
 	// XXX: GroupInformationClass is an implicit input depedency for output parameters
 	GroupInformationClass GroupInformationClass `idl:"name:GroupInformationClass" json:"group_information_class"`
+
 	// Buffer: The requested attributes on output. See section 2.2.4.7 for structure details.
 	//
 	// This protocol asks the RPC runtime, via the strict_context_handle attribute, to reject
@@ -21937,6 +21939,7 @@ func (o *QueryInformationAliasRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type QueryInformationAliasResponse struct {
 	// XXX: AliasInformationClass is an implicit input depedency for output parameters
 	AliasInformationClass AliasInformationClass `idl:"name:AliasInformationClass" json:"alias_information_class"`
+
 	// Buffer: The requested attributes on output. See section 2.2.5.6 for structure details.
 	//
 	// This protocol asks the RPC runtime, via the strict_context_handle attribute, to reject
@@ -23541,7 +23544,8 @@ func (o *QueryInformationUserRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 type QueryInformationUserResponse struct {
 	// XXX: UserInformationClass is an implicit input depedency for output parameters
 	UserInformationClass UserInformationClass `idl:"name:UserInformationClass" json:"user_information_class"`
-	Buffer               *UserInfoBuffer      `idl:"name:Buffer;switch_is:UserInformationClass" json:"buffer"`
+
+	Buffer *UserInfoBuffer `idl:"name:Buffer;switch_is:UserInformationClass" json:"buffer"`
 	// Return: The SamrQueryInformationUser return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -24789,9 +24793,10 @@ func (o *QueryDisplayInformationRequest) UnmarshalNDR(ctx context.Context, r ndr
 type QueryDisplayInformationResponse struct {
 	// XXX: DisplayInformationClass is an implicit input depedency for output parameters
 	DisplayInformationClass DomainDisplayInformation `idl:"name:DisplayInformationClass" json:"display_information_class"`
-	TotalAvailable          uint32                   `idl:"name:TotalAvailable" json:"total_available"`
-	TotalReturned           uint32                   `idl:"name:TotalReturned" json:"total_returned"`
-	Buffer                  *DisplayInfoBuffer       `idl:"name:Buffer;switch_is:DisplayInformationClass" json:"buffer"`
+
+	TotalAvailable uint32             `idl:"name:TotalAvailable" json:"total_available"`
+	TotalReturned  uint32             `idl:"name:TotalReturned" json:"total_returned"`
+	Buffer         *DisplayInfoBuffer `idl:"name:Buffer;switch_is:DisplayInformationClass" json:"buffer"`
 	// Return: The SamrQueryDisplayInformation return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -25620,6 +25625,7 @@ func (o *QueryInformationDomain2Request) UnmarshalNDR(ctx context.Context, r ndr
 type QueryInformationDomain2Response struct {
 	// XXX: DomainInformationClass is an implicit input depedency for output parameters
 	DomainInformationClass DomainInformationClass `idl:"name:DomainInformationClass" json:"domain_information_class"`
+
 	// Buffer: The requested attributes on output. See section 2.2.3.17 for structure details.
 	//
 	// This protocol asks the RPC runtime, via the strict_context_handle attribute, to reject
@@ -25861,6 +25867,7 @@ func (o *QueryInformationUser2Request) UnmarshalNDR(ctx context.Context, r ndr.R
 type QueryInformationUser2Response struct {
 	// XXX: UserInformationClass is an implicit input depedency for output parameters
 	UserInformationClass UserInformationClass `idl:"name:UserInformationClass" json:"user_information_class"`
+
 	// Buffer: The requested attributes on output. See section 2.2.6.29 for structure details.
 	//
 	// This protocol asks the RPC runtime, via the strict_context_handle attribute, to reject
@@ -26153,9 +26160,10 @@ func (o *QueryDisplayInformation2Request) UnmarshalNDR(ctx context.Context, r nd
 type QueryDisplayInformation2Response struct {
 	// XXX: DisplayInformationClass is an implicit input depedency for output parameters
 	DisplayInformationClass DomainDisplayInformation `idl:"name:DisplayInformationClass" json:"display_information_class"`
-	TotalAvailable          uint32                   `idl:"name:TotalAvailable" json:"total_available"`
-	TotalReturned           uint32                   `idl:"name:TotalReturned" json:"total_returned"`
-	Buffer                  *DisplayInfoBuffer       `idl:"name:Buffer;switch_is:DisplayInformationClass" json:"buffer"`
+
+	TotalAvailable uint32             `idl:"name:TotalAvailable" json:"total_available"`
+	TotalReturned  uint32             `idl:"name:TotalReturned" json:"total_returned"`
+	Buffer         *DisplayInfoBuffer `idl:"name:Buffer;switch_is:DisplayInformationClass" json:"buffer"`
 	// Return: The SamrQueryDisplayInformation2 return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -26974,6 +26982,7 @@ func (o *QueryDisplayInformation3Request) UnmarshalNDR(ctx context.Context, r nd
 type QueryDisplayInformation3Response struct {
 	// XXX: DisplayInformationClass is an implicit input depedency for output parameters
 	DisplayInformationClass DomainDisplayInformation `idl:"name:DisplayInformationClass" json:"display_information_class"`
+
 	// TotalAvailable: The number of bytes required to see a complete listing of accounts
 	// specified by the DisplayInformationClass parameter.
 	TotalAvailable uint32 `idl:"name:TotalAvailable" json:"total_available"`
@@ -29995,6 +30004,7 @@ func (o *ValidatePasswordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type ValidatePasswordResponse struct {
 	// XXX: ValidationType is an implicit input depedency for output parameters
 	ValidationType PasswordPolicyValidationType `idl:"name:ValidationType" json:"validation_type"`
+
 	// OutputArg: The result of the validation.
 	OutputArg *SAMValidateOutputArg `idl:"name:OutputArg;switch_is:ValidationType" json:"output_arg"`
 	// Return: The SamrValidatePassword return value.

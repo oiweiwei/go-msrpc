@@ -977,6 +977,7 @@ func (o *GetNSAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr
 type GetNSAccountInformationResponse struct {
 	// XXX: ccBufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:ccBufferSize" json:"buffer_size"`
+
 	// wszBuffer: Upon input, MUST be an empty array of size equal to the ccBufferSize parameter.
 	// The client SHOULD initialize the array to contain zeroes. Upon return, the array
 	// MUST contain the ATSvc account name.
@@ -1318,6 +1319,7 @@ func (o *GetAccountInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type GetAccountInformationResponse struct {
 	// XXX: ccBufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:ccBufferSize" json:"buffer_size"`
+
 	// wszBuffer: Upon input, MUST be an empty array of size equal to the ccBufferSize parameter.
 	// The client SHOULD initialize the array to contain zeroes. Upon return, the array
 	// MUST contain the name of the account to be used as the context the task runs under.

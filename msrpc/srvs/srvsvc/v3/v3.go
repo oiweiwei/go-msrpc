@@ -20369,6 +20369,7 @@ func (o *FileGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 type FileGetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// InfoStruct: This parameter is of type LPFILE_INFO, which is defined in section 2.2.3.3.
 	// Its contents are determined by the value of the Level member, as shown in the previous
 	// parameter table.
@@ -22207,6 +22208,7 @@ func (o *ShareGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 type ShareGetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// InfoStruct: This parameter is of type LPSHARE_INFO union, as specified in section
 	// 2.2.3.6. Its contents are determined by the value of the Level parameter, as shown
 	// in the preceding table.
@@ -23424,6 +23426,7 @@ func (o *GetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type GetInfoResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// InfoStruct: This is a structure of type LPSERVER_INFO, as specified in section 2.2.3.7.
 	// The content of the InfoStruct parameter is determined by the Level parameter, as
 	// the preceding table shows.
@@ -26112,6 +26115,7 @@ func (o *PathCanonicalizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type PathCanonicalizeResponse struct {
 	// XXX: OutbufLen is an implicit input depedency for output parameters
 	OutputBufferLength uint32 `idl:"name:OutbufLen" json:"output_buffer_length"`
+
 	// Outbuf: A pointer to the output buffer where the canonicalized path name is returned.
 	OutputBuffer []byte `idl:"name:Outbuf;size_is:(OutbufLen)" json:"output_buffer"`
 	// PathType: A place to store the path type. This parameter MUST be set by the client
@@ -26916,6 +26920,7 @@ func (o *NameCanonicalizeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type NameCanonicalizeResponse struct {
 	// XXX: OutbufLen is an implicit input depedency for output parameters
 	OutputBufferLength uint32 `idl:"name:OutbufLen" json:"output_buffer_length"`
+
 	// Outbuf: A pointer to a null-terminated UTF-16 string that is the buffer where the
 	// canonicalized name is returned.
 	OutputBuffer string `idl:"name:Outbuf;size_is:(OutbufLen)" json:"output_buffer"`
@@ -30033,6 +30038,7 @@ func (o *CreateExitPointRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type CreateExitPointResponse struct {
 	// XXX: ShortPrefixLen is an implicit input depedency for output parameters
 	ShortPrefixLength uint32 `idl:"name:ShortPrefixLen" json:"short_prefix_length"`
+
 	// ShortPrefix: A pointer to a null-terminated UTF-16 string that is the buffer where
 	// the name of the DFS namespace root or link is returned.<147>
 	ShortPrefix string `idl:"name:ShortPrefix;size_is:(ShortPrefixLen)" json:"short_prefix"`
