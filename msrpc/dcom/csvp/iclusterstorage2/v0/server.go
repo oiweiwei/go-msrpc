@@ -917,40 +917,50 @@ func ClusterStorage2ServerHandle(ctx context.Context, o ClusterStorage2Server, o
 	}
 	switch opNum {
 	case 3: // CprepDiskRawRead
-		in := &RawReadRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RawReadOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RawRead(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RawReadRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RawRead(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CprepDiskRawWrite
-		in := &RawWriteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RawWriteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RawWrite(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RawWriteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RawWrite(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // CprepPrepareNode
-		in := &PrepareNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PrepareNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PrepareNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PrepareNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PrepareNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // CprepPrepareNodePhase2
-		in := &PrepareNodePhase2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PrepareNodePhase2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PrepareNodePhase2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PrepareNodePhase2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PrepareNodePhase2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // CprepDiskGetProps
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Opnum8NotUsedOnWire
 		// Opnum8NotUsedOnWire
 		return nil, nil
@@ -964,26 +974,32 @@ func ClusterStorage2ServerHandle(ctx context.Context, o ClusterStorage2Server, o
 		// Opnum11NotUsedOnWire
 		return nil, nil
 	case 12: // CprepDiskStopDefense
-		in := &StopDefenseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopDefenseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StopDefense(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopDefenseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StopDefense(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // CprepDiskOnline
-		in := &OnlineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Online(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Online(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // CprepDiskVerifyUnique
-		in := &VerifyUniqueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_VerifyUniqueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.VerifyUnique(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &VerifyUniqueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.VerifyUnique(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Opnum15NotUsedOnWire
 		// Opnum15NotUsedOnWire
 		return nil, nil
@@ -991,155 +1007,292 @@ func ClusterStorage2ServerHandle(ctx context.Context, o ClusterStorage2Server, o
 		// Opnum16NotUsedOnWire
 		return nil, nil
 	case 17: // CprepDiskWriteFileData
-		in := &WriteFileDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WriteFileDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WriteFileData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WriteFileDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WriteFileData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // CprepDiskVerifyFileData
-		in := &VerifyFileDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_VerifyFileDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.VerifyFileData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &VerifyFileDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.VerifyFileData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // CprepDiskDeleteFile
-		in := &DeleteFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // CprepDiskOffline
-		in := &OfflineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Offline(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Offline(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Opnum21NotUsedOnWire
 		// Opnum21NotUsedOnWire
 		return nil, nil
 	case 22: // CprepDiskGetUniqueIds
-		in := &GetUniqueIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUniqueIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUniqueIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUniqueIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUniqueIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // CprepDiskAttach
-		in := &AttachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AttachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Attach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AttachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Attach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // CprepDiskPRArbitrate
-		in := &PRArbitrateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRArbitrateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRArbitrate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRArbitrateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRArbitrate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // CprepDiskPRRegister
-		in := &PRRegisterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRRegisterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRRegister(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRRegisterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRRegister(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // CprepDiskPRUnRegister
-		in := &PRUnregisterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRUnregisterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRUnregister(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRUnregisterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRUnregister(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // CprepDiskPRReserve
-		in := &PRReserveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRReserveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRReserve(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRReserveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRReserve(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // CprepDiskPRRelease
-		in := &PRReleaseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRReleaseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRRelease(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRReleaseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRRelease(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // CprepDiskDiskPartitionIsNtfs
-		in := &DiskPartitionIsNTFSRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DiskPartitionIsNTFSOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DiskPartitionIsNTFS(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DiskPartitionIsNTFSRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DiskPartitionIsNTFS(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // CprepDiskGetArbSectors
-		in := &GetArbSectorsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetArbSectorsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetArbSectors(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetArbSectorsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetArbSectors(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // CprepDiskIsPRPresent
-		in := &IsPRPresentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsPRPresentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsPRPresent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsPRPresentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsPRPresent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // CprepDiskPRPreempt
-		in := &PRPreemptRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRPreemptOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRPreempt(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRPreemptRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRPreempt(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // CprepDiskPRClear
-		in := &PRClearRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRClearOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRClear(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRClearRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRClear(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // CprepDiskIsOnline
-		in := &IsOnlineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsOnlineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsOnline(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsOnlineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsOnline(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // CprepDiskSetOnline
-		in := &SetOnlineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOnlineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOnline(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOnlineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOnline(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // CprepDiskGetFSName
-		in := &GetFSNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFSNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFSName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFSNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFSName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // CprepDiskIsReadable
-		in := &IsReadableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsReadableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsReadable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsReadableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsReadable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // CprepDiskGetDsms
-		in := &GetDSMsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDSMsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDSMs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDSMsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDSMs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterStorage2
+type UnimplementedClusterStorage2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterStorage2Server) RawRead(context.Context, *RawReadRequest) (*RawReadResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) RawWrite(context.Context, *RawWriteRequest) (*RawWriteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PrepareNode(context.Context, *PrepareNodeRequest) (*PrepareNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PrepareNodePhase2(context.Context, *PrepareNodePhase2Request) (*PrepareNodePhase2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) StopDefense(context.Context, *StopDefenseRequest) (*StopDefenseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) Online(context.Context, *OnlineRequest) (*OnlineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) VerifyUnique(context.Context, *VerifyUniqueRequest) (*VerifyUniqueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) WriteFileData(context.Context, *WriteFileDataRequest) (*WriteFileDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) VerifyFileData(context.Context, *VerifyFileDataRequest) (*VerifyFileDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) Offline(context.Context, *OfflineRequest) (*OfflineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) GetUniqueIDs(context.Context, *GetUniqueIDsRequest) (*GetUniqueIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) Attach(context.Context, *AttachRequest) (*AttachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRArbitrate(context.Context, *PRArbitrateRequest) (*PRArbitrateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRRegister(context.Context, *PRRegisterRequest) (*PRRegisterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRUnregister(context.Context, *PRUnregisterRequest) (*PRUnregisterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRReserve(context.Context, *PRReserveRequest) (*PRReserveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRRelease(context.Context, *PRReleaseRequest) (*PRReleaseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) DiskPartitionIsNTFS(context.Context, *DiskPartitionIsNTFSRequest) (*DiskPartitionIsNTFSResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) GetArbSectors(context.Context, *GetArbSectorsRequest) (*GetArbSectorsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) IsPRPresent(context.Context, *IsPRPresentRequest) (*IsPRPresentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRPreempt(context.Context, *PRPreemptRequest) (*PRPreemptResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) PRClear(context.Context, *PRClearRequest) (*PRClearResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) IsOnline(context.Context, *IsOnlineRequest) (*IsOnlineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) SetOnline(context.Context, *SetOnlineRequest) (*SetOnlineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) GetFSName(context.Context, *GetFSNameRequest) (*GetFSNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) IsReadable(context.Context, *IsReadableRequest) (*IsReadableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage2Server) GetDSMs(context.Context, *GetDSMsRequest) (*GetDSMsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterStorage2Server = (*UnimplementedClusterStorage2Server)(nil)

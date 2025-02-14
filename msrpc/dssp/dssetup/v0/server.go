@@ -94,12 +94,14 @@ func NewDssetupServerHandle(o DssetupServer) dcerpc.ServerHandle {
 func DssetupServerHandle(ctx context.Context, o DssetupServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // DsRolerGetPrimaryDomainInformation
-		in := &GetPrimaryDomainInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrimaryDomainInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrimaryDomainInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrimaryDomainInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrimaryDomainInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // Opnum1NotUsedOnWire
 		// Opnum1NotUsedOnWire
 		return nil, nil
@@ -136,3 +138,13 @@ func DssetupServerHandle(ctx context.Context, o DssetupServer, opNum int, r ndr.
 	}
 	return nil, nil
 }
+
+// Unimplemented dssetup
+type UnimplementedDssetupServer struct {
+}
+
+func (UnimplementedDssetupServer) GetPrimaryDomainInformation(context.Context, *GetPrimaryDomainInformationRequest) (*GetPrimaryDomainInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DssetupServer = (*UnimplementedDssetupServer)(nil)

@@ -61,12 +61,24 @@ func NewCertPassageServerHandle(o CertPassageServer) dcerpc.ServerHandle {
 func CertPassageServerHandle(ctx context.Context, o CertPassageServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // CertServerRequest
-		in := &CertServerRequestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CertServerRequestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CertServerRequest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CertServerRequestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CertServerRequest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICertPassage
+type UnimplementedCertPassageServer struct {
+}
+
+func (UnimplementedCertPassageServer) CertServerRequest(context.Context, *CertServerRequestRequest) (*CertServerRequestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CertPassageServer = (*UnimplementedCertPassageServer)(nil)

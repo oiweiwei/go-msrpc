@@ -148,40 +148,73 @@ func FileGroupManagerServerHandle(ctx context.Context, o FileGroupManagerServer,
 	}
 	switch opNum {
 	case 7: // CreateFileGroup
-		in := &CreateFileGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFileGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFileGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFileGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFileGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetFileGroup
-		in := &GetFileGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // EnumFileGroups
-		in := &EnumFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // ExportFileGroups
-		in := &ExportFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExportFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ImportFileGroups
-		in := &ImportFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileGroupManager
+type UnimplementedFileGroupManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedFileGroupManagerServer) CreateFileGroup(context.Context, *CreateFileGroupRequest) (*CreateFileGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupManagerServer) GetFileGroup(context.Context, *GetFileGroupRequest) (*GetFileGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupManagerServer) EnumFileGroups(context.Context, *EnumFileGroupsRequest) (*EnumFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupManagerServer) ExportFileGroups(context.Context, *ExportFileGroupsRequest) (*ExportFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileGroupManagerServer) ImportFileGroups(context.Context, *ImportFileGroupsRequest) (*ImportFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileGroupManagerServer = (*UnimplementedFileGroupManagerServer)(nil)

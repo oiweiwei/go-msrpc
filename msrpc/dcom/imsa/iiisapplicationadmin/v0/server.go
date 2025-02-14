@@ -213,54 +213,97 @@ func IISApplicationAdminServerHandle(ctx context.Context, o IISApplicationAdminS
 	}
 	switch opNum {
 	case 3: // CreateApplication
-		in := &CreateApplicationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateApplicationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateApplication(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateApplicationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateApplication(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // DeleteApplication
-		in := &DeleteApplicationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteApplicationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteApplication(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteApplicationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteApplication(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // CreateApplicationPool
-		in := &CreateApplicationPoolRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateApplicationPoolOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateApplicationPool(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateApplicationPoolRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateApplicationPool(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // DeleteApplicationPool
-		in := &DeleteApplicationPoolRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteApplicationPoolOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteApplicationPool(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteApplicationPoolRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteApplicationPool(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // EnumerateApplicationsInPool
-		in := &EnumerateApplicationsInPoolRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateApplicationsInPoolOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateApplicationsInPool(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateApplicationsInPoolRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateApplicationsInPool(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RecycleApplicationPool
-		in := &RecycleApplicationPoolRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RecycleApplicationPoolOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RecycleApplicationPool(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RecycleApplicationPoolRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RecycleApplicationPool(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetProcessMode
-		in := &GetProcessModeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetProcessModeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProcessMode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetProcessModeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProcessMode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IIISApplicationAdmin
+type UnimplementedIISApplicationAdminServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedIISApplicationAdminServer) CreateApplication(context.Context, *CreateApplicationRequest) (*CreateApplicationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISApplicationAdminServer) DeleteApplication(context.Context, *DeleteApplicationRequest) (*DeleteApplicationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISApplicationAdminServer) CreateApplicationPool(context.Context, *CreateApplicationPoolRequest) (*CreateApplicationPoolResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISApplicationAdminServer) DeleteApplicationPool(context.Context, *DeleteApplicationPoolRequest) (*DeleteApplicationPoolResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISApplicationAdminServer) EnumerateApplicationsInPool(context.Context, *EnumerateApplicationsInPoolRequest) (*EnumerateApplicationsInPoolResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISApplicationAdminServer) RecycleApplicationPool(context.Context, *RecycleApplicationPoolRequest) (*RecycleApplicationPoolResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIISApplicationAdminServer) GetProcessMode(context.Context, *GetProcessModeRequest) (*GetProcessModeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IISApplicationAdminServer = (*UnimplementedIISApplicationAdminServer)(nil)

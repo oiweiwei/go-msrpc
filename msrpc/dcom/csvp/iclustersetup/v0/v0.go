@@ -330,7 +330,7 @@ func (o *xxx_DefaultClusterSetupClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterSetupClient) ConfigServiceSecret(ctx context.Context, in *ConfigServiceSecretRequest, opts ...dcerpc.CallOption) (*ConfigServiceSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -350,7 +350,7 @@ func (o *xxx_DefaultClusterSetupClient) ConfigServiceSecret(ctx context.Context,
 }
 
 func (o *xxx_DefaultClusterSetupClient) RetrieveServiceSecret(ctx context.Context, in *RetrieveServiceSecretRequest, opts ...dcerpc.CallOption) (*RetrieveServiceSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -370,7 +370,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveServiceSecret(ctx context.Contex
 }
 
 func (o *xxx_DefaultClusterSetupClient) RetrieveHostLabel(ctx context.Context, in *RetrieveHostLabelRequest, opts ...dcerpc.CallOption) (*RetrieveHostLabelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -390,7 +390,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveHostLabel(ctx context.Context, i
 }
 
 func (o *xxx_DefaultClusterSetupClient) GetFunctionalLevel(ctx context.Context, in *GetFunctionalLevelRequest, opts ...dcerpc.CallOption) (*GetFunctionalLevelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -410,7 +410,7 @@ func (o *xxx_DefaultClusterSetupClient) GetFunctionalLevel(ctx context.Context, 
 }
 
 func (o *xxx_DefaultClusterSetupClient) ConfigClusterCert(ctx context.Context, in *ConfigClusterCertRequest, opts ...dcerpc.CallOption) (*ConfigClusterCertResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -430,7 +430,7 @@ func (o *xxx_DefaultClusterSetupClient) ConfigClusterCert(ctx context.Context, i
 }
 
 func (o *xxx_DefaultClusterSetupClient) RetrieveClusterCert(ctx context.Context, in *RetrieveClusterCertRequest, opts ...dcerpc.CallOption) (*RetrieveClusterCertResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -450,7 +450,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveClusterCert(ctx context.Context,
 }
 
 func (o *xxx_DefaultClusterSetupClient) GenerateClusterCert(ctx context.Context, in *GenerateClusterCertRequest, opts ...dcerpc.CallOption) (*GenerateClusterCertResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -470,7 +470,7 @@ func (o *xxx_DefaultClusterSetupClient) GenerateClusterCert(ctx context.Context,
 }
 
 func (o *xxx_DefaultClusterSetupClient) GetUpgradeVersion(ctx context.Context, in *GetUpgradeVersionRequest, opts ...dcerpc.CallOption) (*GetUpgradeVersionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -490,7 +490,7 @@ func (o *xxx_DefaultClusterSetupClient) GetUpgradeVersion(ctx context.Context, i
 }
 
 func (o *xxx_DefaultClusterSetupClient) ConfigClusterCerV2(ctx context.Context, in *ConfigClusterCerV2Request, opts ...dcerpc.CallOption) (*ConfigClusterCerV2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -510,7 +510,7 @@ func (o *xxx_DefaultClusterSetupClient) ConfigClusterCerV2(ctx context.Context, 
 }
 
 func (o *xxx_DefaultClusterSetupClient) RetrieveClusterCertV2(ctx context.Context, in *RetrieveClusterCertV2Request, opts ...dcerpc.CallOption) (*RetrieveClusterCertV2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -530,7 +530,7 @@ func (o *xxx_DefaultClusterSetupClient) RetrieveClusterCertV2(ctx context.Contex
 }
 
 func (o *xxx_DefaultClusterSetupClient) GenerateClusterCertV2(ctx context.Context, in *GenerateClusterCertV2Request, opts ...dcerpc.CallOption) (*GenerateClusterCertV2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -766,14 +766,16 @@ type ConfigServiceSecretRequest struct {
 	SecretBlob *oaut.String `idl:"name:SecretBLOB" json:"secret_blob"`
 }
 
-func (o *ConfigServiceSecretRequest) xxx_ToOp(ctx context.Context) *xxx_ConfigServiceSecretOperation {
+func (o *ConfigServiceSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_ConfigServiceSecretOperation) *xxx_ConfigServiceSecretOperation {
+	if op == nil {
+		op = &xxx_ConfigServiceSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_ConfigServiceSecretOperation{}
+		return op
 	}
-	return &xxx_ConfigServiceSecretOperation{
-		This:       o.This,
-		SecretBlob: o.SecretBlob,
-	}
+	o.This = op.This
+	o.SecretBlob = op.SecretBlob
+	return op
 }
 
 func (o *ConfigServiceSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_ConfigServiceSecretOperation) {
@@ -784,7 +786,7 @@ func (o *ConfigServiceSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_Con
 	o.SecretBlob = op.SecretBlob
 }
 func (o *ConfigServiceSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConfigServiceSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConfigServiceSecretOperation{}
@@ -803,14 +805,16 @@ type ConfigServiceSecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConfigServiceSecretResponse) xxx_ToOp(ctx context.Context) *xxx_ConfigServiceSecretOperation {
+func (o *ConfigServiceSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_ConfigServiceSecretOperation) *xxx_ConfigServiceSecretOperation {
+	if op == nil {
+		op = &xxx_ConfigServiceSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_ConfigServiceSecretOperation{}
+		return op
 	}
-	return &xxx_ConfigServiceSecretOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConfigServiceSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_ConfigServiceSecretOperation) {
@@ -821,7 +825,7 @@ func (o *ConfigServiceSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_Co
 	o.Return = op.Return
 }
 func (o *ConfigServiceSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConfigServiceSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConfigServiceSecretOperation{}
@@ -1004,13 +1008,15 @@ type RetrieveServiceSecretRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RetrieveServiceSecretRequest) xxx_ToOp(ctx context.Context) *xxx_RetrieveServiceSecretOperation {
+func (o *RetrieveServiceSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_RetrieveServiceSecretOperation) *xxx_RetrieveServiceSecretOperation {
+	if op == nil {
+		op = &xxx_RetrieveServiceSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveServiceSecretOperation{}
+		return op
 	}
-	return &xxx_RetrieveServiceSecretOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RetrieveServiceSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_RetrieveServiceSecretOperation) {
@@ -1020,7 +1026,7 @@ func (o *RetrieveServiceSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.This = op.This
 }
 func (o *RetrieveServiceSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RetrieveServiceSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveServiceSecretOperation{}
@@ -1041,15 +1047,17 @@ type RetrieveServiceSecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RetrieveServiceSecretResponse) xxx_ToOp(ctx context.Context) *xxx_RetrieveServiceSecretOperation {
+func (o *RetrieveServiceSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_RetrieveServiceSecretOperation) *xxx_RetrieveServiceSecretOperation {
+	if op == nil {
+		op = &xxx_RetrieveServiceSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveServiceSecretOperation{}
+		return op
 	}
-	return &xxx_RetrieveServiceSecretOperation{
-		That:       o.That,
-		SecretBlob: o.SecretBlob,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.SecretBlob = op.SecretBlob
+	o.Return = op.Return
+	return op
 }
 
 func (o *RetrieveServiceSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_RetrieveServiceSecretOperation) {
@@ -1061,7 +1069,7 @@ func (o *RetrieveServiceSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *RetrieveServiceSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RetrieveServiceSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveServiceSecretOperation{}
@@ -1244,13 +1252,15 @@ type RetrieveHostLabelRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RetrieveHostLabelRequest) xxx_ToOp(ctx context.Context) *xxx_RetrieveHostLabelOperation {
+func (o *RetrieveHostLabelRequest) xxx_ToOp(ctx context.Context, op *xxx_RetrieveHostLabelOperation) *xxx_RetrieveHostLabelOperation {
+	if op == nil {
+		op = &xxx_RetrieveHostLabelOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveHostLabelOperation{}
+		return op
 	}
-	return &xxx_RetrieveHostLabelOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RetrieveHostLabelRequest) xxx_FromOp(ctx context.Context, op *xxx_RetrieveHostLabelOperation) {
@@ -1260,7 +1270,7 @@ func (o *RetrieveHostLabelRequest) xxx_FromOp(ctx context.Context, op *xxx_Retri
 	o.This = op.This
 }
 func (o *RetrieveHostLabelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RetrieveHostLabelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveHostLabelOperation{}
@@ -1281,15 +1291,17 @@ type RetrieveHostLabelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RetrieveHostLabelResponse) xxx_ToOp(ctx context.Context) *xxx_RetrieveHostLabelOperation {
+func (o *RetrieveHostLabelResponse) xxx_ToOp(ctx context.Context, op *xxx_RetrieveHostLabelOperation) *xxx_RetrieveHostLabelOperation {
+	if op == nil {
+		op = &xxx_RetrieveHostLabelOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveHostLabelOperation{}
+		return op
 	}
-	return &xxx_RetrieveHostLabelOperation{
-		That:      o.That,
-		HostLabel: o.HostLabel,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.HostLabel = op.HostLabel
+	o.Return = op.Return
+	return op
 }
 
 func (o *RetrieveHostLabelResponse) xxx_FromOp(ctx context.Context, op *xxx_RetrieveHostLabelOperation) {
@@ -1301,7 +1313,7 @@ func (o *RetrieveHostLabelResponse) xxx_FromOp(ctx context.Context, op *xxx_Retr
 	o.Return = op.Return
 }
 func (o *RetrieveHostLabelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RetrieveHostLabelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveHostLabelOperation{}
@@ -1450,13 +1462,15 @@ type GetFunctionalLevelRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetFunctionalLevelRequest) xxx_ToOp(ctx context.Context) *xxx_GetFunctionalLevelOperation {
+func (o *GetFunctionalLevelRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFunctionalLevelOperation) *xxx_GetFunctionalLevelOperation {
+	if op == nil {
+		op = &xxx_GetFunctionalLevelOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFunctionalLevelOperation{}
+		return op
 	}
-	return &xxx_GetFunctionalLevelOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetFunctionalLevelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFunctionalLevelOperation) {
@@ -1466,7 +1480,7 @@ func (o *GetFunctionalLevelRequest) xxx_FromOp(ctx context.Context, op *xxx_GetF
 	o.This = op.This
 }
 func (o *GetFunctionalLevelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFunctionalLevelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFunctionalLevelOperation{}
@@ -1487,15 +1501,17 @@ type GetFunctionalLevelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFunctionalLevelResponse) xxx_ToOp(ctx context.Context) *xxx_GetFunctionalLevelOperation {
+func (o *GetFunctionalLevelResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFunctionalLevelOperation) *xxx_GetFunctionalLevelOperation {
+	if op == nil {
+		op = &xxx_GetFunctionalLevelOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFunctionalLevelOperation{}
+		return op
 	}
-	return &xxx_GetFunctionalLevelOperation{
-		That:            o.That,
-		FunctionalLevel: o.FunctionalLevel,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.FunctionalLevel = op.FunctionalLevel
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFunctionalLevelResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFunctionalLevelOperation) {
@@ -1507,7 +1523,7 @@ func (o *GetFunctionalLevelResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetFunctionalLevelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFunctionalLevelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFunctionalLevelOperation{}
@@ -1668,14 +1684,16 @@ type ConfigClusterCertRequest struct {
 	ClusterCert *csvp.ClusterCert `idl:"name:ClusterCert" json:"cluster_cert"`
 }
 
-func (o *ConfigClusterCertRequest) xxx_ToOp(ctx context.Context) *xxx_ConfigClusterCertOperation {
+func (o *ConfigClusterCertRequest) xxx_ToOp(ctx context.Context, op *xxx_ConfigClusterCertOperation) *xxx_ConfigClusterCertOperation {
+	if op == nil {
+		op = &xxx_ConfigClusterCertOperation{}
+	}
 	if o == nil {
-		return &xxx_ConfigClusterCertOperation{}
+		return op
 	}
-	return &xxx_ConfigClusterCertOperation{
-		This:        o.This,
-		ClusterCert: o.ClusterCert,
-	}
+	o.This = op.This
+	o.ClusterCert = op.ClusterCert
+	return op
 }
 
 func (o *ConfigClusterCertRequest) xxx_FromOp(ctx context.Context, op *xxx_ConfigClusterCertOperation) {
@@ -1686,7 +1704,7 @@ func (o *ConfigClusterCertRequest) xxx_FromOp(ctx context.Context, op *xxx_Confi
 	o.ClusterCert = op.ClusterCert
 }
 func (o *ConfigClusterCertRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConfigClusterCertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConfigClusterCertOperation{}
@@ -1705,14 +1723,16 @@ type ConfigClusterCertResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConfigClusterCertResponse) xxx_ToOp(ctx context.Context) *xxx_ConfigClusterCertOperation {
+func (o *ConfigClusterCertResponse) xxx_ToOp(ctx context.Context, op *xxx_ConfigClusterCertOperation) *xxx_ConfigClusterCertOperation {
+	if op == nil {
+		op = &xxx_ConfigClusterCertOperation{}
+	}
 	if o == nil {
-		return &xxx_ConfigClusterCertOperation{}
+		return op
 	}
-	return &xxx_ConfigClusterCertOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConfigClusterCertResponse) xxx_FromOp(ctx context.Context, op *xxx_ConfigClusterCertOperation) {
@@ -1723,7 +1743,7 @@ func (o *ConfigClusterCertResponse) xxx_FromOp(ctx context.Context, op *xxx_Conf
 	o.Return = op.Return
 }
 func (o *ConfigClusterCertResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConfigClusterCertResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConfigClusterCertOperation{}
@@ -1881,13 +1901,15 @@ type RetrieveClusterCertRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RetrieveClusterCertRequest) xxx_ToOp(ctx context.Context) *xxx_RetrieveClusterCertOperation {
+func (o *RetrieveClusterCertRequest) xxx_ToOp(ctx context.Context, op *xxx_RetrieveClusterCertOperation) *xxx_RetrieveClusterCertOperation {
+	if op == nil {
+		op = &xxx_RetrieveClusterCertOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveClusterCertOperation{}
+		return op
 	}
-	return &xxx_RetrieveClusterCertOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RetrieveClusterCertRequest) xxx_FromOp(ctx context.Context, op *xxx_RetrieveClusterCertOperation) {
@@ -1897,7 +1919,7 @@ func (o *RetrieveClusterCertRequest) xxx_FromOp(ctx context.Context, op *xxx_Ret
 	o.This = op.This
 }
 func (o *RetrieveClusterCertRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RetrieveClusterCertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveClusterCertOperation{}
@@ -1919,15 +1941,17 @@ type RetrieveClusterCertResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RetrieveClusterCertResponse) xxx_ToOp(ctx context.Context) *xxx_RetrieveClusterCertOperation {
+func (o *RetrieveClusterCertResponse) xxx_ToOp(ctx context.Context, op *xxx_RetrieveClusterCertOperation) *xxx_RetrieveClusterCertOperation {
+	if op == nil {
+		op = &xxx_RetrieveClusterCertOperation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveClusterCertOperation{}
+		return op
 	}
-	return &xxx_RetrieveClusterCertOperation{
-		That:        o.That,
-		ClusterCert: o.ClusterCert,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ClusterCert = op.ClusterCert
+	o.Return = op.Return
+	return op
 }
 
 func (o *RetrieveClusterCertResponse) xxx_FromOp(ctx context.Context, op *xxx_RetrieveClusterCertOperation) {
@@ -1939,7 +1963,7 @@ func (o *RetrieveClusterCertResponse) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.Return = op.Return
 }
 func (o *RetrieveClusterCertResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RetrieveClusterCertResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveClusterCertOperation{}
@@ -2121,14 +2145,16 @@ type GenerateClusterCertRequest struct {
 	ClusterCert *csvp.ClusterCert `idl:"name:ClusterCert" json:"cluster_cert"`
 }
 
-func (o *GenerateClusterCertRequest) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterCertOperation {
+func (o *GenerateClusterCertRequest) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterCertOperation) *xxx_GenerateClusterCertOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterCertOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterCertOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterCertOperation{
-		This:        o.This,
-		ClusterCert: o.ClusterCert,
-	}
+	o.This = op.This
+	o.ClusterCert = op.ClusterCert
+	return op
 }
 
 func (o *GenerateClusterCertRequest) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterCertOperation) {
@@ -2139,7 +2165,7 @@ func (o *GenerateClusterCertRequest) xxx_FromOp(ctx context.Context, op *xxx_Gen
 	o.ClusterCert = op.ClusterCert
 }
 func (o *GenerateClusterCertRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateClusterCertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterCertOperation{}
@@ -2161,15 +2187,17 @@ type GenerateClusterCertResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateClusterCertResponse) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterCertOperation {
+func (o *GenerateClusterCertResponse) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterCertOperation) *xxx_GenerateClusterCertOperation {
+	if op == nil {
+		op = &xxx_GenerateClusterCertOperation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterCertOperation{}
+		return op
 	}
-	return &xxx_GenerateClusterCertOperation{
-		That:        o.That,
-		ClusterCert: o.ClusterCert,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ClusterCert = op.ClusterCert
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateClusterCertResponse) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterCertOperation) {
@@ -2181,7 +2209,7 @@ func (o *GenerateClusterCertResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GenerateClusterCertResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateClusterCertResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterCertOperation{}
@@ -2330,13 +2358,15 @@ type GetUpgradeVersionRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetUpgradeVersionRequest) xxx_ToOp(ctx context.Context) *xxx_GetUpgradeVersionOperation {
+func (o *GetUpgradeVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUpgradeVersionOperation) *xxx_GetUpgradeVersionOperation {
+	if op == nil {
+		op = &xxx_GetUpgradeVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUpgradeVersionOperation{}
+		return op
 	}
-	return &xxx_GetUpgradeVersionOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetUpgradeVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUpgradeVersionOperation) {
@@ -2346,7 +2376,7 @@ func (o *GetUpgradeVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUp
 	o.This = op.This
 }
 func (o *GetUpgradeVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUpgradeVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUpgradeVersionOperation{}
@@ -2367,15 +2397,17 @@ type GetUpgradeVersionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUpgradeVersionResponse) xxx_ToOp(ctx context.Context) *xxx_GetUpgradeVersionOperation {
+func (o *GetUpgradeVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUpgradeVersionOperation) *xxx_GetUpgradeVersionOperation {
+	if op == nil {
+		op = &xxx_GetUpgradeVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUpgradeVersionOperation{}
+		return op
 	}
-	return &xxx_GetUpgradeVersionOperation{
-		That:           o.That,
-		UpgradeVersion: o.UpgradeVersion,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.UpgradeVersion = op.UpgradeVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUpgradeVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUpgradeVersionOperation) {
@@ -2387,7 +2419,7 @@ func (o *GetUpgradeVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetU
 	o.Return = op.Return
 }
 func (o *GetUpgradeVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUpgradeVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUpgradeVersionOperation{}
@@ -2560,15 +2592,17 @@ type ConfigClusterCerV2Request struct {
 	CertType    csvp.ClusterCertType `idl:"name:certType" json:"cert_type"`
 }
 
-func (o *ConfigClusterCerV2Request) xxx_ToOp(ctx context.Context) *xxx_ConfigClusterCerV2Operation {
+func (o *ConfigClusterCerV2Request) xxx_ToOp(ctx context.Context, op *xxx_ConfigClusterCerV2Operation) *xxx_ConfigClusterCerV2Operation {
+	if op == nil {
+		op = &xxx_ConfigClusterCerV2Operation{}
+	}
 	if o == nil {
-		return &xxx_ConfigClusterCerV2Operation{}
+		return op
 	}
-	return &xxx_ConfigClusterCerV2Operation{
-		This:        o.This,
-		ClusterCert: o.ClusterCert,
-		CertType:    o.CertType,
-	}
+	o.This = op.This
+	o.ClusterCert = op.ClusterCert
+	o.CertType = op.CertType
+	return op
 }
 
 func (o *ConfigClusterCerV2Request) xxx_FromOp(ctx context.Context, op *xxx_ConfigClusterCerV2Operation) {
@@ -2580,7 +2614,7 @@ func (o *ConfigClusterCerV2Request) xxx_FromOp(ctx context.Context, op *xxx_Conf
 	o.CertType = op.CertType
 }
 func (o *ConfigClusterCerV2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConfigClusterCerV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConfigClusterCerV2Operation{}
@@ -2599,14 +2633,16 @@ type ConfigClusterCerV2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConfigClusterCerV2Response) xxx_ToOp(ctx context.Context) *xxx_ConfigClusterCerV2Operation {
+func (o *ConfigClusterCerV2Response) xxx_ToOp(ctx context.Context, op *xxx_ConfigClusterCerV2Operation) *xxx_ConfigClusterCerV2Operation {
+	if op == nil {
+		op = &xxx_ConfigClusterCerV2Operation{}
+	}
 	if o == nil {
-		return &xxx_ConfigClusterCerV2Operation{}
+		return op
 	}
-	return &xxx_ConfigClusterCerV2Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConfigClusterCerV2Response) xxx_FromOp(ctx context.Context, op *xxx_ConfigClusterCerV2Operation) {
@@ -2617,7 +2653,7 @@ func (o *ConfigClusterCerV2Response) xxx_FromOp(ctx context.Context, op *xxx_Con
 	o.Return = op.Return
 }
 func (o *ConfigClusterCerV2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConfigClusterCerV2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConfigClusterCerV2Operation{}
@@ -2791,14 +2827,16 @@ type RetrieveClusterCertV2Request struct {
 	ClusterCert *csvp.ClusterCert `idl:"name:ClusterCert" json:"cluster_cert"`
 }
 
-func (o *RetrieveClusterCertV2Request) xxx_ToOp(ctx context.Context) *xxx_RetrieveClusterCertV2Operation {
+func (o *RetrieveClusterCertV2Request) xxx_ToOp(ctx context.Context, op *xxx_RetrieveClusterCertV2Operation) *xxx_RetrieveClusterCertV2Operation {
+	if op == nil {
+		op = &xxx_RetrieveClusterCertV2Operation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveClusterCertV2Operation{}
+		return op
 	}
-	return &xxx_RetrieveClusterCertV2Operation{
-		This:        o.This,
-		ClusterCert: o.ClusterCert,
-	}
+	o.This = op.This
+	o.ClusterCert = op.ClusterCert
+	return op
 }
 
 func (o *RetrieveClusterCertV2Request) xxx_FromOp(ctx context.Context, op *xxx_RetrieveClusterCertV2Operation) {
@@ -2809,7 +2847,7 @@ func (o *RetrieveClusterCertV2Request) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.ClusterCert = op.ClusterCert
 }
 func (o *RetrieveClusterCertV2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RetrieveClusterCertV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveClusterCertV2Operation{}
@@ -2829,15 +2867,17 @@ type RetrieveClusterCertV2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RetrieveClusterCertV2Response) xxx_ToOp(ctx context.Context) *xxx_RetrieveClusterCertV2Operation {
+func (o *RetrieveClusterCertV2Response) xxx_ToOp(ctx context.Context, op *xxx_RetrieveClusterCertV2Operation) *xxx_RetrieveClusterCertV2Operation {
+	if op == nil {
+		op = &xxx_RetrieveClusterCertV2Operation{}
+	}
 	if o == nil {
-		return &xxx_RetrieveClusterCertV2Operation{}
+		return op
 	}
-	return &xxx_RetrieveClusterCertV2Operation{
-		That:     o.That,
-		CertType: o.CertType,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.CertType = op.CertType
+	o.Return = op.Return
+	return op
 }
 
 func (o *RetrieveClusterCertV2Response) xxx_FromOp(ctx context.Context, op *xxx_RetrieveClusterCertV2Operation) {
@@ -2849,7 +2889,7 @@ func (o *RetrieveClusterCertV2Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *RetrieveClusterCertV2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RetrieveClusterCertV2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RetrieveClusterCertV2Operation{}
@@ -3045,15 +3085,17 @@ type GenerateClusterCertV2Request struct {
 	CertType    csvp.ClusterCertType `idl:"name:certType" json:"cert_type"`
 }
 
-func (o *GenerateClusterCertV2Request) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterCertV2Operation {
+func (o *GenerateClusterCertV2Request) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterCertV2Operation) *xxx_GenerateClusterCertV2Operation {
+	if op == nil {
+		op = &xxx_GenerateClusterCertV2Operation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterCertV2Operation{}
+		return op
 	}
-	return &xxx_GenerateClusterCertV2Operation{
-		This:        o.This,
-		ClusterCert: o.ClusterCert,
-		CertType:    o.CertType,
-	}
+	o.This = op.This
+	o.ClusterCert = op.ClusterCert
+	o.CertType = op.CertType
+	return op
 }
 
 func (o *GenerateClusterCertV2Request) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterCertV2Operation) {
@@ -3065,7 +3107,7 @@ func (o *GenerateClusterCertV2Request) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.CertType = op.CertType
 }
 func (o *GenerateClusterCertV2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GenerateClusterCertV2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterCertV2Operation{}
@@ -3087,15 +3129,17 @@ type GenerateClusterCertV2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GenerateClusterCertV2Response) xxx_ToOp(ctx context.Context) *xxx_GenerateClusterCertV2Operation {
+func (o *GenerateClusterCertV2Response) xxx_ToOp(ctx context.Context, op *xxx_GenerateClusterCertV2Operation) *xxx_GenerateClusterCertV2Operation {
+	if op == nil {
+		op = &xxx_GenerateClusterCertV2Operation{}
+	}
 	if o == nil {
-		return &xxx_GenerateClusterCertV2Operation{}
+		return op
 	}
-	return &xxx_GenerateClusterCertV2Operation{
-		That:        o.That,
-		ClusterCert: o.ClusterCert,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ClusterCert = op.ClusterCert
+	o.Return = op.Return
+	return op
 }
 
 func (o *GenerateClusterCertV2Response) xxx_FromOp(ctx context.Context, op *xxx_GenerateClusterCertV2Operation) {
@@ -3107,7 +3151,7 @@ func (o *GenerateClusterCertV2Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GenerateClusterCertV2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GenerateClusterCertV2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GenerateClusterCertV2Operation{}

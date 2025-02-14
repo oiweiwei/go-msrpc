@@ -103,47 +103,85 @@ func RefreshingServicesServerHandle(ctx context.Context, o RefreshingServicesSer
 	}
 	switch opNum {
 	case 3: // AddObjectToRefresher
-		in := &AddObjectToRefresherRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddObjectToRefresherOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddObjectToRefresher(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddObjectToRefresherRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddObjectToRefresher(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // AddObjectToRefresherByTemplate
-		in := &AddObjectToRefresherByTemplateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddObjectToRefresherByTemplateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddObjectToRefresherByTemplate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddObjectToRefresherByTemplateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddObjectToRefresherByTemplate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AddEnumToRefresher
-		in := &AddEnumToRefresherRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddEnumToRefresherOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddEnumToRefresher(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddEnumToRefresherRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddEnumToRefresher(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // RemoveObjectFromRefresher
-		in := &RemoveObjectFromRefresherRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveObjectFromRefresherOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveObjectFromRefresher(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveObjectFromRefresherRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveObjectFromRefresher(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetRemoteRefresher
-		in := &GetRemoteRefresherRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRemoteRefresherOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRemoteRefresher(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRemoteRefresherRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRemoteRefresher(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ReconnectRemoteRefresher
-		in := &ReconnectRemoteRefresherRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReconnectRemoteRefresherOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReconnectRemoteRefresher(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReconnectRemoteRefresherRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReconnectRemoteRefresher(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemRefreshingServices
+type UnimplementedRefreshingServicesServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedRefreshingServicesServer) AddObjectToRefresher(context.Context, *AddObjectToRefresherRequest) (*AddObjectToRefresherResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRefreshingServicesServer) AddObjectToRefresherByTemplate(context.Context, *AddObjectToRefresherByTemplateRequest) (*AddObjectToRefresherByTemplateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRefreshingServicesServer) AddEnumToRefresher(context.Context, *AddEnumToRefresherRequest) (*AddEnumToRefresherResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRefreshingServicesServer) RemoveObjectFromRefresher(context.Context, *RemoveObjectFromRefresherRequest) (*RemoveObjectFromRefresherResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRefreshingServicesServer) GetRemoteRefresher(context.Context, *GetRemoteRefresherRequest) (*GetRemoteRefresherResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRefreshingServicesServer) ReconnectRemoteRefresher(context.Context, *ReconnectRemoteRefresherRequest) (*ReconnectRemoteRefresherResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RefreshingServicesServer = (*UnimplementedRefreshingServicesServer)(nil)

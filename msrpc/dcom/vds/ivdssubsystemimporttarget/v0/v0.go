@@ -86,7 +86,7 @@ func (o *xxx_DefaultSubSystemImportTargetClient) Unknown() iunknown.UnknownClien
 }
 
 func (o *xxx_DefaultSubSystemImportTargetClient) GetImportTarget(ctx context.Context, in *GetImportTargetRequest, opts ...dcerpc.CallOption) (*GetImportTargetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -106,7 +106,7 @@ func (o *xxx_DefaultSubSystemImportTargetClient) GetImportTarget(ctx context.Con
 }
 
 func (o *xxx_DefaultSubSystemImportTargetClient) SetImportTarget(ctx context.Context, in *SetImportTargetRequest, opts ...dcerpc.CallOption) (*SetImportTargetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -330,13 +330,15 @@ type GetImportTargetRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetImportTargetRequest) xxx_ToOp(ctx context.Context) *xxx_GetImportTargetOperation {
+func (o *GetImportTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImportTargetOperation) *xxx_GetImportTargetOperation {
+	if op == nil {
+		op = &xxx_GetImportTargetOperation{}
+	}
 	if o == nil {
-		return &xxx_GetImportTargetOperation{}
+		return op
 	}
-	return &xxx_GetImportTargetOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetImportTargetRequest) xxx_FromOp(ctx context.Context, op *xxx_GetImportTargetOperation) {
@@ -346,7 +348,7 @@ func (o *GetImportTargetRequest) xxx_FromOp(ctx context.Context, op *xxx_GetImpo
 	o.This = op.This
 }
 func (o *GetImportTargetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetImportTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetImportTargetOperation{}
@@ -369,15 +371,17 @@ type GetImportTargetResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetImportTargetResponse) xxx_ToOp(ctx context.Context) *xxx_GetImportTargetOperation {
+func (o *GetImportTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_GetImportTargetOperation) *xxx_GetImportTargetOperation {
+	if op == nil {
+		op = &xxx_GetImportTargetOperation{}
+	}
 	if o == nil {
-		return &xxx_GetImportTargetOperation{}
+		return op
 	}
-	return &xxx_GetImportTargetOperation{
-		That:      o.That,
-		ISCSIName: o.ISCSIName,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.ISCSIName = op.ISCSIName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetImportTargetResponse) xxx_FromOp(ctx context.Context, op *xxx_GetImportTargetOperation) {
@@ -389,7 +393,7 @@ func (o *GetImportTargetResponse) xxx_FromOp(ctx context.Context, op *xxx_GetImp
 	o.Return = op.Return
 }
 func (o *GetImportTargetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetImportTargetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetImportTargetOperation{}
@@ -565,14 +569,16 @@ type SetImportTargetRequest struct {
 	ISCSIName string `idl:"name:pwszIscsiName;string;pointer:unique" json:"iscsi_name"`
 }
 
-func (o *SetImportTargetRequest) xxx_ToOp(ctx context.Context) *xxx_SetImportTargetOperation {
+func (o *SetImportTargetRequest) xxx_ToOp(ctx context.Context, op *xxx_SetImportTargetOperation) *xxx_SetImportTargetOperation {
+	if op == nil {
+		op = &xxx_SetImportTargetOperation{}
+	}
 	if o == nil {
-		return &xxx_SetImportTargetOperation{}
+		return op
 	}
-	return &xxx_SetImportTargetOperation{
-		This:      o.This,
-		ISCSIName: o.ISCSIName,
-	}
+	o.This = op.This
+	o.ISCSIName = op.ISCSIName
+	return op
 }
 
 func (o *SetImportTargetRequest) xxx_FromOp(ctx context.Context, op *xxx_SetImportTargetOperation) {
@@ -583,7 +589,7 @@ func (o *SetImportTargetRequest) xxx_FromOp(ctx context.Context, op *xxx_SetImpo
 	o.ISCSIName = op.ISCSIName
 }
 func (o *SetImportTargetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetImportTargetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetImportTargetOperation{}
@@ -602,14 +608,16 @@ type SetImportTargetResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetImportTargetResponse) xxx_ToOp(ctx context.Context) *xxx_SetImportTargetOperation {
+func (o *SetImportTargetResponse) xxx_ToOp(ctx context.Context, op *xxx_SetImportTargetOperation) *xxx_SetImportTargetOperation {
+	if op == nil {
+		op = &xxx_SetImportTargetOperation{}
+	}
 	if o == nil {
-		return &xxx_SetImportTargetOperation{}
+		return op
 	}
-	return &xxx_SetImportTargetOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetImportTargetResponse) xxx_FromOp(ctx context.Context, op *xxx_SetImportTargetOperation) {
@@ -620,7 +628,7 @@ func (o *SetImportTargetResponse) xxx_FromOp(ctx context.Context, op *xxx_SetImp
 	o.Return = op.Return
 }
 func (o *SetImportTargetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetImportTargetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetImportTargetOperation{}

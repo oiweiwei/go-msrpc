@@ -147,33 +147,61 @@ func ClusterLogServerHandle(ctx context.Context, o ClusterLogServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // GenerateClusterLog
-		in := &GenerateClusterLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateClusterLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateClusterLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateClusterLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GenerateTimeSpanLog
-		in := &GenerateTimeSpanLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateTimeSpanLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateTimeSpanLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateTimeSpanLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateTimeSpanLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GenerateClusterLogInLocalTime
-		in := &GenerateClusterLogInLocalTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateClusterLogInLocalTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateClusterLogInLocalTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateClusterLogInLocalTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterLogInLocalTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GenerateTimeSpanLogInLocalTime
-		in := &GenerateTimeSpanLogInLocalTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateTimeSpanLogInLocalTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateTimeSpanLogInLocalTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateTimeSpanLogInLocalTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateTimeSpanLogInLocalTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterLog
+type UnimplementedClusterLogServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterLogServer) GenerateClusterLog(context.Context, *GenerateClusterLogRequest) (*GenerateClusterLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogServer) GenerateTimeSpanLog(context.Context, *GenerateTimeSpanLogRequest) (*GenerateTimeSpanLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogServer) GenerateClusterLogInLocalTime(context.Context, *GenerateClusterLogInLocalTimeRequest) (*GenerateClusterLogInLocalTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogServer) GenerateTimeSpanLogInLocalTime(context.Context, *GenerateTimeSpanLogInLocalTimeRequest) (*GenerateTimeSpanLogInLocalTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterLogServer = (*UnimplementedClusterLogServer)(nil)

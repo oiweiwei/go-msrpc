@@ -4908,7 +4908,7 @@ type xxx_DefaultNspiClient struct {
 }
 
 func (o *xxx_DefaultNspiClient) Bind(ctx context.Context, in *BindRequest, opts ...dcerpc.CallOption) (*BindResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4921,7 +4921,7 @@ func (o *xxx_DefaultNspiClient) Bind(ctx context.Context, in *BindRequest, opts 
 }
 
 func (o *xxx_DefaultNspiClient) Unbind(ctx context.Context, in *UnbindRequest, opts ...dcerpc.CallOption) (*UnbindResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4934,7 +4934,7 @@ func (o *xxx_DefaultNspiClient) Unbind(ctx context.Context, in *UnbindRequest, o
 }
 
 func (o *xxx_DefaultNspiClient) UpdateStat(ctx context.Context, in *UpdateStatRequest, opts ...dcerpc.CallOption) (*UpdateStatResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4947,7 +4947,7 @@ func (o *xxx_DefaultNspiClient) UpdateStat(ctx context.Context, in *UpdateStatRe
 }
 
 func (o *xxx_DefaultNspiClient) QueryRows(ctx context.Context, in *QueryRowsRequest, opts ...dcerpc.CallOption) (*QueryRowsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4960,7 +4960,7 @@ func (o *xxx_DefaultNspiClient) QueryRows(ctx context.Context, in *QueryRowsRequ
 }
 
 func (o *xxx_DefaultNspiClient) SeekEntries(ctx context.Context, in *SeekEntriesRequest, opts ...dcerpc.CallOption) (*SeekEntriesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4973,7 +4973,7 @@ func (o *xxx_DefaultNspiClient) SeekEntries(ctx context.Context, in *SeekEntries
 }
 
 func (o *xxx_DefaultNspiClient) GetMatches(ctx context.Context, in *GetMatchesRequest, opts ...dcerpc.CallOption) (*GetMatchesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4986,7 +4986,7 @@ func (o *xxx_DefaultNspiClient) GetMatches(ctx context.Context, in *GetMatchesRe
 }
 
 func (o *xxx_DefaultNspiClient) ResortRestriction(ctx context.Context, in *ResortRestrictionRequest, opts ...dcerpc.CallOption) (*ResortRestrictionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4999,7 +4999,7 @@ func (o *xxx_DefaultNspiClient) ResortRestriction(ctx context.Context, in *Resor
 }
 
 func (o *xxx_DefaultNspiClient) DNToMID(ctx context.Context, in *DNToMIDRequest, opts ...dcerpc.CallOption) (*DNToMIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5012,7 +5012,7 @@ func (o *xxx_DefaultNspiClient) DNToMID(ctx context.Context, in *DNToMIDRequest,
 }
 
 func (o *xxx_DefaultNspiClient) GetPropertyList(ctx context.Context, in *GetPropertyListRequest, opts ...dcerpc.CallOption) (*GetPropertyListResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5025,7 +5025,7 @@ func (o *xxx_DefaultNspiClient) GetPropertyList(ctx context.Context, in *GetProp
 }
 
 func (o *xxx_DefaultNspiClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5038,7 +5038,7 @@ func (o *xxx_DefaultNspiClient) GetProperties(ctx context.Context, in *GetProper
 }
 
 func (o *xxx_DefaultNspiClient) CompareMIDs(ctx context.Context, in *CompareMIDsRequest, opts ...dcerpc.CallOption) (*CompareMIDsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5051,7 +5051,7 @@ func (o *xxx_DefaultNspiClient) CompareMIDs(ctx context.Context, in *CompareMIDs
 }
 
 func (o *xxx_DefaultNspiClient) ModifyProperties(ctx context.Context, in *ModifyPropertiesRequest, opts ...dcerpc.CallOption) (*ModifyPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5064,7 +5064,7 @@ func (o *xxx_DefaultNspiClient) ModifyProperties(ctx context.Context, in *Modify
 }
 
 func (o *xxx_DefaultNspiClient) GetSpecialTable(ctx context.Context, in *GetSpecialTableRequest, opts ...dcerpc.CallOption) (*GetSpecialTableResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5077,7 +5077,7 @@ func (o *xxx_DefaultNspiClient) GetSpecialTable(ctx context.Context, in *GetSpec
 }
 
 func (o *xxx_DefaultNspiClient) GetTemplateInfo(ctx context.Context, in *GetTemplateInfoRequest, opts ...dcerpc.CallOption) (*GetTemplateInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5090,7 +5090,7 @@ func (o *xxx_DefaultNspiClient) GetTemplateInfo(ctx context.Context, in *GetTemp
 }
 
 func (o *xxx_DefaultNspiClient) ModifyLinkAttribute(ctx context.Context, in *ModifyLinkAttributeRequest, opts ...dcerpc.CallOption) (*ModifyLinkAttributeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5103,7 +5103,7 @@ func (o *xxx_DefaultNspiClient) ModifyLinkAttribute(ctx context.Context, in *Mod
 }
 
 func (o *xxx_DefaultNspiClient) QueryColumns(ctx context.Context, in *QueryColumnsRequest, opts ...dcerpc.CallOption) (*QueryColumnsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5116,7 +5116,7 @@ func (o *xxx_DefaultNspiClient) QueryColumns(ctx context.Context, in *QueryColum
 }
 
 func (o *xxx_DefaultNspiClient) GetNamesFromIDs(ctx context.Context, in *GetNamesFromIDsRequest, opts ...dcerpc.CallOption) (*GetNamesFromIDsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5129,7 +5129,7 @@ func (o *xxx_DefaultNspiClient) GetNamesFromIDs(ctx context.Context, in *GetName
 }
 
 func (o *xxx_DefaultNspiClient) GetIDsFromNames(ctx context.Context, in *GetIDsFromNamesRequest, opts ...dcerpc.CallOption) (*GetIDsFromNamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5142,7 +5142,7 @@ func (o *xxx_DefaultNspiClient) GetIDsFromNames(ctx context.Context, in *GetIDsF
 }
 
 func (o *xxx_DefaultNspiClient) ResolveNames(ctx context.Context, in *ResolveNamesRequest, opts ...dcerpc.CallOption) (*ResolveNamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5155,7 +5155,7 @@ func (o *xxx_DefaultNspiClient) ResolveNames(ctx context.Context, in *ResolveNam
 }
 
 func (o *xxx_DefaultNspiClient) ResolveNamesW(ctx context.Context, in *ResolveNamesWRequest, opts ...dcerpc.CallOption) (*ResolveNamesWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -5408,15 +5408,17 @@ type BindRequest struct {
 	ServerGUID *FlatUID `idl:"name:pServerGuid;pointer:unique" json:"server_guid"`
 }
 
-func (o *BindRequest) xxx_ToOp(ctx context.Context) *xxx_BindOperation {
+func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
 	if o == nil {
-		return &xxx_BindOperation{}
+		return op
 	}
-	return &xxx_BindOperation{
-		Flags:      o.Flags,
-		Stat:       o.Stat,
-		ServerGUID: o.ServerGUID,
-	}
+	o.Flags = op.Flags
+	o.Stat = op.Stat
+	o.ServerGUID = op.ServerGUID
+	return op
 }
 
 func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
@@ -5428,7 +5430,7 @@ func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
 	o.ServerGUID = op.ServerGUID
 }
 func (o *BindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindOperation{}
@@ -5450,15 +5452,17 @@ type BindResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BindResponse) xxx_ToOp(ctx context.Context) *xxx_BindOperation {
+func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
 	if o == nil {
-		return &xxx_BindOperation{}
+		return op
 	}
-	return &xxx_BindOperation{
-		ServerGUID:    o.ServerGUID,
-		ContextHandle: o.ContextHandle,
-		Return:        o.Return,
-	}
+	o.ServerGUID = op.ServerGUID
+	o.ContextHandle = op.ContextHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
@@ -5470,7 +5474,7 @@ func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
 	o.Return = op.Return
 }
 func (o *BindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindOperation{}
@@ -5607,13 +5611,15 @@ type UnbindRequest struct {
 	ContextHandle *Handle `idl:"name:contextHandle" json:"context_handle"`
 }
 
-func (o *UnbindRequest) xxx_ToOp(ctx context.Context) *xxx_UnbindOperation {
+func (o *UnbindRequest) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *xxx_UnbindOperation {
+	if op == nil {
+		op = &xxx_UnbindOperation{}
+	}
 	if o == nil {
-		return &xxx_UnbindOperation{}
+		return op
 	}
-	return &xxx_UnbindOperation{
-		ContextHandle: o.ContextHandle,
-	}
+	o.ContextHandle = op.ContextHandle
+	return op
 }
 
 func (o *UnbindRequest) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation) {
@@ -5623,7 +5629,7 @@ func (o *UnbindRequest) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation)
 	o.ContextHandle = op.ContextHandle
 }
 func (o *UnbindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UnbindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnbindOperation{}
@@ -5642,14 +5648,16 @@ type UnbindResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UnbindResponse) xxx_ToOp(ctx context.Context) *xxx_UnbindOperation {
+func (o *UnbindResponse) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *xxx_UnbindOperation {
+	if op == nil {
+		op = &xxx_UnbindOperation{}
+	}
 	if o == nil {
-		return &xxx_UnbindOperation{}
+		return op
 	}
-	return &xxx_UnbindOperation{
-		ContextHandle: o.ContextHandle,
-		Return:        o.Return,
-	}
+	o.ContextHandle = op.ContextHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *UnbindResponse) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation) {
@@ -5660,7 +5668,7 @@ func (o *UnbindResponse) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation
 	o.Return = op.Return
 }
 func (o *UnbindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UnbindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnbindOperation{}
@@ -5889,15 +5897,17 @@ type UpdateStatRequest struct {
 	Delta int32 `idl:"name:plDelta;pointer:unique" json:"delta"`
 }
 
-func (o *UpdateStatRequest) xxx_ToOp(ctx context.Context) *xxx_UpdateStatOperation {
+func (o *UpdateStatRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateStatOperation) *xxx_UpdateStatOperation {
+	if op == nil {
+		op = &xxx_UpdateStatOperation{}
+	}
 	if o == nil {
-		return &xxx_UpdateStatOperation{}
+		return op
 	}
-	return &xxx_UpdateStatOperation{
-		Handle: o.Handle,
-		Stat:   o.Stat,
-		Delta:  o.Delta,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.Delta = op.Delta
+	return op
 }
 
 func (o *UpdateStatRequest) xxx_FromOp(ctx context.Context, op *xxx_UpdateStatOperation) {
@@ -5909,7 +5919,7 @@ func (o *UpdateStatRequest) xxx_FromOp(ctx context.Context, op *xxx_UpdateStatOp
 	o.Delta = op.Delta
 }
 func (o *UpdateStatRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UpdateStatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UpdateStatOperation{}
@@ -5933,15 +5943,17 @@ type UpdateStatResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UpdateStatResponse) xxx_ToOp(ctx context.Context) *xxx_UpdateStatOperation {
+func (o *UpdateStatResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateStatOperation) *xxx_UpdateStatOperation {
+	if op == nil {
+		op = &xxx_UpdateStatOperation{}
+	}
 	if o == nil {
-		return &xxx_UpdateStatOperation{}
+		return op
 	}
-	return &xxx_UpdateStatOperation{
-		Stat:   o.Stat,
-		Delta:  o.Delta,
-		Return: o.Return,
-	}
+	o.Stat = op.Stat
+	o.Delta = op.Delta
+	o.Return = op.Return
+	return op
 }
 
 func (o *UpdateStatResponse) xxx_FromOp(ctx context.Context, op *xxx_UpdateStatOperation) {
@@ -5953,7 +5965,7 @@ func (o *UpdateStatResponse) xxx_FromOp(ctx context.Context, op *xxx_UpdateStatO
 	o.Return = op.Return
 }
 func (o *UpdateStatResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UpdateStatResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UpdateStatOperation{}
@@ -6325,19 +6337,21 @@ type QueryRowsRequest struct {
 	PropertyTags *PropertyTagArray `idl:"name:pPropTags;pointer:unique" json:"property_tags"`
 }
 
-func (o *QueryRowsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryRowsOperation {
+func (o *QueryRowsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryRowsOperation) *xxx_QueryRowsOperation {
+	if op == nil {
+		op = &xxx_QueryRowsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryRowsOperation{}
+		return op
 	}
-	return &xxx_QueryRowsOperation{
-		Handle:       o.Handle,
-		Flags:        o.Flags,
-		Stat:         o.Stat,
-		ETableCount:  o.ETableCount,
-		ETable:       o.ETable,
-		Count:        o.Count,
-		PropertyTags: o.PropertyTags,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.Stat = op.Stat
+	o.ETableCount = op.ETableCount
+	o.ETable = op.ETable
+	o.Count = op.Count
+	o.PropertyTags = op.PropertyTags
+	return op
 }
 
 func (o *QueryRowsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryRowsOperation) {
@@ -6353,7 +6367,7 @@ func (o *QueryRowsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryRowsOper
 	o.PropertyTags = op.PropertyTags
 }
 func (o *QueryRowsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryRowsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryRowsOperation{}
@@ -6377,15 +6391,17 @@ type QueryRowsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryRowsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryRowsOperation {
+func (o *QueryRowsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryRowsOperation) *xxx_QueryRowsOperation {
+	if op == nil {
+		op = &xxx_QueryRowsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryRowsOperation{}
+		return op
 	}
-	return &xxx_QueryRowsOperation{
-		Stat:   o.Stat,
-		Rows:   o.Rows,
-		Return: o.Return,
-	}
+	o.Stat = op.Stat
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryRowsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryRowsOperation) {
@@ -6397,7 +6413,7 @@ func (o *QueryRowsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryRowsOpe
 	o.Return = op.Return
 }
 func (o *QueryRowsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryRowsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryRowsOperation{}
@@ -6738,17 +6754,19 @@ type SeekEntriesRequest struct {
 	PropertyTags *PropertyTagArray `idl:"name:pPropTags;pointer:unique" json:"property_tags"`
 }
 
-func (o *SeekEntriesRequest) xxx_ToOp(ctx context.Context) *xxx_SeekEntriesOperation {
+func (o *SeekEntriesRequest) xxx_ToOp(ctx context.Context, op *xxx_SeekEntriesOperation) *xxx_SeekEntriesOperation {
+	if op == nil {
+		op = &xxx_SeekEntriesOperation{}
+	}
 	if o == nil {
-		return &xxx_SeekEntriesOperation{}
+		return op
 	}
-	return &xxx_SeekEntriesOperation{
-		Handle:       o.Handle,
-		Stat:         o.Stat,
-		Target:       o.Target,
-		ETable:       o.ETable,
-		PropertyTags: o.PropertyTags,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.Target = op.Target
+	o.ETable = op.ETable
+	o.PropertyTags = op.PropertyTags
+	return op
 }
 
 func (o *SeekEntriesRequest) xxx_FromOp(ctx context.Context, op *xxx_SeekEntriesOperation) {
@@ -6762,7 +6780,7 @@ func (o *SeekEntriesRequest) xxx_FromOp(ctx context.Context, op *xxx_SeekEntries
 	o.PropertyTags = op.PropertyTags
 }
 func (o *SeekEntriesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SeekEntriesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SeekEntriesOperation{}
@@ -6786,15 +6804,17 @@ type SeekEntriesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SeekEntriesResponse) xxx_ToOp(ctx context.Context) *xxx_SeekEntriesOperation {
+func (o *SeekEntriesResponse) xxx_ToOp(ctx context.Context, op *xxx_SeekEntriesOperation) *xxx_SeekEntriesOperation {
+	if op == nil {
+		op = &xxx_SeekEntriesOperation{}
+	}
 	if o == nil {
-		return &xxx_SeekEntriesOperation{}
+		return op
 	}
-	return &xxx_SeekEntriesOperation{
-		Stat:   o.Stat,
-		Rows:   o.Rows,
-		Return: o.Return,
-	}
+	o.Stat = op.Stat
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *SeekEntriesResponse) xxx_FromOp(ctx context.Context, op *xxx_SeekEntriesOperation) {
@@ -6806,7 +6826,7 @@ func (o *SeekEntriesResponse) xxx_FromOp(ctx context.Context, op *xxx_SeekEntrie
 	o.Return = op.Return
 }
 func (o *SeekEntriesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SeekEntriesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SeekEntriesOperation{}
@@ -7277,18 +7297,20 @@ type GetMatchesRequest struct {
 	PropertyTags *PropertyTagArray `idl:"name:pPropTags;pointer:unique" json:"property_tags"`
 }
 
-func (o *GetMatchesRequest) xxx_ToOp(ctx context.Context) *xxx_GetMatchesOperation {
+func (o *GetMatchesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMatchesOperation) *xxx_GetMatchesOperation {
+	if op == nil {
+		op = &xxx_GetMatchesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMatchesOperation{}
+		return op
 	}
-	return &xxx_GetMatchesOperation{
-		Handle:       o.Handle,
-		Stat:         o.Stat,
-		Filter:       o.Filter,
-		PropertyName: o.PropertyName,
-		Requested:    o.Requested,
-		PropertyTags: o.PropertyTags,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.Filter = op.Filter
+	o.PropertyName = op.PropertyName
+	o.Requested = op.Requested
+	o.PropertyTags = op.PropertyTags
+	return op
 }
 
 func (o *GetMatchesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMatchesOperation) {
@@ -7303,7 +7325,7 @@ func (o *GetMatchesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMatchesOp
 	o.PropertyTags = op.PropertyTags
 }
 func (o *GetMatchesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMatchesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMatchesOperation{}
@@ -7329,16 +7351,18 @@ type GetMatchesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMatchesResponse) xxx_ToOp(ctx context.Context) *xxx_GetMatchesOperation {
+func (o *GetMatchesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMatchesOperation) *xxx_GetMatchesOperation {
+	if op == nil {
+		op = &xxx_GetMatchesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMatchesOperation{}
+		return op
 	}
-	return &xxx_GetMatchesOperation{
-		Stat:    o.Stat,
-		OutMIDs: o.OutMIDs,
-		Rows:    o.Rows,
-		Return:  o.Return,
-	}
+	o.Stat = op.Stat
+	o.OutMIDs = op.OutMIDs
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMatchesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMatchesOperation) {
@@ -7351,7 +7375,7 @@ func (o *GetMatchesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMatchesO
 	o.Return = op.Return
 }
 func (o *GetMatchesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMatchesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMatchesOperation{}
@@ -7634,16 +7658,18 @@ type ResortRestrictionRequest struct {
 	OutMIDs *PropertyTagArray `idl:"name:ppOutMIds" json:"out_m_ids"`
 }
 
-func (o *ResortRestrictionRequest) xxx_ToOp(ctx context.Context) *xxx_ResortRestrictionOperation {
+func (o *ResortRestrictionRequest) xxx_ToOp(ctx context.Context, op *xxx_ResortRestrictionOperation) *xxx_ResortRestrictionOperation {
+	if op == nil {
+		op = &xxx_ResortRestrictionOperation{}
+	}
 	if o == nil {
-		return &xxx_ResortRestrictionOperation{}
+		return op
 	}
-	return &xxx_ResortRestrictionOperation{
-		Handle:  o.Handle,
-		Stat:    o.Stat,
-		InMIDs:  o.InMIDs,
-		OutMIDs: o.OutMIDs,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.InMIDs = op.InMIDs
+	o.OutMIDs = op.OutMIDs
+	return op
 }
 
 func (o *ResortRestrictionRequest) xxx_FromOp(ctx context.Context, op *xxx_ResortRestrictionOperation) {
@@ -7656,7 +7682,7 @@ func (o *ResortRestrictionRequest) xxx_FromOp(ctx context.Context, op *xxx_Resor
 	o.OutMIDs = op.OutMIDs
 }
 func (o *ResortRestrictionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResortRestrictionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResortRestrictionOperation{}
@@ -7679,15 +7705,17 @@ type ResortRestrictionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResortRestrictionResponse) xxx_ToOp(ctx context.Context) *xxx_ResortRestrictionOperation {
+func (o *ResortRestrictionResponse) xxx_ToOp(ctx context.Context, op *xxx_ResortRestrictionOperation) *xxx_ResortRestrictionOperation {
+	if op == nil {
+		op = &xxx_ResortRestrictionOperation{}
+	}
 	if o == nil {
-		return &xxx_ResortRestrictionOperation{}
+		return op
 	}
-	return &xxx_ResortRestrictionOperation{
-		Stat:    o.Stat,
-		OutMIDs: o.OutMIDs,
-		Return:  o.Return,
-	}
+	o.Stat = op.Stat
+	o.OutMIDs = op.OutMIDs
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResortRestrictionResponse) xxx_FromOp(ctx context.Context, op *xxx_ResortRestrictionOperation) {
@@ -7699,7 +7727,7 @@ func (o *ResortRestrictionResponse) xxx_FromOp(ctx context.Context, op *xxx_Reso
 	o.Return = op.Return
 }
 func (o *ResortRestrictionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResortRestrictionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResortRestrictionOperation{}
@@ -7893,14 +7921,16 @@ type DNToMIDRequest struct {
 	Names *CharStringsArray `idl:"name:pNames" json:"names"`
 }
 
-func (o *DNToMIDRequest) xxx_ToOp(ctx context.Context) *xxx_DNToMIDOperation {
+func (o *DNToMIDRequest) xxx_ToOp(ctx context.Context, op *xxx_DNToMIDOperation) *xxx_DNToMIDOperation {
+	if op == nil {
+		op = &xxx_DNToMIDOperation{}
+	}
 	if o == nil {
-		return &xxx_DNToMIDOperation{}
+		return op
 	}
-	return &xxx_DNToMIDOperation{
-		Handle: o.Handle,
-		Names:  o.Names,
-	}
+	o.Handle = op.Handle
+	o.Names = op.Names
+	return op
 }
 
 func (o *DNToMIDRequest) xxx_FromOp(ctx context.Context, op *xxx_DNToMIDOperation) {
@@ -7911,7 +7941,7 @@ func (o *DNToMIDRequest) xxx_FromOp(ctx context.Context, op *xxx_DNToMIDOperatio
 	o.Names = op.Names
 }
 func (o *DNToMIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DNToMIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DNToMIDOperation{}
@@ -7930,14 +7960,16 @@ type DNToMIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DNToMIDResponse) xxx_ToOp(ctx context.Context) *xxx_DNToMIDOperation {
+func (o *DNToMIDResponse) xxx_ToOp(ctx context.Context, op *xxx_DNToMIDOperation) *xxx_DNToMIDOperation {
+	if op == nil {
+		op = &xxx_DNToMIDOperation{}
+	}
 	if o == nil {
-		return &xxx_DNToMIDOperation{}
+		return op
 	}
-	return &xxx_DNToMIDOperation{
-		OutMIDs: o.OutMIDs,
-		Return:  o.Return,
-	}
+	o.OutMIDs = op.OutMIDs
+	o.Return = op.Return
+	return op
 }
 
 func (o *DNToMIDResponse) xxx_FromOp(ctx context.Context, op *xxx_DNToMIDOperation) {
@@ -7948,7 +7980,7 @@ func (o *DNToMIDResponse) xxx_FromOp(ctx context.Context, op *xxx_DNToMIDOperati
 	o.Return = op.Return
 }
 func (o *DNToMIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DNToMIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DNToMIDOperation{}
@@ -8142,16 +8174,18 @@ type GetPropertyListRequest struct {
 	CodePage uint32 `idl:"name:CodePage" json:"code_page"`
 }
 
-func (o *GetPropertyListRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertyListOperation {
+func (o *GetPropertyListRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertyListOperation) *xxx_GetPropertyListOperation {
+	if op == nil {
+		op = &xxx_GetPropertyListOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertyListOperation{}
+		return op
 	}
-	return &xxx_GetPropertyListOperation{
-		Handle:   o.Handle,
-		Flags:    o.Flags,
-		MID:      o.MID,
-		CodePage: o.CodePage,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.MID = op.MID
+	o.CodePage = op.CodePage
+	return op
 }
 
 func (o *GetPropertyListRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertyListOperation) {
@@ -8164,7 +8198,7 @@ func (o *GetPropertyListRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProp
 	o.CodePage = op.CodePage
 }
 func (o *GetPropertyListRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertyListRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertyListOperation{}
@@ -8183,14 +8217,16 @@ type GetPropertyListResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertyListResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertyListOperation {
+func (o *GetPropertyListResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertyListOperation) *xxx_GetPropertyListOperation {
+	if op == nil {
+		op = &xxx_GetPropertyListOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertyListOperation{}
+		return op
 	}
-	return &xxx_GetPropertyListOperation{
-		PropertyTags: o.PropertyTags,
-		Return:       o.Return,
-	}
+	o.PropertyTags = op.PropertyTags
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertyListResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertyListOperation) {
@@ -8201,7 +8237,7 @@ func (o *GetPropertyListResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPro
 	o.Return = op.Return
 }
 func (o *GetPropertyListResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertyListResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertyListOperation{}
@@ -8440,16 +8476,18 @@ type GetPropertiesRequest struct {
 	PropertyTags *PropertyTagArray `idl:"name:pPropTags;pointer:unique" json:"property_tags"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		Handle:       o.Handle,
-		Flags:        o.Flags,
-		Stat:         o.Stat,
-		PropertyTags: o.PropertyTags,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.Stat = op.Stat
+	o.PropertyTags = op.PropertyTags
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -8462,7 +8500,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.PropertyTags = op.PropertyTags
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -8482,14 +8520,16 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		Rows:   o.Rows,
-		Return: o.Return,
-	}
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -8500,7 +8540,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -8684,16 +8724,18 @@ type CompareMIDsRequest struct {
 	MID2 uint32 `idl:"name:MId2" json:"m_id2"`
 }
 
-func (o *CompareMIDsRequest) xxx_ToOp(ctx context.Context) *xxx_CompareMIDsOperation {
+func (o *CompareMIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_CompareMIDsOperation) *xxx_CompareMIDsOperation {
+	if op == nil {
+		op = &xxx_CompareMIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_CompareMIDsOperation{}
+		return op
 	}
-	return &xxx_CompareMIDsOperation{
-		Handle: o.Handle,
-		Stat:   o.Stat,
-		MID1:   o.MID1,
-		MID2:   o.MID2,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.MID1 = op.MID1
+	o.MID2 = op.MID2
+	return op
 }
 
 func (o *CompareMIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_CompareMIDsOperation) {
@@ -8706,7 +8748,7 @@ func (o *CompareMIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_CompareMIDs
 	o.MID2 = op.MID2
 }
 func (o *CompareMIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CompareMIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CompareMIDsOperation{}
@@ -8725,14 +8767,16 @@ type CompareMIDsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CompareMIDsResponse) xxx_ToOp(ctx context.Context) *xxx_CompareMIDsOperation {
+func (o *CompareMIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_CompareMIDsOperation) *xxx_CompareMIDsOperation {
+	if op == nil {
+		op = &xxx_CompareMIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_CompareMIDsOperation{}
+		return op
 	}
-	return &xxx_CompareMIDsOperation{
-		Result: o.Result,
-		Return: o.Return,
-	}
+	o.Result = op.Result
+	o.Return = op.Return
+	return op
 }
 
 func (o *CompareMIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_CompareMIDsOperation) {
@@ -8743,7 +8787,7 @@ func (o *CompareMIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_CompareMID
 	o.Return = op.Return
 }
 func (o *CompareMIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CompareMIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CompareMIDsOperation{}
@@ -8964,16 +9008,18 @@ type ModifyPropertiesRequest struct {
 	Row *PropertyRow `idl:"name:pRow" json:"row"`
 }
 
-func (o *ModifyPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_ModifyPropertiesOperation {
+func (o *ModifyPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyPropertiesOperation) *xxx_ModifyPropertiesOperation {
+	if op == nil {
+		op = &xxx_ModifyPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyPropertiesOperation{}
+		return op
 	}
-	return &xxx_ModifyPropertiesOperation{
-		Handle:       o.Handle,
-		Stat:         o.Stat,
-		PropertyTags: o.PropertyTags,
-		Row:          o.Row,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.PropertyTags = op.PropertyTags
+	o.Row = op.Row
+	return op
 }
 
 func (o *ModifyPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyPropertiesOperation) {
@@ -8986,7 +9032,7 @@ func (o *ModifyPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_Modify
 	o.Row = op.Row
 }
 func (o *ModifyPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyPropertiesOperation{}
@@ -9003,13 +9049,15 @@ type ModifyPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_ModifyPropertiesOperation {
+func (o *ModifyPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyPropertiesOperation) *xxx_ModifyPropertiesOperation {
+	if op == nil {
+		op = &xxx_ModifyPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyPropertiesOperation{}
+		return op
 	}
-	return &xxx_ModifyPropertiesOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyPropertiesOperation) {
@@ -9019,7 +9067,7 @@ func (o *ModifyPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_Modif
 	o.Return = op.Return
 }
 func (o *ModifyPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyPropertiesOperation{}
@@ -9236,16 +9284,18 @@ type GetSpecialTableRequest struct {
 	Version uint32 `idl:"name:lpVersion" json:"version"`
 }
 
-func (o *GetSpecialTableRequest) xxx_ToOp(ctx context.Context) *xxx_GetSpecialTableOperation {
+func (o *GetSpecialTableRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSpecialTableOperation) *xxx_GetSpecialTableOperation {
+	if op == nil {
+		op = &xxx_GetSpecialTableOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSpecialTableOperation{}
+		return op
 	}
-	return &xxx_GetSpecialTableOperation{
-		Handle:  o.Handle,
-		Flags:   o.Flags,
-		Stat:    o.Stat,
-		Version: o.Version,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.Stat = op.Stat
+	o.Version = op.Version
+	return op
 }
 
 func (o *GetSpecialTableRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSpecialTableOperation) {
@@ -9258,7 +9308,7 @@ func (o *GetSpecialTableRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSpec
 	o.Version = op.Version
 }
 func (o *GetSpecialTableRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSpecialTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSpecialTableOperation{}
@@ -9281,15 +9331,17 @@ type GetSpecialTableResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSpecialTableResponse) xxx_ToOp(ctx context.Context) *xxx_GetSpecialTableOperation {
+func (o *GetSpecialTableResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSpecialTableOperation) *xxx_GetSpecialTableOperation {
+	if op == nil {
+		op = &xxx_GetSpecialTableOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSpecialTableOperation{}
+		return op
 	}
-	return &xxx_GetSpecialTableOperation{
-		Version: o.Version,
-		Rows:    o.Rows,
-		Return:  o.Return,
-	}
+	o.Version = op.Version
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSpecialTableResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSpecialTableOperation) {
@@ -9301,7 +9353,7 @@ func (o *GetSpecialTableResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSpe
 	o.Return = op.Return
 }
 func (o *GetSpecialTableResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSpecialTableResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSpecialTableOperation{}
@@ -9553,18 +9605,20 @@ type GetTemplateInfoRequest struct {
 	LocaleID uint32 `idl:"name:dwLocaleID" json:"locale_id"`
 }
 
-func (o *GetTemplateInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetTemplateInfoOperation {
+func (o *GetTemplateInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTemplateInfoOperation) *xxx_GetTemplateInfoOperation {
+	if op == nil {
+		op = &xxx_GetTemplateInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTemplateInfoOperation{}
+		return op
 	}
-	return &xxx_GetTemplateInfoOperation{
-		Handle:   o.Handle,
-		Flags:    o.Flags,
-		Type:     o.Type,
-		DN:       o.DN,
-		CodePage: o.CodePage,
-		LocaleID: o.LocaleID,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.Type = op.Type
+	o.DN = op.DN
+	o.CodePage = op.CodePage
+	o.LocaleID = op.LocaleID
+	return op
 }
 
 func (o *GetTemplateInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTemplateInfoOperation) {
@@ -9579,7 +9633,7 @@ func (o *GetTemplateInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetTemp
 	o.LocaleID = op.LocaleID
 }
 func (o *GetTemplateInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetTemplateInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTemplateInfoOperation{}
@@ -9599,14 +9653,16 @@ type GetTemplateInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetTemplateInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetTemplateInfoOperation {
+func (o *GetTemplateInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetTemplateInfoOperation) *xxx_GetTemplateInfoOperation {
+	if op == nil {
+		op = &xxx_GetTemplateInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetTemplateInfoOperation{}
+		return op
 	}
-	return &xxx_GetTemplateInfoOperation{
-		Data:   o.Data,
-		Return: o.Return,
-	}
+	o.Data = op.Data
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetTemplateInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTemplateInfoOperation) {
@@ -9617,7 +9673,7 @@ func (o *GetTemplateInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetTem
 	o.Return = op.Return
 }
 func (o *GetTemplateInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetTemplateInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetTemplateInfoOperation{}
@@ -9797,17 +9853,19 @@ type ModifyLinkAttributeRequest struct {
 	EntryIDs *BinaryArray `idl:"name:lpEntryIds" json:"entry_ids"`
 }
 
-func (o *ModifyLinkAttributeRequest) xxx_ToOp(ctx context.Context) *xxx_ModifyLinkAttributeOperation {
+func (o *ModifyLinkAttributeRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyLinkAttributeOperation) *xxx_ModifyLinkAttributeOperation {
+	if op == nil {
+		op = &xxx_ModifyLinkAttributeOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyLinkAttributeOperation{}
+		return op
 	}
-	return &xxx_ModifyLinkAttributeOperation{
-		Handle:      o.Handle,
-		Flags:       o.Flags,
-		PropertyTag: o.PropertyTag,
-		MID:         o.MID,
-		EntryIDs:    o.EntryIDs,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.PropertyTag = op.PropertyTag
+	o.MID = op.MID
+	o.EntryIDs = op.EntryIDs
+	return op
 }
 
 func (o *ModifyLinkAttributeRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyLinkAttributeOperation) {
@@ -9821,7 +9879,7 @@ func (o *ModifyLinkAttributeRequest) xxx_FromOp(ctx context.Context, op *xxx_Mod
 	o.EntryIDs = op.EntryIDs
 }
 func (o *ModifyLinkAttributeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyLinkAttributeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyLinkAttributeOperation{}
@@ -9838,13 +9896,15 @@ type ModifyLinkAttributeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyLinkAttributeResponse) xxx_ToOp(ctx context.Context) *xxx_ModifyLinkAttributeOperation {
+func (o *ModifyLinkAttributeResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyLinkAttributeOperation) *xxx_ModifyLinkAttributeOperation {
+	if op == nil {
+		op = &xxx_ModifyLinkAttributeOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyLinkAttributeOperation{}
+		return op
 	}
-	return &xxx_ModifyLinkAttributeOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyLinkAttributeResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyLinkAttributeOperation) {
@@ -9854,7 +9914,7 @@ func (o *ModifyLinkAttributeResponse) xxx_FromOp(ctx context.Context, op *xxx_Mo
 	o.Return = op.Return
 }
 func (o *ModifyLinkAttributeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyLinkAttributeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyLinkAttributeOperation{}
@@ -10033,14 +10093,16 @@ type QueryColumnsRequest struct {
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *QueryColumnsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryColumnsOperation {
+func (o *QueryColumnsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryColumnsOperation) *xxx_QueryColumnsOperation {
+	if op == nil {
+		op = &xxx_QueryColumnsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryColumnsOperation{}
+		return op
 	}
-	return &xxx_QueryColumnsOperation{
-		Handle: o.Handle,
-		Flags:  o.Flags,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryColumnsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryColumnsOperation) {
@@ -10051,7 +10113,7 @@ func (o *QueryColumnsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryColum
 	o.Flags = op.Flags
 }
 func (o *QueryColumnsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryColumnsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryColumnsOperation{}
@@ -10071,14 +10133,16 @@ type QueryColumnsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryColumnsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryColumnsOperation {
+func (o *QueryColumnsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryColumnsOperation) *xxx_QueryColumnsOperation {
+	if op == nil {
+		op = &xxx_QueryColumnsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryColumnsOperation{}
+		return op
 	}
-	return &xxx_QueryColumnsOperation{
-		Columns: o.Columns,
-		Return:  o.Return,
-	}
+	o.Columns = op.Columns
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryColumnsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryColumnsOperation) {
@@ -10089,7 +10153,7 @@ func (o *QueryColumnsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryColu
 	o.Return = op.Return
 }
 func (o *QueryColumnsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryColumnsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryColumnsOperation{}
@@ -10399,15 +10463,17 @@ type GetNamesFromIDsRequest struct {
 	PropertyTags *PropertyTagArray `idl:"name:pPropTags;pointer:unique" json:"property_tags"`
 }
 
-func (o *GetNamesFromIDsRequest) xxx_ToOp(ctx context.Context) *xxx_GetNamesFromIDsOperation {
+func (o *GetNamesFromIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNamesFromIDsOperation) *xxx_GetNamesFromIDsOperation {
+	if op == nil {
+		op = &xxx_GetNamesFromIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNamesFromIDsOperation{}
+		return op
 	}
-	return &xxx_GetNamesFromIDsOperation{
-		Handle:       o.Handle,
-		GUID:         o.GUID,
-		PropertyTags: o.PropertyTags,
-	}
+	o.Handle = op.Handle
+	o.GUID = op.GUID
+	o.PropertyTags = op.PropertyTags
+	return op
 }
 
 func (o *GetNamesFromIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNamesFromIDsOperation) {
@@ -10419,7 +10485,7 @@ func (o *GetNamesFromIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetName
 	o.PropertyTags = op.PropertyTags
 }
 func (o *GetNamesFromIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNamesFromIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNamesFromIDsOperation{}
@@ -10443,15 +10509,17 @@ type GetNamesFromIDsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNamesFromIDsResponse) xxx_ToOp(ctx context.Context) *xxx_GetNamesFromIDsOperation {
+func (o *GetNamesFromIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNamesFromIDsOperation) *xxx_GetNamesFromIDsOperation {
+	if op == nil {
+		op = &xxx_GetNamesFromIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNamesFromIDsOperation{}
+		return op
 	}
-	return &xxx_GetNamesFromIDsOperation{
-		ReturnedPropertyTags: o.ReturnedPropertyTags,
-		Names:                o.Names,
-		Return:               o.Return,
-	}
+	o.ReturnedPropertyTags = op.ReturnedPropertyTags
+	o.Names = op.Names
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNamesFromIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNamesFromIDsOperation) {
@@ -10463,7 +10531,7 @@ func (o *GetNamesFromIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNam
 	o.Return = op.Return
 }
 func (o *GetNamesFromIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNamesFromIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNamesFromIDsOperation{}
@@ -10746,16 +10814,18 @@ type GetIDsFromNamesRequest struct {
 	Names []*PropertyName `idl:"name:pNames;size_is:(cPropNames)" json:"names"`
 }
 
-func (o *GetIDsFromNamesRequest) xxx_ToOp(ctx context.Context) *xxx_GetIDsFromNamesOperation {
+func (o *GetIDsFromNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIDsFromNamesOperation) *xxx_GetIDsFromNamesOperation {
+	if op == nil {
+		op = &xxx_GetIDsFromNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIDsFromNamesOperation{}
+		return op
 	}
-	return &xxx_GetIDsFromNamesOperation{
-		Handle:             o.Handle,
-		Flags:              o.Flags,
-		PropertyNamesCount: o.PropertyNamesCount,
-		Names:              o.Names,
-	}
+	o.Handle = op.Handle
+	o.Flags = op.Flags
+	o.PropertyNamesCount = op.PropertyNamesCount
+	o.Names = op.Names
+	return op
 }
 
 func (o *GetIDsFromNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIDsFromNamesOperation) {
@@ -10768,7 +10838,7 @@ func (o *GetIDsFromNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIDsF
 	o.Names = op.Names
 }
 func (o *GetIDsFromNamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIDsFromNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIDsFromNamesOperation{}
@@ -10788,14 +10858,16 @@ type GetIDsFromNamesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIDsFromNamesResponse) xxx_ToOp(ctx context.Context) *xxx_GetIDsFromNamesOperation {
+func (o *GetIDsFromNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIDsFromNamesOperation) *xxx_GetIDsFromNamesOperation {
+	if op == nil {
+		op = &xxx_GetIDsFromNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIDsFromNamesOperation{}
+		return op
 	}
-	return &xxx_GetIDsFromNamesOperation{
-		PropertyTags: o.PropertyTags,
-		Return:       o.Return,
-	}
+	o.PropertyTags = op.PropertyTags
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetIDsFromNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIDsFromNamesOperation) {
@@ -10806,7 +10878,7 @@ func (o *GetIDsFromNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIDs
 	o.Return = op.Return
 }
 func (o *GetIDsFromNamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIDsFromNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIDsFromNamesOperation{}
@@ -11124,16 +11196,18 @@ type ResolveNamesRequest struct {
 	Strings *CharStringsArray `idl:"name:paStr" json:"strings"`
 }
 
-func (o *ResolveNamesRequest) xxx_ToOp(ctx context.Context) *xxx_ResolveNamesOperation {
+func (o *ResolveNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_ResolveNamesOperation) *xxx_ResolveNamesOperation {
+	if op == nil {
+		op = &xxx_ResolveNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_ResolveNamesOperation{}
+		return op
 	}
-	return &xxx_ResolveNamesOperation{
-		Handle:       o.Handle,
-		Stat:         o.Stat,
-		PropertyTags: o.PropertyTags,
-		Strings:      o.Strings,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.PropertyTags = op.PropertyTags
+	o.Strings = op.Strings
+	return op
 }
 
 func (o *ResolveNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_ResolveNamesOperation) {
@@ -11146,7 +11220,7 @@ func (o *ResolveNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_ResolveNam
 	o.Strings = op.Strings
 }
 func (o *ResolveNamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResolveNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveNamesOperation{}
@@ -11169,15 +11243,17 @@ type ResolveNamesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResolveNamesResponse) xxx_ToOp(ctx context.Context) *xxx_ResolveNamesOperation {
+func (o *ResolveNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_ResolveNamesOperation) *xxx_ResolveNamesOperation {
+	if op == nil {
+		op = &xxx_ResolveNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_ResolveNamesOperation{}
+		return op
 	}
-	return &xxx_ResolveNamesOperation{
-		MIDs:   o.MIDs,
-		Rows:   o.Rows,
-		Return: o.Return,
-	}
+	o.MIDs = op.MIDs
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResolveNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_ResolveNamesOperation) {
@@ -11189,7 +11265,7 @@ func (o *ResolveNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_ResolveNa
 	o.Return = op.Return
 }
 func (o *ResolveNamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResolveNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveNamesOperation{}
@@ -11507,16 +11583,18 @@ type ResolveNamesWRequest struct {
 	Strings *StringsArray `idl:"name:paWStr" json:"strings"`
 }
 
-func (o *ResolveNamesWRequest) xxx_ToOp(ctx context.Context) *xxx_ResolveNamesWOperation {
+func (o *ResolveNamesWRequest) xxx_ToOp(ctx context.Context, op *xxx_ResolveNamesWOperation) *xxx_ResolveNamesWOperation {
+	if op == nil {
+		op = &xxx_ResolveNamesWOperation{}
+	}
 	if o == nil {
-		return &xxx_ResolveNamesWOperation{}
+		return op
 	}
-	return &xxx_ResolveNamesWOperation{
-		Handle:       o.Handle,
-		Stat:         o.Stat,
-		PropertyTags: o.PropertyTags,
-		Strings:      o.Strings,
-	}
+	o.Handle = op.Handle
+	o.Stat = op.Stat
+	o.PropertyTags = op.PropertyTags
+	o.Strings = op.Strings
+	return op
 }
 
 func (o *ResolveNamesWRequest) xxx_FromOp(ctx context.Context, op *xxx_ResolveNamesWOperation) {
@@ -11529,7 +11607,7 @@ func (o *ResolveNamesWRequest) xxx_FromOp(ctx context.Context, op *xxx_ResolveNa
 	o.Strings = op.Strings
 }
 func (o *ResolveNamesWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResolveNamesWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveNamesWOperation{}
@@ -11552,15 +11630,17 @@ type ResolveNamesWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResolveNamesWResponse) xxx_ToOp(ctx context.Context) *xxx_ResolveNamesWOperation {
+func (o *ResolveNamesWResponse) xxx_ToOp(ctx context.Context, op *xxx_ResolveNamesWOperation) *xxx_ResolveNamesWOperation {
+	if op == nil {
+		op = &xxx_ResolveNamesWOperation{}
+	}
 	if o == nil {
-		return &xxx_ResolveNamesWOperation{}
+		return op
 	}
-	return &xxx_ResolveNamesWOperation{
-		MIDs:   o.MIDs,
-		Rows:   o.Rows,
-		Return: o.Return,
-	}
+	o.MIDs = op.MIDs
+	o.Rows = op.Rows
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResolveNamesWResponse) xxx_FromOp(ctx context.Context, op *xxx_ResolveNamesWOperation) {
@@ -11572,7 +11652,7 @@ func (o *ResolveNamesWResponse) xxx_FromOp(ctx context.Context, op *xxx_ResolveN
 	o.Return = op.Return
 }
 func (o *ResolveNamesWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResolveNamesWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveNamesWOperation{}

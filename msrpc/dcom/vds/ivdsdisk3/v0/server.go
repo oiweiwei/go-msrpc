@@ -66,19 +66,37 @@ func Disk3ServerHandle(ctx context.Context, o Disk3Server, opNum int, r ndr.Read
 	}
 	switch opNum {
 	case 3: // GetProperties2
-		in := &GetProperties2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetProperties2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetProperties2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // QueryFreeExtents
-		in := &QueryFreeExtentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryFreeExtentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryFreeExtents(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryFreeExtentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryFreeExtents(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsDisk3
+type UnimplementedDisk3Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDisk3Server) GetProperties2(context.Context, *GetProperties2Request) (*GetProperties2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDisk3Server) QueryFreeExtents(context.Context, *QueryFreeExtentsRequest) (*QueryFreeExtentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Disk3Server = (*UnimplementedDisk3Server)(nil)

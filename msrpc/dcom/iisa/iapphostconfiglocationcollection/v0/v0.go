@@ -84,7 +84,7 @@ func (o *xxx_DefaultAppHostConfigLocationCollectionClient) Unknown() iunknown.Un
 }
 
 func (o *xxx_DefaultAppHostConfigLocationCollectionClient) GetCount(ctx context.Context, in *GetCountRequest, opts ...dcerpc.CallOption) (*GetCountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultAppHostConfigLocationCollectionClient) GetCount(ctx context.
 }
 
 func (o *xxx_DefaultAppHostConfigLocationCollectionClient) GetItem(ctx context.Context, in *GetItemRequest, opts ...dcerpc.CallOption) (*GetItemResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultAppHostConfigLocationCollectionClient) GetItem(ctx context.C
 }
 
 func (o *xxx_DefaultAppHostConfigLocationCollectionClient) AddLocation(ctx context.Context, in *AddLocationRequest, opts ...dcerpc.CallOption) (*AddLocationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -144,7 +144,7 @@ func (o *xxx_DefaultAppHostConfigLocationCollectionClient) AddLocation(ctx conte
 }
 
 func (o *xxx_DefaultAppHostConfigLocationCollectionClient) DeleteLocation(ctx context.Context, in *DeleteLocationRequest, opts ...dcerpc.CallOption) (*DeleteLocationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -341,13 +341,15 @@ type GetCountRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetCountRequest) xxx_ToOp(ctx context.Context) *xxx_GetCountOperation {
+func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperation) *xxx_GetCountOperation {
+	if op == nil {
+		op = &xxx_GetCountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCountOperation{}
+		return op
 	}
-	return &xxx_GetCountOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetCountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCountOperation) {
@@ -357,7 +359,7 @@ func (o *GetCountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCountOperat
 	o.This = op.This
 }
 func (o *GetCountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCountOperation{}
@@ -377,15 +379,17 @@ type GetCountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCountResponse) xxx_ToOp(ctx context.Context) *xxx_GetCountOperation {
+func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperation) *xxx_GetCountOperation {
+	if op == nil {
+		op = &xxx_GetCountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCountOperation{}
+		return op
 	}
-	return &xxx_GetCountOperation{
-		That:   o.That,
-		Count:  o.Count,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Count = op.Count
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCountOperation) {
@@ -397,7 +401,7 @@ func (o *GetCountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCountOpera
 	o.Return = op.Return
 }
 func (o *GetCountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCountOperation{}
@@ -607,14 +611,16 @@ type GetItemRequest struct {
 	VarIndex *oaut.Variant  `idl:"name:varIndex" json:"var_index"`
 }
 
-func (o *GetItemRequest) xxx_ToOp(ctx context.Context) *xxx_GetItemOperation {
+func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation) *xxx_GetItemOperation {
+	if op == nil {
+		op = &xxx_GetItemOperation{}
+	}
 	if o == nil {
-		return &xxx_GetItemOperation{}
+		return op
 	}
-	return &xxx_GetItemOperation{
-		This:     o.This,
-		VarIndex: o.VarIndex,
-	}
+	o.This = op.This
+	o.VarIndex = op.VarIndex
+	return op
 }
 
 func (o *GetItemRequest) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperation) {
@@ -625,7 +631,7 @@ func (o *GetItemRequest) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperatio
 	o.VarIndex = op.VarIndex
 }
 func (o *GetItemRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetItemOperation{}
@@ -645,15 +651,17 @@ type GetItemResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetItemResponse) xxx_ToOp(ctx context.Context) *xxx_GetItemOperation {
+func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation) *xxx_GetItemOperation {
+	if op == nil {
+		op = &xxx_GetItemOperation{}
+	}
 	if o == nil {
-		return &xxx_GetItemOperation{}
+		return op
 	}
-	return &xxx_GetItemOperation{
-		That:     o.That,
-		Location: o.Location,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.Location = op.Location
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetItemResponse) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperation) {
@@ -665,7 +673,7 @@ func (o *GetItemResponse) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperati
 	o.Return = op.Return
 }
 func (o *GetItemResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetItemResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetItemOperation{}
@@ -896,14 +904,16 @@ type AddLocationRequest struct {
 	LocationPath *oaut.String   `idl:"name:bstrLocationPath" json:"location_path"`
 }
 
-func (o *AddLocationRequest) xxx_ToOp(ctx context.Context) *xxx_AddLocationOperation {
+func (o *AddLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_AddLocationOperation) *xxx_AddLocationOperation {
+	if op == nil {
+		op = &xxx_AddLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_AddLocationOperation{}
+		return op
 	}
-	return &xxx_AddLocationOperation{
-		This:         o.This,
-		LocationPath: o.LocationPath,
-	}
+	o.This = op.This
+	o.LocationPath = op.LocationPath
+	return op
 }
 
 func (o *AddLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_AddLocationOperation) {
@@ -914,7 +924,7 @@ func (o *AddLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_AddLocation
 	o.LocationPath = op.LocationPath
 }
 func (o *AddLocationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddLocationOperation{}
@@ -934,15 +944,17 @@ type AddLocationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddLocationResponse) xxx_ToOp(ctx context.Context) *xxx_AddLocationOperation {
+func (o *AddLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_AddLocationOperation) *xxx_AddLocationOperation {
+	if op == nil {
+		op = &xxx_AddLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_AddLocationOperation{}
+		return op
 	}
-	return &xxx_AddLocationOperation{
-		That:        o.That,
-		NewLocation: o.NewLocation,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.NewLocation = op.NewLocation
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_AddLocationOperation) {
@@ -954,7 +966,7 @@ func (o *AddLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_AddLocatio
 	o.Return = op.Return
 }
 func (o *AddLocationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddLocationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddLocationOperation{}
@@ -1119,14 +1131,16 @@ type DeleteLocationRequest struct {
 	Index *oaut.Variant  `idl:"name:cIndex" json:"index"`
 }
 
-func (o *DeleteLocationRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteLocationOperation {
+func (o *DeleteLocationRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteLocationOperation) *xxx_DeleteLocationOperation {
+	if op == nil {
+		op = &xxx_DeleteLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteLocationOperation{}
+		return op
 	}
-	return &xxx_DeleteLocationOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *DeleteLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteLocationOperation) {
@@ -1137,7 +1151,7 @@ func (o *DeleteLocationRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteLo
 	o.Index = op.Index
 }
 func (o *DeleteLocationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteLocationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteLocationOperation{}
@@ -1156,14 +1170,16 @@ type DeleteLocationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteLocationResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteLocationOperation {
+func (o *DeleteLocationResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteLocationOperation) *xxx_DeleteLocationOperation {
+	if op == nil {
+		op = &xxx_DeleteLocationOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteLocationOperation{}
+		return op
 	}
-	return &xxx_DeleteLocationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteLocationOperation) {
@@ -1174,7 +1190,7 @@ func (o *DeleteLocationResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteL
 	o.Return = op.Return
 }
 func (o *DeleteLocationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteLocationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteLocationOperation{}

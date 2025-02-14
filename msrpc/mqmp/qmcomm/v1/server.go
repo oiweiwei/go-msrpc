@@ -559,154 +559,194 @@ func QmcommServerHandle(ctx context.Context, o QmcommServer, opNum int, r ndr.Re
 		// Opnum0NotUsedOnWire
 		return nil, nil
 	case 1: // R_QMGetRemoteQueueName
-		in := &GetRemoteQueueNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRemoteQueueNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRemoteQueueName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRemoteQueueNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRemoteQueueName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // R_QMOpenRemoteQueue
-		in := &OpenRemoteQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenRemoteQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenRemoteQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenRemoteQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenRemoteQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // R_QMCloseRemoteQueueContext
-		in := &CloseRemoteQueueContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseRemoteQueueContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseRemoteQueueContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseRemoteQueueContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseRemoteQueueContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // R_QMCreateRemoteCursor
-		in := &CreateRemoteCursorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateRemoteCursorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateRemoteCursor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRemoteCursorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateRemoteCursor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
 	case 6: // R_QMCreateObjectInternal
-		in := &CreateObjectInternalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateObjectInternalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateObjectInternal(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateObjectInternalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateObjectInternal(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // R_QMSetObjectSecurityInternal
-		in := &SetObjectSecurityInternalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetObjectSecurityInternalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetObjectSecurityInternal(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetObjectSecurityInternalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetObjectSecurityInternal(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // R_QMGetObjectSecurityInternal
-		in := &GetObjectSecurityInternalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectSecurityInternalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectSecurityInternal(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectSecurityInternalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectSecurityInternal(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_QMDeleteObject
-		in := &DeleteObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_QMGetObjectProperties
-		in := &GetObjectPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // R_QMSetObjectProperties
-		in := &SetObjectPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetObjectPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetObjectProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetObjectPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetObjectProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_QMObjectPathToObjectFormat
-		in := &ObjectPathToObjectFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ObjectPathToObjectFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ObjectPathToObjectFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ObjectPathToObjectFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ObjectPathToObjectFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Opnum13NotUsedOnWire
 		// Opnum13NotUsedOnWire
 		return nil, nil
 	case 14: // R_QMGetTmWhereabouts
-		in := &GetTMWhereaboutsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTMWhereaboutsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTMWhereabouts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTMWhereaboutsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTMWhereabouts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // R_QMEnlistTransaction
-		in := &EnlistTransactionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnlistTransactionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnlistTransaction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnlistTransactionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnlistTransaction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // R_QMEnlistInternalTransaction
-		in := &EnlistInternalTransactionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnlistInternalTransactionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnlistInternalTransaction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnlistInternalTransactionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnlistInternalTransaction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // R_QMCommitTransaction
-		in := &CommitTransactionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitTransactionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CommitTransaction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitTransactionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CommitTransaction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // R_QMAbortTransaction
-		in := &AbortTransactionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AbortTransactionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AbortTransaction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AbortTransactionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AbortTransaction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // rpc_QMOpenQueueInternal
-		in := &OpenQueueInternalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenQueueInternalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenQueueInternal(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenQueueInternalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenQueueInternal(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // rpc_ACCloseHandle
-		in := &CloseHandleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseHandleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseHandle(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseHandleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseHandle(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Opnum21NotUsedOnWire
 		// Opnum21NotUsedOnWire
 		return nil, nil
 	case 22: // rpc_ACCloseCursor
-		in := &CloseCursorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseCursorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseCursor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseCursorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseCursor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // rpc_ACSetCursorProperties
-		in := &SetCursorPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCursorPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCursorProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCursorPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCursorProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // Opnum24NotUsedOnWire
 		// Opnum24NotUsedOnWire
 		return nil, nil
@@ -714,26 +754,32 @@ func QmcommServerHandle(ctx context.Context, o QmcommServer, opNum int, r ndr.Re
 		// Opnum25NotUsedOnWire
 		return nil, nil
 	case 26: // rpc_ACHandleToFormatName
-		in := &HandleToFormatNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_HandleToFormatNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.HandleToFormatName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &HandleToFormatNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.HandleToFormatName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // rpc_ACPurgeQueue
-		in := &PurgeQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PurgeQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PurgeQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PurgeQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PurgeQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // R_QMQueryQMRegistryInternal
-		in := &QueryQMRegistryInternalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryQMRegistryInternalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryQMRegistryInternal(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryQMRegistryInternalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryQMRegistryInternal(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Opnum29NotUsedOnWire
 		// Opnum29NotUsedOnWire
 		return nil, nil
@@ -741,12 +787,14 @@ func QmcommServerHandle(ctx context.Context, o QmcommServer, opNum int, r ndr.Re
 		// Opnum30NotUsedOnWire
 		return nil, nil
 	case 31: // R_QMGetRTQMServerPort
-		in := &GetRTQMServerPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRTQMServerPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRTQMServerPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRTQMServerPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRTQMServerPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // Opnum32NotUsedOnWire
 		// Opnum32NotUsedOnWire
 		return nil, nil
@@ -759,3 +807,82 @@ func QmcommServerHandle(ctx context.Context, o QmcommServer, opNum int, r ndr.Re
 	}
 	return nil, nil
 }
+
+// Unimplemented qmcomm
+type UnimplementedQmcommServer struct {
+}
+
+func (UnimplementedQmcommServer) GetRemoteQueueName(context.Context, *GetRemoteQueueNameRequest) (*GetRemoteQueueNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) OpenRemoteQueue(context.Context, *OpenRemoteQueueRequest) (*OpenRemoteQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) CloseRemoteQueueContext(context.Context, *CloseRemoteQueueContextRequest) (*CloseRemoteQueueContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) CreateRemoteCursor(context.Context, *CreateRemoteCursorRequest) (*CreateRemoteCursorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) CreateObjectInternal(context.Context, *CreateObjectInternalRequest) (*CreateObjectInternalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) SetObjectSecurityInternal(context.Context, *SetObjectSecurityInternalRequest) (*SetObjectSecurityInternalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) GetObjectSecurityInternal(context.Context, *GetObjectSecurityInternalRequest) (*GetObjectSecurityInternalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) GetObjectProperties(context.Context, *GetObjectPropertiesRequest) (*GetObjectPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) SetObjectProperties(context.Context, *SetObjectPropertiesRequest) (*SetObjectPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) ObjectPathToObjectFormat(context.Context, *ObjectPathToObjectFormatRequest) (*ObjectPathToObjectFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) GetTMWhereabouts(context.Context, *GetTMWhereaboutsRequest) (*GetTMWhereaboutsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) EnlistTransaction(context.Context, *EnlistTransactionRequest) (*EnlistTransactionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) EnlistInternalTransaction(context.Context, *EnlistInternalTransactionRequest) (*EnlistInternalTransactionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) CommitTransaction(context.Context, *CommitTransactionRequest) (*CommitTransactionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) AbortTransaction(context.Context, *AbortTransactionRequest) (*AbortTransactionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) OpenQueueInternal(context.Context, *OpenQueueInternalRequest) (*OpenQueueInternalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) CloseHandle(context.Context, *CloseHandleRequest) (*CloseHandleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) CloseCursor(context.Context, *CloseCursorRequest) (*CloseCursorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) SetCursorProperties(context.Context, *SetCursorPropertiesRequest) (*SetCursorPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) HandleToFormatName(context.Context, *HandleToFormatNameRequest) (*HandleToFormatNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) PurgeQueue(context.Context, *PurgeQueueRequest) (*PurgeQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) QueryQMRegistryInternal(context.Context, *QueryQMRegistryInternalRequest) (*QueryQMRegistryInternalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQmcommServer) GetRTQMServerPort(context.Context, *GetRTQMServerPortRequest) (*GetRTQMServerPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QmcommServer = (*UnimplementedQmcommServer)(nil)

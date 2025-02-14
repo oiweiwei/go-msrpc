@@ -1368,91 +1368,113 @@ func NewLsarpcServerHandle(o LsarpcServer) dcerpc.ServerHandle {
 func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // LsarClose
-		in := &CloseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Close(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Close(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // Opnum1NotUsedOnWire
 		// Opnum1NotUsedOnWire
 		return nil, nil
 	case 2: // LsarEnumeratePrivileges
-		in := &EnumeratePrivilegesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumeratePrivilegesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumeratePrivileges(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumeratePrivilegesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumeratePrivileges(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // LsarQuerySecurityObject
-		in := &QuerySecurityObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySecurityObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySecurityObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySecurityObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySecurityObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // LsarSetSecurityObject
-		in := &SetSecurityObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurityObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurityObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
 	case 6: // LsarOpenPolicy
-		in := &OpenPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // LsarQueryInformationPolicy
-		in := &QueryInformationPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // LsarSetInformationPolicy
-		in := &SetInformationPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Opnum9NotUsedOnWire
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	case 10: // LsarCreateAccount
-		in := &CreateAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // LsarEnumerateAccounts
-		in := &EnumerateAccountsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateAccountsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateAccounts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateAccountsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateAccounts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // LsarCreateTrustedDomain
-		in := &CreateTrustedDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateTrustedDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateTrustedDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateTrustedDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateTrustedDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // LsarEnumerateTrustedDomains
-		in := &EnumerateTrustedDomainsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateTrustedDomainsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateTrustedDomains(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateTrustedDomainsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateTrustedDomains(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Lsar_LSA_TM_14
 		// Lsar_LSA_TM_14
 		return nil, nil
@@ -1460,40 +1482,50 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Lsar_LSA_TM_15
 		return nil, nil
 	case 16: // LsarCreateSecret
-		in := &CreateSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // LsarOpenAccount
-		in := &OpenAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // LsarEnumeratePrivilegesAccount
-		in := &EnumeratePrivilegesAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumeratePrivilegesAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumeratePrivilegesAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumeratePrivilegesAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumeratePrivilegesAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // LsarAddPrivilegesToAccount
-		in := &AddPrivilegesToAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPrivilegesToAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPrivilegesToAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPrivilegesToAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPrivilegesToAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // LsarRemovePrivilegesFromAccount
-		in := &RemovePrivilegesFromAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemovePrivilegesFromAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemovePrivilegesFromAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemovePrivilegesFromAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemovePrivilegesFromAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Opnum21NotUsedOnWire
 		// Opnum21NotUsedOnWire
 		return nil, nil
@@ -1501,228 +1533,290 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Opnum22NotUsedOnWire
 		return nil, nil
 	case 23: // LsarGetSystemAccessAccount
-		in := &GetSystemAccessAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSystemAccessAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSystemAccessAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSystemAccessAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSystemAccessAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // LsarSetSystemAccessAccount
-		in := &SetSystemAccessAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSystemAccessAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSystemAccessAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSystemAccessAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSystemAccessAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // LsarOpenTrustedDomain
-		in := &OpenTrustedDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenTrustedDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenTrustedDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenTrustedDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenTrustedDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // LsarQueryInfoTrustedDomain
-		in := &QueryInfoTrustedDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInfoTrustedDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInfoTrustedDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInfoTrustedDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInfoTrustedDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // LsarSetInformationTrustedDomain
-		in := &SetInformationTrustedDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationTrustedDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationTrustedDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationTrustedDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationTrustedDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // LsarOpenSecret
-		in := &OpenSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // LsarSetSecret
-		in := &SetSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // LsarQuerySecret
-		in := &QuerySecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // LsarLookupPrivilegeValue
-		in := &LookupPrivilegeValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupPrivilegeValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupPrivilegeValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupPrivilegeValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupPrivilegeValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // LsarLookupPrivilegeName
-		in := &LookupPrivilegeNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupPrivilegeNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupPrivilegeName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupPrivilegeNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupPrivilegeName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // LsarLookupPrivilegeDisplayName
-		in := &LookupPrivilegeDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LookupPrivilegeDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LookupPrivilegeDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LookupPrivilegeDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LookupPrivilegeDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // LsarDeleteObject
-		in := &DeleteObjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteObjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteObject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteObjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteObject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // LsarEnumerateAccountsWithUserRight
-		in := &EnumerateAccountsWithUserRightRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateAccountsWithUserRightOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateAccountsWithUserRight(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateAccountsWithUserRightRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateAccountsWithUserRight(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // LsarEnumerateAccountRights
-		in := &EnumerateAccountRightsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateAccountRightsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateAccountRights(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateAccountRightsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateAccountRights(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // LsarAddAccountRights
-		in := &AddAccountRightsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddAccountRightsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddAccountRights(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddAccountRightsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddAccountRights(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // LsarRemoveAccountRights
-		in := &RemoveAccountRightsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveAccountRightsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveAccountRights(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveAccountRightsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveAccountRights(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // LsarQueryTrustedDomainInfo
-		in := &QueryTrustedDomainInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryTrustedDomainInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryTrustedDomainInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryTrustedDomainInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryTrustedDomainInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // LsarSetTrustedDomainInfo
-		in := &SetTrustedDomainInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTrustedDomainInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTrustedDomainInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTrustedDomainInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTrustedDomainInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // LsarDeleteTrustedDomain
-		in := &DeleteTrustedDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteTrustedDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteTrustedDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteTrustedDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteTrustedDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // LsarStorePrivateData
-		in := &StorePrivateDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StorePrivateDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StorePrivateData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StorePrivateDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StorePrivateData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // LsarRetrievePrivateData
-		in := &RetrievePrivateDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RetrievePrivateDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RetrievePrivateData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RetrievePrivateDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RetrievePrivateData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // LsarOpenPolicy2
-		in := &OpenPolicy2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPolicy2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPolicy2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPolicy2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPolicy2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // Lsar_LSA_TM_45
 		// Lsar_LSA_TM_45
 		return nil, nil
 	case 46: // LsarQueryInformationPolicy2
-		in := &QueryInformationPolicy2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInformationPolicy2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInformationPolicy2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInformationPolicy2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInformationPolicy2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // LsarSetInformationPolicy2
-		in := &SetInformationPolicy2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInformationPolicy2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInformationPolicy2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInformationPolicy2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInformationPolicy2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // LsarQueryTrustedDomainInfoByName
-		in := &QueryTrustedDomainInfoByNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryTrustedDomainInfoByNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryTrustedDomainInfoByName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryTrustedDomainInfoByNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryTrustedDomainInfoByName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // LsarSetTrustedDomainInfoByName
-		in := &SetTrustedDomainInfoByNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTrustedDomainInfoByNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTrustedDomainInfoByName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTrustedDomainInfoByNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTrustedDomainInfoByName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // LsarEnumerateTrustedDomainsEx
-		in := &EnumerateTrustedDomainsExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateTrustedDomainsExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateTrustedDomainsEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateTrustedDomainsExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateTrustedDomainsEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // LsarCreateTrustedDomainEx
-		in := &CreateTrustedDomainExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateTrustedDomainExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateTrustedDomainEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateTrustedDomainExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateTrustedDomainEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // Opnum52NotUsedOnWire
 		// Opnum52NotUsedOnWire
 		return nil, nil
 	case 53: // LsarQueryDomainInformationPolicy
-		in := &QueryDomainInformationPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryDomainInformationPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryDomainInformationPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryDomainInformationPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryDomainInformationPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // LsarSetDomainInformationPolicy
-		in := &SetDomainInformationPolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDomainInformationPolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDomainInformationPolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDomainInformationPolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDomainInformationPolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // LsarOpenTrustedDomainByName
-		in := &OpenTrustedDomainByNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenTrustedDomainByNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenTrustedDomainByName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenTrustedDomainByNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenTrustedDomainByName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // Opnum56NotUsedOnWire
 		// Opnum56NotUsedOnWire
 		return nil, nil
@@ -1733,12 +1827,14 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Lsar_LSA_TM_58
 		return nil, nil
 	case 59: // LsarCreateTrustedDomainEx2
-		in := &CreateTrustedDomainEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateTrustedDomainEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateTrustedDomainEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateTrustedDomainEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateTrustedDomainEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // Opnum60NotUsedOnWire
 		// Opnum60NotUsedOnWire
 		return nil, nil
@@ -1779,19 +1875,180 @@ func LsarpcServerHandle(ctx context.Context, o LsarpcServer, opNum int, r ndr.Re
 		// Opnum72NotUsedOnWire
 		return nil, nil
 	case 73: // LsarQueryForestTrustInformation
-		in := &QueryForestTrustInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryForestTrustInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryForestTrustInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryForestTrustInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryForestTrustInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 74: // LsarSetForestTrustInformation
-		in := &SetForestTrustInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetForestTrustInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetForestTrustInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetForestTrustInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetForestTrustInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented lsarpc
+type UnimplementedLsarpcServer struct {
+}
+
+func (UnimplementedLsarpcServer) Close(context.Context, *CloseRequest) (*CloseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumeratePrivileges(context.Context, *EnumeratePrivilegesRequest) (*EnumeratePrivilegesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QuerySecurityObject(context.Context, *QuerySecurityObjectRequest) (*QuerySecurityObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetSecurityObject(context.Context, *SetSecurityObjectRequest) (*SetSecurityObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenPolicy(context.Context, *OpenPolicyRequest) (*OpenPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryInformationPolicy(context.Context, *QueryInformationPolicyRequest) (*QueryInformationPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetInformationPolicy(context.Context, *SetInformationPolicyRequest) (*SetInformationPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateAccount(context.Context, *CreateAccountRequest) (*CreateAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumerateAccounts(context.Context, *EnumerateAccountsRequest) (*EnumerateAccountsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateTrustedDomain(context.Context, *CreateTrustedDomainRequest) (*CreateTrustedDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumerateTrustedDomains(context.Context, *EnumerateTrustedDomainsRequest) (*EnumerateTrustedDomainsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateSecret(context.Context, *CreateSecretRequest) (*CreateSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenAccount(context.Context, *OpenAccountRequest) (*OpenAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumeratePrivilegesAccount(context.Context, *EnumeratePrivilegesAccountRequest) (*EnumeratePrivilegesAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) AddPrivilegesToAccount(context.Context, *AddPrivilegesToAccountRequest) (*AddPrivilegesToAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) RemovePrivilegesFromAccount(context.Context, *RemovePrivilegesFromAccountRequest) (*RemovePrivilegesFromAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) GetSystemAccessAccount(context.Context, *GetSystemAccessAccountRequest) (*GetSystemAccessAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetSystemAccessAccount(context.Context, *SetSystemAccessAccountRequest) (*SetSystemAccessAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenTrustedDomain(context.Context, *OpenTrustedDomainRequest) (*OpenTrustedDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryInfoTrustedDomain(context.Context, *QueryInfoTrustedDomainRequest) (*QueryInfoTrustedDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetInformationTrustedDomain(context.Context, *SetInformationTrustedDomainRequest) (*SetInformationTrustedDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenSecret(context.Context, *OpenSecretRequest) (*OpenSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetSecret(context.Context, *SetSecretRequest) (*SetSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QuerySecret(context.Context, *QuerySecretRequest) (*QuerySecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupPrivilegeValue(context.Context, *LookupPrivilegeValueRequest) (*LookupPrivilegeValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupPrivilegeName(context.Context, *LookupPrivilegeNameRequest) (*LookupPrivilegeNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) LookupPrivilegeDisplayName(context.Context, *LookupPrivilegeDisplayNameRequest) (*LookupPrivilegeDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) DeleteObject(context.Context, *DeleteObjectRequest) (*DeleteObjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumerateAccountsWithUserRight(context.Context, *EnumerateAccountsWithUserRightRequest) (*EnumerateAccountsWithUserRightResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumerateAccountRights(context.Context, *EnumerateAccountRightsRequest) (*EnumerateAccountRightsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) AddAccountRights(context.Context, *AddAccountRightsRequest) (*AddAccountRightsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) RemoveAccountRights(context.Context, *RemoveAccountRightsRequest) (*RemoveAccountRightsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryTrustedDomainInfo(context.Context, *QueryTrustedDomainInfoRequest) (*QueryTrustedDomainInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetTrustedDomainInfo(context.Context, *SetTrustedDomainInfoRequest) (*SetTrustedDomainInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) DeleteTrustedDomain(context.Context, *DeleteTrustedDomainRequest) (*DeleteTrustedDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) StorePrivateData(context.Context, *StorePrivateDataRequest) (*StorePrivateDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) RetrievePrivateData(context.Context, *RetrievePrivateDataRequest) (*RetrievePrivateDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenPolicy2(context.Context, *OpenPolicy2Request) (*OpenPolicy2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryInformationPolicy2(context.Context, *QueryInformationPolicy2Request) (*QueryInformationPolicy2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetInformationPolicy2(context.Context, *SetInformationPolicy2Request) (*SetInformationPolicy2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryTrustedDomainInfoByName(context.Context, *QueryTrustedDomainInfoByNameRequest) (*QueryTrustedDomainInfoByNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetTrustedDomainInfoByName(context.Context, *SetTrustedDomainInfoByNameRequest) (*SetTrustedDomainInfoByNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) EnumerateTrustedDomainsEx(context.Context, *EnumerateTrustedDomainsExRequest) (*EnumerateTrustedDomainsExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateTrustedDomainEx(context.Context, *CreateTrustedDomainExRequest) (*CreateTrustedDomainExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryDomainInformationPolicy(context.Context, *QueryDomainInformationPolicyRequest) (*QueryDomainInformationPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetDomainInformationPolicy(context.Context, *SetDomainInformationPolicyRequest) (*SetDomainInformationPolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) OpenTrustedDomainByName(context.Context, *OpenTrustedDomainByNameRequest) (*OpenTrustedDomainByNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) CreateTrustedDomainEx2(context.Context, *CreateTrustedDomainEx2Request) (*CreateTrustedDomainEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) QueryForestTrustInformation(context.Context, *QueryForestTrustInformationRequest) (*QueryForestTrustInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLsarpcServer) SetForestTrustInformation(context.Context, *SetForestTrustInformationRequest) (*SetForestTrustInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LsarpcServer = (*UnimplementedLsarpcServer)(nil)

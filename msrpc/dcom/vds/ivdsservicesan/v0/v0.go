@@ -86,7 +86,7 @@ func (o *xxx_DefaultServiceSANClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServiceSANClient) GetSANPolicy(ctx context.Context, in *GetSANPolicyRequest, opts ...dcerpc.CallOption) (*GetSANPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -106,7 +106,7 @@ func (o *xxx_DefaultServiceSANClient) GetSANPolicy(ctx context.Context, in *GetS
 }
 
 func (o *xxx_DefaultServiceSANClient) SetSANPolicy(ctx context.Context, in *SetSANPolicyRequest, opts ...dcerpc.CallOption) (*SetSANPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -303,13 +303,15 @@ type GetSANPolicyRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSANPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_GetSANPolicyOperation {
+func (o *GetSANPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSANPolicyOperation) *xxx_GetSANPolicyOperation {
+	if op == nil {
+		op = &xxx_GetSANPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSANPolicyOperation{}
+		return op
 	}
-	return &xxx_GetSANPolicyOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSANPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSANPolicyOperation) {
@@ -319,7 +321,7 @@ func (o *GetSANPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSANPoli
 	o.This = op.This
 }
 func (o *GetSANPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSANPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSANPolicyOperation{}
@@ -342,15 +344,17 @@ type GetSANPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSANPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_GetSANPolicyOperation {
+func (o *GetSANPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSANPolicyOperation) *xxx_GetSANPolicyOperation {
+	if op == nil {
+		op = &xxx_GetSANPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSANPolicyOperation{}
+		return op
 	}
-	return &xxx_GetSANPolicyOperation{
-		That:      o.That,
-		SANPolicy: o.SANPolicy,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.SANPolicy = op.SANPolicy
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSANPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSANPolicyOperation) {
@@ -362,7 +366,7 @@ func (o *GetSANPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSANPol
 	o.Return = op.Return
 }
 func (o *GetSANPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSANPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSANPolicyOperation{}
@@ -512,14 +516,16 @@ type SetSANPolicyRequest struct {
 	SANPolicy vds.SANPolicy `idl:"name:SanPolicy" json:"san_policy"`
 }
 
-func (o *SetSANPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_SetSANPolicyOperation {
+func (o *SetSANPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSANPolicyOperation) *xxx_SetSANPolicyOperation {
+	if op == nil {
+		op = &xxx_SetSANPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSANPolicyOperation{}
+		return op
 	}
-	return &xxx_SetSANPolicyOperation{
-		This:      o.This,
-		SANPolicy: o.SANPolicy,
-	}
+	o.This = op.This
+	o.SANPolicy = op.SANPolicy
+	return op
 }
 
 func (o *SetSANPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSANPolicyOperation) {
@@ -530,7 +536,7 @@ func (o *SetSANPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSANPoli
 	o.SANPolicy = op.SANPolicy
 }
 func (o *SetSANPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSANPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSANPolicyOperation{}
@@ -549,14 +555,16 @@ type SetSANPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSANPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_SetSANPolicyOperation {
+func (o *SetSANPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSANPolicyOperation) *xxx_SetSANPolicyOperation {
+	if op == nil {
+		op = &xxx_SetSANPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSANPolicyOperation{}
+		return op
 	}
-	return &xxx_SetSANPolicyOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSANPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSANPolicyOperation) {
@@ -567,7 +575,7 @@ func (o *SetSANPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSANPol
 	o.Return = op.Return
 }
 func (o *SetSANPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSANPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSANPolicyOperation{}

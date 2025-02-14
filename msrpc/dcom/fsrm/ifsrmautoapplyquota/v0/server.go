@@ -58,26 +58,49 @@ func AutoApplyQuotaServerHandle(ctx context.Context, o AutoApplyQuotaServer, opN
 	}
 	switch opNum {
 	case 28: // ExcludeFolders
-		in := &GetExcludeFoldersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExcludeFoldersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExcludeFolders(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExcludeFoldersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExcludeFolders(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // ExcludeFolders
-		in := &SetExcludeFoldersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExcludeFoldersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExcludeFolders(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExcludeFoldersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExcludeFolders(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // CommitAndUpdateDerived
-		in := &CommitAndUpdateDerivedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitAndUpdateDerivedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CommitAndUpdateDerived(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitAndUpdateDerivedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CommitAndUpdateDerived(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmAutoApplyQuota
+type UnimplementedAutoApplyQuotaServer struct {
+	ifsrmquotaobject.UnimplementedQuotaObjectServer
+}
+
+func (UnimplementedAutoApplyQuotaServer) GetExcludeFolders(context.Context, *GetExcludeFoldersRequest) (*GetExcludeFoldersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAutoApplyQuotaServer) SetExcludeFolders(context.Context, *SetExcludeFoldersRequest) (*SetExcludeFoldersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAutoApplyQuotaServer) CommitAndUpdateDerived(context.Context, *CommitAndUpdateDerivedRequest) (*CommitAndUpdateDerivedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AutoApplyQuotaServer = (*UnimplementedAutoApplyQuotaServer)(nil)

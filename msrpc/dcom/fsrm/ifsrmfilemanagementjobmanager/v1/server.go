@@ -110,40 +110,73 @@ func FileManagementJobManagerServerHandle(ctx context.Context, o FileManagementJ
 	}
 	switch opNum {
 	case 7: // ActionVariables
-		in := &GetActionVariablesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionVariablesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionVariables(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionVariablesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionVariables(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ActionVariableDescriptions
-		in := &GetActionVariableDescriptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionVariableDescriptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionVariableDescriptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionVariableDescriptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionVariableDescriptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // EnumFileManagementJobs
-		in := &EnumFileManagementJobsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFileManagementJobsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumFileManagementJobs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFileManagementJobsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumFileManagementJobs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // CreateFileManagementJob
-		in := &CreateFileManagementJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFileManagementJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFileManagementJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFileManagementJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFileManagementJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // GetFileManagementJob
-		in := &GetFileManagementJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileManagementJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileManagementJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileManagementJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileManagementJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileManagementJobManager
+type UnimplementedFileManagementJobManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedFileManagementJobManagerServer) GetActionVariables(context.Context, *GetActionVariablesRequest) (*GetActionVariablesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobManagerServer) GetActionVariableDescriptions(context.Context, *GetActionVariableDescriptionsRequest) (*GetActionVariableDescriptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobManagerServer) EnumFileManagementJobs(context.Context, *EnumFileManagementJobsRequest) (*EnumFileManagementJobsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobManagerServer) CreateFileManagementJob(context.Context, *CreateFileManagementJobRequest) (*CreateFileManagementJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobManagerServer) GetFileManagementJob(context.Context, *GetFileManagementJobRequest) (*GetFileManagementJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileManagementJobManagerServer = (*UnimplementedFileManagementJobManagerServer)(nil)

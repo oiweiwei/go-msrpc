@@ -57,12 +57,25 @@ func ServiceInitializationServerHandle(ctx context.Context, o ServiceInitializat
 	}
 	switch opNum {
 	case 3: // Initialize
-		in := &InitializeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Initialize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Initialize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceInitialization
+type UnimplementedServiceInitializationServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceInitializationServer) Initialize(context.Context, *InitializeRequest) (*InitializeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceInitializationServer = (*UnimplementedServiceInitializationServer)(nil)

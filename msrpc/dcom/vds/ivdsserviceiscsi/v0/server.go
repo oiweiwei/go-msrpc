@@ -88,19 +88,23 @@ func ServiceISCSIServerHandle(ctx context.Context, o ServiceISCSIServer, opNum i
 	}
 	switch opNum {
 	case 3: // GetInitiatorName
-		in := &GetInitiatorNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInitiatorNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInitiatorName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInitiatorNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInitiatorName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // QueryInitiatorAdapters
-		in := &QueryInitiatorAdaptersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryInitiatorAdaptersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryInitiatorAdapters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryInitiatorAdaptersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryInitiatorAdapters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum05NotUsedOnWire
 		// Opnum05NotUsedOnWire
 		return nil, nil
@@ -111,15 +115,34 @@ func ServiceISCSIServerHandle(ctx context.Context, o ServiceISCSIServer, opNum i
 		// Opnum07NotUsedOnWire
 		return nil, nil
 	case 8: // SetInitiatorSharedSecret
-		in := &SetInitiatorSharedSecretRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInitiatorSharedSecretOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInitiatorSharedSecret(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInitiatorSharedSecretRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInitiatorSharedSecret(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Opnum09NotUsedOnWire
 		// Opnum09NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsServiceIscsi
+type UnimplementedServiceISCSIServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServiceISCSIServer) GetInitiatorName(context.Context, *GetInitiatorNameRequest) (*GetInitiatorNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceISCSIServer) QueryInitiatorAdapters(context.Context, *QueryInitiatorAdaptersRequest) (*QueryInitiatorAdaptersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServiceISCSIServer) SetInitiatorSharedSecret(context.Context, *SetInitiatorSharedSecretRequest) (*SetInitiatorSharedSecretResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServiceISCSIServer = (*UnimplementedServiceISCSIServer)(nil)

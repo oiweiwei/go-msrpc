@@ -96,7 +96,7 @@ func (o *xxx_DefaultCertRequestD2Client) CertRequestD() icertrequestd.CertReques
 }
 
 func (o *xxx_DefaultCertRequestD2Client) Request2(ctx context.Context, in *Request2Request, opts ...dcerpc.CallOption) (*Request2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -116,7 +116,7 @@ func (o *xxx_DefaultCertRequestD2Client) Request2(ctx context.Context, in *Reque
 }
 
 func (o *xxx_DefaultCertRequestD2Client) GetCAProperty(ctx context.Context, in *GetCAPropertyRequest, opts ...dcerpc.CallOption) (*GetCAPropertyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -136,7 +136,7 @@ func (o *xxx_DefaultCertRequestD2Client) GetCAProperty(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultCertRequestD2Client) GetCAPropertyInfo(ctx context.Context, in *GetCAPropertyInfoRequest, opts ...dcerpc.CallOption) (*GetCAPropertyInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -156,7 +156,7 @@ func (o *xxx_DefaultCertRequestD2Client) GetCAPropertyInfo(ctx context.Context, 
 }
 
 func (o *xxx_DefaultCertRequestD2Client) Ping2(ctx context.Context, in *Ping2Request, opts ...dcerpc.CallOption) (*Ping2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -646,19 +646,21 @@ type Request2Request struct {
 	Request *wcce.CertTransportBlob `idl:"name:pctbRequest;pointer:ref" json:"request"`
 }
 
-func (o *Request2Request) xxx_ToOp(ctx context.Context) *xxx_Request2Operation {
+func (o *Request2Request) xxx_ToOp(ctx context.Context, op *xxx_Request2Operation) *xxx_Request2Operation {
+	if op == nil {
+		op = &xxx_Request2Operation{}
+	}
 	if o == nil {
-		return &xxx_Request2Operation{}
+		return op
 	}
-	return &xxx_Request2Operation{
-		This:         o.This,
-		Authority:    o.Authority,
-		Flags:        o.Flags,
-		SerialNumber: o.SerialNumber,
-		RequestID:    o.RequestID,
-		Attributes:   o.Attributes,
-		Request:      o.Request,
-	}
+	o.This = op.This
+	o.Authority = op.Authority
+	o.Flags = op.Flags
+	o.SerialNumber = op.SerialNumber
+	o.RequestID = op.RequestID
+	o.Attributes = op.Attributes
+	o.Request = op.Request
+	return op
 }
 
 func (o *Request2Request) xxx_FromOp(ctx context.Context, op *xxx_Request2Operation) {
@@ -674,7 +676,7 @@ func (o *Request2Request) xxx_FromOp(ctx context.Context, op *xxx_Request2Operat
 	o.Request = op.Request
 }
 func (o *Request2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *Request2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_Request2Operation{}
@@ -708,19 +710,21 @@ type Request2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *Request2Response) xxx_ToOp(ctx context.Context) *xxx_Request2Operation {
+func (o *Request2Response) xxx_ToOp(ctx context.Context, op *xxx_Request2Operation) *xxx_Request2Operation {
+	if op == nil {
+		op = &xxx_Request2Operation{}
+	}
 	if o == nil {
-		return &xxx_Request2Operation{}
+		return op
 	}
-	return &xxx_Request2Operation{
-		That:               o.That,
-		RequestID:          o.RequestID,
-		Disposition:        o.Disposition,
-		FullResponse:       o.FullResponse,
-		EncodedCert:        o.EncodedCert,
-		DispositionMessage: o.DispositionMessage,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.RequestID = op.RequestID
+	o.Disposition = op.Disposition
+	o.FullResponse = op.FullResponse
+	o.EncodedCert = op.EncodedCert
+	o.DispositionMessage = op.DispositionMessage
+	o.Return = op.Return
+	return op
 }
 
 func (o *Request2Response) xxx_FromOp(ctx context.Context, op *xxx_Request2Operation) {
@@ -736,7 +740,7 @@ func (o *Request2Response) xxx_FromOp(ctx context.Context, op *xxx_Request2Opera
 	o.Return = op.Return
 }
 func (o *Request2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *Request2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_Request2Operation{}
@@ -1141,17 +1145,19 @@ type GetCAPropertyRequest struct {
 	PropertyType int32 `idl:"name:PropType" json:"property_type"`
 }
 
-func (o *GetCAPropertyRequest) xxx_ToOp(ctx context.Context) *xxx_GetCAPropertyOperation {
+func (o *GetCAPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCAPropertyOperation) *xxx_GetCAPropertyOperation {
+	if op == nil {
+		op = &xxx_GetCAPropertyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCAPropertyOperation{}
+		return op
 	}
-	return &xxx_GetCAPropertyOperation{
-		This:          o.This,
-		Authority:     o.Authority,
-		PropertyID:    o.PropertyID,
-		PropertyIndex: o.PropertyIndex,
-		PropertyType:  o.PropertyType,
-	}
+	o.This = op.This
+	o.Authority = op.Authority
+	o.PropertyID = op.PropertyID
+	o.PropertyIndex = op.PropertyIndex
+	o.PropertyType = op.PropertyType
+	return op
 }
 
 func (o *GetCAPropertyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCAPropertyOperation) {
@@ -1165,7 +1171,7 @@ func (o *GetCAPropertyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCAProp
 	o.PropertyType = op.PropertyType
 }
 func (o *GetCAPropertyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCAPropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCAPropertyOperation{}
@@ -1188,15 +1194,17 @@ type GetCAPropertyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCAPropertyResponse) xxx_ToOp(ctx context.Context) *xxx_GetCAPropertyOperation {
+func (o *GetCAPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCAPropertyOperation) *xxx_GetCAPropertyOperation {
+	if op == nil {
+		op = &xxx_GetCAPropertyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCAPropertyOperation{}
+		return op
 	}
-	return &xxx_GetCAPropertyOperation{
-		That:          o.That,
-		PropertyValue: o.PropertyValue,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.PropertyValue = op.PropertyValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCAPropertyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCAPropertyOperation) {
@@ -1208,7 +1216,7 @@ func (o *GetCAPropertyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCAPro
 	o.Return = op.Return
 }
 func (o *GetCAPropertyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCAPropertyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCAPropertyOperation{}
@@ -1428,14 +1436,16 @@ type GetCAPropertyInfoRequest struct {
 	Authority string `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 }
 
-func (o *GetCAPropertyInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetCAPropertyInfoOperation {
+func (o *GetCAPropertyInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCAPropertyInfoOperation) *xxx_GetCAPropertyInfoOperation {
+	if op == nil {
+		op = &xxx_GetCAPropertyInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCAPropertyInfoOperation{}
+		return op
 	}
-	return &xxx_GetCAPropertyInfoOperation{
-		This:      o.This,
-		Authority: o.Authority,
-	}
+	o.This = op.This
+	o.Authority = op.Authority
+	return op
 }
 
 func (o *GetCAPropertyInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCAPropertyInfoOperation) {
@@ -1446,7 +1456,7 @@ func (o *GetCAPropertyInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCA
 	o.Authority = op.Authority
 }
 func (o *GetCAPropertyInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCAPropertyInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCAPropertyInfoOperation{}
@@ -1471,16 +1481,18 @@ type GetCAPropertyInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCAPropertyInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetCAPropertyInfoOperation {
+func (o *GetCAPropertyInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCAPropertyInfoOperation) *xxx_GetCAPropertyInfoOperation {
+	if op == nil {
+		op = &xxx_GetCAPropertyInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCAPropertyInfoOperation{}
+		return op
 	}
-	return &xxx_GetCAPropertyInfoOperation{
-		That:          o.That,
-		PropertyCount: o.PropertyCount,
-		PropertyInfo:  o.PropertyInfo,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.PropertyCount = op.PropertyCount
+	o.PropertyInfo = op.PropertyInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCAPropertyInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCAPropertyInfoOperation) {
@@ -1493,7 +1505,7 @@ func (o *GetCAPropertyInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetC
 	o.Return = op.Return
 }
 func (o *GetCAPropertyInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCAPropertyInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCAPropertyInfoOperation{}
@@ -1670,14 +1682,16 @@ type Ping2Request struct {
 	Authority string `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 }
 
-func (o *Ping2Request) xxx_ToOp(ctx context.Context) *xxx_Ping2Operation {
+func (o *Ping2Request) xxx_ToOp(ctx context.Context, op *xxx_Ping2Operation) *xxx_Ping2Operation {
+	if op == nil {
+		op = &xxx_Ping2Operation{}
+	}
 	if o == nil {
-		return &xxx_Ping2Operation{}
+		return op
 	}
-	return &xxx_Ping2Operation{
-		This:      o.This,
-		Authority: o.Authority,
-	}
+	o.This = op.This
+	o.Authority = op.Authority
+	return op
 }
 
 func (o *Ping2Request) xxx_FromOp(ctx context.Context, op *xxx_Ping2Operation) {
@@ -1688,7 +1702,7 @@ func (o *Ping2Request) xxx_FromOp(ctx context.Context, op *xxx_Ping2Operation) {
 	o.Authority = op.Authority
 }
 func (o *Ping2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *Ping2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_Ping2Operation{}
@@ -1707,14 +1721,16 @@ type Ping2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *Ping2Response) xxx_ToOp(ctx context.Context) *xxx_Ping2Operation {
+func (o *Ping2Response) xxx_ToOp(ctx context.Context, op *xxx_Ping2Operation) *xxx_Ping2Operation {
+	if op == nil {
+		op = &xxx_Ping2Operation{}
+	}
 	if o == nil {
-		return &xxx_Ping2Operation{}
+		return op
 	}
-	return &xxx_Ping2Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *Ping2Response) xxx_FromOp(ctx context.Context, op *xxx_Ping2Operation) {
@@ -1725,7 +1741,7 @@ func (o *Ping2Response) xxx_FromOp(ctx context.Context, op *xxx_Ping2Operation) 
 	o.Return = op.Return
 }
 func (o *Ping2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *Ping2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_Ping2Operation{}

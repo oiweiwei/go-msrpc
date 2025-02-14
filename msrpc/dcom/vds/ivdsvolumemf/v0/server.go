@@ -133,75 +133,133 @@ func VolumeMFServerHandle(ctx context.Context, o VolumeMFServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // GetFileSystemProperties
-		in := &GetFileSystemPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileSystemPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileSystemProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileSystemPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileSystemProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Format
-		in := &FormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Format(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Format(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AddAccessPath
-		in := &AddAccessPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddAccessPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddAccessPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddAccessPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddAccessPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // QueryAccessPaths
-		in := &QueryAccessPathsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryAccessPathsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryAccessPaths(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryAccessPathsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryAccessPaths(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // QueryReparsePoints
-		in := &QueryReparsePointsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryReparsePointsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryReparsePoints(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryReparsePointsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryReparsePoints(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // DeleteAccessPath
-		in := &DeleteAccessPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteAccessPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteAccessPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteAccessPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteAccessPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Mount
-		in := &MountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Mount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Mount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Dismount
-		in := &DismountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DismountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Dismount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DismountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Dismount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // SetFileSystemFlags
-		in := &SetFileSystemFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileSystemFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileSystemFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileSystemFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileSystemFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // ClearFileSystemFlags
-		in := &ClearFileSystemFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearFileSystemFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearFileSystemFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearFileSystemFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearFileSystemFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolumeMF
+type UnimplementedVolumeMFServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeMFServer) GetFileSystemProperties(context.Context, *GetFileSystemPropertiesRequest) (*GetFileSystemPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) Format(context.Context, *FormatRequest) (*FormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) AddAccessPath(context.Context, *AddAccessPathRequest) (*AddAccessPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) QueryAccessPaths(context.Context, *QueryAccessPathsRequest) (*QueryAccessPathsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) QueryReparsePoints(context.Context, *QueryReparsePointsRequest) (*QueryReparsePointsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) DeleteAccessPath(context.Context, *DeleteAccessPathRequest) (*DeleteAccessPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) Mount(context.Context, *MountRequest) (*MountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) Dismount(context.Context, *DismountRequest) (*DismountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) SetFileSystemFlags(context.Context, *SetFileSystemFlagsRequest) (*SetFileSystemFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMFServer) ClearFileSystemFlags(context.Context, *ClearFileSystemFlagsRequest) (*ClearFileSystemFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeMFServer = (*UnimplementedVolumeMFServer)(nil)

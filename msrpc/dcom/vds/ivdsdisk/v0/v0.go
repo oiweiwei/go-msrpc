@@ -102,7 +102,7 @@ func (o *xxx_DefaultDiskClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDiskClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -122,7 +122,7 @@ func (o *xxx_DefaultDiskClient) GetProperties(ctx context.Context, in *GetProper
 }
 
 func (o *xxx_DefaultDiskClient) GetPack(ctx context.Context, in *GetPackRequest, opts ...dcerpc.CallOption) (*GetPackResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -142,7 +142,7 @@ func (o *xxx_DefaultDiskClient) GetPack(ctx context.Context, in *GetPackRequest,
 }
 
 func (o *xxx_DefaultDiskClient) GetIdentificationData(ctx context.Context, in *GetIdentificationDataRequest, opts ...dcerpc.CallOption) (*GetIdentificationDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -162,7 +162,7 @@ func (o *xxx_DefaultDiskClient) GetIdentificationData(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultDiskClient) QueryExtents(ctx context.Context, in *QueryExtentsRequest, opts ...dcerpc.CallOption) (*QueryExtentsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -182,7 +182,7 @@ func (o *xxx_DefaultDiskClient) QueryExtents(ctx context.Context, in *QueryExten
 }
 
 func (o *xxx_DefaultDiskClient) ConvertStyle(ctx context.Context, in *ConvertStyleRequest, opts ...dcerpc.CallOption) (*ConvertStyleResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -202,7 +202,7 @@ func (o *xxx_DefaultDiskClient) ConvertStyle(ctx context.Context, in *ConvertSty
 }
 
 func (o *xxx_DefaultDiskClient) SetFlags(ctx context.Context, in *SetFlagsRequest, opts ...dcerpc.CallOption) (*SetFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -222,7 +222,7 @@ func (o *xxx_DefaultDiskClient) SetFlags(ctx context.Context, in *SetFlagsReques
 }
 
 func (o *xxx_DefaultDiskClient) ClearFlags(ctx context.Context, in *ClearFlagsRequest, opts ...dcerpc.CallOption) (*ClearFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -434,13 +434,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -450,7 +452,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -470,15 +472,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:           o.That,
-		DiskProperties: o.DiskProperties,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.DiskProperties = op.DiskProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -490,7 +494,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -671,13 +675,15 @@ type GetPackRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPackRequest) xxx_ToOp(ctx context.Context) *xxx_GetPackOperation {
+func (o *GetPackRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation) *xxx_GetPackOperation {
+	if op == nil {
+		op = &xxx_GetPackOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPackOperation{}
+		return op
 	}
-	return &xxx_GetPackOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPackRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperation) {
@@ -687,7 +693,7 @@ func (o *GetPackRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperatio
 	o.This = op.This
 }
 func (o *GetPackRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPackOperation{}
@@ -707,15 +713,17 @@ type GetPackResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPackResponse) xxx_ToOp(ctx context.Context) *xxx_GetPackOperation {
+func (o *GetPackResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation) *xxx_GetPackOperation {
+	if op == nil {
+		op = &xxx_GetPackOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPackOperation{}
+		return op
 	}
-	return &xxx_GetPackOperation{
-		That:   o.That,
-		Pack:   o.Pack,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Pack = op.Pack
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPackResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperation) {
@@ -727,7 +735,7 @@ func (o *GetPackResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperati
 	o.Return = op.Return
 }
 func (o *GetPackResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPackResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPackOperation{}
@@ -891,13 +899,15 @@ type GetIdentificationDataRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIdentificationDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetIdentificationDataOperation {
+func (o *GetIdentificationDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIdentificationDataOperation) *xxx_GetIdentificationDataOperation {
+	if op == nil {
+		op = &xxx_GetIdentificationDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIdentificationDataOperation{}
+		return op
 	}
-	return &xxx_GetIdentificationDataOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetIdentificationDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIdentificationDataOperation) {
@@ -907,7 +917,7 @@ func (o *GetIdentificationDataRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetIdentificationDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIdentificationDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIdentificationDataOperation{}
@@ -929,15 +939,17 @@ type GetIdentificationDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIdentificationDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetIdentificationDataOperation {
+func (o *GetIdentificationDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIdentificationDataOperation) *xxx_GetIdentificationDataOperation {
+	if op == nil {
+		op = &xxx_GetIdentificationDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIdentificationDataOperation{}
+		return op
 	}
-	return &xxx_GetIdentificationDataOperation{
-		That:    o.That,
-		LUNInfo: o.LUNInfo,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.LUNInfo = op.LUNInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetIdentificationDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIdentificationDataOperation) {
@@ -949,7 +961,7 @@ func (o *GetIdentificationDataResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetIdentificationDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIdentificationDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIdentificationDataOperation{}
@@ -1179,13 +1191,15 @@ type QueryExtentsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryExtentsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryExtentsOperation {
+func (o *QueryExtentsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryExtentsOperation) *xxx_QueryExtentsOperation {
+	if op == nil {
+		op = &xxx_QueryExtentsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryExtentsOperation{}
+		return op
 	}
-	return &xxx_QueryExtentsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryExtentsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryExtentsOperation) {
@@ -1195,7 +1209,7 @@ func (o *QueryExtentsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryExten
 	o.This = op.This
 }
 func (o *QueryExtentsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryExtentsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryExtentsOperation{}
@@ -1216,16 +1230,18 @@ type QueryExtentsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryExtentsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryExtentsOperation {
+func (o *QueryExtentsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryExtentsOperation) *xxx_QueryExtentsOperation {
+	if op == nil {
+		op = &xxx_QueryExtentsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryExtentsOperation{}
+		return op
 	}
-	return &xxx_QueryExtentsOperation{
-		That:            o.That,
-		ExtentArray:     o.ExtentArray,
-		NumberOfExtents: o.NumberOfExtents,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.ExtentArray = op.ExtentArray
+	o.NumberOfExtents = op.NumberOfExtents
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryExtentsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryExtentsOperation) {
@@ -1238,7 +1254,7 @@ func (o *QueryExtentsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryExte
 	o.Return = op.Return
 }
 func (o *QueryExtentsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryExtentsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryExtentsOperation{}
@@ -1388,14 +1404,16 @@ type ConvertStyleRequest struct {
 	NewStyle vds.PartitionStyle `idl:"name:NewStyle" json:"new_style"`
 }
 
-func (o *ConvertStyleRequest) xxx_ToOp(ctx context.Context) *xxx_ConvertStyleOperation {
+func (o *ConvertStyleRequest) xxx_ToOp(ctx context.Context, op *xxx_ConvertStyleOperation) *xxx_ConvertStyleOperation {
+	if op == nil {
+		op = &xxx_ConvertStyleOperation{}
+	}
 	if o == nil {
-		return &xxx_ConvertStyleOperation{}
+		return op
 	}
-	return &xxx_ConvertStyleOperation{
-		This:     o.This,
-		NewStyle: o.NewStyle,
-	}
+	o.This = op.This
+	o.NewStyle = op.NewStyle
+	return op
 }
 
 func (o *ConvertStyleRequest) xxx_FromOp(ctx context.Context, op *xxx_ConvertStyleOperation) {
@@ -1406,7 +1424,7 @@ func (o *ConvertStyleRequest) xxx_FromOp(ctx context.Context, op *xxx_ConvertSty
 	o.NewStyle = op.NewStyle
 }
 func (o *ConvertStyleRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConvertStyleRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConvertStyleOperation{}
@@ -1425,14 +1443,16 @@ type ConvertStyleResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConvertStyleResponse) xxx_ToOp(ctx context.Context) *xxx_ConvertStyleOperation {
+func (o *ConvertStyleResponse) xxx_ToOp(ctx context.Context, op *xxx_ConvertStyleOperation) *xxx_ConvertStyleOperation {
+	if op == nil {
+		op = &xxx_ConvertStyleOperation{}
+	}
 	if o == nil {
-		return &xxx_ConvertStyleOperation{}
+		return op
 	}
-	return &xxx_ConvertStyleOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConvertStyleResponse) xxx_FromOp(ctx context.Context, op *xxx_ConvertStyleOperation) {
@@ -1443,7 +1463,7 @@ func (o *ConvertStyleResponse) xxx_FromOp(ctx context.Context, op *xxx_ConvertSt
 	o.Return = op.Return
 }
 func (o *ConvertStyleResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConvertStyleResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConvertStyleOperation{}
@@ -1591,14 +1611,16 @@ type SetFlagsRequest struct {
 	Flags uint32         `idl:"name:ulFlags" json:"flags"`
 }
 
-func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_SetFlagsOperation {
+func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperation) *xxx_SetFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFlagsOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *SetFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOperation) {
@@ -1609,7 +1631,7 @@ func (o *SetFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOperat
 	o.Flags = op.Flags
 }
 func (o *SetFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFlagsOperation{}
@@ -1628,14 +1650,16 @@ type SetFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_SetFlagsOperation {
+func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperation) *xxx_SetFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOperation) {
@@ -1646,7 +1670,7 @@ func (o *SetFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOpera
 	o.Return = op.Return
 }
 func (o *SetFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFlagsOperation{}
@@ -1794,14 +1818,16 @@ type ClearFlagsRequest struct {
 	Flags uint32         `idl:"name:ulFlags" json:"flags"`
 }
 
-func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_ClearFlagsOperation {
+func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOperation) *xxx_ClearFlagsOperation {
+	if op == nil {
+		op = &xxx_ClearFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearFlagsOperation{}
+		return op
 	}
-	return &xxx_ClearFlagsOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ClearFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsOperation) {
@@ -1812,7 +1838,7 @@ func (o *ClearFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsOp
 	o.Flags = op.Flags
 }
 func (o *ClearFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearFlagsOperation{}
@@ -1831,14 +1857,16 @@ type ClearFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_ClearFlagsOperation {
+func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOperation) *xxx_ClearFlagsOperation {
+	if op == nil {
+		op = &xxx_ClearFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearFlagsOperation{}
+		return op
 	}
-	return &xxx_ClearFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsOperation) {
@@ -1849,7 +1877,7 @@ func (o *ClearFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsO
 	o.Return = op.Return
 }
 func (o *ClearFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearFlagsOperation{}

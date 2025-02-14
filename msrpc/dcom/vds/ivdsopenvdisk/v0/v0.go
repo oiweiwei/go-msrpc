@@ -117,7 +117,7 @@ func (o *xxx_DefaultOpenVDiskClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultOpenVDiskClient) Attach(ctx context.Context, in *AttachRequest, opts ...dcerpc.CallOption) (*AttachResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultOpenVDiskClient) Attach(ctx context.Context, in *AttachReque
 }
 
 func (o *xxx_DefaultOpenVDiskClient) Detach(ctx context.Context, in *DetachRequest, opts ...dcerpc.CallOption) (*DetachResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -157,7 +157,7 @@ func (o *xxx_DefaultOpenVDiskClient) Detach(ctx context.Context, in *DetachReque
 }
 
 func (o *xxx_DefaultOpenVDiskClient) DetachAndDelete(ctx context.Context, in *DetachAndDeleteRequest, opts ...dcerpc.CallOption) (*DetachAndDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -177,7 +177,7 @@ func (o *xxx_DefaultOpenVDiskClient) DetachAndDelete(ctx context.Context, in *De
 }
 
 func (o *xxx_DefaultOpenVDiskClient) Compact(ctx context.Context, in *CompactRequest, opts ...dcerpc.CallOption) (*CompactResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -197,7 +197,7 @@ func (o *xxx_DefaultOpenVDiskClient) Compact(ctx context.Context, in *CompactReq
 }
 
 func (o *xxx_DefaultOpenVDiskClient) Merge(ctx context.Context, in *MergeRequest, opts ...dcerpc.CallOption) (*MergeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -217,7 +217,7 @@ func (o *xxx_DefaultOpenVDiskClient) Merge(ctx context.Context, in *MergeRequest
 }
 
 func (o *xxx_DefaultOpenVDiskClient) Expand(ctx context.Context, in *ExpandRequest, opts ...dcerpc.CallOption) (*ExpandResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -543,17 +543,19 @@ type AttachRequest struct {
 	TimeoutInMs uint32 `idl:"name:TimeoutInMs" json:"timeout_in_ms"`
 }
 
-func (o *AttachRequest) xxx_ToOp(ctx context.Context) *xxx_AttachOperation {
+func (o *AttachRequest) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) *xxx_AttachOperation {
+	if op == nil {
+		op = &xxx_AttachOperation{}
+	}
 	if o == nil {
-		return &xxx_AttachOperation{}
+		return op
 	}
-	return &xxx_AttachOperation{
-		This:                     o.This,
-		StringSecurityDescriptor: o.StringSecurityDescriptor,
-		Flags:                    o.Flags,
-		ProviderSpecificFlags:    o.ProviderSpecificFlags,
-		TimeoutInMs:              o.TimeoutInMs,
-	}
+	o.This = op.This
+	o.StringSecurityDescriptor = op.StringSecurityDescriptor
+	o.Flags = op.Flags
+	o.ProviderSpecificFlags = op.ProviderSpecificFlags
+	o.TimeoutInMs = op.TimeoutInMs
+	return op
 }
 
 func (o *AttachRequest) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation) {
@@ -567,7 +569,7 @@ func (o *AttachRequest) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation)
 	o.TimeoutInMs = op.TimeoutInMs
 }
 func (o *AttachRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AttachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AttachOperation{}
@@ -590,15 +592,17 @@ type AttachResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AttachResponse) xxx_ToOp(ctx context.Context) *xxx_AttachOperation {
+func (o *AttachResponse) xxx_ToOp(ctx context.Context, op *xxx_AttachOperation) *xxx_AttachOperation {
+	if op == nil {
+		op = &xxx_AttachOperation{}
+	}
 	if o == nil {
-		return &xxx_AttachOperation{}
+		return op
 	}
-	return &xxx_AttachOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *AttachResponse) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation) {
@@ -610,7 +614,7 @@ func (o *AttachResponse) xxx_FromOp(ctx context.Context, op *xxx_AttachOperation
 	o.Return = op.Return
 }
 func (o *AttachResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AttachResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AttachOperation{}
@@ -775,15 +779,17 @@ type DetachRequest struct {
 	ProviderSpecificFlags uint32 `idl:"name:ProviderSpecificFlags" json:"provider_specific_flags"`
 }
 
-func (o *DetachRequest) xxx_ToOp(ctx context.Context) *xxx_DetachOperation {
+func (o *DetachRequest) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) *xxx_DetachOperation {
+	if op == nil {
+		op = &xxx_DetachOperation{}
+	}
 	if o == nil {
-		return &xxx_DetachOperation{}
+		return op
 	}
-	return &xxx_DetachOperation{
-		This:                  o.This,
-		Flags:                 o.Flags,
-		ProviderSpecificFlags: o.ProviderSpecificFlags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.ProviderSpecificFlags = op.ProviderSpecificFlags
+	return op
 }
 
 func (o *DetachRequest) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation) {
@@ -795,7 +801,7 @@ func (o *DetachRequest) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation)
 	o.ProviderSpecificFlags = op.ProviderSpecificFlags
 }
 func (o *DetachRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DetachRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DetachOperation{}
@@ -814,14 +820,16 @@ type DetachResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DetachResponse) xxx_ToOp(ctx context.Context) *xxx_DetachOperation {
+func (o *DetachResponse) xxx_ToOp(ctx context.Context, op *xxx_DetachOperation) *xxx_DetachOperation {
+	if op == nil {
+		op = &xxx_DetachOperation{}
+	}
 	if o == nil {
-		return &xxx_DetachOperation{}
+		return op
 	}
-	return &xxx_DetachOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DetachResponse) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation) {
@@ -832,7 +840,7 @@ func (o *DetachResponse) xxx_FromOp(ctx context.Context, op *xxx_DetachOperation
 	o.Return = op.Return
 }
 func (o *DetachResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DetachResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DetachOperation{}
@@ -997,15 +1005,17 @@ type DetachAndDeleteRequest struct {
 	ProviderSpecificFlags uint32 `idl:"name:ProviderSpecificFlags" json:"provider_specific_flags"`
 }
 
-func (o *DetachAndDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_DetachAndDeleteOperation {
+func (o *DetachAndDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DetachAndDeleteOperation) *xxx_DetachAndDeleteOperation {
+	if op == nil {
+		op = &xxx_DetachAndDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DetachAndDeleteOperation{}
+		return op
 	}
-	return &xxx_DetachAndDeleteOperation{
-		This:                  o.This,
-		Flags:                 o.Flags,
-		ProviderSpecificFlags: o.ProviderSpecificFlags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.ProviderSpecificFlags = op.ProviderSpecificFlags
+	return op
 }
 
 func (o *DetachAndDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DetachAndDeleteOperation) {
@@ -1017,7 +1027,7 @@ func (o *DetachAndDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DetachA
 	o.ProviderSpecificFlags = op.ProviderSpecificFlags
 }
 func (o *DetachAndDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DetachAndDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DetachAndDeleteOperation{}
@@ -1036,14 +1046,16 @@ type DetachAndDeleteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DetachAndDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_DetachAndDeleteOperation {
+func (o *DetachAndDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DetachAndDeleteOperation) *xxx_DetachAndDeleteOperation {
+	if op == nil {
+		op = &xxx_DetachAndDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DetachAndDeleteOperation{}
+		return op
 	}
-	return &xxx_DetachAndDeleteOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DetachAndDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DetachAndDeleteOperation) {
@@ -1054,7 +1066,7 @@ func (o *DetachAndDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_Detach
 	o.Return = op.Return
 }
 func (o *DetachAndDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DetachAndDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DetachAndDeleteOperation{}
@@ -1267,14 +1279,16 @@ type CompactRequest struct {
 	Flags vds.CompactVirtualDiskFlag `idl:"name:Flags" json:"flags"`
 }
 
-func (o *CompactRequest) xxx_ToOp(ctx context.Context) *xxx_CompactOperation {
+func (o *CompactRequest) xxx_ToOp(ctx context.Context, op *xxx_CompactOperation) *xxx_CompactOperation {
+	if op == nil {
+		op = &xxx_CompactOperation{}
+	}
 	if o == nil {
-		return &xxx_CompactOperation{}
+		return op
 	}
-	return &xxx_CompactOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *CompactRequest) xxx_FromOp(ctx context.Context, op *xxx_CompactOperation) {
@@ -1285,7 +1299,7 @@ func (o *CompactRequest) xxx_FromOp(ctx context.Context, op *xxx_CompactOperatio
 	o.Flags = op.Flags
 }
 func (o *CompactRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CompactRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CompactOperation{}
@@ -1308,15 +1322,17 @@ type CompactResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CompactResponse) xxx_ToOp(ctx context.Context) *xxx_CompactOperation {
+func (o *CompactResponse) xxx_ToOp(ctx context.Context, op *xxx_CompactOperation) *xxx_CompactOperation {
+	if op == nil {
+		op = &xxx_CompactOperation{}
+	}
 	if o == nil {
-		return &xxx_CompactOperation{}
+		return op
 	}
-	return &xxx_CompactOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *CompactResponse) xxx_FromOp(ctx context.Context, op *xxx_CompactOperation) {
@@ -1328,7 +1344,7 @@ func (o *CompactResponse) xxx_FromOp(ctx context.Context, op *xxx_CompactOperati
 	o.Return = op.Return
 }
 func (o *CompactResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CompactResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CompactOperation{}
@@ -1546,15 +1562,17 @@ type MergeRequest struct {
 	MergeDepth uint32 `idl:"name:MergeDepth" json:"merge_depth"`
 }
 
-func (o *MergeRequest) xxx_ToOp(ctx context.Context) *xxx_MergeOperation {
+func (o *MergeRequest) xxx_ToOp(ctx context.Context, op *xxx_MergeOperation) *xxx_MergeOperation {
+	if op == nil {
+		op = &xxx_MergeOperation{}
+	}
 	if o == nil {
-		return &xxx_MergeOperation{}
+		return op
 	}
-	return &xxx_MergeOperation{
-		This:       o.This,
-		Flags:      o.Flags,
-		MergeDepth: o.MergeDepth,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.MergeDepth = op.MergeDepth
+	return op
 }
 
 func (o *MergeRequest) xxx_FromOp(ctx context.Context, op *xxx_MergeOperation) {
@@ -1566,7 +1584,7 @@ func (o *MergeRequest) xxx_FromOp(ctx context.Context, op *xxx_MergeOperation) {
 	o.MergeDepth = op.MergeDepth
 }
 func (o *MergeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MergeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MergeOperation{}
@@ -1589,15 +1607,17 @@ type MergeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MergeResponse) xxx_ToOp(ctx context.Context) *xxx_MergeOperation {
+func (o *MergeResponse) xxx_ToOp(ctx context.Context, op *xxx_MergeOperation) *xxx_MergeOperation {
+	if op == nil {
+		op = &xxx_MergeOperation{}
+	}
 	if o == nil {
-		return &xxx_MergeOperation{}
+		return op
 	}
-	return &xxx_MergeOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *MergeResponse) xxx_FromOp(ctx context.Context, op *xxx_MergeOperation) {
@@ -1609,7 +1629,7 @@ func (o *MergeResponse) xxx_FromOp(ctx context.Context, op *xxx_MergeOperation) 
 	o.Return = op.Return
 }
 func (o *MergeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MergeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MergeOperation{}
@@ -1821,15 +1841,17 @@ type ExpandRequest struct {
 	NewSize uint64 `idl:"name:NewSize" json:"new_size"`
 }
 
-func (o *ExpandRequest) xxx_ToOp(ctx context.Context) *xxx_ExpandOperation {
+func (o *ExpandRequest) xxx_ToOp(ctx context.Context, op *xxx_ExpandOperation) *xxx_ExpandOperation {
+	if op == nil {
+		op = &xxx_ExpandOperation{}
+	}
 	if o == nil {
-		return &xxx_ExpandOperation{}
+		return op
 	}
-	return &xxx_ExpandOperation{
-		This:    o.This,
-		Flags:   o.Flags,
-		NewSize: o.NewSize,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.NewSize = op.NewSize
+	return op
 }
 
 func (o *ExpandRequest) xxx_FromOp(ctx context.Context, op *xxx_ExpandOperation) {
@@ -1841,7 +1863,7 @@ func (o *ExpandRequest) xxx_FromOp(ctx context.Context, op *xxx_ExpandOperation)
 	o.NewSize = op.NewSize
 }
 func (o *ExpandRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExpandRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExpandOperation{}
@@ -1864,15 +1886,17 @@ type ExpandResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExpandResponse) xxx_ToOp(ctx context.Context) *xxx_ExpandOperation {
+func (o *ExpandResponse) xxx_ToOp(ctx context.Context, op *xxx_ExpandOperation) *xxx_ExpandOperation {
+	if op == nil {
+		op = &xxx_ExpandOperation{}
+	}
 	if o == nil {
-		return &xxx_ExpandOperation{}
+		return op
 	}
-	return &xxx_ExpandOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExpandResponse) xxx_FromOp(ctx context.Context, op *xxx_ExpandOperation) {
@@ -1884,7 +1908,7 @@ func (o *ExpandResponse) xxx_FromOp(ctx context.Context, op *xxx_ExpandOperation
 	o.Return = op.Return
 }
 func (o *ExpandResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExpandResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExpandOperation{}

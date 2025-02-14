@@ -59,7 +59,7 @@ type xxx_DefaultBitsPeerAuthClient struct {
 }
 
 func (o *xxx_DefaultBitsPeerAuthClient) ExchangePublicKeys(ctx context.Context, in *ExchangePublicKeysRequest, opts ...dcerpc.CallOption) (*ExchangePublicKeysResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -334,14 +334,16 @@ type ExchangePublicKeysRequest struct {
 	ClientKey []byte `idl:"name:ClientKey;size_is:(ClientKeyLength);pointer:unique" json:"client_key"`
 }
 
-func (o *ExchangePublicKeysRequest) xxx_ToOp(ctx context.Context) *xxx_ExchangePublicKeysOperation {
+func (o *ExchangePublicKeysRequest) xxx_ToOp(ctx context.Context, op *xxx_ExchangePublicKeysOperation) *xxx_ExchangePublicKeysOperation {
+	if op == nil {
+		op = &xxx_ExchangePublicKeysOperation{}
+	}
 	if o == nil {
-		return &xxx_ExchangePublicKeysOperation{}
+		return op
 	}
-	return &xxx_ExchangePublicKeysOperation{
-		ClientKeyLength: o.ClientKeyLength,
-		ClientKey:       o.ClientKey,
-	}
+	o.ClientKeyLength = op.ClientKeyLength
+	o.ClientKey = op.ClientKey
+	return op
 }
 
 func (o *ExchangePublicKeysRequest) xxx_FromOp(ctx context.Context, op *xxx_ExchangePublicKeysOperation) {
@@ -352,7 +354,7 @@ func (o *ExchangePublicKeysRequest) xxx_FromOp(ctx context.Context, op *xxx_Exch
 	o.ClientKey = op.ClientKey
 }
 func (o *ExchangePublicKeysRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExchangePublicKeysRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExchangePublicKeysOperation{}
@@ -377,15 +379,17 @@ type ExchangePublicKeysResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExchangePublicKeysResponse) xxx_ToOp(ctx context.Context) *xxx_ExchangePublicKeysOperation {
+func (o *ExchangePublicKeysResponse) xxx_ToOp(ctx context.Context, op *xxx_ExchangePublicKeysOperation) *xxx_ExchangePublicKeysOperation {
+	if op == nil {
+		op = &xxx_ExchangePublicKeysOperation{}
+	}
 	if o == nil {
-		return &xxx_ExchangePublicKeysOperation{}
+		return op
 	}
-	return &xxx_ExchangePublicKeysOperation{
-		ServerKeyLength: o.ServerKeyLength,
-		ServerKey:       o.ServerKey,
-		Return:          o.Return,
-	}
+	o.ServerKeyLength = op.ServerKeyLength
+	o.ServerKey = op.ServerKey
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExchangePublicKeysResponse) xxx_FromOp(ctx context.Context, op *xxx_ExchangePublicKeysOperation) {
@@ -397,7 +401,7 @@ func (o *ExchangePublicKeysResponse) xxx_FromOp(ctx context.Context, op *xxx_Exc
 	o.Return = op.Return
 }
 func (o *ExchangePublicKeysResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExchangePublicKeysResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExchangePublicKeysOperation{}

@@ -83,7 +83,7 @@ func (o *xxx_DefaultCreatePartitionExClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCreatePartitionExClient) CreatePartitionEx(ctx context.Context, in *CreatePartitionExRequest, opts ...dcerpc.CallOption) (*CreatePartitionExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -390,17 +390,19 @@ type CreatePartitionExRequest struct {
 	Parameters *vds.CreatePartitionParameters `idl:"name:para" json:"parameters"`
 }
 
-func (o *CreatePartitionExRequest) xxx_ToOp(ctx context.Context) *xxx_CreatePartitionExOperation {
+func (o *CreatePartitionExRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePartitionExOperation) *xxx_CreatePartitionExOperation {
+	if op == nil {
+		op = &xxx_CreatePartitionExOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePartitionExOperation{}
+		return op
 	}
-	return &xxx_CreatePartitionExOperation{
-		This:       o.This,
-		Offset:     o.Offset,
-		Size:       o.Size,
-		Align:      o.Align,
-		Parameters: o.Parameters,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.Size = op.Size
+	o.Align = op.Align
+	o.Parameters = op.Parameters
+	return op
 }
 
 func (o *CreatePartitionExRequest) xxx_FromOp(ctx context.Context, op *xxx_CreatePartitionExOperation) {
@@ -414,7 +416,7 @@ func (o *CreatePartitionExRequest) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.Parameters = op.Parameters
 }
 func (o *CreatePartitionExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreatePartitionExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePartitionExOperation{}
@@ -440,15 +442,17 @@ type CreatePartitionExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreatePartitionExResponse) xxx_ToOp(ctx context.Context) *xxx_CreatePartitionExOperation {
+func (o *CreatePartitionExResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePartitionExOperation) *xxx_CreatePartitionExOperation {
+	if op == nil {
+		op = &xxx_CreatePartitionExOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePartitionExOperation{}
+		return op
 	}
-	return &xxx_CreatePartitionExOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreatePartitionExResponse) xxx_FromOp(ctx context.Context, op *xxx_CreatePartitionExOperation) {
@@ -460,7 +464,7 @@ func (o *CreatePartitionExResponse) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.Return = op.Return
 }
 func (o *CreatePartitionExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreatePartitionExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePartitionExOperation{}

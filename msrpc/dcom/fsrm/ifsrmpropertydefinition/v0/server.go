@@ -79,75 +79,133 @@ func PropertyDefinitionServerHandle(ctx context.Context, o PropertyDefinitionSer
 	}
 	switch opNum {
 	case 12: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Type
-		in := &GetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Type
-		in := &SetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // PossibleValues
-		in := &GetPossibleValuesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPossibleValuesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPossibleValues(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPossibleValuesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPossibleValues(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // PossibleValues
-		in := &SetPossibleValuesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPossibleValuesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPossibleValues(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPossibleValuesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPossibleValues(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // ValueDescriptions
-		in := &GetValueDescriptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueDescriptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValueDescriptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueDescriptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValueDescriptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // ValueDescriptions
-		in := &SetValueDescriptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueDescriptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValueDescriptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueDescriptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValueDescriptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // Parameters
-		in := &GetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Parameters
-		in := &SetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmPropertyDefinition
+type UnimplementedPropertyDefinitionServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedPropertyDefinitionServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) SetType(context.Context, *SetTypeRequest) (*SetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) GetPossibleValues(context.Context, *GetPossibleValuesRequest) (*GetPossibleValuesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) SetPossibleValues(context.Context, *SetPossibleValuesRequest) (*SetPossibleValuesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) GetValueDescriptions(context.Context, *GetValueDescriptionsRequest) (*GetValueDescriptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) SetValueDescriptions(context.Context, *SetValueDescriptionsRequest) (*SetValueDescriptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) GetParameters(context.Context, *GetParametersRequest) (*GetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinitionServer) SetParameters(context.Context, *SetParametersRequest) (*SetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PropertyDefinitionServer = (*UnimplementedPropertyDefinitionServer)(nil)

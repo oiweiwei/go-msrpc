@@ -61,33 +61,61 @@ func AppHostSectionDefinitionCollectionServerHandle(ctx context.Context, o AppHo
 	}
 	switch opNum {
 	case 3: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AddSection
-		in := &AddSectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddSectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddSection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddSectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddSection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // DeleteSection
-		in := &DeleteSectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteSectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteSection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteSectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteSection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostSectionDefinitionCollection
+type UnimplementedAppHostSectionDefinitionCollectionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostSectionDefinitionCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionCollectionServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionCollectionServer) AddSection(context.Context, *AddSectionRequest) (*AddSectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionDefinitionCollectionServer) DeleteSection(context.Context, *DeleteSectionRequest) (*DeleteSectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostSectionDefinitionCollectionServer = (*UnimplementedAppHostSectionDefinitionCollectionServer)(nil)

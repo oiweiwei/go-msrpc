@@ -55,19 +55,37 @@ func DataFactory3ServerHandle(ctx context.Context, o DataFactory3Server, opNum i
 	}
 	switch opNum {
 	case 9: // Execute
-		in := &ExecuteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Execute(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Execute(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Synchronize
-		in := &SynchronizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SynchronizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Synchronize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SynchronizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Synchronize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataFactory3
+type UnimplementedDataFactory3Server struct {
+	idatafactory2.UnimplementedDataFactory2Server
+}
+
+func (UnimplementedDataFactory3Server) Execute(context.Context, *ExecuteRequest) (*ExecuteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataFactory3Server) Synchronize(context.Context, *SynchronizeRequest) (*SynchronizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataFactory3Server = (*UnimplementedDataFactory3Server)(nil)

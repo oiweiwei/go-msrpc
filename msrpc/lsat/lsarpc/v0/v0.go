@@ -2840,7 +2840,7 @@ type xxx_DefaultLsarpcClient struct {
 }
 
 func (o *xxx_DefaultLsarpcClient) Close(ctx context.Context, in *CloseRequest, opts ...dcerpc.CallOption) (*CloseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2853,7 +2853,7 @@ func (o *xxx_DefaultLsarpcClient) Close(ctx context.Context, in *CloseRequest, o
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenPolicy(ctx context.Context, in *OpenPolicyRequest, opts ...dcerpc.CallOption) (*OpenPolicyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2866,7 +2866,7 @@ func (o *xxx_DefaultLsarpcClient) OpenPolicy(ctx context.Context, in *OpenPolicy
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupNames(ctx context.Context, in *LookupNamesRequest, opts ...dcerpc.CallOption) (*LookupNamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2879,7 +2879,7 @@ func (o *xxx_DefaultLsarpcClient) LookupNames(ctx context.Context, in *LookupNam
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupSIDs(ctx context.Context, in *LookupSIDsRequest, opts ...dcerpc.CallOption) (*LookupSIDsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2892,7 +2892,7 @@ func (o *xxx_DefaultLsarpcClient) LookupSIDs(ctx context.Context, in *LookupSIDs
 }
 
 func (o *xxx_DefaultLsarpcClient) OpenPolicy2(ctx context.Context, in *OpenPolicy2Request, opts ...dcerpc.CallOption) (*OpenPolicy2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2905,7 +2905,7 @@ func (o *xxx_DefaultLsarpcClient) OpenPolicy2(ctx context.Context, in *OpenPolic
 }
 
 func (o *xxx_DefaultLsarpcClient) GetUserName(ctx context.Context, in *GetUserNameRequest, opts ...dcerpc.CallOption) (*GetUserNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2918,7 +2918,7 @@ func (o *xxx_DefaultLsarpcClient) GetUserName(ctx context.Context, in *GetUserNa
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupSids2(ctx context.Context, in *LookupSids2Request, opts ...dcerpc.CallOption) (*LookupSids2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2931,7 +2931,7 @@ func (o *xxx_DefaultLsarpcClient) LookupSids2(ctx context.Context, in *LookupSid
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupNames2(ctx context.Context, in *LookupNames2Request, opts ...dcerpc.CallOption) (*LookupNames2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2944,7 +2944,7 @@ func (o *xxx_DefaultLsarpcClient) LookupNames2(ctx context.Context, in *LookupNa
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupNames3(ctx context.Context, in *LookupNames3Request, opts ...dcerpc.CallOption) (*LookupNames3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2957,7 +2957,7 @@ func (o *xxx_DefaultLsarpcClient) LookupNames3(ctx context.Context, in *LookupNa
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupSids3(ctx context.Context, in *LookupSids3Request, opts ...dcerpc.CallOption) (*LookupSids3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2970,7 +2970,7 @@ func (o *xxx_DefaultLsarpcClient) LookupSids3(ctx context.Context, in *LookupSid
 }
 
 func (o *xxx_DefaultLsarpcClient) LookupNames4(ctx context.Context, in *LookupNames4Request, opts ...dcerpc.CallOption) (*LookupNames4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -3107,13 +3107,15 @@ type CloseRequest struct {
 	Object *Handle `idl:"name:ObjectHandle" json:"object"`
 }
 
-func (o *CloseRequest) xxx_ToOp(ctx context.Context) *xxx_CloseOperation {
+func (o *CloseRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xxx_CloseOperation {
+	if op == nil {
+		op = &xxx_CloseOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseOperation{}
+		return op
 	}
-	return &xxx_CloseOperation{
-		Object: o.Object,
-	}
+	o.Object = op.Object
+	return op
 }
 
 func (o *CloseRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
@@ -3123,7 +3125,7 @@ func (o *CloseRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
 	o.Object = op.Object
 }
 func (o *CloseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseOperation{}
@@ -3141,14 +3143,16 @@ type CloseResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseResponse) xxx_ToOp(ctx context.Context) *xxx_CloseOperation {
+func (o *CloseResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseOperation) *xxx_CloseOperation {
+	if op == nil {
+		op = &xxx_CloseOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseOperation{}
+		return op
 	}
-	return &xxx_CloseOperation{
-		Object: o.Object,
-		Return: o.Return,
-	}
+	o.Object = op.Object
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) {
@@ -3159,7 +3163,7 @@ func (o *CloseResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseOperation) 
 	o.Return = op.Return
 }
 func (o *CloseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseOperation{}
@@ -3339,15 +3343,17 @@ type OpenPolicyRequest struct {
 	DesiredAccess    uint32            `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenPolicyRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPolicyOperation {
+func (o *OpenPolicyRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOperation) *xxx_OpenPolicyOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicyOperation{}
+		return op
 	}
-	return &xxx_OpenPolicyOperation{
-		SystemName:       o.SystemName,
-		ObjectAttributes: o.ObjectAttributes,
-		DesiredAccess:    o.DesiredAccess,
-	}
+	o.SystemName = op.SystemName
+	o.ObjectAttributes = op.ObjectAttributes
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyOperation) {
@@ -3359,7 +3365,7 @@ func (o *OpenPolicyRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyOp
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPolicyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicyOperation{}
@@ -3377,14 +3383,16 @@ type OpenPolicyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPolicyResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPolicyOperation {
+func (o *OpenPolicyResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicyOperation) *xxx_OpenPolicyOperation {
+	if op == nil {
+		op = &xxx_OpenPolicyOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicyOperation{}
+		return op
 	}
-	return &xxx_OpenPolicyOperation{
-		Policy: o.Policy,
-		Return: o.Return,
-	}
+	o.Policy = op.Policy
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyOperation) {
@@ -3395,7 +3403,7 @@ func (o *OpenPolicyResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicyO
 	o.Return = op.Return
 }
 func (o *OpenPolicyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPolicyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicyOperation{}
@@ -3730,18 +3738,20 @@ type LookupNamesRequest struct {
 	MappedCount uint32 `idl:"name:MappedCount" json:"mapped_count"`
 }
 
-func (o *LookupNamesRequest) xxx_ToOp(ctx context.Context) *xxx_LookupNamesOperation {
+func (o *LookupNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupNamesOperation) *xxx_LookupNamesOperation {
+	if op == nil {
+		op = &xxx_LookupNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupNamesOperation{}
+		return op
 	}
-	return &xxx_LookupNamesOperation{
-		Policy:         o.Policy,
-		Count:          o.Count,
-		Names:          o.Names,
-		TranslatedSIDs: o.TranslatedSIDs,
-		LookupLevel:    o.LookupLevel,
-		MappedCount:    o.MappedCount,
-	}
+	o.Policy = op.Policy
+	o.Count = op.Count
+	o.Names = op.Names
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	return op
 }
 
 func (o *LookupNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupNamesOperation) {
@@ -3756,7 +3766,7 @@ func (o *LookupNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupNames
 	o.MappedCount = op.MappedCount
 }
 func (o *LookupNamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNamesOperation{}
@@ -3784,16 +3794,18 @@ type LookupNamesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupNamesResponse) xxx_ToOp(ctx context.Context) *xxx_LookupNamesOperation {
+func (o *LookupNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupNamesOperation) *xxx_LookupNamesOperation {
+	if op == nil {
+		op = &xxx_LookupNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupNamesOperation{}
+		return op
 	}
-	return &xxx_LookupNamesOperation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedSIDs:    o.TranslatedSIDs,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupNamesOperation) {
@@ -3806,7 +3818,7 @@ func (o *LookupNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupName
 	o.Return = op.Return
 }
 func (o *LookupNamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNamesOperation{}
@@ -4087,17 +4099,19 @@ type LookupSIDsRequest struct {
 	MappedCount uint32 `idl:"name:MappedCount" json:"mapped_count"`
 }
 
-func (o *LookupSIDsRequest) xxx_ToOp(ctx context.Context) *xxx_LookupSIDsOperation {
+func (o *LookupSIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupSIDsOperation) *xxx_LookupSIDsOperation {
+	if op == nil {
+		op = &xxx_LookupSIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupSIDsOperation{}
+		return op
 	}
-	return &xxx_LookupSIDsOperation{
-		Policy:          o.Policy,
-		SIDEnumBuffer:   o.SIDEnumBuffer,
-		TranslatedNames: o.TranslatedNames,
-		LookupLevel:     o.LookupLevel,
-		MappedCount:     o.MappedCount,
-	}
+	o.Policy = op.Policy
+	o.SIDEnumBuffer = op.SIDEnumBuffer
+	o.TranslatedNames = op.TranslatedNames
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	return op
 }
 
 func (o *LookupSIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupSIDsOperation) {
@@ -4111,7 +4125,7 @@ func (o *LookupSIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupSIDsOp
 	o.MappedCount = op.MappedCount
 }
 func (o *LookupSIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupSIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupSIDsOperation{}
@@ -4138,16 +4152,18 @@ type LookupSIDsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupSIDsResponse) xxx_ToOp(ctx context.Context) *xxx_LookupSIDsOperation {
+func (o *LookupSIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupSIDsOperation) *xxx_LookupSIDsOperation {
+	if op == nil {
+		op = &xxx_LookupSIDsOperation{}
+	}
 	if o == nil {
-		return &xxx_LookupSIDsOperation{}
+		return op
 	}
-	return &xxx_LookupSIDsOperation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedNames:   o.TranslatedNames,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedNames = op.TranslatedNames
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupSIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupSIDsOperation) {
@@ -4160,7 +4176,7 @@ func (o *LookupSIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupSIDsO
 	o.Return = op.Return
 }
 func (o *LookupSIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupSIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupSIDsOperation{}
@@ -4340,15 +4356,17 @@ type OpenPolicy2Request struct {
 	DesiredAccess    uint32            `idl:"name:DesiredAccess" json:"desired_access"`
 }
 
-func (o *OpenPolicy2Request) xxx_ToOp(ctx context.Context) *xxx_OpenPolicy2Operation {
+func (o *OpenPolicy2Request) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2Operation) *xxx_OpenPolicy2Operation {
+	if op == nil {
+		op = &xxx_OpenPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicy2Operation{}
+		return op
 	}
-	return &xxx_OpenPolicy2Operation{
-		SystemName:       o.SystemName,
-		ObjectAttributes: o.ObjectAttributes,
-		DesiredAccess:    o.DesiredAccess,
-	}
+	o.SystemName = op.SystemName
+	o.ObjectAttributes = op.ObjectAttributes
+	o.DesiredAccess = op.DesiredAccess
+	return op
 }
 
 func (o *OpenPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy2Operation) {
@@ -4360,7 +4378,7 @@ func (o *OpenPolicy2Request) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy2
 	o.DesiredAccess = op.DesiredAccess
 }
 func (o *OpenPolicy2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicy2Operation{}
@@ -4378,14 +4396,16 @@ type OpenPolicy2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPolicy2Response) xxx_ToOp(ctx context.Context) *xxx_OpenPolicy2Operation {
+func (o *OpenPolicy2Response) xxx_ToOp(ctx context.Context, op *xxx_OpenPolicy2Operation) *xxx_OpenPolicy2Operation {
+	if op == nil {
+		op = &xxx_OpenPolicy2Operation{}
+	}
 	if o == nil {
-		return &xxx_OpenPolicy2Operation{}
+		return op
 	}
-	return &xxx_OpenPolicy2Operation{
-		Policy: o.Policy,
-		Return: o.Return,
-	}
+	o.Policy = op.Policy
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy2Operation) {
@@ -4396,7 +4416,7 @@ func (o *OpenPolicy2Response) xxx_FromOp(ctx context.Context, op *xxx_OpenPolicy
 	o.Return = op.Return
 }
 func (o *OpenPolicy2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPolicy2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPolicy2Operation{}
@@ -4745,15 +4765,17 @@ type GetUserNameRequest struct {
 	DomainName *dtyp.UnicodeString `idl:"name:DomainName;pointer:unique" json:"domain_name"`
 }
 
-func (o *GetUserNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetUserNameOperation {
+func (o *GetUserNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameOperation) *xxx_GetUserNameOperation {
+	if op == nil {
+		op = &xxx_GetUserNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUserNameOperation{}
+		return op
 	}
-	return &xxx_GetUserNameOperation{
-		SystemName: o.SystemName,
-		UserName:   o.UserName,
-		DomainName: o.DomainName,
-	}
+	o.SystemName = op.SystemName
+	o.UserName = op.UserName
+	o.DomainName = op.DomainName
+	return op
 }
 
 func (o *GetUserNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserNameOperation) {
@@ -4765,7 +4787,7 @@ func (o *GetUserNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserName
 	o.DomainName = op.DomainName
 }
 func (o *GetUserNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUserNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUserNameOperation{}
@@ -4790,15 +4812,17 @@ type GetUserNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUserNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetUserNameOperation {
+func (o *GetUserNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserNameOperation) *xxx_GetUserNameOperation {
+	if op == nil {
+		op = &xxx_GetUserNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUserNameOperation{}
+		return op
 	}
-	return &xxx_GetUserNameOperation{
-		UserName:   o.UserName,
-		DomainName: o.DomainName,
-		Return:     o.Return,
-	}
+	o.UserName = op.UserName
+	o.DomainName = op.DomainName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUserNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserNameOperation) {
@@ -4810,7 +4834,7 @@ func (o *GetUserNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserNam
 	o.Return = op.Return
 }
 func (o *GetUserNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUserNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUserNameOperation{}
@@ -5123,19 +5147,21 @@ type LookupSids2Request struct {
 	ClientRevision uint32 `idl:"name:ClientRevision" json:"client_revision"`
 }
 
-func (o *LookupSids2Request) xxx_ToOp(ctx context.Context) *xxx_LookupSids2Operation {
+func (o *LookupSids2Request) xxx_ToOp(ctx context.Context, op *xxx_LookupSids2Operation) *xxx_LookupSids2Operation {
+	if op == nil {
+		op = &xxx_LookupSids2Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupSids2Operation{}
+		return op
 	}
-	return &xxx_LookupSids2Operation{
-		Policy:          o.Policy,
-		SIDEnumBuffer:   o.SIDEnumBuffer,
-		TranslatedNames: o.TranslatedNames,
-		LookupLevel:     o.LookupLevel,
-		MappedCount:     o.MappedCount,
-		LookupOptions:   o.LookupOptions,
-		ClientRevision:  o.ClientRevision,
-	}
+	o.Policy = op.Policy
+	o.SIDEnumBuffer = op.SIDEnumBuffer
+	o.TranslatedNames = op.TranslatedNames
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	o.LookupOptions = op.LookupOptions
+	o.ClientRevision = op.ClientRevision
+	return op
 }
 
 func (o *LookupSids2Request) xxx_FromOp(ctx context.Context, op *xxx_LookupSids2Operation) {
@@ -5151,7 +5177,7 @@ func (o *LookupSids2Request) xxx_FromOp(ctx context.Context, op *xxx_LookupSids2
 	o.ClientRevision = op.ClientRevision
 }
 func (o *LookupSids2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupSids2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupSids2Operation{}
@@ -5178,16 +5204,18 @@ type LookupSids2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupSids2Response) xxx_ToOp(ctx context.Context) *xxx_LookupSids2Operation {
+func (o *LookupSids2Response) xxx_ToOp(ctx context.Context, op *xxx_LookupSids2Operation) *xxx_LookupSids2Operation {
+	if op == nil {
+		op = &xxx_LookupSids2Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupSids2Operation{}
+		return op
 	}
-	return &xxx_LookupSids2Operation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedNames:   o.TranslatedNames,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedNames = op.TranslatedNames
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupSids2Response) xxx_FromOp(ctx context.Context, op *xxx_LookupSids2Operation) {
@@ -5200,7 +5228,7 @@ func (o *LookupSids2Response) xxx_FromOp(ctx context.Context, op *xxx_LookupSids
 	o.Return = op.Return
 }
 func (o *LookupSids2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupSids2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupSids2Operation{}
@@ -5567,20 +5595,22 @@ type LookupNames2Request struct {
 	ClientRevision uint32 `idl:"name:ClientRevision" json:"client_revision"`
 }
 
-func (o *LookupNames2Request) xxx_ToOp(ctx context.Context) *xxx_LookupNames2Operation {
+func (o *LookupNames2Request) xxx_ToOp(ctx context.Context, op *xxx_LookupNames2Operation) *xxx_LookupNames2Operation {
+	if op == nil {
+		op = &xxx_LookupNames2Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupNames2Operation{}
+		return op
 	}
-	return &xxx_LookupNames2Operation{
-		Policy:         o.Policy,
-		Count:          o.Count,
-		Names:          o.Names,
-		TranslatedSIDs: o.TranslatedSIDs,
-		LookupLevel:    o.LookupLevel,
-		MappedCount:    o.MappedCount,
-		LookupOptions:  o.LookupOptions,
-		ClientRevision: o.ClientRevision,
-	}
+	o.Policy = op.Policy
+	o.Count = op.Count
+	o.Names = op.Names
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	o.LookupOptions = op.LookupOptions
+	o.ClientRevision = op.ClientRevision
+	return op
 }
 
 func (o *LookupNames2Request) xxx_FromOp(ctx context.Context, op *xxx_LookupNames2Operation) {
@@ -5597,7 +5627,7 @@ func (o *LookupNames2Request) xxx_FromOp(ctx context.Context, op *xxx_LookupName
 	o.ClientRevision = op.ClientRevision
 }
 func (o *LookupNames2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupNames2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNames2Operation{}
@@ -5625,16 +5655,18 @@ type LookupNames2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupNames2Response) xxx_ToOp(ctx context.Context) *xxx_LookupNames2Operation {
+func (o *LookupNames2Response) xxx_ToOp(ctx context.Context, op *xxx_LookupNames2Operation) *xxx_LookupNames2Operation {
+	if op == nil {
+		op = &xxx_LookupNames2Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupNames2Operation{}
+		return op
 	}
-	return &xxx_LookupNames2Operation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedSIDs:    o.TranslatedSIDs,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupNames2Response) xxx_FromOp(ctx context.Context, op *xxx_LookupNames2Operation) {
@@ -5647,7 +5679,7 @@ func (o *LookupNames2Response) xxx_FromOp(ctx context.Context, op *xxx_LookupNam
 	o.Return = op.Return
 }
 func (o *LookupNames2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupNames2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNames2Operation{}
@@ -6014,20 +6046,22 @@ type LookupNames3Request struct {
 	ClientRevision uint32 `idl:"name:ClientRevision" json:"client_revision"`
 }
 
-func (o *LookupNames3Request) xxx_ToOp(ctx context.Context) *xxx_LookupNames3Operation {
+func (o *LookupNames3Request) xxx_ToOp(ctx context.Context, op *xxx_LookupNames3Operation) *xxx_LookupNames3Operation {
+	if op == nil {
+		op = &xxx_LookupNames3Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupNames3Operation{}
+		return op
 	}
-	return &xxx_LookupNames3Operation{
-		Policy:         o.Policy,
-		Count:          o.Count,
-		Names:          o.Names,
-		TranslatedSIDs: o.TranslatedSIDs,
-		LookupLevel:    o.LookupLevel,
-		MappedCount:    o.MappedCount,
-		LookupOptions:  o.LookupOptions,
-		ClientRevision: o.ClientRevision,
-	}
+	o.Policy = op.Policy
+	o.Count = op.Count
+	o.Names = op.Names
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	o.LookupOptions = op.LookupOptions
+	o.ClientRevision = op.ClientRevision
+	return op
 }
 
 func (o *LookupNames3Request) xxx_FromOp(ctx context.Context, op *xxx_LookupNames3Operation) {
@@ -6044,7 +6078,7 @@ func (o *LookupNames3Request) xxx_FromOp(ctx context.Context, op *xxx_LookupName
 	o.ClientRevision = op.ClientRevision
 }
 func (o *LookupNames3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupNames3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNames3Operation{}
@@ -6072,16 +6106,18 @@ type LookupNames3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupNames3Response) xxx_ToOp(ctx context.Context) *xxx_LookupNames3Operation {
+func (o *LookupNames3Response) xxx_ToOp(ctx context.Context, op *xxx_LookupNames3Operation) *xxx_LookupNames3Operation {
+	if op == nil {
+		op = &xxx_LookupNames3Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupNames3Operation{}
+		return op
 	}
-	return &xxx_LookupNames3Operation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedSIDs:    o.TranslatedSIDs,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupNames3Response) xxx_FromOp(ctx context.Context, op *xxx_LookupNames3Operation) {
@@ -6094,7 +6130,7 @@ func (o *LookupNames3Response) xxx_FromOp(ctx context.Context, op *xxx_LookupNam
 	o.Return = op.Return
 }
 func (o *LookupNames3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupNames3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNames3Operation{}
@@ -6383,18 +6419,20 @@ type LookupSids3Request struct {
 	ClientRevision uint32 `idl:"name:ClientRevision" json:"client_revision"`
 }
 
-func (o *LookupSids3Request) xxx_ToOp(ctx context.Context) *xxx_LookupSids3Operation {
+func (o *LookupSids3Request) xxx_ToOp(ctx context.Context, op *xxx_LookupSids3Operation) *xxx_LookupSids3Operation {
+	if op == nil {
+		op = &xxx_LookupSids3Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupSids3Operation{}
+		return op
 	}
-	return &xxx_LookupSids3Operation{
-		SIDEnumBuffer:   o.SIDEnumBuffer,
-		TranslatedNames: o.TranslatedNames,
-		LookupLevel:     o.LookupLevel,
-		MappedCount:     o.MappedCount,
-		LookupOptions:   o.LookupOptions,
-		ClientRevision:  o.ClientRevision,
-	}
+	o.SIDEnumBuffer = op.SIDEnumBuffer
+	o.TranslatedNames = op.TranslatedNames
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	o.LookupOptions = op.LookupOptions
+	o.ClientRevision = op.ClientRevision
+	return op
 }
 
 func (o *LookupSids3Request) xxx_FromOp(ctx context.Context, op *xxx_LookupSids3Operation) {
@@ -6409,7 +6447,7 @@ func (o *LookupSids3Request) xxx_FromOp(ctx context.Context, op *xxx_LookupSids3
 	o.ClientRevision = op.ClientRevision
 }
 func (o *LookupSids3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupSids3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupSids3Operation{}
@@ -6436,16 +6474,18 @@ type LookupSids3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupSids3Response) xxx_ToOp(ctx context.Context) *xxx_LookupSids3Operation {
+func (o *LookupSids3Response) xxx_ToOp(ctx context.Context, op *xxx_LookupSids3Operation) *xxx_LookupSids3Operation {
+	if op == nil {
+		op = &xxx_LookupSids3Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupSids3Operation{}
+		return op
 	}
-	return &xxx_LookupSids3Operation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedNames:   o.TranslatedNames,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedNames = op.TranslatedNames
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupSids3Response) xxx_FromOp(ctx context.Context, op *xxx_LookupSids3Operation) {
@@ -6458,7 +6498,7 @@ func (o *LookupSids3Response) xxx_FromOp(ctx context.Context, op *xxx_LookupSids
 	o.Return = op.Return
 }
 func (o *LookupSids3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupSids3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupSids3Operation{}
@@ -6840,19 +6880,21 @@ type LookupNames4Request struct {
 	ClientRevision uint32 `idl:"name:ClientRevision" json:"client_revision"`
 }
 
-func (o *LookupNames4Request) xxx_ToOp(ctx context.Context) *xxx_LookupNames4Operation {
+func (o *LookupNames4Request) xxx_ToOp(ctx context.Context, op *xxx_LookupNames4Operation) *xxx_LookupNames4Operation {
+	if op == nil {
+		op = &xxx_LookupNames4Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupNames4Operation{}
+		return op
 	}
-	return &xxx_LookupNames4Operation{
-		Count:          o.Count,
-		Names:          o.Names,
-		TranslatedSIDs: o.TranslatedSIDs,
-		LookupLevel:    o.LookupLevel,
-		MappedCount:    o.MappedCount,
-		LookupOptions:  o.LookupOptions,
-		ClientRevision: o.ClientRevision,
-	}
+	o.Count = op.Count
+	o.Names = op.Names
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.LookupLevel = op.LookupLevel
+	o.MappedCount = op.MappedCount
+	o.LookupOptions = op.LookupOptions
+	o.ClientRevision = op.ClientRevision
+	return op
 }
 
 func (o *LookupNames4Request) xxx_FromOp(ctx context.Context, op *xxx_LookupNames4Operation) {
@@ -6868,7 +6910,7 @@ func (o *LookupNames4Request) xxx_FromOp(ctx context.Context, op *xxx_LookupName
 	o.ClientRevision = op.ClientRevision
 }
 func (o *LookupNames4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LookupNames4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNames4Operation{}
@@ -6897,16 +6939,18 @@ type LookupNames4Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LookupNames4Response) xxx_ToOp(ctx context.Context) *xxx_LookupNames4Operation {
+func (o *LookupNames4Response) xxx_ToOp(ctx context.Context, op *xxx_LookupNames4Operation) *xxx_LookupNames4Operation {
+	if op == nil {
+		op = &xxx_LookupNames4Operation{}
+	}
 	if o == nil {
-		return &xxx_LookupNames4Operation{}
+		return op
 	}
-	return &xxx_LookupNames4Operation{
-		ReferencedDomains: o.ReferencedDomains,
-		TranslatedSIDs:    o.TranslatedSIDs,
-		MappedCount:       o.MappedCount,
-		Return:            o.Return,
-	}
+	o.ReferencedDomains = op.ReferencedDomains
+	o.TranslatedSIDs = op.TranslatedSIDs
+	o.MappedCount = op.MappedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *LookupNames4Response) xxx_FromOp(ctx context.Context, op *xxx_LookupNames4Operation) {
@@ -6919,7 +6963,7 @@ func (o *LookupNames4Response) xxx_FromOp(ctx context.Context, op *xxx_LookupNam
 	o.Return = op.Return
 }
 func (o *LookupNames4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LookupNames4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LookupNames4Operation{}

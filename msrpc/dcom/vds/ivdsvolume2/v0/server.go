@@ -52,12 +52,25 @@ func Volume2ServerHandle(ctx context.Context, o Volume2Server, opNum int, r ndr.
 	}
 	switch opNum {
 	case 3: // GetProperties2
-		in := &GetProperties2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetProperties2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetProperties2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolume2
+type UnimplementedVolume2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolume2Server) GetProperties2(context.Context, *GetProperties2Request) (*GetProperties2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Volume2Server = (*UnimplementedVolume2Server)(nil)

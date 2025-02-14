@@ -109,7 +109,7 @@ func (o *xxx_DefaultCapabilitySupportClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCapabilitySupportClient) Start(ctx context.Context, in *StartRequest, opts ...dcerpc.CallOption) (*StartResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -129,7 +129,7 @@ func (o *xxx_DefaultCapabilitySupportClient) Start(ctx context.Context, in *Star
 }
 
 func (o *xxx_DefaultCapabilitySupportClient) Stop(ctx context.Context, in *StopRequest, opts ...dcerpc.CallOption) (*StopResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -149,7 +149,7 @@ func (o *xxx_DefaultCapabilitySupportClient) Stop(ctx context.Context, in *StopR
 }
 
 func (o *xxx_DefaultCapabilitySupportClient) IsInstalled(ctx context.Context, in *IsInstalledRequest, opts ...dcerpc.CallOption) (*IsInstalledResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -169,7 +169,7 @@ func (o *xxx_DefaultCapabilitySupportClient) IsInstalled(ctx context.Context, in
 }
 
 func (o *xxx_DefaultCapabilitySupportClient) IsRunning(ctx context.Context, in *IsRunningRequest, opts ...dcerpc.CallOption) (*IsRunningResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -368,14 +368,16 @@ type StartRequest struct {
 	CSS coma.CatServerServices `idl:"name:i_css" json:"css"`
 }
 
-func (o *StartRequest) xxx_ToOp(ctx context.Context) *xxx_StartOperation {
+func (o *StartRequest) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *xxx_StartOperation {
+	if op == nil {
+		op = &xxx_StartOperation{}
+	}
 	if o == nil {
-		return &xxx_StartOperation{}
+		return op
 	}
-	return &xxx_StartOperation{
-		This: o.This,
-		CSS:  o.CSS,
-	}
+	o.This = op.This
+	o.CSS = op.CSS
+	return op
 }
 
 func (o *StartRequest) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) {
@@ -386,7 +388,7 @@ func (o *StartRequest) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) {
 	o.CSS = op.CSS
 }
 func (o *StartRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartOperation{}
@@ -405,14 +407,16 @@ type StartResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartResponse) xxx_ToOp(ctx context.Context) *xxx_StartOperation {
+func (o *StartResponse) xxx_ToOp(ctx context.Context, op *xxx_StartOperation) *xxx_StartOperation {
+	if op == nil {
+		op = &xxx_StartOperation{}
+	}
 	if o == nil {
-		return &xxx_StartOperation{}
+		return op
 	}
-	return &xxx_StartOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartResponse) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) {
@@ -423,7 +427,7 @@ func (o *StartResponse) xxx_FromOp(ctx context.Context, op *xxx_StartOperation) 
 	o.Return = op.Return
 }
 func (o *StartResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartOperation{}
@@ -572,14 +576,16 @@ type StopRequest struct {
 	CSS coma.CatServerServices `idl:"name:i_css" json:"css"`
 }
 
-func (o *StopRequest) xxx_ToOp(ctx context.Context) *xxx_StopOperation {
+func (o *StopRequest) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_StopOperation {
+	if op == nil {
+		op = &xxx_StopOperation{}
+	}
 	if o == nil {
-		return &xxx_StopOperation{}
+		return op
 	}
-	return &xxx_StopOperation{
-		This: o.This,
-		CSS:  o.CSS,
-	}
+	o.This = op.This
+	o.CSS = op.CSS
+	return op
 }
 
 func (o *StopRequest) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
@@ -590,7 +596,7 @@ func (o *StopRequest) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
 	o.CSS = op.CSS
 }
 func (o *StopRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StopRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StopOperation{}
@@ -609,14 +615,16 @@ type StopResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StopResponse) xxx_ToOp(ctx context.Context) *xxx_StopOperation {
+func (o *StopResponse) xxx_ToOp(ctx context.Context, op *xxx_StopOperation) *xxx_StopOperation {
+	if op == nil {
+		op = &xxx_StopOperation{}
+	}
 	if o == nil {
-		return &xxx_StopOperation{}
+		return op
 	}
-	return &xxx_StopOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *StopResponse) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
@@ -627,7 +635,7 @@ func (o *StopResponse) xxx_FromOp(ctx context.Context, op *xxx_StopOperation) {
 	o.Return = op.Return
 }
 func (o *StopResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StopResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StopOperation{}
@@ -789,14 +797,16 @@ type IsInstalledRequest struct {
 	CSS coma.CatServerServices `idl:"name:i_css" json:"css"`
 }
 
-func (o *IsInstalledRequest) xxx_ToOp(ctx context.Context) *xxx_IsInstalledOperation {
+func (o *IsInstalledRequest) xxx_ToOp(ctx context.Context, op *xxx_IsInstalledOperation) *xxx_IsInstalledOperation {
+	if op == nil {
+		op = &xxx_IsInstalledOperation{}
+	}
 	if o == nil {
-		return &xxx_IsInstalledOperation{}
+		return op
 	}
-	return &xxx_IsInstalledOperation{
-		This: o.This,
-		CSS:  o.CSS,
-	}
+	o.This = op.This
+	o.CSS = op.CSS
+	return op
 }
 
 func (o *IsInstalledRequest) xxx_FromOp(ctx context.Context, op *xxx_IsInstalledOperation) {
@@ -807,7 +817,7 @@ func (o *IsInstalledRequest) xxx_FromOp(ctx context.Context, op *xxx_IsInstalled
 	o.CSS = op.CSS
 }
 func (o *IsInstalledRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsInstalledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsInstalledOperation{}
@@ -830,15 +840,17 @@ type IsInstalledResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsInstalledResponse) xxx_ToOp(ctx context.Context) *xxx_IsInstalledOperation {
+func (o *IsInstalledResponse) xxx_ToOp(ctx context.Context, op *xxx_IsInstalledOperation) *xxx_IsInstalledOperation {
+	if op == nil {
+		op = &xxx_IsInstalledOperation{}
+	}
 	if o == nil {
-		return &xxx_IsInstalledOperation{}
+		return op
 	}
-	return &xxx_IsInstalledOperation{
-		That:   o.That,
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsInstalledResponse) xxx_FromOp(ctx context.Context, op *xxx_IsInstalledOperation) {
@@ -850,7 +862,7 @@ func (o *IsInstalledResponse) xxx_FromOp(ctx context.Context, op *xxx_IsInstalle
 	o.Return = op.Return
 }
 func (o *IsInstalledResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsInstalledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsInstalledOperation{}
@@ -1012,14 +1024,16 @@ type IsRunningRequest struct {
 	CSS coma.CatServerServices `idl:"name:i_css" json:"css"`
 }
 
-func (o *IsRunningRequest) xxx_ToOp(ctx context.Context) *xxx_IsRunningOperation {
+func (o *IsRunningRequest) xxx_ToOp(ctx context.Context, op *xxx_IsRunningOperation) *xxx_IsRunningOperation {
+	if op == nil {
+		op = &xxx_IsRunningOperation{}
+	}
 	if o == nil {
-		return &xxx_IsRunningOperation{}
+		return op
 	}
-	return &xxx_IsRunningOperation{
-		This: o.This,
-		CSS:  o.CSS,
-	}
+	o.This = op.This
+	o.CSS = op.CSS
+	return op
 }
 
 func (o *IsRunningRequest) xxx_FromOp(ctx context.Context, op *xxx_IsRunningOperation) {
@@ -1030,7 +1044,7 @@ func (o *IsRunningRequest) xxx_FromOp(ctx context.Context, op *xxx_IsRunningOper
 	o.CSS = op.CSS
 }
 func (o *IsRunningRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsRunningRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsRunningOperation{}
@@ -1053,15 +1067,17 @@ type IsRunningResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsRunningResponse) xxx_ToOp(ctx context.Context) *xxx_IsRunningOperation {
+func (o *IsRunningResponse) xxx_ToOp(ctx context.Context, op *xxx_IsRunningOperation) *xxx_IsRunningOperation {
+	if op == nil {
+		op = &xxx_IsRunningOperation{}
+	}
 	if o == nil {
-		return &xxx_IsRunningOperation{}
+		return op
 	}
-	return &xxx_IsRunningOperation{
-		That:   o.That,
-		States: o.States,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.States = op.States
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsRunningResponse) xxx_FromOp(ctx context.Context, op *xxx_IsRunningOperation) {
@@ -1073,7 +1089,7 @@ func (o *IsRunningResponse) xxx_FromOp(ctx context.Context, op *xxx_IsRunningOpe
 	o.Return = op.Return
 }
 func (o *IsRunningResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsRunningResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsRunningOperation{}

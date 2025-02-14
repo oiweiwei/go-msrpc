@@ -137,33 +137,61 @@ func ReportSchedulerServerHandle(ctx context.Context, o ReportSchedulerServer, o
 	}
 	switch opNum {
 	case 7: // VerifyNamespaces
-		in := &VerifyNamespacesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_VerifyNamespacesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.VerifyNamespaces(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &VerifyNamespacesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.VerifyNamespaces(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // CreateScheduleTask
-		in := &CreateScheduleTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateScheduleTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateScheduleTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateScheduleTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateScheduleTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // ModifyScheduleTask
-		in := &ModifyScheduleTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyScheduleTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyScheduleTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyScheduleTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyScheduleTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // DeleteScheduleTask
-		in := &DeleteScheduleTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteScheduleTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteScheduleTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteScheduleTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteScheduleTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmReportScheduler
+type UnimplementedReportSchedulerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedReportSchedulerServer) VerifyNamespaces(context.Context, *VerifyNamespacesRequest) (*VerifyNamespacesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportSchedulerServer) CreateScheduleTask(context.Context, *CreateScheduleTaskRequest) (*CreateScheduleTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportSchedulerServer) ModifyScheduleTask(context.Context, *ModifyScheduleTaskRequest) (*ModifyScheduleTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportSchedulerServer) DeleteScheduleTask(context.Context, *DeleteScheduleTaskRequest) (*DeleteScheduleTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ReportSchedulerServer = (*UnimplementedReportSchedulerServer)(nil)

@@ -104,12 +104,14 @@ func ExportServerHandle(ctx context.Context, o ExportServer, opNum int, r ndr.Re
 	}
 	switch opNum {
 	case 3: // ExportConglomeration
-		in := &ExportConglomerationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportConglomerationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExportConglomeration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportConglomerationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportConglomeration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Opnum4NotUsedOnWire
 		// Opnum4NotUsedOnWire
 		return nil, nil
@@ -122,3 +124,14 @@ func ExportServerHandle(ctx context.Context, o ExportServer, opNum int, r ndr.Re
 	}
 	return nil, nil
 }
+
+// Unimplemented IExport
+type UnimplementedExportServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedExportServer) ExportConglomeration(context.Context, *ExportConglomerationRequest) (*ExportConglomerationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ExportServer = (*UnimplementedExportServer)(nil)

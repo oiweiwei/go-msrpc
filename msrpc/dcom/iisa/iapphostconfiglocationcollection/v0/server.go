@@ -61,33 +61,61 @@ func AppHostConfigLocationCollectionServerHandle(ctx context.Context, o AppHostC
 	}
 	switch opNum {
 	case 3: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AddLocation
-		in := &AddLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // DeleteLocation
-		in := &DeleteLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostConfigLocationCollection
+type UnimplementedAppHostConfigLocationCollectionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostConfigLocationCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationCollectionServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationCollectionServer) AddLocation(context.Context, *AddLocationRequest) (*AddLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationCollectionServer) DeleteLocation(context.Context, *DeleteLocationRequest) (*DeleteLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostConfigLocationCollectionServer = (*UnimplementedAppHostConfigLocationCollectionServer)(nil)

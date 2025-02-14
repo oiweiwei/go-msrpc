@@ -1079,7 +1079,7 @@ type xxx_DefaultDsaopClient struct {
 }
 
 func (o *xxx_DefaultDsaopClient) PrepareScript(ctx context.Context, in *PrepareScriptRequest, opts ...dcerpc.CallOption) (*PrepareScriptResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1092,7 +1092,7 @@ func (o *xxx_DefaultDsaopClient) PrepareScript(ctx context.Context, in *PrepareS
 }
 
 func (o *xxx_DefaultDsaopClient) ExecuteScript(ctx context.Context, in *ExecuteScriptRequest, opts ...dcerpc.CallOption) (*ExecuteScriptResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1269,14 +1269,16 @@ type PrepareScriptRequest struct {
 	In *MessagePrepareScriptRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *PrepareScriptRequest) xxx_ToOp(ctx context.Context) *xxx_PrepareScriptOperation {
+func (o *PrepareScriptRequest) xxx_ToOp(ctx context.Context, op *xxx_PrepareScriptOperation) *xxx_PrepareScriptOperation {
+	if op == nil {
+		op = &xxx_PrepareScriptOperation{}
+	}
 	if o == nil {
-		return &xxx_PrepareScriptOperation{}
+		return op
 	}
-	return &xxx_PrepareScriptOperation{
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *PrepareScriptRequest) xxx_FromOp(ctx context.Context, op *xxx_PrepareScriptOperation) {
@@ -1287,7 +1289,7 @@ func (o *PrepareScriptRequest) xxx_FromOp(ctx context.Context, op *xxx_PrepareSc
 	o.In = op.In
 }
 func (o *PrepareScriptRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PrepareScriptRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PrepareScriptOperation{}
@@ -1308,15 +1310,17 @@ type PrepareScriptResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PrepareScriptResponse) xxx_ToOp(ctx context.Context) *xxx_PrepareScriptOperation {
+func (o *PrepareScriptResponse) xxx_ToOp(ctx context.Context, op *xxx_PrepareScriptOperation) *xxx_PrepareScriptOperation {
+	if op == nil {
+		op = &xxx_PrepareScriptOperation{}
+	}
 	if o == nil {
-		return &xxx_PrepareScriptOperation{}
+		return op
 	}
-	return &xxx_PrepareScriptOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *PrepareScriptResponse) xxx_FromOp(ctx context.Context, op *xxx_PrepareScriptOperation) {
@@ -1328,7 +1332,7 @@ func (o *PrepareScriptResponse) xxx_FromOp(ctx context.Context, op *xxx_PrepareS
 	o.Return = op.Return
 }
 func (o *PrepareScriptResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PrepareScriptResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PrepareScriptOperation{}
@@ -1494,14 +1498,16 @@ type ExecuteScriptRequest struct {
 	In *MessageExecuteScriptRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *ExecuteScriptRequest) xxx_ToOp(ctx context.Context) *xxx_ExecuteScriptOperation {
+func (o *ExecuteScriptRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteScriptOperation) *xxx_ExecuteScriptOperation {
+	if op == nil {
+		op = &xxx_ExecuteScriptOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecuteScriptOperation{}
+		return op
 	}
-	return &xxx_ExecuteScriptOperation{
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *ExecuteScriptRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecuteScriptOperation) {
@@ -1512,7 +1518,7 @@ func (o *ExecuteScriptRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecuteSc
 	o.In = op.In
 }
 func (o *ExecuteScriptRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecuteScriptRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecuteScriptOperation{}
@@ -1533,15 +1539,17 @@ type ExecuteScriptResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecuteScriptResponse) xxx_ToOp(ctx context.Context) *xxx_ExecuteScriptOperation {
+func (o *ExecuteScriptResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteScriptOperation) *xxx_ExecuteScriptOperation {
+	if op == nil {
+		op = &xxx_ExecuteScriptOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecuteScriptOperation{}
+		return op
 	}
-	return &xxx_ExecuteScriptOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecuteScriptResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecuteScriptOperation) {
@@ -1553,7 +1561,7 @@ func (o *ExecuteScriptResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecuteS
 	o.Return = op.Return
 }
 func (o *ExecuteScriptResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecuteScriptResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecuteScriptOperation{}

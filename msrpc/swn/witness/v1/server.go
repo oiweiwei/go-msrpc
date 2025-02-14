@@ -235,40 +235,72 @@ func NewWitnessServerHandle(o WitnessServer) dcerpc.ServerHandle {
 func WitnessServerHandle(ctx context.Context, o WitnessServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // WitnessrGetInterfaceList
-		in := &GetInterfaceListRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInterfaceListOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInterfaceList(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInterfaceListRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInterfaceList(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // WitnessrRegister
-		in := &RegisterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Register(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Register(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // WitnessrUnRegister
-		in := &UnregisterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnregisterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Unregister(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnregisterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Unregister(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // WitnessrAsyncNotify
-		in := &AsyncNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AsyncNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AsyncNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AsyncNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AsyncNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // WitnessrRegisterEx
-		in := &RegisterExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented Witness
+type UnimplementedWitnessServer struct {
+}
+
+func (UnimplementedWitnessServer) GetInterfaceList(context.Context, *GetInterfaceListRequest) (*GetInterfaceListResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWitnessServer) Register(context.Context, *RegisterRequest) (*RegisterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWitnessServer) Unregister(context.Context, *UnregisterRequest) (*UnregisterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWitnessServer) AsyncNotify(context.Context, *AsyncNotifyRequest) (*AsyncNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWitnessServer) RegisterEx(context.Context, *RegisterExRequest) (*RegisterExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WitnessServer = (*UnimplementedWitnessServer)(nil)

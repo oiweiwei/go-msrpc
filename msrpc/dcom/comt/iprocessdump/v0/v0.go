@@ -86,7 +86,7 @@ func (o *xxx_DefaultProcessDumpClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultProcessDumpClient) IsSupported(ctx context.Context, in *IsSupportedRequest, opts ...dcerpc.CallOption) (*IsSupportedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -106,7 +106,7 @@ func (o *xxx_DefaultProcessDumpClient) IsSupported(ctx context.Context, in *IsSu
 }
 
 func (o *xxx_DefaultProcessDumpClient) DumpProcess(ctx context.Context, in *DumpProcessRequest, opts ...dcerpc.CallOption) (*DumpProcessResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -290,13 +290,15 @@ type IsSupportedRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *IsSupportedRequest) xxx_ToOp(ctx context.Context) *xxx_IsSupportedOperation {
+func (o *IsSupportedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsSupportedOperation) *xxx_IsSupportedOperation {
+	if op == nil {
+		op = &xxx_IsSupportedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsSupportedOperation{}
+		return op
 	}
-	return &xxx_IsSupportedOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *IsSupportedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsSupportedOperation) {
@@ -306,7 +308,7 @@ func (o *IsSupportedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsSupported
 	o.This = op.This
 }
 func (o *IsSupportedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsSupportedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsSupportedOperation{}
@@ -325,14 +327,16 @@ type IsSupportedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsSupportedResponse) xxx_ToOp(ctx context.Context) *xxx_IsSupportedOperation {
+func (o *IsSupportedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsSupportedOperation) *xxx_IsSupportedOperation {
+	if op == nil {
+		op = &xxx_IsSupportedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsSupportedOperation{}
+		return op
 	}
-	return &xxx_IsSupportedOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsSupportedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsSupportedOperation) {
@@ -343,7 +347,7 @@ func (o *IsSupportedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsSupporte
 	o.Return = op.Return
 }
 func (o *IsSupportedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsSupportedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsSupportedOperation{}
@@ -646,16 +650,18 @@ type DumpProcessRequest struct {
 	MaxFiles uint32 `idl:"name:dwMaxFiles" json:"max_files"`
 }
 
-func (o *DumpProcessRequest) xxx_ToOp(ctx context.Context) *xxx_DumpProcessOperation {
+func (o *DumpProcessRequest) xxx_ToOp(ctx context.Context, op *xxx_DumpProcessOperation) *xxx_DumpProcessOperation {
+	if op == nil {
+		op = &xxx_DumpProcessOperation{}
+	}
 	if o == nil {
-		return &xxx_DumpProcessOperation{}
+		return op
 	}
-	return &xxx_DumpProcessOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-		Directory:   o.Directory,
-		MaxFiles:    o.MaxFiles,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	o.Directory = op.Directory
+	o.MaxFiles = op.MaxFiles
+	return op
 }
 
 func (o *DumpProcessRequest) xxx_FromOp(ctx context.Context, op *xxx_DumpProcessOperation) {
@@ -668,7 +674,7 @@ func (o *DumpProcessRequest) xxx_FromOp(ctx context.Context, op *xxx_DumpProcess
 	o.MaxFiles = op.MaxFiles
 }
 func (o *DumpProcessRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DumpProcessRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DumpProcessOperation{}
@@ -691,15 +697,17 @@ type DumpProcessResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DumpProcessResponse) xxx_ToOp(ctx context.Context) *xxx_DumpProcessOperation {
+func (o *DumpProcessResponse) xxx_ToOp(ctx context.Context, op *xxx_DumpProcessOperation) *xxx_DumpProcessOperation {
+	if op == nil {
+		op = &xxx_DumpProcessOperation{}
+	}
 	if o == nil {
-		return &xxx_DumpProcessOperation{}
+		return op
 	}
-	return &xxx_DumpProcessOperation{
-		That:     o.That,
-		DumpFile: o.DumpFile,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.DumpFile = op.DumpFile
+	o.Return = op.Return
+	return op
 }
 
 func (o *DumpProcessResponse) xxx_FromOp(ctx context.Context, op *xxx_DumpProcessOperation) {
@@ -711,7 +719,7 @@ func (o *DumpProcessResponse) xxx_FromOp(ctx context.Context, op *xxx_DumpProces
 	o.Return = op.Return
 }
 func (o *DumpProcessResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DumpProcessResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DumpProcessOperation{}

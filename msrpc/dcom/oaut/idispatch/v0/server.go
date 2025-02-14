@@ -241,33 +241,61 @@ func DispatchServerHandle(ctx context.Context, o DispatchServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // GetTypeInfoCount
-		in := &GetTypeInfoCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeInfoCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeInfoCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeInfoCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeInfoCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetTypeInfo
-		in := &GetTypeInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetIDsOfNames
-		in := &GetIDsOfNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIDsOfNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIDsOfNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIDsOfNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIDsOfNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Invoke
-		in := &InvokeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InvokeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Invoke(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InvokeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Invoke(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDispatch
+type UnimplementedDispatchServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDispatchServer) GetTypeInfoCount(context.Context, *GetTypeInfoCountRequest) (*GetTypeInfoCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDispatchServer) GetTypeInfo(context.Context, *GetTypeInfoRequest) (*GetTypeInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDispatchServer) GetIDsOfNames(context.Context, *GetIDsOfNamesRequest) (*GetIDsOfNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDispatchServer) Invoke(context.Context, *InvokeRequest) (*InvokeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DispatchServer = (*UnimplementedDispatchServer)(nil)

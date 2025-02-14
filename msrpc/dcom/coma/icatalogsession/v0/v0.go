@@ -103,7 +103,7 @@ func (o *xxx_DefaultCatalogSessionClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCatalogSessionClient) InitializeSession(ctx context.Context, in *InitializeSessionRequest, opts ...dcerpc.CallOption) (*InitializeSessionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -123,7 +123,7 @@ func (o *xxx_DefaultCatalogSessionClient) InitializeSession(ctx context.Context,
 }
 
 func (o *xxx_DefaultCatalogSessionClient) GetServerInformation(ctx context.Context, in *GetServerInformationRequest, opts ...dcerpc.CallOption) (*GetServerInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -368,15 +368,17 @@ type InitializeSessionRequest struct {
 	VerUpper float32 `idl:"name:flVerUpper" json:"ver_upper"`
 }
 
-func (o *InitializeSessionRequest) xxx_ToOp(ctx context.Context) *xxx_InitializeSessionOperation {
+func (o *InitializeSessionRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeSessionOperation) *xxx_InitializeSessionOperation {
+	if op == nil {
+		op = &xxx_InitializeSessionOperation{}
+	}
 	if o == nil {
-		return &xxx_InitializeSessionOperation{}
+		return op
 	}
-	return &xxx_InitializeSessionOperation{
-		This:     o.This,
-		VerLower: o.VerLower,
-		VerUpper: o.VerUpper,
-	}
+	o.This = op.This
+	o.VerLower = op.VerLower
+	o.VerUpper = op.VerUpper
+	return op
 }
 
 func (o *InitializeSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_InitializeSessionOperation) {
@@ -388,7 +390,7 @@ func (o *InitializeSessionRequest) xxx_FromOp(ctx context.Context, op *xxx_Initi
 	o.VerUpper = op.VerUpper
 }
 func (o *InitializeSessionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InitializeSessionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitializeSessionOperation{}
@@ -410,15 +412,17 @@ type InitializeSessionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InitializeSessionResponse) xxx_ToOp(ctx context.Context) *xxx_InitializeSessionOperation {
+func (o *InitializeSessionResponse) xxx_ToOp(ctx context.Context, op *xxx_InitializeSessionOperation) *xxx_InitializeSessionOperation {
+	if op == nil {
+		op = &xxx_InitializeSessionOperation{}
+	}
 	if o == nil {
-		return &xxx_InitializeSessionOperation{}
+		return op
 	}
-	return &xxx_InitializeSessionOperation{
-		That:       o.That,
-		VerSession: o.VerSession,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.VerSession = op.VerSession
+	o.Return = op.Return
+	return op
 }
 
 func (o *InitializeSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_InitializeSessionOperation) {
@@ -430,7 +434,7 @@ func (o *InitializeSessionResponse) xxx_FromOp(ctx context.Context, op *xxx_Init
 	o.Return = op.Return
 }
 func (o *InitializeSessionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InitializeSessionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitializeSessionOperation{}
@@ -659,13 +663,15 @@ type GetServerInformationRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetServerInformationRequest) xxx_ToOp(ctx context.Context) *xxx_GetServerInformationOperation {
+func (o *GetServerInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServerInformationOperation) *xxx_GetServerInformationOperation {
+	if op == nil {
+		op = &xxx_GetServerInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServerInformationOperation{}
+		return op
 	}
-	return &xxx_GetServerInformationOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetServerInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetServerInformationOperation) {
@@ -675,7 +681,7 @@ func (o *GetServerInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.This = op.This
 }
 func (o *GetServerInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetServerInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServerInformationOperation{}
@@ -714,15 +720,17 @@ type GetServerInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetServerInformationResponse) xxx_ToOp(ctx context.Context) *xxx_GetServerInformationOperation {
+func (o *GetServerInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServerInformationOperation) *xxx_GetServerInformationOperation {
+	if op == nil {
+		op = &xxx_GetServerInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServerInformationOperation{}
+		return op
 	}
-	return &xxx_GetServerInformationOperation{
-		That:                     o.That,
-		MultiplePartitionSupport: o.MultiplePartitionSupport,
-		Return:                   o.Return,
-	}
+	o.That = op.That
+	o.MultiplePartitionSupport = op.MultiplePartitionSupport
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetServerInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServerInformationOperation) {
@@ -734,7 +742,7 @@ func (o *GetServerInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetServerInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetServerInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServerInformationOperation{}

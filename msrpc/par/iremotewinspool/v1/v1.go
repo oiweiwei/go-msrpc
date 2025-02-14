@@ -16607,7 +16607,7 @@ type xxx_DefaultRemoteWinspoolClient struct {
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) OpenPrinter(ctx context.Context, in *OpenPrinterRequest, opts ...dcerpc.CallOption) (*OpenPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16620,7 +16620,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) OpenPrinter(ctx context.Context, in *O
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddPrinter(ctx context.Context, in *AddPrinterRequest, opts ...dcerpc.CallOption) (*AddPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16633,7 +16633,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddPrinter(ctx context.Context, in *Ad
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetJob(ctx context.Context, in *SetJobRequest, opts ...dcerpc.CallOption) (*SetJobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16646,7 +16646,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetJob(ctx context.Context, in *SetJob
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetJob(ctx context.Context, in *GetJobRequest, opts ...dcerpc.CallOption) (*GetJobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16659,7 +16659,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetJob(ctx context.Context, in *GetJob
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumJobs(ctx context.Context, in *EnumJobsRequest, opts ...dcerpc.CallOption) (*EnumJobsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16672,7 +16672,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumJobs(ctx context.Context, in *Enum
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddJob(ctx context.Context, in *AddJobRequest, opts ...dcerpc.CallOption) (*AddJobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16685,7 +16685,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddJob(ctx context.Context, in *AddJob
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) ScheduleJob(ctx context.Context, in *ScheduleJobRequest, opts ...dcerpc.CallOption) (*ScheduleJobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16698,7 +16698,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) ScheduleJob(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinter(ctx context.Context, in *DeletePrinterRequest, opts ...dcerpc.CallOption) (*DeletePrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16711,7 +16711,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinter(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetPrinter(ctx context.Context, in *SetPrinterRequest, opts ...dcerpc.CallOption) (*SetPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16724,7 +16724,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetPrinter(ctx context.Context, in *Se
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrinter(ctx context.Context, in *GetPrinterRequest, opts ...dcerpc.CallOption) (*GetPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16737,7 +16737,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinter(ctx context.Context, in *Ge
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) StartDocPrinter(ctx context.Context, in *StartDocPrinterRequest, opts ...dcerpc.CallOption) (*StartDocPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16750,7 +16750,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) StartDocPrinter(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) StartPagePrinter(ctx context.Context, in *StartPagePrinterRequest, opts ...dcerpc.CallOption) (*StartPagePrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16763,7 +16763,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) StartPagePrinter(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) WritePrinter(ctx context.Context, in *WritePrinterRequest, opts ...dcerpc.CallOption) (*WritePrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16776,7 +16776,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) WritePrinter(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EndPagePrinter(ctx context.Context, in *EndPagePrinterRequest, opts ...dcerpc.CallOption) (*EndPagePrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16789,7 +16789,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EndPagePrinter(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EndDocPrinter(ctx context.Context, in *EndDocPrinterRequest, opts ...dcerpc.CallOption) (*EndDocPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16802,7 +16802,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EndDocPrinter(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AbortPrinter(ctx context.Context, in *AbortPrinterRequest, opts ...dcerpc.CallOption) (*AbortPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16815,7 +16815,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AbortPrinter(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterData(ctx context.Context, in *GetPrinterDataRequest, opts ...dcerpc.CallOption) (*GetPrinterDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16828,7 +16828,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterData(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDataEx(ctx context.Context, in *GetPrinterDataExRequest, opts ...dcerpc.CallOption) (*GetPrinterDataExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16841,7 +16841,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDataEx(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetPrinterData(ctx context.Context, in *SetPrinterDataRequest, opts ...dcerpc.CallOption) (*SetPrinterDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16854,7 +16854,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetPrinterData(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetPrinterDataEx(ctx context.Context, in *SetPrinterDataExRequest, opts ...dcerpc.CallOption) (*SetPrinterDataExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16867,7 +16867,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetPrinterDataEx(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) ClosePrinter(ctx context.Context, in *ClosePrinterRequest, opts ...dcerpc.CallOption) (*ClosePrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16880,7 +16880,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) ClosePrinter(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddForm(ctx context.Context, in *AddFormRequest, opts ...dcerpc.CallOption) (*AddFormResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16893,7 +16893,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddForm(ctx context.Context, in *AddFo
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeleteForm(ctx context.Context, in *DeleteFormRequest, opts ...dcerpc.CallOption) (*DeleteFormResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16906,7 +16906,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeleteForm(ctx context.Context, in *De
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetForm(ctx context.Context, in *GetFormRequest, opts ...dcerpc.CallOption) (*GetFormResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16919,7 +16919,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetForm(ctx context.Context, in *GetFo
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetForm(ctx context.Context, in *SetFormRequest, opts ...dcerpc.CallOption) (*SetFormResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16932,7 +16932,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetForm(ctx context.Context, in *SetFo
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumForms(ctx context.Context, in *EnumFormsRequest, opts ...dcerpc.CallOption) (*EnumFormsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16945,7 +16945,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumForms(ctx context.Context, in *Enu
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriver(ctx context.Context, in *GetPrinterDriverRequest, opts ...dcerpc.CallOption) (*GetPrinterDriverResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16958,7 +16958,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriver(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterData(ctx context.Context, in *EnumPrinterDataRequest, opts ...dcerpc.CallOption) (*EnumPrinterDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16971,7 +16971,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterData(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterDataEx(ctx context.Context, in *EnumPrinterDataExRequest, opts ...dcerpc.CallOption) (*EnumPrinterDataExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16984,7 +16984,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterDataEx(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterKey(ctx context.Context, in *EnumPrinterKeyRequest, opts ...dcerpc.CallOption) (*EnumPrinterKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -16997,7 +16997,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterKey(ctx context.Context, in
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterData(ctx context.Context, in *DeletePrinterDataRequest, opts ...dcerpc.CallOption) (*DeletePrinterDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17010,7 +17010,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterData(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDataEx(ctx context.Context, in *DeletePrinterDataExRequest, opts ...dcerpc.CallOption) (*DeletePrinterDataExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17023,7 +17023,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDataEx(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterKey(ctx context.Context, in *DeletePrinterKeyRequest, opts ...dcerpc.CallOption) (*DeletePrinterKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17036,7 +17036,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterKey(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) XcvData(ctx context.Context, in *XcvDataRequest, opts ...dcerpc.CallOption) (*XcvDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17049,7 +17049,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) XcvData(ctx context.Context, in *XcvDa
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SendRecvBIDIData(ctx context.Context, in *SendRecvBIDIDataRequest, opts ...dcerpc.CallOption) (*SendRecvBIDIDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17062,7 +17062,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SendRecvBIDIData(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) CreatePrinterIC(ctx context.Context, in *CreatePrinterICRequest, opts ...dcerpc.CallOption) (*CreatePrinterICResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17075,7 +17075,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) CreatePrinterIC(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) PlayGDIScriptOnPrinterIC(ctx context.Context, in *PlayGDIScriptOnPrinterICRequest, opts ...dcerpc.CallOption) (*PlayGDIScriptOnPrinterICResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17088,7 +17088,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) PlayGDIScriptOnPrinterIC(ctx context.C
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterIC(ctx context.Context, in *DeletePrinterICRequest, opts ...dcerpc.CallOption) (*DeletePrinterICResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17101,7 +17101,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterIC(ctx context.Context, i
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinters(ctx context.Context, in *EnumPrintersRequest, opts ...dcerpc.CallOption) (*EnumPrintersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17114,7 +17114,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinters(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddPrinterDriver(ctx context.Context, in *AddPrinterDriverRequest, opts ...dcerpc.CallOption) (*AddPrinterDriverResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17127,7 +17127,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddPrinterDriver(ctx context.Context, 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterDrivers(ctx context.Context, in *EnumPrinterDriversRequest, opts ...dcerpc.CallOption) (*EnumPrinterDriversResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17140,7 +17140,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrinterDrivers(ctx context.Context
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriverDirectory(ctx context.Context, in *GetPrinterDriverDirectoryRequest, opts ...dcerpc.CallOption) (*GetPrinterDriverDirectoryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17153,7 +17153,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriverDirectory(ctx context.
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriver(ctx context.Context, in *DeletePrinterDriverRequest, opts ...dcerpc.CallOption) (*DeletePrinterDriverResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17166,7 +17166,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriver(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriverEx(ctx context.Context, in *DeletePrinterDriverExRequest, opts ...dcerpc.CallOption) (*DeletePrinterDriverExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17179,7 +17179,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriverEx(ctx context.Cont
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddPrintProcessor(ctx context.Context, in *AddPrintProcessorRequest, opts ...dcerpc.CallOption) (*AddPrintProcessorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17192,7 +17192,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddPrintProcessor(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrintProcessors(ctx context.Context, in *EnumPrintProcessorsRequest, opts ...dcerpc.CallOption) (*EnumPrintProcessorsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17205,7 +17205,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrintProcessors(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrintProcessorDirectory(ctx context.Context, in *GetPrintProcessorDirectoryRequest, opts ...dcerpc.CallOption) (*GetPrintProcessorDirectoryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17218,7 +17218,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrintProcessorDirectory(ctx context
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPorts(ctx context.Context, in *EnumPortsRequest, opts ...dcerpc.CallOption) (*EnumPortsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17231,7 +17231,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPorts(ctx context.Context, in *Enu
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumMonitors(ctx context.Context, in *EnumMonitorsRequest, opts ...dcerpc.CallOption) (*EnumMonitorsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17244,7 +17244,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumMonitors(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddPort(ctx context.Context, in *AddPortRequest, opts ...dcerpc.CallOption) (*AddPortResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17257,7 +17257,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddPort(ctx context.Context, in *AddPo
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetPort(ctx context.Context, in *SetPortRequest, opts ...dcerpc.CallOption) (*SetPortResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17270,7 +17270,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetPort(ctx context.Context, in *SetPo
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddMonitor(ctx context.Context, in *AddMonitorRequest, opts ...dcerpc.CallOption) (*AddMonitorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17283,7 +17283,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddMonitor(ctx context.Context, in *Ad
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeleteMonitor(ctx context.Context, in *DeleteMonitorRequest, opts ...dcerpc.CallOption) (*DeleteMonitorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17296,7 +17296,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeleteMonitor(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrintProcessor(ctx context.Context, in *DeletePrintProcessorRequest, opts ...dcerpc.CallOption) (*DeletePrintProcessorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17309,7 +17309,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrintProcessor(ctx context.Conte
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPrintProcessorDataTypes(ctx context.Context, in *EnumPrintProcessorDataTypesRequest, opts ...dcerpc.CallOption) (*EnumPrintProcessorDataTypesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17322,7 +17322,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPrintProcessorDataTypes(ctx contex
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) AddPerMachineConnection(ctx context.Context, in *AddPerMachineConnectionRequest, opts ...dcerpc.CallOption) (*AddPerMachineConnectionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17335,7 +17335,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) AddPerMachineConnection(ctx context.Co
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePerMachineConnection(ctx context.Context, in *DeletePerMachineConnectionRequest, opts ...dcerpc.CallOption) (*DeletePerMachineConnectionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17348,7 +17348,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePerMachineConnection(ctx context
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumPerMachineConnections(ctx context.Context, in *EnumPerMachineConnectionsRequest, opts ...dcerpc.CallOption) (*EnumPerMachineConnectionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17361,7 +17361,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumPerMachineConnections(ctx context.
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SyncRegisterForRemoteNotifications(ctx context.Context, in *SyncRegisterForRemoteNotificationsRequest, opts ...dcerpc.CallOption) (*SyncRegisterForRemoteNotificationsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17374,7 +17374,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SyncRegisterForRemoteNotifications(ctx
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SyncUnregisterForRemoteNotifications(ctx context.Context, in *SyncUnregisterForRemoteNotificationsRequest, opts ...dcerpc.CallOption) (*SyncUnregisterForRemoteNotificationsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17387,7 +17387,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SyncUnregisterForRemoteNotifications(c
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SyncRefreshRemoteNotifications(ctx context.Context, in *SyncRefreshRemoteNotificationsRequest, opts ...dcerpc.CallOption) (*SyncRefreshRemoteNotificationsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17400,7 +17400,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SyncRefreshRemoteNotifications(ctx con
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetRemoteNotifications(ctx context.Context, in *GetRemoteNotificationsRequest, opts ...dcerpc.CallOption) (*GetRemoteNotificationsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17413,7 +17413,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetRemoteNotifications(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) InstallPrinterDriverFromPackage(ctx context.Context, in *InstallPrinterDriverFromPackageRequest, opts ...dcerpc.CallOption) (*InstallPrinterDriverFromPackageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17426,7 +17426,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) InstallPrinterDriverFromPackage(ctx co
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) UploadPrinterDriverPackage(ctx context.Context, in *UploadPrinterDriverPackageRequest, opts ...dcerpc.CallOption) (*UploadPrinterDriverPackageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17439,7 +17439,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) UploadPrinterDriverPackage(ctx context
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetCorePrinterDrivers(ctx context.Context, in *GetCorePrinterDriversRequest, opts ...dcerpc.CallOption) (*GetCorePrinterDriversResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17452,7 +17452,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetCorePrinterDrivers(ctx context.Cont
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) CorePrinterDriverInstalled(ctx context.Context, in *CorePrinterDriverInstalledRequest, opts ...dcerpc.CallOption) (*CorePrinterDriverInstalledResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17465,7 +17465,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) CorePrinterDriverInstalled(ctx context
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriverPackagePath(ctx context.Context, in *GetPrinterDriverPackagePathRequest, opts ...dcerpc.CallOption) (*GetPrinterDriverPackagePathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17478,7 +17478,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetPrinterDriverPackagePath(ctx contex
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriverPackage(ctx context.Context, in *DeletePrinterDriverPackageRequest, opts ...dcerpc.CallOption) (*DeletePrinterDriverPackageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17491,7 +17491,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeletePrinterDriverPackage(ctx context
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) ReadPrinter(ctx context.Context, in *ReadPrinterRequest, opts ...dcerpc.CallOption) (*ReadPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17504,7 +17504,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) ReadPrinter(ctx context.Context, in *R
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) ResetPrinter(ctx context.Context, in *ResetPrinterRequest, opts ...dcerpc.CallOption) (*ResetPrinterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17517,7 +17517,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) ResetPrinter(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) GetJobNamedPropertyValue(ctx context.Context, in *GetJobNamedPropertyValueRequest, opts ...dcerpc.CallOption) (*GetJobNamedPropertyValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17530,7 +17530,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) GetJobNamedPropertyValue(ctx context.C
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) SetJobNamedProperty(ctx context.Context, in *SetJobNamedPropertyRequest, opts ...dcerpc.CallOption) (*SetJobNamedPropertyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17543,7 +17543,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) SetJobNamedProperty(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) DeleteJobNamedProperty(ctx context.Context, in *DeleteJobNamedPropertyRequest, opts ...dcerpc.CallOption) (*DeleteJobNamedPropertyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17556,7 +17556,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) DeleteJobNamedProperty(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) EnumJobNamedProperties(ctx context.Context, in *EnumJobNamedPropertiesRequest, opts ...dcerpc.CallOption) (*EnumJobNamedPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17569,7 +17569,7 @@ func (o *xxx_DefaultRemoteWinspoolClient) EnumJobNamedProperties(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteWinspoolClient) LogJobInfoForBranchOffice(ctx context.Context, in *LogJobInfoForBranchOfficeRequest, opts ...dcerpc.CallOption) (*LogJobInfoForBranchOfficeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -17834,17 +17834,19 @@ type OpenPrinterRequest struct {
 	ClientInfo       *ClientContainer  `idl:"name:pClientInfo" json:"client_info"`
 }
 
-func (o *OpenPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_OpenPrinterOperation {
+func (o *OpenPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenPrinterOperation) *xxx_OpenPrinterOperation {
+	if op == nil {
+		op = &xxx_OpenPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPrinterOperation{}
+		return op
 	}
-	return &xxx_OpenPrinterOperation{
-		PrinterName:      o.PrinterName,
-		DataType:         o.DataType,
-		DevModeContainer: o.DevModeContainer,
-		AccessRequired:   o.AccessRequired,
-		ClientInfo:       o.ClientInfo,
-	}
+	o.PrinterName = op.PrinterName
+	o.DataType = op.DataType
+	o.DevModeContainer = op.DevModeContainer
+	o.AccessRequired = op.AccessRequired
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *OpenPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPrinterOperation) {
@@ -17858,7 +17860,7 @@ func (o *OpenPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenPrinter
 	o.ClientInfo = op.ClientInfo
 }
 func (o *OpenPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPrinterOperation{}
@@ -17876,14 +17878,16 @@ type OpenPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_OpenPrinterOperation {
+func (o *OpenPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenPrinterOperation) *xxx_OpenPrinterOperation {
+	if op == nil {
+		op = &xxx_OpenPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenPrinterOperation{}
+		return op
 	}
-	return &xxx_OpenPrinterOperation{
-		Handle: o.Handle,
-		Return: o.Return,
-	}
+	o.Handle = op.Handle
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPrinterOperation) {
@@ -17894,7 +17898,7 @@ func (o *OpenPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenPrinte
 	o.Return = op.Return
 }
 func (o *OpenPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenPrinterOperation{}
@@ -18147,17 +18151,19 @@ type AddPrinterRequest struct {
 	ClientInfo        *ClientContainer   `idl:"name:pClientInfo" json:"client_info"`
 }
 
-func (o *AddPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_AddPrinterOperation {
+func (o *AddPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterOperation) *xxx_AddPrinterOperation {
+	if op == nil {
+		op = &xxx_AddPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrinterOperation{}
+		return op
 	}
-	return &xxx_AddPrinterOperation{
-		Name:              o.Name,
-		PrinterContainer:  o.PrinterContainer,
-		DevModeContainer:  o.DevModeContainer,
-		SecurityContainer: o.SecurityContainer,
-		ClientInfo:        o.ClientInfo,
-	}
+	o.Name = op.Name
+	o.PrinterContainer = op.PrinterContainer
+	o.DevModeContainer = op.DevModeContainer
+	o.SecurityContainer = op.SecurityContainer
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *AddPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPrinterOperation) {
@@ -18171,7 +18177,7 @@ func (o *AddPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPrinterOp
 	o.ClientInfo = op.ClientInfo
 }
 func (o *AddPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrinterOperation{}
@@ -18189,14 +18195,16 @@ type AddPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_AddPrinterOperation {
+func (o *AddPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterOperation) *xxx_AddPrinterOperation {
+	if op == nil {
+		op = &xxx_AddPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrinterOperation{}
+		return op
 	}
-	return &xxx_AddPrinterOperation{
-		Handle: o.Handle,
-		Return: o.Return,
-	}
+	o.Handle = op.Handle
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPrinterOperation) {
@@ -18207,7 +18215,7 @@ func (o *AddPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPrinterO
 	o.Return = op.Return
 }
 func (o *AddPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrinterOperation{}
@@ -18384,16 +18392,18 @@ type SetJobRequest struct {
 	Command      uint32        `idl:"name:Command" json:"command"`
 }
 
-func (o *SetJobRequest) xxx_ToOp(ctx context.Context) *xxx_SetJobOperation {
+func (o *SetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) *xxx_SetJobOperation {
+	if op == nil {
+		op = &xxx_SetJobOperation{}
+	}
 	if o == nil {
-		return &xxx_SetJobOperation{}
+		return op
 	}
-	return &xxx_SetJobOperation{
-		Printer:      o.Printer,
-		JobID:        o.JobID,
-		JobContainer: o.JobContainer,
-		Command:      o.Command,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	o.JobContainer = op.JobContainer
+	o.Command = op.Command
+	return op
 }
 
 func (o *SetJobRequest) xxx_FromOp(ctx context.Context, op *xxx_SetJobOperation) {
@@ -18406,7 +18416,7 @@ func (o *SetJobRequest) xxx_FromOp(ctx context.Context, op *xxx_SetJobOperation)
 	o.Command = op.Command
 }
 func (o *SetJobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetJobOperation{}
@@ -18423,13 +18433,15 @@ type SetJobResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetJobResponse) xxx_ToOp(ctx context.Context) *xxx_SetJobOperation {
+func (o *SetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJobOperation) *xxx_SetJobOperation {
+	if op == nil {
+		op = &xxx_SetJobOperation{}
+	}
 	if o == nil {
-		return &xxx_SetJobOperation{}
+		return op
 	}
-	return &xxx_SetJobOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetJobResponse) xxx_FromOp(ctx context.Context, op *xxx_SetJobOperation) {
@@ -18439,7 +18451,7 @@ func (o *SetJobResponse) xxx_FromOp(ctx context.Context, op *xxx_SetJobOperation
 	o.Return = op.Return
 }
 func (o *SetJobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetJobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetJobOperation{}
@@ -18740,17 +18752,19 @@ type GetJobRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *GetJobRequest) xxx_ToOp(ctx context.Context) *xxx_GetJobOperation {
+func (o *GetJobRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) *xxx_GetJobOperation {
+	if op == nil {
+		op = &xxx_GetJobOperation{}
+	}
 	if o == nil {
-		return &xxx_GetJobOperation{}
+		return op
 	}
-	return &xxx_GetJobOperation{
-		Printer:      o.Printer,
-		JobID:        o.JobID,
-		Level:        o.Level,
-		Job:          o.Job,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	o.Level = op.Level
+	o.Job = op.Job
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetJobRequest) xxx_FromOp(ctx context.Context, op *xxx_GetJobOperation) {
@@ -18764,7 +18778,7 @@ func (o *GetJobRequest) xxx_FromOp(ctx context.Context, op *xxx_GetJobOperation)
 	o.BufferLength = op.BufferLength
 }
 func (o *GetJobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetJobOperation{}
@@ -18783,15 +18797,17 @@ type GetJobResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetJobResponse) xxx_ToOp(ctx context.Context) *xxx_GetJobOperation {
+func (o *GetJobResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobOperation) *xxx_GetJobOperation {
+	if op == nil {
+		op = &xxx_GetJobOperation{}
+	}
 	if o == nil {
-		return &xxx_GetJobOperation{}
+		return op
 	}
-	return &xxx_GetJobOperation{
-		Job:          o.Job,
-		NeededLength: o.NeededLength,
-		Return:       o.Return,
-	}
+	o.Job = op.Job
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetJobResponse) xxx_FromOp(ctx context.Context, op *xxx_GetJobOperation) {
@@ -18803,7 +18819,7 @@ func (o *GetJobResponse) xxx_FromOp(ctx context.Context, op *xxx_GetJobOperation
 	o.Return = op.Return
 }
 func (o *GetJobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetJobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetJobOperation{}
@@ -19131,18 +19147,20 @@ type EnumJobsRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumJobsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumJobsOperation {
+func (o *EnumJobsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperation) *xxx_EnumJobsOperation {
+	if op == nil {
+		op = &xxx_EnumJobsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumJobsOperation{}
+		return op
 	}
-	return &xxx_EnumJobsOperation{
-		Printer:      o.Printer,
-		FirstJob:     o.FirstJob,
-		NoJobs:       o.NoJobs,
-		Level:        o.Level,
-		Job:          o.Job,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.FirstJob = op.FirstJob
+	o.NoJobs = op.NoJobs
+	o.Level = op.Level
+	o.Job = op.Job
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumJobsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumJobsOperation) {
@@ -19157,7 +19175,7 @@ func (o *EnumJobsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumJobsOperat
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumJobsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumJobsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumJobsOperation{}
@@ -19177,16 +19195,18 @@ type EnumJobsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumJobsOperation {
+func (o *EnumJobsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobsOperation) *xxx_EnumJobsOperation {
+	if op == nil {
+		op = &xxx_EnumJobsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumJobsOperation{}
+		return op
 	}
-	return &xxx_EnumJobsOperation{
-		Job:           o.Job,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.Job = op.Job
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumJobsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumJobsOperation) {
@@ -19199,7 +19219,7 @@ func (o *EnumJobsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumJobsOpera
 	o.Return = op.Return
 }
 func (o *EnumJobsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumJobsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumJobsOperation{}
@@ -19486,16 +19506,18 @@ type AddJobRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *AddJobRequest) xxx_ToOp(ctx context.Context) *xxx_AddJobOperation {
+func (o *AddJobRequest) xxx_ToOp(ctx context.Context, op *xxx_AddJobOperation) *xxx_AddJobOperation {
+	if op == nil {
+		op = &xxx_AddJobOperation{}
+	}
 	if o == nil {
-		return &xxx_AddJobOperation{}
+		return op
 	}
-	return &xxx_AddJobOperation{
-		Printer:      o.Printer,
-		Level:        o.Level,
-		AddJob:       o.AddJob,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.Level = op.Level
+	o.AddJob = op.AddJob
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *AddJobRequest) xxx_FromOp(ctx context.Context, op *xxx_AddJobOperation) {
@@ -19508,7 +19530,7 @@ func (o *AddJobRequest) xxx_FromOp(ctx context.Context, op *xxx_AddJobOperation)
 	o.BufferLength = op.BufferLength
 }
 func (o *AddJobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddJobOperation{}
@@ -19527,15 +19549,17 @@ type AddJobResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddJobResponse) xxx_ToOp(ctx context.Context) *xxx_AddJobOperation {
+func (o *AddJobResponse) xxx_ToOp(ctx context.Context, op *xxx_AddJobOperation) *xxx_AddJobOperation {
+	if op == nil {
+		op = &xxx_AddJobOperation{}
+	}
 	if o == nil {
-		return &xxx_AddJobOperation{}
+		return op
 	}
-	return &xxx_AddJobOperation{
-		AddJob:       o.AddJob,
-		NeededLength: o.NeededLength,
-		Return:       o.Return,
-	}
+	o.AddJob = op.AddJob
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddJobResponse) xxx_FromOp(ctx context.Context, op *xxx_AddJobOperation) {
@@ -19547,7 +19571,7 @@ func (o *AddJobResponse) xxx_FromOp(ctx context.Context, op *xxx_AddJobOperation
 	o.Return = op.Return
 }
 func (o *AddJobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddJobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddJobOperation{}
@@ -19662,14 +19686,16 @@ type ScheduleJobRequest struct {
 	JobID   uint32   `idl:"name:JobId" json:"job_id"`
 }
 
-func (o *ScheduleJobRequest) xxx_ToOp(ctx context.Context) *xxx_ScheduleJobOperation {
+func (o *ScheduleJobRequest) xxx_ToOp(ctx context.Context, op *xxx_ScheduleJobOperation) *xxx_ScheduleJobOperation {
+	if op == nil {
+		op = &xxx_ScheduleJobOperation{}
+	}
 	if o == nil {
-		return &xxx_ScheduleJobOperation{}
+		return op
 	}
-	return &xxx_ScheduleJobOperation{
-		Printer: o.Printer,
-		JobID:   o.JobID,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	return op
 }
 
 func (o *ScheduleJobRequest) xxx_FromOp(ctx context.Context, op *xxx_ScheduleJobOperation) {
@@ -19680,7 +19706,7 @@ func (o *ScheduleJobRequest) xxx_FromOp(ctx context.Context, op *xxx_ScheduleJob
 	o.JobID = op.JobID
 }
 func (o *ScheduleJobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ScheduleJobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ScheduleJobOperation{}
@@ -19697,13 +19723,15 @@ type ScheduleJobResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ScheduleJobResponse) xxx_ToOp(ctx context.Context) *xxx_ScheduleJobOperation {
+func (o *ScheduleJobResponse) xxx_ToOp(ctx context.Context, op *xxx_ScheduleJobOperation) *xxx_ScheduleJobOperation {
+	if op == nil {
+		op = &xxx_ScheduleJobOperation{}
+	}
 	if o == nil {
-		return &xxx_ScheduleJobOperation{}
+		return op
 	}
-	return &xxx_ScheduleJobOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ScheduleJobResponse) xxx_FromOp(ctx context.Context, op *xxx_ScheduleJobOperation) {
@@ -19713,7 +19741,7 @@ func (o *ScheduleJobResponse) xxx_FromOp(ctx context.Context, op *xxx_ScheduleJo
 	o.Return = op.Return
 }
 func (o *ScheduleJobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ScheduleJobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ScheduleJobOperation{}
@@ -19816,13 +19844,15 @@ type DeletePrinterRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 }
 
-func (o *DeletePrinterRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterOperation {
+func (o *DeletePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterOperation) *xxx_DeletePrinterOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterOperation{
-		Printer: o.Printer,
-	}
+	o.Printer = op.Printer
+	return op
 }
 
 func (o *DeletePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterOperation) {
@@ -19832,7 +19862,7 @@ func (o *DeletePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePri
 	o.Printer = op.Printer
 }
 func (o *DeletePrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterOperation{}
@@ -19849,13 +19879,15 @@ type DeletePrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterOperation {
+func (o *DeletePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterOperation) *xxx_DeletePrinterOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterOperation) {
@@ -19865,7 +19897,7 @@ func (o *DeletePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePr
 	o.Return = op.Return
 }
 func (o *DeletePrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterOperation{}
@@ -20067,17 +20099,19 @@ type SetPrinterRequest struct {
 	Command           uint32             `idl:"name:Command" json:"command"`
 }
 
-func (o *SetPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_SetPrinterOperation {
+func (o *SetPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterOperation) *xxx_SetPrinterOperation {
+	if op == nil {
+		op = &xxx_SetPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPrinterOperation{}
+		return op
 	}
-	return &xxx_SetPrinterOperation{
-		Printer:           o.Printer,
-		PrinterContainer:  o.PrinterContainer,
-		DevModeContainer:  o.DevModeContainer,
-		SecurityContainer: o.SecurityContainer,
-		Command:           o.Command,
-	}
+	o.Printer = op.Printer
+	o.PrinterContainer = op.PrinterContainer
+	o.DevModeContainer = op.DevModeContainer
+	o.SecurityContainer = op.SecurityContainer
+	o.Command = op.Command
+	return op
 }
 
 func (o *SetPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterOperation) {
@@ -20091,7 +20125,7 @@ func (o *SetPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterOp
 	o.Command = op.Command
 }
 func (o *SetPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPrinterOperation{}
@@ -20108,13 +20142,15 @@ type SetPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_SetPrinterOperation {
+func (o *SetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterOperation) *xxx_SetPrinterOperation {
+	if op == nil {
+		op = &xxx_SetPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPrinterOperation{}
+		return op
 	}
-	return &xxx_SetPrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterOperation) {
@@ -20124,7 +20160,7 @@ func (o *SetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterO
 	o.Return = op.Return
 }
 func (o *SetPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPrinterOperation{}
@@ -20411,16 +20447,18 @@ type GetPrinterRequest struct {
 	BufferLength  uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *GetPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrinterOperation {
+func (o *GetPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterOperation) *xxx_GetPrinterOperation {
+	if op == nil {
+		op = &xxx_GetPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterOperation{}
+		return op
 	}
-	return &xxx_GetPrinterOperation{
-		Printer:       o.Printer,
-		Level:         o.Level,
-		PrinterBuffer: o.PrinterBuffer,
-		BufferLength:  o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.Level = op.Level
+	o.PrinterBuffer = op.PrinterBuffer
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterOperation) {
@@ -20433,7 +20471,7 @@ func (o *GetPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterOp
 	o.BufferLength = op.BufferLength
 }
 func (o *GetPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterOperation{}
@@ -20452,15 +20490,17 @@ type GetPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrinterOperation {
+func (o *GetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterOperation) *xxx_GetPrinterOperation {
+	if op == nil {
+		op = &xxx_GetPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterOperation{}
+		return op
 	}
-	return &xxx_GetPrinterOperation{
-		PrinterBuffer: o.PrinterBuffer,
-		NeededLength:  o.NeededLength,
-		Return:        o.Return,
-	}
+	o.PrinterBuffer = op.PrinterBuffer
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterOperation) {
@@ -20472,7 +20512,7 @@ func (o *GetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterO
 	o.Return = op.Return
 }
 func (o *GetPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterOperation{}
@@ -20617,14 +20657,16 @@ type StartDocPrinterRequest struct {
 	DocInfoContainer *DocInfoContainer `idl:"name:pDocInfoContainer" json:"doc_info_container"`
 }
 
-func (o *StartDocPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_StartDocPrinterOperation {
+func (o *StartDocPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_StartDocPrinterOperation) *xxx_StartDocPrinterOperation {
+	if op == nil {
+		op = &xxx_StartDocPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_StartDocPrinterOperation{}
+		return op
 	}
-	return &xxx_StartDocPrinterOperation{
-		Printer:          o.Printer,
-		DocInfoContainer: o.DocInfoContainer,
-	}
+	o.Printer = op.Printer
+	o.DocInfoContainer = op.DocInfoContainer
+	return op
 }
 
 func (o *StartDocPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_StartDocPrinterOperation) {
@@ -20635,7 +20677,7 @@ func (o *StartDocPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_StartDo
 	o.DocInfoContainer = op.DocInfoContainer
 }
 func (o *StartDocPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartDocPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartDocPrinterOperation{}
@@ -20653,14 +20695,16 @@ type StartDocPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartDocPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_StartDocPrinterOperation {
+func (o *StartDocPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_StartDocPrinterOperation) *xxx_StartDocPrinterOperation {
+	if op == nil {
+		op = &xxx_StartDocPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_StartDocPrinterOperation{}
+		return op
 	}
-	return &xxx_StartDocPrinterOperation{
-		JobID:  o.JobID,
-		Return: o.Return,
-	}
+	o.JobID = op.JobID
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartDocPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_StartDocPrinterOperation) {
@@ -20671,7 +20715,7 @@ func (o *StartDocPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_StartD
 	o.Return = op.Return
 }
 func (o *StartDocPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartDocPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartDocPrinterOperation{}
@@ -20774,13 +20818,15 @@ type StartPagePrinterRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 }
 
-func (o *StartPagePrinterRequest) xxx_ToOp(ctx context.Context) *xxx_StartPagePrinterOperation {
+func (o *StartPagePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_StartPagePrinterOperation) *xxx_StartPagePrinterOperation {
+	if op == nil {
+		op = &xxx_StartPagePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_StartPagePrinterOperation{}
+		return op
 	}
-	return &xxx_StartPagePrinterOperation{
-		Printer: o.Printer,
-	}
+	o.Printer = op.Printer
+	return op
 }
 
 func (o *StartPagePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_StartPagePrinterOperation) {
@@ -20790,7 +20836,7 @@ func (o *StartPagePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_StartP
 	o.Printer = op.Printer
 }
 func (o *StartPagePrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartPagePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartPagePrinterOperation{}
@@ -20807,13 +20853,15 @@ type StartPagePrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartPagePrinterResponse) xxx_ToOp(ctx context.Context) *xxx_StartPagePrinterOperation {
+func (o *StartPagePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_StartPagePrinterOperation) *xxx_StartPagePrinterOperation {
+	if op == nil {
+		op = &xxx_StartPagePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_StartPagePrinterOperation{}
+		return op
 	}
-	return &xxx_StartPagePrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartPagePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_StartPagePrinterOperation) {
@@ -20823,7 +20871,7 @@ func (o *StartPagePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_Start
 	o.Return = op.Return
 }
 func (o *StartPagePrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartPagePrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartPagePrinterOperation{}
@@ -21003,15 +21051,17 @@ type WritePrinterRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *WritePrinterRequest) xxx_ToOp(ctx context.Context) *xxx_WritePrinterOperation {
+func (o *WritePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_WritePrinterOperation) *xxx_WritePrinterOperation {
+	if op == nil {
+		op = &xxx_WritePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_WritePrinterOperation{}
+		return op
 	}
-	return &xxx_WritePrinterOperation{
-		Printer:      o.Printer,
-		Buffer:       o.Buffer,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.Buffer = op.Buffer
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *WritePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_WritePrinterOperation) {
@@ -21023,7 +21073,7 @@ func (o *WritePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_WritePrint
 	o.BufferLength = op.BufferLength
 }
 func (o *WritePrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WritePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WritePrinterOperation{}
@@ -21041,14 +21091,16 @@ type WritePrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WritePrinterResponse) xxx_ToOp(ctx context.Context) *xxx_WritePrinterOperation {
+func (o *WritePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_WritePrinterOperation) *xxx_WritePrinterOperation {
+	if op == nil {
+		op = &xxx_WritePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_WritePrinterOperation{}
+		return op
 	}
-	return &xxx_WritePrinterOperation{
-		WrittenCount: o.WrittenCount,
-		Return:       o.Return,
-	}
+	o.WrittenCount = op.WrittenCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *WritePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_WritePrinterOperation) {
@@ -21059,7 +21111,7 @@ func (o *WritePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_WritePrin
 	o.Return = op.Return
 }
 func (o *WritePrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WritePrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WritePrinterOperation{}
@@ -21162,13 +21214,15 @@ type EndPagePrinterRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 }
 
-func (o *EndPagePrinterRequest) xxx_ToOp(ctx context.Context) *xxx_EndPagePrinterOperation {
+func (o *EndPagePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_EndPagePrinterOperation) *xxx_EndPagePrinterOperation {
+	if op == nil {
+		op = &xxx_EndPagePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_EndPagePrinterOperation{}
+		return op
 	}
-	return &xxx_EndPagePrinterOperation{
-		Printer: o.Printer,
-	}
+	o.Printer = op.Printer
+	return op
 }
 
 func (o *EndPagePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_EndPagePrinterOperation) {
@@ -21178,7 +21232,7 @@ func (o *EndPagePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_EndPageP
 	o.Printer = op.Printer
 }
 func (o *EndPagePrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EndPagePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndPagePrinterOperation{}
@@ -21195,13 +21249,15 @@ type EndPagePrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EndPagePrinterResponse) xxx_ToOp(ctx context.Context) *xxx_EndPagePrinterOperation {
+func (o *EndPagePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_EndPagePrinterOperation) *xxx_EndPagePrinterOperation {
+	if op == nil {
+		op = &xxx_EndPagePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_EndPagePrinterOperation{}
+		return op
 	}
-	return &xxx_EndPagePrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *EndPagePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_EndPagePrinterOperation) {
@@ -21211,7 +21267,7 @@ func (o *EndPagePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_EndPage
 	o.Return = op.Return
 }
 func (o *EndPagePrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EndPagePrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndPagePrinterOperation{}
@@ -21314,13 +21370,15 @@ type EndDocPrinterRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 }
 
-func (o *EndDocPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_EndDocPrinterOperation {
+func (o *EndDocPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_EndDocPrinterOperation) *xxx_EndDocPrinterOperation {
+	if op == nil {
+		op = &xxx_EndDocPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_EndDocPrinterOperation{}
+		return op
 	}
-	return &xxx_EndDocPrinterOperation{
-		Printer: o.Printer,
-	}
+	o.Printer = op.Printer
+	return op
 }
 
 func (o *EndDocPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_EndDocPrinterOperation) {
@@ -21330,7 +21388,7 @@ func (o *EndDocPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_EndDocPri
 	o.Printer = op.Printer
 }
 func (o *EndDocPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EndDocPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndDocPrinterOperation{}
@@ -21347,13 +21405,15 @@ type EndDocPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EndDocPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_EndDocPrinterOperation {
+func (o *EndDocPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_EndDocPrinterOperation) *xxx_EndDocPrinterOperation {
+	if op == nil {
+		op = &xxx_EndDocPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_EndDocPrinterOperation{}
+		return op
 	}
-	return &xxx_EndDocPrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *EndDocPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_EndDocPrinterOperation) {
@@ -21363,7 +21423,7 @@ func (o *EndDocPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_EndDocPr
 	o.Return = op.Return
 }
 func (o *EndDocPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EndDocPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndDocPrinterOperation{}
@@ -21466,13 +21526,15 @@ type AbortPrinterRequest struct {
 	Printer *Printer `idl:"name:hPrinter" json:"printer"`
 }
 
-func (o *AbortPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_AbortPrinterOperation {
+func (o *AbortPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortPrinterOperation) *xxx_AbortPrinterOperation {
+	if op == nil {
+		op = &xxx_AbortPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_AbortPrinterOperation{}
+		return op
 	}
-	return &xxx_AbortPrinterOperation{
-		Printer: o.Printer,
-	}
+	o.Printer = op.Printer
+	return op
 }
 
 func (o *AbortPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_AbortPrinterOperation) {
@@ -21482,7 +21544,7 @@ func (o *AbortPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_AbortPrint
 	o.Printer = op.Printer
 }
 func (o *AbortPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AbortPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AbortPrinterOperation{}
@@ -21499,13 +21561,15 @@ type AbortPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AbortPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_AbortPrinterOperation {
+func (o *AbortPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortPrinterOperation) *xxx_AbortPrinterOperation {
+	if op == nil {
+		op = &xxx_AbortPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_AbortPrinterOperation{}
+		return op
 	}
-	return &xxx_AbortPrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AbortPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_AbortPrinterOperation) {
@@ -21515,7 +21579,7 @@ func (o *AbortPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_AbortPrin
 	o.Return = op.Return
 }
 func (o *AbortPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AbortPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AbortPrinterOperation{}
@@ -21718,15 +21782,17 @@ type GetPrinterDataRequest struct {
 	Size      uint32   `idl:"name:nSize" json:"size"`
 }
 
-func (o *GetPrinterDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDataOperation {
+func (o *GetPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDataOperation) *xxx_GetPrinterDataOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDataOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDataOperation{
-		Printer:   o.Printer,
-		ValueName: o.ValueName,
-		Size:      o.Size,
-	}
+	o.Printer = op.Printer
+	o.ValueName = op.ValueName
+	o.Size = op.Size
+	return op
 }
 
 func (o *GetPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDataOperation) {
@@ -21738,7 +21804,7 @@ func (o *GetPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrint
 	o.Size = op.Size
 }
 func (o *GetPrinterDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDataOperation{}
@@ -21758,16 +21824,18 @@ type GetPrinterDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrinterDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDataOperation {
+func (o *GetPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDataOperation) *xxx_GetPrinterDataOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDataOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDataOperation{
-		Type:         o.Type,
-		Data:         o.Data,
-		NeededLength: o.NeededLength,
-		Return:       o.Return,
-	}
+	o.Type = op.Type
+	o.Data = op.Data
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDataOperation) {
@@ -21780,7 +21848,7 @@ func (o *GetPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrin
 	o.Return = op.Return
 }
 func (o *GetPrinterDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrinterDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDataOperation{}
@@ -21997,16 +22065,18 @@ type GetPrinterDataExRequest struct {
 	Size      uint32   `idl:"name:nSize" json:"size"`
 }
 
-func (o *GetPrinterDataExRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDataExOperation {
+func (o *GetPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDataExOperation) *xxx_GetPrinterDataExOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDataExOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDataExOperation{
-		Printer:   o.Printer,
-		KeyName:   o.KeyName,
-		ValueName: o.ValueName,
-		Size:      o.Size,
-	}
+	o.Printer = op.Printer
+	o.KeyName = op.KeyName
+	o.ValueName = op.ValueName
+	o.Size = op.Size
+	return op
 }
 
 func (o *GetPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDataExOperation) {
@@ -22019,7 +22089,7 @@ func (o *GetPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPri
 	o.Size = op.Size
 }
 func (o *GetPrinterDataExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDataExOperation{}
@@ -22039,16 +22109,18 @@ type GetPrinterDataExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrinterDataExResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDataExOperation {
+func (o *GetPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDataExOperation) *xxx_GetPrinterDataExOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDataExOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDataExOperation{
-		Type:         o.Type,
-		Data:         o.Data,
-		NeededLength: o.NeededLength,
-		Return:       o.Return,
-	}
+	o.Type = op.Type
+	o.Data = op.Data
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDataExOperation) {
@@ -22061,7 +22133,7 @@ func (o *GetPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	o.Return = op.Return
 }
 func (o *GetPrinterDataExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrinterDataExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDataExOperation{}
@@ -22256,17 +22328,19 @@ type SetPrinterDataRequest struct {
 	DataLength uint32   `idl:"name:cbData" json:"data_length"`
 }
 
-func (o *SetPrinterDataRequest) xxx_ToOp(ctx context.Context) *xxx_SetPrinterDataOperation {
+func (o *SetPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterDataOperation) *xxx_SetPrinterDataOperation {
+	if op == nil {
+		op = &xxx_SetPrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPrinterDataOperation{}
+		return op
 	}
-	return &xxx_SetPrinterDataOperation{
-		Printer:    o.Printer,
-		ValueName:  o.ValueName,
-		Type:       o.Type,
-		Data:       o.Data,
-		DataLength: o.DataLength,
-	}
+	o.Printer = op.Printer
+	o.ValueName = op.ValueName
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	return op
 }
 
 func (o *SetPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterDataOperation) {
@@ -22280,7 +22354,7 @@ func (o *SetPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrint
 	o.DataLength = op.DataLength
 }
 func (o *SetPrinterDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPrinterDataOperation{}
@@ -22297,13 +22371,15 @@ type SetPrinterDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPrinterDataResponse) xxx_ToOp(ctx context.Context) *xxx_SetPrinterDataOperation {
+func (o *SetPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterDataOperation) *xxx_SetPrinterDataOperation {
+	if op == nil {
+		op = &xxx_SetPrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPrinterDataOperation{}
+		return op
 	}
-	return &xxx_SetPrinterDataOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterDataOperation) {
@@ -22313,7 +22389,7 @@ func (o *SetPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrin
 	o.Return = op.Return
 }
 func (o *SetPrinterDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPrinterDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPrinterDataOperation{}
@@ -22522,18 +22598,20 @@ type SetPrinterDataExRequest struct {
 	DataLength uint32   `idl:"name:cbData" json:"data_length"`
 }
 
-func (o *SetPrinterDataExRequest) xxx_ToOp(ctx context.Context) *xxx_SetPrinterDataExOperation {
+func (o *SetPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterDataExOperation) *xxx_SetPrinterDataExOperation {
+	if op == nil {
+		op = &xxx_SetPrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPrinterDataExOperation{}
+		return op
 	}
-	return &xxx_SetPrinterDataExOperation{
-		Printer:    o.Printer,
-		KeyName:    o.KeyName,
-		ValueName:  o.ValueName,
-		Type:       o.Type,
-		Data:       o.Data,
-		DataLength: o.DataLength,
-	}
+	o.Printer = op.Printer
+	o.KeyName = op.KeyName
+	o.ValueName = op.ValueName
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataLength = op.DataLength
+	return op
 }
 
 func (o *SetPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterDataExOperation) {
@@ -22548,7 +22626,7 @@ func (o *SetPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPri
 	o.DataLength = op.DataLength
 }
 func (o *SetPrinterDataExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPrinterDataExOperation{}
@@ -22565,13 +22643,15 @@ type SetPrinterDataExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPrinterDataExResponse) xxx_ToOp(ctx context.Context) *xxx_SetPrinterDataExOperation {
+func (o *SetPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPrinterDataExOperation) *xxx_SetPrinterDataExOperation {
+	if op == nil {
+		op = &xxx_SetPrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPrinterDataExOperation{}
+		return op
 	}
-	return &xxx_SetPrinterDataExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPrinterDataExOperation) {
@@ -22581,7 +22661,7 @@ func (o *SetPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPr
 	o.Return = op.Return
 }
 func (o *SetPrinterDataExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPrinterDataExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPrinterDataExOperation{}
@@ -22705,13 +22785,15 @@ type ClosePrinterRequest struct {
 	Printer *Printer `idl:"name:phPrinter" json:"printer"`
 }
 
-func (o *ClosePrinterRequest) xxx_ToOp(ctx context.Context) *xxx_ClosePrinterOperation {
+func (o *ClosePrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ClosePrinterOperation) *xxx_ClosePrinterOperation {
+	if op == nil {
+		op = &xxx_ClosePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_ClosePrinterOperation{}
+		return op
 	}
-	return &xxx_ClosePrinterOperation{
-		Printer: o.Printer,
-	}
+	o.Printer = op.Printer
+	return op
 }
 
 func (o *ClosePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_ClosePrinterOperation) {
@@ -22721,7 +22803,7 @@ func (o *ClosePrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_ClosePrint
 	o.Printer = op.Printer
 }
 func (o *ClosePrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClosePrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClosePrinterOperation{}
@@ -22741,14 +22823,16 @@ type ClosePrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClosePrinterResponse) xxx_ToOp(ctx context.Context) *xxx_ClosePrinterOperation {
+func (o *ClosePrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ClosePrinterOperation) *xxx_ClosePrinterOperation {
+	if op == nil {
+		op = &xxx_ClosePrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_ClosePrinterOperation{}
+		return op
 	}
-	return &xxx_ClosePrinterOperation{
-		Printer: o.Printer,
-		Return:  o.Return,
-	}
+	o.Printer = op.Printer
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClosePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ClosePrinterOperation) {
@@ -22759,7 +22843,7 @@ func (o *ClosePrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ClosePrin
 	o.Return = op.Return
 }
 func (o *ClosePrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClosePrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClosePrinterOperation{}
@@ -22889,14 +22973,16 @@ type AddFormRequest struct {
 	FormInfoContainer *FormContainer `idl:"name:pFormInfoContainer" json:"form_info_container"`
 }
 
-func (o *AddFormRequest) xxx_ToOp(ctx context.Context) *xxx_AddFormOperation {
+func (o *AddFormRequest) xxx_ToOp(ctx context.Context, op *xxx_AddFormOperation) *xxx_AddFormOperation {
+	if op == nil {
+		op = &xxx_AddFormOperation{}
+	}
 	if o == nil {
-		return &xxx_AddFormOperation{}
+		return op
 	}
-	return &xxx_AddFormOperation{
-		Printer:           o.Printer,
-		FormInfoContainer: o.FormInfoContainer,
-	}
+	o.Printer = op.Printer
+	o.FormInfoContainer = op.FormInfoContainer
+	return op
 }
 
 func (o *AddFormRequest) xxx_FromOp(ctx context.Context, op *xxx_AddFormOperation) {
@@ -22907,7 +22993,7 @@ func (o *AddFormRequest) xxx_FromOp(ctx context.Context, op *xxx_AddFormOperatio
 	o.FormInfoContainer = op.FormInfoContainer
 }
 func (o *AddFormRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFormOperation{}
@@ -22924,13 +23010,15 @@ type AddFormResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddFormResponse) xxx_ToOp(ctx context.Context) *xxx_AddFormOperation {
+func (o *AddFormResponse) xxx_ToOp(ctx context.Context, op *xxx_AddFormOperation) *xxx_AddFormOperation {
+	if op == nil {
+		op = &xxx_AddFormOperation{}
+	}
 	if o == nil {
-		return &xxx_AddFormOperation{}
+		return op
 	}
-	return &xxx_AddFormOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddFormResponse) xxx_FromOp(ctx context.Context, op *xxx_AddFormOperation) {
@@ -22940,7 +23028,7 @@ func (o *AddFormResponse) xxx_FromOp(ctx context.Context, op *xxx_AddFormOperati
 	o.Return = op.Return
 }
 func (o *AddFormResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddFormResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddFormOperation{}
@@ -23055,14 +23143,16 @@ type DeleteFormRequest struct {
 	FormName string   `idl:"name:pFormName;string" json:"form_name"`
 }
 
-func (o *DeleteFormRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteFormOperation {
+func (o *DeleteFormRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteFormOperation) *xxx_DeleteFormOperation {
+	if op == nil {
+		op = &xxx_DeleteFormOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteFormOperation{}
+		return op
 	}
-	return &xxx_DeleteFormOperation{
-		Printer:  o.Printer,
-		FormName: o.FormName,
-	}
+	o.Printer = op.Printer
+	o.FormName = op.FormName
+	return op
 }
 
 func (o *DeleteFormRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteFormOperation) {
@@ -23073,7 +23163,7 @@ func (o *DeleteFormRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteFormOp
 	o.FormName = op.FormName
 }
 func (o *DeleteFormRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteFormOperation{}
@@ -23090,13 +23180,15 @@ type DeleteFormResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteFormResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteFormOperation {
+func (o *DeleteFormResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteFormOperation) *xxx_DeleteFormOperation {
+	if op == nil {
+		op = &xxx_DeleteFormOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteFormOperation{}
+		return op
 	}
-	return &xxx_DeleteFormOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteFormResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteFormOperation) {
@@ -23106,7 +23198,7 @@ func (o *DeleteFormResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteFormO
 	o.Return = op.Return
 }
 func (o *DeleteFormResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteFormResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteFormOperation{}
@@ -23407,17 +23499,19 @@ type GetFormRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *GetFormRequest) xxx_ToOp(ctx context.Context) *xxx_GetFormOperation {
+func (o *GetFormRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFormOperation) *xxx_GetFormOperation {
+	if op == nil {
+		op = &xxx_GetFormOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFormOperation{}
+		return op
 	}
-	return &xxx_GetFormOperation{
-		Printer:      o.Printer,
-		FormName:     o.FormName,
-		Level:        o.Level,
-		Form:         o.Form,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.FormName = op.FormName
+	o.Level = op.Level
+	o.Form = op.Form
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetFormRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFormOperation) {
@@ -23431,7 +23525,7 @@ func (o *GetFormRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFormOperatio
 	o.BufferLength = op.BufferLength
 }
 func (o *GetFormRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFormOperation{}
@@ -23450,15 +23544,17 @@ type GetFormResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFormResponse) xxx_ToOp(ctx context.Context) *xxx_GetFormOperation {
+func (o *GetFormResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFormOperation) *xxx_GetFormOperation {
+	if op == nil {
+		op = &xxx_GetFormOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFormOperation{}
+		return op
 	}
-	return &xxx_GetFormOperation{
-		Form:         o.Form,
-		NeededLength: o.NeededLength,
-		Return:       o.Return,
-	}
+	o.Form = op.Form
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFormResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFormOperation) {
@@ -23470,7 +23566,7 @@ func (o *GetFormResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFormOperati
 	o.Return = op.Return
 }
 func (o *GetFormResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFormResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFormOperation{}
@@ -23614,15 +23710,17 @@ type SetFormRequest struct {
 	FormInfoContainer *FormContainer `idl:"name:pFormInfoContainer" json:"form_info_container"`
 }
 
-func (o *SetFormRequest) xxx_ToOp(ctx context.Context) *xxx_SetFormOperation {
+func (o *SetFormRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFormOperation) *xxx_SetFormOperation {
+	if op == nil {
+		op = &xxx_SetFormOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFormOperation{}
+		return op
 	}
-	return &xxx_SetFormOperation{
-		Printer:           o.Printer,
-		FormName:          o.FormName,
-		FormInfoContainer: o.FormInfoContainer,
-	}
+	o.Printer = op.Printer
+	o.FormName = op.FormName
+	o.FormInfoContainer = op.FormInfoContainer
+	return op
 }
 
 func (o *SetFormRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFormOperation) {
@@ -23634,7 +23732,7 @@ func (o *SetFormRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFormOperatio
 	o.FormInfoContainer = op.FormInfoContainer
 }
 func (o *SetFormRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFormRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFormOperation{}
@@ -23651,13 +23749,15 @@ type SetFormResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFormResponse) xxx_ToOp(ctx context.Context) *xxx_SetFormOperation {
+func (o *SetFormResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFormOperation) *xxx_SetFormOperation {
+	if op == nil {
+		op = &xxx_SetFormOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFormOperation{}
+		return op
 	}
-	return &xxx_SetFormOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFormResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFormOperation) {
@@ -23667,7 +23767,7 @@ func (o *SetFormResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFormOperati
 	o.Return = op.Return
 }
 func (o *SetFormResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFormResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFormOperation{}
@@ -23967,16 +24067,18 @@ type EnumFormsRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumFormsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumFormsOperation {
+func (o *EnumFormsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFormsOperation) *xxx_EnumFormsOperation {
+	if op == nil {
+		op = &xxx_EnumFormsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFormsOperation{}
+		return op
 	}
-	return &xxx_EnumFormsOperation{
-		Printer:      o.Printer,
-		Level:        o.Level,
-		Form:         o.Form,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.Level = op.Level
+	o.Form = op.Form
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumFormsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFormsOperation) {
@@ -23989,7 +24091,7 @@ func (o *EnumFormsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFormsOper
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumFormsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFormsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFormsOperation{}
@@ -24009,16 +24111,18 @@ type EnumFormsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFormsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumFormsOperation {
+func (o *EnumFormsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFormsOperation) *xxx_EnumFormsOperation {
+	if op == nil {
+		op = &xxx_EnumFormsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFormsOperation{}
+		return op
 	}
-	return &xxx_EnumFormsOperation{
-		Form:          o.Form,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.Form = op.Form
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFormsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFormsOperation) {
@@ -24031,7 +24135,7 @@ func (o *EnumFormsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFormsOpe
 	o.Return = op.Return
 }
 func (o *EnumFormsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFormsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFormsOperation{}
@@ -24413,19 +24517,21 @@ type GetPrinterDriverRequest struct {
 	ClientMinorVersion uint32   `idl:"name:dwClientMinorVersion" json:"client_minor_version"`
 }
 
-func (o *GetPrinterDriverRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDriverOperation {
+func (o *GetPrinterDriverRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDriverOperation) *xxx_GetPrinterDriverOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDriverOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDriverOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDriverOperation{
-		Printer:            o.Printer,
-		Environment:        o.Environment,
-		Level:              o.Level,
-		Driver:             o.Driver,
-		BufferLength:       o.BufferLength,
-		ClientMajorVersion: o.ClientMajorVersion,
-		ClientMinorVersion: o.ClientMinorVersion,
-	}
+	o.Printer = op.Printer
+	o.Environment = op.Environment
+	o.Level = op.Level
+	o.Driver = op.Driver
+	o.BufferLength = op.BufferLength
+	o.ClientMajorVersion = op.ClientMajorVersion
+	o.ClientMinorVersion = op.ClientMinorVersion
+	return op
 }
 
 func (o *GetPrinterDriverRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDriverOperation) {
@@ -24441,7 +24547,7 @@ func (o *GetPrinterDriverRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPri
 	o.ClientMinorVersion = op.ClientMinorVersion
 }
 func (o *GetPrinterDriverRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDriverOperation{}
@@ -24462,17 +24568,19 @@ type GetPrinterDriverResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrinterDriverResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDriverOperation {
+func (o *GetPrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDriverOperation) *xxx_GetPrinterDriverOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDriverOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDriverOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDriverOperation{
-		Driver:           o.Driver,
-		NeededLength:     o.NeededLength,
-		ServerMaxVersion: o.ServerMaxVersion,
-		ServerMinVersion: o.ServerMinVersion,
-		Return:           o.Return,
-	}
+	o.Driver = op.Driver
+	o.NeededLength = op.NeededLength
+	o.ServerMaxVersion = op.ServerMaxVersion
+	o.ServerMinVersion = op.ServerMinVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDriverOperation) {
@@ -24486,7 +24594,7 @@ func (o *GetPrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPr
 	o.Return = op.Return
 }
 func (o *GetPrinterDriverResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrinterDriverResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDriverOperation{}
@@ -24768,16 +24876,18 @@ type EnumPrinterDataRequest struct {
 	DataInLength      uint32   `idl:"name:cbDataIn" json:"data_in_length"`
 }
 
-func (o *EnumPrinterDataRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterDataOperation {
+func (o *EnumPrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDataOperation) *xxx_EnumPrinterDataOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterDataOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterDataOperation{
-		Printer:           o.Printer,
-		Index:             o.Index,
-		ValueNameInLength: o.ValueNameInLength,
-		DataInLength:      o.DataInLength,
-	}
+	o.Printer = op.Printer
+	o.Index = op.Index
+	o.ValueNameInLength = op.ValueNameInLength
+	o.DataInLength = op.DataInLength
+	return op
 }
 
 func (o *EnumPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterDataOperation) {
@@ -24790,7 +24900,7 @@ func (o *EnumPrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPri
 	o.DataInLength = op.DataInLength
 }
 func (o *EnumPrinterDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterDataOperation{}
@@ -24812,18 +24922,20 @@ type EnumPrinterDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrinterDataResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterDataOperation {
+func (o *EnumPrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDataOperation) *xxx_EnumPrinterDataOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterDataOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterDataOperation{
-		ValueName:          o.ValueName,
-		ValueNameOutLength: o.ValueNameOutLength,
-		Type:               o.Type,
-		Data:               o.Data,
-		DataOutLength:      o.DataOutLength,
-		Return:             o.Return,
-	}
+	o.ValueName = op.ValueName
+	o.ValueNameOutLength = op.ValueNameOutLength
+	o.Type = op.Type
+	o.Data = op.Data
+	o.DataOutLength = op.DataOutLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterDataOperation) {
@@ -24838,7 +24950,7 @@ func (o *EnumPrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPr
 	o.Return = op.Return
 }
 func (o *EnumPrinterDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrinterDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterDataOperation{}
@@ -25041,15 +25153,17 @@ type EnumPrinterDataExRequest struct {
 	EnumValuesInLength uint32   `idl:"name:cbEnumValuesIn" json:"enum_values_in_length"`
 }
 
-func (o *EnumPrinterDataExRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterDataExOperation {
+func (o *EnumPrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDataExOperation) *xxx_EnumPrinterDataExOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterDataExOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterDataExOperation{
-		Printer:            o.Printer,
-		KeyName:            o.KeyName,
-		EnumValuesInLength: o.EnumValuesInLength,
-	}
+	o.Printer = op.Printer
+	o.KeyName = op.KeyName
+	o.EnumValuesInLength = op.EnumValuesInLength
+	return op
 }
 
 func (o *EnumPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterDataExOperation) {
@@ -25061,7 +25175,7 @@ func (o *EnumPrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumP
 	o.EnumValuesInLength = op.EnumValuesInLength
 }
 func (o *EnumPrinterDataExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterDataExOperation{}
@@ -25081,16 +25195,18 @@ type EnumPrinterDataExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrinterDataExResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterDataExOperation {
+func (o *EnumPrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDataExOperation) *xxx_EnumPrinterDataExOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterDataExOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterDataExOperation{
-		EnumValues:          o.EnumValues,
-		EnumValuesOutLength: o.EnumValuesOutLength,
-		EnumValuesLength:    o.EnumValuesLength,
-		Return:              o.Return,
-	}
+	o.EnumValues = op.EnumValues
+	o.EnumValuesOutLength = op.EnumValuesOutLength
+	o.EnumValuesLength = op.EnumValuesLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterDataExOperation) {
@@ -25103,7 +25219,7 @@ func (o *EnumPrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumPrinterDataExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrinterDataExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterDataExOperation{}
@@ -25299,15 +25415,17 @@ type EnumPrinterKeyRequest struct {
 	SubkeyInLength uint32   `idl:"name:cbSubkeyIn" json:"subkey_in_length"`
 }
 
-func (o *EnumPrinterKeyRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterKeyOperation {
+func (o *EnumPrinterKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterKeyOperation) *xxx_EnumPrinterKeyOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterKeyOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterKeyOperation{
-		Printer:        o.Printer,
-		KeyName:        o.KeyName,
-		SubkeyInLength: o.SubkeyInLength,
-	}
+	o.Printer = op.Printer
+	o.KeyName = op.KeyName
+	o.SubkeyInLength = op.SubkeyInLength
+	return op
 }
 
 func (o *EnumPrinterKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterKeyOperation) {
@@ -25319,7 +25437,7 @@ func (o *EnumPrinterKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrin
 	o.SubkeyInLength = op.SubkeyInLength
 }
 func (o *EnumPrinterKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterKeyOperation{}
@@ -25338,15 +25456,17 @@ type EnumPrinterKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrinterKeyResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterKeyOperation {
+func (o *EnumPrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterKeyOperation) *xxx_EnumPrinterKeyOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterKeyOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterKeyOperation{
-		Subkey:          o.Subkey,
-		SubkeyOutLength: o.SubkeyOutLength,
-		Return:          o.Return,
-	}
+	o.Subkey = op.Subkey
+	o.SubkeyOutLength = op.SubkeyOutLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterKeyOperation) {
@@ -25358,7 +25478,7 @@ func (o *EnumPrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPri
 	o.Return = op.Return
 }
 func (o *EnumPrinterKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrinterKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterKeyOperation{}
@@ -25475,14 +25595,16 @@ type DeletePrinterDataRequest struct {
 	ValueName string   `idl:"name:pValueName;string" json:"value_name"`
 }
 
-func (o *DeletePrinterDataRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDataOperation {
+func (o *DeletePrinterDataRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDataOperation) *xxx_DeletePrinterDataOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDataOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDataOperation{
-		Printer:   o.Printer,
-		ValueName: o.ValueName,
-	}
+	o.Printer = op.Printer
+	o.ValueName = op.ValueName
+	return op
 }
 
 func (o *DeletePrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDataOperation) {
@@ -25493,7 +25615,7 @@ func (o *DeletePrinterDataRequest) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.ValueName = op.ValueName
 }
 func (o *DeletePrinterDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDataOperation{}
@@ -25510,13 +25632,15 @@ type DeletePrinterDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterDataResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDataOperation {
+func (o *DeletePrinterDataResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDataOperation) *xxx_DeletePrinterDataOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDataOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDataOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDataOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDataOperation) {
@@ -25526,7 +25650,7 @@ func (o *DeletePrinterDataResponse) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.Return = op.Return
 }
 func (o *DeletePrinterDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDataOperation{}
@@ -25657,15 +25781,17 @@ type DeletePrinterDataExRequest struct {
 	ValueName string   `idl:"name:pValueName;string" json:"value_name"`
 }
 
-func (o *DeletePrinterDataExRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDataExOperation {
+func (o *DeletePrinterDataExRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDataExOperation) *xxx_DeletePrinterDataExOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDataExOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDataExOperation{
-		Printer:   o.Printer,
-		KeyName:   o.KeyName,
-		ValueName: o.ValueName,
-	}
+	o.Printer = op.Printer
+	o.KeyName = op.KeyName
+	o.ValueName = op.ValueName
+	return op
 }
 
 func (o *DeletePrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDataExOperation) {
@@ -25677,7 +25803,7 @@ func (o *DeletePrinterDataExRequest) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.ValueName = op.ValueName
 }
 func (o *DeletePrinterDataExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterDataExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDataExOperation{}
@@ -25694,13 +25820,15 @@ type DeletePrinterDataExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterDataExResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDataExOperation {
+func (o *DeletePrinterDataExResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDataExOperation) *xxx_DeletePrinterDataExOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDataExOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDataExOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDataExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDataExOperation) {
@@ -25710,7 +25838,7 @@ func (o *DeletePrinterDataExResponse) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Return = op.Return
 }
 func (o *DeletePrinterDataExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterDataExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDataExOperation{}
@@ -25827,14 +25955,16 @@ type DeletePrinterKeyRequest struct {
 	KeyName string   `idl:"name:pKeyName;string" json:"key_name"`
 }
 
-func (o *DeletePrinterKeyRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterKeyOperation {
+func (o *DeletePrinterKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterKeyOperation) *xxx_DeletePrinterKeyOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterKeyOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterKeyOperation{
-		Printer: o.Printer,
-		KeyName: o.KeyName,
-	}
+	o.Printer = op.Printer
+	o.KeyName = op.KeyName
+	return op
 }
 
 func (o *DeletePrinterKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterKeyOperation) {
@@ -25845,7 +25975,7 @@ func (o *DeletePrinterKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.KeyName = op.KeyName
 }
 func (o *DeletePrinterKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterKeyOperation{}
@@ -25862,13 +25992,15 @@ type DeletePrinterKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterKeyResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterKeyOperation {
+func (o *DeletePrinterKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterKeyOperation) *xxx_DeletePrinterKeyOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterKeyOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterKeyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterKeyOperation) {
@@ -25878,7 +26010,7 @@ func (o *DeletePrinterKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.Return = op.Return
 }
 func (o *DeletePrinterKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterKeyOperation{}
@@ -26156,18 +26288,20 @@ type XcvDataRequest struct {
 	Status           uint32   `idl:"name:pdwStatus" json:"status"`
 }
 
-func (o *XcvDataRequest) xxx_ToOp(ctx context.Context) *xxx_XcvDataOperation {
+func (o *XcvDataRequest) xxx_ToOp(ctx context.Context, op *xxx_XcvDataOperation) *xxx_XcvDataOperation {
+	if op == nil {
+		op = &xxx_XcvDataOperation{}
+	}
 	if o == nil {
-		return &xxx_XcvDataOperation{}
+		return op
 	}
-	return &xxx_XcvDataOperation{
-		Xcv:              o.Xcv,
-		DataName:         o.DataName,
-		InputData:        o.InputData,
-		InputDataLength:  o.InputDataLength,
-		OutputDataLength: o.OutputDataLength,
-		Status:           o.Status,
-	}
+	o.Xcv = op.Xcv
+	o.DataName = op.DataName
+	o.InputData = op.InputData
+	o.InputDataLength = op.InputDataLength
+	o.OutputDataLength = op.OutputDataLength
+	o.Status = op.Status
+	return op
 }
 
 func (o *XcvDataRequest) xxx_FromOp(ctx context.Context, op *xxx_XcvDataOperation) {
@@ -26182,7 +26316,7 @@ func (o *XcvDataRequest) xxx_FromOp(ctx context.Context, op *xxx_XcvDataOperatio
 	o.Status = op.Status
 }
 func (o *XcvDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *XcvDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_XcvDataOperation{}
@@ -26202,16 +26336,18 @@ type XcvDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *XcvDataResponse) xxx_ToOp(ctx context.Context) *xxx_XcvDataOperation {
+func (o *XcvDataResponse) xxx_ToOp(ctx context.Context, op *xxx_XcvDataOperation) *xxx_XcvDataOperation {
+	if op == nil {
+		op = &xxx_XcvDataOperation{}
+	}
 	if o == nil {
-		return &xxx_XcvDataOperation{}
+		return op
 	}
-	return &xxx_XcvDataOperation{
-		OutputData:         o.OutputData,
-		OutputNeededLength: o.OutputNeededLength,
-		Status:             o.Status,
-		Return:             o.Return,
-	}
+	o.OutputData = op.OutputData
+	o.OutputNeededLength = op.OutputNeededLength
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *XcvDataResponse) xxx_FromOp(ctx context.Context, op *xxx_XcvDataOperation) {
@@ -26224,7 +26360,7 @@ func (o *XcvDataResponse) xxx_FromOp(ctx context.Context, op *xxx_XcvDataOperati
 	o.Return = op.Return
 }
 func (o *XcvDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *XcvDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_XcvDataOperation{}
@@ -26442,15 +26578,17 @@ type SendRecvBIDIDataRequest struct {
 	RequestData *BIDIRequestContainer `idl:"name:pReqData" json:"request_data"`
 }
 
-func (o *SendRecvBIDIDataRequest) xxx_ToOp(ctx context.Context) *xxx_SendRecvBIDIDataOperation {
+func (o *SendRecvBIDIDataRequest) xxx_ToOp(ctx context.Context, op *xxx_SendRecvBIDIDataOperation) *xxx_SendRecvBIDIDataOperation {
+	if op == nil {
+		op = &xxx_SendRecvBIDIDataOperation{}
+	}
 	if o == nil {
-		return &xxx_SendRecvBIDIDataOperation{}
+		return op
 	}
-	return &xxx_SendRecvBIDIDataOperation{
-		Printer:     o.Printer,
-		Action:      o.Action,
-		RequestData: o.RequestData,
-	}
+	o.Printer = op.Printer
+	o.Action = op.Action
+	o.RequestData = op.RequestData
+	return op
 }
 
 func (o *SendRecvBIDIDataRequest) xxx_FromOp(ctx context.Context, op *xxx_SendRecvBIDIDataOperation) {
@@ -26462,7 +26600,7 @@ func (o *SendRecvBIDIDataRequest) xxx_FromOp(ctx context.Context, op *xxx_SendRe
 	o.RequestData = op.RequestData
 }
 func (o *SendRecvBIDIDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SendRecvBIDIDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendRecvBIDIDataOperation{}
@@ -26480,14 +26618,16 @@ type SendRecvBIDIDataResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SendRecvBIDIDataResponse) xxx_ToOp(ctx context.Context) *xxx_SendRecvBIDIDataOperation {
+func (o *SendRecvBIDIDataResponse) xxx_ToOp(ctx context.Context, op *xxx_SendRecvBIDIDataOperation) *xxx_SendRecvBIDIDataOperation {
+	if op == nil {
+		op = &xxx_SendRecvBIDIDataOperation{}
+	}
 	if o == nil {
-		return &xxx_SendRecvBIDIDataOperation{}
+		return op
 	}
-	return &xxx_SendRecvBIDIDataOperation{
-		ResponseData: o.ResponseData,
-		Return:       o.Return,
-	}
+	o.ResponseData = op.ResponseData
+	o.Return = op.Return
+	return op
 }
 
 func (o *SendRecvBIDIDataResponse) xxx_FromOp(ctx context.Context, op *xxx_SendRecvBIDIDataOperation) {
@@ -26498,7 +26638,7 @@ func (o *SendRecvBIDIDataResponse) xxx_FromOp(ctx context.Context, op *xxx_SendR
 	o.Return = op.Return
 }
 func (o *SendRecvBIDIDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SendRecvBIDIDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendRecvBIDIDataOperation{}
@@ -26653,14 +26793,16 @@ type CreatePrinterICRequest struct {
 	DevModeContainer *DevModeContainer `idl:"name:pDevModeContainer" json:"dev_mode_container"`
 }
 
-func (o *CreatePrinterICRequest) xxx_ToOp(ctx context.Context) *xxx_CreatePrinterICOperation {
+func (o *CreatePrinterICRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePrinterICOperation) *xxx_CreatePrinterICOperation {
+	if op == nil {
+		op = &xxx_CreatePrinterICOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePrinterICOperation{}
+		return op
 	}
-	return &xxx_CreatePrinterICOperation{
-		Printer:          o.Printer,
-		DevModeContainer: o.DevModeContainer,
-	}
+	o.Printer = op.Printer
+	o.DevModeContainer = op.DevModeContainer
+	return op
 }
 
 func (o *CreatePrinterICRequest) xxx_FromOp(ctx context.Context, op *xxx_CreatePrinterICOperation) {
@@ -26671,7 +26813,7 @@ func (o *CreatePrinterICRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateP
 	o.DevModeContainer = op.DevModeContainer
 }
 func (o *CreatePrinterICRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreatePrinterICRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePrinterICOperation{}
@@ -26689,14 +26831,16 @@ type CreatePrinterICResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreatePrinterICResponse) xxx_ToOp(ctx context.Context) *xxx_CreatePrinterICOperation {
+func (o *CreatePrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePrinterICOperation) *xxx_CreatePrinterICOperation {
+	if op == nil {
+		op = &xxx_CreatePrinterICOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePrinterICOperation{}
+		return op
 	}
-	return &xxx_CreatePrinterICOperation{
-		Handle: o.Handle,
-		Return: o.Return,
-	}
+	o.Handle = op.Handle
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreatePrinterICResponse) xxx_FromOp(ctx context.Context, op *xxx_CreatePrinterICOperation) {
@@ -26707,7 +26851,7 @@ func (o *CreatePrinterICResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Return = op.Return
 }
 func (o *CreatePrinterICResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreatePrinterICResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePrinterICOperation{}
@@ -26948,17 +27092,19 @@ type PlayGDIScriptOnPrinterICRequest struct {
 	Ul        uint32 `idl:"name:ul" json:"ul"`
 }
 
-func (o *PlayGDIScriptOnPrinterICRequest) xxx_ToOp(ctx context.Context) *xxx_PlayGDIScriptOnPrinterICOperation {
+func (o *PlayGDIScriptOnPrinterICRequest) xxx_ToOp(ctx context.Context, op *xxx_PlayGDIScriptOnPrinterICOperation) *xxx_PlayGDIScriptOnPrinterICOperation {
+	if op == nil {
+		op = &xxx_PlayGDIScriptOnPrinterICOperation{}
+	}
 	if o == nil {
-		return &xxx_PlayGDIScriptOnPrinterICOperation{}
+		return op
 	}
-	return &xxx_PlayGDIScriptOnPrinterICOperation{
-		PrinterIC: o.PrinterIC,
-		In:        o.In,
-		InCount:   o.InCount,
-		OutCount:  o.OutCount,
-		Ul:        o.Ul,
-	}
+	o.PrinterIC = op.PrinterIC
+	o.In = op.In
+	o.InCount = op.InCount
+	o.OutCount = op.OutCount
+	o.Ul = op.Ul
+	return op
 }
 
 func (o *PlayGDIScriptOnPrinterICRequest) xxx_FromOp(ctx context.Context, op *xxx_PlayGDIScriptOnPrinterICOperation) {
@@ -26972,7 +27118,7 @@ func (o *PlayGDIScriptOnPrinterICRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.Ul = op.Ul
 }
 func (o *PlayGDIScriptOnPrinterICRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PlayGDIScriptOnPrinterICRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PlayGDIScriptOnPrinterICOperation{}
@@ -26990,14 +27136,16 @@ type PlayGDIScriptOnPrinterICResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PlayGDIScriptOnPrinterICResponse) xxx_ToOp(ctx context.Context) *xxx_PlayGDIScriptOnPrinterICOperation {
+func (o *PlayGDIScriptOnPrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx_PlayGDIScriptOnPrinterICOperation) *xxx_PlayGDIScriptOnPrinterICOperation {
+	if op == nil {
+		op = &xxx_PlayGDIScriptOnPrinterICOperation{}
+	}
 	if o == nil {
-		return &xxx_PlayGDIScriptOnPrinterICOperation{}
+		return op
 	}
-	return &xxx_PlayGDIScriptOnPrinterICOperation{
-		Out:    o.Out,
-		Return: o.Return,
-	}
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *PlayGDIScriptOnPrinterICResponse) xxx_FromOp(ctx context.Context, op *xxx_PlayGDIScriptOnPrinterICOperation) {
@@ -27008,7 +27156,7 @@ func (o *PlayGDIScriptOnPrinterICResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *PlayGDIScriptOnPrinterICResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PlayGDIScriptOnPrinterICResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PlayGDIScriptOnPrinterICOperation{}
@@ -27132,13 +27280,15 @@ type DeletePrinterICRequest struct {
 	PrinterIC *GDI `idl:"name:phPrinterIC" json:"printer_ic"`
 }
 
-func (o *DeletePrinterICRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterICOperation {
+func (o *DeletePrinterICRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterICOperation) *xxx_DeletePrinterICOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterICOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterICOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterICOperation{
-		PrinterIC: o.PrinterIC,
-	}
+	o.PrinterIC = op.PrinterIC
+	return op
 }
 
 func (o *DeletePrinterICRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterICOperation) {
@@ -27148,7 +27298,7 @@ func (o *DeletePrinterICRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteP
 	o.PrinterIC = op.PrinterIC
 }
 func (o *DeletePrinterICRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterICRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterICOperation{}
@@ -27168,14 +27318,16 @@ type DeletePrinterICResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterICResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterICOperation {
+func (o *DeletePrinterICResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterICOperation) *xxx_DeletePrinterICOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterICOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterICOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterICOperation{
-		PrinterIC: o.PrinterIC,
-		Return:    o.Return,
-	}
+	o.PrinterIC = op.PrinterIC
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterICResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterICOperation) {
@@ -27186,7 +27338,7 @@ func (o *DeletePrinterICResponse) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Return = op.Return
 }
 func (o *DeletePrinterICResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterICResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterICOperation{}
@@ -27516,17 +27668,19 @@ type EnumPrintersRequest struct {
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumPrintersRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrintersOperation {
+func (o *EnumPrintersRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrintersOperation) *xxx_EnumPrintersOperation {
+	if op == nil {
+		op = &xxx_EnumPrintersOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrintersOperation{}
+		return op
 	}
-	return &xxx_EnumPrintersOperation{
-		Flags:        o.Flags,
-		Name:         o.Name,
-		Level:        o.Level,
-		PrinterEnum:  o.PrinterEnum,
-		BufferLength: o.BufferLength,
-	}
+	o.Flags = op.Flags
+	o.Name = op.Name
+	o.Level = op.Level
+	o.PrinterEnum = op.PrinterEnum
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumPrintersRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrintersOperation) {
@@ -27540,7 +27694,7 @@ func (o *EnumPrintersRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinte
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumPrintersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrintersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrintersOperation{}
@@ -27560,16 +27714,18 @@ type EnumPrintersResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrintersResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrintersOperation {
+func (o *EnumPrintersResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrintersOperation) *xxx_EnumPrintersOperation {
+	if op == nil {
+		op = &xxx_EnumPrintersOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrintersOperation{}
+		return op
 	}
-	return &xxx_EnumPrintersOperation{
-		PrinterEnum:   o.PrinterEnum,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.PrinterEnum = op.PrinterEnum
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrintersResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrintersOperation) {
@@ -27582,7 +27738,7 @@ func (o *EnumPrintersResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrint
 	o.Return = op.Return
 }
 func (o *EnumPrintersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrintersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrintersOperation{}
@@ -27742,15 +27898,17 @@ type AddPrinterDriverRequest struct {
 	FileCopyFlags   uint32           `idl:"name:dwFileCopyFlags" json:"file_copy_flags"`
 }
 
-func (o *AddPrinterDriverRequest) xxx_ToOp(ctx context.Context) *xxx_AddPrinterDriverOperation {
+func (o *AddPrinterDriverRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterDriverOperation) *xxx_AddPrinterDriverOperation {
+	if op == nil {
+		op = &xxx_AddPrinterDriverOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrinterDriverOperation{}
+		return op
 	}
-	return &xxx_AddPrinterDriverOperation{
-		Name:            o.Name,
-		DriverContainer: o.DriverContainer,
-		FileCopyFlags:   o.FileCopyFlags,
-	}
+	o.Name = op.Name
+	o.DriverContainer = op.DriverContainer
+	o.FileCopyFlags = op.FileCopyFlags
+	return op
 }
 
 func (o *AddPrinterDriverRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPrinterDriverOperation) {
@@ -27762,7 +27920,7 @@ func (o *AddPrinterDriverRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPri
 	o.FileCopyFlags = op.FileCopyFlags
 }
 func (o *AddPrinterDriverRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrinterDriverOperation{}
@@ -27779,13 +27937,15 @@ type AddPrinterDriverResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPrinterDriverResponse) xxx_ToOp(ctx context.Context) *xxx_AddPrinterDriverOperation {
+func (o *AddPrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrinterDriverOperation) *xxx_AddPrinterDriverOperation {
+	if op == nil {
+		op = &xxx_AddPrinterDriverOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrinterDriverOperation{}
+		return op
 	}
-	return &xxx_AddPrinterDriverOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPrinterDriverOperation) {
@@ -27795,7 +27955,7 @@ func (o *AddPrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPr
 	o.Return = op.Return
 }
 func (o *AddPrinterDriverResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPrinterDriverResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrinterDriverOperation{}
@@ -28150,17 +28310,19 @@ type EnumPrinterDriversRequest struct {
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumPrinterDriversRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterDriversOperation {
+func (o *EnumPrinterDriversRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDriversOperation) *xxx_EnumPrinterDriversOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterDriversOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterDriversOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterDriversOperation{
-		Name:         o.Name,
-		Environment:  o.Environment,
-		Level:        o.Level,
-		Drivers:      o.Drivers,
-		BufferLength: o.BufferLength,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.Level = op.Level
+	o.Drivers = op.Drivers
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumPrinterDriversRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterDriversOperation) {
@@ -28174,7 +28336,7 @@ func (o *EnumPrinterDriversRequest) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumPrinterDriversRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterDriversOperation{}
@@ -28194,16 +28356,18 @@ type EnumPrinterDriversResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrinterDriversResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrinterDriversOperation {
+func (o *EnumPrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrinterDriversOperation) *xxx_EnumPrinterDriversOperation {
+	if op == nil {
+		op = &xxx_EnumPrinterDriversOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrinterDriversOperation{}
+		return op
 	}
-	return &xxx_EnumPrinterDriversOperation{
-		Drivers:       o.Drivers,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.Drivers = op.Drivers
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrinterDriversOperation) {
@@ -28216,7 +28380,7 @@ func (o *EnumPrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.Return = op.Return
 }
 func (o *EnumPrinterDriversResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrinterDriversResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrinterDriversOperation{}
@@ -28558,17 +28722,19 @@ type GetPrinterDriverDirectoryRequest struct {
 	BufferLength    uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *GetPrinterDriverDirectoryRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDriverDirectoryOperation {
+func (o *GetPrinterDriverDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDriverDirectoryOperation) *xxx_GetPrinterDriverDirectoryOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDriverDirectoryOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDriverDirectoryOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDriverDirectoryOperation{
-		Name:            o.Name,
-		Environment:     o.Environment,
-		Level:           o.Level,
-		DriverDirectory: o.DriverDirectory,
-		BufferLength:    o.BufferLength,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.Level = op.Level
+	o.DriverDirectory = op.DriverDirectory
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetPrinterDriverDirectoryRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDriverDirectoryOperation) {
@@ -28582,7 +28748,7 @@ func (o *GetPrinterDriverDirectoryRequest) xxx_FromOp(ctx context.Context, op *x
 	o.BufferLength = op.BufferLength
 }
 func (o *GetPrinterDriverDirectoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrinterDriverDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDriverDirectoryOperation{}
@@ -28601,15 +28767,17 @@ type GetPrinterDriverDirectoryResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrinterDriverDirectoryResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDriverDirectoryOperation {
+func (o *GetPrinterDriverDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDriverDirectoryOperation) *xxx_GetPrinterDriverDirectoryOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDriverDirectoryOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDriverDirectoryOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDriverDirectoryOperation{
-		DriverDirectory: o.DriverDirectory,
-		NeededLength:    o.NeededLength,
-		Return:          o.Return,
-	}
+	o.DriverDirectory = op.DriverDirectory
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrinterDriverDirectoryResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDriverDirectoryOperation) {
@@ -28621,7 +28789,7 @@ func (o *GetPrinterDriverDirectoryResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *GetPrinterDriverDirectoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrinterDriverDirectoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDriverDirectoryOperation{}
@@ -28766,15 +28934,17 @@ type DeletePrinterDriverRequest struct {
 	DriverName  string `idl:"name:pDriverName;string" json:"driver_name"`
 }
 
-func (o *DeletePrinterDriverRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDriverOperation {
+func (o *DeletePrinterDriverRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDriverOperation) *xxx_DeletePrinterDriverOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDriverOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDriverOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDriverOperation{
-		Name:        o.Name,
-		Environment: o.Environment,
-		DriverName:  o.DriverName,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.DriverName = op.DriverName
+	return op
 }
 
 func (o *DeletePrinterDriverRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDriverOperation) {
@@ -28786,7 +28956,7 @@ func (o *DeletePrinterDriverRequest) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.DriverName = op.DriverName
 }
 func (o *DeletePrinterDriverRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterDriverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDriverOperation{}
@@ -28803,13 +28973,15 @@ type DeletePrinterDriverResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterDriverResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDriverOperation {
+func (o *DeletePrinterDriverResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDriverOperation) *xxx_DeletePrinterDriverOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDriverOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDriverOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDriverOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDriverOperation) {
@@ -28819,7 +28991,7 @@ func (o *DeletePrinterDriverResponse) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Return = op.Return
 }
 func (o *DeletePrinterDriverResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterDriverResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDriverOperation{}
@@ -28992,17 +29164,19 @@ type DeletePrinterDriverExRequest struct {
 	VersionNum  uint32 `idl:"name:dwVersionNum" json:"version_num"`
 }
 
-func (o *DeletePrinterDriverExRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDriverExOperation {
+func (o *DeletePrinterDriverExRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDriverExOperation) *xxx_DeletePrinterDriverExOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDriverExOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDriverExOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDriverExOperation{
-		Name:        o.Name,
-		Environment: o.Environment,
-		DriverName:  o.DriverName,
-		DeleteFlag:  o.DeleteFlag,
-		VersionNum:  o.VersionNum,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.DriverName = op.DriverName
+	o.DeleteFlag = op.DeleteFlag
+	o.VersionNum = op.VersionNum
+	return op
 }
 
 func (o *DeletePrinterDriverExRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDriverExOperation) {
@@ -29016,7 +29190,7 @@ func (o *DeletePrinterDriverExRequest) xxx_FromOp(ctx context.Context, op *xxx_D
 	o.VersionNum = op.VersionNum
 }
 func (o *DeletePrinterDriverExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterDriverExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDriverExOperation{}
@@ -29033,13 +29207,15 @@ type DeletePrinterDriverExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterDriverExResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDriverExOperation {
+func (o *DeletePrinterDriverExResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDriverExOperation) *xxx_DeletePrinterDriverExOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDriverExOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDriverExOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDriverExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterDriverExResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDriverExOperation) {
@@ -29049,7 +29225,7 @@ func (o *DeletePrinterDriverExResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *DeletePrinterDriverExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterDriverExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDriverExOperation{}
@@ -29208,16 +29384,18 @@ type AddPrintProcessorRequest struct {
 	PrintProcessorName string `idl:"name:pPrintProcessorName;string" json:"print_processor_name"`
 }
 
-func (o *AddPrintProcessorRequest) xxx_ToOp(ctx context.Context) *xxx_AddPrintProcessorOperation {
+func (o *AddPrintProcessorRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPrintProcessorOperation) *xxx_AddPrintProcessorOperation {
+	if op == nil {
+		op = &xxx_AddPrintProcessorOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrintProcessorOperation{}
+		return op
 	}
-	return &xxx_AddPrintProcessorOperation{
-		Name:               o.Name,
-		Environment:        o.Environment,
-		PathName:           o.PathName,
-		PrintProcessorName: o.PrintProcessorName,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.PathName = op.PathName
+	o.PrintProcessorName = op.PrintProcessorName
+	return op
 }
 
 func (o *AddPrintProcessorRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPrintProcessorOperation) {
@@ -29230,7 +29408,7 @@ func (o *AddPrintProcessorRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPr
 	o.PrintProcessorName = op.PrintProcessorName
 }
 func (o *AddPrintProcessorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPrintProcessorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrintProcessorOperation{}
@@ -29247,13 +29425,15 @@ type AddPrintProcessorResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPrintProcessorResponse) xxx_ToOp(ctx context.Context) *xxx_AddPrintProcessorOperation {
+func (o *AddPrintProcessorResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPrintProcessorOperation) *xxx_AddPrintProcessorOperation {
+	if op == nil {
+		op = &xxx_AddPrintProcessorOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPrintProcessorOperation{}
+		return op
 	}
-	return &xxx_AddPrintProcessorOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPrintProcessorResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPrintProcessorOperation) {
@@ -29263,7 +29443,7 @@ func (o *AddPrintProcessorResponse) xxx_FromOp(ctx context.Context, op *xxx_AddP
 	o.Return = op.Return
 }
 func (o *AddPrintProcessorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPrintProcessorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPrintProcessorOperation{}
@@ -29618,17 +29798,19 @@ type EnumPrintProcessorsRequest struct {
 	BufferLength       uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumPrintProcessorsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrintProcessorsOperation {
+func (o *EnumPrintProcessorsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrintProcessorsOperation) *xxx_EnumPrintProcessorsOperation {
+	if op == nil {
+		op = &xxx_EnumPrintProcessorsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrintProcessorsOperation{}
+		return op
 	}
-	return &xxx_EnumPrintProcessorsOperation{
-		Name:               o.Name,
-		Environment:        o.Environment,
-		Level:              o.Level,
-		PrintProcessorInfo: o.PrintProcessorInfo,
-		BufferLength:       o.BufferLength,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.Level = op.Level
+	o.PrintProcessorInfo = op.PrintProcessorInfo
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumPrintProcessorsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrintProcessorsOperation) {
@@ -29642,7 +29824,7 @@ func (o *EnumPrintProcessorsRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumPrintProcessorsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrintProcessorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrintProcessorsOperation{}
@@ -29662,16 +29844,18 @@ type EnumPrintProcessorsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrintProcessorsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrintProcessorsOperation {
+func (o *EnumPrintProcessorsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrintProcessorsOperation) *xxx_EnumPrintProcessorsOperation {
+	if op == nil {
+		op = &xxx_EnumPrintProcessorsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrintProcessorsOperation{}
+		return op
 	}
-	return &xxx_EnumPrintProcessorsOperation{
-		PrintProcessorInfo: o.PrintProcessorInfo,
-		NeededLength:       o.NeededLength,
-		ReturnedCount:      o.ReturnedCount,
-		Return:             o.Return,
-	}
+	o.PrintProcessorInfo = op.PrintProcessorInfo
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrintProcessorsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrintProcessorsOperation) {
@@ -29684,7 +29868,7 @@ func (o *EnumPrintProcessorsResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumPrintProcessorsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrintProcessorsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrintProcessorsOperation{}
@@ -30026,17 +30210,19 @@ type GetPrintProcessorDirectoryRequest struct {
 	BufferLength            uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *GetPrintProcessorDirectoryRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrintProcessorDirectoryOperation {
+func (o *GetPrintProcessorDirectoryRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrintProcessorDirectoryOperation) *xxx_GetPrintProcessorDirectoryOperation {
+	if op == nil {
+		op = &xxx_GetPrintProcessorDirectoryOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrintProcessorDirectoryOperation{}
+		return op
 	}
-	return &xxx_GetPrintProcessorDirectoryOperation{
-		Name:                    o.Name,
-		Environment:             o.Environment,
-		Level:                   o.Level,
-		PrintProcessorDirectory: o.PrintProcessorDirectory,
-		BufferLength:            o.BufferLength,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.Level = op.Level
+	o.PrintProcessorDirectory = op.PrintProcessorDirectory
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetPrintProcessorDirectoryRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrintProcessorDirectoryOperation) {
@@ -30050,7 +30236,7 @@ func (o *GetPrintProcessorDirectoryRequest) xxx_FromOp(ctx context.Context, op *
 	o.BufferLength = op.BufferLength
 }
 func (o *GetPrintProcessorDirectoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrintProcessorDirectoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrintProcessorDirectoryOperation{}
@@ -30069,15 +30255,17 @@ type GetPrintProcessorDirectoryResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrintProcessorDirectoryResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrintProcessorDirectoryOperation {
+func (o *GetPrintProcessorDirectoryResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrintProcessorDirectoryOperation) *xxx_GetPrintProcessorDirectoryOperation {
+	if op == nil {
+		op = &xxx_GetPrintProcessorDirectoryOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrintProcessorDirectoryOperation{}
+		return op
 	}
-	return &xxx_GetPrintProcessorDirectoryOperation{
-		PrintProcessorDirectory: o.PrintProcessorDirectory,
-		NeededLength:            o.NeededLength,
-		Return:                  o.Return,
-	}
+	o.PrintProcessorDirectory = op.PrintProcessorDirectory
+	o.NeededLength = op.NeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrintProcessorDirectoryResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrintProcessorDirectoryOperation) {
@@ -30089,7 +30277,7 @@ func (o *GetPrintProcessorDirectoryResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *GetPrintProcessorDirectoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrintProcessorDirectoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrintProcessorDirectoryOperation{}
@@ -30403,16 +30591,18 @@ type EnumPortsRequest struct {
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumPortsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPortsOperation {
+func (o *EnumPortsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOperation) *xxx_EnumPortsOperation {
+	if op == nil {
+		op = &xxx_EnumPortsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPortsOperation{}
+		return op
 	}
-	return &xxx_EnumPortsOperation{
-		Name:         o.Name,
-		Level:        o.Level,
-		Port:         o.Port,
-		BufferLength: o.BufferLength,
-	}
+	o.Name = op.Name
+	o.Level = op.Level
+	o.Port = op.Port
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumPortsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPortsOperation) {
@@ -30425,7 +30615,7 @@ func (o *EnumPortsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPortsOper
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumPortsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPortsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPortsOperation{}
@@ -30445,16 +30635,18 @@ type EnumPortsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPortsOperation {
+func (o *EnumPortsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPortsOperation) *xxx_EnumPortsOperation {
+	if op == nil {
+		op = &xxx_EnumPortsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPortsOperation{}
+		return op
 	}
-	return &xxx_EnumPortsOperation{
-		Port:          o.Port,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.Port = op.Port
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPortsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPortsOperation) {
@@ -30467,7 +30659,7 @@ func (o *EnumPortsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPortsOpe
 	o.Return = op.Return
 }
 func (o *EnumPortsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPortsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPortsOperation{}
@@ -30783,16 +30975,18 @@ type EnumMonitorsRequest struct {
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumMonitorsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumMonitorsOperation {
+func (o *EnumMonitorsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumMonitorsOperation) *xxx_EnumMonitorsOperation {
+	if op == nil {
+		op = &xxx_EnumMonitorsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumMonitorsOperation{}
+		return op
 	}
-	return &xxx_EnumMonitorsOperation{
-		Name:         o.Name,
-		Level:        o.Level,
-		Monitor:      o.Monitor,
-		BufferLength: o.BufferLength,
-	}
+	o.Name = op.Name
+	o.Level = op.Level
+	o.Monitor = op.Monitor
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumMonitorsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumMonitorsOperation) {
@@ -30805,7 +30999,7 @@ func (o *EnumMonitorsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumMonito
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumMonitorsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumMonitorsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumMonitorsOperation{}
@@ -30825,16 +31019,18 @@ type EnumMonitorsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumMonitorsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumMonitorsOperation {
+func (o *EnumMonitorsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumMonitorsOperation) *xxx_EnumMonitorsOperation {
+	if op == nil {
+		op = &xxx_EnumMonitorsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumMonitorsOperation{}
+		return op
 	}
-	return &xxx_EnumMonitorsOperation{
-		Monitor:       o.Monitor,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.Monitor = op.Monitor
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumMonitorsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumMonitorsOperation) {
@@ -30847,7 +31043,7 @@ func (o *EnumMonitorsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumMonit
 	o.Return = op.Return
 }
 func (o *EnumMonitorsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumMonitorsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumMonitorsOperation{}
@@ -31034,16 +31230,18 @@ type AddPortRequest struct {
 	MonitorName      string            `idl:"name:pMonitorName;string" json:"monitor_name"`
 }
 
-func (o *AddPortRequest) xxx_ToOp(ctx context.Context) *xxx_AddPortOperation {
+func (o *AddPortRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPortOperation) *xxx_AddPortOperation {
+	if op == nil {
+		op = &xxx_AddPortOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPortOperation{}
+		return op
 	}
-	return &xxx_AddPortOperation{
-		Name:             o.Name,
-		PortContainer:    o.PortContainer,
-		PortVarContainer: o.PortVarContainer,
-		MonitorName:      o.MonitorName,
-	}
+	o.Name = op.Name
+	o.PortContainer = op.PortContainer
+	o.PortVarContainer = op.PortVarContainer
+	o.MonitorName = op.MonitorName
+	return op
 }
 
 func (o *AddPortRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPortOperation) {
@@ -31056,7 +31254,7 @@ func (o *AddPortRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPortOperatio
 	o.MonitorName = op.MonitorName
 }
 func (o *AddPortRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPortOperation{}
@@ -31073,13 +31271,15 @@ type AddPortResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPortResponse) xxx_ToOp(ctx context.Context) *xxx_AddPortOperation {
+func (o *AddPortResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPortOperation) *xxx_AddPortOperation {
+	if op == nil {
+		op = &xxx_AddPortOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPortOperation{}
+		return op
 	}
-	return &xxx_AddPortOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPortResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPortOperation) {
@@ -31089,7 +31289,7 @@ func (o *AddPortResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPortOperati
 	o.Return = op.Return
 }
 func (o *AddPortResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPortResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPortOperation{}
@@ -31272,15 +31472,17 @@ type SetPortRequest struct {
 	PortContainer *PortContainer `idl:"name:pPortContainer" json:"port_container"`
 }
 
-func (o *SetPortRequest) xxx_ToOp(ctx context.Context) *xxx_SetPortOperation {
+func (o *SetPortRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation) *xxx_SetPortOperation {
+	if op == nil {
+		op = &xxx_SetPortOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPortOperation{}
+		return op
 	}
-	return &xxx_SetPortOperation{
-		Name:          o.Name,
-		PortName:      o.PortName,
-		PortContainer: o.PortContainer,
-	}
+	o.Name = op.Name
+	o.PortName = op.PortName
+	o.PortContainer = op.PortContainer
+	return op
 }
 
 func (o *SetPortRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPortOperation) {
@@ -31292,7 +31494,7 @@ func (o *SetPortRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPortOperatio
 	o.PortContainer = op.PortContainer
 }
 func (o *SetPortRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPortOperation{}
@@ -31309,13 +31511,15 @@ type SetPortResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPortResponse) xxx_ToOp(ctx context.Context) *xxx_SetPortOperation {
+func (o *SetPortResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPortOperation) *xxx_SetPortOperation {
+	if op == nil {
+		op = &xxx_SetPortOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPortOperation{}
+		return op
 	}
-	return &xxx_SetPortOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPortResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPortOperation) {
@@ -31325,7 +31529,7 @@ func (o *SetPortResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPortOperati
 	o.Return = op.Return
 }
 func (o *SetPortResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPortResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPortOperation{}
@@ -31469,14 +31673,16 @@ type AddMonitorRequest struct {
 	MonitorContainer *MonitorContainer `idl:"name:pMonitorContainer" json:"monitor_container"`
 }
 
-func (o *AddMonitorRequest) xxx_ToOp(ctx context.Context) *xxx_AddMonitorOperation {
+func (o *AddMonitorRequest) xxx_ToOp(ctx context.Context, op *xxx_AddMonitorOperation) *xxx_AddMonitorOperation {
+	if op == nil {
+		op = &xxx_AddMonitorOperation{}
+	}
 	if o == nil {
-		return &xxx_AddMonitorOperation{}
+		return op
 	}
-	return &xxx_AddMonitorOperation{
-		Name:             o.Name,
-		MonitorContainer: o.MonitorContainer,
-	}
+	o.Name = op.Name
+	o.MonitorContainer = op.MonitorContainer
+	return op
 }
 
 func (o *AddMonitorRequest) xxx_FromOp(ctx context.Context, op *xxx_AddMonitorOperation) {
@@ -31487,7 +31693,7 @@ func (o *AddMonitorRequest) xxx_FromOp(ctx context.Context, op *xxx_AddMonitorOp
 	o.MonitorContainer = op.MonitorContainer
 }
 func (o *AddMonitorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddMonitorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddMonitorOperation{}
@@ -31504,13 +31710,15 @@ type AddMonitorResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddMonitorResponse) xxx_ToOp(ctx context.Context) *xxx_AddMonitorOperation {
+func (o *AddMonitorResponse) xxx_ToOp(ctx context.Context, op *xxx_AddMonitorOperation) *xxx_AddMonitorOperation {
+	if op == nil {
+		op = &xxx_AddMonitorOperation{}
+	}
 	if o == nil {
-		return &xxx_AddMonitorOperation{}
+		return op
 	}
-	return &xxx_AddMonitorOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddMonitorResponse) xxx_FromOp(ctx context.Context, op *xxx_AddMonitorOperation) {
@@ -31520,7 +31728,7 @@ func (o *AddMonitorResponse) xxx_FromOp(ctx context.Context, op *xxx_AddMonitorO
 	o.Return = op.Return
 }
 func (o *AddMonitorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddMonitorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddMonitorOperation{}
@@ -31690,15 +31898,17 @@ type DeleteMonitorRequest struct {
 	MonitorName string `idl:"name:pMonitorName;string" json:"monitor_name"`
 }
 
-func (o *DeleteMonitorRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteMonitorOperation {
+func (o *DeleteMonitorRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteMonitorOperation) *xxx_DeleteMonitorOperation {
+	if op == nil {
+		op = &xxx_DeleteMonitorOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteMonitorOperation{}
+		return op
 	}
-	return &xxx_DeleteMonitorOperation{
-		Name:        o.Name,
-		Environment: o.Environment,
-		MonitorName: o.MonitorName,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.MonitorName = op.MonitorName
+	return op
 }
 
 func (o *DeleteMonitorRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteMonitorOperation) {
@@ -31710,7 +31920,7 @@ func (o *DeleteMonitorRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteMon
 	o.MonitorName = op.MonitorName
 }
 func (o *DeleteMonitorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteMonitorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteMonitorOperation{}
@@ -31727,13 +31937,15 @@ type DeleteMonitorResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteMonitorResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteMonitorOperation {
+func (o *DeleteMonitorResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteMonitorOperation) *xxx_DeleteMonitorOperation {
+	if op == nil {
+		op = &xxx_DeleteMonitorOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteMonitorOperation{}
+		return op
 	}
-	return &xxx_DeleteMonitorOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteMonitorResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteMonitorOperation) {
@@ -31743,7 +31955,7 @@ func (o *DeleteMonitorResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteMo
 	o.Return = op.Return
 }
 func (o *DeleteMonitorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteMonitorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteMonitorOperation{}
@@ -31913,15 +32125,17 @@ type DeletePrintProcessorRequest struct {
 	PrintProcessorName string `idl:"name:pPrintProcessorName;string" json:"print_processor_name"`
 }
 
-func (o *DeletePrintProcessorRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrintProcessorOperation {
+func (o *DeletePrintProcessorRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrintProcessorOperation) *xxx_DeletePrintProcessorOperation {
+	if op == nil {
+		op = &xxx_DeletePrintProcessorOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrintProcessorOperation{}
+		return op
 	}
-	return &xxx_DeletePrintProcessorOperation{
-		Name:               o.Name,
-		Environment:        o.Environment,
-		PrintProcessorName: o.PrintProcessorName,
-	}
+	o.Name = op.Name
+	o.Environment = op.Environment
+	o.PrintProcessorName = op.PrintProcessorName
+	return op
 }
 
 func (o *DeletePrintProcessorRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrintProcessorOperation) {
@@ -31933,7 +32147,7 @@ func (o *DeletePrintProcessorRequest) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.PrintProcessorName = op.PrintProcessorName
 }
 func (o *DeletePrintProcessorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrintProcessorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrintProcessorOperation{}
@@ -31950,13 +32164,15 @@ type DeletePrintProcessorResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrintProcessorResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrintProcessorOperation {
+func (o *DeletePrintProcessorResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrintProcessorOperation) *xxx_DeletePrintProcessorOperation {
+	if op == nil {
+		op = &xxx_DeletePrintProcessorOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrintProcessorOperation{}
+		return op
 	}
-	return &xxx_DeletePrintProcessorOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrintProcessorResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrintProcessorOperation) {
@@ -31966,7 +32182,7 @@ func (o *DeletePrintProcessorResponse) xxx_FromOp(ctx context.Context, op *xxx_D
 	o.Return = op.Return
 }
 func (o *DeletePrintProcessorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrintProcessorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrintProcessorOperation{}
@@ -32321,17 +32537,19 @@ type EnumPrintProcessorDataTypesRequest struct {
 	BufferLength       uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumPrintProcessorDataTypesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPrintProcessorDataTypesOperation {
+func (o *EnumPrintProcessorDataTypesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPrintProcessorDataTypesOperation) *xxx_EnumPrintProcessorDataTypesOperation {
+	if op == nil {
+		op = &xxx_EnumPrintProcessorDataTypesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrintProcessorDataTypesOperation{}
+		return op
 	}
-	return &xxx_EnumPrintProcessorDataTypesOperation{
-		Name:               o.Name,
-		PrintProcessorName: o.PrintProcessorName,
-		Level:              o.Level,
-		DataTypes:          o.DataTypes,
-		BufferLength:       o.BufferLength,
-	}
+	o.Name = op.Name
+	o.PrintProcessorName = op.PrintProcessorName
+	o.Level = op.Level
+	o.DataTypes = op.DataTypes
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumPrintProcessorDataTypesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPrintProcessorDataTypesOperation) {
@@ -32345,7 +32563,7 @@ func (o *EnumPrintProcessorDataTypesRequest) xxx_FromOp(ctx context.Context, op 
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumPrintProcessorDataTypesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPrintProcessorDataTypesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrintProcessorDataTypesOperation{}
@@ -32365,16 +32583,18 @@ type EnumPrintProcessorDataTypesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPrintProcessorDataTypesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPrintProcessorDataTypesOperation {
+func (o *EnumPrintProcessorDataTypesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPrintProcessorDataTypesOperation) *xxx_EnumPrintProcessorDataTypesOperation {
+	if op == nil {
+		op = &xxx_EnumPrintProcessorDataTypesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPrintProcessorDataTypesOperation{}
+		return op
 	}
-	return &xxx_EnumPrintProcessorDataTypesOperation{
-		DataTypes:     o.DataTypes,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.DataTypes = op.DataTypes
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPrintProcessorDataTypesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPrintProcessorDataTypesOperation) {
@@ -32387,7 +32607,7 @@ func (o *EnumPrintProcessorDataTypesResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *EnumPrintProcessorDataTypesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPrintProcessorDataTypesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPrintProcessorDataTypesOperation{}
@@ -32546,16 +32766,18 @@ type AddPerMachineConnectionRequest struct {
 	Provider    string `idl:"name:pProvider;string" json:"provider"`
 }
 
-func (o *AddPerMachineConnectionRequest) xxx_ToOp(ctx context.Context) *xxx_AddPerMachineConnectionOperation {
+func (o *AddPerMachineConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPerMachineConnectionOperation) *xxx_AddPerMachineConnectionOperation {
+	if op == nil {
+		op = &xxx_AddPerMachineConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPerMachineConnectionOperation{}
+		return op
 	}
-	return &xxx_AddPerMachineConnectionOperation{
-		Server:      o.Server,
-		PrinterName: o.PrinterName,
-		PrintServer: o.PrintServer,
-		Provider:    o.Provider,
-	}
+	o.Server = op.Server
+	o.PrinterName = op.PrinterName
+	o.PrintServer = op.PrintServer
+	o.Provider = op.Provider
+	return op
 }
 
 func (o *AddPerMachineConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPerMachineConnectionOperation) {
@@ -32568,7 +32790,7 @@ func (o *AddPerMachineConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.Provider = op.Provider
 }
 func (o *AddPerMachineConnectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPerMachineConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPerMachineConnectionOperation{}
@@ -32585,13 +32807,15 @@ type AddPerMachineConnectionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPerMachineConnectionResponse) xxx_ToOp(ctx context.Context) *xxx_AddPerMachineConnectionOperation {
+func (o *AddPerMachineConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPerMachineConnectionOperation) *xxx_AddPerMachineConnectionOperation {
+	if op == nil {
+		op = &xxx_AddPerMachineConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPerMachineConnectionOperation{}
+		return op
 	}
-	return &xxx_AddPerMachineConnectionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPerMachineConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPerMachineConnectionOperation) {
@@ -32601,7 +32825,7 @@ func (o *AddPerMachineConnectionResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *AddPerMachineConnectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPerMachineConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPerMachineConnectionOperation{}
@@ -32732,14 +32956,16 @@ type DeletePerMachineConnectionRequest struct {
 	PrinterName string `idl:"name:pPrinterName;string" json:"printer_name"`
 }
 
-func (o *DeletePerMachineConnectionRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePerMachineConnectionOperation {
+func (o *DeletePerMachineConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePerMachineConnectionOperation) *xxx_DeletePerMachineConnectionOperation {
+	if op == nil {
+		op = &xxx_DeletePerMachineConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePerMachineConnectionOperation{}
+		return op
 	}
-	return &xxx_DeletePerMachineConnectionOperation{
-		Server:      o.Server,
-		PrinterName: o.PrinterName,
-	}
+	o.Server = op.Server
+	o.PrinterName = op.PrinterName
+	return op
 }
 
 func (o *DeletePerMachineConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePerMachineConnectionOperation) {
@@ -32750,7 +32976,7 @@ func (o *DeletePerMachineConnectionRequest) xxx_FromOp(ctx context.Context, op *
 	o.PrinterName = op.PrinterName
 }
 func (o *DeletePerMachineConnectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePerMachineConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePerMachineConnectionOperation{}
@@ -32767,13 +32993,15 @@ type DeletePerMachineConnectionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePerMachineConnectionResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePerMachineConnectionOperation {
+func (o *DeletePerMachineConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePerMachineConnectionOperation) *xxx_DeletePerMachineConnectionOperation {
+	if op == nil {
+		op = &xxx_DeletePerMachineConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePerMachineConnectionOperation{}
+		return op
 	}
-	return &xxx_DeletePerMachineConnectionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePerMachineConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePerMachineConnectionOperation) {
@@ -32783,7 +33011,7 @@ func (o *DeletePerMachineConnectionResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *DeletePerMachineConnectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePerMachineConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePerMachineConnectionOperation{}
@@ -33085,15 +33313,17 @@ type EnumPerMachineConnectionsRequest struct {
 	BufferLength uint32 `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *EnumPerMachineConnectionsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumPerMachineConnectionsOperation {
+func (o *EnumPerMachineConnectionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumPerMachineConnectionsOperation) *xxx_EnumPerMachineConnectionsOperation {
+	if op == nil {
+		op = &xxx_EnumPerMachineConnectionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPerMachineConnectionsOperation{}
+		return op
 	}
-	return &xxx_EnumPerMachineConnectionsOperation{
-		Server:       o.Server,
-		PrinterEnum:  o.PrinterEnum,
-		BufferLength: o.BufferLength,
-	}
+	o.Server = op.Server
+	o.PrinterEnum = op.PrinterEnum
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *EnumPerMachineConnectionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumPerMachineConnectionsOperation) {
@@ -33105,7 +33335,7 @@ func (o *EnumPerMachineConnectionsRequest) xxx_FromOp(ctx context.Context, op *x
 	o.BufferLength = op.BufferLength
 }
 func (o *EnumPerMachineConnectionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumPerMachineConnectionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPerMachineConnectionsOperation{}
@@ -33125,16 +33355,18 @@ type EnumPerMachineConnectionsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumPerMachineConnectionsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumPerMachineConnectionsOperation {
+func (o *EnumPerMachineConnectionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumPerMachineConnectionsOperation) *xxx_EnumPerMachineConnectionsOperation {
+	if op == nil {
+		op = &xxx_EnumPerMachineConnectionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumPerMachineConnectionsOperation{}
+		return op
 	}
-	return &xxx_EnumPerMachineConnectionsOperation{
-		PrinterEnum:   o.PrinterEnum,
-		NeededLength:  o.NeededLength,
-		ReturnedCount: o.ReturnedCount,
-		Return:        o.Return,
-	}
+	o.PrinterEnum = op.PrinterEnum
+	o.NeededLength = op.NeededLength
+	o.ReturnedCount = op.ReturnedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumPerMachineConnectionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumPerMachineConnectionsOperation) {
@@ -33147,7 +33379,7 @@ func (o *EnumPerMachineConnectionsResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *EnumPerMachineConnectionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumPerMachineConnectionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumPerMachineConnectionsOperation{}
@@ -33303,14 +33535,16 @@ type SyncRegisterForRemoteNotificationsRequest struct {
 	NotifyFilter *PrintPropertiesCollection `idl:"name:pNotifyFilter" json:"notify_filter"`
 }
 
-func (o *SyncRegisterForRemoteNotificationsRequest) xxx_ToOp(ctx context.Context) *xxx_SyncRegisterForRemoteNotificationsOperation {
+func (o *SyncRegisterForRemoteNotificationsRequest) xxx_ToOp(ctx context.Context, op *xxx_SyncRegisterForRemoteNotificationsOperation) *xxx_SyncRegisterForRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_SyncRegisterForRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncRegisterForRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_SyncRegisterForRemoteNotificationsOperation{
-		Printer:      o.Printer,
-		NotifyFilter: o.NotifyFilter,
-	}
+	o.Printer = op.Printer
+	o.NotifyFilter = op.NotifyFilter
+	return op
 }
 
 func (o *SyncRegisterForRemoteNotificationsRequest) xxx_FromOp(ctx context.Context, op *xxx_SyncRegisterForRemoteNotificationsOperation) {
@@ -33321,7 +33555,7 @@ func (o *SyncRegisterForRemoteNotificationsRequest) xxx_FromOp(ctx context.Conte
 	o.NotifyFilter = op.NotifyFilter
 }
 func (o *SyncRegisterForRemoteNotificationsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SyncRegisterForRemoteNotificationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncRegisterForRemoteNotificationsOperation{}
@@ -33340,14 +33574,16 @@ type SyncRegisterForRemoteNotificationsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SyncRegisterForRemoteNotificationsResponse) xxx_ToOp(ctx context.Context) *xxx_SyncRegisterForRemoteNotificationsOperation {
+func (o *SyncRegisterForRemoteNotificationsResponse) xxx_ToOp(ctx context.Context, op *xxx_SyncRegisterForRemoteNotificationsOperation) *xxx_SyncRegisterForRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_SyncRegisterForRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncRegisterForRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_SyncRegisterForRemoteNotificationsOperation{
-		RPCHandle: o.RPCHandle,
-		Return:    o.Return,
-	}
+	o.RPCHandle = op.RPCHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *SyncRegisterForRemoteNotificationsResponse) xxx_FromOp(ctx context.Context, op *xxx_SyncRegisterForRemoteNotificationsOperation) {
@@ -33358,7 +33594,7 @@ func (o *SyncRegisterForRemoteNotificationsResponse) xxx_FromOp(ctx context.Cont
 	o.Return = op.Return
 }
 func (o *SyncRegisterForRemoteNotificationsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SyncRegisterForRemoteNotificationsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncRegisterForRemoteNotificationsOperation{}
@@ -33482,13 +33718,15 @@ type SyncUnregisterForRemoteNotificationsRequest struct {
 	RPCHandle *RemoteNotify `idl:"name:phRpcHandle" json:"rpc_handle"`
 }
 
-func (o *SyncUnregisterForRemoteNotificationsRequest) xxx_ToOp(ctx context.Context) *xxx_SyncUnregisterForRemoteNotificationsOperation {
+func (o *SyncUnregisterForRemoteNotificationsRequest) xxx_ToOp(ctx context.Context, op *xxx_SyncUnregisterForRemoteNotificationsOperation) *xxx_SyncUnregisterForRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_SyncUnregisterForRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncUnregisterForRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_SyncUnregisterForRemoteNotificationsOperation{
-		RPCHandle: o.RPCHandle,
-	}
+	o.RPCHandle = op.RPCHandle
+	return op
 }
 
 func (o *SyncUnregisterForRemoteNotificationsRequest) xxx_FromOp(ctx context.Context, op *xxx_SyncUnregisterForRemoteNotificationsOperation) {
@@ -33498,7 +33736,7 @@ func (o *SyncUnregisterForRemoteNotificationsRequest) xxx_FromOp(ctx context.Con
 	o.RPCHandle = op.RPCHandle
 }
 func (o *SyncUnregisterForRemoteNotificationsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SyncUnregisterForRemoteNotificationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncUnregisterForRemoteNotificationsOperation{}
@@ -33518,14 +33756,16 @@ type SyncUnregisterForRemoteNotificationsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SyncUnregisterForRemoteNotificationsResponse) xxx_ToOp(ctx context.Context) *xxx_SyncUnregisterForRemoteNotificationsOperation {
+func (o *SyncUnregisterForRemoteNotificationsResponse) xxx_ToOp(ctx context.Context, op *xxx_SyncUnregisterForRemoteNotificationsOperation) *xxx_SyncUnregisterForRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_SyncUnregisterForRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncUnregisterForRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_SyncUnregisterForRemoteNotificationsOperation{
-		RPCHandle: o.RPCHandle,
-		Return:    o.Return,
-	}
+	o.RPCHandle = op.RPCHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *SyncUnregisterForRemoteNotificationsResponse) xxx_FromOp(ctx context.Context, op *xxx_SyncUnregisterForRemoteNotificationsOperation) {
@@ -33536,7 +33776,7 @@ func (o *SyncUnregisterForRemoteNotificationsResponse) xxx_FromOp(ctx context.Co
 	o.Return = op.Return
 }
 func (o *SyncUnregisterForRemoteNotificationsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SyncUnregisterForRemoteNotificationsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncUnregisterForRemoteNotificationsOperation{}
@@ -33717,14 +33957,16 @@ type SyncRefreshRemoteNotificationsRequest struct {
 	NotifyFilter *PrintPropertiesCollection `idl:"name:pNotifyFilter" json:"notify_filter"`
 }
 
-func (o *SyncRefreshRemoteNotificationsRequest) xxx_ToOp(ctx context.Context) *xxx_SyncRefreshRemoteNotificationsOperation {
+func (o *SyncRefreshRemoteNotificationsRequest) xxx_ToOp(ctx context.Context, op *xxx_SyncRefreshRemoteNotificationsOperation) *xxx_SyncRefreshRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_SyncRefreshRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncRefreshRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_SyncRefreshRemoteNotificationsOperation{
-		Handle:       o.Handle,
-		NotifyFilter: o.NotifyFilter,
-	}
+	o.Handle = op.Handle
+	o.NotifyFilter = op.NotifyFilter
+	return op
 }
 
 func (o *SyncRefreshRemoteNotificationsRequest) xxx_FromOp(ctx context.Context, op *xxx_SyncRefreshRemoteNotificationsOperation) {
@@ -33735,7 +33977,7 @@ func (o *SyncRefreshRemoteNotificationsRequest) xxx_FromOp(ctx context.Context, 
 	o.NotifyFilter = op.NotifyFilter
 }
 func (o *SyncRefreshRemoteNotificationsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SyncRefreshRemoteNotificationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncRefreshRemoteNotificationsOperation{}
@@ -33755,14 +33997,16 @@ type SyncRefreshRemoteNotificationsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SyncRefreshRemoteNotificationsResponse) xxx_ToOp(ctx context.Context) *xxx_SyncRefreshRemoteNotificationsOperation {
+func (o *SyncRefreshRemoteNotificationsResponse) xxx_ToOp(ctx context.Context, op *xxx_SyncRefreshRemoteNotificationsOperation) *xxx_SyncRefreshRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_SyncRefreshRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncRefreshRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_SyncRefreshRemoteNotificationsOperation{
-		NotifyData: o.NotifyData,
-		Return:     o.Return,
-	}
+	o.NotifyData = op.NotifyData
+	o.Return = op.Return
+	return op
 }
 
 func (o *SyncRefreshRemoteNotificationsResponse) xxx_FromOp(ctx context.Context, op *xxx_SyncRefreshRemoteNotificationsOperation) {
@@ -33773,7 +34017,7 @@ func (o *SyncRefreshRemoteNotificationsResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *SyncRefreshRemoteNotificationsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SyncRefreshRemoteNotificationsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncRefreshRemoteNotificationsOperation{}
@@ -33923,13 +34167,15 @@ type GetRemoteNotificationsRequest struct {
 	Handle *RemoteNotify `idl:"name:hRpcHandle" json:"handle"`
 }
 
-func (o *GetRemoteNotificationsRequest) xxx_ToOp(ctx context.Context) *xxx_GetRemoteNotificationsOperation {
+func (o *GetRemoteNotificationsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRemoteNotificationsOperation) *xxx_GetRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_GetRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_GetRemoteNotificationsOperation{
-		Handle: o.Handle,
-	}
+	o.Handle = op.Handle
+	return op
 }
 
 func (o *GetRemoteNotificationsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRemoteNotificationsOperation) {
@@ -33939,7 +34185,7 @@ func (o *GetRemoteNotificationsRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Handle = op.Handle
 }
 func (o *GetRemoteNotificationsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRemoteNotificationsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRemoteNotificationsOperation{}
@@ -33959,14 +34205,16 @@ type GetRemoteNotificationsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRemoteNotificationsResponse) xxx_ToOp(ctx context.Context) *xxx_GetRemoteNotificationsOperation {
+func (o *GetRemoteNotificationsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRemoteNotificationsOperation) *xxx_GetRemoteNotificationsOperation {
+	if op == nil {
+		op = &xxx_GetRemoteNotificationsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRemoteNotificationsOperation{}
+		return op
 	}
-	return &xxx_GetRemoteNotificationsOperation{
-		NotifyData: o.NotifyData,
-		Return:     o.Return,
-	}
+	o.NotifyData = op.NotifyData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRemoteNotificationsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRemoteNotificationsOperation) {
@@ -33977,7 +34225,7 @@ func (o *GetRemoteNotificationsResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetRemoteNotificationsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRemoteNotificationsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRemoteNotificationsOperation{}
@@ -34198,17 +34446,19 @@ type InstallPrinterDriverFromPackageRequest struct {
 	Flags uint32 `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *InstallPrinterDriverFromPackageRequest) xxx_ToOp(ctx context.Context) *xxx_InstallPrinterDriverFromPackageOperation {
+func (o *InstallPrinterDriverFromPackageRequest) xxx_ToOp(ctx context.Context, op *xxx_InstallPrinterDriverFromPackageOperation) *xxx_InstallPrinterDriverFromPackageOperation {
+	if op == nil {
+		op = &xxx_InstallPrinterDriverFromPackageOperation{}
+	}
 	if o == nil {
-		return &xxx_InstallPrinterDriverFromPackageOperation{}
+		return op
 	}
-	return &xxx_InstallPrinterDriverFromPackageOperation{
-		Server:      o.Server,
-		InfPath:     o.InfPath,
-		DriverName:  o.DriverName,
-		Environment: o.Environment,
-		Flags:       o.Flags,
-	}
+	o.Server = op.Server
+	o.InfPath = op.InfPath
+	o.DriverName = op.DriverName
+	o.Environment = op.Environment
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *InstallPrinterDriverFromPackageRequest) xxx_FromOp(ctx context.Context, op *xxx_InstallPrinterDriverFromPackageOperation) {
@@ -34222,7 +34472,7 @@ func (o *InstallPrinterDriverFromPackageRequest) xxx_FromOp(ctx context.Context,
 	o.Flags = op.Flags
 }
 func (o *InstallPrinterDriverFromPackageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InstallPrinterDriverFromPackageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InstallPrinterDriverFromPackageOperation{}
@@ -34239,13 +34489,15 @@ type InstallPrinterDriverFromPackageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InstallPrinterDriverFromPackageResponse) xxx_ToOp(ctx context.Context) *xxx_InstallPrinterDriverFromPackageOperation {
+func (o *InstallPrinterDriverFromPackageResponse) xxx_ToOp(ctx context.Context, op *xxx_InstallPrinterDriverFromPackageOperation) *xxx_InstallPrinterDriverFromPackageOperation {
+	if op == nil {
+		op = &xxx_InstallPrinterDriverFromPackageOperation{}
+	}
 	if o == nil {
-		return &xxx_InstallPrinterDriverFromPackageOperation{}
+		return op
 	}
-	return &xxx_InstallPrinterDriverFromPackageOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *InstallPrinterDriverFromPackageResponse) xxx_FromOp(ctx context.Context, op *xxx_InstallPrinterDriverFromPackageOperation) {
@@ -34255,7 +34507,7 @@ func (o *InstallPrinterDriverFromPackageResponse) xxx_FromOp(ctx context.Context
 	o.Return = op.Return
 }
 func (o *InstallPrinterDriverFromPackageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InstallPrinterDriverFromPackageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InstallPrinterDriverFromPackageOperation{}
@@ -34637,18 +34889,20 @@ type UploadPrinterDriverPackageRequest struct {
 	DestinationInfPathLength uint32 `idl:"name:pcchDestInfPath" json:"destination_inf_path_length"`
 }
 
-func (o *UploadPrinterDriverPackageRequest) xxx_ToOp(ctx context.Context) *xxx_UploadPrinterDriverPackageOperation {
+func (o *UploadPrinterDriverPackageRequest) xxx_ToOp(ctx context.Context, op *xxx_UploadPrinterDriverPackageOperation) *xxx_UploadPrinterDriverPackageOperation {
+	if op == nil {
+		op = &xxx_UploadPrinterDriverPackageOperation{}
+	}
 	if o == nil {
-		return &xxx_UploadPrinterDriverPackageOperation{}
+		return op
 	}
-	return &xxx_UploadPrinterDriverPackageOperation{
-		Server:                   o.Server,
-		InfPath:                  o.InfPath,
-		Environment:              o.Environment,
-		Flags:                    o.Flags,
-		DestinationInfPath:       o.DestinationInfPath,
-		DestinationInfPathLength: o.DestinationInfPathLength,
-	}
+	o.Server = op.Server
+	o.InfPath = op.InfPath
+	o.Environment = op.Environment
+	o.Flags = op.Flags
+	o.DestinationInfPath = op.DestinationInfPath
+	o.DestinationInfPathLength = op.DestinationInfPathLength
+	return op
 }
 
 func (o *UploadPrinterDriverPackageRequest) xxx_FromOp(ctx context.Context, op *xxx_UploadPrinterDriverPackageOperation) {
@@ -34663,7 +34917,7 @@ func (o *UploadPrinterDriverPackageRequest) xxx_FromOp(ctx context.Context, op *
 	o.DestinationInfPathLength = op.DestinationInfPathLength
 }
 func (o *UploadPrinterDriverPackageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UploadPrinterDriverPackageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UploadPrinterDriverPackageOperation{}
@@ -34688,15 +34942,17 @@ type UploadPrinterDriverPackageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UploadPrinterDriverPackageResponse) xxx_ToOp(ctx context.Context) *xxx_UploadPrinterDriverPackageOperation {
+func (o *UploadPrinterDriverPackageResponse) xxx_ToOp(ctx context.Context, op *xxx_UploadPrinterDriverPackageOperation) *xxx_UploadPrinterDriverPackageOperation {
+	if op == nil {
+		op = &xxx_UploadPrinterDriverPackageOperation{}
+	}
 	if o == nil {
-		return &xxx_UploadPrinterDriverPackageOperation{}
+		return op
 	}
-	return &xxx_UploadPrinterDriverPackageOperation{
-		DestinationInfPath:       o.DestinationInfPath,
-		DestinationInfPathLength: o.DestinationInfPathLength,
-		Return:                   o.Return,
-	}
+	o.DestinationInfPath = op.DestinationInfPath
+	o.DestinationInfPathLength = op.DestinationInfPathLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *UploadPrinterDriverPackageResponse) xxx_FromOp(ctx context.Context, op *xxx_UploadPrinterDriverPackageOperation) {
@@ -34708,7 +34964,7 @@ func (o *UploadPrinterDriverPackageResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *UploadPrinterDriverPackageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UploadPrinterDriverPackageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UploadPrinterDriverPackageOperation{}
@@ -35009,17 +35265,19 @@ type GetCorePrinterDriversRequest struct {
 	CorePrinterDriversCount uint32 `idl:"name:cCorePrinterDrivers" json:"core_printer_drivers_count"`
 }
 
-func (o *GetCorePrinterDriversRequest) xxx_ToOp(ctx context.Context) *xxx_GetCorePrinterDriversOperation {
+func (o *GetCorePrinterDriversRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCorePrinterDriversOperation) *xxx_GetCorePrinterDriversOperation {
+	if op == nil {
+		op = &xxx_GetCorePrinterDriversOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCorePrinterDriversOperation{}
+		return op
 	}
-	return &xxx_GetCorePrinterDriversOperation{
-		Server:                  o.Server,
-		Environment:             o.Environment,
-		CoreDriversLength:       o.CoreDriversLength,
-		CoreDriverDependencies:  o.CoreDriverDependencies,
-		CorePrinterDriversCount: o.CorePrinterDriversCount,
-	}
+	o.Server = op.Server
+	o.Environment = op.Environment
+	o.CoreDriversLength = op.CoreDriversLength
+	o.CoreDriverDependencies = op.CoreDriverDependencies
+	o.CorePrinterDriversCount = op.CorePrinterDriversCount
+	return op
 }
 
 func (o *GetCorePrinterDriversRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCorePrinterDriversOperation) {
@@ -35033,7 +35291,7 @@ func (o *GetCorePrinterDriversRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.CorePrinterDriversCount = op.CorePrinterDriversCount
 }
 func (o *GetCorePrinterDriversRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCorePrinterDriversRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCorePrinterDriversOperation{}
@@ -35053,14 +35311,16 @@ type GetCorePrinterDriversResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCorePrinterDriversResponse) xxx_ToOp(ctx context.Context) *xxx_GetCorePrinterDriversOperation {
+func (o *GetCorePrinterDriversResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCorePrinterDriversOperation) *xxx_GetCorePrinterDriversOperation {
+	if op == nil {
+		op = &xxx_GetCorePrinterDriversOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCorePrinterDriversOperation{}
+		return op
 	}
-	return &xxx_GetCorePrinterDriversOperation{
-		CorePrinterDrivers: o.CorePrinterDrivers,
-		Return:             o.Return,
-	}
+	o.CorePrinterDrivers = op.CorePrinterDrivers
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCorePrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCorePrinterDriversOperation) {
@@ -35071,7 +35331,7 @@ func (o *GetCorePrinterDriversResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetCorePrinterDriversResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCorePrinterDriversResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCorePrinterDriversOperation{}
@@ -35286,17 +35546,19 @@ type CorePrinterDriverInstalledRequest struct {
 	DriverVersion uint64 `idl:"name:dwlDriverVersion" json:"driver_version"`
 }
 
-func (o *CorePrinterDriverInstalledRequest) xxx_ToOp(ctx context.Context) *xxx_CorePrinterDriverInstalledOperation {
+func (o *CorePrinterDriverInstalledRequest) xxx_ToOp(ctx context.Context, op *xxx_CorePrinterDriverInstalledOperation) *xxx_CorePrinterDriverInstalledOperation {
+	if op == nil {
+		op = &xxx_CorePrinterDriverInstalledOperation{}
+	}
 	if o == nil {
-		return &xxx_CorePrinterDriverInstalledOperation{}
+		return op
 	}
-	return &xxx_CorePrinterDriverInstalledOperation{
-		Server:         o.Server,
-		Environment:    o.Environment,
-		CoreDriverGUID: o.CoreDriverGUID,
-		DriverDate:     o.DriverDate,
-		DriverVersion:  o.DriverVersion,
-	}
+	o.Server = op.Server
+	o.Environment = op.Environment
+	o.CoreDriverGUID = op.CoreDriverGUID
+	o.DriverDate = op.DriverDate
+	o.DriverVersion = op.DriverVersion
+	return op
 }
 
 func (o *CorePrinterDriverInstalledRequest) xxx_FromOp(ctx context.Context, op *xxx_CorePrinterDriverInstalledOperation) {
@@ -35310,7 +35572,7 @@ func (o *CorePrinterDriverInstalledRequest) xxx_FromOp(ctx context.Context, op *
 	o.DriverVersion = op.DriverVersion
 }
 func (o *CorePrinterDriverInstalledRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CorePrinterDriverInstalledRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CorePrinterDriverInstalledOperation{}
@@ -35340,14 +35602,16 @@ type CorePrinterDriverInstalledResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CorePrinterDriverInstalledResponse) xxx_ToOp(ctx context.Context) *xxx_CorePrinterDriverInstalledOperation {
+func (o *CorePrinterDriverInstalledResponse) xxx_ToOp(ctx context.Context, op *xxx_CorePrinterDriverInstalledOperation) *xxx_CorePrinterDriverInstalledOperation {
+	if op == nil {
+		op = &xxx_CorePrinterDriverInstalledOperation{}
+	}
 	if o == nil {
-		return &xxx_CorePrinterDriverInstalledOperation{}
+		return op
 	}
-	return &xxx_CorePrinterDriverInstalledOperation{
-		DriverInstalled: o.DriverInstalled,
-		Return:          o.Return,
-	}
+	o.DriverInstalled = op.DriverInstalled
+	o.Return = op.Return
+	return op
 }
 
 func (o *CorePrinterDriverInstalledResponse) xxx_FromOp(ctx context.Context, op *xxx_CorePrinterDriverInstalledOperation) {
@@ -35358,7 +35622,7 @@ func (o *CorePrinterDriverInstalledResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *CorePrinterDriverInstalledResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CorePrinterDriverInstalledResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CorePrinterDriverInstalledOperation{}
@@ -35745,18 +36009,20 @@ type GetPrinterDriverPackagePathRequest struct {
 	DriverPackageCabLength uint32 `idl:"name:cchDriverPackageCab" json:"driver_package_cab_length"`
 }
 
-func (o *GetPrinterDriverPackagePathRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDriverPackagePathOperation {
+func (o *GetPrinterDriverPackagePathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDriverPackagePathOperation) *xxx_GetPrinterDriverPackagePathOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDriverPackagePathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDriverPackagePathOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDriverPackagePathOperation{
-		Server:                 o.Server,
-		Environment:            o.Environment,
-		Language:               o.Language,
-		PackageID:              o.PackageID,
-		DriverPackageCab:       o.DriverPackageCab,
-		DriverPackageCabLength: o.DriverPackageCabLength,
-	}
+	o.Server = op.Server
+	o.Environment = op.Environment
+	o.Language = op.Language
+	o.PackageID = op.PackageID
+	o.DriverPackageCab = op.DriverPackageCab
+	o.DriverPackageCabLength = op.DriverPackageCabLength
+	return op
 }
 
 func (o *GetPrinterDriverPackagePathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDriverPackagePathOperation) {
@@ -35771,7 +36037,7 @@ func (o *GetPrinterDriverPackagePathRequest) xxx_FromOp(ctx context.Context, op 
 	o.DriverPackageCabLength = op.DriverPackageCabLength
 }
 func (o *GetPrinterDriverPackagePathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrinterDriverPackagePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDriverPackagePathOperation{}
@@ -35796,15 +36062,17 @@ type GetPrinterDriverPackagePathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrinterDriverPackagePathResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrinterDriverPackagePathOperation {
+func (o *GetPrinterDriverPackagePathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrinterDriverPackagePathOperation) *xxx_GetPrinterDriverPackagePathOperation {
+	if op == nil {
+		op = &xxx_GetPrinterDriverPackagePathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrinterDriverPackagePathOperation{}
+		return op
 	}
-	return &xxx_GetPrinterDriverPackagePathOperation{
-		DriverPackageCab: o.DriverPackageCab,
-		RequiredLength:   o.RequiredLength,
-		Return:           o.Return,
-	}
+	o.DriverPackageCab = op.DriverPackageCab
+	o.RequiredLength = op.RequiredLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrinterDriverPackagePathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrinterDriverPackagePathOperation) {
@@ -35816,7 +36084,7 @@ func (o *GetPrinterDriverPackagePathResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *GetPrinterDriverPackagePathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrinterDriverPackagePathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrinterDriverPackagePathOperation{}
@@ -35973,15 +36241,17 @@ type DeletePrinterDriverPackageRequest struct {
 	Environment string `idl:"name:pszEnvironment;string" json:"environment"`
 }
 
-func (o *DeletePrinterDriverPackageRequest) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDriverPackageOperation {
+func (o *DeletePrinterDriverPackageRequest) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDriverPackageOperation) *xxx_DeletePrinterDriverPackageOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDriverPackageOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDriverPackageOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDriverPackageOperation{
-		Server:      o.Server,
-		InfPath:     o.InfPath,
-		Environment: o.Environment,
-	}
+	o.Server = op.Server
+	o.InfPath = op.InfPath
+	o.Environment = op.Environment
+	return op
 }
 
 func (o *DeletePrinterDriverPackageRequest) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDriverPackageOperation) {
@@ -35993,7 +36263,7 @@ func (o *DeletePrinterDriverPackageRequest) xxx_FromOp(ctx context.Context, op *
 	o.Environment = op.Environment
 }
 func (o *DeletePrinterDriverPackageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeletePrinterDriverPackageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDriverPackageOperation{}
@@ -36010,13 +36280,15 @@ type DeletePrinterDriverPackageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeletePrinterDriverPackageResponse) xxx_ToOp(ctx context.Context) *xxx_DeletePrinterDriverPackageOperation {
+func (o *DeletePrinterDriverPackageResponse) xxx_ToOp(ctx context.Context, op *xxx_DeletePrinterDriverPackageOperation) *xxx_DeletePrinterDriverPackageOperation {
+	if op == nil {
+		op = &xxx_DeletePrinterDriverPackageOperation{}
+	}
 	if o == nil {
-		return &xxx_DeletePrinterDriverPackageOperation{}
+		return op
 	}
-	return &xxx_DeletePrinterDriverPackageOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeletePrinterDriverPackageResponse) xxx_FromOp(ctx context.Context, op *xxx_DeletePrinterDriverPackageOperation) {
@@ -36026,7 +36298,7 @@ func (o *DeletePrinterDriverPackageResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *DeletePrinterDriverPackageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeletePrinterDriverPackageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeletePrinterDriverPackageOperation{}
@@ -36200,14 +36472,16 @@ type ReadPrinterRequest struct {
 	BufferLength uint32   `idl:"name:cbBuf" json:"buffer_length"`
 }
 
-func (o *ReadPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_ReadPrinterOperation {
+func (o *ReadPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadPrinterOperation) *xxx_ReadPrinterOperation {
+	if op == nil {
+		op = &xxx_ReadPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadPrinterOperation{}
+		return op
 	}
-	return &xxx_ReadPrinterOperation{
-		Printer:      o.Printer,
-		BufferLength: o.BufferLength,
-	}
+	o.Printer = op.Printer
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *ReadPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadPrinterOperation) {
@@ -36218,7 +36492,7 @@ func (o *ReadPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadPrinter
 	o.BufferLength = op.BufferLength
 }
 func (o *ReadPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReadPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadPrinterOperation{}
@@ -36237,15 +36511,17 @@ type ReadPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReadPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_ReadPrinterOperation {
+func (o *ReadPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadPrinterOperation) *xxx_ReadPrinterOperation {
+	if op == nil {
+		op = &xxx_ReadPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadPrinterOperation{}
+		return op
 	}
-	return &xxx_ReadPrinterOperation{
-		Buffer:           o.Buffer,
-		NoBytesReadCount: o.NoBytesReadCount,
-		Return:           o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.NoBytesReadCount = op.NoBytesReadCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReadPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadPrinterOperation) {
@@ -36257,7 +36533,7 @@ func (o *ReadPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadPrinte
 	o.Return = op.Return
 }
 func (o *ReadPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReadPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadPrinterOperation{}
@@ -36428,15 +36704,17 @@ type ResetPrinterRequest struct {
 	DevModeContainer *DevModeContainer `idl:"name:pDevModeContainer" json:"dev_mode_container"`
 }
 
-func (o *ResetPrinterRequest) xxx_ToOp(ctx context.Context) *xxx_ResetPrinterOperation {
+func (o *ResetPrinterRequest) xxx_ToOp(ctx context.Context, op *xxx_ResetPrinterOperation) *xxx_ResetPrinterOperation {
+	if op == nil {
+		op = &xxx_ResetPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_ResetPrinterOperation{}
+		return op
 	}
-	return &xxx_ResetPrinterOperation{
-		Printer:          o.Printer,
-		DataType:         o.DataType,
-		DevModeContainer: o.DevModeContainer,
-	}
+	o.Printer = op.Printer
+	o.DataType = op.DataType
+	o.DevModeContainer = op.DevModeContainer
+	return op
 }
 
 func (o *ResetPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_ResetPrinterOperation) {
@@ -36448,7 +36726,7 @@ func (o *ResetPrinterRequest) xxx_FromOp(ctx context.Context, op *xxx_ResetPrint
 	o.DevModeContainer = op.DevModeContainer
 }
 func (o *ResetPrinterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResetPrinterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResetPrinterOperation{}
@@ -36465,13 +36743,15 @@ type ResetPrinterResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResetPrinterResponse) xxx_ToOp(ctx context.Context) *xxx_ResetPrinterOperation {
+func (o *ResetPrinterResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetPrinterOperation) *xxx_ResetPrinterOperation {
+	if op == nil {
+		op = &xxx_ResetPrinterOperation{}
+	}
 	if o == nil {
-		return &xxx_ResetPrinterOperation{}
+		return op
 	}
-	return &xxx_ResetPrinterOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ResetPrinterOperation) {
@@ -36481,7 +36761,7 @@ func (o *ResetPrinterResponse) xxx_FromOp(ctx context.Context, op *xxx_ResetPrin
 	o.Return = op.Return
 }
 func (o *ResetPrinterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResetPrinterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResetPrinterOperation{}
@@ -36640,15 +36920,17 @@ type GetJobNamedPropertyValueRequest struct {
 	Name    string   `idl:"name:pszName;string" json:"name"`
 }
 
-func (o *GetJobNamedPropertyValueRequest) xxx_ToOp(ctx context.Context) *xxx_GetJobNamedPropertyValueOperation {
+func (o *GetJobNamedPropertyValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetJobNamedPropertyValueOperation) *xxx_GetJobNamedPropertyValueOperation {
+	if op == nil {
+		op = &xxx_GetJobNamedPropertyValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetJobNamedPropertyValueOperation{}
+		return op
 	}
-	return &xxx_GetJobNamedPropertyValueOperation{
-		Printer: o.Printer,
-		JobID:   o.JobID,
-		Name:    o.Name,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	o.Name = op.Name
+	return op
 }
 
 func (o *GetJobNamedPropertyValueRequest) xxx_FromOp(ctx context.Context, op *xxx_GetJobNamedPropertyValueOperation) {
@@ -36660,7 +36942,7 @@ func (o *GetJobNamedPropertyValueRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.Name = op.Name
 }
 func (o *GetJobNamedPropertyValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetJobNamedPropertyValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetJobNamedPropertyValueOperation{}
@@ -36678,14 +36960,16 @@ type GetJobNamedPropertyValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetJobNamedPropertyValueResponse) xxx_ToOp(ctx context.Context) *xxx_GetJobNamedPropertyValueOperation {
+func (o *GetJobNamedPropertyValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetJobNamedPropertyValueOperation) *xxx_GetJobNamedPropertyValueOperation {
+	if op == nil {
+		op = &xxx_GetJobNamedPropertyValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetJobNamedPropertyValueOperation{}
+		return op
 	}
-	return &xxx_GetJobNamedPropertyValueOperation{
-		Value:  o.Value,
-		Return: o.Return,
-	}
+	o.Value = op.Value
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetJobNamedPropertyValueResponse) xxx_FromOp(ctx context.Context, op *xxx_GetJobNamedPropertyValueOperation) {
@@ -36696,7 +36980,7 @@ func (o *GetJobNamedPropertyValueResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GetJobNamedPropertyValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetJobNamedPropertyValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetJobNamedPropertyValueOperation{}
@@ -36842,15 +37126,17 @@ type SetJobNamedPropertyRequest struct {
 	Property *PrintJobNamedProperty `idl:"name:pProperty" json:"property"`
 }
 
-func (o *SetJobNamedPropertyRequest) xxx_ToOp(ctx context.Context) *xxx_SetJobNamedPropertyOperation {
+func (o *SetJobNamedPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetJobNamedPropertyOperation) *xxx_SetJobNamedPropertyOperation {
+	if op == nil {
+		op = &xxx_SetJobNamedPropertyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetJobNamedPropertyOperation{}
+		return op
 	}
-	return &xxx_SetJobNamedPropertyOperation{
-		Printer:  o.Printer,
-		JobID:    o.JobID,
-		Property: o.Property,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	o.Property = op.Property
+	return op
 }
 
 func (o *SetJobNamedPropertyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetJobNamedPropertyOperation) {
@@ -36862,7 +37148,7 @@ func (o *SetJobNamedPropertyRequest) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Property = op.Property
 }
 func (o *SetJobNamedPropertyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetJobNamedPropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetJobNamedPropertyOperation{}
@@ -36879,13 +37165,15 @@ type SetJobNamedPropertyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetJobNamedPropertyResponse) xxx_ToOp(ctx context.Context) *xxx_SetJobNamedPropertyOperation {
+func (o *SetJobNamedPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetJobNamedPropertyOperation) *xxx_SetJobNamedPropertyOperation {
+	if op == nil {
+		op = &xxx_SetJobNamedPropertyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetJobNamedPropertyOperation{}
+		return op
 	}
-	return &xxx_SetJobNamedPropertyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetJobNamedPropertyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetJobNamedPropertyOperation) {
@@ -36895,7 +37183,7 @@ func (o *SetJobNamedPropertyResponse) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Return = op.Return
 }
 func (o *SetJobNamedPropertyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetJobNamedPropertyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetJobNamedPropertyOperation{}
@@ -37026,15 +37314,17 @@ type DeleteJobNamedPropertyRequest struct {
 	Name    string   `idl:"name:pszName;string" json:"name"`
 }
 
-func (o *DeleteJobNamedPropertyRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteJobNamedPropertyOperation {
+func (o *DeleteJobNamedPropertyRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteJobNamedPropertyOperation) *xxx_DeleteJobNamedPropertyOperation {
+	if op == nil {
+		op = &xxx_DeleteJobNamedPropertyOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteJobNamedPropertyOperation{}
+		return op
 	}
-	return &xxx_DeleteJobNamedPropertyOperation{
-		Printer: o.Printer,
-		JobID:   o.JobID,
-		Name:    o.Name,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	o.Name = op.Name
+	return op
 }
 
 func (o *DeleteJobNamedPropertyRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteJobNamedPropertyOperation) {
@@ -37046,7 +37336,7 @@ func (o *DeleteJobNamedPropertyRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Name = op.Name
 }
 func (o *DeleteJobNamedPropertyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteJobNamedPropertyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteJobNamedPropertyOperation{}
@@ -37063,13 +37353,15 @@ type DeleteJobNamedPropertyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteJobNamedPropertyResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteJobNamedPropertyOperation {
+func (o *DeleteJobNamedPropertyResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteJobNamedPropertyOperation) *xxx_DeleteJobNamedPropertyOperation {
+	if op == nil {
+		op = &xxx_DeleteJobNamedPropertyOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteJobNamedPropertyOperation{}
+		return op
 	}
-	return &xxx_DeleteJobNamedPropertyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteJobNamedPropertyResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteJobNamedPropertyOperation) {
@@ -37079,7 +37371,7 @@ func (o *DeleteJobNamedPropertyResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *DeleteJobNamedPropertyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteJobNamedPropertyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteJobNamedPropertyOperation{}
@@ -37292,14 +37584,16 @@ type EnumJobNamedPropertiesRequest struct {
 	JobID   uint32   `idl:"name:JobId" json:"job_id"`
 }
 
-func (o *EnumJobNamedPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumJobNamedPropertiesOperation {
+func (o *EnumJobNamedPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumJobNamedPropertiesOperation) *xxx_EnumJobNamedPropertiesOperation {
+	if op == nil {
+		op = &xxx_EnumJobNamedPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumJobNamedPropertiesOperation{}
+		return op
 	}
-	return &xxx_EnumJobNamedPropertiesOperation{
-		Printer: o.Printer,
-		JobID:   o.JobID,
-	}
+	o.Printer = op.Printer
+	o.JobID = op.JobID
+	return op
 }
 
 func (o *EnumJobNamedPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumJobNamedPropertiesOperation) {
@@ -37310,7 +37604,7 @@ func (o *EnumJobNamedPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.JobID = op.JobID
 }
 func (o *EnumJobNamedPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumJobNamedPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumJobNamedPropertiesOperation{}
@@ -37329,15 +37623,17 @@ type EnumJobNamedPropertiesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumJobNamedPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumJobNamedPropertiesOperation {
+func (o *EnumJobNamedPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumJobNamedPropertiesOperation) *xxx_EnumJobNamedPropertiesOperation {
+	if op == nil {
+		op = &xxx_EnumJobNamedPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumJobNamedPropertiesOperation{}
+		return op
 	}
-	return &xxx_EnumJobNamedPropertiesOperation{
-		PropertiesCount: o.PropertiesCount,
-		Properties:      o.Properties,
-		Return:          o.Return,
-	}
+	o.PropertiesCount = op.PropertiesCount
+	o.Properties = op.Properties
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumJobNamedPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumJobNamedPropertiesOperation) {
@@ -37349,7 +37645,7 @@ func (o *EnumJobNamedPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *EnumJobNamedPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumJobNamedPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumJobNamedPropertiesOperation{}
@@ -37481,14 +37777,16 @@ type LogJobInfoForBranchOfficeRequest struct {
 	BranchOfficeJobDataContainer *BranchOfficeJobDataContainer `idl:"name:pBranchOfficeJobDataContainer;pointer:ref" json:"branch_office_job_data_container"`
 }
 
-func (o *LogJobInfoForBranchOfficeRequest) xxx_ToOp(ctx context.Context) *xxx_LogJobInfoForBranchOfficeOperation {
+func (o *LogJobInfoForBranchOfficeRequest) xxx_ToOp(ctx context.Context, op *xxx_LogJobInfoForBranchOfficeOperation) *xxx_LogJobInfoForBranchOfficeOperation {
+	if op == nil {
+		op = &xxx_LogJobInfoForBranchOfficeOperation{}
+	}
 	if o == nil {
-		return &xxx_LogJobInfoForBranchOfficeOperation{}
+		return op
 	}
-	return &xxx_LogJobInfoForBranchOfficeOperation{
-		Printer:                      o.Printer,
-		BranchOfficeJobDataContainer: o.BranchOfficeJobDataContainer,
-	}
+	o.Printer = op.Printer
+	o.BranchOfficeJobDataContainer = op.BranchOfficeJobDataContainer
+	return op
 }
 
 func (o *LogJobInfoForBranchOfficeRequest) xxx_FromOp(ctx context.Context, op *xxx_LogJobInfoForBranchOfficeOperation) {
@@ -37499,7 +37797,7 @@ func (o *LogJobInfoForBranchOfficeRequest) xxx_FromOp(ctx context.Context, op *x
 	o.BranchOfficeJobDataContainer = op.BranchOfficeJobDataContainer
 }
 func (o *LogJobInfoForBranchOfficeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LogJobInfoForBranchOfficeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LogJobInfoForBranchOfficeOperation{}
@@ -37516,13 +37814,15 @@ type LogJobInfoForBranchOfficeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LogJobInfoForBranchOfficeResponse) xxx_ToOp(ctx context.Context) *xxx_LogJobInfoForBranchOfficeOperation {
+func (o *LogJobInfoForBranchOfficeResponse) xxx_ToOp(ctx context.Context, op *xxx_LogJobInfoForBranchOfficeOperation) *xxx_LogJobInfoForBranchOfficeOperation {
+	if op == nil {
+		op = &xxx_LogJobInfoForBranchOfficeOperation{}
+	}
 	if o == nil {
-		return &xxx_LogJobInfoForBranchOfficeOperation{}
+		return op
 	}
-	return &xxx_LogJobInfoForBranchOfficeOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *LogJobInfoForBranchOfficeResponse) xxx_FromOp(ctx context.Context, op *xxx_LogJobInfoForBranchOfficeOperation) {
@@ -37532,7 +37832,7 @@ func (o *LogJobInfoForBranchOfficeResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *LogJobInfoForBranchOfficeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LogJobInfoForBranchOfficeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LogJobInfoForBranchOfficeOperation{}

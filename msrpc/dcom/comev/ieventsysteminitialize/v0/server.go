@@ -62,12 +62,25 @@ func EventSystemInitializeServerHandle(ctx context.Context, o EventSystemInitial
 	}
 	switch opNum {
 	case 3: // SetCOMCatalogBehaviour
-		in := &SetCOMCatalogBehaviourRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCOMCatalogBehaviourOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCOMCatalogBehaviour(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCOMCatalogBehaviourRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCOMCatalogBehaviour(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventSystemInitialize
+type UnimplementedEventSystemInitializeServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedEventSystemInitializeServer) SetCOMCatalogBehaviour(context.Context, *SetCOMCatalogBehaviourRequest) (*SetCOMCatalogBehaviourResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventSystemInitializeServer = (*UnimplementedEventSystemInitializeServer)(nil)

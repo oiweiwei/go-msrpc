@@ -140,64 +140,111 @@ func NewDscomm2ServerHandle(o Dscomm2Server) dcerpc.ServerHandle {
 func Dscomm2ServerHandle(ctx context.Context, o Dscomm2Server, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // S_DSGetComputerSites
-		in := &GetComputerSitesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetComputerSitesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetComputerSites(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetComputerSitesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetComputerSites(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // S_DSGetPropsEx
-		in := &GetPropertiesExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertiesEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertiesEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // S_DSGetPropsGuidEx
-		in := &GetPropertiesGUIDExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesGUIDExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertiesGUIDEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesGUIDExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertiesGUIDEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // S_DSBeginDeleteNotification
-		in := &BeginDeleteNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BeginDeleteNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BeginDeleteNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BeginDeleteNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BeginDeleteNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // S_DSNotifyDelete
-		in := &NotifyDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_NotifyDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.NotifyDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &NotifyDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.NotifyDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // S_DSEndDeleteNotification
-		in := &EndDeleteNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndDeleteNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndDeleteNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndDeleteNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndDeleteNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // S_DSIsServerGC
-		in := &IsServerGCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsServerGCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsServerGC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsServerGCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsServerGC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum7NotUsedOnWire
 		// Opnum7NotUsedOnWire
 		return nil, nil
 	case 8: // S_DSGetGCListInDomain
-		in := &GetGCListInDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGCListInDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGCListInDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGCListInDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGCListInDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented dscomm2
+type UnimplementedDscomm2Server struct {
+}
+
+func (UnimplementedDscomm2Server) GetComputerSites(context.Context, *GetComputerSitesRequest) (*GetComputerSitesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) GetPropertiesEx(context.Context, *GetPropertiesExRequest) (*GetPropertiesExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) GetPropertiesGUIDEx(context.Context, *GetPropertiesGUIDExRequest) (*GetPropertiesGUIDExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) BeginDeleteNotification(context.Context, *BeginDeleteNotificationRequest) (*BeginDeleteNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) NotifyDelete(context.Context, *NotifyDeleteRequest) (*NotifyDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) EndDeleteNotification(context.Context, *EndDeleteNotificationRequest) (*EndDeleteNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) IsServerGC(context.Context, *IsServerGCRequest) (*IsServerGCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDscomm2Server) GetGCListInDomain(context.Context, *GetGCListInDomainRequest) (*GetGCListInDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Dscomm2Server = (*UnimplementedDscomm2Server)(nil)

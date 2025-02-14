@@ -55,19 +55,37 @@ func DataFactory2ServerHandle(ctx context.Context, o DataFactory2Server, opNum i
 	}
 	switch opNum {
 	case 7: // Execute21
-		in := &Execute21Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Execute21Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Execute21(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Execute21Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Execute21(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Synchronize21
-		in := &Synchronize21Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Synchronize21Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Synchronize21(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Synchronize21Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Synchronize21(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataFactory2
+type UnimplementedDataFactory2Server struct {
+	idatafactory.UnimplementedDataFactoryServer
+}
+
+func (UnimplementedDataFactory2Server) Execute21(context.Context, *Execute21Request) (*Execute21Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataFactory2Server) Synchronize21(context.Context, *Synchronize21Request) (*Synchronize21Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataFactory2Server = (*UnimplementedDataFactory2Server)(nil)

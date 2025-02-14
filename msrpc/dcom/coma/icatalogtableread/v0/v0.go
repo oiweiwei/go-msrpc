@@ -78,7 +78,7 @@ func (o *xxx_DefaultCatalogTableReadClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCatalogTableReadClient) ReadTable(ctx context.Context, in *ReadTableRequest, opts ...dcerpc.CallOption) (*ReadTableResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -909,21 +909,23 @@ type ReadTableRequest struct {
 	QueryFormat uint32 `idl:"name:eQueryFormat" json:"query_format"`
 }
 
-func (o *ReadTableRequest) xxx_ToOp(ctx context.Context) *xxx_ReadTableOperation {
+func (o *ReadTableRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadTableOperation) *xxx_ReadTableOperation {
+	if op == nil {
+		op = &xxx_ReadTableOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadTableOperation{}
+		return op
 	}
-	return &xxx_ReadTableOperation{
-		This:                  o.This,
-		CatalogID:             o.CatalogID,
-		TableID:               o.TableID,
-		TableFlags:            o.TableFlags,
-		QueryCellArray:        o.QueryCellArray,
-		QueryCellArrayLength:  o.QueryCellArrayLength,
-		QueryComparison:       o.QueryComparison,
-		QueryComparisonLength: o.QueryComparisonLength,
-		QueryFormat:           o.QueryFormat,
-	}
+	o.This = op.This
+	o.CatalogID = op.CatalogID
+	o.TableID = op.TableID
+	o.TableFlags = op.TableFlags
+	o.QueryCellArray = op.QueryCellArray
+	o.QueryCellArrayLength = op.QueryCellArrayLength
+	o.QueryComparison = op.QueryComparison
+	o.QueryComparisonLength = op.QueryComparisonLength
+	o.QueryFormat = op.QueryFormat
+	return op
 }
 
 func (o *ReadTableRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadTableOperation) {
@@ -941,7 +943,7 @@ func (o *ReadTableRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadTableOper
 	o.QueryFormat = op.QueryFormat
 }
 func (o *ReadTableRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReadTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadTableOperation{}
@@ -980,20 +982,22 @@ type ReadTableResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReadTableResponse) xxx_ToOp(ctx context.Context) *xxx_ReadTableOperation {
+func (o *ReadTableResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadTableOperation) *xxx_ReadTableOperation {
+	if op == nil {
+		op = &xxx_ReadTableOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadTableOperation{}
+		return op
 	}
-	return &xxx_ReadTableOperation{
-		That:                      o.That,
-		TableDataFixed:            o.TableDataFixed,
-		TableDataFixedLength:      o.TableDataFixedLength,
-		TableDataVariable:         o.TableDataVariable,
-		TableDataVariableLength:   o.TableDataVariableLength,
-		TableDetailedErrors:       o.TableDetailedErrors,
-		TableDetailedErrorsLength: o.TableDetailedErrorsLength,
-		Return:                    o.Return,
-	}
+	o.That = op.That
+	o.TableDataFixed = op.TableDataFixed
+	o.TableDataFixedLength = op.TableDataFixedLength
+	o.TableDataVariable = op.TableDataVariable
+	o.TableDataVariableLength = op.TableDataVariableLength
+	o.TableDetailedErrors = op.TableDetailedErrors
+	o.TableDetailedErrorsLength = op.TableDetailedErrorsLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReadTableResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadTableOperation) {
@@ -1010,7 +1014,7 @@ func (o *ReadTableResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadTableOpe
 	o.Return = op.Return
 }
 func (o *ReadTableResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReadTableResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadTableOperation{}

@@ -99,7 +99,7 @@ func (o *xxx_DefaultObjectSinkClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultObjectSinkClient) Indicate(ctx context.Context, in *IndicateRequest, opts ...dcerpc.CallOption) (*IndicateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +119,7 @@ func (o *xxx_DefaultObjectSinkClient) Indicate(ctx context.Context, in *Indicate
 }
 
 func (o *xxx_DefaultObjectSinkClient) SetStatus(ctx context.Context, in *SetStatusRequest, opts ...dcerpc.CallOption) (*SetStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -404,15 +404,17 @@ type IndicateRequest struct {
 	ObjectArray []*wmi.ClassObject `idl:"name:apObjArray;size_is:(lObjectCount)" json:"object_array"`
 }
 
-func (o *IndicateRequest) xxx_ToOp(ctx context.Context) *xxx_IndicateOperation {
+func (o *IndicateRequest) xxx_ToOp(ctx context.Context, op *xxx_IndicateOperation) *xxx_IndicateOperation {
+	if op == nil {
+		op = &xxx_IndicateOperation{}
+	}
 	if o == nil {
-		return &xxx_IndicateOperation{}
+		return op
 	}
-	return &xxx_IndicateOperation{
-		This:        o.This,
-		ObjectCount: o.ObjectCount,
-		ObjectArray: o.ObjectArray,
-	}
+	o.This = op.This
+	o.ObjectCount = op.ObjectCount
+	o.ObjectArray = op.ObjectArray
+	return op
 }
 
 func (o *IndicateRequest) xxx_FromOp(ctx context.Context, op *xxx_IndicateOperation) {
@@ -424,7 +426,7 @@ func (o *IndicateRequest) xxx_FromOp(ctx context.Context, op *xxx_IndicateOperat
 	o.ObjectArray = op.ObjectArray
 }
 func (o *IndicateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IndicateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IndicateOperation{}
@@ -443,14 +445,16 @@ type IndicateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IndicateResponse) xxx_ToOp(ctx context.Context) *xxx_IndicateOperation {
+func (o *IndicateResponse) xxx_ToOp(ctx context.Context, op *xxx_IndicateOperation) *xxx_IndicateOperation {
+	if op == nil {
+		op = &xxx_IndicateOperation{}
+	}
 	if o == nil {
-		return &xxx_IndicateOperation{}
+		return op
 	}
-	return &xxx_IndicateOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *IndicateResponse) xxx_FromOp(ctx context.Context, op *xxx_IndicateOperation) {
@@ -461,7 +465,7 @@ func (o *IndicateResponse) xxx_FromOp(ctx context.Context, op *xxx_IndicateOpera
 	o.Return = op.Return
 }
 func (o *IndicateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IndicateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IndicateOperation{}
@@ -744,17 +748,19 @@ type SetStatusRequest struct {
 	ObjectParam *wmi.ClassObject `idl:"name:pObjParam" json:"object_param"`
 }
 
-func (o *SetStatusRequest) xxx_ToOp(ctx context.Context) *xxx_SetStatusOperation {
+func (o *SetStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_SetStatusOperation) *xxx_SetStatusOperation {
+	if op == nil {
+		op = &xxx_SetStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStatusOperation{}
+		return op
 	}
-	return &xxx_SetStatusOperation{
-		This:        o.This,
-		Flags:       o.Flags,
-		HResult:     o.HResult,
-		Param:       o.Param,
-		ObjectParam: o.ObjectParam,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.HResult = op.HResult
+	o.Param = op.Param
+	o.ObjectParam = op.ObjectParam
+	return op
 }
 
 func (o *SetStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStatusOperation) {
@@ -768,7 +774,7 @@ func (o *SetStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_SetStatusOper
 	o.ObjectParam = op.ObjectParam
 }
 func (o *SetStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStatusOperation{}
@@ -787,14 +793,16 @@ type SetStatusResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetStatusResponse) xxx_ToOp(ctx context.Context) *xxx_SetStatusOperation {
+func (o *SetStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_SetStatusOperation) *xxx_SetStatusOperation {
+	if op == nil {
+		op = &xxx_SetStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_SetStatusOperation{}
+		return op
 	}
-	return &xxx_SetStatusOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStatusOperation) {
@@ -805,7 +813,7 @@ func (o *SetStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_SetStatusOpe
 	o.Return = op.Return
 }
 func (o *SetStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetStatusOperation{}

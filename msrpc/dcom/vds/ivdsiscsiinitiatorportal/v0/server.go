@@ -70,19 +70,23 @@ func ISCSIInitiatorPortalServerHandle(ctx context.Context, o ISCSIInitiatorPorta
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetInitiatorAdapter
-		in := &GetInitiatorAdapterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInitiatorAdapterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInitiatorAdapter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInitiatorAdapterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInitiatorAdapter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum05NotUsedOnWire
 		// Opnum05NotUsedOnWire
 		return nil, nil
@@ -95,3 +99,17 @@ func ISCSIInitiatorPortalServerHandle(ctx context.Context, o ISCSIInitiatorPorta
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsIscsiInitiatorPortal
+type UnimplementedISCSIInitiatorPortalServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedISCSIInitiatorPortalServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedISCSIInitiatorPortalServer) GetInitiatorAdapter(context.Context, *GetInitiatorAdapterRequest) (*GetInitiatorAdapterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ISCSIInitiatorPortalServer = (*UnimplementedISCSIInitiatorPortalServer)(nil)

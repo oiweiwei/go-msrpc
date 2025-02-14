@@ -116,7 +116,7 @@ func (o *xxx_DefaultFileScreenBaseClient) Object() ifsrmobject.ObjectClient {
 }
 
 func (o *xxx_DefaultFileScreenBaseClient) GetBlockedFileGroups(ctx context.Context, in *GetBlockedFileGroupsRequest, opts ...dcerpc.CallOption) (*GetBlockedFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -136,7 +136,7 @@ func (o *xxx_DefaultFileScreenBaseClient) GetBlockedFileGroups(ctx context.Conte
 }
 
 func (o *xxx_DefaultFileScreenBaseClient) SetBlockedFileGroups(ctx context.Context, in *SetBlockedFileGroupsRequest, opts ...dcerpc.CallOption) (*SetBlockedFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -156,7 +156,7 @@ func (o *xxx_DefaultFileScreenBaseClient) SetBlockedFileGroups(ctx context.Conte
 }
 
 func (o *xxx_DefaultFileScreenBaseClient) GetFileScreenFlags(ctx context.Context, in *GetFileScreenFlagsRequest, opts ...dcerpc.CallOption) (*GetFileScreenFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -176,7 +176,7 @@ func (o *xxx_DefaultFileScreenBaseClient) GetFileScreenFlags(ctx context.Context
 }
 
 func (o *xxx_DefaultFileScreenBaseClient) SetFileScreenFlags(ctx context.Context, in *SetFileScreenFlagsRequest, opts ...dcerpc.CallOption) (*SetFileScreenFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -196,7 +196,7 @@ func (o *xxx_DefaultFileScreenBaseClient) SetFileScreenFlags(ctx context.Context
 }
 
 func (o *xxx_DefaultFileScreenBaseClient) CreateAction(ctx context.Context, in *CreateActionRequest, opts ...dcerpc.CallOption) (*CreateActionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -216,7 +216,7 @@ func (o *xxx_DefaultFileScreenBaseClient) CreateAction(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultFileScreenBaseClient) EnumActions(ctx context.Context, in *EnumActionsRequest, opts ...dcerpc.CallOption) (*EnumActionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -449,13 +449,15 @@ type GetBlockedFileGroupsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetBlockedFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_GetBlockedFileGroupsOperation {
+func (o *GetBlockedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetBlockedFileGroupsOperation) *xxx_GetBlockedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_GetBlockedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetBlockedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_GetBlockedFileGroupsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetBlockedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetBlockedFileGroupsOperation) {
@@ -465,7 +467,7 @@ func (o *GetBlockedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.This = op.This
 }
 func (o *GetBlockedFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetBlockedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetBlockedFileGroupsOperation{}
@@ -485,15 +487,17 @@ type GetBlockedFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetBlockedFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_GetBlockedFileGroupsOperation {
+func (o *GetBlockedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetBlockedFileGroupsOperation) *xxx_GetBlockedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_GetBlockedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetBlockedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_GetBlockedFileGroupsOperation{
-		That:      o.That,
-		BlockList: o.BlockList,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.BlockList = op.BlockList
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetBlockedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetBlockedFileGroupsOperation) {
@@ -505,7 +509,7 @@ func (o *GetBlockedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetBlockedFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetBlockedFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetBlockedFileGroupsOperation{}
@@ -689,14 +693,16 @@ type SetBlockedFileGroupsRequest struct {
 	BlockList *fsrm.MutableCollection `idl:"name:blockList" json:"block_list"`
 }
 
-func (o *SetBlockedFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_SetBlockedFileGroupsOperation {
+func (o *SetBlockedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetBlockedFileGroupsOperation) *xxx_SetBlockedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_SetBlockedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetBlockedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_SetBlockedFileGroupsOperation{
-		This:      o.This,
-		BlockList: o.BlockList,
-	}
+	o.This = op.This
+	o.BlockList = op.BlockList
+	return op
 }
 
 func (o *SetBlockedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetBlockedFileGroupsOperation) {
@@ -707,7 +713,7 @@ func (o *SetBlockedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.BlockList = op.BlockList
 }
 func (o *SetBlockedFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetBlockedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetBlockedFileGroupsOperation{}
@@ -726,14 +732,16 @@ type SetBlockedFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetBlockedFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_SetBlockedFileGroupsOperation {
+func (o *SetBlockedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetBlockedFileGroupsOperation) *xxx_SetBlockedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_SetBlockedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetBlockedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_SetBlockedFileGroupsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetBlockedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetBlockedFileGroupsOperation) {
@@ -744,7 +752,7 @@ func (o *SetBlockedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetBlockedFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetBlockedFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetBlockedFileGroupsOperation{}
@@ -893,13 +901,15 @@ type GetFileScreenFlagsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetFileScreenFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileScreenFlagsOperation {
+func (o *GetFileScreenFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileScreenFlagsOperation) *xxx_GetFileScreenFlagsOperation {
+	if op == nil {
+		op = &xxx_GetFileScreenFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileScreenFlagsOperation{}
+		return op
 	}
-	return &xxx_GetFileScreenFlagsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetFileScreenFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileScreenFlagsOperation) {
@@ -909,7 +919,7 @@ func (o *GetFileScreenFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetF
 	o.This = op.This
 }
 func (o *GetFileScreenFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileScreenFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileScreenFlagsOperation{}
@@ -929,15 +939,17 @@ type GetFileScreenFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileScreenFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileScreenFlagsOperation {
+func (o *GetFileScreenFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileScreenFlagsOperation) *xxx_GetFileScreenFlagsOperation {
+	if op == nil {
+		op = &xxx_GetFileScreenFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileScreenFlagsOperation{}
+		return op
 	}
-	return &xxx_GetFileScreenFlagsOperation{
-		That:            o.That,
-		FileScreenFlags: o.FileScreenFlags,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.FileScreenFlags = op.FileScreenFlags
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileScreenFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileScreenFlagsOperation) {
@@ -949,7 +961,7 @@ func (o *GetFileScreenFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetFileScreenFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileScreenFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileScreenFlagsOperation{}
@@ -1099,14 +1111,16 @@ type SetFileScreenFlagsRequest struct {
 	FileScreenFlags int32          `idl:"name:fileScreenFlags" json:"file_screen_flags"`
 }
 
-func (o *SetFileScreenFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_SetFileScreenFlagsOperation {
+func (o *SetFileScreenFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFileScreenFlagsOperation) *xxx_SetFileScreenFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFileScreenFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFileScreenFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFileScreenFlagsOperation{
-		This:            o.This,
-		FileScreenFlags: o.FileScreenFlags,
-	}
+	o.This = op.This
+	o.FileScreenFlags = op.FileScreenFlags
+	return op
 }
 
 func (o *SetFileScreenFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFileScreenFlagsOperation) {
@@ -1117,7 +1131,7 @@ func (o *SetFileScreenFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.FileScreenFlags = op.FileScreenFlags
 }
 func (o *SetFileScreenFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFileScreenFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFileScreenFlagsOperation{}
@@ -1136,14 +1150,16 @@ type SetFileScreenFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFileScreenFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_SetFileScreenFlagsOperation {
+func (o *SetFileScreenFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFileScreenFlagsOperation) *xxx_SetFileScreenFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFileScreenFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFileScreenFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFileScreenFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFileScreenFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFileScreenFlagsOperation) {
@@ -1154,7 +1170,7 @@ func (o *SetFileScreenFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFileScreenFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFileScreenFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFileScreenFlagsOperation{}
@@ -1350,14 +1366,16 @@ type CreateActionRequest struct {
 	ActionType fsrm.ActionType `idl:"name:actionType" json:"action_type"`
 }
 
-func (o *CreateActionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateActionOperation {
+func (o *CreateActionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateActionOperation) *xxx_CreateActionOperation {
+	if op == nil {
+		op = &xxx_CreateActionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateActionOperation{}
+		return op
 	}
-	return &xxx_CreateActionOperation{
-		This:       o.This,
-		ActionType: o.ActionType,
-	}
+	o.This = op.This
+	o.ActionType = op.ActionType
+	return op
 }
 
 func (o *CreateActionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateActionOperation) {
@@ -1368,7 +1386,7 @@ func (o *CreateActionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateActi
 	o.ActionType = op.ActionType
 }
 func (o *CreateActionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateActionOperation{}
@@ -1391,15 +1409,17 @@ type CreateActionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateActionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateActionOperation {
+func (o *CreateActionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateActionOperation) *xxx_CreateActionOperation {
+	if op == nil {
+		op = &xxx_CreateActionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateActionOperation{}
+		return op
 	}
-	return &xxx_CreateActionOperation{
-		That:   o.That,
-		Action: o.Action,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Action = op.Action
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateActionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateActionOperation) {
@@ -1411,7 +1431,7 @@ func (o *CreateActionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateAct
 	o.Return = op.Return
 }
 func (o *CreateActionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateActionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateActionOperation{}
@@ -1592,13 +1612,15 @@ type EnumActionsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *EnumActionsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumActionsOperation {
+func (o *EnumActionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumActionsOperation) *xxx_EnumActionsOperation {
+	if op == nil {
+		op = &xxx_EnumActionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumActionsOperation{}
+		return op
 	}
-	return &xxx_EnumActionsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *EnumActionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumActionsOperation) {
@@ -1608,7 +1630,7 @@ func (o *EnumActionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumActions
 	o.This = op.This
 }
 func (o *EnumActionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumActionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumActionsOperation{}
@@ -1633,15 +1655,17 @@ type EnumActionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumActionsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumActionsOperation {
+func (o *EnumActionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumActionsOperation) *xxx_EnumActionsOperation {
+	if op == nil {
+		op = &xxx_EnumActionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumActionsOperation{}
+		return op
 	}
-	return &xxx_EnumActionsOperation{
-		That:    o.That,
-		Actions: o.Actions,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Actions = op.Actions
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumActionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumActionsOperation) {
@@ -1653,7 +1677,7 @@ func (o *EnumActionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumAction
 	o.Return = op.Return
 }
 func (o *EnumActionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumActionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumActionsOperation{}

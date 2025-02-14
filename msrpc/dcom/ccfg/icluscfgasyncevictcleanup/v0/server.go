@@ -52,12 +52,25 @@ func AsyncEvictCleanupServerHandle(ctx context.Context, o AsyncEvictCleanupServe
 	}
 	switch opNum {
 	case 7: // CleanupNode
-		in := &CleanupNodeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CleanupNodeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CleanupNode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CleanupNodeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CleanupNode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusCfgAsyncEvictCleanup
+type UnimplementedAsyncEvictCleanupServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedAsyncEvictCleanupServer) CleanupNode(context.Context, *CleanupNodeRequest) (*CleanupNodeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AsyncEvictCleanupServer = (*UnimplementedAsyncEvictCleanupServer)(nil)

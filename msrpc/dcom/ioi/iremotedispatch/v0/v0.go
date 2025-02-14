@@ -86,7 +86,7 @@ func (o *xxx_DefaultRemoteDispatchClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultRemoteDispatchClient) RemoteDispatchAutoDone(ctx context.Context, in *RemoteDispatchAutoDoneRequest, opts ...dcerpc.CallOption) (*RemoteDispatchAutoDoneResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -106,7 +106,7 @@ func (o *xxx_DefaultRemoteDispatchClient) RemoteDispatchAutoDone(ctx context.Con
 }
 
 func (o *xxx_DefaultRemoteDispatchClient) RemoteDispatchNotAutoDone(ctx context.Context, in *RemoteDispatchNotAutoDoneRequest, opts ...dcerpc.CallOption) (*RemoteDispatchNotAutoDoneResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -391,14 +391,16 @@ type RemoteDispatchAutoDoneRequest struct {
 	String *oaut.String `idl:"name:s" json:"string"`
 }
 
-func (o *RemoteDispatchAutoDoneRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteDispatchAutoDoneOperation {
+func (o *RemoteDispatchAutoDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteDispatchAutoDoneOperation) *xxx_RemoteDispatchAutoDoneOperation {
+	if op == nil {
+		op = &xxx_RemoteDispatchAutoDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteDispatchAutoDoneOperation{}
+		return op
 	}
-	return &xxx_RemoteDispatchAutoDoneOperation{
-		This:   o.This,
-		String: o.String,
-	}
+	o.This = op.This
+	o.String = op.String
+	return op
 }
 
 func (o *RemoteDispatchAutoDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteDispatchAutoDoneOperation) {
@@ -409,7 +411,7 @@ func (o *RemoteDispatchAutoDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.String = op.String
 }
 func (o *RemoteDispatchAutoDoneRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteDispatchAutoDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteDispatchAutoDoneOperation{}
@@ -433,15 +435,17 @@ type RemoteDispatchAutoDoneResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteDispatchAutoDoneResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteDispatchAutoDoneOperation {
+func (o *RemoteDispatchAutoDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteDispatchAutoDoneOperation) *xxx_RemoteDispatchAutoDoneOperation {
+	if op == nil {
+		op = &xxx_RemoteDispatchAutoDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteDispatchAutoDoneOperation{}
+		return op
 	}
-	return &xxx_RemoteDispatchAutoDoneOperation{
-		That:        o.That,
-		ReturnValue: o.ReturnValue,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteDispatchAutoDoneResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteDispatchAutoDoneOperation) {
@@ -453,7 +457,7 @@ func (o *RemoteDispatchAutoDoneResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *RemoteDispatchAutoDoneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteDispatchAutoDoneResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteDispatchAutoDoneOperation{}
@@ -688,14 +692,16 @@ type RemoteDispatchNotAutoDoneRequest struct {
 	String *oaut.String `idl:"name:s" json:"string"`
 }
 
-func (o *RemoteDispatchNotAutoDoneRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteDispatchNotAutoDoneOperation {
+func (o *RemoteDispatchNotAutoDoneRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteDispatchNotAutoDoneOperation) *xxx_RemoteDispatchNotAutoDoneOperation {
+	if op == nil {
+		op = &xxx_RemoteDispatchNotAutoDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteDispatchNotAutoDoneOperation{}
+		return op
 	}
-	return &xxx_RemoteDispatchNotAutoDoneOperation{
-		This:   o.This,
-		String: o.String,
-	}
+	o.This = op.This
+	o.String = op.String
+	return op
 }
 
 func (o *RemoteDispatchNotAutoDoneRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteDispatchNotAutoDoneOperation) {
@@ -706,7 +712,7 @@ func (o *RemoteDispatchNotAutoDoneRequest) xxx_FromOp(ctx context.Context, op *x
 	o.String = op.String
 }
 func (o *RemoteDispatchNotAutoDoneRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteDispatchNotAutoDoneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteDispatchNotAutoDoneOperation{}
@@ -730,15 +736,17 @@ type RemoteDispatchNotAutoDoneResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteDispatchNotAutoDoneResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteDispatchNotAutoDoneOperation {
+func (o *RemoteDispatchNotAutoDoneResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteDispatchNotAutoDoneOperation) *xxx_RemoteDispatchNotAutoDoneOperation {
+	if op == nil {
+		op = &xxx_RemoteDispatchNotAutoDoneOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteDispatchNotAutoDoneOperation{}
+		return op
 	}
-	return &xxx_RemoteDispatchNotAutoDoneOperation{
-		That:        o.That,
-		ReturnValue: o.ReturnValue,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteDispatchNotAutoDoneResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteDispatchNotAutoDoneOperation) {
@@ -750,7 +758,7 @@ func (o *RemoteDispatchNotAutoDoneResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *RemoteDispatchNotAutoDoneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteDispatchNotAutoDoneResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteDispatchNotAutoDoneOperation{}

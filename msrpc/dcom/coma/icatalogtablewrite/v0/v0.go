@@ -77,7 +77,7 @@ func (o *xxx_DefaultCatalogTableWriteClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCatalogTableWriteClient) WriteTable(ctx context.Context, in *WriteTableRequest, opts ...dcerpc.CallOption) (*WriteTableResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -917,25 +917,27 @@ type WriteTableRequest struct {
 	TableDataVariableLength uint32 `idl:"name:cbTableDataVariable" json:"table_data_variable_length"`
 }
 
-func (o *WriteTableRequest) xxx_ToOp(ctx context.Context) *xxx_WriteTableOperation {
+func (o *WriteTableRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteTableOperation) *xxx_WriteTableOperation {
+	if op == nil {
+		op = &xxx_WriteTableOperation{}
+	}
 	if o == nil {
-		return &xxx_WriteTableOperation{}
+		return op
 	}
-	return &xxx_WriteTableOperation{
-		This:                      o.This,
-		CatalogID:                 o.CatalogID,
-		TableID:                   o.TableID,
-		TableFlags:                o.TableFlags,
-		QueryCellArray:            o.QueryCellArray,
-		QueryCellArrayLength:      o.QueryCellArrayLength,
-		QueryComparison:           o.QueryComparison,
-		QueryComparisonLength:     o.QueryComparisonLength,
-		QueryFormat:               o.QueryFormat,
-		TableDataFixedWrite:       o.TableDataFixedWrite,
-		TableDataFixedWriteLength: o.TableDataFixedWriteLength,
-		TableDataVariable:         o.TableDataVariable,
-		TableDataVariableLength:   o.TableDataVariableLength,
-	}
+	o.This = op.This
+	o.CatalogID = op.CatalogID
+	o.TableID = op.TableID
+	o.TableFlags = op.TableFlags
+	o.QueryCellArray = op.QueryCellArray
+	o.QueryCellArrayLength = op.QueryCellArrayLength
+	o.QueryComparison = op.QueryComparison
+	o.QueryComparisonLength = op.QueryComparisonLength
+	o.QueryFormat = op.QueryFormat
+	o.TableDataFixedWrite = op.TableDataFixedWrite
+	o.TableDataFixedWriteLength = op.TableDataFixedWriteLength
+	o.TableDataVariable = op.TableDataVariable
+	o.TableDataVariableLength = op.TableDataVariableLength
+	return op
 }
 
 func (o *WriteTableRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteTableOperation) {
@@ -957,7 +959,7 @@ func (o *WriteTableRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteTableOp
 	o.TableDataVariableLength = op.TableDataVariableLength
 }
 func (o *WriteTableRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WriteTableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WriteTableOperation{}
@@ -984,16 +986,18 @@ type WriteTableResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WriteTableResponse) xxx_ToOp(ctx context.Context) *xxx_WriteTableOperation {
+func (o *WriteTableResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteTableOperation) *xxx_WriteTableOperation {
+	if op == nil {
+		op = &xxx_WriteTableOperation{}
+	}
 	if o == nil {
-		return &xxx_WriteTableOperation{}
+		return op
 	}
-	return &xxx_WriteTableOperation{
-		That:                      o.That,
-		TableDetailedErrors:       o.TableDetailedErrors,
-		TableDetailedErrorsLength: o.TableDetailedErrorsLength,
-		Return:                    o.Return,
-	}
+	o.That = op.That
+	o.TableDetailedErrors = op.TableDetailedErrors
+	o.TableDetailedErrorsLength = op.TableDetailedErrorsLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *WriteTableResponse) xxx_FromOp(ctx context.Context, op *xxx_WriteTableOperation) {
@@ -1006,7 +1010,7 @@ func (o *WriteTableResponse) xxx_FromOp(ctx context.Context, op *xxx_WriteTableO
 	o.Return = op.Return
 }
 func (o *WriteTableResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WriteTableResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WriteTableOperation{}

@@ -70,54 +70,97 @@ func AppHostElementCollectionServerHandle(ctx context.Context, o AppHostElementC
 	}
 	switch opNum {
 	case 3: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AddElement
-		in := &AddElementRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddElementOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddElement(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddElementRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddElement(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // DeleteElement
-		in := &DeleteElementRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteElementOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteElement(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteElementRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteElement(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Clear
-		in := &ClearRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clear(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clear(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // CreateNewElement
-		in := &CreateNewElementRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNewElementOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNewElement(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNewElementRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNewElement(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Schema
-		in := &GetSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostElementCollection
+type UnimplementedAppHostElementCollectionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostElementCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementCollectionServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementCollectionServer) AddElement(context.Context, *AddElementRequest) (*AddElementResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementCollectionServer) DeleteElement(context.Context, *DeleteElementRequest) (*DeleteElementResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementCollectionServer) Clear(context.Context, *ClearRequest) (*ClearResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementCollectionServer) CreateNewElement(context.Context, *CreateNewElementRequest) (*CreateNewElementResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementCollectionServer) GetSchema(context.Context, *GetSchemaRequest) (*GetSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostElementCollectionServer = (*UnimplementedAppHostElementCollectionServer)(nil)

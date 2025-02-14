@@ -104,7 +104,7 @@ func (o *xxx_DefaultLevel1LoginClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultLevel1LoginClient) EstablishPosition(ctx context.Context, in *EstablishPositionRequest, opts ...dcerpc.CallOption) (*EstablishPositionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultLevel1LoginClient) EstablishPosition(ctx context.Context, in
 }
 
 func (o *xxx_DefaultLevel1LoginClient) RequestChallenge(ctx context.Context, in *RequestChallengeRequest, opts ...dcerpc.CallOption) (*RequestChallengeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -144,7 +144,7 @@ func (o *xxx_DefaultLevel1LoginClient) RequestChallenge(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultLevel1LoginClient) WBEMLogin(ctx context.Context, in *WBEMLoginRequest, opts ...dcerpc.CallOption) (*WBEMLoginResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -164,7 +164,7 @@ func (o *xxx_DefaultLevel1LoginClient) WBEMLogin(ctx context.Context, in *WBEMLo
 }
 
 func (o *xxx_DefaultLevel1LoginClient) NTLMLogin(ctx context.Context, in *NTLMLoginRequest, opts ...dcerpc.CallOption) (*NTLMLoginResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -408,13 +408,15 @@ type EstablishPositionRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *EstablishPositionRequest) xxx_ToOp(ctx context.Context) *xxx_EstablishPositionOperation {
+func (o *EstablishPositionRequest) xxx_ToOp(ctx context.Context, op *xxx_EstablishPositionOperation) *xxx_EstablishPositionOperation {
+	if op == nil {
+		op = &xxx_EstablishPositionOperation{}
+	}
 	if o == nil {
-		return &xxx_EstablishPositionOperation{}
+		return op
 	}
-	return &xxx_EstablishPositionOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *EstablishPositionRequest) xxx_FromOp(ctx context.Context, op *xxx_EstablishPositionOperation) {
@@ -424,7 +426,7 @@ func (o *EstablishPositionRequest) xxx_FromOp(ctx context.Context, op *xxx_Estab
 	o.This = op.This
 }
 func (o *EstablishPositionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EstablishPositionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EstablishPositionOperation{}
@@ -457,15 +459,17 @@ type EstablishPositionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EstablishPositionResponse) xxx_ToOp(ctx context.Context) *xxx_EstablishPositionOperation {
+func (o *EstablishPositionResponse) xxx_ToOp(ctx context.Context, op *xxx_EstablishPositionOperation) *xxx_EstablishPositionOperation {
+	if op == nil {
+		op = &xxx_EstablishPositionOperation{}
+	}
 	if o == nil {
-		return &xxx_EstablishPositionOperation{}
+		return op
 	}
-	return &xxx_EstablishPositionOperation{
-		That:          o.That,
-		LocaleVersion: o.LocaleVersion,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.LocaleVersion = op.LocaleVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *EstablishPositionResponse) xxx_FromOp(ctx context.Context, op *xxx_EstablishPositionOperation) {
@@ -477,7 +481,7 @@ func (o *EstablishPositionResponse) xxx_FromOp(ctx context.Context, op *xxx_Esta
 	o.Return = op.Return
 }
 func (o *EstablishPositionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EstablishPositionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EstablishPositionOperation{}
@@ -731,13 +735,15 @@ type RequestChallengeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RequestChallengeRequest) xxx_ToOp(ctx context.Context) *xxx_RequestChallengeOperation {
+func (o *RequestChallengeRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestChallengeOperation) *xxx_RequestChallengeOperation {
+	if op == nil {
+		op = &xxx_RequestChallengeOperation{}
+	}
 	if o == nil {
-		return &xxx_RequestChallengeOperation{}
+		return op
 	}
-	return &xxx_RequestChallengeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RequestChallengeRequest) xxx_FromOp(ctx context.Context, op *xxx_RequestChallengeOperation) {
@@ -747,7 +753,7 @@ func (o *RequestChallengeRequest) xxx_FromOp(ctx context.Context, op *xxx_Reques
 	o.This = op.This
 }
 func (o *RequestChallengeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RequestChallengeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RequestChallengeOperation{}
@@ -766,14 +772,16 @@ type RequestChallengeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RequestChallengeResponse) xxx_ToOp(ctx context.Context) *xxx_RequestChallengeOperation {
+func (o *RequestChallengeResponse) xxx_ToOp(ctx context.Context, op *xxx_RequestChallengeOperation) *xxx_RequestChallengeOperation {
+	if op == nil {
+		op = &xxx_RequestChallengeOperation{}
+	}
 	if o == nil {
-		return &xxx_RequestChallengeOperation{}
+		return op
 	}
-	return &xxx_RequestChallengeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RequestChallengeResponse) xxx_FromOp(ctx context.Context, op *xxx_RequestChallengeOperation) {
@@ -784,7 +792,7 @@ func (o *RequestChallengeResponse) xxx_FromOp(ctx context.Context, op *xxx_Reque
 	o.Return = op.Return
 }
 func (o *RequestChallengeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RequestChallengeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RequestChallengeOperation{}
@@ -1079,13 +1087,15 @@ type WBEMLoginRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *WBEMLoginRequest) xxx_ToOp(ctx context.Context) *xxx_WBEMLoginOperation {
+func (o *WBEMLoginRequest) xxx_ToOp(ctx context.Context, op *xxx_WBEMLoginOperation) *xxx_WBEMLoginOperation {
+	if op == nil {
+		op = &xxx_WBEMLoginOperation{}
+	}
 	if o == nil {
-		return &xxx_WBEMLoginOperation{}
+		return op
 	}
-	return &xxx_WBEMLoginOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *WBEMLoginRequest) xxx_FromOp(ctx context.Context, op *xxx_WBEMLoginOperation) {
@@ -1095,7 +1105,7 @@ func (o *WBEMLoginRequest) xxx_FromOp(ctx context.Context, op *xxx_WBEMLoginOper
 	o.This = op.This
 }
 func (o *WBEMLoginRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WBEMLoginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WBEMLoginOperation{}
@@ -1114,14 +1124,16 @@ type WBEMLoginResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WBEMLoginResponse) xxx_ToOp(ctx context.Context) *xxx_WBEMLoginOperation {
+func (o *WBEMLoginResponse) xxx_ToOp(ctx context.Context, op *xxx_WBEMLoginOperation) *xxx_WBEMLoginOperation {
+	if op == nil {
+		op = &xxx_WBEMLoginOperation{}
+	}
 	if o == nil {
-		return &xxx_WBEMLoginOperation{}
+		return op
 	}
-	return &xxx_WBEMLoginOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *WBEMLoginResponse) xxx_FromOp(ctx context.Context, op *xxx_WBEMLoginOperation) {
@@ -1132,7 +1144,7 @@ func (o *WBEMLoginResponse) xxx_FromOp(ctx context.Context, op *xxx_WBEMLoginOpe
 	o.Return = op.Return
 }
 func (o *WBEMLoginResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WBEMLoginResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WBEMLoginOperation{}
@@ -1467,17 +1479,19 @@ type NTLMLoginRequest struct {
 	Context *wmi.Context `idl:"name:pCtx" json:"context"`
 }
 
-func (o *NTLMLoginRequest) xxx_ToOp(ctx context.Context) *xxx_NTLMLoginOperation {
+func (o *NTLMLoginRequest) xxx_ToOp(ctx context.Context, op *xxx_NTLMLoginOperation) *xxx_NTLMLoginOperation {
+	if op == nil {
+		op = &xxx_NTLMLoginOperation{}
+	}
 	if o == nil {
-		return &xxx_NTLMLoginOperation{}
+		return op
 	}
-	return &xxx_NTLMLoginOperation{
-		This:            o.This,
-		NetworkResource: o.NetworkResource,
-		PreferredLocale: o.PreferredLocale,
-		Flags:           o.Flags,
-		Context:         o.Context,
-	}
+	o.This = op.This
+	o.NetworkResource = op.NetworkResource
+	o.PreferredLocale = op.PreferredLocale
+	o.Flags = op.Flags
+	o.Context = op.Context
+	return op
 }
 
 func (o *NTLMLoginRequest) xxx_FromOp(ctx context.Context, op *xxx_NTLMLoginOperation) {
@@ -1491,7 +1505,7 @@ func (o *NTLMLoginRequest) xxx_FromOp(ctx context.Context, op *xxx_NTLMLoginOper
 	o.Context = op.Context
 }
 func (o *NTLMLoginRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NTLMLoginRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NTLMLoginOperation{}
@@ -1513,15 +1527,17 @@ type NTLMLoginResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NTLMLoginResponse) xxx_ToOp(ctx context.Context) *xxx_NTLMLoginOperation {
+func (o *NTLMLoginResponse) xxx_ToOp(ctx context.Context, op *xxx_NTLMLoginOperation) *xxx_NTLMLoginOperation {
+	if op == nil {
+		op = &xxx_NTLMLoginOperation{}
+	}
 	if o == nil {
-		return &xxx_NTLMLoginOperation{}
+		return op
 	}
-	return &xxx_NTLMLoginOperation{
-		That:      o.That,
-		Namespace: o.Namespace,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Namespace = op.Namespace
+	o.Return = op.Return
+	return op
 }
 
 func (o *NTLMLoginResponse) xxx_FromOp(ctx context.Context, op *xxx_NTLMLoginOperation) {
@@ -1533,7 +1549,7 @@ func (o *NTLMLoginResponse) xxx_FromOp(ctx context.Context, op *xxx_NTLMLoginOpe
 	o.Return = op.Return
 }
 func (o *NTLMLoginResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NTLMLoginResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NTLMLoginOperation{}

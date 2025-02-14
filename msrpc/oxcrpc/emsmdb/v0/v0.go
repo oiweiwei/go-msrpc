@@ -245,7 +245,7 @@ type xxx_DefaultEmsmdbClient struct {
 }
 
 func (o *xxx_DefaultEmsmdbClient) DoDisconnect(ctx context.Context, in *DoDisconnectRequest, opts ...dcerpc.CallOption) (*DoDisconnectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -258,7 +258,7 @@ func (o *xxx_DefaultEmsmdbClient) DoDisconnect(ctx context.Context, in *DoDiscon
 }
 
 func (o *xxx_DefaultEmsmdbClient) RegisterPushNotification(ctx context.Context, in *RegisterPushNotificationRequest, opts ...dcerpc.CallOption) (*RegisterPushNotificationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -271,7 +271,7 @@ func (o *xxx_DefaultEmsmdbClient) RegisterPushNotification(ctx context.Context, 
 }
 
 func (o *xxx_DefaultEmsmdbClient) DummyRPC(ctx context.Context, in *DummyRPCRequest, opts ...dcerpc.CallOption) (*DummyRPCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -284,7 +284,7 @@ func (o *xxx_DefaultEmsmdbClient) DummyRPC(ctx context.Context, in *DummyRPCRequ
 }
 
 func (o *xxx_DefaultEmsmdbClient) DoConnectEx(ctx context.Context, in *DoConnectExRequest, opts ...dcerpc.CallOption) (*DoConnectExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -297,7 +297,7 @@ func (o *xxx_DefaultEmsmdbClient) DoConnectEx(ctx context.Context, in *DoConnect
 }
 
 func (o *xxx_DefaultEmsmdbClient) DoRPCExt2(ctx context.Context, in *DoRPCExt2Request, opts ...dcerpc.CallOption) (*DoRPCExt2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -310,7 +310,7 @@ func (o *xxx_DefaultEmsmdbClient) DoRPCExt2(ctx context.Context, in *DoRPCExt2Re
 }
 
 func (o *xxx_DefaultEmsmdbClient) DoAsyncConnectEx(ctx context.Context, in *DoAsyncConnectExRequest, opts ...dcerpc.CallOption) (*DoAsyncConnectExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -451,13 +451,15 @@ type DoDisconnectRequest struct {
 	Session *oxcrpc.Session `idl:"name:pcxh;pointer:ref" json:"session"`
 }
 
-func (o *DoDisconnectRequest) xxx_ToOp(ctx context.Context) *xxx_DoDisconnectOperation {
+func (o *DoDisconnectRequest) xxx_ToOp(ctx context.Context, op *xxx_DoDisconnectOperation) *xxx_DoDisconnectOperation {
+	if op == nil {
+		op = &xxx_DoDisconnectOperation{}
+	}
 	if o == nil {
-		return &xxx_DoDisconnectOperation{}
+		return op
 	}
-	return &xxx_DoDisconnectOperation{
-		Session: o.Session,
-	}
+	o.Session = op.Session
+	return op
 }
 
 func (o *DoDisconnectRequest) xxx_FromOp(ctx context.Context, op *xxx_DoDisconnectOperation) {
@@ -467,7 +469,7 @@ func (o *DoDisconnectRequest) xxx_FromOp(ctx context.Context, op *xxx_DoDisconne
 	o.Session = op.Session
 }
 func (o *DoDisconnectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DoDisconnectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoDisconnectOperation{}
@@ -489,14 +491,16 @@ type DoDisconnectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DoDisconnectResponse) xxx_ToOp(ctx context.Context) *xxx_DoDisconnectOperation {
+func (o *DoDisconnectResponse) xxx_ToOp(ctx context.Context, op *xxx_DoDisconnectOperation) *xxx_DoDisconnectOperation {
+	if op == nil {
+		op = &xxx_DoDisconnectOperation{}
+	}
 	if o == nil {
-		return &xxx_DoDisconnectOperation{}
+		return op
 	}
-	return &xxx_DoDisconnectOperation{
-		Session: o.Session,
-		Return:  o.Return,
-	}
+	o.Session = op.Session
+	o.Return = op.Return
+	return op
 }
 
 func (o *DoDisconnectResponse) xxx_FromOp(ctx context.Context, op *xxx_DoDisconnectOperation) {
@@ -507,7 +511,7 @@ func (o *DoDisconnectResponse) xxx_FromOp(ctx context.Context, op *xxx_DoDisconn
 	o.Return = op.Return
 }
 func (o *DoDisconnectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DoDisconnectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoDisconnectOperation{}
@@ -837,19 +841,21 @@ type RegisterPushNotificationRequest struct {
 	CallbackAddressLength uint16 `idl:"name:cbCallbackAddress" json:"callback_address_length"`
 }
 
-func (o *RegisterPushNotificationRequest) xxx_ToOp(ctx context.Context) *xxx_RegisterPushNotificationOperation {
+func (o *RegisterPushNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterPushNotificationOperation) *xxx_RegisterPushNotificationOperation {
+	if op == nil {
+		op = &xxx_RegisterPushNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterPushNotificationOperation{}
+		return op
 	}
-	return &xxx_RegisterPushNotificationOperation{
-		Session:               o.Session,
-		RPC:                   o.RPC,
-		Context:               o.Context,
-		ContextLength:         o.ContextLength,
-		AdviseBits:            o.AdviseBits,
-		CallbackAddress:       o.CallbackAddress,
-		CallbackAddressLength: o.CallbackAddressLength,
-	}
+	o.Session = op.Session
+	o.RPC = op.RPC
+	o.Context = op.Context
+	o.ContextLength = op.ContextLength
+	o.AdviseBits = op.AdviseBits
+	o.CallbackAddress = op.CallbackAddress
+	o.CallbackAddressLength = op.CallbackAddressLength
+	return op
 }
 
 func (o *RegisterPushNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterPushNotificationOperation) {
@@ -865,7 +871,7 @@ func (o *RegisterPushNotificationRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.CallbackAddressLength = op.CallbackAddressLength
 }
 func (o *RegisterPushNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterPushNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterPushNotificationOperation{}
@@ -900,15 +906,17 @@ type RegisterPushNotificationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterPushNotificationResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterPushNotificationOperation {
+func (o *RegisterPushNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterPushNotificationOperation) *xxx_RegisterPushNotificationOperation {
+	if op == nil {
+		op = &xxx_RegisterPushNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterPushNotificationOperation{}
+		return op
 	}
-	return &xxx_RegisterPushNotificationOperation{
-		Session:      o.Session,
-		Notification: o.Notification,
-		Return:       o.Return,
-	}
+	o.Session = op.Session
+	o.Notification = op.Notification
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterPushNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterPushNotificationOperation) {
@@ -920,7 +928,7 @@ func (o *RegisterPushNotificationResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *RegisterPushNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterPushNotificationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterPushNotificationOperation{}
@@ -996,11 +1004,14 @@ func (o *xxx_DummyRPCOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.
 type DummyRPCRequest struct {
 }
 
-func (o *DummyRPCRequest) xxx_ToOp(ctx context.Context) *xxx_DummyRPCOperation {
-	if o == nil {
-		return &xxx_DummyRPCOperation{}
+func (o *DummyRPCRequest) xxx_ToOp(ctx context.Context, op *xxx_DummyRPCOperation) *xxx_DummyRPCOperation {
+	if op == nil {
+		op = &xxx_DummyRPCOperation{}
 	}
-	return &xxx_DummyRPCOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *DummyRPCRequest) xxx_FromOp(ctx context.Context, op *xxx_DummyRPCOperation) {
@@ -1009,7 +1020,7 @@ func (o *DummyRPCRequest) xxx_FromOp(ctx context.Context, op *xxx_DummyRPCOperat
 	}
 }
 func (o *DummyRPCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DummyRPCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DummyRPCOperation{}
@@ -1026,13 +1037,15 @@ type DummyRPCResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DummyRPCResponse) xxx_ToOp(ctx context.Context) *xxx_DummyRPCOperation {
+func (o *DummyRPCResponse) xxx_ToOp(ctx context.Context, op *xxx_DummyRPCOperation) *xxx_DummyRPCOperation {
+	if op == nil {
+		op = &xxx_DummyRPCOperation{}
+	}
 	if o == nil {
-		return &xxx_DummyRPCOperation{}
+		return op
 	}
-	return &xxx_DummyRPCOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DummyRPCResponse) xxx_FromOp(ctx context.Context, op *xxx_DummyRPCOperation) {
@@ -1042,7 +1055,7 @@ func (o *DummyRPCResponse) xxx_FromOp(ctx context.Context, op *xxx_DummyRPCOpera
 	o.Return = op.Return
 }
 func (o *DummyRPCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DummyRPCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DummyRPCOperation{}
@@ -1782,26 +1795,28 @@ type DoConnectExRequest struct {
 	AuxOutLength uint32 `idl:"name:pcbAuxOut" json:"aux_out_length"`
 }
 
-func (o *DoConnectExRequest) xxx_ToOp(ctx context.Context) *xxx_DoConnectExOperation {
+func (o *DoConnectExRequest) xxx_ToOp(ctx context.Context, op *xxx_DoConnectExOperation) *xxx_DoConnectExOperation {
+	if op == nil {
+		op = &xxx_DoConnectExOperation{}
+	}
 	if o == nil {
-		return &xxx_DoConnectExOperation{}
+		return op
 	}
-	return &xxx_DoConnectExOperation{
-		UserDN:              o.UserDN,
-		Flags:               o.Flags,
-		UserDNHash:          o.UserDNHash,
-		LimitLength:         o.LimitLength,
-		CodePageID:          o.CodePageID,
-		LocalIDString:       o.LocalIDString,
-		LocalIDSort:         o.LocalIDSort,
-		RemoteSessionLink:   o.RemoteSessionLink,
-		CanConvertCodePages: o.CanConvertCodePages,
-		ClientVersion:       o.ClientVersion,
-		Timestamp:           o.Timestamp,
-		AuxIn:               o.AuxIn,
-		AuxInLength:         o.AuxInLength,
-		AuxOutLength:        o.AuxOutLength,
-	}
+	o.UserDN = op.UserDN
+	o.Flags = op.Flags
+	o.UserDNHash = op.UserDNHash
+	o.LimitLength = op.LimitLength
+	o.CodePageID = op.CodePageID
+	o.LocalIDString = op.LocalIDString
+	o.LocalIDSort = op.LocalIDSort
+	o.RemoteSessionLink = op.RemoteSessionLink
+	o.CanConvertCodePages = op.CanConvertCodePages
+	o.ClientVersion = op.ClientVersion
+	o.Timestamp = op.Timestamp
+	o.AuxIn = op.AuxIn
+	o.AuxInLength = op.AuxInLength
+	o.AuxOutLength = op.AuxOutLength
+	return op
 }
 
 func (o *DoConnectExRequest) xxx_FromOp(ctx context.Context, op *xxx_DoConnectExOperation) {
@@ -1824,7 +1839,7 @@ func (o *DoConnectExRequest) xxx_FromOp(ctx context.Context, op *xxx_DoConnectEx
 	o.AuxOutLength = op.AuxOutLength
 }
 func (o *DoConnectExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DoConnectExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoConnectExOperation{}
@@ -1925,25 +1940,27 @@ type DoConnectExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DoConnectExResponse) xxx_ToOp(ctx context.Context) *xxx_DoConnectExOperation {
+func (o *DoConnectExResponse) xxx_ToOp(ctx context.Context, op *xxx_DoConnectExOperation) *xxx_DoConnectExOperation {
+	if op == nil {
+		op = &xxx_DoConnectExOperation{}
+	}
 	if o == nil {
-		return &xxx_DoConnectExOperation{}
+		return op
 	}
-	return &xxx_DoConnectExOperation{
-		Session:       o.Session,
-		PollsMax:      o.PollsMax,
-		RetryCount:    o.RetryCount,
-		RetryDelay:    o.RetryDelay,
-		RemoteSession: o.RemoteSession,
-		DNPrefix:      o.DNPrefix,
-		DisplayName:   o.DisplayName,
-		ServerVersion: o.ServerVersion,
-		BestVersion:   o.BestVersion,
-		Timestamp:     o.Timestamp,
-		AuxOut:        o.AuxOut,
-		AuxOutLength:  o.AuxOutLength,
-		Return:        o.Return,
-	}
+	o.Session = op.Session
+	o.PollsMax = op.PollsMax
+	o.RetryCount = op.RetryCount
+	o.RetryDelay = op.RetryDelay
+	o.RemoteSession = op.RemoteSession
+	o.DNPrefix = op.DNPrefix
+	o.DisplayName = op.DisplayName
+	o.ServerVersion = op.ServerVersion
+	o.BestVersion = op.BestVersion
+	o.Timestamp = op.Timestamp
+	o.AuxOut = op.AuxOut
+	o.AuxOutLength = op.AuxOutLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *DoConnectExResponse) xxx_FromOp(ctx context.Context, op *xxx_DoConnectExOperation) {
@@ -1965,7 +1982,7 @@ func (o *DoConnectExResponse) xxx_FromOp(ctx context.Context, op *xxx_DoConnectE
 	o.Return = op.Return
 }
 func (o *DoConnectExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DoConnectExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoConnectExOperation{}
@@ -2538,20 +2555,22 @@ type DoRPCExt2Request struct {
 	AuxOutLength uint32 `idl:"name:pcbAuxOut" json:"aux_out_length"`
 }
 
-func (o *DoRPCExt2Request) xxx_ToOp(ctx context.Context) *xxx_DoRPCExt2Operation {
+func (o *DoRPCExt2Request) xxx_ToOp(ctx context.Context, op *xxx_DoRPCExt2Operation) *xxx_DoRPCExt2Operation {
+	if op == nil {
+		op = &xxx_DoRPCExt2Operation{}
+	}
 	if o == nil {
-		return &xxx_DoRPCExt2Operation{}
+		return op
 	}
-	return &xxx_DoRPCExt2Operation{
-		Session:      o.Session,
-		Flags:        o.Flags,
-		In:           o.In,
-		InLength:     o.InLength,
-		OutLength:    o.OutLength,
-		AuxIn:        o.AuxIn,
-		AuxInLength:  o.AuxInLength,
-		AuxOutLength: o.AuxOutLength,
-	}
+	o.Session = op.Session
+	o.Flags = op.Flags
+	o.In = op.In
+	o.InLength = op.InLength
+	o.OutLength = op.OutLength
+	o.AuxIn = op.AuxIn
+	o.AuxInLength = op.AuxInLength
+	o.AuxOutLength = op.AuxOutLength
+	return op
 }
 
 func (o *DoRPCExt2Request) xxx_FromOp(ctx context.Context, op *xxx_DoRPCExt2Operation) {
@@ -2568,7 +2587,7 @@ func (o *DoRPCExt2Request) xxx_FromOp(ctx context.Context, op *xxx_DoRPCExt2Oper
 	o.AuxOutLength = op.AuxOutLength
 }
 func (o *DoRPCExt2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DoRPCExt2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoRPCExt2Operation{}
@@ -2671,20 +2690,22 @@ type DoRPCExt2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DoRPCExt2Response) xxx_ToOp(ctx context.Context) *xxx_DoRPCExt2Operation {
+func (o *DoRPCExt2Response) xxx_ToOp(ctx context.Context, op *xxx_DoRPCExt2Operation) *xxx_DoRPCExt2Operation {
+	if op == nil {
+		op = &xxx_DoRPCExt2Operation{}
+	}
 	if o == nil {
-		return &xxx_DoRPCExt2Operation{}
+		return op
 	}
-	return &xxx_DoRPCExt2Operation{
-		Session:      o.Session,
-		Flags:        o.Flags,
-		Out:          o.Out,
-		OutLength:    o.OutLength,
-		AuxOut:       o.AuxOut,
-		AuxOutLength: o.AuxOutLength,
-		TransTime:    o.TransTime,
-		Return:       o.Return,
-	}
+	o.Session = op.Session
+	o.Flags = op.Flags
+	o.Out = op.Out
+	o.OutLength = op.OutLength
+	o.AuxOut = op.AuxOut
+	o.AuxOutLength = op.AuxOutLength
+	o.TransTime = op.TransTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *DoRPCExt2Response) xxx_FromOp(ctx context.Context, op *xxx_DoRPCExt2Operation) {
@@ -2701,7 +2722,7 @@ func (o *DoRPCExt2Response) xxx_FromOp(ctx context.Context, op *xxx_DoRPCExt2Ope
 	o.Return = op.Return
 }
 func (o *DoRPCExt2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DoRPCExt2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoRPCExt2Operation{}
@@ -2825,13 +2846,15 @@ type DoAsyncConnectExRequest struct {
 	Session *oxcrpc.Session `idl:"name:cxh" json:"session"`
 }
 
-func (o *DoAsyncConnectExRequest) xxx_ToOp(ctx context.Context) *xxx_DoAsyncConnectExOperation {
+func (o *DoAsyncConnectExRequest) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncConnectExOperation) *xxx_DoAsyncConnectExOperation {
+	if op == nil {
+		op = &xxx_DoAsyncConnectExOperation{}
+	}
 	if o == nil {
-		return &xxx_DoAsyncConnectExOperation{}
+		return op
 	}
-	return &xxx_DoAsyncConnectExOperation{
-		Session: o.Session,
-	}
+	o.Session = op.Session
+	return op
 }
 
 func (o *DoAsyncConnectExRequest) xxx_FromOp(ctx context.Context, op *xxx_DoAsyncConnectExOperation) {
@@ -2841,7 +2864,7 @@ func (o *DoAsyncConnectExRequest) xxx_FromOp(ctx context.Context, op *xxx_DoAsyn
 	o.Session = op.Session
 }
 func (o *DoAsyncConnectExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DoAsyncConnectExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoAsyncConnectExOperation{}
@@ -2863,14 +2886,16 @@ type DoAsyncConnectExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DoAsyncConnectExResponse) xxx_ToOp(ctx context.Context) *xxx_DoAsyncConnectExOperation {
+func (o *DoAsyncConnectExResponse) xxx_ToOp(ctx context.Context, op *xxx_DoAsyncConnectExOperation) *xxx_DoAsyncConnectExOperation {
+	if op == nil {
+		op = &xxx_DoAsyncConnectExOperation{}
+	}
 	if o == nil {
-		return &xxx_DoAsyncConnectExOperation{}
+		return op
 	}
-	return &xxx_DoAsyncConnectExOperation{
-		AsyncSession: o.AsyncSession,
-		Return:       o.Return,
-	}
+	o.AsyncSession = op.AsyncSession
+	o.Return = op.Return
+	return op
 }
 
 func (o *DoAsyncConnectExResponse) xxx_FromOp(ctx context.Context, op *xxx_DoAsyncConnectExOperation) {
@@ -2881,7 +2906,7 @@ func (o *DoAsyncConnectExResponse) xxx_FromOp(ctx context.Context, op *xxx_DoAsy
 	o.Return = op.Return
 }
 func (o *DoAsyncConnectExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DoAsyncConnectExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DoAsyncConnectExOperation{}

@@ -52,12 +52,25 @@ func VolumeOnlineServerHandle(ctx context.Context, o VolumeOnlineServer, opNum i
 	}
 	switch opNum {
 	case 3: // Online
-		in := &OnlineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Online(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Online(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolumeOnline
+type UnimplementedVolumeOnlineServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeOnlineServer) Online(context.Context, *OnlineRequest) (*OnlineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeOnlineServer = (*UnimplementedVolumeOnlineServer)(nil)

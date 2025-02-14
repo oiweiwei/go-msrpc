@@ -90,7 +90,7 @@ func (o *xxx_DefaultPathMapperClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultPathMapperClient) GetSharePathsForLocalPath(ctx context.Context, in *GetSharePathsForLocalPathRequest, opts ...dcerpc.CallOption) (*GetSharePathsForLocalPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -372,14 +372,16 @@ type GetSharePathsForLocalPathRequest struct {
 	LocalPath *oaut.String `idl:"name:localPath" json:"local_path"`
 }
 
-func (o *GetSharePathsForLocalPathRequest) xxx_ToOp(ctx context.Context) *xxx_GetSharePathsForLocalPathOperation {
+func (o *GetSharePathsForLocalPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSharePathsForLocalPathOperation) *xxx_GetSharePathsForLocalPathOperation {
+	if op == nil {
+		op = &xxx_GetSharePathsForLocalPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSharePathsForLocalPathOperation{}
+		return op
 	}
-	return &xxx_GetSharePathsForLocalPathOperation{
-		This:      o.This,
-		LocalPath: o.LocalPath,
-	}
+	o.This = op.This
+	o.LocalPath = op.LocalPath
+	return op
 }
 
 func (o *GetSharePathsForLocalPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSharePathsForLocalPathOperation) {
@@ -390,7 +392,7 @@ func (o *GetSharePathsForLocalPathRequest) xxx_FromOp(ctx context.Context, op *x
 	o.LocalPath = op.LocalPath
 }
 func (o *GetSharePathsForLocalPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSharePathsForLocalPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSharePathsForLocalPathOperation{}
@@ -412,15 +414,17 @@ type GetSharePathsForLocalPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSharePathsForLocalPathResponse) xxx_ToOp(ctx context.Context) *xxx_GetSharePathsForLocalPathOperation {
+func (o *GetSharePathsForLocalPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSharePathsForLocalPathOperation) *xxx_GetSharePathsForLocalPathOperation {
+	if op == nil {
+		op = &xxx_GetSharePathsForLocalPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSharePathsForLocalPathOperation{}
+		return op
 	}
-	return &xxx_GetSharePathsForLocalPathOperation{
-		That:       o.That,
-		SharePaths: o.SharePaths,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.SharePaths = op.SharePaths
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSharePathsForLocalPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSharePathsForLocalPathOperation) {
@@ -432,7 +436,7 @@ func (o *GetSharePathsForLocalPathResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *GetSharePathsForLocalPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSharePathsForLocalPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSharePathsForLocalPathOperation{}

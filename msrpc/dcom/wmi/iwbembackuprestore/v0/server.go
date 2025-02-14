@@ -80,19 +80,37 @@ func BackupRestoreServerHandle(ctx context.Context, o BackupRestoreServer, opNum
 	}
 	switch opNum {
 	case 3: // Backup
-		in := &BackupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Backup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Backup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Restore
-		in := &RestoreRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestoreOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Restore(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestoreRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Restore(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemBackupRestore
+type UnimplementedBackupRestoreServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedBackupRestoreServer) Backup(context.Context, *BackupRequest) (*BackupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedBackupRestoreServer) Restore(context.Context, *RestoreRequest) (*RestoreResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ BackupRestoreServer = (*UnimplementedBackupRestoreServer)(nil)

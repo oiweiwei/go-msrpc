@@ -132,7 +132,7 @@ func (o *xxx_DefaultClusterFirewallClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterFirewallClient) InitializeAdapterConfiguration(ctx context.Context, in *InitializeAdapterConfigurationRequest, opts ...dcerpc.CallOption) (*InitializeAdapterConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -152,7 +152,7 @@ func (o *xxx_DefaultClusterFirewallClient) InitializeAdapterConfiguration(ctx co
 }
 
 func (o *xxx_DefaultClusterFirewallClient) GetNextAdapterFirewallConfiguration(ctx context.Context, in *GetNextAdapterFirewallConfigurationRequest, opts ...dcerpc.CallOption) (*GetNextAdapterFirewallConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -351,13 +351,15 @@ type InitializeAdapterConfigurationRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *InitializeAdapterConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_InitializeAdapterConfigurationOperation {
+func (o *InitializeAdapterConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_InitializeAdapterConfigurationOperation) *xxx_InitializeAdapterConfigurationOperation {
+	if op == nil {
+		op = &xxx_InitializeAdapterConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_InitializeAdapterConfigurationOperation{}
+		return op
 	}
-	return &xxx_InitializeAdapterConfigurationOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *InitializeAdapterConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_InitializeAdapterConfigurationOperation) {
@@ -367,7 +369,7 @@ func (o *InitializeAdapterConfigurationRequest) xxx_FromOp(ctx context.Context, 
 	o.This = op.This
 }
 func (o *InitializeAdapterConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InitializeAdapterConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitializeAdapterConfigurationOperation{}
@@ -391,15 +393,17 @@ type InitializeAdapterConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InitializeAdapterConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_InitializeAdapterConfigurationOperation {
+func (o *InitializeAdapterConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_InitializeAdapterConfigurationOperation) *xxx_InitializeAdapterConfigurationOperation {
+	if op == nil {
+		op = &xxx_InitializeAdapterConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_InitializeAdapterConfigurationOperation{}
+		return op
 	}
-	return &xxx_InitializeAdapterConfigurationOperation{
-		That:                o.That,
-		ReturnAdaptersCount: o.ReturnAdaptersCount,
-		Return:              o.Return,
-	}
+	o.That = op.That
+	o.ReturnAdaptersCount = op.ReturnAdaptersCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *InitializeAdapterConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_InitializeAdapterConfigurationOperation) {
@@ -411,7 +415,7 @@ func (o *InitializeAdapterConfigurationResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *InitializeAdapterConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InitializeAdapterConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitializeAdapterConfigurationOperation{}
@@ -639,14 +643,16 @@ type GetNextAdapterFirewallConfigurationRequest struct {
 	Index uint32 `idl:"name:idx" json:"index"`
 }
 
-func (o *GetNextAdapterFirewallConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_GetNextAdapterFirewallConfigurationOperation {
+func (o *GetNextAdapterFirewallConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNextAdapterFirewallConfigurationOperation) *xxx_GetNextAdapterFirewallConfigurationOperation {
+	if op == nil {
+		op = &xxx_GetNextAdapterFirewallConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNextAdapterFirewallConfigurationOperation{}
+		return op
 	}
-	return &xxx_GetNextAdapterFirewallConfigurationOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *GetNextAdapterFirewallConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNextAdapterFirewallConfigurationOperation) {
@@ -657,7 +663,7 @@ func (o *GetNextAdapterFirewallConfigurationRequest) xxx_FromOp(ctx context.Cont
 	o.Index = op.Index
 }
 func (o *GetNextAdapterFirewallConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNextAdapterFirewallConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNextAdapterFirewallConfigurationOperation{}
@@ -749,19 +755,21 @@ type GetNextAdapterFirewallConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNextAdapterFirewallConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_GetNextAdapterFirewallConfigurationOperation {
+func (o *GetNextAdapterFirewallConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNextAdapterFirewallConfigurationOperation) *xxx_GetNextAdapterFirewallConfigurationOperation {
+	if op == nil {
+		op = &xxx_GetNextAdapterFirewallConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNextAdapterFirewallConfigurationOperation{}
+		return op
 	}
-	return &xxx_GetNextAdapterFirewallConfigurationOperation{
-		That:                   o.That,
-		AdapterID:              o.AdapterID,
-		AdapterProfile:         o.AdapterProfile,
-		ServerRulesEnabled:     o.ServerRulesEnabled,
-		ManagementRulesEnabled: o.ManagementRulesEnabled,
-		CommonRulesEnabled:     o.CommonRulesEnabled,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.AdapterID = op.AdapterID
+	o.AdapterProfile = op.AdapterProfile
+	o.ServerRulesEnabled = op.ServerRulesEnabled
+	o.ManagementRulesEnabled = op.ManagementRulesEnabled
+	o.CommonRulesEnabled = op.CommonRulesEnabled
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNextAdapterFirewallConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNextAdapterFirewallConfigurationOperation) {
@@ -777,7 +785,7 @@ func (o *GetNextAdapterFirewallConfigurationResponse) xxx_FromOp(ctx context.Con
 	o.Return = op.Return
 }
 func (o *GetNextAdapterFirewallConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNextAdapterFirewallConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNextAdapterFirewallConfigurationOperation{}

@@ -84,7 +84,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) Unknown() iunknown.UnknownCli
 }
 
 func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteNameFromSiteID(ctx context.Context, in *GetSiteNameFromSiteIDRequest, opts ...dcerpc.CallOption) (*GetSiteNameFromSiteIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteNameFromSiteID(ctx con
 }
 
 func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteIDFromSiteName(ctx context.Context, in *GetSiteIDFromSiteNameRequest, opts ...dcerpc.CallOption) (*GetSiteIDFromSiteNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteIDFromSiteName(ctx con
 }
 
 func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteElementFromSiteID(ctx context.Context, in *GetSiteElementFromSiteIDRequest, opts ...dcerpc.CallOption) (*GetSiteElementFromSiteIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -144,7 +144,7 @@ func (o *xxx_DefaultAppHostMappingExtensionClient) GetSiteElementFromSiteID(ctx 
 }
 
 func (o *xxx_DefaultAppHostMappingExtensionClient) MapPath(ctx context.Context, in *MapPathRequest, opts ...dcerpc.CallOption) (*MapPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -391,14 +391,16 @@ type GetSiteNameFromSiteIDRequest struct {
 	SiteID uint32         `idl:"name:dwSiteId" json:"site_id"`
 }
 
-func (o *GetSiteNameFromSiteIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetSiteNameFromSiteIDOperation {
+func (o *GetSiteNameFromSiteIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteNameFromSiteIDOperation) *xxx_GetSiteNameFromSiteIDOperation {
+	if op == nil {
+		op = &xxx_GetSiteNameFromSiteIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSiteNameFromSiteIDOperation{}
+		return op
 	}
-	return &xxx_GetSiteNameFromSiteIDOperation{
-		This:   o.This,
-		SiteID: o.SiteID,
-	}
+	o.This = op.This
+	o.SiteID = op.SiteID
+	return op
 }
 
 func (o *GetSiteNameFromSiteIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSiteNameFromSiteIDOperation) {
@@ -409,7 +411,7 @@ func (o *GetSiteNameFromSiteIDRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.SiteID = op.SiteID
 }
 func (o *GetSiteNameFromSiteIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSiteNameFromSiteIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSiteNameFromSiteIDOperation{}
@@ -429,15 +431,17 @@ type GetSiteNameFromSiteIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSiteNameFromSiteIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetSiteNameFromSiteIDOperation {
+func (o *GetSiteNameFromSiteIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSiteNameFromSiteIDOperation) *xxx_GetSiteNameFromSiteIDOperation {
+	if op == nil {
+		op = &xxx_GetSiteNameFromSiteIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSiteNameFromSiteIDOperation{}
+		return op
 	}
-	return &xxx_GetSiteNameFromSiteIDOperation{
-		That:     o.That,
-		SiteName: o.SiteName,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.SiteName = op.SiteName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSiteNameFromSiteIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSiteNameFromSiteIDOperation) {
@@ -449,7 +453,7 @@ func (o *GetSiteNameFromSiteIDResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetSiteNameFromSiteIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSiteNameFromSiteIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSiteNameFromSiteIDOperation{}
@@ -646,14 +650,16 @@ type GetSiteIDFromSiteNameRequest struct {
 	SiteName *oaut.String   `idl:"name:bstrSiteName" json:"site_name"`
 }
 
-func (o *GetSiteIDFromSiteNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetSiteIDFromSiteNameOperation {
+func (o *GetSiteIDFromSiteNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteIDFromSiteNameOperation) *xxx_GetSiteIDFromSiteNameOperation {
+	if op == nil {
+		op = &xxx_GetSiteIDFromSiteNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSiteIDFromSiteNameOperation{}
+		return op
 	}
-	return &xxx_GetSiteIDFromSiteNameOperation{
-		This:     o.This,
-		SiteName: o.SiteName,
-	}
+	o.This = op.This
+	o.SiteName = op.SiteName
+	return op
 }
 
 func (o *GetSiteIDFromSiteNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSiteIDFromSiteNameOperation) {
@@ -664,7 +670,7 @@ func (o *GetSiteIDFromSiteNameRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.SiteName = op.SiteName
 }
 func (o *GetSiteIDFromSiteNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSiteIDFromSiteNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSiteIDFromSiteNameOperation{}
@@ -684,15 +690,17 @@ type GetSiteIDFromSiteNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSiteIDFromSiteNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetSiteIDFromSiteNameOperation {
+func (o *GetSiteIDFromSiteNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSiteIDFromSiteNameOperation) *xxx_GetSiteIDFromSiteNameOperation {
+	if op == nil {
+		op = &xxx_GetSiteIDFromSiteNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSiteIDFromSiteNameOperation{}
+		return op
 	}
-	return &xxx_GetSiteIDFromSiteNameOperation{
-		That:   o.That,
-		SiteID: o.SiteID,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.SiteID = op.SiteID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSiteIDFromSiteNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSiteIDFromSiteNameOperation) {
@@ -704,7 +712,7 @@ func (o *GetSiteIDFromSiteNameResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetSiteIDFromSiteNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSiteIDFromSiteNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSiteIDFromSiteNameOperation{}
@@ -901,14 +909,16 @@ type GetSiteElementFromSiteIDRequest struct {
 	SiteID uint32         `idl:"name:dwSiteId" json:"site_id"`
 }
 
-func (o *GetSiteElementFromSiteIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetSiteElementFromSiteIDOperation {
+func (o *GetSiteElementFromSiteIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSiteElementFromSiteIDOperation) *xxx_GetSiteElementFromSiteIDOperation {
+	if op == nil {
+		op = &xxx_GetSiteElementFromSiteIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSiteElementFromSiteIDOperation{}
+		return op
 	}
-	return &xxx_GetSiteElementFromSiteIDOperation{
-		This:   o.This,
-		SiteID: o.SiteID,
-	}
+	o.This = op.This
+	o.SiteID = op.SiteID
+	return op
 }
 
 func (o *GetSiteElementFromSiteIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSiteElementFromSiteIDOperation) {
@@ -919,7 +929,7 @@ func (o *GetSiteElementFromSiteIDRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.SiteID = op.SiteID
 }
 func (o *GetSiteElementFromSiteIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSiteElementFromSiteIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSiteElementFromSiteIDOperation{}
@@ -939,15 +949,17 @@ type GetSiteElementFromSiteIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSiteElementFromSiteIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetSiteElementFromSiteIDOperation {
+func (o *GetSiteElementFromSiteIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSiteElementFromSiteIDOperation) *xxx_GetSiteElementFromSiteIDOperation {
+	if op == nil {
+		op = &xxx_GetSiteElementFromSiteIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSiteElementFromSiteIDOperation{}
+		return op
 	}
-	return &xxx_GetSiteElementFromSiteIDOperation{
-		That:        o.That,
-		SiteElement: o.SiteElement,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.SiteElement = op.SiteElement
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSiteElementFromSiteIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSiteElementFromSiteIDOperation) {
@@ -959,7 +971,7 @@ func (o *GetSiteElementFromSiteIDResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GetSiteElementFromSiteIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSiteElementFromSiteIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSiteElementFromSiteIDOperation{}
@@ -1330,15 +1342,17 @@ type MapPathRequest struct {
 	VirtualPath *oaut.String   `idl:"name:bstrVirtualPath" json:"virtual_path"`
 }
 
-func (o *MapPathRequest) xxx_ToOp(ctx context.Context) *xxx_MapPathOperation {
+func (o *MapPathRequest) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation) *xxx_MapPathOperation {
+	if op == nil {
+		op = &xxx_MapPathOperation{}
+	}
 	if o == nil {
-		return &xxx_MapPathOperation{}
+		return op
 	}
-	return &xxx_MapPathOperation{
-		This:        o.This,
-		SiteName:    o.SiteName,
-		VirtualPath: o.VirtualPath,
-	}
+	o.This = op.This
+	o.SiteName = op.SiteName
+	o.VirtualPath = op.VirtualPath
+	return op
 }
 
 func (o *MapPathRequest) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperation) {
@@ -1350,7 +1364,7 @@ func (o *MapPathRequest) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperatio
 	o.VirtualPath = op.VirtualPath
 }
 func (o *MapPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MapPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MapPathOperation{}
@@ -1372,17 +1386,19 @@ type MapPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MapPathResponse) xxx_ToOp(ctx context.Context) *xxx_MapPathOperation {
+func (o *MapPathResponse) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation) *xxx_MapPathOperation {
+	if op == nil {
+		op = &xxx_MapPathOperation{}
+	}
 	if o == nil {
-		return &xxx_MapPathOperation{}
+		return op
 	}
-	return &xxx_MapPathOperation{
-		That:                    o.That,
-		PhysicalPath:            o.PhysicalPath,
-		VirtualDirectoryElement: o.VirtualDirectoryElement,
-		ApplicationElement:      o.ApplicationElement,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.PhysicalPath = op.PhysicalPath
+	o.VirtualDirectoryElement = op.VirtualDirectoryElement
+	o.ApplicationElement = op.ApplicationElement
+	o.Return = op.Return
+	return op
 }
 
 func (o *MapPathResponse) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperation) {
@@ -1396,7 +1412,7 @@ func (o *MapPathResponse) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperati
 	o.Return = op.Return
 }
 func (o *MapPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MapPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MapPathOperation{}

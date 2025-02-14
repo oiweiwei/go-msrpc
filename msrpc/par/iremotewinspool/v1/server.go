@@ -1262,530 +1262,912 @@ func NewRemoteWinspoolServerHandle(o RemoteWinspoolServer) dcerpc.ServerHandle {
 func RemoteWinspoolServerHandle(ctx context.Context, o RemoteWinspoolServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RpcAsyncOpenPrinter
-		in := &OpenPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RpcAsyncAddPrinter
-		in := &AddPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // RpcAsyncSetJob
-		in := &SetJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // RpcAsyncGetJob
-		in := &GetJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RpcAsyncEnumJobs
-		in := &EnumJobsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumJobsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumJobs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumJobsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumJobs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RpcAsyncAddJob
-		in := &AddJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // RpcAsyncScheduleJob
-		in := &ScheduleJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ScheduleJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ScheduleJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ScheduleJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ScheduleJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // RpcAsyncDeletePrinter
-		in := &DeletePrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RpcAsyncSetPrinter
-		in := &SetPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RpcAsyncGetPrinter
-		in := &GetPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RpcAsyncStartDocPrinter
-		in := &StartDocPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartDocPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartDocPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartDocPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartDocPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // RpcAsyncStartPagePrinter
-		in := &StartPagePrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartPagePrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartPagePrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartPagePrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartPagePrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // RpcAsyncWritePrinter
-		in := &WritePrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WritePrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WritePrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WritePrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WritePrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // RpcAsyncEndPagePrinter
-		in := &EndPagePrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndPagePrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndPagePrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndPagePrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndPagePrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // RpcAsyncEndDocPrinter
-		in := &EndDocPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndDocPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndDocPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndDocPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndDocPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // RpcAsyncAbortPrinter
-		in := &AbortPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AbortPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AbortPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AbortPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AbortPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // RpcAsyncGetPrinterData
-		in := &GetPrinterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrinterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrinterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrinterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrinterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // RpcAsyncGetPrinterDataEx
-		in := &GetPrinterDataExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrinterDataExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrinterDataEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrinterDataExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrinterDataEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // RpcAsyncSetPrinterData
-		in := &SetPrinterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPrinterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPrinterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPrinterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPrinterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // RpcAsyncSetPrinterDataEx
-		in := &SetPrinterDataExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPrinterDataExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPrinterDataEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPrinterDataExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPrinterDataEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // RpcAsyncClosePrinter
-		in := &ClosePrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClosePrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClosePrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClosePrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClosePrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // RpcAsyncAddForm
-		in := &AddFormRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddFormOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddForm(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddFormRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddForm(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // RpcAsyncDeleteForm
-		in := &DeleteFormRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteFormOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteForm(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteFormRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteForm(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // RpcAsyncGetForm
-		in := &GetFormRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFormOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetForm(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFormRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetForm(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // RpcAsyncSetForm
-		in := &SetFormRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFormOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetForm(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFormRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetForm(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // RpcAsyncEnumForms
-		in := &EnumFormsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumFormsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumForms(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumFormsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumForms(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // RpcAsyncGetPrinterDriver
-		in := &GetPrinterDriverRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrinterDriverOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrinterDriver(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrinterDriverRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrinterDriver(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // RpcAsyncEnumPrinterData
-		in := &EnumPrinterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrinterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrinterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrinterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrinterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // RpcAsyncEnumPrinterDataEx
-		in := &EnumPrinterDataExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrinterDataExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrinterDataEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrinterDataExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrinterDataEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // RpcAsyncEnumPrinterKey
-		in := &EnumPrinterKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrinterKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrinterKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrinterKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrinterKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // RpcAsyncDeletePrinterData
-		in := &DeletePrinterDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // RpcAsyncDeletePrinterDataEx
-		in := &DeletePrinterDataExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterDataExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterDataEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterDataExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterDataEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // RpcAsyncDeletePrinterKey
-		in := &DeletePrinterKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // RpcAsyncXcvData
-		in := &XcvDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_XcvDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.XcvData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &XcvDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.XcvData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // RpcAsyncSendRecvBidiData
-		in := &SendRecvBIDIDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendRecvBIDIDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendRecvBIDIData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendRecvBIDIDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendRecvBIDIData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // RpcAsyncCreatePrinterIC
-		in := &CreatePrinterICRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePrinterICOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePrinterIC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePrinterICRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePrinterIC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // RpcAsyncPlayGdiScriptOnPrinterIC
-		in := &PlayGDIScriptOnPrinterICRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PlayGDIScriptOnPrinterICOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PlayGDIScriptOnPrinterIC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PlayGDIScriptOnPrinterICRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PlayGDIScriptOnPrinterIC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // RpcAsyncDeletePrinterIC
-		in := &DeletePrinterICRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterICOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterIC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterICRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterIC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // RpcAsyncEnumPrinters
-		in := &EnumPrintersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrintersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrinters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrintersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrinters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // RpcAsyncAddPrinterDriver
-		in := &AddPrinterDriverRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPrinterDriverOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPrinterDriver(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPrinterDriverRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPrinterDriver(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // RpcAsyncEnumPrinterDrivers
-		in := &EnumPrinterDriversRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrinterDriversOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrinterDrivers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrinterDriversRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrinterDrivers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // RpcAsyncGetPrinterDriverDirectory
-		in := &GetPrinterDriverDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrinterDriverDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrinterDriverDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrinterDriverDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrinterDriverDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // RpcAsyncDeletePrinterDriver
-		in := &DeletePrinterDriverRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterDriverOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterDriver(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterDriverRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterDriver(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // RpcAsyncDeletePrinterDriverEx
-		in := &DeletePrinterDriverExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterDriverExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterDriverEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterDriverExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterDriverEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // RpcAsyncAddPrintProcessor
-		in := &AddPrintProcessorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPrintProcessorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPrintProcessor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPrintProcessorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPrintProcessor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // RpcAsyncEnumPrintProcessors
-		in := &EnumPrintProcessorsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrintProcessorsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrintProcessors(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrintProcessorsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrintProcessors(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // RpcAsyncGetPrintProcessorDirectory
-		in := &GetPrintProcessorDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrintProcessorDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrintProcessorDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrintProcessorDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrintProcessorDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // RpcAsyncEnumPorts
-		in := &EnumPortsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPortsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPorts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPortsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPorts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // RpcAsyncEnumMonitors
-		in := &EnumMonitorsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumMonitorsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumMonitors(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumMonitorsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumMonitors(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // RpcAsyncAddPort
-		in := &AddPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // RpcAsyncSetPort
-		in := &SetPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // RpcAsyncAddMonitor
-		in := &AddMonitorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddMonitorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddMonitor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddMonitorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddMonitor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // RpcAsyncDeleteMonitor
-		in := &DeleteMonitorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteMonitorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteMonitor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteMonitorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteMonitor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // RpcAsyncDeletePrintProcessor
-		in := &DeletePrintProcessorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrintProcessorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrintProcessor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrintProcessorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrintProcessor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // RpcAsyncEnumPrintProcessorDatatypes
-		in := &EnumPrintProcessorDataTypesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPrintProcessorDataTypesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPrintProcessorDataTypes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPrintProcessorDataTypesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPrintProcessorDataTypes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // RpcAsyncAddPerMachineConnection
-		in := &AddPerMachineConnectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPerMachineConnectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPerMachineConnection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPerMachineConnectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPerMachineConnection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // RpcAsyncDeletePerMachineConnection
-		in := &DeletePerMachineConnectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePerMachineConnectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePerMachineConnection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePerMachineConnectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePerMachineConnection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // RpcAsyncEnumPerMachineConnections
-		in := &EnumPerMachineConnectionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPerMachineConnectionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPerMachineConnections(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPerMachineConnectionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPerMachineConnections(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // RpcSyncRegisterForRemoteNotifications
-		in := &SyncRegisterForRemoteNotificationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SyncRegisterForRemoteNotificationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SyncRegisterForRemoteNotifications(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SyncRegisterForRemoteNotificationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SyncRegisterForRemoteNotifications(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // RpcSyncUnRegisterForRemoteNotifications
-		in := &SyncUnregisterForRemoteNotificationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SyncUnregisterForRemoteNotificationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SyncUnregisterForRemoteNotifications(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SyncUnregisterForRemoteNotificationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SyncUnregisterForRemoteNotifications(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // RpcSyncRefreshRemoteNotifications
-		in := &SyncRefreshRemoteNotificationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SyncRefreshRemoteNotificationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SyncRefreshRemoteNotifications(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SyncRefreshRemoteNotificationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SyncRefreshRemoteNotifications(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 61: // RpcAsyncGetRemoteNotifications
-		in := &GetRemoteNotificationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRemoteNotificationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRemoteNotifications(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRemoteNotificationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRemoteNotifications(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 62: // RpcAsyncInstallPrinterDriverFromPackage
-		in := &InstallPrinterDriverFromPackageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InstallPrinterDriverFromPackageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InstallPrinterDriverFromPackage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InstallPrinterDriverFromPackageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InstallPrinterDriverFromPackage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 63: // RpcAsyncUploadPrinterDriverPackage
-		in := &UploadPrinterDriverPackageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UploadPrinterDriverPackageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UploadPrinterDriverPackage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UploadPrinterDriverPackageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UploadPrinterDriverPackage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 64: // RpcAsyncGetCorePrinterDrivers
-		in := &GetCorePrinterDriversRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCorePrinterDriversOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCorePrinterDrivers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCorePrinterDriversRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCorePrinterDrivers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 65: // RpcAsyncCorePrinterDriverInstalled
-		in := &CorePrinterDriverInstalledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CorePrinterDriverInstalledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CorePrinterDriverInstalled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CorePrinterDriverInstalledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CorePrinterDriverInstalled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // RpcAsyncGetPrinterDriverPackagePath
-		in := &GetPrinterDriverPackagePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPrinterDriverPackagePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPrinterDriverPackagePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPrinterDriverPackagePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPrinterDriverPackagePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 67: // RpcAsyncDeletePrinterDriverPackage
-		in := &DeletePrinterDriverPackageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeletePrinterDriverPackageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeletePrinterDriverPackage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeletePrinterDriverPackageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeletePrinterDriverPackage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 68: // RpcAsyncReadPrinter
-		in := &ReadPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReadPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReadPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReadPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReadPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 69: // RpcAsyncResetPrinter
-		in := &ResetPrinterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResetPrinterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResetPrinter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResetPrinterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResetPrinter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 70: // RpcAsyncGetJobNamedPropertyValue
-		in := &GetJobNamedPropertyValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJobNamedPropertyValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJobNamedPropertyValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJobNamedPropertyValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJobNamedPropertyValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 71: // RpcAsyncSetJobNamedProperty
-		in := &SetJobNamedPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetJobNamedPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetJobNamedProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetJobNamedPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetJobNamedProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 72: // RpcAsyncDeleteJobNamedProperty
-		in := &DeleteJobNamedPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteJobNamedPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteJobNamedProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteJobNamedPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteJobNamedProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 73: // RpcAsyncEnumJobNamedProperties
-		in := &EnumJobNamedPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumJobNamedPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumJobNamedProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumJobNamedPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumJobNamedProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 74: // RpcAsyncLogJobInfoForBranchOffice
-		in := &LogJobInfoForBranchOfficeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LogJobInfoForBranchOfficeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.LogJobInfoForBranchOffice(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LogJobInfoForBranchOfficeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.LogJobInfoForBranchOffice(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRemoteWinspool
+type UnimplementedRemoteWinspoolServer struct {
+}
+
+func (UnimplementedRemoteWinspoolServer) OpenPrinter(context.Context, *OpenPrinterRequest) (*OpenPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddPrinter(context.Context, *AddPrinterRequest) (*AddPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetJob(context.Context, *SetJobRequest) (*SetJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumJobs(context.Context, *EnumJobsRequest) (*EnumJobsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddJob(context.Context, *AddJobRequest) (*AddJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) ScheduleJob(context.Context, *ScheduleJobRequest) (*ScheduleJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinter(context.Context, *DeletePrinterRequest) (*DeletePrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetPrinter(context.Context, *SetPrinterRequest) (*SetPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrinter(context.Context, *GetPrinterRequest) (*GetPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) StartDocPrinter(context.Context, *StartDocPrinterRequest) (*StartDocPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) StartPagePrinter(context.Context, *StartPagePrinterRequest) (*StartPagePrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) WritePrinter(context.Context, *WritePrinterRequest) (*WritePrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EndPagePrinter(context.Context, *EndPagePrinterRequest) (*EndPagePrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EndDocPrinter(context.Context, *EndDocPrinterRequest) (*EndDocPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AbortPrinter(context.Context, *AbortPrinterRequest) (*AbortPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrinterData(context.Context, *GetPrinterDataRequest) (*GetPrinterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrinterDataEx(context.Context, *GetPrinterDataExRequest) (*GetPrinterDataExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetPrinterData(context.Context, *SetPrinterDataRequest) (*SetPrinterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetPrinterDataEx(context.Context, *SetPrinterDataExRequest) (*SetPrinterDataExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) ClosePrinter(context.Context, *ClosePrinterRequest) (*ClosePrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddForm(context.Context, *AddFormRequest) (*AddFormResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeleteForm(context.Context, *DeleteFormRequest) (*DeleteFormResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetForm(context.Context, *GetFormRequest) (*GetFormResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetForm(context.Context, *SetFormRequest) (*SetFormResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumForms(context.Context, *EnumFormsRequest) (*EnumFormsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrinterDriver(context.Context, *GetPrinterDriverRequest) (*GetPrinterDriverResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrinterData(context.Context, *EnumPrinterDataRequest) (*EnumPrinterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrinterDataEx(context.Context, *EnumPrinterDataExRequest) (*EnumPrinterDataExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrinterKey(context.Context, *EnumPrinterKeyRequest) (*EnumPrinterKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterData(context.Context, *DeletePrinterDataRequest) (*DeletePrinterDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterDataEx(context.Context, *DeletePrinterDataExRequest) (*DeletePrinterDataExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterKey(context.Context, *DeletePrinterKeyRequest) (*DeletePrinterKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) XcvData(context.Context, *XcvDataRequest) (*XcvDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SendRecvBIDIData(context.Context, *SendRecvBIDIDataRequest) (*SendRecvBIDIDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) CreatePrinterIC(context.Context, *CreatePrinterICRequest) (*CreatePrinterICResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) PlayGDIScriptOnPrinterIC(context.Context, *PlayGDIScriptOnPrinterICRequest) (*PlayGDIScriptOnPrinterICResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterIC(context.Context, *DeletePrinterICRequest) (*DeletePrinterICResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrinters(context.Context, *EnumPrintersRequest) (*EnumPrintersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddPrinterDriver(context.Context, *AddPrinterDriverRequest) (*AddPrinterDriverResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrinterDrivers(context.Context, *EnumPrinterDriversRequest) (*EnumPrinterDriversResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrinterDriverDirectory(context.Context, *GetPrinterDriverDirectoryRequest) (*GetPrinterDriverDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterDriver(context.Context, *DeletePrinterDriverRequest) (*DeletePrinterDriverResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterDriverEx(context.Context, *DeletePrinterDriverExRequest) (*DeletePrinterDriverExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddPrintProcessor(context.Context, *AddPrintProcessorRequest) (*AddPrintProcessorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrintProcessors(context.Context, *EnumPrintProcessorsRequest) (*EnumPrintProcessorsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrintProcessorDirectory(context.Context, *GetPrintProcessorDirectoryRequest) (*GetPrintProcessorDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPorts(context.Context, *EnumPortsRequest) (*EnumPortsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumMonitors(context.Context, *EnumMonitorsRequest) (*EnumMonitorsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddPort(context.Context, *AddPortRequest) (*AddPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetPort(context.Context, *SetPortRequest) (*SetPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddMonitor(context.Context, *AddMonitorRequest) (*AddMonitorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeleteMonitor(context.Context, *DeleteMonitorRequest) (*DeleteMonitorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrintProcessor(context.Context, *DeletePrintProcessorRequest) (*DeletePrintProcessorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPrintProcessorDataTypes(context.Context, *EnumPrintProcessorDataTypesRequest) (*EnumPrintProcessorDataTypesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) AddPerMachineConnection(context.Context, *AddPerMachineConnectionRequest) (*AddPerMachineConnectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePerMachineConnection(context.Context, *DeletePerMachineConnectionRequest) (*DeletePerMachineConnectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumPerMachineConnections(context.Context, *EnumPerMachineConnectionsRequest) (*EnumPerMachineConnectionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SyncRegisterForRemoteNotifications(context.Context, *SyncRegisterForRemoteNotificationsRequest) (*SyncRegisterForRemoteNotificationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SyncUnregisterForRemoteNotifications(context.Context, *SyncUnregisterForRemoteNotificationsRequest) (*SyncUnregisterForRemoteNotificationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SyncRefreshRemoteNotifications(context.Context, *SyncRefreshRemoteNotificationsRequest) (*SyncRefreshRemoteNotificationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetRemoteNotifications(context.Context, *GetRemoteNotificationsRequest) (*GetRemoteNotificationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) InstallPrinterDriverFromPackage(context.Context, *InstallPrinterDriverFromPackageRequest) (*InstallPrinterDriverFromPackageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) UploadPrinterDriverPackage(context.Context, *UploadPrinterDriverPackageRequest) (*UploadPrinterDriverPackageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetCorePrinterDrivers(context.Context, *GetCorePrinterDriversRequest) (*GetCorePrinterDriversResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) CorePrinterDriverInstalled(context.Context, *CorePrinterDriverInstalledRequest) (*CorePrinterDriverInstalledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetPrinterDriverPackagePath(context.Context, *GetPrinterDriverPackagePathRequest) (*GetPrinterDriverPackagePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeletePrinterDriverPackage(context.Context, *DeletePrinterDriverPackageRequest) (*DeletePrinterDriverPackageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) ReadPrinter(context.Context, *ReadPrinterRequest) (*ReadPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) ResetPrinter(context.Context, *ResetPrinterRequest) (*ResetPrinterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) GetJobNamedPropertyValue(context.Context, *GetJobNamedPropertyValueRequest) (*GetJobNamedPropertyValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) SetJobNamedProperty(context.Context, *SetJobNamedPropertyRequest) (*SetJobNamedPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) DeleteJobNamedProperty(context.Context, *DeleteJobNamedPropertyRequest) (*DeleteJobNamedPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) EnumJobNamedProperties(context.Context, *EnumJobNamedPropertiesRequest) (*EnumJobNamedPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRemoteWinspoolServer) LogJobInfoForBranchOffice(context.Context, *LogJobInfoForBranchOfficeRequest) (*LogJobInfoForBranchOfficeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RemoteWinspoolServer = (*UnimplementedRemoteWinspoolServer)(nil)

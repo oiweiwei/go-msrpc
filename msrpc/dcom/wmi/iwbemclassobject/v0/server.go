@@ -47,3 +47,10 @@ func ClassObjectServerHandle(ctx context.Context, o ClassObjectServer, opNum int
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemClassObject
+type UnimplementedClassObjectServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+var _ ClassObjectServer = (*UnimplementedClassObjectServer)(nil)

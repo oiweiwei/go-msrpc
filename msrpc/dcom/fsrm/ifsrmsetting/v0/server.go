@@ -137,96 +137,169 @@ func SettingServerHandle(ctx context.Context, o SettingServer, opNum int, r ndr.
 	}
 	switch opNum {
 	case 7: // SmtpServer
-		in := &GetSMTPServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSMTPServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSMTPServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSMTPServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSMTPServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SmtpServer
-		in := &SetSMTPServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSMTPServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSMTPServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSMTPServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSMTPServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // MailFrom
-		in := &GetMailFromRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailFromOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailFrom(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailFromRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailFrom(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // MailFrom
-		in := &SetMailFromRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailFromOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailFrom(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailFromRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailFrom(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // AdminEmail
-		in := &GetAdminEmailRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAdminEmailOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAdminEmail(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAdminEmailRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAdminEmail(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // AdminEmail
-		in := &SetAdminEmailRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAdminEmailOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAdminEmail(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAdminEmailRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAdminEmail(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // DisableCommandLine
-		in := &GetDisableCommandLineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisableCommandLineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisableCommandLine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisableCommandLineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisableCommandLine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // DisableCommandLine
-		in := &SetDisableCommandLineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDisableCommandLineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDisableCommandLine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDisableCommandLineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDisableCommandLine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // EnableScreeningAudit
-		in := &GetEnableScreeningAuditRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEnableScreeningAuditOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEnableScreeningAudit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEnableScreeningAuditRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnableScreeningAudit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // EnableScreeningAudit
-		in := &SetEnableScreeningAuditRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEnableScreeningAuditOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEnableScreeningAudit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEnableScreeningAuditRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEnableScreeningAudit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // EmailTest
-		in := &EmailTestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EmailTestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EmailTest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EmailTestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EmailTest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // SetActionRunLimitInterval
-		in := &SetActionRunLimitIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetActionRunLimitIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetActionRunLimitInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetActionRunLimitIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetActionRunLimitInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // GetActionRunLimitInterval
-		in := &GetActionRunLimitIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionRunLimitIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionRunLimitInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionRunLimitIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionRunLimitInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmSetting
+type UnimplementedSettingServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedSettingServer) GetSMTPServer(context.Context, *GetSMTPServerRequest) (*GetSMTPServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) SetSMTPServer(context.Context, *SetSMTPServerRequest) (*SetSMTPServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) GetMailFrom(context.Context, *GetMailFromRequest) (*GetMailFromResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) SetMailFrom(context.Context, *SetMailFromRequest) (*SetMailFromResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) GetAdminEmail(context.Context, *GetAdminEmailRequest) (*GetAdminEmailResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) SetAdminEmail(context.Context, *SetAdminEmailRequest) (*SetAdminEmailResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) GetDisableCommandLine(context.Context, *GetDisableCommandLineRequest) (*GetDisableCommandLineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) SetDisableCommandLine(context.Context, *SetDisableCommandLineRequest) (*SetDisableCommandLineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) GetEnableScreeningAudit(context.Context, *GetEnableScreeningAuditRequest) (*GetEnableScreeningAuditResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) SetEnableScreeningAudit(context.Context, *SetEnableScreeningAuditRequest) (*SetEnableScreeningAuditResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) EmailTest(context.Context, *EmailTestRequest) (*EmailTestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) SetActionRunLimitInterval(context.Context, *SetActionRunLimitIntervalRequest) (*SetActionRunLimitIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSettingServer) GetActionRunLimitInterval(context.Context, *GetActionRunLimitIntervalRequest) (*GetActionRunLimitIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SettingServer = (*UnimplementedSettingServer)(nil)

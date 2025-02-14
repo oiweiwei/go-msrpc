@@ -932,222 +932,385 @@ func IMSAdminBaseWServerHandle(ctx context.Context, o IMSAdminBaseWServer, opNum
 	}
 	switch opNum {
 	case 3: // AddKey
-		in := &AddKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // DeleteKey
-		in := &DeleteKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // DeleteChildKeys
-		in := &DeleteChildKeysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteChildKeysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteChildKeys(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteChildKeysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteChildKeys(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // EnumKeys
-		in := &EnumKeysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumKeysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumKeys(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumKeysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumKeys(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // CopyKey
-		in := &CopyKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CopyKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CopyKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CopyKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CopyKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RenameKey
-		in := &RenameKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RenameKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RenameKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RenameKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RenameKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_SetData
-		in := &SetDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_GetData
-		in := &GetDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // DeleteData
-		in := &DeleteDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_EnumData
-		in := &EnumDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // R_GetAllData
-		in := &GetAllDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // DeleteAllData
-		in := &DeleteAllDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteAllDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteAllData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteAllDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteAllData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // CopyData
-		in := &CopyDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CopyDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CopyData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CopyDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CopyData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // GetDataPaths
-		in := &GetDataPathsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataPathsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataPaths(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataPathsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataPaths(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // OpenKey
-		in := &OpenKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // CloseKey
-		in := &CloseKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // ChangePermissions
-		in := &ChangePermissionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChangePermissionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChangePermissions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChangePermissionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChangePermissions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // SaveData
-		in := &SaveDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SaveDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SaveData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SaveDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SaveData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // GetHandleInfo
-		in := &GetHandleInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetHandleInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetHandleInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetHandleInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetHandleInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // GetSystemChangeNumber
-		in := &GetSystemChangeNumberRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSystemChangeNumberOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSystemChangeNumber(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSystemChangeNumberRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSystemChangeNumber(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // GetDataSetNumber
-		in := &GetDataSetNumberRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataSetNumberOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataSetNumber(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataSetNumberRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataSetNumber(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // SetLastChangeTime
-		in := &SetLastChangeTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLastChangeTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLastChangeTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLastChangeTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLastChangeTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // GetLastChangeTime
-		in := &GetLastChangeTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastChangeTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastChangeTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastChangeTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastChangeTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // R_KeyExchangePhase1
-		in := &KeyExchangePhase1Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_KeyExchangePhase1Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.KeyExchangePhase1(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &KeyExchangePhase1Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.KeyExchangePhase1(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // R_KeyExchangePhase2
-		in := &KeyExchangePhase2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_KeyExchangePhase2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.KeyExchangePhase2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &KeyExchangePhase2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.KeyExchangePhase2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Backup
-		in := &BackupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Backup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Backup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Restore
-		in := &RestoreRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestoreOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Restore(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestoreRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Restore(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // EnumBackups
-		in := &EnumBackupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumBackupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumBackups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumBackupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumBackups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // DeleteBackup
-		in := &DeleteBackupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteBackupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteBackup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteBackupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteBackup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // UnmarshalInterface
-		in := &UnmarshalInterfaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnmarshalInterfaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnmarshalInterface(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnmarshalInterfaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnmarshalInterface(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // R_GetServerGuid
-		in := &GetServerGUIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerGUIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerGUID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerGUIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerGUID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IMSAdminBaseW
+type UnimplementedIMSAdminBaseWServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedIMSAdminBaseWServer) AddKey(context.Context, *AddKeyRequest) (*AddKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) DeleteKey(context.Context, *DeleteKeyRequest) (*DeleteKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) DeleteChildKeys(context.Context, *DeleteChildKeysRequest) (*DeleteChildKeysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) EnumKeys(context.Context, *EnumKeysRequest) (*EnumKeysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) CopyKey(context.Context, *CopyKeyRequest) (*CopyKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) RenameKey(context.Context, *RenameKeyRequest) (*RenameKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) SetData(context.Context, *SetDataRequest) (*SetDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetData(context.Context, *GetDataRequest) (*GetDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) DeleteData(context.Context, *DeleteDataRequest) (*DeleteDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) EnumData(context.Context, *EnumDataRequest) (*EnumDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetAllData(context.Context, *GetAllDataRequest) (*GetAllDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) DeleteAllData(context.Context, *DeleteAllDataRequest) (*DeleteAllDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) CopyData(context.Context, *CopyDataRequest) (*CopyDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetDataPaths(context.Context, *GetDataPathsRequest) (*GetDataPathsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) OpenKey(context.Context, *OpenKeyRequest) (*OpenKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) CloseKey(context.Context, *CloseKeyRequest) (*CloseKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) ChangePermissions(context.Context, *ChangePermissionsRequest) (*ChangePermissionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) SaveData(context.Context, *SaveDataRequest) (*SaveDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetHandleInfo(context.Context, *GetHandleInfoRequest) (*GetHandleInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetSystemChangeNumber(context.Context, *GetSystemChangeNumberRequest) (*GetSystemChangeNumberResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetDataSetNumber(context.Context, *GetDataSetNumberRequest) (*GetDataSetNumberResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) SetLastChangeTime(context.Context, *SetLastChangeTimeRequest) (*SetLastChangeTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetLastChangeTime(context.Context, *GetLastChangeTimeRequest) (*GetLastChangeTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) KeyExchangePhase1(context.Context, *KeyExchangePhase1Request) (*KeyExchangePhase1Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) KeyExchangePhase2(context.Context, *KeyExchangePhase2Request) (*KeyExchangePhase2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) Backup(context.Context, *BackupRequest) (*BackupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) Restore(context.Context, *RestoreRequest) (*RestoreResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) EnumBackups(context.Context, *EnumBackupsRequest) (*EnumBackupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) DeleteBackup(context.Context, *DeleteBackupRequest) (*DeleteBackupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) UnmarshalInterface(context.Context, *UnmarshalInterfaceRequest) (*UnmarshalInterfaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBaseWServer) GetServerGUID(context.Context, *GetServerGUIDRequest) (*GetServerGUIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IMSAdminBaseWServer = (*UnimplementedIMSAdminBaseWServer)(nil)

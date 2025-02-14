@@ -61,33 +61,61 @@ func EventClass3ServerHandle(ctx context.Context, o EventClass3Server, opNum int
 	}
 	switch opNum {
 	case 29: // EventClassPartitionID
-		in := &GetEventClassPartitionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassPartitionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassPartitionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassPartitionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassPartitionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // EventClassPartitionID
-		in := &SetEventClassPartitionIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassPartitionIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassPartitionID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassPartitionIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassPartitionID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // EventClassApplicationID
-		in := &GetEventClassApplicationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassApplicationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassApplicationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassApplicationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassApplicationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // EventClassApplicationID
-		in := &SetEventClassApplicationIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassApplicationIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassApplicationID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassApplicationIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassApplicationID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventClass3
+type UnimplementedEventClass3Server struct {
+	ieventclass2.UnimplementedEventClass2Server
+}
+
+func (UnimplementedEventClass3Server) GetEventClassPartitionID(context.Context, *GetEventClassPartitionIDRequest) (*GetEventClassPartitionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass3Server) SetEventClassPartitionID(context.Context, *SetEventClassPartitionIDRequest) (*SetEventClassPartitionIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass3Server) GetEventClassApplicationID(context.Context, *GetEventClassApplicationIDRequest) (*GetEventClassApplicationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass3Server) SetEventClassApplicationID(context.Context, *SetEventClassApplicationIDRequest) (*SetEventClassApplicationIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventClass3Server = (*UnimplementedEventClass3Server)(nil)

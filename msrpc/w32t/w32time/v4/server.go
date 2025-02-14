@@ -146,61 +146,108 @@ func NewW32TimeServerHandle(o W32TimeServer) dcerpc.ServerHandle {
 func W32TimeServerHandle(ctx context.Context, o W32TimeServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // W32TimeSync
-		in := &SyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Sync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Sync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // W32TimeGetNetlogonServiceBits
-		in := &GetNetlogonServiceBitsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetlogonServiceBitsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetlogonServiceBits(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetlogonServiceBitsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetlogonServiceBits(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // W32TimeQueryProviderStatus
-		in := &QueryProviderStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryProviderStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryProviderStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryProviderStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryProviderStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // W32TimeQuerySource
-		in := &QuerySourceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySourceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySource(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySourceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySource(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // W32TimeQueryProviderConfiguration
-		in := &QueryProviderConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryProviderConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryProviderConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryProviderConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryProviderConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // W32TimeQueryConfiguration
-		in := &QueryConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // W32TimeQueryStatus
-		in := &QueryStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // W32TimeLog
-		in := &LogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_LogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Log(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &LogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Log(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented W32Time
+type UnimplementedW32TimeServer struct {
+}
+
+func (UnimplementedW32TimeServer) Sync(context.Context, *SyncRequest) (*SyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) GetNetlogonServiceBits(context.Context, *GetNetlogonServiceBitsRequest) (*GetNetlogonServiceBitsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) QueryProviderStatus(context.Context, *QueryProviderStatusRequest) (*QueryProviderStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) QuerySource(context.Context, *QuerySourceRequest) (*QuerySourceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) QueryProviderConfiguration(context.Context, *QueryProviderConfigurationRequest) (*QueryProviderConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) QueryConfiguration(context.Context, *QueryConfigurationRequest) (*QueryConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) QueryStatus(context.Context, *QueryStatusRequest) (*QueryStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedW32TimeServer) Log(context.Context, *LogRequest) (*LogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ W32TimeServer = (*UnimplementedW32TimeServer)(nil)

@@ -394,348 +394,601 @@ func FileManagementJobServerHandle(ctx context.Context, o FileManagementJobServe
 	}
 	switch opNum {
 	case 12: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // NamespaceRoots
-		in := &GetNamespaceRootsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNamespaceRootsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNamespaceRoots(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNamespaceRootsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNamespaceRoots(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // NamespaceRoots
-		in := &SetNamespaceRootsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNamespaceRootsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNamespaceRoots(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNamespaceRootsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNamespaceRoots(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Enabled
-		in := &GetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Enabled
-		in := &SetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // OperationType
-		in := &GetOperationTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOperationTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOperationType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOperationTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOperationType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // OperationType
-		in := &SetOperationTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOperationTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOperationType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOperationTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOperationType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // ExpirationDirectory
-		in := &GetExpirationDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExpirationDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExpirationDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExpirationDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExpirationDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // ExpirationDirectory
-		in := &SetExpirationDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExpirationDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExpirationDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExpirationDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExpirationDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // CustomAction
-		in := &GetCustomActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCustomActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCustomAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCustomActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCustomAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // Notifications
-		in := &GetNotificationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNotificationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNotifications(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNotificationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNotifications(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // Logging
-		in := &GetLoggingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLoggingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogging(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLoggingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogging(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // Logging
-		in := &SetLoggingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLoggingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogging(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLoggingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogging(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // ReportEnabled
-		in := &GetReportEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReportEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReportEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // ReportEnabled
-		in := &SetReportEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetReportEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetReportEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetReportEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetReportEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Formats
-		in := &GetFormatsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFormatsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFormats(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFormatsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFormats(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Formats
-		in := &SetFormatsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFormatsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFormats(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFormatsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFormats(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // MailTo
-		in := &GetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // MailTo
-		in := &SetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // DaysSinceFileCreated
-		in := &GetDaysSinceFileCreatedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDaysSinceFileCreatedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDaysSinceFileCreated(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDaysSinceFileCreatedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDaysSinceFileCreated(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // DaysSinceFileCreated
-		in := &SetDaysSinceFileCreatedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDaysSinceFileCreatedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDaysSinceFileCreated(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDaysSinceFileCreatedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDaysSinceFileCreated(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // DaysSinceFileLastAccessed
-		in := &GetDaysSinceFileLastAccessedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDaysSinceFileLastAccessedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDaysSinceFileLastAccessed(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDaysSinceFileLastAccessedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDaysSinceFileLastAccessed(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // DaysSinceFileLastAccessed
-		in := &SetDaysSinceFileLastAccessedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDaysSinceFileLastAccessedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDaysSinceFileLastAccessed(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDaysSinceFileLastAccessedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDaysSinceFileLastAccessed(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // DaysSinceFileLastModified
-		in := &GetDaysSinceFileLastModifiedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDaysSinceFileLastModifiedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDaysSinceFileLastModified(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDaysSinceFileLastModifiedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDaysSinceFileLastModified(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // DaysSinceFileLastModified
-		in := &SetDaysSinceFileLastModifiedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDaysSinceFileLastModifiedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDaysSinceFileLastModified(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDaysSinceFileLastModifiedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDaysSinceFileLastModified(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // PropertyConditions
-		in := &GetPropertyConditionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyConditionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyConditions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyConditionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyConditions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // FromDate
-		in := &GetFromDateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFromDateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFromDate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFromDateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFromDate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // FromDate
-		in := &SetFromDateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFromDateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFromDate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFromDateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFromDate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // Task
-		in := &GetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // Task
-		in := &SetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // Parameters
-		in := &GetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // Parameters
-		in := &SetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // RunningStatus
-		in := &GetRunningStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRunningStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRunningStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRunningStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRunningStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // LastError
-		in := &GetLastErrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastErrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastError(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastErrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastError(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // LastReportPathWithoutExtension
-		in := &GetLastReportPathWithoutExtensionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastReportPathWithoutExtensionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastReportPathWithoutExtension(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastReportPathWithoutExtensionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastReportPathWithoutExtension(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // LastRun
-		in := &GetLastRunRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastRunOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastRun(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastRunRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastRun(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // FileNamePattern
-		in := &GetFileNamePatternRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileNamePatternOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileNamePattern(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileNamePatternRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileNamePattern(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // FileNamePattern
-		in := &SetFileNamePatternRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileNamePatternOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileNamePattern(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileNamePatternRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileNamePattern(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // Run
-		in := &RunRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RunOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Run(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RunRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Run(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // WaitForCompletion
-		in := &WaitForCompletionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitForCompletionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WaitForCompletion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitForCompletionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForCompletion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // Cancel
-		in := &CancelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Cancel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Cancel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // AddNotification
-		in := &AddNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // DeleteNotification
-		in := &DeleteNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // ModifyNotification
-		in := &ModifyNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // CreateNotificationAction
-		in := &CreateNotificationActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNotificationActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNotificationAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNotificationActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNotificationAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // EnumNotificationActions
-		in := &EnumNotificationActionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumNotificationActionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumNotificationActions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumNotificationActionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumNotificationActions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // CreatePropertyCondition
-		in := &CreatePropertyConditionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePropertyConditionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePropertyCondition(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePropertyConditionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePropertyCondition(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // CreateCustomAction
-		in := &CreateCustomActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateCustomActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateCustomAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateCustomActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateCustomAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileManagementJob
+type UnimplementedFileManagementJobServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedFileManagementJobServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetNamespaceRoots(context.Context, *GetNamespaceRootsRequest) (*GetNamespaceRootsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetNamespaceRoots(context.Context, *SetNamespaceRootsRequest) (*SetNamespaceRootsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetEnabled(context.Context, *GetEnabledRequest) (*GetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetEnabled(context.Context, *SetEnabledRequest) (*SetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetOperationType(context.Context, *GetOperationTypeRequest) (*GetOperationTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetOperationType(context.Context, *SetOperationTypeRequest) (*SetOperationTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetExpirationDirectory(context.Context, *GetExpirationDirectoryRequest) (*GetExpirationDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetExpirationDirectory(context.Context, *SetExpirationDirectoryRequest) (*SetExpirationDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetCustomAction(context.Context, *GetCustomActionRequest) (*GetCustomActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetNotifications(context.Context, *GetNotificationsRequest) (*GetNotificationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetLogging(context.Context, *GetLoggingRequest) (*GetLoggingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetLogging(context.Context, *SetLoggingRequest) (*SetLoggingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetReportEnabled(context.Context, *GetReportEnabledRequest) (*GetReportEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetReportEnabled(context.Context, *SetReportEnabledRequest) (*SetReportEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetFormats(context.Context, *GetFormatsRequest) (*GetFormatsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetFormats(context.Context, *SetFormatsRequest) (*SetFormatsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetMailTo(context.Context, *GetMailToRequest) (*GetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetMailTo(context.Context, *SetMailToRequest) (*SetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetDaysSinceFileCreated(context.Context, *GetDaysSinceFileCreatedRequest) (*GetDaysSinceFileCreatedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetDaysSinceFileCreated(context.Context, *SetDaysSinceFileCreatedRequest) (*SetDaysSinceFileCreatedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetDaysSinceFileLastAccessed(context.Context, *GetDaysSinceFileLastAccessedRequest) (*GetDaysSinceFileLastAccessedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetDaysSinceFileLastAccessed(context.Context, *SetDaysSinceFileLastAccessedRequest) (*SetDaysSinceFileLastAccessedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetDaysSinceFileLastModified(context.Context, *GetDaysSinceFileLastModifiedRequest) (*GetDaysSinceFileLastModifiedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetDaysSinceFileLastModified(context.Context, *SetDaysSinceFileLastModifiedRequest) (*SetDaysSinceFileLastModifiedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetPropertyConditions(context.Context, *GetPropertyConditionsRequest) (*GetPropertyConditionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetFromDate(context.Context, *GetFromDateRequest) (*GetFromDateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetFromDate(context.Context, *SetFromDateRequest) (*SetFromDateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetTask(context.Context, *SetTaskRequest) (*SetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetParameters(context.Context, *GetParametersRequest) (*GetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetParameters(context.Context, *SetParametersRequest) (*SetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetRunningStatus(context.Context, *GetRunningStatusRequest) (*GetRunningStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetLastError(context.Context, *GetLastErrorRequest) (*GetLastErrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetLastReportPathWithoutExtension(context.Context, *GetLastReportPathWithoutExtensionRequest) (*GetLastReportPathWithoutExtensionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetLastRun(context.Context, *GetLastRunRequest) (*GetLastRunResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) GetFileNamePattern(context.Context, *GetFileNamePatternRequest) (*GetFileNamePatternResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) SetFileNamePattern(context.Context, *SetFileNamePatternRequest) (*SetFileNamePatternResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) WaitForCompletion(context.Context, *WaitForCompletionRequest) (*WaitForCompletionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) AddNotification(context.Context, *AddNotificationRequest) (*AddNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) DeleteNotification(context.Context, *DeleteNotificationRequest) (*DeleteNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) ModifyNotification(context.Context, *ModifyNotificationRequest) (*ModifyNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) CreateNotificationAction(context.Context, *CreateNotificationActionRequest) (*CreateNotificationActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) EnumNotificationActions(context.Context, *EnumNotificationActionsRequest) (*EnumNotificationActionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) CreatePropertyCondition(context.Context, *CreatePropertyConditionRequest) (*CreatePropertyConditionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileManagementJobServer) CreateCustomAction(context.Context, *CreateCustomActionRequest) (*CreateCustomActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileManagementJobServer = (*UnimplementedFileManagementJobServer)(nil)

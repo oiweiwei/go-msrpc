@@ -186,22 +186,40 @@ func PCHServiceServerHandle(ctx context.Context, o PCHServiceServer, opNum int, 
 		// Opnum18NotUsedByProtocol
 		return nil, nil
 	case 19: // RemoteConnectionParms
-		in := &RemoteConnectionParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteConnectionParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteConnectionParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteConnectionParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteConnectionParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // RemoteUserSessionInfo
-		in := &RemoteUserSessionInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoteUserSessionInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoteUserSessionInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoteUserSessionInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoteUserSessionInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Opnum21NotUsedByProtocol
 		// Opnum21NotUsedByProtocol
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IPCHService
+type UnimplementedPCHServiceServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedPCHServiceServer) RemoteConnectionParameters(context.Context, *RemoteConnectionParametersRequest) (*RemoteConnectionParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPCHServiceServer) RemoteUserSessionInfo(context.Context, *RemoteUserSessionInfoRequest) (*RemoteUserSessionInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PCHServiceServer = (*UnimplementedPCHServiceServer)(nil)

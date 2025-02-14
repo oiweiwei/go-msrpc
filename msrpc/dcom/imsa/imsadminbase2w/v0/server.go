@@ -240,47 +240,85 @@ func IMSAdminBase2WServerHandle(ctx context.Context, o IMSAdminBase2WServer, opN
 	}
 	switch opNum {
 	case 34: // BackupWithPasswd
-		in := &BackupWithPasswordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupWithPasswordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupWithPassword(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupWithPasswordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupWithPassword(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // RestoreWithPasswd
-		in := &RestoreWithPasswordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestoreWithPasswordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RestoreWithPassword(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestoreWithPasswordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RestoreWithPassword(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // Export
-		in := &ExportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Export(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Export(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // Import
-		in := &ImportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Import(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Import(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // RestoreHistory
-		in := &RestoreHistoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RestoreHistoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RestoreHistory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RestoreHistoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RestoreHistory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // EnumHistory
-		in := &EnumHistoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumHistoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumHistory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumHistoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumHistory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IMSAdminBase2W
+type UnimplementedIMSAdminBase2WServer struct {
+	imsadminbasew.UnimplementedIMSAdminBaseWServer
+}
+
+func (UnimplementedIMSAdminBase2WServer) BackupWithPassword(context.Context, *BackupWithPasswordRequest) (*BackupWithPasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBase2WServer) RestoreWithPassword(context.Context, *RestoreWithPasswordRequest) (*RestoreWithPasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBase2WServer) Export(context.Context, *ExportRequest) (*ExportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBase2WServer) Import(context.Context, *ImportRequest) (*ImportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBase2WServer) RestoreHistory(context.Context, *RestoreHistoryRequest) (*RestoreHistoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIMSAdminBase2WServer) EnumHistory(context.Context, *EnumHistoryRequest) (*EnumHistoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IMSAdminBase2WServer = (*UnimplementedIMSAdminBase2WServer)(nil)

@@ -88,19 +88,23 @@ func CapabilitySupportServerHandle(ctx context.Context, o CapabilitySupportServe
 	}
 	switch opNum {
 	case 3: // Start
-		in := &StartRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Start(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Start(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Stop
-		in := &StopRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Stop(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Stop(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
@@ -108,22 +112,46 @@ func CapabilitySupportServerHandle(ctx context.Context, o CapabilitySupportServe
 		// Opnum6NotUsedOnWire
 		return nil, nil
 	case 7: // IsInstalled
-		in := &IsInstalledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsInstalledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsInstalled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsInstalledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsInstalled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // IsRunning
-		in := &IsRunningRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsRunningOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsRunning(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsRunningRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsRunning(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Opnum9NotUsedOnWire
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented ICapabilitySupport
+type UnimplementedCapabilitySupportServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCapabilitySupportServer) Start(context.Context, *StartRequest) (*StartResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCapabilitySupportServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCapabilitySupportServer) IsInstalled(context.Context, *IsInstalledRequest) (*IsInstalledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCapabilitySupportServer) IsRunning(context.Context, *IsRunningRequest) (*IsRunningResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CapabilitySupportServer = (*UnimplementedCapabilitySupportServer)(nil)

@@ -82,7 +82,7 @@ func (o *xxx_DefaultRemoteUnknownClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultRemoteUnknownClient) RemoteQueryInterface(ctx context.Context, in *RemoteQueryInterfaceRequest, opts ...dcerpc.CallOption) (*RemoteQueryInterfaceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -102,7 +102,7 @@ func (o *xxx_DefaultRemoteUnknownClient) RemoteQueryInterface(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteUnknownClient) RemoteAddReference(ctx context.Context, in *RemoteAddReferenceRequest, opts ...dcerpc.CallOption) (*RemoteAddReferenceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -122,7 +122,7 @@ func (o *xxx_DefaultRemoteUnknownClient) RemoteAddReference(ctx context.Context,
 }
 
 func (o *xxx_DefaultRemoteUnknownClient) RemoteRelease(ctx context.Context, in *RemoteReleaseRequest, opts ...dcerpc.CallOption) (*RemoteReleaseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -505,17 +505,19 @@ type RemoteQueryInterfaceRequest struct {
 	IIDs []*dcom.IID `idl:"name:iids;size_is:(cIids)" json:"iids"`
 }
 
-func (o *RemoteQueryInterfaceRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteQueryInterfaceOperation {
+func (o *RemoteQueryInterfaceRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteQueryInterfaceOperation) *xxx_RemoteQueryInterfaceOperation {
+	if op == nil {
+		op = &xxx_RemoteQueryInterfaceOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteQueryInterfaceOperation{}
+		return op
 	}
-	return &xxx_RemoteQueryInterfaceOperation{
-		This:            o.This,
-		IPID:            o.IPID,
-		ReferencesCount: o.ReferencesCount,
-		IIDsCount:       o.IIDsCount,
-		IIDs:            o.IIDs,
-	}
+	o.This = op.This
+	o.IPID = op.IPID
+	o.ReferencesCount = op.ReferencesCount
+	o.IIDsCount = op.IIDsCount
+	o.IIDs = op.IIDs
+	return op
 }
 
 func (o *RemoteQueryInterfaceRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteQueryInterfaceOperation) {
@@ -529,7 +531,7 @@ func (o *RemoteQueryInterfaceRequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.IIDs = op.IIDs
 }
 func (o *RemoteQueryInterfaceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteQueryInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteQueryInterfaceOperation{}
@@ -551,15 +553,17 @@ type RemoteQueryInterfaceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteQueryInterfaceResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteQueryInterfaceOperation {
+func (o *RemoteQueryInterfaceResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteQueryInterfaceOperation) *xxx_RemoteQueryInterfaceOperation {
+	if op == nil {
+		op = &xxx_RemoteQueryInterfaceOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteQueryInterfaceOperation{}
+		return op
 	}
-	return &xxx_RemoteQueryInterfaceOperation{
-		That:                  o.That,
-		QueryInterfaceResults: o.QueryInterfaceResults,
-		Return:                o.Return,
-	}
+	o.That = op.That
+	o.QueryInterfaceResults = op.QueryInterfaceResults
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteQueryInterfaceResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteQueryInterfaceOperation) {
@@ -571,7 +575,7 @@ func (o *RemoteQueryInterfaceResponse) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.Return = op.Return
 }
 func (o *RemoteQueryInterfaceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteQueryInterfaceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteQueryInterfaceOperation{}
@@ -829,15 +833,17 @@ type RemoteAddReferenceRequest struct {
 	InterfaceReferences []*dcom.RemoteInterfaceReference `idl:"name:InterfaceRefs;size_is:(cInterfaceRefs)" json:"interface_references"`
 }
 
-func (o *RemoteAddReferenceRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteAddReferenceOperation {
+func (o *RemoteAddReferenceRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteAddReferenceOperation) *xxx_RemoteAddReferenceOperation {
+	if op == nil {
+		op = &xxx_RemoteAddReferenceOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteAddReferenceOperation{}
+		return op
 	}
-	return &xxx_RemoteAddReferenceOperation{
-		This:                     o.This,
-		InterfaceReferencesCount: o.InterfaceReferencesCount,
-		InterfaceReferences:      o.InterfaceReferences,
-	}
+	o.This = op.This
+	o.InterfaceReferencesCount = op.InterfaceReferencesCount
+	o.InterfaceReferences = op.InterfaceReferences
+	return op
 }
 
 func (o *RemoteAddReferenceRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteAddReferenceOperation) {
@@ -849,7 +855,7 @@ func (o *RemoteAddReferenceRequest) xxx_FromOp(ctx context.Context, op *xxx_Remo
 	o.InterfaceReferences = op.InterfaceReferences
 }
 func (o *RemoteAddReferenceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteAddReferenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteAddReferenceOperation{}
@@ -871,15 +877,17 @@ type RemoteAddReferenceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteAddReferenceResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteAddReferenceOperation {
+func (o *RemoteAddReferenceResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteAddReferenceOperation) *xxx_RemoteAddReferenceOperation {
+	if op == nil {
+		op = &xxx_RemoteAddReferenceOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteAddReferenceOperation{}
+		return op
 	}
-	return &xxx_RemoteAddReferenceOperation{
-		That:    o.That,
-		Results: o.Results,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Results = op.Results
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteAddReferenceResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteAddReferenceOperation) {
@@ -891,7 +899,7 @@ func (o *RemoteAddReferenceResponse) xxx_FromOp(ctx context.Context, op *xxx_Rem
 	o.Return = op.Return
 }
 func (o *RemoteAddReferenceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteAddReferenceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteAddReferenceOperation{}
@@ -1102,15 +1110,17 @@ type RemoteReleaseRequest struct {
 	InterfaceReferences []*dcom.RemoteInterfaceReference `idl:"name:InterfaceRefs;size_is:(cInterfaceRefs)" json:"interface_references"`
 }
 
-func (o *RemoteReleaseRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteReleaseOperation {
+func (o *RemoteReleaseRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteReleaseOperation) *xxx_RemoteReleaseOperation {
+	if op == nil {
+		op = &xxx_RemoteReleaseOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteReleaseOperation{}
+		return op
 	}
-	return &xxx_RemoteReleaseOperation{
-		This:                     o.This,
-		InterfaceReferencesCount: o.InterfaceReferencesCount,
-		InterfaceReferences:      o.InterfaceReferences,
-	}
+	o.This = op.This
+	o.InterfaceReferencesCount = op.InterfaceReferencesCount
+	o.InterfaceReferences = op.InterfaceReferences
+	return op
 }
 
 func (o *RemoteReleaseRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteReleaseOperation) {
@@ -1122,7 +1132,7 @@ func (o *RemoteReleaseRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteRel
 	o.InterfaceReferences = op.InterfaceReferences
 }
 func (o *RemoteReleaseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteReleaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteReleaseOperation{}
@@ -1141,14 +1151,16 @@ type RemoteReleaseResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteReleaseResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteReleaseOperation {
+func (o *RemoteReleaseResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteReleaseOperation) *xxx_RemoteReleaseOperation {
+	if op == nil {
+		op = &xxx_RemoteReleaseOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteReleaseOperation{}
+		return op
 	}
-	return &xxx_RemoteReleaseOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteReleaseResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteReleaseOperation) {
@@ -1159,7 +1171,7 @@ func (o *RemoteReleaseResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteRe
 	o.Return = op.Return
 }
 func (o *RemoteReleaseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteReleaseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteReleaseOperation{}

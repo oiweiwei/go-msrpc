@@ -76,26 +76,49 @@ func AsyncServerHandle(ctx context.Context, o AsyncServer, opNum int, r ndr.Read
 	}
 	switch opNum {
 	case 3: // Cancel
-		in := &CancelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Cancel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Cancel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Wait
-		in := &WaitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Wait(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Wait(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // QueryStatus
-		in := &QueryStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsAsync
+type UnimplementedAsyncServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAsyncServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAsyncServer) Wait(context.Context, *WaitRequest) (*WaitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAsyncServer) QueryStatus(context.Context, *QueryStatusRequest) (*QueryStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AsyncServer = (*UnimplementedAsyncServer)(nil)

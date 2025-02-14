@@ -118,7 +118,7 @@ func (o *xxx_DefaultRegister2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultRegister2Client) CreateFullConfiguration(ctx context.Context, in *CreateFullConfigurationRequest, opts ...dcerpc.CallOption) (*CreateFullConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -138,7 +138,7 @@ func (o *xxx_DefaultRegister2Client) CreateFullConfiguration(ctx context.Context
 }
 
 func (o *xxx_DefaultRegister2Client) CreateLegacyConfiguration(ctx context.Context, in *CreateLegacyConfigurationRequest, opts ...dcerpc.CallOption) (*CreateLegacyConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -158,7 +158,7 @@ func (o *xxx_DefaultRegister2Client) CreateLegacyConfiguration(ctx context.Conte
 }
 
 func (o *xxx_DefaultRegister2Client) PromoteLegacyConfiguration(ctx context.Context, in *PromoteLegacyConfigurationRequest, opts ...dcerpc.CallOption) (*PromoteLegacyConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -178,7 +178,7 @@ func (o *xxx_DefaultRegister2Client) PromoteLegacyConfiguration(ctx context.Cont
 }
 
 func (o *xxx_DefaultRegister2Client) RegisterModule2(ctx context.Context, in *RegisterModule2Request, opts ...dcerpc.CallOption) (*RegisterModule2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -414,16 +414,18 @@ type CreateFullConfigurationRequest struct {
 	CtComponentType coma.ComponentType `idl:"name:ctComponentType" json:"ct_component_type"`
 }
 
-func (o *CreateFullConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_CreateFullConfigurationOperation {
+func (o *CreateFullConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFullConfigurationOperation) *xxx_CreateFullConfigurationOperation {
+	if op == nil {
+		op = &xxx_CreateFullConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFullConfigurationOperation{}
+		return op
 	}
-	return &xxx_CreateFullConfigurationOperation{
-		This:                   o.This,
-		ConglomerationIDOrName: o.ConglomerationIDOrName,
-		ClassIDOrProgID:        o.ClassIDOrProgID,
-		CtComponentType:        o.CtComponentType,
-	}
+	o.This = op.This
+	o.ConglomerationIDOrName = op.ConglomerationIDOrName
+	o.ClassIDOrProgID = op.ClassIDOrProgID
+	o.CtComponentType = op.CtComponentType
+	return op
 }
 
 func (o *CreateFullConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateFullConfigurationOperation) {
@@ -436,7 +438,7 @@ func (o *CreateFullConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.CtComponentType = op.CtComponentType
 }
 func (o *CreateFullConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateFullConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFullConfigurationOperation{}
@@ -455,14 +457,16 @@ type CreateFullConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateFullConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_CreateFullConfigurationOperation {
+func (o *CreateFullConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFullConfigurationOperation) *xxx_CreateFullConfigurationOperation {
+	if op == nil {
+		op = &xxx_CreateFullConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFullConfigurationOperation{}
+		return op
 	}
-	return &xxx_CreateFullConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateFullConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateFullConfigurationOperation) {
@@ -473,7 +477,7 @@ func (o *CreateFullConfigurationResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *CreateFullConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateFullConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFullConfigurationOperation{}
@@ -660,16 +664,18 @@ type CreateLegacyConfigurationRequest struct {
 	CtComponentType coma.ComponentType `idl:"name:ctComponentType" json:"ct_component_type"`
 }
 
-func (o *CreateLegacyConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_CreateLegacyConfigurationOperation {
+func (o *CreateLegacyConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateLegacyConfigurationOperation) *xxx_CreateLegacyConfigurationOperation {
+	if op == nil {
+		op = &xxx_CreateLegacyConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateLegacyConfigurationOperation{}
+		return op
 	}
-	return &xxx_CreateLegacyConfigurationOperation{
-		This:                   o.This,
-		ConglomerationIDOrName: o.ConglomerationIDOrName,
-		ClassIDOrProgID:        o.ClassIDOrProgID,
-		CtComponentType:        o.CtComponentType,
-	}
+	o.This = op.This
+	o.ConglomerationIDOrName = op.ConglomerationIDOrName
+	o.ClassIDOrProgID = op.ClassIDOrProgID
+	o.CtComponentType = op.CtComponentType
+	return op
 }
 
 func (o *CreateLegacyConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateLegacyConfigurationOperation) {
@@ -682,7 +688,7 @@ func (o *CreateLegacyConfigurationRequest) xxx_FromOp(ctx context.Context, op *x
 	o.CtComponentType = op.CtComponentType
 }
 func (o *CreateLegacyConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateLegacyConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateLegacyConfigurationOperation{}
@@ -701,14 +707,16 @@ type CreateLegacyConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateLegacyConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_CreateLegacyConfigurationOperation {
+func (o *CreateLegacyConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateLegacyConfigurationOperation) *xxx_CreateLegacyConfigurationOperation {
+	if op == nil {
+		op = &xxx_CreateLegacyConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateLegacyConfigurationOperation{}
+		return op
 	}
-	return &xxx_CreateLegacyConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateLegacyConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateLegacyConfigurationOperation) {
@@ -719,7 +727,7 @@ func (o *CreateLegacyConfigurationResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *CreateLegacyConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateLegacyConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateLegacyConfigurationOperation{}
@@ -905,16 +913,18 @@ type PromoteLegacyConfigurationRequest struct {
 	CtComponentType coma.ComponentType `idl:"name:ctComponentType" json:"ct_component_type"`
 }
 
-func (o *PromoteLegacyConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_PromoteLegacyConfigurationOperation {
+func (o *PromoteLegacyConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_PromoteLegacyConfigurationOperation) *xxx_PromoteLegacyConfigurationOperation {
+	if op == nil {
+		op = &xxx_PromoteLegacyConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_PromoteLegacyConfigurationOperation{}
+		return op
 	}
-	return &xxx_PromoteLegacyConfigurationOperation{
-		This:                   o.This,
-		ConglomerationIDOrName: o.ConglomerationIDOrName,
-		ClassIDOrProgID:        o.ClassIDOrProgID,
-		CtComponentType:        o.CtComponentType,
-	}
+	o.This = op.This
+	o.ConglomerationIDOrName = op.ConglomerationIDOrName
+	o.ClassIDOrProgID = op.ClassIDOrProgID
+	o.CtComponentType = op.CtComponentType
+	return op
 }
 
 func (o *PromoteLegacyConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_PromoteLegacyConfigurationOperation) {
@@ -927,7 +937,7 @@ func (o *PromoteLegacyConfigurationRequest) xxx_FromOp(ctx context.Context, op *
 	o.CtComponentType = op.CtComponentType
 }
 func (o *PromoteLegacyConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PromoteLegacyConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PromoteLegacyConfigurationOperation{}
@@ -946,14 +956,16 @@ type PromoteLegacyConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PromoteLegacyConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_PromoteLegacyConfigurationOperation {
+func (o *PromoteLegacyConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_PromoteLegacyConfigurationOperation) *xxx_PromoteLegacyConfigurationOperation {
+	if op == nil {
+		op = &xxx_PromoteLegacyConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_PromoteLegacyConfigurationOperation{}
+		return op
 	}
-	return &xxx_PromoteLegacyConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PromoteLegacyConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_PromoteLegacyConfigurationOperation) {
@@ -964,7 +976,7 @@ func (o *PromoteLegacyConfigurationResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *PromoteLegacyConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PromoteLegacyConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PromoteLegacyConfigurationOperation{}
@@ -1780,20 +1792,22 @@ type RegisterModule2Request struct {
 	RequestedCount uint32 `idl:"name:cRequested" json:"requested_count"`
 }
 
-func (o *RegisterModule2Request) xxx_ToOp(ctx context.Context) *xxx_RegisterModule2Operation {
+func (o *RegisterModule2Request) xxx_ToOp(ctx context.Context, op *xxx_RegisterModule2Operation) *xxx_RegisterModule2Operation {
+	if op == nil {
+		op = &xxx_RegisterModule2Operation{}
+	}
 	if o == nil {
-		return &xxx_RegisterModule2Operation{}
+		return op
 	}
-	return &xxx_RegisterModule2Operation{
-		This:              o.This,
-		ConglomerationID:  o.ConglomerationID,
-		PartitionID:       o.PartitionID,
-		Modules:           o.Modules,
-		ModulesCount:      o.ModulesCount,
-		Flags:             o.Flags,
-		RequestedClassIDs: o.RequestedClassIDs,
-		RequestedCount:    o.RequestedCount,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	o.PartitionID = op.PartitionID
+	o.Modules = op.Modules
+	o.ModulesCount = op.ModulesCount
+	o.Flags = op.Flags
+	o.RequestedClassIDs = op.RequestedClassIDs
+	o.RequestedCount = op.RequestedCount
+	return op
 }
 
 func (o *RegisterModule2Request) xxx_FromOp(ctx context.Context, op *xxx_RegisterModule2Operation) {
@@ -1810,7 +1824,7 @@ func (o *RegisterModule2Request) xxx_FromOp(ctx context.Context, op *xxx_Registe
 	o.RequestedCount = op.RequestedCount
 }
 func (o *RegisterModule2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterModule2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterModule2Operation{}
@@ -1853,20 +1867,22 @@ type RegisterModule2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterModule2Response) xxx_ToOp(ctx context.Context) *xxx_RegisterModule2Operation {
+func (o *RegisterModule2Response) xxx_ToOp(ctx context.Context, op *xxx_RegisterModule2Operation) *xxx_RegisterModule2Operation {
+	if op == nil {
+		op = &xxx_RegisterModule2Operation{}
+	}
 	if o == nil {
-		return &xxx_RegisterModule2Operation{}
+		return op
 	}
-	return &xxx_RegisterModule2Operation{
-		That:           o.That,
-		ModuleFlags:    o.ModuleFlags,
-		ResultsCount:   o.ResultsCount,
-		ResultClassIDs: o.ResultClassIDs,
-		ResultNames:    o.ResultNames,
-		ResultFlags:    o.ResultFlags,
-		ResultHRs:      o.ResultHRs,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.ModuleFlags = op.ModuleFlags
+	o.ResultsCount = op.ResultsCount
+	o.ResultClassIDs = op.ResultClassIDs
+	o.ResultNames = op.ResultNames
+	o.ResultFlags = op.ResultFlags
+	o.ResultHRs = op.ResultHRs
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterModule2Response) xxx_FromOp(ctx context.Context, op *xxx_RegisterModule2Operation) {
@@ -1883,7 +1899,7 @@ func (o *RegisterModule2Response) xxx_FromOp(ctx context.Context, op *xxx_Regist
 	o.Return = op.Return
 }
 func (o *RegisterModule2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterModule2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterModule2Operation{}

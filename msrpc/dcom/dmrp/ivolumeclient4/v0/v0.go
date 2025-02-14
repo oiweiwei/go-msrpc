@@ -97,7 +97,7 @@ func (o *xxx_DefaultVolumeClient4Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeClient4Client) RefreshEx(ctx context.Context, in *RefreshExRequest, opts ...dcerpc.CallOption) (*RefreshExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -117,7 +117,7 @@ func (o *xxx_DefaultVolumeClient4Client) RefreshEx(ctx context.Context, in *Refr
 }
 
 func (o *xxx_DefaultVolumeClient4Client) GetVolumeDeviceName(ctx context.Context, in *GetVolumeDeviceNameRequest, opts ...dcerpc.CallOption) (*GetVolumeDeviceNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -301,13 +301,15 @@ type RefreshExRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RefreshExRequest) xxx_ToOp(ctx context.Context) *xxx_RefreshExOperation {
+func (o *RefreshExRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshExOperation) *xxx_RefreshExOperation {
+	if op == nil {
+		op = &xxx_RefreshExOperation{}
+	}
 	if o == nil {
-		return &xxx_RefreshExOperation{}
+		return op
 	}
-	return &xxx_RefreshExOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RefreshExRequest) xxx_FromOp(ctx context.Context, op *xxx_RefreshExOperation) {
@@ -317,7 +319,7 @@ func (o *RefreshExRequest) xxx_FromOp(ctx context.Context, op *xxx_RefreshExOper
 	o.This = op.This
 }
 func (o *RefreshExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RefreshExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RefreshExOperation{}
@@ -336,14 +338,16 @@ type RefreshExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RefreshExResponse) xxx_ToOp(ctx context.Context) *xxx_RefreshExOperation {
+func (o *RefreshExResponse) xxx_ToOp(ctx context.Context, op *xxx_RefreshExOperation) *xxx_RefreshExOperation {
+	if op == nil {
+		op = &xxx_RefreshExOperation{}
+	}
 	if o == nil {
-		return &xxx_RefreshExOperation{}
+		return op
 	}
-	return &xxx_RefreshExOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RefreshExResponse) xxx_FromOp(ctx context.Context, op *xxx_RefreshExOperation) {
@@ -354,7 +358,7 @@ func (o *RefreshExResponse) xxx_FromOp(ctx context.Context, op *xxx_RefreshExOpe
 	o.Return = op.Return
 }
 func (o *RefreshExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RefreshExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RefreshExOperation{}
@@ -598,14 +602,16 @@ type GetVolumeDeviceNameRequest struct {
 	VolumeID int64 `idl:"name:_volumeId" json:"volume_id"`
 }
 
-func (o *GetVolumeDeviceNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetVolumeDeviceNameOperation {
+func (o *GetVolumeDeviceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVolumeDeviceNameOperation) *xxx_GetVolumeDeviceNameOperation {
+	if op == nil {
+		op = &xxx_GetVolumeDeviceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVolumeDeviceNameOperation{}
+		return op
 	}
-	return &xxx_GetVolumeDeviceNameOperation{
-		This:     o.This,
-		VolumeID: o.VolumeID,
-	}
+	o.This = op.This
+	o.VolumeID = op.VolumeID
+	return op
 }
 
 func (o *GetVolumeDeviceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVolumeDeviceNameOperation) {
@@ -616,7 +622,7 @@ func (o *GetVolumeDeviceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.VolumeID = op.VolumeID
 }
 func (o *GetVolumeDeviceNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVolumeDeviceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVolumeDeviceNameOperation{}
@@ -643,16 +649,18 @@ type GetVolumeDeviceNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVolumeDeviceNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetVolumeDeviceNameOperation {
+func (o *GetVolumeDeviceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVolumeDeviceNameOperation) *xxx_GetVolumeDeviceNameOperation {
+	if op == nil {
+		op = &xxx_GetVolumeDeviceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVolumeDeviceNameOperation{}
+		return op
 	}
-	return &xxx_GetVolumeDeviceNameOperation{
-		That:               o.That,
-		VolumeDeviceLength: o.VolumeDeviceLength,
-		VolumeDevice:       o.VolumeDevice,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.VolumeDeviceLength = op.VolumeDeviceLength
+	o.VolumeDevice = op.VolumeDevice
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVolumeDeviceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVolumeDeviceNameOperation) {
@@ -665,7 +673,7 @@ func (o *GetVolumeDeviceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetVolumeDeviceNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVolumeDeviceNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVolumeDeviceNameOperation{}

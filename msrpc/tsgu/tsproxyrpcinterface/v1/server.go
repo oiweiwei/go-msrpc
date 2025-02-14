@@ -456,64 +456,111 @@ func InterfaceServerHandle(ctx context.Context, o InterfaceServer, opNum int, r 
 		// Opnum0NotUsedOnWire
 		return nil, nil
 	case 1: // TsProxyCreateTunnel
-		in := &CreateTunnelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateTunnelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateTunnel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateTunnelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateTunnel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // TsProxyAuthorizeTunnel
-		in := &AuthorizeTunnelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AuthorizeTunnelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AuthorizeTunnel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AuthorizeTunnelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AuthorizeTunnel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // TsProxyMakeTunnelCall
-		in := &MakeTunnelCallRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MakeTunnelCallOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MakeTunnelCall(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MakeTunnelCallRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MakeTunnelCall(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // TsProxyCreateChannel
-		in := &CreateChannelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateChannelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateChannel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateChannelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateChannel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5NotUsedOnWire
 		// Opnum5NotUsedOnWire
 		return nil, nil
 	case 6: // TsProxyCloseChannel
-		in := &CloseChannelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseChannelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseChannel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseChannelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseChannel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // TsProxyCloseTunnel
-		in := &CloseTunnelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseTunnelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseTunnel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseTunnelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseTunnel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // TsProxySetupReceivePipe
-		in := &SetupReceivePipeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetupReceivePipeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetupReceivePipe(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetupReceivePipeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetupReceivePipe(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // TsProxySendToServer
-		in := &SendToServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendToServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendToServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendToServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendToServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented TsProxyRpcInterface
+type UnimplementedInterfaceServer struct {
+}
+
+func (UnimplementedInterfaceServer) CreateTunnel(context.Context, *CreateTunnelRequest) (*CreateTunnelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) AuthorizeTunnel(context.Context, *AuthorizeTunnelRequest) (*AuthorizeTunnelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) MakeTunnelCall(context.Context, *MakeTunnelCallRequest) (*MakeTunnelCallResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) CreateChannel(context.Context, *CreateChannelRequest) (*CreateChannelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) CloseChannel(context.Context, *CloseChannelRequest) (*CloseChannelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) CloseTunnel(context.Context, *CloseTunnelRequest) (*CloseTunnelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) SetupReceivePipe(context.Context, *SetupReceivePipeRequest) (*SetupReceivePipeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInterfaceServer) SendToServer(context.Context, *SendToServerRequest) (*SendToServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ InterfaceServer = (*UnimplementedInterfaceServer)(nil)

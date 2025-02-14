@@ -82,7 +82,7 @@ func (o *xxx_DefaultDataFactoryClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDataFactoryClient) Query(ctx context.Context, in *QueryRequest, opts ...dcerpc.CallOption) (*QueryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -102,7 +102,7 @@ func (o *xxx_DefaultDataFactoryClient) Query(ctx context.Context, in *QueryReque
 }
 
 func (o *xxx_DefaultDataFactoryClient) SubmitChanges(ctx context.Context, in *SubmitChangesRequest, opts ...dcerpc.CallOption) (*SubmitChangesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -122,7 +122,7 @@ func (o *xxx_DefaultDataFactoryClient) SubmitChanges(ctx context.Context, in *Su
 }
 
 func (o *xxx_DefaultDataFactoryClient) ConvertToString(ctx context.Context, in *ConvertToStringRequest, opts ...dcerpc.CallOption) (*ConvertToStringResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -142,7 +142,7 @@ func (o *xxx_DefaultDataFactoryClient) ConvertToString(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDataFactoryClient) CreateRecordSet(ctx context.Context, in *CreateRecordSetRequest, opts ...dcerpc.CallOption) (*CreateRecordSetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -483,16 +483,18 @@ type QueryRequest struct {
 	MarshalOptions int32          `idl:"name:lMarshalOptions" json:"marshal_options"`
 }
 
-func (o *QueryRequest) xxx_ToOp(ctx context.Context) *xxx_QueryOperation {
+func (o *QueryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xxx_QueryOperation {
+	if op == nil {
+		op = &xxx_QueryOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryOperation{}
+		return op
 	}
-	return &xxx_QueryOperation{
-		This:           o.This,
-		Connection:     o.Connection,
-		Query:          o.Query,
-		MarshalOptions: o.MarshalOptions,
-	}
+	o.This = op.This
+	o.Connection = op.Connection
+	o.Query = op.Query
+	o.MarshalOptions = op.MarshalOptions
+	return op
 }
 
 func (o *QueryRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) {
@@ -505,7 +507,7 @@ func (o *QueryRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) {
 	o.MarshalOptions = op.MarshalOptions
 }
 func (o *QueryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryOperation{}
@@ -525,15 +527,17 @@ type QueryResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryResponse) xxx_ToOp(ctx context.Context) *xxx_QueryOperation {
+func (o *QueryResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xxx_QueryOperation {
+	if op == nil {
+		op = &xxx_QueryOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryOperation{}
+		return op
 	}
-	return &xxx_QueryOperation{
-		That:      o.That,
-		RecordSet: o.RecordSet,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.RecordSet = op.RecordSet
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) {
@@ -545,7 +549,7 @@ func (o *QueryResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) 
 	o.Return = op.Return
 }
 func (o *QueryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryOperation{}
@@ -775,15 +779,17 @@ type SubmitChangesRequest struct {
 	RecordSet  *oaut.Dispatch `idl:"name:pRecordset" json:"record_set"`
 }
 
-func (o *SubmitChangesRequest) xxx_ToOp(ctx context.Context) *xxx_SubmitChangesOperation {
+func (o *SubmitChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_SubmitChangesOperation) *xxx_SubmitChangesOperation {
+	if op == nil {
+		op = &xxx_SubmitChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_SubmitChangesOperation{}
+		return op
 	}
-	return &xxx_SubmitChangesOperation{
-		This:       o.This,
-		Connection: o.Connection,
-		RecordSet:  o.RecordSet,
-	}
+	o.This = op.This
+	o.Connection = op.Connection
+	o.RecordSet = op.RecordSet
+	return op
 }
 
 func (o *SubmitChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_SubmitChangesOperation) {
@@ -795,7 +801,7 @@ func (o *SubmitChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_SubmitCha
 	o.RecordSet = op.RecordSet
 }
 func (o *SubmitChangesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SubmitChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SubmitChangesOperation{}
@@ -814,14 +820,16 @@ type SubmitChangesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SubmitChangesResponse) xxx_ToOp(ctx context.Context) *xxx_SubmitChangesOperation {
+func (o *SubmitChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_SubmitChangesOperation) *xxx_SubmitChangesOperation {
+	if op == nil {
+		op = &xxx_SubmitChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_SubmitChangesOperation{}
+		return op
 	}
-	return &xxx_SubmitChangesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SubmitChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_SubmitChangesOperation) {
@@ -832,7 +840,7 @@ func (o *SubmitChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_SubmitCh
 	o.Return = op.Return
 }
 func (o *SubmitChangesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SubmitChangesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SubmitChangesOperation{}
@@ -1061,14 +1069,16 @@ type ConvertToStringRequest struct {
 	Object *dcom.Unknown  `idl:"name:punkObject" json:"object"`
 }
 
-func (o *ConvertToStringRequest) xxx_ToOp(ctx context.Context) *xxx_ConvertToStringOperation {
+func (o *ConvertToStringRequest) xxx_ToOp(ctx context.Context, op *xxx_ConvertToStringOperation) *xxx_ConvertToStringOperation {
+	if op == nil {
+		op = &xxx_ConvertToStringOperation{}
+	}
 	if o == nil {
-		return &xxx_ConvertToStringOperation{}
+		return op
 	}
-	return &xxx_ConvertToStringOperation{
-		This:   o.This,
-		Object: o.Object,
-	}
+	o.This = op.This
+	o.Object = op.Object
+	return op
 }
 
 func (o *ConvertToStringRequest) xxx_FromOp(ctx context.Context, op *xxx_ConvertToStringOperation) {
@@ -1079,7 +1089,7 @@ func (o *ConvertToStringRequest) xxx_FromOp(ctx context.Context, op *xxx_Convert
 	o.Object = op.Object
 }
 func (o *ConvertToStringRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConvertToStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConvertToStringOperation{}
@@ -1099,15 +1109,17 @@ type ConvertToStringResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConvertToStringResponse) xxx_ToOp(ctx context.Context) *xxx_ConvertToStringOperation {
+func (o *ConvertToStringResponse) xxx_ToOp(ctx context.Context, op *xxx_ConvertToStringOperation) *xxx_ConvertToStringOperation {
+	if op == nil {
+		op = &xxx_ConvertToStringOperation{}
+	}
 	if o == nil {
-		return &xxx_ConvertToStringOperation{}
+		return op
 	}
-	return &xxx_ConvertToStringOperation{
-		That:   o.That,
-		Inline: o.Inline,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Inline = op.Inline
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConvertToStringResponse) xxx_FromOp(ctx context.Context, op *xxx_ConvertToStringOperation) {
@@ -1119,7 +1131,7 @@ func (o *ConvertToStringResponse) xxx_FromOp(ctx context.Context, op *xxx_Conver
 	o.Return = op.Return
 }
 func (o *ConvertToStringResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConvertToStringResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConvertToStringOperation{}
@@ -1329,14 +1341,16 @@ type CreateRecordSetRequest struct {
 	VarColumnInfos *oaut.Variant  `idl:"name:varColumnInfos" json:"var_column_infos"`
 }
 
-func (o *CreateRecordSetRequest) xxx_ToOp(ctx context.Context) *xxx_CreateRecordSetOperation {
+func (o *CreateRecordSetRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateRecordSetOperation) *xxx_CreateRecordSetOperation {
+	if op == nil {
+		op = &xxx_CreateRecordSetOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateRecordSetOperation{}
+		return op
 	}
-	return &xxx_CreateRecordSetOperation{
-		This:           o.This,
-		VarColumnInfos: o.VarColumnInfos,
-	}
+	o.This = op.This
+	o.VarColumnInfos = op.VarColumnInfos
+	return op
 }
 
 func (o *CreateRecordSetRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateRecordSetOperation) {
@@ -1347,7 +1361,7 @@ func (o *CreateRecordSetRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateR
 	o.VarColumnInfos = op.VarColumnInfos
 }
 func (o *CreateRecordSetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateRecordSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateRecordSetOperation{}
@@ -1367,15 +1381,17 @@ type CreateRecordSetResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateRecordSetResponse) xxx_ToOp(ctx context.Context) *xxx_CreateRecordSetOperation {
+func (o *CreateRecordSetResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateRecordSetOperation) *xxx_CreateRecordSetOperation {
+	if op == nil {
+		op = &xxx_CreateRecordSetOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateRecordSetOperation{}
+		return op
 	}
-	return &xxx_CreateRecordSetOperation{
-		That:     o.That,
-		Dispatch: o.Dispatch,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.Dispatch = op.Dispatch
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateRecordSetResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateRecordSetOperation) {
@@ -1387,7 +1403,7 @@ func (o *CreateRecordSetResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Return = op.Return
 }
 func (o *CreateRecordSetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateRecordSetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateRecordSetOperation{}

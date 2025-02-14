@@ -836,54 +836,68 @@ func NewNetdfsServerHandle(o NetdfsServer) dcerpc.ServerHandle {
 func NetdfsServerHandle(ctx context.Context, o NetdfsServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NetrDfsManagerGetVersion
-		in := &ManagerGetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ManagerGetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ManagerGetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ManagerGetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ManagerGetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // NetrDfsAdd
-		in := &AddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Add(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Add(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NetrDfsRemove
-		in := &RemoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Remove(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Remove(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // NetrDfsSetInfo
-		in := &SetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // NetrDfsGetInfo
-		in := &GetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // NetrDfsEnum
-		in := &EnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Enum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Enum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // NetrDfsMove
-		in := &MoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Move(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Move(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum7NotUsedOnWire
 		// Opnum7NotUsedOnWire
 		return nil, nil
@@ -894,117 +908,225 @@ func NetdfsServerHandle(ctx context.Context, o NetdfsServer, opNum int, r ndr.Re
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	case 10: // NetrDfsAddFtRoot
-		in := &AddFTRootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddFTRootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddFTRoot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddFTRootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddFTRoot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // NetrDfsRemoveFtRoot
-		in := &RemoveFTRootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveFTRootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveFTRoot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveFTRootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveFTRoot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // NetrDfsAddStdRoot
-		in := &AddStdRootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddStdRootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddStdRoot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddStdRootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddStdRoot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // NetrDfsRemoveStdRoot
-		in := &RemoveStdRootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveStdRootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveStdRoot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveStdRootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveStdRoot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // NetrDfsManagerInitialize
-		in := &ManagerInitializeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ManagerInitializeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ManagerInitialize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ManagerInitializeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ManagerInitialize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // NetrDfsAddStdRootForced
-		in := &AddStdRootForcedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddStdRootForcedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddStdRootForced(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddStdRootForcedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddStdRootForced(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // NetrDfsGetDcAddress
-		in := &GetDCAddressRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDCAddressOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDCAddress(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDCAddressRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDCAddress(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // NetrDfsSetDcAddress
-		in := &SetDCAddressRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDCAddressOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDCAddress(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDCAddressRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDCAddress(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // NetrDfsFlushFtTable
-		in := &FlushFTTableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FlushFTTableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FlushFTTable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FlushFTTableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FlushFTTable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // NetrDfsAdd2
-		in := &Add2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Add2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Add2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Add2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Add2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // NetrDfsRemove2
-		in := &Remove2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Remove2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Remove2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Remove2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Remove2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // NetrDfsEnumEx
-		in := &EnumExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // NetrDfsSetInfo2
-		in := &SetInfo2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetInfo2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetInfo2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetInfo2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetInfo2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // NetrDfsAddRootTarget
-		in := &AddRootTargetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddRootTargetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddRootTarget(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddRootTargetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddRootTarget(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // NetrDfsRemoveRootTarget
-		in := &RemoveRootTargetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveRootTargetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveRootTarget(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveRootTargetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveRootTarget(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // NetrDfsGetSupportedNamespaceVersion
-		in := &GetSupportedNamespaceVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSupportedNamespaceVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSupportedNamespaceVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSupportedNamespaceVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSupportedNamespaceVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented netdfs
+type UnimplementedNetdfsServer struct {
+}
+
+func (UnimplementedNetdfsServer) ManagerGetVersion(context.Context, *ManagerGetVersionRequest) (*ManagerGetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) SetInfo(context.Context, *SetInfoRequest) (*SetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) GetInfo(context.Context, *GetInfoRequest) (*GetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) Enum(context.Context, *EnumRequest) (*EnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) Move(context.Context, *MoveRequest) (*MoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) AddFTRoot(context.Context, *AddFTRootRequest) (*AddFTRootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) RemoveFTRoot(context.Context, *RemoveFTRootRequest) (*RemoveFTRootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) AddStdRoot(context.Context, *AddStdRootRequest) (*AddStdRootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) RemoveStdRoot(context.Context, *RemoveStdRootRequest) (*RemoveStdRootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) ManagerInitialize(context.Context, *ManagerInitializeRequest) (*ManagerInitializeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) AddStdRootForced(context.Context, *AddStdRootForcedRequest) (*AddStdRootForcedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) GetDCAddress(context.Context, *GetDCAddressRequest) (*GetDCAddressResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) SetDCAddress(context.Context, *SetDCAddressRequest) (*SetDCAddressResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) FlushFTTable(context.Context, *FlushFTTableRequest) (*FlushFTTableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) Add2(context.Context, *Add2Request) (*Add2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) Remove2(context.Context, *Remove2Request) (*Remove2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) EnumEx(context.Context, *EnumExRequest) (*EnumExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) SetInfo2(context.Context, *SetInfo2Request) (*SetInfo2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) AddRootTarget(context.Context, *AddRootTargetRequest) (*AddRootTargetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) RemoveRootTarget(context.Context, *RemoveRootTargetRequest) (*RemoveRootTargetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNetdfsServer) GetSupportedNamespaceVersion(context.Context, *GetSupportedNamespaceVersionRequest) (*GetSupportedNamespaceVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ NetdfsServer = (*UnimplementedNetdfsServer)(nil)

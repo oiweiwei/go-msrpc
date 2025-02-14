@@ -52,12 +52,25 @@ func ProviderServerHandle(ctx context.Context, o ProviderServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsProvider
+type UnimplementedProviderServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedProviderServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ProviderServer = (*UnimplementedProviderServer)(nil)

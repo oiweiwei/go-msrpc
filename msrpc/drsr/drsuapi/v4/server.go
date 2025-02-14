@@ -337,222 +337,384 @@ func NewDrsuapiServerHandle(o DrsuapiServer) dcerpc.ServerHandle {
 func DrsuapiServerHandle(ctx context.Context, o DrsuapiServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // IDL_DRSBind
-		in := &BindRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Bind(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Bind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // IDL_DRSUnbind
-		in := &UnbindRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnbindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Unbind(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnbindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Unbind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // IDL_DRSReplicaSync
-		in := &SyncReplicaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SyncReplicaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SyncReplica(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SyncReplicaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SyncReplica(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // IDL_DRSGetNCChanges
-		in := &GetNCChangesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNCChangesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNCChanges(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNCChangesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNCChanges(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // IDL_DRSUpdateRefs
-		in := &UpdateReferencesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateReferencesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateReferences(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateReferencesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateReferences(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // IDL_DRSReplicaAdd
-		in := &AddReplicaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddReplicaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddReplica(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddReplicaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddReplica(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // IDL_DRSReplicaDel
-		in := &DeleteReplicaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteReplicaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteReplica(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteReplicaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteReplica(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // IDL_DRSReplicaModify
-		in := &ModifyReplicaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyReplicaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyReplica(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyReplicaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyReplica(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // IDL_DRSVerifyNames
-		in := &VerifyNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_VerifyNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.VerifyNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &VerifyNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.VerifyNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // IDL_DRSGetMemberships
-		in := &GetMembershipsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMembershipsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMemberships(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMembershipsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMemberships(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // IDL_DRSInterDomainMove
-		in := &InterdomainMoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InterdomainMoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InterdomainMove(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InterdomainMoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InterdomainMove(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // IDL_DRSGetNT4ChangeLog
-		in := &GetNT4ChangeLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNT4ChangeLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNT4ChangeLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNT4ChangeLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNT4ChangeLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // IDL_DRSCrackNames
-		in := &CrackNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CrackNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CrackNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CrackNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CrackNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // IDL_DRSWriteSPN
-		in := &WriteSPNRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WriteSPNOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WriteSPN(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WriteSPNRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WriteSPN(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // IDL_DRSRemoveDsServer
-		in := &RemoveDSServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveDSServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveDSServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveDSServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveDSServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // IDL_DRSRemoveDsDomain
-		in := &RemoveDSDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveDSDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveDSDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveDSDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveDSDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // IDL_DRSDomainControllerInfo
-		in := &DomainControllerInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DomainControllerInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DomainControllerInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DomainControllerInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DomainControllerInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // IDL_DRSAddEntry
-		in := &AddEntryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddEntryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddEntry(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddEntryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddEntry(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // IDL_DRSExecuteKCC
-		in := &ExecuteKCCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExecuteKCCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExecuteKCC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExecuteKCCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExecuteKCC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // IDL_DRSGetReplInfo
-		in := &GetReplicationInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReplicationInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReplicationInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReplicationInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReplicationInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // IDL_DRSAddSidHistory
-		in := &AddSIDHistoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddSIDHistoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddSIDHistory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddSIDHistoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddSIDHistory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // IDL_DRSGetMemberships2
-		in := &GetMemberships2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMemberships2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMemberships2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMemberships2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMemberships2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // IDL_DRSReplicaVerifyObjects
-		in := &VerifyObjectsReplicaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_VerifyObjectsReplicaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.VerifyObjectsReplica(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &VerifyObjectsReplicaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.VerifyObjectsReplica(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // IDL_DRSGetObjectExistence
-		in := &GetObjectExistenceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetObjectExistenceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetObjectExistence(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetObjectExistenceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetObjectExistence(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // IDL_DRSQuerySitesByCost
-		in := &QuerySitesByCostRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QuerySitesByCostOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QuerySitesByCost(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QuerySitesByCostRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QuerySitesByCost(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // IDL_DRSInitDemotion
-		in := &InitDemotionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitDemotionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitDemotion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitDemotionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitDemotion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // IDL_DRSReplicaDemotion
-		in := &DemotionReplicaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DemotionReplicaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DemotionReplica(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DemotionReplicaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DemotionReplica(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // IDL_DRSFinishDemotion
-		in := &FinishDemotionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FinishDemotionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FinishDemotion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FinishDemotionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FinishDemotion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // IDL_DRSAddCloneDC
-		in := &AddCloneDCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddCloneDCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddCloneDC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddCloneDCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddCloneDC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // IDL_DRSWriteNgcKey
-		in := &WriteNGCKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WriteNGCKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WriteNGCKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WriteNGCKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WriteNGCKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // IDL_DRSReadNgcKey
-		in := &ReadNGCKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReadNGCKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReadNGCKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReadNGCKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReadNGCKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented drsuapi
+type UnimplementedDrsuapiServer struct {
+}
+
+func (UnimplementedDrsuapiServer) Bind(context.Context, *BindRequest) (*BindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) Unbind(context.Context, *UnbindRequest) (*UnbindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) SyncReplica(context.Context, *SyncReplicaRequest) (*SyncReplicaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) GetNCChanges(context.Context, *GetNCChangesRequest) (*GetNCChangesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) UpdateReferences(context.Context, *UpdateReferencesRequest) (*UpdateReferencesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) AddReplica(context.Context, *AddReplicaRequest) (*AddReplicaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) DeleteReplica(context.Context, *DeleteReplicaRequest) (*DeleteReplicaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) ModifyReplica(context.Context, *ModifyReplicaRequest) (*ModifyReplicaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) VerifyNames(context.Context, *VerifyNamesRequest) (*VerifyNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) GetMemberships(context.Context, *GetMembershipsRequest) (*GetMembershipsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) InterdomainMove(context.Context, *InterdomainMoveRequest) (*InterdomainMoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) GetNT4ChangeLog(context.Context, *GetNT4ChangeLogRequest) (*GetNT4ChangeLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) CrackNames(context.Context, *CrackNamesRequest) (*CrackNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) WriteSPN(context.Context, *WriteSPNRequest) (*WriteSPNResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) RemoveDSServer(context.Context, *RemoveDSServerRequest) (*RemoveDSServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) RemoveDSDomain(context.Context, *RemoveDSDomainRequest) (*RemoveDSDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) DomainControllerInfo(context.Context, *DomainControllerInfoRequest) (*DomainControllerInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) AddEntry(context.Context, *AddEntryRequest) (*AddEntryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) ExecuteKCC(context.Context, *ExecuteKCCRequest) (*ExecuteKCCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) GetReplicationInfo(context.Context, *GetReplicationInfoRequest) (*GetReplicationInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) AddSIDHistory(context.Context, *AddSIDHistoryRequest) (*AddSIDHistoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) GetMemberships2(context.Context, *GetMemberships2Request) (*GetMemberships2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) VerifyObjectsReplica(context.Context, *VerifyObjectsReplicaRequest) (*VerifyObjectsReplicaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) GetObjectExistence(context.Context, *GetObjectExistenceRequest) (*GetObjectExistenceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) QuerySitesByCost(context.Context, *QuerySitesByCostRequest) (*QuerySitesByCostResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) InitDemotion(context.Context, *InitDemotionRequest) (*InitDemotionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) DemotionReplica(context.Context, *DemotionReplicaRequest) (*DemotionReplicaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) FinishDemotion(context.Context, *FinishDemotionRequest) (*FinishDemotionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) AddCloneDC(context.Context, *AddCloneDCRequest) (*AddCloneDCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) WriteNGCKey(context.Context, *WriteNGCKeyRequest) (*WriteNGCKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDrsuapiServer) ReadNGCKey(context.Context, *ReadNGCKeyRequest) (*ReadNGCKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DrsuapiServer = (*UnimplementedDrsuapiServer)(nil)

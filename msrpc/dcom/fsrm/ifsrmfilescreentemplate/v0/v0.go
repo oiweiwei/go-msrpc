@@ -84,7 +84,7 @@ func (o *xxx_DefaultFileScreenTemplateClient) FileScreenBase() ifsrmfilescreenba
 }
 
 func (o *xxx_DefaultFileScreenTemplateClient) GetName(ctx context.Context, in *GetNameRequest, opts ...dcerpc.CallOption) (*GetNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultFileScreenTemplateClient) GetName(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultFileScreenTemplateClient) SetName(ctx context.Context, in *SetNameRequest, opts ...dcerpc.CallOption) (*SetNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultFileScreenTemplateClient) SetName(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultFileScreenTemplateClient) CopyTemplate(ctx context.Context, in *CopyTemplateRequest, opts ...dcerpc.CallOption) (*CopyTemplateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -144,7 +144,7 @@ func (o *xxx_DefaultFileScreenTemplateClient) CopyTemplate(ctx context.Context, 
 }
 
 func (o *xxx_DefaultFileScreenTemplateClient) CommitAndUpdateDerived(ctx context.Context, in *CommitAndUpdateDerivedRequest, opts ...dcerpc.CallOption) (*CommitAndUpdateDerivedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -375,13 +375,15 @@ type GetNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -391,7 +393,7 @@ func (o *GetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperatio
 	o.This = op.This
 }
 func (o *GetNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -411,15 +413,17 @@ type GetNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetNameOperation {
+func (o *GetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNameOperation) *xxx_GetNameOperation {
+	if op == nil {
+		op = &xxx_GetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNameOperation{}
+		return op
 	}
-	return &xxx_GetNameOperation{
-		That:   o.That,
-		Name:   o.Name,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Name = op.Name
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperation) {
@@ -431,7 +435,7 @@ func (o *GetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNameOperati
 	o.Return = op.Return
 }
 func (o *GetNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNameOperation{}
@@ -613,14 +617,16 @@ type SetNameRequest struct {
 	Name *oaut.String   `idl:"name:name" json:"name"`
 }
 
-func (o *SetNameRequest) xxx_ToOp(ctx context.Context) *xxx_SetNameOperation {
+func (o *SetNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation) *xxx_SetNameOperation {
+	if op == nil {
+		op = &xxx_SetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNameOperation{}
+		return op
 	}
-	return &xxx_SetNameOperation{
-		This: o.This,
-		Name: o.Name,
-	}
+	o.This = op.This
+	o.Name = op.Name
+	return op
 }
 
 func (o *SetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperation) {
@@ -631,7 +637,7 @@ func (o *SetNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperatio
 	o.Name = op.Name
 }
 func (o *SetNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNameOperation{}
@@ -650,14 +656,16 @@ type SetNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetNameResponse) xxx_ToOp(ctx context.Context) *xxx_SetNameOperation {
+func (o *SetNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetNameOperation) *xxx_SetNameOperation {
+	if op == nil {
+		op = &xxx_SetNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetNameOperation{}
+		return op
 	}
-	return &xxx_SetNameOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperation) {
@@ -668,7 +676,7 @@ func (o *SetNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetNameOperati
 	o.Return = op.Return
 }
 func (o *SetNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetNameOperation{}
@@ -852,14 +860,16 @@ type CopyTemplateRequest struct {
 	FileScreenTemplateName *oaut.String   `idl:"name:fileScreenTemplateName" json:"file_screen_template_name"`
 }
 
-func (o *CopyTemplateRequest) xxx_ToOp(ctx context.Context) *xxx_CopyTemplateOperation {
+func (o *CopyTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyTemplateOperation) *xxx_CopyTemplateOperation {
+	if op == nil {
+		op = &xxx_CopyTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_CopyTemplateOperation{}
+		return op
 	}
-	return &xxx_CopyTemplateOperation{
-		This:                   o.This,
-		FileScreenTemplateName: o.FileScreenTemplateName,
-	}
+	o.This = op.This
+	o.FileScreenTemplateName = op.FileScreenTemplateName
+	return op
 }
 
 func (o *CopyTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_CopyTemplateOperation) {
@@ -870,7 +880,7 @@ func (o *CopyTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_CopyTempla
 	o.FileScreenTemplateName = op.FileScreenTemplateName
 }
 func (o *CopyTemplateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CopyTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CopyTemplateOperation{}
@@ -889,14 +899,16 @@ type CopyTemplateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CopyTemplateResponse) xxx_ToOp(ctx context.Context) *xxx_CopyTemplateOperation {
+func (o *CopyTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_CopyTemplateOperation) *xxx_CopyTemplateOperation {
+	if op == nil {
+		op = &xxx_CopyTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_CopyTemplateOperation{}
+		return op
 	}
-	return &xxx_CopyTemplateOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CopyTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_CopyTemplateOperation) {
@@ -907,7 +919,7 @@ func (o *CopyTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_CopyTempl
 	o.Return = op.Return
 }
 func (o *CopyTemplateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CopyTemplateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CopyTemplateOperation{}
@@ -1118,15 +1130,17 @@ type CommitAndUpdateDerivedRequest struct {
 	ApplyOptions  fsrm.TemplateApplyOptions `idl:"name:applyOptions" json:"apply_options"`
 }
 
-func (o *CommitAndUpdateDerivedRequest) xxx_ToOp(ctx context.Context) *xxx_CommitAndUpdateDerivedOperation {
+func (o *CommitAndUpdateDerivedRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) *xxx_CommitAndUpdateDerivedOperation {
+	if op == nil {
+		op = &xxx_CommitAndUpdateDerivedOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitAndUpdateDerivedOperation{}
+		return op
 	}
-	return &xxx_CommitAndUpdateDerivedOperation{
-		This:          o.This,
-		CommitOptions: o.CommitOptions,
-		ApplyOptions:  o.ApplyOptions,
-	}
+	o.This = op.This
+	o.CommitOptions = op.CommitOptions
+	o.ApplyOptions = op.ApplyOptions
+	return op
 }
 
 func (o *CommitAndUpdateDerivedRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) {
@@ -1138,7 +1152,7 @@ func (o *CommitAndUpdateDerivedRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.ApplyOptions = op.ApplyOptions
 }
 func (o *CommitAndUpdateDerivedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CommitAndUpdateDerivedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitAndUpdateDerivedOperation{}
@@ -1158,15 +1172,17 @@ type CommitAndUpdateDerivedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CommitAndUpdateDerivedResponse) xxx_ToOp(ctx context.Context) *xxx_CommitAndUpdateDerivedOperation {
+func (o *CommitAndUpdateDerivedResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) *xxx_CommitAndUpdateDerivedOperation {
+	if op == nil {
+		op = &xxx_CommitAndUpdateDerivedOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitAndUpdateDerivedOperation{}
+		return op
 	}
-	return &xxx_CommitAndUpdateDerivedOperation{
-		That:                 o.That,
-		DerivedObjectsResult: o.DerivedObjectsResult,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.DerivedObjectsResult = op.DerivedObjectsResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *CommitAndUpdateDerivedResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitAndUpdateDerivedOperation) {
@@ -1178,7 +1194,7 @@ func (o *CommitAndUpdateDerivedResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *CommitAndUpdateDerivedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CommitAndUpdateDerivedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitAndUpdateDerivedOperation{}

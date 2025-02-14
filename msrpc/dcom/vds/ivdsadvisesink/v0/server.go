@@ -57,12 +57,25 @@ func AdviseSinkServerHandle(ctx context.Context, o AdviseSinkServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // OnNotify
-		in := &OnNotifyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnNotifyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnNotify(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnNotifyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnNotify(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsAdviseSink
+type UnimplementedAdviseSinkServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAdviseSinkServer) OnNotify(context.Context, *OnNotifyRequest) (*OnNotifyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AdviseSinkServer = (*UnimplementedAdviseSinkServer)(nil)

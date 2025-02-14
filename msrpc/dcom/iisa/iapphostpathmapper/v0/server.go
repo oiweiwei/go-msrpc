@@ -52,12 +52,25 @@ func AppHostPathMapperServerHandle(ctx context.Context, o AppHostPathMapperServe
 	}
 	switch opNum {
 	case 3: // MapPath
-		in := &MapPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MapPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MapPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MapPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MapPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostPathMapper
+type UnimplementedAppHostPathMapperServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostPathMapperServer) MapPath(context.Context, *MapPathRequest) (*MapPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostPathMapperServer = (*UnimplementedAppHostPathMapperServer)(nil)

@@ -61,19 +61,37 @@ func HBAPortServerHandle(ctx context.Context, o HBAPortServer, opNum int, r ndr.
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SetAllPathStatuses
-		in := &SetAllPathStatusesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAllPathStatusesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAllPathStatuses(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAllPathStatusesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAllPathStatuses(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsHbaPort
+type UnimplementedHBAPortServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedHBAPortServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedHBAPortServer) SetAllPathStatuses(context.Context, *SetAllPathStatusesRequest) (*SetAllPathStatusesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ HBAPortServer = (*UnimplementedHBAPortServer)(nil)

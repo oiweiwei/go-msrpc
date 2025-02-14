@@ -86,7 +86,7 @@ func (o *xxx_DefaultSwProviderClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultSwProviderClient) QueryPacks(ctx context.Context, in *QueryPacksRequest, opts ...dcerpc.CallOption) (*QueryPacksResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -106,7 +106,7 @@ func (o *xxx_DefaultSwProviderClient) QueryPacks(ctx context.Context, in *QueryP
 }
 
 func (o *xxx_DefaultSwProviderClient) CreatePack(ctx context.Context, in *CreatePackRequest, opts ...dcerpc.CallOption) (*CreatePackResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -337,13 +337,15 @@ type QueryPacksRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryPacksRequest) xxx_ToOp(ctx context.Context) *xxx_QueryPacksOperation {
+func (o *QueryPacksRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPacksOperation) *xxx_QueryPacksOperation {
+	if op == nil {
+		op = &xxx_QueryPacksOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPacksOperation{}
+		return op
 	}
-	return &xxx_QueryPacksOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryPacksRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPacksOperation) {
@@ -353,7 +355,7 @@ func (o *QueryPacksRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPacksOp
 	o.This = op.This
 }
 func (o *QueryPacksRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryPacksRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPacksOperation{}
@@ -377,15 +379,17 @@ type QueryPacksResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryPacksResponse) xxx_ToOp(ctx context.Context) *xxx_QueryPacksOperation {
+func (o *QueryPacksResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPacksOperation) *xxx_QueryPacksOperation {
+	if op == nil {
+		op = &xxx_QueryPacksOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPacksOperation{}
+		return op
 	}
-	return &xxx_QueryPacksOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryPacksResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryPacksOperation) {
@@ -397,7 +401,7 @@ func (o *QueryPacksResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryPacksO
 	o.Return = op.Return
 }
 func (o *QueryPacksResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryPacksResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPacksOperation{}
@@ -578,13 +582,15 @@ type CreatePackRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreatePackRequest) xxx_ToOp(ctx context.Context) *xxx_CreatePackOperation {
+func (o *CreatePackRequest) xxx_ToOp(ctx context.Context, op *xxx_CreatePackOperation) *xxx_CreatePackOperation {
+	if op == nil {
+		op = &xxx_CreatePackOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePackOperation{}
+		return op
 	}
-	return &xxx_CreatePackOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreatePackRequest) xxx_FromOp(ctx context.Context, op *xxx_CreatePackOperation) {
@@ -594,7 +600,7 @@ func (o *CreatePackRequest) xxx_FromOp(ctx context.Context, op *xxx_CreatePackOp
 	o.This = op.This
 }
 func (o *CreatePackRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreatePackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePackOperation{}
@@ -617,15 +623,17 @@ type CreatePackResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreatePackResponse) xxx_ToOp(ctx context.Context) *xxx_CreatePackOperation {
+func (o *CreatePackResponse) xxx_ToOp(ctx context.Context, op *xxx_CreatePackOperation) *xxx_CreatePackOperation {
+	if op == nil {
+		op = &xxx_CreatePackOperation{}
+	}
 	if o == nil {
-		return &xxx_CreatePackOperation{}
+		return op
 	}
-	return &xxx_CreatePackOperation{
-		That:   o.That,
-		Pack:   o.Pack,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Pack = op.Pack
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreatePackResponse) xxx_FromOp(ctx context.Context, op *xxx_CreatePackOperation) {
@@ -637,7 +645,7 @@ func (o *CreatePackResponse) xxx_FromOp(ctx context.Context, op *xxx_CreatePackO
 	o.Return = op.Return
 }
 func (o *CreatePackResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreatePackResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreatePackOperation{}

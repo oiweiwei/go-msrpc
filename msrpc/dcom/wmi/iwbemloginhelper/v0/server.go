@@ -63,12 +63,25 @@ func LoginHelperServerHandle(ctx context.Context, o LoginHelperServer, opNum int
 	}
 	switch opNum {
 	case 3: // SetEvent
-		in := &SetEventRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEvent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEvent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemLoginHelper
+type UnimplementedLoginHelperServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedLoginHelperServer) SetEvent(context.Context, *SetEventRequest) (*SetEventResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LoginHelperServer = (*UnimplementedLoginHelperServer)(nil)

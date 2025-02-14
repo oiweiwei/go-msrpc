@@ -82,7 +82,7 @@ func (o *xxx_DefaultHBAPortClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultHBAPortClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -102,7 +102,7 @@ func (o *xxx_DefaultHBAPortClient) GetProperties(ctx context.Context, in *GetPro
 }
 
 func (o *xxx_DefaultHBAPortClient) SetAllPathStatuses(ctx context.Context, in *SetAllPathStatusesRequest, opts ...dcerpc.CallOption) (*SetAllPathStatusesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -308,13 +308,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -324,7 +326,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -344,15 +346,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:            o.That,
-		HBAPortProperty: o.HBAPortProperty,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.HBAPortProperty = op.HBAPortProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -364,7 +368,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -515,14 +519,16 @@ type SetAllPathStatusesRequest struct {
 	Status vds.PathStatus `idl:"name:status" json:"status"`
 }
 
-func (o *SetAllPathStatusesRequest) xxx_ToOp(ctx context.Context) *xxx_SetAllPathStatusesOperation {
+func (o *SetAllPathStatusesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAllPathStatusesOperation) *xxx_SetAllPathStatusesOperation {
+	if op == nil {
+		op = &xxx_SetAllPathStatusesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllPathStatusesOperation{}
+		return op
 	}
-	return &xxx_SetAllPathStatusesOperation{
-		This:   o.This,
-		Status: o.Status,
-	}
+	o.This = op.This
+	o.Status = op.Status
+	return op
 }
 
 func (o *SetAllPathStatusesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAllPathStatusesOperation) {
@@ -533,7 +539,7 @@ func (o *SetAllPathStatusesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetA
 	o.Status = op.Status
 }
 func (o *SetAllPathStatusesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAllPathStatusesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllPathStatusesOperation{}
@@ -552,14 +558,16 @@ type SetAllPathStatusesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAllPathStatusesResponse) xxx_ToOp(ctx context.Context) *xxx_SetAllPathStatusesOperation {
+func (o *SetAllPathStatusesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAllPathStatusesOperation) *xxx_SetAllPathStatusesOperation {
+	if op == nil {
+		op = &xxx_SetAllPathStatusesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllPathStatusesOperation{}
+		return op
 	}
-	return &xxx_SetAllPathStatusesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAllPathStatusesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAllPathStatusesOperation) {
@@ -570,7 +578,7 @@ func (o *SetAllPathStatusesResponse) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetAllPathStatusesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAllPathStatusesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllPathStatusesOperation{}

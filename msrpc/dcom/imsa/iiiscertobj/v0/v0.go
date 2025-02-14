@@ -299,7 +299,7 @@ func (o *xxx_DefaultIISCertObjectClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultIISCertObjectClient) SetInstanceName(ctx context.Context, in *SetInstanceNameRequest, opts ...dcerpc.CallOption) (*SetInstanceNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -319,7 +319,7 @@ func (o *xxx_DefaultIISCertObjectClient) SetInstanceName(ctx context.Context, in
 }
 
 func (o *xxx_DefaultIISCertObjectClient) IsInstalledRemote(ctx context.Context, in *IsInstalledRemoteRequest, opts ...dcerpc.CallOption) (*IsInstalledRemoteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -339,7 +339,7 @@ func (o *xxx_DefaultIISCertObjectClient) IsInstalledRemote(ctx context.Context, 
 }
 
 func (o *xxx_DefaultIISCertObjectClient) IsExportableRemote(ctx context.Context, in *IsExportableRemoteRequest, opts ...dcerpc.CallOption) (*IsExportableRemoteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -359,7 +359,7 @@ func (o *xxx_DefaultIISCertObjectClient) IsExportableRemote(ctx context.Context,
 }
 
 func (o *xxx_DefaultIISCertObjectClient) GetCertInfoRemote(ctx context.Context, in *GetCertInfoRemoteRequest, opts ...dcerpc.CallOption) (*GetCertInfoRemoteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -379,7 +379,7 @@ func (o *xxx_DefaultIISCertObjectClient) GetCertInfoRemote(ctx context.Context, 
 }
 
 func (o *xxx_DefaultIISCertObjectClient) ImportFromBlob(ctx context.Context, in *ImportFromBlobRequest, opts ...dcerpc.CallOption) (*ImportFromBlobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -399,7 +399,7 @@ func (o *xxx_DefaultIISCertObjectClient) ImportFromBlob(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultIISCertObjectClient) ImportFromBlobGetHash(ctx context.Context, in *ImportFromBlobGetHashRequest, opts ...dcerpc.CallOption) (*ImportFromBlobGetHashResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -419,7 +419,7 @@ func (o *xxx_DefaultIISCertObjectClient) ImportFromBlobGetHash(ctx context.Conte
 }
 
 func (o *xxx_DefaultIISCertObjectClient) ExportToBlob(ctx context.Context, in *ExportToBlobRequest, opts ...dcerpc.CallOption) (*ExportToBlobResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -652,14 +652,16 @@ type SetInstanceNameRequest struct {
 	NewValue *oaut.String `idl:"name:newVal" json:"new_value"`
 }
 
-func (o *SetInstanceNameRequest) xxx_ToOp(ctx context.Context) *xxx_SetInstanceNameOperation {
+func (o *SetInstanceNameRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInstanceNameOperation) *xxx_SetInstanceNameOperation {
+	if op == nil {
+		op = &xxx_SetInstanceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInstanceNameOperation{}
+		return op
 	}
-	return &xxx_SetInstanceNameOperation{
-		This:     o.This,
-		NewValue: o.NewValue,
-	}
+	o.This = op.This
+	o.NewValue = op.NewValue
+	return op
 }
 
 func (o *SetInstanceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInstanceNameOperation) {
@@ -670,7 +672,7 @@ func (o *SetInstanceNameRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInst
 	o.NewValue = op.NewValue
 }
 func (o *SetInstanceNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetInstanceNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInstanceNameOperation{}
@@ -689,14 +691,16 @@ type SetInstanceNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetInstanceNameResponse) xxx_ToOp(ctx context.Context) *xxx_SetInstanceNameOperation {
+func (o *SetInstanceNameResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInstanceNameOperation) *xxx_SetInstanceNameOperation {
+	if op == nil {
+		op = &xxx_SetInstanceNameOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInstanceNameOperation{}
+		return op
 	}
-	return &xxx_SetInstanceNameOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetInstanceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInstanceNameOperation) {
@@ -707,7 +711,7 @@ func (o *SetInstanceNameResponse) xxx_FromOp(ctx context.Context, op *xxx_SetIns
 	o.Return = op.Return
 }
 func (o *SetInstanceNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetInstanceNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInstanceNameOperation{}
@@ -854,13 +858,15 @@ type IsInstalledRemoteRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *IsInstalledRemoteRequest) xxx_ToOp(ctx context.Context) *xxx_IsInstalledRemoteOperation {
+func (o *IsInstalledRemoteRequest) xxx_ToOp(ctx context.Context, op *xxx_IsInstalledRemoteOperation) *xxx_IsInstalledRemoteOperation {
+	if op == nil {
+		op = &xxx_IsInstalledRemoteOperation{}
+	}
 	if o == nil {
-		return &xxx_IsInstalledRemoteOperation{}
+		return op
 	}
-	return &xxx_IsInstalledRemoteOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *IsInstalledRemoteRequest) xxx_FromOp(ctx context.Context, op *xxx_IsInstalledRemoteOperation) {
@@ -870,7 +876,7 @@ func (o *IsInstalledRemoteRequest) xxx_FromOp(ctx context.Context, op *xxx_IsIns
 	o.This = op.This
 }
 func (o *IsInstalledRemoteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsInstalledRemoteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsInstalledRemoteOperation{}
@@ -891,15 +897,17 @@ type IsInstalledRemoteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsInstalledRemoteResponse) xxx_ToOp(ctx context.Context) *xxx_IsInstalledRemoteOperation {
+func (o *IsInstalledRemoteResponse) xxx_ToOp(ctx context.Context, op *xxx_IsInstalledRemoteOperation) *xxx_IsInstalledRemoteOperation {
+	if op == nil {
+		op = &xxx_IsInstalledRemoteOperation{}
+	}
 	if o == nil {
-		return &xxx_IsInstalledRemoteOperation{}
+		return op
 	}
-	return &xxx_IsInstalledRemoteOperation{
-		That:        o.That,
-		ReturnValue: o.ReturnValue,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsInstalledRemoteResponse) xxx_FromOp(ctx context.Context, op *xxx_IsInstalledRemoteOperation) {
@@ -911,7 +919,7 @@ func (o *IsInstalledRemoteResponse) xxx_FromOp(ctx context.Context, op *xxx_IsIn
 	o.Return = op.Return
 }
 func (o *IsInstalledRemoteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsInstalledRemoteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsInstalledRemoteOperation{}
@@ -1060,13 +1068,15 @@ type IsExportableRemoteRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *IsExportableRemoteRequest) xxx_ToOp(ctx context.Context) *xxx_IsExportableRemoteOperation {
+func (o *IsExportableRemoteRequest) xxx_ToOp(ctx context.Context, op *xxx_IsExportableRemoteOperation) *xxx_IsExportableRemoteOperation {
+	if op == nil {
+		op = &xxx_IsExportableRemoteOperation{}
+	}
 	if o == nil {
-		return &xxx_IsExportableRemoteOperation{}
+		return op
 	}
-	return &xxx_IsExportableRemoteOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *IsExportableRemoteRequest) xxx_FromOp(ctx context.Context, op *xxx_IsExportableRemoteOperation) {
@@ -1076,7 +1086,7 @@ func (o *IsExportableRemoteRequest) xxx_FromOp(ctx context.Context, op *xxx_IsEx
 	o.This = op.This
 }
 func (o *IsExportableRemoteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsExportableRemoteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsExportableRemoteOperation{}
@@ -1097,15 +1107,17 @@ type IsExportableRemoteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsExportableRemoteResponse) xxx_ToOp(ctx context.Context) *xxx_IsExportableRemoteOperation {
+func (o *IsExportableRemoteResponse) xxx_ToOp(ctx context.Context, op *xxx_IsExportableRemoteOperation) *xxx_IsExportableRemoteOperation {
+	if op == nil {
+		op = &xxx_IsExportableRemoteOperation{}
+	}
 	if o == nil {
-		return &xxx_IsExportableRemoteOperation{}
+		return op
 	}
-	return &xxx_IsExportableRemoteOperation{
-		That:        o.That,
-		ReturnValue: o.ReturnValue,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsExportableRemoteResponse) xxx_FromOp(ctx context.Context, op *xxx_IsExportableRemoteOperation) {
@@ -1117,7 +1129,7 @@ func (o *IsExportableRemoteResponse) xxx_FromOp(ctx context.Context, op *xxx_IsE
 	o.Return = op.Return
 }
 func (o *IsExportableRemoteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsExportableRemoteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsExportableRemoteOperation{}
@@ -1298,13 +1310,15 @@ type GetCertInfoRemoteRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetCertInfoRemoteRequest) xxx_ToOp(ctx context.Context) *xxx_GetCertInfoRemoteOperation {
+func (o *GetCertInfoRemoteRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCertInfoRemoteOperation) *xxx_GetCertInfoRemoteOperation {
+	if op == nil {
+		op = &xxx_GetCertInfoRemoteOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCertInfoRemoteOperation{}
+		return op
 	}
-	return &xxx_GetCertInfoRemoteOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetCertInfoRemoteRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCertInfoRemoteOperation) {
@@ -1314,7 +1328,7 @@ func (o *GetCertInfoRemoteRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCe
 	o.This = op.This
 }
 func (o *GetCertInfoRemoteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCertInfoRemoteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCertInfoRemoteOperation{}
@@ -1339,15 +1353,17 @@ type GetCertInfoRemoteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCertInfoRemoteResponse) xxx_ToOp(ctx context.Context) *xxx_GetCertInfoRemoteOperation {
+func (o *GetCertInfoRemoteResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCertInfoRemoteOperation) *xxx_GetCertInfoRemoteOperation {
+	if op == nil {
+		op = &xxx_GetCertInfoRemoteOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCertInfoRemoteOperation{}
+		return op
 	}
-	return &xxx_GetCertInfoRemoteOperation{
-		That:          o.That,
-		BinaryVariant: o.BinaryVariant,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.BinaryVariant = op.BinaryVariant
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCertInfoRemoteResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCertInfoRemoteOperation) {
@@ -1359,7 +1375,7 @@ func (o *GetCertInfoRemoteResponse) xxx_FromOp(ctx context.Context, op *xxx_GetC
 	o.Return = op.Return
 }
 func (o *GetCertInfoRemoteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCertInfoRemoteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCertInfoRemoteOperation{}
@@ -1736,20 +1752,22 @@ type ImportFromBlobRequest struct {
 	BlobBinary string `idl:"name:pBlobBinary;size_is:(cbSize);string" json:"blob_binary"`
 }
 
-func (o *ImportFromBlobRequest) xxx_ToOp(ctx context.Context) *xxx_ImportFromBlobOperation {
+func (o *ImportFromBlobRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFromBlobOperation) *xxx_ImportFromBlobOperation {
+	if op == nil {
+		op = &xxx_ImportFromBlobOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFromBlobOperation{}
+		return op
 	}
-	return &xxx_ImportFromBlobOperation{
-		This:              o.This,
-		InstanceName:      o.InstanceName,
-		Password:          o.Password,
-		InstallToMetabase: o.InstallToMetabase,
-		AllowExport:       o.AllowExport,
-		OverwriteExisting: o.OverwriteExisting,
-		Length:            o.Length,
-		BlobBinary:        o.BlobBinary,
-	}
+	o.This = op.This
+	o.InstanceName = op.InstanceName
+	o.Password = op.Password
+	o.InstallToMetabase = op.InstallToMetabase
+	o.AllowExport = op.AllowExport
+	o.OverwriteExisting = op.OverwriteExisting
+	o.Length = op.Length
+	o.BlobBinary = op.BlobBinary
+	return op
 }
 
 func (o *ImportFromBlobRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportFromBlobOperation) {
@@ -1766,7 +1784,7 @@ func (o *ImportFromBlobRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportFr
 	o.BlobBinary = op.BlobBinary
 }
 func (o *ImportFromBlobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ImportFromBlobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFromBlobOperation{}
@@ -1785,14 +1803,16 @@ type ImportFromBlobResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ImportFromBlobResponse) xxx_ToOp(ctx context.Context) *xxx_ImportFromBlobOperation {
+func (o *ImportFromBlobResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportFromBlobOperation) *xxx_ImportFromBlobOperation {
+	if op == nil {
+		op = &xxx_ImportFromBlobOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFromBlobOperation{}
+		return op
 	}
-	return &xxx_ImportFromBlobOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ImportFromBlobResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportFromBlobOperation) {
@@ -1803,7 +1823,7 @@ func (o *ImportFromBlobResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportF
 	o.Return = op.Return
 }
 func (o *ImportFromBlobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ImportFromBlobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFromBlobOperation{}
@@ -2227,20 +2247,22 @@ type ImportFromBlobGetHashRequest struct {
 	BlobBinary string `idl:"name:pBlobBinary;size_is:(cbSize);string" json:"blob_binary"`
 }
 
-func (o *ImportFromBlobGetHashRequest) xxx_ToOp(ctx context.Context) *xxx_ImportFromBlobGetHashOperation {
+func (o *ImportFromBlobGetHashRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportFromBlobGetHashOperation) *xxx_ImportFromBlobGetHashOperation {
+	if op == nil {
+		op = &xxx_ImportFromBlobGetHashOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFromBlobGetHashOperation{}
+		return op
 	}
-	return &xxx_ImportFromBlobGetHashOperation{
-		This:              o.This,
-		InstanceName:      o.InstanceName,
-		Password:          o.Password,
-		InstallToMetabase: o.InstallToMetabase,
-		AllowExport:       o.AllowExport,
-		OverwriteExisting: o.OverwriteExisting,
-		Length:            o.Length,
-		BlobBinary:        o.BlobBinary,
-	}
+	o.This = op.This
+	o.InstanceName = op.InstanceName
+	o.Password = op.Password
+	o.InstallToMetabase = op.InstallToMetabase
+	o.AllowExport = op.AllowExport
+	o.OverwriteExisting = op.OverwriteExisting
+	o.Length = op.Length
+	o.BlobBinary = op.BlobBinary
+	return op
 }
 
 func (o *ImportFromBlobGetHashRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportFromBlobGetHashOperation) {
@@ -2257,7 +2279,7 @@ func (o *ImportFromBlobGetHashRequest) xxx_FromOp(ctx context.Context, op *xxx_I
 	o.BlobBinary = op.BlobBinary
 }
 func (o *ImportFromBlobGetHashRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ImportFromBlobGetHashRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFromBlobGetHashOperation{}
@@ -2283,16 +2305,18 @@ type ImportFromBlobGetHashResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ImportFromBlobGetHashResponse) xxx_ToOp(ctx context.Context) *xxx_ImportFromBlobGetHashOperation {
+func (o *ImportFromBlobGetHashResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportFromBlobGetHashOperation) *xxx_ImportFromBlobGetHashOperation {
+	if op == nil {
+		op = &xxx_ImportFromBlobGetHashOperation{}
+	}
 	if o == nil {
-		return &xxx_ImportFromBlobGetHashOperation{}
+		return op
 	}
-	return &xxx_ImportFromBlobGetHashOperation{
-		That:           o.That,
-		CertHashLength: o.CertHashLength,
-		CertHash:       o.CertHash,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.CertHashLength = op.CertHashLength
+	o.CertHash = op.CertHash
+	o.Return = op.Return
+	return op
 }
 
 func (o *ImportFromBlobGetHashResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportFromBlobGetHashOperation) {
@@ -2305,7 +2329,7 @@ func (o *ImportFromBlobGetHashResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ImportFromBlobGetHashResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ImportFromBlobGetHashResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ImportFromBlobGetHashOperation{}
@@ -2676,19 +2700,21 @@ type ExportToBlobRequest struct {
 	BlobBinary string `idl:"name:pBlobBinary;string" json:"blob_binary"`
 }
 
-func (o *ExportToBlobRequest) xxx_ToOp(ctx context.Context) *xxx_ExportToBlobOperation {
+func (o *ExportToBlobRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportToBlobOperation) *xxx_ExportToBlobOperation {
+	if op == nil {
+		op = &xxx_ExportToBlobOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportToBlobOperation{}
+		return op
 	}
-	return &xxx_ExportToBlobOperation{
-		This:         o.This,
-		InstanceName: o.InstanceName,
-		Password:     o.Password,
-		PrivateKey:   o.PrivateKey,
-		CertChain:    o.CertChain,
-		Length:       o.Length,
-		BlobBinary:   o.BlobBinary,
-	}
+	o.This = op.This
+	o.InstanceName = op.InstanceName
+	o.Password = op.Password
+	o.PrivateKey = op.PrivateKey
+	o.CertChain = op.CertChain
+	o.Length = op.Length
+	o.BlobBinary = op.BlobBinary
+	return op
 }
 
 func (o *ExportToBlobRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportToBlobOperation) {
@@ -2704,7 +2730,7 @@ func (o *ExportToBlobRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportToBl
 	o.BlobBinary = op.BlobBinary
 }
 func (o *ExportToBlobRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExportToBlobRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportToBlobOperation{}
@@ -2730,16 +2756,18 @@ type ExportToBlobResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExportToBlobResponse) xxx_ToOp(ctx context.Context) *xxx_ExportToBlobOperation {
+func (o *ExportToBlobResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportToBlobOperation) *xxx_ExportToBlobOperation {
+	if op == nil {
+		op = &xxx_ExportToBlobOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportToBlobOperation{}
+		return op
 	}
-	return &xxx_ExportToBlobOperation{
-		That:       o.That,
-		Length:     o.Length,
-		BlobBinary: o.BlobBinary,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Length = op.Length
+	o.BlobBinary = op.BlobBinary
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExportToBlobResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportToBlobOperation) {
@@ -2752,7 +2780,7 @@ func (o *ExportToBlobResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportToB
 	o.Return = op.Return
 }
 func (o *ExportToBlobResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExportToBlobResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportToBlobOperation{}

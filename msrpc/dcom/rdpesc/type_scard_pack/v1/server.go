@@ -42,3 +42,9 @@ func TypeSmartCardPackServerHandle(ctx context.Context, o TypeSmartCardPackServe
 	}
 	return nil, nil
 }
+
+// Unimplemented type_scard_pack
+type UnimplementedTypeSmartCardPackServer struct {
+}
+
+var _ TypeSmartCardPackServer = (*UnimplementedTypeSmartCardPackServer)(nil)

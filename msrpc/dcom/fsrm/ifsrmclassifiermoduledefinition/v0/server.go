@@ -67,47 +67,85 @@ func ClassifierModuleDefinitionServerHandle(ctx context.Context, o ClassifierMod
 	}
 	switch opNum {
 	case 31: // PropertiesAffected
-		in := &GetPropertiesAffectedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesAffectedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertiesAffected(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesAffectedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertiesAffected(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // PropertiesAffected
-		in := &SetPropertiesAffectedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPropertiesAffectedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPropertiesAffected(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPropertiesAffectedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPropertiesAffected(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // PropertiesUsed
-		in := &GetPropertiesUsedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesUsedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertiesUsed(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesUsedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertiesUsed(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // PropertiesUsed
-		in := &SetPropertiesUsedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPropertiesUsedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPropertiesUsed(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPropertiesUsedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPropertiesUsed(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // NeedsExplicitValue
-		in := &GetNeedsExplicitValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNeedsExplicitValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNeedsExplicitValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNeedsExplicitValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNeedsExplicitValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // NeedsExplicitValue
-		in := &SetNeedsExplicitValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNeedsExplicitValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNeedsExplicitValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNeedsExplicitValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNeedsExplicitValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmClassifierModuleDefinition
+type UnimplementedClassifierModuleDefinitionServer struct {
+	ifsrmpipelinemoduledefinition.UnimplementedPipelineModuleDefinitionServer
+}
+
+func (UnimplementedClassifierModuleDefinitionServer) GetPropertiesAffected(context.Context, *GetPropertiesAffectedRequest) (*GetPropertiesAffectedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassifierModuleDefinitionServer) SetPropertiesAffected(context.Context, *SetPropertiesAffectedRequest) (*SetPropertiesAffectedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassifierModuleDefinitionServer) GetPropertiesUsed(context.Context, *GetPropertiesUsedRequest) (*GetPropertiesUsedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassifierModuleDefinitionServer) SetPropertiesUsed(context.Context, *SetPropertiesUsedRequest) (*SetPropertiesUsedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassifierModuleDefinitionServer) GetNeedsExplicitValue(context.Context, *GetNeedsExplicitValueRequest) (*GetNeedsExplicitValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClassifierModuleDefinitionServer) SetNeedsExplicitValue(context.Context, *SetNeedsExplicitValueRequest) (*SetNeedsExplicitValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClassifierModuleDefinitionServer = (*UnimplementedClassifierModuleDefinitionServer)(nil)

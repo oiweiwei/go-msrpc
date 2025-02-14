@@ -131,43 +131,76 @@ func ServerHealthReportServerHandle(ctx context.Context, o ServerHealthReportSer
 	}
 	switch opNum {
 	case 3: // GetReport
-		in := &GetReportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetCompressedReport
-		in := &GetCompressedReportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCompressedReportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCompressedReport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCompressedReportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCompressedReport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetRawReportEx
-		in := &GetRawReportExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRawReportExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRawReportEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRawReportExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRawReportEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetReferenceVersionVectors
-		in := &GetReferenceVersionVectorsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReferenceVersionVectorsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReferenceVersionVectors(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReferenceVersionVectorsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReferenceVersionVectors(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum7NotUsedOnWire
 		// Opnum7NotUsedOnWire
 		return nil, nil
 	case 8: // GetReferenceBacklogCounts
-		in := &GetReferenceBacklogCountsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReferenceBacklogCountsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReferenceBacklogCounts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReferenceBacklogCountsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReferenceBacklogCounts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IServerHealthReport
+type UnimplementedServerHealthReportServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedServerHealthReportServer) GetReport(context.Context, *GetReportRequest) (*GetReportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServerHealthReportServer) GetCompressedReport(context.Context, *GetCompressedReportRequest) (*GetCompressedReportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServerHealthReportServer) GetRawReportEx(context.Context, *GetRawReportExRequest) (*GetRawReportExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServerHealthReportServer) GetReferenceVersionVectors(context.Context, *GetReferenceVersionVectorsRequest) (*GetReferenceVersionVectorsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedServerHealthReportServer) GetReferenceBacklogCounts(context.Context, *GetReferenceBacklogCountsRequest) (*GetReferenceBacklogCountsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ServerHealthReportServer = (*UnimplementedServerHealthReportServer)(nil)

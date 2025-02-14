@@ -99,7 +99,7 @@ func (o *xxx_DefaultBackupRestoreClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultBackupRestoreClient) Backup(ctx context.Context, in *BackupRequest, opts ...dcerpc.CallOption) (*BackupResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +119,7 @@ func (o *xxx_DefaultBackupRestoreClient) Backup(ctx context.Context, in *BackupR
 }
 
 func (o *xxx_DefaultBackupRestoreClient) Restore(ctx context.Context, in *RestoreRequest, opts ...dcerpc.CallOption) (*RestoreResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -334,15 +334,17 @@ type BackupRequest struct {
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 }
 
-func (o *BackupRequest) xxx_ToOp(ctx context.Context) *xxx_BackupOperation {
+func (o *BackupRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) *xxx_BackupOperation {
+	if op == nil {
+		op = &xxx_BackupOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupOperation{}
+		return op
 	}
-	return &xxx_BackupOperation{
-		This:         o.This,
-		BackupToFile: o.BackupToFile,
-		Flags:        o.Flags,
-	}
+	o.This = op.This
+	o.BackupToFile = op.BackupToFile
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *BackupRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupOperation) {
@@ -354,7 +356,7 @@ func (o *BackupRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupOperation)
 	o.Flags = op.Flags
 }
 func (o *BackupRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BackupRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupOperation{}
@@ -373,14 +375,16 @@ type BackupResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BackupResponse) xxx_ToOp(ctx context.Context) *xxx_BackupOperation {
+func (o *BackupResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupOperation) *xxx_BackupOperation {
+	if op == nil {
+		op = &xxx_BackupOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupOperation{}
+		return op
 	}
-	return &xxx_BackupOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *BackupResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupOperation) {
@@ -391,7 +395,7 @@ func (o *BackupResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupOperation
 	o.Return = op.Return
 }
 func (o *BackupResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BackupResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupOperation{}
@@ -568,15 +572,17 @@ type RestoreRequest struct {
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 }
 
-func (o *RestoreRequest) xxx_ToOp(ctx context.Context) *xxx_RestoreOperation {
+func (o *RestoreRequest) xxx_ToOp(ctx context.Context, op *xxx_RestoreOperation) *xxx_RestoreOperation {
+	if op == nil {
+		op = &xxx_RestoreOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreOperation{}
+		return op
 	}
-	return &xxx_RestoreOperation{
-		This:            o.This,
-		RestoreFromFile: o.RestoreFromFile,
-		Flags:           o.Flags,
-	}
+	o.This = op.This
+	o.RestoreFromFile = op.RestoreFromFile
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *RestoreRequest) xxx_FromOp(ctx context.Context, op *xxx_RestoreOperation) {
@@ -588,7 +594,7 @@ func (o *RestoreRequest) xxx_FromOp(ctx context.Context, op *xxx_RestoreOperatio
 	o.Flags = op.Flags
 }
 func (o *RestoreRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RestoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreOperation{}
@@ -607,14 +613,16 @@ type RestoreResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RestoreResponse) xxx_ToOp(ctx context.Context) *xxx_RestoreOperation {
+func (o *RestoreResponse) xxx_ToOp(ctx context.Context, op *xxx_RestoreOperation) *xxx_RestoreOperation {
+	if op == nil {
+		op = &xxx_RestoreOperation{}
+	}
 	if o == nil {
-		return &xxx_RestoreOperation{}
+		return op
 	}
-	return &xxx_RestoreOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RestoreResponse) xxx_FromOp(ctx context.Context, op *xxx_RestoreOperation) {
@@ -625,7 +633,7 @@ func (o *RestoreResponse) xxx_FromOp(ctx context.Context, op *xxx_RestoreOperati
 	o.Return = op.Return
 }
 func (o *RestoreResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RestoreResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RestoreOperation{}

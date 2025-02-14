@@ -74,12 +74,24 @@ func NewAsyncemsmdbServerHandle(o AsyncemsmdbServer) dcerpc.ServerHandle {
 func AsyncemsmdbServerHandle(ctx context.Context, o AsyncemsmdbServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // EcDoAsyncWaitEx
-		in := &DoAsyncWaitExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoAsyncWaitExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoAsyncWaitEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoAsyncWaitExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoAsyncWaitEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented asyncemsmdb
+type UnimplementedAsyncemsmdbServer struct {
+}
+
+func (UnimplementedAsyncemsmdbServer) DoAsyncWaitEx(context.Context, *DoAsyncWaitExRequest) (*DoAsyncWaitExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AsyncemsmdbServer = (*UnimplementedAsyncemsmdbServer)(nil)

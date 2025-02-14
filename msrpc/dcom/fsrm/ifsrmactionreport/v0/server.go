@@ -61,33 +61,61 @@ func ActionReportServerHandle(ctx context.Context, o ActionReportServer, opNum i
 	}
 	switch opNum {
 	case 12: // ReportTypes
-		in := &GetReportTypesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportTypesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReportTypes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportTypesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReportTypes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ReportTypes
-		in := &SetReportTypesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetReportTypesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetReportTypes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetReportTypesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetReportTypes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // MailTo
-		in := &GetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // MailTo
-		in := &SetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmActionReport
+type UnimplementedActionReportServer struct {
+	ifsrmaction.UnimplementedActionServer
+}
+
+func (UnimplementedActionReportServer) GetReportTypes(context.Context, *GetReportTypesRequest) (*GetReportTypesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionReportServer) SetReportTypes(context.Context, *SetReportTypesRequest) (*SetReportTypesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionReportServer) GetMailTo(context.Context, *GetMailToRequest) (*GetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionReportServer) SetMailTo(context.Context, *SetMailToRequest) (*SetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActionReportServer = (*UnimplementedActionReportServer)(nil)

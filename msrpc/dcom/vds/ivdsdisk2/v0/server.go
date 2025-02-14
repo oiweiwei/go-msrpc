@@ -62,12 +62,25 @@ func Disk2ServerHandle(ctx context.Context, o Disk2Server, opNum int, r ndr.Read
 	}
 	switch opNum {
 	case 3: // SetSANMode
-		in := &SetSANModeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSANModeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSANMode(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSANModeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSANMode(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsDisk2
+type UnimplementedDisk2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDisk2Server) SetSANMode(context.Context, *SetSANModeRequest) (*SetSANModeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Disk2Server = (*UnimplementedDisk2Server)(nil)

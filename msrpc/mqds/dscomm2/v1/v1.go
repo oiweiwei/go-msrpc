@@ -156,7 +156,7 @@ type xxx_DefaultDscomm2Client struct {
 }
 
 func (o *xxx_DefaultDscomm2Client) GetComputerSites(ctx context.Context, in *GetComputerSitesRequest, opts ...dcerpc.CallOption) (*GetComputerSitesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -169,7 +169,7 @@ func (o *xxx_DefaultDscomm2Client) GetComputerSites(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultDscomm2Client) GetPropertiesEx(ctx context.Context, in *GetPropertiesExRequest, opts ...dcerpc.CallOption) (*GetPropertiesExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -182,7 +182,7 @@ func (o *xxx_DefaultDscomm2Client) GetPropertiesEx(ctx context.Context, in *GetP
 }
 
 func (o *xxx_DefaultDscomm2Client) GetPropertiesGUIDEx(ctx context.Context, in *GetPropertiesGUIDExRequest, opts ...dcerpc.CallOption) (*GetPropertiesGUIDExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -195,7 +195,7 @@ func (o *xxx_DefaultDscomm2Client) GetPropertiesGUIDEx(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDscomm2Client) BeginDeleteNotification(ctx context.Context, in *BeginDeleteNotificationRequest, opts ...dcerpc.CallOption) (*BeginDeleteNotificationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -208,7 +208,7 @@ func (o *xxx_DefaultDscomm2Client) BeginDeleteNotification(ctx context.Context, 
 }
 
 func (o *xxx_DefaultDscomm2Client) NotifyDelete(ctx context.Context, in *NotifyDeleteRequest, opts ...dcerpc.CallOption) (*NotifyDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -221,7 +221,7 @@ func (o *xxx_DefaultDscomm2Client) NotifyDelete(ctx context.Context, in *NotifyD
 }
 
 func (o *xxx_DefaultDscomm2Client) EndDeleteNotification(ctx context.Context, in *EndDeleteNotificationRequest, opts ...dcerpc.CallOption) (*EndDeleteNotificationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -231,7 +231,7 @@ func (o *xxx_DefaultDscomm2Client) EndDeleteNotification(ctx context.Context, in
 }
 
 func (o *xxx_DefaultDscomm2Client) IsServerGC(ctx context.Context, in *IsServerGCRequest, opts ...dcerpc.CallOption) (*IsServerGCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -244,7 +244,7 @@ func (o *xxx_DefaultDscomm2Client) IsServerGC(ctx context.Context, in *IsServerG
 }
 
 func (o *xxx_DefaultDscomm2Client) GetGCListInDomain(ctx context.Context, in *GetGCListInDomainRequest, opts ...dcerpc.CallOption) (*GetGCListInDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -603,15 +603,17 @@ type GetComputerSitesRequest struct {
 	ServerSignatureSize uint32 `idl:"name:pdwServerSignatureSize" json:"server_signature_size"`
 }
 
-func (o *GetComputerSitesRequest) xxx_ToOp(ctx context.Context) *xxx_GetComputerSitesOperation {
+func (o *GetComputerSitesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetComputerSitesOperation) *xxx_GetComputerSitesOperation {
+	if op == nil {
+		op = &xxx_GetComputerSitesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComputerSitesOperation{}
+		return op
 	}
-	return &xxx_GetComputerSitesOperation{
-		PathName:            o.PathName,
-		ServerAuth:          o.ServerAuth,
-		ServerSignatureSize: o.ServerSignatureSize,
-	}
+	o.PathName = op.PathName
+	o.ServerAuth = op.ServerAuth
+	o.ServerSignatureSize = op.ServerSignatureSize
+	return op
 }
 
 func (o *GetComputerSitesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetComputerSitesOperation) {
@@ -623,7 +625,7 @@ func (o *GetComputerSitesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCom
 	o.ServerSignatureSize = op.ServerSignatureSize
 }
 func (o *GetComputerSitesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetComputerSitesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComputerSitesOperation{}
@@ -655,17 +657,19 @@ type GetComputerSitesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetComputerSitesResponse) xxx_ToOp(ctx context.Context) *xxx_GetComputerSitesOperation {
+func (o *GetComputerSitesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComputerSitesOperation) *xxx_GetComputerSitesOperation {
+	if op == nil {
+		op = &xxx_GetComputerSitesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComputerSitesOperation{}
+		return op
 	}
-	return &xxx_GetComputerSitesOperation{
-		NumberOfSites:       o.NumberOfSites,
-		Sites:               o.Sites,
-		ServerSignature:     o.ServerSignature,
-		ServerSignatureSize: o.ServerSignatureSize,
-		Return:              o.Return,
-	}
+	o.NumberOfSites = op.NumberOfSites
+	o.Sites = op.Sites
+	o.ServerSignature = op.ServerSignature
+	o.ServerSignatureSize = op.ServerSignatureSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetComputerSitesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetComputerSitesOperation) {
@@ -679,7 +683,7 @@ func (o *GetComputerSitesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCo
 	o.Return = op.Return
 }
 func (o *GetComputerSitesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetComputerSitesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComputerSitesOperation{}
@@ -1099,19 +1103,21 @@ type GetPropertiesExRequest struct {
 	ServerSignatureSize uint32 `idl:"name:pdwServerSignatureSize" json:"server_signature_size"`
 }
 
-func (o *GetPropertiesExRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesExOperation {
+func (o *GetPropertiesExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesExOperation) *xxx_GetPropertiesExOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesExOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesExOperation{
-		ObjectType:          o.ObjectType,
-		PathName:            o.PathName,
-		CreatePartition:     o.CreatePartition,
-		Property:            o.Property,
-		Var:                 o.Var,
-		ServerAuth:          o.ServerAuth,
-		ServerSignatureSize: o.ServerSignatureSize,
-	}
+	o.ObjectType = op.ObjectType
+	o.PathName = op.PathName
+	o.CreatePartition = op.CreatePartition
+	o.Property = op.Property
+	o.Var = op.Var
+	o.ServerAuth = op.ServerAuth
+	o.ServerSignatureSize = op.ServerSignatureSize
+	return op
 }
 
 func (o *GetPropertiesExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesExOperation) {
@@ -1127,7 +1133,7 @@ func (o *GetPropertiesExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProp
 	o.ServerSignatureSize = op.ServerSignatureSize
 }
 func (o *GetPropertiesExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesExOperation{}
@@ -1155,16 +1161,18 @@ type GetPropertiesExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesExResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesExOperation {
+func (o *GetPropertiesExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesExOperation) *xxx_GetPropertiesExOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesExOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesExOperation{
-		Var:                 o.Var,
-		ServerSignature:     o.ServerSignature,
-		ServerSignatureSize: o.ServerSignatureSize,
-		Return:              o.Return,
-	}
+	o.Var = op.Var
+	o.ServerSignature = op.ServerSignature
+	o.ServerSignatureSize = op.ServerSignatureSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesExOperation) {
@@ -1177,7 +1185,7 @@ func (o *GetPropertiesExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPro
 	o.Return = op.Return
 }
 func (o *GetPropertiesExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesExOperation{}
@@ -1630,19 +1638,21 @@ type GetPropertiesGUIDExRequest struct {
 	ServerSignatureSize uint32 `idl:"name:pdwServerSignatureSize" json:"server_signature_size"`
 }
 
-func (o *GetPropertiesGUIDExRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesGUIDExOperation {
+func (o *GetPropertiesGUIDExRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesGUIDExOperation) *xxx_GetPropertiesGUIDExOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesGUIDExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesGUIDExOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesGUIDExOperation{
-		ObjectType:          o.ObjectType,
-		GUID:                o.GUID,
-		CreatePartition:     o.CreatePartition,
-		Property:            o.Property,
-		Var:                 o.Var,
-		ServerAuth:          o.ServerAuth,
-		ServerSignatureSize: o.ServerSignatureSize,
-	}
+	o.ObjectType = op.ObjectType
+	o.GUID = op.GUID
+	o.CreatePartition = op.CreatePartition
+	o.Property = op.Property
+	o.Var = op.Var
+	o.ServerAuth = op.ServerAuth
+	o.ServerSignatureSize = op.ServerSignatureSize
+	return op
 }
 
 func (o *GetPropertiesGUIDExRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesGUIDExOperation) {
@@ -1658,7 +1668,7 @@ func (o *GetPropertiesGUIDExRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.ServerSignatureSize = op.ServerSignatureSize
 }
 func (o *GetPropertiesGUIDExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesGUIDExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesGUIDExOperation{}
@@ -1686,16 +1696,18 @@ type GetPropertiesGUIDExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesGUIDExResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesGUIDExOperation {
+func (o *GetPropertiesGUIDExResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesGUIDExOperation) *xxx_GetPropertiesGUIDExOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesGUIDExOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesGUIDExOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesGUIDExOperation{
-		Var:                 o.Var,
-		ServerSignature:     o.ServerSignature,
-		ServerSignatureSize: o.ServerSignatureSize,
-		Return:              o.Return,
-	}
+	o.Var = op.Var
+	o.ServerSignature = op.ServerSignature
+	o.ServerSignatureSize = op.ServerSignatureSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesGUIDExResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesGUIDExOperation) {
@@ -1708,7 +1720,7 @@ func (o *GetPropertiesGUIDExResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetPropertiesGUIDExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesGUIDExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesGUIDExOperation{}
@@ -1852,14 +1864,16 @@ type BeginDeleteNotificationRequest struct {
 	ServerAuth *dscomm.ServerAuthType `idl:"name:phServerAuth" json:"server_auth"`
 }
 
-func (o *BeginDeleteNotificationRequest) xxx_ToOp(ctx context.Context) *xxx_BeginDeleteNotificationOperation {
+func (o *BeginDeleteNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_BeginDeleteNotificationOperation) *xxx_BeginDeleteNotificationOperation {
+	if op == nil {
+		op = &xxx_BeginDeleteNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_BeginDeleteNotificationOperation{}
+		return op
 	}
-	return &xxx_BeginDeleteNotificationOperation{
-		PathName:   o.PathName,
-		ServerAuth: o.ServerAuth,
-	}
+	o.PathName = op.PathName
+	o.ServerAuth = op.ServerAuth
+	return op
 }
 
 func (o *BeginDeleteNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_BeginDeleteNotificationOperation) {
@@ -1870,7 +1884,7 @@ func (o *BeginDeleteNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.ServerAuth = op.ServerAuth
 }
 func (o *BeginDeleteNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BeginDeleteNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BeginDeleteNotificationOperation{}
@@ -1891,14 +1905,16 @@ type BeginDeleteNotificationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BeginDeleteNotificationResponse) xxx_ToOp(ctx context.Context) *xxx_BeginDeleteNotificationOperation {
+func (o *BeginDeleteNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_BeginDeleteNotificationOperation) *xxx_BeginDeleteNotificationOperation {
+	if op == nil {
+		op = &xxx_BeginDeleteNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_BeginDeleteNotificationOperation{}
+		return op
 	}
-	return &xxx_BeginDeleteNotificationOperation{
-		Handle: o.Handle,
-		Return: o.Return,
-	}
+	o.Handle = op.Handle
+	o.Return = op.Return
+	return op
 }
 
 func (o *BeginDeleteNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_BeginDeleteNotificationOperation) {
@@ -1909,7 +1925,7 @@ func (o *BeginDeleteNotificationResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *BeginDeleteNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BeginDeleteNotificationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BeginDeleteNotificationOperation{}
@@ -2011,13 +2027,15 @@ type NotifyDeleteRequest struct {
 	Handle *dscomm.DeleteType `idl:"name:Handle" json:"handle"`
 }
 
-func (o *NotifyDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_NotifyDeleteOperation {
+func (o *NotifyDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_NotifyDeleteOperation) *xxx_NotifyDeleteOperation {
+	if op == nil {
+		op = &xxx_NotifyDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_NotifyDeleteOperation{}
+		return op
 	}
-	return &xxx_NotifyDeleteOperation{
-		Handle: o.Handle,
-	}
+	o.Handle = op.Handle
+	return op
 }
 
 func (o *NotifyDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_NotifyDeleteOperation) {
@@ -2027,7 +2045,7 @@ func (o *NotifyDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_NotifyDele
 	o.Handle = op.Handle
 }
 func (o *NotifyDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NotifyDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NotifyDeleteOperation{}
@@ -2044,13 +2062,15 @@ type NotifyDeleteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NotifyDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_NotifyDeleteOperation {
+func (o *NotifyDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_NotifyDeleteOperation) *xxx_NotifyDeleteOperation {
+	if op == nil {
+		op = &xxx_NotifyDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_NotifyDeleteOperation{}
+		return op
 	}
-	return &xxx_NotifyDeleteOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *NotifyDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_NotifyDeleteOperation) {
@@ -2060,7 +2080,7 @@ func (o *NotifyDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_NotifyDel
 	o.Return = op.Return
 }
 func (o *NotifyDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NotifyDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NotifyDeleteOperation{}
@@ -2173,13 +2193,15 @@ type EndDeleteNotificationRequest struct {
 	Handle *dscomm.DeleteType `idl:"name:pHandle" json:"handle"`
 }
 
-func (o *EndDeleteNotificationRequest) xxx_ToOp(ctx context.Context) *xxx_EndDeleteNotificationOperation {
+func (o *EndDeleteNotificationRequest) xxx_ToOp(ctx context.Context, op *xxx_EndDeleteNotificationOperation) *xxx_EndDeleteNotificationOperation {
+	if op == nil {
+		op = &xxx_EndDeleteNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_EndDeleteNotificationOperation{}
+		return op
 	}
-	return &xxx_EndDeleteNotificationOperation{
-		Handle: o.Handle,
-	}
+	o.Handle = op.Handle
+	return op
 }
 
 func (o *EndDeleteNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_EndDeleteNotificationOperation) {
@@ -2189,7 +2211,7 @@ func (o *EndDeleteNotificationRequest) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Handle = op.Handle
 }
 func (o *EndDeleteNotificationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EndDeleteNotificationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndDeleteNotificationOperation{}
@@ -2209,13 +2231,15 @@ type EndDeleteNotificationResponse struct {
 	Handle *dscomm.DeleteType `idl:"name:pHandle" json:"handle"`
 }
 
-func (o *EndDeleteNotificationResponse) xxx_ToOp(ctx context.Context) *xxx_EndDeleteNotificationOperation {
+func (o *EndDeleteNotificationResponse) xxx_ToOp(ctx context.Context, op *xxx_EndDeleteNotificationOperation) *xxx_EndDeleteNotificationOperation {
+	if op == nil {
+		op = &xxx_EndDeleteNotificationOperation{}
+	}
 	if o == nil {
-		return &xxx_EndDeleteNotificationOperation{}
+		return op
 	}
-	return &xxx_EndDeleteNotificationOperation{
-		Handle: o.Handle,
-	}
+	o.Handle = op.Handle
+	return op
 }
 
 func (o *EndDeleteNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_EndDeleteNotificationOperation) {
@@ -2225,7 +2249,7 @@ func (o *EndDeleteNotificationResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Handle = op.Handle
 }
 func (o *EndDeleteNotificationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EndDeleteNotificationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndDeleteNotificationOperation{}
@@ -2301,11 +2325,14 @@ func (o *xxx_IsServerGCOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 type IsServerGCRequest struct {
 }
 
-func (o *IsServerGCRequest) xxx_ToOp(ctx context.Context) *xxx_IsServerGCOperation {
-	if o == nil {
-		return &xxx_IsServerGCOperation{}
+func (o *IsServerGCRequest) xxx_ToOp(ctx context.Context, op *xxx_IsServerGCOperation) *xxx_IsServerGCOperation {
+	if op == nil {
+		op = &xxx_IsServerGCOperation{}
 	}
-	return &xxx_IsServerGCOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *IsServerGCRequest) xxx_FromOp(ctx context.Context, op *xxx_IsServerGCOperation) {
@@ -2314,7 +2341,7 @@ func (o *IsServerGCRequest) xxx_FromOp(ctx context.Context, op *xxx_IsServerGCOp
 	}
 }
 func (o *IsServerGCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsServerGCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsServerGCOperation{}
@@ -2331,13 +2358,15 @@ type IsServerGCResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsServerGCResponse) xxx_ToOp(ctx context.Context) *xxx_IsServerGCOperation {
+func (o *IsServerGCResponse) xxx_ToOp(ctx context.Context, op *xxx_IsServerGCOperation) *xxx_IsServerGCOperation {
+	if op == nil {
+		op = &xxx_IsServerGCOperation{}
+	}
 	if o == nil {
-		return &xxx_IsServerGCOperation{}
+		return op
 	}
-	return &xxx_IsServerGCOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsServerGCResponse) xxx_FromOp(ctx context.Context, op *xxx_IsServerGCOperation) {
@@ -2347,7 +2376,7 @@ func (o *IsServerGCResponse) xxx_FromOp(ctx context.Context, op *xxx_IsServerGCO
 	o.Return = op.Return
 }
 func (o *IsServerGCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsServerGCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsServerGCOperation{}
@@ -2648,16 +2677,18 @@ type GetGCListInDomainRequest struct {
 	ServerSignatureSize uint32 `idl:"name:pdwServerSignatureSize" json:"server_signature_size"`
 }
 
-func (o *GetGCListInDomainRequest) xxx_ToOp(ctx context.Context) *xxx_GetGCListInDomainOperation {
+func (o *GetGCListInDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_GetGCListInDomainOperation) *xxx_GetGCListInDomainOperation {
+	if op == nil {
+		op = &xxx_GetGCListInDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_GetGCListInDomainOperation{}
+		return op
 	}
-	return &xxx_GetGCListInDomainOperation{
-		ComputerName:        o.ComputerName,
-		DomainName:          o.DomainName,
-		ServerAuth:          o.ServerAuth,
-		ServerSignatureSize: o.ServerSignatureSize,
-	}
+	o.ComputerName = op.ComputerName
+	o.DomainName = op.DomainName
+	o.ServerAuth = op.ServerAuth
+	o.ServerSignatureSize = op.ServerSignatureSize
+	return op
 }
 
 func (o *GetGCListInDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_GetGCListInDomainOperation) {
@@ -2670,7 +2701,7 @@ func (o *GetGCListInDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_GetGC
 	o.ServerSignatureSize = op.ServerSignatureSize
 }
 func (o *GetGCListInDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetGCListInDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetGCListInDomainOperation{}
@@ -2699,16 +2730,18 @@ type GetGCListInDomainResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetGCListInDomainResponse) xxx_ToOp(ctx context.Context) *xxx_GetGCListInDomainOperation {
+func (o *GetGCListInDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_GetGCListInDomainOperation) *xxx_GetGCListInDomainOperation {
+	if op == nil {
+		op = &xxx_GetGCListInDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_GetGCListInDomainOperation{}
+		return op
 	}
-	return &xxx_GetGCListInDomainOperation{
-		GCList:              o.GCList,
-		ServerSignature:     o.ServerSignature,
-		ServerSignatureSize: o.ServerSignatureSize,
-		Return:              o.Return,
-	}
+	o.GCList = op.GCList
+	o.ServerSignature = op.ServerSignature
+	o.ServerSignatureSize = op.ServerSignatureSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetGCListInDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_GetGCListInDomainOperation) {
@@ -2721,7 +2754,7 @@ func (o *GetGCListInDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_GetG
 	o.Return = op.Return
 }
 func (o *GetGCListInDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetGCListInDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetGCListInDomainOperation{}

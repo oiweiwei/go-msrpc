@@ -53,19 +53,36 @@ func NewWindowsShutdownServerHandle(o WindowsShutdownServer) dcerpc.ServerHandle
 func WindowsShutdownServerHandle(ctx context.Context, o WindowsShutdownServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // WsdrInitiateShutdown
-		in := &InitiateShutdownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitiateShutdownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitiateShutdown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitiateShutdownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitiateShutdown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // WsdrAbortShutdown
-		in := &AbortShutdownRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AbortShutdownOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AbortShutdown(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AbortShutdownRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AbortShutdown(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented WindowsShutdown
+type UnimplementedWindowsShutdownServer struct {
+}
+
+func (UnimplementedWindowsShutdownServer) InitiateShutdown(context.Context, *InitiateShutdownRequest) (*InitiateShutdownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWindowsShutdownServer) AbortShutdown(context.Context, *AbortShutdownRequest) (*AbortShutdownResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WindowsShutdownServer = (*UnimplementedWindowsShutdownServer)(nil)

@@ -552,159 +552,276 @@ func NewWinsifServerHandle(o WinsifServer) dcerpc.ServerHandle {
 func WinsifServerHandle(ctx context.Context, o WinsifServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_WinsRecordAction
-		in := &RecordActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RecordActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RecordAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RecordActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RecordAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // R_WinsStatus
-		in := &StatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Status(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Status(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // R_WinsTrigger
-		in := &TriggerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TriggerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Trigger(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TriggerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Trigger(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // R_WinsDoStaticInit
-		in := &DoStaticInitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoStaticInitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoStaticInit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoStaticInitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoStaticInit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // R_WinsDoScavenging
-		in := &DoScavengingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoScavengingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoScavenging(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoScavengingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoScavenging(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // R_WinsGetDbRecs
-		in := &GetDBRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDBRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDBRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDBRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDBRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // R_WinsTerm
-		in := &TerminateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TerminateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Terminate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TerminateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Terminate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // R_WinsBackup
-		in := &BackupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Backup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Backup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // R_WinsDelDbRecs
-		in := &DeleteDBRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteDBRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteDBRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteDBRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteDBRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_WinsPullRange
-		in := &PullRangeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PullRangeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PullRange(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PullRangeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PullRange(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_WinsSetPriorityClass
-		in := &SetPriorityClassRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPriorityClassOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPriorityClass(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPriorityClassRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPriorityClass(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // R_WinsResetCounters
-		in := &ResetCountersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResetCountersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResetCounters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResetCountersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResetCounters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_WinsWorkerThdUpd
-		in := &WorkerThreadUpdateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WorkerThreadUpdateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WorkerThreadUpdate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WorkerThreadUpdateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WorkerThreadUpdate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // R_WinsGetNameAndAddr
-		in := &GetNameAndAddrRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameAndAddrOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNameAndAddr(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameAndAddrRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNameAndAddr(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // R_WinsGetBrowserNames_Old
-		in := &GetBrowserNamesOldRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBrowserNamesOldOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBrowserNamesOld(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBrowserNamesOldRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBrowserNamesOld(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // R_WinsDeleteWins
-		in := &DeleteWINSRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteWINSOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteWINS(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteWINSRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteWINS(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // R_WinsSetFlags
-		in := &SetFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // R_WinsGetBrowserNames
-		in := &GetBrowserNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetBrowserNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetBrowserNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetBrowserNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetBrowserNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // R_WinsGetDbRecsByName
-		in := &GetDBRecordsByNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDBRecordsByNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDBRecordsByName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDBRecordsByNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDBRecordsByName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // R_WinsStatusNew
-		in := &StatusNewRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StatusNewOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StatusNew(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StatusNewRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StatusNew(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // R_WinsStatusWHdl
-		in := &StatusWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StatusWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StatusW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StatusWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StatusW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // R_WinsDoScavengingNew
-		in := &DoScavengingNewRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoScavengingNewOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoScavengingNew(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoScavengingNewRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoScavengingNew(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented winsif
+type UnimplementedWinsifServer struct {
+}
+
+func (UnimplementedWinsifServer) RecordAction(context.Context, *RecordActionRequest) (*RecordActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) Status(context.Context, *StatusRequest) (*StatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) Trigger(context.Context, *TriggerRequest) (*TriggerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) DoStaticInit(context.Context, *DoStaticInitRequest) (*DoStaticInitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) DoScavenging(context.Context, *DoScavengingRequest) (*DoScavengingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) GetDBRecords(context.Context, *GetDBRecordsRequest) (*GetDBRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) Terminate(context.Context, *TerminateRequest) (*TerminateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) Backup(context.Context, *BackupRequest) (*BackupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) DeleteDBRecords(context.Context, *DeleteDBRecordsRequest) (*DeleteDBRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) PullRange(context.Context, *PullRangeRequest) (*PullRangeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) SetPriorityClass(context.Context, *SetPriorityClassRequest) (*SetPriorityClassResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) ResetCounters(context.Context, *ResetCountersRequest) (*ResetCountersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) WorkerThreadUpdate(context.Context, *WorkerThreadUpdateRequest) (*WorkerThreadUpdateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) GetNameAndAddr(context.Context, *GetNameAndAddrRequest) (*GetNameAndAddrResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) GetBrowserNamesOld(context.Context, *GetBrowserNamesOldRequest) (*GetBrowserNamesOldResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) DeleteWINS(context.Context, *DeleteWINSRequest) (*DeleteWINSResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) SetFlags(context.Context, *SetFlagsRequest) (*SetFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) GetBrowserNames(context.Context, *GetBrowserNamesRequest) (*GetBrowserNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) GetDBRecordsByName(context.Context, *GetDBRecordsByNameRequest) (*GetDBRecordsByNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) StatusNew(context.Context, *StatusNewRequest) (*StatusNewResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) StatusW(context.Context, *StatusWRequest) (*StatusWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinsifServer) DoScavengingNew(context.Context, *DoScavengingNewRequest) (*DoScavengingNewResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WinsifServer = (*UnimplementedWinsifServer)(nil)

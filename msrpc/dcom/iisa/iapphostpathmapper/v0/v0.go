@@ -73,7 +73,7 @@ func (o *xxx_DefaultAppHostPathMapperClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAppHostPathMapperClient) MapPath(ctx context.Context, in *MapPathRequest, opts ...dcerpc.CallOption) (*MapPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -400,15 +400,17 @@ type MapPathRequest struct {
 	MappedPhysicalPath *oaut.String   `idl:"name:bstrMappedPhysicalPath" json:"mapped_physical_path"`
 }
 
-func (o *MapPathRequest) xxx_ToOp(ctx context.Context) *xxx_MapPathOperation {
+func (o *MapPathRequest) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation) *xxx_MapPathOperation {
+	if op == nil {
+		op = &xxx_MapPathOperation{}
+	}
 	if o == nil {
-		return &xxx_MapPathOperation{}
+		return op
 	}
-	return &xxx_MapPathOperation{
-		This:               o.This,
-		ConfigPath:         o.ConfigPath,
-		MappedPhysicalPath: o.MappedPhysicalPath,
-	}
+	o.This = op.This
+	o.ConfigPath = op.ConfigPath
+	o.MappedPhysicalPath = op.MappedPhysicalPath
+	return op
 }
 
 func (o *MapPathRequest) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperation) {
@@ -420,7 +422,7 @@ func (o *MapPathRequest) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperatio
 	o.MappedPhysicalPath = op.MappedPhysicalPath
 }
 func (o *MapPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MapPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MapPathOperation{}
@@ -440,15 +442,17 @@ type MapPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MapPathResponse) xxx_ToOp(ctx context.Context) *xxx_MapPathOperation {
+func (o *MapPathResponse) xxx_ToOp(ctx context.Context, op *xxx_MapPathOperation) *xxx_MapPathOperation {
+	if op == nil {
+		op = &xxx_MapPathOperation{}
+	}
 	if o == nil {
-		return &xxx_MapPathOperation{}
+		return op
 	}
-	return &xxx_MapPathOperation{
-		That:            o.That,
-		NewPhysicalPath: o.NewPhysicalPath,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.NewPhysicalPath = op.NewPhysicalPath
+	o.Return = op.Return
+	return op
 }
 
 func (o *MapPathResponse) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperation) {
@@ -460,7 +464,7 @@ func (o *MapPathResponse) xxx_FromOp(ctx context.Context, op *xxx_MapPathOperati
 	o.Return = op.Return
 }
 func (o *MapPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MapPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MapPathOperation{}

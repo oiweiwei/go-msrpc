@@ -75,7 +75,7 @@ func (o *xxx_DefaultRemoteUnknown2Client) RemoteUnknown() iremunknown.RemoteUnkn
 }
 
 func (o *xxx_DefaultRemoteUnknown2Client) RemoteQueryInterface2(ctx context.Context, in *RemoteQueryInterface2Request, opts ...dcerpc.CallOption) (*RemoteQueryInterface2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -487,16 +487,18 @@ type RemoteQueryInterface2Request struct {
 	IIDs []*dcom.IID `idl:"name:iids;size_is:(cIids)" json:"iids"`
 }
 
-func (o *RemoteQueryInterface2Request) xxx_ToOp(ctx context.Context) *xxx_RemoteQueryInterface2Operation {
+func (o *RemoteQueryInterface2Request) xxx_ToOp(ctx context.Context, op *xxx_RemoteQueryInterface2Operation) *xxx_RemoteQueryInterface2Operation {
+	if op == nil {
+		op = &xxx_RemoteQueryInterface2Operation{}
+	}
 	if o == nil {
-		return &xxx_RemoteQueryInterface2Operation{}
+		return op
 	}
-	return &xxx_RemoteQueryInterface2Operation{
-		This:      o.This,
-		IPID:      o.IPID,
-		IIDsCount: o.IIDsCount,
-		IIDs:      o.IIDs,
-	}
+	o.This = op.This
+	o.IPID = op.IPID
+	o.IIDsCount = op.IIDsCount
+	o.IIDs = op.IIDs
+	return op
 }
 
 func (o *RemoteQueryInterface2Request) xxx_FromOp(ctx context.Context, op *xxx_RemoteQueryInterface2Operation) {
@@ -509,7 +511,7 @@ func (o *RemoteQueryInterface2Request) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.IIDs = op.IIDs
 }
 func (o *RemoteQueryInterface2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteQueryInterface2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteQueryInterface2Operation{}
@@ -534,16 +536,18 @@ type RemoteQueryInterface2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteQueryInterface2Response) xxx_ToOp(ctx context.Context) *xxx_RemoteQueryInterface2Operation {
+func (o *RemoteQueryInterface2Response) xxx_ToOp(ctx context.Context, op *xxx_RemoteQueryInterface2Operation) *xxx_RemoteQueryInterface2Operation {
+	if op == nil {
+		op = &xxx_RemoteQueryInterface2Operation{}
+	}
 	if o == nil {
-		return &xxx_RemoteQueryInterface2Operation{}
+		return op
 	}
-	return &xxx_RemoteQueryInterface2Operation{
-		That:      o.That,
-		HResult:   o.HResult,
-		Interface: o.Interface,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.HResult = op.HResult
+	o.Interface = op.Interface
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteQueryInterface2Response) xxx_FromOp(ctx context.Context, op *xxx_RemoteQueryInterface2Operation) {
@@ -556,7 +560,7 @@ func (o *RemoteQueryInterface2Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *RemoteQueryInterface2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteQueryInterface2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteQueryInterface2Operation{}

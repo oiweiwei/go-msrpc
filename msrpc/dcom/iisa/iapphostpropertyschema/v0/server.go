@@ -94,110 +94,193 @@ func AppHostPropertySchemaServerHandle(ctx context.Context, o AppHostPropertySch
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Type
-		in := &GetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // DefaultValue
-		in := &GetDefaultValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDefaultValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDefaultValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDefaultValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDefaultValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // IsRequired
-		in := &GetIsRequiredRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsRequiredOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsRequired(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsRequiredRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsRequired(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // IsUniqueKey
-		in := &GetIsUniqueKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsUniqueKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsUniqueKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsUniqueKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsUniqueKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // IsCombinedKey
-		in := &GetIsCombinedKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsCombinedKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsCombinedKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsCombinedKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsCombinedKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // IsExpanded
-		in := &GetIsExpandedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsExpandedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsExpanded(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsExpandedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsExpanded(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // ValidationType
-		in := &GetValidationTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValidationTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValidationType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValidationTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValidationType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ValidationParameter
-		in := &GetValidationParameterRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValidationParameterOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValidationParameter(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValidationParameterRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValidationParameter(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // IsCaseSensitive
-		in := &GetIsCaseSensitiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsCaseSensitiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsCaseSensitive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsCaseSensitiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsCaseSensitive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // PossibleValues
-		in := &GetPossibleValuesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPossibleValuesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPossibleValues(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPossibleValuesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPossibleValues(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // DoesAllowInfinite
-		in := &GetDoesAllowInfiniteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDoesAllowInfiniteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDoesAllowInfinite(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDoesAllowInfiniteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDoesAllowInfinite(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // IsEncrypted
-		in := &GetIsEncryptedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsEncryptedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsEncrypted(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsEncryptedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsEncrypted(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // TimeSpanFormat
-		in := &GetTimeSpanFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTimeSpanFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTimeSpanFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTimeSpanFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTimeSpanFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostPropertySchema
+type UnimplementedAppHostPropertySchemaServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostPropertySchemaServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetDefaultValue(context.Context, *GetDefaultValueRequest) (*GetDefaultValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetIsRequired(context.Context, *GetIsRequiredRequest) (*GetIsRequiredResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetIsUniqueKey(context.Context, *GetIsUniqueKeyRequest) (*GetIsUniqueKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetIsCombinedKey(context.Context, *GetIsCombinedKeyRequest) (*GetIsCombinedKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetIsExpanded(context.Context, *GetIsExpandedRequest) (*GetIsExpandedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetValidationType(context.Context, *GetValidationTypeRequest) (*GetValidationTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetValidationParameter(context.Context, *GetValidationParameterRequest) (*GetValidationParameterResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetIsCaseSensitive(context.Context, *GetIsCaseSensitiveRequest) (*GetIsCaseSensitiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetPossibleValues(context.Context, *GetPossibleValuesRequest) (*GetPossibleValuesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetDoesAllowInfinite(context.Context, *GetDoesAllowInfiniteRequest) (*GetDoesAllowInfiniteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetIsEncrypted(context.Context, *GetIsEncryptedRequest) (*GetIsEncryptedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertySchemaServer) GetTimeSpanFormat(context.Context, *GetTimeSpanFormatRequest) (*GetTimeSpanFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostPropertySchemaServer = (*UnimplementedAppHostPropertySchemaServer)(nil)

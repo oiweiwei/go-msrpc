@@ -96,47 +96,85 @@ func OpenVDiskServerHandle(ctx context.Context, o OpenVDiskServer, opNum int, r 
 	}
 	switch opNum {
 	case 3: // Attach
-		in := &AttachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AttachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Attach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AttachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Attach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Detach
-		in := &DetachRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DetachOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Detach(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DetachRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Detach(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // DetachAndDelete
-		in := &DetachAndDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DetachAndDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DetachAndDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DetachAndDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DetachAndDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Compact
-		in := &CompactRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CompactOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Compact(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CompactRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Compact(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Merge
-		in := &MergeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MergeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Merge(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MergeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Merge(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Expand
-		in := &ExpandRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExpandOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Expand(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExpandRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Expand(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsOpenVDisk
+type UnimplementedOpenVDiskServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedOpenVDiskServer) Attach(context.Context, *AttachRequest) (*AttachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOpenVDiskServer) Detach(context.Context, *DetachRequest) (*DetachResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOpenVDiskServer) DetachAndDelete(context.Context, *DetachAndDeleteRequest) (*DetachAndDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOpenVDiskServer) Compact(context.Context, *CompactRequest) (*CompactResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOpenVDiskServer) Merge(context.Context, *MergeRequest) (*MergeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOpenVDiskServer) Expand(context.Context, *ExpandRequest) (*ExpandResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ OpenVDiskServer = (*UnimplementedOpenVDiskServer)(nil)

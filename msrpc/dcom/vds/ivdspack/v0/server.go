@@ -129,71 +129,124 @@ func PackServerHandle(ctx context.Context, o PackServer, opNum int, r ndr.Reader
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetProvider
-		in := &GetProviderRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetProviderOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProvider(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetProviderRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProvider(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // QueryVolumes
-		in := &QueryVolumesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryVolumesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryVolumes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryVolumesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryVolumes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // QueryDisks
-		in := &QueryDisksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryDisksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryDisks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryDisksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryDisks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // CreateVolume
-		in := &CreateVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // AddDisk
-		in := &AddDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // MigrateDisks
-		in := &MigrateDisksRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MigrateDisksOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MigrateDisks(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MigrateDisksRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MigrateDisks(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Opnum10NotUsedOnWire
 		// Opnum10NotUsedOnWire
 		return nil, nil
 	case 11: // RemoveMissingDisk
-		in := &RemoveMissingDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMissingDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMissingDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMissingDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMissingDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Recover
-		in := &RecoverRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RecoverOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Recover(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RecoverRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Recover(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsPack
+type UnimplementedPackServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedPackServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) GetProvider(context.Context, *GetProviderRequest) (*GetProviderResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) QueryVolumes(context.Context, *QueryVolumesRequest) (*QueryVolumesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) QueryDisks(context.Context, *QueryDisksRequest) (*QueryDisksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) CreateVolume(context.Context, *CreateVolumeRequest) (*CreateVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) AddDisk(context.Context, *AddDiskRequest) (*AddDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) MigrateDisks(context.Context, *MigrateDisksRequest) (*MigrateDisksResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) RemoveMissingDisk(context.Context, *RemoveMissingDiskRequest) (*RemoveMissingDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPackServer) Recover(context.Context, *RecoverRequest) (*RecoverResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PackServer = (*UnimplementedPackServer)(nil)

@@ -390,110 +390,193 @@ func TypeInfo2ServerHandle(ctx context.Context, o TypeInfo2Server, opNum int, r 
 	}
 	switch opNum {
 	case 22: // GetTypeKind
-		in := &GetTypeKindRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeKindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeKind(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeKindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeKind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // GetTypeFlags
-		in := &GetTypeFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // GetFuncIndexOfMemId
-		in := &GetFuncIndexOfMemberIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFuncIndexOfMemberIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFuncIndexOfMemberIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFuncIndexOfMemberIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFuncIndexOfMemberIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // GetVarIndexOfMemId
-		in := &GetVarIndexOfMemberIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVarIndexOfMemberIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVarIndexOfMemberIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVarIndexOfMemberIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVarIndexOfMemberIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // GetCustData
-		in := &GetCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // GetFuncCustData
-		in := &GetFuncCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFuncCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFuncCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFuncCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFuncCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // GetParamCustData
-		in := &GetParamCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetParamCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetParamCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetParamCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetParamCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // GetVarCustData
-		in := &GetVarCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVarCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVarCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVarCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVarCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // GetImplTypeCustData
-		in := &GetImplTypeCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetImplTypeCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetImplTypeCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetImplTypeCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetImplTypeCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // GetDocumentation2
-		in := &GetDocumentation2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDocumentation2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDocumentation2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDocumentation2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDocumentation2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // GetAllCustData
-		in := &GetAllCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // GetAllFuncCustData
-		in := &GetAllFuncCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllFuncCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllFuncCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllFuncCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllFuncCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // GetAllParamCustData
-		in := &GetAllParamCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllParamCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllParamCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllParamCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllParamCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // GetAllVarCustData
-		in := &GetAllVarCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllVarCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllVarCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllVarCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllVarCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // GetAllImplTypeCustData
-		in := &GetAllImplTypeCustomDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllImplTypeCustomDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllImplTypeCustomData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllImplTypeCustomDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllImplTypeCustomData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ITypeInfo2
+type UnimplementedTypeInfo2Server struct {
+	itypeinfo.UnimplementedTypeInfoServer
+}
+
+func (UnimplementedTypeInfo2Server) GetTypeKind(context.Context, *GetTypeKindRequest) (*GetTypeKindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetTypeFlags(context.Context, *GetTypeFlagsRequest) (*GetTypeFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetFuncIndexOfMemberIDs(context.Context, *GetFuncIndexOfMemberIDsRequest) (*GetFuncIndexOfMemberIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetVarIndexOfMemberIDs(context.Context, *GetVarIndexOfMemberIDsRequest) (*GetVarIndexOfMemberIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetCustomData(context.Context, *GetCustomDataRequest) (*GetCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetFuncCustomData(context.Context, *GetFuncCustomDataRequest) (*GetFuncCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetParamCustomData(context.Context, *GetParamCustomDataRequest) (*GetParamCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetVarCustomData(context.Context, *GetVarCustomDataRequest) (*GetVarCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetImplTypeCustomData(context.Context, *GetImplTypeCustomDataRequest) (*GetImplTypeCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetDocumentation2(context.Context, *GetDocumentation2Request) (*GetDocumentation2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetAllCustomData(context.Context, *GetAllCustomDataRequest) (*GetAllCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetAllFuncCustomData(context.Context, *GetAllFuncCustomDataRequest) (*GetAllFuncCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetAllParamCustomData(context.Context, *GetAllParamCustomDataRequest) (*GetAllParamCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetAllVarCustomData(context.Context, *GetAllVarCustomDataRequest) (*GetAllVarCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedTypeInfo2Server) GetAllImplTypeCustomData(context.Context, *GetAllImplTypeCustomDataRequest) (*GetAllImplTypeCustomDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TypeInfo2Server = (*UnimplementedTypeInfo2Server)(nil)

@@ -76,7 +76,7 @@ func (o *xxx_DefaultServiceSwClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServiceSwClient) GetDiskObject(ctx context.Context, in *GetDiskObjectRequest, opts ...dcerpc.CallOption) (*GetDiskObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -323,14 +323,16 @@ type GetDiskObjectRequest struct {
 	DeviceID string `idl:"name:pwszDeviceID;string" json:"device_id"`
 }
 
-func (o *GetDiskObjectRequest) xxx_ToOp(ctx context.Context) *xxx_GetDiskObjectOperation {
+func (o *GetDiskObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDiskObjectOperation) *xxx_GetDiskObjectOperation {
+	if op == nil {
+		op = &xxx_GetDiskObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDiskObjectOperation{}
+		return op
 	}
-	return &xxx_GetDiskObjectOperation{
-		This:     o.This,
-		DeviceID: o.DeviceID,
-	}
+	o.This = op.This
+	o.DeviceID = op.DeviceID
+	return op
 }
 
 func (o *GetDiskObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDiskObjectOperation) {
@@ -341,7 +343,7 @@ func (o *GetDiskObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDiskOb
 	o.DeviceID = op.DeviceID
 }
 func (o *GetDiskObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetDiskObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDiskObjectOperation{}
@@ -361,15 +363,17 @@ type GetDiskObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetDiskObjectResponse) xxx_ToOp(ctx context.Context) *xxx_GetDiskObjectOperation {
+func (o *GetDiskObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetDiskObjectOperation) *xxx_GetDiskObjectOperation {
+	if op == nil {
+		op = &xxx_GetDiskObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetDiskObjectOperation{}
+		return op
 	}
-	return &xxx_GetDiskObjectOperation{
-		That:        o.That,
-		DiskUnknown: o.DiskUnknown,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.DiskUnknown = op.DiskUnknown
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetDiskObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDiskObjectOperation) {
@@ -381,7 +385,7 @@ func (o *GetDiskObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetDiskO
 	o.Return = op.Return
 }
 func (o *GetDiskObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetDiskObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetDiskObjectOperation{}

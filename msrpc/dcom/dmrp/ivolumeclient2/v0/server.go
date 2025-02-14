@@ -52,12 +52,25 @@ func VolumeClient2ServerHandle(ctx context.Context, o VolumeClient2Server, opNum
 	}
 	switch opNum {
 	case 3: // GetMaxAdjustedFreeSpace
-		in := &GetMaxAdjustedFreeSpaceRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMaxAdjustedFreeSpaceOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMaxAdjustedFreeSpace(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMaxAdjustedFreeSpaceRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMaxAdjustedFreeSpace(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVolumeClient2
+type UnimplementedVolumeClient2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeClient2Server) GetMaxAdjustedFreeSpace(context.Context, *GetMaxAdjustedFreeSpaceRequest) (*GetMaxAdjustedFreeSpaceResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeClient2Server = (*UnimplementedVolumeClient2Server)(nil)

@@ -140,7 +140,7 @@ func (o *xxx_DefaultVolumeClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -160,7 +160,7 @@ func (o *xxx_DefaultVolumeClient) GetProperties(ctx context.Context, in *GetProp
 }
 
 func (o *xxx_DefaultVolumeClient) GetPack(ctx context.Context, in *GetPackRequest, opts ...dcerpc.CallOption) (*GetPackResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -180,7 +180,7 @@ func (o *xxx_DefaultVolumeClient) GetPack(ctx context.Context, in *GetPackReques
 }
 
 func (o *xxx_DefaultVolumeClient) QueryPlexes(ctx context.Context, in *QueryPlexesRequest, opts ...dcerpc.CallOption) (*QueryPlexesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -200,7 +200,7 @@ func (o *xxx_DefaultVolumeClient) QueryPlexes(ctx context.Context, in *QueryPlex
 }
 
 func (o *xxx_DefaultVolumeClient) Extend(ctx context.Context, in *ExtendRequest, opts ...dcerpc.CallOption) (*ExtendResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -220,7 +220,7 @@ func (o *xxx_DefaultVolumeClient) Extend(ctx context.Context, in *ExtendRequest,
 }
 
 func (o *xxx_DefaultVolumeClient) Shrink(ctx context.Context, in *ShrinkRequest, opts ...dcerpc.CallOption) (*ShrinkResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -240,7 +240,7 @@ func (o *xxx_DefaultVolumeClient) Shrink(ctx context.Context, in *ShrinkRequest,
 }
 
 func (o *xxx_DefaultVolumeClient) AddPlex(ctx context.Context, in *AddPlexRequest, opts ...dcerpc.CallOption) (*AddPlexResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -260,7 +260,7 @@ func (o *xxx_DefaultVolumeClient) AddPlex(ctx context.Context, in *AddPlexReques
 }
 
 func (o *xxx_DefaultVolumeClient) BreakPlex(ctx context.Context, in *BreakPlexRequest, opts ...dcerpc.CallOption) (*BreakPlexResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -280,7 +280,7 @@ func (o *xxx_DefaultVolumeClient) BreakPlex(ctx context.Context, in *BreakPlexRe
 }
 
 func (o *xxx_DefaultVolumeClient) RemovePlex(ctx context.Context, in *RemovePlexRequest, opts ...dcerpc.CallOption) (*RemovePlexResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -300,7 +300,7 @@ func (o *xxx_DefaultVolumeClient) RemovePlex(ctx context.Context, in *RemovePlex
 }
 
 func (o *xxx_DefaultVolumeClient) Delete(ctx context.Context, in *DeleteRequest, opts ...dcerpc.CallOption) (*DeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -320,7 +320,7 @@ func (o *xxx_DefaultVolumeClient) Delete(ctx context.Context, in *DeleteRequest,
 }
 
 func (o *xxx_DefaultVolumeClient) SetFlags(ctx context.Context, in *SetFlagsRequest, opts ...dcerpc.CallOption) (*SetFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -340,7 +340,7 @@ func (o *xxx_DefaultVolumeClient) SetFlags(ctx context.Context, in *SetFlagsRequ
 }
 
 func (o *xxx_DefaultVolumeClient) ClearFlags(ctx context.Context, in *ClearFlagsRequest, opts ...dcerpc.CallOption) (*ClearFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -552,13 +552,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -568,7 +570,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -588,15 +590,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:             o.That,
-		VolumeProperties: o.VolumeProperties,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.VolumeProperties = op.VolumeProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -608,7 +612,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -789,13 +793,15 @@ type GetPackRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPackRequest) xxx_ToOp(ctx context.Context) *xxx_GetPackOperation {
+func (o *GetPackRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation) *xxx_GetPackOperation {
+	if op == nil {
+		op = &xxx_GetPackOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPackOperation{}
+		return op
 	}
-	return &xxx_GetPackOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPackRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperation) {
@@ -805,7 +811,7 @@ func (o *GetPackRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperatio
 	o.This = op.This
 }
 func (o *GetPackRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPackOperation{}
@@ -825,15 +831,17 @@ type GetPackResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPackResponse) xxx_ToOp(ctx context.Context) *xxx_GetPackOperation {
+func (o *GetPackResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPackOperation) *xxx_GetPackOperation {
+	if op == nil {
+		op = &xxx_GetPackOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPackOperation{}
+		return op
 	}
-	return &xxx_GetPackOperation{
-		That:   o.That,
-		Pack:   o.Pack,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Pack = op.Pack
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPackResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperation) {
@@ -845,7 +853,7 @@ func (o *GetPackResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPackOperati
 	o.Return = op.Return
 }
 func (o *GetPackResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPackResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPackOperation{}
@@ -1026,13 +1034,15 @@ type QueryPlexesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryPlexesRequest) xxx_ToOp(ctx context.Context) *xxx_QueryPlexesOperation {
+func (o *QueryPlexesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPlexesOperation) *xxx_QueryPlexesOperation {
+	if op == nil {
+		op = &xxx_QueryPlexesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPlexesOperation{}
+		return op
 	}
-	return &xxx_QueryPlexesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryPlexesRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPlexesOperation) {
@@ -1042,7 +1052,7 @@ func (o *QueryPlexesRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPlexes
 	o.This = op.This
 }
 func (o *QueryPlexesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryPlexesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPlexesOperation{}
@@ -1066,15 +1076,17 @@ type QueryPlexesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryPlexesResponse) xxx_ToOp(ctx context.Context) *xxx_QueryPlexesOperation {
+func (o *QueryPlexesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPlexesOperation) *xxx_QueryPlexesOperation {
+	if op == nil {
+		op = &xxx_QueryPlexesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPlexesOperation{}
+		return op
 	}
-	return &xxx_QueryPlexesOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryPlexesResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryPlexesOperation) {
@@ -1086,7 +1098,7 @@ func (o *QueryPlexesResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryPlexe
 	o.Return = op.Return
 }
 func (o *QueryPlexesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryPlexesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPlexesOperation{}
@@ -1370,15 +1382,17 @@ type ExtendRequest struct {
 	NumberOfDisks int32 `idl:"name:lNumberOfDisks" json:"number_of_disks"`
 }
 
-func (o *ExtendRequest) xxx_ToOp(ctx context.Context) *xxx_ExtendOperation {
+func (o *ExtendRequest) xxx_ToOp(ctx context.Context, op *xxx_ExtendOperation) *xxx_ExtendOperation {
+	if op == nil {
+		op = &xxx_ExtendOperation{}
+	}
 	if o == nil {
-		return &xxx_ExtendOperation{}
+		return op
 	}
-	return &xxx_ExtendOperation{
-		This:           o.This,
-		InputDiskArray: o.InputDiskArray,
-		NumberOfDisks:  o.NumberOfDisks,
-	}
+	o.This = op.This
+	o.InputDiskArray = op.InputDiskArray
+	o.NumberOfDisks = op.NumberOfDisks
+	return op
 }
 
 func (o *ExtendRequest) xxx_FromOp(ctx context.Context, op *xxx_ExtendOperation) {
@@ -1390,7 +1404,7 @@ func (o *ExtendRequest) xxx_FromOp(ctx context.Context, op *xxx_ExtendOperation)
 	o.NumberOfDisks = op.NumberOfDisks
 }
 func (o *ExtendRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExtendRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExtendOperation{}
@@ -1413,15 +1427,17 @@ type ExtendResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExtendResponse) xxx_ToOp(ctx context.Context) *xxx_ExtendOperation {
+func (o *ExtendResponse) xxx_ToOp(ctx context.Context, op *xxx_ExtendOperation) *xxx_ExtendOperation {
+	if op == nil {
+		op = &xxx_ExtendOperation{}
+	}
 	if o == nil {
-		return &xxx_ExtendOperation{}
+		return op
 	}
-	return &xxx_ExtendOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExtendResponse) xxx_FromOp(ctx context.Context, op *xxx_ExtendOperation) {
@@ -1433,7 +1449,7 @@ func (o *ExtendResponse) xxx_FromOp(ctx context.Context, op *xxx_ExtendOperation
 	o.Return = op.Return
 }
 func (o *ExtendResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExtendResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExtendOperation{}
@@ -1628,14 +1644,16 @@ type ShrinkRequest struct {
 	NumberOfBytesToRemove uint64         `idl:"name:ullNumberOfBytesToRemove" json:"number_of_bytes_to_remove"`
 }
 
-func (o *ShrinkRequest) xxx_ToOp(ctx context.Context) *xxx_ShrinkOperation {
+func (o *ShrinkRequest) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) *xxx_ShrinkOperation {
+	if op == nil {
+		op = &xxx_ShrinkOperation{}
+	}
 	if o == nil {
-		return &xxx_ShrinkOperation{}
+		return op
 	}
-	return &xxx_ShrinkOperation{
-		This:                  o.This,
-		NumberOfBytesToRemove: o.NumberOfBytesToRemove,
-	}
+	o.This = op.This
+	o.NumberOfBytesToRemove = op.NumberOfBytesToRemove
+	return op
 }
 
 func (o *ShrinkRequest) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation) {
@@ -1646,7 +1664,7 @@ func (o *ShrinkRequest) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation)
 	o.NumberOfBytesToRemove = op.NumberOfBytesToRemove
 }
 func (o *ShrinkRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShrinkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShrinkOperation{}
@@ -1666,15 +1684,17 @@ type ShrinkResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShrinkResponse) xxx_ToOp(ctx context.Context) *xxx_ShrinkOperation {
+func (o *ShrinkResponse) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) *xxx_ShrinkOperation {
+	if op == nil {
+		op = &xxx_ShrinkOperation{}
+	}
 	if o == nil {
-		return &xxx_ShrinkOperation{}
+		return op
 	}
-	return &xxx_ShrinkOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShrinkResponse) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation) {
@@ -1686,7 +1706,7 @@ func (o *ShrinkResponse) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation
 	o.Return = op.Return
 }
 func (o *ShrinkResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShrinkResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShrinkOperation{}
@@ -1891,14 +1911,16 @@ type AddPlexRequest struct {
 	VolumeID *vds.ObjectID `idl:"name:VolumeId" json:"volume_id"`
 }
 
-func (o *AddPlexRequest) xxx_ToOp(ctx context.Context) *xxx_AddPlexOperation {
+func (o *AddPlexRequest) xxx_ToOp(ctx context.Context, op *xxx_AddPlexOperation) *xxx_AddPlexOperation {
+	if op == nil {
+		op = &xxx_AddPlexOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPlexOperation{}
+		return op
 	}
-	return &xxx_AddPlexOperation{
-		This:     o.This,
-		VolumeID: o.VolumeID,
-	}
+	o.This = op.This
+	o.VolumeID = op.VolumeID
+	return op
 }
 
 func (o *AddPlexRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPlexOperation) {
@@ -1909,7 +1931,7 @@ func (o *AddPlexRequest) xxx_FromOp(ctx context.Context, op *xxx_AddPlexOperatio
 	o.VolumeID = op.VolumeID
 }
 func (o *AddPlexRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddPlexRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPlexOperation{}
@@ -1932,15 +1954,17 @@ type AddPlexResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddPlexResponse) xxx_ToOp(ctx context.Context) *xxx_AddPlexOperation {
+func (o *AddPlexResponse) xxx_ToOp(ctx context.Context, op *xxx_AddPlexOperation) *xxx_AddPlexOperation {
+	if op == nil {
+		op = &xxx_AddPlexOperation{}
+	}
 	if o == nil {
-		return &xxx_AddPlexOperation{}
+		return op
 	}
-	return &xxx_AddPlexOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddPlexResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPlexOperation) {
@@ -1952,7 +1976,7 @@ func (o *AddPlexResponse) xxx_FromOp(ctx context.Context, op *xxx_AddPlexOperati
 	o.Return = op.Return
 }
 func (o *AddPlexResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddPlexResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddPlexOperation{}
@@ -2157,14 +2181,16 @@ type BreakPlexRequest struct {
 	PlexID *vds.ObjectID `idl:"name:plexId" json:"plex_id"`
 }
 
-func (o *BreakPlexRequest) xxx_ToOp(ctx context.Context) *xxx_BreakPlexOperation {
+func (o *BreakPlexRequest) xxx_ToOp(ctx context.Context, op *xxx_BreakPlexOperation) *xxx_BreakPlexOperation {
+	if op == nil {
+		op = &xxx_BreakPlexOperation{}
+	}
 	if o == nil {
-		return &xxx_BreakPlexOperation{}
+		return op
 	}
-	return &xxx_BreakPlexOperation{
-		This:   o.This,
-		PlexID: o.PlexID,
-	}
+	o.This = op.This
+	o.PlexID = op.PlexID
+	return op
 }
 
 func (o *BreakPlexRequest) xxx_FromOp(ctx context.Context, op *xxx_BreakPlexOperation) {
@@ -2175,7 +2201,7 @@ func (o *BreakPlexRequest) xxx_FromOp(ctx context.Context, op *xxx_BreakPlexOper
 	o.PlexID = op.PlexID
 }
 func (o *BreakPlexRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BreakPlexRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BreakPlexOperation{}
@@ -2201,15 +2227,17 @@ type BreakPlexResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BreakPlexResponse) xxx_ToOp(ctx context.Context) *xxx_BreakPlexOperation {
+func (o *BreakPlexResponse) xxx_ToOp(ctx context.Context, op *xxx_BreakPlexOperation) *xxx_BreakPlexOperation {
+	if op == nil {
+		op = &xxx_BreakPlexOperation{}
+	}
 	if o == nil {
-		return &xxx_BreakPlexOperation{}
+		return op
 	}
-	return &xxx_BreakPlexOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *BreakPlexResponse) xxx_FromOp(ctx context.Context, op *xxx_BreakPlexOperation) {
@@ -2221,7 +2249,7 @@ func (o *BreakPlexResponse) xxx_FromOp(ctx context.Context, op *xxx_BreakPlexOpe
 	o.Return = op.Return
 }
 func (o *BreakPlexResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BreakPlexResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BreakPlexOperation{}
@@ -2426,14 +2454,16 @@ type RemovePlexRequest struct {
 	PlexID *vds.ObjectID `idl:"name:plexId" json:"plex_id"`
 }
 
-func (o *RemovePlexRequest) xxx_ToOp(ctx context.Context) *xxx_RemovePlexOperation {
+func (o *RemovePlexRequest) xxx_ToOp(ctx context.Context, op *xxx_RemovePlexOperation) *xxx_RemovePlexOperation {
+	if op == nil {
+		op = &xxx_RemovePlexOperation{}
+	}
 	if o == nil {
-		return &xxx_RemovePlexOperation{}
+		return op
 	}
-	return &xxx_RemovePlexOperation{
-		This:   o.This,
-		PlexID: o.PlexID,
-	}
+	o.This = op.This
+	o.PlexID = op.PlexID
+	return op
 }
 
 func (o *RemovePlexRequest) xxx_FromOp(ctx context.Context, op *xxx_RemovePlexOperation) {
@@ -2444,7 +2474,7 @@ func (o *RemovePlexRequest) xxx_FromOp(ctx context.Context, op *xxx_RemovePlexOp
 	o.PlexID = op.PlexID
 }
 func (o *RemovePlexRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemovePlexRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemovePlexOperation{}
@@ -2467,15 +2497,17 @@ type RemovePlexResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemovePlexResponse) xxx_ToOp(ctx context.Context) *xxx_RemovePlexOperation {
+func (o *RemovePlexResponse) xxx_ToOp(ctx context.Context, op *xxx_RemovePlexOperation) *xxx_RemovePlexOperation {
+	if op == nil {
+		op = &xxx_RemovePlexOperation{}
+	}
 	if o == nil {
-		return &xxx_RemovePlexOperation{}
+		return op
 	}
-	return &xxx_RemovePlexOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemovePlexResponse) xxx_FromOp(ctx context.Context, op *xxx_RemovePlexOperation) {
@@ -2487,7 +2519,7 @@ func (o *RemovePlexResponse) xxx_FromOp(ctx context.Context, op *xxx_RemovePlexO
 	o.Return = op.Return
 }
 func (o *RemovePlexResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemovePlexResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemovePlexOperation{}
@@ -2637,14 +2669,16 @@ type DeleteRequest struct {
 	Force int32 `idl:"name:bForce" json:"force"`
 }
 
-func (o *DeleteRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteOperation {
+func (o *DeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *xxx_DeleteOperation {
+	if op == nil {
+		op = &xxx_DeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteOperation{}
+		return op
 	}
-	return &xxx_DeleteOperation{
-		This:  o.This,
-		Force: o.Force,
-	}
+	o.This = op.This
+	o.Force = op.Force
+	return op
 }
 
 func (o *DeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation) {
@@ -2655,7 +2689,7 @@ func (o *DeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation)
 	o.Force = op.Force
 }
 func (o *DeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteOperation{}
@@ -2674,14 +2708,16 @@ type DeleteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteOperation {
+func (o *DeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteOperation) *xxx_DeleteOperation {
+	if op == nil {
+		op = &xxx_DeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteOperation{}
+		return op
 	}
-	return &xxx_DeleteOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation) {
@@ -2692,7 +2728,7 @@ func (o *DeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteOperation
 	o.Return = op.Return
 }
 func (o *DeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteOperation{}
@@ -2854,15 +2890,17 @@ type SetFlagsRequest struct {
 	RevertOnClose int32          `idl:"name:bRevertOnClose" json:"revert_on_close"`
 }
 
-func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_SetFlagsOperation {
+func (o *SetFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperation) *xxx_SetFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFlagsOperation{
-		This:          o.This,
-		Flags:         o.Flags,
-		RevertOnClose: o.RevertOnClose,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.RevertOnClose = op.RevertOnClose
+	return op
 }
 
 func (o *SetFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOperation) {
@@ -2874,7 +2912,7 @@ func (o *SetFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOperat
 	o.RevertOnClose = op.RevertOnClose
 }
 func (o *SetFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFlagsOperation{}
@@ -2893,14 +2931,16 @@ type SetFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_SetFlagsOperation {
+func (o *SetFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFlagsOperation) *xxx_SetFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOperation) {
@@ -2911,7 +2951,7 @@ func (o *SetFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFlagsOpera
 	o.Return = op.Return
 }
 func (o *SetFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFlagsOperation{}
@@ -3059,14 +3099,16 @@ type ClearFlagsRequest struct {
 	Flags uint32         `idl:"name:ulFlags" json:"flags"`
 }
 
-func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_ClearFlagsOperation {
+func (o *ClearFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOperation) *xxx_ClearFlagsOperation {
+	if op == nil {
+		op = &xxx_ClearFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearFlagsOperation{}
+		return op
 	}
-	return &xxx_ClearFlagsOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ClearFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsOperation) {
@@ -3077,7 +3119,7 @@ func (o *ClearFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsOp
 	o.Flags = op.Flags
 }
 func (o *ClearFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearFlagsOperation{}
@@ -3096,14 +3138,16 @@ type ClearFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_ClearFlagsOperation {
+func (o *ClearFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearFlagsOperation) *xxx_ClearFlagsOperation {
+	if op == nil {
+		op = &xxx_ClearFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearFlagsOperation{}
+		return op
 	}
-	return &xxx_ClearFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsOperation) {
@@ -3114,7 +3158,7 @@ func (o *ClearFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearFlagsO
 	o.Return = op.Return
 }
 func (o *ClearFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearFlagsOperation{}

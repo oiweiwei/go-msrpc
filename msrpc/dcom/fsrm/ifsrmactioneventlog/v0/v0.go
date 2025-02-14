@@ -84,7 +84,7 @@ func (o *xxx_DefaultActionEventLogClient) Action() ifsrmaction.ActionClient {
 }
 
 func (o *xxx_DefaultActionEventLogClient) GetEventType(ctx context.Context, in *GetEventTypeRequest, opts ...dcerpc.CallOption) (*GetEventTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultActionEventLogClient) GetEventType(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultActionEventLogClient) SetEventType(ctx context.Context, in *SetEventTypeRequest, opts ...dcerpc.CallOption) (*SetEventTypeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -124,7 +124,7 @@ func (o *xxx_DefaultActionEventLogClient) SetEventType(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultActionEventLogClient) GetMessageText(ctx context.Context, in *GetMessageTextRequest, opts ...dcerpc.CallOption) (*GetMessageTextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -144,7 +144,7 @@ func (o *xxx_DefaultActionEventLogClient) GetMessageText(ctx context.Context, in
 }
 
 func (o *xxx_DefaultActionEventLogClient) SetMessageText(ctx context.Context, in *SetMessageTextRequest, opts ...dcerpc.CallOption) (*SetMessageTextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -341,13 +341,15 @@ type GetEventTypeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetEventTypeRequest) xxx_ToOp(ctx context.Context) *xxx_GetEventTypeOperation {
+func (o *GetEventTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventTypeOperation) *xxx_GetEventTypeOperation {
+	if op == nil {
+		op = &xxx_GetEventTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventTypeOperation{}
+		return op
 	}
-	return &xxx_GetEventTypeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetEventTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEventTypeOperation) {
@@ -357,7 +359,7 @@ func (o *GetEventTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEventTy
 	o.This = op.This
 }
 func (o *GetEventTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEventTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventTypeOperation{}
@@ -377,15 +379,17 @@ type GetEventTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEventTypeResponse) xxx_ToOp(ctx context.Context) *xxx_GetEventTypeOperation {
+func (o *GetEventTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEventTypeOperation) *xxx_GetEventTypeOperation {
+	if op == nil {
+		op = &xxx_GetEventTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventTypeOperation{}
+		return op
 	}
-	return &xxx_GetEventTypeOperation{
-		That:      o.That,
-		EventType: o.EventType,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.EventType = op.EventType
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetEventTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEventTypeOperation) {
@@ -397,7 +401,7 @@ func (o *GetEventTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEventT
 	o.Return = op.Return
 }
 func (o *GetEventTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEventTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventTypeOperation{}
@@ -545,14 +549,16 @@ type SetEventTypeRequest struct {
 	EventType fsrm.EventType `idl:"name:eventType" json:"event_type"`
 }
 
-func (o *SetEventTypeRequest) xxx_ToOp(ctx context.Context) *xxx_SetEventTypeOperation {
+func (o *SetEventTypeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventTypeOperation) *xxx_SetEventTypeOperation {
+	if op == nil {
+		op = &xxx_SetEventTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventTypeOperation{}
+		return op
 	}
-	return &xxx_SetEventTypeOperation{
-		This:      o.This,
-		EventType: o.EventType,
-	}
+	o.This = op.This
+	o.EventType = op.EventType
+	return op
 }
 
 func (o *SetEventTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEventTypeOperation) {
@@ -563,7 +569,7 @@ func (o *SetEventTypeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEventTy
 	o.EventType = op.EventType
 }
 func (o *SetEventTypeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetEventTypeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventTypeOperation{}
@@ -582,14 +588,16 @@ type SetEventTypeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetEventTypeResponse) xxx_ToOp(ctx context.Context) *xxx_SetEventTypeOperation {
+func (o *SetEventTypeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEventTypeOperation) *xxx_SetEventTypeOperation {
+	if op == nil {
+		op = &xxx_SetEventTypeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventTypeOperation{}
+		return op
 	}
-	return &xxx_SetEventTypeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetEventTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEventTypeOperation) {
@@ -600,7 +608,7 @@ func (o *SetEventTypeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEventT
 	o.Return = op.Return
 }
 func (o *SetEventTypeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetEventTypeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventTypeOperation{}
@@ -781,13 +789,15 @@ type GetMessageTextRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMessageTextRequest) xxx_ToOp(ctx context.Context) *xxx_GetMessageTextOperation {
+func (o *GetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMessageTextOperation) *xxx_GetMessageTextOperation {
+	if op == nil {
+		op = &xxx_GetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMessageTextOperation{}
+		return op
 	}
-	return &xxx_GetMessageTextOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMessageTextOperation) {
@@ -797,7 +807,7 @@ func (o *GetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMessa
 	o.This = op.This
 }
 func (o *GetMessageTextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMessageTextOperation{}
@@ -817,15 +827,17 @@ type GetMessageTextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMessageTextResponse) xxx_ToOp(ctx context.Context) *xxx_GetMessageTextOperation {
+func (o *GetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMessageTextOperation) *xxx_GetMessageTextOperation {
+	if op == nil {
+		op = &xxx_GetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMessageTextOperation{}
+		return op
 	}
-	return &xxx_GetMessageTextOperation{
-		That:        o.That,
-		MessageText: o.MessageText,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.MessageText = op.MessageText
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMessageTextOperation) {
@@ -837,7 +849,7 @@ func (o *GetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMess
 	o.Return = op.Return
 }
 func (o *GetMessageTextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMessageTextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMessageTextOperation{}
@@ -1019,14 +1031,16 @@ type SetMessageTextRequest struct {
 	MessageText *oaut.String   `idl:"name:messageText" json:"message_text"`
 }
 
-func (o *SetMessageTextRequest) xxx_ToOp(ctx context.Context) *xxx_SetMessageTextOperation {
+func (o *SetMessageTextRequest) xxx_ToOp(ctx context.Context, op *xxx_SetMessageTextOperation) *xxx_SetMessageTextOperation {
+	if op == nil {
+		op = &xxx_SetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMessageTextOperation{}
+		return op
 	}
-	return &xxx_SetMessageTextOperation{
-		This:        o.This,
-		MessageText: o.MessageText,
-	}
+	o.This = op.This
+	o.MessageText = op.MessageText
+	return op
 }
 
 func (o *SetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMessageTextOperation) {
@@ -1037,7 +1051,7 @@ func (o *SetMessageTextRequest) xxx_FromOp(ctx context.Context, op *xxx_SetMessa
 	o.MessageText = op.MessageText
 }
 func (o *SetMessageTextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetMessageTextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMessageTextOperation{}
@@ -1056,14 +1070,16 @@ type SetMessageTextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetMessageTextResponse) xxx_ToOp(ctx context.Context) *xxx_SetMessageTextOperation {
+func (o *SetMessageTextResponse) xxx_ToOp(ctx context.Context, op *xxx_SetMessageTextOperation) *xxx_SetMessageTextOperation {
+	if op == nil {
+		op = &xxx_SetMessageTextOperation{}
+	}
 	if o == nil {
-		return &xxx_SetMessageTextOperation{}
+		return op
 	}
-	return &xxx_SetMessageTextOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMessageTextOperation) {
@@ -1074,7 +1090,7 @@ func (o *SetMessageTextResponse) xxx_FromOp(ctx context.Context, op *xxx_SetMess
 	o.Return = op.Return
 }
 func (o *SetMessageTextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetMessageTextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetMessageTextOperation{}

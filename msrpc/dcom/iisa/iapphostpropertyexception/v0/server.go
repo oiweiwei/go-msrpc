@@ -58,26 +58,49 @@ func AppHostPropertyExceptionServerHandle(ctx context.Context, o AppHostProperty
 	}
 	switch opNum {
 	case 10: // InvalidValue
-		in := &GetInvalidValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInvalidValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInvalidValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInvalidValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInvalidValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ValidationFailureReason
-		in := &GetValidationFailureReasonRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValidationFailureReasonOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValidationFailureReason(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValidationFailureReasonRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValidationFailureReason(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // ValidationFailureParameters
-		in := &GetValidationFailureParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValidationFailureParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValidationFailureParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValidationFailureParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValidationFailureParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostPropertyException
+type UnimplementedAppHostPropertyExceptionServer struct {
+	iapphostconfigexception.UnimplementedAppHostConfigExceptionServer
+}
+
+func (UnimplementedAppHostPropertyExceptionServer) GetInvalidValue(context.Context, *GetInvalidValueRequest) (*GetInvalidValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyExceptionServer) GetValidationFailureReason(context.Context, *GetValidationFailureReasonRequest) (*GetValidationFailureReasonResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostPropertyExceptionServer) GetValidationFailureParameters(context.Context, *GetValidationFailureParametersRequest) (*GetValidationFailureParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostPropertyExceptionServer = (*UnimplementedAppHostPropertyExceptionServer)(nil)

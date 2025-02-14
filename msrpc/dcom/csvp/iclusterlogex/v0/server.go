@@ -96,19 +96,37 @@ func ClusterLogExServerHandle(ctx context.Context, o ClusterLogExServer, opNum i
 	}
 	switch opNum {
 	case 3: // GenerateClusterLog
-		in := &GenerateClusterLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateClusterLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateClusterLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateClusterLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GenerateClusterHealthLog
-		in := &GenerateClusterHealthLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GenerateClusterHealthLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GenerateClusterHealthLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GenerateClusterHealthLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GenerateClusterHealthLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterLogEx
+type UnimplementedClusterLogExServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterLogExServer) GenerateClusterLog(context.Context, *GenerateClusterLogRequest) (*GenerateClusterLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterLogExServer) GenerateClusterHealthLog(context.Context, *GenerateClusterHealthLogRequest) (*GenerateClusterHealthLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterLogExServer = (*UnimplementedClusterLogExServer)(nil)

@@ -94,7 +94,7 @@ func (o *xxx_DefaultCertRequestDClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCertRequestDClient) Request(ctx context.Context, in *RequestRequest, opts ...dcerpc.CallOption) (*RequestResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -114,7 +114,7 @@ func (o *xxx_DefaultCertRequestDClient) Request(ctx context.Context, in *Request
 }
 
 func (o *xxx_DefaultCertRequestDClient) GetCACert(ctx context.Context, in *GetCACertRequest, opts ...dcerpc.CallOption) (*GetCACertResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -134,7 +134,7 @@ func (o *xxx_DefaultCertRequestDClient) GetCACert(ctx context.Context, in *GetCA
 }
 
 func (o *xxx_DefaultCertRequestDClient) Ping(ctx context.Context, in *PingRequest, opts ...dcerpc.CallOption) (*PingResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -583,18 +583,20 @@ type RequestRequest struct {
 	Request *wcce.CertTransportBlob `idl:"name:pctbRequest;pointer:ref" json:"request"`
 }
 
-func (o *RequestRequest) xxx_ToOp(ctx context.Context) *xxx_RequestOperation {
+func (o *RequestRequest) xxx_ToOp(ctx context.Context, op *xxx_RequestOperation) *xxx_RequestOperation {
+	if op == nil {
+		op = &xxx_RequestOperation{}
+	}
 	if o == nil {
-		return &xxx_RequestOperation{}
+		return op
 	}
-	return &xxx_RequestOperation{
-		This:       o.This,
-		Flags:      o.Flags,
-		Authority:  o.Authority,
-		RequestID:  o.RequestID,
-		Attributes: o.Attributes,
-		Request:    o.Request,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	o.Authority = op.Authority
+	o.RequestID = op.RequestID
+	o.Attributes = op.Attributes
+	o.Request = op.Request
+	return op
 }
 
 func (o *RequestRequest) xxx_FromOp(ctx context.Context, op *xxx_RequestOperation) {
@@ -609,7 +611,7 @@ func (o *RequestRequest) xxx_FromOp(ctx context.Context, op *xxx_RequestOperatio
 	o.Request = op.Request
 }
 func (o *RequestRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RequestRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RequestOperation{}
@@ -657,19 +659,21 @@ type RequestResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RequestResponse) xxx_ToOp(ctx context.Context) *xxx_RequestOperation {
+func (o *RequestResponse) xxx_ToOp(ctx context.Context, op *xxx_RequestOperation) *xxx_RequestOperation {
+	if op == nil {
+		op = &xxx_RequestOperation{}
+	}
 	if o == nil {
-		return &xxx_RequestOperation{}
+		return op
 	}
-	return &xxx_RequestOperation{
-		That:               o.That,
-		RequestID:          o.RequestID,
-		Disposition:        o.Disposition,
-		CertChain:          o.CertChain,
-		EncodedCert:        o.EncodedCert,
-		DispositionMessage: o.DispositionMessage,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.RequestID = op.RequestID
+	o.Disposition = op.Disposition
+	o.CertChain = op.CertChain
+	o.EncodedCert = op.EncodedCert
+	o.DispositionMessage = op.DispositionMessage
+	o.Return = op.Return
+	return op
 }
 
 func (o *RequestResponse) xxx_FromOp(ctx context.Context, op *xxx_RequestOperation) {
@@ -685,7 +689,7 @@ func (o *RequestResponse) xxx_FromOp(ctx context.Context, op *xxx_RequestOperati
 	o.Return = op.Return
 }
 func (o *RequestResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RequestResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RequestOperation{}
@@ -905,15 +909,17 @@ type GetCACertRequest struct {
 	Authority string `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 }
 
-func (o *GetCACertRequest) xxx_ToOp(ctx context.Context) *xxx_GetCACertOperation {
+func (o *GetCACertRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCACertOperation) *xxx_GetCACertOperation {
+	if op == nil {
+		op = &xxx_GetCACertOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCACertOperation{}
+		return op
 	}
-	return &xxx_GetCACertOperation{
-		This:      o.This,
-		Chain:     o.Chain,
-		Authority: o.Authority,
-	}
+	o.This = op.This
+	o.Chain = op.Chain
+	o.Authority = op.Authority
+	return op
 }
 
 func (o *GetCACertRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCACertOperation) {
@@ -925,7 +931,7 @@ func (o *GetCACertRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCACertOper
 	o.Authority = op.Authority
 }
 func (o *GetCACertRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCACertRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCACertOperation{}
@@ -947,15 +953,17 @@ type GetCACertResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCACertResponse) xxx_ToOp(ctx context.Context) *xxx_GetCACertOperation {
+func (o *GetCACertResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCACertOperation) *xxx_GetCACertOperation {
+	if op == nil {
+		op = &xxx_GetCACertOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCACertOperation{}
+		return op
 	}
-	return &xxx_GetCACertOperation{
-		That:   o.That,
-		Out:    o.Out,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCACertResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCACertOperation) {
@@ -967,7 +975,7 @@ func (o *GetCACertResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCACertOpe
 	o.Return = op.Return
 }
 func (o *GetCACertResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCACertResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCACertOperation{}
@@ -1146,14 +1154,16 @@ type PingRequest struct {
 	Authority string `idl:"name:pwszAuthority;string;pointer:unique" json:"authority"`
 }
 
-func (o *PingRequest) xxx_ToOp(ctx context.Context) *xxx_PingOperation {
+func (o *PingRequest) xxx_ToOp(ctx context.Context, op *xxx_PingOperation) *xxx_PingOperation {
+	if op == nil {
+		op = &xxx_PingOperation{}
+	}
 	if o == nil {
-		return &xxx_PingOperation{}
+		return op
 	}
-	return &xxx_PingOperation{
-		This:      o.This,
-		Authority: o.Authority,
-	}
+	o.This = op.This
+	o.Authority = op.Authority
+	return op
 }
 
 func (o *PingRequest) xxx_FromOp(ctx context.Context, op *xxx_PingOperation) {
@@ -1164,7 +1174,7 @@ func (o *PingRequest) xxx_FromOp(ctx context.Context, op *xxx_PingOperation) {
 	o.Authority = op.Authority
 }
 func (o *PingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PingOperation{}
@@ -1183,14 +1193,16 @@ type PingResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PingResponse) xxx_ToOp(ctx context.Context) *xxx_PingOperation {
+func (o *PingResponse) xxx_ToOp(ctx context.Context, op *xxx_PingOperation) *xxx_PingOperation {
+	if op == nil {
+		op = &xxx_PingOperation{}
+	}
 	if o == nil {
-		return &xxx_PingOperation{}
+		return op
 	}
-	return &xxx_PingOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PingResponse) xxx_FromOp(ctx context.Context, op *xxx_PingOperation) {
@@ -1201,7 +1213,7 @@ func (o *PingResponse) xxx_FromOp(ctx context.Context, op *xxx_PingOperation) {
 	o.Return = op.Return
 }
 func (o *PingResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PingOperation{}

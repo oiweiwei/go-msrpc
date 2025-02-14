@@ -125,7 +125,7 @@ func (o *xxx_DefaultExportClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultExportClient) ExportConglomeration(ctx context.Context, in *ExportConglomerationRequest, opts ...dcerpc.CallOption) (*ExportConglomerationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -378,16 +378,18 @@ type ExportConglomerationRequest struct {
 	Flags            uint32         `idl:"name:dwFlags" json:"flags"`
 }
 
-func (o *ExportConglomerationRequest) xxx_ToOp(ctx context.Context) *xxx_ExportConglomerationOperation {
+func (o *ExportConglomerationRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportConglomerationOperation) *xxx_ExportConglomerationOperation {
+	if op == nil {
+		op = &xxx_ExportConglomerationOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportConglomerationOperation{}
+		return op
 	}
-	return &xxx_ExportConglomerationOperation{
-		This:             o.This,
-		ConglomerationID: o.ConglomerationID,
-		InstallerPackage: o.InstallerPackage,
-		Flags:            o.Flags,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	o.InstallerPackage = op.InstallerPackage
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ExportConglomerationRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportConglomerationOperation) {
@@ -400,7 +402,7 @@ func (o *ExportConglomerationRequest) xxx_FromOp(ctx context.Context, op *xxx_Ex
 	o.Flags = op.Flags
 }
 func (o *ExportConglomerationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExportConglomerationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportConglomerationOperation{}
@@ -419,14 +421,16 @@ type ExportConglomerationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExportConglomerationResponse) xxx_ToOp(ctx context.Context) *xxx_ExportConglomerationOperation {
+func (o *ExportConglomerationResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportConglomerationOperation) *xxx_ExportConglomerationOperation {
+	if op == nil {
+		op = &xxx_ExportConglomerationOperation{}
+	}
 	if o == nil {
-		return &xxx_ExportConglomerationOperation{}
+		return op
 	}
-	return &xxx_ExportConglomerationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExportConglomerationResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportConglomerationOperation) {
@@ -437,7 +441,7 @@ func (o *ExportConglomerationResponse) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *ExportConglomerationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExportConglomerationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExportConglomerationOperation{}

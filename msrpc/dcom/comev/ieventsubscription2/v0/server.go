@@ -61,33 +61,61 @@ func EventSubscription2ServerHandle(ctx context.Context, o EventSubscription2Ser
 	}
 	switch opNum {
 	case 41: // FilterCriteria
-		in := &GetFilterCriteriaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilterCriteriaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFilterCriteria(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilterCriteriaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFilterCriteria(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // FilterCriteria
-		in := &SetFilterCriteriaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilterCriteriaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFilterCriteria(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilterCriteriaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFilterCriteria(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // SubscriberMoniker
-		in := &GetSubscriberMonikerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubscriberMonikerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubscriberMoniker(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubscriberMonikerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubscriberMoniker(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // SubscriberMoniker
-		in := &SetSubscriberMonikerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubscriberMonikerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubscriberMoniker(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubscriberMonikerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubscriberMoniker(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventSubscription2
+type UnimplementedEventSubscription2Server struct {
+	ieventsubscription.UnimplementedEventSubscriptionServer
+}
+
+func (UnimplementedEventSubscription2Server) GetFilterCriteria(context.Context, *GetFilterCriteriaRequest) (*GetFilterCriteriaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription2Server) SetFilterCriteria(context.Context, *SetFilterCriteriaRequest) (*SetFilterCriteriaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription2Server) GetSubscriberMoniker(context.Context, *GetSubscriberMonikerRequest) (*GetSubscriberMonikerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventSubscription2Server) SetSubscriberMoniker(context.Context, *SetSubscriberMonikerRequest) (*SetSubscriberMonikerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventSubscription2Server = (*UnimplementedEventSubscription2Server)(nil)

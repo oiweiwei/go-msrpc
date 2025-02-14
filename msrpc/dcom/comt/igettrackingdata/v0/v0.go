@@ -99,7 +99,7 @@ func (o *xxx_DefaultGetTrackingDataClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultGetTrackingDataClient) GetContainerData(ctx context.Context, in *GetContainerDataRequest, opts ...dcerpc.CallOption) (*GetContainerDataResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -119,7 +119,7 @@ func (o *xxx_DefaultGetTrackingDataClient) GetContainerData(ctx context.Context,
 }
 
 func (o *xxx_DefaultGetTrackingDataClient) GetComponentDataByContainer(ctx context.Context, in *GetComponentDataByContainerRequest, opts ...dcerpc.CallOption) (*GetComponentDataByContainerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -139,7 +139,7 @@ func (o *xxx_DefaultGetTrackingDataClient) GetComponentDataByContainer(ctx conte
 }
 
 func (o *xxx_DefaultGetTrackingDataClient) GetComponentDataByContainerAndClassID(ctx context.Context, in *GetComponentDataByContainerAndClassIDRequest, opts ...dcerpc.CallOption) (*GetComponentDataByContainerAndClassIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -421,13 +421,15 @@ type GetContainerDataRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetContainerDataRequest) xxx_ToOp(ctx context.Context) *xxx_GetContainerDataOperation {
+func (o *GetContainerDataRequest) xxx_ToOp(ctx context.Context, op *xxx_GetContainerDataOperation) *xxx_GetContainerDataOperation {
+	if op == nil {
+		op = &xxx_GetContainerDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetContainerDataOperation{}
+		return op
 	}
-	return &xxx_GetContainerDataOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetContainerDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetContainerDataOperation) {
@@ -437,7 +439,7 @@ func (o *GetContainerDataRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCon
 	o.This = op.This
 }
 func (o *GetContainerDataRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetContainerDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetContainerDataOperation{}
@@ -463,16 +465,18 @@ type GetContainerDataResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetContainerDataResponse) xxx_ToOp(ctx context.Context) *xxx_GetContainerDataOperation {
+func (o *GetContainerDataResponse) xxx_ToOp(ctx context.Context, op *xxx_GetContainerDataOperation) *xxx_GetContainerDataOperation {
+	if op == nil {
+		op = &xxx_GetContainerDataOperation{}
+	}
 	if o == nil {
-		return &xxx_GetContainerDataOperation{}
+		return op
 	}
-	return &xxx_GetContainerDataOperation{
-		That:          o.That,
-		Containers:    o.Containers,
-		ContainerData: o.ContainerData,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.Containers = op.Containers
+	o.ContainerData = op.ContainerData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetContainerDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetContainerDataOperation) {
@@ -485,7 +489,7 @@ func (o *GetContainerDataResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCo
 	o.Return = op.Return
 }
 func (o *GetContainerDataResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetContainerDataResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetContainerDataOperation{}
@@ -732,14 +736,16 @@ type GetComponentDataByContainerRequest struct {
 	ContainerID uint32 `idl:"name:idContainer" json:"container_id"`
 }
 
-func (o *GetComponentDataByContainerRequest) xxx_ToOp(ctx context.Context) *xxx_GetComponentDataByContainerOperation {
+func (o *GetComponentDataByContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_GetComponentDataByContainerOperation) *xxx_GetComponentDataByContainerOperation {
+	if op == nil {
+		op = &xxx_GetComponentDataByContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentDataByContainerOperation{}
+		return op
 	}
-	return &xxx_GetComponentDataByContainerOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	return op
 }
 
 func (o *GetComponentDataByContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_GetComponentDataByContainerOperation) {
@@ -750,7 +756,7 @@ func (o *GetComponentDataByContainerRequest) xxx_FromOp(ctx context.Context, op 
 	o.ContainerID = op.ContainerID
 }
 func (o *GetComponentDataByContainerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetComponentDataByContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentDataByContainerOperation{}
@@ -776,16 +782,18 @@ type GetComponentDataByContainerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetComponentDataByContainerResponse) xxx_ToOp(ctx context.Context) *xxx_GetComponentDataByContainerOperation {
+func (o *GetComponentDataByContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComponentDataByContainerOperation) *xxx_GetComponentDataByContainerOperation {
+	if op == nil {
+		op = &xxx_GetComponentDataByContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentDataByContainerOperation{}
+		return op
 	}
-	return &xxx_GetComponentDataByContainerOperation{
-		That:          o.That,
-		Components:    o.Components,
-		ComponentData: o.ComponentData,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.Components = op.Components
+	o.ComponentData = op.ComponentData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetComponentDataByContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_GetComponentDataByContainerOperation) {
@@ -798,7 +806,7 @@ func (o *GetComponentDataByContainerResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *GetComponentDataByContainerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetComponentDataByContainerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentDataByContainerOperation{}
@@ -1020,15 +1028,17 @@ type GetComponentDataByContainerAndClassIDRequest struct {
 	ClassID *dtyp.GUID `idl:"name:clsid" json:"class_id"`
 }
 
-func (o *GetComponentDataByContainerAndClassIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetComponentDataByContainerAndClassIDOperation {
+func (o *GetComponentDataByContainerAndClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetComponentDataByContainerAndClassIDOperation) *xxx_GetComponentDataByContainerAndClassIDOperation {
+	if op == nil {
+		op = &xxx_GetComponentDataByContainerAndClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentDataByContainerAndClassIDOperation{}
+		return op
 	}
-	return &xxx_GetComponentDataByContainerAndClassIDOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-		ClassID:     o.ClassID,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	o.ClassID = op.ClassID
+	return op
 }
 
 func (o *GetComponentDataByContainerAndClassIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetComponentDataByContainerAndClassIDOperation) {
@@ -1040,7 +1050,7 @@ func (o *GetComponentDataByContainerAndClassIDRequest) xxx_FromOp(ctx context.Co
 	o.ClassID = op.ClassID
 }
 func (o *GetComponentDataByContainerAndClassIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetComponentDataByContainerAndClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentDataByContainerAndClassIDOperation{}
@@ -1062,15 +1072,17 @@ type GetComponentDataByContainerAndClassIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetComponentDataByContainerAndClassIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetComponentDataByContainerAndClassIDOperation {
+func (o *GetComponentDataByContainerAndClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComponentDataByContainerAndClassIDOperation) *xxx_GetComponentDataByContainerAndClassIDOperation {
+	if op == nil {
+		op = &xxx_GetComponentDataByContainerAndClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentDataByContainerAndClassIDOperation{}
+		return op
 	}
-	return &xxx_GetComponentDataByContainerAndClassIDOperation{
-		That:          o.That,
-		ComponentData: o.ComponentData,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.ComponentData = op.ComponentData
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetComponentDataByContainerAndClassIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetComponentDataByContainerAndClassIDOperation) {
@@ -1082,7 +1094,7 @@ func (o *GetComponentDataByContainerAndClassIDResponse) xxx_FromOp(ctx context.C
 	o.Return = op.Return
 }
 func (o *GetComponentDataByContainerAndClassIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetComponentDataByContainerAndClassIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentDataByContainerAndClassIDOperation{}

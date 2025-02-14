@@ -78,7 +78,7 @@ func (o *xxx_DefaultServerHealthReport2Client) ServerHealthReport() iserverhealt
 }
 
 func (o *xxx_DefaultServerHealthReport2Client) GetReport2(ctx context.Context, in *GetReport2Request, opts ...dcerpc.CallOption) (*GetReport2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -98,7 +98,7 @@ func (o *xxx_DefaultServerHealthReport2Client) GetReport2(ctx context.Context, i
 }
 
 func (o *xxx_DefaultServerHealthReport2Client) GetCompressedReport2(ctx context.Context, in *GetCompressedReport2Request, opts ...dcerpc.CallOption) (*GetCompressedReport2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -595,18 +595,20 @@ type GetReport2Request struct {
 	Flags                   int32           `idl:"name:flags" json:"flags"`
 }
 
-func (o *GetReport2Request) xxx_ToOp(ctx context.Context) *xxx_GetReport2Operation {
+func (o *GetReport2Request) xxx_ToOp(ctx context.Context, op *xxx_GetReport2Operation) *xxx_GetReport2Operation {
+	if op == nil {
+		op = &xxx_GetReport2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetReport2Operation{}
+		return op
 	}
-	return &xxx_GetReport2Operation{
-		This:                    o.This,
-		ReplicationGroupGUID:    o.ReplicationGroupGUID,
-		ReferenceMember:         o.ReferenceMember,
-		ServerName:              o.ServerName,
-		ReferenceVersionVectors: o.ReferenceVersionVectors,
-		Flags:                   o.Flags,
-	}
+	o.This = op.This
+	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	o.ReferenceMember = op.ReferenceMember
+	o.ServerName = op.ServerName
+	o.ReferenceVersionVectors = op.ReferenceVersionVectors
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *GetReport2Request) xxx_FromOp(ctx context.Context, op *xxx_GetReport2Operation) {
@@ -621,7 +623,7 @@ func (o *GetReport2Request) xxx_FromOp(ctx context.Context, op *xxx_GetReport2Op
 	o.Flags = op.Flags
 }
 func (o *GetReport2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetReport2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReport2Operation{}
@@ -642,16 +644,18 @@ type GetReport2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetReport2Response) xxx_ToOp(ctx context.Context) *xxx_GetReport2Operation {
+func (o *GetReport2Response) xxx_ToOp(ctx context.Context, op *xxx_GetReport2Operation) *xxx_GetReport2Operation {
+	if op == nil {
+		op = &xxx_GetReport2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetReport2Operation{}
+		return op
 	}
-	return &xxx_GetReport2Operation{
-		That:                 o.That,
-		MemberVersionVectors: o.MemberVersionVectors,
-		ReportXML:            o.ReportXML,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.MemberVersionVectors = op.MemberVersionVectors
+	o.ReportXML = op.ReportXML
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetReport2Response) xxx_FromOp(ctx context.Context, op *xxx_GetReport2Operation) {
@@ -664,7 +668,7 @@ func (o *GetReport2Response) xxx_FromOp(ctx context.Context, op *xxx_GetReport2O
 	o.Return = op.Return
 }
 func (o *GetReport2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetReport2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReport2Operation{}
@@ -1126,18 +1130,20 @@ type GetCompressedReport2Request struct {
 	Flags                   int32           `idl:"name:flags" json:"flags"`
 }
 
-func (o *GetCompressedReport2Request) xxx_ToOp(ctx context.Context) *xxx_GetCompressedReport2Operation {
+func (o *GetCompressedReport2Request) xxx_ToOp(ctx context.Context, op *xxx_GetCompressedReport2Operation) *xxx_GetCompressedReport2Operation {
+	if op == nil {
+		op = &xxx_GetCompressedReport2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetCompressedReport2Operation{}
+		return op
 	}
-	return &xxx_GetCompressedReport2Operation{
-		This:                    o.This,
-		ReplicationGroupGUID:    o.ReplicationGroupGUID,
-		ReferenceMember:         o.ReferenceMember,
-		ServerName:              o.ServerName,
-		ReferenceVersionVectors: o.ReferenceVersionVectors,
-		Flags:                   o.Flags,
-	}
+	o.This = op.This
+	o.ReplicationGroupGUID = op.ReplicationGroupGUID
+	o.ReferenceMember = op.ReferenceMember
+	o.ServerName = op.ServerName
+	o.ReferenceVersionVectors = op.ReferenceVersionVectors
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *GetCompressedReport2Request) xxx_FromOp(ctx context.Context, op *xxx_GetCompressedReport2Operation) {
@@ -1152,7 +1158,7 @@ func (o *GetCompressedReport2Request) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Flags = op.Flags
 }
 func (o *GetCompressedReport2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCompressedReport2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCompressedReport2Operation{}
@@ -1174,17 +1180,19 @@ type GetCompressedReport2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCompressedReport2Response) xxx_ToOp(ctx context.Context) *xxx_GetCompressedReport2Operation {
+func (o *GetCompressedReport2Response) xxx_ToOp(ctx context.Context, op *xxx_GetCompressedReport2Operation) *xxx_GetCompressedReport2Operation {
+	if op == nil {
+		op = &xxx_GetCompressedReport2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetCompressedReport2Operation{}
+		return op
 	}
-	return &xxx_GetCompressedReport2Operation{
-		That:                   o.That,
-		MemberVersionVectors:   o.MemberVersionVectors,
-		ReportCompressed:       o.ReportCompressed,
-		UncompressedReportSize: o.UncompressedReportSize,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.MemberVersionVectors = op.MemberVersionVectors
+	o.ReportCompressed = op.ReportCompressed
+	o.UncompressedReportSize = op.UncompressedReportSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCompressedReport2Response) xxx_FromOp(ctx context.Context, op *xxx_GetCompressedReport2Operation) {
@@ -1198,7 +1206,7 @@ func (o *GetCompressedReport2Response) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetCompressedReport2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCompressedReport2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCompressedReport2Operation{}

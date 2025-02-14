@@ -85,19 +85,37 @@ func BackupRestoreExServerHandle(ctx context.Context, o BackupRestoreExServer, o
 	}
 	switch opNum {
 	case 5: // Pause
-		in := &PauseRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PauseOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Pause(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PauseRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Pause(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Resume
-		in := &ResumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Resume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Resume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemBackupRestoreEx
+type UnimplementedBackupRestoreExServer struct {
+	iwbembackuprestore.UnimplementedBackupRestoreServer
+}
+
+func (UnimplementedBackupRestoreExServer) Pause(context.Context, *PauseRequest) (*PauseResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedBackupRestoreExServer) Resume(context.Context, *ResumeRequest) (*ResumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ BackupRestoreExServer = (*UnimplementedBackupRestoreExServer)(nil)

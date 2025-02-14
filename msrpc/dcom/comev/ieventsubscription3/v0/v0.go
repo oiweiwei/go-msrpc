@@ -94,7 +94,7 @@ func (o *xxx_DefaultEventSubscription3Client) EventSubscription2() ieventsubscri
 }
 
 func (o *xxx_DefaultEventSubscription3Client) GetEventClassPartitionID(ctx context.Context, in *GetEventClassPartitionIDRequest, opts ...dcerpc.CallOption) (*GetEventClassPartitionIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -114,7 +114,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetEventClassPartitionID(ctx conte
 }
 
 func (o *xxx_DefaultEventSubscription3Client) SetEventClassPartitionID(ctx context.Context, in *SetEventClassPartitionIDRequest, opts ...dcerpc.CallOption) (*SetEventClassPartitionIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -134,7 +134,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetEventClassPartitionID(ctx conte
 }
 
 func (o *xxx_DefaultEventSubscription3Client) GetEventClassApplicationID(ctx context.Context, in *GetEventClassApplicationIDRequest, opts ...dcerpc.CallOption) (*GetEventClassApplicationIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -154,7 +154,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetEventClassApplicationID(ctx con
 }
 
 func (o *xxx_DefaultEventSubscription3Client) SetEventClassApplicationID(ctx context.Context, in *SetEventClassApplicationIDRequest, opts ...dcerpc.CallOption) (*SetEventClassApplicationIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -174,7 +174,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetEventClassApplicationID(ctx con
 }
 
 func (o *xxx_DefaultEventSubscription3Client) GetSubscriberPartitionID(ctx context.Context, in *GetSubscriberPartitionIDRequest, opts ...dcerpc.CallOption) (*GetSubscriberPartitionIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -194,7 +194,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetSubscriberPartitionID(ctx conte
 }
 
 func (o *xxx_DefaultEventSubscription3Client) SetSubscriberPartitionID(ctx context.Context, in *SetSubscriberPartitionIDRequest, opts ...dcerpc.CallOption) (*SetSubscriberPartitionIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -214,7 +214,7 @@ func (o *xxx_DefaultEventSubscription3Client) SetSubscriberPartitionID(ctx conte
 }
 
 func (o *xxx_DefaultEventSubscription3Client) GetSubscriberApplicationID(ctx context.Context, in *GetSubscriberApplicationIDRequest, opts ...dcerpc.CallOption) (*GetSubscriberApplicationIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -234,7 +234,7 @@ func (o *xxx_DefaultEventSubscription3Client) GetSubscriberApplicationID(ctx con
 }
 
 func (o *xxx_DefaultEventSubscription3Client) SetSubscriberApplicationID(ctx context.Context, in *SetSubscriberApplicationIDRequest, opts ...dcerpc.CallOption) (*SetSubscriberApplicationIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -467,13 +467,15 @@ type GetEventClassPartitionIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetEventClassPartitionIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetEventClassPartitionIDOperation {
+func (o *GetEventClassPartitionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassPartitionIDOperation) *xxx_GetEventClassPartitionIDOperation {
+	if op == nil {
+		op = &xxx_GetEventClassPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassPartitionIDOperation{}
+		return op
 	}
-	return &xxx_GetEventClassPartitionIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetEventClassPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassPartitionIDOperation) {
@@ -483,7 +485,7 @@ func (o *GetEventClassPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.This = op.This
 }
 func (o *GetEventClassPartitionIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEventClassPartitionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassPartitionIDOperation{}
@@ -503,15 +505,17 @@ type GetEventClassPartitionIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEventClassPartitionIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetEventClassPartitionIDOperation {
+func (o *GetEventClassPartitionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassPartitionIDOperation) *xxx_GetEventClassPartitionIDOperation {
+	if op == nil {
+		op = &xxx_GetEventClassPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassPartitionIDOperation{}
+		return op
 	}
-	return &xxx_GetEventClassPartitionIDOperation{
-		That:                  o.That,
-		EventClassPartitionID: o.EventClassPartitionID,
-		Return:                o.Return,
-	}
+	o.That = op.That
+	o.EventClassPartitionID = op.EventClassPartitionID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetEventClassPartitionIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassPartitionIDOperation) {
@@ -523,7 +527,7 @@ func (o *GetEventClassPartitionIDResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GetEventClassPartitionIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEventClassPartitionIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassPartitionIDOperation{}
@@ -707,14 +711,16 @@ type SetEventClassPartitionIDRequest struct {
 	EventClassPartitionID *oaut.String   `idl:"name:bstrEventClassPartitionID" json:"event_class_partition_id"`
 }
 
-func (o *SetEventClassPartitionIDRequest) xxx_ToOp(ctx context.Context) *xxx_SetEventClassPartitionIDOperation {
+func (o *SetEventClassPartitionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventClassPartitionIDOperation) *xxx_SetEventClassPartitionIDOperation {
+	if op == nil {
+		op = &xxx_SetEventClassPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventClassPartitionIDOperation{}
+		return op
 	}
-	return &xxx_SetEventClassPartitionIDOperation{
-		This:                  o.This,
-		EventClassPartitionID: o.EventClassPartitionID,
-	}
+	o.This = op.This
+	o.EventClassPartitionID = op.EventClassPartitionID
+	return op
 }
 
 func (o *SetEventClassPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEventClassPartitionIDOperation) {
@@ -725,7 +731,7 @@ func (o *SetEventClassPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.EventClassPartitionID = op.EventClassPartitionID
 }
 func (o *SetEventClassPartitionIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetEventClassPartitionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventClassPartitionIDOperation{}
@@ -744,14 +750,16 @@ type SetEventClassPartitionIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetEventClassPartitionIDResponse) xxx_ToOp(ctx context.Context) *xxx_SetEventClassPartitionIDOperation {
+func (o *SetEventClassPartitionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEventClassPartitionIDOperation) *xxx_SetEventClassPartitionIDOperation {
+	if op == nil {
+		op = &xxx_SetEventClassPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventClassPartitionIDOperation{}
+		return op
 	}
-	return &xxx_SetEventClassPartitionIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetEventClassPartitionIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEventClassPartitionIDOperation) {
@@ -762,7 +770,7 @@ func (o *SetEventClassPartitionIDResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *SetEventClassPartitionIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetEventClassPartitionIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventClassPartitionIDOperation{}
@@ -945,13 +953,15 @@ type GetEventClassApplicationIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetEventClassApplicationIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetEventClassApplicationIDOperation {
+func (o *GetEventClassApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassApplicationIDOperation) *xxx_GetEventClassApplicationIDOperation {
+	if op == nil {
+		op = &xxx_GetEventClassApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassApplicationIDOperation{}
+		return op
 	}
-	return &xxx_GetEventClassApplicationIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetEventClassApplicationIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassApplicationIDOperation) {
@@ -961,7 +971,7 @@ func (o *GetEventClassApplicationIDRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *GetEventClassApplicationIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEventClassApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassApplicationIDOperation{}
@@ -981,15 +991,17 @@ type GetEventClassApplicationIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEventClassApplicationIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetEventClassApplicationIDOperation {
+func (o *GetEventClassApplicationIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEventClassApplicationIDOperation) *xxx_GetEventClassApplicationIDOperation {
+	if op == nil {
+		op = &xxx_GetEventClassApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventClassApplicationIDOperation{}
+		return op
 	}
-	return &xxx_GetEventClassApplicationIDOperation{
-		That:                    o.That,
-		EventClassApplicationID: o.EventClassApplicationID,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.EventClassApplicationID = op.EventClassApplicationID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetEventClassApplicationIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEventClassApplicationIDOperation) {
@@ -1001,7 +1013,7 @@ func (o *GetEventClassApplicationIDResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *GetEventClassApplicationIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEventClassApplicationIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventClassApplicationIDOperation{}
@@ -1185,14 +1197,16 @@ type SetEventClassApplicationIDRequest struct {
 	EventClassApplicationID *oaut.String   `idl:"name:bstrEventClassApplicationID" json:"event_class_application_id"`
 }
 
-func (o *SetEventClassApplicationIDRequest) xxx_ToOp(ctx context.Context) *xxx_SetEventClassApplicationIDOperation {
+func (o *SetEventClassApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventClassApplicationIDOperation) *xxx_SetEventClassApplicationIDOperation {
+	if op == nil {
+		op = &xxx_SetEventClassApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventClassApplicationIDOperation{}
+		return op
 	}
-	return &xxx_SetEventClassApplicationIDOperation{
-		This:                    o.This,
-		EventClassApplicationID: o.EventClassApplicationID,
-	}
+	o.This = op.This
+	o.EventClassApplicationID = op.EventClassApplicationID
+	return op
 }
 
 func (o *SetEventClassApplicationIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEventClassApplicationIDOperation) {
@@ -1203,7 +1217,7 @@ func (o *SetEventClassApplicationIDRequest) xxx_FromOp(ctx context.Context, op *
 	o.EventClassApplicationID = op.EventClassApplicationID
 }
 func (o *SetEventClassApplicationIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetEventClassApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventClassApplicationIDOperation{}
@@ -1222,14 +1236,16 @@ type SetEventClassApplicationIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetEventClassApplicationIDResponse) xxx_ToOp(ctx context.Context) *xxx_SetEventClassApplicationIDOperation {
+func (o *SetEventClassApplicationIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEventClassApplicationIDOperation) *xxx_SetEventClassApplicationIDOperation {
+	if op == nil {
+		op = &xxx_SetEventClassApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventClassApplicationIDOperation{}
+		return op
 	}
-	return &xxx_SetEventClassApplicationIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetEventClassApplicationIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEventClassApplicationIDOperation) {
@@ -1240,7 +1256,7 @@ func (o *SetEventClassApplicationIDResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *SetEventClassApplicationIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetEventClassApplicationIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventClassApplicationIDOperation{}
@@ -1423,13 +1439,15 @@ type GetSubscriberPartitionIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSubscriberPartitionIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetSubscriberPartitionIDOperation {
+func (o *GetSubscriberPartitionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSubscriberPartitionIDOperation) *xxx_GetSubscriberPartitionIDOperation {
+	if op == nil {
+		op = &xxx_GetSubscriberPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubscriberPartitionIDOperation{}
+		return op
 	}
-	return &xxx_GetSubscriberPartitionIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSubscriberPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubscriberPartitionIDOperation) {
@@ -1439,7 +1457,7 @@ func (o *GetSubscriberPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.This = op.This
 }
 func (o *GetSubscriberPartitionIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSubscriberPartitionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubscriberPartitionIDOperation{}
@@ -1459,15 +1477,17 @@ type GetSubscriberPartitionIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSubscriberPartitionIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetSubscriberPartitionIDOperation {
+func (o *GetSubscriberPartitionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSubscriberPartitionIDOperation) *xxx_GetSubscriberPartitionIDOperation {
+	if op == nil {
+		op = &xxx_GetSubscriberPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubscriberPartitionIDOperation{}
+		return op
 	}
-	return &xxx_GetSubscriberPartitionIDOperation{
-		That:                  o.That,
-		SubscriberPartitionID: o.SubscriberPartitionID,
-		Return:                o.Return,
-	}
+	o.That = op.That
+	o.SubscriberPartitionID = op.SubscriberPartitionID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSubscriberPartitionIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSubscriberPartitionIDOperation) {
@@ -1479,7 +1499,7 @@ func (o *GetSubscriberPartitionIDResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GetSubscriberPartitionIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSubscriberPartitionIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubscriberPartitionIDOperation{}
@@ -1663,14 +1683,16 @@ type SetSubscriberPartitionIDRequest struct {
 	SubscriberPartitionID *oaut.String   `idl:"name:bstrSubscriberPartitionID" json:"subscriber_partition_id"`
 }
 
-func (o *SetSubscriberPartitionIDRequest) xxx_ToOp(ctx context.Context) *xxx_SetSubscriberPartitionIDOperation {
+func (o *SetSubscriberPartitionIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSubscriberPartitionIDOperation) *xxx_SetSubscriberPartitionIDOperation {
+	if op == nil {
+		op = &xxx_SetSubscriberPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubscriberPartitionIDOperation{}
+		return op
 	}
-	return &xxx_SetSubscriberPartitionIDOperation{
-		This:                  o.This,
-		SubscriberPartitionID: o.SubscriberPartitionID,
-	}
+	o.This = op.This
+	o.SubscriberPartitionID = op.SubscriberPartitionID
+	return op
 }
 
 func (o *SetSubscriberPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubscriberPartitionIDOperation) {
@@ -1681,7 +1703,7 @@ func (o *SetSubscriberPartitionIDRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.SubscriberPartitionID = op.SubscriberPartitionID
 }
 func (o *SetSubscriberPartitionIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSubscriberPartitionIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubscriberPartitionIDOperation{}
@@ -1700,14 +1722,16 @@ type SetSubscriberPartitionIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSubscriberPartitionIDResponse) xxx_ToOp(ctx context.Context) *xxx_SetSubscriberPartitionIDOperation {
+func (o *SetSubscriberPartitionIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSubscriberPartitionIDOperation) *xxx_SetSubscriberPartitionIDOperation {
+	if op == nil {
+		op = &xxx_SetSubscriberPartitionIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubscriberPartitionIDOperation{}
+		return op
 	}
-	return &xxx_SetSubscriberPartitionIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSubscriberPartitionIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSubscriberPartitionIDOperation) {
@@ -1718,7 +1742,7 @@ func (o *SetSubscriberPartitionIDResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *SetSubscriberPartitionIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSubscriberPartitionIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubscriberPartitionIDOperation{}
@@ -1901,13 +1925,15 @@ type GetSubscriberApplicationIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSubscriberApplicationIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetSubscriberApplicationIDOperation {
+func (o *GetSubscriberApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSubscriberApplicationIDOperation) *xxx_GetSubscriberApplicationIDOperation {
+	if op == nil {
+		op = &xxx_GetSubscriberApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubscriberApplicationIDOperation{}
+		return op
 	}
-	return &xxx_GetSubscriberApplicationIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSubscriberApplicationIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubscriberApplicationIDOperation) {
@@ -1917,7 +1943,7 @@ func (o *GetSubscriberApplicationIDRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *GetSubscriberApplicationIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSubscriberApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubscriberApplicationIDOperation{}
@@ -1937,15 +1963,17 @@ type GetSubscriberApplicationIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSubscriberApplicationIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetSubscriberApplicationIDOperation {
+func (o *GetSubscriberApplicationIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSubscriberApplicationIDOperation) *xxx_GetSubscriberApplicationIDOperation {
+	if op == nil {
+		op = &xxx_GetSubscriberApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubscriberApplicationIDOperation{}
+		return op
 	}
-	return &xxx_GetSubscriberApplicationIDOperation{
-		That:                    o.That,
-		SubscriberApplicationID: o.SubscriberApplicationID,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.SubscriberApplicationID = op.SubscriberApplicationID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSubscriberApplicationIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSubscriberApplicationIDOperation) {
@@ -1957,7 +1985,7 @@ func (o *GetSubscriberApplicationIDResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *GetSubscriberApplicationIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSubscriberApplicationIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubscriberApplicationIDOperation{}
@@ -2141,14 +2169,16 @@ type SetSubscriberApplicationIDRequest struct {
 	SubscriberApplicationID *oaut.String   `idl:"name:bstrSubscriberApplicationID" json:"subscriber_application_id"`
 }
 
-func (o *SetSubscriberApplicationIDRequest) xxx_ToOp(ctx context.Context) *xxx_SetSubscriberApplicationIDOperation {
+func (o *SetSubscriberApplicationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSubscriberApplicationIDOperation) *xxx_SetSubscriberApplicationIDOperation {
+	if op == nil {
+		op = &xxx_SetSubscriberApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubscriberApplicationIDOperation{}
+		return op
 	}
-	return &xxx_SetSubscriberApplicationIDOperation{
-		This:                    o.This,
-		SubscriberApplicationID: o.SubscriberApplicationID,
-	}
+	o.This = op.This
+	o.SubscriberApplicationID = op.SubscriberApplicationID
+	return op
 }
 
 func (o *SetSubscriberApplicationIDRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubscriberApplicationIDOperation) {
@@ -2159,7 +2189,7 @@ func (o *SetSubscriberApplicationIDRequest) xxx_FromOp(ctx context.Context, op *
 	o.SubscriberApplicationID = op.SubscriberApplicationID
 }
 func (o *SetSubscriberApplicationIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSubscriberApplicationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubscriberApplicationIDOperation{}
@@ -2178,14 +2208,16 @@ type SetSubscriberApplicationIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSubscriberApplicationIDResponse) xxx_ToOp(ctx context.Context) *xxx_SetSubscriberApplicationIDOperation {
+func (o *SetSubscriberApplicationIDResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSubscriberApplicationIDOperation) *xxx_SetSubscriberApplicationIDOperation {
+	if op == nil {
+		op = &xxx_SetSubscriberApplicationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubscriberApplicationIDOperation{}
+		return op
 	}
-	return &xxx_SetSubscriberApplicationIDOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSubscriberApplicationIDResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSubscriberApplicationIDOperation) {
@@ -2196,7 +2228,7 @@ func (o *SetSubscriberApplicationIDResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *SetSubscriberApplicationIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSubscriberApplicationIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubscriberApplicationIDOperation{}

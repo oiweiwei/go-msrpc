@@ -134,40 +134,73 @@ func QuotaServerHandle(ctx context.Context, o QuotaServer, opNum int, r ndr.Read
 	}
 	switch opNum {
 	case 28: // QuotaUsed
-		in := &GetQuotaUsedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuotaUsedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuotaUsed(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuotaUsedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuotaUsed(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // QuotaPeakUsage
-		in := &GetQuotaPeakUsageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuotaPeakUsageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuotaPeakUsage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuotaPeakUsageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuotaPeakUsage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // QuotaPeakUsageTime
-		in := &GetQuotaPeakUsageTimeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuotaPeakUsageTimeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuotaPeakUsageTime(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuotaPeakUsageTimeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuotaPeakUsageTime(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // ResetPeakUsage
-		in := &ResetPeakUsageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResetPeakUsageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResetPeakUsage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResetPeakUsageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResetPeakUsage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // RefreshUsageProperties
-		in := &RefreshUsagePropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshUsagePropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RefreshUsageProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshUsagePropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RefreshUsageProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuota
+type UnimplementedQuotaServer struct {
+	ifsrmquotaobject.UnimplementedQuotaObjectServer
+}
+
+func (UnimplementedQuotaServer) GetQuotaUsed(context.Context, *GetQuotaUsedRequest) (*GetQuotaUsedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaServer) GetQuotaPeakUsage(context.Context, *GetQuotaPeakUsageRequest) (*GetQuotaPeakUsageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaServer) GetQuotaPeakUsageTime(context.Context, *GetQuotaPeakUsageTimeRequest) (*GetQuotaPeakUsageTimeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaServer) ResetPeakUsage(context.Context, *ResetPeakUsageRequest) (*ResetPeakUsageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaServer) RefreshUsageProperties(context.Context, *RefreshUsagePropertiesRequest) (*RefreshUsagePropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaServer = (*UnimplementedQuotaServer)(nil)

@@ -452,7 +452,7 @@ type xxx_DefaultBrowserClient struct {
 }
 
 func (o *xxx_DefaultBrowserClient) QueryOtherDomains(ctx context.Context, in *QueryOtherDomainsRequest, opts ...dcerpc.CallOption) (*QueryOtherDomainsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -661,14 +661,16 @@ type QueryOtherDomainsRequest struct {
 	Info *ServerEnum `idl:"name:InfoStruct" json:"info"`
 }
 
-func (o *QueryOtherDomainsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryOtherDomainsOperation {
+func (o *QueryOtherDomainsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOtherDomainsOperation) *xxx_QueryOtherDomainsOperation {
+	if op == nil {
+		op = &xxx_QueryOtherDomainsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryOtherDomainsOperation{}
+		return op
 	}
-	return &xxx_QueryOtherDomainsOperation{
-		ServerName: o.ServerName,
-		Info:       o.Info,
-	}
+	o.ServerName = op.ServerName
+	o.Info = op.Info
+	return op
 }
 
 func (o *QueryOtherDomainsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryOtherDomainsOperation) {
@@ -679,7 +681,7 @@ func (o *QueryOtherDomainsRequest) xxx_FromOp(ctx context.Context, op *xxx_Query
 	o.Info = op.Info
 }
 func (o *QueryOtherDomainsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryOtherDomainsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryOtherDomainsOperation{}
@@ -704,15 +706,17 @@ type QueryOtherDomainsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryOtherDomainsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryOtherDomainsOperation {
+func (o *QueryOtherDomainsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryOtherDomainsOperation) *xxx_QueryOtherDomainsOperation {
+	if op == nil {
+		op = &xxx_QueryOtherDomainsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryOtherDomainsOperation{}
+		return op
 	}
-	return &xxx_QueryOtherDomainsOperation{
-		Info:         o.Info,
-		TotalEntries: o.TotalEntries,
-		Return:       o.Return,
-	}
+	o.Info = op.Info
+	o.TotalEntries = op.TotalEntries
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryOtherDomainsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryOtherDomainsOperation) {
@@ -724,7 +728,7 @@ func (o *QueryOtherDomainsResponse) xxx_FromOp(ctx context.Context, op *xxx_Quer
 	o.Return = op.Return
 }
 func (o *QueryOtherDomainsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryOtherDomainsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryOtherDomainsOperation{}

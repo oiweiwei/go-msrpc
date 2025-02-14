@@ -119,82 +119,145 @@ func VolumeServerHandle(ctx context.Context, o VolumeServer, opNum int, r ndr.Re
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetPack
-		in := &GetPackRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPackOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPack(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPackRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPack(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // QueryPlexes
-		in := &QueryPlexesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryPlexesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryPlexes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryPlexesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryPlexes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Extend
-		in := &ExtendRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExtendOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Extend(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExtendRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Extend(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Shrink
-		in := &ShrinkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShrinkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Shrink(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShrinkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Shrink(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // AddPlex
-		in := &AddPlexRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddPlexOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddPlex(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddPlexRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddPlex(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // BreakPlex
-		in := &BreakPlexRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BreakPlexOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BreakPlex(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BreakPlexRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BreakPlex(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RemovePlex
-		in := &RemovePlexRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemovePlexOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemovePlex(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemovePlexRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemovePlex(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // SetFlags
-		in := &SetFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ClearFlags
-		in := &ClearFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolume
+type UnimplementedVolumeServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) GetPack(context.Context, *GetPackRequest) (*GetPackResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) QueryPlexes(context.Context, *QueryPlexesRequest) (*QueryPlexesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) Extend(context.Context, *ExtendRequest) (*ExtendResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) Shrink(context.Context, *ShrinkRequest) (*ShrinkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) AddPlex(context.Context, *AddPlexRequest) (*AddPlexResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) BreakPlex(context.Context, *BreakPlexRequest) (*BreakPlexResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) RemovePlex(context.Context, *RemovePlexRequest) (*RemovePlexResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) SetFlags(context.Context, *SetFlagsRequest) (*SetFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeServer) ClearFlags(context.Context, *ClearFlagsRequest) (*ClearFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeServer = (*UnimplementedVolumeServer)(nil)

@@ -61,7 +61,7 @@ type xxx_DefaultBackupKeyClient struct {
 }
 
 func (o *xxx_DefaultBackupKeyClient) BackupKey(ctx context.Context, in *BackupKeyRequest, opts ...dcerpc.CallOption) (*BackupKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -386,16 +386,18 @@ type BackupKeyRequest struct {
 	Param uint32 `idl:"name:dwParam" json:"param"`
 }
 
-func (o *BackupKeyRequest) xxx_ToOp(ctx context.Context) *xxx_BackupKeyOperation {
+func (o *BackupKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupKeyOperation) *xxx_BackupKeyOperation {
+	if op == nil {
+		op = &xxx_BackupKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupKeyOperation{}
+		return op
 	}
-	return &xxx_BackupKeyOperation{
-		ActionAgent:  o.ActionAgent,
-		DataIn:       o.DataIn,
-		DataInLength: o.DataInLength,
-		Param:        o.Param,
-	}
+	o.ActionAgent = op.ActionAgent
+	o.DataIn = op.DataIn
+	o.DataInLength = op.DataInLength
+	o.Param = op.Param
+	return op
 }
 
 func (o *BackupKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupKeyOperation) {
@@ -408,7 +410,7 @@ func (o *BackupKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupKeyOper
 	o.Param = op.Param
 }
 func (o *BackupKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BackupKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupKeyOperation{}
@@ -431,15 +433,17 @@ type BackupKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BackupKeyResponse) xxx_ToOp(ctx context.Context) *xxx_BackupKeyOperation {
+func (o *BackupKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupKeyOperation) *xxx_BackupKeyOperation {
+	if op == nil {
+		op = &xxx_BackupKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupKeyOperation{}
+		return op
 	}
-	return &xxx_BackupKeyOperation{
-		DataOut:       o.DataOut,
-		DataOutLength: o.DataOutLength,
-		Return:        o.Return,
-	}
+	o.DataOut = op.DataOut
+	o.DataOutLength = op.DataOutLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *BackupKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupKeyOperation) {
@@ -451,7 +455,7 @@ func (o *BackupKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupKeyOpe
 	o.Return = op.Return
 }
 func (o *BackupKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BackupKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupKeyOperation{}

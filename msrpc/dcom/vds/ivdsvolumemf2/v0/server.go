@@ -74,26 +74,49 @@ func VolumeMF2ServerHandle(ctx context.Context, o VolumeMF2Server, opNum int, r 
 	}
 	switch opNum {
 	case 3: // GetFileSystemTypeName
-		in := &GetFileSystemTypeNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileSystemTypeNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileSystemTypeName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileSystemTypeNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileSystemTypeName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // QueryFileSystemFormatSupport
-		in := &QueryFileSystemFormatSupportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryFileSystemFormatSupportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryFileSystemFormatSupport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryFileSystemFormatSupportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryFileSystemFormatSupport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // FormatEx
-		in := &FormatExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FormatEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FormatEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolumeMF2
+type UnimplementedVolumeMF2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeMF2Server) GetFileSystemTypeName(context.Context, *GetFileSystemTypeNameRequest) (*GetFileSystemTypeNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMF2Server) QueryFileSystemFormatSupport(context.Context, *QueryFileSystemFormatSupportRequest) (*QueryFileSystemFormatSupportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMF2Server) FormatEx(context.Context, *FormatExRequest) (*FormatExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeMF2Server = (*UnimplementedVolumeMF2Server)(nil)

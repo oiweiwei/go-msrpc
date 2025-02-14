@@ -82,7 +82,7 @@ func (o *xxx_DefaultLoginHelperClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultLoginHelperClient) SetEvent(ctx context.Context, in *SetEventRequest, opts ...dcerpc.CallOption) (*SetEventResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -282,14 +282,16 @@ type SetEventRequest struct {
 	EventToSet string `idl:"name:sEventToSet" json:"event_to_set"`
 }
 
-func (o *SetEventRequest) xxx_ToOp(ctx context.Context) *xxx_SetEventOperation {
+func (o *SetEventRequest) xxx_ToOp(ctx context.Context, op *xxx_SetEventOperation) *xxx_SetEventOperation {
+	if op == nil {
+		op = &xxx_SetEventOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventOperation{}
+		return op
 	}
-	return &xxx_SetEventOperation{
-		This:       o.This,
-		EventToSet: o.EventToSet,
-	}
+	o.This = op.This
+	o.EventToSet = op.EventToSet
+	return op
 }
 
 func (o *SetEventRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEventOperation) {
@@ -300,7 +302,7 @@ func (o *SetEventRequest) xxx_FromOp(ctx context.Context, op *xxx_SetEventOperat
 	o.EventToSet = op.EventToSet
 }
 func (o *SetEventRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetEventRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventOperation{}
@@ -319,14 +321,16 @@ type SetEventResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetEventResponse) xxx_ToOp(ctx context.Context) *xxx_SetEventOperation {
+func (o *SetEventResponse) xxx_ToOp(ctx context.Context, op *xxx_SetEventOperation) *xxx_SetEventOperation {
+	if op == nil {
+		op = &xxx_SetEventOperation{}
+	}
 	if o == nil {
-		return &xxx_SetEventOperation{}
+		return op
 	}
-	return &xxx_SetEventOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetEventResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEventOperation) {
@@ -337,7 +341,7 @@ func (o *SetEventResponse) xxx_FromOp(ctx context.Context, op *xxx_SetEventOpera
 	o.Return = op.Return
 }
 func (o *SetEventResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetEventResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetEventOperation{}

@@ -835,351 +835,603 @@ func NewLogonServerHandle(o LogonServer) dcerpc.ServerHandle {
 func LogonServerHandle(ctx context.Context, o LogonServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NetrLogonUasLogon
-		in := &UASLogonRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UASLogonOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UASLogon(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UASLogonRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UASLogon(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // NetrLogonUasLogoff
-		in := &UASLogoffRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UASLogoffOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UASLogoff(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UASLogoffRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UASLogoff(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NetrLogonSamLogon
-		in := &SAMLogonRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SAMLogonOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SAMLogon(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SAMLogonRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SAMLogon(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // NetrLogonSamLogoff
-		in := &SAMLogoffRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SAMLogoffOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SAMLogoff(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SAMLogoffRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SAMLogoff(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // NetrServerReqChallenge
-		in := &RequestChallengeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RequestChallengeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RequestChallenge(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RequestChallengeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RequestChallenge(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // NetrServerAuthenticate
-		in := &AuthenticateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AuthenticateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Authenticate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AuthenticateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Authenticate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // NetrServerPasswordSet
-		in := &PasswordSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PasswordSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PasswordSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PasswordSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PasswordSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // NetrDatabaseDeltas
-		in := &DatabaseDeltasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DatabaseDeltasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DatabaseDeltas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DatabaseDeltasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DatabaseDeltas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // NetrDatabaseSync
-		in := &DatabaseSyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DatabaseSyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DatabaseSync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DatabaseSyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DatabaseSync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // NetrAccountDeltas
-		in := &AccountDeltasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AccountDeltasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AccountDeltas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AccountDeltasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AccountDeltas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // NetrAccountSync
-		in := &AccountSyncRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AccountSyncOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AccountSync(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AccountSyncRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AccountSync(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // NetrGetDCName
-		in := &GetNetrDCNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetrDCNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetrDCName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetrDCNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetrDCName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // NetrLogonControl
-		in := &ControlRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ControlOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Control(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ControlRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Control(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // NetrGetAnyDCName
-		in := &GetAnyDCNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAnyDCNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAnyDCName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAnyDCNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAnyDCName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // NetrLogonControl2
-		in := &Control2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Control2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Control2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Control2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Control2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // NetrServerAuthenticate2
-		in := &Authenticate2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Authenticate2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Authenticate2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Authenticate2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Authenticate2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // NetrDatabaseSync2
-		in := &DatabaseSync2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DatabaseSync2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DatabaseSync2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DatabaseSync2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DatabaseSync2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // NetrDatabaseRedo
-		in := &DatabaseRedoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DatabaseRedoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DatabaseRedo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DatabaseRedoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DatabaseRedo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // NetrLogonControl2Ex
-		in := &Control2ExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Control2ExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Control2Ex(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Control2ExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Control2Ex(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // NetrEnumerateTrustedDomains
-		in := &EnumerateTrustedDomainsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateTrustedDomainsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateTrustedDomains(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateTrustedDomainsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateTrustedDomains(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // DsrGetDcName
-		in := &GetDCNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDCNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDCName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDCNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDCName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // NetrLogonGetCapabilities
-		in := &GetCapabilitiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCapabilitiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCapabilities(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCapabilitiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCapabilities(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // NetrLogonSetServiceBits
-		in := &SetServiceBitsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetServiceBitsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetServiceBits(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetServiceBitsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetServiceBits(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // NetrLogonGetTrustRid
-		in := &GetTrustRIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTrustRIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTrustRID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTrustRIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTrustRID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // NetrLogonComputeServerDigest
-		in := &ComputeServerDigestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ComputeServerDigestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ComputeServerDigest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ComputeServerDigestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ComputeServerDigest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // NetrLogonComputeClientDigest
-		in := &ComputeClientDigestRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ComputeClientDigestOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ComputeClientDigest(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ComputeClientDigestRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ComputeClientDigest(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // NetrServerAuthenticate3
-		in := &Authenticate3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Authenticate3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Authenticate3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Authenticate3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Authenticate3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // DsrGetDcNameEx
-		in := &GetDCNameExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDCNameExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDCNameEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDCNameExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDCNameEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // DsrGetSiteName
-		in := &GetSiteNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSiteNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSiteName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSiteNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSiteName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // NetrLogonGetDomainInfo
-		in := &GetDomainInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDomainInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDomainInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDomainInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDomainInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // NetrServerPasswordSet2
-		in := &PasswordSet2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PasswordSet2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PasswordSet2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PasswordSet2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PasswordSet2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // NetrServerPasswordGet
-		in := &PasswordGetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PasswordGetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PasswordGet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PasswordGetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PasswordGet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // NetrLogonSendToSam
-		in := &SendToSAMRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendToSAMOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendToSAM(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendToSAMRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendToSAM(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // DsrAddressToSiteNamesW
-		in := &AddressToSiteNamesWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddressToSiteNamesWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddressToSiteNamesW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddressToSiteNamesWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddressToSiteNamesW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // DsrGetDcNameEx2
-		in := &GetDCNameEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDCNameEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDCNameEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDCNameEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDCNameEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // NetrLogonGetTimeServiceParentDomain
-		in := &GetTimeServiceParentDomainRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTimeServiceParentDomainOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTimeServiceParentDomain(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTimeServiceParentDomainRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTimeServiceParentDomain(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // NetrEnumerateTrustedDomainsEx
-		in := &EnumerateTrustedDomainsExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateTrustedDomainsExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateTrustedDomainsEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateTrustedDomainsExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateTrustedDomainsEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // DsrAddressToSiteNamesExW
-		in := &AddressToSiteNamesExWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddressToSiteNamesExWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddressToSiteNamesExW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddressToSiteNamesExWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddressToSiteNamesExW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // DsrGetDcSiteCoverageW
-		in := &GetDCSiteCoverageWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDCSiteCoverageWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDCSiteCoverageW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDCSiteCoverageWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDCSiteCoverageW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // NetrLogonSamLogonEx
-		in := &SAMLogonExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SAMLogonExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SAMLogonEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SAMLogonExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SAMLogonEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // DsrEnumerateDomainTrusts
-		in := &EnumerateDomainTrustsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateDomainTrustsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateDomainTrusts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateDomainTrustsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateDomainTrusts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // DsrDeregisterDnsHostRecords
-		in := &DeregisterDNSHostRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeregisterDNSHostRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeregisterDNSHostRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeregisterDNSHostRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeregisterDNSHostRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // NetrServerTrustPasswordsGet
-		in := &TrustPasswordsGetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_TrustPasswordsGetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.TrustPasswordsGet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &TrustPasswordsGetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.TrustPasswordsGet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // DsrGetForestTrustInformation
-		in := &GetForestTrustInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetForestTrustInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetForestTrustInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetForestTrustInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetForestTrustInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // NetrGetForestTrustInformation
-		in := &GetNetrForestTrustInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNetrForestTrustInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNetrForestTrustInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNetrForestTrustInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNetrForestTrustInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // NetrLogonSamLogonWithFlags
-		in := &SAMLogonWithFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SAMLogonWithFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SAMLogonWithFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SAMLogonWithFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SAMLogonWithFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // NetrServerGetTrustInfo
-		in := &GetTrustInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTrustInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTrustInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTrustInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTrustInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // OpnumUnused47
 		// OpnumUnused47
 		return nil, nil
 	case 48: // DsrUpdateReadOnlyServerDnsRecords
-		in := &UpdateReadOnlyServerDNSRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateReadOnlyServerDNSRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateReadOnlyServerDNSRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateReadOnlyServerDNSRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateReadOnlyServerDNSRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // NetrChainSetClientAttributes
-		in := &ChainSetClientAttributesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ChainSetClientAttributesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ChainSetClientAttributes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ChainSetClientAttributesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ChainSetClientAttributes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented logon
+type UnimplementedLogonServer struct {
+}
+
+func (UnimplementedLogonServer) UASLogon(context.Context, *UASLogonRequest) (*UASLogonResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) UASLogoff(context.Context, *UASLogoffRequest) (*UASLogoffResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) SAMLogon(context.Context, *SAMLogonRequest) (*SAMLogonResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) SAMLogoff(context.Context, *SAMLogoffRequest) (*SAMLogoffResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) RequestChallenge(context.Context, *RequestChallengeRequest) (*RequestChallengeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) Authenticate(context.Context, *AuthenticateRequest) (*AuthenticateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) PasswordSet(context.Context, *PasswordSetRequest) (*PasswordSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) DatabaseDeltas(context.Context, *DatabaseDeltasRequest) (*DatabaseDeltasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) DatabaseSync(context.Context, *DatabaseSyncRequest) (*DatabaseSyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) AccountDeltas(context.Context, *AccountDeltasRequest) (*AccountDeltasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) AccountSync(context.Context, *AccountSyncRequest) (*AccountSyncResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetNetrDCName(context.Context, *GetNetrDCNameRequest) (*GetNetrDCNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) Control(context.Context, *ControlRequest) (*ControlResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetAnyDCName(context.Context, *GetAnyDCNameRequest) (*GetAnyDCNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) Control2(context.Context, *Control2Request) (*Control2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) Authenticate2(context.Context, *Authenticate2Request) (*Authenticate2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) DatabaseSync2(context.Context, *DatabaseSync2Request) (*DatabaseSync2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) DatabaseRedo(context.Context, *DatabaseRedoRequest) (*DatabaseRedoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) Control2Ex(context.Context, *Control2ExRequest) (*Control2ExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) EnumerateTrustedDomains(context.Context, *EnumerateTrustedDomainsRequest) (*EnumerateTrustedDomainsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetDCName(context.Context, *GetDCNameRequest) (*GetDCNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetCapabilities(context.Context, *GetCapabilitiesRequest) (*GetCapabilitiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) SetServiceBits(context.Context, *SetServiceBitsRequest) (*SetServiceBitsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetTrustRID(context.Context, *GetTrustRIDRequest) (*GetTrustRIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) ComputeServerDigest(context.Context, *ComputeServerDigestRequest) (*ComputeServerDigestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) ComputeClientDigest(context.Context, *ComputeClientDigestRequest) (*ComputeClientDigestResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) Authenticate3(context.Context, *Authenticate3Request) (*Authenticate3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetDCNameEx(context.Context, *GetDCNameExRequest) (*GetDCNameExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetSiteName(context.Context, *GetSiteNameRequest) (*GetSiteNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetDomainInfo(context.Context, *GetDomainInfoRequest) (*GetDomainInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) PasswordSet2(context.Context, *PasswordSet2Request) (*PasswordSet2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) PasswordGet(context.Context, *PasswordGetRequest) (*PasswordGetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) SendToSAM(context.Context, *SendToSAMRequest) (*SendToSAMResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) AddressToSiteNamesW(context.Context, *AddressToSiteNamesWRequest) (*AddressToSiteNamesWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetDCNameEx2(context.Context, *GetDCNameEx2Request) (*GetDCNameEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetTimeServiceParentDomain(context.Context, *GetTimeServiceParentDomainRequest) (*GetTimeServiceParentDomainResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) EnumerateTrustedDomainsEx(context.Context, *EnumerateTrustedDomainsExRequest) (*EnumerateTrustedDomainsExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) AddressToSiteNamesExW(context.Context, *AddressToSiteNamesExWRequest) (*AddressToSiteNamesExWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetDCSiteCoverageW(context.Context, *GetDCSiteCoverageWRequest) (*GetDCSiteCoverageWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) SAMLogonEx(context.Context, *SAMLogonExRequest) (*SAMLogonExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) EnumerateDomainTrusts(context.Context, *EnumerateDomainTrustsRequest) (*EnumerateDomainTrustsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) DeregisterDNSHostRecords(context.Context, *DeregisterDNSHostRecordsRequest) (*DeregisterDNSHostRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) TrustPasswordsGet(context.Context, *TrustPasswordsGetRequest) (*TrustPasswordsGetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetForestTrustInformation(context.Context, *GetForestTrustInformationRequest) (*GetForestTrustInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetNetrForestTrustInformation(context.Context, *GetNetrForestTrustInformationRequest) (*GetNetrForestTrustInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) SAMLogonWithFlags(context.Context, *SAMLogonWithFlagsRequest) (*SAMLogonWithFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) GetTrustInfo(context.Context, *GetTrustInfoRequest) (*GetTrustInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) UpdateReadOnlyServerDNSRecords(context.Context, *UpdateReadOnlyServerDNSRecordsRequest) (*UpdateReadOnlyServerDNSRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedLogonServer) ChainSetClientAttributes(context.Context, *ChainSetClientAttributesRequest) (*ChainSetClientAttributesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LogonServer = (*UnimplementedLogonServer)(nil)

@@ -61,12 +61,25 @@ func LoginClientIDServerHandle(ctx context.Context, o LoginClientIDServer, opNum
 	}
 	switch opNum {
 	case 3: // SetClientInfo
-		in := &SetClientInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetClientInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetClientInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetClientInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetClientInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemLoginClientID
+type UnimplementedLoginClientIDServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedLoginClientIDServer) SetClientInfo(context.Context, *SetClientInfoRequest) (*SetClientInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ LoginClientIDServer = (*UnimplementedLoginClientIDServer)(nil)

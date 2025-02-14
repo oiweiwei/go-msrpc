@@ -75,33 +75,61 @@ func CertRequestD2ServerHandle(ctx context.Context, o CertRequestD2Server, opNum
 	}
 	switch opNum {
 	case 6: // Request2
-		in := &Request2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Request2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Request2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Request2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Request2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetCAProperty
-		in := &GetCAPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCAPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCAProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCAPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCAProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetCAPropertyInfo
-		in := &GetCAPropertyInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCAPropertyInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCAPropertyInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCAPropertyInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCAPropertyInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Ping2
-		in := &Ping2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Ping2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Ping2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Ping2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Ping2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICertRequestD2
+type UnimplementedCertRequestD2Server struct {
+	icertrequestd.UnimplementedCertRequestDServer
+}
+
+func (UnimplementedCertRequestD2Server) Request2(context.Context, *Request2Request) (*Request2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertRequestD2Server) GetCAProperty(context.Context, *GetCAPropertyRequest) (*GetCAPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertRequestD2Server) GetCAPropertyInfo(context.Context, *GetCAPropertyInfoRequest) (*GetCAPropertyInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCertRequestD2Server) Ping2(context.Context, *Ping2Request) (*Ping2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CertRequestD2Server = (*UnimplementedCertRequestD2Server)(nil)

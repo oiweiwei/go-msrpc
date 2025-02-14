@@ -132,7 +132,7 @@ func (o *xxx_DefaultContainerControl2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultContainerControl2Client) ShutdownContainer(ctx context.Context, in *ShutdownContainerRequest, opts ...dcerpc.CallOption) (*ShutdownContainerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -152,7 +152,7 @@ func (o *xxx_DefaultContainerControl2Client) ShutdownContainer(ctx context.Conte
 }
 
 func (o *xxx_DefaultContainerControl2Client) PauseContainer(ctx context.Context, in *PauseContainerRequest, opts ...dcerpc.CallOption) (*PauseContainerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -172,7 +172,7 @@ func (o *xxx_DefaultContainerControl2Client) PauseContainer(ctx context.Context,
 }
 
 func (o *xxx_DefaultContainerControl2Client) ResumeContainer(ctx context.Context, in *ResumeContainerRequest, opts ...dcerpc.CallOption) (*ResumeContainerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -192,7 +192,7 @@ func (o *xxx_DefaultContainerControl2Client) ResumeContainer(ctx context.Context
 }
 
 func (o *xxx_DefaultContainerControl2Client) IsContainerPaused(ctx context.Context, in *IsContainerPausedRequest, opts ...dcerpc.CallOption) (*IsContainerPausedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -212,7 +212,7 @@ func (o *xxx_DefaultContainerControl2Client) IsContainerPaused(ctx context.Conte
 }
 
 func (o *xxx_DefaultContainerControl2Client) GetRunningContainers(ctx context.Context, in *GetRunningContainersRequest, opts ...dcerpc.CallOption) (*GetRunningContainersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -232,7 +232,7 @@ func (o *xxx_DefaultContainerControl2Client) GetRunningContainers(ctx context.Co
 }
 
 func (o *xxx_DefaultContainerControl2Client) GetContainerIDFromProcessID(ctx context.Context, in *GetContainerIDFromProcessIDRequest, opts ...dcerpc.CallOption) (*GetContainerIDFromProcessIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -252,7 +252,7 @@ func (o *xxx_DefaultContainerControl2Client) GetContainerIDFromProcessID(ctx con
 }
 
 func (o *xxx_DefaultContainerControl2Client) RecycleContainer(ctx context.Context, in *RecycleContainerRequest, opts ...dcerpc.CallOption) (*RecycleContainerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -272,7 +272,7 @@ func (o *xxx_DefaultContainerControl2Client) RecycleContainer(ctx context.Contex
 }
 
 func (o *xxx_DefaultContainerControl2Client) GetContainerIDFromConglomerationID(ctx context.Context, in *GetContainerIDFromConglomerationIDRequest, opts ...dcerpc.CallOption) (*GetContainerIDFromConglomerationIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -482,14 +482,16 @@ type ShutdownContainerRequest struct {
 	ContainerID *dtyp.GUID `idl:"name:ContainerIdentifier" json:"container_id"`
 }
 
-func (o *ShutdownContainerRequest) xxx_ToOp(ctx context.Context) *xxx_ShutdownContainerOperation {
+func (o *ShutdownContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_ShutdownContainerOperation) *xxx_ShutdownContainerOperation {
+	if op == nil {
+		op = &xxx_ShutdownContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_ShutdownContainerOperation{}
+		return op
 	}
-	return &xxx_ShutdownContainerOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	return op
 }
 
 func (o *ShutdownContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_ShutdownContainerOperation) {
@@ -500,7 +502,7 @@ func (o *ShutdownContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_Shutd
 	o.ContainerID = op.ContainerID
 }
 func (o *ShutdownContainerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShutdownContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShutdownContainerOperation{}
@@ -519,14 +521,16 @@ type ShutdownContainerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShutdownContainerResponse) xxx_ToOp(ctx context.Context) *xxx_ShutdownContainerOperation {
+func (o *ShutdownContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_ShutdownContainerOperation) *xxx_ShutdownContainerOperation {
+	if op == nil {
+		op = &xxx_ShutdownContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_ShutdownContainerOperation{}
+		return op
 	}
-	return &xxx_ShutdownContainerOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShutdownContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_ShutdownContainerOperation) {
@@ -537,7 +541,7 @@ func (o *ShutdownContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_Shut
 	o.Return = op.Return
 }
 func (o *ShutdownContainerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShutdownContainerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShutdownContainerOperation{}
@@ -695,14 +699,16 @@ type PauseContainerRequest struct {
 	ContainerID *dtyp.GUID `idl:"name:ContainerIdentifier" json:"container_id"`
 }
 
-func (o *PauseContainerRequest) xxx_ToOp(ctx context.Context) *xxx_PauseContainerOperation {
+func (o *PauseContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_PauseContainerOperation) *xxx_PauseContainerOperation {
+	if op == nil {
+		op = &xxx_PauseContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_PauseContainerOperation{}
+		return op
 	}
-	return &xxx_PauseContainerOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	return op
 }
 
 func (o *PauseContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_PauseContainerOperation) {
@@ -713,7 +719,7 @@ func (o *PauseContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_PauseCon
 	o.ContainerID = op.ContainerID
 }
 func (o *PauseContainerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PauseContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PauseContainerOperation{}
@@ -732,14 +738,16 @@ type PauseContainerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PauseContainerResponse) xxx_ToOp(ctx context.Context) *xxx_PauseContainerOperation {
+func (o *PauseContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_PauseContainerOperation) *xxx_PauseContainerOperation {
+	if op == nil {
+		op = &xxx_PauseContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_PauseContainerOperation{}
+		return op
 	}
-	return &xxx_PauseContainerOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PauseContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_PauseContainerOperation) {
@@ -750,7 +758,7 @@ func (o *PauseContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_PauseCo
 	o.Return = op.Return
 }
 func (o *PauseContainerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PauseContainerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PauseContainerOperation{}
@@ -910,14 +918,16 @@ type ResumeContainerRequest struct {
 	ContainerID *dtyp.GUID `idl:"name:ContainerIdentifier" json:"container_id"`
 }
 
-func (o *ResumeContainerRequest) xxx_ToOp(ctx context.Context) *xxx_ResumeContainerOperation {
+func (o *ResumeContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_ResumeContainerOperation) *xxx_ResumeContainerOperation {
+	if op == nil {
+		op = &xxx_ResumeContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_ResumeContainerOperation{}
+		return op
 	}
-	return &xxx_ResumeContainerOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	return op
 }
 
 func (o *ResumeContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_ResumeContainerOperation) {
@@ -928,7 +938,7 @@ func (o *ResumeContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_ResumeC
 	o.ContainerID = op.ContainerID
 }
 func (o *ResumeContainerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResumeContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResumeContainerOperation{}
@@ -947,14 +957,16 @@ type ResumeContainerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResumeContainerResponse) xxx_ToOp(ctx context.Context) *xxx_ResumeContainerOperation {
+func (o *ResumeContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_ResumeContainerOperation) *xxx_ResumeContainerOperation {
+	if op == nil {
+		op = &xxx_ResumeContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_ResumeContainerOperation{}
+		return op
 	}
-	return &xxx_ResumeContainerOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResumeContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_ResumeContainerOperation) {
@@ -965,7 +977,7 @@ func (o *ResumeContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_Resume
 	o.Return = op.Return
 }
 func (o *ResumeContainerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResumeContainerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResumeContainerOperation{}
@@ -1146,14 +1158,16 @@ type IsContainerPausedRequest struct {
 	ContainerID *dtyp.GUID `idl:"name:ContainerIdentifier" json:"container_id"`
 }
 
-func (o *IsContainerPausedRequest) xxx_ToOp(ctx context.Context) *xxx_IsContainerPausedOperation {
+func (o *IsContainerPausedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsContainerPausedOperation) *xxx_IsContainerPausedOperation {
+	if op == nil {
+		op = &xxx_IsContainerPausedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsContainerPausedOperation{}
+		return op
 	}
-	return &xxx_IsContainerPausedOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	return op
 }
 
 func (o *IsContainerPausedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsContainerPausedOperation) {
@@ -1164,7 +1178,7 @@ func (o *IsContainerPausedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsCon
 	o.ContainerID = op.ContainerID
 }
 func (o *IsContainerPausedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsContainerPausedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsContainerPausedOperation{}
@@ -1186,15 +1200,17 @@ type IsContainerPausedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsContainerPausedResponse) xxx_ToOp(ctx context.Context) *xxx_IsContainerPausedOperation {
+func (o *IsContainerPausedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsContainerPausedOperation) *xxx_IsContainerPausedOperation {
+	if op == nil {
+		op = &xxx_IsContainerPausedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsContainerPausedOperation{}
+		return op
 	}
-	return &xxx_IsContainerPausedOperation{
-		That:   o.That,
-		Paused: o.Paused,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Paused = op.Paused
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsContainerPausedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsContainerPausedOperation) {
@@ -1206,7 +1222,7 @@ func (o *IsContainerPausedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsCo
 	o.Return = op.Return
 }
 func (o *IsContainerPausedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsContainerPausedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsContainerPausedOperation{}
@@ -1487,15 +1503,17 @@ type GetRunningContainersRequest struct {
 	ConglomerationID *dtyp.GUID `idl:"name:ConglomerationId" json:"conglomeration_id"`
 }
 
-func (o *GetRunningContainersRequest) xxx_ToOp(ctx context.Context) *xxx_GetRunningContainersOperation {
+func (o *GetRunningContainersRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRunningContainersOperation) *xxx_GetRunningContainersOperation {
+	if op == nil {
+		op = &xxx_GetRunningContainersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRunningContainersOperation{}
+		return op
 	}
-	return &xxx_GetRunningContainersOperation{
-		This:             o.This,
-		PartitionID:      o.PartitionID,
-		ConglomerationID: o.ConglomerationID,
-	}
+	o.This = op.This
+	o.PartitionID = op.PartitionID
+	o.ConglomerationID = op.ConglomerationID
+	return op
 }
 
 func (o *GetRunningContainersRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRunningContainersOperation) {
@@ -1507,7 +1525,7 @@ func (o *GetRunningContainersRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.ConglomerationID = op.ConglomerationID
 }
 func (o *GetRunningContainersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRunningContainersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRunningContainersOperation{}
@@ -1532,16 +1550,18 @@ type GetRunningContainersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRunningContainersResponse) xxx_ToOp(ctx context.Context) *xxx_GetRunningContainersOperation {
+func (o *GetRunningContainersResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRunningContainersOperation) *xxx_GetRunningContainersOperation {
+	if op == nil {
+		op = &xxx_GetRunningContainersOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRunningContainersOperation{}
+		return op
 	}
-	return &xxx_GetRunningContainersOperation{
-		That:             o.That,
-		ContainersLength: o.ContainersLength,
-		Containers:       o.Containers,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.ContainersLength = op.ContainersLength
+	o.Containers = op.Containers
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRunningContainersResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRunningContainersOperation) {
@@ -1554,7 +1574,7 @@ func (o *GetRunningContainersResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetRunningContainersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRunningContainersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRunningContainersOperation{}
@@ -1752,14 +1772,16 @@ type GetContainerIDFromProcessIDRequest struct {
 	PID uint32 `idl:"name:dwPID" json:"pid"`
 }
 
-func (o *GetContainerIDFromProcessIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetContainerIDFromProcessIDOperation {
+func (o *GetContainerIDFromProcessIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetContainerIDFromProcessIDOperation) *xxx_GetContainerIDFromProcessIDOperation {
+	if op == nil {
+		op = &xxx_GetContainerIDFromProcessIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetContainerIDFromProcessIDOperation{}
+		return op
 	}
-	return &xxx_GetContainerIDFromProcessIDOperation{
-		This: o.This,
-		PID:  o.PID,
-	}
+	o.This = op.This
+	o.PID = op.PID
+	return op
 }
 
 func (o *GetContainerIDFromProcessIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetContainerIDFromProcessIDOperation) {
@@ -1770,7 +1792,7 @@ func (o *GetContainerIDFromProcessIDRequest) xxx_FromOp(ctx context.Context, op 
 	o.PID = op.PID
 }
 func (o *GetContainerIDFromProcessIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetContainerIDFromProcessIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetContainerIDFromProcessIDOperation{}
@@ -1793,15 +1815,17 @@ type GetContainerIDFromProcessIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetContainerIDFromProcessIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetContainerIDFromProcessIDOperation {
+func (o *GetContainerIDFromProcessIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetContainerIDFromProcessIDOperation) *xxx_GetContainerIDFromProcessIDOperation {
+	if op == nil {
+		op = &xxx_GetContainerIDFromProcessIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetContainerIDFromProcessIDOperation{}
+		return op
 	}
-	return &xxx_GetContainerIDFromProcessIDOperation{
-		That:        o.That,
-		ContainerID: o.ContainerID,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ContainerID = op.ContainerID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetContainerIDFromProcessIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetContainerIDFromProcessIDOperation) {
@@ -1813,7 +1837,7 @@ func (o *GetContainerIDFromProcessIDResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *GetContainerIDFromProcessIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetContainerIDFromProcessIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetContainerIDFromProcessIDOperation{}
@@ -1989,15 +2013,17 @@ type RecycleContainerRequest struct {
 	ReasonCode int32 `idl:"name:lReasonCode" json:"reason_code"`
 }
 
-func (o *RecycleContainerRequest) xxx_ToOp(ctx context.Context) *xxx_RecycleContainerOperation {
+func (o *RecycleContainerRequest) xxx_ToOp(ctx context.Context, op *xxx_RecycleContainerOperation) *xxx_RecycleContainerOperation {
+	if op == nil {
+		op = &xxx_RecycleContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_RecycleContainerOperation{}
+		return op
 	}
-	return &xxx_RecycleContainerOperation{
-		This:        o.This,
-		ContainerID: o.ContainerID,
-		ReasonCode:  o.ReasonCode,
-	}
+	o.This = op.This
+	o.ContainerID = op.ContainerID
+	o.ReasonCode = op.ReasonCode
+	return op
 }
 
 func (o *RecycleContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_RecycleContainerOperation) {
@@ -2009,7 +2035,7 @@ func (o *RecycleContainerRequest) xxx_FromOp(ctx context.Context, op *xxx_Recycl
 	o.ReasonCode = op.ReasonCode
 }
 func (o *RecycleContainerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RecycleContainerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RecycleContainerOperation{}
@@ -2028,14 +2054,16 @@ type RecycleContainerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RecycleContainerResponse) xxx_ToOp(ctx context.Context) *xxx_RecycleContainerOperation {
+func (o *RecycleContainerResponse) xxx_ToOp(ctx context.Context, op *xxx_RecycleContainerOperation) *xxx_RecycleContainerOperation {
+	if op == nil {
+		op = &xxx_RecycleContainerOperation{}
+	}
 	if o == nil {
-		return &xxx_RecycleContainerOperation{}
+		return op
 	}
-	return &xxx_RecycleContainerOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RecycleContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_RecycleContainerOperation) {
@@ -2046,7 +2074,7 @@ func (o *RecycleContainerResponse) xxx_FromOp(ctx context.Context, op *xxx_Recyc
 	o.Return = op.Return
 }
 func (o *RecycleContainerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RecycleContainerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RecycleContainerOperation{}
@@ -2228,14 +2256,16 @@ type GetContainerIDFromConglomerationIDRequest struct {
 	ConglomerationID *dtyp.GUID `idl:"name:ConglomerationIdentifier" json:"conglomeration_id"`
 }
 
-func (o *GetContainerIDFromConglomerationIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetContainerIDFromConglomerationIDOperation {
+func (o *GetContainerIDFromConglomerationIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetContainerIDFromConglomerationIDOperation) *xxx_GetContainerIDFromConglomerationIDOperation {
+	if op == nil {
+		op = &xxx_GetContainerIDFromConglomerationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetContainerIDFromConglomerationIDOperation{}
+		return op
 	}
-	return &xxx_GetContainerIDFromConglomerationIDOperation{
-		This:             o.This,
-		ConglomerationID: o.ConglomerationID,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	return op
 }
 
 func (o *GetContainerIDFromConglomerationIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetContainerIDFromConglomerationIDOperation) {
@@ -2246,7 +2276,7 @@ func (o *GetContainerIDFromConglomerationIDRequest) xxx_FromOp(ctx context.Conte
 	o.ConglomerationID = op.ConglomerationID
 }
 func (o *GetContainerIDFromConglomerationIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetContainerIDFromConglomerationIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetContainerIDFromConglomerationIDOperation{}
@@ -2269,15 +2299,17 @@ type GetContainerIDFromConglomerationIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetContainerIDFromConglomerationIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetContainerIDFromConglomerationIDOperation {
+func (o *GetContainerIDFromConglomerationIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetContainerIDFromConglomerationIDOperation) *xxx_GetContainerIDFromConglomerationIDOperation {
+	if op == nil {
+		op = &xxx_GetContainerIDFromConglomerationIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetContainerIDFromConglomerationIDOperation{}
+		return op
 	}
-	return &xxx_GetContainerIDFromConglomerationIDOperation{
-		That:        o.That,
-		ContainerID: o.ContainerID,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.ContainerID = op.ContainerID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetContainerIDFromConglomerationIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetContainerIDFromConglomerationIDOperation) {
@@ -2289,7 +2321,7 @@ func (o *GetContainerIDFromConglomerationIDResponse) xxx_FromOp(ctx context.Cont
 	o.Return = op.Return
 }
 func (o *GetContainerIDFromConglomerationIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetContainerIDFromConglomerationIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetContainerIDFromConglomerationIDOperation{}

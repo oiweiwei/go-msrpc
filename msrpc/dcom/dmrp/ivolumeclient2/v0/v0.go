@@ -71,7 +71,7 @@ func (o *xxx_DefaultVolumeClient2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeClient2Client) GetMaxAdjustedFreeSpace(ctx context.Context, in *GetMaxAdjustedFreeSpaceRequest, opts ...dcerpc.CallOption) (*GetMaxAdjustedFreeSpaceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -284,14 +284,16 @@ type GetMaxAdjustedFreeSpaceRequest struct {
 	DiskID int64          `idl:"name:diskId" json:"disk_id"`
 }
 
-func (o *GetMaxAdjustedFreeSpaceRequest) xxx_ToOp(ctx context.Context) *xxx_GetMaxAdjustedFreeSpaceOperation {
+func (o *GetMaxAdjustedFreeSpaceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMaxAdjustedFreeSpaceOperation) *xxx_GetMaxAdjustedFreeSpaceOperation {
+	if op == nil {
+		op = &xxx_GetMaxAdjustedFreeSpaceOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMaxAdjustedFreeSpaceOperation{}
+		return op
 	}
-	return &xxx_GetMaxAdjustedFreeSpaceOperation{
-		This:   o.This,
-		DiskID: o.DiskID,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	return op
 }
 
 func (o *GetMaxAdjustedFreeSpaceRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMaxAdjustedFreeSpaceOperation) {
@@ -302,7 +304,7 @@ func (o *GetMaxAdjustedFreeSpaceRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.DiskID = op.DiskID
 }
 func (o *GetMaxAdjustedFreeSpaceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMaxAdjustedFreeSpaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMaxAdjustedFreeSpaceOperation{}
@@ -322,15 +324,17 @@ type GetMaxAdjustedFreeSpaceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMaxAdjustedFreeSpaceResponse) xxx_ToOp(ctx context.Context) *xxx_GetMaxAdjustedFreeSpaceOperation {
+func (o *GetMaxAdjustedFreeSpaceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMaxAdjustedFreeSpaceOperation) *xxx_GetMaxAdjustedFreeSpaceOperation {
+	if op == nil {
+		op = &xxx_GetMaxAdjustedFreeSpaceOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMaxAdjustedFreeSpaceOperation{}
+		return op
 	}
-	return &xxx_GetMaxAdjustedFreeSpaceOperation{
-		That:                 o.That,
-		MaxAdjustedFreeSpace: o.MaxAdjustedFreeSpace,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.MaxAdjustedFreeSpace = op.MaxAdjustedFreeSpace
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMaxAdjustedFreeSpaceResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMaxAdjustedFreeSpaceOperation) {
@@ -342,7 +346,7 @@ func (o *GetMaxAdjustedFreeSpaceResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *GetMaxAdjustedFreeSpaceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMaxAdjustedFreeSpaceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMaxAdjustedFreeSpaceOperation{}

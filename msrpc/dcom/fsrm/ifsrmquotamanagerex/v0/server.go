@@ -68,12 +68,25 @@ func QuotaManagerExServerHandle(ctx context.Context, o QuotaManagerExServer, opN
 	}
 	switch opNum {
 	case 19: // IsAffectedByQuota
-		in := &IsAffectedByQuotaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsAffectedByQuotaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsAffectedByQuota(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsAffectedByQuotaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsAffectedByQuota(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuotaManagerEx
+type UnimplementedQuotaManagerExServer struct {
+	ifsrmquotamanager.UnimplementedQuotaManagerServer
+}
+
+func (UnimplementedQuotaManagerExServer) IsAffectedByQuota(context.Context, *IsAffectedByQuotaRequest) (*IsAffectedByQuotaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaManagerExServer = (*UnimplementedQuotaManagerExServer)(nil)

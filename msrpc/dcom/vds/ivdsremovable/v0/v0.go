@@ -90,7 +90,7 @@ func (o *xxx_DefaultRemovableClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultRemovableClient) QueryMedia(ctx context.Context, in *QueryMediaRequest, opts ...dcerpc.CallOption) (*QueryMediaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -110,7 +110,7 @@ func (o *xxx_DefaultRemovableClient) QueryMedia(ctx context.Context, in *QueryMe
 }
 
 func (o *xxx_DefaultRemovableClient) Eject(ctx context.Context, in *EjectRequest, opts ...dcerpc.CallOption) (*EjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -294,13 +294,15 @@ type QueryMediaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryMediaRequest) xxx_ToOp(ctx context.Context) *xxx_QueryMediaOperation {
+func (o *QueryMediaRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryMediaOperation) *xxx_QueryMediaOperation {
+	if op == nil {
+		op = &xxx_QueryMediaOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryMediaOperation{}
+		return op
 	}
-	return &xxx_QueryMediaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryMediaRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryMediaOperation) {
@@ -310,7 +312,7 @@ func (o *QueryMediaRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryMediaOp
 	o.This = op.This
 }
 func (o *QueryMediaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryMediaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryMediaOperation{}
@@ -329,14 +331,16 @@ type QueryMediaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryMediaResponse) xxx_ToOp(ctx context.Context) *xxx_QueryMediaOperation {
+func (o *QueryMediaResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryMediaOperation) *xxx_QueryMediaOperation {
+	if op == nil {
+		op = &xxx_QueryMediaOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryMediaOperation{}
+		return op
 	}
-	return &xxx_QueryMediaOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryMediaResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryMediaOperation) {
@@ -347,7 +351,7 @@ func (o *QueryMediaResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryMediaO
 	o.Return = op.Return
 }
 func (o *QueryMediaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryMediaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryMediaOperation{}
@@ -481,13 +485,15 @@ type EjectRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *EjectRequest) xxx_ToOp(ctx context.Context) *xxx_EjectOperation {
+func (o *EjectRequest) xxx_ToOp(ctx context.Context, op *xxx_EjectOperation) *xxx_EjectOperation {
+	if op == nil {
+		op = &xxx_EjectOperation{}
+	}
 	if o == nil {
-		return &xxx_EjectOperation{}
+		return op
 	}
-	return &xxx_EjectOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *EjectRequest) xxx_FromOp(ctx context.Context, op *xxx_EjectOperation) {
@@ -497,7 +503,7 @@ func (o *EjectRequest) xxx_FromOp(ctx context.Context, op *xxx_EjectOperation) {
 	o.This = op.This
 }
 func (o *EjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EjectOperation{}
@@ -516,14 +522,16 @@ type EjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EjectResponse) xxx_ToOp(ctx context.Context) *xxx_EjectOperation {
+func (o *EjectResponse) xxx_ToOp(ctx context.Context, op *xxx_EjectOperation) *xxx_EjectOperation {
+	if op == nil {
+		op = &xxx_EjectOperation{}
+	}
 	if o == nil {
-		return &xxx_EjectOperation{}
+		return op
 	}
-	return &xxx_EjectOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *EjectResponse) xxx_FromOp(ctx context.Context, op *xxx_EjectOperation) {
@@ -534,7 +542,7 @@ func (o *EjectResponse) xxx_FromOp(ctx context.Context, op *xxx_EjectOperation) 
 	o.Return = op.Return
 }
 func (o *EjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EjectOperation{}

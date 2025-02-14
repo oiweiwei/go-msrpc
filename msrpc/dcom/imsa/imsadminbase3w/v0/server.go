@@ -94,12 +94,25 @@ func IMSAdminBase3WServerHandle(ctx context.Context, o IMSAdminBase3WServer, opN
 	}
 	switch opNum {
 	case 40: // GetChildPaths
-		in := &GetChildPathsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetChildPathsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetChildPaths(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetChildPathsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetChildPaths(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IMSAdminBase3W
+type UnimplementedIMSAdminBase3WServer struct {
+	imsadminbase2w.UnimplementedIMSAdminBase2WServer
+}
+
+func (UnimplementedIMSAdminBase3WServer) GetChildPaths(context.Context, *GetChildPathsRequest) (*GetChildPathsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IMSAdminBase3WServer = (*UnimplementedIMSAdminBase3WServer)(nil)

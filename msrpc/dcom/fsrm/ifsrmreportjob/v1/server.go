@@ -142,124 +142,217 @@ func ReportJobServerHandle(ctx context.Context, o ReportJobServer, opNum int, r 
 	}
 	switch opNum {
 	case 12: // Task
-		in := &GetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Task
-		in := &SetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // NamespaceRoots
-		in := &GetNamespaceRootsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNamespaceRootsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNamespaceRoots(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNamespaceRootsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNamespaceRoots(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // NamespaceRoots
-		in := &SetNamespaceRootsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNamespaceRootsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNamespaceRoots(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNamespaceRootsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNamespaceRoots(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Formats
-		in := &GetFormatsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFormatsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFormats(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFormatsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFormats(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Formats
-		in := &SetFormatsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFormatsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFormats(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFormatsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFormats(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // MailTo
-		in := &GetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // MailTo
-		in := &SetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // RunningStatus
-		in := &GetRunningStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRunningStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRunningStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRunningStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRunningStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // LastRun
-		in := &GetLastRunRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastRunOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastRun(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastRunRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastRun(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // LastError
-		in := &GetLastErrorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastErrorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastError(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastErrorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastError(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // LastGeneratedInDirectory
-		in := &GetLastGeneratedInDirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLastGeneratedInDirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLastGeneratedInDirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLastGeneratedInDirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLastGeneratedInDirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // EnumReports
-		in := &EnumReportsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumReportsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumReports(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumReportsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumReports(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // CreateReport
-		in := &CreateReportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateReportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateReport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateReportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateReport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // Run
-		in := &RunRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RunOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Run(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RunRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Run(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // WaitForCompletion
-		in := &WaitForCompletionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WaitForCompletionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WaitForCompletion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WaitForCompletionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WaitForCompletion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Cancel
-		in := &CancelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Cancel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Cancel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmReportJob
+type UnimplementedReportJobServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedReportJobServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) SetTask(context.Context, *SetTaskRequest) (*SetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetNamespaceRoots(context.Context, *GetNamespaceRootsRequest) (*GetNamespaceRootsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) SetNamespaceRoots(context.Context, *SetNamespaceRootsRequest) (*SetNamespaceRootsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetFormats(context.Context, *GetFormatsRequest) (*GetFormatsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) SetFormats(context.Context, *SetFormatsRequest) (*SetFormatsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetMailTo(context.Context, *GetMailToRequest) (*GetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) SetMailTo(context.Context, *SetMailToRequest) (*SetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetRunningStatus(context.Context, *GetRunningStatusRequest) (*GetRunningStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetLastRun(context.Context, *GetLastRunRequest) (*GetLastRunResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetLastError(context.Context, *GetLastErrorRequest) (*GetLastErrorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) GetLastGeneratedInDirectory(context.Context, *GetLastGeneratedInDirectoryRequest) (*GetLastGeneratedInDirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) EnumReports(context.Context, *EnumReportsRequest) (*EnumReportsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) CreateReport(context.Context, *CreateReportRequest) (*CreateReportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) WaitForCompletion(context.Context, *WaitForCompletionRequest) (*WaitForCompletionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReportJobServer) Cancel(context.Context, *CancelRequest) (*CancelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ReportJobServer = (*UnimplementedReportJobServer)(nil)

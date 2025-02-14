@@ -73,61 +73,109 @@ func EventClass2ServerHandle(ctx context.Context, o EventClass2Server, opNum int
 	}
 	switch opNum {
 	case 21: // PublisherID
-		in := &GetPublisherIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPublisherIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPublisherID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPublisherIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPublisherID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // PublisherID
-		in := &SetPublisherIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPublisherIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPublisherID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPublisherIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPublisherID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // MultiInterfacePublisherFilterCLSID
-		in := &GetMultiInterfacePublisherFilterClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMultiInterfacePublisherFilterClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMultiInterfacePublisherFilterClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMultiInterfacePublisherFilterClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMultiInterfacePublisherFilterClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // MultiInterfacePublisherFilterCLSID
-		in := &SetMultiInterfacePublisherFilterClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMultiInterfacePublisherFilterClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMultiInterfacePublisherFilterClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMultiInterfacePublisherFilterClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMultiInterfacePublisherFilterClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // AllowInprocActivation
-		in := &GetAllowInProcessActivationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllowInProcessActivationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllowInProcessActivation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllowInProcessActivationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllowInProcessActivation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // AllowInprocActivation
-		in := &SetAllowInProcessActivationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAllowInProcessActivationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAllowInProcessActivation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAllowInProcessActivationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAllowInProcessActivation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // FireInParallel
-		in := &GetFireInParallelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFireInParallelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFireInParallel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFireInParallelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFireInParallel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // FireInParallel
-		in := &SetFireInParallelRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFireInParallelOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFireInParallel(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFireInParallelRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFireInParallel(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventClass2
+type UnimplementedEventClass2Server struct {
+	ieventclass.UnimplementedEventClassServer
+}
+
+func (UnimplementedEventClass2Server) GetPublisherID(context.Context, *GetPublisherIDRequest) (*GetPublisherIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) SetPublisherID(context.Context, *SetPublisherIDRequest) (*SetPublisherIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) GetMultiInterfacePublisherFilterClassID(context.Context, *GetMultiInterfacePublisherFilterClassIDRequest) (*GetMultiInterfacePublisherFilterClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) SetMultiInterfacePublisherFilterClassID(context.Context, *SetMultiInterfacePublisherFilterClassIDRequest) (*SetMultiInterfacePublisherFilterClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) GetAllowInProcessActivation(context.Context, *GetAllowInProcessActivationRequest) (*GetAllowInProcessActivationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) SetAllowInProcessActivation(context.Context, *SetAllowInProcessActivationRequest) (*SetAllowInProcessActivationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) GetFireInParallel(context.Context, *GetFireInParallelRequest) (*GetFireInParallelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClass2Server) SetFireInParallel(context.Context, *SetFireInParallelRequest) (*SetFireInParallelResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventClass2Server = (*UnimplementedEventClass2Server)(nil)

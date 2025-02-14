@@ -109,7 +109,7 @@ func (o *xxx_DefaultServiceISCSIClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServiceISCSIClient) GetInitiatorName(ctx context.Context, in *GetInitiatorNameRequest, opts ...dcerpc.CallOption) (*GetInitiatorNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -129,7 +129,7 @@ func (o *xxx_DefaultServiceISCSIClient) GetInitiatorName(ctx context.Context, in
 }
 
 func (o *xxx_DefaultServiceISCSIClient) QueryInitiatorAdapters(ctx context.Context, in *QueryInitiatorAdaptersRequest, opts ...dcerpc.CallOption) (*QueryInitiatorAdaptersResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -149,7 +149,7 @@ func (o *xxx_DefaultServiceISCSIClient) QueryInitiatorAdapters(ctx context.Conte
 }
 
 func (o *xxx_DefaultServiceISCSIClient) SetInitiatorSharedSecret(ctx context.Context, in *SetInitiatorSharedSecretRequest, opts ...dcerpc.CallOption) (*SetInitiatorSharedSecretResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -373,13 +373,15 @@ type GetInitiatorNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetInitiatorNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetInitiatorNameOperation {
+func (o *GetInitiatorNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInitiatorNameOperation) *xxx_GetInitiatorNameOperation {
+	if op == nil {
+		op = &xxx_GetInitiatorNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInitiatorNameOperation{}
+		return op
 	}
-	return &xxx_GetInitiatorNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetInitiatorNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInitiatorNameOperation) {
@@ -389,7 +391,7 @@ func (o *GetInitiatorNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIni
 	o.This = op.This
 }
 func (o *GetInitiatorNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetInitiatorNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInitiatorNameOperation{}
@@ -411,15 +413,17 @@ type GetInitiatorNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetInitiatorNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetInitiatorNameOperation {
+func (o *GetInitiatorNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInitiatorNameOperation) *xxx_GetInitiatorNameOperation {
+	if op == nil {
+		op = &xxx_GetInitiatorNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInitiatorNameOperation{}
+		return op
 	}
-	return &xxx_GetInitiatorNameOperation{
-		That:      o.That,
-		ISCSIName: o.ISCSIName,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.ISCSIName = op.ISCSIName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetInitiatorNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInitiatorNameOperation) {
@@ -431,7 +435,7 @@ func (o *GetInitiatorNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIn
 	o.Return = op.Return
 }
 func (o *GetInitiatorNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetInitiatorNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInitiatorNameOperation{}
@@ -614,13 +618,15 @@ type QueryInitiatorAdaptersRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryInitiatorAdaptersRequest) xxx_ToOp(ctx context.Context) *xxx_QueryInitiatorAdaptersOperation {
+func (o *QueryInitiatorAdaptersRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryInitiatorAdaptersOperation) *xxx_QueryInitiatorAdaptersOperation {
+	if op == nil {
+		op = &xxx_QueryInitiatorAdaptersOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInitiatorAdaptersOperation{}
+		return op
 	}
-	return &xxx_QueryInitiatorAdaptersOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryInitiatorAdaptersRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryInitiatorAdaptersOperation) {
@@ -630,7 +636,7 @@ func (o *QueryInitiatorAdaptersRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *QueryInitiatorAdaptersRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryInitiatorAdaptersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInitiatorAdaptersOperation{}
@@ -654,15 +660,17 @@ type QueryInitiatorAdaptersResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryInitiatorAdaptersResponse) xxx_ToOp(ctx context.Context) *xxx_QueryInitiatorAdaptersOperation {
+func (o *QueryInitiatorAdaptersResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryInitiatorAdaptersOperation) *xxx_QueryInitiatorAdaptersOperation {
+	if op == nil {
+		op = &xxx_QueryInitiatorAdaptersOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryInitiatorAdaptersOperation{}
+		return op
 	}
-	return &xxx_QueryInitiatorAdaptersOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryInitiatorAdaptersResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryInitiatorAdaptersOperation) {
@@ -674,7 +682,7 @@ func (o *QueryInitiatorAdaptersResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *QueryInitiatorAdaptersResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryInitiatorAdaptersResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryInitiatorAdaptersOperation{}
@@ -886,15 +894,17 @@ type SetInitiatorSharedSecretRequest struct {
 	TargetID *vds.ObjectID `idl:"name:targetId" json:"target_id"`
 }
 
-func (o *SetInitiatorSharedSecretRequest) xxx_ToOp(ctx context.Context) *xxx_SetInitiatorSharedSecretOperation {
+func (o *SetInitiatorSharedSecretRequest) xxx_ToOp(ctx context.Context, op *xxx_SetInitiatorSharedSecretOperation) *xxx_SetInitiatorSharedSecretOperation {
+	if op == nil {
+		op = &xxx_SetInitiatorSharedSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInitiatorSharedSecretOperation{}
+		return op
 	}
-	return &xxx_SetInitiatorSharedSecretOperation{
-		This:                  o.This,
-		InitiatorSharedSecret: o.InitiatorSharedSecret,
-		TargetID:              o.TargetID,
-	}
+	o.This = op.This
+	o.InitiatorSharedSecret = op.InitiatorSharedSecret
+	o.TargetID = op.TargetID
+	return op
 }
 
 func (o *SetInitiatorSharedSecretRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInitiatorSharedSecretOperation) {
@@ -906,7 +916,7 @@ func (o *SetInitiatorSharedSecretRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.TargetID = op.TargetID
 }
 func (o *SetInitiatorSharedSecretRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetInitiatorSharedSecretRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInitiatorSharedSecretOperation{}
@@ -925,14 +935,16 @@ type SetInitiatorSharedSecretResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetInitiatorSharedSecretResponse) xxx_ToOp(ctx context.Context) *xxx_SetInitiatorSharedSecretOperation {
+func (o *SetInitiatorSharedSecretResponse) xxx_ToOp(ctx context.Context, op *xxx_SetInitiatorSharedSecretOperation) *xxx_SetInitiatorSharedSecretOperation {
+	if op == nil {
+		op = &xxx_SetInitiatorSharedSecretOperation{}
+	}
 	if o == nil {
-		return &xxx_SetInitiatorSharedSecretOperation{}
+		return op
 	}
-	return &xxx_SetInitiatorSharedSecretOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetInitiatorSharedSecretResponse) xxx_FromOp(ctx context.Context, op *xxx_SetInitiatorSharedSecretOperation) {
@@ -943,7 +955,7 @@ func (o *SetInitiatorSharedSecretResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *SetInitiatorSharedSecretResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetInitiatorSharedSecretResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetInitiatorSharedSecretOperation{}

@@ -81,7 +81,7 @@ func (o *xxx_DefaultDisk2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDisk2Client) SetSANMode(ctx context.Context, in *SetSANModeRequest, opts ...dcerpc.CallOption) (*SetSANModeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -281,14 +281,16 @@ type SetSANModeRequest struct {
 	Enable int32 `idl:"name:bEnable" json:"enable"`
 }
 
-func (o *SetSANModeRequest) xxx_ToOp(ctx context.Context) *xxx_SetSANModeOperation {
+func (o *SetSANModeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSANModeOperation) *xxx_SetSANModeOperation {
+	if op == nil {
+		op = &xxx_SetSANModeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSANModeOperation{}
+		return op
 	}
-	return &xxx_SetSANModeOperation{
-		This:   o.This,
-		Enable: o.Enable,
-	}
+	o.This = op.This
+	o.Enable = op.Enable
+	return op
 }
 
 func (o *SetSANModeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSANModeOperation) {
@@ -299,7 +301,7 @@ func (o *SetSANModeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSANModeOp
 	o.Enable = op.Enable
 }
 func (o *SetSANModeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSANModeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSANModeOperation{}
@@ -318,14 +320,16 @@ type SetSANModeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSANModeResponse) xxx_ToOp(ctx context.Context) *xxx_SetSANModeOperation {
+func (o *SetSANModeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSANModeOperation) *xxx_SetSANModeOperation {
+	if op == nil {
+		op = &xxx_SetSANModeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSANModeOperation{}
+		return op
 	}
-	return &xxx_SetSANModeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSANModeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSANModeOperation) {
@@ -336,7 +340,7 @@ func (o *SetSANModeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSANModeO
 	o.Return = op.Return
 }
 func (o *SetSANModeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSANModeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSANModeOperation{}

@@ -82,82 +82,145 @@ func AppHostElementServerHandle(ctx context.Context, o AppHostElementServer, opN
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Collection
-		in := &GetCollectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCollectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCollection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCollectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCollection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Properties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ChildElements
-		in := &GetChildElementsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetChildElementsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetChildElements(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetChildElementsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetChildElements(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SetMetadata
-		in := &SetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Schema
-		in := &GetSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetElementByName
-		in := &GetElementByNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetElementByNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetElementByName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetElementByNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetElementByName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // GetPropertyByName
-		in := &GetPropertyByNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyByNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyByName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyByNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyByName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Clear
-		in := &ClearRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clear(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clear(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // Methods
-		in := &GetMethodsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMethodsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMethods(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMethodsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMethods(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostElement
+type UnimplementedAppHostElementServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostElementServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetCollection(context.Context, *GetCollectionRequest) (*GetCollectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetChildElements(context.Context, *GetChildElementsRequest) (*GetChildElementsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) SetMetadata(context.Context, *SetMetadataRequest) (*SetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetSchema(context.Context, *GetSchemaRequest) (*GetSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetElementByName(context.Context, *GetElementByNameRequest) (*GetElementByNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetPropertyByName(context.Context, *GetPropertyByNameRequest) (*GetPropertyByNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) Clear(context.Context, *ClearRequest) (*ClearResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementServer) GetMethods(context.Context, *GetMethodsRequest) (*GetMethodsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostElementServer = (*UnimplementedAppHostElementServer)(nil)

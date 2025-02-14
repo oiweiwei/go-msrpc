@@ -65,19 +65,37 @@ func DiskOnlineServerHandle(ctx context.Context, o DiskOnlineServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // Online
-		in := &OnlineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnlineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Online(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnlineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Online(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Offline
-		in := &OfflineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Offline(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Offline(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsDiskOnline
+type UnimplementedDiskOnlineServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDiskOnlineServer) Online(context.Context, *OnlineRequest) (*OnlineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskOnlineServer) Offline(context.Context, *OfflineRequest) (*OfflineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DiskOnlineServer = (*UnimplementedDiskOnlineServer)(nil)

@@ -118,7 +118,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDiskPartitionMFClient) GetPartitionFileSystemProperties(ctx context.Context, in *GetPartitionFileSystemPropertiesRequest, opts ...dcerpc.CallOption) (*GetPartitionFileSystemPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -138,7 +138,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) GetPartitionFileSystemProperties(ctx 
 }
 
 func (o *xxx_DefaultDiskPartitionMFClient) GetPartitionFileSystemTypeName(ctx context.Context, in *GetPartitionFileSystemTypeNameRequest, opts ...dcerpc.CallOption) (*GetPartitionFileSystemTypeNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -158,7 +158,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) GetPartitionFileSystemTypeName(ctx co
 }
 
 func (o *xxx_DefaultDiskPartitionMFClient) QueryPartitionFileSystemFormatSupport(ctx context.Context, in *QueryPartitionFileSystemFormatSupportRequest, opts ...dcerpc.CallOption) (*QueryPartitionFileSystemFormatSupportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -178,7 +178,7 @@ func (o *xxx_DefaultDiskPartitionMFClient) QueryPartitionFileSystemFormatSupport
 }
 
 func (o *xxx_DefaultDiskPartitionMFClient) FormatPartitionEx(ctx context.Context, in *FormatPartitionExRequest, opts ...dcerpc.CallOption) (*FormatPartitionExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -408,14 +408,16 @@ type GetPartitionFileSystemPropertiesRequest struct {
 	Offset uint64 `idl:"name:ullOffset" json:"offset"`
 }
 
-func (o *GetPartitionFileSystemPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPartitionFileSystemPropertiesOperation {
+func (o *GetPartitionFileSystemPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPartitionFileSystemPropertiesOperation) *xxx_GetPartitionFileSystemPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPartitionFileSystemPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPartitionFileSystemPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPartitionFileSystemPropertiesOperation{
-		This:   o.This,
-		Offset: o.Offset,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	return op
 }
 
 func (o *GetPartitionFileSystemPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPartitionFileSystemPropertiesOperation) {
@@ -426,7 +428,7 @@ func (o *GetPartitionFileSystemPropertiesRequest) xxx_FromOp(ctx context.Context
 	o.Offset = op.Offset
 }
 func (o *GetPartitionFileSystemPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPartitionFileSystemPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPartitionFileSystemPropertiesOperation{}
@@ -448,15 +450,17 @@ type GetPartitionFileSystemPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPartitionFileSystemPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPartitionFileSystemPropertiesOperation {
+func (o *GetPartitionFileSystemPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPartitionFileSystemPropertiesOperation) *xxx_GetPartitionFileSystemPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPartitionFileSystemPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPartitionFileSystemPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPartitionFileSystemPropertiesOperation{
-		That:               o.That,
-		FileSystemProperty: o.FileSystemProperty,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.FileSystemProperty = op.FileSystemProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPartitionFileSystemPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPartitionFileSystemPropertiesOperation) {
@@ -468,7 +472,7 @@ func (o *GetPartitionFileSystemPropertiesResponse) xxx_FromOp(ctx context.Contex
 	o.Return = op.Return
 }
 func (o *GetPartitionFileSystemPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPartitionFileSystemPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPartitionFileSystemPropertiesOperation{}
@@ -658,14 +662,16 @@ type GetPartitionFileSystemTypeNameRequest struct {
 	Offset uint64 `idl:"name:ullOffset" json:"offset"`
 }
 
-func (o *GetPartitionFileSystemTypeNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetPartitionFileSystemTypeNameOperation {
+func (o *GetPartitionFileSystemTypeNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPartitionFileSystemTypeNameOperation) *xxx_GetPartitionFileSystemTypeNameOperation {
+	if op == nil {
+		op = &xxx_GetPartitionFileSystemTypeNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPartitionFileSystemTypeNameOperation{}
+		return op
 	}
-	return &xxx_GetPartitionFileSystemTypeNameOperation{
-		This:   o.This,
-		Offset: o.Offset,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	return op
 }
 
 func (o *GetPartitionFileSystemTypeNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPartitionFileSystemTypeNameOperation) {
@@ -676,7 +682,7 @@ func (o *GetPartitionFileSystemTypeNameRequest) xxx_FromOp(ctx context.Context, 
 	o.Offset = op.Offset
 }
 func (o *GetPartitionFileSystemTypeNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPartitionFileSystemTypeNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPartitionFileSystemTypeNameOperation{}
@@ -698,15 +704,17 @@ type GetPartitionFileSystemTypeNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPartitionFileSystemTypeNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetPartitionFileSystemTypeNameOperation {
+func (o *GetPartitionFileSystemTypeNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPartitionFileSystemTypeNameOperation) *xxx_GetPartitionFileSystemTypeNameOperation {
+	if op == nil {
+		op = &xxx_GetPartitionFileSystemTypeNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPartitionFileSystemTypeNameOperation{}
+		return op
 	}
-	return &xxx_GetPartitionFileSystemTypeNameOperation{
-		That:               o.That,
-		FileSystemTypeName: o.FileSystemTypeName,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.FileSystemTypeName = op.FileSystemTypeName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPartitionFileSystemTypeNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPartitionFileSystemTypeNameOperation) {
@@ -718,7 +726,7 @@ func (o *GetPartitionFileSystemTypeNameResponse) xxx_FromOp(ctx context.Context,
 	o.Return = op.Return
 }
 func (o *GetPartitionFileSystemTypeNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPartitionFileSystemTypeNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPartitionFileSystemTypeNameOperation{}
@@ -966,14 +974,16 @@ type QueryPartitionFileSystemFormatSupportRequest struct {
 	Offset uint64 `idl:"name:ullOffset" json:"offset"`
 }
 
-func (o *QueryPartitionFileSystemFormatSupportRequest) xxx_ToOp(ctx context.Context) *xxx_QueryPartitionFileSystemFormatSupportOperation {
+func (o *QueryPartitionFileSystemFormatSupportRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryPartitionFileSystemFormatSupportOperation) *xxx_QueryPartitionFileSystemFormatSupportOperation {
+	if op == nil {
+		op = &xxx_QueryPartitionFileSystemFormatSupportOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPartitionFileSystemFormatSupportOperation{}
+		return op
 	}
-	return &xxx_QueryPartitionFileSystemFormatSupportOperation{
-		This:   o.This,
-		Offset: o.Offset,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	return op
 }
 
 func (o *QueryPartitionFileSystemFormatSupportRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryPartitionFileSystemFormatSupportOperation) {
@@ -984,7 +994,7 @@ func (o *QueryPartitionFileSystemFormatSupportRequest) xxx_FromOp(ctx context.Co
 	o.Offset = op.Offset
 }
 func (o *QueryPartitionFileSystemFormatSupportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryPartitionFileSystemFormatSupportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPartitionFileSystemFormatSupportOperation{}
@@ -1010,16 +1020,18 @@ type QueryPartitionFileSystemFormatSupportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryPartitionFileSystemFormatSupportResponse) xxx_ToOp(ctx context.Context) *xxx_QueryPartitionFileSystemFormatSupportOperation {
+func (o *QueryPartitionFileSystemFormatSupportResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryPartitionFileSystemFormatSupportOperation) *xxx_QueryPartitionFileSystemFormatSupportOperation {
+	if op == nil {
+		op = &xxx_QueryPartitionFileSystemFormatSupportOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryPartitionFileSystemFormatSupportOperation{}
+		return op
 	}
-	return &xxx_QueryPartitionFileSystemFormatSupportOperation{
-		That:                        o.That,
-		FileSystemSupportProperties: o.FileSystemSupportProperties,
-		NumberOfFileSystems:         o.NumberOfFileSystems,
-		Return:                      o.Return,
-	}
+	o.That = op.That
+	o.FileSystemSupportProperties = op.FileSystemSupportProperties
+	o.NumberOfFileSystems = op.NumberOfFileSystems
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryPartitionFileSystemFormatSupportResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryPartitionFileSystemFormatSupportOperation) {
@@ -1032,7 +1044,7 @@ func (o *QueryPartitionFileSystemFormatSupportResponse) xxx_FromOp(ctx context.C
 	o.Return = op.Return
 }
 func (o *QueryPartitionFileSystemFormatSupportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryPartitionFileSystemFormatSupportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryPartitionFileSystemFormatSupportOperation{}
@@ -1396,21 +1408,23 @@ type FormatPartitionExRequest struct {
 	EnableCompression int32 `idl:"name:bEnableCompression" json:"enable_compression"`
 }
 
-func (o *FormatPartitionExRequest) xxx_ToOp(ctx context.Context) *xxx_FormatPartitionExOperation {
+func (o *FormatPartitionExRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatPartitionExOperation) *xxx_FormatPartitionExOperation {
+	if op == nil {
+		op = &xxx_FormatPartitionExOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatPartitionExOperation{}
+		return op
 	}
-	return &xxx_FormatPartitionExOperation{
-		This:                      o.This,
-		Offset:                    o.Offset,
-		FileSystemTypeName:        o.FileSystemTypeName,
-		FileSystemRevision:        o.FileSystemRevision,
-		DesiredUnitAllocationSize: o.DesiredUnitAllocationSize,
-		Label:                     o.Label,
-		Force:                     o.Force,
-		QuickFormat:               o.QuickFormat,
-		EnableCompression:         o.EnableCompression,
-	}
+	o.This = op.This
+	o.Offset = op.Offset
+	o.FileSystemTypeName = op.FileSystemTypeName
+	o.FileSystemRevision = op.FileSystemRevision
+	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
+	o.Label = op.Label
+	o.Force = op.Force
+	o.QuickFormat = op.QuickFormat
+	o.EnableCompression = op.EnableCompression
+	return op
 }
 
 func (o *FormatPartitionExRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatPartitionExOperation) {
@@ -1428,7 +1442,7 @@ func (o *FormatPartitionExRequest) xxx_FromOp(ctx context.Context, op *xxx_Forma
 	o.EnableCompression = op.EnableCompression
 }
 func (o *FormatPartitionExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FormatPartitionExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatPartitionExOperation{}
@@ -1451,15 +1465,17 @@ type FormatPartitionExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FormatPartitionExResponse) xxx_ToOp(ctx context.Context) *xxx_FormatPartitionExOperation {
+func (o *FormatPartitionExResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatPartitionExOperation) *xxx_FormatPartitionExOperation {
+	if op == nil {
+		op = &xxx_FormatPartitionExOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatPartitionExOperation{}
+		return op
 	}
-	return &xxx_FormatPartitionExOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *FormatPartitionExResponse) xxx_FromOp(ctx context.Context, op *xxx_FormatPartitionExOperation) {
@@ -1471,7 +1487,7 @@ func (o *FormatPartitionExResponse) xxx_FromOp(ctx context.Context, op *xxx_Form
 	o.Return = op.Return
 }
 func (o *FormatPartitionExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FormatPartitionExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatPartitionExOperation{}

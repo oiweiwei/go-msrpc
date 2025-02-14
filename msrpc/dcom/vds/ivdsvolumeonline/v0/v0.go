@@ -71,7 +71,7 @@ func (o *xxx_DefaultVolumeOnlineClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeOnlineClient) Online(ctx context.Context, in *OnlineRequest, opts ...dcerpc.CallOption) (*OnlineResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -255,13 +255,15 @@ type OnlineRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *OnlineRequest) xxx_ToOp(ctx context.Context) *xxx_OnlineOperation {
+func (o *OnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) *xxx_OnlineOperation {
+	if op == nil {
+		op = &xxx_OnlineOperation{}
+	}
 	if o == nil {
-		return &xxx_OnlineOperation{}
+		return op
 	}
-	return &xxx_OnlineOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *OnlineRequest) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation) {
@@ -271,7 +273,7 @@ func (o *OnlineRequest) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation)
 	o.This = op.This
 }
 func (o *OnlineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OnlineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnlineOperation{}
@@ -290,14 +292,16 @@ type OnlineResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OnlineResponse) xxx_ToOp(ctx context.Context) *xxx_OnlineOperation {
+func (o *OnlineResponse) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) *xxx_OnlineOperation {
+	if op == nil {
+		op = &xxx_OnlineOperation{}
+	}
 	if o == nil {
-		return &xxx_OnlineOperation{}
+		return op
 	}
-	return &xxx_OnlineOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OnlineResponse) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation) {
@@ -308,7 +312,7 @@ func (o *OnlineResponse) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation
 	o.Return = op.Return
 }
 func (o *OnlineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OnlineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnlineOperation{}

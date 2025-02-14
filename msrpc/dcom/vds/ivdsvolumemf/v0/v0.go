@@ -154,7 +154,7 @@ func (o *xxx_DefaultVolumeMFClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeMFClient) GetFileSystemProperties(ctx context.Context, in *GetFileSystemPropertiesRequest, opts ...dcerpc.CallOption) (*GetFileSystemPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -174,7 +174,7 @@ func (o *xxx_DefaultVolumeMFClient) GetFileSystemProperties(ctx context.Context,
 }
 
 func (o *xxx_DefaultVolumeMFClient) Format(ctx context.Context, in *FormatRequest, opts ...dcerpc.CallOption) (*FormatResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -194,7 +194,7 @@ func (o *xxx_DefaultVolumeMFClient) Format(ctx context.Context, in *FormatReques
 }
 
 func (o *xxx_DefaultVolumeMFClient) AddAccessPath(ctx context.Context, in *AddAccessPathRequest, opts ...dcerpc.CallOption) (*AddAccessPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -214,7 +214,7 @@ func (o *xxx_DefaultVolumeMFClient) AddAccessPath(ctx context.Context, in *AddAc
 }
 
 func (o *xxx_DefaultVolumeMFClient) QueryAccessPaths(ctx context.Context, in *QueryAccessPathsRequest, opts ...dcerpc.CallOption) (*QueryAccessPathsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -234,7 +234,7 @@ func (o *xxx_DefaultVolumeMFClient) QueryAccessPaths(ctx context.Context, in *Qu
 }
 
 func (o *xxx_DefaultVolumeMFClient) QueryReparsePoints(ctx context.Context, in *QueryReparsePointsRequest, opts ...dcerpc.CallOption) (*QueryReparsePointsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -254,7 +254,7 @@ func (o *xxx_DefaultVolumeMFClient) QueryReparsePoints(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultVolumeMFClient) DeleteAccessPath(ctx context.Context, in *DeleteAccessPathRequest, opts ...dcerpc.CallOption) (*DeleteAccessPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -274,7 +274,7 @@ func (o *xxx_DefaultVolumeMFClient) DeleteAccessPath(ctx context.Context, in *De
 }
 
 func (o *xxx_DefaultVolumeMFClient) Mount(ctx context.Context, in *MountRequest, opts ...dcerpc.CallOption) (*MountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -294,7 +294,7 @@ func (o *xxx_DefaultVolumeMFClient) Mount(ctx context.Context, in *MountRequest,
 }
 
 func (o *xxx_DefaultVolumeMFClient) Dismount(ctx context.Context, in *DismountRequest, opts ...dcerpc.CallOption) (*DismountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -314,7 +314,7 @@ func (o *xxx_DefaultVolumeMFClient) Dismount(ctx context.Context, in *DismountRe
 }
 
 func (o *xxx_DefaultVolumeMFClient) SetFileSystemFlags(ctx context.Context, in *SetFileSystemFlagsRequest, opts ...dcerpc.CallOption) (*SetFileSystemFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -334,7 +334,7 @@ func (o *xxx_DefaultVolumeMFClient) SetFileSystemFlags(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultVolumeMFClient) ClearFileSystemFlags(ctx context.Context, in *ClearFileSystemFlagsRequest, opts ...dcerpc.CallOption) (*ClearFileSystemFlagsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -548,13 +548,15 @@ type GetFileSystemPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetFileSystemPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileSystemPropertiesOperation {
+func (o *GetFileSystemPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileSystemPropertiesOperation) *xxx_GetFileSystemPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetFileSystemPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileSystemPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetFileSystemPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetFileSystemPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileSystemPropertiesOperation) {
@@ -564,7 +566,7 @@ func (o *GetFileSystemPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.This = op.This
 }
 func (o *GetFileSystemPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileSystemPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileSystemPropertiesOperation{}
@@ -586,15 +588,17 @@ type GetFileSystemPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileSystemPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileSystemPropertiesOperation {
+func (o *GetFileSystemPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileSystemPropertiesOperation) *xxx_GetFileSystemPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetFileSystemPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileSystemPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetFileSystemPropertiesOperation{
-		That:               o.That,
-		FileSystemProperty: o.FileSystemProperty,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.FileSystemProperty = op.FileSystemProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileSystemPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileSystemPropertiesOperation) {
@@ -606,7 +610,7 @@ func (o *GetFileSystemPropertiesResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *GetFileSystemPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileSystemPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileSystemPropertiesOperation{}
@@ -884,19 +888,21 @@ type FormatRequest struct {
 	EnableCompression int32 `idl:"name:bEnableCompression" json:"enable_compression"`
 }
 
-func (o *FormatRequest) xxx_ToOp(ctx context.Context) *xxx_FormatOperation {
+func (o *FormatRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatOperation) *xxx_FormatOperation {
+	if op == nil {
+		op = &xxx_FormatOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatOperation{}
+		return op
 	}
-	return &xxx_FormatOperation{
-		This:               o.This,
-		Type:               o.Type,
-		Label:              o.Label,
-		UnitAllocationSize: o.UnitAllocationSize,
-		Force:              o.Force,
-		QuickFormat:        o.QuickFormat,
-		EnableCompression:  o.EnableCompression,
-	}
+	o.This = op.This
+	o.Type = op.Type
+	o.Label = op.Label
+	o.UnitAllocationSize = op.UnitAllocationSize
+	o.Force = op.Force
+	o.QuickFormat = op.QuickFormat
+	o.EnableCompression = op.EnableCompression
+	return op
 }
 
 func (o *FormatRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatOperation) {
@@ -912,7 +918,7 @@ func (o *FormatRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatOperation)
 	o.EnableCompression = op.EnableCompression
 }
 func (o *FormatRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FormatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatOperation{}
@@ -935,15 +941,17 @@ type FormatResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FormatResponse) xxx_ToOp(ctx context.Context) *xxx_FormatOperation {
+func (o *FormatResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatOperation) *xxx_FormatOperation {
+	if op == nil {
+		op = &xxx_FormatOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatOperation{}
+		return op
 	}
-	return &xxx_FormatOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *FormatResponse) xxx_FromOp(ctx context.Context, op *xxx_FormatOperation) {
@@ -955,7 +963,7 @@ func (o *FormatResponse) xxx_FromOp(ctx context.Context, op *xxx_FormatOperation
 	o.Return = op.Return
 }
 func (o *FormatResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FormatResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatOperation{}
@@ -1168,14 +1176,16 @@ type AddAccessPathRequest struct {
 	Path string `idl:"name:pwszPath;max_is:(259);string" json:"path"`
 }
 
-func (o *AddAccessPathRequest) xxx_ToOp(ctx context.Context) *xxx_AddAccessPathOperation {
+func (o *AddAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_AddAccessPathOperation) *xxx_AddAccessPathOperation {
+	if op == nil {
+		op = &xxx_AddAccessPathOperation{}
+	}
 	if o == nil {
-		return &xxx_AddAccessPathOperation{}
+		return op
 	}
-	return &xxx_AddAccessPathOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *AddAccessPathRequest) xxx_FromOp(ctx context.Context, op *xxx_AddAccessPathOperation) {
@@ -1186,7 +1196,7 @@ func (o *AddAccessPathRequest) xxx_FromOp(ctx context.Context, op *xxx_AddAccess
 	o.Path = op.Path
 }
 func (o *AddAccessPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddAccessPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAccessPathOperation{}
@@ -1205,14 +1215,16 @@ type AddAccessPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddAccessPathResponse) xxx_ToOp(ctx context.Context) *xxx_AddAccessPathOperation {
+func (o *AddAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_AddAccessPathOperation) *xxx_AddAccessPathOperation {
+	if op == nil {
+		op = &xxx_AddAccessPathOperation{}
+	}
 	if o == nil {
-		return &xxx_AddAccessPathOperation{}
+		return op
 	}
-	return &xxx_AddAccessPathOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddAccessPathResponse) xxx_FromOp(ctx context.Context, op *xxx_AddAccessPathOperation) {
@@ -1223,7 +1235,7 @@ func (o *AddAccessPathResponse) xxx_FromOp(ctx context.Context, op *xxx_AddAcces
 	o.Return = op.Return
 }
 func (o *AddAccessPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddAccessPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddAccessPathOperation{}
@@ -1463,13 +1475,15 @@ type QueryAccessPathsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryAccessPathsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryAccessPathsOperation {
+func (o *QueryAccessPathsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryAccessPathsOperation) *xxx_QueryAccessPathsOperation {
+	if op == nil {
+		op = &xxx_QueryAccessPathsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryAccessPathsOperation{}
+		return op
 	}
-	return &xxx_QueryAccessPathsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryAccessPathsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryAccessPathsOperation) {
@@ -1479,7 +1493,7 @@ func (o *QueryAccessPathsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryA
 	o.This = op.This
 }
 func (o *QueryAccessPathsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryAccessPathsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryAccessPathsOperation{}
@@ -1504,16 +1518,18 @@ type QueryAccessPathsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryAccessPathsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryAccessPathsOperation {
+func (o *QueryAccessPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryAccessPathsOperation) *xxx_QueryAccessPathsOperation {
+	if op == nil {
+		op = &xxx_QueryAccessPathsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryAccessPathsOperation{}
+		return op
 	}
-	return &xxx_QueryAccessPathsOperation{
-		That:                o.That,
-		PathArray:           o.PathArray,
-		NumberOfAccessPaths: o.NumberOfAccessPaths,
-		Return:              o.Return,
-	}
+	o.That = op.That
+	o.PathArray = op.PathArray
+	o.NumberOfAccessPaths = op.NumberOfAccessPaths
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryAccessPathsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryAccessPathsOperation) {
@@ -1526,7 +1542,7 @@ func (o *QueryAccessPathsResponse) xxx_FromOp(ctx context.Context, op *xxx_Query
 	o.Return = op.Return
 }
 func (o *QueryAccessPathsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryAccessPathsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryAccessPathsOperation{}
@@ -1758,13 +1774,15 @@ type QueryReparsePointsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryReparsePointsRequest) xxx_ToOp(ctx context.Context) *xxx_QueryReparsePointsOperation {
+func (o *QueryReparsePointsRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryReparsePointsOperation) *xxx_QueryReparsePointsOperation {
+	if op == nil {
+		op = &xxx_QueryReparsePointsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryReparsePointsOperation{}
+		return op
 	}
-	return &xxx_QueryReparsePointsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryReparsePointsRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryReparsePointsOperation) {
@@ -1774,7 +1792,7 @@ func (o *QueryReparsePointsRequest) xxx_FromOp(ctx context.Context, op *xxx_Quer
 	o.This = op.This
 }
 func (o *QueryReparsePointsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryReparsePointsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryReparsePointsOperation{}
@@ -1799,16 +1817,18 @@ type QueryReparsePointsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryReparsePointsResponse) xxx_ToOp(ctx context.Context) *xxx_QueryReparsePointsOperation {
+func (o *QueryReparsePointsResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryReparsePointsOperation) *xxx_QueryReparsePointsOperation {
+	if op == nil {
+		op = &xxx_QueryReparsePointsOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryReparsePointsOperation{}
+		return op
 	}
-	return &xxx_QueryReparsePointsOperation{
-		That:                           o.That,
-		ReparsePointProperties:         o.ReparsePointProperties,
-		NumberOfReparsePointProperties: o.NumberOfReparsePointProperties,
-		Return:                         o.Return,
-	}
+	o.That = op.That
+	o.ReparsePointProperties = op.ReparsePointProperties
+	o.NumberOfReparsePointProperties = op.NumberOfReparsePointProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryReparsePointsResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryReparsePointsOperation) {
@@ -1821,7 +1841,7 @@ func (o *QueryReparsePointsResponse) xxx_FromOp(ctx context.Context, op *xxx_Que
 	o.Return = op.Return
 }
 func (o *QueryReparsePointsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryReparsePointsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryReparsePointsOperation{}
@@ -2050,15 +2070,17 @@ type DeleteAccessPathRequest struct {
 	Force int32 `idl:"name:bForce" json:"force"`
 }
 
-func (o *DeleteAccessPathRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteAccessPathOperation {
+func (o *DeleteAccessPathRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteAccessPathOperation) *xxx_DeleteAccessPathOperation {
+	if op == nil {
+		op = &xxx_DeleteAccessPathOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAccessPathOperation{}
+		return op
 	}
-	return &xxx_DeleteAccessPathOperation{
-		This:  o.This,
-		Path:  o.Path,
-		Force: o.Force,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Force = op.Force
+	return op
 }
 
 func (o *DeleteAccessPathRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteAccessPathOperation) {
@@ -2070,7 +2092,7 @@ func (o *DeleteAccessPathRequest) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.Force = op.Force
 }
 func (o *DeleteAccessPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteAccessPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAccessPathOperation{}
@@ -2089,14 +2111,16 @@ type DeleteAccessPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteAccessPathResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteAccessPathOperation {
+func (o *DeleteAccessPathResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteAccessPathOperation) *xxx_DeleteAccessPathOperation {
+	if op == nil {
+		op = &xxx_DeleteAccessPathOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteAccessPathOperation{}
+		return op
 	}
-	return &xxx_DeleteAccessPathOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteAccessPathResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteAccessPathOperation) {
@@ -2107,7 +2131,7 @@ func (o *DeleteAccessPathResponse) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.Return = op.Return
 }
 func (o *DeleteAccessPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteAccessPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteAccessPathOperation{}
@@ -2241,13 +2265,15 @@ type MountRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *MountRequest) xxx_ToOp(ctx context.Context) *xxx_MountOperation {
+func (o *MountRequest) xxx_ToOp(ctx context.Context, op *xxx_MountOperation) *xxx_MountOperation {
+	if op == nil {
+		op = &xxx_MountOperation{}
+	}
 	if o == nil {
-		return &xxx_MountOperation{}
+		return op
 	}
-	return &xxx_MountOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *MountRequest) xxx_FromOp(ctx context.Context, op *xxx_MountOperation) {
@@ -2257,7 +2283,7 @@ func (o *MountRequest) xxx_FromOp(ctx context.Context, op *xxx_MountOperation) {
 	o.This = op.This
 }
 func (o *MountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MountOperation{}
@@ -2276,14 +2302,16 @@ type MountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MountResponse) xxx_ToOp(ctx context.Context) *xxx_MountOperation {
+func (o *MountResponse) xxx_ToOp(ctx context.Context, op *xxx_MountOperation) *xxx_MountOperation {
+	if op == nil {
+		op = &xxx_MountOperation{}
+	}
 	if o == nil {
-		return &xxx_MountOperation{}
+		return op
 	}
-	return &xxx_MountOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *MountResponse) xxx_FromOp(ctx context.Context, op *xxx_MountOperation) {
@@ -2294,7 +2322,7 @@ func (o *MountResponse) xxx_FromOp(ctx context.Context, op *xxx_MountOperation) 
 	o.Return = op.Return
 }
 func (o *MountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MountOperation{}
@@ -2460,15 +2488,17 @@ type DismountRequest struct {
 	Permanent int32 `idl:"name:bPermanent" json:"permanent"`
 }
 
-func (o *DismountRequest) xxx_ToOp(ctx context.Context) *xxx_DismountOperation {
+func (o *DismountRequest) xxx_ToOp(ctx context.Context, op *xxx_DismountOperation) *xxx_DismountOperation {
+	if op == nil {
+		op = &xxx_DismountOperation{}
+	}
 	if o == nil {
-		return &xxx_DismountOperation{}
+		return op
 	}
-	return &xxx_DismountOperation{
-		This:      o.This,
-		Force:     o.Force,
-		Permanent: o.Permanent,
-	}
+	o.This = op.This
+	o.Force = op.Force
+	o.Permanent = op.Permanent
+	return op
 }
 
 func (o *DismountRequest) xxx_FromOp(ctx context.Context, op *xxx_DismountOperation) {
@@ -2480,7 +2510,7 @@ func (o *DismountRequest) xxx_FromOp(ctx context.Context, op *xxx_DismountOperat
 	o.Permanent = op.Permanent
 }
 func (o *DismountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DismountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DismountOperation{}
@@ -2499,14 +2529,16 @@ type DismountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DismountResponse) xxx_ToOp(ctx context.Context) *xxx_DismountOperation {
+func (o *DismountResponse) xxx_ToOp(ctx context.Context, op *xxx_DismountOperation) *xxx_DismountOperation {
+	if op == nil {
+		op = &xxx_DismountOperation{}
+	}
 	if o == nil {
-		return &xxx_DismountOperation{}
+		return op
 	}
-	return &xxx_DismountOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DismountResponse) xxx_FromOp(ctx context.Context, op *xxx_DismountOperation) {
@@ -2517,7 +2549,7 @@ func (o *DismountResponse) xxx_FromOp(ctx context.Context, op *xxx_DismountOpera
 	o.Return = op.Return
 }
 func (o *DismountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DismountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DismountOperation{}
@@ -2668,14 +2700,16 @@ type SetFileSystemFlagsRequest struct {
 	Flags uint32 `idl:"name:ulFlags" json:"flags"`
 }
 
-func (o *SetFileSystemFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_SetFileSystemFlagsOperation {
+func (o *SetFileSystemFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFileSystemFlagsOperation) *xxx_SetFileSystemFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFileSystemFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFileSystemFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFileSystemFlagsOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *SetFileSystemFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFileSystemFlagsOperation) {
@@ -2686,7 +2720,7 @@ func (o *SetFileSystemFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Flags = op.Flags
 }
 func (o *SetFileSystemFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFileSystemFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFileSystemFlagsOperation{}
@@ -2705,14 +2739,16 @@ type SetFileSystemFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFileSystemFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_SetFileSystemFlagsOperation {
+func (o *SetFileSystemFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFileSystemFlagsOperation) *xxx_SetFileSystemFlagsOperation {
+	if op == nil {
+		op = &xxx_SetFileSystemFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFileSystemFlagsOperation{}
+		return op
 	}
-	return &xxx_SetFileSystemFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFileSystemFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFileSystemFlagsOperation) {
@@ -2723,7 +2759,7 @@ func (o *SetFileSystemFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetFileSystemFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFileSystemFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFileSystemFlagsOperation{}
@@ -2874,14 +2910,16 @@ type ClearFileSystemFlagsRequest struct {
 	Flags uint32 `idl:"name:ulFlags" json:"flags"`
 }
 
-func (o *ClearFileSystemFlagsRequest) xxx_ToOp(ctx context.Context) *xxx_ClearFileSystemFlagsOperation {
+func (o *ClearFileSystemFlagsRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearFileSystemFlagsOperation) *xxx_ClearFileSystemFlagsOperation {
+	if op == nil {
+		op = &xxx_ClearFileSystemFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearFileSystemFlagsOperation{}
+		return op
 	}
-	return &xxx_ClearFileSystemFlagsOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *ClearFileSystemFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearFileSystemFlagsOperation) {
@@ -2892,7 +2930,7 @@ func (o *ClearFileSystemFlagsRequest) xxx_FromOp(ctx context.Context, op *xxx_Cl
 	o.Flags = op.Flags
 }
 func (o *ClearFileSystemFlagsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearFileSystemFlagsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearFileSystemFlagsOperation{}
@@ -2911,14 +2949,16 @@ type ClearFileSystemFlagsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearFileSystemFlagsResponse) xxx_ToOp(ctx context.Context) *xxx_ClearFileSystemFlagsOperation {
+func (o *ClearFileSystemFlagsResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearFileSystemFlagsOperation) *xxx_ClearFileSystemFlagsOperation {
+	if op == nil {
+		op = &xxx_ClearFileSystemFlagsOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearFileSystemFlagsOperation{}
+		return op
 	}
-	return &xxx_ClearFileSystemFlagsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearFileSystemFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearFileSystemFlagsOperation) {
@@ -2929,7 +2969,7 @@ func (o *ClearFileSystemFlagsResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *ClearFileSystemFlagsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearFileSystemFlagsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearFileSystemFlagsOperation{}

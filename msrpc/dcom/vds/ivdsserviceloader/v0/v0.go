@@ -79,7 +79,7 @@ func (o *xxx_DefaultServiceLoaderClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServiceLoaderClient) LoadService(ctx context.Context, in *LoadServiceRequest, opts ...dcerpc.CallOption) (*LoadServiceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -351,14 +351,16 @@ type LoadServiceRequest struct {
 	MachineName string `idl:"name:pwszMachineName;string;pointer:unique" json:"machine_name"`
 }
 
-func (o *LoadServiceRequest) xxx_ToOp(ctx context.Context) *xxx_LoadServiceOperation {
+func (o *LoadServiceRequest) xxx_ToOp(ctx context.Context, op *xxx_LoadServiceOperation) *xxx_LoadServiceOperation {
+	if op == nil {
+		op = &xxx_LoadServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_LoadServiceOperation{}
+		return op
 	}
-	return &xxx_LoadServiceOperation{
-		This:        o.This,
-		MachineName: o.MachineName,
-	}
+	o.This = op.This
+	o.MachineName = op.MachineName
+	return op
 }
 
 func (o *LoadServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_LoadServiceOperation) {
@@ -369,7 +371,7 @@ func (o *LoadServiceRequest) xxx_FromOp(ctx context.Context, op *xxx_LoadService
 	o.MachineName = op.MachineName
 }
 func (o *LoadServiceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *LoadServiceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LoadServiceOperation{}
@@ -392,15 +394,17 @@ type LoadServiceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *LoadServiceResponse) xxx_ToOp(ctx context.Context) *xxx_LoadServiceOperation {
+func (o *LoadServiceResponse) xxx_ToOp(ctx context.Context, op *xxx_LoadServiceOperation) *xxx_LoadServiceOperation {
+	if op == nil {
+		op = &xxx_LoadServiceOperation{}
+	}
 	if o == nil {
-		return &xxx_LoadServiceOperation{}
+		return op
 	}
-	return &xxx_LoadServiceOperation{
-		That:    o.That,
-		Service: o.Service,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Service = op.Service
+	o.Return = op.Return
+	return op
 }
 
 func (o *LoadServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_LoadServiceOperation) {
@@ -412,7 +416,7 @@ func (o *LoadServiceResponse) xxx_FromOp(ctx context.Context, op *xxx_LoadServic
 	o.Return = op.Return
 }
 func (o *LoadServiceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *LoadServiceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_LoadServiceOperation{}

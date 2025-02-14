@@ -91,7 +91,7 @@ func (o *xxx_DefaultISCSIInitiatorPortalClient) Unknown() iunknown.UnknownClient
 }
 
 func (o *xxx_DefaultISCSIInitiatorPortalClient) GetProperties(ctx context.Context, in *GetPropertiesRequest, opts ...dcerpc.CallOption) (*GetPropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -111,7 +111,7 @@ func (o *xxx_DefaultISCSIInitiatorPortalClient) GetProperties(ctx context.Contex
 }
 
 func (o *xxx_DefaultISCSIInitiatorPortalClient) GetInitiatorAdapter(ctx context.Context, in *GetInitiatorAdapterRequest, opts ...dcerpc.CallOption) (*GetInitiatorAdapterResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -319,13 +319,15 @@ type GetPropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -335,7 +337,7 @@ func (o *GetPropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetProper
 	o.This = op.This
 }
 func (o *GetPropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -355,15 +357,17 @@ type GetPropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_GetPropertiesOperation {
+func (o *GetPropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPropertiesOperation) *xxx_GetPropertiesOperation {
+	if op == nil {
+		op = &xxx_GetPropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPropertiesOperation{}
+		return op
 	}
-	return &xxx_GetPropertiesOperation{
-		That:                    o.That,
-		InitiatorPortalProperty: o.InitiatorPortalProperty,
-		Return:                  o.Return,
-	}
+	o.That = op.That
+	o.InitiatorPortalProperty = op.InitiatorPortalProperty
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPropertiesOperation) {
@@ -375,7 +379,7 @@ func (o *GetPropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.Return = op.Return
 }
 func (o *GetPropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPropertiesOperation{}
@@ -558,13 +562,15 @@ type GetInitiatorAdapterRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetInitiatorAdapterRequest) xxx_ToOp(ctx context.Context) *xxx_GetInitiatorAdapterOperation {
+func (o *GetInitiatorAdapterRequest) xxx_ToOp(ctx context.Context, op *xxx_GetInitiatorAdapterOperation) *xxx_GetInitiatorAdapterOperation {
+	if op == nil {
+		op = &xxx_GetInitiatorAdapterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInitiatorAdapterOperation{}
+		return op
 	}
-	return &xxx_GetInitiatorAdapterOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetInitiatorAdapterRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInitiatorAdapterOperation) {
@@ -574,7 +580,7 @@ func (o *GetInitiatorAdapterRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.This = op.This
 }
 func (o *GetInitiatorAdapterRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetInitiatorAdapterRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInitiatorAdapterOperation{}
@@ -598,15 +604,17 @@ type GetInitiatorAdapterResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetInitiatorAdapterResponse) xxx_ToOp(ctx context.Context) *xxx_GetInitiatorAdapterOperation {
+func (o *GetInitiatorAdapterResponse) xxx_ToOp(ctx context.Context, op *xxx_GetInitiatorAdapterOperation) *xxx_GetInitiatorAdapterOperation {
+	if op == nil {
+		op = &xxx_GetInitiatorAdapterOperation{}
+	}
 	if o == nil {
-		return &xxx_GetInitiatorAdapterOperation{}
+		return op
 	}
-	return &xxx_GetInitiatorAdapterOperation{
-		That:             o.That,
-		InitiatorAdapter: o.InitiatorAdapter,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.InitiatorAdapter = op.InitiatorAdapter
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetInitiatorAdapterResponse) xxx_FromOp(ctx context.Context, op *xxx_GetInitiatorAdapterOperation) {
@@ -618,7 +626,7 @@ func (o *GetInitiatorAdapterResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetInitiatorAdapterResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetInitiatorAdapterResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetInitiatorAdapterOperation{}

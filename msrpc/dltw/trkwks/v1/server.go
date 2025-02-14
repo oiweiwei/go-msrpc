@@ -225,12 +225,24 @@ func TrkwksServerHandle(ctx context.Context, o TrkwksServer, opNum int, r ndr.Re
 		// Opnum11NotUsedOnWire
 		return nil, nil
 	case 12: // LnkSearchMachine
-		in := &SearchMachineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SearchMachineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SearchMachine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SearchMachineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SearchMachine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented trkwks
+type UnimplementedTrkwksServer struct {
+}
+
+func (UnimplementedTrkwksServer) SearchMachine(context.Context, *SearchMachineRequest) (*SearchMachineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ TrkwksServer = (*UnimplementedTrkwksServer)(nil)

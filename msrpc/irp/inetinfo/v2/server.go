@@ -382,117 +382,149 @@ func NewInetinfoServerHandle(o InetinfoServer) dcerpc.ServerHandle {
 func InetinfoServerHandle(ctx context.Context, o InetinfoServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // R_InetInfoGetVersion
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // R_InetInfoGetAdminInformation
-		in := &GetAdminInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAdminInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAdminInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAdminInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAdminInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // R_InetInfoGetSites
-		in := &GetSitesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSitesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSites(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSitesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSites(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // R_InetInfoSetAdminInformation
-		in := &SetAdminInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAdminInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAdminInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAdminInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAdminInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // R_InetInfoGetGlobalAdminInformation
-		in := &GetGlobalAdminInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGlobalAdminInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGlobalAdminInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGlobalAdminInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGlobalAdminInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // R_InetInfoSetGlobalAdminInformation
-		in := &SetGlobalAdminInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGlobalAdminInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGlobalAdminInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGlobalAdminInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGlobalAdminInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // R_InetInfoQueryStatistics
-		in := &QueryStatisticsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryStatisticsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryStatistics(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryStatisticsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryStatistics(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // R_InetInfoClearStatistics
-		in := &ClearStatisticsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearStatisticsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearStatistics(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearStatisticsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearStatistics(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // R_InetInfoFlushMemoryCache
-		in := &FlushMemoryCacheRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FlushMemoryCacheOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FlushMemoryCache(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FlushMemoryCacheRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FlushMemoryCache(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // R_InetInfoGetServerCapabilities
-		in := &GetServerCapabilitiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerCapabilitiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerCapabilities(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerCapabilitiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerCapabilities(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // R_W3QueryStatistics2
-		in := &W3QueryStatistics2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_W3QueryStatistics2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.W3QueryStatistics2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &W3QueryStatistics2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.W3QueryStatistics2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // R_W3ClearStatistics2
-		in := &W3ClearStatistics2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_W3ClearStatistics2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.W3ClearStatistics2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &W3ClearStatistics2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.W3ClearStatistics2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // R_FtpQueryStatistics2
-		in := &FTPQueryStatistics2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTPQueryStatistics2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTPQueryStatistics2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTPQueryStatistics2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTPQueryStatistics2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // R_FtpClearStatistics2
-		in := &FTPClearStatistics2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FTPClearStatistics2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FTPClearStatistics2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FTPClearStatistics2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FTPClearStatistics2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // R_IISEnumerateUsers
-		in := &IISEnumerateUsersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IISEnumerateUsersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IISEnumerateUsers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IISEnumerateUsersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IISEnumerateUsers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // R_IISDisconnectUser
-		in := &IISDisconnectUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IISDisconnectUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IISDisconnectUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IISDisconnectUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IISDisconnectUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Opnum16NotUsedOnWire
 		// Opnum16NotUsedOnWire
 		return nil, nil
@@ -502,3 +534,58 @@ func InetinfoServerHandle(ctx context.Context, o InetinfoServer, opNum int, r nd
 	}
 	return nil, nil
 }
+
+// Unimplemented inetinfo
+type UnimplementedInetinfoServer struct {
+}
+
+func (UnimplementedInetinfoServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) GetAdminInformation(context.Context, *GetAdminInformationRequest) (*GetAdminInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) GetSites(context.Context, *GetSitesRequest) (*GetSitesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) SetAdminInformation(context.Context, *SetAdminInformationRequest) (*SetAdminInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) GetGlobalAdminInformation(context.Context, *GetGlobalAdminInformationRequest) (*GetGlobalAdminInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) SetGlobalAdminInformation(context.Context, *SetGlobalAdminInformationRequest) (*SetGlobalAdminInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) QueryStatistics(context.Context, *QueryStatisticsRequest) (*QueryStatisticsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) ClearStatistics(context.Context, *ClearStatisticsRequest) (*ClearStatisticsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) FlushMemoryCache(context.Context, *FlushMemoryCacheRequest) (*FlushMemoryCacheResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) GetServerCapabilities(context.Context, *GetServerCapabilitiesRequest) (*GetServerCapabilitiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) W3QueryStatistics2(context.Context, *W3QueryStatistics2Request) (*W3QueryStatistics2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) W3ClearStatistics2(context.Context, *W3ClearStatistics2Request) (*W3ClearStatistics2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) FTPQueryStatistics2(context.Context, *FTPQueryStatistics2Request) (*FTPQueryStatistics2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) FTPClearStatistics2(context.Context, *FTPClearStatistics2Request) (*FTPClearStatistics2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) IISEnumerateUsers(context.Context, *IISEnumerateUsersRequest) (*IISEnumerateUsersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedInetinfoServer) IISDisconnectUser(context.Context, *IISDisconnectUserRequest) (*IISDisconnectUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ InetinfoServer = (*UnimplementedInetinfoServer)(nil)

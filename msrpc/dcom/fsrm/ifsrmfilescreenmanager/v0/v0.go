@@ -219,7 +219,7 @@ func (o *xxx_DefaultFileScreenManagerClient) Dispatch() idispatch.DispatchClient
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) GetActionVariables(ctx context.Context, in *GetActionVariablesRequest, opts ...dcerpc.CallOption) (*GetActionVariablesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -239,7 +239,7 @@ func (o *xxx_DefaultFileScreenManagerClient) GetActionVariables(ctx context.Cont
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) GetActionVariableDescriptions(ctx context.Context, in *GetActionVariableDescriptionsRequest, opts ...dcerpc.CallOption) (*GetActionVariableDescriptionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -259,7 +259,7 @@ func (o *xxx_DefaultFileScreenManagerClient) GetActionVariableDescriptions(ctx c
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) CreateFileScreen(ctx context.Context, in *CreateFileScreenRequest, opts ...dcerpc.CallOption) (*CreateFileScreenResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -279,7 +279,7 @@ func (o *xxx_DefaultFileScreenManagerClient) CreateFileScreen(ctx context.Contex
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) GetFileScreen(ctx context.Context, in *GetFileScreenRequest, opts ...dcerpc.CallOption) (*GetFileScreenResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -299,7 +299,7 @@ func (o *xxx_DefaultFileScreenManagerClient) GetFileScreen(ctx context.Context, 
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) EnumFileScreens(ctx context.Context, in *EnumFileScreensRequest, opts ...dcerpc.CallOption) (*EnumFileScreensResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -319,7 +319,7 @@ func (o *xxx_DefaultFileScreenManagerClient) EnumFileScreens(ctx context.Context
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) CreateFileScreenException(ctx context.Context, in *CreateFileScreenExceptionRequest, opts ...dcerpc.CallOption) (*CreateFileScreenExceptionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -339,7 +339,7 @@ func (o *xxx_DefaultFileScreenManagerClient) CreateFileScreenException(ctx conte
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) GetFileScreenException(ctx context.Context, in *GetFileScreenExceptionRequest, opts ...dcerpc.CallOption) (*GetFileScreenExceptionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -359,7 +359,7 @@ func (o *xxx_DefaultFileScreenManagerClient) GetFileScreenException(ctx context.
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) EnumFileScreenExceptions(ctx context.Context, in *EnumFileScreenExceptionsRequest, opts ...dcerpc.CallOption) (*EnumFileScreenExceptionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -379,7 +379,7 @@ func (o *xxx_DefaultFileScreenManagerClient) EnumFileScreenExceptions(ctx contex
 }
 
 func (o *xxx_DefaultFileScreenManagerClient) CreateFileScreenCollection(ctx context.Context, in *CreateFileScreenCollectionRequest, opts ...dcerpc.CallOption) (*CreateFileScreenCollectionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -612,13 +612,15 @@ type GetActionVariablesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionVariablesOperation {
+func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariablesOperation) *xxx_GetActionVariablesOperation {
+	if op == nil {
+		op = &xxx_GetActionVariablesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariablesOperation{}
+		return op
 	}
-	return &xxx_GetActionVariablesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionVariablesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariablesOperation) {
@@ -628,7 +630,7 @@ func (o *GetActionVariablesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.This = op.This
 }
 func (o *GetActionVariablesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionVariablesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariablesOperation{}
@@ -648,15 +650,17 @@ type GetActionVariablesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionVariablesOperation {
+func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariablesOperation) *xxx_GetActionVariablesOperation {
+	if op == nil {
+		op = &xxx_GetActionVariablesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariablesOperation{}
+		return op
 	}
-	return &xxx_GetActionVariablesOperation{
-		That:      o.That,
-		Variables: o.Variables,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Variables = op.Variables
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionVariablesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariablesOperation) {
@@ -668,7 +672,7 @@ func (o *GetActionVariablesResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetActionVariablesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionVariablesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariablesOperation{}
@@ -851,13 +855,15 @@ type GetActionVariableDescriptionsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionVariableDescriptionsOperation {
+func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) *xxx_GetActionVariableDescriptionsOperation {
+	if op == nil {
+		op = &xxx_GetActionVariableDescriptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariableDescriptionsOperation{}
+		return op
 	}
-	return &xxx_GetActionVariableDescriptionsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionVariableDescriptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) {
@@ -867,7 +873,7 @@ func (o *GetActionVariableDescriptionsRequest) xxx_FromOp(ctx context.Context, o
 	o.This = op.This
 }
 func (o *GetActionVariableDescriptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionVariableDescriptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariableDescriptionsOperation{}
@@ -887,15 +893,17 @@ type GetActionVariableDescriptionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionVariableDescriptionsOperation {
+func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) *xxx_GetActionVariableDescriptionsOperation {
+	if op == nil {
+		op = &xxx_GetActionVariableDescriptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariableDescriptionsOperation{}
+		return op
 	}
-	return &xxx_GetActionVariableDescriptionsOperation{
-		That:         o.That,
-		Descriptions: o.Descriptions,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.Descriptions = op.Descriptions
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionVariableDescriptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) {
@@ -907,7 +915,7 @@ func (o *GetActionVariableDescriptionsResponse) xxx_FromOp(ctx context.Context, 
 	o.Return = op.Return
 }
 func (o *GetActionVariableDescriptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionVariableDescriptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariableDescriptionsOperation{}
@@ -1139,14 +1147,16 @@ type CreateFileScreenRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *CreateFileScreenRequest) xxx_ToOp(ctx context.Context) *xxx_CreateFileScreenOperation {
+func (o *CreateFileScreenRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFileScreenOperation) *xxx_CreateFileScreenOperation {
+	if op == nil {
+		op = &xxx_CreateFileScreenOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileScreenOperation{}
+		return op
 	}
-	return &xxx_CreateFileScreenOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *CreateFileScreenRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateFileScreenOperation) {
@@ -1157,7 +1167,7 @@ func (o *CreateFileScreenRequest) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Path = op.Path
 }
 func (o *CreateFileScreenRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateFileScreenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileScreenOperation{}
@@ -1182,15 +1192,17 @@ type CreateFileScreenResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateFileScreenResponse) xxx_ToOp(ctx context.Context) *xxx_CreateFileScreenOperation {
+func (o *CreateFileScreenResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFileScreenOperation) *xxx_CreateFileScreenOperation {
+	if op == nil {
+		op = &xxx_CreateFileScreenOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileScreenOperation{}
+		return op
 	}
-	return &xxx_CreateFileScreenOperation{
-		That:       o.That,
-		FileScreen: o.FileScreen,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.FileScreen = op.FileScreen
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateFileScreenResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateFileScreenOperation) {
@@ -1202,7 +1214,7 @@ func (o *CreateFileScreenResponse) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.Return = op.Return
 }
 func (o *CreateFileScreenResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateFileScreenResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileScreenOperation{}
@@ -1434,14 +1446,16 @@ type GetFileScreenRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *GetFileScreenRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileScreenOperation {
+func (o *GetFileScreenRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileScreenOperation) *xxx_GetFileScreenOperation {
+	if op == nil {
+		op = &xxx_GetFileScreenOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileScreenOperation{}
+		return op
 	}
-	return &xxx_GetFileScreenOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *GetFileScreenRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileScreenOperation) {
@@ -1452,7 +1466,7 @@ func (o *GetFileScreenRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileSc
 	o.Path = op.Path
 }
 func (o *GetFileScreenRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileScreenRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileScreenOperation{}
@@ -1475,15 +1489,17 @@ type GetFileScreenResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileScreenResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileScreenOperation {
+func (o *GetFileScreenResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileScreenOperation) *xxx_GetFileScreenOperation {
+	if op == nil {
+		op = &xxx_GetFileScreenOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileScreenOperation{}
+		return op
 	}
-	return &xxx_GetFileScreenOperation{
-		That:       o.That,
-		FileScreen: o.FileScreen,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.FileScreen = op.FileScreen
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileScreenResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileScreenOperation) {
@@ -1495,7 +1511,7 @@ func (o *GetFileScreenResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileS
 	o.Return = op.Return
 }
 func (o *GetFileScreenResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileScreenResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileScreenOperation{}
@@ -1743,15 +1759,17 @@ type EnumFileScreensRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumFileScreensRequest) xxx_ToOp(ctx context.Context) *xxx_EnumFileScreensOperation {
+func (o *EnumFileScreensRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFileScreensOperation) *xxx_EnumFileScreensOperation {
+	if op == nil {
+		op = &xxx_EnumFileScreensOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileScreensOperation{}
+		return op
 	}
-	return &xxx_EnumFileScreensOperation{
-		This:    o.This,
-		Path:    o.Path,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumFileScreensRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFileScreensOperation) {
@@ -1763,7 +1781,7 @@ func (o *EnumFileScreensRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFil
 	o.Options = op.Options
 }
 func (o *EnumFileScreensRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFileScreensRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileScreensOperation{}
@@ -1787,15 +1805,17 @@ type EnumFileScreensResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFileScreensResponse) xxx_ToOp(ctx context.Context) *xxx_EnumFileScreensOperation {
+func (o *EnumFileScreensResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFileScreensOperation) *xxx_EnumFileScreensOperation {
+	if op == nil {
+		op = &xxx_EnumFileScreensOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileScreensOperation{}
+		return op
 	}
-	return &xxx_EnumFileScreensOperation{
-		That:        o.That,
-		FileScreens: o.FileScreens,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.FileScreens = op.FileScreens
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFileScreensResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFileScreensOperation) {
@@ -1807,7 +1827,7 @@ func (o *EnumFileScreensResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFi
 	o.Return = op.Return
 }
 func (o *EnumFileScreensResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFileScreensResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileScreensOperation{}
@@ -2039,14 +2059,16 @@ type CreateFileScreenExceptionRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *CreateFileScreenExceptionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateFileScreenExceptionOperation {
+func (o *CreateFileScreenExceptionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFileScreenExceptionOperation) *xxx_CreateFileScreenExceptionOperation {
+	if op == nil {
+		op = &xxx_CreateFileScreenExceptionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileScreenExceptionOperation{}
+		return op
 	}
-	return &xxx_CreateFileScreenExceptionOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *CreateFileScreenExceptionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateFileScreenExceptionOperation) {
@@ -2057,7 +2079,7 @@ func (o *CreateFileScreenExceptionRequest) xxx_FromOp(ctx context.Context, op *x
 	o.Path = op.Path
 }
 func (o *CreateFileScreenExceptionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateFileScreenExceptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileScreenExceptionOperation{}
@@ -2082,15 +2104,17 @@ type CreateFileScreenExceptionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateFileScreenExceptionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateFileScreenExceptionOperation {
+func (o *CreateFileScreenExceptionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFileScreenExceptionOperation) *xxx_CreateFileScreenExceptionOperation {
+	if op == nil {
+		op = &xxx_CreateFileScreenExceptionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileScreenExceptionOperation{}
+		return op
 	}
-	return &xxx_CreateFileScreenExceptionOperation{
-		That:                o.That,
-		FileScreenException: o.FileScreenException,
-		Return:              o.Return,
-	}
+	o.That = op.That
+	o.FileScreenException = op.FileScreenException
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateFileScreenExceptionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateFileScreenExceptionOperation) {
@@ -2102,7 +2126,7 @@ func (o *CreateFileScreenExceptionResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *CreateFileScreenExceptionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateFileScreenExceptionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileScreenExceptionOperation{}
@@ -2334,14 +2358,16 @@ type GetFileScreenExceptionRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *GetFileScreenExceptionRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileScreenExceptionOperation {
+func (o *GetFileScreenExceptionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileScreenExceptionOperation) *xxx_GetFileScreenExceptionOperation {
+	if op == nil {
+		op = &xxx_GetFileScreenExceptionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileScreenExceptionOperation{}
+		return op
 	}
-	return &xxx_GetFileScreenExceptionOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *GetFileScreenExceptionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileScreenExceptionOperation) {
@@ -2352,7 +2378,7 @@ func (o *GetFileScreenExceptionRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Path = op.Path
 }
 func (o *GetFileScreenExceptionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileScreenExceptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileScreenExceptionOperation{}
@@ -2376,15 +2402,17 @@ type GetFileScreenExceptionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileScreenExceptionResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileScreenExceptionOperation {
+func (o *GetFileScreenExceptionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileScreenExceptionOperation) *xxx_GetFileScreenExceptionOperation {
+	if op == nil {
+		op = &xxx_GetFileScreenExceptionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileScreenExceptionOperation{}
+		return op
 	}
-	return &xxx_GetFileScreenExceptionOperation{
-		That:                o.That,
-		FileScreenException: o.FileScreenException,
-		Return:              o.Return,
-	}
+	o.That = op.That
+	o.FileScreenException = op.FileScreenException
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileScreenExceptionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileScreenExceptionOperation) {
@@ -2396,7 +2424,7 @@ func (o *GetFileScreenExceptionResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *GetFileScreenExceptionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileScreenExceptionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileScreenExceptionOperation{}
@@ -2645,15 +2673,17 @@ type EnumFileScreenExceptionsRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumFileScreenExceptionsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumFileScreenExceptionsOperation {
+func (o *EnumFileScreenExceptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumFileScreenExceptionsOperation) *xxx_EnumFileScreenExceptionsOperation {
+	if op == nil {
+		op = &xxx_EnumFileScreenExceptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileScreenExceptionsOperation{}
+		return op
 	}
-	return &xxx_EnumFileScreenExceptionsOperation{
-		This:    o.This,
-		Path:    o.Path,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumFileScreenExceptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumFileScreenExceptionsOperation) {
@@ -2665,7 +2695,7 @@ func (o *EnumFileScreenExceptionsRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.Options = op.Options
 }
 func (o *EnumFileScreenExceptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumFileScreenExceptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileScreenExceptionsOperation{}
@@ -2689,15 +2719,17 @@ type EnumFileScreenExceptionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumFileScreenExceptionsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumFileScreenExceptionsOperation {
+func (o *EnumFileScreenExceptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumFileScreenExceptionsOperation) *xxx_EnumFileScreenExceptionsOperation {
+	if op == nil {
+		op = &xxx_EnumFileScreenExceptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumFileScreenExceptionsOperation{}
+		return op
 	}
-	return &xxx_EnumFileScreenExceptionsOperation{
-		That:                 o.That,
-		FileScreenExceptions: o.FileScreenExceptions,
-		Return:               o.Return,
-	}
+	o.That = op.That
+	o.FileScreenExceptions = op.FileScreenExceptions
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumFileScreenExceptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumFileScreenExceptionsOperation) {
@@ -2709,7 +2741,7 @@ func (o *EnumFileScreenExceptionsResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *EnumFileScreenExceptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumFileScreenExceptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumFileScreenExceptionsOperation{}
@@ -2892,13 +2924,15 @@ type CreateFileScreenCollectionRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateFileScreenCollectionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateFileScreenCollectionOperation {
+func (o *CreateFileScreenCollectionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateFileScreenCollectionOperation) *xxx_CreateFileScreenCollectionOperation {
+	if op == nil {
+		op = &xxx_CreateFileScreenCollectionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileScreenCollectionOperation{}
+		return op
 	}
-	return &xxx_CreateFileScreenCollectionOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateFileScreenCollectionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateFileScreenCollectionOperation) {
@@ -2908,7 +2942,7 @@ func (o *CreateFileScreenCollectionRequest) xxx_FromOp(ctx context.Context, op *
 	o.This = op.This
 }
 func (o *CreateFileScreenCollectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateFileScreenCollectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileScreenCollectionOperation{}
@@ -2932,15 +2966,17 @@ type CreateFileScreenCollectionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateFileScreenCollectionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateFileScreenCollectionOperation {
+func (o *CreateFileScreenCollectionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateFileScreenCollectionOperation) *xxx_CreateFileScreenCollectionOperation {
+	if op == nil {
+		op = &xxx_CreateFileScreenCollectionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateFileScreenCollectionOperation{}
+		return op
 	}
-	return &xxx_CreateFileScreenCollectionOperation{
-		That:       o.That,
-		Collection: o.Collection,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Collection = op.Collection
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateFileScreenCollectionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateFileScreenCollectionOperation) {
@@ -2952,7 +2988,7 @@ func (o *CreateFileScreenCollectionResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *CreateFileScreenCollectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateFileScreenCollectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateFileScreenCollectionOperation{}

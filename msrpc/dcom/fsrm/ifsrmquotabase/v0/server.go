@@ -176,75 +176,133 @@ func QuotaBaseServerHandle(ctx context.Context, o QuotaBaseServer, opNum int, r 
 	}
 	switch opNum {
 	case 12: // QuotaLimit
-		in := &GetQuotaLimitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuotaLimitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuotaLimit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuotaLimitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuotaLimit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // QuotaLimit
-		in := &SetQuotaLimitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetQuotaLimitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetQuotaLimit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetQuotaLimitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetQuotaLimit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // QuotaFlags
-		in := &GetQuotaFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuotaFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuotaFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuotaFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuotaFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // QuotaFlags
-		in := &SetQuotaFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetQuotaFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetQuotaFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetQuotaFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetQuotaFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Thresholds
-		in := &GetThresholdsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetThresholdsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetThresholds(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetThresholdsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetThresholds(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // AddThreshold
-		in := &AddThresholdRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddThresholdOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddThreshold(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddThresholdRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddThreshold(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // DeleteThreshold
-		in := &DeleteThresholdRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteThresholdOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteThreshold(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteThresholdRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteThreshold(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // ModifyThreshold
-		in := &ModifyThresholdRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyThresholdOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyThreshold(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyThresholdRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyThreshold(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // CreateThresholdAction
-		in := &CreateThresholdActionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateThresholdActionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateThresholdAction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateThresholdActionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateThresholdAction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // EnumThresholdActions
-		in := &EnumThresholdActionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumThresholdActionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumThresholdActions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumThresholdActionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumThresholdActions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuotaBase
+type UnimplementedQuotaBaseServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedQuotaBaseServer) GetQuotaLimit(context.Context, *GetQuotaLimitRequest) (*GetQuotaLimitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) SetQuotaLimit(context.Context, *SetQuotaLimitRequest) (*SetQuotaLimitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) GetQuotaFlags(context.Context, *GetQuotaFlagsRequest) (*GetQuotaFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) SetQuotaFlags(context.Context, *SetQuotaFlagsRequest) (*SetQuotaFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) GetThresholds(context.Context, *GetThresholdsRequest) (*GetThresholdsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) AddThreshold(context.Context, *AddThresholdRequest) (*AddThresholdResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) DeleteThreshold(context.Context, *DeleteThresholdRequest) (*DeleteThresholdResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) ModifyThreshold(context.Context, *ModifyThresholdRequest) (*ModifyThresholdResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) CreateThresholdAction(context.Context, *CreateThresholdActionRequest) (*CreateThresholdActionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaBaseServer) EnumThresholdActions(context.Context, *EnumThresholdActionsRequest) (*EnumThresholdActionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaBaseServer = (*UnimplementedQuotaBaseServer)(nil)

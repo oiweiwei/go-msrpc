@@ -441,7 +441,7 @@ type xxx_DefaultQmmgmtClient struct {
 }
 
 func (o *xxx_DefaultQmmgmtClient) ManagementGetInfo(ctx context.Context, in *ManagementGetInfoRequest, opts ...dcerpc.CallOption) (*ManagementGetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -454,7 +454,7 @@ func (o *xxx_DefaultQmmgmtClient) ManagementGetInfo(ctx context.Context, in *Man
 }
 
 func (o *xxx_DefaultQmmgmtClient) ManagementAction(ctx context.Context, in *ManagementActionRequest, opts ...dcerpc.CallOption) (*ManagementActionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -786,16 +786,18 @@ type ManagementGetInfoRequest struct {
 	Var []*mqmq.PropertyVariant `idl:"name:apVar;size_is:(cp)" json:"var"`
 }
 
-func (o *ManagementGetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_ManagementGetInfoOperation {
+func (o *ManagementGetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_ManagementGetInfoOperation) *xxx_ManagementGetInfoOperation {
+	if op == nil {
+		op = &xxx_ManagementGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ManagementGetInfoOperation{}
+		return op
 	}
-	return &xxx_ManagementGetInfoOperation{
-		ObjectFormat:    o.ObjectFormat,
-		CreatePartition: o.CreatePartition,
-		Property:        o.Property,
-		Var:             o.Var,
-	}
+	o.ObjectFormat = op.ObjectFormat
+	o.CreatePartition = op.CreatePartition
+	o.Property = op.Property
+	o.Var = op.Var
+	return op
 }
 
 func (o *ManagementGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_ManagementGetInfoOperation) {
@@ -808,7 +810,7 @@ func (o *ManagementGetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Manag
 	o.Var = op.Var
 }
 func (o *ManagementGetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ManagementGetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ManagementGetInfoOperation{}
@@ -834,14 +836,16 @@ type ManagementGetInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ManagementGetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_ManagementGetInfoOperation {
+func (o *ManagementGetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_ManagementGetInfoOperation) *xxx_ManagementGetInfoOperation {
+	if op == nil {
+		op = &xxx_ManagementGetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_ManagementGetInfoOperation{}
+		return op
 	}
-	return &xxx_ManagementGetInfoOperation{
-		Var:    o.Var,
-		Return: o.Return,
-	}
+	o.Var = op.Var
+	o.Return = op.Return
+	return op
 }
 
 func (o *ManagementGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_ManagementGetInfoOperation) {
@@ -852,7 +856,7 @@ func (o *ManagementGetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Mana
 	o.Return = op.Return
 }
 func (o *ManagementGetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ManagementGetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ManagementGetInfoOperation{}
@@ -1002,14 +1006,16 @@ type ManagementActionRequest struct {
 	Action string `idl:"name:lpwszAction;string" json:"action"`
 }
 
-func (o *ManagementActionRequest) xxx_ToOp(ctx context.Context) *xxx_ManagementActionOperation {
+func (o *ManagementActionRequest) xxx_ToOp(ctx context.Context, op *xxx_ManagementActionOperation) *xxx_ManagementActionOperation {
+	if op == nil {
+		op = &xxx_ManagementActionOperation{}
+	}
 	if o == nil {
-		return &xxx_ManagementActionOperation{}
+		return op
 	}
-	return &xxx_ManagementActionOperation{
-		ObjectFormat: o.ObjectFormat,
-		Action:       o.Action,
-	}
+	o.ObjectFormat = op.ObjectFormat
+	o.Action = op.Action
+	return op
 }
 
 func (o *ManagementActionRequest) xxx_FromOp(ctx context.Context, op *xxx_ManagementActionOperation) {
@@ -1020,7 +1026,7 @@ func (o *ManagementActionRequest) xxx_FromOp(ctx context.Context, op *xxx_Manage
 	o.Action = op.Action
 }
 func (o *ManagementActionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ManagementActionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ManagementActionOperation{}
@@ -1037,13 +1043,15 @@ type ManagementActionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ManagementActionResponse) xxx_ToOp(ctx context.Context) *xxx_ManagementActionOperation {
+func (o *ManagementActionResponse) xxx_ToOp(ctx context.Context, op *xxx_ManagementActionOperation) *xxx_ManagementActionOperation {
+	if op == nil {
+		op = &xxx_ManagementActionOperation{}
+	}
 	if o == nil {
-		return &xxx_ManagementActionOperation{}
+		return op
 	}
-	return &xxx_ManagementActionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ManagementActionResponse) xxx_FromOp(ctx context.Context, op *xxx_ManagementActionOperation) {
@@ -1053,7 +1061,7 @@ func (o *ManagementActionResponse) xxx_FromOp(ctx context.Context, op *xxx_Manag
 	o.Return = op.Return
 }
 func (o *ManagementActionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ManagementActionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ManagementActionOperation{}

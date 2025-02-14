@@ -236,12 +236,14 @@ func EmsmdbServerHandle(ctx context.Context, o EmsmdbServer, opNum int, r ndr.Re
 		// Opnum0Reserved
 		return nil, nil
 	case 1: // EcDoDisconnect
-		in := &DoDisconnectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoDisconnectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoDisconnect(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoDisconnectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoDisconnect(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // Opnum2Reserved
 		// Opnum2Reserved
 		return nil, nil
@@ -249,22 +251,26 @@ func EmsmdbServerHandle(ctx context.Context, o EmsmdbServer, opNum int, r ndr.Re
 		// Opnum3Reserved
 		return nil, nil
 	case 4: // EcRRegisterPushNotification
-		in := &RegisterPushNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterPushNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterPushNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterPushNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterPushNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Opnum5Reserved
 		// Opnum5Reserved
 		return nil, nil
 	case 6: // EcDummyRpc
-		in := &DummyRPCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DummyRPCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DummyRPC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DummyRPCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DummyRPC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // Opnum7Reserved
 		// Opnum7Reserved
 		return nil, nil
@@ -275,19 +281,23 @@ func EmsmdbServerHandle(ctx context.Context, o EmsmdbServer, opNum int, r ndr.Re
 		// Opnum9Reserved
 		return nil, nil
 	case 10: // EcDoConnectEx
-		in := &DoConnectExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoConnectExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoConnectEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoConnectExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoConnectEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // EcDoRpcExt2
-		in := &DoRPCExt2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoRPCExt2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoRPCExt2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoRPCExt2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoRPCExt2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Opnum12Reserved
 		// Opnum12Reserved
 		return nil, nil
@@ -295,12 +305,39 @@ func EmsmdbServerHandle(ctx context.Context, o EmsmdbServer, opNum int, r ndr.Re
 		// Opnum13Reserved
 		return nil, nil
 	case 14: // EcDoAsyncConnectEx
-		in := &DoAsyncConnectExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DoAsyncConnectExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DoAsyncConnectEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DoAsyncConnectExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DoAsyncConnectEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented emsmdb
+type UnimplementedEmsmdbServer struct {
+}
+
+func (UnimplementedEmsmdbServer) DoDisconnect(context.Context, *DoDisconnectRequest) (*DoDisconnectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEmsmdbServer) RegisterPushNotification(context.Context, *RegisterPushNotificationRequest) (*RegisterPushNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEmsmdbServer) DummyRPC(context.Context, *DummyRPCRequest) (*DummyRPCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEmsmdbServer) DoConnectEx(context.Context, *DoConnectExRequest) (*DoConnectExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEmsmdbServer) DoRPCExt2(context.Context, *DoRPCExt2Request) (*DoRPCExt2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEmsmdbServer) DoAsyncConnectEx(context.Context, *DoAsyncConnectExRequest) (*DoAsyncConnectExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EmsmdbServer = (*UnimplementedEmsmdbServer)(nil)

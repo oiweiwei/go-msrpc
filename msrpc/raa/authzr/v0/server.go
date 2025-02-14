@@ -115,54 +115,96 @@ func NewAuthzrServerHandle(o AuthzrServer) dcerpc.ServerHandle {
 func AuthzrServerHandle(ctx context.Context, o AuthzrServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // AuthzrFreeContext
-		in := &FreeContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FreeContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FreeContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FreeContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FreeContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // AuthzrInitializeContextFromSid
-		in := &InitializeContextFromSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeContextFromSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeContextFromSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeContextFromSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeContextFromSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // AuthzrInitializeCompoundContext
-		in := &InitializeCompoundContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_InitializeCompoundContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.InitializeCompoundContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &InitializeCompoundContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.InitializeCompoundContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // AuthzrAccessCheck
-		in := &AccessCheckRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AccessCheckOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AccessCheck(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AccessCheckRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AccessCheck(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // AuthzGetInformationFromContext
-		in := &GetInformationFromContextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInformationFromContextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInformationFromContext(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInformationFromContextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInformationFromContext(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AuthzrModifyClaims
-		in := &ModifyClaimsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyClaimsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyClaims(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyClaimsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyClaims(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // AuthzrModifySids
-		in := &ModifySIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifySIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifySIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifySIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifySIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented authzr
+type UnimplementedAuthzrServer struct {
+}
+
+func (UnimplementedAuthzrServer) FreeContext(context.Context, *FreeContextRequest) (*FreeContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAuthzrServer) InitializeContextFromSID(context.Context, *InitializeContextFromSIDRequest) (*InitializeContextFromSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAuthzrServer) InitializeCompoundContext(context.Context, *InitializeCompoundContextRequest) (*InitializeCompoundContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAuthzrServer) AccessCheck(context.Context, *AccessCheckRequest) (*AccessCheckResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAuthzrServer) GetInformationFromContext(context.Context, *GetInformationFromContextRequest) (*GetInformationFromContextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAuthzrServer) ModifyClaims(context.Context, *ModifyClaimsRequest) (*ModifyClaimsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAuthzrServer) ModifySIDs(context.Context, *ModifySIDsRequest) (*ModifySIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AuthzrServer = (*UnimplementedAuthzrServer)(nil)

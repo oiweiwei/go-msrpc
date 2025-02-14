@@ -52,12 +52,25 @@ func AppHostChangeHandlerServerHandle(ctx context.Context, o AppHostChangeHandle
 	}
 	switch opNum {
 	case 3: // OnSectionChanges
-		in := &OnSectionChangesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnSectionChangesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnSectionChanges(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnSectionChangesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnSectionChanges(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostChangeHandler
+type UnimplementedAppHostChangeHandlerServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostChangeHandlerServer) OnSectionChanges(context.Context, *OnSectionChangesRequest) (*OnSectionChangesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostChangeHandlerServer = (*UnimplementedAppHostChangeHandlerServer)(nil)

@@ -78,7 +78,7 @@ func (o *xxx_DefaultFetchSmartEnumClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultFetchSmartEnumClient) GetSmartEnum(ctx context.Context, in *GetSmartEnumRequest, opts ...dcerpc.CallOption) (*GetSmartEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -309,13 +309,15 @@ type GetSmartEnumRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSmartEnumRequest) xxx_ToOp(ctx context.Context) *xxx_GetSmartEnumOperation {
+func (o *GetSmartEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSmartEnumOperation) *xxx_GetSmartEnumOperation {
+	if op == nil {
+		op = &xxx_GetSmartEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSmartEnumOperation{}
+		return op
 	}
-	return &xxx_GetSmartEnumOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSmartEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSmartEnumOperation) {
@@ -325,7 +327,7 @@ func (o *GetSmartEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSmartEn
 	o.This = op.This
 }
 func (o *GetSmartEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSmartEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSmartEnumOperation{}
@@ -348,15 +350,17 @@ type GetSmartEnumResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSmartEnumResponse) xxx_ToOp(ctx context.Context) *xxx_GetSmartEnumOperation {
+func (o *GetSmartEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSmartEnumOperation) *xxx_GetSmartEnumOperation {
+	if op == nil {
+		op = &xxx_GetSmartEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSmartEnumOperation{}
+		return op
 	}
-	return &xxx_GetSmartEnumOperation{
-		That:      o.That,
-		SmartEnum: o.SmartEnum,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.SmartEnum = op.SmartEnum
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSmartEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSmartEnumOperation) {
@@ -368,7 +372,7 @@ func (o *GetSmartEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSmartE
 	o.Return = op.Return
 }
 func (o *GetSmartEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSmartEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSmartEnumOperation{}

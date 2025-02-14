@@ -73,61 +73,109 @@ func AppHostConfigFileServerHandle(ctx context.Context, o AppHostConfigFileServe
 	}
 	switch opNum {
 	case 3: // ConfigPath
-		in := &GetConfigPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfigPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfigPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // FilePath
-		in := &GetFilePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFilePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFilePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Locations
-		in := &GetLocationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLocationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLocations(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLocationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLocations(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetAdminSection
-		in := &GetAdminSectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAdminSectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAdminSection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAdminSectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAdminSection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SetMetadata
-		in := &SetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // ClearInvalidSections
-		in := &ClearInvalidSectionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearInvalidSectionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClearInvalidSections(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearInvalidSectionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClearInvalidSections(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RootSectionGroup
-		in := &GetRootSectionGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRootSectionGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRootSectionGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRootSectionGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRootSectionGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostConfigFile
+type UnimplementedAppHostConfigFileServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostConfigFileServer) GetConfigPath(context.Context, *GetConfigPathRequest) (*GetConfigPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) GetFilePath(context.Context, *GetFilePathRequest) (*GetFilePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) GetLocations(context.Context, *GetLocationsRequest) (*GetLocationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) GetAdminSection(context.Context, *GetAdminSectionRequest) (*GetAdminSectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) SetMetadata(context.Context, *SetMetadataRequest) (*SetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) ClearInvalidSections(context.Context, *ClearInvalidSectionsRequest) (*ClearInvalidSectionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigFileServer) GetRootSectionGroup(context.Context, *GetRootSectionGroupRequest) (*GetRootSectionGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostConfigFileServer = (*UnimplementedAppHostConfigFileServer)(nil)

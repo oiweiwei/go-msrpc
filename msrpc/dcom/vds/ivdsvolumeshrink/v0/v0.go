@@ -82,7 +82,7 @@ func (o *xxx_DefaultVolumeShrinkClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeShrinkClient) QueryMaxReclaimableBytes(ctx context.Context, in *QueryMaxReclaimableBytesRequest, opts ...dcerpc.CallOption) (*QueryMaxReclaimableBytesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -102,7 +102,7 @@ func (o *xxx_DefaultVolumeShrinkClient) QueryMaxReclaimableBytes(ctx context.Con
 }
 
 func (o *xxx_DefaultVolumeShrinkClient) Shrink(ctx context.Context, in *ShrinkRequest, opts ...dcerpc.CallOption) (*ShrinkResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -301,13 +301,15 @@ type QueryMaxReclaimableBytesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryMaxReclaimableBytesRequest) xxx_ToOp(ctx context.Context) *xxx_QueryMaxReclaimableBytesOperation {
+func (o *QueryMaxReclaimableBytesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryMaxReclaimableBytesOperation) *xxx_QueryMaxReclaimableBytesOperation {
+	if op == nil {
+		op = &xxx_QueryMaxReclaimableBytesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryMaxReclaimableBytesOperation{}
+		return op
 	}
-	return &xxx_QueryMaxReclaimableBytesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryMaxReclaimableBytesRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryMaxReclaimableBytesOperation) {
@@ -317,7 +319,7 @@ func (o *QueryMaxReclaimableBytesRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.This = op.This
 }
 func (o *QueryMaxReclaimableBytesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryMaxReclaimableBytesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryMaxReclaimableBytesOperation{}
@@ -341,15 +343,17 @@ type QueryMaxReclaimableBytesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryMaxReclaimableBytesResponse) xxx_ToOp(ctx context.Context) *xxx_QueryMaxReclaimableBytesOperation {
+func (o *QueryMaxReclaimableBytesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryMaxReclaimableBytesOperation) *xxx_QueryMaxReclaimableBytesOperation {
+	if op == nil {
+		op = &xxx_QueryMaxReclaimableBytesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryMaxReclaimableBytesOperation{}
+		return op
 	}
-	return &xxx_QueryMaxReclaimableBytesOperation{
-		That:                            o.That,
-		PullMaxNumberOfReclaimableBytes: o.PullMaxNumberOfReclaimableBytes,
-		Return:                          o.Return,
-	}
+	o.That = op.That
+	o.PullMaxNumberOfReclaimableBytes = op.PullMaxNumberOfReclaimableBytes
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryMaxReclaimableBytesResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryMaxReclaimableBytesOperation) {
@@ -361,7 +365,7 @@ func (o *QueryMaxReclaimableBytesResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *QueryMaxReclaimableBytesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryMaxReclaimableBytesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryMaxReclaimableBytesOperation{}
@@ -570,15 +574,17 @@ type ShrinkRequest struct {
 	MinNumberOfReclaimableBytes     uint64         `idl:"name:ullMinNumberOfReclaimableBytes" json:"min_number_of_reclaimable_bytes"`
 }
 
-func (o *ShrinkRequest) xxx_ToOp(ctx context.Context) *xxx_ShrinkOperation {
+func (o *ShrinkRequest) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) *xxx_ShrinkOperation {
+	if op == nil {
+		op = &xxx_ShrinkOperation{}
+	}
 	if o == nil {
-		return &xxx_ShrinkOperation{}
+		return op
 	}
-	return &xxx_ShrinkOperation{
-		This:                            o.This,
-		DesiredNumberOfReclaimableBytes: o.DesiredNumberOfReclaimableBytes,
-		MinNumberOfReclaimableBytes:     o.MinNumberOfReclaimableBytes,
-	}
+	o.This = op.This
+	o.DesiredNumberOfReclaimableBytes = op.DesiredNumberOfReclaimableBytes
+	o.MinNumberOfReclaimableBytes = op.MinNumberOfReclaimableBytes
+	return op
 }
 
 func (o *ShrinkRequest) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation) {
@@ -590,7 +596,7 @@ func (o *ShrinkRequest) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation)
 	o.MinNumberOfReclaimableBytes = op.MinNumberOfReclaimableBytes
 }
 func (o *ShrinkRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ShrinkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShrinkOperation{}
@@ -610,15 +616,17 @@ type ShrinkResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ShrinkResponse) xxx_ToOp(ctx context.Context) *xxx_ShrinkOperation {
+func (o *ShrinkResponse) xxx_ToOp(ctx context.Context, op *xxx_ShrinkOperation) *xxx_ShrinkOperation {
+	if op == nil {
+		op = &xxx_ShrinkOperation{}
+	}
 	if o == nil {
-		return &xxx_ShrinkOperation{}
+		return op
 	}
-	return &xxx_ShrinkOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *ShrinkResponse) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation) {
@@ -630,7 +638,7 @@ func (o *ShrinkResponse) xxx_FromOp(ctx context.Context, op *xxx_ShrinkOperation
 	o.Return = op.Return
 }
 func (o *ShrinkResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ShrinkResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ShrinkOperation{}

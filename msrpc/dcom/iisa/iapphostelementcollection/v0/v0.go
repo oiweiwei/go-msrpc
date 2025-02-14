@@ -93,7 +93,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) Unknown() iunknown.UnknownCl
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) GetCount(ctx context.Context, in *GetCountRequest, opts ...dcerpc.CallOption) (*GetCountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -113,7 +113,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) GetCount(ctx context.Context
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) GetItem(ctx context.Context, in *GetItemRequest, opts ...dcerpc.CallOption) (*GetItemResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -133,7 +133,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) GetItem(ctx context.Context,
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) AddElement(ctx context.Context, in *AddElementRequest, opts ...dcerpc.CallOption) (*AddElementResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -153,7 +153,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) AddElement(ctx context.Conte
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) DeleteElement(ctx context.Context, in *DeleteElementRequest, opts ...dcerpc.CallOption) (*DeleteElementResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -173,7 +173,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) DeleteElement(ctx context.Co
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) Clear(ctx context.Context, in *ClearRequest, opts ...dcerpc.CallOption) (*ClearResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -193,7 +193,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) Clear(ctx context.Context, i
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) CreateNewElement(ctx context.Context, in *CreateNewElementRequest, opts ...dcerpc.CallOption) (*CreateNewElementResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -213,7 +213,7 @@ func (o *xxx_DefaultAppHostElementCollectionClient) CreateNewElement(ctx context
 }
 
 func (o *xxx_DefaultAppHostElementCollectionClient) GetSchema(ctx context.Context, in *GetSchemaRequest, opts ...dcerpc.CallOption) (*GetSchemaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -410,13 +410,15 @@ type GetCountRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetCountRequest) xxx_ToOp(ctx context.Context) *xxx_GetCountOperation {
+func (o *GetCountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperation) *xxx_GetCountOperation {
+	if op == nil {
+		op = &xxx_GetCountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCountOperation{}
+		return op
 	}
-	return &xxx_GetCountOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetCountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCountOperation) {
@@ -426,7 +428,7 @@ func (o *GetCountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCountOperat
 	o.This = op.This
 }
 func (o *GetCountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCountOperation{}
@@ -446,15 +448,17 @@ type GetCountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCountResponse) xxx_ToOp(ctx context.Context) *xxx_GetCountOperation {
+func (o *GetCountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCountOperation) *xxx_GetCountOperation {
+	if op == nil {
+		op = &xxx_GetCountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCountOperation{}
+		return op
 	}
-	return &xxx_GetCountOperation{
-		That:         o.That,
-		ElementCount: o.ElementCount,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.ElementCount = op.ElementCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCountOperation) {
@@ -466,7 +470,7 @@ func (o *GetCountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCountOpera
 	o.Return = op.Return
 }
 func (o *GetCountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCountOperation{}
@@ -676,14 +680,16 @@ type GetItemRequest struct {
 	Index *oaut.Variant  `idl:"name:cIndex" json:"index"`
 }
 
-func (o *GetItemRequest) xxx_ToOp(ctx context.Context) *xxx_GetItemOperation {
+func (o *GetItemRequest) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation) *xxx_GetItemOperation {
+	if op == nil {
+		op = &xxx_GetItemOperation{}
+	}
 	if o == nil {
-		return &xxx_GetItemOperation{}
+		return op
 	}
-	return &xxx_GetItemOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *GetItemRequest) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperation) {
@@ -694,7 +700,7 @@ func (o *GetItemRequest) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperatio
 	o.Index = op.Index
 }
 func (o *GetItemRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetItemRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetItemOperation{}
@@ -714,15 +720,17 @@ type GetItemResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetItemResponse) xxx_ToOp(ctx context.Context) *xxx_GetItemOperation {
+func (o *GetItemResponse) xxx_ToOp(ctx context.Context, op *xxx_GetItemOperation) *xxx_GetItemOperation {
+	if op == nil {
+		op = &xxx_GetItemOperation{}
+	}
 	if o == nil {
-		return &xxx_GetItemOperation{}
+		return op
 	}
-	return &xxx_GetItemOperation{
-		That:    o.That,
-		Element: o.Element,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Element = op.Element
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetItemResponse) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperation) {
@@ -734,7 +742,7 @@ func (o *GetItemResponse) xxx_FromOp(ctx context.Context, op *xxx_GetItemOperati
 	o.Return = op.Return
 }
 func (o *GetItemResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetItemResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetItemOperation{}
@@ -930,15 +938,17 @@ type AddElementRequest struct {
 	PositionCount int32                `idl:"name:cPosition" json:"position_count"`
 }
 
-func (o *AddElementRequest) xxx_ToOp(ctx context.Context) *xxx_AddElementOperation {
+func (o *AddElementRequest) xxx_ToOp(ctx context.Context, op *xxx_AddElementOperation) *xxx_AddElementOperation {
+	if op == nil {
+		op = &xxx_AddElementOperation{}
+	}
 	if o == nil {
-		return &xxx_AddElementOperation{}
+		return op
 	}
-	return &xxx_AddElementOperation{
-		This:          o.This,
-		Element:       o.Element,
-		PositionCount: o.PositionCount,
-	}
+	o.This = op.This
+	o.Element = op.Element
+	o.PositionCount = op.PositionCount
+	return op
 }
 
 func (o *AddElementRequest) xxx_FromOp(ctx context.Context, op *xxx_AddElementOperation) {
@@ -950,7 +960,7 @@ func (o *AddElementRequest) xxx_FromOp(ctx context.Context, op *xxx_AddElementOp
 	o.PositionCount = op.PositionCount
 }
 func (o *AddElementRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddElementOperation{}
@@ -969,14 +979,16 @@ type AddElementResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddElementResponse) xxx_ToOp(ctx context.Context) *xxx_AddElementOperation {
+func (o *AddElementResponse) xxx_ToOp(ctx context.Context, op *xxx_AddElementOperation) *xxx_AddElementOperation {
+	if op == nil {
+		op = &xxx_AddElementOperation{}
+	}
 	if o == nil {
-		return &xxx_AddElementOperation{}
+		return op
 	}
-	return &xxx_AddElementOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddElementResponse) xxx_FromOp(ctx context.Context, op *xxx_AddElementOperation) {
@@ -987,7 +999,7 @@ func (o *AddElementResponse) xxx_FromOp(ctx context.Context, op *xxx_AddElementO
 	o.Return = op.Return
 }
 func (o *AddElementResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddElementResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddElementOperation{}
@@ -1152,14 +1164,16 @@ type DeleteElementRequest struct {
 	Index *oaut.Variant  `idl:"name:cIndex" json:"index"`
 }
 
-func (o *DeleteElementRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteElementOperation {
+func (o *DeleteElementRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteElementOperation) *xxx_DeleteElementOperation {
+	if op == nil {
+		op = &xxx_DeleteElementOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteElementOperation{}
+		return op
 	}
-	return &xxx_DeleteElementOperation{
-		This:  o.This,
-		Index: o.Index,
-	}
+	o.This = op.This
+	o.Index = op.Index
+	return op
 }
 
 func (o *DeleteElementRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteElementOperation) {
@@ -1170,7 +1184,7 @@ func (o *DeleteElementRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteEle
 	o.Index = op.Index
 }
 func (o *DeleteElementRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteElementOperation{}
@@ -1189,14 +1203,16 @@ type DeleteElementResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteElementResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteElementOperation {
+func (o *DeleteElementResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteElementOperation) *xxx_DeleteElementOperation {
+	if op == nil {
+		op = &xxx_DeleteElementOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteElementOperation{}
+		return op
 	}
-	return &xxx_DeleteElementOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteElementResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteElementOperation) {
@@ -1207,7 +1223,7 @@ func (o *DeleteElementResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteEl
 	o.Return = op.Return
 }
 func (o *DeleteElementResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteElementResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteElementOperation{}
@@ -1341,13 +1357,15 @@ type ClearRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *ClearRequest) xxx_ToOp(ctx context.Context) *xxx_ClearOperation {
+func (o *ClearRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *xxx_ClearOperation {
+	if op == nil {
+		op = &xxx_ClearOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearOperation{}
+		return op
 	}
-	return &xxx_ClearOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *ClearRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearOperation) {
@@ -1357,7 +1375,7 @@ func (o *ClearRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearOperation) {
 	o.This = op.This
 }
 func (o *ClearRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearOperation{}
@@ -1376,14 +1394,16 @@ type ClearResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearResponse) xxx_ToOp(ctx context.Context) *xxx_ClearOperation {
+func (o *ClearResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearOperation) *xxx_ClearOperation {
+	if op == nil {
+		op = &xxx_ClearOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearOperation{}
+		return op
 	}
-	return &xxx_ClearOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearOperation) {
@@ -1394,7 +1414,7 @@ func (o *ClearResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearOperation) 
 	o.Return = op.Return
 }
 func (o *ClearResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearOperation{}
@@ -1625,14 +1645,16 @@ type CreateNewElementRequest struct {
 	ElementName *oaut.String   `idl:"name:bstrElementName" json:"element_name"`
 }
 
-func (o *CreateNewElementRequest) xxx_ToOp(ctx context.Context) *xxx_CreateNewElementOperation {
+func (o *CreateNewElementRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateNewElementOperation) *xxx_CreateNewElementOperation {
+	if op == nil {
+		op = &xxx_CreateNewElementOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateNewElementOperation{}
+		return op
 	}
-	return &xxx_CreateNewElementOperation{
-		This:        o.This,
-		ElementName: o.ElementName,
-	}
+	o.This = op.This
+	o.ElementName = op.ElementName
+	return op
 }
 
 func (o *CreateNewElementRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateNewElementOperation) {
@@ -1643,7 +1665,7 @@ func (o *CreateNewElementRequest) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.ElementName = op.ElementName
 }
 func (o *CreateNewElementRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateNewElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateNewElementOperation{}
@@ -1663,15 +1685,17 @@ type CreateNewElementResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateNewElementResponse) xxx_ToOp(ctx context.Context) *xxx_CreateNewElementOperation {
+func (o *CreateNewElementResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateNewElementOperation) *xxx_CreateNewElementOperation {
+	if op == nil {
+		op = &xxx_CreateNewElementOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateNewElementOperation{}
+		return op
 	}
-	return &xxx_CreateNewElementOperation{
-		That:    o.That,
-		Element: o.Element,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Element = op.Element
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateNewElementResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateNewElementOperation) {
@@ -1683,7 +1707,7 @@ func (o *CreateNewElementResponse) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.Return = op.Return
 }
 func (o *CreateNewElementResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateNewElementResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateNewElementOperation{}
@@ -1864,13 +1888,15 @@ type GetSchemaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSchemaRequest) xxx_ToOp(ctx context.Context) *xxx_GetSchemaOperation {
+func (o *GetSchemaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOperation) *xxx_GetSchemaOperation {
+	if op == nil {
+		op = &xxx_GetSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSchemaOperation{}
+		return op
 	}
-	return &xxx_GetSchemaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSchemaOperation) {
@@ -1880,7 +1906,7 @@ func (o *GetSchemaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSchemaOper
 	o.This = op.This
 }
 func (o *GetSchemaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSchemaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSchemaOperation{}
@@ -1900,15 +1926,17 @@ type GetSchemaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSchemaResponse) xxx_ToOp(ctx context.Context) *xxx_GetSchemaOperation {
+func (o *GetSchemaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSchemaOperation) *xxx_GetSchemaOperation {
+	if op == nil {
+		op = &xxx_GetSchemaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSchemaOperation{}
+		return op
 	}
-	return &xxx_GetSchemaOperation{
-		That:   o.That,
-		Schema: o.Schema,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Schema = op.Schema
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSchemaOperation) {
@@ -1920,7 +1948,7 @@ func (o *GetSchemaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSchemaOpe
 	o.Return = op.Return
 }
 func (o *GetSchemaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSchemaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSchemaOperation{}

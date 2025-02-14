@@ -109,7 +109,7 @@ func (o *xxx_DefaultCallResultClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultCallResultClient) GetResultObject(ctx context.Context, in *GetResultObjectRequest, opts ...dcerpc.CallOption) (*GetResultObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -129,7 +129,7 @@ func (o *xxx_DefaultCallResultClient) GetResultObject(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultCallResultClient) GetResultString(ctx context.Context, in *GetResultStringRequest, opts ...dcerpc.CallOption) (*GetResultStringResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -149,7 +149,7 @@ func (o *xxx_DefaultCallResultClient) GetResultString(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultCallResultClient) GetResultServices(ctx context.Context, in *GetResultServicesRequest, opts ...dcerpc.CallOption) (*GetResultServicesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -169,7 +169,7 @@ func (o *xxx_DefaultCallResultClient) GetResultServices(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultCallResultClient) GetCallStatus(ctx context.Context, in *GetCallStatusRequest, opts ...dcerpc.CallOption) (*GetCallStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -422,14 +422,16 @@ type GetResultObjectRequest struct {
 	Timeout int32 `idl:"name:lTimeout" json:"timeout"`
 }
 
-func (o *GetResultObjectRequest) xxx_ToOp(ctx context.Context) *xxx_GetResultObjectOperation {
+func (o *GetResultObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResultObjectOperation) *xxx_GetResultObjectOperation {
+	if op == nil {
+		op = &xxx_GetResultObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetResultObjectOperation{}
+		return op
 	}
-	return &xxx_GetResultObjectOperation{
-		This:    o.This,
-		Timeout: o.Timeout,
-	}
+	o.This = op.This
+	o.Timeout = op.Timeout
+	return op
 }
 
 func (o *GetResultObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetResultObjectOperation) {
@@ -440,7 +442,7 @@ func (o *GetResultObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetResu
 	o.Timeout = op.Timeout
 }
 func (o *GetResultObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetResultObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetResultObjectOperation{}
@@ -466,15 +468,17 @@ type GetResultObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetResultObjectResponse) xxx_ToOp(ctx context.Context) *xxx_GetResultObjectOperation {
+func (o *GetResultObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResultObjectOperation) *xxx_GetResultObjectOperation {
+	if op == nil {
+		op = &xxx_GetResultObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetResultObjectOperation{}
+		return op
 	}
-	return &xxx_GetResultObjectOperation{
-		That:         o.That,
-		ResultObject: o.ResultObject,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.ResultObject = op.ResultObject
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetResultObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetResultObjectOperation) {
@@ -486,7 +490,7 @@ func (o *GetResultObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRes
 	o.Return = op.Return
 }
 func (o *GetResultObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetResultObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetResultObjectOperation{}
@@ -685,14 +689,16 @@ type GetResultStringRequest struct {
 	Timeout int32 `idl:"name:lTimeout" json:"timeout"`
 }
 
-func (o *GetResultStringRequest) xxx_ToOp(ctx context.Context) *xxx_GetResultStringOperation {
+func (o *GetResultStringRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResultStringOperation) *xxx_GetResultStringOperation {
+	if op == nil {
+		op = &xxx_GetResultStringOperation{}
+	}
 	if o == nil {
-		return &xxx_GetResultStringOperation{}
+		return op
 	}
-	return &xxx_GetResultStringOperation{
-		This:    o.This,
-		Timeout: o.Timeout,
-	}
+	o.This = op.This
+	o.Timeout = op.Timeout
+	return op
 }
 
 func (o *GetResultStringRequest) xxx_FromOp(ctx context.Context, op *xxx_GetResultStringOperation) {
@@ -703,7 +709,7 @@ func (o *GetResultStringRequest) xxx_FromOp(ctx context.Context, op *xxx_GetResu
 	o.Timeout = op.Timeout
 }
 func (o *GetResultStringRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetResultStringRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetResultStringOperation{}
@@ -729,15 +735,17 @@ type GetResultStringResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetResultStringResponse) xxx_ToOp(ctx context.Context) *xxx_GetResultStringOperation {
+func (o *GetResultStringResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResultStringOperation) *xxx_GetResultStringOperation {
+	if op == nil {
+		op = &xxx_GetResultStringOperation{}
+	}
 	if o == nil {
-		return &xxx_GetResultStringOperation{}
+		return op
 	}
-	return &xxx_GetResultStringOperation{
-		That:         o.That,
-		ResultString: o.ResultString,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.ResultString = op.ResultString
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetResultStringResponse) xxx_FromOp(ctx context.Context, op *xxx_GetResultStringOperation) {
@@ -749,7 +757,7 @@ func (o *GetResultStringResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRes
 	o.Return = op.Return
 }
 func (o *GetResultStringResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetResultStringResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetResultStringOperation{}
@@ -949,14 +957,16 @@ type GetResultServicesRequest struct {
 	Timeout int32 `idl:"name:lTimeout" json:"timeout"`
 }
 
-func (o *GetResultServicesRequest) xxx_ToOp(ctx context.Context) *xxx_GetResultServicesOperation {
+func (o *GetResultServicesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetResultServicesOperation) *xxx_GetResultServicesOperation {
+	if op == nil {
+		op = &xxx_GetResultServicesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetResultServicesOperation{}
+		return op
 	}
-	return &xxx_GetResultServicesOperation{
-		This:    o.This,
-		Timeout: o.Timeout,
-	}
+	o.This = op.This
+	o.Timeout = op.Timeout
+	return op
 }
 
 func (o *GetResultServicesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetResultServicesOperation) {
@@ -967,7 +977,7 @@ func (o *GetResultServicesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRe
 	o.Timeout = op.Timeout
 }
 func (o *GetResultServicesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetResultServicesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetResultServicesOperation{}
@@ -992,15 +1002,17 @@ type GetResultServicesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetResultServicesResponse) xxx_ToOp(ctx context.Context) *xxx_GetResultServicesOperation {
+func (o *GetResultServicesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetResultServicesOperation) *xxx_GetResultServicesOperation {
+	if op == nil {
+		op = &xxx_GetResultServicesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetResultServicesOperation{}
+		return op
 	}
-	return &xxx_GetResultServicesOperation{
-		That:     o.That,
-		Services: o.Services,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.Services = op.Services
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetResultServicesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetResultServicesOperation) {
@@ -1012,7 +1024,7 @@ func (o *GetResultServicesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetR
 	o.Return = op.Return
 }
 func (o *GetResultServicesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetResultServicesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetResultServicesOperation{}
@@ -1176,14 +1188,16 @@ type GetCallStatusRequest struct {
 	Timeout int32 `idl:"name:lTimeout" json:"timeout"`
 }
 
-func (o *GetCallStatusRequest) xxx_ToOp(ctx context.Context) *xxx_GetCallStatusOperation {
+func (o *GetCallStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCallStatusOperation) *xxx_GetCallStatusOperation {
+	if op == nil {
+		op = &xxx_GetCallStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCallStatusOperation{}
+		return op
 	}
-	return &xxx_GetCallStatusOperation{
-		This:    o.This,
-		Timeout: o.Timeout,
-	}
+	o.This = op.This
+	o.Timeout = op.Timeout
+	return op
 }
 
 func (o *GetCallStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCallStatusOperation) {
@@ -1194,7 +1208,7 @@ func (o *GetCallStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCallSt
 	o.Timeout = op.Timeout
 }
 func (o *GetCallStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetCallStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCallStatusOperation{}
@@ -1218,15 +1232,17 @@ type GetCallStatusResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetCallStatusResponse) xxx_ToOp(ctx context.Context) *xxx_GetCallStatusOperation {
+func (o *GetCallStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCallStatusOperation) *xxx_GetCallStatusOperation {
+	if op == nil {
+		op = &xxx_GetCallStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_GetCallStatusOperation{}
+		return op
 	}
-	return &xxx_GetCallStatusOperation{
-		That:   o.That,
-		Status: o.Status,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Status = op.Status
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetCallStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCallStatusOperation) {
@@ -1238,7 +1254,7 @@ func (o *GetCallStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCallS
 	o.Return = op.Return
 }
 func (o *GetCallStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetCallStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetCallStatusOperation{}

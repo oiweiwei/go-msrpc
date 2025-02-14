@@ -110,7 +110,7 @@ type xxx_DefaultFaxclientClient struct {
 }
 
 func (o *xxx_DefaultFaxclientClient) OpenConnection(ctx context.Context, in *OpenConnectionRequest, opts ...dcerpc.CallOption) (*OpenConnectionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -123,7 +123,7 @@ func (o *xxx_DefaultFaxclientClient) OpenConnection(ctx context.Context, in *Ope
 }
 
 func (o *xxx_DefaultFaxclientClient) ClientEventQueue(ctx context.Context, in *ClientEventQueueRequest, opts ...dcerpc.CallOption) (*ClientEventQueueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -136,7 +136,7 @@ func (o *xxx_DefaultFaxclientClient) ClientEventQueue(ctx context.Context, in *C
 }
 
 func (o *xxx_DefaultFaxclientClient) CloseConnection(ctx context.Context, in *CloseConnectionRequest, opts ...dcerpc.CallOption) (*CloseConnectionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -149,7 +149,7 @@ func (o *xxx_DefaultFaxclientClient) CloseConnection(ctx context.Context, in *Cl
 }
 
 func (o *xxx_DefaultFaxclientClient) ClientEventQueueEx(ctx context.Context, in *ClientEventQueueExRequest, opts ...dcerpc.CallOption) (*ClientEventQueueExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -287,13 +287,15 @@ type OpenConnectionRequest struct {
 	Context uint64 `idl:"name:Context" json:"context"`
 }
 
-func (o *OpenConnectionRequest) xxx_ToOp(ctx context.Context) *xxx_OpenConnectionOperation {
+func (o *OpenConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenConnectionOperation) *xxx_OpenConnectionOperation {
+	if op == nil {
+		op = &xxx_OpenConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenConnectionOperation{}
+		return op
 	}
-	return &xxx_OpenConnectionOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *OpenConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenConnectionOperation) {
@@ -303,7 +305,7 @@ func (o *OpenConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenConn
 	o.Context = op.Context
 }
 func (o *OpenConnectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenConnectionOperation{}
@@ -343,14 +345,16 @@ type OpenConnectionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenConnectionResponse) xxx_ToOp(ctx context.Context) *xxx_OpenConnectionOperation {
+func (o *OpenConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenConnectionOperation) *xxx_OpenConnectionOperation {
+	if op == nil {
+		op = &xxx_OpenConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenConnectionOperation{}
+		return op
 	}
-	return &xxx_OpenConnectionOperation{
-		Fax:    o.Fax,
-		Return: o.Return,
-	}
+	o.Fax = op.Fax
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenConnectionOperation) {
@@ -361,7 +365,7 @@ func (o *OpenConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenCon
 	o.Return = op.Return
 }
 func (o *OpenConnectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenConnectionOperation{}
@@ -502,14 +506,16 @@ type ClientEventQueueRequest struct {
 	FaxEvent *fax.CompletionEvent `idl:"name:FaxEvent" json:"fax_event"`
 }
 
-func (o *ClientEventQueueRequest) xxx_ToOp(ctx context.Context) *xxx_ClientEventQueueOperation {
+func (o *ClientEventQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientEventQueueOperation) *xxx_ClientEventQueueOperation {
+	if op == nil {
+		op = &xxx_ClientEventQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientEventQueueOperation{}
+		return op
 	}
-	return &xxx_ClientEventQueueOperation{
-		FaxPort:  o.FaxPort,
-		FaxEvent: o.FaxEvent,
-	}
+	o.FaxPort = op.FaxPort
+	o.FaxEvent = op.FaxEvent
+	return op
 }
 
 func (o *ClientEventQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientEventQueueOperation) {
@@ -520,7 +526,7 @@ func (o *ClientEventQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_Client
 	o.FaxEvent = op.FaxEvent
 }
 func (o *ClientEventQueueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClientEventQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientEventQueueOperation{}
@@ -537,13 +543,15 @@ type ClientEventQueueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClientEventQueueResponse) xxx_ToOp(ctx context.Context) *xxx_ClientEventQueueOperation {
+func (o *ClientEventQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientEventQueueOperation) *xxx_ClientEventQueueOperation {
+	if op == nil {
+		op = &xxx_ClientEventQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientEventQueueOperation{}
+		return op
 	}
-	return &xxx_ClientEventQueueOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClientEventQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientEventQueueOperation) {
@@ -553,7 +561,7 @@ func (o *ClientEventQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_Clien
 	o.Return = op.Return
 }
 func (o *ClientEventQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClientEventQueueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientEventQueueOperation{}
@@ -675,13 +683,15 @@ type CloseConnectionRequest struct {
 	Fax *fax.Fax `idl:"name:FaxHandle" json:"fax"`
 }
 
-func (o *CloseConnectionRequest) xxx_ToOp(ctx context.Context) *xxx_CloseConnectionOperation {
+func (o *CloseConnectionRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseConnectionOperation) *xxx_CloseConnectionOperation {
+	if op == nil {
+		op = &xxx_CloseConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseConnectionOperation{}
+		return op
 	}
-	return &xxx_CloseConnectionOperation{
-		Fax: o.Fax,
-	}
+	o.Fax = op.Fax
+	return op
 }
 
 func (o *CloseConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseConnectionOperation) {
@@ -691,7 +701,7 @@ func (o *CloseConnectionRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseCo
 	o.Fax = op.Fax
 }
 func (o *CloseConnectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseConnectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseConnectionOperation{}
@@ -711,14 +721,16 @@ type CloseConnectionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseConnectionResponse) xxx_ToOp(ctx context.Context) *xxx_CloseConnectionOperation {
+func (o *CloseConnectionResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseConnectionOperation) *xxx_CloseConnectionOperation {
+	if op == nil {
+		op = &xxx_CloseConnectionOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseConnectionOperation{}
+		return op
 	}
-	return &xxx_CloseConnectionOperation{
-		Fax:    o.Fax,
-		Return: o.Return,
-	}
+	o.Fax = op.Fax
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseConnectionOperation) {
@@ -729,7 +741,7 @@ func (o *CloseConnectionResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseC
 	o.Return = op.Return
 }
 func (o *CloseConnectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseConnectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseConnectionOperation{}
@@ -927,15 +939,17 @@ type ClientEventQueueExRequest struct {
 	DataSize uint32 `idl:"name:dwDataSize" json:"data_size"`
 }
 
-func (o *ClientEventQueueExRequest) xxx_ToOp(ctx context.Context) *xxx_ClientEventQueueExOperation {
+func (o *ClientEventQueueExRequest) xxx_ToOp(ctx context.Context, op *xxx_ClientEventQueueExOperation) *xxx_ClientEventQueueExOperation {
+	if op == nil {
+		op = &xxx_ClientEventQueueExOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientEventQueueExOperation{}
+		return op
 	}
-	return &xxx_ClientEventQueueExOperation{
-		ClientContext: o.ClientContext,
-		Data:          o.Data,
-		DataSize:      o.DataSize,
-	}
+	o.ClientContext = op.ClientContext
+	o.Data = op.Data
+	o.DataSize = op.DataSize
+	return op
 }
 
 func (o *ClientEventQueueExRequest) xxx_FromOp(ctx context.Context, op *xxx_ClientEventQueueExOperation) {
@@ -947,7 +961,7 @@ func (o *ClientEventQueueExRequest) xxx_FromOp(ctx context.Context, op *xxx_Clie
 	o.DataSize = op.DataSize
 }
 func (o *ClientEventQueueExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClientEventQueueExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientEventQueueExOperation{}
@@ -964,13 +978,15 @@ type ClientEventQueueExResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClientEventQueueExResponse) xxx_ToOp(ctx context.Context) *xxx_ClientEventQueueExOperation {
+func (o *ClientEventQueueExResponse) xxx_ToOp(ctx context.Context, op *xxx_ClientEventQueueExOperation) *xxx_ClientEventQueueExOperation {
+	if op == nil {
+		op = &xxx_ClientEventQueueExOperation{}
+	}
 	if o == nil {
-		return &xxx_ClientEventQueueExOperation{}
+		return op
 	}
-	return &xxx_ClientEventQueueExOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClientEventQueueExResponse) xxx_FromOp(ctx context.Context, op *xxx_ClientEventQueueExOperation) {
@@ -980,7 +996,7 @@ func (o *ClientEventQueueExResponse) xxx_FromOp(ctx context.Context, op *xxx_Cli
 	o.Return = op.Return
 }
 func (o *ClientEventQueueExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClientEventQueueExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClientEventQueueExOperation{}

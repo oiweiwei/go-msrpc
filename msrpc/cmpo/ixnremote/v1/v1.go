@@ -791,7 +791,7 @@ type xxx_DefaultIxnRemoteClient struct {
 }
 
 func (o *xxx_DefaultIxnRemoteClient) Poke(ctx context.Context, in *PokeRequest, opts ...dcerpc.CallOption) (*PokeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -804,7 +804,7 @@ func (o *xxx_DefaultIxnRemoteClient) Poke(ctx context.Context, in *PokeRequest, 
 }
 
 func (o *xxx_DefaultIxnRemoteClient) BuildContext(ctx context.Context, in *BuildContextRequest, opts ...dcerpc.CallOption) (*BuildContextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -817,7 +817,7 @@ func (o *xxx_DefaultIxnRemoteClient) BuildContext(ctx context.Context, in *Build
 }
 
 func (o *xxx_DefaultIxnRemoteClient) NegotiateResources(ctx context.Context, in *NegotiateResourcesRequest, opts ...dcerpc.CallOption) (*NegotiateResourcesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -830,7 +830,7 @@ func (o *xxx_DefaultIxnRemoteClient) NegotiateResources(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultIxnRemoteClient) SendReceive(ctx context.Context, in *SendReceiveRequest, opts ...dcerpc.CallOption) (*SendReceiveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -843,7 +843,7 @@ func (o *xxx_DefaultIxnRemoteClient) SendReceive(ctx context.Context, in *SendRe
 }
 
 func (o *xxx_DefaultIxnRemoteClient) TearDownContext(ctx context.Context, in *TearDownContextRequest, opts ...dcerpc.CallOption) (*TearDownContextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -856,7 +856,7 @@ func (o *xxx_DefaultIxnRemoteClient) TearDownContext(ctx context.Context, in *Te
 }
 
 func (o *xxx_DefaultIxnRemoteClient) BeginTearDown(ctx context.Context, in *BeginTearDownRequest, opts ...dcerpc.CallOption) (*BeginTearDownResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -869,7 +869,7 @@ func (o *xxx_DefaultIxnRemoteClient) BeginTearDown(ctx context.Context, in *Begi
 }
 
 func (o *xxx_DefaultIxnRemoteClient) PokeW(ctx context.Context, in *PokeWRequest, opts ...dcerpc.CallOption) (*PokeWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -882,7 +882,7 @@ func (o *xxx_DefaultIxnRemoteClient) PokeW(ctx context.Context, in *PokeWRequest
 }
 
 func (o *xxx_DefaultIxnRemoteClient) BuildContextW(ctx context.Context, in *BuildContextWRequest, opts ...dcerpc.CallOption) (*BuildContextWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1137,18 +1137,20 @@ type PokeRequest struct {
 	Blob []byte `idl:"name:rguchBlob;size_is:(dwcbSizeOfBlob)" json:"blob"`
 }
 
-func (o *PokeRequest) xxx_ToOp(ctx context.Context) *xxx_PokeOperation {
+func (o *PokeRequest) xxx_ToOp(ctx context.Context, op *xxx_PokeOperation) *xxx_PokeOperation {
+	if op == nil {
+		op = &xxx_PokeOperation{}
+	}
 	if o == nil {
-		return &xxx_PokeOperation{}
+		return op
 	}
-	return &xxx_PokeOperation{
-		Rank:       o.Rank,
-		CalleeUUID: o.CalleeUUID,
-		HostName:   o.HostName,
-		UUIDString: o.UUIDString,
-		SizeOfBlob: o.SizeOfBlob,
-		Blob:       o.Blob,
-	}
+	o.Rank = op.Rank
+	o.CalleeUUID = op.CalleeUUID
+	o.HostName = op.HostName
+	o.UUIDString = op.UUIDString
+	o.SizeOfBlob = op.SizeOfBlob
+	o.Blob = op.Blob
+	return op
 }
 
 func (o *PokeRequest) xxx_FromOp(ctx context.Context, op *xxx_PokeOperation) {
@@ -1163,7 +1165,7 @@ func (o *PokeRequest) xxx_FromOp(ctx context.Context, op *xxx_PokeOperation) {
 	o.Blob = op.Blob
 }
 func (o *PokeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PokeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PokeOperation{}
@@ -1180,13 +1182,15 @@ type PokeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PokeResponse) xxx_ToOp(ctx context.Context) *xxx_PokeOperation {
+func (o *PokeResponse) xxx_ToOp(ctx context.Context, op *xxx_PokeOperation) *xxx_PokeOperation {
+	if op == nil {
+		op = &xxx_PokeOperation{}
+	}
 	if o == nil {
-		return &xxx_PokeOperation{}
+		return op
 	}
-	return &xxx_PokeOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *PokeResponse) xxx_FromOp(ctx context.Context, op *xxx_PokeOperation) {
@@ -1196,7 +1200,7 @@ func (o *PokeResponse) xxx_FromOp(ctx context.Context, op *xxx_PokeOperation) {
 	o.Return = op.Return
 }
 func (o *PokeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PokeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PokeOperation{}
@@ -1588,22 +1592,24 @@ type BuildContextRequest struct {
 	Blob []byte `idl:"name:rguchBlob;size_is:(dwcbSizeOfBlob)" json:"blob"`
 }
 
-func (o *BuildContextRequest) xxx_ToOp(ctx context.Context) *xxx_BuildContextOperation {
+func (o *BuildContextRequest) xxx_ToOp(ctx context.Context, op *xxx_BuildContextOperation) *xxx_BuildContextOperation {
+	if op == nil {
+		op = &xxx_BuildContextOperation{}
+	}
 	if o == nil {
-		return &xxx_BuildContextOperation{}
+		return op
 	}
-	return &xxx_BuildContextOperation{
-		Rank:            o.Rank,
-		BindVersionSet:  o.BindVersionSet,
-		CalleeUUID:      o.CalleeUUID,
-		HostName:        o.HostName,
-		UUIDString:      o.UUIDString,
-		GUIDIn:          o.GUIDIn,
-		GUIDOut:         o.GUIDOut,
-		BoundVersionSet: o.BoundVersionSet,
-		SizeOfBlob:      o.SizeOfBlob,
-		Blob:            o.Blob,
-	}
+	o.Rank = op.Rank
+	o.BindVersionSet = op.BindVersionSet
+	o.CalleeUUID = op.CalleeUUID
+	o.HostName = op.HostName
+	o.UUIDString = op.UUIDString
+	o.GUIDIn = op.GUIDIn
+	o.GUIDOut = op.GUIDOut
+	o.BoundVersionSet = op.BoundVersionSet
+	o.SizeOfBlob = op.SizeOfBlob
+	o.Blob = op.Blob
+	return op
 }
 
 func (o *BuildContextRequest) xxx_FromOp(ctx context.Context, op *xxx_BuildContextOperation) {
@@ -1622,7 +1628,7 @@ func (o *BuildContextRequest) xxx_FromOp(ctx context.Context, op *xxx_BuildConte
 	o.Blob = op.Blob
 }
 func (o *BuildContextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BuildContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BuildContextOperation{}
@@ -1654,16 +1660,18 @@ type BuildContextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BuildContextResponse) xxx_ToOp(ctx context.Context) *xxx_BuildContextOperation {
+func (o *BuildContextResponse) xxx_ToOp(ctx context.Context, op *xxx_BuildContextOperation) *xxx_BuildContextOperation {
+	if op == nil {
+		op = &xxx_BuildContextOperation{}
+	}
 	if o == nil {
-		return &xxx_BuildContextOperation{}
+		return op
 	}
-	return &xxx_BuildContextOperation{
-		GUIDOut:         o.GUIDOut,
-		BoundVersionSet: o.BoundVersionSet,
-		Handle:          o.Handle,
-		Return:          o.Return,
-	}
+	o.GUIDOut = op.GUIDOut
+	o.BoundVersionSet = op.BoundVersionSet
+	o.Handle = op.Handle
+	o.Return = op.Return
+	return op
 }
 
 func (o *BuildContextResponse) xxx_FromOp(ctx context.Context, op *xxx_BuildContextOperation) {
@@ -1676,7 +1684,7 @@ func (o *BuildContextResponse) xxx_FromOp(ctx context.Context, op *xxx_BuildCont
 	o.Return = op.Return
 }
 func (o *BuildContextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BuildContextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BuildContextOperation{}
@@ -1848,16 +1856,18 @@ type NegotiateResourcesRequest struct {
 	AcceptedCount uint32 `idl:"name:pdwcAccepted" json:"accepted_count"`
 }
 
-func (o *NegotiateResourcesRequest) xxx_ToOp(ctx context.Context) *xxx_NegotiateResourcesOperation {
+func (o *NegotiateResourcesRequest) xxx_ToOp(ctx context.Context, op *xxx_NegotiateResourcesOperation) *xxx_NegotiateResourcesOperation {
+	if op == nil {
+		op = &xxx_NegotiateResourcesOperation{}
+	}
 	if o == nil {
-		return &xxx_NegotiateResourcesOperation{}
+		return op
 	}
-	return &xxx_NegotiateResourcesOperation{
-		Context:        o.Context,
-		ResourceType:   o.ResourceType,
-		RequestedCount: o.RequestedCount,
-		AcceptedCount:  o.AcceptedCount,
-	}
+	o.Context = op.Context
+	o.ResourceType = op.ResourceType
+	o.RequestedCount = op.RequestedCount
+	o.AcceptedCount = op.AcceptedCount
+	return op
 }
 
 func (o *NegotiateResourcesRequest) xxx_FromOp(ctx context.Context, op *xxx_NegotiateResourcesOperation) {
@@ -1870,7 +1880,7 @@ func (o *NegotiateResourcesRequest) xxx_FromOp(ctx context.Context, op *xxx_Nego
 	o.AcceptedCount = op.AcceptedCount
 }
 func (o *NegotiateResourcesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NegotiateResourcesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NegotiateResourcesOperation{}
@@ -1892,14 +1902,16 @@ type NegotiateResourcesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NegotiateResourcesResponse) xxx_ToOp(ctx context.Context) *xxx_NegotiateResourcesOperation {
+func (o *NegotiateResourcesResponse) xxx_ToOp(ctx context.Context, op *xxx_NegotiateResourcesOperation) *xxx_NegotiateResourcesOperation {
+	if op == nil {
+		op = &xxx_NegotiateResourcesOperation{}
+	}
 	if o == nil {
-		return &xxx_NegotiateResourcesOperation{}
+		return op
 	}
-	return &xxx_NegotiateResourcesOperation{
-		AcceptedCount: o.AcceptedCount,
-		Return:        o.Return,
-	}
+	o.AcceptedCount = op.AcceptedCount
+	o.Return = op.Return
+	return op
 }
 
 func (o *NegotiateResourcesResponse) xxx_FromOp(ctx context.Context, op *xxx_NegotiateResourcesOperation) {
@@ -1910,7 +1922,7 @@ func (o *NegotiateResourcesResponse) xxx_FromOp(ctx context.Context, op *xxx_Neg
 	o.Return = op.Return
 }
 func (o *NegotiateResourcesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NegotiateResourcesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NegotiateResourcesOperation{}
@@ -2098,16 +2110,18 @@ type SendReceiveRequest struct {
 	BoxCar []byte `idl:"name:rguchBoxCar;size_is:(dwcbSizeOfBoxCar)" json:"box_car"`
 }
 
-func (o *SendReceiveRequest) xxx_ToOp(ctx context.Context) *xxx_SendReceiveOperation {
+func (o *SendReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_SendReceiveOperation) *xxx_SendReceiveOperation {
+	if op == nil {
+		op = &xxx_SendReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_SendReceiveOperation{}
+		return op
 	}
-	return &xxx_SendReceiveOperation{
-		Context:       o.Context,
-		MessagesCount: o.MessagesCount,
-		SizeOfBoxCar:  o.SizeOfBoxCar,
-		BoxCar:        o.BoxCar,
-	}
+	o.Context = op.Context
+	o.MessagesCount = op.MessagesCount
+	o.SizeOfBoxCar = op.SizeOfBoxCar
+	o.BoxCar = op.BoxCar
+	return op
 }
 
 func (o *SendReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_SendReceiveOperation) {
@@ -2120,7 +2134,7 @@ func (o *SendReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_SendReceive
 	o.BoxCar = op.BoxCar
 }
 func (o *SendReceiveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SendReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendReceiveOperation{}
@@ -2137,13 +2151,15 @@ type SendReceiveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SendReceiveResponse) xxx_ToOp(ctx context.Context) *xxx_SendReceiveOperation {
+func (o *SendReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_SendReceiveOperation) *xxx_SendReceiveOperation {
+	if op == nil {
+		op = &xxx_SendReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_SendReceiveOperation{}
+		return op
 	}
-	return &xxx_SendReceiveOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SendReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_SendReceiveOperation) {
@@ -2153,7 +2169,7 @@ func (o *SendReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_SendReceiv
 	o.Return = op.Return
 }
 func (o *SendReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SendReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendReceiveOperation{}
@@ -2336,15 +2352,17 @@ type TearDownContextRequest struct {
 	TearDownType TeardownType `idl:"name:tearDownType" json:"tear_down_type"`
 }
 
-func (o *TearDownContextRequest) xxx_ToOp(ctx context.Context) *xxx_TearDownContextOperation {
+func (o *TearDownContextRequest) xxx_ToOp(ctx context.Context, op *xxx_TearDownContextOperation) *xxx_TearDownContextOperation {
+	if op == nil {
+		op = &xxx_TearDownContextOperation{}
+	}
 	if o == nil {
-		return &xxx_TearDownContextOperation{}
+		return op
 	}
-	return &xxx_TearDownContextOperation{
-		ContextHandle: o.ContextHandle,
-		Rank:          o.Rank,
-		TearDownType:  o.TearDownType,
-	}
+	o.ContextHandle = op.ContextHandle
+	o.Rank = op.Rank
+	o.TearDownType = op.TearDownType
+	return op
 }
 
 func (o *TearDownContextRequest) xxx_FromOp(ctx context.Context, op *xxx_TearDownContextOperation) {
@@ -2356,7 +2374,7 @@ func (o *TearDownContextRequest) xxx_FromOp(ctx context.Context, op *xxx_TearDow
 	o.TearDownType = op.TearDownType
 }
 func (o *TearDownContextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *TearDownContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TearDownContextOperation{}
@@ -2378,14 +2396,16 @@ type TearDownContextResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *TearDownContextResponse) xxx_ToOp(ctx context.Context) *xxx_TearDownContextOperation {
+func (o *TearDownContextResponse) xxx_ToOp(ctx context.Context, op *xxx_TearDownContextOperation) *xxx_TearDownContextOperation {
+	if op == nil {
+		op = &xxx_TearDownContextOperation{}
+	}
 	if o == nil {
-		return &xxx_TearDownContextOperation{}
+		return op
 	}
-	return &xxx_TearDownContextOperation{
-		ContextHandle: o.ContextHandle,
-		Return:        o.Return,
-	}
+	o.ContextHandle = op.ContextHandle
+	o.Return = op.Return
+	return op
 }
 
 func (o *TearDownContextResponse) xxx_FromOp(ctx context.Context, op *xxx_TearDownContextOperation) {
@@ -2396,7 +2416,7 @@ func (o *TearDownContextResponse) xxx_FromOp(ctx context.Context, op *xxx_TearDo
 	o.Return = op.Return
 }
 func (o *TearDownContextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *TearDownContextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_TearDownContextOperation{}
@@ -2521,14 +2541,16 @@ type BeginTearDownRequest struct {
 	TearDownType TeardownType `idl:"name:tearDownType" json:"tear_down_type"`
 }
 
-func (o *BeginTearDownRequest) xxx_ToOp(ctx context.Context) *xxx_BeginTearDownOperation {
+func (o *BeginTearDownRequest) xxx_ToOp(ctx context.Context, op *xxx_BeginTearDownOperation) *xxx_BeginTearDownOperation {
+	if op == nil {
+		op = &xxx_BeginTearDownOperation{}
+	}
 	if o == nil {
-		return &xxx_BeginTearDownOperation{}
+		return op
 	}
-	return &xxx_BeginTearDownOperation{
-		ContextHandle: o.ContextHandle,
-		TearDownType:  o.TearDownType,
-	}
+	o.ContextHandle = op.ContextHandle
+	o.TearDownType = op.TearDownType
+	return op
 }
 
 func (o *BeginTearDownRequest) xxx_FromOp(ctx context.Context, op *xxx_BeginTearDownOperation) {
@@ -2539,7 +2561,7 @@ func (o *BeginTearDownRequest) xxx_FromOp(ctx context.Context, op *xxx_BeginTear
 	o.TearDownType = op.TearDownType
 }
 func (o *BeginTearDownRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BeginTearDownRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BeginTearDownOperation{}
@@ -2556,13 +2578,15 @@ type BeginTearDownResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BeginTearDownResponse) xxx_ToOp(ctx context.Context) *xxx_BeginTearDownOperation {
+func (o *BeginTearDownResponse) xxx_ToOp(ctx context.Context, op *xxx_BeginTearDownOperation) *xxx_BeginTearDownOperation {
+	if op == nil {
+		op = &xxx_BeginTearDownOperation{}
+	}
 	if o == nil {
-		return &xxx_BeginTearDownOperation{}
+		return op
 	}
-	return &xxx_BeginTearDownOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BeginTearDownResponse) xxx_FromOp(ctx context.Context, op *xxx_BeginTearDownOperation) {
@@ -2572,7 +2596,7 @@ func (o *BeginTearDownResponse) xxx_FromOp(ctx context.Context, op *xxx_BeginTea
 	o.Return = op.Return
 }
 func (o *BeginTearDownResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BeginTearDownResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BeginTearDownOperation{}
@@ -2805,18 +2829,20 @@ type PokeWRequest struct {
 	Blob []byte `idl:"name:rguchBlob;size_is:(dwcbSizeOfBlob)" json:"blob"`
 }
 
-func (o *PokeWRequest) xxx_ToOp(ctx context.Context) *xxx_PokeWOperation {
+func (o *PokeWRequest) xxx_ToOp(ctx context.Context, op *xxx_PokeWOperation) *xxx_PokeWOperation {
+	if op == nil {
+		op = &xxx_PokeWOperation{}
+	}
 	if o == nil {
-		return &xxx_PokeWOperation{}
+		return op
 	}
-	return &xxx_PokeWOperation{
-		Rank:       o.Rank,
-		CalleeUUID: o.CalleeUUID,
-		HostName:   o.HostName,
-		UUIDString: o.UUIDString,
-		SizeOfBlob: o.SizeOfBlob,
-		Blob:       o.Blob,
-	}
+	o.Rank = op.Rank
+	o.CalleeUUID = op.CalleeUUID
+	o.HostName = op.HostName
+	o.UUIDString = op.UUIDString
+	o.SizeOfBlob = op.SizeOfBlob
+	o.Blob = op.Blob
+	return op
 }
 
 func (o *PokeWRequest) xxx_FromOp(ctx context.Context, op *xxx_PokeWOperation) {
@@ -2831,7 +2857,7 @@ func (o *PokeWRequest) xxx_FromOp(ctx context.Context, op *xxx_PokeWOperation) {
 	o.Blob = op.Blob
 }
 func (o *PokeWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PokeWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PokeWOperation{}
@@ -2848,13 +2874,15 @@ type PokeWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PokeWResponse) xxx_ToOp(ctx context.Context) *xxx_PokeWOperation {
+func (o *PokeWResponse) xxx_ToOp(ctx context.Context, op *xxx_PokeWOperation) *xxx_PokeWOperation {
+	if op == nil {
+		op = &xxx_PokeWOperation{}
+	}
 	if o == nil {
-		return &xxx_PokeWOperation{}
+		return op
 	}
-	return &xxx_PokeWOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *PokeWResponse) xxx_FromOp(ctx context.Context, op *xxx_PokeWOperation) {
@@ -2864,7 +2892,7 @@ func (o *PokeWResponse) xxx_FromOp(ctx context.Context, op *xxx_PokeWOperation) 
 	o.Return = op.Return
 }
 func (o *PokeWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PokeWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PokeWOperation{}
@@ -3250,22 +3278,24 @@ type BuildContextWRequest struct {
 	Blob []byte `idl:"name:rguchBlob;size_is:(dwcbSizeOfBlob)" json:"blob"`
 }
 
-func (o *BuildContextWRequest) xxx_ToOp(ctx context.Context) *xxx_BuildContextWOperation {
+func (o *BuildContextWRequest) xxx_ToOp(ctx context.Context, op *xxx_BuildContextWOperation) *xxx_BuildContextWOperation {
+	if op == nil {
+		op = &xxx_BuildContextWOperation{}
+	}
 	if o == nil {
-		return &xxx_BuildContextWOperation{}
+		return op
 	}
-	return &xxx_BuildContextWOperation{
-		Rank:            o.Rank,
-		BindVersionSet:  o.BindVersionSet,
-		CalleeUUID:      o.CalleeUUID,
-		HostName:        o.HostName,
-		UUIDString:      o.UUIDString,
-		GUIDIn:          o.GUIDIn,
-		GUIDOut:         o.GUIDOut,
-		BoundVersionSet: o.BoundVersionSet,
-		SizeOfBlob:      o.SizeOfBlob,
-		Blob:            o.Blob,
-	}
+	o.Rank = op.Rank
+	o.BindVersionSet = op.BindVersionSet
+	o.CalleeUUID = op.CalleeUUID
+	o.HostName = op.HostName
+	o.UUIDString = op.UUIDString
+	o.GUIDIn = op.GUIDIn
+	o.GUIDOut = op.GUIDOut
+	o.BoundVersionSet = op.BoundVersionSet
+	o.SizeOfBlob = op.SizeOfBlob
+	o.Blob = op.Blob
+	return op
 }
 
 func (o *BuildContextWRequest) xxx_FromOp(ctx context.Context, op *xxx_BuildContextWOperation) {
@@ -3284,7 +3314,7 @@ func (o *BuildContextWRequest) xxx_FromOp(ctx context.Context, op *xxx_BuildCont
 	o.Blob = op.Blob
 }
 func (o *BuildContextWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BuildContextWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BuildContextWOperation{}
@@ -3316,16 +3346,18 @@ type BuildContextWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BuildContextWResponse) xxx_ToOp(ctx context.Context) *xxx_BuildContextWOperation {
+func (o *BuildContextWResponse) xxx_ToOp(ctx context.Context, op *xxx_BuildContextWOperation) *xxx_BuildContextWOperation {
+	if op == nil {
+		op = &xxx_BuildContextWOperation{}
+	}
 	if o == nil {
-		return &xxx_BuildContextWOperation{}
+		return op
 	}
-	return &xxx_BuildContextWOperation{
-		GUIDOut:         o.GUIDOut,
-		BoundVersionSet: o.BoundVersionSet,
-		Handle:          o.Handle,
-		Return:          o.Return,
-	}
+	o.GUIDOut = op.GUIDOut
+	o.BoundVersionSet = op.BoundVersionSet
+	o.Handle = op.Handle
+	o.Return = op.Return
+	return op
 }
 
 func (o *BuildContextWResponse) xxx_FromOp(ctx context.Context, op *xxx_BuildContextWOperation) {
@@ -3338,7 +3370,7 @@ func (o *BuildContextWResponse) xxx_FromOp(ctx context.Context, op *xxx_BuildCon
 	o.Return = op.Return
 }
 func (o *BuildContextWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BuildContextWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BuildContextWOperation{}

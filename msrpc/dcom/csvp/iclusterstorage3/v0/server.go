@@ -499,110 +499,193 @@ func ClusterStorage3ServerHandle(ctx context.Context, o ClusterStorage3Server, o
 	}
 	switch opNum {
 	case 3: // CprepDiskGetUniqueIds3
-		in := &GetUniqueIDs3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUniqueIDs3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUniqueIDs3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUniqueIDs3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUniqueIDs3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CprepCheckNetFtBindings3
-		in := &CheckNetFTBindings3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CheckNetFTBindings3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CheckNetFTBindings3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CheckNetFTBindings3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CheckNetFTBindings3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // CprepCsvTestSetup3
-		in := &CSVTestSetup3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CSVTestSetup3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CSVTestSetup3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CSVTestSetup3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CSVTestSetup3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // CprepIsNodeClustered3
-		in := &IsNodeClustered3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsNodeClustered3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsNodeClustered3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsNodeClustered3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsNodeClustered3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // CprepCreateNewSmbShares3
-		in := &CreateNewSMBShares3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateNewSMBShares3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateNewSMBShares3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateNewSMBShares3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateNewSMBShares3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // CprepConnectToNewSmbShares3
-		in := &ConnectToNewSMBShares3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConnectToNewSMBShares3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConnectToNewSMBShares3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConnectToNewSMBShares3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConnectToNewSMBShares3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // CprepDiskGetProps3
-		in := &GetProperties3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetProperties3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetProperties3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // CprepDiskIsReadOnly3
-		in := &IsReadOnly3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsReadOnly3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsReadOnly3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsReadOnly3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsReadOnly3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // CprepDiskPRRegister3
-		in := &PRRegister3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRRegister3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRRegister3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRRegister3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRRegister3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // CprepDiskFindKey3
-		in := &FindKey3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FindKey3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FindKey3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FindKey3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FindKey3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // CprepDiskPRPreempt3
-		in := &PRPreempt3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRPreempt3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRPreempt3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRPreempt3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRPreempt3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // CprepDiskPRReserve3
-		in := &PRReserve3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRReserve3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRReserve3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRReserve3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRReserve3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // CprepDiskIsPRPresent3
-		in := &IsPRPresent3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsPRPresent3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsPRPresent3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsPRPresent3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsPRPresent3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // CprepDiskPRRelease3
-		in := &PRRelease3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRRelease3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRRelease3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRRelease3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRRelease3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // CprepDiskPRClear3
-		in := &PRClear3Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PRClear3Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PRClear3(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PRClear3Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PRClear3(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterStorage3
+type UnimplementedClusterStorage3Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterStorage3Server) GetUniqueIDs3(context.Context, *GetUniqueIDs3Request) (*GetUniqueIDs3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) CheckNetFTBindings3(context.Context, *CheckNetFTBindings3Request) (*CheckNetFTBindings3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) CSVTestSetup3(context.Context, *CSVTestSetup3Request) (*CSVTestSetup3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) IsNodeClustered3(context.Context, *IsNodeClustered3Request) (*IsNodeClustered3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) CreateNewSMBShares3(context.Context, *CreateNewSMBShares3Request) (*CreateNewSMBShares3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) ConnectToNewSMBShares3(context.Context, *ConnectToNewSMBShares3Request) (*ConnectToNewSMBShares3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) GetProperties3(context.Context, *GetProperties3Request) (*GetProperties3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) IsReadOnly3(context.Context, *IsReadOnly3Request) (*IsReadOnly3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) PRRegister3(context.Context, *PRRegister3Request) (*PRRegister3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) FindKey3(context.Context, *FindKey3Request) (*FindKey3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) PRPreempt3(context.Context, *PRPreempt3Request) (*PRPreempt3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) PRReserve3(context.Context, *PRReserve3Request) (*PRReserve3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) IsPRPresent3(context.Context, *IsPRPresent3Request) (*IsPRPresent3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) PRRelease3(context.Context, *PRRelease3Request) (*PRRelease3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterStorage3Server) PRClear3(context.Context, *PRClear3Request) (*PRClear3Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterStorage3Server = (*UnimplementedClusterStorage3Server)(nil)

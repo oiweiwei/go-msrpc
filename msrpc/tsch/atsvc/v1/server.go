@@ -70,33 +70,60 @@ func NewATSvcServerHandle(o ATSvcServer) dcerpc.ServerHandle {
 func ATSvcServerHandle(ctx context.Context, o ATSvcServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NetrJobAdd
-		in := &JobAddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_JobAddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.JobAdd(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &JobAddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.JobAdd(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // NetrJobDel
-		in := &JobDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_JobDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.JobDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &JobDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.JobDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NetrJobEnum
-		in := &JobEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_JobEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.JobEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &JobEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.JobEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // NetrJobGetInfo
-		in := &JobGetInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_JobGetInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.JobGetInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &JobGetInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.JobGetInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented atsvc
+type UnimplementedATSvcServer struct {
+}
+
+func (UnimplementedATSvcServer) JobAdd(context.Context, *JobAddRequest) (*JobAddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedATSvcServer) JobDelete(context.Context, *JobDeleteRequest) (*JobDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedATSvcServer) JobEnum(context.Context, *JobEnumRequest) (*JobEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedATSvcServer) JobGetInfo(context.Context, *JobGetInfoRequest) (*JobGetInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ATSvcServer = (*UnimplementedATSvcServer)(nil)

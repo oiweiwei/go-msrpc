@@ -164,7 +164,7 @@ type xxx_DefaultTrksvrClient struct {
 }
 
 func (o *xxx_DefaultTrksvrClient) ServerMessage(ctx context.Context, in *ServerMessageRequest, opts ...dcerpc.CallOption) (*ServerMessageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -177,7 +177,7 @@ func (o *xxx_DefaultTrksvrClient) ServerMessage(ctx context.Context, in *ServerM
 }
 
 func (o *xxx_DefaultTrksvrClient) ServerMessageCallback(ctx context.Context, in *ServerMessageCallbackRequest, opts ...dcerpc.CallOption) (*ServerMessageCallbackResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -329,13 +329,15 @@ type ServerMessageRequest struct {
 	Message *dltm.MessageUnion `idl:"name:pMsg" json:"message"`
 }
 
-func (o *ServerMessageRequest) xxx_ToOp(ctx context.Context) *xxx_ServerMessageOperation {
+func (o *ServerMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerMessageOperation) *xxx_ServerMessageOperation {
+	if op == nil {
+		op = &xxx_ServerMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerMessageOperation{}
+		return op
 	}
-	return &xxx_ServerMessageOperation{
-		Message: o.Message,
-	}
+	o.Message = op.Message
+	return op
 }
 
 func (o *ServerMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerMessageOperation) {
@@ -345,7 +347,7 @@ func (o *ServerMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerMes
 	o.Message = op.Message
 }
 func (o *ServerMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerMessageOperation{}
@@ -366,14 +368,16 @@ type ServerMessageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerMessageResponse) xxx_ToOp(ctx context.Context) *xxx_ServerMessageOperation {
+func (o *ServerMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerMessageOperation) *xxx_ServerMessageOperation {
+	if op == nil {
+		op = &xxx_ServerMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerMessageOperation{}
+		return op
 	}
-	return &xxx_ServerMessageOperation{
-		Message: o.Message,
-		Return:  o.Return,
-	}
+	o.Message = op.Message
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerMessageOperation) {
@@ -384,7 +388,7 @@ func (o *ServerMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerMe
 	o.Return = op.Return
 }
 func (o *ServerMessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerMessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerMessageOperation{}
@@ -520,13 +524,15 @@ type ServerMessageCallbackRequest struct {
 	Message *dltm.MessageUnion `idl:"name:pMsg" json:"message"`
 }
 
-func (o *ServerMessageCallbackRequest) xxx_ToOp(ctx context.Context) *xxx_ServerMessageCallbackOperation {
+func (o *ServerMessageCallbackRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerMessageCallbackOperation) *xxx_ServerMessageCallbackOperation {
+	if op == nil {
+		op = &xxx_ServerMessageCallbackOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerMessageCallbackOperation{}
+		return op
 	}
-	return &xxx_ServerMessageCallbackOperation{
-		Message: o.Message,
-	}
+	o.Message = op.Message
+	return op
 }
 
 func (o *ServerMessageCallbackRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerMessageCallbackOperation) {
@@ -536,7 +542,7 @@ func (o *ServerMessageCallbackRequest) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Message = op.Message
 }
 func (o *ServerMessageCallbackRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerMessageCallbackRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerMessageCallbackOperation{}
@@ -556,14 +562,16 @@ type ServerMessageCallbackResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerMessageCallbackResponse) xxx_ToOp(ctx context.Context) *xxx_ServerMessageCallbackOperation {
+func (o *ServerMessageCallbackResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerMessageCallbackOperation) *xxx_ServerMessageCallbackOperation {
+	if op == nil {
+		op = &xxx_ServerMessageCallbackOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerMessageCallbackOperation{}
+		return op
 	}
-	return &xxx_ServerMessageCallbackOperation{
-		Message: o.Message,
-		Return:  o.Return,
-	}
+	o.Message = op.Message
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerMessageCallbackResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerMessageCallbackOperation) {
@@ -574,7 +582,7 @@ func (o *ServerMessageCallbackResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ServerMessageCallbackResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerMessageCallbackResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerMessageCallbackOperation{}

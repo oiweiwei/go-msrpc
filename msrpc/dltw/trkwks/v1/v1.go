@@ -201,7 +201,7 @@ type xxx_DefaultTrkwksClient struct {
 }
 
 func (o *xxx_DefaultTrkwksClient) SearchMachine(ctx context.Context, in *SearchMachineRequest, opts ...dcerpc.CallOption) (*SearchMachineResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -500,15 +500,17 @@ type SearchMachineRequest struct {
 	LastObjectID *dltw.DomainRelativeObjectID `idl:"name:pdroidLast" json:"last_object_id"`
 }
 
-func (o *SearchMachineRequest) xxx_ToOp(ctx context.Context) *xxx_SearchMachineOperation {
+func (o *SearchMachineRequest) xxx_ToOp(ctx context.Context, op *xxx_SearchMachineOperation) *xxx_SearchMachineOperation {
+	if op == nil {
+		op = &xxx_SearchMachineOperation{}
+	}
 	if o == nil {
-		return &xxx_SearchMachineOperation{}
+		return op
 	}
-	return &xxx_SearchMachineOperation{
-		Restrictions: o.Restrictions,
-		BirthLast:    o.BirthLast,
-		LastObjectID: o.LastObjectID,
-	}
+	o.Restrictions = op.Restrictions
+	o.BirthLast = op.BirthLast
+	o.LastObjectID = op.LastObjectID
+	return op
 }
 
 func (o *SearchMachineRequest) xxx_FromOp(ctx context.Context, op *xxx_SearchMachineOperation) {
@@ -520,7 +522,7 @@ func (o *SearchMachineRequest) xxx_FromOp(ctx context.Context, op *xxx_SearchMac
 	o.LastObjectID = op.LastObjectID
 }
 func (o *SearchMachineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SearchMachineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SearchMachineOperation{}
@@ -549,17 +551,19 @@ type SearchMachineResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SearchMachineResponse) xxx_ToOp(ctx context.Context) *xxx_SearchMachineOperation {
+func (o *SearchMachineResponse) xxx_ToOp(ctx context.Context, op *xxx_SearchMachineOperation) *xxx_SearchMachineOperation {
+	if op == nil {
+		op = &xxx_SearchMachineOperation{}
+	}
 	if o == nil {
-		return &xxx_SearchMachineOperation{}
+		return op
 	}
-	return &xxx_SearchMachineOperation{
-		BirthNext:     o.BirthNext,
-		NextObjectID:  o.NextObjectID,
-		NextMachineID: o.NextMachineID,
-		Path:          o.Path,
-		Return:        o.Return,
-	}
+	o.BirthNext = op.BirthNext
+	o.NextObjectID = op.NextObjectID
+	o.NextMachineID = op.NextMachineID
+	o.Path = op.Path
+	o.Return = op.Return
+	return op
 }
 
 func (o *SearchMachineResponse) xxx_FromOp(ctx context.Context, op *xxx_SearchMachineOperation) {
@@ -573,7 +577,7 @@ func (o *SearchMachineResponse) xxx_FromOp(ctx context.Context, op *xxx_SearchMa
 	o.Return = op.Return
 }
 func (o *SearchMachineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SearchMachineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SearchMachineOperation{}

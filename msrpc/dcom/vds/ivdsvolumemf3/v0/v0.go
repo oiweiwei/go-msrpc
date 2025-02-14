@@ -97,7 +97,7 @@ func (o *xxx_DefaultVolumeMF3Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeMF3Client) QueryVolumeGUIDPathnames(ctx context.Context, in *QueryVolumeGUIDPathnamesRequest, opts ...dcerpc.CallOption) (*QueryVolumeGUIDPathnamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -117,7 +117,7 @@ func (o *xxx_DefaultVolumeMF3Client) QueryVolumeGUIDPathnames(ctx context.Contex
 }
 
 func (o *xxx_DefaultVolumeMF3Client) FormatEx2(ctx context.Context, in *FormatEx2Request, opts ...dcerpc.CallOption) (*FormatEx2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -137,7 +137,7 @@ func (o *xxx_DefaultVolumeMF3Client) FormatEx2(ctx context.Context, in *FormatEx
 }
 
 func (o *xxx_DefaultVolumeMF3Client) OfflineVolume(ctx context.Context, in *OfflineVolumeRequest, opts ...dcerpc.CallOption) (*OfflineVolumeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -429,13 +429,15 @@ type QueryVolumeGUIDPathnamesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryVolumeGUIDPathnamesRequest) xxx_ToOp(ctx context.Context) *xxx_QueryVolumeGUIDPathnamesOperation {
+func (o *QueryVolumeGUIDPathnamesRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryVolumeGUIDPathnamesOperation) *xxx_QueryVolumeGUIDPathnamesOperation {
+	if op == nil {
+		op = &xxx_QueryVolumeGUIDPathnamesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryVolumeGUIDPathnamesOperation{}
+		return op
 	}
-	return &xxx_QueryVolumeGUIDPathnamesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryVolumeGUIDPathnamesRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryVolumeGUIDPathnamesOperation) {
@@ -445,7 +447,7 @@ func (o *QueryVolumeGUIDPathnamesRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.This = op.This
 }
 func (o *QueryVolumeGUIDPathnamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryVolumeGUIDPathnamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryVolumeGUIDPathnamesOperation{}
@@ -469,16 +471,18 @@ type QueryVolumeGUIDPathnamesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryVolumeGUIDPathnamesResponse) xxx_ToOp(ctx context.Context) *xxx_QueryVolumeGUIDPathnamesOperation {
+func (o *QueryVolumeGUIDPathnamesResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryVolumeGUIDPathnamesOperation) *xxx_QueryVolumeGUIDPathnamesOperation {
+	if op == nil {
+		op = &xxx_QueryVolumeGUIDPathnamesOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryVolumeGUIDPathnamesOperation{}
+		return op
 	}
-	return &xxx_QueryVolumeGUIDPathnamesOperation{
-		That:          o.That,
-		PathArray:     o.PathArray,
-		NumberOfPaths: o.NumberOfPaths,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.PathArray = op.PathArray
+	o.NumberOfPaths = op.NumberOfPaths
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryVolumeGUIDPathnamesResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryVolumeGUIDPathnamesOperation) {
@@ -491,7 +495,7 @@ func (o *QueryVolumeGUIDPathnamesResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *QueryVolumeGUIDPathnamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryVolumeGUIDPathnamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryVolumeGUIDPathnamesOperation{}
@@ -806,18 +810,20 @@ type FormatEx2Request struct {
 	Options uint32 `idl:"name:Options" json:"options"`
 }
 
-func (o *FormatEx2Request) xxx_ToOp(ctx context.Context) *xxx_FormatEx2Operation {
+func (o *FormatEx2Request) xxx_ToOp(ctx context.Context, op *xxx_FormatEx2Operation) *xxx_FormatEx2Operation {
+	if op == nil {
+		op = &xxx_FormatEx2Operation{}
+	}
 	if o == nil {
-		return &xxx_FormatEx2Operation{}
+		return op
 	}
-	return &xxx_FormatEx2Operation{
-		This:                      o.This,
-		FileSystemTypeName:        o.FileSystemTypeName,
-		FileSystemRevision:        o.FileSystemRevision,
-		DesiredUnitAllocationSize: o.DesiredUnitAllocationSize,
-		Label:                     o.Label,
-		Options:                   o.Options,
-	}
+	o.This = op.This
+	o.FileSystemTypeName = op.FileSystemTypeName
+	o.FileSystemRevision = op.FileSystemRevision
+	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
+	o.Label = op.Label
+	o.Options = op.Options
+	return op
 }
 
 func (o *FormatEx2Request) xxx_FromOp(ctx context.Context, op *xxx_FormatEx2Operation) {
@@ -832,7 +838,7 @@ func (o *FormatEx2Request) xxx_FromOp(ctx context.Context, op *xxx_FormatEx2Oper
 	o.Options = op.Options
 }
 func (o *FormatEx2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FormatEx2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatEx2Operation{}
@@ -855,15 +861,17 @@ type FormatEx2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FormatEx2Response) xxx_ToOp(ctx context.Context) *xxx_FormatEx2Operation {
+func (o *FormatEx2Response) xxx_ToOp(ctx context.Context, op *xxx_FormatEx2Operation) *xxx_FormatEx2Operation {
+	if op == nil {
+		op = &xxx_FormatEx2Operation{}
+	}
 	if o == nil {
-		return &xxx_FormatEx2Operation{}
+		return op
 	}
-	return &xxx_FormatEx2Operation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *FormatEx2Response) xxx_FromOp(ctx context.Context, op *xxx_FormatEx2Operation) {
@@ -875,7 +883,7 @@ func (o *FormatEx2Response) xxx_FromOp(ctx context.Context, op *xxx_FormatEx2Ope
 	o.Return = op.Return
 }
 func (o *FormatEx2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FormatEx2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatEx2Operation{}
@@ -1009,13 +1017,15 @@ type OfflineVolumeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *OfflineVolumeRequest) xxx_ToOp(ctx context.Context) *xxx_OfflineVolumeOperation {
+func (o *OfflineVolumeRequest) xxx_ToOp(ctx context.Context, op *xxx_OfflineVolumeOperation) *xxx_OfflineVolumeOperation {
+	if op == nil {
+		op = &xxx_OfflineVolumeOperation{}
+	}
 	if o == nil {
-		return &xxx_OfflineVolumeOperation{}
+		return op
 	}
-	return &xxx_OfflineVolumeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *OfflineVolumeRequest) xxx_FromOp(ctx context.Context, op *xxx_OfflineVolumeOperation) {
@@ -1025,7 +1035,7 @@ func (o *OfflineVolumeRequest) xxx_FromOp(ctx context.Context, op *xxx_OfflineVo
 	o.This = op.This
 }
 func (o *OfflineVolumeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OfflineVolumeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OfflineVolumeOperation{}
@@ -1044,14 +1054,16 @@ type OfflineVolumeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OfflineVolumeResponse) xxx_ToOp(ctx context.Context) *xxx_OfflineVolumeOperation {
+func (o *OfflineVolumeResponse) xxx_ToOp(ctx context.Context, op *xxx_OfflineVolumeOperation) *xxx_OfflineVolumeOperation {
+	if op == nil {
+		op = &xxx_OfflineVolumeOperation{}
+	}
 	if o == nil {
-		return &xxx_OfflineVolumeOperation{}
+		return op
 	}
-	return &xxx_OfflineVolumeOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OfflineVolumeResponse) xxx_FromOp(ctx context.Context, op *xxx_OfflineVolumeOperation) {
@@ -1062,7 +1074,7 @@ func (o *OfflineVolumeResponse) xxx_FromOp(ctx context.Context, op *xxx_OfflineV
 	o.Return = op.Return
 }
 func (o *OfflineVolumeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OfflineVolumeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OfflineVolumeOperation{}

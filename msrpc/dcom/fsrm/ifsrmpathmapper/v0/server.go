@@ -69,12 +69,25 @@ func PathMapperServerHandle(ctx context.Context, o PathMapperServer, opNum int, 
 	}
 	switch opNum {
 	case 7: // GetSharePathsForLocalPath
-		in := &GetSharePathsForLocalPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSharePathsForLocalPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSharePathsForLocalPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSharePathsForLocalPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSharePathsForLocalPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmPathMapper
+type UnimplementedPathMapperServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedPathMapperServer) GetSharePathsForLocalPath(context.Context, *GetSharePathsForLocalPathRequest) (*GetSharePathsForLocalPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PathMapperServer = (*UnimplementedPathMapperServer)(nil)

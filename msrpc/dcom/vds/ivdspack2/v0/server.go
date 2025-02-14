@@ -61,12 +61,25 @@ func Pack2ServerHandle(ctx context.Context, o Pack2Server, opNum int, r ndr.Read
 	}
 	switch opNum {
 	case 3: // CreateVolume2
-		in := &CreateVolume2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateVolume2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateVolume2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateVolume2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateVolume2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsPack2
+type UnimplementedPack2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedPack2Server) CreateVolume2(context.Context, *CreateVolume2Request) (*CreateVolume2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Pack2Server = (*UnimplementedPack2Server)(nil)

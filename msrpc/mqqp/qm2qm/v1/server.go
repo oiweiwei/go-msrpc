@@ -315,82 +315,144 @@ func NewQm2qmServerHandle(o Qm2qmServer) dcerpc.ServerHandle {
 func Qm2qmServerHandle(ctx context.Context, o Qm2qmServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RemoteQMStartReceive
-		in := &StartReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RemoteQMEndReceive
-		in := &EndReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // RemoteQMOpenQueue
-		in := &OpenQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // RemoteQMCloseQueue
-		in := &CloseQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // RemoteQMCloseCursor
-		in := &CloseCursorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseCursorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseCursor(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseCursorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseCursor(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RemoteQMCancelReceive
-		in := &CancelReceiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CancelReceiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CancelReceive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CancelReceiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CancelReceive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // RemoteQMPurgeQueue
-		in := &PurgeQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PurgeQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PurgeQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PurgeQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PurgeQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // RemoteQMGetQMQMServerPort
-		in := &GetQMQMServerPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQMQMServerPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQMQMServerPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQMQMServerPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQMQMServerPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // RemoteQmGetVersion
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // RemoteQMStartReceive2
-		in := &StartReceive2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartReceive2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartReceive2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartReceive2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartReceive2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // RemoteQMStartReceiveByLookupId
-		in := &StartReceiveByLookupIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartReceiveByLookupIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartReceiveByLookupID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartReceiveByLookupIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartReceiveByLookupID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented qm2qm
+type UnimplementedQm2qmServer struct {
+}
+
+func (UnimplementedQm2qmServer) StartReceive(context.Context, *StartReceiveRequest) (*StartReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) EndReceive(context.Context, *EndReceiveRequest) (*EndReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) OpenQueue(context.Context, *OpenQueueRequest) (*OpenQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) CloseQueue(context.Context, *CloseQueueRequest) (*CloseQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) CloseCursor(context.Context, *CloseCursorRequest) (*CloseCursorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) CancelReceive(context.Context, *CancelReceiveRequest) (*CancelReceiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) PurgeQueue(context.Context, *PurgeQueueRequest) (*PurgeQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) GetQMQMServerPort(context.Context, *GetQMQMServerPortRequest) (*GetQMQMServerPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) StartReceive2(context.Context, *StartReceive2Request) (*StartReceive2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQm2qmServer) StartReceiveByLookupID(context.Context, *StartReceiveByLookupIDRequest) (*StartReceiveByLookupIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Qm2qmServer = (*UnimplementedQm2qmServer)(nil)

@@ -106,7 +106,7 @@ func (o *xxx_DefaultAlternateLaunchClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultAlternateLaunchClient) CreateConfiguration(ctx context.Context, in *CreateConfigurationRequest, opts ...dcerpc.CallOption) (*CreateConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -126,7 +126,7 @@ func (o *xxx_DefaultAlternateLaunchClient) CreateConfiguration(ctx context.Conte
 }
 
 func (o *xxx_DefaultAlternateLaunchClient) DeleteConfiguration(ctx context.Context, in *DeleteConfigurationRequest, opts ...dcerpc.CallOption) (*DeleteConfigurationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -585,21 +585,23 @@ type CreateConfigurationRequest struct {
 	DesktopOK int16 `idl:"name:bDesktopOk" json:"desktop_ok"`
 }
 
-func (o *CreateConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_CreateConfigurationOperation {
+func (o *CreateConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateConfigurationOperation) *xxx_CreateConfigurationOperation {
+	if op == nil {
+		op = &xxx_CreateConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateConfigurationOperation{}
+		return op
 	}
-	return &xxx_CreateConfigurationOperation{
-		This:              o.This,
-		ConglomerationID:  o.ConglomerationID,
-		ConfigurationName: o.ConfigurationName,
-		StartType:         o.StartType,
-		ErrorControl:      o.ErrorControl,
-		Dependencies:      o.Dependencies,
-		RunAs:             o.RunAs,
-		Password:          o.Password,
-		DesktopOK:         o.DesktopOK,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	o.ConfigurationName = op.ConfigurationName
+	o.StartType = op.StartType
+	o.ErrorControl = op.ErrorControl
+	o.Dependencies = op.Dependencies
+	o.RunAs = op.RunAs
+	o.Password = op.Password
+	o.DesktopOK = op.DesktopOK
+	return op
 }
 
 func (o *CreateConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateConfigurationOperation) {
@@ -617,7 +619,7 @@ func (o *CreateConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.DesktopOK = op.DesktopOK
 }
 func (o *CreateConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateConfigurationOperation{}
@@ -636,14 +638,16 @@ type CreateConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_CreateConfigurationOperation {
+func (o *CreateConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateConfigurationOperation) *xxx_CreateConfigurationOperation {
+	if op == nil {
+		op = &xxx_CreateConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateConfigurationOperation{}
+		return op
 	}
-	return &xxx_CreateConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateConfigurationOperation) {
@@ -654,7 +658,7 @@ func (o *CreateConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Return = op.Return
 }
 func (o *CreateConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateConfigurationOperation{}
@@ -815,14 +819,16 @@ type DeleteConfigurationRequest struct {
 	ConglomerationID *dtyp.GUID `idl:"name:ConglomerationIdentifier" json:"conglomeration_id"`
 }
 
-func (o *DeleteConfigurationRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteConfigurationOperation {
+func (o *DeleteConfigurationRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteConfigurationOperation) *xxx_DeleteConfigurationOperation {
+	if op == nil {
+		op = &xxx_DeleteConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteConfigurationOperation{}
+		return op
 	}
-	return &xxx_DeleteConfigurationOperation{
-		This:             o.This,
-		ConglomerationID: o.ConglomerationID,
-	}
+	o.This = op.This
+	o.ConglomerationID = op.ConglomerationID
+	return op
 }
 
 func (o *DeleteConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteConfigurationOperation) {
@@ -833,7 +839,7 @@ func (o *DeleteConfigurationRequest) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.ConglomerationID = op.ConglomerationID
 }
 func (o *DeleteConfigurationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteConfigurationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteConfigurationOperation{}
@@ -852,14 +858,16 @@ type DeleteConfigurationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteConfigurationResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteConfigurationOperation {
+func (o *DeleteConfigurationResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteConfigurationOperation) *xxx_DeleteConfigurationOperation {
+	if op == nil {
+		op = &xxx_DeleteConfigurationOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteConfigurationOperation{}
+		return op
 	}
-	return &xxx_DeleteConfigurationOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteConfigurationOperation) {
@@ -870,7 +878,7 @@ func (o *DeleteConfigurationResponse) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Return = op.Return
 }
 func (o *DeleteConfigurationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteConfigurationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteConfigurationOperation{}

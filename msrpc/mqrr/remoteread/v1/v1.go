@@ -795,7 +795,7 @@ type xxx_DefaultRemoteReadClient struct {
 }
 
 func (o *xxx_DefaultRemoteReadClient) GetServerPort(ctx context.Context, in *GetServerPortRequest, opts ...dcerpc.CallOption) (*GetServerPortResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -808,7 +808,7 @@ func (o *xxx_DefaultRemoteReadClient) GetServerPort(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultRemoteReadClient) OpenQueue(ctx context.Context, in *OpenQueueRequest, opts ...dcerpc.CallOption) (*OpenQueueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -818,7 +818,7 @@ func (o *xxx_DefaultRemoteReadClient) OpenQueue(ctx context.Context, in *OpenQue
 }
 
 func (o *xxx_DefaultRemoteReadClient) CloseQueue(ctx context.Context, in *CloseQueueRequest, opts ...dcerpc.CallOption) (*CloseQueueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -831,7 +831,7 @@ func (o *xxx_DefaultRemoteReadClient) CloseQueue(ctx context.Context, in *CloseQ
 }
 
 func (o *xxx_DefaultRemoteReadClient) CreateCursor(ctx context.Context, in *CreateCursorRequest, opts ...dcerpc.CallOption) (*CreateCursorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -844,7 +844,7 @@ func (o *xxx_DefaultRemoteReadClient) CreateCursor(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultRemoteReadClient) CloseCursor(ctx context.Context, in *CloseCursorRequest, opts ...dcerpc.CallOption) (*CloseCursorResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -857,7 +857,7 @@ func (o *xxx_DefaultRemoteReadClient) CloseCursor(ctx context.Context, in *Close
 }
 
 func (o *xxx_DefaultRemoteReadClient) PurgeQueue(ctx context.Context, in *PurgeQueueRequest, opts ...dcerpc.CallOption) (*PurgeQueueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -870,7 +870,7 @@ func (o *xxx_DefaultRemoteReadClient) PurgeQueue(ctx context.Context, in *PurgeQ
 }
 
 func (o *xxx_DefaultRemoteReadClient) StartReceive(ctx context.Context, in *StartReceiveRequest, opts ...dcerpc.CallOption) (*StartReceiveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -883,7 +883,7 @@ func (o *xxx_DefaultRemoteReadClient) StartReceive(ctx context.Context, in *Star
 }
 
 func (o *xxx_DefaultRemoteReadClient) CancelReceive(ctx context.Context, in *CancelReceiveRequest, opts ...dcerpc.CallOption) (*CancelReceiveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -896,7 +896,7 @@ func (o *xxx_DefaultRemoteReadClient) CancelReceive(ctx context.Context, in *Can
 }
 
 func (o *xxx_DefaultRemoteReadClient) EndReceive(ctx context.Context, in *EndReceiveRequest, opts ...dcerpc.CallOption) (*EndReceiveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -909,7 +909,7 @@ func (o *xxx_DefaultRemoteReadClient) EndReceive(ctx context.Context, in *EndRec
 }
 
 func (o *xxx_DefaultRemoteReadClient) MoveMessage(ctx context.Context, in *MoveMessageRequest, opts ...dcerpc.CallOption) (*MoveMessageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -922,7 +922,7 @@ func (o *xxx_DefaultRemoteReadClient) MoveMessage(ctx context.Context, in *MoveM
 }
 
 func (o *xxx_DefaultRemoteReadClient) OpenQueueForMove(ctx context.Context, in *OpenQueueForMoveRequest, opts ...dcerpc.CallOption) (*OpenQueueForMoveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -932,7 +932,7 @@ func (o *xxx_DefaultRemoteReadClient) OpenQueueForMove(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultRemoteReadClient) EnlistRemoteTransaction(ctx context.Context, in *EnlistRemoteTransactionRequest, opts ...dcerpc.CallOption) (*EnlistRemoteTransactionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -945,7 +945,7 @@ func (o *xxx_DefaultRemoteReadClient) EnlistRemoteTransaction(ctx context.Contex
 }
 
 func (o *xxx_DefaultRemoteReadClient) StartTransactionalReceive(ctx context.Context, in *StartTransactionalReceiveRequest, opts ...dcerpc.CallOption) (*StartTransactionalReceiveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -958,7 +958,7 @@ func (o *xxx_DefaultRemoteReadClient) StartTransactionalReceive(ctx context.Cont
 }
 
 func (o *xxx_DefaultRemoteReadClient) SetUserAcknowledgementClass(ctx context.Context, in *SetUserAcknowledgementClassRequest, opts ...dcerpc.CallOption) (*SetUserAcknowledgementClassResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -971,7 +971,7 @@ func (o *xxx_DefaultRemoteReadClient) SetUserAcknowledgementClass(ctx context.Co
 }
 
 func (o *xxx_DefaultRemoteReadClient) EndTransactionalReceive(ctx context.Context, in *EndTransactionalReceiveRequest, opts ...dcerpc.CallOption) (*EndTransactionalReceiveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1064,11 +1064,14 @@ func (o *xxx_GetServerPortOperation) UnmarshalNDRResponse(ctx context.Context, w
 type GetServerPortRequest struct {
 }
 
-func (o *GetServerPortRequest) xxx_ToOp(ctx context.Context) *xxx_GetServerPortOperation {
-	if o == nil {
-		return &xxx_GetServerPortOperation{}
+func (o *GetServerPortRequest) xxx_ToOp(ctx context.Context, op *xxx_GetServerPortOperation) *xxx_GetServerPortOperation {
+	if op == nil {
+		op = &xxx_GetServerPortOperation{}
 	}
-	return &xxx_GetServerPortOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *GetServerPortRequest) xxx_FromOp(ctx context.Context, op *xxx_GetServerPortOperation) {
@@ -1077,7 +1080,7 @@ func (o *GetServerPortRequest) xxx_FromOp(ctx context.Context, op *xxx_GetServer
 	}
 }
 func (o *GetServerPortRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetServerPortRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServerPortOperation{}
@@ -1094,13 +1097,15 @@ type GetServerPortResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetServerPortResponse) xxx_ToOp(ctx context.Context) *xxx_GetServerPortOperation {
+func (o *GetServerPortResponse) xxx_ToOp(ctx context.Context, op *xxx_GetServerPortOperation) *xxx_GetServerPortOperation {
+	if op == nil {
+		op = &xxx_GetServerPortOperation{}
+	}
 	if o == nil {
-		return &xxx_GetServerPortOperation{}
+		return op
 	}
-	return &xxx_GetServerPortOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetServerPortResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServerPortOperation) {
@@ -1110,7 +1115,7 @@ func (o *GetServerPortResponse) xxx_FromOp(ctx context.Context, op *xxx_GetServe
 	o.Return = op.Return
 }
 func (o *GetServerPortResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetServerPortResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetServerPortOperation{}
@@ -1425,21 +1430,23 @@ type OpenQueueRequest struct {
 	Workgroup int32 `idl:"name:fWorkgroup" json:"workgroup"`
 }
 
-func (o *OpenQueueRequest) xxx_ToOp(ctx context.Context) *xxx_OpenQueueOperation {
+func (o *OpenQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueOperation) *xxx_OpenQueueOperation {
+	if op == nil {
+		op = &xxx_OpenQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenQueueOperation{}
+		return op
 	}
-	return &xxx_OpenQueueOperation{
-		QueueFormat:      o.QueueFormat,
-		Access:           o.Access,
-		ShareMode:        o.ShareMode,
-		ClientID:         o.ClientID,
-		NonRoutingServer: o.NonRoutingServer,
-		Major:            o.Major,
-		Minor:            o.Minor,
-		BuildNumber:      o.BuildNumber,
-		Workgroup:        o.Workgroup,
-	}
+	o.QueueFormat = op.QueueFormat
+	o.Access = op.Access
+	o.ShareMode = op.ShareMode
+	o.ClientID = op.ClientID
+	o.NonRoutingServer = op.NonRoutingServer
+	o.Major = op.Major
+	o.Minor = op.Minor
+	o.BuildNumber = op.BuildNumber
+	o.Workgroup = op.Workgroup
+	return op
 }
 
 func (o *OpenQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenQueueOperation) {
@@ -1457,7 +1464,7 @@ func (o *OpenQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenQueueOper
 	o.Workgroup = op.Workgroup
 }
 func (o *OpenQueueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenQueueOperation{}
@@ -1474,13 +1481,15 @@ type OpenQueueResponse struct {
 	Context *QueueSerialize `idl:"name:pphContext" json:"context"`
 }
 
-func (o *OpenQueueResponse) xxx_ToOp(ctx context.Context) *xxx_OpenQueueOperation {
+func (o *OpenQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueOperation) *xxx_OpenQueueOperation {
+	if op == nil {
+		op = &xxx_OpenQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenQueueOperation{}
+		return op
 	}
-	return &xxx_OpenQueueOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *OpenQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenQueueOperation) {
@@ -1490,7 +1499,7 @@ func (o *OpenQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenQueueOpe
 	o.Context = op.Context
 }
 func (o *OpenQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenQueueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenQueueOperation{}
@@ -1615,13 +1624,15 @@ type CloseQueueRequest struct {
 	Context *QueueSerialize `idl:"name:pphContext" json:"context"`
 }
 
-func (o *CloseQueueRequest) xxx_ToOp(ctx context.Context) *xxx_CloseQueueOperation {
+func (o *CloseQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseQueueOperation) *xxx_CloseQueueOperation {
+	if op == nil {
+		op = &xxx_CloseQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseQueueOperation{}
+		return op
 	}
-	return &xxx_CloseQueueOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *CloseQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseQueueOperation) {
@@ -1631,7 +1642,7 @@ func (o *CloseQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseQueueOp
 	o.Context = op.Context
 }
 func (o *CloseQueueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseQueueOperation{}
@@ -1654,14 +1665,16 @@ type CloseQueueResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseQueueResponse) xxx_ToOp(ctx context.Context) *xxx_CloseQueueOperation {
+func (o *CloseQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseQueueOperation) *xxx_CloseQueueOperation {
+	if op == nil {
+		op = &xxx_CloseQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseQueueOperation{}
+		return op
 	}
-	return &xxx_CloseQueueOperation{
-		Context: o.Context,
-		Return:  o.Return,
-	}
+	o.Context = op.Context
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseQueueOperation) {
@@ -1672,7 +1685,7 @@ func (o *CloseQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseQueueO
 	o.Return = op.Return
 }
 func (o *CloseQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseQueueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseQueueOperation{}
@@ -1790,13 +1803,15 @@ type CreateCursorRequest struct {
 	Context *QueueNoSerialize `idl:"name:phContext" json:"context"`
 }
 
-func (o *CreateCursorRequest) xxx_ToOp(ctx context.Context) *xxx_CreateCursorOperation {
+func (o *CreateCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateCursorOperation) *xxx_CreateCursorOperation {
+	if op == nil {
+		op = &xxx_CreateCursorOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateCursorOperation{}
+		return op
 	}
-	return &xxx_CreateCursorOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *CreateCursorRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateCursorOperation) {
@@ -1806,7 +1821,7 @@ func (o *CreateCursorRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateCurs
 	o.Context = op.Context
 }
 func (o *CreateCursorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateCursorOperation{}
@@ -1825,14 +1840,16 @@ type CreateCursorResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateCursorResponse) xxx_ToOp(ctx context.Context) *xxx_CreateCursorOperation {
+func (o *CreateCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateCursorOperation) *xxx_CreateCursorOperation {
+	if op == nil {
+		op = &xxx_CreateCursorOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateCursorOperation{}
+		return op
 	}
-	return &xxx_CreateCursorOperation{
-		Cursor: o.Cursor,
-		Return: o.Return,
-	}
+	o.Cursor = op.Cursor
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateCursorResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateCursorOperation) {
@@ -1843,7 +1860,7 @@ func (o *CreateCursorResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateCur
 	o.Return = op.Return
 }
 func (o *CreateCursorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateCursorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateCursorOperation{}
@@ -1965,14 +1982,16 @@ type CloseCursorRequest struct {
 	Cursor uint32 `idl:"name:hCursor" json:"cursor"`
 }
 
-func (o *CloseCursorRequest) xxx_ToOp(ctx context.Context) *xxx_CloseCursorOperation {
+func (o *CloseCursorRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorOperation) *xxx_CloseCursorOperation {
+	if op == nil {
+		op = &xxx_CloseCursorOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseCursorOperation{}
+		return op
 	}
-	return &xxx_CloseCursorOperation{
-		Context: o.Context,
-		Cursor:  o.Cursor,
-	}
+	o.Context = op.Context
+	o.Cursor = op.Cursor
+	return op
 }
 
 func (o *CloseCursorRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseCursorOperation) {
@@ -1983,7 +2002,7 @@ func (o *CloseCursorRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseCursor
 	o.Cursor = op.Cursor
 }
 func (o *CloseCursorRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseCursorRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseCursorOperation{}
@@ -2000,13 +2019,15 @@ type CloseCursorResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseCursorResponse) xxx_ToOp(ctx context.Context) *xxx_CloseCursorOperation {
+func (o *CloseCursorResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseCursorOperation) *xxx_CloseCursorOperation {
+	if op == nil {
+		op = &xxx_CloseCursorOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseCursorOperation{}
+		return op
 	}
-	return &xxx_CloseCursorOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseCursorResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseCursorOperation) {
@@ -2016,7 +2037,7 @@ func (o *CloseCursorResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseCurso
 	o.Return = op.Return
 }
 func (o *CloseCursorResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseCursorResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseCursorOperation{}
@@ -2121,13 +2142,15 @@ type PurgeQueueRequest struct {
 	Context *QueueNoSerialize `idl:"name:phContext" json:"context"`
 }
 
-func (o *PurgeQueueRequest) xxx_ToOp(ctx context.Context) *xxx_PurgeQueueOperation {
+func (o *PurgeQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOperation) *xxx_PurgeQueueOperation {
+	if op == nil {
+		op = &xxx_PurgeQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_PurgeQueueOperation{}
+		return op
 	}
-	return &xxx_PurgeQueueOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *PurgeQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_PurgeQueueOperation) {
@@ -2137,7 +2160,7 @@ func (o *PurgeQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_PurgeQueueOp
 	o.Context = op.Context
 }
 func (o *PurgeQueueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PurgeQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PurgeQueueOperation{}
@@ -2154,13 +2177,15 @@ type PurgeQueueResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PurgeQueueResponse) xxx_ToOp(ctx context.Context) *xxx_PurgeQueueOperation {
+func (o *PurgeQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_PurgeQueueOperation) *xxx_PurgeQueueOperation {
+	if op == nil {
+		op = &xxx_PurgeQueueOperation{}
+	}
 	if o == nil {
-		return &xxx_PurgeQueueOperation{}
+		return op
 	}
-	return &xxx_PurgeQueueOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *PurgeQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_PurgeQueueOperation) {
@@ -2170,7 +2195,7 @@ func (o *PurgeQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_PurgeQueueO
 	o.Return = op.Return
 }
 func (o *PurgeQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PurgeQueueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PurgeQueueOperation{}
@@ -2608,20 +2633,22 @@ type StartReceiveRequest struct {
 	MaxCompoundMessageSize uint32 `idl:"name:dwMaxCompoundMessageSize" json:"max_compound_message_size"`
 }
 
-func (o *StartReceiveRequest) xxx_ToOp(ctx context.Context) *xxx_StartReceiveOperation {
+func (o *StartReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_StartReceiveOperation) *xxx_StartReceiveOperation {
+	if op == nil {
+		op = &xxx_StartReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_StartReceiveOperation{}
+		return op
 	}
-	return &xxx_StartReceiveOperation{
-		Context:                o.Context,
-		LookupID:               o.LookupID,
-		Cursor:                 o.Cursor,
-		Action:                 o.Action,
-		Timeout:                o.Timeout,
-		RequestID:              o.RequestID,
-		MaxBodySize:            o.MaxBodySize,
-		MaxCompoundMessageSize: o.MaxCompoundMessageSize,
-	}
+	o.Context = op.Context
+	o.LookupID = op.LookupID
+	o.Cursor = op.Cursor
+	o.Action = op.Action
+	o.Timeout = op.Timeout
+	o.RequestID = op.RequestID
+	o.MaxBodySize = op.MaxBodySize
+	o.MaxCompoundMessageSize = op.MaxCompoundMessageSize
+	return op
 }
 
 func (o *StartReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_StartReceiveOperation) {
@@ -2638,7 +2665,7 @@ func (o *StartReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_StartRecei
 	o.MaxCompoundMessageSize = op.MaxCompoundMessageSize
 }
 func (o *StartReceiveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartReceiveOperation{}
@@ -2732,17 +2759,19 @@ type StartReceiveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartReceiveResponse) xxx_ToOp(ctx context.Context) *xxx_StartReceiveOperation {
+func (o *StartReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_StartReceiveOperation) *xxx_StartReceiveOperation {
+	if op == nil {
+		op = &xxx_StartReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_StartReceiveOperation{}
+		return op
 	}
-	return &xxx_StartReceiveOperation{
-		ArriveTime:       o.ArriveTime,
-		SequenceID:       o.SequenceID,
-		NumberOfSections: o.NumberOfSections,
-		PacketSections:   o.PacketSections,
-		Return:           o.Return,
-	}
+	o.ArriveTime = op.ArriveTime
+	o.SequenceID = op.SequenceID
+	o.NumberOfSections = op.NumberOfSections
+	o.PacketSections = op.PacketSections
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_StartReceiveOperation) {
@@ -2756,7 +2785,7 @@ func (o *StartReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_StartRece
 	o.Return = op.Return
 }
 func (o *StartReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartReceiveOperation{}
@@ -2879,14 +2908,16 @@ type CancelReceiveRequest struct {
 	RequestID uint32 `idl:"name:dwRequestId" json:"request_id"`
 }
 
-func (o *CancelReceiveRequest) xxx_ToOp(ctx context.Context) *xxx_CancelReceiveOperation {
+func (o *CancelReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelReceiveOperation) *xxx_CancelReceiveOperation {
+	if op == nil {
+		op = &xxx_CancelReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelReceiveOperation{}
+		return op
 	}
-	return &xxx_CancelReceiveOperation{
-		Context:   o.Context,
-		RequestID: o.RequestID,
-	}
+	o.Context = op.Context
+	o.RequestID = op.RequestID
+	return op
 }
 
 func (o *CancelReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelReceiveOperation) {
@@ -2897,7 +2928,7 @@ func (o *CancelReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelRec
 	o.RequestID = op.RequestID
 }
 func (o *CancelReceiveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CancelReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelReceiveOperation{}
@@ -2914,13 +2945,15 @@ type CancelReceiveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CancelReceiveResponse) xxx_ToOp(ctx context.Context) *xxx_CancelReceiveOperation {
+func (o *CancelReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelReceiveOperation) *xxx_CancelReceiveOperation {
+	if op == nil {
+		op = &xxx_CancelReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelReceiveOperation{}
+		return op
 	}
-	return &xxx_CancelReceiveOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CancelReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_CancelReceiveOperation) {
@@ -2930,7 +2963,7 @@ func (o *CancelReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_CancelRe
 	o.Return = op.Return
 }
 func (o *CancelReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CancelReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelReceiveOperation{}
@@ -3087,15 +3120,17 @@ type EndReceiveRequest struct {
 	RequestID uint32 `idl:"name:dwRequestId" json:"request_id"`
 }
 
-func (o *EndReceiveRequest) xxx_ToOp(ctx context.Context) *xxx_EndReceiveOperation {
+func (o *EndReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_EndReceiveOperation) *xxx_EndReceiveOperation {
+	if op == nil {
+		op = &xxx_EndReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_EndReceiveOperation{}
+		return op
 	}
-	return &xxx_EndReceiveOperation{
-		Context:   o.Context,
-		Ack:       o.Ack,
-		RequestID: o.RequestID,
-	}
+	o.Context = op.Context
+	o.Ack = op.Ack
+	o.RequestID = op.RequestID
+	return op
 }
 
 func (o *EndReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_EndReceiveOperation) {
@@ -3107,7 +3142,7 @@ func (o *EndReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_EndReceiveOp
 	o.RequestID = op.RequestID
 }
 func (o *EndReceiveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EndReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndReceiveOperation{}
@@ -3124,13 +3159,15 @@ type EndReceiveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EndReceiveResponse) xxx_ToOp(ctx context.Context) *xxx_EndReceiveOperation {
+func (o *EndReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_EndReceiveOperation) *xxx_EndReceiveOperation {
+	if op == nil {
+		op = &xxx_EndReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_EndReceiveOperation{}
+		return op
 	}
-	return &xxx_EndReceiveOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *EndReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_EndReceiveOperation) {
@@ -3140,7 +3177,7 @@ func (o *EndReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_EndReceiveO
 	o.Return = op.Return
 }
 func (o *EndReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EndReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndReceiveOperation{}
@@ -3309,16 +3346,18 @@ type MoveMessageRequest struct {
 	TransactionID *mqmq.TransactionUOW `idl:"name:pTransactionId" json:"transaction_id"`
 }
 
-func (o *MoveMessageRequest) xxx_ToOp(ctx context.Context) *xxx_MoveMessageOperation {
+func (o *MoveMessageRequest) xxx_ToOp(ctx context.Context, op *xxx_MoveMessageOperation) *xxx_MoveMessageOperation {
+	if op == nil {
+		op = &xxx_MoveMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_MoveMessageOperation{}
+		return op
 	}
-	return &xxx_MoveMessageOperation{
-		ContextFrom:   o.ContextFrom,
-		ContextTo:     o.ContextTo,
-		LookupID:      o.LookupID,
-		TransactionID: o.TransactionID,
-	}
+	o.ContextFrom = op.ContextFrom
+	o.ContextTo = op.ContextTo
+	o.LookupID = op.LookupID
+	o.TransactionID = op.TransactionID
+	return op
 }
 
 func (o *MoveMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_MoveMessageOperation) {
@@ -3331,7 +3370,7 @@ func (o *MoveMessageRequest) xxx_FromOp(ctx context.Context, op *xxx_MoveMessage
 	o.TransactionID = op.TransactionID
 }
 func (o *MoveMessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MoveMessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MoveMessageOperation{}
@@ -3348,13 +3387,15 @@ type MoveMessageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MoveMessageResponse) xxx_ToOp(ctx context.Context) *xxx_MoveMessageOperation {
+func (o *MoveMessageResponse) xxx_ToOp(ctx context.Context, op *xxx_MoveMessageOperation) *xxx_MoveMessageOperation {
+	if op == nil {
+		op = &xxx_MoveMessageOperation{}
+	}
 	if o == nil {
-		return &xxx_MoveMessageOperation{}
+		return op
 	}
-	return &xxx_MoveMessageOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *MoveMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_MoveMessageOperation) {
@@ -3364,7 +3405,7 @@ func (o *MoveMessageResponse) xxx_FromOp(ctx context.Context, op *xxx_MoveMessag
 	o.Return = op.Return
 }
 func (o *MoveMessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MoveMessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MoveMessageOperation{}
@@ -3661,21 +3702,23 @@ type OpenQueueForMoveRequest struct {
 	Workgroup int32 `idl:"name:fWorkgroup" json:"workgroup"`
 }
 
-func (o *OpenQueueForMoveRequest) xxx_ToOp(ctx context.Context) *xxx_OpenQueueForMoveOperation {
+func (o *OpenQueueForMoveRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueForMoveOperation) *xxx_OpenQueueForMoveOperation {
+	if op == nil {
+		op = &xxx_OpenQueueForMoveOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenQueueForMoveOperation{}
+		return op
 	}
-	return &xxx_OpenQueueForMoveOperation{
-		QueueFormat:      o.QueueFormat,
-		Access:           o.Access,
-		ShareMode:        o.ShareMode,
-		ClientID:         o.ClientID,
-		NonRoutingServer: o.NonRoutingServer,
-		Major:            o.Major,
-		Minor:            o.Minor,
-		BuildNumber:      o.BuildNumber,
-		Workgroup:        o.Workgroup,
-	}
+	o.QueueFormat = op.QueueFormat
+	o.Access = op.Access
+	o.ShareMode = op.ShareMode
+	o.ClientID = op.ClientID
+	o.NonRoutingServer = op.NonRoutingServer
+	o.Major = op.Major
+	o.Minor = op.Minor
+	o.BuildNumber = op.BuildNumber
+	o.Workgroup = op.Workgroup
+	return op
 }
 
 func (o *OpenQueueForMoveRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenQueueForMoveOperation) {
@@ -3693,7 +3736,7 @@ func (o *OpenQueueForMoveRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenQu
 	o.Workgroup = op.Workgroup
 }
 func (o *OpenQueueForMoveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenQueueForMoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenQueueForMoveOperation{}
@@ -3720,14 +3763,16 @@ type OpenQueueForMoveResponse struct {
 	Context *QueueSerialize `idl:"name:pphContext" json:"context"`
 }
 
-func (o *OpenQueueForMoveResponse) xxx_ToOp(ctx context.Context) *xxx_OpenQueueForMoveOperation {
+func (o *OpenQueueForMoveResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenQueueForMoveOperation) *xxx_OpenQueueForMoveOperation {
+	if op == nil {
+		op = &xxx_OpenQueueForMoveOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenQueueForMoveOperation{}
+		return op
 	}
-	return &xxx_OpenQueueForMoveOperation{
-		MoveContext: o.MoveContext,
-		Context:     o.Context,
-	}
+	o.MoveContext = op.MoveContext
+	o.Context = op.Context
+	return op
 }
 
 func (o *OpenQueueForMoveResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenQueueForMoveOperation) {
@@ -3738,7 +3783,7 @@ func (o *OpenQueueForMoveResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenQ
 	o.Context = op.Context
 }
 func (o *OpenQueueForMoveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenQueueForMoveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenQueueForMoveOperation{}
@@ -3944,16 +3989,18 @@ type EnlistRemoteTransactionRequest struct {
 	QueueFormat *mqmq.QueueFormat `idl:"name:pQueueFormat" json:"queue_format"`
 }
 
-func (o *EnlistRemoteTransactionRequest) xxx_ToOp(ctx context.Context) *xxx_EnlistRemoteTransactionOperation {
+func (o *EnlistRemoteTransactionRequest) xxx_ToOp(ctx context.Context, op *xxx_EnlistRemoteTransactionOperation) *xxx_EnlistRemoteTransactionOperation {
+	if op == nil {
+		op = &xxx_EnlistRemoteTransactionOperation{}
+	}
 	if o == nil {
-		return &xxx_EnlistRemoteTransactionOperation{}
+		return op
 	}
-	return &xxx_EnlistRemoteTransactionOperation{
-		TransactionID:          o.TransactionID,
-		PropagationTokenLength: o.PropagationTokenLength,
-		PropagationToken:       o.PropagationToken,
-		QueueFormat:            o.QueueFormat,
-	}
+	o.TransactionID = op.TransactionID
+	o.PropagationTokenLength = op.PropagationTokenLength
+	o.PropagationToken = op.PropagationToken
+	o.QueueFormat = op.QueueFormat
+	return op
 }
 
 func (o *EnlistRemoteTransactionRequest) xxx_FromOp(ctx context.Context, op *xxx_EnlistRemoteTransactionOperation) {
@@ -3966,7 +4013,7 @@ func (o *EnlistRemoteTransactionRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.QueueFormat = op.QueueFormat
 }
 func (o *EnlistRemoteTransactionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnlistRemoteTransactionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnlistRemoteTransactionOperation{}
@@ -3983,13 +4030,15 @@ type EnlistRemoteTransactionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnlistRemoteTransactionResponse) xxx_ToOp(ctx context.Context) *xxx_EnlistRemoteTransactionOperation {
+func (o *EnlistRemoteTransactionResponse) xxx_ToOp(ctx context.Context, op *xxx_EnlistRemoteTransactionOperation) *xxx_EnlistRemoteTransactionOperation {
+	if op == nil {
+		op = &xxx_EnlistRemoteTransactionOperation{}
+	}
 	if o == nil {
-		return &xxx_EnlistRemoteTransactionOperation{}
+		return op
 	}
-	return &xxx_EnlistRemoteTransactionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnlistRemoteTransactionResponse) xxx_FromOp(ctx context.Context, op *xxx_EnlistRemoteTransactionOperation) {
@@ -3999,7 +4048,7 @@ func (o *EnlistRemoteTransactionResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *EnlistRemoteTransactionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnlistRemoteTransactionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnlistRemoteTransactionOperation{}
@@ -4466,21 +4515,23 @@ type StartTransactionalReceiveRequest struct {
 	TransactionID *mqmq.TransactionUOW `idl:"name:pTransactionId" json:"transaction_id"`
 }
 
-func (o *StartTransactionalReceiveRequest) xxx_ToOp(ctx context.Context) *xxx_StartTransactionalReceiveOperation {
+func (o *StartTransactionalReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_StartTransactionalReceiveOperation) *xxx_StartTransactionalReceiveOperation {
+	if op == nil {
+		op = &xxx_StartTransactionalReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_StartTransactionalReceiveOperation{}
+		return op
 	}
-	return &xxx_StartTransactionalReceiveOperation{
-		Context:                o.Context,
-		LookupID:               o.LookupID,
-		Cursor:                 o.Cursor,
-		Action:                 o.Action,
-		Timeout:                o.Timeout,
-		RequestID:              o.RequestID,
-		MaxBodySize:            o.MaxBodySize,
-		MaxCompoundMessageSize: o.MaxCompoundMessageSize,
-		TransactionID:          o.TransactionID,
-	}
+	o.Context = op.Context
+	o.LookupID = op.LookupID
+	o.Cursor = op.Cursor
+	o.Action = op.Action
+	o.Timeout = op.Timeout
+	o.RequestID = op.RequestID
+	o.MaxBodySize = op.MaxBodySize
+	o.MaxCompoundMessageSize = op.MaxCompoundMessageSize
+	o.TransactionID = op.TransactionID
+	return op
 }
 
 func (o *StartTransactionalReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_StartTransactionalReceiveOperation) {
@@ -4498,7 +4549,7 @@ func (o *StartTransactionalReceiveRequest) xxx_FromOp(ctx context.Context, op *x
 	o.TransactionID = op.TransactionID
 }
 func (o *StartTransactionalReceiveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartTransactionalReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartTransactionalReceiveOperation{}
@@ -4590,17 +4641,19 @@ type StartTransactionalReceiveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartTransactionalReceiveResponse) xxx_ToOp(ctx context.Context) *xxx_StartTransactionalReceiveOperation {
+func (o *StartTransactionalReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_StartTransactionalReceiveOperation) *xxx_StartTransactionalReceiveOperation {
+	if op == nil {
+		op = &xxx_StartTransactionalReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_StartTransactionalReceiveOperation{}
+		return op
 	}
-	return &xxx_StartTransactionalReceiveOperation{
-		ArriveTime:       o.ArriveTime,
-		SequenceID:       o.SequenceID,
-		NumberOfSections: o.NumberOfSections,
-		PacketSections:   o.PacketSections,
-		Return:           o.Return,
-	}
+	o.ArriveTime = op.ArriveTime
+	o.SequenceID = op.SequenceID
+	o.NumberOfSections = op.NumberOfSections
+	o.PacketSections = op.PacketSections
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartTransactionalReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_StartTransactionalReceiveOperation) {
@@ -4614,7 +4667,7 @@ func (o *StartTransactionalReceiveResponse) xxx_FromOp(ctx context.Context, op *
 	o.Return = op.Return
 }
 func (o *StartTransactionalReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartTransactionalReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartTransactionalReceiveOperation{}
@@ -4765,15 +4818,17 @@ type SetUserAcknowledgementClassRequest struct {
 	Class uint16 `idl:"name:usClass" json:"class"`
 }
 
-func (o *SetUserAcknowledgementClassRequest) xxx_ToOp(ctx context.Context) *xxx_SetUserAcknowledgementClassOperation {
+func (o *SetUserAcknowledgementClassRequest) xxx_ToOp(ctx context.Context, op *xxx_SetUserAcknowledgementClassOperation) *xxx_SetUserAcknowledgementClassOperation {
+	if op == nil {
+		op = &xxx_SetUserAcknowledgementClassOperation{}
+	}
 	if o == nil {
-		return &xxx_SetUserAcknowledgementClassOperation{}
+		return op
 	}
-	return &xxx_SetUserAcknowledgementClassOperation{
-		Context:  o.Context,
-		LookupID: o.LookupID,
-		Class:    o.Class,
-	}
+	o.Context = op.Context
+	o.LookupID = op.LookupID
+	o.Class = op.Class
+	return op
 }
 
 func (o *SetUserAcknowledgementClassRequest) xxx_FromOp(ctx context.Context, op *xxx_SetUserAcknowledgementClassOperation) {
@@ -4785,7 +4840,7 @@ func (o *SetUserAcknowledgementClassRequest) xxx_FromOp(ctx context.Context, op 
 	o.Class = op.Class
 }
 func (o *SetUserAcknowledgementClassRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetUserAcknowledgementClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetUserAcknowledgementClassOperation{}
@@ -4802,13 +4857,15 @@ type SetUserAcknowledgementClassResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetUserAcknowledgementClassResponse) xxx_ToOp(ctx context.Context) *xxx_SetUserAcknowledgementClassOperation {
+func (o *SetUserAcknowledgementClassResponse) xxx_ToOp(ctx context.Context, op *xxx_SetUserAcknowledgementClassOperation) *xxx_SetUserAcknowledgementClassOperation {
+	if op == nil {
+		op = &xxx_SetUserAcknowledgementClassOperation{}
+	}
 	if o == nil {
-		return &xxx_SetUserAcknowledgementClassOperation{}
+		return op
 	}
-	return &xxx_SetUserAcknowledgementClassOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetUserAcknowledgementClassResponse) xxx_FromOp(ctx context.Context, op *xxx_SetUserAcknowledgementClassOperation) {
@@ -4818,7 +4875,7 @@ func (o *SetUserAcknowledgementClassResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *SetUserAcknowledgementClassResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetUserAcknowledgementClassResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetUserAcknowledgementClassOperation{}
@@ -4978,15 +5035,17 @@ type EndTransactionalReceiveRequest struct {
 	RequestID uint32 `idl:"name:dwRequestId" json:"request_id"`
 }
 
-func (o *EndTransactionalReceiveRequest) xxx_ToOp(ctx context.Context) *xxx_EndTransactionalReceiveOperation {
+func (o *EndTransactionalReceiveRequest) xxx_ToOp(ctx context.Context, op *xxx_EndTransactionalReceiveOperation) *xxx_EndTransactionalReceiveOperation {
+	if op == nil {
+		op = &xxx_EndTransactionalReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_EndTransactionalReceiveOperation{}
+		return op
 	}
-	return &xxx_EndTransactionalReceiveOperation{
-		Context:   o.Context,
-		Ack:       o.Ack,
-		RequestID: o.RequestID,
-	}
+	o.Context = op.Context
+	o.Ack = op.Ack
+	o.RequestID = op.RequestID
+	return op
 }
 
 func (o *EndTransactionalReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx_EndTransactionalReceiveOperation) {
@@ -4998,7 +5057,7 @@ func (o *EndTransactionalReceiveRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.RequestID = op.RequestID
 }
 func (o *EndTransactionalReceiveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EndTransactionalReceiveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndTransactionalReceiveOperation{}
@@ -5015,13 +5074,15 @@ type EndTransactionalReceiveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EndTransactionalReceiveResponse) xxx_ToOp(ctx context.Context) *xxx_EndTransactionalReceiveOperation {
+func (o *EndTransactionalReceiveResponse) xxx_ToOp(ctx context.Context, op *xxx_EndTransactionalReceiveOperation) *xxx_EndTransactionalReceiveOperation {
+	if op == nil {
+		op = &xxx_EndTransactionalReceiveOperation{}
+	}
 	if o == nil {
-		return &xxx_EndTransactionalReceiveOperation{}
+		return op
 	}
-	return &xxx_EndTransactionalReceiveOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *EndTransactionalReceiveResponse) xxx_FromOp(ctx context.Context, op *xxx_EndTransactionalReceiveOperation) {
@@ -5031,7 +5092,7 @@ func (o *EndTransactionalReceiveResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *EndTransactionalReceiveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EndTransactionalReceiveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EndTransactionalReceiveOperation{}

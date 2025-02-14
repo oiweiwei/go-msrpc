@@ -1587,7 +1587,7 @@ type xxx_DefaultDHCPServerClient struct {
 }
 
 func (o *xxx_DefaultDHCPServerClient) CreateSubnet(ctx context.Context, in *CreateSubnetRequest, opts ...dcerpc.CallOption) (*CreateSubnetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1600,7 +1600,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateSubnet(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetSubnetInfo(ctx context.Context, in *SetSubnetInfoRequest, opts ...dcerpc.CallOption) (*SetSubnetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1613,7 +1613,7 @@ func (o *xxx_DefaultDHCPServerClient) SetSubnetInfo(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetSubnetInfo(ctx context.Context, in *GetSubnetInfoRequest, opts ...dcerpc.CallOption) (*GetSubnetInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1626,7 +1626,7 @@ func (o *xxx_DefaultDHCPServerClient) GetSubnetInfo(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumSubnets(ctx context.Context, in *EnumSubnetsRequest, opts ...dcerpc.CallOption) (*EnumSubnetsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1639,7 +1639,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnets(ctx context.Context, in *EnumS
 }
 
 func (o *xxx_DefaultDHCPServerClient) AddSubnetElement(ctx context.Context, in *AddSubnetElementRequest, opts ...dcerpc.CallOption) (*AddSubnetElementResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1652,7 +1652,7 @@ func (o *xxx_DefaultDHCPServerClient) AddSubnetElement(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumSubnetElements(ctx context.Context, in *EnumSubnetElementsRequest, opts ...dcerpc.CallOption) (*EnumSubnetElementsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1665,7 +1665,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetElements(ctx context.Context, in
 }
 
 func (o *xxx_DefaultDHCPServerClient) RemoveSubnetElement(ctx context.Context, in *RemoveSubnetElementRequest, opts ...dcerpc.CallOption) (*RemoveSubnetElementResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1678,7 +1678,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveSubnetElement(ctx context.Context, i
 }
 
 func (o *xxx_DefaultDHCPServerClient) DeleteSubnet(ctx context.Context, in *DeleteSubnetRequest, opts ...dcerpc.CallOption) (*DeleteSubnetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1691,7 +1691,7 @@ func (o *xxx_DefaultDHCPServerClient) DeleteSubnet(ctx context.Context, in *Dele
 }
 
 func (o *xxx_DefaultDHCPServerClient) CreateOption(ctx context.Context, in *CreateOptionRequest, opts ...dcerpc.CallOption) (*CreateOptionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1704,7 +1704,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateOption(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetOptionInfo(ctx context.Context, in *SetOptionInfoRequest, opts ...dcerpc.CallOption) (*SetOptionInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1717,7 +1717,7 @@ func (o *xxx_DefaultDHCPServerClient) SetOptionInfo(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetOptionInfo(ctx context.Context, in *GetOptionInfoRequest, opts ...dcerpc.CallOption) (*GetOptionInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1730,7 +1730,7 @@ func (o *xxx_DefaultDHCPServerClient) GetOptionInfo(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultDHCPServerClient) RemoveOption(ctx context.Context, in *RemoveOptionRequest, opts ...dcerpc.CallOption) (*RemoveOptionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1743,7 +1743,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveOption(ctx context.Context, in *Remo
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetOptionValue(ctx context.Context, in *SetOptionValueRequest, opts ...dcerpc.CallOption) (*SetOptionValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1756,7 +1756,7 @@ func (o *xxx_DefaultDHCPServerClient) SetOptionValue(ctx context.Context, in *Se
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetOptionValue(ctx context.Context, in *GetOptionValueRequest, opts ...dcerpc.CallOption) (*GetOptionValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1769,7 +1769,7 @@ func (o *xxx_DefaultDHCPServerClient) GetOptionValue(ctx context.Context, in *Ge
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumOptionValues(ctx context.Context, in *EnumOptionValuesRequest, opts ...dcerpc.CallOption) (*EnumOptionValuesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1782,7 +1782,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumOptionValues(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDHCPServerClient) RemoveOptionValue(ctx context.Context, in *RemoveOptionValueRequest, opts ...dcerpc.CallOption) (*RemoveOptionValueResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1795,7 +1795,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveOptionValue(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDHCPServerClient) CreateClientInfo(ctx context.Context, in *CreateClientInfoRequest, opts ...dcerpc.CallOption) (*CreateClientInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1808,7 +1808,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateClientInfo(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetClientInfo(ctx context.Context, in *SetClientInfoRequest, opts ...dcerpc.CallOption) (*SetClientInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1821,7 +1821,7 @@ func (o *xxx_DefaultDHCPServerClient) SetClientInfo(ctx context.Context, in *Set
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetClientInfo(ctx context.Context, in *GetClientInfoRequest, opts ...dcerpc.CallOption) (*GetClientInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1834,7 +1834,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientInfo(ctx context.Context, in *Get
 }
 
 func (o *xxx_DefaultDHCPServerClient) DeleteClientInfo(ctx context.Context, in *DeleteClientInfoRequest, opts ...dcerpc.CallOption) (*DeleteClientInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1847,7 +1847,7 @@ func (o *xxx_DefaultDHCPServerClient) DeleteClientInfo(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumSubnetClients(ctx context.Context, in *EnumSubnetClientsRequest, opts ...dcerpc.CallOption) (*EnumSubnetClientsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1860,7 +1860,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetClients(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetClientOptions(ctx context.Context, in *GetClientOptionsRequest, opts ...dcerpc.CallOption) (*GetClientOptionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1873,7 +1873,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientOptions(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetMIBInfo(ctx context.Context, in *GetMIBInfoRequest, opts ...dcerpc.CallOption) (*GetMIBInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1886,7 +1886,7 @@ func (o *xxx_DefaultDHCPServerClient) GetMIBInfo(ctx context.Context, in *GetMIB
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumOptions(ctx context.Context, in *EnumOptionsRequest, opts ...dcerpc.CallOption) (*EnumOptionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1899,7 +1899,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumOptions(ctx context.Context, in *EnumO
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetOptionValues(ctx context.Context, in *SetOptionValuesRequest, opts ...dcerpc.CallOption) (*SetOptionValuesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1912,7 +1912,7 @@ func (o *xxx_DefaultDHCPServerClient) SetOptionValues(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultDHCPServerClient) ServerSetConfig(ctx context.Context, in *ServerSetConfigRequest, opts ...dcerpc.CallOption) (*ServerSetConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1925,7 +1925,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerSetConfig(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultDHCPServerClient) ServerGetConfig(ctx context.Context, in *ServerGetConfigRequest, opts ...dcerpc.CallOption) (*ServerGetConfigResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1938,7 +1938,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerGetConfig(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultDHCPServerClient) ScanDatabase(ctx context.Context, in *ScanDatabaseRequest, opts ...dcerpc.CallOption) (*ScanDatabaseResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1951,7 +1951,7 @@ func (o *xxx_DefaultDHCPServerClient) ScanDatabase(ctx context.Context, in *Scan
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetVersion(ctx context.Context, in *GetVersionRequest, opts ...dcerpc.CallOption) (*GetVersionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1964,7 +1964,7 @@ func (o *xxx_DefaultDHCPServerClient) GetVersion(ctx context.Context, in *GetVer
 }
 
 func (o *xxx_DefaultDHCPServerClient) AddSubnetElementV4(ctx context.Context, in *AddSubnetElementV4Request, opts ...dcerpc.CallOption) (*AddSubnetElementV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1977,7 +1977,7 @@ func (o *xxx_DefaultDHCPServerClient) AddSubnetElementV4(ctx context.Context, in
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumSubnetElementsV4(ctx context.Context, in *EnumSubnetElementsV4Request, opts ...dcerpc.CallOption) (*EnumSubnetElementsV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -1990,7 +1990,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetElementsV4(ctx context.Context, 
 }
 
 func (o *xxx_DefaultDHCPServerClient) RemoveSubnetElementV4(ctx context.Context, in *RemoveSubnetElementV4Request, opts ...dcerpc.CallOption) (*RemoveSubnetElementV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2003,7 +2003,7 @@ func (o *xxx_DefaultDHCPServerClient) RemoveSubnetElementV4(ctx context.Context,
 }
 
 func (o *xxx_DefaultDHCPServerClient) CreateClientInfoV4(ctx context.Context, in *CreateClientInfoV4Request, opts ...dcerpc.CallOption) (*CreateClientInfoV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2016,7 +2016,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateClientInfoV4(ctx context.Context, in
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetClientInfoV4(ctx context.Context, in *SetClientInfoV4Request, opts ...dcerpc.CallOption) (*SetClientInfoV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2029,7 +2029,7 @@ func (o *xxx_DefaultDHCPServerClient) SetClientInfoV4(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetClientInfoV4(ctx context.Context, in *GetClientInfoV4Request, opts ...dcerpc.CallOption) (*GetClientInfoV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2042,7 +2042,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientInfoV4(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumSubnetClientsV4(ctx context.Context, in *EnumSubnetClientsV4Request, opts ...dcerpc.CallOption) (*EnumSubnetClientsV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2055,7 +2055,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetClientsV4(ctx context.Context, i
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetSuperScopeV4(ctx context.Context, in *SetSuperScopeV4Request, opts ...dcerpc.CallOption) (*SetSuperScopeV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2068,7 +2068,7 @@ func (o *xxx_DefaultDHCPServerClient) SetSuperScopeV4(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetSuperScopeInfoV4(ctx context.Context, in *GetSuperScopeInfoV4Request, opts ...dcerpc.CallOption) (*GetSuperScopeInfoV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2081,7 +2081,7 @@ func (o *xxx_DefaultDHCPServerClient) GetSuperScopeInfoV4(ctx context.Context, i
 }
 
 func (o *xxx_DefaultDHCPServerClient) DeleteSuperScopeV4(ctx context.Context, in *DeleteSuperScopeV4Request, opts ...dcerpc.CallOption) (*DeleteSuperScopeV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2094,7 +2094,7 @@ func (o *xxx_DefaultDHCPServerClient) DeleteSuperScopeV4(ctx context.Context, in
 }
 
 func (o *xxx_DefaultDHCPServerClient) ServerSetConfigV4(ctx context.Context, in *ServerSetConfigV4Request, opts ...dcerpc.CallOption) (*ServerSetConfigV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2107,7 +2107,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerSetConfigV4(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDHCPServerClient) ServerGetConfigV4(ctx context.Context, in *ServerGetConfigV4Request, opts ...dcerpc.CallOption) (*ServerGetConfigV4Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2120,7 +2120,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerGetConfigV4(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDHCPServerClient) ServerSetConfigVQ(ctx context.Context, in *ServerSetConfigVQRequest, opts ...dcerpc.CallOption) (*ServerSetConfigVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2133,7 +2133,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerSetConfigVQ(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDHCPServerClient) ServerGetConfigVQ(ctx context.Context, in *ServerGetConfigVQRequest, opts ...dcerpc.CallOption) (*ServerGetConfigVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2146,7 +2146,7 @@ func (o *xxx_DefaultDHCPServerClient) ServerGetConfigVQ(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetMIBInfoVQ(ctx context.Context, in *GetMIBInfoVQRequest, opts ...dcerpc.CallOption) (*GetMIBInfoVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2159,7 +2159,7 @@ func (o *xxx_DefaultDHCPServerClient) GetMIBInfoVQ(ctx context.Context, in *GetM
 }
 
 func (o *xxx_DefaultDHCPServerClient) CreateClientInfoVQ(ctx context.Context, in *CreateClientInfoVQRequest, opts ...dcerpc.CallOption) (*CreateClientInfoVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2172,7 +2172,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateClientInfoVQ(ctx context.Context, in
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetClientInfoVQ(ctx context.Context, in *SetClientInfoVQRequest, opts ...dcerpc.CallOption) (*SetClientInfoVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2185,7 +2185,7 @@ func (o *xxx_DefaultDHCPServerClient) SetClientInfoVQ(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetClientInfoVQ(ctx context.Context, in *GetClientInfoVQRequest, opts ...dcerpc.CallOption) (*GetClientInfoVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2198,7 +2198,7 @@ func (o *xxx_DefaultDHCPServerClient) GetClientInfoVQ(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultDHCPServerClient) EnumSubnetClientsVQ(ctx context.Context, in *EnumSubnetClientsVQRequest, opts ...dcerpc.CallOption) (*EnumSubnetClientsVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2211,7 +2211,7 @@ func (o *xxx_DefaultDHCPServerClient) EnumSubnetClientsVQ(ctx context.Context, i
 }
 
 func (o *xxx_DefaultDHCPServerClient) CreateSubnetVQ(ctx context.Context, in *CreateSubnetVQRequest, opts ...dcerpc.CallOption) (*CreateSubnetVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2224,7 +2224,7 @@ func (o *xxx_DefaultDHCPServerClient) CreateSubnetVQ(ctx context.Context, in *Cr
 }
 
 func (o *xxx_DefaultDHCPServerClient) GetSubnetInfoVQ(ctx context.Context, in *GetSubnetInfoVQRequest, opts ...dcerpc.CallOption) (*GetSubnetInfoVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2237,7 +2237,7 @@ func (o *xxx_DefaultDHCPServerClient) GetSubnetInfoVQ(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultDHCPServerClient) SetSubnetInfoVQ(ctx context.Context, in *SetSubnetInfoVQRequest, opts ...dcerpc.CallOption) (*SetSubnetInfoVQResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -2419,15 +2419,17 @@ type CreateSubnetRequest struct {
 	SubnetInfo *dhcpm.SubnetInfo `idl:"name:SubnetInfo;pointer:ref" json:"subnet_info"`
 }
 
-func (o *CreateSubnetRequest) xxx_ToOp(ctx context.Context) *xxx_CreateSubnetOperation {
+func (o *CreateSubnetRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateSubnetOperation) *xxx_CreateSubnetOperation {
+	if op == nil {
+		op = &xxx_CreateSubnetOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateSubnetOperation{}
+		return op
 	}
-	return &xxx_CreateSubnetOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		SubnetInfo:      o.SubnetInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.SubnetInfo = op.SubnetInfo
+	return op
 }
 
 func (o *CreateSubnetRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSubnetOperation) {
@@ -2439,7 +2441,7 @@ func (o *CreateSubnetRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSubn
 	o.SubnetInfo = op.SubnetInfo
 }
 func (o *CreateSubnetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateSubnetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateSubnetOperation{}
@@ -2456,13 +2458,15 @@ type CreateSubnetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateSubnetResponse) xxx_ToOp(ctx context.Context) *xxx_CreateSubnetOperation {
+func (o *CreateSubnetResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSubnetOperation) *xxx_CreateSubnetOperation {
+	if op == nil {
+		op = &xxx_CreateSubnetOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateSubnetOperation{}
+		return op
 	}
-	return &xxx_CreateSubnetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateSubnetResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateSubnetOperation) {
@@ -2472,7 +2476,7 @@ func (o *CreateSubnetResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateSub
 	o.Return = op.Return
 }
 func (o *CreateSubnetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateSubnetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateSubnetOperation{}
@@ -2638,15 +2642,17 @@ type SetSubnetInfoRequest struct {
 	SubnetInfo *dhcpm.SubnetInfo `idl:"name:SubnetInfo;pointer:ref" json:"subnet_info"`
 }
 
-func (o *SetSubnetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_SetSubnetInfoOperation {
+func (o *SetSubnetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSubnetInfoOperation) *xxx_SetSubnetInfoOperation {
+	if op == nil {
+		op = &xxx_SetSubnetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubnetInfoOperation{}
+		return op
 	}
-	return &xxx_SetSubnetInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		SubnetInfo:      o.SubnetInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.SubnetInfo = op.SubnetInfo
+	return op
 }
 
 func (o *SetSubnetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubnetInfoOperation) {
@@ -2658,7 +2664,7 @@ func (o *SetSubnetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubnet
 	o.SubnetInfo = op.SubnetInfo
 }
 func (o *SetSubnetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSubnetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubnetInfoOperation{}
@@ -2675,13 +2681,15 @@ type SetSubnetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSubnetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_SetSubnetInfoOperation {
+func (o *SetSubnetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSubnetInfoOperation) *xxx_SetSubnetInfoOperation {
+	if op == nil {
+		op = &xxx_SetSubnetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubnetInfoOperation{}
+		return op
 	}
-	return &xxx_SetSubnetInfoOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSubnetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSubnetInfoOperation) {
@@ -2691,7 +2699,7 @@ func (o *SetSubnetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSubne
 	o.Return = op.Return
 }
 func (o *SetSubnetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSubnetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubnetInfoOperation{}
@@ -2870,14 +2878,16 @@ type GetSubnetInfoRequest struct {
 	SubnetAddress uint32 `idl:"name:SubnetAddress" json:"subnet_address"`
 }
 
-func (o *GetSubnetInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetSubnetInfoOperation {
+func (o *GetSubnetInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSubnetInfoOperation) *xxx_GetSubnetInfoOperation {
+	if op == nil {
+		op = &xxx_GetSubnetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubnetInfoOperation{}
+		return op
 	}
-	return &xxx_GetSubnetInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	return op
 }
 
 func (o *GetSubnetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubnetInfoOperation) {
@@ -2888,7 +2898,7 @@ func (o *GetSubnetInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubnet
 	o.SubnetAddress = op.SubnetAddress
 }
 func (o *GetSubnetInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSubnetInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubnetInfoOperation{}
@@ -2908,14 +2918,16 @@ type GetSubnetInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSubnetInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetSubnetInfoOperation {
+func (o *GetSubnetInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSubnetInfoOperation) *xxx_GetSubnetInfoOperation {
+	if op == nil {
+		op = &xxx_GetSubnetInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubnetInfoOperation{}
+		return op
 	}
-	return &xxx_GetSubnetInfoOperation{
-		SubnetInfo: o.SubnetInfo,
-		Return:     o.Return,
-	}
+	o.SubnetInfo = op.SubnetInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSubnetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSubnetInfoOperation) {
@@ -2926,7 +2938,7 @@ func (o *GetSubnetInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSubne
 	o.Return = op.Return
 }
 func (o *GetSubnetInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSubnetInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubnetInfoOperation{}
@@ -3166,15 +3178,17 @@ type EnumSubnetsRequest struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumSubnetsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetsOperation {
+func (o *EnumSubnetsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetsOperation) *xxx_EnumSubnetsOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetsOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetsOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumSubnetsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetsOperation) {
@@ -3186,7 +3200,7 @@ func (o *EnumSubnetsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnets
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumSubnetsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumSubnetsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetsOperation{}
@@ -3222,17 +3236,19 @@ type EnumSubnetsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumSubnetsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetsOperation {
+func (o *EnumSubnetsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetsOperation) *xxx_EnumSubnetsOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetsOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetsOperation{
-		Resume:        o.Resume,
-		EnumInfo:      o.EnumInfo,
-		ElementsRead:  o.ElementsRead,
-		ElementsTotal: o.ElementsTotal,
-		Return:        o.Return,
-	}
+	o.Resume = op.Resume
+	o.EnumInfo = op.EnumInfo
+	o.ElementsRead = op.ElementsRead
+	o.ElementsTotal = op.ElementsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumSubnetsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetsOperation) {
@@ -3246,7 +3262,7 @@ func (o *EnumSubnetsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnet
 	o.Return = op.Return
 }
 func (o *EnumSubnetsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumSubnetsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetsOperation{}
@@ -3410,15 +3426,17 @@ type AddSubnetElementRequest struct {
 	AddElementInfo *dhcpm.SubnetElementData `idl:"name:AddElementInfo;pointer:ref" json:"add_element_info"`
 }
 
-func (o *AddSubnetElementRequest) xxx_ToOp(ctx context.Context) *xxx_AddSubnetElementOperation {
+func (o *AddSubnetElementRequest) xxx_ToOp(ctx context.Context, op *xxx_AddSubnetElementOperation) *xxx_AddSubnetElementOperation {
+	if op == nil {
+		op = &xxx_AddSubnetElementOperation{}
+	}
 	if o == nil {
-		return &xxx_AddSubnetElementOperation{}
+		return op
 	}
-	return &xxx_AddSubnetElementOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		AddElementInfo:  o.AddElementInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.AddElementInfo = op.AddElementInfo
+	return op
 }
 
 func (o *AddSubnetElementRequest) xxx_FromOp(ctx context.Context, op *xxx_AddSubnetElementOperation) {
@@ -3430,7 +3448,7 @@ func (o *AddSubnetElementRequest) xxx_FromOp(ctx context.Context, op *xxx_AddSub
 	o.AddElementInfo = op.AddElementInfo
 }
 func (o *AddSubnetElementRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddSubnetElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddSubnetElementOperation{}
@@ -3447,13 +3465,15 @@ type AddSubnetElementResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddSubnetElementResponse) xxx_ToOp(ctx context.Context) *xxx_AddSubnetElementOperation {
+func (o *AddSubnetElementResponse) xxx_ToOp(ctx context.Context, op *xxx_AddSubnetElementOperation) *xxx_AddSubnetElementOperation {
+	if op == nil {
+		op = &xxx_AddSubnetElementOperation{}
+	}
 	if o == nil {
-		return &xxx_AddSubnetElementOperation{}
+		return op
 	}
-	return &xxx_AddSubnetElementOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddSubnetElementResponse) xxx_FromOp(ctx context.Context, op *xxx_AddSubnetElementOperation) {
@@ -3463,7 +3483,7 @@ func (o *AddSubnetElementResponse) xxx_FromOp(ctx context.Context, op *xxx_AddSu
 	o.Return = op.Return
 }
 func (o *AddSubnetElementResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddSubnetElementResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddSubnetElementOperation{}
@@ -3737,17 +3757,19 @@ type EnumSubnetElementsRequest struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumSubnetElementsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetElementsOperation {
+func (o *EnumSubnetElementsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetElementsOperation) *xxx_EnumSubnetElementsOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetElementsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetElementsOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetElementsOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		SubnetAddress:    o.SubnetAddress,
-		EnumElementType:  o.EnumElementType,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.EnumElementType = op.EnumElementType
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumSubnetElementsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetElementsOperation) {
@@ -3761,7 +3783,7 @@ func (o *EnumSubnetElementsRequest) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumSubnetElementsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumSubnetElementsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetElementsOperation{}
@@ -3801,17 +3823,19 @@ type EnumSubnetElementsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumSubnetElementsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetElementsOperation {
+func (o *EnumSubnetElementsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetElementsOperation) *xxx_EnumSubnetElementsOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetElementsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetElementsOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetElementsOperation{
-		Resume:          o.Resume,
-		EnumElementInfo: o.EnumElementInfo,
-		ElementsRead:    o.ElementsRead,
-		ElementsTotal:   o.ElementsTotal,
-		Return:          o.Return,
-	}
+	o.Resume = op.Resume
+	o.EnumElementInfo = op.EnumElementInfo
+	o.ElementsRead = op.ElementsRead
+	o.ElementsTotal = op.ElementsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumSubnetElementsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetElementsOperation) {
@@ -3825,7 +3849,7 @@ func (o *EnumSubnetElementsResponse) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.Return = op.Return
 }
 func (o *EnumSubnetElementsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumSubnetElementsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetElementsOperation{}
@@ -4009,16 +4033,18 @@ type RemoveSubnetElementRequest struct {
 	ForceFlag dhcpm.ForceFlag `idl:"name:ForceFlag" json:"force_flag"`
 }
 
-func (o *RemoveSubnetElementRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveSubnetElementOperation {
+func (o *RemoveSubnetElementRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveSubnetElementOperation) *xxx_RemoveSubnetElementOperation {
+	if op == nil {
+		op = &xxx_RemoveSubnetElementOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveSubnetElementOperation{}
+		return op
 	}
-	return &xxx_RemoveSubnetElementOperation{
-		ServerIPAddress:   o.ServerIPAddress,
-		SubnetAddress:     o.SubnetAddress,
-		RemoveElementInfo: o.RemoveElementInfo,
-		ForceFlag:         o.ForceFlag,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.RemoveElementInfo = op.RemoveElementInfo
+	o.ForceFlag = op.ForceFlag
+	return op
 }
 
 func (o *RemoveSubnetElementRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveSubnetElementOperation) {
@@ -4031,7 +4057,7 @@ func (o *RemoveSubnetElementRequest) xxx_FromOp(ctx context.Context, op *xxx_Rem
 	o.ForceFlag = op.ForceFlag
 }
 func (o *RemoveSubnetElementRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveSubnetElementRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveSubnetElementOperation{}
@@ -4048,13 +4074,15 @@ type RemoveSubnetElementResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveSubnetElementResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveSubnetElementOperation {
+func (o *RemoveSubnetElementResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveSubnetElementOperation) *xxx_RemoveSubnetElementOperation {
+	if op == nil {
+		op = &xxx_RemoveSubnetElementOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveSubnetElementOperation{}
+		return op
 	}
-	return &xxx_RemoveSubnetElementOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveSubnetElementResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveSubnetElementOperation) {
@@ -4064,7 +4092,7 @@ func (o *RemoveSubnetElementResponse) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.Return = op.Return
 }
 func (o *RemoveSubnetElementResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveSubnetElementResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveSubnetElementOperation{}
@@ -4217,15 +4245,17 @@ type DeleteSubnetRequest struct {
 	ForceFlag dhcpm.ForceFlag `idl:"name:ForceFlag" json:"force_flag"`
 }
 
-func (o *DeleteSubnetRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteSubnetOperation {
+func (o *DeleteSubnetRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteSubnetOperation) *xxx_DeleteSubnetOperation {
+	if op == nil {
+		op = &xxx_DeleteSubnetOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteSubnetOperation{}
+		return op
 	}
-	return &xxx_DeleteSubnetOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		ForceFlag:       o.ForceFlag,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.ForceFlag = op.ForceFlag
+	return op
 }
 
 func (o *DeleteSubnetRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteSubnetOperation) {
@@ -4237,7 +4267,7 @@ func (o *DeleteSubnetRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteSubn
 	o.ForceFlag = op.ForceFlag
 }
 func (o *DeleteSubnetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteSubnetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteSubnetOperation{}
@@ -4254,13 +4284,15 @@ type DeleteSubnetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteSubnetResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteSubnetOperation {
+func (o *DeleteSubnetResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteSubnetOperation) *xxx_DeleteSubnetOperation {
+	if op == nil {
+		op = &xxx_DeleteSubnetOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteSubnetOperation{}
+		return op
 	}
-	return &xxx_DeleteSubnetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteSubnetResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteSubnetOperation) {
@@ -4270,7 +4302,7 @@ func (o *DeleteSubnetResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteSub
 	o.Return = op.Return
 }
 func (o *DeleteSubnetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteSubnetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteSubnetOperation{}
@@ -4433,15 +4465,17 @@ type CreateOptionRequest struct {
 	OptionInfo *dhcpm.Option `idl:"name:OptionInfo;pointer:ref" json:"option_info"`
 }
 
-func (o *CreateOptionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateOptionOperation {
+func (o *CreateOptionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateOptionOperation) *xxx_CreateOptionOperation {
+	if op == nil {
+		op = &xxx_CreateOptionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateOptionOperation{}
+		return op
 	}
-	return &xxx_CreateOptionOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-		OptionInfo:      o.OptionInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	o.OptionInfo = op.OptionInfo
+	return op
 }
 
 func (o *CreateOptionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateOptionOperation) {
@@ -4453,7 +4487,7 @@ func (o *CreateOptionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateOpti
 	o.OptionInfo = op.OptionInfo
 }
 func (o *CreateOptionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateOptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateOptionOperation{}
@@ -4470,13 +4504,15 @@ type CreateOptionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateOptionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateOptionOperation {
+func (o *CreateOptionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateOptionOperation) *xxx_CreateOptionOperation {
+	if op == nil {
+		op = &xxx_CreateOptionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateOptionOperation{}
+		return op
 	}
-	return &xxx_CreateOptionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateOptionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateOptionOperation) {
@@ -4486,7 +4522,7 @@ func (o *CreateOptionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateOpt
 	o.Return = op.Return
 }
 func (o *CreateOptionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateOptionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateOptionOperation{}
@@ -4649,15 +4685,17 @@ type SetOptionInfoRequest struct {
 	OptionInfo *dhcpm.Option `idl:"name:OptionInfo;pointer:ref" json:"option_info"`
 }
 
-func (o *SetOptionInfoRequest) xxx_ToOp(ctx context.Context) *xxx_SetOptionInfoOperation {
+func (o *SetOptionInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOptionInfoOperation) *xxx_SetOptionInfoOperation {
+	if op == nil {
+		op = &xxx_SetOptionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOptionInfoOperation{}
+		return op
 	}
-	return &xxx_SetOptionInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-		OptionInfo:      o.OptionInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	o.OptionInfo = op.OptionInfo
+	return op
 }
 
 func (o *SetOptionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOptionInfoOperation) {
@@ -4669,7 +4707,7 @@ func (o *SetOptionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOption
 	o.OptionInfo = op.OptionInfo
 }
 func (o *SetOptionInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetOptionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOptionInfoOperation{}
@@ -4686,13 +4724,15 @@ type SetOptionInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetOptionInfoResponse) xxx_ToOp(ctx context.Context) *xxx_SetOptionInfoOperation {
+func (o *SetOptionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOptionInfoOperation) *xxx_SetOptionInfoOperation {
+	if op == nil {
+		op = &xxx_SetOptionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOptionInfoOperation{}
+		return op
 	}
-	return &xxx_SetOptionInfoOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetOptionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOptionInfoOperation) {
@@ -4702,7 +4742,7 @@ func (o *SetOptionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOptio
 	o.Return = op.Return
 }
 func (o *SetOptionInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetOptionInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOptionInfoOperation{}
@@ -4881,14 +4921,16 @@ type GetOptionInfoRequest struct {
 	OptionID uint32 `idl:"name:OptionID" json:"option_id"`
 }
 
-func (o *GetOptionInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetOptionInfoOperation {
+func (o *GetOptionInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOptionInfoOperation) *xxx_GetOptionInfoOperation {
+	if op == nil {
+		op = &xxx_GetOptionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOptionInfoOperation{}
+		return op
 	}
-	return &xxx_GetOptionInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	return op
 }
 
 func (o *GetOptionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOptionInfoOperation) {
@@ -4899,7 +4941,7 @@ func (o *GetOptionInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOption
 	o.OptionID = op.OptionID
 }
 func (o *GetOptionInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetOptionInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOptionInfoOperation{}
@@ -4918,14 +4960,16 @@ type GetOptionInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetOptionInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetOptionInfoOperation {
+func (o *GetOptionInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOptionInfoOperation) *xxx_GetOptionInfoOperation {
+	if op == nil {
+		op = &xxx_GetOptionInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOptionInfoOperation{}
+		return op
 	}
-	return &xxx_GetOptionInfoOperation{
-		OptionInfo: o.OptionInfo,
-		Return:     o.Return,
-	}
+	o.OptionInfo = op.OptionInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetOptionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOptionInfoOperation) {
@@ -4936,7 +4980,7 @@ func (o *GetOptionInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOptio
 	o.Return = op.Return
 }
 func (o *GetOptionInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetOptionInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOptionInfoOperation{}
@@ -5068,14 +5112,16 @@ type RemoveOptionRequest struct {
 	OptionID uint32 `idl:"name:OptionID" json:"option_id"`
 }
 
-func (o *RemoveOptionRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveOptionOperation {
+func (o *RemoveOptionRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOptionOperation) *xxx_RemoveOptionOperation {
+	if op == nil {
+		op = &xxx_RemoveOptionOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOptionOperation{}
+		return op
 	}
-	return &xxx_RemoveOptionOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	return op
 }
 
 func (o *RemoveOptionRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOptionOperation) {
@@ -5086,7 +5132,7 @@ func (o *RemoveOptionRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOpti
 	o.OptionID = op.OptionID
 }
 func (o *RemoveOptionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveOptionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOptionOperation{}
@@ -5103,13 +5149,15 @@ type RemoveOptionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveOptionResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveOptionOperation {
+func (o *RemoveOptionResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOptionOperation) *xxx_RemoveOptionOperation {
+	if op == nil {
+		op = &xxx_RemoveOptionOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOptionOperation{}
+		return op
 	}
-	return &xxx_RemoveOptionOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveOptionResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOptionOperation) {
@@ -5119,7 +5167,7 @@ func (o *RemoveOptionResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOpt
 	o.Return = op.Return
 }
 func (o *RemoveOptionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveOptionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOptionOperation{}
@@ -5315,16 +5363,18 @@ type SetOptionValueRequest struct {
 	OptionValue *dhcpm.OptionData `idl:"name:OptionValue;pointer:ref" json:"option_value"`
 }
 
-func (o *SetOptionValueRequest) xxx_ToOp(ctx context.Context) *xxx_SetOptionValueOperation {
+func (o *SetOptionValueRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOptionValueOperation) *xxx_SetOptionValueOperation {
+	if op == nil {
+		op = &xxx_SetOptionValueOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOptionValueOperation{}
+		return op
 	}
-	return &xxx_SetOptionValueOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-		ScopeInfo:       o.ScopeInfo,
-		OptionValue:     o.OptionValue,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	o.ScopeInfo = op.ScopeInfo
+	o.OptionValue = op.OptionValue
+	return op
 }
 
 func (o *SetOptionValueRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOptionValueOperation) {
@@ -5337,7 +5387,7 @@ func (o *SetOptionValueRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOptio
 	o.OptionValue = op.OptionValue
 }
 func (o *SetOptionValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetOptionValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOptionValueOperation{}
@@ -5354,13 +5404,15 @@ type SetOptionValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetOptionValueResponse) xxx_ToOp(ctx context.Context) *xxx_SetOptionValueOperation {
+func (o *SetOptionValueResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOptionValueOperation) *xxx_SetOptionValueOperation {
+	if op == nil {
+		op = &xxx_SetOptionValueOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOptionValueOperation{}
+		return op
 	}
-	return &xxx_SetOptionValueOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetOptionValueResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOptionValueOperation) {
@@ -5370,7 +5422,7 @@ func (o *SetOptionValueResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOpti
 	o.Return = op.Return
 }
 func (o *SetOptionValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetOptionValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOptionValueOperation{}
@@ -5581,15 +5633,17 @@ type GetOptionValueRequest struct {
 	ScopeInfo *dhcpm.OptionScopeInfo `idl:"name:ScopeInfo;pointer:ref" json:"scope_info"`
 }
 
-func (o *GetOptionValueRequest) xxx_ToOp(ctx context.Context) *xxx_GetOptionValueOperation {
+func (o *GetOptionValueRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOptionValueOperation) *xxx_GetOptionValueOperation {
+	if op == nil {
+		op = &xxx_GetOptionValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOptionValueOperation{}
+		return op
 	}
-	return &xxx_GetOptionValueOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-		ScopeInfo:       o.ScopeInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	o.ScopeInfo = op.ScopeInfo
+	return op
 }
 
 func (o *GetOptionValueRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOptionValueOperation) {
@@ -5601,7 +5655,7 @@ func (o *GetOptionValueRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOptio
 	o.ScopeInfo = op.ScopeInfo
 }
 func (o *GetOptionValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetOptionValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOptionValueOperation{}
@@ -5622,14 +5676,16 @@ type GetOptionValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetOptionValueResponse) xxx_ToOp(ctx context.Context) *xxx_GetOptionValueOperation {
+func (o *GetOptionValueResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOptionValueOperation) *xxx_GetOptionValueOperation {
+	if op == nil {
+		op = &xxx_GetOptionValueOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOptionValueOperation{}
+		return op
 	}
-	return &xxx_GetOptionValueOperation{
-		OptionValue: o.OptionValue,
-		Return:      o.Return,
-	}
+	o.OptionValue = op.OptionValue
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetOptionValueResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOptionValueOperation) {
@@ -5640,7 +5696,7 @@ func (o *GetOptionValueResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOpti
 	o.Return = op.Return
 }
 func (o *GetOptionValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetOptionValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOptionValueOperation{}
@@ -5914,16 +5970,18 @@ type EnumOptionValuesRequest struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumOptionValuesRequest) xxx_ToOp(ctx context.Context) *xxx_EnumOptionValuesOperation {
+func (o *EnumOptionValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumOptionValuesOperation) *xxx_EnumOptionValuesOperation {
+	if op == nil {
+		op = &xxx_EnumOptionValuesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumOptionValuesOperation{}
+		return op
 	}
-	return &xxx_EnumOptionValuesOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		ScopeInfo:        o.ScopeInfo,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ScopeInfo = op.ScopeInfo
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumOptionValuesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumOptionValuesOperation) {
@@ -5936,7 +5994,7 @@ func (o *EnumOptionValuesRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumOp
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumOptionValuesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumOptionValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumOptionValuesOperation{}
@@ -5974,17 +6032,19 @@ type EnumOptionValuesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumOptionValuesResponse) xxx_ToOp(ctx context.Context) *xxx_EnumOptionValuesOperation {
+func (o *EnumOptionValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumOptionValuesOperation) *xxx_EnumOptionValuesOperation {
+	if op == nil {
+		op = &xxx_EnumOptionValuesOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumOptionValuesOperation{}
+		return op
 	}
-	return &xxx_EnumOptionValuesOperation{
-		Resume:       o.Resume,
-		OptionValues: o.OptionValues,
-		OptionsRead:  o.OptionsRead,
-		OptionsTotal: o.OptionsTotal,
-		Return:       o.Return,
-	}
+	o.Resume = op.Resume
+	o.OptionValues = op.OptionValues
+	o.OptionsRead = op.OptionsRead
+	o.OptionsTotal = op.OptionsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumOptionValuesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumOptionValuesOperation) {
@@ -5998,7 +6058,7 @@ func (o *EnumOptionValuesResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumO
 	o.Return = op.Return
 }
 func (o *EnumOptionValuesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumOptionValuesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumOptionValuesOperation{}
@@ -6164,15 +6224,17 @@ type RemoveOptionValueRequest struct {
 	ScopeInfo *dhcpm.OptionScopeInfo `idl:"name:ScopeInfo;pointer:ref" json:"scope_info"`
 }
 
-func (o *RemoveOptionValueRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveOptionValueOperation {
+func (o *RemoveOptionValueRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOptionValueOperation) *xxx_RemoveOptionValueOperation {
+	if op == nil {
+		op = &xxx_RemoveOptionValueOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOptionValueOperation{}
+		return op
 	}
-	return &xxx_RemoveOptionValueOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		OptionID:        o.OptionID,
-		ScopeInfo:       o.ScopeInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.OptionID = op.OptionID
+	o.ScopeInfo = op.ScopeInfo
+	return op
 }
 
 func (o *RemoveOptionValueRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOptionValueOperation) {
@@ -6184,7 +6246,7 @@ func (o *RemoveOptionValueRequest) xxx_FromOp(ctx context.Context, op *xxx_Remov
 	o.ScopeInfo = op.ScopeInfo
 }
 func (o *RemoveOptionValueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveOptionValueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOptionValueOperation{}
@@ -6201,13 +6263,15 @@ type RemoveOptionValueResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveOptionValueResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveOptionValueOperation {
+func (o *RemoveOptionValueResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOptionValueOperation) *xxx_RemoveOptionValueOperation {
+	if op == nil {
+		op = &xxx_RemoveOptionValueOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOptionValueOperation{}
+		return op
 	}
-	return &xxx_RemoveOptionValueOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveOptionValueResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOptionValueOperation) {
@@ -6217,7 +6281,7 @@ func (o *RemoveOptionValueResponse) xxx_FromOp(ctx context.Context, op *xxx_Remo
 	o.Return = op.Return
 }
 func (o *RemoveOptionValueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveOptionValueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOptionValueOperation{}
@@ -6369,14 +6433,16 @@ type CreateClientInfoRequest struct {
 	ClientInfo *dhcpm.ClientInfo `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *CreateClientInfoRequest) xxx_ToOp(ctx context.Context) *xxx_CreateClientInfoOperation {
+func (o *CreateClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateClientInfoOperation) *xxx_CreateClientInfoOperation {
+	if op == nil {
+		op = &xxx_CreateClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClientInfoOperation{}
+		return op
 	}
-	return &xxx_CreateClientInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *CreateClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateClientInfoOperation) {
@@ -6387,7 +6453,7 @@ func (o *CreateClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.ClientInfo = op.ClientInfo
 }
 func (o *CreateClientInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClientInfoOperation{}
@@ -6404,13 +6470,15 @@ type CreateClientInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateClientInfoResponse) xxx_ToOp(ctx context.Context) *xxx_CreateClientInfoOperation {
+func (o *CreateClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateClientInfoOperation) *xxx_CreateClientInfoOperation {
+	if op == nil {
+		op = &xxx_CreateClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClientInfoOperation{}
+		return op
 	}
-	return &xxx_CreateClientInfoOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateClientInfoOperation) {
@@ -6420,7 +6488,7 @@ func (o *CreateClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Creat
 	o.Return = op.Return
 }
 func (o *CreateClientInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateClientInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClientInfoOperation{}
@@ -6573,14 +6641,16 @@ type SetClientInfoRequest struct {
 	ClientInfo *dhcpm.ClientInfo `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *SetClientInfoRequest) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoOperation {
+func (o *SetClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoOperation) *xxx_SetClientInfoOperation {
+	if op == nil {
+		op = &xxx_SetClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoOperation{}
+		return op
 	}
-	return &xxx_SetClientInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *SetClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoOperation) {
@@ -6591,7 +6661,7 @@ func (o *SetClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetClient
 	o.ClientInfo = op.ClientInfo
 }
 func (o *SetClientInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoOperation{}
@@ -6608,13 +6678,15 @@ type SetClientInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetClientInfoResponse) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoOperation {
+func (o *SetClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoOperation) *xxx_SetClientInfoOperation {
+	if op == nil {
+		op = &xxx_SetClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoOperation{}
+		return op
 	}
-	return &xxx_SetClientInfoOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoOperation) {
@@ -6624,7 +6696,7 @@ func (o *SetClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetClien
 	o.Return = op.Return
 }
 func (o *SetClientInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetClientInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoOperation{}
@@ -6821,14 +6893,16 @@ type GetClientInfoRequest struct {
 	SearchInfo *dhcpm.SearchInfo `idl:"name:SearchInfo;pointer:ref" json:"search_info"`
 }
 
-func (o *GetClientInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetClientInfoOperation {
+func (o *GetClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetClientInfoOperation) *xxx_GetClientInfoOperation {
+	if op == nil {
+		op = &xxx_GetClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientInfoOperation{}
+		return op
 	}
-	return &xxx_GetClientInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SearchInfo:      o.SearchInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SearchInfo = op.SearchInfo
+	return op
 }
 
 func (o *GetClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClientInfoOperation) {
@@ -6839,7 +6913,7 @@ func (o *GetClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClient
 	o.SearchInfo = op.SearchInfo
 }
 func (o *GetClientInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientInfoOperation{}
@@ -6860,14 +6934,16 @@ type GetClientInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetClientInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetClientInfoOperation {
+func (o *GetClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClientInfoOperation) *xxx_GetClientInfoOperation {
+	if op == nil {
+		op = &xxx_GetClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientInfoOperation{}
+		return op
 	}
-	return &xxx_GetClientInfoOperation{
-		ClientInfo: o.ClientInfo,
-		Return:     o.Return,
-	}
+	o.ClientInfo = op.ClientInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetClientInfoOperation) {
@@ -6878,7 +6954,7 @@ func (o *GetClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetClien
 	o.Return = op.Return
 }
 func (o *GetClientInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetClientInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientInfoOperation{}
@@ -7029,14 +7105,16 @@ type DeleteClientInfoRequest struct {
 	ClientInfo *dhcpm.SearchInfo `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *DeleteClientInfoRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteClientInfoOperation {
+func (o *DeleteClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteClientInfoOperation) *xxx_DeleteClientInfoOperation {
+	if op == nil {
+		op = &xxx_DeleteClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteClientInfoOperation{}
+		return op
 	}
-	return &xxx_DeleteClientInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *DeleteClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteClientInfoOperation) {
@@ -7047,7 +7125,7 @@ func (o *DeleteClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.ClientInfo = op.ClientInfo
 }
 func (o *DeleteClientInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteClientInfoOperation{}
@@ -7064,13 +7142,15 @@ type DeleteClientInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteClientInfoResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteClientInfoOperation {
+func (o *DeleteClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteClientInfoOperation) *xxx_DeleteClientInfoOperation {
+	if op == nil {
+		op = &xxx_DeleteClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteClientInfoOperation{}
+		return op
 	}
-	return &xxx_DeleteClientInfoOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteClientInfoOperation) {
@@ -7080,7 +7160,7 @@ func (o *DeleteClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.Return = op.Return
 }
 func (o *DeleteClientInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteClientInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteClientInfoOperation{}
@@ -7337,16 +7417,18 @@ type EnumSubnetClientsRequest struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumSubnetClientsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetClientsOperation {
+func (o *EnumSubnetClientsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetClientsOperation) *xxx_EnumSubnetClientsOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetClientsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetClientsOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetClientsOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		SubnetAddress:    o.SubnetAddress,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumSubnetClientsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetClientsOperation) {
@@ -7359,7 +7441,7 @@ func (o *EnumSubnetClientsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumS
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumSubnetClientsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumSubnetClientsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetClientsOperation{}
@@ -7394,17 +7476,19 @@ type EnumSubnetClientsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumSubnetClientsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetClientsOperation {
+func (o *EnumSubnetClientsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetClientsOperation) *xxx_EnumSubnetClientsOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetClientsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetClientsOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetClientsOperation{
-		Resume:       o.Resume,
-		ClientInfo:   o.ClientInfo,
-		ClientsRead:  o.ClientsRead,
-		ClientsTotal: o.ClientsTotal,
-		Return:       o.Return,
-	}
+	o.Resume = op.Resume
+	o.ClientInfo = op.ClientInfo
+	o.ClientsRead = op.ClientsRead
+	o.ClientsTotal = op.ClientsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumSubnetClientsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetClientsOperation) {
@@ -7418,7 +7502,7 @@ func (o *EnumSubnetClientsResponse) xxx_FromOp(ctx context.Context, op *xxx_Enum
 	o.Return = op.Return
 }
 func (o *EnumSubnetClientsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumSubnetClientsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetClientsOperation{}
@@ -7615,15 +7699,17 @@ type GetClientOptionsRequest struct {
 	ClientSubnetMask uint32 `idl:"name:ClientSubnetMask" json:"client_subnet_mask"`
 }
 
-func (o *GetClientOptionsRequest) xxx_ToOp(ctx context.Context) *xxx_GetClientOptionsOperation {
+func (o *GetClientOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetClientOptionsOperation) *xxx_GetClientOptionsOperation {
+	if op == nil {
+		op = &xxx_GetClientOptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientOptionsOperation{}
+		return op
 	}
-	return &xxx_GetClientOptionsOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		ClientIPAddress:  o.ClientIPAddress,
-		ClientSubnetMask: o.ClientSubnetMask,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientIPAddress = op.ClientIPAddress
+	o.ClientSubnetMask = op.ClientSubnetMask
+	return op
 }
 
 func (o *GetClientOptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClientOptionsOperation) {
@@ -7635,7 +7721,7 @@ func (o *GetClientOptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCli
 	o.ClientSubnetMask = op.ClientSubnetMask
 }
 func (o *GetClientOptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetClientOptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientOptionsOperation{}
@@ -7655,14 +7741,16 @@ type GetClientOptionsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetClientOptionsResponse) xxx_ToOp(ctx context.Context) *xxx_GetClientOptionsOperation {
+func (o *GetClientOptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClientOptionsOperation) *xxx_GetClientOptionsOperation {
+	if op == nil {
+		op = &xxx_GetClientOptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientOptionsOperation{}
+		return op
 	}
-	return &xxx_GetClientOptionsOperation{
-		ClientOptions: o.ClientOptions,
-		Return:        o.Return,
-	}
+	o.ClientOptions = op.ClientOptions
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetClientOptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetClientOptionsOperation) {
@@ -7673,7 +7761,7 @@ func (o *GetClientOptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCl
 	o.Return = op.Return
 }
 func (o *GetClientOptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetClientOptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientOptionsOperation{}
@@ -7836,13 +7924,15 @@ type GetMIBInfoRequest struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *GetMIBInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetMIBInfoOperation {
+func (o *GetMIBInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoOperation) *xxx_GetMIBInfoOperation {
+	if op == nil {
+		op = &xxx_GetMIBInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMIBInfoOperation{}
+		return op
 	}
-	return &xxx_GetMIBInfoOperation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *GetMIBInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfoOperation) {
@@ -7852,7 +7942,7 @@ func (o *GetMIBInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfoOp
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *GetMIBInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMIBInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMIBInfoOperation{}
@@ -7872,14 +7962,16 @@ type GetMIBInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMIBInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetMIBInfoOperation {
+func (o *GetMIBInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoOperation) *xxx_GetMIBInfoOperation {
+	if op == nil {
+		op = &xxx_GetMIBInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMIBInfoOperation{}
+		return op
 	}
-	return &xxx_GetMIBInfoOperation{
-		MIBInfo: o.MIBInfo,
-		Return:  o.Return,
-	}
+	o.MIBInfo = op.MIBInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMIBInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfoOperation) {
@@ -7890,7 +7982,7 @@ func (o *GetMIBInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfoO
 	o.Return = op.Return
 }
 func (o *GetMIBInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMIBInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMIBInfoOperation{}
@@ -8131,15 +8223,17 @@ type EnumOptionsRequest struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumOptionsRequest) xxx_ToOp(ctx context.Context) *xxx_EnumOptionsOperation {
+func (o *EnumOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumOptionsOperation) *xxx_EnumOptionsOperation {
+	if op == nil {
+		op = &xxx_EnumOptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumOptionsOperation{}
+		return op
 	}
-	return &xxx_EnumOptionsOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumOptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumOptionsOperation) {
@@ -8151,7 +8245,7 @@ func (o *EnumOptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumOptions
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumOptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumOptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumOptionsOperation{}
@@ -8188,17 +8282,19 @@ type EnumOptionsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumOptionsResponse) xxx_ToOp(ctx context.Context) *xxx_EnumOptionsOperation {
+func (o *EnumOptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumOptionsOperation) *xxx_EnumOptionsOperation {
+	if op == nil {
+		op = &xxx_EnumOptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumOptionsOperation{}
+		return op
 	}
-	return &xxx_EnumOptionsOperation{
-		Resume:       o.Resume,
-		Options:      o.Options,
-		OptionsRead:  o.OptionsRead,
-		OptionsTotal: o.OptionsTotal,
-		Return:       o.Return,
-	}
+	o.Resume = op.Resume
+	o.Options = op.Options
+	o.OptionsRead = op.OptionsRead
+	o.OptionsTotal = op.OptionsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumOptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumOptionsOperation) {
@@ -8212,7 +8308,7 @@ func (o *EnumOptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumOption
 	o.Return = op.Return
 }
 func (o *EnumOptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumOptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumOptionsOperation{}
@@ -8392,15 +8488,17 @@ type SetOptionValuesRequest struct {
 	OptionValues *dhcpm.OptionValueArray `idl:"name:OptionValues;pointer:ref" json:"option_values"`
 }
 
-func (o *SetOptionValuesRequest) xxx_ToOp(ctx context.Context) *xxx_SetOptionValuesOperation {
+func (o *SetOptionValuesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOptionValuesOperation) *xxx_SetOptionValuesOperation {
+	if op == nil {
+		op = &xxx_SetOptionValuesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOptionValuesOperation{}
+		return op
 	}
-	return &xxx_SetOptionValuesOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		ScopeInfo:       o.ScopeInfo,
-		OptionValues:    o.OptionValues,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ScopeInfo = op.ScopeInfo
+	o.OptionValues = op.OptionValues
+	return op
 }
 
 func (o *SetOptionValuesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOptionValuesOperation) {
@@ -8412,7 +8510,7 @@ func (o *SetOptionValuesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOpti
 	o.OptionValues = op.OptionValues
 }
 func (o *SetOptionValuesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetOptionValuesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOptionValuesOperation{}
@@ -8429,13 +8527,15 @@ type SetOptionValuesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetOptionValuesResponse) xxx_ToOp(ctx context.Context) *xxx_SetOptionValuesOperation {
+func (o *SetOptionValuesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOptionValuesOperation) *xxx_SetOptionValuesOperation {
+	if op == nil {
+		op = &xxx_SetOptionValuesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOptionValuesOperation{}
+		return op
 	}
-	return &xxx_SetOptionValuesOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetOptionValuesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOptionValuesOperation) {
@@ -8445,7 +8545,7 @@ func (o *SetOptionValuesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOpt
 	o.Return = op.Return
 }
 func (o *SetOptionValuesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetOptionValuesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOptionValuesOperation{}
@@ -8650,15 +8750,17 @@ type ServerSetConfigRequest struct {
 	ConfigInfo *dhcpm.ServerConfigInfo `idl:"name:ConfigInfo;pointer:ref" json:"config_info"`
 }
 
-func (o *ServerSetConfigRequest) xxx_ToOp(ctx context.Context) *xxx_ServerSetConfigOperation {
+func (o *ServerSetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerSetConfigOperation) *xxx_ServerSetConfigOperation {
+	if op == nil {
+		op = &xxx_ServerSetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerSetConfigOperation{}
+		return op
 	}
-	return &xxx_ServerSetConfigOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		FieldsToSet:     o.FieldsToSet,
-		ConfigInfo:      o.ConfigInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.FieldsToSet = op.FieldsToSet
+	o.ConfigInfo = op.ConfigInfo
+	return op
 }
 
 func (o *ServerSetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerSetConfigOperation) {
@@ -8670,7 +8772,7 @@ func (o *ServerSetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerS
 	o.ConfigInfo = op.ConfigInfo
 }
 func (o *ServerSetConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerSetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerSetConfigOperation{}
@@ -8687,13 +8789,15 @@ type ServerSetConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerSetConfigResponse) xxx_ToOp(ctx context.Context) *xxx_ServerSetConfigOperation {
+func (o *ServerSetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerSetConfigOperation) *xxx_ServerSetConfigOperation {
+	if op == nil {
+		op = &xxx_ServerSetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerSetConfigOperation{}
+		return op
 	}
-	return &xxx_ServerSetConfigOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerSetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerSetConfigOperation) {
@@ -8703,7 +8807,7 @@ func (o *ServerSetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_Server
 	o.Return = op.Return
 }
 func (o *ServerSetConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerSetConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerSetConfigOperation{}
@@ -8866,13 +8970,15 @@ type ServerGetConfigRequest struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *ServerGetConfigRequest) xxx_ToOp(ctx context.Context) *xxx_ServerGetConfigOperation {
+func (o *ServerGetConfigRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerGetConfigOperation) *xxx_ServerGetConfigOperation {
+	if op == nil {
+		op = &xxx_ServerGetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerGetConfigOperation{}
+		return op
 	}
-	return &xxx_ServerGetConfigOperation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *ServerGetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerGetConfigOperation) {
@@ -8882,7 +8988,7 @@ func (o *ServerGetConfigRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerG
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *ServerGetConfigRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerGetConfigRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerGetConfigOperation{}
@@ -8903,14 +9009,16 @@ type ServerGetConfigResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerGetConfigResponse) xxx_ToOp(ctx context.Context) *xxx_ServerGetConfigOperation {
+func (o *ServerGetConfigResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerGetConfigOperation) *xxx_ServerGetConfigOperation {
+	if op == nil {
+		op = &xxx_ServerGetConfigOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerGetConfigOperation{}
+		return op
 	}
-	return &xxx_ServerGetConfigOperation{
-		ConfigInfo: o.ConfigInfo,
-		Return:     o.Return,
-	}
+	o.ConfigInfo = op.ConfigInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerGetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerGetConfigOperation) {
@@ -8921,7 +9029,7 @@ func (o *ServerGetConfigResponse) xxx_FromOp(ctx context.Context, op *xxx_Server
 	o.Return = op.Return
 }
 func (o *ServerGetConfigResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerGetConfigResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerGetConfigOperation{}
@@ -9119,15 +9227,17 @@ type ScanDatabaseRequest struct {
 	FixFlag uint32 `idl:"name:FixFlag" json:"fix_flag"`
 }
 
-func (o *ScanDatabaseRequest) xxx_ToOp(ctx context.Context) *xxx_ScanDatabaseOperation {
+func (o *ScanDatabaseRequest) xxx_ToOp(ctx context.Context, op *xxx_ScanDatabaseOperation) *xxx_ScanDatabaseOperation {
+	if op == nil {
+		op = &xxx_ScanDatabaseOperation{}
+	}
 	if o == nil {
-		return &xxx_ScanDatabaseOperation{}
+		return op
 	}
-	return &xxx_ScanDatabaseOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		FixFlag:         o.FixFlag,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.FixFlag = op.FixFlag
+	return op
 }
 
 func (o *ScanDatabaseRequest) xxx_FromOp(ctx context.Context, op *xxx_ScanDatabaseOperation) {
@@ -9139,7 +9249,7 @@ func (o *ScanDatabaseRequest) xxx_FromOp(ctx context.Context, op *xxx_ScanDataba
 	o.FixFlag = op.FixFlag
 }
 func (o *ScanDatabaseRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ScanDatabaseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ScanDatabaseOperation{}
@@ -9159,14 +9269,16 @@ type ScanDatabaseResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ScanDatabaseResponse) xxx_ToOp(ctx context.Context) *xxx_ScanDatabaseOperation {
+func (o *ScanDatabaseResponse) xxx_ToOp(ctx context.Context, op *xxx_ScanDatabaseOperation) *xxx_ScanDatabaseOperation {
+	if op == nil {
+		op = &xxx_ScanDatabaseOperation{}
+	}
 	if o == nil {
-		return &xxx_ScanDatabaseOperation{}
+		return op
 	}
-	return &xxx_ScanDatabaseOperation{
-		ScanList: o.ScanList,
-		Return:   o.Return,
-	}
+	o.ScanList = op.ScanList
+	o.Return = op.Return
+	return op
 }
 
 func (o *ScanDatabaseResponse) xxx_FromOp(ctx context.Context, op *xxx_ScanDatabaseOperation) {
@@ -9177,7 +9289,7 @@ func (o *ScanDatabaseResponse) xxx_FromOp(ctx context.Context, op *xxx_ScanDatab
 	o.Return = op.Return
 }
 func (o *ScanDatabaseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ScanDatabaseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ScanDatabaseOperation{}
@@ -9319,13 +9431,15 @@ type GetVersionRequest struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *GetVersionRequest) xxx_ToOp(ctx context.Context) *xxx_GetVersionOperation {
+func (o *GetVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
+	if op == nil {
+		op = &xxx_GetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVersionOperation{}
+		return op
 	}
-	return &xxx_GetVersionOperation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
@@ -9335,7 +9449,7 @@ func (o *GetVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOp
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *GetVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVersionOperation{}
@@ -9360,15 +9474,17 @@ type GetVersionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetVersionResponse) xxx_ToOp(ctx context.Context) *xxx_GetVersionOperation {
+func (o *GetVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetVersionOperation) *xxx_GetVersionOperation {
+	if op == nil {
+		op = &xxx_GetVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetVersionOperation{}
+		return op
 	}
-	return &xxx_GetVersionOperation{
-		MajorVersion: o.MajorVersion,
-		MinorVersion: o.MinorVersion,
-		Return:       o.Return,
-	}
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionOperation) {
@@ -9380,7 +9496,7 @@ func (o *GetVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetVersionO
 	o.Return = op.Return
 }
 func (o *GetVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetVersionOperation{}
@@ -9546,15 +9662,17 @@ type AddSubnetElementV4Request struct {
 	AddElementInfo *dhcpm.SubnetElementDataV4 `idl:"name:AddElementInfo;pointer:ref" json:"add_element_info"`
 }
 
-func (o *AddSubnetElementV4Request) xxx_ToOp(ctx context.Context) *xxx_AddSubnetElementV4Operation {
+func (o *AddSubnetElementV4Request) xxx_ToOp(ctx context.Context, op *xxx_AddSubnetElementV4Operation) *xxx_AddSubnetElementV4Operation {
+	if op == nil {
+		op = &xxx_AddSubnetElementV4Operation{}
+	}
 	if o == nil {
-		return &xxx_AddSubnetElementV4Operation{}
+		return op
 	}
-	return &xxx_AddSubnetElementV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		AddElementInfo:  o.AddElementInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.AddElementInfo = op.AddElementInfo
+	return op
 }
 
 func (o *AddSubnetElementV4Request) xxx_FromOp(ctx context.Context, op *xxx_AddSubnetElementV4Operation) {
@@ -9566,7 +9684,7 @@ func (o *AddSubnetElementV4Request) xxx_FromOp(ctx context.Context, op *xxx_AddS
 	o.AddElementInfo = op.AddElementInfo
 }
 func (o *AddSubnetElementV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddSubnetElementV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddSubnetElementV4Operation{}
@@ -9583,13 +9701,15 @@ type AddSubnetElementV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddSubnetElementV4Response) xxx_ToOp(ctx context.Context) *xxx_AddSubnetElementV4Operation {
+func (o *AddSubnetElementV4Response) xxx_ToOp(ctx context.Context, op *xxx_AddSubnetElementV4Operation) *xxx_AddSubnetElementV4Operation {
+	if op == nil {
+		op = &xxx_AddSubnetElementV4Operation{}
+	}
 	if o == nil {
-		return &xxx_AddSubnetElementV4Operation{}
+		return op
 	}
-	return &xxx_AddSubnetElementV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddSubnetElementV4Response) xxx_FromOp(ctx context.Context, op *xxx_AddSubnetElementV4Operation) {
@@ -9599,7 +9719,7 @@ func (o *AddSubnetElementV4Response) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddSubnetElementV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddSubnetElementV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddSubnetElementV4Operation{}
@@ -9874,17 +9994,19 @@ type EnumSubnetElementsV4Request struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumSubnetElementsV4Request) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetElementsV4Operation {
+func (o *EnumSubnetElementsV4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetElementsV4Operation) *xxx_EnumSubnetElementsV4Operation {
+	if op == nil {
+		op = &xxx_EnumSubnetElementsV4Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetElementsV4Operation{}
+		return op
 	}
-	return &xxx_EnumSubnetElementsV4Operation{
-		ServerIPAddress:  o.ServerIPAddress,
-		SubnetAddress:    o.SubnetAddress,
-		EnumElementType:  o.EnumElementType,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.EnumElementType = op.EnumElementType
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumSubnetElementsV4Request) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetElementsV4Operation) {
@@ -9898,7 +10020,7 @@ func (o *EnumSubnetElementsV4Request) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumSubnetElementsV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumSubnetElementsV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetElementsV4Operation{}
@@ -9938,17 +10060,19 @@ type EnumSubnetElementsV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumSubnetElementsV4Response) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetElementsV4Operation {
+func (o *EnumSubnetElementsV4Response) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetElementsV4Operation) *xxx_EnumSubnetElementsV4Operation {
+	if op == nil {
+		op = &xxx_EnumSubnetElementsV4Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetElementsV4Operation{}
+		return op
 	}
-	return &xxx_EnumSubnetElementsV4Operation{
-		Resume:          o.Resume,
-		EnumElementInfo: o.EnumElementInfo,
-		ElementsRead:    o.ElementsRead,
-		ElementsTotal:   o.ElementsTotal,
-		Return:          o.Return,
-	}
+	o.Resume = op.Resume
+	o.EnumElementInfo = op.EnumElementInfo
+	o.ElementsRead = op.ElementsRead
+	o.ElementsTotal = op.ElementsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumSubnetElementsV4Response) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetElementsV4Operation) {
@@ -9962,7 +10086,7 @@ func (o *EnumSubnetElementsV4Response) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Return = op.Return
 }
 func (o *EnumSubnetElementsV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumSubnetElementsV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetElementsV4Operation{}
@@ -10147,16 +10271,18 @@ type RemoveSubnetElementV4Request struct {
 	ForceFlag dhcpm.ForceFlag `idl:"name:ForceFlag" json:"force_flag"`
 }
 
-func (o *RemoveSubnetElementV4Request) xxx_ToOp(ctx context.Context) *xxx_RemoveSubnetElementV4Operation {
+func (o *RemoveSubnetElementV4Request) xxx_ToOp(ctx context.Context, op *xxx_RemoveSubnetElementV4Operation) *xxx_RemoveSubnetElementV4Operation {
+	if op == nil {
+		op = &xxx_RemoveSubnetElementV4Operation{}
+	}
 	if o == nil {
-		return &xxx_RemoveSubnetElementV4Operation{}
+		return op
 	}
-	return &xxx_RemoveSubnetElementV4Operation{
-		ServerIPAddress:   o.ServerIPAddress,
-		SubnetAddress:     o.SubnetAddress,
-		RemoveElementInfo: o.RemoveElementInfo,
-		ForceFlag:         o.ForceFlag,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.RemoveElementInfo = op.RemoveElementInfo
+	o.ForceFlag = op.ForceFlag
+	return op
 }
 
 func (o *RemoveSubnetElementV4Request) xxx_FromOp(ctx context.Context, op *xxx_RemoveSubnetElementV4Operation) {
@@ -10169,7 +10295,7 @@ func (o *RemoveSubnetElementV4Request) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.ForceFlag = op.ForceFlag
 }
 func (o *RemoveSubnetElementV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveSubnetElementV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveSubnetElementV4Operation{}
@@ -10186,13 +10312,15 @@ type RemoveSubnetElementV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveSubnetElementV4Response) xxx_ToOp(ctx context.Context) *xxx_RemoveSubnetElementV4Operation {
+func (o *RemoveSubnetElementV4Response) xxx_ToOp(ctx context.Context, op *xxx_RemoveSubnetElementV4Operation) *xxx_RemoveSubnetElementV4Operation {
+	if op == nil {
+		op = &xxx_RemoveSubnetElementV4Operation{}
+	}
 	if o == nil {
-		return &xxx_RemoveSubnetElementV4Operation{}
+		return op
 	}
-	return &xxx_RemoveSubnetElementV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveSubnetElementV4Response) xxx_FromOp(ctx context.Context, op *xxx_RemoveSubnetElementV4Operation) {
@@ -10202,7 +10330,7 @@ func (o *RemoveSubnetElementV4Response) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *RemoveSubnetElementV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveSubnetElementV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveSubnetElementV4Operation{}
@@ -10356,14 +10484,16 @@ type CreateClientInfoV4Request struct {
 	ClientInfo *dhcpm.ClientInfoV4 `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *CreateClientInfoV4Request) xxx_ToOp(ctx context.Context) *xxx_CreateClientInfoV4Operation {
+func (o *CreateClientInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_CreateClientInfoV4Operation) *xxx_CreateClientInfoV4Operation {
+	if op == nil {
+		op = &xxx_CreateClientInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateClientInfoV4Operation{}
+		return op
 	}
-	return &xxx_CreateClientInfoV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *CreateClientInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_CreateClientInfoV4Operation) {
@@ -10374,7 +10504,7 @@ func (o *CreateClientInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.ClientInfo = op.ClientInfo
 }
 func (o *CreateClientInfoV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateClientInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClientInfoV4Operation{}
@@ -10391,13 +10521,15 @@ type CreateClientInfoV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateClientInfoV4Response) xxx_ToOp(ctx context.Context) *xxx_CreateClientInfoV4Operation {
+func (o *CreateClientInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_CreateClientInfoV4Operation) *xxx_CreateClientInfoV4Operation {
+	if op == nil {
+		op = &xxx_CreateClientInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateClientInfoV4Operation{}
+		return op
 	}
-	return &xxx_CreateClientInfoV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateClientInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_CreateClientInfoV4Operation) {
@@ -10407,7 +10539,7 @@ func (o *CreateClientInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.Return = op.Return
 }
 func (o *CreateClientInfoV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateClientInfoV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClientInfoV4Operation{}
@@ -10559,14 +10691,16 @@ type SetClientInfoV4Request struct {
 	ClientInfo *dhcpm.ClientInfoV4 `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *SetClientInfoV4Request) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoV4Operation {
+func (o *SetClientInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoV4Operation) *xxx_SetClientInfoV4Operation {
+	if op == nil {
+		op = &xxx_SetClientInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoV4Operation{}
+		return op
 	}
-	return &xxx_SetClientInfoV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *SetClientInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoV4Operation) {
@@ -10577,7 +10711,7 @@ func (o *SetClientInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_SetClie
 	o.ClientInfo = op.ClientInfo
 }
 func (o *SetClientInfoV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetClientInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoV4Operation{}
@@ -10594,13 +10728,15 @@ type SetClientInfoV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetClientInfoV4Response) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoV4Operation {
+func (o *SetClientInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoV4Operation) *xxx_SetClientInfoV4Operation {
+	if op == nil {
+		op = &xxx_SetClientInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoV4Operation{}
+		return op
 	}
-	return &xxx_SetClientInfoV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetClientInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoV4Operation) {
@@ -10610,7 +10746,7 @@ func (o *SetClientInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_SetCli
 	o.Return = op.Return
 }
 func (o *SetClientInfoV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetClientInfoV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoV4Operation{}
@@ -10807,14 +10943,16 @@ type GetClientInfoV4Request struct {
 	SearchInfo *dhcpm.SearchInfo `idl:"name:SearchInfo;pointer:ref" json:"search_info"`
 }
 
-func (o *GetClientInfoV4Request) xxx_ToOp(ctx context.Context) *xxx_GetClientInfoV4Operation {
+func (o *GetClientInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetClientInfoV4Operation) *xxx_GetClientInfoV4Operation {
+	if op == nil {
+		op = &xxx_GetClientInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_GetClientInfoV4Operation{}
+		return op
 	}
-	return &xxx_GetClientInfoV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		SearchInfo:      o.SearchInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SearchInfo = op.SearchInfo
+	return op
 }
 
 func (o *GetClientInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_GetClientInfoV4Operation) {
@@ -10825,7 +10963,7 @@ func (o *GetClientInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_GetClie
 	o.SearchInfo = op.SearchInfo
 }
 func (o *GetClientInfoV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetClientInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientInfoV4Operation{}
@@ -10847,14 +10985,16 @@ type GetClientInfoV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetClientInfoV4Response) xxx_ToOp(ctx context.Context) *xxx_GetClientInfoV4Operation {
+func (o *GetClientInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetClientInfoV4Operation) *xxx_GetClientInfoV4Operation {
+	if op == nil {
+		op = &xxx_GetClientInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_GetClientInfoV4Operation{}
+		return op
 	}
-	return &xxx_GetClientInfoV4Operation{
-		ClientInfo: o.ClientInfo,
-		Return:     o.Return,
-	}
+	o.ClientInfo = op.ClientInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetClientInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_GetClientInfoV4Operation) {
@@ -10865,7 +11005,7 @@ func (o *GetClientInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_GetCli
 	o.Return = op.Return
 }
 func (o *GetClientInfoV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetClientInfoV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientInfoV4Operation{}
@@ -11122,16 +11262,18 @@ type EnumSubnetClientsV4Request struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumSubnetClientsV4Request) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetClientsV4Operation {
+func (o *EnumSubnetClientsV4Request) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetClientsV4Operation) *xxx_EnumSubnetClientsV4Operation {
+	if op == nil {
+		op = &xxx_EnumSubnetClientsV4Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetClientsV4Operation{}
+		return op
 	}
-	return &xxx_EnumSubnetClientsV4Operation{
-		ServerIPAddress:  o.ServerIPAddress,
-		SubnetAddress:    o.SubnetAddress,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumSubnetClientsV4Request) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetClientsV4Operation) {
@@ -11144,7 +11286,7 @@ func (o *EnumSubnetClientsV4Request) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumSubnetClientsV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumSubnetClientsV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetClientsV4Operation{}
@@ -11179,17 +11321,19 @@ type EnumSubnetClientsV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumSubnetClientsV4Response) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetClientsV4Operation {
+func (o *EnumSubnetClientsV4Response) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetClientsV4Operation) *xxx_EnumSubnetClientsV4Operation {
+	if op == nil {
+		op = &xxx_EnumSubnetClientsV4Operation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetClientsV4Operation{}
+		return op
 	}
-	return &xxx_EnumSubnetClientsV4Operation{
-		Resume:       o.Resume,
-		ClientInfo:   o.ClientInfo,
-		ClientsRead:  o.ClientsRead,
-		ClientsTotal: o.ClientsTotal,
-		Return:       o.Return,
-	}
+	o.Resume = op.Resume
+	o.ClientInfo = op.ClientInfo
+	o.ClientsRead = op.ClientsRead
+	o.ClientsTotal = op.ClientsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumSubnetClientsV4Response) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetClientsV4Operation) {
@@ -11203,7 +11347,7 @@ func (o *EnumSubnetClientsV4Response) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumSubnetClientsV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumSubnetClientsV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetClientsV4Operation{}
@@ -11402,16 +11546,18 @@ type SetSuperScopeV4Request struct {
 	ChangeExisting bool `idl:"name:ChangeExisting" json:"change_existing"`
 }
 
-func (o *SetSuperScopeV4Request) xxx_ToOp(ctx context.Context) *xxx_SetSuperScopeV4Operation {
+func (o *SetSuperScopeV4Request) xxx_ToOp(ctx context.Context, op *xxx_SetSuperScopeV4Operation) *xxx_SetSuperScopeV4Operation {
+	if op == nil {
+		op = &xxx_SetSuperScopeV4Operation{}
+	}
 	if o == nil {
-		return &xxx_SetSuperScopeV4Operation{}
+		return op
 	}
-	return &xxx_SetSuperScopeV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		SuperScopeName:  o.SuperScopeName,
-		ChangeExisting:  o.ChangeExisting,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.SuperScopeName = op.SuperScopeName
+	o.ChangeExisting = op.ChangeExisting
+	return op
 }
 
 func (o *SetSuperScopeV4Request) xxx_FromOp(ctx context.Context, op *xxx_SetSuperScopeV4Operation) {
@@ -11424,7 +11570,7 @@ func (o *SetSuperScopeV4Request) xxx_FromOp(ctx context.Context, op *xxx_SetSupe
 	o.ChangeExisting = op.ChangeExisting
 }
 func (o *SetSuperScopeV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSuperScopeV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSuperScopeV4Operation{}
@@ -11441,13 +11587,15 @@ type SetSuperScopeV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSuperScopeV4Response) xxx_ToOp(ctx context.Context) *xxx_SetSuperScopeV4Operation {
+func (o *SetSuperScopeV4Response) xxx_ToOp(ctx context.Context, op *xxx_SetSuperScopeV4Operation) *xxx_SetSuperScopeV4Operation {
+	if op == nil {
+		op = &xxx_SetSuperScopeV4Operation{}
+	}
 	if o == nil {
-		return &xxx_SetSuperScopeV4Operation{}
+		return op
 	}
-	return &xxx_SetSuperScopeV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSuperScopeV4Response) xxx_FromOp(ctx context.Context, op *xxx_SetSuperScopeV4Operation) {
@@ -11457,7 +11605,7 @@ func (o *SetSuperScopeV4Response) xxx_FromOp(ctx context.Context, op *xxx_SetSup
 	o.Return = op.Return
 }
 func (o *SetSuperScopeV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSuperScopeV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSuperScopeV4Operation{}
@@ -11622,13 +11770,15 @@ type GetSuperScopeInfoV4Request struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *GetSuperScopeInfoV4Request) xxx_ToOp(ctx context.Context) *xxx_GetSuperScopeInfoV4Operation {
+func (o *GetSuperScopeInfoV4Request) xxx_ToOp(ctx context.Context, op *xxx_GetSuperScopeInfoV4Operation) *xxx_GetSuperScopeInfoV4Operation {
+	if op == nil {
+		op = &xxx_GetSuperScopeInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_GetSuperScopeInfoV4Operation{}
+		return op
 	}
-	return &xxx_GetSuperScopeInfoV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *GetSuperScopeInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_GetSuperScopeInfoV4Operation) {
@@ -11638,7 +11788,7 @@ func (o *GetSuperScopeInfoV4Request) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *GetSuperScopeInfoV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSuperScopeInfoV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSuperScopeInfoV4Operation{}
@@ -11658,14 +11808,16 @@ type GetSuperScopeInfoV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSuperScopeInfoV4Response) xxx_ToOp(ctx context.Context) *xxx_GetSuperScopeInfoV4Operation {
+func (o *GetSuperScopeInfoV4Response) xxx_ToOp(ctx context.Context, op *xxx_GetSuperScopeInfoV4Operation) *xxx_GetSuperScopeInfoV4Operation {
+	if op == nil {
+		op = &xxx_GetSuperScopeInfoV4Operation{}
+	}
 	if o == nil {
-		return &xxx_GetSuperScopeInfoV4Operation{}
+		return op
 	}
-	return &xxx_GetSuperScopeInfoV4Operation{
-		SuperScopeTable: o.SuperScopeTable,
-		Return:          o.Return,
-	}
+	o.SuperScopeTable = op.SuperScopeTable
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSuperScopeInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_GetSuperScopeInfoV4Operation) {
@@ -11676,7 +11828,7 @@ func (o *GetSuperScopeInfoV4Response) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetSuperScopeInfoV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSuperScopeInfoV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSuperScopeInfoV4Operation{}
@@ -11810,14 +11962,16 @@ type DeleteSuperScopeV4Request struct {
 	SuperScopeName string `idl:"name:SuperScopeName;string;pointer:ref" json:"super_scope_name"`
 }
 
-func (o *DeleteSuperScopeV4Request) xxx_ToOp(ctx context.Context) *xxx_DeleteSuperScopeV4Operation {
+func (o *DeleteSuperScopeV4Request) xxx_ToOp(ctx context.Context, op *xxx_DeleteSuperScopeV4Operation) *xxx_DeleteSuperScopeV4Operation {
+	if op == nil {
+		op = &xxx_DeleteSuperScopeV4Operation{}
+	}
 	if o == nil {
-		return &xxx_DeleteSuperScopeV4Operation{}
+		return op
 	}
-	return &xxx_DeleteSuperScopeV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		SuperScopeName:  o.SuperScopeName,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SuperScopeName = op.SuperScopeName
+	return op
 }
 
 func (o *DeleteSuperScopeV4Request) xxx_FromOp(ctx context.Context, op *xxx_DeleteSuperScopeV4Operation) {
@@ -11828,7 +11982,7 @@ func (o *DeleteSuperScopeV4Request) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.SuperScopeName = op.SuperScopeName
 }
 func (o *DeleteSuperScopeV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteSuperScopeV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteSuperScopeV4Operation{}
@@ -11845,13 +11999,15 @@ type DeleteSuperScopeV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteSuperScopeV4Response) xxx_ToOp(ctx context.Context) *xxx_DeleteSuperScopeV4Operation {
+func (o *DeleteSuperScopeV4Response) xxx_ToOp(ctx context.Context, op *xxx_DeleteSuperScopeV4Operation) *xxx_DeleteSuperScopeV4Operation {
+	if op == nil {
+		op = &xxx_DeleteSuperScopeV4Operation{}
+	}
 	if o == nil {
-		return &xxx_DeleteSuperScopeV4Operation{}
+		return op
 	}
-	return &xxx_DeleteSuperScopeV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteSuperScopeV4Response) xxx_FromOp(ctx context.Context, op *xxx_DeleteSuperScopeV4Operation) {
@@ -11861,7 +12017,7 @@ func (o *DeleteSuperScopeV4Response) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.Return = op.Return
 }
 func (o *DeleteSuperScopeV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteSuperScopeV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteSuperScopeV4Operation{}
@@ -12074,15 +12230,17 @@ type ServerSetConfigV4Request struct {
 	ConfigInfo *dhcpm.ServerConfigInfoV4 `idl:"name:ConfigInfo;pointer:ref" json:"config_info"`
 }
 
-func (o *ServerSetConfigV4Request) xxx_ToOp(ctx context.Context) *xxx_ServerSetConfigV4Operation {
+func (o *ServerSetConfigV4Request) xxx_ToOp(ctx context.Context, op *xxx_ServerSetConfigV4Operation) *xxx_ServerSetConfigV4Operation {
+	if op == nil {
+		op = &xxx_ServerSetConfigV4Operation{}
+	}
 	if o == nil {
-		return &xxx_ServerSetConfigV4Operation{}
+		return op
 	}
-	return &xxx_ServerSetConfigV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-		FieldsToSet:     o.FieldsToSet,
-		ConfigInfo:      o.ConfigInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.FieldsToSet = op.FieldsToSet
+	o.ConfigInfo = op.ConfigInfo
+	return op
 }
 
 func (o *ServerSetConfigV4Request) xxx_FromOp(ctx context.Context, op *xxx_ServerSetConfigV4Operation) {
@@ -12094,7 +12252,7 @@ func (o *ServerSetConfigV4Request) xxx_FromOp(ctx context.Context, op *xxx_Serve
 	o.ConfigInfo = op.ConfigInfo
 }
 func (o *ServerSetConfigV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerSetConfigV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerSetConfigV4Operation{}
@@ -12111,13 +12269,15 @@ type ServerSetConfigV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerSetConfigV4Response) xxx_ToOp(ctx context.Context) *xxx_ServerSetConfigV4Operation {
+func (o *ServerSetConfigV4Response) xxx_ToOp(ctx context.Context, op *xxx_ServerSetConfigV4Operation) *xxx_ServerSetConfigV4Operation {
+	if op == nil {
+		op = &xxx_ServerSetConfigV4Operation{}
+	}
 	if o == nil {
-		return &xxx_ServerSetConfigV4Operation{}
+		return op
 	}
-	return &xxx_ServerSetConfigV4Operation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerSetConfigV4Response) xxx_FromOp(ctx context.Context, op *xxx_ServerSetConfigV4Operation) {
@@ -12127,7 +12287,7 @@ func (o *ServerSetConfigV4Response) xxx_FromOp(ctx context.Context, op *xxx_Serv
 	o.Return = op.Return
 }
 func (o *ServerSetConfigV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerSetConfigV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerSetConfigV4Operation{}
@@ -12292,13 +12452,15 @@ type ServerGetConfigV4Request struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *ServerGetConfigV4Request) xxx_ToOp(ctx context.Context) *xxx_ServerGetConfigV4Operation {
+func (o *ServerGetConfigV4Request) xxx_ToOp(ctx context.Context, op *xxx_ServerGetConfigV4Operation) *xxx_ServerGetConfigV4Operation {
+	if op == nil {
+		op = &xxx_ServerGetConfigV4Operation{}
+	}
 	if o == nil {
-		return &xxx_ServerGetConfigV4Operation{}
+		return op
 	}
-	return &xxx_ServerGetConfigV4Operation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *ServerGetConfigV4Request) xxx_FromOp(ctx context.Context, op *xxx_ServerGetConfigV4Operation) {
@@ -12308,7 +12470,7 @@ func (o *ServerGetConfigV4Request) xxx_FromOp(ctx context.Context, op *xxx_Serve
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *ServerGetConfigV4Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerGetConfigV4Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerGetConfigV4Operation{}
@@ -12329,14 +12491,16 @@ type ServerGetConfigV4Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerGetConfigV4Response) xxx_ToOp(ctx context.Context) *xxx_ServerGetConfigV4Operation {
+func (o *ServerGetConfigV4Response) xxx_ToOp(ctx context.Context, op *xxx_ServerGetConfigV4Operation) *xxx_ServerGetConfigV4Operation {
+	if op == nil {
+		op = &xxx_ServerGetConfigV4Operation{}
+	}
 	if o == nil {
-		return &xxx_ServerGetConfigV4Operation{}
+		return op
 	}
-	return &xxx_ServerGetConfigV4Operation{
-		ConfigInfo: o.ConfigInfo,
-		Return:     o.Return,
-	}
+	o.ConfigInfo = op.ConfigInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerGetConfigV4Response) xxx_FromOp(ctx context.Context, op *xxx_ServerGetConfigV4Operation) {
@@ -12347,7 +12511,7 @@ func (o *ServerGetConfigV4Response) xxx_FromOp(ctx context.Context, op *xxx_Serv
 	o.Return = op.Return
 }
 func (o *ServerGetConfigV4Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerGetConfigV4Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerGetConfigV4Operation{}
@@ -12562,15 +12726,17 @@ type ServerSetConfigVQRequest struct {
 	ConfigInfo *dhcpm.ServerConfigInfoVQ `idl:"name:ConfigInfo;pointer:ref" json:"config_info"`
 }
 
-func (o *ServerSetConfigVQRequest) xxx_ToOp(ctx context.Context) *xxx_ServerSetConfigVQOperation {
+func (o *ServerSetConfigVQRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerSetConfigVQOperation) *xxx_ServerSetConfigVQOperation {
+	if op == nil {
+		op = &xxx_ServerSetConfigVQOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerSetConfigVQOperation{}
+		return op
 	}
-	return &xxx_ServerSetConfigVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		FieldsToSet:     o.FieldsToSet,
-		ConfigInfo:      o.ConfigInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.FieldsToSet = op.FieldsToSet
+	o.ConfigInfo = op.ConfigInfo
+	return op
 }
 
 func (o *ServerSetConfigVQRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerSetConfigVQOperation) {
@@ -12582,7 +12748,7 @@ func (o *ServerSetConfigVQRequest) xxx_FromOp(ctx context.Context, op *xxx_Serve
 	o.ConfigInfo = op.ConfigInfo
 }
 func (o *ServerSetConfigVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerSetConfigVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerSetConfigVQOperation{}
@@ -12599,13 +12765,15 @@ type ServerSetConfigVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerSetConfigVQResponse) xxx_ToOp(ctx context.Context) *xxx_ServerSetConfigVQOperation {
+func (o *ServerSetConfigVQResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerSetConfigVQOperation) *xxx_ServerSetConfigVQOperation {
+	if op == nil {
+		op = &xxx_ServerSetConfigVQOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerSetConfigVQOperation{}
+		return op
 	}
-	return &xxx_ServerSetConfigVQOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerSetConfigVQResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerSetConfigVQOperation) {
@@ -12615,7 +12783,7 @@ func (o *ServerSetConfigVQResponse) xxx_FromOp(ctx context.Context, op *xxx_Serv
 	o.Return = op.Return
 }
 func (o *ServerSetConfigVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerSetConfigVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerSetConfigVQOperation{}
@@ -12780,13 +12948,15 @@ type ServerGetConfigVQRequest struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *ServerGetConfigVQRequest) xxx_ToOp(ctx context.Context) *xxx_ServerGetConfigVQOperation {
+func (o *ServerGetConfigVQRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerGetConfigVQOperation) *xxx_ServerGetConfigVQOperation {
+	if op == nil {
+		op = &xxx_ServerGetConfigVQOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerGetConfigVQOperation{}
+		return op
 	}
-	return &xxx_ServerGetConfigVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *ServerGetConfigVQRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerGetConfigVQOperation) {
@@ -12796,7 +12966,7 @@ func (o *ServerGetConfigVQRequest) xxx_FromOp(ctx context.Context, op *xxx_Serve
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *ServerGetConfigVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerGetConfigVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerGetConfigVQOperation{}
@@ -12817,14 +12987,16 @@ type ServerGetConfigVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerGetConfigVQResponse) xxx_ToOp(ctx context.Context) *xxx_ServerGetConfigVQOperation {
+func (o *ServerGetConfigVQResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerGetConfigVQOperation) *xxx_ServerGetConfigVQOperation {
+	if op == nil {
+		op = &xxx_ServerGetConfigVQOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerGetConfigVQOperation{}
+		return op
 	}
-	return &xxx_ServerGetConfigVQOperation{
-		ConfigInfo: o.ConfigInfo,
-		Return:     o.Return,
-	}
+	o.ConfigInfo = op.ConfigInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerGetConfigVQResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerGetConfigVQOperation) {
@@ -12835,7 +13007,7 @@ func (o *ServerGetConfigVQResponse) xxx_FromOp(ctx context.Context, op *xxx_Serv
 	o.Return = op.Return
 }
 func (o *ServerGetConfigVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerGetConfigVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerGetConfigVQOperation{}
@@ -12998,13 +13170,15 @@ type GetMIBInfoVQRequest struct {
 	ServerIPAddress string `idl:"name:ServerIpAddress;string;pointer:unique" json:"server_ip_address"`
 }
 
-func (o *GetMIBInfoVQRequest) xxx_ToOp(ctx context.Context) *xxx_GetMIBInfoVQOperation {
+func (o *GetMIBInfoVQRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoVQOperation) *xxx_GetMIBInfoVQOperation {
+	if op == nil {
+		op = &xxx_GetMIBInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMIBInfoVQOperation{}
+		return op
 	}
-	return &xxx_GetMIBInfoVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	return op
 }
 
 func (o *GetMIBInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfoVQOperation) {
@@ -13014,7 +13188,7 @@ func (o *GetMIBInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfo
 	o.ServerIPAddress = op.ServerIPAddress
 }
 func (o *GetMIBInfoVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMIBInfoVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMIBInfoVQOperation{}
@@ -13034,14 +13208,16 @@ type GetMIBInfoVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMIBInfoVQResponse) xxx_ToOp(ctx context.Context) *xxx_GetMIBInfoVQOperation {
+func (o *GetMIBInfoVQResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMIBInfoVQOperation) *xxx_GetMIBInfoVQOperation {
+	if op == nil {
+		op = &xxx_GetMIBInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMIBInfoVQOperation{}
+		return op
 	}
-	return &xxx_GetMIBInfoVQOperation{
-		MIBInfo: o.MIBInfo,
-		Return:  o.Return,
-	}
+	o.MIBInfo = op.MIBInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMIBInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInfoVQOperation) {
@@ -13052,7 +13228,7 @@ func (o *GetMIBInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMIBInf
 	o.Return = op.Return
 }
 func (o *GetMIBInfoVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMIBInfoVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMIBInfoVQOperation{}
@@ -13206,14 +13382,16 @@ type CreateClientInfoVQRequest struct {
 	ClientInfo *dhcpm.ClientInfoVQ `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *CreateClientInfoVQRequest) xxx_ToOp(ctx context.Context) *xxx_CreateClientInfoVQOperation {
+func (o *CreateClientInfoVQRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateClientInfoVQOperation) *xxx_CreateClientInfoVQOperation {
+	if op == nil {
+		op = &xxx_CreateClientInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClientInfoVQOperation{}
+		return op
 	}
-	return &xxx_CreateClientInfoVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *CreateClientInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateClientInfoVQOperation) {
@@ -13224,7 +13402,7 @@ func (o *CreateClientInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.ClientInfo = op.ClientInfo
 }
 func (o *CreateClientInfoVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateClientInfoVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClientInfoVQOperation{}
@@ -13241,13 +13419,15 @@ type CreateClientInfoVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateClientInfoVQResponse) xxx_ToOp(ctx context.Context) *xxx_CreateClientInfoVQOperation {
+func (o *CreateClientInfoVQResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateClientInfoVQOperation) *xxx_CreateClientInfoVQOperation {
+	if op == nil {
+		op = &xxx_CreateClientInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClientInfoVQOperation{}
+		return op
 	}
-	return &xxx_CreateClientInfoVQOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateClientInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateClientInfoVQOperation) {
@@ -13257,7 +13437,7 @@ func (o *CreateClientInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.Return = op.Return
 }
 func (o *CreateClientInfoVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateClientInfoVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClientInfoVQOperation{}
@@ -13409,14 +13589,16 @@ type SetClientInfoVQRequest struct {
 	ClientInfo *dhcpm.ClientInfoVQ `idl:"name:ClientInfo;pointer:ref" json:"client_info"`
 }
 
-func (o *SetClientInfoVQRequest) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoVQOperation {
+func (o *SetClientInfoVQRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoVQOperation) *xxx_SetClientInfoVQOperation {
+	if op == nil {
+		op = &xxx_SetClientInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoVQOperation{}
+		return op
 	}
-	return &xxx_SetClientInfoVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		ClientInfo:      o.ClientInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.ClientInfo = op.ClientInfo
+	return op
 }
 
 func (o *SetClientInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoVQOperation) {
@@ -13427,7 +13609,7 @@ func (o *SetClientInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_SetClie
 	o.ClientInfo = op.ClientInfo
 }
 func (o *SetClientInfoVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetClientInfoVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoVQOperation{}
@@ -13444,13 +13626,15 @@ type SetClientInfoVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetClientInfoVQResponse) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoVQOperation {
+func (o *SetClientInfoVQResponse) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoVQOperation) *xxx_SetClientInfoVQOperation {
+	if op == nil {
+		op = &xxx_SetClientInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoVQOperation{}
+		return op
 	}
-	return &xxx_SetClientInfoVQOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetClientInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoVQOperation) {
@@ -13460,7 +13644,7 @@ func (o *SetClientInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCli
 	o.Return = op.Return
 }
 func (o *SetClientInfoVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetClientInfoVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoVQOperation{}
@@ -13657,14 +13841,16 @@ type GetClientInfoVQRequest struct {
 	SearchInfo *dhcpm.SearchInfo `idl:"name:SearchInfo;pointer:ref" json:"search_info"`
 }
 
-func (o *GetClientInfoVQRequest) xxx_ToOp(ctx context.Context) *xxx_GetClientInfoVQOperation {
+func (o *GetClientInfoVQRequest) xxx_ToOp(ctx context.Context, op *xxx_GetClientInfoVQOperation) *xxx_GetClientInfoVQOperation {
+	if op == nil {
+		op = &xxx_GetClientInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientInfoVQOperation{}
+		return op
 	}
-	return &xxx_GetClientInfoVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SearchInfo:      o.SearchInfo,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SearchInfo = op.SearchInfo
+	return op
 }
 
 func (o *GetClientInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClientInfoVQOperation) {
@@ -13675,7 +13861,7 @@ func (o *GetClientInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_GetClie
 	o.SearchInfo = op.SearchInfo
 }
 func (o *GetClientInfoVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetClientInfoVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientInfoVQOperation{}
@@ -13697,14 +13883,16 @@ type GetClientInfoVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetClientInfoVQResponse) xxx_ToOp(ctx context.Context) *xxx_GetClientInfoVQOperation {
+func (o *GetClientInfoVQResponse) xxx_ToOp(ctx context.Context, op *xxx_GetClientInfoVQOperation) *xxx_GetClientInfoVQOperation {
+	if op == nil {
+		op = &xxx_GetClientInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_GetClientInfoVQOperation{}
+		return op
 	}
-	return &xxx_GetClientInfoVQOperation{
-		ClientInfo: o.ClientInfo,
-		Return:     o.Return,
-	}
+	o.ClientInfo = op.ClientInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetClientInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_GetClientInfoVQOperation) {
@@ -13715,7 +13903,7 @@ func (o *GetClientInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCli
 	o.Return = op.Return
 }
 func (o *GetClientInfoVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetClientInfoVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetClientInfoVQOperation{}
@@ -13972,16 +14160,18 @@ type EnumSubnetClientsVQRequest struct {
 	PreferredMaximum uint32 `idl:"name:PreferredMaximum" json:"preferred_maximum"`
 }
 
-func (o *EnumSubnetClientsVQRequest) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetClientsVQOperation {
+func (o *EnumSubnetClientsVQRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetClientsVQOperation) *xxx_EnumSubnetClientsVQOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetClientsVQOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetClientsVQOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetClientsVQOperation{
-		ServerIPAddress:  o.ServerIPAddress,
-		SubnetAddress:    o.SubnetAddress,
-		Resume:           o.Resume,
-		PreferredMaximum: o.PreferredMaximum,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.Resume = op.Resume
+	o.PreferredMaximum = op.PreferredMaximum
+	return op
 }
 
 func (o *EnumSubnetClientsVQRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetClientsVQOperation) {
@@ -13994,7 +14184,7 @@ func (o *EnumSubnetClientsVQRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.PreferredMaximum = op.PreferredMaximum
 }
 func (o *EnumSubnetClientsVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumSubnetClientsVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetClientsVQOperation{}
@@ -14029,17 +14219,19 @@ type EnumSubnetClientsVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumSubnetClientsVQResponse) xxx_ToOp(ctx context.Context) *xxx_EnumSubnetClientsVQOperation {
+func (o *EnumSubnetClientsVQResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumSubnetClientsVQOperation) *xxx_EnumSubnetClientsVQOperation {
+	if op == nil {
+		op = &xxx_EnumSubnetClientsVQOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumSubnetClientsVQOperation{}
+		return op
 	}
-	return &xxx_EnumSubnetClientsVQOperation{
-		Resume:       o.Resume,
-		ClientInfo:   o.ClientInfo,
-		ClientsRead:  o.ClientsRead,
-		ClientsTotal: o.ClientsTotal,
-		Return:       o.Return,
-	}
+	o.Resume = op.Resume
+	o.ClientInfo = op.ClientInfo
+	o.ClientsRead = op.ClientsRead
+	o.ClientsTotal = op.ClientsTotal
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumSubnetClientsVQResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumSubnetClientsVQOperation) {
@@ -14053,7 +14245,7 @@ func (o *EnumSubnetClientsVQResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumSubnetClientsVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumSubnetClientsVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumSubnetClientsVQOperation{}
@@ -14219,15 +14411,17 @@ type CreateSubnetVQRequest struct {
 	SubnetInfoVQ *dhcpm.SubnetInfoVQ `idl:"name:SubnetInfoVQ;pointer:ref" json:"subnet_info_vq"`
 }
 
-func (o *CreateSubnetVQRequest) xxx_ToOp(ctx context.Context) *xxx_CreateSubnetVQOperation {
+func (o *CreateSubnetVQRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateSubnetVQOperation) *xxx_CreateSubnetVQOperation {
+	if op == nil {
+		op = &xxx_CreateSubnetVQOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateSubnetVQOperation{}
+		return op
 	}
-	return &xxx_CreateSubnetVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		SubnetInfoVQ:    o.SubnetInfoVQ,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.SubnetInfoVQ = op.SubnetInfoVQ
+	return op
 }
 
 func (o *CreateSubnetVQRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSubnetVQOperation) {
@@ -14239,7 +14433,7 @@ func (o *CreateSubnetVQRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateSu
 	o.SubnetInfoVQ = op.SubnetInfoVQ
 }
 func (o *CreateSubnetVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateSubnetVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateSubnetVQOperation{}
@@ -14256,13 +14450,15 @@ type CreateSubnetVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateSubnetVQResponse) xxx_ToOp(ctx context.Context) *xxx_CreateSubnetVQOperation {
+func (o *CreateSubnetVQResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateSubnetVQOperation) *xxx_CreateSubnetVQOperation {
+	if op == nil {
+		op = &xxx_CreateSubnetVQOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateSubnetVQOperation{}
+		return op
 	}
-	return &xxx_CreateSubnetVQOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateSubnetVQResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateSubnetVQOperation) {
@@ -14272,7 +14468,7 @@ func (o *CreateSubnetVQResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateS
 	o.Return = op.Return
 }
 func (o *CreateSubnetVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateSubnetVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateSubnetVQOperation{}
@@ -14451,14 +14647,16 @@ type GetSubnetInfoVQRequest struct {
 	SubnetAddress uint32 `idl:"name:SubnetAddress" json:"subnet_address"`
 }
 
-func (o *GetSubnetInfoVQRequest) xxx_ToOp(ctx context.Context) *xxx_GetSubnetInfoVQOperation {
+func (o *GetSubnetInfoVQRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSubnetInfoVQOperation) *xxx_GetSubnetInfoVQOperation {
+	if op == nil {
+		op = &xxx_GetSubnetInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubnetInfoVQOperation{}
+		return op
 	}
-	return &xxx_GetSubnetInfoVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	return op
 }
 
 func (o *GetSubnetInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubnetInfoVQOperation) {
@@ -14469,7 +14667,7 @@ func (o *GetSubnetInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubn
 	o.SubnetAddress = op.SubnetAddress
 }
 func (o *GetSubnetInfoVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSubnetInfoVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubnetInfoVQOperation{}
@@ -14489,14 +14687,16 @@ type GetSubnetInfoVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSubnetInfoVQResponse) xxx_ToOp(ctx context.Context) *xxx_GetSubnetInfoVQOperation {
+func (o *GetSubnetInfoVQResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSubnetInfoVQOperation) *xxx_GetSubnetInfoVQOperation {
+	if op == nil {
+		op = &xxx_GetSubnetInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubnetInfoVQOperation{}
+		return op
 	}
-	return &xxx_GetSubnetInfoVQOperation{
-		SubnetInfoVQ: o.SubnetInfoVQ,
-		Return:       o.Return,
-	}
+	o.SubnetInfoVQ = op.SubnetInfoVQ
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSubnetInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSubnetInfoVQOperation) {
@@ -14507,7 +14707,7 @@ func (o *GetSubnetInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSub
 	o.Return = op.Return
 }
 func (o *GetSubnetInfoVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSubnetInfoVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubnetInfoVQOperation{}
@@ -14673,15 +14873,17 @@ type SetSubnetInfoVQRequest struct {
 	SubnetInfoVQ *dhcpm.SubnetInfoVQ `idl:"name:SubnetInfoVQ;pointer:ref" json:"subnet_info_vq"`
 }
 
-func (o *SetSubnetInfoVQRequest) xxx_ToOp(ctx context.Context) *xxx_SetSubnetInfoVQOperation {
+func (o *SetSubnetInfoVQRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSubnetInfoVQOperation) *xxx_SetSubnetInfoVQOperation {
+	if op == nil {
+		op = &xxx_SetSubnetInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubnetInfoVQOperation{}
+		return op
 	}
-	return &xxx_SetSubnetInfoVQOperation{
-		ServerIPAddress: o.ServerIPAddress,
-		SubnetAddress:   o.SubnetAddress,
-		SubnetInfoVQ:    o.SubnetInfoVQ,
-	}
+	o.ServerIPAddress = op.ServerIPAddress
+	o.SubnetAddress = op.SubnetAddress
+	o.SubnetInfoVQ = op.SubnetInfoVQ
+	return op
 }
 
 func (o *SetSubnetInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubnetInfoVQOperation) {
@@ -14693,7 +14895,7 @@ func (o *SetSubnetInfoVQRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubn
 	o.SubnetInfoVQ = op.SubnetInfoVQ
 }
 func (o *SetSubnetInfoVQRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSubnetInfoVQRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubnetInfoVQOperation{}
@@ -14710,13 +14912,15 @@ type SetSubnetInfoVQResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSubnetInfoVQResponse) xxx_ToOp(ctx context.Context) *xxx_SetSubnetInfoVQOperation {
+func (o *SetSubnetInfoVQResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSubnetInfoVQOperation) *xxx_SetSubnetInfoVQOperation {
+	if op == nil {
+		op = &xxx_SetSubnetInfoVQOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubnetInfoVQOperation{}
+		return op
 	}
-	return &xxx_SetSubnetInfoVQOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSubnetInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSubnetInfoVQOperation) {
@@ -14726,7 +14930,7 @@ func (o *SetSubnetInfoVQResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSub
 	o.Return = op.Return
 }
 func (o *SetSubnetInfoVQResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSubnetInfoVQResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubnetInfoVQOperation{}

@@ -67,47 +67,85 @@ func StorageModuleDefinitionServerHandle(ctx context.Context, o StorageModuleDef
 	}
 	switch opNum {
 	case 31: // Capabilities
-		in := &GetCapabilitiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCapabilitiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCapabilities(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCapabilitiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCapabilities(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // Capabilities
-		in := &SetCapabilitiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCapabilitiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCapabilities(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCapabilitiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCapabilities(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // StorageType
-		in := &GetStorageTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStorageTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStorageType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStorageTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStorageType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // StorageType
-		in := &SetStorageTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetStorageTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetStorageType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetStorageTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetStorageType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // UpdatesFileContent
-		in := &GetUpdatesFileContentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUpdatesFileContentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUpdatesFileContent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUpdatesFileContentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUpdatesFileContent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // UpdatesFileContent
-		in := &SetUpdatesFileContentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetUpdatesFileContentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetUpdatesFileContent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetUpdatesFileContentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetUpdatesFileContent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmStorageModuleDefinition
+type UnimplementedStorageModuleDefinitionServer struct {
+	ifsrmpipelinemoduledefinition.UnimplementedPipelineModuleDefinitionServer
+}
+
+func (UnimplementedStorageModuleDefinitionServer) GetCapabilities(context.Context, *GetCapabilitiesRequest) (*GetCapabilitiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedStorageModuleDefinitionServer) SetCapabilities(context.Context, *SetCapabilitiesRequest) (*SetCapabilitiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedStorageModuleDefinitionServer) GetStorageType(context.Context, *GetStorageTypeRequest) (*GetStorageTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedStorageModuleDefinitionServer) SetStorageType(context.Context, *SetStorageTypeRequest) (*SetStorageTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedStorageModuleDefinitionServer) GetUpdatesFileContent(context.Context, *GetUpdatesFileContentRequest) (*GetUpdatesFileContentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedStorageModuleDefinitionServer) SetUpdatesFileContent(context.Context, *SetUpdatesFileContentRequest) (*SetUpdatesFileContentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ StorageModuleDefinitionServer = (*UnimplementedStorageModuleDefinitionServer)(nil)

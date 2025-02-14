@@ -82,7 +82,7 @@ func (o *xxx_DefaultPack2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultPack2Client) CreateVolume2(ctx context.Context, in *CreateVolume2Request, opts ...dcerpc.CallOption) (*CreateVolume2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -437,18 +437,20 @@ type CreateVolume2Request struct {
 	Align uint32 `idl:"name:ulAlign" json:"align"`
 }
 
-func (o *CreateVolume2Request) xxx_ToOp(ctx context.Context) *xxx_CreateVolume2Operation {
+func (o *CreateVolume2Request) xxx_ToOp(ctx context.Context, op *xxx_CreateVolume2Operation) *xxx_CreateVolume2Operation {
+	if op == nil {
+		op = &xxx_CreateVolume2Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateVolume2Operation{}
+		return op
 	}
-	return &xxx_CreateVolume2Operation{
-		This:           o.This,
-		Type:           o.Type,
-		InputDiskArray: o.InputDiskArray,
-		NumberOfDisks:  o.NumberOfDisks,
-		StripeSize:     o.StripeSize,
-		Align:          o.Align,
-	}
+	o.This = op.This
+	o.Type = op.Type
+	o.InputDiskArray = op.InputDiskArray
+	o.NumberOfDisks = op.NumberOfDisks
+	o.StripeSize = op.StripeSize
+	o.Align = op.Align
+	return op
 }
 
 func (o *CreateVolume2Request) xxx_FromOp(ctx context.Context, op *xxx_CreateVolume2Operation) {
@@ -463,7 +465,7 @@ func (o *CreateVolume2Request) xxx_FromOp(ctx context.Context, op *xxx_CreateVol
 	o.Align = op.Align
 }
 func (o *CreateVolume2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateVolume2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateVolume2Operation{}
@@ -489,15 +491,17 @@ type CreateVolume2Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateVolume2Response) xxx_ToOp(ctx context.Context) *xxx_CreateVolume2Operation {
+func (o *CreateVolume2Response) xxx_ToOp(ctx context.Context, op *xxx_CreateVolume2Operation) *xxx_CreateVolume2Operation {
+	if op == nil {
+		op = &xxx_CreateVolume2Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateVolume2Operation{}
+		return op
 	}
-	return &xxx_CreateVolume2Operation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateVolume2Response) xxx_FromOp(ctx context.Context, op *xxx_CreateVolume2Operation) {
@@ -509,7 +513,7 @@ func (o *CreateVolume2Response) xxx_FromOp(ctx context.Context, op *xxx_CreateVo
 	o.Return = op.Return
 }
 func (o *CreateVolume2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateVolume2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateVolume2Operation{}

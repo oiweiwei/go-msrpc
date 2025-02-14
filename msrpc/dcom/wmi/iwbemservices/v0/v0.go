@@ -301,7 +301,7 @@ func (o *xxx_DefaultServicesClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultServicesClient) OpenNamespace(ctx context.Context, in *OpenNamespaceRequest, opts ...dcerpc.CallOption) (*OpenNamespaceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -321,7 +321,7 @@ func (o *xxx_DefaultServicesClient) OpenNamespace(ctx context.Context, in *OpenN
 }
 
 func (o *xxx_DefaultServicesClient) CancelAsyncCall(ctx context.Context, in *CancelAsyncCallRequest, opts ...dcerpc.CallOption) (*CancelAsyncCallResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -341,7 +341,7 @@ func (o *xxx_DefaultServicesClient) CancelAsyncCall(ctx context.Context, in *Can
 }
 
 func (o *xxx_DefaultServicesClient) QueryObjectSink(ctx context.Context, in *QueryObjectSinkRequest, opts ...dcerpc.CallOption) (*QueryObjectSinkResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -361,7 +361,7 @@ func (o *xxx_DefaultServicesClient) QueryObjectSink(ctx context.Context, in *Que
 }
 
 func (o *xxx_DefaultServicesClient) GetObject(ctx context.Context, in *GetObjectRequest, opts ...dcerpc.CallOption) (*GetObjectResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -381,7 +381,7 @@ func (o *xxx_DefaultServicesClient) GetObject(ctx context.Context, in *GetObject
 }
 
 func (o *xxx_DefaultServicesClient) GetObjectAsync(ctx context.Context, in *GetObjectAsyncRequest, opts ...dcerpc.CallOption) (*GetObjectAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -401,7 +401,7 @@ func (o *xxx_DefaultServicesClient) GetObjectAsync(ctx context.Context, in *GetO
 }
 
 func (o *xxx_DefaultServicesClient) PutClass(ctx context.Context, in *PutClassRequest, opts ...dcerpc.CallOption) (*PutClassResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -421,7 +421,7 @@ func (o *xxx_DefaultServicesClient) PutClass(ctx context.Context, in *PutClassRe
 }
 
 func (o *xxx_DefaultServicesClient) PutClassAsync(ctx context.Context, in *PutClassAsyncRequest, opts ...dcerpc.CallOption) (*PutClassAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -441,7 +441,7 @@ func (o *xxx_DefaultServicesClient) PutClassAsync(ctx context.Context, in *PutCl
 }
 
 func (o *xxx_DefaultServicesClient) DeleteClass(ctx context.Context, in *DeleteClassRequest, opts ...dcerpc.CallOption) (*DeleteClassResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -461,7 +461,7 @@ func (o *xxx_DefaultServicesClient) DeleteClass(ctx context.Context, in *DeleteC
 }
 
 func (o *xxx_DefaultServicesClient) DeleteClassAsync(ctx context.Context, in *DeleteClassAsyncRequest, opts ...dcerpc.CallOption) (*DeleteClassAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -481,7 +481,7 @@ func (o *xxx_DefaultServicesClient) DeleteClassAsync(ctx context.Context, in *De
 }
 
 func (o *xxx_DefaultServicesClient) CreateClassEnum(ctx context.Context, in *CreateClassEnumRequest, opts ...dcerpc.CallOption) (*CreateClassEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -501,7 +501,7 @@ func (o *xxx_DefaultServicesClient) CreateClassEnum(ctx context.Context, in *Cre
 }
 
 func (o *xxx_DefaultServicesClient) CreateClassEnumAsync(ctx context.Context, in *CreateClassEnumAsyncRequest, opts ...dcerpc.CallOption) (*CreateClassEnumAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -521,7 +521,7 @@ func (o *xxx_DefaultServicesClient) CreateClassEnumAsync(ctx context.Context, in
 }
 
 func (o *xxx_DefaultServicesClient) PutInstance(ctx context.Context, in *PutInstanceRequest, opts ...dcerpc.CallOption) (*PutInstanceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -541,7 +541,7 @@ func (o *xxx_DefaultServicesClient) PutInstance(ctx context.Context, in *PutInst
 }
 
 func (o *xxx_DefaultServicesClient) PutInstanceAsync(ctx context.Context, in *PutInstanceAsyncRequest, opts ...dcerpc.CallOption) (*PutInstanceAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -561,7 +561,7 @@ func (o *xxx_DefaultServicesClient) PutInstanceAsync(ctx context.Context, in *Pu
 }
 
 func (o *xxx_DefaultServicesClient) DeleteInstance(ctx context.Context, in *DeleteInstanceRequest, opts ...dcerpc.CallOption) (*DeleteInstanceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -581,7 +581,7 @@ func (o *xxx_DefaultServicesClient) DeleteInstance(ctx context.Context, in *Dele
 }
 
 func (o *xxx_DefaultServicesClient) DeleteInstanceAsync(ctx context.Context, in *DeleteInstanceAsyncRequest, opts ...dcerpc.CallOption) (*DeleteInstanceAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -601,7 +601,7 @@ func (o *xxx_DefaultServicesClient) DeleteInstanceAsync(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultServicesClient) CreateInstanceEnum(ctx context.Context, in *CreateInstanceEnumRequest, opts ...dcerpc.CallOption) (*CreateInstanceEnumResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -621,7 +621,7 @@ func (o *xxx_DefaultServicesClient) CreateInstanceEnum(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultServicesClient) CreateInstanceEnumAsync(ctx context.Context, in *CreateInstanceEnumAsyncRequest, opts ...dcerpc.CallOption) (*CreateInstanceEnumAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -641,7 +641,7 @@ func (o *xxx_DefaultServicesClient) CreateInstanceEnumAsync(ctx context.Context,
 }
 
 func (o *xxx_DefaultServicesClient) ExecQuery(ctx context.Context, in *ExecQueryRequest, opts ...dcerpc.CallOption) (*ExecQueryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -661,7 +661,7 @@ func (o *xxx_DefaultServicesClient) ExecQuery(ctx context.Context, in *ExecQuery
 }
 
 func (o *xxx_DefaultServicesClient) ExecQueryAsync(ctx context.Context, in *ExecQueryAsyncRequest, opts ...dcerpc.CallOption) (*ExecQueryAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -681,7 +681,7 @@ func (o *xxx_DefaultServicesClient) ExecQueryAsync(ctx context.Context, in *Exec
 }
 
 func (o *xxx_DefaultServicesClient) ExecNotificationQuery(ctx context.Context, in *ExecNotificationQueryRequest, opts ...dcerpc.CallOption) (*ExecNotificationQueryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -701,7 +701,7 @@ func (o *xxx_DefaultServicesClient) ExecNotificationQuery(ctx context.Context, i
 }
 
 func (o *xxx_DefaultServicesClient) ExecNotificationQueryAsync(ctx context.Context, in *ExecNotificationQueryAsyncRequest, opts ...dcerpc.CallOption) (*ExecNotificationQueryAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -721,7 +721,7 @@ func (o *xxx_DefaultServicesClient) ExecNotificationQueryAsync(ctx context.Conte
 }
 
 func (o *xxx_DefaultServicesClient) ExecMethod(ctx context.Context, in *ExecMethodRequest, opts ...dcerpc.CallOption) (*ExecMethodResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -741,7 +741,7 @@ func (o *xxx_DefaultServicesClient) ExecMethod(ctx context.Context, in *ExecMeth
 }
 
 func (o *xxx_DefaultServicesClient) ExecMethodAsync(ctx context.Context, in *ExecMethodAsyncRequest, opts ...dcerpc.CallOption) (*ExecMethodAsyncResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -1345,18 +1345,20 @@ type OpenNamespaceRequest struct {
 	Result *wmi.CallResult `idl:"name:ppResult;pointer:unique" json:"result"`
 }
 
-func (o *OpenNamespaceRequest) xxx_ToOp(ctx context.Context) *xxx_OpenNamespaceOperation {
+func (o *OpenNamespaceRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenNamespaceOperation) *xxx_OpenNamespaceOperation {
+	if op == nil {
+		op = &xxx_OpenNamespaceOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenNamespaceOperation{}
+		return op
 	}
-	return &xxx_OpenNamespaceOperation{
-		This:             o.This,
-		Namespace:        o.Namespace,
-		Flags:            o.Flags,
-		Context:          o.Context,
-		WorkingNamespace: o.WorkingNamespace,
-		Result:           o.Result,
-	}
+	o.This = op.This
+	o.Namespace = op.Namespace
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.WorkingNamespace = op.WorkingNamespace
+	o.Result = op.Result
+	return op
 }
 
 func (o *OpenNamespaceRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenNamespaceOperation) {
@@ -1371,7 +1373,7 @@ func (o *OpenNamespaceRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenNames
 	o.Result = op.Result
 }
 func (o *OpenNamespaceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenNamespaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenNamespaceOperation{}
@@ -1421,16 +1423,18 @@ type OpenNamespaceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenNamespaceResponse) xxx_ToOp(ctx context.Context) *xxx_OpenNamespaceOperation {
+func (o *OpenNamespaceResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenNamespaceOperation) *xxx_OpenNamespaceOperation {
+	if op == nil {
+		op = &xxx_OpenNamespaceOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenNamespaceOperation{}
+		return op
 	}
-	return &xxx_OpenNamespaceOperation{
-		That:             o.That,
-		WorkingNamespace: o.WorkingNamespace,
-		Result:           o.Result,
-		Return:           o.Return,
-	}
+	o.That = op.That
+	o.WorkingNamespace = op.WorkingNamespace
+	o.Result = op.Result
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenNamespaceResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenNamespaceOperation) {
@@ -1443,7 +1447,7 @@ func (o *OpenNamespaceResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenName
 	o.Return = op.Return
 }
 func (o *OpenNamespaceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenNamespaceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenNamespaceOperation{}
@@ -1628,14 +1632,16 @@ type CancelAsyncCallRequest struct {
 	Sink *wmi.ObjectSink `idl:"name:pSink" json:"sink"`
 }
 
-func (o *CancelAsyncCallRequest) xxx_ToOp(ctx context.Context) *xxx_CancelAsyncCallOperation {
+func (o *CancelAsyncCallRequest) xxx_ToOp(ctx context.Context, op *xxx_CancelAsyncCallOperation) *xxx_CancelAsyncCallOperation {
+	if op == nil {
+		op = &xxx_CancelAsyncCallOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelAsyncCallOperation{}
+		return op
 	}
-	return &xxx_CancelAsyncCallOperation{
-		This: o.This,
-		Sink: o.Sink,
-	}
+	o.This = op.This
+	o.Sink = op.Sink
+	return op
 }
 
 func (o *CancelAsyncCallRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelAsyncCallOperation) {
@@ -1646,7 +1652,7 @@ func (o *CancelAsyncCallRequest) xxx_FromOp(ctx context.Context, op *xxx_CancelA
 	o.Sink = op.Sink
 }
 func (o *CancelAsyncCallRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CancelAsyncCallRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelAsyncCallOperation{}
@@ -1665,14 +1671,16 @@ type CancelAsyncCallResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CancelAsyncCallResponse) xxx_ToOp(ctx context.Context) *xxx_CancelAsyncCallOperation {
+func (o *CancelAsyncCallResponse) xxx_ToOp(ctx context.Context, op *xxx_CancelAsyncCallOperation) *xxx_CancelAsyncCallOperation {
+	if op == nil {
+		op = &xxx_CancelAsyncCallOperation{}
+	}
 	if o == nil {
-		return &xxx_CancelAsyncCallOperation{}
+		return op
 	}
-	return &xxx_CancelAsyncCallOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CancelAsyncCallResponse) xxx_FromOp(ctx context.Context, op *xxx_CancelAsyncCallOperation) {
@@ -1683,7 +1691,7 @@ func (o *CancelAsyncCallResponse) xxx_FromOp(ctx context.Context, op *xxx_Cancel
 	o.Return = op.Return
 }
 func (o *CancelAsyncCallResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CancelAsyncCallResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CancelAsyncCallOperation{}
@@ -1879,14 +1887,16 @@ type QueryObjectSinkRequest struct {
 	Flags int32 `idl:"name:lFlags" json:"flags"`
 }
 
-func (o *QueryObjectSinkRequest) xxx_ToOp(ctx context.Context) *xxx_QueryObjectSinkOperation {
+func (o *QueryObjectSinkRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryObjectSinkOperation) *xxx_QueryObjectSinkOperation {
+	if op == nil {
+		op = &xxx_QueryObjectSinkOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryObjectSinkOperation{}
+		return op
 	}
-	return &xxx_QueryObjectSinkOperation{
-		This:  o.This,
-		Flags: o.Flags,
-	}
+	o.This = op.This
+	o.Flags = op.Flags
+	return op
 }
 
 func (o *QueryObjectSinkRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryObjectSinkOperation) {
@@ -1897,7 +1907,7 @@ func (o *QueryObjectSinkRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryOb
 	o.Flags = op.Flags
 }
 func (o *QueryObjectSinkRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryObjectSinkRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryObjectSinkOperation{}
@@ -1920,15 +1930,17 @@ type QueryObjectSinkResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryObjectSinkResponse) xxx_ToOp(ctx context.Context) *xxx_QueryObjectSinkOperation {
+func (o *QueryObjectSinkResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryObjectSinkOperation) *xxx_QueryObjectSinkOperation {
+	if op == nil {
+		op = &xxx_QueryObjectSinkOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryObjectSinkOperation{}
+		return op
 	}
-	return &xxx_QueryObjectSinkOperation{
-		That:            o.That,
-		ResponseHandler: o.ResponseHandler,
-		Return:          o.Return,
-	}
+	o.That = op.That
+	o.ResponseHandler = op.ResponseHandler
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryObjectSinkResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryObjectSinkOperation) {
@@ -1940,7 +1952,7 @@ func (o *QueryObjectSinkResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryO
 	o.Return = op.Return
 }
 func (o *QueryObjectSinkResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryObjectSinkResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryObjectSinkOperation{}
@@ -2506,18 +2518,20 @@ type GetObjectRequest struct {
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
-func (o *GetObjectRequest) xxx_ToOp(ctx context.Context) *xxx_GetObjectOperation {
+func (o *GetObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectOperation) *xxx_GetObjectOperation {
+	if op == nil {
+		op = &xxx_GetObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectOperation{}
+		return op
 	}
-	return &xxx_GetObjectOperation{
-		This:       o.This,
-		ObjectPath: o.ObjectPath,
-		Flags:      o.Flags,
-		Context:    o.Context,
-		Object:     o.Object,
-		CallResult: o.CallResult,
-	}
+	o.This = op.This
+	o.ObjectPath = op.ObjectPath
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.Object = op.Object
+	o.CallResult = op.CallResult
+	return op
 }
 
 func (o *GetObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetObjectOperation) {
@@ -2532,7 +2546,7 @@ func (o *GetObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_GetObjectOper
 	o.CallResult = op.CallResult
 }
 func (o *GetObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetObjectRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectOperation{}
@@ -2581,16 +2595,18 @@ type GetObjectResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetObjectResponse) xxx_ToOp(ctx context.Context) *xxx_GetObjectOperation {
+func (o *GetObjectResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObjectOperation) *xxx_GetObjectOperation {
+	if op == nil {
+		op = &xxx_GetObjectOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectOperation{}
+		return op
 	}
-	return &xxx_GetObjectOperation{
-		That:       o.That,
-		Object:     o.Object,
-		CallResult: o.CallResult,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Object = op.Object
+	o.CallResult = op.CallResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObjectOperation) {
@@ -2603,7 +2619,7 @@ func (o *GetObjectResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObjectOpe
 	o.Return = op.Return
 }
 func (o *GetObjectResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectOperation{}
@@ -2930,17 +2946,19 @@ type GetObjectAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *GetObjectAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_GetObjectAsyncOperation {
+func (o *GetObjectAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectAsyncOperation) *xxx_GetObjectAsyncOperation {
+	if op == nil {
+		op = &xxx_GetObjectAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectAsyncOperation{}
+		return op
 	}
-	return &xxx_GetObjectAsyncOperation{
-		This:            o.This,
-		ObjectPath:      o.ObjectPath,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.ObjectPath = op.ObjectPath
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *GetObjectAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_GetObjectAsyncOperation) {
@@ -2954,7 +2972,7 @@ func (o *GetObjectAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_GetObjec
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *GetObjectAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetObjectAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectAsyncOperation{}
@@ -2973,14 +2991,16 @@ type GetObjectAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetObjectAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_GetObjectAsyncOperation {
+func (o *GetObjectAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObjectAsyncOperation) *xxx_GetObjectAsyncOperation {
+	if op == nil {
+		op = &xxx_GetObjectAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectAsyncOperation{}
+		return op
 	}
-	return &xxx_GetObjectAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetObjectAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObjectAsyncOperation) {
@@ -2991,7 +3011,7 @@ func (o *GetObjectAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObje
 	o.Return = op.Return
 }
 func (o *GetObjectAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetObjectAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectAsyncOperation{}
@@ -3427,17 +3447,19 @@ type PutClassRequest struct {
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
-func (o *PutClassRequest) xxx_ToOp(ctx context.Context) *xxx_PutClassOperation {
+func (o *PutClassRequest) xxx_ToOp(ctx context.Context, op *xxx_PutClassOperation) *xxx_PutClassOperation {
+	if op == nil {
+		op = &xxx_PutClassOperation{}
+	}
 	if o == nil {
-		return &xxx_PutClassOperation{}
+		return op
 	}
-	return &xxx_PutClassOperation{
-		This:       o.This,
-		Object:     o.Object,
-		Flags:      o.Flags,
-		Context:    o.Context,
-		CallResult: o.CallResult,
-	}
+	o.This = op.This
+	o.Object = op.Object
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.CallResult = op.CallResult
+	return op
 }
 
 func (o *PutClassRequest) xxx_FromOp(ctx context.Context, op *xxx_PutClassOperation) {
@@ -3451,7 +3473,7 @@ func (o *PutClassRequest) xxx_FromOp(ctx context.Context, op *xxx_PutClassOperat
 	o.CallResult = op.CallResult
 }
 func (o *PutClassRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PutClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutClassOperation{}
@@ -3488,15 +3510,17 @@ type PutClassResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PutClassResponse) xxx_ToOp(ctx context.Context) *xxx_PutClassOperation {
+func (o *PutClassResponse) xxx_ToOp(ctx context.Context, op *xxx_PutClassOperation) *xxx_PutClassOperation {
+	if op == nil {
+		op = &xxx_PutClassOperation{}
+	}
 	if o == nil {
-		return &xxx_PutClassOperation{}
+		return op
 	}
-	return &xxx_PutClassOperation{
-		That:       o.That,
-		CallResult: o.CallResult,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CallResult = op.CallResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *PutClassResponse) xxx_FromOp(ctx context.Context, op *xxx_PutClassOperation) {
@@ -3508,7 +3532,7 @@ func (o *PutClassResponse) xxx_FromOp(ctx context.Context, op *xxx_PutClassOpera
 	o.Return = op.Return
 }
 func (o *PutClassResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PutClassResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutClassOperation{}
@@ -3849,17 +3873,19 @@ type PutClassAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *PutClassAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_PutClassAsyncOperation {
+func (o *PutClassAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_PutClassAsyncOperation) *xxx_PutClassAsyncOperation {
+	if op == nil {
+		op = &xxx_PutClassAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_PutClassAsyncOperation{}
+		return op
 	}
-	return &xxx_PutClassAsyncOperation{
-		This:            o.This,
-		Object:          o.Object,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.Object = op.Object
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *PutClassAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_PutClassAsyncOperation) {
@@ -3873,7 +3899,7 @@ func (o *PutClassAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_PutClassA
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *PutClassAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PutClassAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutClassAsyncOperation{}
@@ -3892,14 +3918,16 @@ type PutClassAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PutClassAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_PutClassAsyncOperation {
+func (o *PutClassAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_PutClassAsyncOperation) *xxx_PutClassAsyncOperation {
+	if op == nil {
+		op = &xxx_PutClassAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_PutClassAsyncOperation{}
+		return op
 	}
-	return &xxx_PutClassAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PutClassAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_PutClassAsyncOperation) {
@@ -3910,7 +3938,7 @@ func (o *PutClassAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_PutClass
 	o.Return = op.Return
 }
 func (o *PutClassAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PutClassAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutClassAsyncOperation{}
@@ -4317,17 +4345,19 @@ type DeleteClassRequest struct {
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
-func (o *DeleteClassRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteClassOperation {
+func (o *DeleteClassRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassOperation) *xxx_DeleteClassOperation {
+	if op == nil {
+		op = &xxx_DeleteClassOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteClassOperation{}
+		return op
 	}
-	return &xxx_DeleteClassOperation{
-		This:       o.This,
-		Class:      o.Class,
-		Flags:      o.Flags,
-		Context:    o.Context,
-		CallResult: o.CallResult,
-	}
+	o.This = op.This
+	o.Class = op.Class
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.CallResult = op.CallResult
+	return op
 }
 
 func (o *DeleteClassRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteClassOperation) {
@@ -4341,7 +4371,7 @@ func (o *DeleteClassRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteClass
 	o.CallResult = op.CallResult
 }
 func (o *DeleteClassRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteClassRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteClassOperation{}
@@ -4376,15 +4406,17 @@ type DeleteClassResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteClassResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteClassOperation {
+func (o *DeleteClassResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassOperation) *xxx_DeleteClassOperation {
+	if op == nil {
+		op = &xxx_DeleteClassOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteClassOperation{}
+		return op
 	}
-	return &xxx_DeleteClassOperation{
-		That:       o.That,
-		CallResult: o.CallResult,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CallResult = op.CallResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteClassResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteClassOperation) {
@@ -4396,7 +4428,7 @@ func (o *DeleteClassResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteClas
 	o.Return = op.Return
 }
 func (o *DeleteClassResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteClassResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteClassOperation{}
@@ -4709,17 +4741,19 @@ type DeleteClassAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *DeleteClassAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteClassAsyncOperation {
+func (o *DeleteClassAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassAsyncOperation) *xxx_DeleteClassAsyncOperation {
+	if op == nil {
+		op = &xxx_DeleteClassAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteClassAsyncOperation{}
+		return op
 	}
-	return &xxx_DeleteClassAsyncOperation{
-		This:            o.This,
-		Class:           o.Class,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.Class = op.Class
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *DeleteClassAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteClassAsyncOperation) {
@@ -4733,7 +4767,7 @@ func (o *DeleteClassAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_Delete
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *DeleteClassAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteClassAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteClassAsyncOperation{}
@@ -4752,14 +4786,16 @@ type DeleteClassAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteClassAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteClassAsyncOperation {
+func (o *DeleteClassAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteClassAsyncOperation) *xxx_DeleteClassAsyncOperation {
+	if op == nil {
+		op = &xxx_DeleteClassAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteClassAsyncOperation{}
+		return op
 	}
-	return &xxx_DeleteClassAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteClassAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteClassAsyncOperation) {
@@ -4770,7 +4806,7 @@ func (o *DeleteClassAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_Delet
 	o.Return = op.Return
 }
 func (o *DeleteClassAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteClassAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteClassAsyncOperation{}
@@ -5093,16 +5129,18 @@ type CreateClassEnumRequest struct {
 	Context *wmi.Context `idl:"name:pCtx" json:"context"`
 }
 
-func (o *CreateClassEnumRequest) xxx_ToOp(ctx context.Context) *xxx_CreateClassEnumOperation {
+func (o *CreateClassEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateClassEnumOperation) *xxx_CreateClassEnumOperation {
+	if op == nil {
+		op = &xxx_CreateClassEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClassEnumOperation{}
+		return op
 	}
-	return &xxx_CreateClassEnumOperation{
-		This:       o.This,
-		Superclass: o.Superclass,
-		Flags:      o.Flags,
-		Context:    o.Context,
-	}
+	o.This = op.This
+	o.Superclass = op.Superclass
+	o.Flags = op.Flags
+	o.Context = op.Context
+	return op
 }
 
 func (o *CreateClassEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateClassEnumOperation) {
@@ -5115,7 +5153,7 @@ func (o *CreateClassEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateC
 	o.Context = op.Context
 }
 func (o *CreateClassEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateClassEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClassEnumOperation{}
@@ -5137,15 +5175,17 @@ type CreateClassEnumResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateClassEnumResponse) xxx_ToOp(ctx context.Context) *xxx_CreateClassEnumOperation {
+func (o *CreateClassEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateClassEnumOperation) *xxx_CreateClassEnumOperation {
+	if op == nil {
+		op = &xxx_CreateClassEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClassEnumOperation{}
+		return op
 	}
-	return &xxx_CreateClassEnumOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateClassEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateClassEnumOperation) {
@@ -5157,7 +5197,7 @@ func (o *CreateClassEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Create
 	o.Return = op.Return
 }
 func (o *CreateClassEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateClassEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClassEnumOperation{}
@@ -5488,17 +5528,19 @@ type CreateClassEnumAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *CreateClassEnumAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_CreateClassEnumAsyncOperation {
+func (o *CreateClassEnumAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateClassEnumAsyncOperation) *xxx_CreateClassEnumAsyncOperation {
+	if op == nil {
+		op = &xxx_CreateClassEnumAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClassEnumAsyncOperation{}
+		return op
 	}
-	return &xxx_CreateClassEnumAsyncOperation{
-		This:            o.This,
-		Superclass:      o.Superclass,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.Superclass = op.Superclass
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *CreateClassEnumAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateClassEnumAsyncOperation) {
@@ -5512,7 +5554,7 @@ func (o *CreateClassEnumAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *CreateClassEnumAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateClassEnumAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClassEnumAsyncOperation{}
@@ -5531,14 +5573,16 @@ type CreateClassEnumAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateClassEnumAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_CreateClassEnumAsyncOperation {
+func (o *CreateClassEnumAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateClassEnumAsyncOperation) *xxx_CreateClassEnumAsyncOperation {
+	if op == nil {
+		op = &xxx_CreateClassEnumAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateClassEnumAsyncOperation{}
+		return op
 	}
-	return &xxx_CreateClassEnumAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateClassEnumAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateClassEnumAsyncOperation) {
@@ -5549,7 +5593,7 @@ func (o *CreateClassEnumAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *CreateClassEnumAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateClassEnumAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateClassEnumAsyncOperation{}
@@ -6006,17 +6050,19 @@ type PutInstanceRequest struct {
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
-func (o *PutInstanceRequest) xxx_ToOp(ctx context.Context) *xxx_PutInstanceOperation {
+func (o *PutInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_PutInstanceOperation) *xxx_PutInstanceOperation {
+	if op == nil {
+		op = &xxx_PutInstanceOperation{}
+	}
 	if o == nil {
-		return &xxx_PutInstanceOperation{}
+		return op
 	}
-	return &xxx_PutInstanceOperation{
-		This:       o.This,
-		Instance:   o.Instance,
-		Flags:      o.Flags,
-		Context:    o.Context,
-		CallResult: o.CallResult,
-	}
+	o.This = op.This
+	o.Instance = op.Instance
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.CallResult = op.CallResult
+	return op
 }
 
 func (o *PutInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_PutInstanceOperation) {
@@ -6030,7 +6076,7 @@ func (o *PutInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_PutInstance
 	o.CallResult = op.CallResult
 }
 func (o *PutInstanceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PutInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutInstanceOperation{}
@@ -6067,15 +6113,17 @@ type PutInstanceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PutInstanceResponse) xxx_ToOp(ctx context.Context) *xxx_PutInstanceOperation {
+func (o *PutInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_PutInstanceOperation) *xxx_PutInstanceOperation {
+	if op == nil {
+		op = &xxx_PutInstanceOperation{}
+	}
 	if o == nil {
-		return &xxx_PutInstanceOperation{}
+		return op
 	}
-	return &xxx_PutInstanceOperation{
-		That:       o.That,
-		CallResult: o.CallResult,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CallResult = op.CallResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *PutInstanceResponse) xxx_FromOp(ctx context.Context, op *xxx_PutInstanceOperation) {
@@ -6087,7 +6135,7 @@ func (o *PutInstanceResponse) xxx_FromOp(ctx context.Context, op *xxx_PutInstanc
 	o.Return = op.Return
 }
 func (o *PutInstanceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PutInstanceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutInstanceOperation{}
@@ -6447,17 +6495,19 @@ type PutInstanceAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *PutInstanceAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_PutInstanceAsyncOperation {
+func (o *PutInstanceAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_PutInstanceAsyncOperation) *xxx_PutInstanceAsyncOperation {
+	if op == nil {
+		op = &xxx_PutInstanceAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_PutInstanceAsyncOperation{}
+		return op
 	}
-	return &xxx_PutInstanceAsyncOperation{
-		This:            o.This,
-		Instance:        o.Instance,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.Instance = op.Instance
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *PutInstanceAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_PutInstanceAsyncOperation) {
@@ -6471,7 +6521,7 @@ func (o *PutInstanceAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_PutIns
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *PutInstanceAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PutInstanceAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutInstanceAsyncOperation{}
@@ -6490,14 +6540,16 @@ type PutInstanceAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PutInstanceAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_PutInstanceAsyncOperation {
+func (o *PutInstanceAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_PutInstanceAsyncOperation) *xxx_PutInstanceAsyncOperation {
+	if op == nil {
+		op = &xxx_PutInstanceAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_PutInstanceAsyncOperation{}
+		return op
 	}
-	return &xxx_PutInstanceAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PutInstanceAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_PutInstanceAsyncOperation) {
@@ -6508,7 +6560,7 @@ func (o *PutInstanceAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_PutIn
 	o.Return = op.Return
 }
 func (o *PutInstanceAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PutInstanceAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PutInstanceAsyncOperation{}
@@ -6922,17 +6974,19 @@ type DeleteInstanceRequest struct {
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
-func (o *DeleteInstanceRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteInstanceOperation {
+func (o *DeleteInstanceRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteInstanceOperation) *xxx_DeleteInstanceOperation {
+	if op == nil {
+		op = &xxx_DeleteInstanceOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteInstanceOperation{}
+		return op
 	}
-	return &xxx_DeleteInstanceOperation{
-		This:       o.This,
-		ObjectPath: o.ObjectPath,
-		Flags:      o.Flags,
-		Context:    o.Context,
-		CallResult: o.CallResult,
-	}
+	o.This = op.This
+	o.ObjectPath = op.ObjectPath
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.CallResult = op.CallResult
+	return op
 }
 
 func (o *DeleteInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteInstanceOperation) {
@@ -6946,7 +7000,7 @@ func (o *DeleteInstanceRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteIn
 	o.CallResult = op.CallResult
 }
 func (o *DeleteInstanceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteInstanceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteInstanceOperation{}
@@ -6983,15 +7037,17 @@ type DeleteInstanceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteInstanceResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteInstanceOperation {
+func (o *DeleteInstanceResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteInstanceOperation) *xxx_DeleteInstanceOperation {
+	if op == nil {
+		op = &xxx_DeleteInstanceOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteInstanceOperation{}
+		return op
 	}
-	return &xxx_DeleteInstanceOperation{
-		That:       o.That,
-		CallResult: o.CallResult,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.CallResult = op.CallResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteInstanceResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteInstanceOperation) {
@@ -7003,7 +7059,7 @@ func (o *DeleteInstanceResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteI
 	o.Return = op.Return
 }
 func (o *DeleteInstanceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteInstanceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteInstanceOperation{}
@@ -7320,17 +7376,19 @@ type DeleteInstanceAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *DeleteInstanceAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteInstanceAsyncOperation {
+func (o *DeleteInstanceAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteInstanceAsyncOperation) *xxx_DeleteInstanceAsyncOperation {
+	if op == nil {
+		op = &xxx_DeleteInstanceAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteInstanceAsyncOperation{}
+		return op
 	}
-	return &xxx_DeleteInstanceAsyncOperation{
-		This:            o.This,
-		ObjectPath:      o.ObjectPath,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.ObjectPath = op.ObjectPath
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *DeleteInstanceAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteInstanceAsyncOperation) {
@@ -7344,7 +7402,7 @@ func (o *DeleteInstanceAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *DeleteInstanceAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteInstanceAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteInstanceAsyncOperation{}
@@ -7363,14 +7421,16 @@ type DeleteInstanceAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteInstanceAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteInstanceAsyncOperation {
+func (o *DeleteInstanceAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteInstanceAsyncOperation) *xxx_DeleteInstanceAsyncOperation {
+	if op == nil {
+		op = &xxx_DeleteInstanceAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteInstanceAsyncOperation{}
+		return op
 	}
-	return &xxx_DeleteInstanceAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteInstanceAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteInstanceAsyncOperation) {
@@ -7381,7 +7441,7 @@ func (o *DeleteInstanceAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_De
 	o.Return = op.Return
 }
 func (o *DeleteInstanceAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteInstanceAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteInstanceAsyncOperation{}
@@ -7712,16 +7772,18 @@ type CreateInstanceEnumRequest struct {
 	Context *wmi.Context `idl:"name:pCtx" json:"context"`
 }
 
-func (o *CreateInstanceEnumRequest) xxx_ToOp(ctx context.Context) *xxx_CreateInstanceEnumOperation {
+func (o *CreateInstanceEnumRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateInstanceEnumOperation) *xxx_CreateInstanceEnumOperation {
+	if op == nil {
+		op = &xxx_CreateInstanceEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateInstanceEnumOperation{}
+		return op
 	}
-	return &xxx_CreateInstanceEnumOperation{
-		This:       o.This,
-		Superclass: o.Superclass,
-		Flags:      o.Flags,
-		Context:    o.Context,
-	}
+	o.This = op.This
+	o.Superclass = op.Superclass
+	o.Flags = op.Flags
+	o.Context = op.Context
+	return op
 }
 
 func (o *CreateInstanceEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateInstanceEnumOperation) {
@@ -7734,7 +7796,7 @@ func (o *CreateInstanceEnumRequest) xxx_FromOp(ctx context.Context, op *xxx_Crea
 	o.Context = op.Context
 }
 func (o *CreateInstanceEnumRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateInstanceEnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateInstanceEnumOperation{}
@@ -7757,15 +7819,17 @@ type CreateInstanceEnumResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateInstanceEnumResponse) xxx_ToOp(ctx context.Context) *xxx_CreateInstanceEnumOperation {
+func (o *CreateInstanceEnumResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateInstanceEnumOperation) *xxx_CreateInstanceEnumOperation {
+	if op == nil {
+		op = &xxx_CreateInstanceEnumOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateInstanceEnumOperation{}
+		return op
 	}
-	return &xxx_CreateInstanceEnumOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateInstanceEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateInstanceEnumOperation) {
@@ -7777,7 +7841,7 @@ func (o *CreateInstanceEnumResponse) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.Return = op.Return
 }
 func (o *CreateInstanceEnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateInstanceEnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateInstanceEnumOperation{}
@@ -8111,17 +8175,19 @@ type CreateInstanceEnumAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *CreateInstanceEnumAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_CreateInstanceEnumAsyncOperation {
+func (o *CreateInstanceEnumAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateInstanceEnumAsyncOperation) *xxx_CreateInstanceEnumAsyncOperation {
+	if op == nil {
+		op = &xxx_CreateInstanceEnumAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateInstanceEnumAsyncOperation{}
+		return op
 	}
-	return &xxx_CreateInstanceEnumAsyncOperation{
-		This:            o.This,
-		Superclass:      o.Superclass,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.Superclass = op.Superclass
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *CreateInstanceEnumAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateInstanceEnumAsyncOperation) {
@@ -8135,7 +8201,7 @@ func (o *CreateInstanceEnumAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *CreateInstanceEnumAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateInstanceEnumAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateInstanceEnumAsyncOperation{}
@@ -8154,14 +8220,16 @@ type CreateInstanceEnumAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateInstanceEnumAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_CreateInstanceEnumAsyncOperation {
+func (o *CreateInstanceEnumAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateInstanceEnumAsyncOperation) *xxx_CreateInstanceEnumAsyncOperation {
+	if op == nil {
+		op = &xxx_CreateInstanceEnumAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateInstanceEnumAsyncOperation{}
+		return op
 	}
-	return &xxx_CreateInstanceEnumAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateInstanceEnumAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateInstanceEnumAsyncOperation) {
@@ -8172,7 +8240,7 @@ func (o *CreateInstanceEnumAsyncResponse) xxx_FromOp(ctx context.Context, op *xx
 	o.Return = op.Return
 }
 func (o *CreateInstanceEnumAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateInstanceEnumAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateInstanceEnumAsyncOperation{}
@@ -8548,17 +8616,19 @@ type ExecQueryRequest struct {
 	Context *wmi.Context `idl:"name:pCtx" json:"context"`
 }
 
-func (o *ExecQueryRequest) xxx_ToOp(ctx context.Context) *xxx_ExecQueryOperation {
+func (o *ExecQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryOperation) *xxx_ExecQueryOperation {
+	if op == nil {
+		op = &xxx_ExecQueryOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecQueryOperation{}
+		return op
 	}
-	return &xxx_ExecQueryOperation{
-		This:          o.This,
-		QueryLanguage: o.QueryLanguage,
-		Query:         o.Query,
-		Flags:         o.Flags,
-		Context:       o.Context,
-	}
+	o.This = op.This
+	o.QueryLanguage = op.QueryLanguage
+	o.Query = op.Query
+	o.Flags = op.Flags
+	o.Context = op.Context
+	return op
 }
 
 func (o *ExecQueryRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecQueryOperation) {
@@ -8572,7 +8642,7 @@ func (o *ExecQueryRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecQueryOper
 	o.Context = op.Context
 }
 func (o *ExecQueryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecQueryOperation{}
@@ -8595,15 +8665,17 @@ type ExecQueryResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecQueryResponse) xxx_ToOp(ctx context.Context) *xxx_ExecQueryOperation {
+func (o *ExecQueryResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryOperation) *xxx_ExecQueryOperation {
+	if op == nil {
+		op = &xxx_ExecQueryOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecQueryOperation{}
+		return op
 	}
-	return &xxx_ExecQueryOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecQueryResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecQueryOperation) {
@@ -8615,7 +8687,7 @@ func (o *ExecQueryResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecQueryOpe
 	o.Return = op.Return
 }
 func (o *ExecQueryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecQueryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecQueryOperation{}
@@ -8994,18 +9066,20 @@ type ExecQueryAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *ExecQueryAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_ExecQueryAsyncOperation {
+func (o *ExecQueryAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryAsyncOperation) *xxx_ExecQueryAsyncOperation {
+	if op == nil {
+		op = &xxx_ExecQueryAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecQueryAsyncOperation{}
+		return op
 	}
-	return &xxx_ExecQueryAsyncOperation{
-		This:            o.This,
-		QueryLanguage:   o.QueryLanguage,
-		Query:           o.Query,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.QueryLanguage = op.QueryLanguage
+	o.Query = op.Query
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *ExecQueryAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecQueryAsyncOperation) {
@@ -9020,7 +9094,7 @@ func (o *ExecQueryAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecQuer
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *ExecQueryAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecQueryAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecQueryAsyncOperation{}
@@ -9039,14 +9113,16 @@ type ExecQueryAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecQueryAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_ExecQueryAsyncOperation {
+func (o *ExecQueryAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecQueryAsyncOperation) *xxx_ExecQueryAsyncOperation {
+	if op == nil {
+		op = &xxx_ExecQueryAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecQueryAsyncOperation{}
+		return op
 	}
-	return &xxx_ExecQueryAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecQueryAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecQueryAsyncOperation) {
@@ -9057,7 +9133,7 @@ func (o *ExecQueryAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecQue
 	o.Return = op.Return
 }
 func (o *ExecQueryAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecQueryAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecQueryAsyncOperation{}
@@ -9427,17 +9503,19 @@ type ExecNotificationQueryRequest struct {
 	Context *wmi.Context `idl:"name:pCtx" json:"context"`
 }
 
-func (o *ExecNotificationQueryRequest) xxx_ToOp(ctx context.Context) *xxx_ExecNotificationQueryOperation {
+func (o *ExecNotificationQueryRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecNotificationQueryOperation) *xxx_ExecNotificationQueryOperation {
+	if op == nil {
+		op = &xxx_ExecNotificationQueryOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecNotificationQueryOperation{}
+		return op
 	}
-	return &xxx_ExecNotificationQueryOperation{
-		This:          o.This,
-		QueryLanguage: o.QueryLanguage,
-		Query:         o.Query,
-		Flags:         o.Flags,
-		Context:       o.Context,
-	}
+	o.This = op.This
+	o.QueryLanguage = op.QueryLanguage
+	o.Query = op.Query
+	o.Flags = op.Flags
+	o.Context = op.Context
+	return op
 }
 
 func (o *ExecNotificationQueryRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecNotificationQueryOperation) {
@@ -9451,7 +9529,7 @@ func (o *ExecNotificationQueryRequest) xxx_FromOp(ctx context.Context, op *xxx_E
 	o.Context = op.Context
 }
 func (o *ExecNotificationQueryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecNotificationQueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecNotificationQueryOperation{}
@@ -9474,15 +9552,17 @@ type ExecNotificationQueryResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecNotificationQueryResponse) xxx_ToOp(ctx context.Context) *xxx_ExecNotificationQueryOperation {
+func (o *ExecNotificationQueryResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecNotificationQueryOperation) *xxx_ExecNotificationQueryOperation {
+	if op == nil {
+		op = &xxx_ExecNotificationQueryOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecNotificationQueryOperation{}
+		return op
 	}
-	return &xxx_ExecNotificationQueryOperation{
-		That:   o.That,
-		Enum:   o.Enum,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Enum = op.Enum
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecNotificationQueryResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecNotificationQueryOperation) {
@@ -9494,7 +9574,7 @@ func (o *ExecNotificationQueryResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ExecNotificationQueryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecNotificationQueryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecNotificationQueryOperation{}
@@ -9863,18 +9943,20 @@ type ExecNotificationQueryAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *ExecNotificationQueryAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_ExecNotificationQueryAsyncOperation {
+func (o *ExecNotificationQueryAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecNotificationQueryAsyncOperation) *xxx_ExecNotificationQueryAsyncOperation {
+	if op == nil {
+		op = &xxx_ExecNotificationQueryAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecNotificationQueryAsyncOperation{}
+		return op
 	}
-	return &xxx_ExecNotificationQueryAsyncOperation{
-		This:            o.This,
-		QueryLanguage:   o.QueryLanguage,
-		Query:           o.Query,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.QueryLanguage = op.QueryLanguage
+	o.Query = op.Query
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *ExecNotificationQueryAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecNotificationQueryAsyncOperation) {
@@ -9889,7 +9971,7 @@ func (o *ExecNotificationQueryAsyncRequest) xxx_FromOp(ctx context.Context, op *
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *ExecNotificationQueryAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecNotificationQueryAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecNotificationQueryAsyncOperation{}
@@ -9908,14 +9990,16 @@ type ExecNotificationQueryAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecNotificationQueryAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_ExecNotificationQueryAsyncOperation {
+func (o *ExecNotificationQueryAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecNotificationQueryAsyncOperation) *xxx_ExecNotificationQueryAsyncOperation {
+	if op == nil {
+		op = &xxx_ExecNotificationQueryAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecNotificationQueryAsyncOperation{}
+		return op
 	}
-	return &xxx_ExecNotificationQueryAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecNotificationQueryAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecNotificationQueryAsyncOperation) {
@@ -9926,7 +10010,7 @@ func (o *ExecNotificationQueryAsyncResponse) xxx_FromOp(ctx context.Context, op 
 	o.Return = op.Return
 }
 func (o *ExecNotificationQueryAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecNotificationQueryAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecNotificationQueryAsyncOperation{}
@@ -10585,20 +10669,22 @@ type ExecMethodRequest struct {
 	CallResult *wmi.CallResult `idl:"name:ppCallResult;pointer:unique" json:"call_result"`
 }
 
-func (o *ExecMethodRequest) xxx_ToOp(ctx context.Context) *xxx_ExecMethodOperation {
+func (o *ExecMethodRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecMethodOperation) *xxx_ExecMethodOperation {
+	if op == nil {
+		op = &xxx_ExecMethodOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecMethodOperation{}
+		return op
 	}
-	return &xxx_ExecMethodOperation{
-		This:       o.This,
-		ObjectPath: o.ObjectPath,
-		MethodName: o.MethodName,
-		Flags:      o.Flags,
-		Context:    o.Context,
-		InParams:   o.InParams,
-		OutParams:  o.OutParams,
-		CallResult: o.CallResult,
-	}
+	o.This = op.This
+	o.ObjectPath = op.ObjectPath
+	o.MethodName = op.MethodName
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.InParams = op.InParams
+	o.OutParams = op.OutParams
+	o.CallResult = op.CallResult
+	return op
 }
 
 func (o *ExecMethodRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecMethodOperation) {
@@ -10615,7 +10701,7 @@ func (o *ExecMethodRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecMethodOp
 	o.CallResult = op.CallResult
 }
 func (o *ExecMethodRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecMethodRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecMethodOperation{}
@@ -10667,16 +10753,18 @@ type ExecMethodResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecMethodResponse) xxx_ToOp(ctx context.Context) *xxx_ExecMethodOperation {
+func (o *ExecMethodResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecMethodOperation) *xxx_ExecMethodOperation {
+	if op == nil {
+		op = &xxx_ExecMethodOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecMethodOperation{}
+		return op
 	}
-	return &xxx_ExecMethodOperation{
-		That:       o.That,
-		OutParams:  o.OutParams,
-		CallResult: o.CallResult,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.OutParams = op.OutParams
+	o.CallResult = op.CallResult
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecMethodResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecMethodOperation) {
@@ -10689,7 +10777,7 @@ func (o *ExecMethodResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecMethodO
 	o.Return = op.Return
 }
 func (o *ExecMethodResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecMethodResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecMethodOperation{}
@@ -11106,19 +11194,21 @@ type ExecMethodAsyncRequest struct {
 	ResponseHandler *wmi.ObjectSink `idl:"name:pResponseHandler" json:"response_handler"`
 }
 
-func (o *ExecMethodAsyncRequest) xxx_ToOp(ctx context.Context) *xxx_ExecMethodAsyncOperation {
+func (o *ExecMethodAsyncRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecMethodAsyncOperation) *xxx_ExecMethodAsyncOperation {
+	if op == nil {
+		op = &xxx_ExecMethodAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecMethodAsyncOperation{}
+		return op
 	}
-	return &xxx_ExecMethodAsyncOperation{
-		This:            o.This,
-		ObjectPath:      o.ObjectPath,
-		MethodName:      o.MethodName,
-		Flags:           o.Flags,
-		Context:         o.Context,
-		InParams:        o.InParams,
-		ResponseHandler: o.ResponseHandler,
-	}
+	o.This = op.This
+	o.ObjectPath = op.ObjectPath
+	o.MethodName = op.MethodName
+	o.Flags = op.Flags
+	o.Context = op.Context
+	o.InParams = op.InParams
+	o.ResponseHandler = op.ResponseHandler
+	return op
 }
 
 func (o *ExecMethodAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecMethodAsyncOperation) {
@@ -11134,7 +11224,7 @@ func (o *ExecMethodAsyncRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecMet
 	o.ResponseHandler = op.ResponseHandler
 }
 func (o *ExecMethodAsyncRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecMethodAsyncRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecMethodAsyncOperation{}
@@ -11153,14 +11243,16 @@ type ExecMethodAsyncResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecMethodAsyncResponse) xxx_ToOp(ctx context.Context) *xxx_ExecMethodAsyncOperation {
+func (o *ExecMethodAsyncResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecMethodAsyncOperation) *xxx_ExecMethodAsyncOperation {
+	if op == nil {
+		op = &xxx_ExecMethodAsyncOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecMethodAsyncOperation{}
+		return op
 	}
-	return &xxx_ExecMethodAsyncOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecMethodAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecMethodAsyncOperation) {
@@ -11171,7 +11263,7 @@ func (o *ExecMethodAsyncResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecMe
 	o.Return = op.Return
 }
 func (o *ExecMethodAsyncResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecMethodAsyncResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecMethodAsyncOperation{}

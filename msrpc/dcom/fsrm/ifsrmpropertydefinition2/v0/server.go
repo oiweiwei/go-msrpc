@@ -89,40 +89,73 @@ func PropertyDefinition2ServerHandle(ctx context.Context, o PropertyDefinition2S
 	}
 	switch opNum {
 	case 22: // PropertyDefinitionFlags
-		in := &GetPropertyDefinitionFlagsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyDefinitionFlagsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyDefinitionFlags(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyDefinitionFlagsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyDefinitionFlags(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // DisplayName
-		in := &GetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // DisplayName
-		in := &SetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // AppliesTo
-		in := &GetAppliesToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAppliesToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAppliesTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAppliesToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAppliesTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // ValueDefinitions
-		in := &GetValueDefinitionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueDefinitionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValueDefinitions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueDefinitionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValueDefinitions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmPropertyDefinition2
+type UnimplementedPropertyDefinition2Server struct {
+	ifsrmpropertydefinition.UnimplementedPropertyDefinitionServer
+}
+
+func (UnimplementedPropertyDefinition2Server) GetPropertyDefinitionFlags(context.Context, *GetPropertyDefinitionFlagsRequest) (*GetPropertyDefinitionFlagsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinition2Server) GetDisplayName(context.Context, *GetDisplayNameRequest) (*GetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinition2Server) SetDisplayName(context.Context, *SetDisplayNameRequest) (*SetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinition2Server) GetAppliesTo(context.Context, *GetAppliesToRequest) (*GetAppliesToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPropertyDefinition2Server) GetValueDefinitions(context.Context, *GetValueDefinitionsRequest) (*GetValueDefinitionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PropertyDefinition2Server = (*UnimplementedPropertyDefinition2Server)(nil)

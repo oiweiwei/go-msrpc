@@ -74,7 +74,7 @@ func (o *xxx_DefaultCOMTrackingInfoEventsClient) Unknown() iunknown.UnknownClien
 }
 
 func (o *xxx_DefaultCOMTrackingInfoEventsClient) OnNewTrackingInfo(ctx context.Context, in *OnNewTrackingInfoRequest, opts ...dcerpc.CallOption) (*OnNewTrackingInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -393,14 +393,16 @@ type OnNewTrackingInfoRequest struct {
 	ToplevelCollection *dcom.Unknown `idl:"name:pToplevelCollection" json:"toplevel_collection"`
 }
 
-func (o *OnNewTrackingInfoRequest) xxx_ToOp(ctx context.Context) *xxx_OnNewTrackingInfoOperation {
+func (o *OnNewTrackingInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_OnNewTrackingInfoOperation) *xxx_OnNewTrackingInfoOperation {
+	if op == nil {
+		op = &xxx_OnNewTrackingInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_OnNewTrackingInfoOperation{}
+		return op
 	}
-	return &xxx_OnNewTrackingInfoOperation{
-		This:               o.This,
-		ToplevelCollection: o.ToplevelCollection,
-	}
+	o.This = op.This
+	o.ToplevelCollection = op.ToplevelCollection
+	return op
 }
 
 func (o *OnNewTrackingInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_OnNewTrackingInfoOperation) {
@@ -411,7 +413,7 @@ func (o *OnNewTrackingInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_OnNew
 	o.ToplevelCollection = op.ToplevelCollection
 }
 func (o *OnNewTrackingInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OnNewTrackingInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnNewTrackingInfoOperation{}
@@ -430,14 +432,16 @@ type OnNewTrackingInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OnNewTrackingInfoResponse) xxx_ToOp(ctx context.Context) *xxx_OnNewTrackingInfoOperation {
+func (o *OnNewTrackingInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_OnNewTrackingInfoOperation) *xxx_OnNewTrackingInfoOperation {
+	if op == nil {
+		op = &xxx_OnNewTrackingInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_OnNewTrackingInfoOperation{}
+		return op
 	}
-	return &xxx_OnNewTrackingInfoOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OnNewTrackingInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_OnNewTrackingInfoOperation) {
@@ -448,7 +452,7 @@ func (o *OnNewTrackingInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_OnNe
 	o.Return = op.Return
 }
 func (o *OnNewTrackingInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OnNewTrackingInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnNewTrackingInfoOperation{}

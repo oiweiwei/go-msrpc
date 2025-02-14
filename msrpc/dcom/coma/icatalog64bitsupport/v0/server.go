@@ -65,19 +65,37 @@ func Catalog64BitSupportServerHandle(ctx context.Context, o Catalog64BitSupportS
 	}
 	switch opNum {
 	case 3: // SupportsMultipleBitness
-		in := &SupportsMultipleBitnessRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SupportsMultipleBitnessOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SupportsMultipleBitness(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SupportsMultipleBitnessRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SupportsMultipleBitness(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Initialize64BitQueryCellSupport
-		in := &Initialize64BitQueryCellSupportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Initialize64BitQueryCellSupportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Initialize64BitQueryCellSupport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Initialize64BitQueryCellSupportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Initialize64BitQueryCellSupport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalog64BitSupport
+type UnimplementedCatalog64BitSupportServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalog64BitSupportServer) SupportsMultipleBitness(context.Context, *SupportsMultipleBitnessRequest) (*SupportsMultipleBitnessResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalog64BitSupportServer) Initialize64BitQueryCellSupport(context.Context, *Initialize64BitQueryCellSupportRequest) (*Initialize64BitQueryCellSupportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Catalog64BitSupportServer = (*UnimplementedCatalog64BitSupportServer)(nil)

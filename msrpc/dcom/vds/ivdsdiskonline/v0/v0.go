@@ -84,7 +84,7 @@ func (o *xxx_DefaultDiskOnlineClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultDiskOnlineClient) Online(ctx context.Context, in *OnlineRequest, opts ...dcerpc.CallOption) (*OnlineResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -104,7 +104,7 @@ func (o *xxx_DefaultDiskOnlineClient) Online(ctx context.Context, in *OnlineRequ
 }
 
 func (o *xxx_DefaultDiskOnlineClient) Offline(ctx context.Context, in *OfflineRequest, opts ...dcerpc.CallOption) (*OfflineResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -288,13 +288,15 @@ type OnlineRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *OnlineRequest) xxx_ToOp(ctx context.Context) *xxx_OnlineOperation {
+func (o *OnlineRequest) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) *xxx_OnlineOperation {
+	if op == nil {
+		op = &xxx_OnlineOperation{}
+	}
 	if o == nil {
-		return &xxx_OnlineOperation{}
+		return op
 	}
-	return &xxx_OnlineOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *OnlineRequest) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation) {
@@ -304,7 +306,7 @@ func (o *OnlineRequest) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation)
 	o.This = op.This
 }
 func (o *OnlineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OnlineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnlineOperation{}
@@ -323,14 +325,16 @@ type OnlineResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OnlineResponse) xxx_ToOp(ctx context.Context) *xxx_OnlineOperation {
+func (o *OnlineResponse) xxx_ToOp(ctx context.Context, op *xxx_OnlineOperation) *xxx_OnlineOperation {
+	if op == nil {
+		op = &xxx_OnlineOperation{}
+	}
 	if o == nil {
-		return &xxx_OnlineOperation{}
+		return op
 	}
-	return &xxx_OnlineOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OnlineResponse) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation) {
@@ -341,7 +345,7 @@ func (o *OnlineResponse) xxx_FromOp(ctx context.Context, op *xxx_OnlineOperation
 	o.Return = op.Return
 }
 func (o *OnlineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OnlineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OnlineOperation{}
@@ -475,13 +479,15 @@ type OfflineRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *OfflineRequest) xxx_ToOp(ctx context.Context) *xxx_OfflineOperation {
+func (o *OfflineRequest) xxx_ToOp(ctx context.Context, op *xxx_OfflineOperation) *xxx_OfflineOperation {
+	if op == nil {
+		op = &xxx_OfflineOperation{}
+	}
 	if o == nil {
-		return &xxx_OfflineOperation{}
+		return op
 	}
-	return &xxx_OfflineOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *OfflineRequest) xxx_FromOp(ctx context.Context, op *xxx_OfflineOperation) {
@@ -491,7 +497,7 @@ func (o *OfflineRequest) xxx_FromOp(ctx context.Context, op *xxx_OfflineOperatio
 	o.This = op.This
 }
 func (o *OfflineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OfflineRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OfflineOperation{}
@@ -510,14 +516,16 @@ type OfflineResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OfflineResponse) xxx_ToOp(ctx context.Context) *xxx_OfflineOperation {
+func (o *OfflineResponse) xxx_ToOp(ctx context.Context, op *xxx_OfflineOperation) *xxx_OfflineOperation {
+	if op == nil {
+		op = &xxx_OfflineOperation{}
+	}
 	if o == nil {
-		return &xxx_OfflineOperation{}
+		return op
 	}
-	return &xxx_OfflineOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *OfflineResponse) xxx_FromOp(ctx context.Context, op *xxx_OfflineOperation) {
@@ -528,7 +536,7 @@ func (o *OfflineResponse) xxx_FromOp(ctx context.Context, op *xxx_OfflineOperati
 	o.Return = op.Return
 }
 func (o *OfflineResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OfflineResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OfflineOperation{}

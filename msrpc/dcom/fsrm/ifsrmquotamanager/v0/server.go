@@ -257,89 +257,157 @@ func QuotaManagerServerHandle(ctx context.Context, o QuotaManagerServer, opNum i
 	}
 	switch opNum {
 	case 7: // ActionVariables
-		in := &GetActionVariablesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionVariablesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionVariables(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionVariablesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionVariables(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // ActionVariableDescriptions
-		in := &GetActionVariableDescriptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActionVariableDescriptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActionVariableDescriptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActionVariableDescriptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActionVariableDescriptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // CreateQuota
-		in := &CreateQuotaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateQuotaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateQuota(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateQuotaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateQuota(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // CreateAutoApplyQuota
-		in := &CreateAutoApplyQuotaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateAutoApplyQuotaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateAutoApplyQuota(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateAutoApplyQuotaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateAutoApplyQuota(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // GetQuota
-		in := &GetQuotaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQuotaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQuota(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQuotaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQuota(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // GetAutoApplyQuota
-		in := &GetAutoApplyQuotaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAutoApplyQuotaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAutoApplyQuota(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAutoApplyQuotaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAutoApplyQuota(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // GetRestrictiveQuota
-		in := &GetRestrictiveQuotaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRestrictiveQuotaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRestrictiveQuota(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRestrictiveQuotaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRestrictiveQuota(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // EnumQuotas
-		in := &EnumQuotasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumQuotasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumQuotas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumQuotasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumQuotas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // EnumAutoApplyQuotas
-		in := &EnumAutoApplyQuotasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumAutoApplyQuotasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumAutoApplyQuotas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumAutoApplyQuotasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumAutoApplyQuotas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // EnumEffectiveQuotas
-		in := &EnumEffectiveQuotasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumEffectiveQuotasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumEffectiveQuotas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumEffectiveQuotasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumEffectiveQuotas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Scan
-		in := &ScanRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ScanOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Scan(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ScanRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Scan(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // CreateQuotaCollection
-		in := &CreateQuotaCollectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateQuotaCollectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateQuotaCollection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateQuotaCollectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateQuotaCollection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuotaManager
+type UnimplementedQuotaManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedQuotaManagerServer) GetActionVariables(context.Context, *GetActionVariablesRequest) (*GetActionVariablesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) GetActionVariableDescriptions(context.Context, *GetActionVariableDescriptionsRequest) (*GetActionVariableDescriptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) CreateQuota(context.Context, *CreateQuotaRequest) (*CreateQuotaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) CreateAutoApplyQuota(context.Context, *CreateAutoApplyQuotaRequest) (*CreateAutoApplyQuotaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) GetQuota(context.Context, *GetQuotaRequest) (*GetQuotaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) GetAutoApplyQuota(context.Context, *GetAutoApplyQuotaRequest) (*GetAutoApplyQuotaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) GetRestrictiveQuota(context.Context, *GetRestrictiveQuotaRequest) (*GetRestrictiveQuotaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) EnumQuotas(context.Context, *EnumQuotasRequest) (*EnumQuotasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) EnumAutoApplyQuotas(context.Context, *EnumAutoApplyQuotasRequest) (*EnumAutoApplyQuotasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) EnumEffectiveQuotas(context.Context, *EnumEffectiveQuotasRequest) (*EnumEffectiveQuotasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) Scan(context.Context, *ScanRequest) (*ScanResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaManagerServer) CreateQuotaCollection(context.Context, *CreateQuotaCollectionRequest) (*CreateQuotaCollectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaManagerServer = (*UnimplementedQuotaManagerServer)(nil)

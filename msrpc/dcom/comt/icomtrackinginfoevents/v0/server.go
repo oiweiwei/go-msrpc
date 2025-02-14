@@ -55,12 +55,25 @@ func COMTrackingInfoEventsServerHandle(ctx context.Context, o COMTrackingInfoEve
 	}
 	switch opNum {
 	case 3: // OnNewTrackingInfo
-		in := &OnNewTrackingInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OnNewTrackingInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OnNewTrackingInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OnNewTrackingInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OnNewTrackingInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IComTrackingInfoEvents
+type UnimplementedCOMTrackingInfoEventsServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCOMTrackingInfoEventsServer) OnNewTrackingInfo(context.Context, *OnNewTrackingInfoRequest) (*OnNewTrackingInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ COMTrackingInfoEventsServer = (*UnimplementedCOMTrackingInfoEventsServer)(nil)

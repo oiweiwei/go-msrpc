@@ -120,138 +120,241 @@ func PipelineModuleDefinitionServerHandle(ctx context.Context, o PipelineModuleD
 	}
 	switch opNum {
 	case 12: // ModuleClsid
-		in := &GetModuleClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetModuleClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetModuleClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetModuleClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetModuleClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // ModuleClsid
-		in := &SetModuleClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetModuleClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetModuleClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetModuleClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetModuleClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Name
-		in := &SetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Company
-		in := &GetCompanyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCompanyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCompany(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCompanyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCompany(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Company
-		in := &SetCompanyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCompanyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCompany(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCompanyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCompany(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // Version
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // Version
-		in := &SetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // ModuleType
-		in := &GetModuleTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetModuleTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetModuleType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetModuleTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetModuleType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // Enabled
-		in := &GetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // Enabled
-		in := &SetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // NeedsFileContent
-		in := &GetNeedsFileContentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNeedsFileContentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNeedsFileContent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNeedsFileContentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNeedsFileContent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // NeedsFileContent
-		in := &SetNeedsFileContentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetNeedsFileContentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetNeedsFileContent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetNeedsFileContentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetNeedsFileContent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // Account
-		in := &GetAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // Account
-		in := &SetAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // SupportedExtensions
-		in := &GetSupportedExtensionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSupportedExtensionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSupportedExtensions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSupportedExtensionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSupportedExtensions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // SupportedExtensions
-		in := &SetSupportedExtensionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSupportedExtensionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSupportedExtensions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSupportedExtensionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSupportedExtensions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Parameters
-		in := &GetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // Parameters
-		in := &SetParametersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetParametersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetParameters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetParametersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetParameters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmPipelineModuleDefinition
+type UnimplementedPipelineModuleDefinitionServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedPipelineModuleDefinitionServer) GetModuleClassID(context.Context, *GetModuleClassIDRequest) (*GetModuleClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetModuleClassID(context.Context, *SetModuleClassIDRequest) (*SetModuleClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetName(context.Context, *SetNameRequest) (*SetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetCompany(context.Context, *GetCompanyRequest) (*GetCompanyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetCompany(context.Context, *SetCompanyRequest) (*SetCompanyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetVersion(context.Context, *SetVersionRequest) (*SetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetModuleType(context.Context, *GetModuleTypeRequest) (*GetModuleTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetEnabled(context.Context, *GetEnabledRequest) (*GetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetEnabled(context.Context, *SetEnabledRequest) (*SetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetNeedsFileContent(context.Context, *GetNeedsFileContentRequest) (*GetNeedsFileContentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetNeedsFileContent(context.Context, *SetNeedsFileContentRequest) (*SetNeedsFileContentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetAccount(context.Context, *SetAccountRequest) (*SetAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetSupportedExtensions(context.Context, *GetSupportedExtensionsRequest) (*GetSupportedExtensionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetSupportedExtensions(context.Context, *SetSupportedExtensionsRequest) (*SetSupportedExtensionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) GetParameters(context.Context, *GetParametersRequest) (*GetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPipelineModuleDefinitionServer) SetParameters(context.Context, *SetParametersRequest) (*SetParametersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PipelineModuleDefinitionServer = (*UnimplementedPipelineModuleDefinitionServer)(nil)

@@ -95,7 +95,7 @@ func (o *xxx_DefaultVolumeMF2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultVolumeMF2Client) GetFileSystemTypeName(ctx context.Context, in *GetFileSystemTypeNameRequest, opts ...dcerpc.CallOption) (*GetFileSystemTypeNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -115,7 +115,7 @@ func (o *xxx_DefaultVolumeMF2Client) GetFileSystemTypeName(ctx context.Context, 
 }
 
 func (o *xxx_DefaultVolumeMF2Client) QueryFileSystemFormatSupport(ctx context.Context, in *QueryFileSystemFormatSupportRequest, opts ...dcerpc.CallOption) (*QueryFileSystemFormatSupportResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -135,7 +135,7 @@ func (o *xxx_DefaultVolumeMF2Client) QueryFileSystemFormatSupport(ctx context.Co
 }
 
 func (o *xxx_DefaultVolumeMF2Client) FormatEx(ctx context.Context, in *FormatExRequest, opts ...dcerpc.CallOption) (*FormatExResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -359,13 +359,15 @@ type GetFileSystemTypeNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetFileSystemTypeNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetFileSystemTypeNameOperation {
+func (o *GetFileSystemTypeNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFileSystemTypeNameOperation) *xxx_GetFileSystemTypeNameOperation {
+	if op == nil {
+		op = &xxx_GetFileSystemTypeNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileSystemTypeNameOperation{}
+		return op
 	}
-	return &xxx_GetFileSystemTypeNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetFileSystemTypeNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFileSystemTypeNameOperation) {
@@ -375,7 +377,7 @@ func (o *GetFileSystemTypeNameRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetFileSystemTypeNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFileSystemTypeNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileSystemTypeNameOperation{}
@@ -397,15 +399,17 @@ type GetFileSystemTypeNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFileSystemTypeNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetFileSystemTypeNameOperation {
+func (o *GetFileSystemTypeNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFileSystemTypeNameOperation) *xxx_GetFileSystemTypeNameOperation {
+	if op == nil {
+		op = &xxx_GetFileSystemTypeNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFileSystemTypeNameOperation{}
+		return op
 	}
-	return &xxx_GetFileSystemTypeNameOperation{
-		That:               o.That,
-		FileSystemTypeName: o.FileSystemTypeName,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.FileSystemTypeName = op.FileSystemTypeName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFileSystemTypeNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFileSystemTypeNameOperation) {
@@ -417,7 +421,7 @@ func (o *GetFileSystemTypeNameResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetFileSystemTypeNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFileSystemTypeNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFileSystemTypeNameOperation{}
@@ -649,13 +653,15 @@ type QueryFileSystemFormatSupportRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *QueryFileSystemFormatSupportRequest) xxx_ToOp(ctx context.Context) *xxx_QueryFileSystemFormatSupportOperation {
+func (o *QueryFileSystemFormatSupportRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryFileSystemFormatSupportOperation) *xxx_QueryFileSystemFormatSupportOperation {
+	if op == nil {
+		op = &xxx_QueryFileSystemFormatSupportOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFileSystemFormatSupportOperation{}
+		return op
 	}
-	return &xxx_QueryFileSystemFormatSupportOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *QueryFileSystemFormatSupportRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryFileSystemFormatSupportOperation) {
@@ -665,7 +671,7 @@ func (o *QueryFileSystemFormatSupportRequest) xxx_FromOp(ctx context.Context, op
 	o.This = op.This
 }
 func (o *QueryFileSystemFormatSupportRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryFileSystemFormatSupportRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFileSystemFormatSupportOperation{}
@@ -691,16 +697,18 @@ type QueryFileSystemFormatSupportResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryFileSystemFormatSupportResponse) xxx_ToOp(ctx context.Context) *xxx_QueryFileSystemFormatSupportOperation {
+func (o *QueryFileSystemFormatSupportResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryFileSystemFormatSupportOperation) *xxx_QueryFileSystemFormatSupportOperation {
+	if op == nil {
+		op = &xxx_QueryFileSystemFormatSupportOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryFileSystemFormatSupportOperation{}
+		return op
 	}
-	return &xxx_QueryFileSystemFormatSupportOperation{
-		That:                        o.That,
-		FileSystemSupportProperties: o.FileSystemSupportProperties,
-		NumberOfFileSystems:         o.NumberOfFileSystems,
-		Return:                      o.Return,
-	}
+	o.That = op.That
+	o.FileSystemSupportProperties = op.FileSystemSupportProperties
+	o.NumberOfFileSystems = op.NumberOfFileSystems
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryFileSystemFormatSupportResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryFileSystemFormatSupportOperation) {
@@ -713,7 +721,7 @@ func (o *QueryFileSystemFormatSupportResponse) xxx_FromOp(ctx context.Context, o
 	o.Return = op.Return
 }
 func (o *QueryFileSystemFormatSupportResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryFileSystemFormatSupportResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryFileSystemFormatSupportOperation{}
@@ -1060,20 +1068,22 @@ type FormatExRequest struct {
 	EnableCompression int32 `idl:"name:bEnableCompression" json:"enable_compression"`
 }
 
-func (o *FormatExRequest) xxx_ToOp(ctx context.Context) *xxx_FormatExOperation {
+func (o *FormatExRequest) xxx_ToOp(ctx context.Context, op *xxx_FormatExOperation) *xxx_FormatExOperation {
+	if op == nil {
+		op = &xxx_FormatExOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatExOperation{}
+		return op
 	}
-	return &xxx_FormatExOperation{
-		This:                      o.This,
-		FileSystemTypeName:        o.FileSystemTypeName,
-		FileSystemRevision:        o.FileSystemRevision,
-		DesiredUnitAllocationSize: o.DesiredUnitAllocationSize,
-		Label:                     o.Label,
-		Force:                     o.Force,
-		QuickFormat:               o.QuickFormat,
-		EnableCompression:         o.EnableCompression,
-	}
+	o.This = op.This
+	o.FileSystemTypeName = op.FileSystemTypeName
+	o.FileSystemRevision = op.FileSystemRevision
+	o.DesiredUnitAllocationSize = op.DesiredUnitAllocationSize
+	o.Label = op.Label
+	o.Force = op.Force
+	o.QuickFormat = op.QuickFormat
+	o.EnableCompression = op.EnableCompression
+	return op
 }
 
 func (o *FormatExRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatExOperation) {
@@ -1090,7 +1100,7 @@ func (o *FormatExRequest) xxx_FromOp(ctx context.Context, op *xxx_FormatExOperat
 	o.EnableCompression = op.EnableCompression
 }
 func (o *FormatExRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FormatExRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatExOperation{}
@@ -1113,15 +1123,17 @@ type FormatExResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FormatExResponse) xxx_ToOp(ctx context.Context) *xxx_FormatExOperation {
+func (o *FormatExResponse) xxx_ToOp(ctx context.Context, op *xxx_FormatExOperation) *xxx_FormatExOperation {
+	if op == nil {
+		op = &xxx_FormatExOperation{}
+	}
 	if o == nil {
-		return &xxx_FormatExOperation{}
+		return op
 	}
-	return &xxx_FormatExOperation{
-		That:   o.That,
-		Async:  o.Async,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Async = op.Async
+	o.Return = op.Return
+	return op
 }
 
 func (o *FormatExResponse) xxx_FromOp(ctx context.Context, op *xxx_FormatExOperation) {
@@ -1133,7 +1145,7 @@ func (o *FormatExResponse) xxx_FromOp(ctx context.Context, op *xxx_FormatExOpera
 	o.Return = op.Return
 }
 func (o *FormatExResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FormatExResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FormatExOperation{}

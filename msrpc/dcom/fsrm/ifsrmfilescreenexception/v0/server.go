@@ -58,26 +58,49 @@ func FileScreenExceptionServerHandle(ctx context.Context, o FileScreenExceptionS
 	}
 	switch opNum {
 	case 12: // Path
-		in := &GetPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // AllowedFileGroups
-		in := &GetAllowedFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAllowedFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAllowedFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAllowedFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAllowedFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // AllowedFileGroups
-		in := &SetAllowedFileGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAllowedFileGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAllowedFileGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAllowedFileGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAllowedFileGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmFileScreenException
+type UnimplementedFileScreenExceptionServer struct {
+	ifsrmobject.UnimplementedObjectServer
+}
+
+func (UnimplementedFileScreenExceptionServer) GetPath(context.Context, *GetPathRequest) (*GetPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenExceptionServer) GetAllowedFileGroups(context.Context, *GetAllowedFileGroupsRequest) (*GetAllowedFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFileScreenExceptionServer) SetAllowedFileGroups(context.Context, *SetAllowedFileGroupsRequest) (*SetAllowedFileGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FileScreenExceptionServer = (*UnimplementedFileScreenExceptionServer)(nil)

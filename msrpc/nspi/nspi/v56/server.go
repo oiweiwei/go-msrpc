@@ -288,148 +288,255 @@ func NewNspiServerHandle(o NspiServer) dcerpc.ServerHandle {
 func NspiServerHandle(ctx context.Context, o NspiServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // NspiBind
-		in := &BindRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Bind(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Bind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // NspiUnbind
-		in := &UnbindRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnbindOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Unbind(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnbindRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Unbind(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // NspiUpdateStat
-		in := &UpdateStatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UpdateStatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UpdateStat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UpdateStatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UpdateStat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // NspiQueryRows
-		in := &QueryRowsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryRowsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryRows(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryRowsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryRows(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // NspiSeekEntries
-		in := &SeekEntriesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SeekEntriesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SeekEntries(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SeekEntriesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SeekEntries(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // NspiGetMatches
-		in := &GetMatchesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMatchesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMatches(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMatchesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMatches(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // NspiResortRestriction
-		in := &ResortRestrictionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResortRestrictionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResortRestriction(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResortRestrictionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResortRestriction(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // NspiDNToMId
-		in := &DNToMIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DNToMIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DNToMID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DNToMIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DNToMID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // NspiGetPropList
-		in := &GetPropertyListRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertyListOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertyList(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertyListRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertyList(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // NspiGetProps
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // NspiCompareMIds
-		in := &CompareMIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CompareMIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CompareMIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CompareMIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CompareMIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // NspiModProps
-		in := &ModifyPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // NspiGetSpecialTable
-		in := &GetSpecialTableRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSpecialTableOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSpecialTable(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSpecialTableRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSpecialTable(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // NspiGetTemplateInfo
-		in := &GetTemplateInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTemplateInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTemplateInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTemplateInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTemplateInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // NspiModLinkAtt
-		in := &ModifyLinkAttributeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ModifyLinkAttributeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ModifyLinkAttribute(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ModifyLinkAttributeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ModifyLinkAttribute(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Opnum15NotUsedOnWire
 		// Opnum15NotUsedOnWire
 		return nil, nil
 	case 16: // NspiQueryColumns
-		in := &QueryColumnsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryColumnsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryColumns(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryColumnsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryColumns(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // NspiGetNamesFromIDs
-		in := &GetNamesFromIDsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNamesFromIDsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNamesFromIDs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNamesFromIDsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNamesFromIDs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // NspiGetIDsFromNames
-		in := &GetIDsFromNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIDsFromNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIDsFromNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIDsFromNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIDsFromNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // NspiResolveNames
-		in := &ResolveNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResolveNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResolveNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResolveNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResolveNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // NspiResolveNamesW
-		in := &ResolveNamesWRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ResolveNamesWOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ResolveNamesW(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ResolveNamesWRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ResolveNamesW(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented nspi
+type UnimplementedNspiServer struct {
+}
+
+func (UnimplementedNspiServer) Bind(context.Context, *BindRequest) (*BindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) Unbind(context.Context, *UnbindRequest) (*UnbindResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) UpdateStat(context.Context, *UpdateStatRequest) (*UpdateStatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) QueryRows(context.Context, *QueryRowsRequest) (*QueryRowsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) SeekEntries(context.Context, *SeekEntriesRequest) (*SeekEntriesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetMatches(context.Context, *GetMatchesRequest) (*GetMatchesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) ResortRestriction(context.Context, *ResortRestrictionRequest) (*ResortRestrictionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) DNToMID(context.Context, *DNToMIDRequest) (*DNToMIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetPropertyList(context.Context, *GetPropertyListRequest) (*GetPropertyListResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) CompareMIDs(context.Context, *CompareMIDsRequest) (*CompareMIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) ModifyProperties(context.Context, *ModifyPropertiesRequest) (*ModifyPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetSpecialTable(context.Context, *GetSpecialTableRequest) (*GetSpecialTableResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetTemplateInfo(context.Context, *GetTemplateInfoRequest) (*GetTemplateInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) ModifyLinkAttribute(context.Context, *ModifyLinkAttributeRequest) (*ModifyLinkAttributeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) QueryColumns(context.Context, *QueryColumnsRequest) (*QueryColumnsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetNamesFromIDs(context.Context, *GetNamesFromIDsRequest) (*GetNamesFromIDsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) GetIDsFromNames(context.Context, *GetIDsFromNamesRequest) (*GetIDsFromNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) ResolveNames(context.Context, *ResolveNamesRequest) (*ResolveNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedNspiServer) ResolveNamesW(context.Context, *ResolveNamesWRequest) (*ResolveNamesWResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ NspiServer = (*UnimplementedNspiServer)(nil)

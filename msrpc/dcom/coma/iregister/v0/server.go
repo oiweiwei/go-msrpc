@@ -65,15 +65,28 @@ func RegisterServerHandle(ctx context.Context, o RegisterServer, opNum int, r nd
 	}
 	switch opNum {
 	case 3: // RegisterModule
-		in := &RegisterModuleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterModuleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterModule(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterModuleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterModule(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Opnum4NotUsedOnWire
 		// Opnum4NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IRegister
+type UnimplementedRegisterServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedRegisterServer) RegisterModule(context.Context, *RegisterModuleRequest) (*RegisterModuleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RegisterServer = (*UnimplementedRegisterServer)(nil)

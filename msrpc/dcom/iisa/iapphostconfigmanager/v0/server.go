@@ -55,19 +55,37 @@ func AppHostConfigManagerServerHandle(ctx context.Context, o AppHostConfigManage
 	}
 	switch opNum {
 	case 3: // GetConfigFile
-		in := &GetConfigFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfigFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfigFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetUniqueConfigPath
-		in := &GetUniqueConfigPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUniqueConfigPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUniqueConfigPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUniqueConfigPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUniqueConfigPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostConfigManager
+type UnimplementedAppHostConfigManagerServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostConfigManagerServer) GetConfigFile(context.Context, *GetConfigFileRequest) (*GetConfigFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigManagerServer) GetUniqueConfigPath(context.Context, *GetUniqueConfigPathRequest) (*GetUniqueConfigPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostConfigManagerServer = (*UnimplementedAppHostConfigManagerServer)(nil)

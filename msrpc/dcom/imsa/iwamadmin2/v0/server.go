@@ -70,12 +70,25 @@ func WAMAdmin2ServerHandle(ctx context.Context, o WAMAdmin2Server, opNum int, r 
 	}
 	switch opNum {
 	case 9: // AppCreate2
-		in := &AppCreate2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AppCreate2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AppCreate2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AppCreate2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AppCreate2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IWamAdmin2
+type UnimplementedWAMAdmin2Server struct {
+	iwamadmin.UnimplementedWAMAdminServer
+}
+
+func (UnimplementedWAMAdmin2Server) AppCreate2(context.Context, *AppCreate2Request) (*AppCreate2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WAMAdmin2Server = (*UnimplementedWAMAdmin2Server)(nil)

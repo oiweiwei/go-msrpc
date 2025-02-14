@@ -81,7 +81,7 @@ func (o *xxx_DefaultEventSystemInitializeClient) Unknown() iunknown.UnknownClien
 }
 
 func (o *xxx_DefaultEventSystemInitializeClient) SetCOMCatalogBehaviour(ctx context.Context, in *SetCOMCatalogBehaviourRequest, opts ...dcerpc.CallOption) (*SetCOMCatalogBehaviourResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -291,14 +291,16 @@ type SetCOMCatalogBehaviourRequest struct {
 	RetainSubKeys bool `idl:"name:bRetainSubKeys" json:"retain_sub_keys"`
 }
 
-func (o *SetCOMCatalogBehaviourRequest) xxx_ToOp(ctx context.Context) *xxx_SetCOMCatalogBehaviourOperation {
+func (o *SetCOMCatalogBehaviourRequest) xxx_ToOp(ctx context.Context, op *xxx_SetCOMCatalogBehaviourOperation) *xxx_SetCOMCatalogBehaviourOperation {
+	if op == nil {
+		op = &xxx_SetCOMCatalogBehaviourOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCOMCatalogBehaviourOperation{}
+		return op
 	}
-	return &xxx_SetCOMCatalogBehaviourOperation{
-		This:          o.This,
-		RetainSubKeys: o.RetainSubKeys,
-	}
+	o.This = op.This
+	o.RetainSubKeys = op.RetainSubKeys
+	return op
 }
 
 func (o *SetCOMCatalogBehaviourRequest) xxx_FromOp(ctx context.Context, op *xxx_SetCOMCatalogBehaviourOperation) {
@@ -309,7 +311,7 @@ func (o *SetCOMCatalogBehaviourRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.RetainSubKeys = op.RetainSubKeys
 }
 func (o *SetCOMCatalogBehaviourRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetCOMCatalogBehaviourRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCOMCatalogBehaviourOperation{}
@@ -328,14 +330,16 @@ type SetCOMCatalogBehaviourResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetCOMCatalogBehaviourResponse) xxx_ToOp(ctx context.Context) *xxx_SetCOMCatalogBehaviourOperation {
+func (o *SetCOMCatalogBehaviourResponse) xxx_ToOp(ctx context.Context, op *xxx_SetCOMCatalogBehaviourOperation) *xxx_SetCOMCatalogBehaviourOperation {
+	if op == nil {
+		op = &xxx_SetCOMCatalogBehaviourOperation{}
+	}
 	if o == nil {
-		return &xxx_SetCOMCatalogBehaviourOperation{}
+		return op
 	}
-	return &xxx_SetCOMCatalogBehaviourOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetCOMCatalogBehaviourResponse) xxx_FromOp(ctx context.Context, op *xxx_SetCOMCatalogBehaviourOperation) {
@@ -346,7 +350,7 @@ func (o *SetCOMCatalogBehaviourResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *SetCOMCatalogBehaviourResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetCOMCatalogBehaviourResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetCOMCatalogBehaviourOperation{}

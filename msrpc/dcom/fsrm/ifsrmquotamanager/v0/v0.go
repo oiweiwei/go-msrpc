@@ -280,7 +280,7 @@ func (o *xxx_DefaultQuotaManagerClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultQuotaManagerClient) GetActionVariables(ctx context.Context, in *GetActionVariablesRequest, opts ...dcerpc.CallOption) (*GetActionVariablesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -300,7 +300,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetActionVariables(ctx context.Context, 
 }
 
 func (o *xxx_DefaultQuotaManagerClient) GetActionVariableDescriptions(ctx context.Context, in *GetActionVariableDescriptionsRequest, opts ...dcerpc.CallOption) (*GetActionVariableDescriptionsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -320,7 +320,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetActionVariableDescriptions(ctx contex
 }
 
 func (o *xxx_DefaultQuotaManagerClient) CreateQuota(ctx context.Context, in *CreateQuotaRequest, opts ...dcerpc.CallOption) (*CreateQuotaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -340,7 +340,7 @@ func (o *xxx_DefaultQuotaManagerClient) CreateQuota(ctx context.Context, in *Cre
 }
 
 func (o *xxx_DefaultQuotaManagerClient) CreateAutoApplyQuota(ctx context.Context, in *CreateAutoApplyQuotaRequest, opts ...dcerpc.CallOption) (*CreateAutoApplyQuotaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -360,7 +360,7 @@ func (o *xxx_DefaultQuotaManagerClient) CreateAutoApplyQuota(ctx context.Context
 }
 
 func (o *xxx_DefaultQuotaManagerClient) GetQuota(ctx context.Context, in *GetQuotaRequest, opts ...dcerpc.CallOption) (*GetQuotaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -380,7 +380,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetQuota(ctx context.Context, in *GetQuo
 }
 
 func (o *xxx_DefaultQuotaManagerClient) GetAutoApplyQuota(ctx context.Context, in *GetAutoApplyQuotaRequest, opts ...dcerpc.CallOption) (*GetAutoApplyQuotaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -400,7 +400,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetAutoApplyQuota(ctx context.Context, i
 }
 
 func (o *xxx_DefaultQuotaManagerClient) GetRestrictiveQuota(ctx context.Context, in *GetRestrictiveQuotaRequest, opts ...dcerpc.CallOption) (*GetRestrictiveQuotaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -420,7 +420,7 @@ func (o *xxx_DefaultQuotaManagerClient) GetRestrictiveQuota(ctx context.Context,
 }
 
 func (o *xxx_DefaultQuotaManagerClient) EnumQuotas(ctx context.Context, in *EnumQuotasRequest, opts ...dcerpc.CallOption) (*EnumQuotasResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -440,7 +440,7 @@ func (o *xxx_DefaultQuotaManagerClient) EnumQuotas(ctx context.Context, in *Enum
 }
 
 func (o *xxx_DefaultQuotaManagerClient) EnumAutoApplyQuotas(ctx context.Context, in *EnumAutoApplyQuotasRequest, opts ...dcerpc.CallOption) (*EnumAutoApplyQuotasResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -460,7 +460,7 @@ func (o *xxx_DefaultQuotaManagerClient) EnumAutoApplyQuotas(ctx context.Context,
 }
 
 func (o *xxx_DefaultQuotaManagerClient) EnumEffectiveQuotas(ctx context.Context, in *EnumEffectiveQuotasRequest, opts ...dcerpc.CallOption) (*EnumEffectiveQuotasResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -480,7 +480,7 @@ func (o *xxx_DefaultQuotaManagerClient) EnumEffectiveQuotas(ctx context.Context,
 }
 
 func (o *xxx_DefaultQuotaManagerClient) Scan(ctx context.Context, in *ScanRequest, opts ...dcerpc.CallOption) (*ScanResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -500,7 +500,7 @@ func (o *xxx_DefaultQuotaManagerClient) Scan(ctx context.Context, in *ScanReques
 }
 
 func (o *xxx_DefaultQuotaManagerClient) CreateQuotaCollection(ctx context.Context, in *CreateQuotaCollectionRequest, opts ...dcerpc.CallOption) (*CreateQuotaCollectionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -733,13 +733,15 @@ type GetActionVariablesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionVariablesOperation {
+func (o *GetActionVariablesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariablesOperation) *xxx_GetActionVariablesOperation {
+	if op == nil {
+		op = &xxx_GetActionVariablesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariablesOperation{}
+		return op
 	}
-	return &xxx_GetActionVariablesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionVariablesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariablesOperation) {
@@ -749,7 +751,7 @@ func (o *GetActionVariablesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.This = op.This
 }
 func (o *GetActionVariablesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionVariablesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariablesOperation{}
@@ -769,15 +771,17 @@ type GetActionVariablesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionVariablesOperation {
+func (o *GetActionVariablesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariablesOperation) *xxx_GetActionVariablesOperation {
+	if op == nil {
+		op = &xxx_GetActionVariablesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariablesOperation{}
+		return op
 	}
-	return &xxx_GetActionVariablesOperation{
-		That:      o.That,
-		Variables: o.Variables,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Variables = op.Variables
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionVariablesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariablesOperation) {
@@ -789,7 +793,7 @@ func (o *GetActionVariablesResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetActionVariablesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionVariablesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariablesOperation{}
@@ -972,13 +976,15 @@ type GetActionVariableDescriptionsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context) *xxx_GetActionVariableDescriptionsOperation {
+func (o *GetActionVariableDescriptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) *xxx_GetActionVariableDescriptionsOperation {
+	if op == nil {
+		op = &xxx_GetActionVariableDescriptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariableDescriptionsOperation{}
+		return op
 	}
-	return &xxx_GetActionVariableDescriptionsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetActionVariableDescriptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) {
@@ -988,7 +994,7 @@ func (o *GetActionVariableDescriptionsRequest) xxx_FromOp(ctx context.Context, o
 	o.This = op.This
 }
 func (o *GetActionVariableDescriptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetActionVariableDescriptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariableDescriptionsOperation{}
@@ -1008,15 +1014,17 @@ type GetActionVariableDescriptionsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context) *xxx_GetActionVariableDescriptionsOperation {
+func (o *GetActionVariableDescriptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) *xxx_GetActionVariableDescriptionsOperation {
+	if op == nil {
+		op = &xxx_GetActionVariableDescriptionsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetActionVariableDescriptionsOperation{}
+		return op
 	}
-	return &xxx_GetActionVariableDescriptionsOperation{
-		That:         o.That,
-		Descriptions: o.Descriptions,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.Descriptions = op.Descriptions
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetActionVariableDescriptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetActionVariableDescriptionsOperation) {
@@ -1028,7 +1036,7 @@ func (o *GetActionVariableDescriptionsResponse) xxx_FromOp(ctx context.Context, 
 	o.Return = op.Return
 }
 func (o *GetActionVariableDescriptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetActionVariableDescriptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetActionVariableDescriptionsOperation{}
@@ -1259,14 +1267,16 @@ type CreateQuotaRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *CreateQuotaRequest) xxx_ToOp(ctx context.Context) *xxx_CreateQuotaOperation {
+func (o *CreateQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateQuotaOperation) *xxx_CreateQuotaOperation {
+	if op == nil {
+		op = &xxx_CreateQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateQuotaOperation{}
+		return op
 	}
-	return &xxx_CreateQuotaOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *CreateQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateQuotaOperation) {
@@ -1277,7 +1287,7 @@ func (o *CreateQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateQuota
 	o.Path = op.Path
 }
 func (o *CreateQuotaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateQuotaOperation{}
@@ -1302,15 +1312,17 @@ type CreateQuotaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateQuotaResponse) xxx_ToOp(ctx context.Context) *xxx_CreateQuotaOperation {
+func (o *CreateQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateQuotaOperation) *xxx_CreateQuotaOperation {
+	if op == nil {
+		op = &xxx_CreateQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateQuotaOperation{}
+		return op
 	}
-	return &xxx_CreateQuotaOperation{
-		That:   o.That,
-		Quota:  o.Quota,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quota = op.Quota
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateQuotaOperation) {
@@ -1322,7 +1334,7 @@ func (o *CreateQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateQuot
 	o.Return = op.Return
 }
 func (o *CreateQuotaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateQuotaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateQuotaOperation{}
@@ -1606,15 +1618,17 @@ type CreateAutoApplyQuotaRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *CreateAutoApplyQuotaRequest) xxx_ToOp(ctx context.Context) *xxx_CreateAutoApplyQuotaOperation {
+func (o *CreateAutoApplyQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateAutoApplyQuotaOperation) *xxx_CreateAutoApplyQuotaOperation {
+	if op == nil {
+		op = &xxx_CreateAutoApplyQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateAutoApplyQuotaOperation{}
+		return op
 	}
-	return &xxx_CreateAutoApplyQuotaOperation{
-		This:              o.This,
-		QuotaTemplateName: o.QuotaTemplateName,
-		Path:              o.Path,
-	}
+	o.This = op.This
+	o.QuotaTemplateName = op.QuotaTemplateName
+	o.Path = op.Path
+	return op
 }
 
 func (o *CreateAutoApplyQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateAutoApplyQuotaOperation) {
@@ -1626,7 +1640,7 @@ func (o *CreateAutoApplyQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Path = op.Path
 }
 func (o *CreateAutoApplyQuotaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateAutoApplyQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateAutoApplyQuotaOperation{}
@@ -1651,15 +1665,17 @@ type CreateAutoApplyQuotaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateAutoApplyQuotaResponse) xxx_ToOp(ctx context.Context) *xxx_CreateAutoApplyQuotaOperation {
+func (o *CreateAutoApplyQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateAutoApplyQuotaOperation) *xxx_CreateAutoApplyQuotaOperation {
+	if op == nil {
+		op = &xxx_CreateAutoApplyQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateAutoApplyQuotaOperation{}
+		return op
 	}
-	return &xxx_CreateAutoApplyQuotaOperation{
-		That:   o.That,
-		Quota:  o.Quota,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quota = op.Quota
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateAutoApplyQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateAutoApplyQuotaOperation) {
@@ -1671,7 +1687,7 @@ func (o *CreateAutoApplyQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.Return = op.Return
 }
 func (o *CreateAutoApplyQuotaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateAutoApplyQuotaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateAutoApplyQuotaOperation{}
@@ -1901,14 +1917,16 @@ type GetQuotaRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *GetQuotaRequest) xxx_ToOp(ctx context.Context) *xxx_GetQuotaOperation {
+func (o *GetQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaOperation) *xxx_GetQuotaOperation {
+	if op == nil {
+		op = &xxx_GetQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaOperation{}
+		return op
 	}
-	return &xxx_GetQuotaOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *GetQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaOperation) {
@@ -1919,7 +1937,7 @@ func (o *GetQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaOperat
 	o.Path = op.Path
 }
 func (o *GetQuotaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaOperation{}
@@ -1942,15 +1960,17 @@ type GetQuotaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetQuotaResponse) xxx_ToOp(ctx context.Context) *xxx_GetQuotaOperation {
+func (o *GetQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaOperation) *xxx_GetQuotaOperation {
+	if op == nil {
+		op = &xxx_GetQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaOperation{}
+		return op
 	}
-	return &xxx_GetQuotaOperation{
-		That:   o.That,
-		Quota:  o.Quota,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quota = op.Quota
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaOperation) {
@@ -1962,7 +1982,7 @@ func (o *GetQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaOpera
 	o.Return = op.Return
 }
 func (o *GetQuotaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetQuotaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaOperation{}
@@ -2194,14 +2214,16 @@ type GetAutoApplyQuotaRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *GetAutoApplyQuotaRequest) xxx_ToOp(ctx context.Context) *xxx_GetAutoApplyQuotaOperation {
+func (o *GetAutoApplyQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAutoApplyQuotaOperation) *xxx_GetAutoApplyQuotaOperation {
+	if op == nil {
+		op = &xxx_GetAutoApplyQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAutoApplyQuotaOperation{}
+		return op
 	}
-	return &xxx_GetAutoApplyQuotaOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *GetAutoApplyQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAutoApplyQuotaOperation) {
@@ -2212,7 +2234,7 @@ func (o *GetAutoApplyQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAu
 	o.Path = op.Path
 }
 func (o *GetAutoApplyQuotaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAutoApplyQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAutoApplyQuotaOperation{}
@@ -2235,15 +2257,17 @@ type GetAutoApplyQuotaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAutoApplyQuotaResponse) xxx_ToOp(ctx context.Context) *xxx_GetAutoApplyQuotaOperation {
+func (o *GetAutoApplyQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAutoApplyQuotaOperation) *xxx_GetAutoApplyQuotaOperation {
+	if op == nil {
+		op = &xxx_GetAutoApplyQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAutoApplyQuotaOperation{}
+		return op
 	}
-	return &xxx_GetAutoApplyQuotaOperation{
-		That:   o.That,
-		Quota:  o.Quota,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quota = op.Quota
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAutoApplyQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAutoApplyQuotaOperation) {
@@ -2255,7 +2279,7 @@ func (o *GetAutoApplyQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetA
 	o.Return = op.Return
 }
 func (o *GetAutoApplyQuotaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAutoApplyQuotaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAutoApplyQuotaOperation{}
@@ -2488,14 +2512,16 @@ type GetRestrictiveQuotaRequest struct {
 	Path *oaut.String `idl:"name:path" json:"path"`
 }
 
-func (o *GetRestrictiveQuotaRequest) xxx_ToOp(ctx context.Context) *xxx_GetRestrictiveQuotaOperation {
+func (o *GetRestrictiveQuotaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRestrictiveQuotaOperation) *xxx_GetRestrictiveQuotaOperation {
+	if op == nil {
+		op = &xxx_GetRestrictiveQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRestrictiveQuotaOperation{}
+		return op
 	}
-	return &xxx_GetRestrictiveQuotaOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *GetRestrictiveQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRestrictiveQuotaOperation) {
@@ -2506,7 +2532,7 @@ func (o *GetRestrictiveQuotaRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Path = op.Path
 }
 func (o *GetRestrictiveQuotaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetRestrictiveQuotaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRestrictiveQuotaOperation{}
@@ -2529,15 +2555,17 @@ type GetRestrictiveQuotaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetRestrictiveQuotaResponse) xxx_ToOp(ctx context.Context) *xxx_GetRestrictiveQuotaOperation {
+func (o *GetRestrictiveQuotaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRestrictiveQuotaOperation) *xxx_GetRestrictiveQuotaOperation {
+	if op == nil {
+		op = &xxx_GetRestrictiveQuotaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetRestrictiveQuotaOperation{}
+		return op
 	}
-	return &xxx_GetRestrictiveQuotaOperation{
-		That:   o.That,
-		Quota:  o.Quota,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quota = op.Quota
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetRestrictiveQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRestrictiveQuotaOperation) {
@@ -2549,7 +2577,7 @@ func (o *GetRestrictiveQuotaResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetRestrictiveQuotaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetRestrictiveQuotaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetRestrictiveQuotaOperation{}
@@ -2795,15 +2823,17 @@ type EnumQuotasRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumQuotasRequest) xxx_ToOp(ctx context.Context) *xxx_EnumQuotasOperation {
+func (o *EnumQuotasRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumQuotasOperation) *xxx_EnumQuotasOperation {
+	if op == nil {
+		op = &xxx_EnumQuotasOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumQuotasOperation{}
+		return op
 	}
-	return &xxx_EnumQuotasOperation{
-		This:    o.This,
-		Path:    o.Path,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumQuotasRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumQuotasOperation) {
@@ -2815,7 +2845,7 @@ func (o *EnumQuotasRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumQuotasOp
 	o.Options = op.Options
 }
 func (o *EnumQuotasRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumQuotasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumQuotasOperation{}
@@ -2839,15 +2869,17 @@ type EnumQuotasResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumQuotasResponse) xxx_ToOp(ctx context.Context) *xxx_EnumQuotasOperation {
+func (o *EnumQuotasResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumQuotasOperation) *xxx_EnumQuotasOperation {
+	if op == nil {
+		op = &xxx_EnumQuotasOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumQuotasOperation{}
+		return op
 	}
-	return &xxx_EnumQuotasOperation{
-		That:   o.That,
-		Quotas: o.Quotas,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quotas = op.Quotas
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumQuotasResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumQuotasOperation) {
@@ -2859,7 +2891,7 @@ func (o *EnumQuotasResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumQuotasO
 	o.Return = op.Return
 }
 func (o *EnumQuotasResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumQuotasResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumQuotasOperation{}
@@ -3107,15 +3139,17 @@ type EnumAutoApplyQuotasRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumAutoApplyQuotasRequest) xxx_ToOp(ctx context.Context) *xxx_EnumAutoApplyQuotasOperation {
+func (o *EnumAutoApplyQuotasRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumAutoApplyQuotasOperation) *xxx_EnumAutoApplyQuotasOperation {
+	if op == nil {
+		op = &xxx_EnumAutoApplyQuotasOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumAutoApplyQuotasOperation{}
+		return op
 	}
-	return &xxx_EnumAutoApplyQuotasOperation{
-		This:    o.This,
-		Path:    o.Path,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumAutoApplyQuotasRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumAutoApplyQuotasOperation) {
@@ -3127,7 +3161,7 @@ func (o *EnumAutoApplyQuotasRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.Options = op.Options
 }
 func (o *EnumAutoApplyQuotasRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumAutoApplyQuotasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAutoApplyQuotasOperation{}
@@ -3151,15 +3185,17 @@ type EnumAutoApplyQuotasResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumAutoApplyQuotasResponse) xxx_ToOp(ctx context.Context) *xxx_EnumAutoApplyQuotasOperation {
+func (o *EnumAutoApplyQuotasResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumAutoApplyQuotasOperation) *xxx_EnumAutoApplyQuotasOperation {
+	if op == nil {
+		op = &xxx_EnumAutoApplyQuotasOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumAutoApplyQuotasOperation{}
+		return op
 	}
-	return &xxx_EnumAutoApplyQuotasOperation{
-		That:   o.That,
-		Quotas: o.Quotas,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quotas = op.Quotas
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumAutoApplyQuotasResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumAutoApplyQuotasOperation) {
@@ -3171,7 +3207,7 @@ func (o *EnumAutoApplyQuotasResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumAutoApplyQuotasResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumAutoApplyQuotasResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumAutoApplyQuotasOperation{}
@@ -3420,15 +3456,17 @@ type EnumEffectiveQuotasRequest struct {
 	Options fsrm.EnumOptions `idl:"name:options" json:"options"`
 }
 
-func (o *EnumEffectiveQuotasRequest) xxx_ToOp(ctx context.Context) *xxx_EnumEffectiveQuotasOperation {
+func (o *EnumEffectiveQuotasRequest) xxx_ToOp(ctx context.Context, op *xxx_EnumEffectiveQuotasOperation) *xxx_EnumEffectiveQuotasOperation {
+	if op == nil {
+		op = &xxx_EnumEffectiveQuotasOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumEffectiveQuotasOperation{}
+		return op
 	}
-	return &xxx_EnumEffectiveQuotasOperation{
-		This:    o.This,
-		Path:    o.Path,
-		Options: o.Options,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Options = op.Options
+	return op
 }
 
 func (o *EnumEffectiveQuotasRequest) xxx_FromOp(ctx context.Context, op *xxx_EnumEffectiveQuotasOperation) {
@@ -3440,7 +3478,7 @@ func (o *EnumEffectiveQuotasRequest) xxx_FromOp(ctx context.Context, op *xxx_Enu
 	o.Options = op.Options
 }
 func (o *EnumEffectiveQuotasRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *EnumEffectiveQuotasRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumEffectiveQuotasOperation{}
@@ -3463,15 +3501,17 @@ type EnumEffectiveQuotasResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *EnumEffectiveQuotasResponse) xxx_ToOp(ctx context.Context) *xxx_EnumEffectiveQuotasOperation {
+func (o *EnumEffectiveQuotasResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumEffectiveQuotasOperation) *xxx_EnumEffectiveQuotasOperation {
+	if op == nil {
+		op = &xxx_EnumEffectiveQuotasOperation{}
+	}
 	if o == nil {
-		return &xxx_EnumEffectiveQuotasOperation{}
+		return op
 	}
-	return &xxx_EnumEffectiveQuotasOperation{
-		That:   o.That,
-		Quotas: o.Quotas,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Quotas = op.Quotas
+	o.Return = op.Return
+	return op
 }
 
 func (o *EnumEffectiveQuotasResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumEffectiveQuotasOperation) {
@@ -3483,7 +3523,7 @@ func (o *EnumEffectiveQuotasResponse) xxx_FromOp(ctx context.Context, op *xxx_En
 	o.Return = op.Return
 }
 func (o *EnumEffectiveQuotasResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *EnumEffectiveQuotasResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_EnumEffectiveQuotasOperation{}
@@ -3667,14 +3707,16 @@ type ScanRequest struct {
 	Path *oaut.String `idl:"name:strPath" json:"path"`
 }
 
-func (o *ScanRequest) xxx_ToOp(ctx context.Context) *xxx_ScanOperation {
+func (o *ScanRequest) xxx_ToOp(ctx context.Context, op *xxx_ScanOperation) *xxx_ScanOperation {
+	if op == nil {
+		op = &xxx_ScanOperation{}
+	}
 	if o == nil {
-		return &xxx_ScanOperation{}
+		return op
 	}
-	return &xxx_ScanOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *ScanRequest) xxx_FromOp(ctx context.Context, op *xxx_ScanOperation) {
@@ -3685,7 +3727,7 @@ func (o *ScanRequest) xxx_FromOp(ctx context.Context, op *xxx_ScanOperation) {
 	o.Path = op.Path
 }
 func (o *ScanRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ScanRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ScanOperation{}
@@ -3704,14 +3746,16 @@ type ScanResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ScanResponse) xxx_ToOp(ctx context.Context) *xxx_ScanOperation {
+func (o *ScanResponse) xxx_ToOp(ctx context.Context, op *xxx_ScanOperation) *xxx_ScanOperation {
+	if op == nil {
+		op = &xxx_ScanOperation{}
+	}
 	if o == nil {
-		return &xxx_ScanOperation{}
+		return op
 	}
-	return &xxx_ScanOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ScanResponse) xxx_FromOp(ctx context.Context, op *xxx_ScanOperation) {
@@ -3722,7 +3766,7 @@ func (o *ScanResponse) xxx_FromOp(ctx context.Context, op *xxx_ScanOperation) {
 	o.Return = op.Return
 }
 func (o *ScanResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ScanResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ScanOperation{}
@@ -3905,13 +3949,15 @@ type CreateQuotaCollectionRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateQuotaCollectionRequest) xxx_ToOp(ctx context.Context) *xxx_CreateQuotaCollectionOperation {
+func (o *CreateQuotaCollectionRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateQuotaCollectionOperation) *xxx_CreateQuotaCollectionOperation {
+	if op == nil {
+		op = &xxx_CreateQuotaCollectionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateQuotaCollectionOperation{}
+		return op
 	}
-	return &xxx_CreateQuotaCollectionOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateQuotaCollectionRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateQuotaCollectionOperation) {
@@ -3921,7 +3967,7 @@ func (o *CreateQuotaCollectionRequest) xxx_FromOp(ctx context.Context, op *xxx_C
 	o.This = op.This
 }
 func (o *CreateQuotaCollectionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateQuotaCollectionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateQuotaCollectionOperation{}
@@ -3944,15 +3990,17 @@ type CreateQuotaCollectionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateQuotaCollectionResponse) xxx_ToOp(ctx context.Context) *xxx_CreateQuotaCollectionOperation {
+func (o *CreateQuotaCollectionResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateQuotaCollectionOperation) *xxx_CreateQuotaCollectionOperation {
+	if op == nil {
+		op = &xxx_CreateQuotaCollectionOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateQuotaCollectionOperation{}
+		return op
 	}
-	return &xxx_CreateQuotaCollectionOperation{
-		That:       o.That,
-		Collection: o.Collection,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.Collection = op.Collection
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateQuotaCollectionResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateQuotaCollectionOperation) {
@@ -3964,7 +4012,7 @@ func (o *CreateQuotaCollectionResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *CreateQuotaCollectionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateQuotaCollectionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateQuotaCollectionOperation{}

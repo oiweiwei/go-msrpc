@@ -526,7 +526,7 @@ type xxx_DefaultEventlogClient struct {
 }
 
 func (o *xxx_DefaultEventlogClient) ClearEventLogW(ctx context.Context, in *ClearEventLogWRequest, opts ...dcerpc.CallOption) (*ClearEventLogWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -539,7 +539,7 @@ func (o *xxx_DefaultEventlogClient) ClearEventLogW(ctx context.Context, in *Clea
 }
 
 func (o *xxx_DefaultEventlogClient) BackupEventLogW(ctx context.Context, in *BackupEventLogWRequest, opts ...dcerpc.CallOption) (*BackupEventLogWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -552,7 +552,7 @@ func (o *xxx_DefaultEventlogClient) BackupEventLogW(ctx context.Context, in *Bac
 }
 
 func (o *xxx_DefaultEventlogClient) CloseEventLog(ctx context.Context, in *CloseEventLogRequest, opts ...dcerpc.CallOption) (*CloseEventLogResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -565,7 +565,7 @@ func (o *xxx_DefaultEventlogClient) CloseEventLog(ctx context.Context, in *Close
 }
 
 func (o *xxx_DefaultEventlogClient) DeregisterEventSource(ctx context.Context, in *DeregisterEventSourceRequest, opts ...dcerpc.CallOption) (*DeregisterEventSourceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -578,7 +578,7 @@ func (o *xxx_DefaultEventlogClient) DeregisterEventSource(ctx context.Context, i
 }
 
 func (o *xxx_DefaultEventlogClient) NumberOfRecords(ctx context.Context, in *NumberOfRecordsRequest, opts ...dcerpc.CallOption) (*NumberOfRecordsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -591,7 +591,7 @@ func (o *xxx_DefaultEventlogClient) NumberOfRecords(ctx context.Context, in *Num
 }
 
 func (o *xxx_DefaultEventlogClient) OldestRecord(ctx context.Context, in *OldestRecordRequest, opts ...dcerpc.CallOption) (*OldestRecordResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -604,7 +604,7 @@ func (o *xxx_DefaultEventlogClient) OldestRecord(ctx context.Context, in *Oldest
 }
 
 func (o *xxx_DefaultEventlogClient) ChangeNotify(ctx context.Context, in *ChangeNotifyRequest, opts ...dcerpc.CallOption) (*ChangeNotifyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -617,7 +617,7 @@ func (o *xxx_DefaultEventlogClient) ChangeNotify(ctx context.Context, in *Change
 }
 
 func (o *xxx_DefaultEventlogClient) OpenEventLogW(ctx context.Context, in *OpenEventLogWRequest, opts ...dcerpc.CallOption) (*OpenEventLogWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -630,7 +630,7 @@ func (o *xxx_DefaultEventlogClient) OpenEventLogW(ctx context.Context, in *OpenE
 }
 
 func (o *xxx_DefaultEventlogClient) RegisterEventSourceW(ctx context.Context, in *RegisterEventSourceWRequest, opts ...dcerpc.CallOption) (*RegisterEventSourceWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -643,7 +643,7 @@ func (o *xxx_DefaultEventlogClient) RegisterEventSourceW(ctx context.Context, in
 }
 
 func (o *xxx_DefaultEventlogClient) OpenBackupEventLogW(ctx context.Context, in *OpenBackupEventLogWRequest, opts ...dcerpc.CallOption) (*OpenBackupEventLogWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -656,7 +656,7 @@ func (o *xxx_DefaultEventlogClient) OpenBackupEventLogW(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultEventlogClient) ReadEventLogW(ctx context.Context, in *ReadEventLogWRequest, opts ...dcerpc.CallOption) (*ReadEventLogWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -669,7 +669,7 @@ func (o *xxx_DefaultEventlogClient) ReadEventLogW(ctx context.Context, in *ReadE
 }
 
 func (o *xxx_DefaultEventlogClient) ReportEventW(ctx context.Context, in *ReportEventWRequest, opts ...dcerpc.CallOption) (*ReportEventWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -682,7 +682,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventW(ctx context.Context, in *Report
 }
 
 func (o *xxx_DefaultEventlogClient) ClearEventLogA(ctx context.Context, in *ClearEventLogARequest, opts ...dcerpc.CallOption) (*ClearEventLogAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -695,7 +695,7 @@ func (o *xxx_DefaultEventlogClient) ClearEventLogA(ctx context.Context, in *Clea
 }
 
 func (o *xxx_DefaultEventlogClient) BackupEventLogA(ctx context.Context, in *BackupEventLogARequest, opts ...dcerpc.CallOption) (*BackupEventLogAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -708,7 +708,7 @@ func (o *xxx_DefaultEventlogClient) BackupEventLogA(ctx context.Context, in *Bac
 }
 
 func (o *xxx_DefaultEventlogClient) OpenEventLogA(ctx context.Context, in *OpenEventLogARequest, opts ...dcerpc.CallOption) (*OpenEventLogAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -721,7 +721,7 @@ func (o *xxx_DefaultEventlogClient) OpenEventLogA(ctx context.Context, in *OpenE
 }
 
 func (o *xxx_DefaultEventlogClient) RegisterEventSourceA(ctx context.Context, in *RegisterEventSourceARequest, opts ...dcerpc.CallOption) (*RegisterEventSourceAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -734,7 +734,7 @@ func (o *xxx_DefaultEventlogClient) RegisterEventSourceA(ctx context.Context, in
 }
 
 func (o *xxx_DefaultEventlogClient) OpenBackupEventLogA(ctx context.Context, in *OpenBackupEventLogARequest, opts ...dcerpc.CallOption) (*OpenBackupEventLogAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -747,7 +747,7 @@ func (o *xxx_DefaultEventlogClient) OpenBackupEventLogA(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultEventlogClient) ReadEventLogA(ctx context.Context, in *ReadEventLogARequest, opts ...dcerpc.CallOption) (*ReadEventLogAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -760,7 +760,7 @@ func (o *xxx_DefaultEventlogClient) ReadEventLogA(ctx context.Context, in *ReadE
 }
 
 func (o *xxx_DefaultEventlogClient) ReportEventA(ctx context.Context, in *ReportEventARequest, opts ...dcerpc.CallOption) (*ReportEventAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -773,7 +773,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventA(ctx context.Context, in *Report
 }
 
 func (o *xxx_DefaultEventlogClient) GetLogInformation(ctx context.Context, in *GetLogInformationRequest, opts ...dcerpc.CallOption) (*GetLogInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -786,7 +786,7 @@ func (o *xxx_DefaultEventlogClient) GetLogInformation(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultEventlogClient) ReportEventAndSourceW(ctx context.Context, in *ReportEventAndSourceWRequest, opts ...dcerpc.CallOption) (*ReportEventAndSourceWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -799,7 +799,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventAndSourceW(ctx context.Context, i
 }
 
 func (o *xxx_DefaultEventlogClient) ReportEventExW(ctx context.Context, in *ReportEventExWRequest, opts ...dcerpc.CallOption) (*ReportEventExWResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -812,7 +812,7 @@ func (o *xxx_DefaultEventlogClient) ReportEventExW(ctx context.Context, in *Repo
 }
 
 func (o *xxx_DefaultEventlogClient) ReportEventExA(ctx context.Context, in *ReportEventExARequest, opts ...dcerpc.CallOption) (*ReportEventExAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -983,14 +983,16 @@ type ClearEventLogWRequest struct {
 	BackupFileName *dtyp.UnicodeString `idl:"name:BackupFileName;pointer:unique" json:"backup_file_name"`
 }
 
-func (o *ClearEventLogWRequest) xxx_ToOp(ctx context.Context) *xxx_ClearEventLogWOperation {
+func (o *ClearEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_ClearEventLogWOperation) *xxx_ClearEventLogWOperation {
+	if op == nil {
+		op = &xxx_ClearEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearEventLogWOperation{}
+		return op
 	}
-	return &xxx_ClearEventLogWOperation{
-		Log:            o.Log,
-		BackupFileName: o.BackupFileName,
-	}
+	o.Log = op.Log
+	o.BackupFileName = op.BackupFileName
+	return op
 }
 
 func (o *ClearEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearEventLogWOperation) {
@@ -1001,7 +1003,7 @@ func (o *ClearEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_ClearEve
 	o.BackupFileName = op.BackupFileName
 }
 func (o *ClearEventLogWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearEventLogWOperation{}
@@ -1018,13 +1020,15 @@ type ClearEventLogWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearEventLogWResponse) xxx_ToOp(ctx context.Context) *xxx_ClearEventLogWOperation {
+func (o *ClearEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearEventLogWOperation) *xxx_ClearEventLogWOperation {
+	if op == nil {
+		op = &xxx_ClearEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearEventLogWOperation{}
+		return op
 	}
-	return &xxx_ClearEventLogWOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearEventLogWOperation) {
@@ -1034,7 +1038,7 @@ func (o *ClearEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearEv
 	o.Return = op.Return
 }
 func (o *ClearEventLogWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearEventLogWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearEventLogWOperation{}
@@ -1169,14 +1173,16 @@ type BackupEventLogWRequest struct {
 	BackupFileName *dtyp.UnicodeString `idl:"name:BackupFileName" json:"backup_file_name"`
 }
 
-func (o *BackupEventLogWRequest) xxx_ToOp(ctx context.Context) *xxx_BackupEventLogWOperation {
+func (o *BackupEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_BackupEventLogWOperation) *xxx_BackupEventLogWOperation {
+	if op == nil {
+		op = &xxx_BackupEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupEventLogWOperation{}
+		return op
 	}
-	return &xxx_BackupEventLogWOperation{
-		Log:            o.Log,
-		BackupFileName: o.BackupFileName,
-	}
+	o.Log = op.Log
+	o.BackupFileName = op.BackupFileName
+	return op
 }
 
 func (o *BackupEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupEventLogWOperation) {
@@ -1187,7 +1193,7 @@ func (o *BackupEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_BackupE
 	o.BackupFileName = op.BackupFileName
 }
 func (o *BackupEventLogWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BackupEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupEventLogWOperation{}
@@ -1204,13 +1210,15 @@ type BackupEventLogWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BackupEventLogWResponse) xxx_ToOp(ctx context.Context) *xxx_BackupEventLogWOperation {
+func (o *BackupEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupEventLogWOperation) *xxx_BackupEventLogWOperation {
+	if op == nil {
+		op = &xxx_BackupEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupEventLogWOperation{}
+		return op
 	}
-	return &xxx_BackupEventLogWOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BackupEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupEventLogWOperation) {
@@ -1220,7 +1228,7 @@ func (o *BackupEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_Backup
 	o.Return = op.Return
 }
 func (o *BackupEventLogWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BackupEventLogWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupEventLogWOperation{}
@@ -1342,13 +1350,15 @@ type CloseEventLogRequest struct {
 	Log *Handle `idl:"name:LogHandle" json:"log"`
 }
 
-func (o *CloseEventLogRequest) xxx_ToOp(ctx context.Context) *xxx_CloseEventLogOperation {
+func (o *CloseEventLogRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseEventLogOperation) *xxx_CloseEventLogOperation {
+	if op == nil {
+		op = &xxx_CloseEventLogOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseEventLogOperation{}
+		return op
 	}
-	return &xxx_CloseEventLogOperation{
-		Log: o.Log,
-	}
+	o.Log = op.Log
+	return op
 }
 
 func (o *CloseEventLogRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseEventLogOperation) {
@@ -1358,7 +1368,7 @@ func (o *CloseEventLogRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseEven
 	o.Log = op.Log
 }
 func (o *CloseEventLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseEventLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseEventLogOperation{}
@@ -1378,14 +1388,16 @@ type CloseEventLogResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseEventLogResponse) xxx_ToOp(ctx context.Context) *xxx_CloseEventLogOperation {
+func (o *CloseEventLogResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseEventLogOperation) *xxx_CloseEventLogOperation {
+	if op == nil {
+		op = &xxx_CloseEventLogOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseEventLogOperation{}
+		return op
 	}
-	return &xxx_CloseEventLogOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseEventLogResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseEventLogOperation) {
@@ -1396,7 +1408,7 @@ func (o *CloseEventLogResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseEve
 	o.Return = op.Return
 }
 func (o *CloseEventLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseEventLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseEventLogOperation{}
@@ -1520,13 +1532,15 @@ type DeregisterEventSourceRequest struct {
 	Log *Handle `idl:"name:LogHandle" json:"log"`
 }
 
-func (o *DeregisterEventSourceRequest) xxx_ToOp(ctx context.Context) *xxx_DeregisterEventSourceOperation {
+func (o *DeregisterEventSourceRequest) xxx_ToOp(ctx context.Context, op *xxx_DeregisterEventSourceOperation) *xxx_DeregisterEventSourceOperation {
+	if op == nil {
+		op = &xxx_DeregisterEventSourceOperation{}
+	}
 	if o == nil {
-		return &xxx_DeregisterEventSourceOperation{}
+		return op
 	}
-	return &xxx_DeregisterEventSourceOperation{
-		Log: o.Log,
-	}
+	o.Log = op.Log
+	return op
 }
 
 func (o *DeregisterEventSourceRequest) xxx_FromOp(ctx context.Context, op *xxx_DeregisterEventSourceOperation) {
@@ -1536,7 +1550,7 @@ func (o *DeregisterEventSourceRequest) xxx_FromOp(ctx context.Context, op *xxx_D
 	o.Log = op.Log
 }
 func (o *DeregisterEventSourceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeregisterEventSourceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeregisterEventSourceOperation{}
@@ -1556,14 +1570,16 @@ type DeregisterEventSourceResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeregisterEventSourceResponse) xxx_ToOp(ctx context.Context) *xxx_DeregisterEventSourceOperation {
+func (o *DeregisterEventSourceResponse) xxx_ToOp(ctx context.Context, op *xxx_DeregisterEventSourceOperation) *xxx_DeregisterEventSourceOperation {
+	if op == nil {
+		op = &xxx_DeregisterEventSourceOperation{}
+	}
 	if o == nil {
-		return &xxx_DeregisterEventSourceOperation{}
+		return op
 	}
-	return &xxx_DeregisterEventSourceOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeregisterEventSourceResponse) xxx_FromOp(ctx context.Context, op *xxx_DeregisterEventSourceOperation) {
@@ -1574,7 +1590,7 @@ func (o *DeregisterEventSourceResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *DeregisterEventSourceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeregisterEventSourceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeregisterEventSourceOperation{}
@@ -1688,13 +1704,15 @@ type NumberOfRecordsRequest struct {
 	Log *Handle `idl:"name:LogHandle" json:"log"`
 }
 
-func (o *NumberOfRecordsRequest) xxx_ToOp(ctx context.Context) *xxx_NumberOfRecordsOperation {
+func (o *NumberOfRecordsRequest) xxx_ToOp(ctx context.Context, op *xxx_NumberOfRecordsOperation) *xxx_NumberOfRecordsOperation {
+	if op == nil {
+		op = &xxx_NumberOfRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_NumberOfRecordsOperation{}
+		return op
 	}
-	return &xxx_NumberOfRecordsOperation{
-		Log: o.Log,
-	}
+	o.Log = op.Log
+	return op
 }
 
 func (o *NumberOfRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_NumberOfRecordsOperation) {
@@ -1704,7 +1722,7 @@ func (o *NumberOfRecordsRequest) xxx_FromOp(ctx context.Context, op *xxx_NumberO
 	o.Log = op.Log
 }
 func (o *NumberOfRecordsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *NumberOfRecordsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NumberOfRecordsOperation{}
@@ -1723,14 +1741,16 @@ type NumberOfRecordsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *NumberOfRecordsResponse) xxx_ToOp(ctx context.Context) *xxx_NumberOfRecordsOperation {
+func (o *NumberOfRecordsResponse) xxx_ToOp(ctx context.Context, op *xxx_NumberOfRecordsOperation) *xxx_NumberOfRecordsOperation {
+	if op == nil {
+		op = &xxx_NumberOfRecordsOperation{}
+	}
 	if o == nil {
-		return &xxx_NumberOfRecordsOperation{}
+		return op
 	}
-	return &xxx_NumberOfRecordsOperation{
-		NumberOfRecords: o.NumberOfRecords,
-		Return:          o.Return,
-	}
+	o.NumberOfRecords = op.NumberOfRecords
+	o.Return = op.Return
+	return op
 }
 
 func (o *NumberOfRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_NumberOfRecordsOperation) {
@@ -1741,7 +1761,7 @@ func (o *NumberOfRecordsResponse) xxx_FromOp(ctx context.Context, op *xxx_Number
 	o.Return = op.Return
 }
 func (o *NumberOfRecordsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *NumberOfRecordsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_NumberOfRecordsOperation{}
@@ -1855,13 +1875,15 @@ type OldestRecordRequest struct {
 	Log *Handle `idl:"name:LogHandle" json:"log"`
 }
 
-func (o *OldestRecordRequest) xxx_ToOp(ctx context.Context) *xxx_OldestRecordOperation {
+func (o *OldestRecordRequest) xxx_ToOp(ctx context.Context, op *xxx_OldestRecordOperation) *xxx_OldestRecordOperation {
+	if op == nil {
+		op = &xxx_OldestRecordOperation{}
+	}
 	if o == nil {
-		return &xxx_OldestRecordOperation{}
+		return op
 	}
-	return &xxx_OldestRecordOperation{
-		Log: o.Log,
-	}
+	o.Log = op.Log
+	return op
 }
 
 func (o *OldestRecordRequest) xxx_FromOp(ctx context.Context, op *xxx_OldestRecordOperation) {
@@ -1871,7 +1893,7 @@ func (o *OldestRecordRequest) xxx_FromOp(ctx context.Context, op *xxx_OldestReco
 	o.Log = op.Log
 }
 func (o *OldestRecordRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OldestRecordRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OldestRecordOperation{}
@@ -1892,14 +1914,16 @@ type OldestRecordResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OldestRecordResponse) xxx_ToOp(ctx context.Context) *xxx_OldestRecordOperation {
+func (o *OldestRecordResponse) xxx_ToOp(ctx context.Context, op *xxx_OldestRecordOperation) *xxx_OldestRecordOperation {
+	if op == nil {
+		op = &xxx_OldestRecordOperation{}
+	}
 	if o == nil {
-		return &xxx_OldestRecordOperation{}
+		return op
 	}
-	return &xxx_OldestRecordOperation{
-		OldestRecordNumber: o.OldestRecordNumber,
-		Return:             o.Return,
-	}
+	o.OldestRecordNumber = op.OldestRecordNumber
+	o.Return = op.Return
+	return op
 }
 
 func (o *OldestRecordResponse) xxx_FromOp(ctx context.Context, op *xxx_OldestRecordOperation) {
@@ -1910,7 +1934,7 @@ func (o *OldestRecordResponse) xxx_FromOp(ctx context.Context, op *xxx_OldestRec
 	o.Return = op.Return
 }
 func (o *OldestRecordResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OldestRecordResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OldestRecordOperation{}
@@ -2050,15 +2074,17 @@ type ChangeNotifyRequest struct {
 	Event uint32 `idl:"name:Event" json:"event"`
 }
 
-func (o *ChangeNotifyRequest) xxx_ToOp(ctx context.Context) *xxx_ChangeNotifyOperation {
+func (o *ChangeNotifyRequest) xxx_ToOp(ctx context.Context, op *xxx_ChangeNotifyOperation) *xxx_ChangeNotifyOperation {
+	if op == nil {
+		op = &xxx_ChangeNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeNotifyOperation{}
+		return op
 	}
-	return &xxx_ChangeNotifyOperation{
-		Log:      o.Log,
-		ClientID: o.ClientID,
-		Event:    o.Event,
-	}
+	o.Log = op.Log
+	o.ClientID = op.ClientID
+	o.Event = op.Event
+	return op
 }
 
 func (o *ChangeNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeNotifyOperation) {
@@ -2070,7 +2096,7 @@ func (o *ChangeNotifyRequest) xxx_FromOp(ctx context.Context, op *xxx_ChangeNoti
 	o.Event = op.Event
 }
 func (o *ChangeNotifyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ChangeNotifyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeNotifyOperation{}
@@ -2087,13 +2113,15 @@ type ChangeNotifyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ChangeNotifyResponse) xxx_ToOp(ctx context.Context) *xxx_ChangeNotifyOperation {
+func (o *ChangeNotifyResponse) xxx_ToOp(ctx context.Context, op *xxx_ChangeNotifyOperation) *xxx_ChangeNotifyOperation {
+	if op == nil {
+		op = &xxx_ChangeNotifyOperation{}
+	}
 	if o == nil {
-		return &xxx_ChangeNotifyOperation{}
+		return op
 	}
-	return &xxx_ChangeNotifyOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ChangeNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeNotifyOperation) {
@@ -2103,7 +2131,7 @@ func (o *ChangeNotifyResponse) xxx_FromOp(ctx context.Context, op *xxx_ChangeNot
 	o.Return = op.Return
 }
 func (o *ChangeNotifyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ChangeNotifyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ChangeNotifyOperation{}
@@ -2336,17 +2364,19 @@ type OpenEventLogWRequest struct {
 	MinorVersion uint32 `idl:"name:MinorVersion" json:"minor_version"`
 }
 
-func (o *OpenEventLogWRequest) xxx_ToOp(ctx context.Context) *xxx_OpenEventLogWOperation {
+func (o *OpenEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenEventLogWOperation) *xxx_OpenEventLogWOperation {
+	if op == nil {
+		op = &xxx_OpenEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenEventLogWOperation{}
+		return op
 	}
-	return &xxx_OpenEventLogWOperation{
-		UNCServerName: o.UNCServerName,
-		ModuleName:    o.ModuleName,
-		RegModuleName: o.RegModuleName,
-		MajorVersion:  o.MajorVersion,
-		MinorVersion:  o.MinorVersion,
-	}
+	o.UNCServerName = op.UNCServerName
+	o.ModuleName = op.ModuleName
+	o.RegModuleName = op.RegModuleName
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	return op
 }
 
 func (o *OpenEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenEventLogWOperation) {
@@ -2360,7 +2390,7 @@ func (o *OpenEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenEvent
 	o.MinorVersion = op.MinorVersion
 }
 func (o *OpenEventLogWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenEventLogWOperation{}
@@ -2384,14 +2414,16 @@ type OpenEventLogWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenEventLogWResponse) xxx_ToOp(ctx context.Context) *xxx_OpenEventLogWOperation {
+func (o *OpenEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenEventLogWOperation) *xxx_OpenEventLogWOperation {
+	if op == nil {
+		op = &xxx_OpenEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenEventLogWOperation{}
+		return op
 	}
-	return &xxx_OpenEventLogWOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenEventLogWOperation) {
@@ -2402,7 +2434,7 @@ func (o *OpenEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenEven
 	o.Return = op.Return
 }
 func (o *OpenEventLogWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenEventLogWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenEventLogWOperation{}
@@ -2637,17 +2669,19 @@ type RegisterEventSourceWRequest struct {
 	MinorVersion uint32 `idl:"name:MinorVersion" json:"minor_version"`
 }
 
-func (o *RegisterEventSourceWRequest) xxx_ToOp(ctx context.Context) *xxx_RegisterEventSourceWOperation {
+func (o *RegisterEventSourceWRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterEventSourceWOperation) *xxx_RegisterEventSourceWOperation {
+	if op == nil {
+		op = &xxx_RegisterEventSourceWOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterEventSourceWOperation{}
+		return op
 	}
-	return &xxx_RegisterEventSourceWOperation{
-		UNCServerName: o.UNCServerName,
-		ModuleName:    o.ModuleName,
-		RegModuleName: o.RegModuleName,
-		MajorVersion:  o.MajorVersion,
-		MinorVersion:  o.MinorVersion,
-	}
+	o.UNCServerName = op.UNCServerName
+	o.ModuleName = op.ModuleName
+	o.RegModuleName = op.RegModuleName
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	return op
 }
 
 func (o *RegisterEventSourceWRequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterEventSourceWOperation) {
@@ -2661,7 +2695,7 @@ func (o *RegisterEventSourceWRequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.MinorVersion = op.MinorVersion
 }
 func (o *RegisterEventSourceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterEventSourceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterEventSourceWOperation{}
@@ -2681,14 +2715,16 @@ type RegisterEventSourceWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterEventSourceWResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterEventSourceWOperation {
+func (o *RegisterEventSourceWResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterEventSourceWOperation) *xxx_RegisterEventSourceWOperation {
+	if op == nil {
+		op = &xxx_RegisterEventSourceWOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterEventSourceWOperation{}
+		return op
 	}
-	return &xxx_RegisterEventSourceWOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterEventSourceWResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterEventSourceWOperation) {
@@ -2699,7 +2735,7 @@ func (o *RegisterEventSourceWResponse) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.Return = op.Return
 }
 func (o *RegisterEventSourceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterEventSourceWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterEventSourceWOperation{}
@@ -2902,16 +2938,18 @@ type OpenBackupEventLogWRequest struct {
 	MinorVersion uint32 `idl:"name:MinorVersion" json:"minor_version"`
 }
 
-func (o *OpenBackupEventLogWRequest) xxx_ToOp(ctx context.Context) *xxx_OpenBackupEventLogWOperation {
+func (o *OpenBackupEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_OpenBackupEventLogWOperation) *xxx_OpenBackupEventLogWOperation {
+	if op == nil {
+		op = &xxx_OpenBackupEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenBackupEventLogWOperation{}
+		return op
 	}
-	return &xxx_OpenBackupEventLogWOperation{
-		UNCServerName:  o.UNCServerName,
-		BackupFileName: o.BackupFileName,
-		MajorVersion:   o.MajorVersion,
-		MinorVersion:   o.MinorVersion,
-	}
+	o.UNCServerName = op.UNCServerName
+	o.BackupFileName = op.BackupFileName
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	return op
 }
 
 func (o *OpenBackupEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_OpenBackupEventLogWOperation) {
@@ -2924,7 +2962,7 @@ func (o *OpenBackupEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_Ope
 	o.MinorVersion = op.MinorVersion
 }
 func (o *OpenBackupEventLogWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenBackupEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenBackupEventLogWOperation{}
@@ -2949,14 +2987,16 @@ type OpenBackupEventLogWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenBackupEventLogWResponse) xxx_ToOp(ctx context.Context) *xxx_OpenBackupEventLogWOperation {
+func (o *OpenBackupEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenBackupEventLogWOperation) *xxx_OpenBackupEventLogWOperation {
+	if op == nil {
+		op = &xxx_OpenBackupEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenBackupEventLogWOperation{}
+		return op
 	}
-	return &xxx_OpenBackupEventLogWOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenBackupEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenBackupEventLogWOperation) {
@@ -2967,7 +3007,7 @@ func (o *OpenBackupEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_Op
 	o.Return = op.Return
 }
 func (o *OpenBackupEventLogWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenBackupEventLogWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenBackupEventLogWOperation{}
@@ -3221,16 +3261,18 @@ type ReadEventLogWRequest struct {
 	NumberOfBytesToRead uint32 `idl:"name:NumberOfBytesToRead" json:"number_of_bytes_to_read"`
 }
 
-func (o *ReadEventLogWRequest) xxx_ToOp(ctx context.Context) *xxx_ReadEventLogWOperation {
+func (o *ReadEventLogWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadEventLogWOperation) *xxx_ReadEventLogWOperation {
+	if op == nil {
+		op = &xxx_ReadEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadEventLogWOperation{}
+		return op
 	}
-	return &xxx_ReadEventLogWOperation{
-		Log:                 o.Log,
-		ReadFlags:           o.ReadFlags,
-		RecordOffset:        o.RecordOffset,
-		NumberOfBytesToRead: o.NumberOfBytesToRead,
-	}
+	o.Log = op.Log
+	o.ReadFlags = op.ReadFlags
+	o.RecordOffset = op.RecordOffset
+	o.NumberOfBytesToRead = op.NumberOfBytesToRead
+	return op
 }
 
 func (o *ReadEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadEventLogWOperation) {
@@ -3243,7 +3285,7 @@ func (o *ReadEventLogWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadEvent
 	o.NumberOfBytesToRead = op.NumberOfBytesToRead
 }
 func (o *ReadEventLogWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReadEventLogWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadEventLogWOperation{}
@@ -3269,16 +3311,18 @@ type ReadEventLogWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReadEventLogWResponse) xxx_ToOp(ctx context.Context) *xxx_ReadEventLogWOperation {
+func (o *ReadEventLogWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadEventLogWOperation) *xxx_ReadEventLogWOperation {
+	if op == nil {
+		op = &xxx_ReadEventLogWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadEventLogWOperation{}
+		return op
 	}
-	return &xxx_ReadEventLogWOperation{
-		Buffer:                 o.Buffer,
-		NumberOfBytesRead:      o.NumberOfBytesRead,
-		MinNumberOfBytesNeeded: o.MinNumberOfBytesNeeded,
-		Return:                 o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.NumberOfBytesRead = op.NumberOfBytesRead
+	o.MinNumberOfBytesNeeded = op.MinNumberOfBytesNeeded
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReadEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadEventLogWOperation) {
@@ -3291,7 +3335,7 @@ func (o *ReadEventLogWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadEven
 	o.Return = op.Return
 }
 func (o *ReadEventLogWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReadEventLogWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadEventLogWOperation{}
@@ -3893,26 +3937,28 @@ type ReportEventWRequest struct {
 	TimeWritten uint32 `idl:"name:TimeWritten;pointer:unique" json:"time_written"`
 }
 
-func (o *ReportEventWRequest) xxx_ToOp(ctx context.Context) *xxx_ReportEventWOperation {
+func (o *ReportEventWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventWOperation) *xxx_ReportEventWOperation {
+	if op == nil {
+		op = &xxx_ReportEventWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventWOperation{}
+		return op
 	}
-	return &xxx_ReportEventWOperation{
-		Log:           o.Log,
-		Time:          o.Time,
-		EventType:     o.EventType,
-		EventCategory: o.EventCategory,
-		EventID:       o.EventID,
-		StringsLength: o.StringsLength,
-		DataSize:      o.DataSize,
-		ComputerName:  o.ComputerName,
-		UserSID:       o.UserSID,
-		Strings:       o.Strings,
-		Data:          o.Data,
-		Flags:         o.Flags,
-		RecordNumber:  o.RecordNumber,
-		TimeWritten:   o.TimeWritten,
-	}
+	o.Log = op.Log
+	o.Time = op.Time
+	o.EventType = op.EventType
+	o.EventCategory = op.EventCategory
+	o.EventID = op.EventID
+	o.StringsLength = op.StringsLength
+	o.DataSize = op.DataSize
+	o.ComputerName = op.ComputerName
+	o.UserSID = op.UserSID
+	o.Strings = op.Strings
+	o.Data = op.Data
+	o.Flags = op.Flags
+	o.RecordNumber = op.RecordNumber
+	o.TimeWritten = op.TimeWritten
+	return op
 }
 
 func (o *ReportEventWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEventWOperation) {
@@ -3935,7 +3981,7 @@ func (o *ReportEventWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEven
 	o.TimeWritten = op.TimeWritten
 }
 func (o *ReportEventWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReportEventWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventWOperation{}
@@ -3958,15 +4004,17 @@ type ReportEventWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReportEventWResponse) xxx_ToOp(ctx context.Context) *xxx_ReportEventWOperation {
+func (o *ReportEventWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEventWOperation) *xxx_ReportEventWOperation {
+	if op == nil {
+		op = &xxx_ReportEventWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventWOperation{}
+		return op
 	}
-	return &xxx_ReportEventWOperation{
-		RecordNumber: o.RecordNumber,
-		TimeWritten:  o.TimeWritten,
-		Return:       o.Return,
-	}
+	o.RecordNumber = op.RecordNumber
+	o.TimeWritten = op.TimeWritten
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReportEventWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEventWOperation) {
@@ -3978,7 +4026,7 @@ func (o *ReportEventWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEve
 	o.Return = op.Return
 }
 func (o *ReportEventWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReportEventWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventWOperation{}
@@ -4132,14 +4180,16 @@ type ClearEventLogARequest struct {
 	BackupFileName *String `idl:"name:BackupFileName;pointer:unique" json:"backup_file_name"`
 }
 
-func (o *ClearEventLogARequest) xxx_ToOp(ctx context.Context) *xxx_ClearEventLogAOperation {
+func (o *ClearEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_ClearEventLogAOperation) *xxx_ClearEventLogAOperation {
+	if op == nil {
+		op = &xxx_ClearEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearEventLogAOperation{}
+		return op
 	}
-	return &xxx_ClearEventLogAOperation{
-		Log:            o.Log,
-		BackupFileName: o.BackupFileName,
-	}
+	o.Log = op.Log
+	o.BackupFileName = op.BackupFileName
+	return op
 }
 
 func (o *ClearEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_ClearEventLogAOperation) {
@@ -4150,7 +4200,7 @@ func (o *ClearEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_ClearEve
 	o.BackupFileName = op.BackupFileName
 }
 func (o *ClearEventLogARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ClearEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearEventLogAOperation{}
@@ -4167,13 +4217,15 @@ type ClearEventLogAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ClearEventLogAResponse) xxx_ToOp(ctx context.Context) *xxx_ClearEventLogAOperation {
+func (o *ClearEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_ClearEventLogAOperation) *xxx_ClearEventLogAOperation {
+	if op == nil {
+		op = &xxx_ClearEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_ClearEventLogAOperation{}
+		return op
 	}
-	return &xxx_ClearEventLogAOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ClearEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearEventLogAOperation) {
@@ -4183,7 +4235,7 @@ func (o *ClearEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_ClearEv
 	o.Return = op.Return
 }
 func (o *ClearEventLogAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ClearEventLogAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ClearEventLogAOperation{}
@@ -4317,14 +4369,16 @@ type BackupEventLogARequest struct {
 	BackupFileName *String `idl:"name:BackupFileName" json:"backup_file_name"`
 }
 
-func (o *BackupEventLogARequest) xxx_ToOp(ctx context.Context) *xxx_BackupEventLogAOperation {
+func (o *BackupEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_BackupEventLogAOperation) *xxx_BackupEventLogAOperation {
+	if op == nil {
+		op = &xxx_BackupEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupEventLogAOperation{}
+		return op
 	}
-	return &xxx_BackupEventLogAOperation{
-		Log:            o.Log,
-		BackupFileName: o.BackupFileName,
-	}
+	o.Log = op.Log
+	o.BackupFileName = op.BackupFileName
+	return op
 }
 
 func (o *BackupEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_BackupEventLogAOperation) {
@@ -4335,7 +4389,7 @@ func (o *BackupEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_BackupE
 	o.BackupFileName = op.BackupFileName
 }
 func (o *BackupEventLogARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BackupEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupEventLogAOperation{}
@@ -4352,13 +4406,15 @@ type BackupEventLogAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BackupEventLogAResponse) xxx_ToOp(ctx context.Context) *xxx_BackupEventLogAOperation {
+func (o *BackupEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_BackupEventLogAOperation) *xxx_BackupEventLogAOperation {
+	if op == nil {
+		op = &xxx_BackupEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_BackupEventLogAOperation{}
+		return op
 	}
-	return &xxx_BackupEventLogAOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *BackupEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_BackupEventLogAOperation) {
@@ -4368,7 +4424,7 @@ func (o *BackupEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_Backup
 	o.Return = op.Return
 }
 func (o *BackupEventLogAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BackupEventLogAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BackupEventLogAOperation{}
@@ -4601,17 +4657,19 @@ type OpenEventLogARequest struct {
 	MinorVersion uint32 `idl:"name:MinorVersion" json:"minor_version"`
 }
 
-func (o *OpenEventLogARequest) xxx_ToOp(ctx context.Context) *xxx_OpenEventLogAOperation {
+func (o *OpenEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenEventLogAOperation) *xxx_OpenEventLogAOperation {
+	if op == nil {
+		op = &xxx_OpenEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenEventLogAOperation{}
+		return op
 	}
-	return &xxx_OpenEventLogAOperation{
-		UNCServerName: o.UNCServerName,
-		ModuleName:    o.ModuleName,
-		RegModuleName: o.RegModuleName,
-		MajorVersion:  o.MajorVersion,
-		MinorVersion:  o.MinorVersion,
-	}
+	o.UNCServerName = op.UNCServerName
+	o.ModuleName = op.ModuleName
+	o.RegModuleName = op.RegModuleName
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	return op
 }
 
 func (o *OpenEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenEventLogAOperation) {
@@ -4625,7 +4683,7 @@ func (o *OpenEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenEvent
 	o.MinorVersion = op.MinorVersion
 }
 func (o *OpenEventLogARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenEventLogAOperation{}
@@ -4649,14 +4707,16 @@ type OpenEventLogAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenEventLogAResponse) xxx_ToOp(ctx context.Context) *xxx_OpenEventLogAOperation {
+func (o *OpenEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenEventLogAOperation) *xxx_OpenEventLogAOperation {
+	if op == nil {
+		op = &xxx_OpenEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenEventLogAOperation{}
+		return op
 	}
-	return &xxx_OpenEventLogAOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenEventLogAOperation) {
@@ -4667,7 +4727,7 @@ func (o *OpenEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenEven
 	o.Return = op.Return
 }
 func (o *OpenEventLogAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenEventLogAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenEventLogAOperation{}
@@ -4902,17 +4962,19 @@ type RegisterEventSourceARequest struct {
 	MinorVersion uint32 `idl:"name:MinorVersion" json:"minor_version"`
 }
 
-func (o *RegisterEventSourceARequest) xxx_ToOp(ctx context.Context) *xxx_RegisterEventSourceAOperation {
+func (o *RegisterEventSourceARequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterEventSourceAOperation) *xxx_RegisterEventSourceAOperation {
+	if op == nil {
+		op = &xxx_RegisterEventSourceAOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterEventSourceAOperation{}
+		return op
 	}
-	return &xxx_RegisterEventSourceAOperation{
-		UNCServerName: o.UNCServerName,
-		ModuleName:    o.ModuleName,
-		RegModuleName: o.RegModuleName,
-		MajorVersion:  o.MajorVersion,
-		MinorVersion:  o.MinorVersion,
-	}
+	o.UNCServerName = op.UNCServerName
+	o.ModuleName = op.ModuleName
+	o.RegModuleName = op.RegModuleName
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	return op
 }
 
 func (o *RegisterEventSourceARequest) xxx_FromOp(ctx context.Context, op *xxx_RegisterEventSourceAOperation) {
@@ -4926,7 +4988,7 @@ func (o *RegisterEventSourceARequest) xxx_FromOp(ctx context.Context, op *xxx_Re
 	o.MinorVersion = op.MinorVersion
 }
 func (o *RegisterEventSourceARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RegisterEventSourceARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterEventSourceAOperation{}
@@ -4946,14 +5008,16 @@ type RegisterEventSourceAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RegisterEventSourceAResponse) xxx_ToOp(ctx context.Context) *xxx_RegisterEventSourceAOperation {
+func (o *RegisterEventSourceAResponse) xxx_ToOp(ctx context.Context, op *xxx_RegisterEventSourceAOperation) *xxx_RegisterEventSourceAOperation {
+	if op == nil {
+		op = &xxx_RegisterEventSourceAOperation{}
+	}
 	if o == nil {
-		return &xxx_RegisterEventSourceAOperation{}
+		return op
 	}
-	return &xxx_RegisterEventSourceAOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *RegisterEventSourceAResponse) xxx_FromOp(ctx context.Context, op *xxx_RegisterEventSourceAOperation) {
@@ -4964,7 +5028,7 @@ func (o *RegisterEventSourceAResponse) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.Return = op.Return
 }
 func (o *RegisterEventSourceAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RegisterEventSourceAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RegisterEventSourceAOperation{}
@@ -5167,16 +5231,18 @@ type OpenBackupEventLogARequest struct {
 	MinorVersion uint32 `idl:"name:MinorVersion" json:"minor_version"`
 }
 
-func (o *OpenBackupEventLogARequest) xxx_ToOp(ctx context.Context) *xxx_OpenBackupEventLogAOperation {
+func (o *OpenBackupEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_OpenBackupEventLogAOperation) *xxx_OpenBackupEventLogAOperation {
+	if op == nil {
+		op = &xxx_OpenBackupEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenBackupEventLogAOperation{}
+		return op
 	}
-	return &xxx_OpenBackupEventLogAOperation{
-		UNCServerName:  o.UNCServerName,
-		BackupFileName: o.BackupFileName,
-		MajorVersion:   o.MajorVersion,
-		MinorVersion:   o.MinorVersion,
-	}
+	o.UNCServerName = op.UNCServerName
+	o.BackupFileName = op.BackupFileName
+	o.MajorVersion = op.MajorVersion
+	o.MinorVersion = op.MinorVersion
+	return op
 }
 
 func (o *OpenBackupEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_OpenBackupEventLogAOperation) {
@@ -5189,7 +5255,7 @@ func (o *OpenBackupEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_Ope
 	o.MinorVersion = op.MinorVersion
 }
 func (o *OpenBackupEventLogARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *OpenBackupEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenBackupEventLogAOperation{}
@@ -5213,14 +5279,16 @@ type OpenBackupEventLogAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *OpenBackupEventLogAResponse) xxx_ToOp(ctx context.Context) *xxx_OpenBackupEventLogAOperation {
+func (o *OpenBackupEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_OpenBackupEventLogAOperation) *xxx_OpenBackupEventLogAOperation {
+	if op == nil {
+		op = &xxx_OpenBackupEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_OpenBackupEventLogAOperation{}
+		return op
 	}
-	return &xxx_OpenBackupEventLogAOperation{
-		Log:    o.Log,
-		Return: o.Return,
-	}
+	o.Log = op.Log
+	o.Return = op.Return
+	return op
 }
 
 func (o *OpenBackupEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_OpenBackupEventLogAOperation) {
@@ -5231,7 +5299,7 @@ func (o *OpenBackupEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_Op
 	o.Return = op.Return
 }
 func (o *OpenBackupEventLogAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *OpenBackupEventLogAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_OpenBackupEventLogAOperation{}
@@ -5485,16 +5553,18 @@ type ReadEventLogARequest struct {
 	NumberOfBytesToRead uint32 `idl:"name:NumberOfBytesToRead" json:"number_of_bytes_to_read"`
 }
 
-func (o *ReadEventLogARequest) xxx_ToOp(ctx context.Context) *xxx_ReadEventLogAOperation {
+func (o *ReadEventLogARequest) xxx_ToOp(ctx context.Context, op *xxx_ReadEventLogAOperation) *xxx_ReadEventLogAOperation {
+	if op == nil {
+		op = &xxx_ReadEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadEventLogAOperation{}
+		return op
 	}
-	return &xxx_ReadEventLogAOperation{
-		Log:                 o.Log,
-		ReadFlags:           o.ReadFlags,
-		RecordOffset:        o.RecordOffset,
-		NumberOfBytesToRead: o.NumberOfBytesToRead,
-	}
+	o.Log = op.Log
+	o.ReadFlags = op.ReadFlags
+	o.RecordOffset = op.RecordOffset
+	o.NumberOfBytesToRead = op.NumberOfBytesToRead
+	return op
 }
 
 func (o *ReadEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_ReadEventLogAOperation) {
@@ -5507,7 +5577,7 @@ func (o *ReadEventLogARequest) xxx_FromOp(ctx context.Context, op *xxx_ReadEvent
 	o.NumberOfBytesToRead = op.NumberOfBytesToRead
 }
 func (o *ReadEventLogARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReadEventLogARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadEventLogAOperation{}
@@ -5532,16 +5602,18 @@ type ReadEventLogAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReadEventLogAResponse) xxx_ToOp(ctx context.Context) *xxx_ReadEventLogAOperation {
+func (o *ReadEventLogAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadEventLogAOperation) *xxx_ReadEventLogAOperation {
+	if op == nil {
+		op = &xxx_ReadEventLogAOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadEventLogAOperation{}
+		return op
 	}
-	return &xxx_ReadEventLogAOperation{
-		Buffer:                 o.Buffer,
-		NumberOfBytesRead:      o.NumberOfBytesRead,
-		MinNumberOfBytesNeeded: o.MinNumberOfBytesNeeded,
-		Return:                 o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.NumberOfBytesRead = op.NumberOfBytesRead
+	o.MinNumberOfBytesNeeded = op.MinNumberOfBytesNeeded
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReadEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadEventLogAOperation) {
@@ -5554,7 +5626,7 @@ func (o *ReadEventLogAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadEven
 	o.Return = op.Return
 }
 func (o *ReadEventLogAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReadEventLogAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadEventLogAOperation{}
@@ -6151,26 +6223,28 @@ type ReportEventARequest struct {
 	TimeWritten uint32 `idl:"name:TimeWritten;pointer:unique" json:"time_written"`
 }
 
-func (o *ReportEventARequest) xxx_ToOp(ctx context.Context) *xxx_ReportEventAOperation {
+func (o *ReportEventARequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventAOperation) *xxx_ReportEventAOperation {
+	if op == nil {
+		op = &xxx_ReportEventAOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventAOperation{}
+		return op
 	}
-	return &xxx_ReportEventAOperation{
-		Log:           o.Log,
-		Time:          o.Time,
-		EventType:     o.EventType,
-		EventCategory: o.EventCategory,
-		EventID:       o.EventID,
-		StringsLength: o.StringsLength,
-		DataSize:      o.DataSize,
-		ComputerName:  o.ComputerName,
-		UserSID:       o.UserSID,
-		Strings:       o.Strings,
-		Data:          o.Data,
-		Flags:         o.Flags,
-		RecordNumber:  o.RecordNumber,
-		TimeWritten:   o.TimeWritten,
-	}
+	o.Log = op.Log
+	o.Time = op.Time
+	o.EventType = op.EventType
+	o.EventCategory = op.EventCategory
+	o.EventID = op.EventID
+	o.StringsLength = op.StringsLength
+	o.DataSize = op.DataSize
+	o.ComputerName = op.ComputerName
+	o.UserSID = op.UserSID
+	o.Strings = op.Strings
+	o.Data = op.Data
+	o.Flags = op.Flags
+	o.RecordNumber = op.RecordNumber
+	o.TimeWritten = op.TimeWritten
+	return op
 }
 
 func (o *ReportEventARequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEventAOperation) {
@@ -6193,7 +6267,7 @@ func (o *ReportEventARequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEven
 	o.TimeWritten = op.TimeWritten
 }
 func (o *ReportEventARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReportEventARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventAOperation{}
@@ -6216,15 +6290,17 @@ type ReportEventAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReportEventAResponse) xxx_ToOp(ctx context.Context) *xxx_ReportEventAOperation {
+func (o *ReportEventAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEventAOperation) *xxx_ReportEventAOperation {
+	if op == nil {
+		op = &xxx_ReportEventAOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventAOperation{}
+		return op
 	}
-	return &xxx_ReportEventAOperation{
-		RecordNumber: o.RecordNumber,
-		TimeWritten:  o.TimeWritten,
-		Return:       o.Return,
-	}
+	o.RecordNumber = op.RecordNumber
+	o.TimeWritten = op.TimeWritten
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReportEventAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEventAOperation) {
@@ -6236,7 +6312,7 @@ func (o *ReportEventAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEve
 	o.Return = op.Return
 }
 func (o *ReportEventAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReportEventAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventAOperation{}
@@ -6429,15 +6505,17 @@ type GetLogInformationRequest struct {
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
 }
 
-func (o *GetLogInformationRequest) xxx_ToOp(ctx context.Context) *xxx_GetLogInformationOperation {
+func (o *GetLogInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogInformationOperation) *xxx_GetLogInformationOperation {
+	if op == nil {
+		op = &xxx_GetLogInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogInformationOperation{}
+		return op
 	}
-	return &xxx_GetLogInformationOperation{
-		Log:          o.Log,
-		InfoLevel:    o.InfoLevel,
-		BufferLength: o.BufferLength,
-	}
+	o.Log = op.Log
+	o.InfoLevel = op.InfoLevel
+	o.BufferLength = op.BufferLength
+	return op
 }
 
 func (o *GetLogInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLogInformationOperation) {
@@ -6449,7 +6527,7 @@ func (o *GetLogInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLo
 	o.BufferLength = op.BufferLength
 }
 func (o *GetLogInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetLogInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogInformationOperation{}
@@ -6472,15 +6550,17 @@ type GetLogInformationResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetLogInformationResponse) xxx_ToOp(ctx context.Context) *xxx_GetLogInformationOperation {
+func (o *GetLogInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogInformationOperation) *xxx_GetLogInformationOperation {
+	if op == nil {
+		op = &xxx_GetLogInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogInformationOperation{}
+		return op
 	}
-	return &xxx_GetLogInformationOperation{
-		Buffer:            o.Buffer,
-		BytesNeededLength: o.BytesNeededLength,
-		Return:            o.Return,
-	}
+	o.Buffer = op.Buffer
+	o.BytesNeededLength = op.BytesNeededLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetLogInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogInformationOperation) {
@@ -6492,7 +6572,7 @@ func (o *GetLogInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetL
 	o.Return = op.Return
 }
 func (o *GetLogInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetLogInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogInformationOperation{}
@@ -7122,27 +7202,29 @@ type ReportEventAndSourceWRequest struct {
 	TimeWritten uint32 `idl:"name:TimeWritten;pointer:unique" json:"time_written"`
 }
 
-func (o *ReportEventAndSourceWRequest) xxx_ToOp(ctx context.Context) *xxx_ReportEventAndSourceWOperation {
+func (o *ReportEventAndSourceWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventAndSourceWOperation) *xxx_ReportEventAndSourceWOperation {
+	if op == nil {
+		op = &xxx_ReportEventAndSourceWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventAndSourceWOperation{}
+		return op
 	}
-	return &xxx_ReportEventAndSourceWOperation{
-		Log:           o.Log,
-		Time:          o.Time,
-		EventType:     o.EventType,
-		EventCategory: o.EventCategory,
-		EventID:       o.EventID,
-		SourceName:    o.SourceName,
-		StringsLength: o.StringsLength,
-		DataSize:      o.DataSize,
-		ComputerName:  o.ComputerName,
-		UserSID:       o.UserSID,
-		Strings:       o.Strings,
-		Data:          o.Data,
-		Flags:         o.Flags,
-		RecordNumber:  o.RecordNumber,
-		TimeWritten:   o.TimeWritten,
-	}
+	o.Log = op.Log
+	o.Time = op.Time
+	o.EventType = op.EventType
+	o.EventCategory = op.EventCategory
+	o.EventID = op.EventID
+	o.SourceName = op.SourceName
+	o.StringsLength = op.StringsLength
+	o.DataSize = op.DataSize
+	o.ComputerName = op.ComputerName
+	o.UserSID = op.UserSID
+	o.Strings = op.Strings
+	o.Data = op.Data
+	o.Flags = op.Flags
+	o.RecordNumber = op.RecordNumber
+	o.TimeWritten = op.TimeWritten
+	return op
 }
 
 func (o *ReportEventAndSourceWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEventAndSourceWOperation) {
@@ -7166,7 +7248,7 @@ func (o *ReportEventAndSourceWRequest) xxx_FromOp(ctx context.Context, op *xxx_R
 	o.TimeWritten = op.TimeWritten
 }
 func (o *ReportEventAndSourceWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReportEventAndSourceWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventAndSourceWOperation{}
@@ -7189,15 +7271,17 @@ type ReportEventAndSourceWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReportEventAndSourceWResponse) xxx_ToOp(ctx context.Context) *xxx_ReportEventAndSourceWOperation {
+func (o *ReportEventAndSourceWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEventAndSourceWOperation) *xxx_ReportEventAndSourceWOperation {
+	if op == nil {
+		op = &xxx_ReportEventAndSourceWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventAndSourceWOperation{}
+		return op
 	}
-	return &xxx_ReportEventAndSourceWOperation{
-		RecordNumber: o.RecordNumber,
-		TimeWritten:  o.TimeWritten,
-		Return:       o.Return,
-	}
+	o.RecordNumber = op.RecordNumber
+	o.TimeWritten = op.TimeWritten
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReportEventAndSourceWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEventAndSourceWOperation) {
@@ -7209,7 +7293,7 @@ func (o *ReportEventAndSourceWResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *ReportEventAndSourceWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReportEventAndSourceWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventAndSourceWOperation{}
@@ -7753,25 +7837,27 @@ type ReportEventExWRequest struct {
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
 }
 
-func (o *ReportEventExWRequest) xxx_ToOp(ctx context.Context) *xxx_ReportEventExWOperation {
+func (o *ReportEventExWRequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventExWOperation) *xxx_ReportEventExWOperation {
+	if op == nil {
+		op = &xxx_ReportEventExWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventExWOperation{}
+		return op
 	}
-	return &xxx_ReportEventExWOperation{
-		Log:           o.Log,
-		TimeGenerated: o.TimeGenerated,
-		EventType:     o.EventType,
-		EventCategory: o.EventCategory,
-		EventID:       o.EventID,
-		StringsLength: o.StringsLength,
-		DataSize:      o.DataSize,
-		ComputerName:  o.ComputerName,
-		UserSID:       o.UserSID,
-		Strings:       o.Strings,
-		Data:          o.Data,
-		Flags:         o.Flags,
-		RecordNumber:  o.RecordNumber,
-	}
+	o.Log = op.Log
+	o.TimeGenerated = op.TimeGenerated
+	o.EventType = op.EventType
+	o.EventCategory = op.EventCategory
+	o.EventID = op.EventID
+	o.StringsLength = op.StringsLength
+	o.DataSize = op.DataSize
+	o.ComputerName = op.ComputerName
+	o.UserSID = op.UserSID
+	o.Strings = op.Strings
+	o.Data = op.Data
+	o.Flags = op.Flags
+	o.RecordNumber = op.RecordNumber
+	return op
 }
 
 func (o *ReportEventExWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEventExWOperation) {
@@ -7793,7 +7879,7 @@ func (o *ReportEventExWRequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEv
 	o.RecordNumber = op.RecordNumber
 }
 func (o *ReportEventExWRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReportEventExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventExWOperation{}
@@ -7813,14 +7899,16 @@ type ReportEventExWResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReportEventExWResponse) xxx_ToOp(ctx context.Context) *xxx_ReportEventExWOperation {
+func (o *ReportEventExWResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEventExWOperation) *xxx_ReportEventExWOperation {
+	if op == nil {
+		op = &xxx_ReportEventExWOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventExWOperation{}
+		return op
 	}
-	return &xxx_ReportEventExWOperation{
-		RecordNumber: o.RecordNumber,
-		Return:       o.Return,
-	}
+	o.RecordNumber = op.RecordNumber
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReportEventExWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEventExWOperation) {
@@ -7831,7 +7919,7 @@ func (o *ReportEventExWResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportE
 	o.Return = op.Return
 }
 func (o *ReportEventExWResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReportEventExWResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventExWOperation{}
@@ -8375,25 +8463,27 @@ type ReportEventExARequest struct {
 	RecordNumber uint32 `idl:"name:RecordNumber;pointer:unique" json:"record_number"`
 }
 
-func (o *ReportEventExARequest) xxx_ToOp(ctx context.Context) *xxx_ReportEventExAOperation {
+func (o *ReportEventExARequest) xxx_ToOp(ctx context.Context, op *xxx_ReportEventExAOperation) *xxx_ReportEventExAOperation {
+	if op == nil {
+		op = &xxx_ReportEventExAOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventExAOperation{}
+		return op
 	}
-	return &xxx_ReportEventExAOperation{
-		Log:           o.Log,
-		TimeGenerated: o.TimeGenerated,
-		EventType:     o.EventType,
-		EventCategory: o.EventCategory,
-		EventID:       o.EventID,
-		StringsLength: o.StringsLength,
-		DataSize:      o.DataSize,
-		ComputerName:  o.ComputerName,
-		UserSID:       o.UserSID,
-		Strings:       o.Strings,
-		Data:          o.Data,
-		Flags:         o.Flags,
-		RecordNumber:  o.RecordNumber,
-	}
+	o.Log = op.Log
+	o.TimeGenerated = op.TimeGenerated
+	o.EventType = op.EventType
+	o.EventCategory = op.EventCategory
+	o.EventID = op.EventID
+	o.StringsLength = op.StringsLength
+	o.DataSize = op.DataSize
+	o.ComputerName = op.ComputerName
+	o.UserSID = op.UserSID
+	o.Strings = op.Strings
+	o.Data = op.Data
+	o.Flags = op.Flags
+	o.RecordNumber = op.RecordNumber
+	return op
 }
 
 func (o *ReportEventExARequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEventExAOperation) {
@@ -8415,7 +8505,7 @@ func (o *ReportEventExARequest) xxx_FromOp(ctx context.Context, op *xxx_ReportEv
 	o.RecordNumber = op.RecordNumber
 }
 func (o *ReportEventExARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReportEventExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventExAOperation{}
@@ -8435,14 +8525,16 @@ type ReportEventExAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReportEventExAResponse) xxx_ToOp(ctx context.Context) *xxx_ReportEventExAOperation {
+func (o *ReportEventExAResponse) xxx_ToOp(ctx context.Context, op *xxx_ReportEventExAOperation) *xxx_ReportEventExAOperation {
+	if op == nil {
+		op = &xxx_ReportEventExAOperation{}
+	}
 	if o == nil {
-		return &xxx_ReportEventExAOperation{}
+		return op
 	}
-	return &xxx_ReportEventExAOperation{
-		RecordNumber: o.RecordNumber,
-		Return:       o.Return,
-	}
+	o.RecordNumber = op.RecordNumber
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReportEventExAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportEventExAOperation) {
@@ -8453,7 +8545,7 @@ func (o *ReportEventExAResponse) xxx_FromOp(ctx context.Context, op *xxx_ReportE
 	o.Return = op.Return
 }
 func (o *ReportEventExAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReportEventExAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReportEventExAOperation{}

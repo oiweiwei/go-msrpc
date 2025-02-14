@@ -49,12 +49,24 @@ func NewBackupKeyServerHandle(o BackupKeyServer) dcerpc.ServerHandle {
 func BackupKeyServerHandle(ctx context.Context, o BackupKeyServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // BackuprKey
-		in := &BackupKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BackupKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BackupKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BackupKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BackupKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented BackupKey
+type UnimplementedBackupKeyServer struct {
+}
+
+func (UnimplementedBackupKeyServer) BackupKey(context.Context, *BackupKeyRequest) (*BackupKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ BackupKeyServer = (*UnimplementedBackupKeyServer)(nil)

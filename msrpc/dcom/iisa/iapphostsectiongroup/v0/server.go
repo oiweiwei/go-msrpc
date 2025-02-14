@@ -73,61 +73,109 @@ func AppHostSectionGroupServerHandle(ctx context.Context, o AppHostSectionGroupS
 	}
 	switch opNum {
 	case 3: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Sections
-		in := &GetSectionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSectionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSections(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSectionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSections(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // AddSectionGroup
-		in := &AddSectionGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddSectionGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddSectionGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddSectionGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddSectionGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // DeleteSectionGroup
-		in := &DeleteSectionGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteSectionGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteSectionGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteSectionGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteSectionGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Type
-		in := &GetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Type
-		in := &SetTypeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTypeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetType(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTypeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetType(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostSectionGroup
+type UnimplementedAppHostSectionGroupServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostSectionGroupServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) GetSections(context.Context, *GetSectionsRequest) (*GetSectionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) AddSectionGroup(context.Context, *AddSectionGroupRequest) (*AddSectionGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) DeleteSectionGroup(context.Context, *DeleteSectionGroupRequest) (*DeleteSectionGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) GetType(context.Context, *GetTypeRequest) (*GetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostSectionGroupServer) SetType(context.Context, *SetTypeRequest) (*SetTypeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostSectionGroupServer = (*UnimplementedAppHostSectionGroupServer)(nil)

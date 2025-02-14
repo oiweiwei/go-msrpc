@@ -58,12 +58,25 @@ func DiskPartitionMF2ServerHandle(ctx context.Context, o DiskPartitionMF2Server,
 	}
 	switch opNum {
 	case 3: // FormatPartitionEx2
-		in := &FormatPartitionEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatPartitionEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FormatPartitionEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatPartitionEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FormatPartitionEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsDiskPartitionMF2
+type UnimplementedDiskPartitionMF2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDiskPartitionMF2Server) FormatPartitionEx2(context.Context, *FormatPartitionEx2Request) (*FormatPartitionEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DiskPartitionMF2Server = (*UnimplementedDiskPartitionMF2Server)(nil)

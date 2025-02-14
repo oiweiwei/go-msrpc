@@ -69,7 +69,7 @@ type xxx_DefaultRfriClient struct {
 }
 
 func (o *xxx_DefaultRfriClient) GetNewDSA(ctx context.Context, in *GetNewDSARequest, opts ...dcerpc.CallOption) (*GetNewDSAResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (o *xxx_DefaultRfriClient) GetNewDSA(ctx context.Context, in *GetNewDSARequ
 }
 
 func (o *xxx_DefaultRfriClient) GetFQDNFromServerDN(ctx context.Context, in *GetFQDNFromServerDNRequest, opts ...dcerpc.CallOption) (*GetFQDNFromServerDNResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -395,15 +395,17 @@ type GetNewDSARequest struct {
 	Server string `idl:"name:ppszServer;string;pointer:unique" json:"server"`
 }
 
-func (o *GetNewDSARequest) xxx_ToOp(ctx context.Context) *xxx_GetNewDSAOperation {
+func (o *GetNewDSARequest) xxx_ToOp(ctx context.Context, op *xxx_GetNewDSAOperation) *xxx_GetNewDSAOperation {
+	if op == nil {
+		op = &xxx_GetNewDSAOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNewDSAOperation{}
+		return op
 	}
-	return &xxx_GetNewDSAOperation{
-		Flags:  o.Flags,
-		UserDN: o.UserDN,
-		Server: o.Server,
-	}
+	o.Flags = op.Flags
+	o.UserDN = op.UserDN
+	o.Server = op.Server
+	return op
 }
 
 func (o *GetNewDSARequest) xxx_FromOp(ctx context.Context, op *xxx_GetNewDSAOperation) {
@@ -415,7 +417,7 @@ func (o *GetNewDSARequest) xxx_FromOp(ctx context.Context, op *xxx_GetNewDSAOper
 	o.Server = op.Server
 }
 func (o *GetNewDSARequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNewDSARequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNewDSAOperation{}
@@ -435,14 +437,16 @@ type GetNewDSAResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNewDSAResponse) xxx_ToOp(ctx context.Context) *xxx_GetNewDSAOperation {
+func (o *GetNewDSAResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNewDSAOperation) *xxx_GetNewDSAOperation {
+	if op == nil {
+		op = &xxx_GetNewDSAOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNewDSAOperation{}
+		return op
 	}
-	return &xxx_GetNewDSAOperation{
-		Server: o.Server,
-		Return: o.Return,
-	}
+	o.Server = op.Server
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNewDSAResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNewDSAOperation) {
@@ -453,7 +457,7 @@ func (o *GetNewDSAResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNewDSAOpe
 	o.Return = op.Return
 }
 func (o *GetNewDSAResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNewDSAResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNewDSAOperation{}
@@ -694,15 +698,17 @@ type GetFQDNFromServerDNRequest struct {
 	MailboxServerDN string `idl:"name:szMailboxServerDN;size_is:(cbMailboxServerDN);string" json:"mailbox_server_dn"`
 }
 
-func (o *GetFQDNFromServerDNRequest) xxx_ToOp(ctx context.Context) *xxx_GetFQDNFromServerDNOperation {
+func (o *GetFQDNFromServerDNRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFQDNFromServerDNOperation) *xxx_GetFQDNFromServerDNOperation {
+	if op == nil {
+		op = &xxx_GetFQDNFromServerDNOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFQDNFromServerDNOperation{}
+		return op
 	}
-	return &xxx_GetFQDNFromServerDNOperation{
-		Flags:                 o.Flags,
-		MailboxServerDNLength: o.MailboxServerDNLength,
-		MailboxServerDN:       o.MailboxServerDN,
-	}
+	o.Flags = op.Flags
+	o.MailboxServerDNLength = op.MailboxServerDNLength
+	o.MailboxServerDN = op.MailboxServerDN
+	return op
 }
 
 func (o *GetFQDNFromServerDNRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFQDNFromServerDNOperation) {
@@ -714,7 +720,7 @@ func (o *GetFQDNFromServerDNRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.MailboxServerDN = op.MailboxServerDN
 }
 func (o *GetFQDNFromServerDNRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFQDNFromServerDNRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFQDNFromServerDNOperation{}
@@ -735,14 +741,16 @@ type GetFQDNFromServerDNResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFQDNFromServerDNResponse) xxx_ToOp(ctx context.Context) *xxx_GetFQDNFromServerDNOperation {
+func (o *GetFQDNFromServerDNResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFQDNFromServerDNOperation) *xxx_GetFQDNFromServerDNOperation {
+	if op == nil {
+		op = &xxx_GetFQDNFromServerDNOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFQDNFromServerDNOperation{}
+		return op
 	}
-	return &xxx_GetFQDNFromServerDNOperation{
-		ServerFQDN: o.ServerFQDN,
-		Return:     o.Return,
-	}
+	o.ServerFQDN = op.ServerFQDN
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFQDNFromServerDNResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFQDNFromServerDNOperation) {
@@ -753,7 +761,7 @@ func (o *GetFQDNFromServerDNResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetFQDNFromServerDNResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFQDNFromServerDNResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFQDNFromServerDNOperation{}

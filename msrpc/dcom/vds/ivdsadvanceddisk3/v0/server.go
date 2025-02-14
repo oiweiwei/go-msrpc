@@ -61,19 +61,37 @@ func AdvancedDisk3ServerHandle(ctx context.Context, o AdvancedDisk3Server, opNum
 	}
 	switch opNum {
 	case 3: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetUniqueId
-		in := &GetUniqueIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUniqueIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUniqueID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUniqueIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUniqueID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsAdvancedDisk3
+type UnimplementedAdvancedDisk3Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAdvancedDisk3Server) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAdvancedDisk3Server) GetUniqueID(context.Context, *GetUniqueIDRequest) (*GetUniqueIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AdvancedDisk3Server = (*UnimplementedAdvancedDisk3Server)(nil)

@@ -98,33 +98,60 @@ func NewFaxclientServerHandle(o FaxclientServer) dcerpc.ServerHandle {
 func FaxclientServerHandle(ctx context.Context, o FaxclientServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // FAX_OpenConnection
-		in := &OpenConnectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenConnectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenConnection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenConnectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenConnection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // FAX_ClientEventQueue
-		in := &ClientEventQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClientEventQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClientEventQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClientEventQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClientEventQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // FAX_CloseConnection
-		in := &CloseConnectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CloseConnectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CloseConnection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CloseConnectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CloseConnection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // FAX_ClientEventQueueEx
-		in := &ClientEventQueueExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClientEventQueueExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClientEventQueueEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClientEventQueueExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClientEventQueueEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented faxclient
+type UnimplementedFaxclientServer struct {
+}
+
+func (UnimplementedFaxclientServer) OpenConnection(context.Context, *OpenConnectionRequest) (*OpenConnectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxclientServer) ClientEventQueue(context.Context, *ClientEventQueueRequest) (*ClientEventQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxclientServer) CloseConnection(context.Context, *CloseConnectionRequest) (*CloseConnectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxclientServer) ClientEventQueueEx(context.Context, *ClientEventQueueExRequest) (*ClientEventQueueExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FaxclientServer = (*UnimplementedFaxclientServer)(nil)

@@ -57,12 +57,25 @@ func CatalogTableInfoServerHandle(ctx context.Context, o CatalogTableInfoServer,
 	}
 	switch opNum {
 	case 3: // GetClientTableInfo
-		in := &GetClientTableInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClientTableInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClientTableInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClientTableInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClientTableInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalogTableInfo
+type UnimplementedCatalogTableInfoServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalogTableInfoServer) GetClientTableInfo(context.Context, *GetClientTableInfoRequest) (*GetClientTableInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CatalogTableInfoServer = (*UnimplementedCatalogTableInfoServer)(nil)

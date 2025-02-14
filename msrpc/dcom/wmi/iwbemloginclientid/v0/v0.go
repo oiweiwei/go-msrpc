@@ -80,7 +80,7 @@ func (o *xxx_DefaultLoginClientIDClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultLoginClientIDClient) SetClientInfo(ctx context.Context, in *SetClientInfoRequest, opts ...dcerpc.CallOption) (*SetClientInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -337,15 +337,17 @@ type SetClientInfoRequest struct {
 	ClientProcID int32 `idl:"name:lClientProcId" json:"client_proc_id"`
 }
 
-func (o *SetClientInfoRequest) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoOperation {
+func (o *SetClientInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoOperation) *xxx_SetClientInfoOperation {
+	if op == nil {
+		op = &xxx_SetClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoOperation{}
+		return op
 	}
-	return &xxx_SetClientInfoOperation{
-		This:          o.This,
-		ClientMachine: o.ClientMachine,
-		ClientProcID:  o.ClientProcID,
-	}
+	o.This = op.This
+	o.ClientMachine = op.ClientMachine
+	o.ClientProcID = op.ClientProcID
+	return op
 }
 
 func (o *SetClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoOperation) {
@@ -357,7 +359,7 @@ func (o *SetClientInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_SetClient
 	o.ClientProcID = op.ClientProcID
 }
 func (o *SetClientInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetClientInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoOperation{}
@@ -376,14 +378,16 @@ type SetClientInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetClientInfoResponse) xxx_ToOp(ctx context.Context) *xxx_SetClientInfoOperation {
+func (o *SetClientInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_SetClientInfoOperation) *xxx_SetClientInfoOperation {
+	if op == nil {
+		op = &xxx_SetClientInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_SetClientInfoOperation{}
+		return op
 	}
-	return &xxx_SetClientInfoOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetClientInfoOperation) {
@@ -394,7 +398,7 @@ func (o *SetClientInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_SetClien
 	o.Return = op.Return
 }
 func (o *SetClientInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetClientInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetClientInfoOperation{}

@@ -137,68 +137,121 @@ func CatalogUtils2ServerHandle(ctx context.Context, o CatalogUtils2Server, opNum
 	}
 	switch opNum {
 	case 3: // CopyConglomerations
-		in := &CopyConglomerationsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CopyConglomerationsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CopyConglomerations(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CopyConglomerationsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CopyConglomerations(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CopyComponentConfiguration
-		in := &CopyComponentConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CopyComponentConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CopyComponentConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CopyComponentConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CopyComponentConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // AliasComponent
-		in := &AliasComponentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AliasComponentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AliasComponent(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AliasComponentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AliasComponent(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // MoveComponentConfiguration
-		in := &MoveComponentConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MoveComponentConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MoveComponentConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MoveComponentConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MoveComponentConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetEventClassesForIID2
-		in := &GetEventClassesForIid2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassesForIid2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassesForIid2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassesForIid2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassesForIid2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // IsSafeToDelete
-		in := &IsSafeToDeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_IsSafeToDeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.IsSafeToDelete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &IsSafeToDeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.IsSafeToDelete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // FlushPartitionCache
-		in := &FlushPartitionCacheRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FlushPartitionCacheOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FlushPartitionCache(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FlushPartitionCacheRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FlushPartitionCache(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // EnumerateSRPLevels
-		in := &EnumerateSRPLevelsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateSRPLevelsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateSRPLevels(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateSRPLevelsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateSRPLevels(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // GetComponentVersions
-		in := &GetComponentVersionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetComponentVersionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetComponentVersions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetComponentVersionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetComponentVersions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented ICatalogUtils2
+type UnimplementedCatalogUtils2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCatalogUtils2Server) CopyConglomerations(context.Context, *CopyConglomerationsRequest) (*CopyConglomerationsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) CopyComponentConfiguration(context.Context, *CopyComponentConfigurationRequest) (*CopyComponentConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) AliasComponent(context.Context, *AliasComponentRequest) (*AliasComponentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) MoveComponentConfiguration(context.Context, *MoveComponentConfigurationRequest) (*MoveComponentConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) GetEventClassesForIid2(context.Context, *GetEventClassesForIid2Request) (*GetEventClassesForIid2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) IsSafeToDelete(context.Context, *IsSafeToDeleteRequest) (*IsSafeToDeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) FlushPartitionCache(context.Context, *FlushPartitionCacheRequest) (*FlushPartitionCacheResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) EnumerateSRPLevels(context.Context, *EnumerateSRPLevelsRequest) (*EnumerateSRPLevelsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedCatalogUtils2Server) GetComponentVersions(context.Context, *GetComponentVersionsRequest) (*GetComponentVersionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CatalogUtils2Server = (*UnimplementedCatalogUtils2Server)(nil)

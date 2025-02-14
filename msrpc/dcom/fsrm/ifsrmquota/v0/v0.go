@@ -155,7 +155,7 @@ func (o *xxx_DefaultQuotaClient) QuotaObject() ifsrmquotaobject.QuotaObjectClien
 }
 
 func (o *xxx_DefaultQuotaClient) GetQuotaUsed(ctx context.Context, in *GetQuotaUsedRequest, opts ...dcerpc.CallOption) (*GetQuotaUsedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -175,7 +175,7 @@ func (o *xxx_DefaultQuotaClient) GetQuotaUsed(ctx context.Context, in *GetQuotaU
 }
 
 func (o *xxx_DefaultQuotaClient) GetQuotaPeakUsage(ctx context.Context, in *GetQuotaPeakUsageRequest, opts ...dcerpc.CallOption) (*GetQuotaPeakUsageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -195,7 +195,7 @@ func (o *xxx_DefaultQuotaClient) GetQuotaPeakUsage(ctx context.Context, in *GetQ
 }
 
 func (o *xxx_DefaultQuotaClient) GetQuotaPeakUsageTime(ctx context.Context, in *GetQuotaPeakUsageTimeRequest, opts ...dcerpc.CallOption) (*GetQuotaPeakUsageTimeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -215,7 +215,7 @@ func (o *xxx_DefaultQuotaClient) GetQuotaPeakUsageTime(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultQuotaClient) ResetPeakUsage(ctx context.Context, in *ResetPeakUsageRequest, opts ...dcerpc.CallOption) (*ResetPeakUsageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -235,7 +235,7 @@ func (o *xxx_DefaultQuotaClient) ResetPeakUsage(ctx context.Context, in *ResetPe
 }
 
 func (o *xxx_DefaultQuotaClient) RefreshUsageProperties(ctx context.Context, in *RefreshUsagePropertiesRequest, opts ...dcerpc.CallOption) (*RefreshUsagePropertiesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -466,13 +466,15 @@ type GetQuotaUsedRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetQuotaUsedRequest) xxx_ToOp(ctx context.Context) *xxx_GetQuotaUsedOperation {
+func (o *GetQuotaUsedRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaUsedOperation) *xxx_GetQuotaUsedOperation {
+	if op == nil {
+		op = &xxx_GetQuotaUsedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaUsedOperation{}
+		return op
 	}
-	return &xxx_GetQuotaUsedOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetQuotaUsedRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaUsedOperation) {
@@ -482,7 +484,7 @@ func (o *GetQuotaUsedRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaUs
 	o.This = op.This
 }
 func (o *GetQuotaUsedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetQuotaUsedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaUsedOperation{}
@@ -504,15 +506,17 @@ type GetQuotaUsedResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetQuotaUsedResponse) xxx_ToOp(ctx context.Context) *xxx_GetQuotaUsedOperation {
+func (o *GetQuotaUsedResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaUsedOperation) *xxx_GetQuotaUsedOperation {
+	if op == nil {
+		op = &xxx_GetQuotaUsedOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaUsedOperation{}
+		return op
 	}
-	return &xxx_GetQuotaUsedOperation{
-		That:   o.That,
-		Used:   o.Used,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Used = op.Used
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetQuotaUsedResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaUsedOperation) {
@@ -524,7 +528,7 @@ func (o *GetQuotaUsedResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaU
 	o.Return = op.Return
 }
 func (o *GetQuotaUsedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetQuotaUsedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaUsedOperation{}
@@ -705,13 +709,15 @@ type GetQuotaPeakUsageRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetQuotaPeakUsageRequest) xxx_ToOp(ctx context.Context) *xxx_GetQuotaPeakUsageOperation {
+func (o *GetQuotaPeakUsageRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaPeakUsageOperation) *xxx_GetQuotaPeakUsageOperation {
+	if op == nil {
+		op = &xxx_GetQuotaPeakUsageOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaPeakUsageOperation{}
+		return op
 	}
-	return &xxx_GetQuotaPeakUsageOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetQuotaPeakUsageRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaPeakUsageOperation) {
@@ -721,7 +727,7 @@ func (o *GetQuotaPeakUsageRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQu
 	o.This = op.This
 }
 func (o *GetQuotaPeakUsageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetQuotaPeakUsageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaPeakUsageOperation{}
@@ -743,15 +749,17 @@ type GetQuotaPeakUsageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetQuotaPeakUsageResponse) xxx_ToOp(ctx context.Context) *xxx_GetQuotaPeakUsageOperation {
+func (o *GetQuotaPeakUsageResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaPeakUsageOperation) *xxx_GetQuotaPeakUsageOperation {
+	if op == nil {
+		op = &xxx_GetQuotaPeakUsageOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaPeakUsageOperation{}
+		return op
 	}
-	return &xxx_GetQuotaPeakUsageOperation{
-		That:      o.That,
-		PeakUsage: o.PeakUsage,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.PeakUsage = op.PeakUsage
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetQuotaPeakUsageResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaPeakUsageOperation) {
@@ -763,7 +771,7 @@ func (o *GetQuotaPeakUsageResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQ
 	o.Return = op.Return
 }
 func (o *GetQuotaPeakUsageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetQuotaPeakUsageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaPeakUsageOperation{}
@@ -912,13 +920,15 @@ type GetQuotaPeakUsageTimeRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetQuotaPeakUsageTimeRequest) xxx_ToOp(ctx context.Context) *xxx_GetQuotaPeakUsageTimeOperation {
+func (o *GetQuotaPeakUsageTimeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaPeakUsageTimeOperation) *xxx_GetQuotaPeakUsageTimeOperation {
+	if op == nil {
+		op = &xxx_GetQuotaPeakUsageTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaPeakUsageTimeOperation{}
+		return op
 	}
-	return &xxx_GetQuotaPeakUsageTimeOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetQuotaPeakUsageTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaPeakUsageTimeOperation) {
@@ -928,7 +938,7 @@ func (o *GetQuotaPeakUsageTimeRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetQuotaPeakUsageTimeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetQuotaPeakUsageTimeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaPeakUsageTimeOperation{}
@@ -950,15 +960,17 @@ type GetQuotaPeakUsageTimeResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetQuotaPeakUsageTimeResponse) xxx_ToOp(ctx context.Context) *xxx_GetQuotaPeakUsageTimeOperation {
+func (o *GetQuotaPeakUsageTimeResponse) xxx_ToOp(ctx context.Context, op *xxx_GetQuotaPeakUsageTimeOperation) *xxx_GetQuotaPeakUsageTimeOperation {
+	if op == nil {
+		op = &xxx_GetQuotaPeakUsageTimeOperation{}
+	}
 	if o == nil {
-		return &xxx_GetQuotaPeakUsageTimeOperation{}
+		return op
 	}
-	return &xxx_GetQuotaPeakUsageTimeOperation{
-		That:              o.That,
-		PeakUsageDateTime: o.PeakUsageDateTime,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.PeakUsageDateTime = op.PeakUsageDateTime
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetQuotaPeakUsageTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_GetQuotaPeakUsageTimeOperation) {
@@ -970,7 +982,7 @@ func (o *GetQuotaPeakUsageTimeResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetQuotaPeakUsageTimeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetQuotaPeakUsageTimeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetQuotaPeakUsageTimeOperation{}
@@ -1104,13 +1116,15 @@ type ResetPeakUsageRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *ResetPeakUsageRequest) xxx_ToOp(ctx context.Context) *xxx_ResetPeakUsageOperation {
+func (o *ResetPeakUsageRequest) xxx_ToOp(ctx context.Context, op *xxx_ResetPeakUsageOperation) *xxx_ResetPeakUsageOperation {
+	if op == nil {
+		op = &xxx_ResetPeakUsageOperation{}
+	}
 	if o == nil {
-		return &xxx_ResetPeakUsageOperation{}
+		return op
 	}
-	return &xxx_ResetPeakUsageOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *ResetPeakUsageRequest) xxx_FromOp(ctx context.Context, op *xxx_ResetPeakUsageOperation) {
@@ -1120,7 +1134,7 @@ func (o *ResetPeakUsageRequest) xxx_FromOp(ctx context.Context, op *xxx_ResetPea
 	o.This = op.This
 }
 func (o *ResetPeakUsageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResetPeakUsageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResetPeakUsageOperation{}
@@ -1139,14 +1153,16 @@ type ResetPeakUsageResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResetPeakUsageResponse) xxx_ToOp(ctx context.Context) *xxx_ResetPeakUsageOperation {
+func (o *ResetPeakUsageResponse) xxx_ToOp(ctx context.Context, op *xxx_ResetPeakUsageOperation) *xxx_ResetPeakUsageOperation {
+	if op == nil {
+		op = &xxx_ResetPeakUsageOperation{}
+	}
 	if o == nil {
-		return &xxx_ResetPeakUsageOperation{}
+		return op
 	}
-	return &xxx_ResetPeakUsageOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResetPeakUsageResponse) xxx_FromOp(ctx context.Context, op *xxx_ResetPeakUsageOperation) {
@@ -1157,7 +1173,7 @@ func (o *ResetPeakUsageResponse) xxx_FromOp(ctx context.Context, op *xxx_ResetPe
 	o.Return = op.Return
 }
 func (o *ResetPeakUsageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResetPeakUsageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResetPeakUsageOperation{}
@@ -1293,13 +1309,15 @@ type RefreshUsagePropertiesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *RefreshUsagePropertiesRequest) xxx_ToOp(ctx context.Context) *xxx_RefreshUsagePropertiesOperation {
+func (o *RefreshUsagePropertiesRequest) xxx_ToOp(ctx context.Context, op *xxx_RefreshUsagePropertiesOperation) *xxx_RefreshUsagePropertiesOperation {
+	if op == nil {
+		op = &xxx_RefreshUsagePropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_RefreshUsagePropertiesOperation{}
+		return op
 	}
-	return &xxx_RefreshUsagePropertiesOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *RefreshUsagePropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_RefreshUsagePropertiesOperation) {
@@ -1309,7 +1327,7 @@ func (o *RefreshUsagePropertiesRequest) xxx_FromOp(ctx context.Context, op *xxx_
 	o.This = op.This
 }
 func (o *RefreshUsagePropertiesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RefreshUsagePropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RefreshUsagePropertiesOperation{}
@@ -1328,14 +1346,16 @@ type RefreshUsagePropertiesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RefreshUsagePropertiesResponse) xxx_ToOp(ctx context.Context) *xxx_RefreshUsagePropertiesOperation {
+func (o *RefreshUsagePropertiesResponse) xxx_ToOp(ctx context.Context, op *xxx_RefreshUsagePropertiesOperation) *xxx_RefreshUsagePropertiesOperation {
+	if op == nil {
+		op = &xxx_RefreshUsagePropertiesOperation{}
+	}
 	if o == nil {
-		return &xxx_RefreshUsagePropertiesOperation{}
+		return op
 	}
-	return &xxx_RefreshUsagePropertiesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RefreshUsagePropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx_RefreshUsagePropertiesOperation) {
@@ -1346,7 +1366,7 @@ func (o *RefreshUsagePropertiesResponse) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *RefreshUsagePropertiesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RefreshUsagePropertiesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RefreshUsagePropertiesOperation{}

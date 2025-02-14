@@ -102,47 +102,85 @@ func ReplicationUtilServerHandle(ctx context.Context, o ReplicationUtilServer, o
 	}
 	switch opNum {
 	case 3: // CreateShare
-		in := &CreateShareRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateShareOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateShare(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateShareRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateShare(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CreateEmptyDir
-		in := &CreateEmptyDirRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateEmptyDirOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateEmptyDir(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateEmptyDirRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateEmptyDir(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RemoveShare
-		in := &RemoveShareRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveShareOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveShare(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveShareRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveShare(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // BeginReplicationAsTarget
-		in := &BeginReplicationAsTargetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BeginReplicationAsTargetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BeginReplicationAsTarget(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BeginReplicationAsTargetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BeginReplicationAsTarget(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // QueryConglomerationPassword
-		in := &QueryConglomerationPasswordRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryConglomerationPasswordOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryConglomerationPassword(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryConglomerationPasswordRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryConglomerationPassword(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // CreateReplicationDir
-		in := &CreateReplicationDirRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateReplicationDirOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateReplicationDir(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateReplicationDirRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateReplicationDir(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IReplicationUtil
+type UnimplementedReplicationUtilServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedReplicationUtilServer) CreateShare(context.Context, *CreateShareRequest) (*CreateShareResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReplicationUtilServer) CreateEmptyDir(context.Context, *CreateEmptyDirRequest) (*CreateEmptyDirResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReplicationUtilServer) RemoveShare(context.Context, *RemoveShareRequest) (*RemoveShareResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReplicationUtilServer) BeginReplicationAsTarget(context.Context, *BeginReplicationAsTargetRequest) (*BeginReplicationAsTargetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReplicationUtilServer) QueryConglomerationPassword(context.Context, *QueryConglomerationPasswordRequest) (*QueryConglomerationPasswordResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedReplicationUtilServer) CreateReplicationDir(context.Context, *CreateReplicationDirRequest) (*CreateReplicationDirResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ReplicationUtilServer = (*UnimplementedReplicationUtilServer)(nil)

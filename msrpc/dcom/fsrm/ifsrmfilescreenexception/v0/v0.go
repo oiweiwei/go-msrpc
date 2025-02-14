@@ -81,7 +81,7 @@ func (o *xxx_DefaultFileScreenExceptionClient) Object() ifsrmobject.ObjectClient
 }
 
 func (o *xxx_DefaultFileScreenExceptionClient) GetPath(ctx context.Context, in *GetPathRequest, opts ...dcerpc.CallOption) (*GetPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -101,7 +101,7 @@ func (o *xxx_DefaultFileScreenExceptionClient) GetPath(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultFileScreenExceptionClient) GetAllowedFileGroups(ctx context.Context, in *GetAllowedFileGroupsRequest, opts ...dcerpc.CallOption) (*GetAllowedFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -121,7 +121,7 @@ func (o *xxx_DefaultFileScreenExceptionClient) GetAllowedFileGroups(ctx context.
 }
 
 func (o *xxx_DefaultFileScreenExceptionClient) SetAllowedFileGroups(ctx context.Context, in *SetAllowedFileGroupsRequest, opts ...dcerpc.CallOption) (*SetAllowedFileGroupsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -352,13 +352,15 @@ type GetPathRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPathRequest) xxx_ToOp(ctx context.Context) *xxx_GetPathOperation {
+func (o *GetPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation) *xxx_GetPathOperation {
+	if op == nil {
+		op = &xxx_GetPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPathOperation{}
+		return op
 	}
-	return &xxx_GetPathOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperation) {
@@ -368,7 +370,7 @@ func (o *GetPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperatio
 	o.This = op.This
 }
 func (o *GetPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPathOperation{}
@@ -388,15 +390,17 @@ type GetPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPathResponse) xxx_ToOp(ctx context.Context) *xxx_GetPathOperation {
+func (o *GetPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation) *xxx_GetPathOperation {
+	if op == nil {
+		op = &xxx_GetPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPathOperation{}
+		return op
 	}
-	return &xxx_GetPathOperation{
-		That:   o.That,
-		Path:   o.Path,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Path = op.Path
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperation) {
@@ -408,7 +412,7 @@ func (o *GetPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperati
 	o.Return = op.Return
 }
 func (o *GetPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPathOperation{}
@@ -591,13 +595,15 @@ type GetAllowedFileGroupsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetAllowedFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_GetAllowedFileGroupsOperation {
+func (o *GetAllowedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetAllowedFileGroupsOperation) *xxx_GetAllowedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_GetAllowedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_GetAllowedFileGroupsOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetAllowedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetAllowedFileGroupsOperation) {
@@ -607,7 +613,7 @@ func (o *GetAllowedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.This = op.This
 }
 func (o *GetAllowedFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetAllowedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowedFileGroupsOperation{}
@@ -627,15 +633,17 @@ type GetAllowedFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetAllowedFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_GetAllowedFileGroupsOperation {
+func (o *GetAllowedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetAllowedFileGroupsOperation) *xxx_GetAllowedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_GetAllowedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetAllowedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_GetAllowedFileGroupsOperation{
-		That:      o.That,
-		AllowList: o.AllowList,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.AllowList = op.AllowList
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetAllowedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetAllowedFileGroupsOperation) {
@@ -647,7 +655,7 @@ func (o *GetAllowedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetAllowedFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetAllowedFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetAllowedFileGroupsOperation{}
@@ -831,14 +839,16 @@ type SetAllowedFileGroupsRequest struct {
 	AllowList *fsrm.MutableCollection `idl:"name:allowList" json:"allow_list"`
 }
 
-func (o *SetAllowedFileGroupsRequest) xxx_ToOp(ctx context.Context) *xxx_SetAllowedFileGroupsOperation {
+func (o *SetAllowedFileGroupsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetAllowedFileGroupsOperation) *xxx_SetAllowedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_SetAllowedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_SetAllowedFileGroupsOperation{
-		This:      o.This,
-		AllowList: o.AllowList,
-	}
+	o.This = op.This
+	o.AllowList = op.AllowList
+	return op
 }
 
 func (o *SetAllowedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetAllowedFileGroupsOperation) {
@@ -849,7 +859,7 @@ func (o *SetAllowedFileGroupsRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.AllowList = op.AllowList
 }
 func (o *SetAllowedFileGroupsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetAllowedFileGroupsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowedFileGroupsOperation{}
@@ -868,14 +878,16 @@ type SetAllowedFileGroupsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetAllowedFileGroupsResponse) xxx_ToOp(ctx context.Context) *xxx_SetAllowedFileGroupsOperation {
+func (o *SetAllowedFileGroupsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetAllowedFileGroupsOperation) *xxx_SetAllowedFileGroupsOperation {
+	if op == nil {
+		op = &xxx_SetAllowedFileGroupsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetAllowedFileGroupsOperation{}
+		return op
 	}
-	return &xxx_SetAllowedFileGroupsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetAllowedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetAllowedFileGroupsOperation) {
@@ -886,7 +898,7 @@ func (o *SetAllowedFileGroupsResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetAllowedFileGroupsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetAllowedFileGroupsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetAllowedFileGroupsOperation{}

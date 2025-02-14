@@ -64,40 +64,73 @@ func QuotaTemplateManagerServerHandle(ctx context.Context, o QuotaTemplateManage
 	}
 	switch opNum {
 	case 7: // CreateTemplate
-		in := &CreateTemplateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateTemplateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateTemplate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateTemplateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateTemplate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetTemplate
-		in := &GetTemplateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTemplateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTemplate(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTemplateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTemplate(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // EnumTemplates
-		in := &EnumTemplatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumTemplatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumTemplates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumTemplatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumTemplates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // ExportTemplates
-		in := &ExportTemplatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExportTemplatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ExportTemplates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExportTemplatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ExportTemplates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // ImportTemplates
-		in := &ImportTemplatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ImportTemplatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ImportTemplates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ImportTemplatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ImportTemplates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmQuotaTemplateManager
+type UnimplementedQuotaTemplateManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedQuotaTemplateManagerServer) CreateTemplate(context.Context, *CreateTemplateRequest) (*CreateTemplateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateManagerServer) GetTemplate(context.Context, *GetTemplateRequest) (*GetTemplateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateManagerServer) EnumTemplates(context.Context, *EnumTemplatesRequest) (*EnumTemplatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateManagerServer) ExportTemplates(context.Context, *ExportTemplatesRequest) (*ExportTemplatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedQuotaTemplateManagerServer) ImportTemplates(context.Context, *ImportTemplatesRequest) (*ImportTemplatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ QuotaTemplateManagerServer = (*UnimplementedQuotaTemplateManagerServer)(nil)

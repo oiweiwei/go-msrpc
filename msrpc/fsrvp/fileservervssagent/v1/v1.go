@@ -620,7 +620,7 @@ type xxx_DefaultFileServerVSSAgentClient struct {
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) GetSupportedVersion(ctx context.Context, in *GetSupportedVersionRequest, opts ...dcerpc.CallOption) (*GetSupportedVersionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -633,7 +633,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) GetSupportedVersion(ctx context.Co
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) SetContext(ctx context.Context, in *SetContextRequest, opts ...dcerpc.CallOption) (*SetContextResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -646,7 +646,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) SetContext(ctx context.Context, in
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) StartShadowCopySet(ctx context.Context, in *StartShadowCopySetRequest, opts ...dcerpc.CallOption) (*StartShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -659,7 +659,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) StartShadowCopySet(ctx context.Con
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) AddToShadowCopySet(ctx context.Context, in *AddToShadowCopySetRequest, opts ...dcerpc.CallOption) (*AddToShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -672,7 +672,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) AddToShadowCopySet(ctx context.Con
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) CommitShadowCopySet(ctx context.Context, in *CommitShadowCopySetRequest, opts ...dcerpc.CallOption) (*CommitShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -685,7 +685,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) CommitShadowCopySet(ctx context.Co
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) ExposeShadowCopySet(ctx context.Context, in *ExposeShadowCopySetRequest, opts ...dcerpc.CallOption) (*ExposeShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -698,7 +698,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) ExposeShadowCopySet(ctx context.Co
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) RecoveryCompleteShadowCopySet(ctx context.Context, in *RecoveryCompleteShadowCopySetRequest, opts ...dcerpc.CallOption) (*RecoveryCompleteShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -711,7 +711,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) RecoveryCompleteShadowCopySet(ctx 
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) AbortShadowCopySet(ctx context.Context, in *AbortShadowCopySetRequest, opts ...dcerpc.CallOption) (*AbortShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -724,7 +724,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) AbortShadowCopySet(ctx context.Con
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) IsPathSupported(ctx context.Context, in *IsPathSupportedRequest, opts ...dcerpc.CallOption) (*IsPathSupportedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -737,7 +737,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) IsPathSupported(ctx context.Contex
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) IsPathShadowCopied(ctx context.Context, in *IsPathShadowCopiedRequest, opts ...dcerpc.CallOption) (*IsPathShadowCopiedResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -750,7 +750,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) IsPathShadowCopied(ctx context.Con
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) GetShareMapping(ctx context.Context, in *GetShareMappingRequest, opts ...dcerpc.CallOption) (*GetShareMappingResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -763,7 +763,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) GetShareMapping(ctx context.Contex
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) DeleteShareMapping(ctx context.Context, in *DeleteShareMappingRequest, opts ...dcerpc.CallOption) (*DeleteShareMappingResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -776,7 +776,7 @@ func (o *xxx_DefaultFileServerVSSAgentClient) DeleteShareMapping(ctx context.Con
 }
 
 func (o *xxx_DefaultFileServerVSSAgentClient) PrepareShadowCopySet(ctx context.Context, in *PrepareShadowCopySetRequest, opts ...dcerpc.CallOption) (*PrepareShadowCopySetResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -897,11 +897,14 @@ func (o *xxx_GetSupportedVersionOperation) UnmarshalNDRResponse(ctx context.Cont
 type GetSupportedVersionRequest struct {
 }
 
-func (o *GetSupportedVersionRequest) xxx_ToOp(ctx context.Context) *xxx_GetSupportedVersionOperation {
-	if o == nil {
-		return &xxx_GetSupportedVersionOperation{}
+func (o *GetSupportedVersionRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSupportedVersionOperation) *xxx_GetSupportedVersionOperation {
+	if op == nil {
+		op = &xxx_GetSupportedVersionOperation{}
 	}
-	return &xxx_GetSupportedVersionOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *GetSupportedVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSupportedVersionOperation) {
@@ -910,7 +913,7 @@ func (o *GetSupportedVersionRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 	}
 }
 func (o *GetSupportedVersionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSupportedVersionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSupportedVersionOperation{}
@@ -931,15 +934,17 @@ type GetSupportedVersionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSupportedVersionResponse) xxx_ToOp(ctx context.Context) *xxx_GetSupportedVersionOperation {
+func (o *GetSupportedVersionResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSupportedVersionOperation) *xxx_GetSupportedVersionOperation {
+	if op == nil {
+		op = &xxx_GetSupportedVersionOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSupportedVersionOperation{}
+		return op
 	}
-	return &xxx_GetSupportedVersionOperation{
-		MinVersion: o.MinVersion,
-		MaxVersion: o.MaxVersion,
-		Return:     o.Return,
-	}
+	o.MinVersion = op.MinVersion
+	o.MaxVersion = op.MaxVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSupportedVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSupportedVersionOperation) {
@@ -951,7 +956,7 @@ func (o *GetSupportedVersionResponse) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.Return = op.Return
 }
 func (o *GetSupportedVersionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSupportedVersionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSupportedVersionOperation{}
@@ -1043,13 +1048,15 @@ type SetContextRequest struct {
 	Context uint32 `idl:"name:Context" json:"context"`
 }
 
-func (o *SetContextRequest) xxx_ToOp(ctx context.Context) *xxx_SetContextOperation {
+func (o *SetContextRequest) xxx_ToOp(ctx context.Context, op *xxx_SetContextOperation) *xxx_SetContextOperation {
+	if op == nil {
+		op = &xxx_SetContextOperation{}
+	}
 	if o == nil {
-		return &xxx_SetContextOperation{}
+		return op
 	}
-	return &xxx_SetContextOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *SetContextRequest) xxx_FromOp(ctx context.Context, op *xxx_SetContextOperation) {
@@ -1059,7 +1066,7 @@ func (o *SetContextRequest) xxx_FromOp(ctx context.Context, op *xxx_SetContextOp
 	o.Context = op.Context
 }
 func (o *SetContextRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetContextOperation{}
@@ -1076,13 +1083,15 @@ type SetContextResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetContextResponse) xxx_ToOp(ctx context.Context) *xxx_SetContextOperation {
+func (o *SetContextResponse) xxx_ToOp(ctx context.Context, op *xxx_SetContextOperation) *xxx_SetContextOperation {
+	if op == nil {
+		op = &xxx_SetContextOperation{}
+	}
 	if o == nil {
-		return &xxx_SetContextOperation{}
+		return op
 	}
-	return &xxx_SetContextOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetContextResponse) xxx_FromOp(ctx context.Context, op *xxx_SetContextOperation) {
@@ -1092,7 +1101,7 @@ func (o *SetContextResponse) xxx_FromOp(ctx context.Context, op *xxx_SetContextO
 	o.Return = op.Return
 }
 func (o *SetContextResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetContextResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetContextOperation{}
@@ -1216,13 +1225,15 @@ type StartShadowCopySetRequest struct {
 	ClientShadowCopySetID *dtyp.GUID `idl:"name:ClientShadowCopySetId" json:"client_shadow_copy_set_id"`
 }
 
-func (o *StartShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_StartShadowCopySetOperation {
+func (o *StartShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_StartShadowCopySetOperation) *xxx_StartShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_StartShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_StartShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_StartShadowCopySetOperation{
-		ClientShadowCopySetID: o.ClientShadowCopySetID,
-	}
+	o.ClientShadowCopySetID = op.ClientShadowCopySetID
+	return op
 }
 
 func (o *StartShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_StartShadowCopySetOperation) {
@@ -1232,7 +1243,7 @@ func (o *StartShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_Star
 	o.ClientShadowCopySetID = op.ClientShadowCopySetID
 }
 func (o *StartShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StartShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartShadowCopySetOperation{}
@@ -1251,14 +1262,16 @@ type StartShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StartShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_StartShadowCopySetOperation {
+func (o *StartShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_StartShadowCopySetOperation) *xxx_StartShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_StartShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_StartShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_StartShadowCopySetOperation{
-		ShadowCopySetID: o.ShadowCopySetID,
-		Return:          o.Return,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.Return = op.Return
+	return op
 }
 
 func (o *StartShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_StartShadowCopySetOperation) {
@@ -1269,7 +1282,7 @@ func (o *StartShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_Sta
 	o.Return = op.Return
 }
 func (o *StartShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StartShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StartShadowCopySetOperation{}
@@ -1433,15 +1446,17 @@ type AddToShadowCopySetRequest struct {
 	ShareName string `idl:"name:ShareName;string" json:"share_name"`
 }
 
-func (o *AddToShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_AddToShadowCopySetOperation {
+func (o *AddToShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_AddToShadowCopySetOperation) *xxx_AddToShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_AddToShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_AddToShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_AddToShadowCopySetOperation{
-		ClientShadowCopyID: o.ClientShadowCopyID,
-		ShadowCopySetID:    o.ShadowCopySetID,
-		ShareName:          o.ShareName,
-	}
+	o.ClientShadowCopyID = op.ClientShadowCopyID
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.ShareName = op.ShareName
+	return op
 }
 
 func (o *AddToShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_AddToShadowCopySetOperation) {
@@ -1453,7 +1468,7 @@ func (o *AddToShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_AddT
 	o.ShareName = op.ShareName
 }
 func (o *AddToShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddToShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddToShadowCopySetOperation{}
@@ -1472,14 +1487,16 @@ type AddToShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddToShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_AddToShadowCopySetOperation {
+func (o *AddToShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_AddToShadowCopySetOperation) *xxx_AddToShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_AddToShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_AddToShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_AddToShadowCopySetOperation{
-		ShadowCopyID: o.ShadowCopyID,
-		Return:       o.Return,
-	}
+	o.ShadowCopyID = op.ShadowCopyID
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddToShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_AddToShadowCopySetOperation) {
@@ -1490,7 +1507,7 @@ func (o *AddToShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_Add
 	o.Return = op.Return
 }
 func (o *AddToShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddToShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddToShadowCopySetOperation{}
@@ -1608,14 +1625,16 @@ type CommitShadowCopySetRequest struct {
 	TimeoutInMilliseconds uint32 `idl:"name:TimeOutInMilliseconds" json:"timeout_in_milliseconds"`
 }
 
-func (o *CommitShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_CommitShadowCopySetOperation {
+func (o *CommitShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitShadowCopySetOperation) *xxx_CommitShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_CommitShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_CommitShadowCopySetOperation{
-		ShadowCopySetID:       o.ShadowCopySetID,
-		TimeoutInMilliseconds: o.TimeoutInMilliseconds,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
+	return op
 }
 
 func (o *CommitShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitShadowCopySetOperation) {
@@ -1626,7 +1645,7 @@ func (o *CommitShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_Com
 	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
 }
 func (o *CommitShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CommitShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitShadowCopySetOperation{}
@@ -1643,13 +1662,15 @@ type CommitShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CommitShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_CommitShadowCopySetOperation {
+func (o *CommitShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_CommitShadowCopySetOperation) *xxx_CommitShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_CommitShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_CommitShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_CommitShadowCopySetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *CommitShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_CommitShadowCopySetOperation) {
@@ -1659,7 +1680,7 @@ func (o *CommitShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_Co
 	o.Return = op.Return
 }
 func (o *CommitShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CommitShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CommitShadowCopySetOperation{}
@@ -1777,14 +1798,16 @@ type ExposeShadowCopySetRequest struct {
 	TimeoutInMilliseconds uint32 `idl:"name:TimeOutInMilliseconds" json:"timeout_in_milliseconds"`
 }
 
-func (o *ExposeShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_ExposeShadowCopySetOperation {
+func (o *ExposeShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_ExposeShadowCopySetOperation) *xxx_ExposeShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_ExposeShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_ExposeShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_ExposeShadowCopySetOperation{
-		ShadowCopySetID:       o.ShadowCopySetID,
-		TimeoutInMilliseconds: o.TimeoutInMilliseconds,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
+	return op
 }
 
 func (o *ExposeShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_ExposeShadowCopySetOperation) {
@@ -1795,7 +1818,7 @@ func (o *ExposeShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_Exp
 	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
 }
 func (o *ExposeShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExposeShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExposeShadowCopySetOperation{}
@@ -1812,13 +1835,15 @@ type ExposeShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExposeShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_ExposeShadowCopySetOperation {
+func (o *ExposeShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_ExposeShadowCopySetOperation) *xxx_ExposeShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_ExposeShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_ExposeShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_ExposeShadowCopySetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExposeShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_ExposeShadowCopySetOperation) {
@@ -1828,7 +1853,7 @@ func (o *ExposeShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_Ex
 	o.Return = op.Return
 }
 func (o *ExposeShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExposeShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExposeShadowCopySetOperation{}
@@ -1930,13 +1955,15 @@ type RecoveryCompleteShadowCopySetRequest struct {
 	ShadowCopySetID *dtyp.GUID `idl:"name:ShadowCopySetId" json:"shadow_copy_set_id"`
 }
 
-func (o *RecoveryCompleteShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_RecoveryCompleteShadowCopySetOperation {
+func (o *RecoveryCompleteShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_RecoveryCompleteShadowCopySetOperation) *xxx_RecoveryCompleteShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_RecoveryCompleteShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_RecoveryCompleteShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_RecoveryCompleteShadowCopySetOperation{
-		ShadowCopySetID: o.ShadowCopySetID,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	return op
 }
 
 func (o *RecoveryCompleteShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_RecoveryCompleteShadowCopySetOperation) {
@@ -1946,7 +1973,7 @@ func (o *RecoveryCompleteShadowCopySetRequest) xxx_FromOp(ctx context.Context, o
 	o.ShadowCopySetID = op.ShadowCopySetID
 }
 func (o *RecoveryCompleteShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RecoveryCompleteShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RecoveryCompleteShadowCopySetOperation{}
@@ -1963,13 +1990,15 @@ type RecoveryCompleteShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RecoveryCompleteShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_RecoveryCompleteShadowCopySetOperation {
+func (o *RecoveryCompleteShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_RecoveryCompleteShadowCopySetOperation) *xxx_RecoveryCompleteShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_RecoveryCompleteShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_RecoveryCompleteShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_RecoveryCompleteShadowCopySetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *RecoveryCompleteShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_RecoveryCompleteShadowCopySetOperation) {
@@ -1979,7 +2008,7 @@ func (o *RecoveryCompleteShadowCopySetResponse) xxx_FromOp(ctx context.Context, 
 	o.Return = op.Return
 }
 func (o *RecoveryCompleteShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RecoveryCompleteShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RecoveryCompleteShadowCopySetOperation{}
@@ -2081,13 +2110,15 @@ type AbortShadowCopySetRequest struct {
 	ShadowCopySetID *dtyp.GUID `idl:"name:ShadowCopySetId" json:"shadow_copy_set_id"`
 }
 
-func (o *AbortShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_AbortShadowCopySetOperation {
+func (o *AbortShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_AbortShadowCopySetOperation) *xxx_AbortShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_AbortShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_AbortShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_AbortShadowCopySetOperation{
-		ShadowCopySetID: o.ShadowCopySetID,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	return op
 }
 
 func (o *AbortShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_AbortShadowCopySetOperation) {
@@ -2097,7 +2128,7 @@ func (o *AbortShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_Abor
 	o.ShadowCopySetID = op.ShadowCopySetID
 }
 func (o *AbortShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AbortShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AbortShadowCopySetOperation{}
@@ -2114,13 +2145,15 @@ type AbortShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AbortShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_AbortShadowCopySetOperation {
+func (o *AbortShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_AbortShadowCopySetOperation) *xxx_AbortShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_AbortShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_AbortShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_AbortShadowCopySetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AbortShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_AbortShadowCopySetOperation) {
@@ -2130,7 +2163,7 @@ func (o *AbortShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_Abo
 	o.Return = op.Return
 }
 func (o *AbortShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AbortShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AbortShadowCopySetOperation{}
@@ -2282,13 +2315,15 @@ type IsPathSupportedRequest struct {
 	ShareName string `idl:"name:ShareName;string" json:"share_name"`
 }
 
-func (o *IsPathSupportedRequest) xxx_ToOp(ctx context.Context) *xxx_IsPathSupportedOperation {
+func (o *IsPathSupportedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsPathSupportedOperation) *xxx_IsPathSupportedOperation {
+	if op == nil {
+		op = &xxx_IsPathSupportedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsPathSupportedOperation{}
+		return op
 	}
-	return &xxx_IsPathSupportedOperation{
-		ShareName: o.ShareName,
-	}
+	o.ShareName = op.ShareName
+	return op
 }
 
 func (o *IsPathSupportedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsPathSupportedOperation) {
@@ -2298,7 +2333,7 @@ func (o *IsPathSupportedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsPathS
 	o.ShareName = op.ShareName
 }
 func (o *IsPathSupportedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsPathSupportedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsPathSupportedOperation{}
@@ -2321,15 +2356,17 @@ type IsPathSupportedResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsPathSupportedResponse) xxx_ToOp(ctx context.Context) *xxx_IsPathSupportedOperation {
+func (o *IsPathSupportedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsPathSupportedOperation) *xxx_IsPathSupportedOperation {
+	if op == nil {
+		op = &xxx_IsPathSupportedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsPathSupportedOperation{}
+		return op
 	}
-	return &xxx_IsPathSupportedOperation{
-		SupportedByThisProvider: o.SupportedByThisProvider,
-		OwnerMachineName:        o.OwnerMachineName,
-		Return:                  o.Return,
-	}
+	o.SupportedByThisProvider = op.SupportedByThisProvider
+	o.OwnerMachineName = op.OwnerMachineName
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsPathSupportedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsPathSupportedOperation) {
@@ -2341,7 +2378,7 @@ func (o *IsPathSupportedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsPath
 	o.Return = op.Return
 }
 func (o *IsPathSupportedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsPathSupportedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsPathSupportedOperation{}
@@ -2468,13 +2505,15 @@ type IsPathShadowCopiedRequest struct {
 	ShareName string `idl:"name:ShareName;string" json:"share_name"`
 }
 
-func (o *IsPathShadowCopiedRequest) xxx_ToOp(ctx context.Context) *xxx_IsPathShadowCopiedOperation {
+func (o *IsPathShadowCopiedRequest) xxx_ToOp(ctx context.Context, op *xxx_IsPathShadowCopiedOperation) *xxx_IsPathShadowCopiedOperation {
+	if op == nil {
+		op = &xxx_IsPathShadowCopiedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsPathShadowCopiedOperation{}
+		return op
 	}
-	return &xxx_IsPathShadowCopiedOperation{
-		ShareName: o.ShareName,
-	}
+	o.ShareName = op.ShareName
+	return op
 }
 
 func (o *IsPathShadowCopiedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsPathShadowCopiedOperation) {
@@ -2484,7 +2523,7 @@ func (o *IsPathShadowCopiedRequest) xxx_FromOp(ctx context.Context, op *xxx_IsPa
 	o.ShareName = op.ShareName
 }
 func (o *IsPathShadowCopiedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsPathShadowCopiedRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsPathShadowCopiedOperation{}
@@ -2508,15 +2547,17 @@ type IsPathShadowCopiedResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsPathShadowCopiedResponse) xxx_ToOp(ctx context.Context) *xxx_IsPathShadowCopiedOperation {
+func (o *IsPathShadowCopiedResponse) xxx_ToOp(ctx context.Context, op *xxx_IsPathShadowCopiedOperation) *xxx_IsPathShadowCopiedOperation {
+	if op == nil {
+		op = &xxx_IsPathShadowCopiedOperation{}
+	}
 	if o == nil {
-		return &xxx_IsPathShadowCopiedOperation{}
+		return op
 	}
-	return &xxx_IsPathShadowCopiedOperation{
-		ShadowCopyPresent:       o.ShadowCopyPresent,
-		ShadowCopyCompatibility: o.ShadowCopyCompatibility,
-		Return:                  o.Return,
-	}
+	o.ShadowCopyPresent = op.ShadowCopyPresent
+	o.ShadowCopyCompatibility = op.ShadowCopyCompatibility
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsPathShadowCopiedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsPathShadowCopiedOperation) {
@@ -2528,7 +2569,7 @@ func (o *IsPathShadowCopiedResponse) xxx_FromOp(ctx context.Context, op *xxx_IsP
 	o.Return = op.Return
 }
 func (o *IsPathShadowCopiedResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsPathShadowCopiedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsPathShadowCopiedOperation{}
@@ -2724,16 +2765,18 @@ type GetShareMappingRequest struct {
 	Level uint32 `idl:"name:Level" json:"level"`
 }
 
-func (o *GetShareMappingRequest) xxx_ToOp(ctx context.Context) *xxx_GetShareMappingOperation {
+func (o *GetShareMappingRequest) xxx_ToOp(ctx context.Context, op *xxx_GetShareMappingOperation) *xxx_GetShareMappingOperation {
+	if op == nil {
+		op = &xxx_GetShareMappingOperation{}
+	}
 	if o == nil {
-		return &xxx_GetShareMappingOperation{}
+		return op
 	}
-	return &xxx_GetShareMappingOperation{
-		ShadowCopyID:    o.ShadowCopyID,
-		ShadowCopySetID: o.ShadowCopySetID,
-		ShareName:       o.ShareName,
-		Level:           o.Level,
-	}
+	o.ShadowCopyID = op.ShadowCopyID
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.ShareName = op.ShareName
+	o.Level = op.Level
+	return op
 }
 
 func (o *GetShareMappingRequest) xxx_FromOp(ctx context.Context, op *xxx_GetShareMappingOperation) {
@@ -2746,7 +2789,7 @@ func (o *GetShareMappingRequest) xxx_FromOp(ctx context.Context, op *xxx_GetShar
 	o.Level = op.Level
 }
 func (o *GetShareMappingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetShareMappingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetShareMappingOperation{}
@@ -2766,14 +2809,16 @@ type GetShareMappingResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetShareMappingResponse) xxx_ToOp(ctx context.Context) *xxx_GetShareMappingOperation {
+func (o *GetShareMappingResponse) xxx_ToOp(ctx context.Context, op *xxx_GetShareMappingOperation) *xxx_GetShareMappingOperation {
+	if op == nil {
+		op = &xxx_GetShareMappingOperation{}
+	}
 	if o == nil {
-		return &xxx_GetShareMappingOperation{}
+		return op
 	}
-	return &xxx_GetShareMappingOperation{
-		ShareMapping: o.ShareMapping,
-		Return:       o.Return,
-	}
+	o.ShareMapping = op.ShareMapping
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetShareMappingResponse) xxx_FromOp(ctx context.Context, op *xxx_GetShareMappingOperation) {
@@ -2784,7 +2829,7 @@ func (o *GetShareMappingResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSha
 	o.Return = op.Return
 }
 func (o *GetShareMappingResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetShareMappingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetShareMappingOperation{}
@@ -2925,15 +2970,17 @@ type DeleteShareMappingRequest struct {
 	ShareName string `idl:"name:ShareName;string" json:"share_name"`
 }
 
-func (o *DeleteShareMappingRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteShareMappingOperation {
+func (o *DeleteShareMappingRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteShareMappingOperation) *xxx_DeleteShareMappingOperation {
+	if op == nil {
+		op = &xxx_DeleteShareMappingOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteShareMappingOperation{}
+		return op
 	}
-	return &xxx_DeleteShareMappingOperation{
-		ShadowCopySetID: o.ShadowCopySetID,
-		ShadowCopyID:    o.ShadowCopyID,
-		ShareName:       o.ShareName,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.ShadowCopyID = op.ShadowCopyID
+	o.ShareName = op.ShareName
+	return op
 }
 
 func (o *DeleteShareMappingRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteShareMappingOperation) {
@@ -2945,7 +2992,7 @@ func (o *DeleteShareMappingRequest) xxx_FromOp(ctx context.Context, op *xxx_Dele
 	o.ShareName = op.ShareName
 }
 func (o *DeleteShareMappingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteShareMappingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteShareMappingOperation{}
@@ -2962,13 +3009,15 @@ type DeleteShareMappingResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteShareMappingResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteShareMappingOperation {
+func (o *DeleteShareMappingResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteShareMappingOperation) *xxx_DeleteShareMappingOperation {
+	if op == nil {
+		op = &xxx_DeleteShareMappingOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteShareMappingOperation{}
+		return op
 	}
-	return &xxx_DeleteShareMappingOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteShareMappingResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteShareMappingOperation) {
@@ -2978,7 +3027,7 @@ func (o *DeleteShareMappingResponse) xxx_FromOp(ctx context.Context, op *xxx_Del
 	o.Return = op.Return
 }
 func (o *DeleteShareMappingResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteShareMappingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteShareMappingOperation{}
@@ -3096,14 +3145,16 @@ type PrepareShadowCopySetRequest struct {
 	TimeoutInMilliseconds uint32 `idl:"name:TimeOutInMilliseconds" json:"timeout_in_milliseconds"`
 }
 
-func (o *PrepareShadowCopySetRequest) xxx_ToOp(ctx context.Context) *xxx_PrepareShadowCopySetOperation {
+func (o *PrepareShadowCopySetRequest) xxx_ToOp(ctx context.Context, op *xxx_PrepareShadowCopySetOperation) *xxx_PrepareShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_PrepareShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_PrepareShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_PrepareShadowCopySetOperation{
-		ShadowCopySetID:       o.ShadowCopySetID,
-		TimeoutInMilliseconds: o.TimeoutInMilliseconds,
-	}
+	o.ShadowCopySetID = op.ShadowCopySetID
+	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
+	return op
 }
 
 func (o *PrepareShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_PrepareShadowCopySetOperation) {
@@ -3114,7 +3165,7 @@ func (o *PrepareShadowCopySetRequest) xxx_FromOp(ctx context.Context, op *xxx_Pr
 	o.TimeoutInMilliseconds = op.TimeoutInMilliseconds
 }
 func (o *PrepareShadowCopySetRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PrepareShadowCopySetRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PrepareShadowCopySetOperation{}
@@ -3131,13 +3182,15 @@ type PrepareShadowCopySetResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PrepareShadowCopySetResponse) xxx_ToOp(ctx context.Context) *xxx_PrepareShadowCopySetOperation {
+func (o *PrepareShadowCopySetResponse) xxx_ToOp(ctx context.Context, op *xxx_PrepareShadowCopySetOperation) *xxx_PrepareShadowCopySetOperation {
+	if op == nil {
+		op = &xxx_PrepareShadowCopySetOperation{}
+	}
 	if o == nil {
-		return &xxx_PrepareShadowCopySetOperation{}
+		return op
 	}
-	return &xxx_PrepareShadowCopySetOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *PrepareShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_PrepareShadowCopySetOperation) {
@@ -3147,7 +3200,7 @@ func (o *PrepareShadowCopySetResponse) xxx_FromOp(ctx context.Context, op *xxx_P
 	o.Return = op.Return
 }
 func (o *PrepareShadowCopySetResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PrepareShadowCopySetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PrepareShadowCopySetOperation{}

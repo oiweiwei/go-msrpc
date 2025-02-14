@@ -59,19 +59,36 @@ func NewIrpcRemoteObjectServerHandle(o IrpcRemoteObjectServer) dcerpc.ServerHand
 func IrpcRemoteObjectServerHandle(ctx context.Context, o IrpcRemoteObjectServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // IRPCRemoteObject_Create
-		in := &CreateRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Create(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Create(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // IRPCRemoteObject_Delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IRPCRemoteObject
+type UnimplementedIrpcRemoteObjectServer struct {
+}
+
+func (UnimplementedIrpcRemoteObjectServer) Create(context.Context, *CreateRequest) (*CreateResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedIrpcRemoteObjectServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IrpcRemoteObjectServer = (*UnimplementedIrpcRemoteObjectServer)(nil)

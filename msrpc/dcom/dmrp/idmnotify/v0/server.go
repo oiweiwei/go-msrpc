@@ -55,12 +55,25 @@ func IDMNotifyServerHandle(ctx context.Context, o IDMNotifyServer, opNum int, r 
 	}
 	switch opNum {
 	case 3: // ObjectsChanged
-		in := &ObjectsChangedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ObjectsChangedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ObjectsChanged(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ObjectsChangedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ObjectsChanged(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDMNotify
+type UnimplementedIDMNotifyServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedIDMNotifyServer) ObjectsChanged(context.Context, *ObjectsChangedRequest) (*ObjectsChangedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ IDMNotifyServer = (*UnimplementedIDMNotifyServer)(nil)

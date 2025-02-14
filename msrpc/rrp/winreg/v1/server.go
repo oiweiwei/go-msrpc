@@ -801,169 +801,215 @@ func NewWinregServerHandle(o WinregServer) dcerpc.ServerHandle {
 func WinregServerHandle(ctx context.Context, o WinregServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // OpenClassesRoot
-		in := &OpenClassesRootRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenClassesRootOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenClassesRoot(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenClassesRootRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenClassesRoot(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // OpenCurrentUser
-		in := &OpenCurrentUserRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenCurrentUserOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenCurrentUser(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenCurrentUserRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenCurrentUser(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // OpenLocalMachine
-		in := &OpenLocalMachineRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenLocalMachineOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenLocalMachine(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenLocalMachineRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenLocalMachine(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // OpenPerformanceData
-		in := &OpenPerformanceDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPerformanceDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPerformanceData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPerformanceDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPerformanceData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // OpenUsers
-		in := &OpenUsersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenUsersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenUsers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenUsersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenUsers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // BaseRegCloseKey
-		in := &BaseRegCloseKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegCloseKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegCloseKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegCloseKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegCloseKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // BaseRegCreateKey
-		in := &BaseRegCreateKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegCreateKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegCreateKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegCreateKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegCreateKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // BaseRegDeleteKey
-		in := &BaseRegDeleteKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegDeleteKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegDeleteKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegDeleteKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegDeleteKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // BaseRegDeleteValue
-		in := &BaseRegDeleteValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegDeleteValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegDeleteValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegDeleteValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegDeleteValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // BaseRegEnumKey
-		in := &BaseRegEnumKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegEnumKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegEnumKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegEnumKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegEnumKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // BaseRegEnumValue
-		in := &BaseRegEnumValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegEnumValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegEnumValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegEnumValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegEnumValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // BaseRegFlushKey
-		in := &BaseRegFlushKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegFlushKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegFlushKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegFlushKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegFlushKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // BaseRegGetKeySecurity
-		in := &BaseRegGetKeySecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegGetKeySecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegGetKeySecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegGetKeySecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegGetKeySecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // BaseRegLoadKey
-		in := &BaseRegLoadKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegLoadKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegLoadKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegLoadKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegLoadKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // Opnum14NotImplemented
 		// Opnum14NotImplemented
 		return nil, nil
 	case 15: // BaseRegOpenKey
-		in := &BaseRegOpenKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegOpenKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegOpenKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegOpenKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegOpenKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // BaseRegQueryInfoKey
-		in := &BaseRegQueryInfoKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegQueryInfoKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegQueryInfoKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegQueryInfoKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegQueryInfoKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // BaseRegQueryValue
-		in := &BaseRegQueryValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegQueryValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegQueryValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegQueryValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegQueryValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // BaseRegReplaceKey
-		in := &BaseRegReplaceKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegReplaceKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegReplaceKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegReplaceKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegReplaceKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // BaseRegRestoreKey
-		in := &BaseRegRestoreKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegRestoreKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegRestoreKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegRestoreKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegRestoreKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // BaseRegSaveKey
-		in := &BaseRegSaveKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegSaveKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegSaveKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegSaveKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegSaveKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // BaseRegSetKeySecurity
-		in := &BaseRegSetKeySecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegSetKeySecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegSetKeySecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegSetKeySecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegSetKeySecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // BaseRegSetValue
-		in := &BaseRegSetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegSetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegSetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegSetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegSetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // BaseRegUnLoadKey
-		in := &BaseRegUnloadKeyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegUnloadKeyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegUnloadKey(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegUnloadKeyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegUnloadKey(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // Opnum24NotImplemented
 		// Opnum24NotImplemented
 		return nil, nil
@@ -971,67 +1017,183 @@ func WinregServerHandle(ctx context.Context, o WinregServer, opNum int, r ndr.Re
 		// Opnum25NotImplemented
 		return nil, nil
 	case 26: // BaseRegGetVersion
-		in := &BaseRegGetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegGetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegGetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegGetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegGetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // OpenCurrentConfig
-		in := &OpenCurrentConfigRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenCurrentConfigOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenCurrentConfig(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenCurrentConfigRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenCurrentConfig(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Opnum28NotImplemented
 		// Opnum28NotImplemented
 		return nil, nil
 	case 29: // BaseRegQueryMultipleValues
-		in := &BaseRegQueryMultipleValuesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegQueryMultipleValuesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegQueryMultipleValues(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegQueryMultipleValuesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegQueryMultipleValues(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // Opnum30NotImplemented
 		// Opnum30NotImplemented
 		return nil, nil
 	case 31: // BaseRegSaveKeyEx
-		in := &BaseRegSaveKeyExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegSaveKeyExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegSaveKeyEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegSaveKeyExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegSaveKeyEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // OpenPerformanceText
-		in := &OpenPerformanceTextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPerformanceTextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPerformanceText(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPerformanceTextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPerformanceText(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // OpenPerformanceNlsText
-		in := &OpenPerformanceNlsTextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPerformanceNlsTextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPerformanceNlsText(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPerformanceNlsTextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPerformanceNlsText(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // BaseRegQueryMultipleValues2
-		in := &BaseRegQueryMultipleValues2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegQueryMultipleValues2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegQueryMultipleValues2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegQueryMultipleValues2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegQueryMultipleValues2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // BaseRegDeleteKeyEx
-		in := &BaseRegDeleteKeyExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_BaseRegDeleteKeyExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.BaseRegDeleteKeyEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &BaseRegDeleteKeyExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.BaseRegDeleteKeyEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented winreg
+type UnimplementedWinregServer struct {
+}
+
+func (UnimplementedWinregServer) OpenClassesRoot(context.Context, *OpenClassesRootRequest) (*OpenClassesRootResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenCurrentUser(context.Context, *OpenCurrentUserRequest) (*OpenCurrentUserResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenLocalMachine(context.Context, *OpenLocalMachineRequest) (*OpenLocalMachineResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenPerformanceData(context.Context, *OpenPerformanceDataRequest) (*OpenPerformanceDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenUsers(context.Context, *OpenUsersRequest) (*OpenUsersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegCloseKey(context.Context, *BaseRegCloseKeyRequest) (*BaseRegCloseKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegCreateKey(context.Context, *BaseRegCreateKeyRequest) (*BaseRegCreateKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegDeleteKey(context.Context, *BaseRegDeleteKeyRequest) (*BaseRegDeleteKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegDeleteValue(context.Context, *BaseRegDeleteValueRequest) (*BaseRegDeleteValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegEnumKey(context.Context, *BaseRegEnumKeyRequest) (*BaseRegEnumKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegEnumValue(context.Context, *BaseRegEnumValueRequest) (*BaseRegEnumValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegFlushKey(context.Context, *BaseRegFlushKeyRequest) (*BaseRegFlushKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegGetKeySecurity(context.Context, *BaseRegGetKeySecurityRequest) (*BaseRegGetKeySecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegLoadKey(context.Context, *BaseRegLoadKeyRequest) (*BaseRegLoadKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegOpenKey(context.Context, *BaseRegOpenKeyRequest) (*BaseRegOpenKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegQueryInfoKey(context.Context, *BaseRegQueryInfoKeyRequest) (*BaseRegQueryInfoKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegQueryValue(context.Context, *BaseRegQueryValueRequest) (*BaseRegQueryValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegReplaceKey(context.Context, *BaseRegReplaceKeyRequest) (*BaseRegReplaceKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegRestoreKey(context.Context, *BaseRegRestoreKeyRequest) (*BaseRegRestoreKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegSaveKey(context.Context, *BaseRegSaveKeyRequest) (*BaseRegSaveKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegSetKeySecurity(context.Context, *BaseRegSetKeySecurityRequest) (*BaseRegSetKeySecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegSetValue(context.Context, *BaseRegSetValueRequest) (*BaseRegSetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegUnloadKey(context.Context, *BaseRegUnloadKeyRequest) (*BaseRegUnloadKeyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegGetVersion(context.Context, *BaseRegGetVersionRequest) (*BaseRegGetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenCurrentConfig(context.Context, *OpenCurrentConfigRequest) (*OpenCurrentConfigResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegQueryMultipleValues(context.Context, *BaseRegQueryMultipleValuesRequest) (*BaseRegQueryMultipleValuesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegSaveKeyEx(context.Context, *BaseRegSaveKeyExRequest) (*BaseRegSaveKeyExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenPerformanceText(context.Context, *OpenPerformanceTextRequest) (*OpenPerformanceTextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) OpenPerformanceNlsText(context.Context, *OpenPerformanceNlsTextRequest) (*OpenPerformanceNlsTextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegQueryMultipleValues2(context.Context, *BaseRegQueryMultipleValues2Request) (*BaseRegQueryMultipleValues2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedWinregServer) BaseRegDeleteKeyEx(context.Context, *BaseRegDeleteKeyExRequest) (*BaseRegDeleteKeyExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ WinregServer = (*UnimplementedWinregServer)(nil)

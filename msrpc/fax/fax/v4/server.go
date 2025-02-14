@@ -4104,733 +4104,1260 @@ func NewFaxServerHandle(o FaxServer) dcerpc.ServerHandle {
 func FaxServerHandle(ctx context.Context, o FaxServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // FAX_GetServicePrinters
-		in := &GetServicePrintersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServicePrintersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServicePrinters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServicePrintersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServicePrinters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // FAX_ConnectionRefCount
-		in := &ConnectionReferenceCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConnectionReferenceCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConnectionReferenceCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConnectionReferenceCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConnectionReferenceCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 2: // FAX_OpenPort
-		in := &OpenPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OpenPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OpenPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 3: // FAX_ClosePort
-		in := &ClosePortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClosePortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ClosePort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClosePortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ClosePort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // FAX_EnumJobs
-		in := &EnumJobsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumJobsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumJobs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumJobsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumJobs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // FAX_GetJob
-		in := &GetJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // FAX_SetJob
-		in := &SetJobRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetJobOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetJob(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetJobRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetJob(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // FAX_GetPageData
-		in := &GetPageDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPageDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPageData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPageDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPageData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // FAX_GetDeviceStatus
-		in := &GetDeviceStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDeviceStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDeviceStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDeviceStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDeviceStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // FAX_Abort
-		in := &AbortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AbortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Abort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AbortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Abort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // FAX_EnumPorts
-		in := &EnumPortsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPortsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPorts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPortsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPorts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // FAX_GetPort
-		in := &GetPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // FAX_SetPort
-		in := &SetPortRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPortOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPort(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPortRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPort(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // FAX_EnumRoutingMethods
-		in := &EnumRoutingMethodsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRoutingMethodsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRoutingMethods(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRoutingMethodsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRoutingMethods(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // FAX_EnableRoutingMethod
-		in := &EnableRoutingMethodRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnableRoutingMethodOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnableRoutingMethod(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnableRoutingMethodRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnableRoutingMethod(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // FAX_GetRoutingInfo
-		in := &GetRoutingInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRoutingInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRoutingInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRoutingInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRoutingInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // FAX_SetRoutingInfo
-		in := &SetRoutingInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRoutingInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRoutingInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRoutingInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRoutingInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // FAX_EnumGlobalRoutingInfo
-		in := &EnumGlobalRoutingInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumGlobalRoutingInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumGlobalRoutingInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumGlobalRoutingInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumGlobalRoutingInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // FAX_SetGlobalRoutingInfo
-		in := &SetGlobalRoutingInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGlobalRoutingInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGlobalRoutingInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGlobalRoutingInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGlobalRoutingInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // FAX_GetConfiguration
-		in := &GetConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // FAX_SetConfiguration
-		in := &SetConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // FAX_GetLoggingCategories
-		in := &GetLoggingCategoriesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLoggingCategoriesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLoggingCategories(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLoggingCategoriesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLoggingCategories(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // FAX_SetLoggingCategories
-		in := &SetLoggingCategoriesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLoggingCategoriesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLoggingCategories(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLoggingCategoriesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLoggingCategories(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // FAX_GetSecurity
-		in := &GetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // FAX_SetSecurity
-		in := &SetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // FAX_AccessCheck
-		in := &AccessCheckRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AccessCheckOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AccessCheck(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AccessCheckRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AccessCheck(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // FAX_CheckServerProtSeq
-		in := &CheckServerProtocolSeqRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CheckServerProtocolSeqOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CheckServerProtocolSeq(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CheckServerProtocolSeqRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CheckServerProtocolSeq(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // FAX_SendDocumentEx
-		in := &SendDocumentExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SendDocumentExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SendDocumentEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SendDocumentExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SendDocumentEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // FAX_EnumJobsEx
-		in := &EnumJobsExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumJobsExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumJobsEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumJobsExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumJobsEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // FAX_GetJobEx
-		in := &GetJobExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJobExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJobEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJobExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJobEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // FAX_GetCountryList
-		in := &GetCountryListRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountryListOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCountryList(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountryListRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCountryList(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // FAX_GetPersonalProfileInfo
-		in := &GetPersonalProfileInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPersonalProfileInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPersonalProfileInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPersonalProfileInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPersonalProfileInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // FAX_GetQueueStates
-		in := &GetQueueStatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQueueStatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQueueStates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQueueStatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQueueStates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // FAX_SetQueue
-		in := &SetQueueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetQueueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetQueue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetQueueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetQueue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // FAX_GetReceiptsConfiguration
-		in := &GetReceiptsConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReceiptsConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReceiptsConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReceiptsConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReceiptsConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // FAX_SetReceiptsConfiguration
-		in := &SetReceiptsConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetReceiptsConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetReceiptsConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetReceiptsConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetReceiptsConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // FAX_GetReceiptsOptions
-		in := &GetReceiptsOptionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReceiptsOptionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReceiptsOptions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReceiptsOptionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReceiptsOptions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // FAX_GetVersion
-		in := &GetVersionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetVersionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetVersion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetVersionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetVersion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // FAX_GetOutboxConfiguration
-		in := &GetOutboxConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOutboxConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOutboxConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOutboxConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOutboxConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // FAX_SetOutboxConfiguration
-		in := &SetOutboxConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOutboxConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOutboxConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOutboxConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOutboxConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // FAX_GetPersonalCoverPagesOption
-		in := &GetPersonalCoverPagesOptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPersonalCoverPagesOptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPersonalCoverPagesOption(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPersonalCoverPagesOptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPersonalCoverPagesOption(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // FAX_GetArchiveConfiguration
-		in := &GetArchiveConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetArchiveConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetArchiveConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetArchiveConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetArchiveConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // FAX_SetArchiveConfiguration
-		in := &SetArchiveConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetArchiveConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetArchiveConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetArchiveConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetArchiveConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // FAX_GetActivityLoggingConfiguration
-		in := &GetActivityLoggingConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetActivityLoggingConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetActivityLoggingConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetActivityLoggingConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetActivityLoggingConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // FAX_SetActivityLoggingConfiguration
-		in := &SetActivityLoggingConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetActivityLoggingConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetActivityLoggingConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetActivityLoggingConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetActivityLoggingConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // FAX_EnumerateProviders
-		in := &EnumerateProvidersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumerateProvidersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumerateProviders(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumerateProvidersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumerateProviders(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // FAX_GetPortEx
-		in := &GetPortExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPortExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPortEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPortExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPortEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // FAX_SetPortEx
-		in := &SetPortExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPortExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPortEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPortExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPortEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // FAX_EnumPortsEx
-		in := &EnumPortsExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumPortsExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumPortsEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumPortsExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumPortsEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // FAX_GetExtensionData
-		in := &GetExtensionDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExtensionDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExtensionData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExtensionDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExtensionData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // FAX_SetExtensionData
-		in := &SetExtensionDataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExtensionDataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExtensionData(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExtensionDataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExtensionData(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // FAX_AddOutboundGroup
-		in := &AddOutboundGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddOutboundGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddOutboundGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddOutboundGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddOutboundGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // FAX_SetOutboundGroup
-		in := &SetOutboundGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOutboundGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOutboundGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOutboundGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOutboundGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // FAX_RemoveOutboundGroup
-		in := &RemoveOutboundGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOutboundGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveOutboundGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveOutboundGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveOutboundGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // FAX_EnumOutboundGroups
-		in := &EnumOutboundGroupsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumOutboundGroupsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumOutboundGroups(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumOutboundGroupsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumOutboundGroups(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // FAX_SetDeviceOrderInGroup
-		in := &SetDeviceOrderInGroupRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDeviceOrderInGroupOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDeviceOrderInGroup(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDeviceOrderInGroupRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDeviceOrderInGroup(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // FAX_AddOutboundRule
-		in := &AddOutboundRuleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddOutboundRuleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddOutboundRule(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddOutboundRuleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddOutboundRule(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // FAX_RemoveOutboundRule
-		in := &RemoveOutboundRuleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOutboundRuleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveOutboundRule(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveOutboundRuleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveOutboundRule(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // FAX_SetOutboundRule
-		in := &SetOutboundRuleRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOutboundRuleOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOutboundRule(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOutboundRuleRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOutboundRule(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // FAX_EnumOutboundRules
-		in := &EnumOutboundRulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumOutboundRulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumOutboundRules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumOutboundRulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumOutboundRules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // FAX_RegisterServiceProviderEx
-		in := &RegisterServiceProviderExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterServiceProviderExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterServiceProviderEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterServiceProviderExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterServiceProviderEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 61: // FAX_UnregisterServiceProviderEx
-		in := &UnregisterServiceProviderExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnregisterServiceProviderExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnregisterServiceProviderEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnregisterServiceProviderExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnregisterServiceProviderEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 62: // FAX_UnregisterRoutingExtension
-		in := &UnregisterRoutingExtensionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_UnregisterRoutingExtensionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.UnregisterRoutingExtension(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &UnregisterRoutingExtensionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.UnregisterRoutingExtension(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 63: // FAX_StartMessagesEnum
-		in := &StartMessagesEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartMessagesEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartMessagesEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartMessagesEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartMessagesEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 64: // FAX_EndMessagesEnum
-		in := &EndMessagesEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndMessagesEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndMessagesEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndMessagesEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndMessagesEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 65: // FAX_EnumMessages
-		in := &EnumMessagesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumMessagesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumMessages(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumMessagesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumMessages(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // FAX_GetMessage
-		in := &GetMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 67: // FAX_RemoveMessage
-		in := &RemoveMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RemoveMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RemoveMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 68: // FAX_StartCopyToServer
-		in := &StartCopyToServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartCopyToServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartCopyToServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartCopyToServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartCopyToServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 69: // FAX_StartCopyMessageFromServer
-		in := &StartCopyMessageFromServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartCopyMessageFromServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartCopyMessageFromServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartCopyMessageFromServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartCopyMessageFromServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 70: // FAX_WriteFile
-		in := &WriteFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_WriteFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.WriteFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &WriteFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.WriteFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 71: // FAX_ReadFile
-		in := &ReadFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReadFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReadFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReadFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReadFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 72: // FAX_EndCopy
-		in := &EndCopyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndCopyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndCopy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndCopyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndCopy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 73: // FAX_StartServerNotification
-		in := &StartServerNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartServerNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartServerNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartServerNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartServerNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 74: // FAX_StartServerNotificationEx
-		in := &StartServerNotificationExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartServerNotificationExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartServerNotificationEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartServerNotificationExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartServerNotificationEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 75: // FAX_EndServerNotification
-		in := &EndServerNotificationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EndServerNotificationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EndServerNotification(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EndServerNotificationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EndServerNotification(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 76: // FAX_GetServerActivity
-		in := &GetServerActivityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerActivityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerActivity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerActivityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerActivity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 77: // FAX_SetConfigWizardUsed
-		in := &SetConfigWizardUsedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetConfigWizardUsedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetConfigWizardUsed(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetConfigWizardUsedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetConfigWizardUsed(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 78: // FAX_EnumRoutingExtensions
-		in := &EnumRoutingExtensionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumRoutingExtensionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumRoutingExtensions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumRoutingExtensionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumRoutingExtensions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 79: // FAX_ConnectFaxServer
-		in := &ConnectFaxServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ConnectFaxServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ConnectFaxServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ConnectFaxServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ConnectFaxServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 80: // FAX_GetSecurityEx
-		in := &GetSecurityExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurityEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurityEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 81: // FAX_RefreshArchive
-		in := &RefreshArchiveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshArchiveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RefreshArchive(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshArchiveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RefreshArchive(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 82: // FAX_SetRecipientsLimit
-		in := &SetRecipientsLimitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRecipientsLimitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRecipientsLimit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRecipientsLimitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRecipientsLimit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 83: // FAX_GetRecipientsLimit
-		in := &GetRecipientsLimitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRecipientsLimitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRecipientsLimit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRecipientsLimitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRecipientsLimit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 84: // FAX_GetServerSKU
-		in := &GetServerSKURequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerSKUOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServerSKU(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerSKURequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServerSKU(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 85: // FAX_CheckValidFaxFolder
-		in := &CheckValidFaxFolderRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CheckValidFaxFolderOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CheckValidFaxFolder(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CheckValidFaxFolderRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CheckValidFaxFolder(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 86: // FAX_GetJobEx2
-		in := &GetJobEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetJobEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetJobEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetJobEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetJobEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 87: // FAX_EnumJobsEx2
-		in := &EnumJobsEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumJobsEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumJobsEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumJobsEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumJobsEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 88: // FAX_GetMessageEx
-		in := &GetMessageExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMessageExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMessageEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMessageExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMessageEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 89: // FAX_StartMessagesEnumEx
-		in := &StartMessagesEnumExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartMessagesEnumExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartMessagesEnumEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartMessagesEnumExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartMessagesEnumEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 90: // FAX_EnumMessagesEx
-		in := &EnumMessagesExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumMessagesExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumMessagesEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumMessagesExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumMessagesEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 91: // FAX_StartServerNotificationEx2
-		in := &StartServerNotificationEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartServerNotificationEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.StartServerNotificationEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartServerNotificationEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.StartServerNotificationEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 92: // FAX_CreateAccount
-		in := &CreateAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 93: // FAX_DeleteAccount
-		in := &DeleteAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 94: // FAX_EnumAccounts
-		in := &EnumAccountsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_EnumAccountsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.EnumAccounts(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &EnumAccountsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.EnumAccounts(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 95: // FAX_GetAccountInfo
-		in := &GetAccountInfoRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAccountInfoOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAccountInfo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAccountInfoRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAccountInfo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 96: // FAX_GetGeneralConfiguration
-		in := &GetGeneralConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetGeneralConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetGeneralConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetGeneralConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetGeneralConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 97: // FAX_SetGeneralConfiguration
-		in := &SetGeneralConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetGeneralConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetGeneralConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetGeneralConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetGeneralConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 98: // FAX_GetSecurityEx2
-		in := &GetSecurityEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurityEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurityEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 99: // FAX_SetSecurityEx2
-		in := &SetSecurityEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurityEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurityEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 100: // FAX_AccessCheckEx2
-		in := &AccessCheckEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AccessCheckEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AccessCheckEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AccessCheckEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AccessCheckEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 101: // FAX_ReAssignMessage
-		in := &ReassignMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ReassignMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ReassignMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ReassignMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ReassignMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 102: // FAX_SetMessage
-		in := &SetMessageRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMessageOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMessage(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMessageRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMessage(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 103: // FAX_GetConfigOption
-		in := &GetConfigOptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetConfigOptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetConfigOption(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetConfigOptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetConfigOption(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented fax
+type UnimplementedFaxServer struct {
+}
+
+func (UnimplementedFaxServer) GetServicePrinters(context.Context, *GetServicePrintersRequest) (*GetServicePrintersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) ConnectionReferenceCount(context.Context, *ConnectionReferenceCountRequest) (*ConnectionReferenceCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) OpenPort(context.Context, *OpenPortRequest) (*OpenPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) ClosePort(context.Context, *ClosePortRequest) (*ClosePortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumJobs(context.Context, *EnumJobsRequest) (*EnumJobsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetJob(context.Context, *GetJobRequest) (*GetJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetJob(context.Context, *SetJobRequest) (*SetJobResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetPageData(context.Context, *GetPageDataRequest) (*GetPageDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetDeviceStatus(context.Context, *GetDeviceStatusRequest) (*GetDeviceStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) Abort(context.Context, *AbortRequest) (*AbortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumPorts(context.Context, *EnumPortsRequest) (*EnumPortsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetPort(context.Context, *GetPortRequest) (*GetPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetPort(context.Context, *SetPortRequest) (*SetPortResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumRoutingMethods(context.Context, *EnumRoutingMethodsRequest) (*EnumRoutingMethodsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnableRoutingMethod(context.Context, *EnableRoutingMethodRequest) (*EnableRoutingMethodResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetRoutingInfo(context.Context, *GetRoutingInfoRequest) (*GetRoutingInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetRoutingInfo(context.Context, *SetRoutingInfoRequest) (*SetRoutingInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumGlobalRoutingInfo(context.Context, *EnumGlobalRoutingInfoRequest) (*EnumGlobalRoutingInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetGlobalRoutingInfo(context.Context, *SetGlobalRoutingInfoRequest) (*SetGlobalRoutingInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetConfiguration(context.Context, *GetConfigurationRequest) (*GetConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetConfiguration(context.Context, *SetConfigurationRequest) (*SetConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetLoggingCategories(context.Context, *GetLoggingCategoriesRequest) (*GetLoggingCategoriesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetLoggingCategories(context.Context, *SetLoggingCategoriesRequest) (*SetLoggingCategoriesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) AccessCheck(context.Context, *AccessCheckRequest) (*AccessCheckResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) CheckServerProtocolSeq(context.Context, *CheckServerProtocolSeqRequest) (*CheckServerProtocolSeqResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SendDocumentEx(context.Context, *SendDocumentExRequest) (*SendDocumentExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumJobsEx(context.Context, *EnumJobsExRequest) (*EnumJobsExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetJobEx(context.Context, *GetJobExRequest) (*GetJobExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetCountryList(context.Context, *GetCountryListRequest) (*GetCountryListResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetPersonalProfileInfo(context.Context, *GetPersonalProfileInfoRequest) (*GetPersonalProfileInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetQueueStates(context.Context, *GetQueueStatesRequest) (*GetQueueStatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetQueue(context.Context, *SetQueueRequest) (*SetQueueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetReceiptsConfiguration(context.Context, *GetReceiptsConfigurationRequest) (*GetReceiptsConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetReceiptsConfiguration(context.Context, *SetReceiptsConfigurationRequest) (*SetReceiptsConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetReceiptsOptions(context.Context, *GetReceiptsOptionsRequest) (*GetReceiptsOptionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetVersion(context.Context, *GetVersionRequest) (*GetVersionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetOutboxConfiguration(context.Context, *GetOutboxConfigurationRequest) (*GetOutboxConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetOutboxConfiguration(context.Context, *SetOutboxConfigurationRequest) (*SetOutboxConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetPersonalCoverPagesOption(context.Context, *GetPersonalCoverPagesOptionRequest) (*GetPersonalCoverPagesOptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetArchiveConfiguration(context.Context, *GetArchiveConfigurationRequest) (*GetArchiveConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetArchiveConfiguration(context.Context, *SetArchiveConfigurationRequest) (*SetArchiveConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetActivityLoggingConfiguration(context.Context, *GetActivityLoggingConfigurationRequest) (*GetActivityLoggingConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetActivityLoggingConfiguration(context.Context, *SetActivityLoggingConfigurationRequest) (*SetActivityLoggingConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumerateProviders(context.Context, *EnumerateProvidersRequest) (*EnumerateProvidersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetPortEx(context.Context, *GetPortExRequest) (*GetPortExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetPortEx(context.Context, *SetPortExRequest) (*SetPortExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumPortsEx(context.Context, *EnumPortsExRequest) (*EnumPortsExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetExtensionData(context.Context, *GetExtensionDataRequest) (*GetExtensionDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetExtensionData(context.Context, *SetExtensionDataRequest) (*SetExtensionDataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) AddOutboundGroup(context.Context, *AddOutboundGroupRequest) (*AddOutboundGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetOutboundGroup(context.Context, *SetOutboundGroupRequest) (*SetOutboundGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) RemoveOutboundGroup(context.Context, *RemoveOutboundGroupRequest) (*RemoveOutboundGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumOutboundGroups(context.Context, *EnumOutboundGroupsRequest) (*EnumOutboundGroupsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetDeviceOrderInGroup(context.Context, *SetDeviceOrderInGroupRequest) (*SetDeviceOrderInGroupResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) AddOutboundRule(context.Context, *AddOutboundRuleRequest) (*AddOutboundRuleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) RemoveOutboundRule(context.Context, *RemoveOutboundRuleRequest) (*RemoveOutboundRuleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetOutboundRule(context.Context, *SetOutboundRuleRequest) (*SetOutboundRuleResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumOutboundRules(context.Context, *EnumOutboundRulesRequest) (*EnumOutboundRulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) RegisterServiceProviderEx(context.Context, *RegisterServiceProviderExRequest) (*RegisterServiceProviderExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) UnregisterServiceProviderEx(context.Context, *UnregisterServiceProviderExRequest) (*UnregisterServiceProviderExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) UnregisterRoutingExtension(context.Context, *UnregisterRoutingExtensionRequest) (*UnregisterRoutingExtensionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartMessagesEnum(context.Context, *StartMessagesEnumRequest) (*StartMessagesEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EndMessagesEnum(context.Context, *EndMessagesEnumRequest) (*EndMessagesEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumMessages(context.Context, *EnumMessagesRequest) (*EnumMessagesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetMessage(context.Context, *GetMessageRequest) (*GetMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) RemoveMessage(context.Context, *RemoveMessageRequest) (*RemoveMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartCopyToServer(context.Context, *StartCopyToServerRequest) (*StartCopyToServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartCopyMessageFromServer(context.Context, *StartCopyMessageFromServerRequest) (*StartCopyMessageFromServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) WriteFile(context.Context, *WriteFileRequest) (*WriteFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) ReadFile(context.Context, *ReadFileRequest) (*ReadFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EndCopy(context.Context, *EndCopyRequest) (*EndCopyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartServerNotification(context.Context, *StartServerNotificationRequest) (*StartServerNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartServerNotificationEx(context.Context, *StartServerNotificationExRequest) (*StartServerNotificationExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EndServerNotification(context.Context, *EndServerNotificationRequest) (*EndServerNotificationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetServerActivity(context.Context, *GetServerActivityRequest) (*GetServerActivityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetConfigWizardUsed(context.Context, *SetConfigWizardUsedRequest) (*SetConfigWizardUsedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumRoutingExtensions(context.Context, *EnumRoutingExtensionsRequest) (*EnumRoutingExtensionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) ConnectFaxServer(context.Context, *ConnectFaxServerRequest) (*ConnectFaxServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetSecurityEx(context.Context, *GetSecurityExRequest) (*GetSecurityExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) RefreshArchive(context.Context, *RefreshArchiveRequest) (*RefreshArchiveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetRecipientsLimit(context.Context, *SetRecipientsLimitRequest) (*SetRecipientsLimitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetRecipientsLimit(context.Context, *GetRecipientsLimitRequest) (*GetRecipientsLimitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetServerSKU(context.Context, *GetServerSKURequest) (*GetServerSKUResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) CheckValidFaxFolder(context.Context, *CheckValidFaxFolderRequest) (*CheckValidFaxFolderResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetJobEx2(context.Context, *GetJobEx2Request) (*GetJobEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumJobsEx2(context.Context, *EnumJobsEx2Request) (*EnumJobsEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetMessageEx(context.Context, *GetMessageExRequest) (*GetMessageExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartMessagesEnumEx(context.Context, *StartMessagesEnumExRequest) (*StartMessagesEnumExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumMessagesEx(context.Context, *EnumMessagesExRequest) (*EnumMessagesExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) StartServerNotificationEx2(context.Context, *StartServerNotificationEx2Request) (*StartServerNotificationEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) CreateAccount(context.Context, *CreateAccountRequest) (*CreateAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) EnumAccounts(context.Context, *EnumAccountsRequest) (*EnumAccountsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetAccountInfo(context.Context, *GetAccountInfoRequest) (*GetAccountInfoResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetGeneralConfiguration(context.Context, *GetGeneralConfigurationRequest) (*GetGeneralConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetGeneralConfiguration(context.Context, *SetGeneralConfigurationRequest) (*SetGeneralConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetSecurityEx2(context.Context, *GetSecurityEx2Request) (*GetSecurityEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetSecurityEx2(context.Context, *SetSecurityEx2Request) (*SetSecurityEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) AccessCheckEx2(context.Context, *AccessCheckEx2Request) (*AccessCheckEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) ReassignMessage(context.Context, *ReassignMessageRequest) (*ReassignMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) SetMessage(context.Context, *SetMessageRequest) (*SetMessageResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedFaxServer) GetConfigOption(context.Context, *GetConfigOptionRequest) (*GetConfigOptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ FaxServer = (*UnimplementedFaxServer)(nil)

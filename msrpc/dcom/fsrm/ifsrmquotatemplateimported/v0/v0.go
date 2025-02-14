@@ -74,7 +74,7 @@ func (o *xxx_DefaultQuotaTemplateImportedClient) QuotaTemplate() ifsrmquotatempl
 }
 
 func (o *xxx_DefaultQuotaTemplateImportedClient) GetOverwriteOnCommit(ctx context.Context, in *GetOverwriteOnCommitRequest, opts ...dcerpc.CallOption) (*GetOverwriteOnCommitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -94,7 +94,7 @@ func (o *xxx_DefaultQuotaTemplateImportedClient) GetOverwriteOnCommit(ctx contex
 }
 
 func (o *xxx_DefaultQuotaTemplateImportedClient) SetOverwriteOnCommit(ctx context.Context, in *SetOverwriteOnCommitRequest, opts ...dcerpc.CallOption) (*SetOverwriteOnCommitResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -293,13 +293,15 @@ type GetOverwriteOnCommitRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetOverwriteOnCommitRequest) xxx_ToOp(ctx context.Context) *xxx_GetOverwriteOnCommitOperation {
+func (o *GetOverwriteOnCommitRequest) xxx_ToOp(ctx context.Context, op *xxx_GetOverwriteOnCommitOperation) *xxx_GetOverwriteOnCommitOperation {
+	if op == nil {
+		op = &xxx_GetOverwriteOnCommitOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOverwriteOnCommitOperation{}
+		return op
 	}
-	return &xxx_GetOverwriteOnCommitOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetOverwriteOnCommitRequest) xxx_FromOp(ctx context.Context, op *xxx_GetOverwriteOnCommitOperation) {
@@ -309,7 +311,7 @@ func (o *GetOverwriteOnCommitRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.This = op.This
 }
 func (o *GetOverwriteOnCommitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetOverwriteOnCommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOverwriteOnCommitOperation{}
@@ -329,15 +331,17 @@ type GetOverwriteOnCommitResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetOverwriteOnCommitResponse) xxx_ToOp(ctx context.Context) *xxx_GetOverwriteOnCommitOperation {
+func (o *GetOverwriteOnCommitResponse) xxx_ToOp(ctx context.Context, op *xxx_GetOverwriteOnCommitOperation) *xxx_GetOverwriteOnCommitOperation {
+	if op == nil {
+		op = &xxx_GetOverwriteOnCommitOperation{}
+	}
 	if o == nil {
-		return &xxx_GetOverwriteOnCommitOperation{}
+		return op
 	}
-	return &xxx_GetOverwriteOnCommitOperation{
-		That:      o.That,
-		Overwrite: o.Overwrite,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Overwrite = op.Overwrite
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetOverwriteOnCommitResponse) xxx_FromOp(ctx context.Context, op *xxx_GetOverwriteOnCommitOperation) {
@@ -349,7 +353,7 @@ func (o *GetOverwriteOnCommitResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetOverwriteOnCommitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetOverwriteOnCommitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetOverwriteOnCommitOperation{}
@@ -499,14 +503,16 @@ type SetOverwriteOnCommitRequest struct {
 	Overwrite int16          `idl:"name:overwrite" json:"overwrite"`
 }
 
-func (o *SetOverwriteOnCommitRequest) xxx_ToOp(ctx context.Context) *xxx_SetOverwriteOnCommitOperation {
+func (o *SetOverwriteOnCommitRequest) xxx_ToOp(ctx context.Context, op *xxx_SetOverwriteOnCommitOperation) *xxx_SetOverwriteOnCommitOperation {
+	if op == nil {
+		op = &xxx_SetOverwriteOnCommitOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOverwriteOnCommitOperation{}
+		return op
 	}
-	return &xxx_SetOverwriteOnCommitOperation{
-		This:      o.This,
-		Overwrite: o.Overwrite,
-	}
+	o.This = op.This
+	o.Overwrite = op.Overwrite
+	return op
 }
 
 func (o *SetOverwriteOnCommitRequest) xxx_FromOp(ctx context.Context, op *xxx_SetOverwriteOnCommitOperation) {
@@ -517,7 +523,7 @@ func (o *SetOverwriteOnCommitRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Overwrite = op.Overwrite
 }
 func (o *SetOverwriteOnCommitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetOverwriteOnCommitRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOverwriteOnCommitOperation{}
@@ -536,14 +542,16 @@ type SetOverwriteOnCommitResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetOverwriteOnCommitResponse) xxx_ToOp(ctx context.Context) *xxx_SetOverwriteOnCommitOperation {
+func (o *SetOverwriteOnCommitResponse) xxx_ToOp(ctx context.Context, op *xxx_SetOverwriteOnCommitOperation) *xxx_SetOverwriteOnCommitOperation {
+	if op == nil {
+		op = &xxx_SetOverwriteOnCommitOperation{}
+	}
 	if o == nil {
-		return &xxx_SetOverwriteOnCommitOperation{}
+		return op
 	}
-	return &xxx_SetOverwriteOnCommitOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetOverwriteOnCommitResponse) xxx_FromOp(ctx context.Context, op *xxx_SetOverwriteOnCommitOperation) {
@@ -554,7 +562,7 @@ func (o *SetOverwriteOnCommitResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetOverwriteOnCommitResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetOverwriteOnCommitResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetOverwriteOnCommitOperation{}

@@ -76,33 +76,61 @@ func VDiskServerHandle(ctx context.Context, o VDiskServer, opNum int, r ndr.Read
 	}
 	switch opNum {
 	case 3: // Open
-		in := &OpenRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OpenOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Open(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OpenRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Open(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetProperties
-		in := &GetPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetHostVolume
-		in := &GetHostVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetHostVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetHostVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetHostVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetHostVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetDeviceName
-		in := &GetDeviceNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDeviceNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDeviceName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDeviceNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDeviceName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVDisk
+type UnimplementedVDiskServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVDiskServer) Open(context.Context, *OpenRequest) (*OpenResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskServer) GetProperties(context.Context, *GetPropertiesRequest) (*GetPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskServer) GetHostVolume(context.Context, *GetHostVolumeRequest) (*GetHostVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVDiskServer) GetDeviceName(context.Context, *GetDeviceNameRequest) (*GetDeviceNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VDiskServer = (*UnimplementedVDiskServer)(nil)

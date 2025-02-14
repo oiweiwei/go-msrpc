@@ -59,19 +59,36 @@ func NewRfriServerHandle(o RfriServer) dcerpc.ServerHandle {
 func RfriServerHandle(ctx context.Context, o RfriServer, opNum int, r ndr.Reader) (dcerpc.Operation, error) {
 	switch opNum {
 	case 0: // RfrGetNewDSA
-		in := &GetNewDSARequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNewDSAOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetNewDSA(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNewDSARequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetNewDSA(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 1: // RfrGetFQDNFromServerDN
-		in := &GetFQDNFromServerDNRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFQDNFromServerDNOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFQDNFromServerDN(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFQDNFromServerDNRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFQDNFromServerDN(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented rfri
+type UnimplementedRfriServer struct {
+}
+
+func (UnimplementedRfriServer) GetNewDSA(context.Context, *GetNewDSARequest) (*GetNewDSAResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRfriServer) GetFQDNFromServerDN(context.Context, *GetFQDNFromServerDNRequest) (*GetFQDNFromServerDNResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ RfriServer = (*UnimplementedRfriServer)(nil)

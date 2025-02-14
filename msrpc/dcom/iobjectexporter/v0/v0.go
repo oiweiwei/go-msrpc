@@ -80,7 +80,7 @@ type xxx_DefaultObjectExporterClient struct {
 }
 
 func (o *xxx_DefaultObjectExporterClient) ResolveOXID(ctx context.Context, in *ResolveOXIDRequest, opts ...dcerpc.CallOption) (*ResolveOXIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -93,7 +93,7 @@ func (o *xxx_DefaultObjectExporterClient) ResolveOXID(ctx context.Context, in *R
 }
 
 func (o *xxx_DefaultObjectExporterClient) SimplePing(ctx context.Context, in *SimplePingRequest, opts ...dcerpc.CallOption) (*SimplePingResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -106,7 +106,7 @@ func (o *xxx_DefaultObjectExporterClient) SimplePing(ctx context.Context, in *Si
 }
 
 func (o *xxx_DefaultObjectExporterClient) ComplexPing(ctx context.Context, in *ComplexPingRequest, opts ...dcerpc.CallOption) (*ComplexPingResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -119,7 +119,7 @@ func (o *xxx_DefaultObjectExporterClient) ComplexPing(ctx context.Context, in *C
 }
 
 func (o *xxx_DefaultObjectExporterClient) ServerAlive(ctx context.Context, in *ServerAliveRequest, opts ...dcerpc.CallOption) (*ServerAliveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -132,7 +132,7 @@ func (o *xxx_DefaultObjectExporterClient) ServerAlive(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultObjectExporterClient) ResolveOxid2(ctx context.Context, in *ResolveOxid2Request, opts ...dcerpc.CallOption) (*ResolveOxid2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -145,7 +145,7 @@ func (o *xxx_DefaultObjectExporterClient) ResolveOxid2(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultObjectExporterClient) ServerAlive2(ctx context.Context, in *ServerAlive2Request, opts ...dcerpc.CallOption) (*ServerAlive2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -403,15 +403,17 @@ type ResolveOXIDRequest struct {
 	RequestedProtocolSequences []uint16 `idl:"name:arRequestedProtseqs;size_is:(cRequestedProtseqs);pointer:ref" json:"requested_protocol_sequences"`
 }
 
-func (o *ResolveOXIDRequest) xxx_ToOp(ctx context.Context) *xxx_ResolveOXIDOperation {
+func (o *ResolveOXIDRequest) xxx_ToOp(ctx context.Context, op *xxx_ResolveOXIDOperation) *xxx_ResolveOXIDOperation {
+	if op == nil {
+		op = &xxx_ResolveOXIDOperation{}
+	}
 	if o == nil {
-		return &xxx_ResolveOXIDOperation{}
+		return op
 	}
-	return &xxx_ResolveOXIDOperation{
-		OXID:                            o.OXID,
-		RequestedProtocolSequencesCount: o.RequestedProtocolSequencesCount,
-		RequestedProtocolSequences:      o.RequestedProtocolSequences,
-	}
+	o.OXID = op.OXID
+	o.RequestedProtocolSequencesCount = op.RequestedProtocolSequencesCount
+	o.RequestedProtocolSequences = op.RequestedProtocolSequences
+	return op
 }
 
 func (o *ResolveOXIDRequest) xxx_FromOp(ctx context.Context, op *xxx_ResolveOXIDOperation) {
@@ -423,7 +425,7 @@ func (o *ResolveOXIDRequest) xxx_FromOp(ctx context.Context, op *xxx_ResolveOXID
 	o.RequestedProtocolSequences = op.RequestedProtocolSequences
 }
 func (o *ResolveOXIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResolveOXIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveOXIDOperation{}
@@ -451,16 +453,18 @@ type ResolveOXIDResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResolveOXIDResponse) xxx_ToOp(ctx context.Context) *xxx_ResolveOXIDOperation {
+func (o *ResolveOXIDResponse) xxx_ToOp(ctx context.Context, op *xxx_ResolveOXIDOperation) *xxx_ResolveOXIDOperation {
+	if op == nil {
+		op = &xxx_ResolveOXIDOperation{}
+	}
 	if o == nil {
-		return &xxx_ResolveOXIDOperation{}
+		return op
 	}
-	return &xxx_ResolveOXIDOperation{
-		OXIDBindings:  o.OXIDBindings,
-		RemoteUnknown: o.RemoteUnknown,
-		AuthnHint:     o.AuthnHint,
-		Return:        o.Return,
-	}
+	o.OXIDBindings = op.OXIDBindings
+	o.RemoteUnknown = op.RemoteUnknown
+	o.AuthnHint = op.AuthnHint
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResolveOXIDResponse) xxx_FromOp(ctx context.Context, op *xxx_ResolveOXIDOperation) {
@@ -473,7 +477,7 @@ func (o *ResolveOXIDResponse) xxx_FromOp(ctx context.Context, op *xxx_ResolveOXI
 	o.Return = op.Return
 }
 func (o *ResolveOXIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResolveOXIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveOXIDOperation{}
@@ -565,13 +569,15 @@ type SimplePingRequest struct {
 	SetID uint64 `idl:"name:pSetId" json:"set_id"`
 }
 
-func (o *SimplePingRequest) xxx_ToOp(ctx context.Context) *xxx_SimplePingOperation {
+func (o *SimplePingRequest) xxx_ToOp(ctx context.Context, op *xxx_SimplePingOperation) *xxx_SimplePingOperation {
+	if op == nil {
+		op = &xxx_SimplePingOperation{}
+	}
 	if o == nil {
-		return &xxx_SimplePingOperation{}
+		return op
 	}
-	return &xxx_SimplePingOperation{
-		SetID: o.SetID,
-	}
+	o.SetID = op.SetID
+	return op
 }
 
 func (o *SimplePingRequest) xxx_FromOp(ctx context.Context, op *xxx_SimplePingOperation) {
@@ -581,7 +587,7 @@ func (o *SimplePingRequest) xxx_FromOp(ctx context.Context, op *xxx_SimplePingOp
 	o.SetID = op.SetID
 }
 func (o *SimplePingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SimplePingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SimplePingOperation{}
@@ -598,13 +604,15 @@ type SimplePingResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SimplePingResponse) xxx_ToOp(ctx context.Context) *xxx_SimplePingOperation {
+func (o *SimplePingResponse) xxx_ToOp(ctx context.Context, op *xxx_SimplePingOperation) *xxx_SimplePingOperation {
+	if op == nil {
+		op = &xxx_SimplePingOperation{}
+	}
 	if o == nil {
-		return &xxx_SimplePingOperation{}
+		return op
 	}
-	return &xxx_SimplePingOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SimplePingResponse) xxx_FromOp(ctx context.Context, op *xxx_SimplePingOperation) {
@@ -614,7 +622,7 @@ func (o *SimplePingResponse) xxx_FromOp(ctx context.Context, op *xxx_SimplePingO
 	o.Return = op.Return
 }
 func (o *SimplePingResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SimplePingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SimplePingOperation{}
@@ -881,18 +889,20 @@ type ComplexPingRequest struct {
 	DeleteFromSet []uint64 `idl:"name:DelFromSet;size_is:(cDelFromSet);pointer:unique" json:"delete_from_set"`
 }
 
-func (o *ComplexPingRequest) xxx_ToOp(ctx context.Context) *xxx_ComplexPingOperation {
+func (o *ComplexPingRequest) xxx_ToOp(ctx context.Context, op *xxx_ComplexPingOperation) *xxx_ComplexPingOperation {
+	if op == nil {
+		op = &xxx_ComplexPingOperation{}
+	}
 	if o == nil {
-		return &xxx_ComplexPingOperation{}
+		return op
 	}
-	return &xxx_ComplexPingOperation{
-		SetID:              o.SetID,
-		SequenceNum:        o.SequenceNum,
-		AddToSetCount:      o.AddToSetCount,
-		DeleteFromSetCount: o.DeleteFromSetCount,
-		AddToSet:           o.AddToSet,
-		DeleteFromSet:      o.DeleteFromSet,
-	}
+	o.SetID = op.SetID
+	o.SequenceNum = op.SequenceNum
+	o.AddToSetCount = op.AddToSetCount
+	o.DeleteFromSetCount = op.DeleteFromSetCount
+	o.AddToSet = op.AddToSet
+	o.DeleteFromSet = op.DeleteFromSet
+	return op
 }
 
 func (o *ComplexPingRequest) xxx_FromOp(ctx context.Context, op *xxx_ComplexPingOperation) {
@@ -907,7 +917,7 @@ func (o *ComplexPingRequest) xxx_FromOp(ctx context.Context, op *xxx_ComplexPing
 	o.DeleteFromSet = op.DeleteFromSet
 }
 func (o *ComplexPingRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ComplexPingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ComplexPingOperation{}
@@ -933,15 +943,17 @@ type ComplexPingResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ComplexPingResponse) xxx_ToOp(ctx context.Context) *xxx_ComplexPingOperation {
+func (o *ComplexPingResponse) xxx_ToOp(ctx context.Context, op *xxx_ComplexPingOperation) *xxx_ComplexPingOperation {
+	if op == nil {
+		op = &xxx_ComplexPingOperation{}
+	}
 	if o == nil {
-		return &xxx_ComplexPingOperation{}
+		return op
 	}
-	return &xxx_ComplexPingOperation{
-		SetID:             o.SetID,
-		PingBackoffFactor: o.PingBackoffFactor,
-		Return:            o.Return,
-	}
+	o.SetID = op.SetID
+	o.PingBackoffFactor = op.PingBackoffFactor
+	o.Return = op.Return
+	return op
 }
 
 func (o *ComplexPingResponse) xxx_FromOp(ctx context.Context, op *xxx_ComplexPingOperation) {
@@ -953,7 +965,7 @@ func (o *ComplexPingResponse) xxx_FromOp(ctx context.Context, op *xxx_ComplexPin
 	o.Return = op.Return
 }
 func (o *ComplexPingResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ComplexPingResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ComplexPingOperation{}
@@ -1029,11 +1041,14 @@ func (o *xxx_ServerAliveOperation) UnmarshalNDRResponse(ctx context.Context, w n
 type ServerAliveRequest struct {
 }
 
-func (o *ServerAliveRequest) xxx_ToOp(ctx context.Context) *xxx_ServerAliveOperation {
-	if o == nil {
-		return &xxx_ServerAliveOperation{}
+func (o *ServerAliveRequest) xxx_ToOp(ctx context.Context, op *xxx_ServerAliveOperation) *xxx_ServerAliveOperation {
+	if op == nil {
+		op = &xxx_ServerAliveOperation{}
 	}
-	return &xxx_ServerAliveOperation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *ServerAliveRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerAliveOperation) {
@@ -1042,7 +1057,7 @@ func (o *ServerAliveRequest) xxx_FromOp(ctx context.Context, op *xxx_ServerAlive
 	}
 }
 func (o *ServerAliveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerAliveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerAliveOperation{}
@@ -1059,13 +1074,15 @@ type ServerAliveResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerAliveResponse) xxx_ToOp(ctx context.Context) *xxx_ServerAliveOperation {
+func (o *ServerAliveResponse) xxx_ToOp(ctx context.Context, op *xxx_ServerAliveOperation) *xxx_ServerAliveOperation {
+	if op == nil {
+		op = &xxx_ServerAliveOperation{}
+	}
 	if o == nil {
-		return &xxx_ServerAliveOperation{}
+		return op
 	}
-	return &xxx_ServerAliveOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerAliveResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerAliveOperation) {
@@ -1075,7 +1092,7 @@ func (o *ServerAliveResponse) xxx_FromOp(ctx context.Context, op *xxx_ServerAliv
 	o.Return = op.Return
 }
 func (o *ServerAliveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerAliveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerAliveOperation{}
@@ -1338,15 +1355,17 @@ type ResolveOxid2Request struct {
 	RequestedProtocolSequences []uint16 `idl:"name:arRequestedProtseqs;size_is:(cRequestedProtseqs);pointer:ref" json:"requested_protocol_sequences"`
 }
 
-func (o *ResolveOxid2Request) xxx_ToOp(ctx context.Context) *xxx_ResolveOxid2Operation {
+func (o *ResolveOxid2Request) xxx_ToOp(ctx context.Context, op *xxx_ResolveOxid2Operation) *xxx_ResolveOxid2Operation {
+	if op == nil {
+		op = &xxx_ResolveOxid2Operation{}
+	}
 	if o == nil {
-		return &xxx_ResolveOxid2Operation{}
+		return op
 	}
-	return &xxx_ResolveOxid2Operation{
-		OXID:                            o.OXID,
-		RequestedProtocolSequencesCount: o.RequestedProtocolSequencesCount,
-		RequestedProtocolSequences:      o.RequestedProtocolSequences,
-	}
+	o.OXID = op.OXID
+	o.RequestedProtocolSequencesCount = op.RequestedProtocolSequencesCount
+	o.RequestedProtocolSequences = op.RequestedProtocolSequences
+	return op
 }
 
 func (o *ResolveOxid2Request) xxx_FromOp(ctx context.Context, op *xxx_ResolveOxid2Operation) {
@@ -1358,7 +1377,7 @@ func (o *ResolveOxid2Request) xxx_FromOp(ctx context.Context, op *xxx_ResolveOxi
 	o.RequestedProtocolSequences = op.RequestedProtocolSequences
 }
 func (o *ResolveOxid2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ResolveOxid2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveOxid2Operation{}
@@ -1389,17 +1408,19 @@ type ResolveOxid2Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ResolveOxid2Response) xxx_ToOp(ctx context.Context) *xxx_ResolveOxid2Operation {
+func (o *ResolveOxid2Response) xxx_ToOp(ctx context.Context, op *xxx_ResolveOxid2Operation) *xxx_ResolveOxid2Operation {
+	if op == nil {
+		op = &xxx_ResolveOxid2Operation{}
+	}
 	if o == nil {
-		return &xxx_ResolveOxid2Operation{}
+		return op
 	}
-	return &xxx_ResolveOxid2Operation{
-		OXIDBindings:  o.OXIDBindings,
-		RemoteUnknown: o.RemoteUnknown,
-		AuthnHint:     o.AuthnHint,
-		COMVersion:    o.COMVersion,
-		Return:        o.Return,
-	}
+	o.OXIDBindings = op.OXIDBindings
+	o.RemoteUnknown = op.RemoteUnknown
+	o.AuthnHint = op.AuthnHint
+	o.COMVersion = op.COMVersion
+	o.Return = op.Return
+	return op
 }
 
 func (o *ResolveOxid2Response) xxx_FromOp(ctx context.Context, op *xxx_ResolveOxid2Operation) {
@@ -1413,7 +1434,7 @@ func (o *ResolveOxid2Response) xxx_FromOp(ctx context.Context, op *xxx_ResolveOx
 	o.Return = op.Return
 }
 func (o *ResolveOxid2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ResolveOxid2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ResolveOxid2Operation{}
@@ -1574,11 +1595,14 @@ func (o *xxx_ServerAlive2Operation) UnmarshalNDRResponse(ctx context.Context, w 
 type ServerAlive2Request struct {
 }
 
-func (o *ServerAlive2Request) xxx_ToOp(ctx context.Context) *xxx_ServerAlive2Operation {
-	if o == nil {
-		return &xxx_ServerAlive2Operation{}
+func (o *ServerAlive2Request) xxx_ToOp(ctx context.Context, op *xxx_ServerAlive2Operation) *xxx_ServerAlive2Operation {
+	if op == nil {
+		op = &xxx_ServerAlive2Operation{}
 	}
-	return &xxx_ServerAlive2Operation{}
+	if o == nil {
+		return op
+	}
+	return op
 }
 
 func (o *ServerAlive2Request) xxx_FromOp(ctx context.Context, op *xxx_ServerAlive2Operation) {
@@ -1587,7 +1611,7 @@ func (o *ServerAlive2Request) xxx_FromOp(ctx context.Context, op *xxx_ServerAliv
 	}
 }
 func (o *ServerAlive2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ServerAlive2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerAlive2Operation{}
@@ -1610,15 +1634,17 @@ type ServerAlive2Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ServerAlive2Response) xxx_ToOp(ctx context.Context) *xxx_ServerAlive2Operation {
+func (o *ServerAlive2Response) xxx_ToOp(ctx context.Context, op *xxx_ServerAlive2Operation) *xxx_ServerAlive2Operation {
+	if op == nil {
+		op = &xxx_ServerAlive2Operation{}
+	}
 	if o == nil {
-		return &xxx_ServerAlive2Operation{}
+		return op
 	}
-	return &xxx_ServerAlive2Operation{
-		COMVersion:             o.COMVersion,
-		ObjectResolverBindings: o.ObjectResolverBindings,
-		Return:                 o.Return,
-	}
+	o.COMVersion = op.COMVersion
+	o.ObjectResolverBindings = op.ObjectResolverBindings
+	o.Return = op.Return
+	return op
 }
 
 func (o *ServerAlive2Response) xxx_FromOp(ctx context.Context, op *xxx_ServerAlive2Operation) {
@@ -1630,7 +1656,7 @@ func (o *ServerAlive2Response) xxx_FromOp(ctx context.Context, op *xxx_ServerAli
 	o.Return = op.Return
 }
 func (o *ServerAlive2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ServerAlive2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ServerAlive2Operation{}

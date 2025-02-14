@@ -96,19 +96,37 @@ func ClusterUpdateServerHandle(ctx context.Context, o ClusterUpdateServer, opNum
 	}
 	switch opNum {
 	case 3: // GetUpdates
-		in := &GetUpdatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUpdatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUpdates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUpdatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUpdates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Count
-		in := &CountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Count(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Count(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IClusterUpdate
+type UnimplementedClusterUpdateServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedClusterUpdateServer) GetUpdates(context.Context, *GetUpdatesRequest) (*GetUpdatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedClusterUpdateServer) Count(context.Context, *CountRequest) (*CountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ClusterUpdateServer = (*UnimplementedClusterUpdateServer)(nil)

@@ -97,33 +97,61 @@ func DiskPartitionMFServerHandle(ctx context.Context, o DiskPartitionMFServer, o
 	}
 	switch opNum {
 	case 3: // GetPartitionFileSystemProperties
-		in := &GetPartitionFileSystemPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPartitionFileSystemPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPartitionFileSystemProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPartitionFileSystemPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPartitionFileSystemProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetPartitionFileSystemTypeName
-		in := &GetPartitionFileSystemTypeNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPartitionFileSystemTypeNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPartitionFileSystemTypeName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPartitionFileSystemTypeNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPartitionFileSystemTypeName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // QueryPartitionFileSystemFormatSupport
-		in := &QueryPartitionFileSystemFormatSupportRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryPartitionFileSystemFormatSupportOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryPartitionFileSystemFormatSupport(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryPartitionFileSystemFormatSupportRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryPartitionFileSystemFormatSupport(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // FormatPartitionEx
-		in := &FormatPartitionExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatPartitionExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FormatPartitionEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatPartitionExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FormatPartitionEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsDiskPartitionMF
+type UnimplementedDiskPartitionMFServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedDiskPartitionMFServer) GetPartitionFileSystemProperties(context.Context, *GetPartitionFileSystemPropertiesRequest) (*GetPartitionFileSystemPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskPartitionMFServer) GetPartitionFileSystemTypeName(context.Context, *GetPartitionFileSystemTypeNameRequest) (*GetPartitionFileSystemTypeNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskPartitionMFServer) QueryPartitionFileSystemFormatSupport(context.Context, *QueryPartitionFileSystemFormatSupportRequest) (*QueryPartitionFileSystemFormatSupportResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDiskPartitionMFServer) FormatPartitionEx(context.Context, *FormatPartitionExRequest) (*FormatPartitionExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DiskPartitionMFServer = (*UnimplementedDiskPartitionMFServer)(nil)

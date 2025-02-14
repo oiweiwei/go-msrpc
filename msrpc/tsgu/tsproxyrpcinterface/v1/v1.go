@@ -4425,7 +4425,7 @@ type xxx_DefaultInterfaceClient struct {
 }
 
 func (o *xxx_DefaultInterfaceClient) CreateTunnel(ctx context.Context, in *CreateTunnelRequest, opts ...dcerpc.CallOption) (*CreateTunnelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4438,7 +4438,7 @@ func (o *xxx_DefaultInterfaceClient) CreateTunnel(ctx context.Context, in *Creat
 }
 
 func (o *xxx_DefaultInterfaceClient) AuthorizeTunnel(ctx context.Context, in *AuthorizeTunnelRequest, opts ...dcerpc.CallOption) (*AuthorizeTunnelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4451,7 +4451,7 @@ func (o *xxx_DefaultInterfaceClient) AuthorizeTunnel(ctx context.Context, in *Au
 }
 
 func (o *xxx_DefaultInterfaceClient) MakeTunnelCall(ctx context.Context, in *MakeTunnelCallRequest, opts ...dcerpc.CallOption) (*MakeTunnelCallResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4464,7 +4464,7 @@ func (o *xxx_DefaultInterfaceClient) MakeTunnelCall(ctx context.Context, in *Mak
 }
 
 func (o *xxx_DefaultInterfaceClient) CreateChannel(ctx context.Context, in *CreateChannelRequest, opts ...dcerpc.CallOption) (*CreateChannelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4477,7 +4477,7 @@ func (o *xxx_DefaultInterfaceClient) CreateChannel(ctx context.Context, in *Crea
 }
 
 func (o *xxx_DefaultInterfaceClient) CloseChannel(ctx context.Context, in *CloseChannelRequest, opts ...dcerpc.CallOption) (*CloseChannelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4490,7 +4490,7 @@ func (o *xxx_DefaultInterfaceClient) CloseChannel(ctx context.Context, in *Close
 }
 
 func (o *xxx_DefaultInterfaceClient) CloseTunnel(ctx context.Context, in *CloseTunnelRequest, opts ...dcerpc.CallOption) (*CloseTunnelResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4503,7 +4503,7 @@ func (o *xxx_DefaultInterfaceClient) CloseTunnel(ctx context.Context, in *CloseT
 }
 
 func (o *xxx_DefaultInterfaceClient) SetupReceivePipe(ctx context.Context, in *SetupReceivePipeRequest, opts ...dcerpc.CallOption) (*SetupReceivePipeResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4516,7 +4516,7 @@ func (o *xxx_DefaultInterfaceClient) SetupReceivePipe(ctx context.Context, in *S
 }
 
 func (o *xxx_DefaultInterfaceClient) SendToServer(ctx context.Context, in *SendToServerRequest, opts ...dcerpc.CallOption) (*SendToServerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -4734,13 +4734,15 @@ type CreateTunnelRequest struct {
 	Packet *Packet `idl:"name:TSGPacket;pointer:ref" json:"packet"`
 }
 
-func (o *CreateTunnelRequest) xxx_ToOp(ctx context.Context) *xxx_CreateTunnelOperation {
+func (o *CreateTunnelRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateTunnelOperation) *xxx_CreateTunnelOperation {
+	if op == nil {
+		op = &xxx_CreateTunnelOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTunnelOperation{}
+		return op
 	}
-	return &xxx_CreateTunnelOperation{
-		Packet: o.Packet,
-	}
+	o.Packet = op.Packet
+	return op
 }
 
 func (o *CreateTunnelRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateTunnelOperation) {
@@ -4750,7 +4752,7 @@ func (o *CreateTunnelRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateTunn
 	o.Packet = op.Packet
 }
 func (o *CreateTunnelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateTunnelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTunnelOperation{}
@@ -4788,16 +4790,18 @@ type CreateTunnelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateTunnelResponse) xxx_ToOp(ctx context.Context) *xxx_CreateTunnelOperation {
+func (o *CreateTunnelResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateTunnelOperation) *xxx_CreateTunnelOperation {
+	if op == nil {
+		op = &xxx_CreateTunnelOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateTunnelOperation{}
+		return op
 	}
-	return &xxx_CreateTunnelOperation{
-		PacketResponse: o.PacketResponse,
-		TunnelContext:  o.TunnelContext,
-		TunnelID:       o.TunnelID,
-		Return:         o.Return,
-	}
+	o.PacketResponse = op.PacketResponse
+	o.TunnelContext = op.TunnelContext
+	o.TunnelID = op.TunnelID
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateTunnelResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateTunnelOperation) {
@@ -4810,7 +4814,7 @@ func (o *CreateTunnelResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateTun
 	o.Return = op.Return
 }
 func (o *CreateTunnelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateTunnelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateTunnelOperation{}
@@ -4994,14 +4998,16 @@ type AuthorizeTunnelRequest struct {
 	Packet *Packet `idl:"name:TSGPacket;pointer:ref" json:"packet"`
 }
 
-func (o *AuthorizeTunnelRequest) xxx_ToOp(ctx context.Context) *xxx_AuthorizeTunnelOperation {
+func (o *AuthorizeTunnelRequest) xxx_ToOp(ctx context.Context, op *xxx_AuthorizeTunnelOperation) *xxx_AuthorizeTunnelOperation {
+	if op == nil {
+		op = &xxx_AuthorizeTunnelOperation{}
+	}
 	if o == nil {
-		return &xxx_AuthorizeTunnelOperation{}
+		return op
 	}
-	return &xxx_AuthorizeTunnelOperation{
-		TunnelContext: o.TunnelContext,
-		Packet:        o.Packet,
-	}
+	o.TunnelContext = op.TunnelContext
+	o.Packet = op.Packet
+	return op
 }
 
 func (o *AuthorizeTunnelRequest) xxx_FromOp(ctx context.Context, op *xxx_AuthorizeTunnelOperation) {
@@ -5012,7 +5018,7 @@ func (o *AuthorizeTunnelRequest) xxx_FromOp(ctx context.Context, op *xxx_Authori
 	o.Packet = op.Packet
 }
 func (o *AuthorizeTunnelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AuthorizeTunnelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AuthorizeTunnelOperation{}
@@ -5033,14 +5039,16 @@ type AuthorizeTunnelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AuthorizeTunnelResponse) xxx_ToOp(ctx context.Context) *xxx_AuthorizeTunnelOperation {
+func (o *AuthorizeTunnelResponse) xxx_ToOp(ctx context.Context, op *xxx_AuthorizeTunnelOperation) *xxx_AuthorizeTunnelOperation {
+	if op == nil {
+		op = &xxx_AuthorizeTunnelOperation{}
+	}
 	if o == nil {
-		return &xxx_AuthorizeTunnelOperation{}
+		return op
 	}
-	return &xxx_AuthorizeTunnelOperation{
-		PacketResponse: o.PacketResponse,
-		Return:         o.Return,
-	}
+	o.PacketResponse = op.PacketResponse
+	o.Return = op.Return
+	return op
 }
 
 func (o *AuthorizeTunnelResponse) xxx_FromOp(ctx context.Context, op *xxx_AuthorizeTunnelOperation) {
@@ -5051,7 +5059,7 @@ func (o *AuthorizeTunnelResponse) xxx_FromOp(ctx context.Context, op *xxx_Author
 	o.Return = op.Return
 }
 func (o *AuthorizeTunnelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AuthorizeTunnelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AuthorizeTunnelOperation{}
@@ -5262,15 +5270,17 @@ type MakeTunnelCallRequest struct {
 	Packet *Packet `idl:"name:TSGPacket;pointer:ref" json:"packet"`
 }
 
-func (o *MakeTunnelCallRequest) xxx_ToOp(ctx context.Context) *xxx_MakeTunnelCallOperation {
+func (o *MakeTunnelCallRequest) xxx_ToOp(ctx context.Context, op *xxx_MakeTunnelCallOperation) *xxx_MakeTunnelCallOperation {
+	if op == nil {
+		op = &xxx_MakeTunnelCallOperation{}
+	}
 	if o == nil {
-		return &xxx_MakeTunnelCallOperation{}
+		return op
 	}
-	return &xxx_MakeTunnelCallOperation{
-		TunnelContext: o.TunnelContext,
-		ProcID:        o.ProcID,
-		Packet:        o.Packet,
-	}
+	o.TunnelContext = op.TunnelContext
+	o.ProcID = op.ProcID
+	o.Packet = op.Packet
+	return op
 }
 
 func (o *MakeTunnelCallRequest) xxx_FromOp(ctx context.Context, op *xxx_MakeTunnelCallOperation) {
@@ -5282,7 +5292,7 @@ func (o *MakeTunnelCallRequest) xxx_FromOp(ctx context.Context, op *xxx_MakeTunn
 	o.Packet = op.Packet
 }
 func (o *MakeTunnelCallRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MakeTunnelCallRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MakeTunnelCallOperation{}
@@ -5305,14 +5315,16 @@ type MakeTunnelCallResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MakeTunnelCallResponse) xxx_ToOp(ctx context.Context) *xxx_MakeTunnelCallOperation {
+func (o *MakeTunnelCallResponse) xxx_ToOp(ctx context.Context, op *xxx_MakeTunnelCallOperation) *xxx_MakeTunnelCallOperation {
+	if op == nil {
+		op = &xxx_MakeTunnelCallOperation{}
+	}
 	if o == nil {
-		return &xxx_MakeTunnelCallOperation{}
+		return op
 	}
-	return &xxx_MakeTunnelCallOperation{
-		PacketResponse: o.PacketResponse,
-		Return:         o.Return,
-	}
+	o.PacketResponse = op.PacketResponse
+	o.Return = op.Return
+	return op
 }
 
 func (o *MakeTunnelCallResponse) xxx_FromOp(ctx context.Context, op *xxx_MakeTunnelCallOperation) {
@@ -5323,7 +5335,7 @@ func (o *MakeTunnelCallResponse) xxx_FromOp(ctx context.Context, op *xxx_MakeTun
 	o.Return = op.Return
 }
 func (o *MakeTunnelCallResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MakeTunnelCallResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MakeTunnelCallOperation{}
@@ -5499,14 +5511,16 @@ type CreateChannelRequest struct {
 	EndpointInfo *EndpointInfo `idl:"name:tsEndPointInfo;pointer:ref" json:"endpoint_info"`
 }
 
-func (o *CreateChannelRequest) xxx_ToOp(ctx context.Context) *xxx_CreateChannelOperation {
+func (o *CreateChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_CreateChannelOperation) *xxx_CreateChannelOperation {
+	if op == nil {
+		op = &xxx_CreateChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateChannelOperation{}
+		return op
 	}
-	return &xxx_CreateChannelOperation{
-		TunnelContext: o.TunnelContext,
-		EndpointInfo:  o.EndpointInfo,
-	}
+	o.TunnelContext = op.TunnelContext
+	o.EndpointInfo = op.EndpointInfo
+	return op
 }
 
 func (o *CreateChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateChannelOperation) {
@@ -5517,7 +5531,7 @@ func (o *CreateChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_CreateCha
 	o.EndpointInfo = op.EndpointInfo
 }
 func (o *CreateChannelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateChannelOperation{}
@@ -5544,15 +5558,17 @@ type CreateChannelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateChannelResponse) xxx_ToOp(ctx context.Context) *xxx_CreateChannelOperation {
+func (o *CreateChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_CreateChannelOperation) *xxx_CreateChannelOperation {
+	if op == nil {
+		op = &xxx_CreateChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_CreateChannelOperation{}
+		return op
 	}
-	return &xxx_CreateChannelOperation{
-		ChannelContext: o.ChannelContext,
-		ChannelID:      o.ChannelID,
-		Return:         o.Return,
-	}
+	o.ChannelContext = op.ChannelContext
+	o.ChannelID = op.ChannelID
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateChannelOperation) {
@@ -5564,7 +5580,7 @@ func (o *CreateChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_CreateCh
 	o.Return = op.Return
 }
 func (o *CreateChannelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateChannelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateChannelOperation{}
@@ -5688,13 +5704,15 @@ type CloseChannelRequest struct {
 	Context *ChannelNoSerialize `idl:"name:context" json:"context"`
 }
 
-func (o *CloseChannelRequest) xxx_ToOp(ctx context.Context) *xxx_CloseChannelOperation {
+func (o *CloseChannelRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseChannelOperation) *xxx_CloseChannelOperation {
+	if op == nil {
+		op = &xxx_CloseChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseChannelOperation{}
+		return op
 	}
-	return &xxx_CloseChannelOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *CloseChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseChannelOperation) {
@@ -5704,7 +5722,7 @@ func (o *CloseChannelRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseChann
 	o.Context = op.Context
 }
 func (o *CloseChannelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseChannelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseChannelOperation{}
@@ -5724,14 +5742,16 @@ type CloseChannelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseChannelResponse) xxx_ToOp(ctx context.Context) *xxx_CloseChannelOperation {
+func (o *CloseChannelResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseChannelOperation) *xxx_CloseChannelOperation {
+	if op == nil {
+		op = &xxx_CloseChannelOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseChannelOperation{}
+		return op
 	}
-	return &xxx_CloseChannelOperation{
-		Context: o.Context,
-		Return:  o.Return,
-	}
+	o.Context = op.Context
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseChannelOperation) {
@@ -5742,7 +5762,7 @@ func (o *CloseChannelResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseChan
 	o.Return = op.Return
 }
 func (o *CloseChannelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseChannelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseChannelOperation{}
@@ -5866,13 +5886,15 @@ type CloseTunnelRequest struct {
 	Context *TunnelSerialize `idl:"name:context" json:"context"`
 }
 
-func (o *CloseTunnelRequest) xxx_ToOp(ctx context.Context) *xxx_CloseTunnelOperation {
+func (o *CloseTunnelRequest) xxx_ToOp(ctx context.Context, op *xxx_CloseTunnelOperation) *xxx_CloseTunnelOperation {
+	if op == nil {
+		op = &xxx_CloseTunnelOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseTunnelOperation{}
+		return op
 	}
-	return &xxx_CloseTunnelOperation{
-		Context: o.Context,
-	}
+	o.Context = op.Context
+	return op
 }
 
 func (o *CloseTunnelRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseTunnelOperation) {
@@ -5882,7 +5904,7 @@ func (o *CloseTunnelRequest) xxx_FromOp(ctx context.Context, op *xxx_CloseTunnel
 	o.Context = op.Context
 }
 func (o *CloseTunnelRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CloseTunnelRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseTunnelOperation{}
@@ -5902,14 +5924,16 @@ type CloseTunnelResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CloseTunnelResponse) xxx_ToOp(ctx context.Context) *xxx_CloseTunnelOperation {
+func (o *CloseTunnelResponse) xxx_ToOp(ctx context.Context, op *xxx_CloseTunnelOperation) *xxx_CloseTunnelOperation {
+	if op == nil {
+		op = &xxx_CloseTunnelOperation{}
+	}
 	if o == nil {
-		return &xxx_CloseTunnelOperation{}
+		return op
 	}
-	return &xxx_CloseTunnelOperation{
-		Context: o.Context,
-		Return:  o.Return,
-	}
+	o.Context = op.Context
+	o.Return = op.Return
+	return op
 }
 
 func (o *CloseTunnelResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseTunnelOperation) {
@@ -5920,7 +5944,7 @@ func (o *CloseTunnelResponse) xxx_FromOp(ctx context.Context, op *xxx_CloseTunne
 	o.Return = op.Return
 }
 func (o *CloseTunnelResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CloseTunnelResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CloseTunnelOperation{}
@@ -6049,13 +6073,15 @@ type SetupReceivePipeRequest struct {
 	Message []byte `idl:"name:pRpcMessage;max_is:(32767)" json:"message"`
 }
 
-func (o *SetupReceivePipeRequest) xxx_ToOp(ctx context.Context) *xxx_SetupReceivePipeOperation {
+func (o *SetupReceivePipeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetupReceivePipeOperation) *xxx_SetupReceivePipeOperation {
+	if op == nil {
+		op = &xxx_SetupReceivePipeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetupReceivePipeOperation{}
+		return op
 	}
-	return &xxx_SetupReceivePipeOperation{
-		Message: o.Message,
-	}
+	o.Message = op.Message
+	return op
 }
 
 func (o *SetupReceivePipeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetupReceivePipeOperation) {
@@ -6065,7 +6091,7 @@ func (o *SetupReceivePipeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetupR
 	o.Message = op.Message
 }
 func (o *SetupReceivePipeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetupReceivePipeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetupReceivePipeOperation{}
@@ -6082,13 +6108,15 @@ type SetupReceivePipeResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetupReceivePipeResponse) xxx_ToOp(ctx context.Context) *xxx_SetupReceivePipeOperation {
+func (o *SetupReceivePipeResponse) xxx_ToOp(ctx context.Context, op *xxx_SetupReceivePipeOperation) *xxx_SetupReceivePipeOperation {
+	if op == nil {
+		op = &xxx_SetupReceivePipeOperation{}
+	}
 	if o == nil {
-		return &xxx_SetupReceivePipeOperation{}
+		return op
 	}
-	return &xxx_SetupReceivePipeOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetupReceivePipeResponse) xxx_FromOp(ctx context.Context, op *xxx_SetupReceivePipeOperation) {
@@ -6098,7 +6126,7 @@ func (o *SetupReceivePipeResponse) xxx_FromOp(ctx context.Context, op *xxx_Setup
 	o.Return = op.Return
 }
 func (o *SetupReceivePipeResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetupReceivePipeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetupReceivePipeOperation{}
@@ -6227,13 +6255,15 @@ type SendToServerRequest struct {
 	Message []byte `idl:"name:pRpcMessage;max_is:(32767)" json:"message"`
 }
 
-func (o *SendToServerRequest) xxx_ToOp(ctx context.Context) *xxx_SendToServerOperation {
+func (o *SendToServerRequest) xxx_ToOp(ctx context.Context, op *xxx_SendToServerOperation) *xxx_SendToServerOperation {
+	if op == nil {
+		op = &xxx_SendToServerOperation{}
+	}
 	if o == nil {
-		return &xxx_SendToServerOperation{}
+		return op
 	}
-	return &xxx_SendToServerOperation{
-		Message: o.Message,
-	}
+	o.Message = op.Message
+	return op
 }
 
 func (o *SendToServerRequest) xxx_FromOp(ctx context.Context, op *xxx_SendToServerOperation) {
@@ -6243,7 +6273,7 @@ func (o *SendToServerRequest) xxx_FromOp(ctx context.Context, op *xxx_SendToServ
 	o.Message = op.Message
 }
 func (o *SendToServerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SendToServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendToServerOperation{}
@@ -6260,13 +6290,15 @@ type SendToServerResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SendToServerResponse) xxx_ToOp(ctx context.Context) *xxx_SendToServerOperation {
+func (o *SendToServerResponse) xxx_ToOp(ctx context.Context, op *xxx_SendToServerOperation) *xxx_SendToServerOperation {
+	if op == nil {
+		op = &xxx_SendToServerOperation{}
+	}
 	if o == nil {
-		return &xxx_SendToServerOperation{}
+		return op
 	}
-	return &xxx_SendToServerOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SendToServerResponse) xxx_FromOp(ctx context.Context, op *xxx_SendToServerOperation) {
@@ -6276,7 +6308,7 @@ func (o *SendToServerResponse) xxx_FromOp(ctx context.Context, op *xxx_SendToSer
 	o.Return = op.Return
 }
 func (o *SendToServerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SendToServerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SendToServerOperation{}

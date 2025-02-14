@@ -62,12 +62,25 @@ func CreatePartitionExServerHandle(ctx context.Context, o CreatePartitionExServe
 	}
 	switch opNum {
 	case 3: // CreatePartitionEx
-		in := &CreatePartitionExRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreatePartitionExOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreatePartitionEx(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreatePartitionExRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreatePartitionEx(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsCreatePartitionEx
+type UnimplementedCreatePartitionExServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedCreatePartitionExServer) CreatePartitionEx(context.Context, *CreatePartitionExRequest) (*CreatePartitionExResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ CreatePartitionExServer = (*UnimplementedCreatePartitionExServer)(nil)

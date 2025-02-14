@@ -64,40 +64,73 @@ func AppHostConfigLocationServerHandle(ctx context.Context, o AppHostConfigLocat
 	}
 	switch opNum {
 	case 3: // Path
-		in := &GetPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // AddConfigSection
-		in := &AddConfigSectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddConfigSectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddConfigSection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddConfigSectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddConfigSection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // DeleteConfigSection
-		in := &DeleteConfigSectionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteConfigSectionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.DeleteConfigSection(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteConfigSectionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.DeleteConfigSection(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostConfigLocation
+type UnimplementedAppHostConfigLocationServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostConfigLocationServer) GetPath(context.Context, *GetPathRequest) (*GetPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationServer) AddConfigSection(context.Context, *AddConfigSectionRequest) (*AddConfigSectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostConfigLocationServer) DeleteConfigSection(context.Context, *DeleteConfigSectionRequest) (*DeleteConfigSectionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostConfigLocationServer = (*UnimplementedAppHostConfigLocationServer)(nil)

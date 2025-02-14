@@ -95,26 +95,32 @@ func Register2ServerHandle(ctx context.Context, o Register2Server, opNum int, r 
 	}
 	switch opNum {
 	case 3: // CreateFullConfiguration
-		in := &CreateFullConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateFullConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateFullConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateFullConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateFullConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // CreateLegacyConfiguration
-		in := &CreateLegacyConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateLegacyConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateLegacyConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateLegacyConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateLegacyConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // PromoteLegacyConfiguration
-		in := &PromoteLegacyConfigurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PromoteLegacyConfigurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.PromoteLegacyConfiguration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PromoteLegacyConfigurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.PromoteLegacyConfiguration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // Opnum6NotUsedOnWire
 		// Opnum6NotUsedOnWire
 		return nil, nil
@@ -122,15 +128,37 @@ func Register2ServerHandle(ctx context.Context, o Register2Server, opNum int, r 
 		// Opnum7NotUsedOnWire
 		return nil, nil
 	case 8: // RegisterModule2
-		in := &RegisterModule2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RegisterModule2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RegisterModule2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RegisterModule2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RegisterModule2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Opnum9NotUsedOnWire
 		// Opnum9NotUsedOnWire
 		return nil, nil
 	}
 	return nil, nil
 }
+
+// Unimplemented IRegister2
+type UnimplementedRegister2Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedRegister2Server) CreateFullConfiguration(context.Context, *CreateFullConfigurationRequest) (*CreateFullConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRegister2Server) CreateLegacyConfiguration(context.Context, *CreateLegacyConfigurationRequest) (*CreateLegacyConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRegister2Server) PromoteLegacyConfiguration(context.Context, *PromoteLegacyConfigurationRequest) (*PromoteLegacyConfigurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedRegister2Server) RegisterModule2(context.Context, *RegisterModule2Request) (*RegisterModule2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ Register2Server = (*UnimplementedRegister2Server)(nil)

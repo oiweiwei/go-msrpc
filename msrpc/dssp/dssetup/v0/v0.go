@@ -738,7 +738,7 @@ type xxx_DefaultDssetupClient struct {
 }
 
 func (o *xxx_DefaultDssetupClient) GetPrimaryDomainInformation(ctx context.Context, in *GetPrimaryDomainInformationRequest, opts ...dcerpc.CallOption) (*GetPrimaryDomainInformationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -898,13 +898,15 @@ type GetPrimaryDomainInformationRequest struct {
 	InfoLevel PrimaryDomainInfoLevel `idl:"name:InfoLevel" json:"info_level"`
 }
 
-func (o *GetPrimaryDomainInformationRequest) xxx_ToOp(ctx context.Context) *xxx_GetPrimaryDomainInformationOperation {
+func (o *GetPrimaryDomainInformationRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPrimaryDomainInformationOperation) *xxx_GetPrimaryDomainInformationOperation {
+	if op == nil {
+		op = &xxx_GetPrimaryDomainInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrimaryDomainInformationOperation{}
+		return op
 	}
-	return &xxx_GetPrimaryDomainInformationOperation{
-		InfoLevel: o.InfoLevel,
-	}
+	o.InfoLevel = op.InfoLevel
+	return op
 }
 
 func (o *GetPrimaryDomainInformationRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPrimaryDomainInformationOperation) {
@@ -914,7 +916,7 @@ func (o *GetPrimaryDomainInformationRequest) xxx_FromOp(ctx context.Context, op 
 	o.InfoLevel = op.InfoLevel
 }
 func (o *GetPrimaryDomainInformationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPrimaryDomainInformationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrimaryDomainInformationOperation{}
@@ -936,14 +938,16 @@ type GetPrimaryDomainInformationResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPrimaryDomainInformationResponse) xxx_ToOp(ctx context.Context) *xxx_GetPrimaryDomainInformationOperation {
+func (o *GetPrimaryDomainInformationResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPrimaryDomainInformationOperation) *xxx_GetPrimaryDomainInformationOperation {
+	if op == nil {
+		op = &xxx_GetPrimaryDomainInformationOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPrimaryDomainInformationOperation{}
+		return op
 	}
-	return &xxx_GetPrimaryDomainInformationOperation{
-		DomainInfo: o.DomainInfo,
-		Return:     o.Return,
-	}
+	o.DomainInfo = op.DomainInfo
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPrimaryDomainInformationResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPrimaryDomainInformationOperation) {
@@ -954,7 +958,7 @@ func (o *GetPrimaryDomainInformationResponse) xxx_FromOp(ctx context.Context, op
 	o.Return = op.Return
 }
 func (o *GetPrimaryDomainInformationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPrimaryDomainInformationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPrimaryDomainInformationOperation{}

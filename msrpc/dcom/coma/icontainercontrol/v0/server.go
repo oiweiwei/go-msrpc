@@ -82,26 +82,49 @@ func ContainerControlServerHandle(ctx context.Context, o ContainerControlServer,
 	}
 	switch opNum {
 	case 3: // CreateContainer
-		in := &CreateContainerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateContainerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateContainer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateContainerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateContainer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // ShutdownContainers
-		in := &ShutdownContainersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShutdownContainersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.ShutdownContainers(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShutdownContainersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.ShutdownContainers(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RefreshComponents
-		in := &RefreshComponentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RefreshComponentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.RefreshComponents(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RefreshComponentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.RefreshComponents(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IContainerControl
+type UnimplementedContainerControlServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedContainerControlServer) CreateContainer(context.Context, *CreateContainerRequest) (*CreateContainerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControlServer) ShutdownContainers(context.Context, *ShutdownContainersRequest) (*ShutdownContainersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedContainerControlServer) RefreshComponents(context.Context, *RefreshComponentsRequest) (*RefreshComponentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ContainerControlServer = (*UnimplementedContainerControlServer)(nil)

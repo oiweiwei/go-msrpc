@@ -47,3 +47,10 @@ func ContextServerHandle(ctx context.Context, o ContextServer, opNum int, r ndr.
 	}
 	return nil, nil
 }
+
+// Unimplemented IWbemContext
+type UnimplementedContextServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+var _ ContextServer = (*UnimplementedContextServer)(nil)

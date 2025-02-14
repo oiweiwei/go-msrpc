@@ -70,54 +70,97 @@ func AppHostCollectionSchemaServerHandle(ctx context.Context, o AppHostCollectio
 	}
 	switch opNum {
 	case 3: // AddElementNames
-		in := &GetAddElementNamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAddElementNamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAddElementNames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAddElementNamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAddElementNames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetAddElementSchema
-		in := &GetAddElementSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAddElementSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAddElementSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAddElementSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAddElementSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // RemoveElementSchema
-		in := &GetRemoveElementSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRemoveElementSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRemoveElementSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRemoveElementSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRemoveElementSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // ClearElementSchema
-		in := &GetClearElementSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetClearElementSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetClearElementSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetClearElementSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetClearElementSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // IsMergeAppend
-		in := &GetIsMergeAppendRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsMergeAppendOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsMergeAppend(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsMergeAppendRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsMergeAppend(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // DoesAllowDuplicates
-		in := &GetDoesAllowDuplicatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDoesAllowDuplicatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDoesAllowDuplicates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDoesAllowDuplicatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDoesAllowDuplicates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostCollectionSchema
+type UnimplementedAppHostCollectionSchemaServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostCollectionSchemaServer) GetAddElementNames(context.Context, *GetAddElementNamesRequest) (*GetAddElementNamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostCollectionSchemaServer) GetAddElementSchema(context.Context, *GetAddElementSchemaRequest) (*GetAddElementSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostCollectionSchemaServer) GetRemoveElementSchema(context.Context, *GetRemoveElementSchemaRequest) (*GetRemoveElementSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostCollectionSchemaServer) GetClearElementSchema(context.Context, *GetClearElementSchemaRequest) (*GetClearElementSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostCollectionSchemaServer) GetIsMergeAppend(context.Context, *GetIsMergeAppendRequest) (*GetIsMergeAppendResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostCollectionSchemaServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostCollectionSchemaServer) GetDoesAllowDuplicates(context.Context, *GetDoesAllowDuplicatesRequest) (*GetDoesAllowDuplicatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostCollectionSchemaServer = (*UnimplementedAppHostCollectionSchemaServer)(nil)

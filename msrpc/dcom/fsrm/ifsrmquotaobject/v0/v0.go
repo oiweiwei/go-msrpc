@@ -88,7 +88,7 @@ func (o *xxx_DefaultQuotaObjectClient) QuotaBase() ifsrmquotabase.QuotaBaseClien
 }
 
 func (o *xxx_DefaultQuotaObjectClient) GetPath(ctx context.Context, in *GetPathRequest, opts ...dcerpc.CallOption) (*GetPathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -108,7 +108,7 @@ func (o *xxx_DefaultQuotaObjectClient) GetPath(ctx context.Context, in *GetPathR
 }
 
 func (o *xxx_DefaultQuotaObjectClient) GetUserSID(ctx context.Context, in *GetUserSIDRequest, opts ...dcerpc.CallOption) (*GetUserSIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -128,7 +128,7 @@ func (o *xxx_DefaultQuotaObjectClient) GetUserSID(ctx context.Context, in *GetUs
 }
 
 func (o *xxx_DefaultQuotaObjectClient) GetUserAccount(ctx context.Context, in *GetUserAccountRequest, opts ...dcerpc.CallOption) (*GetUserAccountResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -148,7 +148,7 @@ func (o *xxx_DefaultQuotaObjectClient) GetUserAccount(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultQuotaObjectClient) GetSourceTemplateName(ctx context.Context, in *GetSourceTemplateNameRequest, opts ...dcerpc.CallOption) (*GetSourceTemplateNameResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -168,7 +168,7 @@ func (o *xxx_DefaultQuotaObjectClient) GetSourceTemplateName(ctx context.Context
 }
 
 func (o *xxx_DefaultQuotaObjectClient) GetMatchesSourceTemplate(ctx context.Context, in *GetMatchesSourceTemplateRequest, opts ...dcerpc.CallOption) (*GetMatchesSourceTemplateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -188,7 +188,7 @@ func (o *xxx_DefaultQuotaObjectClient) GetMatchesSourceTemplate(ctx context.Cont
 }
 
 func (o *xxx_DefaultQuotaObjectClient) ApplyTemplate(ctx context.Context, in *ApplyTemplateRequest, opts ...dcerpc.CallOption) (*ApplyTemplateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -419,13 +419,15 @@ type GetPathRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetPathRequest) xxx_ToOp(ctx context.Context) *xxx_GetPathOperation {
+func (o *GetPathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation) *xxx_GetPathOperation {
+	if op == nil {
+		op = &xxx_GetPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPathOperation{}
+		return op
 	}
-	return &xxx_GetPathOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperation) {
@@ -435,7 +437,7 @@ func (o *GetPathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperatio
 	o.This = op.This
 }
 func (o *GetPathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetPathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPathOperation{}
@@ -455,15 +457,17 @@ type GetPathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetPathResponse) xxx_ToOp(ctx context.Context) *xxx_GetPathOperation {
+func (o *GetPathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetPathOperation) *xxx_GetPathOperation {
+	if op == nil {
+		op = &xxx_GetPathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetPathOperation{}
+		return op
 	}
-	return &xxx_GetPathOperation{
-		That:   o.That,
-		Path:   o.Path,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Path = op.Path
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperation) {
@@ -475,7 +479,7 @@ func (o *GetPathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetPathOperati
 	o.Return = op.Return
 }
 func (o *GetPathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetPathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetPathOperation{}
@@ -656,13 +660,15 @@ type GetUserSIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetUserSIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetUserSIDOperation {
+func (o *GetUserSIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserSIDOperation) *xxx_GetUserSIDOperation {
+	if op == nil {
+		op = &xxx_GetUserSIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUserSIDOperation{}
+		return op
 	}
-	return &xxx_GetUserSIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetUserSIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserSIDOperation) {
@@ -672,7 +678,7 @@ func (o *GetUserSIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserSIDOp
 	o.This = op.This
 }
 func (o *GetUserSIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUserSIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUserSIDOperation{}
@@ -692,15 +698,17 @@ type GetUserSIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUserSIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetUserSIDOperation {
+func (o *GetUserSIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserSIDOperation) *xxx_GetUserSIDOperation {
+	if op == nil {
+		op = &xxx_GetUserSIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUserSIDOperation{}
+		return op
 	}
-	return &xxx_GetUserSIDOperation{
-		That:    o.That,
-		UserSID: o.UserSID,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.UserSID = op.UserSID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUserSIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserSIDOperation) {
@@ -712,7 +720,7 @@ func (o *GetUserSIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserSIDO
 	o.Return = op.Return
 }
 func (o *GetUserSIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUserSIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUserSIDOperation{}
@@ -893,13 +901,15 @@ type GetUserAccountRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetUserAccountRequest) xxx_ToOp(ctx context.Context) *xxx_GetUserAccountOperation {
+func (o *GetUserAccountRequest) xxx_ToOp(ctx context.Context, op *xxx_GetUserAccountOperation) *xxx_GetUserAccountOperation {
+	if op == nil {
+		op = &xxx_GetUserAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUserAccountOperation{}
+		return op
 	}
-	return &xxx_GetUserAccountOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetUserAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserAccountOperation) {
@@ -909,7 +919,7 @@ func (o *GetUserAccountRequest) xxx_FromOp(ctx context.Context, op *xxx_GetUserA
 	o.This = op.This
 }
 func (o *GetUserAccountRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUserAccountRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUserAccountOperation{}
@@ -929,15 +939,17 @@ type GetUserAccountResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUserAccountResponse) xxx_ToOp(ctx context.Context) *xxx_GetUserAccountOperation {
+func (o *GetUserAccountResponse) xxx_ToOp(ctx context.Context, op *xxx_GetUserAccountOperation) *xxx_GetUserAccountOperation {
+	if op == nil {
+		op = &xxx_GetUserAccountOperation{}
+	}
 	if o == nil {
-		return &xxx_GetUserAccountOperation{}
+		return op
 	}
-	return &xxx_GetUserAccountOperation{
-		That:        o.That,
-		UserAccount: o.UserAccount,
-		Return:      o.Return,
-	}
+	o.That = op.That
+	o.UserAccount = op.UserAccount
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUserAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUserAccountOperation) {
@@ -949,7 +961,7 @@ func (o *GetUserAccountResponse) xxx_FromOp(ctx context.Context, op *xxx_GetUser
 	o.Return = op.Return
 }
 func (o *GetUserAccountResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUserAccountResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUserAccountOperation{}
@@ -1132,13 +1144,15 @@ type GetSourceTemplateNameRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSourceTemplateNameRequest) xxx_ToOp(ctx context.Context) *xxx_GetSourceTemplateNameOperation {
+func (o *GetSourceTemplateNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSourceTemplateNameOperation) *xxx_GetSourceTemplateNameOperation {
+	if op == nil {
+		op = &xxx_GetSourceTemplateNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSourceTemplateNameOperation{}
+		return op
 	}
-	return &xxx_GetSourceTemplateNameOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSourceTemplateNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSourceTemplateNameOperation) {
@@ -1148,7 +1162,7 @@ func (o *GetSourceTemplateNameRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetSourceTemplateNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSourceTemplateNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSourceTemplateNameOperation{}
@@ -1168,15 +1182,17 @@ type GetSourceTemplateNameResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSourceTemplateNameResponse) xxx_ToOp(ctx context.Context) *xxx_GetSourceTemplateNameOperation {
+func (o *GetSourceTemplateNameResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSourceTemplateNameOperation) *xxx_GetSourceTemplateNameOperation {
+	if op == nil {
+		op = &xxx_GetSourceTemplateNameOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSourceTemplateNameOperation{}
+		return op
 	}
-	return &xxx_GetSourceTemplateNameOperation{
-		That:              o.That,
-		QuotaTemplateName: o.QuotaTemplateName,
-		Return:            o.Return,
-	}
+	o.That = op.That
+	o.QuotaTemplateName = op.QuotaTemplateName
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSourceTemplateNameResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSourceTemplateNameOperation) {
@@ -1188,7 +1204,7 @@ func (o *GetSourceTemplateNameResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetSourceTemplateNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSourceTemplateNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSourceTemplateNameOperation{}
@@ -1337,13 +1353,15 @@ type GetMatchesSourceTemplateRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetMatchesSourceTemplateRequest) xxx_ToOp(ctx context.Context) *xxx_GetMatchesSourceTemplateOperation {
+func (o *GetMatchesSourceTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMatchesSourceTemplateOperation) *xxx_GetMatchesSourceTemplateOperation {
+	if op == nil {
+		op = &xxx_GetMatchesSourceTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMatchesSourceTemplateOperation{}
+		return op
 	}
-	return &xxx_GetMatchesSourceTemplateOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetMatchesSourceTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMatchesSourceTemplateOperation) {
@@ -1353,7 +1371,7 @@ func (o *GetMatchesSourceTemplateRequest) xxx_FromOp(ctx context.Context, op *xx
 	o.This = op.This
 }
 func (o *GetMatchesSourceTemplateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMatchesSourceTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMatchesSourceTemplateOperation{}
@@ -1373,15 +1391,17 @@ type GetMatchesSourceTemplateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMatchesSourceTemplateResponse) xxx_ToOp(ctx context.Context) *xxx_GetMatchesSourceTemplateOperation {
+func (o *GetMatchesSourceTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMatchesSourceTemplateOperation) *xxx_GetMatchesSourceTemplateOperation {
+	if op == nil {
+		op = &xxx_GetMatchesSourceTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMatchesSourceTemplateOperation{}
+		return op
 	}
-	return &xxx_GetMatchesSourceTemplateOperation{
-		That:    o.That,
-		Matches: o.Matches,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Matches = op.Matches
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMatchesSourceTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMatchesSourceTemplateOperation) {
@@ -1393,7 +1413,7 @@ func (o *GetMatchesSourceTemplateResponse) xxx_FromOp(ctx context.Context, op *x
 	o.Return = op.Return
 }
 func (o *GetMatchesSourceTemplateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMatchesSourceTemplateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMatchesSourceTemplateOperation{}
@@ -1575,14 +1595,16 @@ type ApplyTemplateRequest struct {
 	QuotaTemplateName *oaut.String   `idl:"name:quotaTemplateName" json:"quota_template_name"`
 }
 
-func (o *ApplyTemplateRequest) xxx_ToOp(ctx context.Context) *xxx_ApplyTemplateOperation {
+func (o *ApplyTemplateRequest) xxx_ToOp(ctx context.Context, op *xxx_ApplyTemplateOperation) *xxx_ApplyTemplateOperation {
+	if op == nil {
+		op = &xxx_ApplyTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_ApplyTemplateOperation{}
+		return op
 	}
-	return &xxx_ApplyTemplateOperation{
-		This:              o.This,
-		QuotaTemplateName: o.QuotaTemplateName,
-	}
+	o.This = op.This
+	o.QuotaTemplateName = op.QuotaTemplateName
+	return op
 }
 
 func (o *ApplyTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_ApplyTemplateOperation) {
@@ -1593,7 +1615,7 @@ func (o *ApplyTemplateRequest) xxx_FromOp(ctx context.Context, op *xxx_ApplyTemp
 	o.QuotaTemplateName = op.QuotaTemplateName
 }
 func (o *ApplyTemplateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ApplyTemplateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ApplyTemplateOperation{}
@@ -1612,14 +1634,16 @@ type ApplyTemplateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ApplyTemplateResponse) xxx_ToOp(ctx context.Context) *xxx_ApplyTemplateOperation {
+func (o *ApplyTemplateResponse) xxx_ToOp(ctx context.Context, op *xxx_ApplyTemplateOperation) *xxx_ApplyTemplateOperation {
+	if op == nil {
+		op = &xxx_ApplyTemplateOperation{}
+	}
 	if o == nil {
-		return &xxx_ApplyTemplateOperation{}
+		return op
 	}
-	return &xxx_ApplyTemplateOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ApplyTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_ApplyTemplateOperation) {
@@ -1630,7 +1654,7 @@ func (o *ApplyTemplateResponse) xxx_FromOp(ctx context.Context, op *xxx_ApplyTem
 	o.Return = op.Return
 }
 func (o *ApplyTemplateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ApplyTemplateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ApplyTemplateOperation{}

@@ -522,7 +522,7 @@ func (o *xxx_DefaultClusterStorage3Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultClusterStorage3Client) GetUniqueIDs3(ctx context.Context, in *GetUniqueIDs3Request, opts ...dcerpc.CallOption) (*GetUniqueIDs3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -542,7 +542,7 @@ func (o *xxx_DefaultClusterStorage3Client) GetUniqueIDs3(ctx context.Context, in
 }
 
 func (o *xxx_DefaultClusterStorage3Client) CheckNetFTBindings3(ctx context.Context, in *CheckNetFTBindings3Request, opts ...dcerpc.CallOption) (*CheckNetFTBindings3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -562,7 +562,7 @@ func (o *xxx_DefaultClusterStorage3Client) CheckNetFTBindings3(ctx context.Conte
 }
 
 func (o *xxx_DefaultClusterStorage3Client) CSVTestSetup3(ctx context.Context, in *CSVTestSetup3Request, opts ...dcerpc.CallOption) (*CSVTestSetup3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -582,7 +582,7 @@ func (o *xxx_DefaultClusterStorage3Client) CSVTestSetup3(ctx context.Context, in
 }
 
 func (o *xxx_DefaultClusterStorage3Client) IsNodeClustered3(ctx context.Context, in *IsNodeClustered3Request, opts ...dcerpc.CallOption) (*IsNodeClustered3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -602,7 +602,7 @@ func (o *xxx_DefaultClusterStorage3Client) IsNodeClustered3(ctx context.Context,
 }
 
 func (o *xxx_DefaultClusterStorage3Client) CreateNewSMBShares3(ctx context.Context, in *CreateNewSMBShares3Request, opts ...dcerpc.CallOption) (*CreateNewSMBShares3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -622,7 +622,7 @@ func (o *xxx_DefaultClusterStorage3Client) CreateNewSMBShares3(ctx context.Conte
 }
 
 func (o *xxx_DefaultClusterStorage3Client) ConnectToNewSMBShares3(ctx context.Context, in *ConnectToNewSMBShares3Request, opts ...dcerpc.CallOption) (*ConnectToNewSMBShares3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -642,7 +642,7 @@ func (o *xxx_DefaultClusterStorage3Client) ConnectToNewSMBShares3(ctx context.Co
 }
 
 func (o *xxx_DefaultClusterStorage3Client) GetProperties3(ctx context.Context, in *GetProperties3Request, opts ...dcerpc.CallOption) (*GetProperties3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -662,7 +662,7 @@ func (o *xxx_DefaultClusterStorage3Client) GetProperties3(ctx context.Context, i
 }
 
 func (o *xxx_DefaultClusterStorage3Client) IsReadOnly3(ctx context.Context, in *IsReadOnly3Request, opts ...dcerpc.CallOption) (*IsReadOnly3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -682,7 +682,7 @@ func (o *xxx_DefaultClusterStorage3Client) IsReadOnly3(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultClusterStorage3Client) PRRegister3(ctx context.Context, in *PRRegister3Request, opts ...dcerpc.CallOption) (*PRRegister3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -702,7 +702,7 @@ func (o *xxx_DefaultClusterStorage3Client) PRRegister3(ctx context.Context, in *
 }
 
 func (o *xxx_DefaultClusterStorage3Client) FindKey3(ctx context.Context, in *FindKey3Request, opts ...dcerpc.CallOption) (*FindKey3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -722,7 +722,7 @@ func (o *xxx_DefaultClusterStorage3Client) FindKey3(ctx context.Context, in *Fin
 }
 
 func (o *xxx_DefaultClusterStorage3Client) PRPreempt3(ctx context.Context, in *PRPreempt3Request, opts ...dcerpc.CallOption) (*PRPreempt3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -742,7 +742,7 @@ func (o *xxx_DefaultClusterStorage3Client) PRPreempt3(ctx context.Context, in *P
 }
 
 func (o *xxx_DefaultClusterStorage3Client) PRReserve3(ctx context.Context, in *PRReserve3Request, opts ...dcerpc.CallOption) (*PRReserve3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -762,7 +762,7 @@ func (o *xxx_DefaultClusterStorage3Client) PRReserve3(ctx context.Context, in *P
 }
 
 func (o *xxx_DefaultClusterStorage3Client) IsPRPresent3(ctx context.Context, in *IsPRPresent3Request, opts ...dcerpc.CallOption) (*IsPRPresent3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -782,7 +782,7 @@ func (o *xxx_DefaultClusterStorage3Client) IsPRPresent3(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultClusterStorage3Client) PRRelease3(ctx context.Context, in *PRRelease3Request, opts ...dcerpc.CallOption) (*PRRelease3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -802,7 +802,7 @@ func (o *xxx_DefaultClusterStorage3Client) PRRelease3(ctx context.Context, in *P
 }
 
 func (o *xxx_DefaultClusterStorage3Client) PRClear3(ctx context.Context, in *PRClear3Request, opts ...dcerpc.CallOption) (*PRClear3Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -1187,14 +1187,16 @@ type GetUniqueIDs3Request struct {
 	DiskID *csvp.ClusterDiskID `idl:"name:DiskId" json:"disk_id"`
 }
 
-func (o *GetUniqueIDs3Request) xxx_ToOp(ctx context.Context) *xxx_GetUniqueIDs3Operation {
+func (o *GetUniqueIDs3Request) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDs3Operation) *xxx_GetUniqueIDs3Operation {
+	if op == nil {
+		op = &xxx_GetUniqueIDs3Operation{}
+	}
 	if o == nil {
-		return &xxx_GetUniqueIDs3Operation{}
+		return op
 	}
-	return &xxx_GetUniqueIDs3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	return op
 }
 
 func (o *GetUniqueIDs3Request) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueIDs3Operation) {
@@ -1205,7 +1207,7 @@ func (o *GetUniqueIDs3Request) xxx_FromOp(ctx context.Context, op *xxx_GetUnique
 	o.DiskID = op.DiskID
 }
 func (o *GetUniqueIDs3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetUniqueIDs3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUniqueIDs3Operation{}
@@ -1240,18 +1242,20 @@ type GetUniqueIDs3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetUniqueIDs3Response) xxx_ToOp(ctx context.Context) *xxx_GetUniqueIDs3Operation {
+func (o *GetUniqueIDs3Response) xxx_ToOp(ctx context.Context, op *xxx_GetUniqueIDs3Operation) *xxx_GetUniqueIDs3Operation {
+	if op == nil {
+		op = &xxx_GetUniqueIDs3Operation{}
+	}
 	if o == nil {
-		return &xxx_GetUniqueIDs3Operation{}
+		return op
 	}
-	return &xxx_GetUniqueIDs3Operation{
-		That:                   o.That,
-		DeviceIDHeader:         o.DeviceIDHeader,
-		DeviceIDHeaderLength:   o.DeviceIDHeaderLength,
-		DeviceDescriptor:       o.DeviceDescriptor,
-		DeviceDescriptorLength: o.DeviceDescriptorLength,
-		Return:                 o.Return,
-	}
+	o.That = op.That
+	o.DeviceIDHeader = op.DeviceIDHeader
+	o.DeviceIDHeaderLength = op.DeviceIDHeaderLength
+	o.DeviceDescriptor = op.DeviceDescriptor
+	o.DeviceDescriptorLength = op.DeviceDescriptorLength
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetUniqueIDs3Response) xxx_FromOp(ctx context.Context, op *xxx_GetUniqueIDs3Operation) {
@@ -1266,7 +1270,7 @@ func (o *GetUniqueIDs3Response) xxx_FromOp(ctx context.Context, op *xxx_GetUniqu
 	o.Return = op.Return
 }
 func (o *GetUniqueIDs3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetUniqueIDs3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetUniqueIDs3Operation{}
@@ -1402,13 +1406,15 @@ type CheckNetFTBindings3Request struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CheckNetFTBindings3Request) xxx_ToOp(ctx context.Context) *xxx_CheckNetFTBindings3Operation {
+func (o *CheckNetFTBindings3Request) xxx_ToOp(ctx context.Context, op *xxx_CheckNetFTBindings3Operation) *xxx_CheckNetFTBindings3Operation {
+	if op == nil {
+		op = &xxx_CheckNetFTBindings3Operation{}
+	}
 	if o == nil {
-		return &xxx_CheckNetFTBindings3Operation{}
+		return op
 	}
-	return &xxx_CheckNetFTBindings3Operation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CheckNetFTBindings3Request) xxx_FromOp(ctx context.Context, op *xxx_CheckNetFTBindings3Operation) {
@@ -1418,7 +1424,7 @@ func (o *CheckNetFTBindings3Request) xxx_FromOp(ctx context.Context, op *xxx_Che
 	o.This = op.This
 }
 func (o *CheckNetFTBindings3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CheckNetFTBindings3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CheckNetFTBindings3Operation{}
@@ -1437,14 +1443,16 @@ type CheckNetFTBindings3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CheckNetFTBindings3Response) xxx_ToOp(ctx context.Context) *xxx_CheckNetFTBindings3Operation {
+func (o *CheckNetFTBindings3Response) xxx_ToOp(ctx context.Context, op *xxx_CheckNetFTBindings3Operation) *xxx_CheckNetFTBindings3Operation {
+	if op == nil {
+		op = &xxx_CheckNetFTBindings3Operation{}
+	}
 	if o == nil {
-		return &xxx_CheckNetFTBindings3Operation{}
+		return op
 	}
-	return &xxx_CheckNetFTBindings3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CheckNetFTBindings3Response) xxx_FromOp(ctx context.Context, op *xxx_CheckNetFTBindings3Operation) {
@@ -1455,7 +1463,7 @@ func (o *CheckNetFTBindings3Response) xxx_FromOp(ctx context.Context, op *xxx_Ch
 	o.Return = op.Return
 }
 func (o *CheckNetFTBindings3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CheckNetFTBindings3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CheckNetFTBindings3Operation{}
@@ -1632,14 +1640,16 @@ type CSVTestSetup3Request struct {
 	TestShareGUID *dtyp.GUID `idl:"name:TestShareGuid" json:"test_share_guid"`
 }
 
-func (o *CSVTestSetup3Request) xxx_ToOp(ctx context.Context) *xxx_CSVTestSetup3Operation {
+func (o *CSVTestSetup3Request) xxx_ToOp(ctx context.Context, op *xxx_CSVTestSetup3Operation) *xxx_CSVTestSetup3Operation {
+	if op == nil {
+		op = &xxx_CSVTestSetup3Operation{}
+	}
 	if o == nil {
-		return &xxx_CSVTestSetup3Operation{}
+		return op
 	}
-	return &xxx_CSVTestSetup3Operation{
-		This:          o.This,
-		TestShareGUID: o.TestShareGUID,
-	}
+	o.This = op.This
+	o.TestShareGUID = op.TestShareGUID
+	return op
 }
 
 func (o *CSVTestSetup3Request) xxx_FromOp(ctx context.Context, op *xxx_CSVTestSetup3Operation) {
@@ -1650,7 +1660,7 @@ func (o *CSVTestSetup3Request) xxx_FromOp(ctx context.Context, op *xxx_CSVTestSe
 	o.TestShareGUID = op.TestShareGUID
 }
 func (o *CSVTestSetup3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CSVTestSetup3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CSVTestSetup3Operation{}
@@ -1669,14 +1679,16 @@ type CSVTestSetup3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CSVTestSetup3Response) xxx_ToOp(ctx context.Context) *xxx_CSVTestSetup3Operation {
+func (o *CSVTestSetup3Response) xxx_ToOp(ctx context.Context, op *xxx_CSVTestSetup3Operation) *xxx_CSVTestSetup3Operation {
+	if op == nil {
+		op = &xxx_CSVTestSetup3Operation{}
+	}
 	if o == nil {
-		return &xxx_CSVTestSetup3Operation{}
+		return op
 	}
-	return &xxx_CSVTestSetup3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *CSVTestSetup3Response) xxx_FromOp(ctx context.Context, op *xxx_CSVTestSetup3Operation) {
@@ -1687,7 +1699,7 @@ func (o *CSVTestSetup3Response) xxx_FromOp(ctx context.Context, op *xxx_CSVTestS
 	o.Return = op.Return
 }
 func (o *CSVTestSetup3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CSVTestSetup3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CSVTestSetup3Operation{}
@@ -1836,13 +1848,15 @@ type IsNodeClustered3Request struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *IsNodeClustered3Request) xxx_ToOp(ctx context.Context) *xxx_IsNodeClustered3Operation {
+func (o *IsNodeClustered3Request) xxx_ToOp(ctx context.Context, op *xxx_IsNodeClustered3Operation) *xxx_IsNodeClustered3Operation {
+	if op == nil {
+		op = &xxx_IsNodeClustered3Operation{}
+	}
 	if o == nil {
-		return &xxx_IsNodeClustered3Operation{}
+		return op
 	}
-	return &xxx_IsNodeClustered3Operation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *IsNodeClustered3Request) xxx_FromOp(ctx context.Context, op *xxx_IsNodeClustered3Operation) {
@@ -1852,7 +1866,7 @@ func (o *IsNodeClustered3Request) xxx_FromOp(ctx context.Context, op *xxx_IsNode
 	o.This = op.This
 }
 func (o *IsNodeClustered3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsNodeClustered3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsNodeClustered3Operation{}
@@ -1874,15 +1888,17 @@ type IsNodeClustered3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsNodeClustered3Response) xxx_ToOp(ctx context.Context) *xxx_IsNodeClustered3Operation {
+func (o *IsNodeClustered3Response) xxx_ToOp(ctx context.Context, op *xxx_IsNodeClustered3Operation) *xxx_IsNodeClustered3Operation {
+	if op == nil {
+		op = &xxx_IsNodeClustered3Operation{}
+	}
 	if o == nil {
-		return &xxx_IsNodeClustered3Operation{}
+		return op
 	}
-	return &xxx_IsNodeClustered3Operation{
-		That:          o.That,
-		IsClusterNode: o.IsClusterNode,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.IsClusterNode = op.IsClusterNode
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsNodeClustered3Response) xxx_FromOp(ctx context.Context, op *xxx_IsNodeClustered3Operation) {
@@ -1894,7 +1910,7 @@ func (o *IsNodeClustered3Response) xxx_FromOp(ctx context.Context, op *xxx_IsNod
 	o.Return = op.Return
 }
 func (o *IsNodeClustered3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsNodeClustered3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsNodeClustered3Operation{}
@@ -2136,13 +2152,15 @@ type CreateNewSMBShares3Request struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *CreateNewSMBShares3Request) xxx_ToOp(ctx context.Context) *xxx_CreateNewSMBShares3Operation {
+func (o *CreateNewSMBShares3Request) xxx_ToOp(ctx context.Context, op *xxx_CreateNewSMBShares3Operation) *xxx_CreateNewSMBShares3Operation {
+	if op == nil {
+		op = &xxx_CreateNewSMBShares3Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateNewSMBShares3Operation{}
+		return op
 	}
-	return &xxx_CreateNewSMBShares3Operation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *CreateNewSMBShares3Request) xxx_FromOp(ctx context.Context, op *xxx_CreateNewSMBShares3Operation) {
@@ -2152,7 +2170,7 @@ func (o *CreateNewSMBShares3Request) xxx_FromOp(ctx context.Context, op *xxx_Cre
 	o.This = op.This
 }
 func (o *CreateNewSMBShares3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CreateNewSMBShares3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateNewSMBShares3Operation{}
@@ -2177,16 +2195,18 @@ type CreateNewSMBShares3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CreateNewSMBShares3Response) xxx_ToOp(ctx context.Context) *xxx_CreateNewSMBShares3Operation {
+func (o *CreateNewSMBShares3Response) xxx_ToOp(ctx context.Context, op *xxx_CreateNewSMBShares3Operation) *xxx_CreateNewSMBShares3Operation {
+	if op == nil {
+		op = &xxx_CreateNewSMBShares3Operation{}
+	}
 	if o == nil {
-		return &xxx_CreateNewSMBShares3Operation{}
+		return op
 	}
-	return &xxx_CreateNewSMBShares3Operation{
-		That:          o.That,
-		SharePaths:    o.SharePaths,
-		NumberOfPaths: o.NumberOfPaths,
-		Return:        o.Return,
-	}
+	o.That = op.That
+	o.SharePaths = op.SharePaths
+	o.NumberOfPaths = op.NumberOfPaths
+	o.Return = op.Return
+	return op
 }
 
 func (o *CreateNewSMBShares3Response) xxx_FromOp(ctx context.Context, op *xxx_CreateNewSMBShares3Operation) {
@@ -2199,7 +2219,7 @@ func (o *CreateNewSMBShares3Response) xxx_FromOp(ctx context.Context, op *xxx_Cr
 	o.Return = op.Return
 }
 func (o *CreateNewSMBShares3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CreateNewSMBShares3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CreateNewSMBShares3Operation{}
@@ -2425,15 +2445,17 @@ type ConnectToNewSMBShares3Request struct {
 	NumberOfPaths uint32   `idl:"name:dwNumberOfPaths" json:"number_of_paths"`
 }
 
-func (o *ConnectToNewSMBShares3Request) xxx_ToOp(ctx context.Context) *xxx_ConnectToNewSMBShares3Operation {
+func (o *ConnectToNewSMBShares3Request) xxx_ToOp(ctx context.Context, op *xxx_ConnectToNewSMBShares3Operation) *xxx_ConnectToNewSMBShares3Operation {
+	if op == nil {
+		op = &xxx_ConnectToNewSMBShares3Operation{}
+	}
 	if o == nil {
-		return &xxx_ConnectToNewSMBShares3Operation{}
+		return op
 	}
-	return &xxx_ConnectToNewSMBShares3Operation{
-		This:          o.This,
-		SharePaths:    o.SharePaths,
-		NumberOfPaths: o.NumberOfPaths,
-	}
+	o.This = op.This
+	o.SharePaths = op.SharePaths
+	o.NumberOfPaths = op.NumberOfPaths
+	return op
 }
 
 func (o *ConnectToNewSMBShares3Request) xxx_FromOp(ctx context.Context, op *xxx_ConnectToNewSMBShares3Operation) {
@@ -2445,7 +2467,7 @@ func (o *ConnectToNewSMBShares3Request) xxx_FromOp(ctx context.Context, op *xxx_
 	o.NumberOfPaths = op.NumberOfPaths
 }
 func (o *ConnectToNewSMBShares3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ConnectToNewSMBShares3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConnectToNewSMBShares3Operation{}
@@ -2464,14 +2486,16 @@ type ConnectToNewSMBShares3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ConnectToNewSMBShares3Response) xxx_ToOp(ctx context.Context) *xxx_ConnectToNewSMBShares3Operation {
+func (o *ConnectToNewSMBShares3Response) xxx_ToOp(ctx context.Context, op *xxx_ConnectToNewSMBShares3Operation) *xxx_ConnectToNewSMBShares3Operation {
+	if op == nil {
+		op = &xxx_ConnectToNewSMBShares3Operation{}
+	}
 	if o == nil {
-		return &xxx_ConnectToNewSMBShares3Operation{}
+		return op
 	}
-	return &xxx_ConnectToNewSMBShares3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *ConnectToNewSMBShares3Response) xxx_FromOp(ctx context.Context, op *xxx_ConnectToNewSMBShares3Operation) {
@@ -2482,7 +2506,7 @@ func (o *ConnectToNewSMBShares3Response) xxx_FromOp(ctx context.Context, op *xxx
 	o.Return = op.Return
 }
 func (o *ConnectToNewSMBShares3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ConnectToNewSMBShares3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ConnectToNewSMBShares3Operation{}
@@ -2670,14 +2694,16 @@ type GetProperties3Request struct {
 	DiskID *csvp.ClusterDiskID `idl:"name:DiskId" json:"disk_id"`
 }
 
-func (o *GetProperties3Request) xxx_ToOp(ctx context.Context) *xxx_GetProperties3Operation {
+func (o *GetProperties3Request) xxx_ToOp(ctx context.Context, op *xxx_GetProperties3Operation) *xxx_GetProperties3Operation {
+	if op == nil {
+		op = &xxx_GetProperties3Operation{}
+	}
 	if o == nil {
-		return &xxx_GetProperties3Operation{}
+		return op
 	}
-	return &xxx_GetProperties3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	return op
 }
 
 func (o *GetProperties3Request) xxx_FromOp(ctx context.Context, op *xxx_GetProperties3Operation) {
@@ -2688,7 +2714,7 @@ func (o *GetProperties3Request) xxx_FromOp(ctx context.Context, op *xxx_GetPrope
 	o.DiskID = op.DiskID
 }
 func (o *GetProperties3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetProperties3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProperties3Operation{}
@@ -2709,15 +2735,17 @@ type GetProperties3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetProperties3Response) xxx_ToOp(ctx context.Context) *xxx_GetProperties3Operation {
+func (o *GetProperties3Response) xxx_ToOp(ctx context.Context, op *xxx_GetProperties3Operation) *xxx_GetProperties3Operation {
+	if op == nil {
+		op = &xxx_GetProperties3Operation{}
+	}
 	if o == nil {
-		return &xxx_GetProperties3Operation{}
+		return op
 	}
-	return &xxx_GetProperties3Operation{
-		That:           o.That,
-		DiskProperties: o.DiskProperties,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.DiskProperties = op.DiskProperties
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetProperties3Response) xxx_FromOp(ctx context.Context, op *xxx_GetProperties3Operation) {
@@ -2729,7 +2757,7 @@ func (o *GetProperties3Response) xxx_FromOp(ctx context.Context, op *xxx_GetProp
 	o.Return = op.Return
 }
 func (o *GetProperties3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetProperties3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetProperties3Operation{}
@@ -2903,14 +2931,16 @@ type IsReadOnly3Request struct {
 	DiskID *csvp.ClusterDiskID `idl:"name:DiskId" json:"disk_id"`
 }
 
-func (o *IsReadOnly3Request) xxx_ToOp(ctx context.Context) *xxx_IsReadOnly3Operation {
+func (o *IsReadOnly3Request) xxx_ToOp(ctx context.Context, op *xxx_IsReadOnly3Operation) *xxx_IsReadOnly3Operation {
+	if op == nil {
+		op = &xxx_IsReadOnly3Operation{}
+	}
 	if o == nil {
-		return &xxx_IsReadOnly3Operation{}
+		return op
 	}
-	return &xxx_IsReadOnly3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	return op
 }
 
 func (o *IsReadOnly3Request) xxx_FromOp(ctx context.Context, op *xxx_IsReadOnly3Operation) {
@@ -2921,7 +2951,7 @@ func (o *IsReadOnly3Request) xxx_FromOp(ctx context.Context, op *xxx_IsReadOnly3
 	o.DiskID = op.DiskID
 }
 func (o *IsReadOnly3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsReadOnly3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsReadOnly3Operation{}
@@ -2943,15 +2973,17 @@ type IsReadOnly3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsReadOnly3Response) xxx_ToOp(ctx context.Context) *xxx_IsReadOnly3Operation {
+func (o *IsReadOnly3Response) xxx_ToOp(ctx context.Context, op *xxx_IsReadOnly3Operation) *xxx_IsReadOnly3Operation {
+	if op == nil {
+		op = &xxx_IsReadOnly3Operation{}
+	}
 	if o == nil {
-		return &xxx_IsReadOnly3Operation{}
+		return op
 	}
-	return &xxx_IsReadOnly3Operation{
-		That:     o.That,
-		ReadOnly: o.ReadOnly,
-		Return:   o.Return,
-	}
+	o.That = op.That
+	o.ReadOnly = op.ReadOnly
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsReadOnly3Response) xxx_FromOp(ctx context.Context, op *xxx_IsReadOnly3Operation) {
@@ -2963,7 +2995,7 @@ func (o *IsReadOnly3Response) xxx_FromOp(ctx context.Context, op *xxx_IsReadOnly
 	o.Return = op.Return
 }
 func (o *IsReadOnly3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsReadOnly3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsReadOnly3Operation{}
@@ -3156,16 +3188,18 @@ type PRRegister3Request struct {
 	NewPRKey uint64 `idl:"name:NewPrKey" json:"new_pr_key"`
 }
 
-func (o *PRRegister3Request) xxx_ToOp(ctx context.Context) *xxx_PRRegister3Operation {
+func (o *PRRegister3Request) xxx_ToOp(ctx context.Context, op *xxx_PRRegister3Operation) *xxx_PRRegister3Operation {
+	if op == nil {
+		op = &xxx_PRRegister3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRRegister3Operation{}
+		return op
 	}
-	return &xxx_PRRegister3Operation{
-		This:     o.This,
-		DiskID:   o.DiskID,
-		OldPRKey: o.OldPRKey,
-		NewPRKey: o.NewPRKey,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.OldPRKey = op.OldPRKey
+	o.NewPRKey = op.NewPRKey
+	return op
 }
 
 func (o *PRRegister3Request) xxx_FromOp(ctx context.Context, op *xxx_PRRegister3Operation) {
@@ -3178,7 +3212,7 @@ func (o *PRRegister3Request) xxx_FromOp(ctx context.Context, op *xxx_PRRegister3
 	o.NewPRKey = op.NewPRKey
 }
 func (o *PRRegister3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PRRegister3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRRegister3Operation{}
@@ -3197,14 +3231,16 @@ type PRRegister3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PRRegister3Response) xxx_ToOp(ctx context.Context) *xxx_PRRegister3Operation {
+func (o *PRRegister3Response) xxx_ToOp(ctx context.Context, op *xxx_PRRegister3Operation) *xxx_PRRegister3Operation {
+	if op == nil {
+		op = &xxx_PRRegister3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRRegister3Operation{}
+		return op
 	}
-	return &xxx_PRRegister3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PRRegister3Response) xxx_FromOp(ctx context.Context, op *xxx_PRRegister3Operation) {
@@ -3215,7 +3251,7 @@ func (o *PRRegister3Response) xxx_FromOp(ctx context.Context, op *xxx_PRRegister
 	o.Return = op.Return
 }
 func (o *PRRegister3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PRRegister3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRRegister3Operation{}
@@ -3404,15 +3440,17 @@ type FindKey3Request struct {
 	Key uint64 `idl:"name:Key" json:"key"`
 }
 
-func (o *FindKey3Request) xxx_ToOp(ctx context.Context) *xxx_FindKey3Operation {
+func (o *FindKey3Request) xxx_ToOp(ctx context.Context, op *xxx_FindKey3Operation) *xxx_FindKey3Operation {
+	if op == nil {
+		op = &xxx_FindKey3Operation{}
+	}
 	if o == nil {
-		return &xxx_FindKey3Operation{}
+		return op
 	}
-	return &xxx_FindKey3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-		Key:    o.Key,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.Key = op.Key
+	return op
 }
 
 func (o *FindKey3Request) xxx_FromOp(ctx context.Context, op *xxx_FindKey3Operation) {
@@ -3424,7 +3462,7 @@ func (o *FindKey3Request) xxx_FromOp(ctx context.Context, op *xxx_FindKey3Operat
 	o.Key = op.Key
 }
 func (o *FindKey3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FindKey3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FindKey3Operation{}
@@ -3447,15 +3485,17 @@ type FindKey3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FindKey3Response) xxx_ToOp(ctx context.Context) *xxx_FindKey3Operation {
+func (o *FindKey3Response) xxx_ToOp(ctx context.Context, op *xxx_FindKey3Operation) *xxx_FindKey3Operation {
+	if op == nil {
+		op = &xxx_FindKey3Operation{}
+	}
 	if o == nil {
-		return &xxx_FindKey3Operation{}
+		return op
 	}
-	return &xxx_FindKey3Operation{
-		That:   o.That,
-		Found:  o.Found,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Found = op.Found
+	o.Return = op.Return
+	return op
 }
 
 func (o *FindKey3Response) xxx_FromOp(ctx context.Context, op *xxx_FindKey3Operation) {
@@ -3467,7 +3507,7 @@ func (o *FindKey3Response) xxx_FromOp(ctx context.Context, op *xxx_FindKey3Opera
 	o.Return = op.Return
 }
 func (o *FindKey3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FindKey3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FindKey3Operation{}
@@ -3657,16 +3697,18 @@ type PRPreempt3Request struct {
 	NewKey uint64 `idl:"name:NewKey" json:"new_key"`
 }
 
-func (o *PRPreempt3Request) xxx_ToOp(ctx context.Context) *xxx_PRPreempt3Operation {
+func (o *PRPreempt3Request) xxx_ToOp(ctx context.Context, op *xxx_PRPreempt3Operation) *xxx_PRPreempt3Operation {
+	if op == nil {
+		op = &xxx_PRPreempt3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRPreempt3Operation{}
+		return op
 	}
-	return &xxx_PRPreempt3Operation{
-		This:     o.This,
-		DiskID:   o.DiskID,
-		OwnerKey: o.OwnerKey,
-		NewKey:   o.NewKey,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.OwnerKey = op.OwnerKey
+	o.NewKey = op.NewKey
+	return op
 }
 
 func (o *PRPreempt3Request) xxx_FromOp(ctx context.Context, op *xxx_PRPreempt3Operation) {
@@ -3679,7 +3721,7 @@ func (o *PRPreempt3Request) xxx_FromOp(ctx context.Context, op *xxx_PRPreempt3Op
 	o.NewKey = op.NewKey
 }
 func (o *PRPreempt3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PRPreempt3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRPreempt3Operation{}
@@ -3698,14 +3740,16 @@ type PRPreempt3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PRPreempt3Response) xxx_ToOp(ctx context.Context) *xxx_PRPreempt3Operation {
+func (o *PRPreempt3Response) xxx_ToOp(ctx context.Context, op *xxx_PRPreempt3Operation) *xxx_PRPreempt3Operation {
+	if op == nil {
+		op = &xxx_PRPreempt3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRPreempt3Operation{}
+		return op
 	}
-	return &xxx_PRPreempt3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PRPreempt3Response) xxx_FromOp(ctx context.Context, op *xxx_PRPreempt3Operation) {
@@ -3716,7 +3760,7 @@ func (o *PRPreempt3Response) xxx_FromOp(ctx context.Context, op *xxx_PRPreempt3O
 	o.Return = op.Return
 }
 func (o *PRPreempt3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PRPreempt3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRPreempt3Operation{}
@@ -3890,15 +3934,17 @@ type PRReserve3Request struct {
 	Key uint64 `idl:"name:Key" json:"key"`
 }
 
-func (o *PRReserve3Request) xxx_ToOp(ctx context.Context) *xxx_PRReserve3Operation {
+func (o *PRReserve3Request) xxx_ToOp(ctx context.Context, op *xxx_PRReserve3Operation) *xxx_PRReserve3Operation {
+	if op == nil {
+		op = &xxx_PRReserve3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRReserve3Operation{}
+		return op
 	}
-	return &xxx_PRReserve3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-		Key:    o.Key,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.Key = op.Key
+	return op
 }
 
 func (o *PRReserve3Request) xxx_FromOp(ctx context.Context, op *xxx_PRReserve3Operation) {
@@ -3910,7 +3956,7 @@ func (o *PRReserve3Request) xxx_FromOp(ctx context.Context, op *xxx_PRReserve3Op
 	o.Key = op.Key
 }
 func (o *PRReserve3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PRReserve3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRReserve3Operation{}
@@ -3929,14 +3975,16 @@ type PRReserve3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PRReserve3Response) xxx_ToOp(ctx context.Context) *xxx_PRReserve3Operation {
+func (o *PRReserve3Response) xxx_ToOp(ctx context.Context, op *xxx_PRReserve3Operation) *xxx_PRReserve3Operation {
+	if op == nil {
+		op = &xxx_PRReserve3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRReserve3Operation{}
+		return op
 	}
-	return &xxx_PRReserve3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PRReserve3Response) xxx_FromOp(ctx context.Context, op *xxx_PRReserve3Operation) {
@@ -3947,7 +3995,7 @@ func (o *PRReserve3Response) xxx_FromOp(ctx context.Context, op *xxx_PRReserve3O
 	o.Return = op.Return
 }
 func (o *PRReserve3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PRReserve3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRReserve3Operation{}
@@ -4123,15 +4171,17 @@ type IsPRPresent3Request struct {
 	Key uint64 `idl:"name:Key" json:"key"`
 }
 
-func (o *IsPRPresent3Request) xxx_ToOp(ctx context.Context) *xxx_IsPRPresent3Operation {
+func (o *IsPRPresent3Request) xxx_ToOp(ctx context.Context, op *xxx_IsPRPresent3Operation) *xxx_IsPRPresent3Operation {
+	if op == nil {
+		op = &xxx_IsPRPresent3Operation{}
+	}
 	if o == nil {
-		return &xxx_IsPRPresent3Operation{}
+		return op
 	}
-	return &xxx_IsPRPresent3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-		Key:    o.Key,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.Key = op.Key
+	return op
 }
 
 func (o *IsPRPresent3Request) xxx_FromOp(ctx context.Context, op *xxx_IsPRPresent3Operation) {
@@ -4143,7 +4193,7 @@ func (o *IsPRPresent3Request) xxx_FromOp(ctx context.Context, op *xxx_IsPRPresen
 	o.Key = op.Key
 }
 func (o *IsPRPresent3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *IsPRPresent3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsPRPresent3Operation{}
@@ -4162,14 +4212,16 @@ type IsPRPresent3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *IsPRPresent3Response) xxx_ToOp(ctx context.Context) *xxx_IsPRPresent3Operation {
+func (o *IsPRPresent3Response) xxx_ToOp(ctx context.Context, op *xxx_IsPRPresent3Operation) *xxx_IsPRPresent3Operation {
+	if op == nil {
+		op = &xxx_IsPRPresent3Operation{}
+	}
 	if o == nil {
-		return &xxx_IsPRPresent3Operation{}
+		return op
 	}
-	return &xxx_IsPRPresent3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *IsPRPresent3Response) xxx_FromOp(ctx context.Context, op *xxx_IsPRPresent3Operation) {
@@ -4180,7 +4232,7 @@ func (o *IsPRPresent3Response) xxx_FromOp(ctx context.Context, op *xxx_IsPRPrese
 	o.Return = op.Return
 }
 func (o *IsPRPresent3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *IsPRPresent3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_IsPRPresent3Operation{}
@@ -4354,15 +4406,17 @@ type PRRelease3Request struct {
 	Key uint64 `idl:"name:Key" json:"key"`
 }
 
-func (o *PRRelease3Request) xxx_ToOp(ctx context.Context) *xxx_PRRelease3Operation {
+func (o *PRRelease3Request) xxx_ToOp(ctx context.Context, op *xxx_PRRelease3Operation) *xxx_PRRelease3Operation {
+	if op == nil {
+		op = &xxx_PRRelease3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRRelease3Operation{}
+		return op
 	}
-	return &xxx_PRRelease3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-		Key:    o.Key,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.Key = op.Key
+	return op
 }
 
 func (o *PRRelease3Request) xxx_FromOp(ctx context.Context, op *xxx_PRRelease3Operation) {
@@ -4374,7 +4428,7 @@ func (o *PRRelease3Request) xxx_FromOp(ctx context.Context, op *xxx_PRRelease3Op
 	o.Key = op.Key
 }
 func (o *PRRelease3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PRRelease3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRRelease3Operation{}
@@ -4393,14 +4447,16 @@ type PRRelease3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PRRelease3Response) xxx_ToOp(ctx context.Context) *xxx_PRRelease3Operation {
+func (o *PRRelease3Response) xxx_ToOp(ctx context.Context, op *xxx_PRRelease3Operation) *xxx_PRRelease3Operation {
+	if op == nil {
+		op = &xxx_PRRelease3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRRelease3Operation{}
+		return op
 	}
-	return &xxx_PRRelease3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PRRelease3Response) xxx_FromOp(ctx context.Context, op *xxx_PRRelease3Operation) {
@@ -4411,7 +4467,7 @@ func (o *PRRelease3Response) xxx_FromOp(ctx context.Context, op *xxx_PRRelease3O
 	o.Return = op.Return
 }
 func (o *PRRelease3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PRRelease3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRRelease3Operation{}
@@ -4585,15 +4641,17 @@ type PRClear3Request struct {
 	Key uint64 `idl:"name:Key" json:"key"`
 }
 
-func (o *PRClear3Request) xxx_ToOp(ctx context.Context) *xxx_PRClear3Operation {
+func (o *PRClear3Request) xxx_ToOp(ctx context.Context, op *xxx_PRClear3Operation) *xxx_PRClear3Operation {
+	if op == nil {
+		op = &xxx_PRClear3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRClear3Operation{}
+		return op
 	}
-	return &xxx_PRClear3Operation{
-		This:   o.This,
-		DiskID: o.DiskID,
-		Key:    o.Key,
-	}
+	o.This = op.This
+	o.DiskID = op.DiskID
+	o.Key = op.Key
+	return op
 }
 
 func (o *PRClear3Request) xxx_FromOp(ctx context.Context, op *xxx_PRClear3Operation) {
@@ -4605,7 +4663,7 @@ func (o *PRClear3Request) xxx_FromOp(ctx context.Context, op *xxx_PRClear3Operat
 	o.Key = op.Key
 }
 func (o *PRClear3Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *PRClear3Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRClear3Operation{}
@@ -4624,14 +4682,16 @@ type PRClear3Response struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *PRClear3Response) xxx_ToOp(ctx context.Context) *xxx_PRClear3Operation {
+func (o *PRClear3Response) xxx_ToOp(ctx context.Context, op *xxx_PRClear3Operation) *xxx_PRClear3Operation {
+	if op == nil {
+		op = &xxx_PRClear3Operation{}
+	}
 	if o == nil {
-		return &xxx_PRClear3Operation{}
+		return op
 	}
-	return &xxx_PRClear3Operation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *PRClear3Response) xxx_FromOp(ctx context.Context, op *xxx_PRClear3Operation) {
@@ -4642,7 +4702,7 @@ func (o *PRClear3Response) xxx_FromOp(ctx context.Context, op *xxx_PRClear3Opera
 	o.Return = op.Return
 }
 func (o *PRClear3Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *PRClear3Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_PRClear3Operation{}

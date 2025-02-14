@@ -82,7 +82,7 @@ func (o *xxx_DefaultEventSubscription2Client) EventSubscription() ieventsubscrip
 }
 
 func (o *xxx_DefaultEventSubscription2Client) GetFilterCriteria(ctx context.Context, in *GetFilterCriteriaRequest, opts ...dcerpc.CallOption) (*GetFilterCriteriaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -102,7 +102,7 @@ func (o *xxx_DefaultEventSubscription2Client) GetFilterCriteria(ctx context.Cont
 }
 
 func (o *xxx_DefaultEventSubscription2Client) SetFilterCriteria(ctx context.Context, in *SetFilterCriteriaRequest, opts ...dcerpc.CallOption) (*SetFilterCriteriaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -122,7 +122,7 @@ func (o *xxx_DefaultEventSubscription2Client) SetFilterCriteria(ctx context.Cont
 }
 
 func (o *xxx_DefaultEventSubscription2Client) GetSubscriberMoniker(ctx context.Context, in *GetSubscriberMonikerRequest, opts ...dcerpc.CallOption) (*GetSubscriberMonikerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -142,7 +142,7 @@ func (o *xxx_DefaultEventSubscription2Client) GetSubscriberMoniker(ctx context.C
 }
 
 func (o *xxx_DefaultEventSubscription2Client) SetSubscriberMoniker(ctx context.Context, in *SetSubscriberMonikerRequest, opts ...dcerpc.CallOption) (*SetSubscriberMonikerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -375,13 +375,15 @@ type GetFilterCriteriaRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetFilterCriteriaRequest) xxx_ToOp(ctx context.Context) *xxx_GetFilterCriteriaOperation {
+func (o *GetFilterCriteriaRequest) xxx_ToOp(ctx context.Context, op *xxx_GetFilterCriteriaOperation) *xxx_GetFilterCriteriaOperation {
+	if op == nil {
+		op = &xxx_GetFilterCriteriaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFilterCriteriaOperation{}
+		return op
 	}
-	return &xxx_GetFilterCriteriaOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetFilterCriteriaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFilterCriteriaOperation) {
@@ -391,7 +393,7 @@ func (o *GetFilterCriteriaRequest) xxx_FromOp(ctx context.Context, op *xxx_GetFi
 	o.This = op.This
 }
 func (o *GetFilterCriteriaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetFilterCriteriaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFilterCriteriaOperation{}
@@ -411,15 +413,17 @@ type GetFilterCriteriaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetFilterCriteriaResponse) xxx_ToOp(ctx context.Context) *xxx_GetFilterCriteriaOperation {
+func (o *GetFilterCriteriaResponse) xxx_ToOp(ctx context.Context, op *xxx_GetFilterCriteriaOperation) *xxx_GetFilterCriteriaOperation {
+	if op == nil {
+		op = &xxx_GetFilterCriteriaOperation{}
+	}
 	if o == nil {
-		return &xxx_GetFilterCriteriaOperation{}
+		return op
 	}
-	return &xxx_GetFilterCriteriaOperation{
-		That:           o.That,
-		FilterCriteria: o.FilterCriteria,
-		Return:         o.Return,
-	}
+	o.That = op.That
+	o.FilterCriteria = op.FilterCriteria
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetFilterCriteriaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetFilterCriteriaOperation) {
@@ -431,7 +435,7 @@ func (o *GetFilterCriteriaResponse) xxx_FromOp(ctx context.Context, op *xxx_GetF
 	o.Return = op.Return
 }
 func (o *GetFilterCriteriaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetFilterCriteriaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetFilterCriteriaOperation{}
@@ -615,14 +619,16 @@ type SetFilterCriteriaRequest struct {
 	FilterCriteria *oaut.String   `idl:"name:bstrFilterCriteria" json:"filter_criteria"`
 }
 
-func (o *SetFilterCriteriaRequest) xxx_ToOp(ctx context.Context) *xxx_SetFilterCriteriaOperation {
+func (o *SetFilterCriteriaRequest) xxx_ToOp(ctx context.Context, op *xxx_SetFilterCriteriaOperation) *xxx_SetFilterCriteriaOperation {
+	if op == nil {
+		op = &xxx_SetFilterCriteriaOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFilterCriteriaOperation{}
+		return op
 	}
-	return &xxx_SetFilterCriteriaOperation{
-		This:           o.This,
-		FilterCriteria: o.FilterCriteria,
-	}
+	o.This = op.This
+	o.FilterCriteria = op.FilterCriteria
+	return op
 }
 
 func (o *SetFilterCriteriaRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFilterCriteriaOperation) {
@@ -633,7 +639,7 @@ func (o *SetFilterCriteriaRequest) xxx_FromOp(ctx context.Context, op *xxx_SetFi
 	o.FilterCriteria = op.FilterCriteria
 }
 func (o *SetFilterCriteriaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetFilterCriteriaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFilterCriteriaOperation{}
@@ -652,14 +658,16 @@ type SetFilterCriteriaResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetFilterCriteriaResponse) xxx_ToOp(ctx context.Context) *xxx_SetFilterCriteriaOperation {
+func (o *SetFilterCriteriaResponse) xxx_ToOp(ctx context.Context, op *xxx_SetFilterCriteriaOperation) *xxx_SetFilterCriteriaOperation {
+	if op == nil {
+		op = &xxx_SetFilterCriteriaOperation{}
+	}
 	if o == nil {
-		return &xxx_SetFilterCriteriaOperation{}
+		return op
 	}
-	return &xxx_SetFilterCriteriaOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetFilterCriteriaResponse) xxx_FromOp(ctx context.Context, op *xxx_SetFilterCriteriaOperation) {
@@ -670,7 +678,7 @@ func (o *SetFilterCriteriaResponse) xxx_FromOp(ctx context.Context, op *xxx_SetF
 	o.Return = op.Return
 }
 func (o *SetFilterCriteriaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetFilterCriteriaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetFilterCriteriaOperation{}
@@ -853,13 +861,15 @@ type GetSubscriberMonikerRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetSubscriberMonikerRequest) xxx_ToOp(ctx context.Context) *xxx_GetSubscriberMonikerOperation {
+func (o *GetSubscriberMonikerRequest) xxx_ToOp(ctx context.Context, op *xxx_GetSubscriberMonikerOperation) *xxx_GetSubscriberMonikerOperation {
+	if op == nil {
+		op = &xxx_GetSubscriberMonikerOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubscriberMonikerOperation{}
+		return op
 	}
-	return &xxx_GetSubscriberMonikerOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetSubscriberMonikerRequest) xxx_FromOp(ctx context.Context, op *xxx_GetSubscriberMonikerOperation) {
@@ -869,7 +879,7 @@ func (o *GetSubscriberMonikerRequest) xxx_FromOp(ctx context.Context, op *xxx_Ge
 	o.This = op.This
 }
 func (o *GetSubscriberMonikerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetSubscriberMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubscriberMonikerOperation{}
@@ -889,15 +899,17 @@ type GetSubscriberMonikerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetSubscriberMonikerResponse) xxx_ToOp(ctx context.Context) *xxx_GetSubscriberMonikerOperation {
+func (o *GetSubscriberMonikerResponse) xxx_ToOp(ctx context.Context, op *xxx_GetSubscriberMonikerOperation) *xxx_GetSubscriberMonikerOperation {
+	if op == nil {
+		op = &xxx_GetSubscriberMonikerOperation{}
+	}
 	if o == nil {
-		return &xxx_GetSubscriberMonikerOperation{}
+		return op
 	}
-	return &xxx_GetSubscriberMonikerOperation{
-		That:    o.That,
-		Moniker: o.Moniker,
-		Return:  o.Return,
-	}
+	o.That = op.That
+	o.Moniker = op.Moniker
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetSubscriberMonikerResponse) xxx_FromOp(ctx context.Context, op *xxx_GetSubscriberMonikerOperation) {
@@ -909,7 +921,7 @@ func (o *GetSubscriberMonikerResponse) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.Return = op.Return
 }
 func (o *GetSubscriberMonikerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetSubscriberMonikerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetSubscriberMonikerOperation{}
@@ -1093,14 +1105,16 @@ type SetSubscriberMonikerRequest struct {
 	Moniker *oaut.String   `idl:"name:bstrMoniker" json:"moniker"`
 }
 
-func (o *SetSubscriberMonikerRequest) xxx_ToOp(ctx context.Context) *xxx_SetSubscriberMonikerOperation {
+func (o *SetSubscriberMonikerRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSubscriberMonikerOperation) *xxx_SetSubscriberMonikerOperation {
+	if op == nil {
+		op = &xxx_SetSubscriberMonikerOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubscriberMonikerOperation{}
+		return op
 	}
-	return &xxx_SetSubscriberMonikerOperation{
-		This:    o.This,
-		Moniker: o.Moniker,
-	}
+	o.This = op.This
+	o.Moniker = op.Moniker
+	return op
 }
 
 func (o *SetSubscriberMonikerRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSubscriberMonikerOperation) {
@@ -1111,7 +1125,7 @@ func (o *SetSubscriberMonikerRequest) xxx_FromOp(ctx context.Context, op *xxx_Se
 	o.Moniker = op.Moniker
 }
 func (o *SetSubscriberMonikerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetSubscriberMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubscriberMonikerOperation{}
@@ -1130,14 +1144,16 @@ type SetSubscriberMonikerResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetSubscriberMonikerResponse) xxx_ToOp(ctx context.Context) *xxx_SetSubscriberMonikerOperation {
+func (o *SetSubscriberMonikerResponse) xxx_ToOp(ctx context.Context, op *xxx_SetSubscriberMonikerOperation) *xxx_SetSubscriberMonikerOperation {
+	if op == nil {
+		op = &xxx_SetSubscriberMonikerOperation{}
+	}
 	if o == nil {
-		return &xxx_SetSubscriberMonikerOperation{}
+		return op
 	}
-	return &xxx_SetSubscriberMonikerOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetSubscriberMonikerResponse) xxx_FromOp(ctx context.Context, op *xxx_SetSubscriberMonikerOperation) {
@@ -1148,7 +1164,7 @@ func (o *SetSubscriberMonikerResponse) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.Return = op.Return
 }
 func (o *SetSubscriberMonikerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetSubscriberMonikerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetSubscriberMonikerOperation{}

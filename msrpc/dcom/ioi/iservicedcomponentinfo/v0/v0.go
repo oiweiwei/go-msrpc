@@ -77,7 +77,7 @@ func (o *xxx_DefaultServicedComponentInfoClient) Unknown() iunknown.UnknownClien
 }
 
 func (o *xxx_DefaultServicedComponentInfoClient) GetComponentInfo(ctx context.Context, in *GetComponentInfoRequest, opts ...dcerpc.CallOption) (*GetComponentInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -351,14 +351,16 @@ type GetComponentInfoRequest struct {
 	InfoMask int32 `idl:"name:infoMask" json:"info_mask"`
 }
 
-func (o *GetComponentInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetComponentInfoOperation {
+func (o *GetComponentInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetComponentInfoOperation) *xxx_GetComponentInfoOperation {
+	if op == nil {
+		op = &xxx_GetComponentInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentInfoOperation{}
+		return op
 	}
-	return &xxx_GetComponentInfoOperation{
-		This:     o.This,
-		InfoMask: o.InfoMask,
-	}
+	o.This = op.This
+	o.InfoMask = op.InfoMask
+	return op
 }
 
 func (o *GetComponentInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetComponentInfoOperation) {
@@ -369,7 +371,7 @@ func (o *GetComponentInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCom
 	o.InfoMask = op.InfoMask
 }
 func (o *GetComponentInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetComponentInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentInfoOperation{}
@@ -407,16 +409,18 @@ type GetComponentInfoResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetComponentInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetComponentInfoOperation {
+func (o *GetComponentInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetComponentInfoOperation) *xxx_GetComponentInfoOperation {
+	if op == nil {
+		op = &xxx_GetComponentInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetComponentInfoOperation{}
+		return op
 	}
-	return &xxx_GetComponentInfoOperation{
-		That:      o.That,
-		InfoMask:  o.InfoMask,
-		InfoArray: o.InfoArray,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.InfoMask = op.InfoMask
+	o.InfoArray = op.InfoArray
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetComponentInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetComponentInfoOperation) {
@@ -429,7 +433,7 @@ func (o *GetComponentInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCo
 	o.Return = op.Return
 }
 func (o *GetComponentInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetComponentInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetComponentInfoOperation{}

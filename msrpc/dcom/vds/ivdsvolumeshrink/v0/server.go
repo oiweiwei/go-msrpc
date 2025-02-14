@@ -61,19 +61,37 @@ func VolumeShrinkServerHandle(ctx context.Context, o VolumeShrinkServer, opNum i
 	}
 	switch opNum {
 	case 3: // QueryMaxReclaimableBytes
-		in := &QueryMaxReclaimableBytesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryMaxReclaimableBytesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryMaxReclaimableBytes(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryMaxReclaimableBytesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryMaxReclaimableBytes(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // Shrink
-		in := &ShrinkRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ShrinkOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Shrink(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ShrinkRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Shrink(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolumeShrink
+type UnimplementedVolumeShrinkServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeShrinkServer) QueryMaxReclaimableBytes(context.Context, *QueryMaxReclaimableBytesRequest) (*QueryMaxReclaimableBytesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeShrinkServer) Shrink(context.Context, *ShrinkRequest) (*ShrinkResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeShrinkServer = (*UnimplementedVolumeShrinkServer)(nil)

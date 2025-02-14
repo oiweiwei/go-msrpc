@@ -61,33 +61,61 @@ func AppHostMappingExtensionServerHandle(ctx context.Context, o AppHostMappingEx
 	}
 	switch opNum {
 	case 3: // GetSiteNameFromSiteId
-		in := &GetSiteNameFromSiteIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSiteNameFromSiteIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSiteNameFromSiteID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSiteNameFromSiteIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSiteNameFromSiteID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // GetSiteIdFromSiteName
-		in := &GetSiteIDFromSiteNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSiteIDFromSiteNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSiteIDFromSiteName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSiteIDFromSiteNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSiteIDFromSiteName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetSiteElementFromSiteId
-		in := &GetSiteElementFromSiteIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSiteElementFromSiteIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSiteElementFromSiteID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSiteElementFromSiteIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSiteElementFromSiteID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // MapPath
-		in := &MapPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_MapPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.MapPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &MapPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.MapPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostMappingExtension
+type UnimplementedAppHostMappingExtensionServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostMappingExtensionServer) GetSiteNameFromSiteID(context.Context, *GetSiteNameFromSiteIDRequest) (*GetSiteNameFromSiteIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMappingExtensionServer) GetSiteIDFromSiteName(context.Context, *GetSiteIDFromSiteNameRequest) (*GetSiteIDFromSiteNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMappingExtensionServer) GetSiteElementFromSiteID(context.Context, *GetSiteElementFromSiteIDRequest) (*GetSiteElementFromSiteIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMappingExtensionServer) MapPath(context.Context, *MapPathRequest) (*MapPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostMappingExtensionServer = (*UnimplementedAppHostMappingExtensionServer)(nil)

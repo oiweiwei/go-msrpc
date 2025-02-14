@@ -91,75 +91,95 @@ func EventClassServerHandle(ctx context.Context, o EventClassServer, opNum int, 
 	}
 	switch opNum {
 	case 7: // EventClassID
-		in := &GetEventClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // EventClassID
-		in := &SetEventClassIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // EventClassName
-		in := &GetEventClassNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventClassNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventClassName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventClassNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventClassName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // EventClassName
-		in := &SetEventClassNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventClassNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventClassName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventClassNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventClassName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // OwnerSID
-		in := &GetOwnerSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOwnerSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOwnerSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOwnerSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOwnerSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // OwnerSID
-		in := &SetOwnerSIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOwnerSIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOwnerSID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOwnerSIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOwnerSID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // FiringInterfaceID
-		in := &GetFiringInterfaceIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFiringInterfaceIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFiringInterfaceID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFiringInterfaceIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFiringInterfaceID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // FiringInterfaceID
-		in := &SetFiringInterfaceIDRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFiringInterfaceIDOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFiringInterfaceID(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFiringInterfaceIDRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFiringInterfaceID(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Description
-		in := &SetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Opnum17NotUsedOnWire
 		// Opnum17NotUsedOnWire
 		return nil, nil
@@ -167,19 +187,67 @@ func EventClassServerHandle(ctx context.Context, o EventClassServer, opNum int, 
 		// Opnum18NotUsedOnWire
 		return nil, nil
 	case 19: // TypeLib
-		in := &GetTypeLibRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTypeLibOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTypeLib(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTypeLibRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTypeLib(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // TypeLib
-		in := &SetTypeLibRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTypeLibOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTypeLib(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTypeLibRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTypeLib(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IEventClass
+type UnimplementedEventClassServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedEventClassServer) GetEventClassID(context.Context, *GetEventClassIDRequest) (*GetEventClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) SetEventClassID(context.Context, *SetEventClassIDRequest) (*SetEventClassIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) GetEventClassName(context.Context, *GetEventClassNameRequest) (*GetEventClassNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) SetEventClassName(context.Context, *SetEventClassNameRequest) (*SetEventClassNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) GetOwnerSID(context.Context, *GetOwnerSIDRequest) (*GetOwnerSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) SetOwnerSID(context.Context, *SetOwnerSIDRequest) (*SetOwnerSIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) GetFiringInterfaceID(context.Context, *GetFiringInterfaceIDRequest) (*GetFiringInterfaceIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) SetFiringInterfaceID(context.Context, *SetFiringInterfaceIDRequest) (*SetFiringInterfaceIDResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) SetDescription(context.Context, *SetDescriptionRequest) (*SetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) GetTypeLib(context.Context, *GetTypeLibRequest) (*GetTypeLibResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedEventClassServer) SetTypeLib(context.Context, *SetTypeLibRequest) (*SetTypeLibResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ EventClassServer = (*UnimplementedEventClassServer)(nil)

@@ -93,7 +93,7 @@ func (o *xxx_DefaultImport2Client) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultImport2Client) SetPartition(ctx context.Context, in *SetPartitionRequest, opts ...dcerpc.CallOption) (*SetPartitionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -321,14 +321,16 @@ type SetPartitionRequest struct {
 	PartitionID *dtyp.GUID `idl:"name:pPartitionIdentifier" json:"partition_id"`
 }
 
-func (o *SetPartitionRequest) xxx_ToOp(ctx context.Context) *xxx_SetPartitionOperation {
+func (o *SetPartitionRequest) xxx_ToOp(ctx context.Context, op *xxx_SetPartitionOperation) *xxx_SetPartitionOperation {
+	if op == nil {
+		op = &xxx_SetPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPartitionOperation{}
+		return op
 	}
-	return &xxx_SetPartitionOperation{
-		This:        o.This,
-		PartitionID: o.PartitionID,
-	}
+	o.This = op.This
+	o.PartitionID = op.PartitionID
+	return op
 }
 
 func (o *SetPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPartitionOperation) {
@@ -339,7 +341,7 @@ func (o *SetPartitionRequest) xxx_FromOp(ctx context.Context, op *xxx_SetPartiti
 	o.PartitionID = op.PartitionID
 }
 func (o *SetPartitionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetPartitionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPartitionOperation{}
@@ -358,14 +360,16 @@ type SetPartitionResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetPartitionResponse) xxx_ToOp(ctx context.Context) *xxx_SetPartitionOperation {
+func (o *SetPartitionResponse) xxx_ToOp(ctx context.Context, op *xxx_SetPartitionOperation) *xxx_SetPartitionOperation {
+	if op == nil {
+		op = &xxx_SetPartitionOperation{}
+	}
 	if o == nil {
-		return &xxx_SetPartitionOperation{}
+		return op
 	}
-	return &xxx_SetPartitionOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *SetPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPartitionOperation) {
@@ -376,7 +380,7 @@ func (o *SetPartitionResponse) xxx_FromOp(ctx context.Context, op *xxx_SetPartit
 	o.Return = op.Return
 }
 func (o *SetPartitionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetPartitionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetPartitionOperation{}

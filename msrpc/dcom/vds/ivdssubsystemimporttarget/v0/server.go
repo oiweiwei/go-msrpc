@@ -67,19 +67,37 @@ func SubSystemImportTargetServerHandle(ctx context.Context, o SubSystemImportTar
 	}
 	switch opNum {
 	case 3: // GetImportTarget
-		in := &GetImportTargetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetImportTargetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetImportTarget(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetImportTargetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetImportTarget(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SetImportTarget
-		in := &SetImportTargetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetImportTargetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetImportTarget(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetImportTargetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetImportTarget(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsSubSystemImportTarget
+type UnimplementedSubSystemImportTargetServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedSubSystemImportTargetServer) GetImportTarget(context.Context, *GetImportTargetRequest) (*GetImportTargetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedSubSystemImportTargetServer) SetImportTarget(context.Context, *SetImportTargetRequest) (*SetImportTargetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ SubSystemImportTargetServer = (*UnimplementedSubSystemImportTargetServer)(nil)

@@ -70,54 +70,97 @@ func AppHostElementSchemaServerHandle(ctx context.Context, o AppHostElementSchem
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // DoesAllowUnschematizedProperties
-		in := &GetDoesAllowUnschematizedPropertiesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDoesAllowUnschematizedPropertiesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDoesAllowUnschematizedProperties(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDoesAllowUnschematizedPropertiesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDoesAllowUnschematizedProperties(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // CollectionSchema
-		in := &GetCollectionSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCollectionSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCollectionSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCollectionSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCollectionSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // ChildElementSchemas
-		in := &GetChildElementSchemasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetChildElementSchemasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetChildElementSchemas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetChildElementSchemasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetChildElementSchemas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // PropertySchemas
-		in := &GetPropertySchemasRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPropertySchemasOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPropertySchemas(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPropertySchemasRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPropertySchemas(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // IsCollectionDefault
-		in := &GetIsCollectionDefaultRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIsCollectionDefaultOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIsCollectionDefault(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIsCollectionDefaultRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIsCollectionDefault(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostElementSchema
+type UnimplementedAppHostElementSchemaServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostElementSchemaServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementSchemaServer) GetDoesAllowUnschematizedProperties(context.Context, *GetDoesAllowUnschematizedPropertiesRequest) (*GetDoesAllowUnschematizedPropertiesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementSchemaServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementSchemaServer) GetCollectionSchema(context.Context, *GetCollectionSchemaRequest) (*GetCollectionSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementSchemaServer) GetChildElementSchemas(context.Context, *GetChildElementSchemasRequest) (*GetChildElementSchemasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementSchemaServer) GetPropertySchemas(context.Context, *GetPropertySchemasRequest) (*GetPropertySchemasResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostElementSchemaServer) GetIsCollectionDefault(context.Context, *GetIsCollectionDefaultRequest) (*GetIsCollectionDefaultResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostElementSchemaServer = (*UnimplementedAppHostElementSchemaServer)(nil)

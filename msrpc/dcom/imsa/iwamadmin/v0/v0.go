@@ -209,7 +209,7 @@ func (o *xxx_DefaultWAMAdminClient) Unknown() iunknown.UnknownClient {
 }
 
 func (o *xxx_DefaultWAMAdminClient) AppCreate(ctx context.Context, in *AppCreateRequest, opts ...dcerpc.CallOption) (*AppCreateResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -229,7 +229,7 @@ func (o *xxx_DefaultWAMAdminClient) AppCreate(ctx context.Context, in *AppCreate
 }
 
 func (o *xxx_DefaultWAMAdminClient) AppDelete(ctx context.Context, in *AppDeleteRequest, opts ...dcerpc.CallOption) (*AppDeleteResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -249,7 +249,7 @@ func (o *xxx_DefaultWAMAdminClient) AppDelete(ctx context.Context, in *AppDelete
 }
 
 func (o *xxx_DefaultWAMAdminClient) AppUnload(ctx context.Context, in *AppUnloadRequest, opts ...dcerpc.CallOption) (*AppUnloadResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -269,7 +269,7 @@ func (o *xxx_DefaultWAMAdminClient) AppUnload(ctx context.Context, in *AppUnload
 }
 
 func (o *xxx_DefaultWAMAdminClient) AppGetStatus(ctx context.Context, in *AppGetStatusRequest, opts ...dcerpc.CallOption) (*AppGetStatusResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -289,7 +289,7 @@ func (o *xxx_DefaultWAMAdminClient) AppGetStatus(ctx context.Context, in *AppGet
 }
 
 func (o *xxx_DefaultWAMAdminClient) AppDeleteRecoverable(ctx context.Context, in *AppDeleteRecoverableRequest, opts ...dcerpc.CallOption) (*AppDeleteRecoverableResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -309,7 +309,7 @@ func (o *xxx_DefaultWAMAdminClient) AppDeleteRecoverable(ctx context.Context, in
 }
 
 func (o *xxx_DefaultWAMAdminClient) AppRecover(ctx context.Context, in *AppRecoverRequest, opts ...dcerpc.CallOption) (*AppRecoverResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -557,15 +557,17 @@ type AppCreateRequest struct {
 	InProc bool `idl:"name:fInProc" json:"in_proc"`
 }
 
-func (o *AppCreateRequest) xxx_ToOp(ctx context.Context) *xxx_AppCreateOperation {
+func (o *AppCreateRequest) xxx_ToOp(ctx context.Context, op *xxx_AppCreateOperation) *xxx_AppCreateOperation {
+	if op == nil {
+		op = &xxx_AppCreateOperation{}
+	}
 	if o == nil {
-		return &xxx_AppCreateOperation{}
+		return op
 	}
-	return &xxx_AppCreateOperation{
-		This:   o.This,
-		Path:   o.Path,
-		InProc: o.InProc,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.InProc = op.InProc
+	return op
 }
 
 func (o *AppCreateRequest) xxx_FromOp(ctx context.Context, op *xxx_AppCreateOperation) {
@@ -577,7 +579,7 @@ func (o *AppCreateRequest) xxx_FromOp(ctx context.Context, op *xxx_AppCreateOper
 	o.InProc = op.InProc
 }
 func (o *AppCreateRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppCreateRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppCreateOperation{}
@@ -596,14 +598,16 @@ type AppCreateResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppCreateResponse) xxx_ToOp(ctx context.Context) *xxx_AppCreateOperation {
+func (o *AppCreateResponse) xxx_ToOp(ctx context.Context, op *xxx_AppCreateOperation) *xxx_AppCreateOperation {
+	if op == nil {
+		op = &xxx_AppCreateOperation{}
+	}
 	if o == nil {
-		return &xxx_AppCreateOperation{}
+		return op
 	}
-	return &xxx_AppCreateOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppCreateResponse) xxx_FromOp(ctx context.Context, op *xxx_AppCreateOperation) {
@@ -614,7 +618,7 @@ func (o *AppCreateResponse) xxx_FromOp(ctx context.Context, op *xxx_AppCreateOpe
 	o.Return = op.Return
 }
 func (o *AppCreateResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppCreateResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppCreateOperation{}
@@ -812,15 +816,17 @@ type AppDeleteRequest struct {
 	Recursive bool `idl:"name:fRecursive" json:"recursive"`
 }
 
-func (o *AppDeleteRequest) xxx_ToOp(ctx context.Context) *xxx_AppDeleteOperation {
+func (o *AppDeleteRequest) xxx_ToOp(ctx context.Context, op *xxx_AppDeleteOperation) *xxx_AppDeleteOperation {
+	if op == nil {
+		op = &xxx_AppDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_AppDeleteOperation{}
+		return op
 	}
-	return &xxx_AppDeleteOperation{
-		This:      o.This,
-		Path:      o.Path,
-		Recursive: o.Recursive,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Recursive = op.Recursive
+	return op
 }
 
 func (o *AppDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_AppDeleteOperation) {
@@ -832,7 +838,7 @@ func (o *AppDeleteRequest) xxx_FromOp(ctx context.Context, op *xxx_AppDeleteOper
 	o.Recursive = op.Recursive
 }
 func (o *AppDeleteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppDeleteRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppDeleteOperation{}
@@ -851,14 +857,16 @@ type AppDeleteResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppDeleteResponse) xxx_ToOp(ctx context.Context) *xxx_AppDeleteOperation {
+func (o *AppDeleteResponse) xxx_ToOp(ctx context.Context, op *xxx_AppDeleteOperation) *xxx_AppDeleteOperation {
+	if op == nil {
+		op = &xxx_AppDeleteOperation{}
+	}
 	if o == nil {
-		return &xxx_AppDeleteOperation{}
+		return op
 	}
-	return &xxx_AppDeleteOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_AppDeleteOperation) {
@@ -869,7 +877,7 @@ func (o *AppDeleteResponse) xxx_FromOp(ctx context.Context, op *xxx_AppDeleteOpe
 	o.Return = op.Return
 }
 func (o *AppDeleteResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppDeleteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppDeleteOperation{}
@@ -1068,15 +1076,17 @@ type AppUnloadRequest struct {
 	Recursive bool `idl:"name:fRecursive" json:"recursive"`
 }
 
-func (o *AppUnloadRequest) xxx_ToOp(ctx context.Context) *xxx_AppUnloadOperation {
+func (o *AppUnloadRequest) xxx_ToOp(ctx context.Context, op *xxx_AppUnloadOperation) *xxx_AppUnloadOperation {
+	if op == nil {
+		op = &xxx_AppUnloadOperation{}
+	}
 	if o == nil {
-		return &xxx_AppUnloadOperation{}
+		return op
 	}
-	return &xxx_AppUnloadOperation{
-		This:      o.This,
-		Path:      o.Path,
-		Recursive: o.Recursive,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Recursive = op.Recursive
+	return op
 }
 
 func (o *AppUnloadRequest) xxx_FromOp(ctx context.Context, op *xxx_AppUnloadOperation) {
@@ -1088,7 +1098,7 @@ func (o *AppUnloadRequest) xxx_FromOp(ctx context.Context, op *xxx_AppUnloadOper
 	o.Recursive = op.Recursive
 }
 func (o *AppUnloadRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppUnloadRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppUnloadOperation{}
@@ -1107,14 +1117,16 @@ type AppUnloadResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppUnloadResponse) xxx_ToOp(ctx context.Context) *xxx_AppUnloadOperation {
+func (o *AppUnloadResponse) xxx_ToOp(ctx context.Context, op *xxx_AppUnloadOperation) *xxx_AppUnloadOperation {
+	if op == nil {
+		op = &xxx_AppUnloadOperation{}
+	}
 	if o == nil {
-		return &xxx_AppUnloadOperation{}
+		return op
 	}
-	return &xxx_AppUnloadOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppUnloadResponse) xxx_FromOp(ctx context.Context, op *xxx_AppUnloadOperation) {
@@ -1125,7 +1137,7 @@ func (o *AppUnloadResponse) xxx_FromOp(ctx context.Context, op *xxx_AppUnloadOpe
 	o.Return = op.Return
 }
 func (o *AppUnloadResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppUnloadResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppUnloadOperation{}
@@ -1313,14 +1325,16 @@ type AppGetStatusRequest struct {
 	Path string `idl:"name:szMDPath;string;pointer:unique" json:"path"`
 }
 
-func (o *AppGetStatusRequest) xxx_ToOp(ctx context.Context) *xxx_AppGetStatusOperation {
+func (o *AppGetStatusRequest) xxx_ToOp(ctx context.Context, op *xxx_AppGetStatusOperation) *xxx_AppGetStatusOperation {
+	if op == nil {
+		op = &xxx_AppGetStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_AppGetStatusOperation{}
+		return op
 	}
-	return &xxx_AppGetStatusOperation{
-		This: o.This,
-		Path: o.Path,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	return op
 }
 
 func (o *AppGetStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_AppGetStatusOperation) {
@@ -1331,7 +1345,7 @@ func (o *AppGetStatusRequest) xxx_FromOp(ctx context.Context, op *xxx_AppGetStat
 	o.Path = op.Path
 }
 func (o *AppGetStatusRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppGetStatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppGetStatusOperation{}
@@ -1366,15 +1380,17 @@ type AppGetStatusResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppGetStatusResponse) xxx_ToOp(ctx context.Context) *xxx_AppGetStatusOperation {
+func (o *AppGetStatusResponse) xxx_ToOp(ctx context.Context, op *xxx_AppGetStatusOperation) *xxx_AppGetStatusOperation {
+	if op == nil {
+		op = &xxx_AppGetStatusOperation{}
+	}
 	if o == nil {
-		return &xxx_AppGetStatusOperation{}
+		return op
 	}
-	return &xxx_AppGetStatusOperation{
-		That:      o.That,
-		AppStatus: o.AppStatus,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.AppStatus = op.AppStatus
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppGetStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_AppGetStatusOperation) {
@@ -1386,7 +1402,7 @@ func (o *AppGetStatusResponse) xxx_FromOp(ctx context.Context, op *xxx_AppGetSta
 	o.Return = op.Return
 }
 func (o *AppGetStatusResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppGetStatusResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppGetStatusOperation{}
@@ -1587,15 +1603,17 @@ type AppDeleteRecoverableRequest struct {
 	Recursive bool `idl:"name:fRecursive" json:"recursive"`
 }
 
-func (o *AppDeleteRecoverableRequest) xxx_ToOp(ctx context.Context) *xxx_AppDeleteRecoverableOperation {
+func (o *AppDeleteRecoverableRequest) xxx_ToOp(ctx context.Context, op *xxx_AppDeleteRecoverableOperation) *xxx_AppDeleteRecoverableOperation {
+	if op == nil {
+		op = &xxx_AppDeleteRecoverableOperation{}
+	}
 	if o == nil {
-		return &xxx_AppDeleteRecoverableOperation{}
+		return op
 	}
-	return &xxx_AppDeleteRecoverableOperation{
-		This:      o.This,
-		Path:      o.Path,
-		Recursive: o.Recursive,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Recursive = op.Recursive
+	return op
 }
 
 func (o *AppDeleteRecoverableRequest) xxx_FromOp(ctx context.Context, op *xxx_AppDeleteRecoverableOperation) {
@@ -1607,7 +1625,7 @@ func (o *AppDeleteRecoverableRequest) xxx_FromOp(ctx context.Context, op *xxx_Ap
 	o.Recursive = op.Recursive
 }
 func (o *AppDeleteRecoverableRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppDeleteRecoverableRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppDeleteRecoverableOperation{}
@@ -1626,14 +1644,16 @@ type AppDeleteRecoverableResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppDeleteRecoverableResponse) xxx_ToOp(ctx context.Context) *xxx_AppDeleteRecoverableOperation {
+func (o *AppDeleteRecoverableResponse) xxx_ToOp(ctx context.Context, op *xxx_AppDeleteRecoverableOperation) *xxx_AppDeleteRecoverableOperation {
+	if op == nil {
+		op = &xxx_AppDeleteRecoverableOperation{}
+	}
 	if o == nil {
-		return &xxx_AppDeleteRecoverableOperation{}
+		return op
 	}
-	return &xxx_AppDeleteRecoverableOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppDeleteRecoverableResponse) xxx_FromOp(ctx context.Context, op *xxx_AppDeleteRecoverableOperation) {
@@ -1644,7 +1664,7 @@ func (o *AppDeleteRecoverableResponse) xxx_FromOp(ctx context.Context, op *xxx_A
 	o.Return = op.Return
 }
 func (o *AppDeleteRecoverableResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppDeleteRecoverableResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppDeleteRecoverableOperation{}
@@ -1842,15 +1862,17 @@ type AppRecoverRequest struct {
 	Recursive bool `idl:"name:fRecursive" json:"recursive"`
 }
 
-func (o *AppRecoverRequest) xxx_ToOp(ctx context.Context) *xxx_AppRecoverOperation {
+func (o *AppRecoverRequest) xxx_ToOp(ctx context.Context, op *xxx_AppRecoverOperation) *xxx_AppRecoverOperation {
+	if op == nil {
+		op = &xxx_AppRecoverOperation{}
+	}
 	if o == nil {
-		return &xxx_AppRecoverOperation{}
+		return op
 	}
-	return &xxx_AppRecoverOperation{
-		This:      o.This,
-		Path:      o.Path,
-		Recursive: o.Recursive,
-	}
+	o.This = op.This
+	o.Path = op.Path
+	o.Recursive = op.Recursive
+	return op
 }
 
 func (o *AppRecoverRequest) xxx_FromOp(ctx context.Context, op *xxx_AppRecoverOperation) {
@@ -1862,7 +1884,7 @@ func (o *AppRecoverRequest) xxx_FromOp(ctx context.Context, op *xxx_AppRecoverOp
 	o.Recursive = op.Recursive
 }
 func (o *AppRecoverRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AppRecoverRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppRecoverOperation{}
@@ -1881,14 +1903,16 @@ type AppRecoverResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AppRecoverResponse) xxx_ToOp(ctx context.Context) *xxx_AppRecoverOperation {
+func (o *AppRecoverResponse) xxx_ToOp(ctx context.Context, op *xxx_AppRecoverOperation) *xxx_AppRecoverOperation {
+	if op == nil {
+		op = &xxx_AppRecoverOperation{}
+	}
 	if o == nil {
-		return &xxx_AppRecoverOperation{}
+		return op
 	}
-	return &xxx_AppRecoverOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *AppRecoverResponse) xxx_FromOp(ctx context.Context, op *xxx_AppRecoverOperation) {
@@ -1899,7 +1923,7 @@ func (o *AppRecoverResponse) xxx_FromOp(ctx context.Context, op *xxx_AppRecoverO
 	o.Return = op.Return
 }
 func (o *AppRecoverResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AppRecoverResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AppRecoverOperation{}

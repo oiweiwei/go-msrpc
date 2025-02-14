@@ -30538,7 +30538,7 @@ type xxx_DefaultDrsuapiClient struct {
 }
 
 func (o *xxx_DefaultDrsuapiClient) Bind(ctx context.Context, in *BindRequest, opts ...dcerpc.CallOption) (*BindResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30551,7 +30551,7 @@ func (o *xxx_DefaultDrsuapiClient) Bind(ctx context.Context, in *BindRequest, op
 }
 
 func (o *xxx_DefaultDrsuapiClient) Unbind(ctx context.Context, in *UnbindRequest, opts ...dcerpc.CallOption) (*UnbindResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30564,7 +30564,7 @@ func (o *xxx_DefaultDrsuapiClient) Unbind(ctx context.Context, in *UnbindRequest
 }
 
 func (o *xxx_DefaultDrsuapiClient) SyncReplica(ctx context.Context, in *SyncReplicaRequest, opts ...dcerpc.CallOption) (*SyncReplicaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30577,7 +30577,7 @@ func (o *xxx_DefaultDrsuapiClient) SyncReplica(ctx context.Context, in *SyncRepl
 }
 
 func (o *xxx_DefaultDrsuapiClient) GetNCChanges(ctx context.Context, in *GetNCChangesRequest, opts ...dcerpc.CallOption) (*GetNCChangesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30590,7 +30590,7 @@ func (o *xxx_DefaultDrsuapiClient) GetNCChanges(ctx context.Context, in *GetNCCh
 }
 
 func (o *xxx_DefaultDrsuapiClient) UpdateReferences(ctx context.Context, in *UpdateReferencesRequest, opts ...dcerpc.CallOption) (*UpdateReferencesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30603,7 +30603,7 @@ func (o *xxx_DefaultDrsuapiClient) UpdateReferences(ctx context.Context, in *Upd
 }
 
 func (o *xxx_DefaultDrsuapiClient) AddReplica(ctx context.Context, in *AddReplicaRequest, opts ...dcerpc.CallOption) (*AddReplicaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30616,7 +30616,7 @@ func (o *xxx_DefaultDrsuapiClient) AddReplica(ctx context.Context, in *AddReplic
 }
 
 func (o *xxx_DefaultDrsuapiClient) DeleteReplica(ctx context.Context, in *DeleteReplicaRequest, opts ...dcerpc.CallOption) (*DeleteReplicaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30629,7 +30629,7 @@ func (o *xxx_DefaultDrsuapiClient) DeleteReplica(ctx context.Context, in *Delete
 }
 
 func (o *xxx_DefaultDrsuapiClient) ModifyReplica(ctx context.Context, in *ModifyReplicaRequest, opts ...dcerpc.CallOption) (*ModifyReplicaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30642,7 +30642,7 @@ func (o *xxx_DefaultDrsuapiClient) ModifyReplica(ctx context.Context, in *Modify
 }
 
 func (o *xxx_DefaultDrsuapiClient) VerifyNames(ctx context.Context, in *VerifyNamesRequest, opts ...dcerpc.CallOption) (*VerifyNamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30655,7 +30655,7 @@ func (o *xxx_DefaultDrsuapiClient) VerifyNames(ctx context.Context, in *VerifyNa
 }
 
 func (o *xxx_DefaultDrsuapiClient) GetMemberships(ctx context.Context, in *GetMembershipsRequest, opts ...dcerpc.CallOption) (*GetMembershipsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30668,7 +30668,7 @@ func (o *xxx_DefaultDrsuapiClient) GetMemberships(ctx context.Context, in *GetMe
 }
 
 func (o *xxx_DefaultDrsuapiClient) InterdomainMove(ctx context.Context, in *InterdomainMoveRequest, opts ...dcerpc.CallOption) (*InterdomainMoveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30681,7 +30681,7 @@ func (o *xxx_DefaultDrsuapiClient) InterdomainMove(ctx context.Context, in *Inte
 }
 
 func (o *xxx_DefaultDrsuapiClient) GetNT4ChangeLog(ctx context.Context, in *GetNT4ChangeLogRequest, opts ...dcerpc.CallOption) (*GetNT4ChangeLogResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30694,7 +30694,7 @@ func (o *xxx_DefaultDrsuapiClient) GetNT4ChangeLog(ctx context.Context, in *GetN
 }
 
 func (o *xxx_DefaultDrsuapiClient) CrackNames(ctx context.Context, in *CrackNamesRequest, opts ...dcerpc.CallOption) (*CrackNamesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30707,7 +30707,7 @@ func (o *xxx_DefaultDrsuapiClient) CrackNames(ctx context.Context, in *CrackName
 }
 
 func (o *xxx_DefaultDrsuapiClient) WriteSPN(ctx context.Context, in *WriteSPNRequest, opts ...dcerpc.CallOption) (*WriteSPNResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30720,7 +30720,7 @@ func (o *xxx_DefaultDrsuapiClient) WriteSPN(ctx context.Context, in *WriteSPNReq
 }
 
 func (o *xxx_DefaultDrsuapiClient) RemoveDSServer(ctx context.Context, in *RemoveDSServerRequest, opts ...dcerpc.CallOption) (*RemoveDSServerResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30733,7 +30733,7 @@ func (o *xxx_DefaultDrsuapiClient) RemoveDSServer(ctx context.Context, in *Remov
 }
 
 func (o *xxx_DefaultDrsuapiClient) RemoveDSDomain(ctx context.Context, in *RemoveDSDomainRequest, opts ...dcerpc.CallOption) (*RemoveDSDomainResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30746,7 +30746,7 @@ func (o *xxx_DefaultDrsuapiClient) RemoveDSDomain(ctx context.Context, in *Remov
 }
 
 func (o *xxx_DefaultDrsuapiClient) DomainControllerInfo(ctx context.Context, in *DomainControllerInfoRequest, opts ...dcerpc.CallOption) (*DomainControllerInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30759,7 +30759,7 @@ func (o *xxx_DefaultDrsuapiClient) DomainControllerInfo(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDrsuapiClient) AddEntry(ctx context.Context, in *AddEntryRequest, opts ...dcerpc.CallOption) (*AddEntryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30772,7 +30772,7 @@ func (o *xxx_DefaultDrsuapiClient) AddEntry(ctx context.Context, in *AddEntryReq
 }
 
 func (o *xxx_DefaultDrsuapiClient) ExecuteKCC(ctx context.Context, in *ExecuteKCCRequest, opts ...dcerpc.CallOption) (*ExecuteKCCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30785,7 +30785,7 @@ func (o *xxx_DefaultDrsuapiClient) ExecuteKCC(ctx context.Context, in *ExecuteKC
 }
 
 func (o *xxx_DefaultDrsuapiClient) GetReplicationInfo(ctx context.Context, in *GetReplicationInfoRequest, opts ...dcerpc.CallOption) (*GetReplicationInfoResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30798,7 +30798,7 @@ func (o *xxx_DefaultDrsuapiClient) GetReplicationInfo(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultDrsuapiClient) AddSIDHistory(ctx context.Context, in *AddSIDHistoryRequest, opts ...dcerpc.CallOption) (*AddSIDHistoryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30811,7 +30811,7 @@ func (o *xxx_DefaultDrsuapiClient) AddSIDHistory(ctx context.Context, in *AddSID
 }
 
 func (o *xxx_DefaultDrsuapiClient) GetMemberships2(ctx context.Context, in *GetMemberships2Request, opts ...dcerpc.CallOption) (*GetMemberships2Response, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30824,7 +30824,7 @@ func (o *xxx_DefaultDrsuapiClient) GetMemberships2(ctx context.Context, in *GetM
 }
 
 func (o *xxx_DefaultDrsuapiClient) VerifyObjectsReplica(ctx context.Context, in *VerifyObjectsReplicaRequest, opts ...dcerpc.CallOption) (*VerifyObjectsReplicaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30837,7 +30837,7 @@ func (o *xxx_DefaultDrsuapiClient) VerifyObjectsReplica(ctx context.Context, in 
 }
 
 func (o *xxx_DefaultDrsuapiClient) GetObjectExistence(ctx context.Context, in *GetObjectExistenceRequest, opts ...dcerpc.CallOption) (*GetObjectExistenceResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30850,7 +30850,7 @@ func (o *xxx_DefaultDrsuapiClient) GetObjectExistence(ctx context.Context, in *G
 }
 
 func (o *xxx_DefaultDrsuapiClient) QuerySitesByCost(ctx context.Context, in *QuerySitesByCostRequest, opts ...dcerpc.CallOption) (*QuerySitesByCostResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30863,7 +30863,7 @@ func (o *xxx_DefaultDrsuapiClient) QuerySitesByCost(ctx context.Context, in *Que
 }
 
 func (o *xxx_DefaultDrsuapiClient) InitDemotion(ctx context.Context, in *InitDemotionRequest, opts ...dcerpc.CallOption) (*InitDemotionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30876,7 +30876,7 @@ func (o *xxx_DefaultDrsuapiClient) InitDemotion(ctx context.Context, in *InitDem
 }
 
 func (o *xxx_DefaultDrsuapiClient) DemotionReplica(ctx context.Context, in *DemotionReplicaRequest, opts ...dcerpc.CallOption) (*DemotionReplicaResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30889,7 +30889,7 @@ func (o *xxx_DefaultDrsuapiClient) DemotionReplica(ctx context.Context, in *Demo
 }
 
 func (o *xxx_DefaultDrsuapiClient) FinishDemotion(ctx context.Context, in *FinishDemotionRequest, opts ...dcerpc.CallOption) (*FinishDemotionResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30902,7 +30902,7 @@ func (o *xxx_DefaultDrsuapiClient) FinishDemotion(ctx context.Context, in *Finis
 }
 
 func (o *xxx_DefaultDrsuapiClient) AddCloneDC(ctx context.Context, in *AddCloneDCRequest, opts ...dcerpc.CallOption) (*AddCloneDCResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30915,7 +30915,7 @@ func (o *xxx_DefaultDrsuapiClient) AddCloneDC(ctx context.Context, in *AddCloneD
 }
 
 func (o *xxx_DefaultDrsuapiClient) WriteNGCKey(ctx context.Context, in *WriteNGCKeyRequest, opts ...dcerpc.CallOption) (*WriteNGCKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -30928,7 +30928,7 @@ func (o *xxx_DefaultDrsuapiClient) WriteNGCKey(ctx context.Context, in *WriteNGC
 }
 
 func (o *xxx_DefaultDrsuapiClient) ReadNGCKey(ctx context.Context, in *ReadNGCKeyRequest, opts ...dcerpc.CallOption) (*ReadNGCKeyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -31188,14 +31188,16 @@ type BindRequest struct {
 	Client *Extensions `idl:"name:pextClient;pointer:unique" json:"client"`
 }
 
-func (o *BindRequest) xxx_ToOp(ctx context.Context) *xxx_BindOperation {
+func (o *BindRequest) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
 	if o == nil {
-		return &xxx_BindOperation{}
+		return op
 	}
-	return &xxx_BindOperation{
-		ClientDSA: o.ClientDSA,
-		Client:    o.Client,
-	}
+	o.ClientDSA = op.ClientDSA
+	o.Client = op.Client
+	return op
 }
 
 func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
@@ -31206,7 +31208,7 @@ func (o *BindRequest) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
 	o.Client = op.Client
 }
 func (o *BindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *BindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindOperation{}
@@ -31228,15 +31230,17 @@ type BindResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *BindResponse) xxx_ToOp(ctx context.Context) *xxx_BindOperation {
+func (o *BindResponse) xxx_ToOp(ctx context.Context, op *xxx_BindOperation) *xxx_BindOperation {
+	if op == nil {
+		op = &xxx_BindOperation{}
+	}
 	if o == nil {
-		return &xxx_BindOperation{}
+		return op
 	}
-	return &xxx_BindOperation{
-		Server: o.Server,
-		DRS:    o.DRS,
-		Return: o.Return,
-	}
+	o.Server = op.Server
+	o.DRS = op.DRS
+	o.Return = op.Return
+	return op
 }
 
 func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
@@ -31248,7 +31252,7 @@ func (o *BindResponse) xxx_FromOp(ctx context.Context, op *xxx_BindOperation) {
 	o.Return = op.Return
 }
 func (o *BindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *BindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_BindOperation{}
@@ -31370,13 +31374,15 @@ type UnbindRequest struct {
 	DRS *Handle `idl:"name:phDrs;pointer:ref" json:"drs"`
 }
 
-func (o *UnbindRequest) xxx_ToOp(ctx context.Context) *xxx_UnbindOperation {
+func (o *UnbindRequest) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *xxx_UnbindOperation {
+	if op == nil {
+		op = &xxx_UnbindOperation{}
+	}
 	if o == nil {
-		return &xxx_UnbindOperation{}
+		return op
 	}
-	return &xxx_UnbindOperation{
-		DRS: o.DRS,
-	}
+	o.DRS = op.DRS
+	return op
 }
 
 func (o *UnbindRequest) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation) {
@@ -31386,7 +31392,7 @@ func (o *UnbindRequest) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation)
 	o.DRS = op.DRS
 }
 func (o *UnbindRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UnbindRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnbindOperation{}
@@ -31406,14 +31412,16 @@ type UnbindResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UnbindResponse) xxx_ToOp(ctx context.Context) *xxx_UnbindOperation {
+func (o *UnbindResponse) xxx_ToOp(ctx context.Context, op *xxx_UnbindOperation) *xxx_UnbindOperation {
+	if op == nil {
+		op = &xxx_UnbindOperation{}
+	}
 	if o == nil {
-		return &xxx_UnbindOperation{}
+		return op
 	}
-	return &xxx_UnbindOperation{
-		DRS:    o.DRS,
-		Return: o.Return,
-	}
+	o.DRS = op.DRS
+	o.Return = op.Return
+	return op
 }
 
 func (o *UnbindResponse) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation) {
@@ -31424,7 +31432,7 @@ func (o *UnbindResponse) xxx_FromOp(ctx context.Context, op *xxx_UnbindOperation
 	o.Return = op.Return
 }
 func (o *UnbindResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UnbindResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UnbindOperation{}
@@ -31571,15 +31579,17 @@ type SyncReplicaRequest struct {
 	Sync *MessageReplicaSync `idl:"name:pmsgSync;switch_is:dwVersion;pointer:ref" json:"sync"`
 }
 
-func (o *SyncReplicaRequest) xxx_ToOp(ctx context.Context) *xxx_SyncReplicaOperation {
+func (o *SyncReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_SyncReplicaOperation) *xxx_SyncReplicaOperation {
+	if op == nil {
+		op = &xxx_SyncReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncReplicaOperation{}
+		return op
 	}
-	return &xxx_SyncReplicaOperation{
-		Handle:  o.Handle,
-		Version: o.Version,
-		Sync:    o.Sync,
-	}
+	o.Handle = op.Handle
+	o.Version = op.Version
+	o.Sync = op.Sync
+	return op
 }
 
 func (o *SyncReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_SyncReplicaOperation) {
@@ -31591,7 +31601,7 @@ func (o *SyncReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_SyncReplica
 	o.Sync = op.Sync
 }
 func (o *SyncReplicaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SyncReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncReplicaOperation{}
@@ -31608,13 +31618,15 @@ type SyncReplicaResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SyncReplicaResponse) xxx_ToOp(ctx context.Context) *xxx_SyncReplicaOperation {
+func (o *SyncReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_SyncReplicaOperation) *xxx_SyncReplicaOperation {
+	if op == nil {
+		op = &xxx_SyncReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_SyncReplicaOperation{}
+		return op
 	}
-	return &xxx_SyncReplicaOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *SyncReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_SyncReplicaOperation) {
@@ -31624,7 +31636,7 @@ func (o *SyncReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_SyncReplic
 	o.Return = op.Return
 }
 func (o *SyncReplicaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SyncReplicaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SyncReplicaOperation{}
@@ -31814,15 +31826,17 @@ type GetNCChangesRequest struct {
 	In *MessageGetNCChangesRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *GetNCChangesRequest) xxx_ToOp(ctx context.Context) *xxx_GetNCChangesOperation {
+func (o *GetNCChangesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNCChangesOperation) *xxx_GetNCChangesOperation {
+	if op == nil {
+		op = &xxx_GetNCChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNCChangesOperation{}
+		return op
 	}
-	return &xxx_GetNCChangesOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *GetNCChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNCChangesOperation) {
@@ -31834,7 +31848,7 @@ func (o *GetNCChangesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNCChang
 	o.In = op.In
 }
 func (o *GetNCChangesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNCChangesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNCChangesOperation{}
@@ -31855,15 +31869,17 @@ type GetNCChangesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNCChangesResponse) xxx_ToOp(ctx context.Context) *xxx_GetNCChangesOperation {
+func (o *GetNCChangesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNCChangesOperation) *xxx_GetNCChangesOperation {
+	if op == nil {
+		op = &xxx_GetNCChangesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNCChangesOperation{}
+		return op
 	}
-	return &xxx_GetNCChangesOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNCChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNCChangesOperation) {
@@ -31875,7 +31891,7 @@ func (o *GetNCChangesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNCChan
 	o.Return = op.Return
 }
 func (o *GetNCChangesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNCChangesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNCChangesOperation{}
@@ -32022,15 +32038,17 @@ type UpdateReferencesRequest struct {
 	UpdateReferences *MessageUpdateReferences `idl:"name:pmsgUpdRefs;switch_is:dwVersion;pointer:ref" json:"update_references"`
 }
 
-func (o *UpdateReferencesRequest) xxx_ToOp(ctx context.Context) *xxx_UpdateReferencesOperation {
+func (o *UpdateReferencesRequest) xxx_ToOp(ctx context.Context, op *xxx_UpdateReferencesOperation) *xxx_UpdateReferencesOperation {
+	if op == nil {
+		op = &xxx_UpdateReferencesOperation{}
+	}
 	if o == nil {
-		return &xxx_UpdateReferencesOperation{}
+		return op
 	}
-	return &xxx_UpdateReferencesOperation{
-		Handle:           o.Handle,
-		Version:          o.Version,
-		UpdateReferences: o.UpdateReferences,
-	}
+	o.Handle = op.Handle
+	o.Version = op.Version
+	o.UpdateReferences = op.UpdateReferences
+	return op
 }
 
 func (o *UpdateReferencesRequest) xxx_FromOp(ctx context.Context, op *xxx_UpdateReferencesOperation) {
@@ -32042,7 +32060,7 @@ func (o *UpdateReferencesRequest) xxx_FromOp(ctx context.Context, op *xxx_Update
 	o.UpdateReferences = op.UpdateReferences
 }
 func (o *UpdateReferencesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *UpdateReferencesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UpdateReferencesOperation{}
@@ -32059,13 +32077,15 @@ type UpdateReferencesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *UpdateReferencesResponse) xxx_ToOp(ctx context.Context) *xxx_UpdateReferencesOperation {
+func (o *UpdateReferencesResponse) xxx_ToOp(ctx context.Context, op *xxx_UpdateReferencesOperation) *xxx_UpdateReferencesOperation {
+	if op == nil {
+		op = &xxx_UpdateReferencesOperation{}
+	}
 	if o == nil {
-		return &xxx_UpdateReferencesOperation{}
+		return op
 	}
-	return &xxx_UpdateReferencesOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *UpdateReferencesResponse) xxx_FromOp(ctx context.Context, op *xxx_UpdateReferencesOperation) {
@@ -32075,7 +32095,7 @@ func (o *UpdateReferencesResponse) xxx_FromOp(ctx context.Context, op *xxx_Updat
 	o.Return = op.Return
 }
 func (o *UpdateReferencesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *UpdateReferencesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_UpdateReferencesOperation{}
@@ -32222,15 +32242,17 @@ type AddReplicaRequest struct {
 	Add *MessageAddReplica `idl:"name:pmsgAdd;switch_is:dwVersion;pointer:ref" json:"add"`
 }
 
-func (o *AddReplicaRequest) xxx_ToOp(ctx context.Context) *xxx_AddReplicaOperation {
+func (o *AddReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_AddReplicaOperation) *xxx_AddReplicaOperation {
+	if op == nil {
+		op = &xxx_AddReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_AddReplicaOperation{}
+		return op
 	}
-	return &xxx_AddReplicaOperation{
-		Handle:  o.Handle,
-		Version: o.Version,
-		Add:     o.Add,
-	}
+	o.Handle = op.Handle
+	o.Version = op.Version
+	o.Add = op.Add
+	return op
 }
 
 func (o *AddReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_AddReplicaOperation) {
@@ -32242,7 +32264,7 @@ func (o *AddReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_AddReplicaOp
 	o.Add = op.Add
 }
 func (o *AddReplicaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddReplicaOperation{}
@@ -32259,13 +32281,15 @@ type AddReplicaResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddReplicaResponse) xxx_ToOp(ctx context.Context) *xxx_AddReplicaOperation {
+func (o *AddReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_AddReplicaOperation) *xxx_AddReplicaOperation {
+	if op == nil {
+		op = &xxx_AddReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_AddReplicaOperation{}
+		return op
 	}
-	return &xxx_AddReplicaOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_AddReplicaOperation) {
@@ -32275,7 +32299,7 @@ func (o *AddReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_AddReplicaO
 	o.Return = op.Return
 }
 func (o *AddReplicaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddReplicaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddReplicaOperation{}
@@ -32422,15 +32446,17 @@ type DeleteReplicaRequest struct {
 	Delete *MessageDeleteReplica `idl:"name:pmsgDel;switch_is:dwVersion;pointer:ref" json:"delete"`
 }
 
-func (o *DeleteReplicaRequest) xxx_ToOp(ctx context.Context) *xxx_DeleteReplicaOperation {
+func (o *DeleteReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_DeleteReplicaOperation) *xxx_DeleteReplicaOperation {
+	if op == nil {
+		op = &xxx_DeleteReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteReplicaOperation{}
+		return op
 	}
-	return &xxx_DeleteReplicaOperation{
-		Handle:  o.Handle,
-		Version: o.Version,
-		Delete:  o.Delete,
-	}
+	o.Handle = op.Handle
+	o.Version = op.Version
+	o.Delete = op.Delete
+	return op
 }
 
 func (o *DeleteReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteReplicaOperation) {
@@ -32442,7 +32468,7 @@ func (o *DeleteReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_DeleteRep
 	o.Delete = op.Delete
 }
 func (o *DeleteReplicaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DeleteReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteReplicaOperation{}
@@ -32459,13 +32485,15 @@ type DeleteReplicaResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DeleteReplicaResponse) xxx_ToOp(ctx context.Context) *xxx_DeleteReplicaOperation {
+func (o *DeleteReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_DeleteReplicaOperation) *xxx_DeleteReplicaOperation {
+	if op == nil {
+		op = &xxx_DeleteReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_DeleteReplicaOperation{}
+		return op
 	}
-	return &xxx_DeleteReplicaOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *DeleteReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteReplicaOperation) {
@@ -32475,7 +32503,7 @@ func (o *DeleteReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_DeleteRe
 	o.Return = op.Return
 }
 func (o *DeleteReplicaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DeleteReplicaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DeleteReplicaOperation{}
@@ -32622,15 +32650,17 @@ type ModifyReplicaRequest struct {
 	Modify *MessageModifyReplica `idl:"name:pmsgMod;switch_is:dwVersion;pointer:ref" json:"modify"`
 }
 
-func (o *ModifyReplicaRequest) xxx_ToOp(ctx context.Context) *xxx_ModifyReplicaOperation {
+func (o *ModifyReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_ModifyReplicaOperation) *xxx_ModifyReplicaOperation {
+	if op == nil {
+		op = &xxx_ModifyReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyReplicaOperation{}
+		return op
 	}
-	return &xxx_ModifyReplicaOperation{
-		Handle:  o.Handle,
-		Version: o.Version,
-		Modify:  o.Modify,
-	}
+	o.Handle = op.Handle
+	o.Version = op.Version
+	o.Modify = op.Modify
+	return op
 }
 
 func (o *ModifyReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyReplicaOperation) {
@@ -32642,7 +32672,7 @@ func (o *ModifyReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_ModifyRep
 	o.Modify = op.Modify
 }
 func (o *ModifyReplicaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ModifyReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyReplicaOperation{}
@@ -32659,13 +32689,15 @@ type ModifyReplicaResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ModifyReplicaResponse) xxx_ToOp(ctx context.Context) *xxx_ModifyReplicaOperation {
+func (o *ModifyReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_ModifyReplicaOperation) *xxx_ModifyReplicaOperation {
+	if op == nil {
+		op = &xxx_ModifyReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_ModifyReplicaOperation{}
+		return op
 	}
-	return &xxx_ModifyReplicaOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ModifyReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyReplicaOperation) {
@@ -32675,7 +32707,7 @@ func (o *ModifyReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_ModifyRe
 	o.Return = op.Return
 }
 func (o *ModifyReplicaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ModifyReplicaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ModifyReplicaOperation{}
@@ -32865,15 +32897,17 @@ type VerifyNamesRequest struct {
 	In *MessageVerifyRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *VerifyNamesRequest) xxx_ToOp(ctx context.Context) *xxx_VerifyNamesOperation {
+func (o *VerifyNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyNamesOperation) *xxx_VerifyNamesOperation {
+	if op == nil {
+		op = &xxx_VerifyNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyNamesOperation{}
+		return op
 	}
-	return &xxx_VerifyNamesOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *VerifyNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_VerifyNamesOperation) {
@@ -32885,7 +32919,7 @@ func (o *VerifyNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_VerifyNames
 	o.In = op.In
 }
 func (o *VerifyNamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *VerifyNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyNamesOperation{}
@@ -32906,15 +32940,17 @@ type VerifyNamesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *VerifyNamesResponse) xxx_ToOp(ctx context.Context) *xxx_VerifyNamesOperation {
+func (o *VerifyNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyNamesOperation) *xxx_VerifyNamesOperation {
+	if op == nil {
+		op = &xxx_VerifyNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyNamesOperation{}
+		return op
 	}
-	return &xxx_VerifyNamesOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *VerifyNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_VerifyNamesOperation) {
@@ -32926,7 +32962,7 @@ func (o *VerifyNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_VerifyName
 	o.Return = op.Return
 }
 func (o *VerifyNamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *VerifyNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyNamesOperation{}
@@ -33116,15 +33152,17 @@ type GetMembershipsRequest struct {
 	In *MessageReverseMembershipRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *GetMembershipsRequest) xxx_ToOp(ctx context.Context) *xxx_GetMembershipsOperation {
+func (o *GetMembershipsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetMembershipsOperation) *xxx_GetMembershipsOperation {
+	if op == nil {
+		op = &xxx_GetMembershipsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMembershipsOperation{}
+		return op
 	}
-	return &xxx_GetMembershipsOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *GetMembershipsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMembershipsOperation) {
@@ -33136,7 +33174,7 @@ func (o *GetMembershipsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetMembe
 	o.In = op.In
 }
 func (o *GetMembershipsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMembershipsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMembershipsOperation{}
@@ -33157,15 +33195,17 @@ type GetMembershipsResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMembershipsResponse) xxx_ToOp(ctx context.Context) *xxx_GetMembershipsOperation {
+func (o *GetMembershipsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetMembershipsOperation) *xxx_GetMembershipsOperation {
+	if op == nil {
+		op = &xxx_GetMembershipsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetMembershipsOperation{}
+		return op
 	}
-	return &xxx_GetMembershipsOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMembershipsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMembershipsOperation) {
@@ -33177,7 +33217,7 @@ func (o *GetMembershipsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetMemb
 	o.Return = op.Return
 }
 func (o *GetMembershipsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMembershipsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMembershipsOperation{}
@@ -33367,15 +33407,17 @@ type InterdomainMoveRequest struct {
 	In *MessageMoveRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *InterdomainMoveRequest) xxx_ToOp(ctx context.Context) *xxx_InterdomainMoveOperation {
+func (o *InterdomainMoveRequest) xxx_ToOp(ctx context.Context, op *xxx_InterdomainMoveOperation) *xxx_InterdomainMoveOperation {
+	if op == nil {
+		op = &xxx_InterdomainMoveOperation{}
+	}
 	if o == nil {
-		return &xxx_InterdomainMoveOperation{}
+		return op
 	}
-	return &xxx_InterdomainMoveOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *InterdomainMoveRequest) xxx_FromOp(ctx context.Context, op *xxx_InterdomainMoveOperation) {
@@ -33387,7 +33429,7 @@ func (o *InterdomainMoveRequest) xxx_FromOp(ctx context.Context, op *xxx_Interdo
 	o.In = op.In
 }
 func (o *InterdomainMoveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InterdomainMoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InterdomainMoveOperation{}
@@ -33408,15 +33450,17 @@ type InterdomainMoveResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InterdomainMoveResponse) xxx_ToOp(ctx context.Context) *xxx_InterdomainMoveOperation {
+func (o *InterdomainMoveResponse) xxx_ToOp(ctx context.Context, op *xxx_InterdomainMoveOperation) *xxx_InterdomainMoveOperation {
+	if op == nil {
+		op = &xxx_InterdomainMoveOperation{}
+	}
 	if o == nil {
-		return &xxx_InterdomainMoveOperation{}
+		return op
 	}
-	return &xxx_InterdomainMoveOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *InterdomainMoveResponse) xxx_FromOp(ctx context.Context, op *xxx_InterdomainMoveOperation) {
@@ -33428,7 +33472,7 @@ func (o *InterdomainMoveResponse) xxx_FromOp(ctx context.Context, op *xxx_Interd
 	o.Return = op.Return
 }
 func (o *InterdomainMoveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InterdomainMoveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InterdomainMoveOperation{}
@@ -33618,15 +33662,17 @@ type GetNT4ChangeLogRequest struct {
 	In *MessageNT4ChangeLogRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *GetNT4ChangeLogRequest) xxx_ToOp(ctx context.Context) *xxx_GetNT4ChangeLogOperation {
+func (o *GetNT4ChangeLogRequest) xxx_ToOp(ctx context.Context, op *xxx_GetNT4ChangeLogOperation) *xxx_GetNT4ChangeLogOperation {
+	if op == nil {
+		op = &xxx_GetNT4ChangeLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNT4ChangeLogOperation{}
+		return op
 	}
-	return &xxx_GetNT4ChangeLogOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *GetNT4ChangeLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNT4ChangeLogOperation) {
@@ -33638,7 +33684,7 @@ func (o *GetNT4ChangeLogRequest) xxx_FromOp(ctx context.Context, op *xxx_GetNT4C
 	o.In = op.In
 }
 func (o *GetNT4ChangeLogRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetNT4ChangeLogRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNT4ChangeLogOperation{}
@@ -33659,15 +33705,17 @@ type GetNT4ChangeLogResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetNT4ChangeLogResponse) xxx_ToOp(ctx context.Context) *xxx_GetNT4ChangeLogOperation {
+func (o *GetNT4ChangeLogResponse) xxx_ToOp(ctx context.Context, op *xxx_GetNT4ChangeLogOperation) *xxx_GetNT4ChangeLogOperation {
+	if op == nil {
+		op = &xxx_GetNT4ChangeLogOperation{}
+	}
 	if o == nil {
-		return &xxx_GetNT4ChangeLogOperation{}
+		return op
 	}
-	return &xxx_GetNT4ChangeLogOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetNT4ChangeLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNT4ChangeLogOperation) {
@@ -33679,7 +33727,7 @@ func (o *GetNT4ChangeLogResponse) xxx_FromOp(ctx context.Context, op *xxx_GetNT4
 	o.Return = op.Return
 }
 func (o *GetNT4ChangeLogResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetNT4ChangeLogResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetNT4ChangeLogOperation{}
@@ -33869,15 +33917,17 @@ type CrackNamesRequest struct {
 	In *MessageCrackNamesRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *CrackNamesRequest) xxx_ToOp(ctx context.Context) *xxx_CrackNamesOperation {
+func (o *CrackNamesRequest) xxx_ToOp(ctx context.Context, op *xxx_CrackNamesOperation) *xxx_CrackNamesOperation {
+	if op == nil {
+		op = &xxx_CrackNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_CrackNamesOperation{}
+		return op
 	}
-	return &xxx_CrackNamesOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *CrackNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_CrackNamesOperation) {
@@ -33889,7 +33939,7 @@ func (o *CrackNamesRequest) xxx_FromOp(ctx context.Context, op *xxx_CrackNamesOp
 	o.In = op.In
 }
 func (o *CrackNamesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *CrackNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CrackNamesOperation{}
@@ -33910,15 +33960,17 @@ type CrackNamesResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *CrackNamesResponse) xxx_ToOp(ctx context.Context) *xxx_CrackNamesOperation {
+func (o *CrackNamesResponse) xxx_ToOp(ctx context.Context, op *xxx_CrackNamesOperation) *xxx_CrackNamesOperation {
+	if op == nil {
+		op = &xxx_CrackNamesOperation{}
+	}
 	if o == nil {
-		return &xxx_CrackNamesOperation{}
+		return op
 	}
-	return &xxx_CrackNamesOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *CrackNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_CrackNamesOperation) {
@@ -33930,7 +33982,7 @@ func (o *CrackNamesResponse) xxx_FromOp(ctx context.Context, op *xxx_CrackNamesO
 	o.Return = op.Return
 }
 func (o *CrackNamesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *CrackNamesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_CrackNamesOperation{}
@@ -34115,15 +34167,17 @@ type WriteSPNRequest struct {
 	In *MessageWriteSPNRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *WriteSPNRequest) xxx_ToOp(ctx context.Context) *xxx_WriteSPNOperation {
+func (o *WriteSPNRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteSPNOperation) *xxx_WriteSPNOperation {
+	if op == nil {
+		op = &xxx_WriteSPNOperation{}
+	}
 	if o == nil {
-		return &xxx_WriteSPNOperation{}
+		return op
 	}
-	return &xxx_WriteSPNOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *WriteSPNRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteSPNOperation) {
@@ -34135,7 +34189,7 @@ func (o *WriteSPNRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteSPNOperat
 	o.In = op.In
 }
 func (o *WriteSPNRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WriteSPNRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WriteSPNOperation{}
@@ -34157,15 +34211,17 @@ type WriteSPNResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WriteSPNResponse) xxx_ToOp(ctx context.Context) *xxx_WriteSPNOperation {
+func (o *WriteSPNResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteSPNOperation) *xxx_WriteSPNOperation {
+	if op == nil {
+		op = &xxx_WriteSPNOperation{}
+	}
 	if o == nil {
-		return &xxx_WriteSPNOperation{}
+		return op
 	}
-	return &xxx_WriteSPNOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *WriteSPNResponse) xxx_FromOp(ctx context.Context, op *xxx_WriteSPNOperation) {
@@ -34177,7 +34233,7 @@ func (o *WriteSPNResponse) xxx_FromOp(ctx context.Context, op *xxx_WriteSPNOpera
 	o.Return = op.Return
 }
 func (o *WriteSPNResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WriteSPNResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WriteSPNOperation{}
@@ -34362,15 +34418,17 @@ type RemoveDSServerRequest struct {
 	In *MessageRemoveServerRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *RemoveDSServerRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveDSServerOperation {
+func (o *RemoveDSServerRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSServerOperation) *xxx_RemoveDSServerOperation {
+	if op == nil {
+		op = &xxx_RemoveDSServerOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveDSServerOperation{}
+		return op
 	}
-	return &xxx_RemoveDSServerOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *RemoveDSServerRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveDSServerOperation) {
@@ -34382,7 +34440,7 @@ func (o *RemoveDSServerRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveDS
 	o.In = op.In
 }
 func (o *RemoveDSServerRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveDSServerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveDSServerOperation{}
@@ -34404,15 +34462,17 @@ type RemoveDSServerResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveDSServerResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveDSServerOperation {
+func (o *RemoveDSServerResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSServerOperation) *xxx_RemoveDSServerOperation {
+	if op == nil {
+		op = &xxx_RemoveDSServerOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveDSServerOperation{}
+		return op
 	}
-	return &xxx_RemoveDSServerOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveDSServerResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveDSServerOperation) {
@@ -34424,7 +34484,7 @@ func (o *RemoveDSServerResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveD
 	o.Return = op.Return
 }
 func (o *RemoveDSServerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveDSServerResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveDSServerOperation{}
@@ -34609,15 +34669,17 @@ type RemoveDSDomainRequest struct {
 	In *MessageRemoveDSDomainRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *RemoveDSDomainRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveDSDomainOperation {
+func (o *RemoveDSDomainRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSDomainOperation) *xxx_RemoveDSDomainOperation {
+	if op == nil {
+		op = &xxx_RemoveDSDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveDSDomainOperation{}
+		return op
 	}
-	return &xxx_RemoveDSDomainOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *RemoveDSDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveDSDomainOperation) {
@@ -34629,7 +34691,7 @@ func (o *RemoveDSDomainRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveDS
 	o.In = op.In
 }
 func (o *RemoveDSDomainRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveDSDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveDSDomainOperation{}
@@ -34651,15 +34713,17 @@ type RemoveDSDomainResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveDSDomainResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveDSDomainOperation {
+func (o *RemoveDSDomainResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveDSDomainOperation) *xxx_RemoveDSDomainOperation {
+	if op == nil {
+		op = &xxx_RemoveDSDomainOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveDSDomainOperation{}
+		return op
 	}
-	return &xxx_RemoveDSDomainOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveDSDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveDSDomainOperation) {
@@ -34671,7 +34735,7 @@ func (o *RemoveDSDomainResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveD
 	o.Return = op.Return
 }
 func (o *RemoveDSDomainResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveDSDomainResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveDSDomainOperation{}
@@ -34863,15 +34927,17 @@ type DomainControllerInfoRequest struct {
 	In *MessageDCInfoRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *DomainControllerInfoRequest) xxx_ToOp(ctx context.Context) *xxx_DomainControllerInfoOperation {
+func (o *DomainControllerInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_DomainControllerInfoOperation) *xxx_DomainControllerInfoOperation {
+	if op == nil {
+		op = &xxx_DomainControllerInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_DomainControllerInfoOperation{}
+		return op
 	}
-	return &xxx_DomainControllerInfoOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *DomainControllerInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_DomainControllerInfoOperation) {
@@ -34883,7 +34949,7 @@ func (o *DomainControllerInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_Do
 	o.In = op.In
 }
 func (o *DomainControllerInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DomainControllerInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DomainControllerInfoOperation{}
@@ -34904,15 +34970,17 @@ type DomainControllerInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DomainControllerInfoResponse) xxx_ToOp(ctx context.Context) *xxx_DomainControllerInfoOperation {
+func (o *DomainControllerInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_DomainControllerInfoOperation) *xxx_DomainControllerInfoOperation {
+	if op == nil {
+		op = &xxx_DomainControllerInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_DomainControllerInfoOperation{}
+		return op
 	}
-	return &xxx_DomainControllerInfoOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *DomainControllerInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_DomainControllerInfoOperation) {
@@ -34924,7 +34992,7 @@ func (o *DomainControllerInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_D
 	o.Return = op.Return
 }
 func (o *DomainControllerInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DomainControllerInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DomainControllerInfoOperation{}
@@ -35114,15 +35182,17 @@ type AddEntryRequest struct {
 	In *MessageAddEntryRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *AddEntryRequest) xxx_ToOp(ctx context.Context) *xxx_AddEntryOperation {
+func (o *AddEntryRequest) xxx_ToOp(ctx context.Context, op *xxx_AddEntryOperation) *xxx_AddEntryOperation {
+	if op == nil {
+		op = &xxx_AddEntryOperation{}
+	}
 	if o == nil {
-		return &xxx_AddEntryOperation{}
+		return op
 	}
-	return &xxx_AddEntryOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *AddEntryRequest) xxx_FromOp(ctx context.Context, op *xxx_AddEntryOperation) {
@@ -35134,7 +35204,7 @@ func (o *AddEntryRequest) xxx_FromOp(ctx context.Context, op *xxx_AddEntryOperat
 	o.In = op.In
 }
 func (o *AddEntryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddEntryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddEntryOperation{}
@@ -35155,15 +35225,17 @@ type AddEntryResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddEntryResponse) xxx_ToOp(ctx context.Context) *xxx_AddEntryOperation {
+func (o *AddEntryResponse) xxx_ToOp(ctx context.Context, op *xxx_AddEntryOperation) *xxx_AddEntryOperation {
+	if op == nil {
+		op = &xxx_AddEntryOperation{}
+	}
 	if o == nil {
-		return &xxx_AddEntryOperation{}
+		return op
 	}
-	return &xxx_AddEntryOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddEntryResponse) xxx_FromOp(ctx context.Context, op *xxx_AddEntryOperation) {
@@ -35175,7 +35247,7 @@ func (o *AddEntryResponse) xxx_FromOp(ctx context.Context, op *xxx_AddEntryOpera
 	o.Return = op.Return
 }
 func (o *AddEntryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddEntryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddEntryOperation{}
@@ -35316,15 +35388,17 @@ type ExecuteKCCRequest struct {
 	In *MessageKCCExecute `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *ExecuteKCCRequest) xxx_ToOp(ctx context.Context) *xxx_ExecuteKCCOperation {
+func (o *ExecuteKCCRequest) xxx_ToOp(ctx context.Context, op *xxx_ExecuteKCCOperation) *xxx_ExecuteKCCOperation {
+	if op == nil {
+		op = &xxx_ExecuteKCCOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecuteKCCOperation{}
+		return op
 	}
-	return &xxx_ExecuteKCCOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *ExecuteKCCRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecuteKCCOperation) {
@@ -35336,7 +35410,7 @@ func (o *ExecuteKCCRequest) xxx_FromOp(ctx context.Context, op *xxx_ExecuteKCCOp
 	o.In = op.In
 }
 func (o *ExecuteKCCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ExecuteKCCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecuteKCCOperation{}
@@ -35353,13 +35427,15 @@ type ExecuteKCCResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ExecuteKCCResponse) xxx_ToOp(ctx context.Context) *xxx_ExecuteKCCOperation {
+func (o *ExecuteKCCResponse) xxx_ToOp(ctx context.Context, op *xxx_ExecuteKCCOperation) *xxx_ExecuteKCCOperation {
+	if op == nil {
+		op = &xxx_ExecuteKCCOperation{}
+	}
 	if o == nil {
-		return &xxx_ExecuteKCCOperation{}
+		return op
 	}
-	return &xxx_ExecuteKCCOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *ExecuteKCCResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecuteKCCOperation) {
@@ -35369,7 +35445,7 @@ func (o *ExecuteKCCResponse) xxx_FromOp(ctx context.Context, op *xxx_ExecuteKCCO
 	o.Return = op.Return
 }
 func (o *ExecuteKCCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ExecuteKCCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ExecuteKCCOperation{}
@@ -35559,15 +35635,17 @@ type GetReplicationInfoRequest struct {
 	In *MessageGetReplicationInfoRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *GetReplicationInfoRequest) xxx_ToOp(ctx context.Context) *xxx_GetReplicationInfoOperation {
+func (o *GetReplicationInfoRequest) xxx_ToOp(ctx context.Context, op *xxx_GetReplicationInfoOperation) *xxx_GetReplicationInfoOperation {
+	if op == nil {
+		op = &xxx_GetReplicationInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReplicationInfoOperation{}
+		return op
 	}
-	return &xxx_GetReplicationInfoOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *GetReplicationInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetReplicationInfoOperation) {
@@ -35579,7 +35657,7 @@ func (o *GetReplicationInfoRequest) xxx_FromOp(ctx context.Context, op *xxx_GetR
 	o.In = op.In
 }
 func (o *GetReplicationInfoRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetReplicationInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReplicationInfoOperation{}
@@ -35600,15 +35678,17 @@ type GetReplicationInfoResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetReplicationInfoResponse) xxx_ToOp(ctx context.Context) *xxx_GetReplicationInfoOperation {
+func (o *GetReplicationInfoResponse) xxx_ToOp(ctx context.Context, op *xxx_GetReplicationInfoOperation) *xxx_GetReplicationInfoOperation {
+	if op == nil {
+		op = &xxx_GetReplicationInfoOperation{}
+	}
 	if o == nil {
-		return &xxx_GetReplicationInfoOperation{}
+		return op
 	}
-	return &xxx_GetReplicationInfoOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetReplicationInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_GetReplicationInfoOperation) {
@@ -35620,7 +35700,7 @@ func (o *GetReplicationInfoResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetReplicationInfoResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetReplicationInfoResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetReplicationInfoOperation{}
@@ -35805,15 +35885,17 @@ type AddSIDHistoryRequest struct {
 	In *MessageAddSIDHistoryRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *AddSIDHistoryRequest) xxx_ToOp(ctx context.Context) *xxx_AddSIDHistoryOperation {
+func (o *AddSIDHistoryRequest) xxx_ToOp(ctx context.Context, op *xxx_AddSIDHistoryOperation) *xxx_AddSIDHistoryOperation {
+	if op == nil {
+		op = &xxx_AddSIDHistoryOperation{}
+	}
 	if o == nil {
-		return &xxx_AddSIDHistoryOperation{}
+		return op
 	}
-	return &xxx_AddSIDHistoryOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *AddSIDHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_AddSIDHistoryOperation) {
@@ -35825,7 +35907,7 @@ func (o *AddSIDHistoryRequest) xxx_FromOp(ctx context.Context, op *xxx_AddSIDHis
 	o.In = op.In
 }
 func (o *AddSIDHistoryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddSIDHistoryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddSIDHistoryOperation{}
@@ -35847,15 +35929,17 @@ type AddSIDHistoryResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddSIDHistoryResponse) xxx_ToOp(ctx context.Context) *xxx_AddSIDHistoryOperation {
+func (o *AddSIDHistoryResponse) xxx_ToOp(ctx context.Context, op *xxx_AddSIDHistoryOperation) *xxx_AddSIDHistoryOperation {
+	if op == nil {
+		op = &xxx_AddSIDHistoryOperation{}
+	}
 	if o == nil {
-		return &xxx_AddSIDHistoryOperation{}
+		return op
 	}
-	return &xxx_AddSIDHistoryOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddSIDHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_AddSIDHistoryOperation) {
@@ -35867,7 +35951,7 @@ func (o *AddSIDHistoryResponse) xxx_FromOp(ctx context.Context, op *xxx_AddSIDHi
 	o.Return = op.Return
 }
 func (o *AddSIDHistoryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddSIDHistoryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddSIDHistoryOperation{}
@@ -36057,15 +36141,17 @@ type GetMemberships2Request struct {
 	In *MessageGetMemberships2Request `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *GetMemberships2Request) xxx_ToOp(ctx context.Context) *xxx_GetMemberships2Operation {
+func (o *GetMemberships2Request) xxx_ToOp(ctx context.Context, op *xxx_GetMemberships2Operation) *xxx_GetMemberships2Operation {
+	if op == nil {
+		op = &xxx_GetMemberships2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetMemberships2Operation{}
+		return op
 	}
-	return &xxx_GetMemberships2Operation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *GetMemberships2Request) xxx_FromOp(ctx context.Context, op *xxx_GetMemberships2Operation) {
@@ -36077,7 +36163,7 @@ func (o *GetMemberships2Request) xxx_FromOp(ctx context.Context, op *xxx_GetMemb
 	o.In = op.In
 }
 func (o *GetMemberships2Request) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetMemberships2Request) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMemberships2Operation{}
@@ -36098,15 +36184,17 @@ type GetMemberships2Response struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetMemberships2Response) xxx_ToOp(ctx context.Context) *xxx_GetMemberships2Operation {
+func (o *GetMemberships2Response) xxx_ToOp(ctx context.Context, op *xxx_GetMemberships2Operation) *xxx_GetMemberships2Operation {
+	if op == nil {
+		op = &xxx_GetMemberships2Operation{}
+	}
 	if o == nil {
-		return &xxx_GetMemberships2Operation{}
+		return op
 	}
-	return &xxx_GetMemberships2Operation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetMemberships2Response) xxx_FromOp(ctx context.Context, op *xxx_GetMemberships2Operation) {
@@ -36118,7 +36206,7 @@ func (o *GetMemberships2Response) xxx_FromOp(ctx context.Context, op *xxx_GetMem
 	o.Return = op.Return
 }
 func (o *GetMemberships2Response) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetMemberships2Response) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetMemberships2Operation{}
@@ -36267,15 +36355,17 @@ type VerifyObjectsReplicaRequest struct {
 	Verify *MessageVerifyReplyObject `idl:"name:pmsgVerify;switch_is:dwVersion;pointer:ref" json:"verify"`
 }
 
-func (o *VerifyObjectsReplicaRequest) xxx_ToOp(ctx context.Context) *xxx_VerifyObjectsReplicaOperation {
+func (o *VerifyObjectsReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_VerifyObjectsReplicaOperation) *xxx_VerifyObjectsReplicaOperation {
+	if op == nil {
+		op = &xxx_VerifyObjectsReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyObjectsReplicaOperation{}
+		return op
 	}
-	return &xxx_VerifyObjectsReplicaOperation{
-		Handle:  o.Handle,
-		Version: o.Version,
-		Verify:  o.Verify,
-	}
+	o.Handle = op.Handle
+	o.Version = op.Version
+	o.Verify = op.Verify
+	return op
 }
 
 func (o *VerifyObjectsReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_VerifyObjectsReplicaOperation) {
@@ -36287,7 +36377,7 @@ func (o *VerifyObjectsReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_Ve
 	o.Verify = op.Verify
 }
 func (o *VerifyObjectsReplicaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *VerifyObjectsReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyObjectsReplicaOperation{}
@@ -36304,13 +36394,15 @@ type VerifyObjectsReplicaResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *VerifyObjectsReplicaResponse) xxx_ToOp(ctx context.Context) *xxx_VerifyObjectsReplicaOperation {
+func (o *VerifyObjectsReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_VerifyObjectsReplicaOperation) *xxx_VerifyObjectsReplicaOperation {
+	if op == nil {
+		op = &xxx_VerifyObjectsReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_VerifyObjectsReplicaOperation{}
+		return op
 	}
-	return &xxx_VerifyObjectsReplicaOperation{
-		Return: o.Return,
-	}
+	o.Return = op.Return
+	return op
 }
 
 func (o *VerifyObjectsReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_VerifyObjectsReplicaOperation) {
@@ -36320,7 +36412,7 @@ func (o *VerifyObjectsReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_V
 	o.Return = op.Return
 }
 func (o *VerifyObjectsReplicaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *VerifyObjectsReplicaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_VerifyObjectsReplicaOperation{}
@@ -36512,15 +36604,17 @@ type GetObjectExistenceRequest struct {
 	In *MessageExistRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *GetObjectExistenceRequest) xxx_ToOp(ctx context.Context) *xxx_GetObjectExistenceOperation {
+func (o *GetObjectExistenceRequest) xxx_ToOp(ctx context.Context, op *xxx_GetObjectExistenceOperation) *xxx_GetObjectExistenceOperation {
+	if op == nil {
+		op = &xxx_GetObjectExistenceOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectExistenceOperation{}
+		return op
 	}
-	return &xxx_GetObjectExistenceOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *GetObjectExistenceRequest) xxx_FromOp(ctx context.Context, op *xxx_GetObjectExistenceOperation) {
@@ -36532,7 +36626,7 @@ func (o *GetObjectExistenceRequest) xxx_FromOp(ctx context.Context, op *xxx_GetO
 	o.In = op.In
 }
 func (o *GetObjectExistenceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetObjectExistenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectExistenceOperation{}
@@ -36553,15 +36647,17 @@ type GetObjectExistenceResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetObjectExistenceResponse) xxx_ToOp(ctx context.Context) *xxx_GetObjectExistenceOperation {
+func (o *GetObjectExistenceResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObjectExistenceOperation) *xxx_GetObjectExistenceOperation {
+	if op == nil {
+		op = &xxx_GetObjectExistenceOperation{}
+	}
 	if o == nil {
-		return &xxx_GetObjectExistenceOperation{}
+		return op
 	}
-	return &xxx_GetObjectExistenceOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetObjectExistenceResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObjectExistenceOperation) {
@@ -36573,7 +36669,7 @@ func (o *GetObjectExistenceResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetObjectExistenceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetObjectExistenceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetObjectExistenceOperation{}
@@ -36763,15 +36859,17 @@ type QuerySitesByCostRequest struct {
 	In *MessageQuerySitesRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *QuerySitesByCostRequest) xxx_ToOp(ctx context.Context) *xxx_QuerySitesByCostOperation {
+func (o *QuerySitesByCostRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySitesByCostOperation) *xxx_QuerySitesByCostOperation {
+	if op == nil {
+		op = &xxx_QuerySitesByCostOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySitesByCostOperation{}
+		return op
 	}
-	return &xxx_QuerySitesByCostOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *QuerySitesByCostRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySitesByCostOperation) {
@@ -36783,7 +36881,7 @@ func (o *QuerySitesByCostRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryS
 	o.In = op.In
 }
 func (o *QuerySitesByCostRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QuerySitesByCostRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySitesByCostOperation{}
@@ -36804,15 +36902,17 @@ type QuerySitesByCostResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QuerySitesByCostResponse) xxx_ToOp(ctx context.Context) *xxx_QuerySitesByCostOperation {
+func (o *QuerySitesByCostResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySitesByCostOperation) *xxx_QuerySitesByCostOperation {
+	if op == nil {
+		op = &xxx_QuerySitesByCostOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySitesByCostOperation{}
+		return op
 	}
-	return &xxx_QuerySitesByCostOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *QuerySitesByCostResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySitesByCostOperation) {
@@ -36824,7 +36924,7 @@ func (o *QuerySitesByCostResponse) xxx_FromOp(ctx context.Context, op *xxx_Query
 	o.Return = op.Return
 }
 func (o *QuerySitesByCostResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QuerySitesByCostResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySitesByCostOperation{}
@@ -37002,15 +37102,17 @@ type InitDemotionRequest struct {
 	In *MessageInitDemotionRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *InitDemotionRequest) xxx_ToOp(ctx context.Context) *xxx_InitDemotionOperation {
+func (o *InitDemotionRequest) xxx_ToOp(ctx context.Context, op *xxx_InitDemotionOperation) *xxx_InitDemotionOperation {
+	if op == nil {
+		op = &xxx_InitDemotionOperation{}
+	}
 	if o == nil {
-		return &xxx_InitDemotionOperation{}
+		return op
 	}
-	return &xxx_InitDemotionOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *InitDemotionRequest) xxx_FromOp(ctx context.Context, op *xxx_InitDemotionOperation) {
@@ -37022,7 +37124,7 @@ func (o *InitDemotionRequest) xxx_FromOp(ctx context.Context, op *xxx_InitDemoti
 	o.In = op.In
 }
 func (o *InitDemotionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *InitDemotionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitDemotionOperation{}
@@ -37043,15 +37145,17 @@ type InitDemotionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *InitDemotionResponse) xxx_ToOp(ctx context.Context) *xxx_InitDemotionOperation {
+func (o *InitDemotionResponse) xxx_ToOp(ctx context.Context, op *xxx_InitDemotionOperation) *xxx_InitDemotionOperation {
+	if op == nil {
+		op = &xxx_InitDemotionOperation{}
+	}
 	if o == nil {
-		return &xxx_InitDemotionOperation{}
+		return op
 	}
-	return &xxx_InitDemotionOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *InitDemotionResponse) xxx_FromOp(ctx context.Context, op *xxx_InitDemotionOperation) {
@@ -37063,7 +37167,7 @@ func (o *InitDemotionResponse) xxx_FromOp(ctx context.Context, op *xxx_InitDemot
 	o.Return = op.Return
 }
 func (o *InitDemotionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *InitDemotionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_InitDemotionOperation{}
@@ -37247,15 +37351,17 @@ type DemotionReplicaRequest struct {
 	In *MessageReplicaDemotionRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *DemotionReplicaRequest) xxx_ToOp(ctx context.Context) *xxx_DemotionReplicaOperation {
+func (o *DemotionReplicaRequest) xxx_ToOp(ctx context.Context, op *xxx_DemotionReplicaOperation) *xxx_DemotionReplicaOperation {
+	if op == nil {
+		op = &xxx_DemotionReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_DemotionReplicaOperation{}
+		return op
 	}
-	return &xxx_DemotionReplicaOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *DemotionReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_DemotionReplicaOperation) {
@@ -37267,7 +37373,7 @@ func (o *DemotionReplicaRequest) xxx_FromOp(ctx context.Context, op *xxx_Demotio
 	o.In = op.In
 }
 func (o *DemotionReplicaRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *DemotionReplicaRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DemotionReplicaOperation{}
@@ -37288,15 +37394,17 @@ type DemotionReplicaResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *DemotionReplicaResponse) xxx_ToOp(ctx context.Context) *xxx_DemotionReplicaOperation {
+func (o *DemotionReplicaResponse) xxx_ToOp(ctx context.Context, op *xxx_DemotionReplicaOperation) *xxx_DemotionReplicaOperation {
+	if op == nil {
+		op = &xxx_DemotionReplicaOperation{}
+	}
 	if o == nil {
-		return &xxx_DemotionReplicaOperation{}
+		return op
 	}
-	return &xxx_DemotionReplicaOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *DemotionReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_DemotionReplicaOperation) {
@@ -37308,7 +37416,7 @@ func (o *DemotionReplicaResponse) xxx_FromOp(ctx context.Context, op *xxx_Demoti
 	o.Return = op.Return
 }
 func (o *DemotionReplicaResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *DemotionReplicaResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_DemotionReplicaOperation{}
@@ -37492,15 +37600,17 @@ type FinishDemotionRequest struct {
 	In *MessageFinishDemotionRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *FinishDemotionRequest) xxx_ToOp(ctx context.Context) *xxx_FinishDemotionOperation {
+func (o *FinishDemotionRequest) xxx_ToOp(ctx context.Context, op *xxx_FinishDemotionOperation) *xxx_FinishDemotionOperation {
+	if op == nil {
+		op = &xxx_FinishDemotionOperation{}
+	}
 	if o == nil {
-		return &xxx_FinishDemotionOperation{}
+		return op
 	}
-	return &xxx_FinishDemotionOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *FinishDemotionRequest) xxx_FromOp(ctx context.Context, op *xxx_FinishDemotionOperation) {
@@ -37512,7 +37622,7 @@ func (o *FinishDemotionRequest) xxx_FromOp(ctx context.Context, op *xxx_FinishDe
 	o.In = op.In
 }
 func (o *FinishDemotionRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *FinishDemotionRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FinishDemotionOperation{}
@@ -37533,15 +37643,17 @@ type FinishDemotionResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *FinishDemotionResponse) xxx_ToOp(ctx context.Context) *xxx_FinishDemotionOperation {
+func (o *FinishDemotionResponse) xxx_ToOp(ctx context.Context, op *xxx_FinishDemotionOperation) *xxx_FinishDemotionOperation {
+	if op == nil {
+		op = &xxx_FinishDemotionOperation{}
+	}
 	if o == nil {
-		return &xxx_FinishDemotionOperation{}
+		return op
 	}
-	return &xxx_FinishDemotionOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *FinishDemotionResponse) xxx_FromOp(ctx context.Context, op *xxx_FinishDemotionOperation) {
@@ -37553,7 +37665,7 @@ func (o *FinishDemotionResponse) xxx_FromOp(ctx context.Context, op *xxx_FinishD
 	o.Return = op.Return
 }
 func (o *FinishDemotionResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *FinishDemotionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_FinishDemotionOperation{}
@@ -37743,15 +37855,17 @@ type AddCloneDCRequest struct {
 	In *MessageAddCloneDCRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *AddCloneDCRequest) xxx_ToOp(ctx context.Context) *xxx_AddCloneDCOperation {
+func (o *AddCloneDCRequest) xxx_ToOp(ctx context.Context, op *xxx_AddCloneDCOperation) *xxx_AddCloneDCOperation {
+	if op == nil {
+		op = &xxx_AddCloneDCOperation{}
+	}
 	if o == nil {
-		return &xxx_AddCloneDCOperation{}
+		return op
 	}
-	return &xxx_AddCloneDCOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *AddCloneDCRequest) xxx_FromOp(ctx context.Context, op *xxx_AddCloneDCOperation) {
@@ -37763,7 +37877,7 @@ func (o *AddCloneDCRequest) xxx_FromOp(ctx context.Context, op *xxx_AddCloneDCOp
 	o.In = op.In
 }
 func (o *AddCloneDCRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *AddCloneDCRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddCloneDCOperation{}
@@ -37784,15 +37898,17 @@ type AddCloneDCResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *AddCloneDCResponse) xxx_ToOp(ctx context.Context) *xxx_AddCloneDCOperation {
+func (o *AddCloneDCResponse) xxx_ToOp(ctx context.Context, op *xxx_AddCloneDCOperation) *xxx_AddCloneDCOperation {
+	if op == nil {
+		op = &xxx_AddCloneDCOperation{}
+	}
 	if o == nil {
-		return &xxx_AddCloneDCOperation{}
+		return op
 	}
-	return &xxx_AddCloneDCOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *AddCloneDCResponse) xxx_FromOp(ctx context.Context, op *xxx_AddCloneDCOperation) {
@@ -37804,7 +37920,7 @@ func (o *AddCloneDCResponse) xxx_FromOp(ctx context.Context, op *xxx_AddCloneDCO
 	o.Return = op.Return
 }
 func (o *AddCloneDCResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *AddCloneDCResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_AddCloneDCOperation{}
@@ -37985,15 +38101,17 @@ type WriteNGCKeyRequest struct {
 	In        *MessageWriteNGCKeyRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *WriteNGCKeyRequest) xxx_ToOp(ctx context.Context) *xxx_WriteNGCKeyOperation {
+func (o *WriteNGCKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteNGCKeyOperation) *xxx_WriteNGCKeyOperation {
+	if op == nil {
+		op = &xxx_WriteNGCKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_WriteNGCKeyOperation{}
+		return op
 	}
-	return &xxx_WriteNGCKeyOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *WriteNGCKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteNGCKeyOperation) {
@@ -38005,7 +38123,7 @@ func (o *WriteNGCKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteNGCKey
 	o.In = op.In
 }
 func (o *WriteNGCKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *WriteNGCKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WriteNGCKeyOperation{}
@@ -38024,15 +38142,17 @@ type WriteNGCKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *WriteNGCKeyResponse) xxx_ToOp(ctx context.Context) *xxx_WriteNGCKeyOperation {
+func (o *WriteNGCKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_WriteNGCKeyOperation) *xxx_WriteNGCKeyOperation {
+	if op == nil {
+		op = &xxx_WriteNGCKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_WriteNGCKeyOperation{}
+		return op
 	}
-	return &xxx_WriteNGCKeyOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *WriteNGCKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_WriteNGCKeyOperation) {
@@ -38044,7 +38164,7 @@ func (o *WriteNGCKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_WriteNGCKe
 	o.Return = op.Return
 }
 func (o *WriteNGCKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *WriteNGCKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_WriteNGCKeyOperation{}
@@ -38231,15 +38351,17 @@ type ReadNGCKeyRequest struct {
 	In        *MessageReadNGCKeyRequest `idl:"name:pmsgIn;switch_is:dwInVersion;pointer:ref" json:"in"`
 }
 
-func (o *ReadNGCKeyRequest) xxx_ToOp(ctx context.Context) *xxx_ReadNGCKeyOperation {
+func (o *ReadNGCKeyRequest) xxx_ToOp(ctx context.Context, op *xxx_ReadNGCKeyOperation) *xxx_ReadNGCKeyOperation {
+	if op == nil {
+		op = &xxx_ReadNGCKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadNGCKeyOperation{}
+		return op
 	}
-	return &xxx_ReadNGCKeyOperation{
-		Handle:    o.Handle,
-		InVersion: o.InVersion,
-		In:        o.In,
-	}
+	o.Handle = op.Handle
+	o.InVersion = op.InVersion
+	o.In = op.In
+	return op
 }
 
 func (o *ReadNGCKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadNGCKeyOperation) {
@@ -38251,7 +38373,7 @@ func (o *ReadNGCKeyRequest) xxx_FromOp(ctx context.Context, op *xxx_ReadNGCKeyOp
 	o.In = op.In
 }
 func (o *ReadNGCKeyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *ReadNGCKeyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadNGCKeyOperation{}
@@ -38270,15 +38392,17 @@ type ReadNGCKeyResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *ReadNGCKeyResponse) xxx_ToOp(ctx context.Context) *xxx_ReadNGCKeyOperation {
+func (o *ReadNGCKeyResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadNGCKeyOperation) *xxx_ReadNGCKeyOperation {
+	if op == nil {
+		op = &xxx_ReadNGCKeyOperation{}
+	}
 	if o == nil {
-		return &xxx_ReadNGCKeyOperation{}
+		return op
 	}
-	return &xxx_ReadNGCKeyOperation{
-		OutVersion: o.OutVersion,
-		Out:        o.Out,
-		Return:     o.Return,
-	}
+	o.OutVersion = op.OutVersion
+	o.Out = op.Out
+	o.Return = op.Return
+	return op
 }
 
 func (o *ReadNGCKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadNGCKeyOperation) {
@@ -38290,7 +38414,7 @@ func (o *ReadNGCKeyResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadNGCKeyO
 	o.Return = op.Return
 }
 func (o *ReadNGCKeyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *ReadNGCKeyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_ReadNGCKeyOperation{}

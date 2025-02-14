@@ -91,103 +91,181 @@ func ActionEmailServerHandle(ctx context.Context, o ActionEmailServer, opNum int
 	}
 	switch opNum {
 	case 12: // MailFrom
-		in := &GetMailFromRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailFromOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailFrom(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailFromRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailFrom(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // MailFrom
-		in := &SetMailFromRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailFromOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailFrom(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailFromRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailFrom(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // MailReplyTo
-		in := &GetMailReplyToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailReplyToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailReplyTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailReplyToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailReplyTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // MailReplyTo
-		in := &SetMailReplyToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailReplyToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailReplyTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailReplyToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailReplyTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // MailTo
-		in := &GetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // MailTo
-		in := &SetMailToRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailToOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailTo(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailToRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailTo(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // MailCc
-		in := &GetMailCCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailCCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailCC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailCCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailCC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // MailCc
-		in := &SetMailCCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailCCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailCC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailCCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailCC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // MailBcc
-		in := &GetMailBCCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailBCCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailBCC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailBCCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailBCC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // MailBcc
-		in := &SetMailBCCRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailBCCOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailBCC(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailBCCRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailBCC(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // MailSubject
-		in := &GetMailSubjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMailSubjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMailSubject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMailSubjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMailSubject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // MailSubject
-		in := &SetMailSubjectRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMailSubjectOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMailSubject(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMailSubjectRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMailSubject(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // MessageText
-		in := &GetMessageTextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMessageTextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMessageText(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMessageTextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMessageText(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // MessageText
-		in := &SetMessageTextRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMessageTextOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMessageText(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMessageTextRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMessageText(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IFsrmActionEmail
+type UnimplementedActionEmailServer struct {
+	ifsrmaction.UnimplementedActionServer
+}
+
+func (UnimplementedActionEmailServer) GetMailFrom(context.Context, *GetMailFromRequest) (*GetMailFromResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMailFrom(context.Context, *SetMailFromRequest) (*SetMailFromResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) GetMailReplyTo(context.Context, *GetMailReplyToRequest) (*GetMailReplyToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMailReplyTo(context.Context, *SetMailReplyToRequest) (*SetMailReplyToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) GetMailTo(context.Context, *GetMailToRequest) (*GetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMailTo(context.Context, *SetMailToRequest) (*SetMailToResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) GetMailCC(context.Context, *GetMailCCRequest) (*GetMailCCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMailCC(context.Context, *SetMailCCRequest) (*SetMailCCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) GetMailBCC(context.Context, *GetMailBCCRequest) (*GetMailBCCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMailBCC(context.Context, *SetMailBCCRequest) (*SetMailBCCResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) GetMailSubject(context.Context, *GetMailSubjectRequest) (*GetMailSubjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMailSubject(context.Context, *SetMailSubjectRequest) (*SetMailSubjectResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) GetMessageText(context.Context, *GetMessageTextRequest) (*GetMessageTextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedActionEmailServer) SetMessageText(context.Context, *SetMessageTextRequest) (*SetMessageTextResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ActionEmailServer = (*UnimplementedActionEmailServer)(nil)

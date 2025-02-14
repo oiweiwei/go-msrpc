@@ -65,7 +65,7 @@ type xxx_DefaultActivationClient struct {
 }
 
 func (o *xxx_DefaultActivationClient) RemoteActivation(ctx context.Context, in *RemoteActivationRequest, opts ...dcerpc.CallOption) (*RemoteActivationResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
@@ -797,22 +797,24 @@ type RemoteActivationRequest struct {
 	RequestedProtocolSequences []uint16 `idl:"name:aRequestedProtseqs;size_is:(cRequestedProtseqs)" json:"requested_protocol_sequences"`
 }
 
-func (o *RemoteActivationRequest) xxx_ToOp(ctx context.Context) *xxx_RemoteActivationOperation {
+func (o *RemoteActivationRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoteActivationOperation) *xxx_RemoteActivationOperation {
+	if op == nil {
+		op = &xxx_RemoteActivationOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteActivationOperation{}
+		return op
 	}
-	return &xxx_RemoteActivationOperation{
-		ORPCThis:                        o.ORPCThis,
-		ClassID:                         o.ClassID,
-		ObjectName:                      o.ObjectName,
-		ObjectStorage:                   o.ObjectStorage,
-		ClientImpLevel:                  o.ClientImpLevel,
-		Mode:                            o.Mode,
-		Interfaces:                      o.Interfaces,
-		IIDs:                            o.IIDs,
-		RequestedProtocolSequencesCount: o.RequestedProtocolSequencesCount,
-		RequestedProtocolSequences:      o.RequestedProtocolSequences,
-	}
+	o.ORPCThis = op.ORPCThis
+	o.ClassID = op.ClassID
+	o.ObjectName = op.ObjectName
+	o.ObjectStorage = op.ObjectStorage
+	o.ClientImpLevel = op.ClientImpLevel
+	o.Mode = op.Mode
+	o.Interfaces = op.Interfaces
+	o.IIDs = op.IIDs
+	o.RequestedProtocolSequencesCount = op.RequestedProtocolSequencesCount
+	o.RequestedProtocolSequences = op.RequestedProtocolSequences
+	return op
 }
 
 func (o *RemoteActivationRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoteActivationOperation) {
@@ -831,7 +833,7 @@ func (o *RemoteActivationRequest) xxx_FromOp(ctx context.Context, op *xxx_Remote
 	o.RequestedProtocolSequences = op.RequestedProtocolSequences
 }
 func (o *RemoteActivationRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoteActivationRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteActivationOperation{}
@@ -879,22 +881,24 @@ type RemoteActivationResponse struct {
 	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoteActivationResponse) xxx_ToOp(ctx context.Context) *xxx_RemoteActivationOperation {
+func (o *RemoteActivationResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoteActivationOperation) *xxx_RemoteActivationOperation {
+	if op == nil {
+		op = &xxx_RemoteActivationOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoteActivationOperation{}
+		return op
 	}
-	return &xxx_RemoteActivationOperation{
-		ORPCThat:      o.ORPCThat,
-		OXID:          o.OXID,
-		OXIDBindings:  o.OXIDBindings,
-		RemoteUnknown: o.RemoteUnknown,
-		AuthnHint:     o.AuthnHint,
-		ServerVersion: o.ServerVersion,
-		HResult:       o.HResult,
-		InterfaceData: o.InterfaceData,
-		Results:       o.Results,
-		Return:        o.Return,
-	}
+	o.ORPCThat = op.ORPCThat
+	o.OXID = op.OXID
+	o.OXIDBindings = op.OXIDBindings
+	o.RemoteUnknown = op.RemoteUnknown
+	o.AuthnHint = op.AuthnHint
+	o.ServerVersion = op.ServerVersion
+	o.HResult = op.HResult
+	o.InterfaceData = op.InterfaceData
+	o.Results = op.Results
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoteActivationResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoteActivationOperation) {
@@ -913,7 +917,7 @@ func (o *RemoteActivationResponse) xxx_FromOp(ctx context.Context, op *xxx_Remot
 	o.Return = op.Return
 }
 func (o *RemoteActivationResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoteActivationResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoteActivationOperation{}

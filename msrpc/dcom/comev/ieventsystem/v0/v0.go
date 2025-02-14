@@ -154,7 +154,7 @@ func (o *xxx_DefaultEventSystemClient) Dispatch() idispatch.DispatchClient {
 }
 
 func (o *xxx_DefaultEventSystemClient) Query(ctx context.Context, in *QueryRequest, opts ...dcerpc.CallOption) (*QueryResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -174,7 +174,7 @@ func (o *xxx_DefaultEventSystemClient) Query(ctx context.Context, in *QueryReque
 }
 
 func (o *xxx_DefaultEventSystemClient) Store(ctx context.Context, in *StoreRequest, opts ...dcerpc.CallOption) (*StoreResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -194,7 +194,7 @@ func (o *xxx_DefaultEventSystemClient) Store(ctx context.Context, in *StoreReque
 }
 
 func (o *xxx_DefaultEventSystemClient) Remove(ctx context.Context, in *RemoveRequest, opts ...dcerpc.CallOption) (*RemoveResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -214,7 +214,7 @@ func (o *xxx_DefaultEventSystemClient) Remove(ctx context.Context, in *RemoveReq
 }
 
 func (o *xxx_DefaultEventSystemClient) GetEventObjectChangeEventClassID(ctx context.Context, in *GetEventObjectChangeEventClassIDRequest, opts ...dcerpc.CallOption) (*GetEventObjectChangeEventClassIDResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -234,7 +234,7 @@ func (o *xxx_DefaultEventSystemClient) GetEventObjectChangeEventClassID(ctx cont
 }
 
 func (o *xxx_DefaultEventSystemClient) QueryS(ctx context.Context, in *QuerySRequest, opts ...dcerpc.CallOption) (*QuerySResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -254,7 +254,7 @@ func (o *xxx_DefaultEventSystemClient) QueryS(ctx context.Context, in *QuerySReq
 }
 
 func (o *xxx_DefaultEventSystemClient) RemoveS(ctx context.Context, in *RemoveSRequest, opts ...dcerpc.CallOption) (*RemoveSResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -609,15 +609,17 @@ type QueryRequest struct {
 	QueryCriteria *oaut.String `idl:"name:queryCriteria" json:"query_criteria"`
 }
 
-func (o *QueryRequest) xxx_ToOp(ctx context.Context) *xxx_QueryOperation {
+func (o *QueryRequest) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xxx_QueryOperation {
+	if op == nil {
+		op = &xxx_QueryOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryOperation{}
+		return op
 	}
-	return &xxx_QueryOperation{
-		This:          o.This,
-		ProgID:        o.ProgID,
-		QueryCriteria: o.QueryCriteria,
-	}
+	o.This = op.This
+	o.ProgID = op.ProgID
+	o.QueryCriteria = op.QueryCriteria
+	return op
 }
 
 func (o *QueryRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) {
@@ -629,7 +631,7 @@ func (o *QueryRequest) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) {
 	o.QueryCriteria = op.QueryCriteria
 }
 func (o *QueryRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QueryRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryOperation{}
@@ -657,16 +659,18 @@ type QueryResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QueryResponse) xxx_ToOp(ctx context.Context) *xxx_QueryOperation {
+func (o *QueryResponse) xxx_ToOp(ctx context.Context, op *xxx_QueryOperation) *xxx_QueryOperation {
+	if op == nil {
+		op = &xxx_QueryOperation{}
+	}
 	if o == nil {
-		return &xxx_QueryOperation{}
+		return op
 	}
-	return &xxx_QueryOperation{
-		That:       o.That,
-		ErrorIndex: o.ErrorIndex,
-		Interface:  o.Interface,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.ErrorIndex = op.ErrorIndex
+	o.Interface = op.Interface
+	o.Return = op.Return
+	return op
 }
 
 func (o *QueryResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) {
@@ -679,7 +683,7 @@ func (o *QueryResponse) xxx_FromOp(ctx context.Context, op *xxx_QueryOperation) 
 	o.Return = op.Return
 }
 func (o *QueryResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QueryResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QueryOperation{}
@@ -926,15 +930,17 @@ type StoreRequest struct {
 	Interface *dcom.Unknown `idl:"name:pInterface" json:"interface"`
 }
 
-func (o *StoreRequest) xxx_ToOp(ctx context.Context) *xxx_StoreOperation {
+func (o *StoreRequest) xxx_ToOp(ctx context.Context, op *xxx_StoreOperation) *xxx_StoreOperation {
+	if op == nil {
+		op = &xxx_StoreOperation{}
+	}
 	if o == nil {
-		return &xxx_StoreOperation{}
+		return op
 	}
-	return &xxx_StoreOperation{
-		This:      o.This,
-		ProgID:    o.ProgID,
-		Interface: o.Interface,
-	}
+	o.This = op.This
+	o.ProgID = op.ProgID
+	o.Interface = op.Interface
+	return op
 }
 
 func (o *StoreRequest) xxx_FromOp(ctx context.Context, op *xxx_StoreOperation) {
@@ -946,7 +952,7 @@ func (o *StoreRequest) xxx_FromOp(ctx context.Context, op *xxx_StoreOperation) {
 	o.Interface = op.Interface
 }
 func (o *StoreRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *StoreRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StoreOperation{}
@@ -965,14 +971,16 @@ type StoreResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *StoreResponse) xxx_ToOp(ctx context.Context) *xxx_StoreOperation {
+func (o *StoreResponse) xxx_ToOp(ctx context.Context, op *xxx_StoreOperation) *xxx_StoreOperation {
+	if op == nil {
+		op = &xxx_StoreOperation{}
+	}
 	if o == nil {
-		return &xxx_StoreOperation{}
+		return op
 	}
-	return &xxx_StoreOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *StoreResponse) xxx_FromOp(ctx context.Context, op *xxx_StoreOperation) {
@@ -983,7 +991,7 @@ func (o *StoreResponse) xxx_FromOp(ctx context.Context, op *xxx_StoreOperation) 
 	o.Return = op.Return
 }
 func (o *StoreResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *StoreResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_StoreOperation{}
@@ -1226,15 +1234,17 @@ type RemoveRequest struct {
 	QueryCriteria *oaut.String   `idl:"name:queryCriteria" json:"query_criteria"`
 }
 
-func (o *RemoveRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveOperation {
+func (o *RemoveRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *xxx_RemoveOperation {
+	if op == nil {
+		op = &xxx_RemoveOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOperation{}
+		return op
 	}
-	return &xxx_RemoveOperation{
-		This:          o.This,
-		ProgID:        o.ProgID,
-		QueryCriteria: o.QueryCriteria,
-	}
+	o.This = op.This
+	o.ProgID = op.ProgID
+	o.QueryCriteria = op.QueryCriteria
+	return op
 }
 
 func (o *RemoveRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation) {
@@ -1246,7 +1256,7 @@ func (o *RemoveRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation)
 	o.QueryCriteria = op.QueryCriteria
 }
 func (o *RemoveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOperation{}
@@ -1266,15 +1276,17 @@ type RemoveResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveOperation {
+func (o *RemoveResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveOperation) *xxx_RemoveOperation {
+	if op == nil {
+		op = &xxx_RemoveOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveOperation{}
+		return op
 	}
-	return &xxx_RemoveOperation{
-		That:       o.That,
-		ErrorIndex: o.ErrorIndex,
-		Return:     o.Return,
-	}
+	o.That = op.That
+	o.ErrorIndex = op.ErrorIndex
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation) {
@@ -1286,7 +1298,7 @@ func (o *RemoveResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveOperation
 	o.Return = op.Return
 }
 func (o *RemoveResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveOperation{}
@@ -1469,13 +1481,15 @@ type GetEventObjectChangeEventClassIDRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetEventObjectChangeEventClassIDRequest) xxx_ToOp(ctx context.Context) *xxx_GetEventObjectChangeEventClassIDOperation {
+func (o *GetEventObjectChangeEventClassIDRequest) xxx_ToOp(ctx context.Context, op *xxx_GetEventObjectChangeEventClassIDOperation) *xxx_GetEventObjectChangeEventClassIDOperation {
+	if op == nil {
+		op = &xxx_GetEventObjectChangeEventClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventObjectChangeEventClassIDOperation{}
+		return op
 	}
-	return &xxx_GetEventObjectChangeEventClassIDOperation{
-		This: o.This,
-	}
+	o.This = op.This
+	return op
 }
 
 func (o *GetEventObjectChangeEventClassIDRequest) xxx_FromOp(ctx context.Context, op *xxx_GetEventObjectChangeEventClassIDOperation) {
@@ -1485,7 +1499,7 @@ func (o *GetEventObjectChangeEventClassIDRequest) xxx_FromOp(ctx context.Context
 	o.This = op.This
 }
 func (o *GetEventObjectChangeEventClassIDRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetEventObjectChangeEventClassIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventObjectChangeEventClassIDOperation{}
@@ -1509,15 +1523,17 @@ type GetEventObjectChangeEventClassIDResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetEventObjectChangeEventClassIDResponse) xxx_ToOp(ctx context.Context) *xxx_GetEventObjectChangeEventClassIDOperation {
+func (o *GetEventObjectChangeEventClassIDResponse) xxx_ToOp(ctx context.Context, op *xxx_GetEventObjectChangeEventClassIDOperation) *xxx_GetEventObjectChangeEventClassIDOperation {
+	if op == nil {
+		op = &xxx_GetEventObjectChangeEventClassIDOperation{}
+	}
 	if o == nil {
-		return &xxx_GetEventObjectChangeEventClassIDOperation{}
+		return op
 	}
-	return &xxx_GetEventObjectChangeEventClassIDOperation{
-		That:         o.That,
-		EventClassID: o.EventClassID,
-		Return:       o.Return,
-	}
+	o.That = op.That
+	o.EventClassID = op.EventClassID
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetEventObjectChangeEventClassIDResponse) xxx_FromOp(ctx context.Context, op *xxx_GetEventObjectChangeEventClassIDOperation) {
@@ -1529,7 +1545,7 @@ func (o *GetEventObjectChangeEventClassIDResponse) xxx_FromOp(ctx context.Contex
 	o.Return = op.Return
 }
 func (o *GetEventObjectChangeEventClassIDResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetEventObjectChangeEventClassIDResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetEventObjectChangeEventClassIDOperation{}
@@ -1821,15 +1837,17 @@ type QuerySRequest struct {
 	QueryCriteria *oaut.String `idl:"name:queryCriteria" json:"query_criteria"`
 }
 
-func (o *QuerySRequest) xxx_ToOp(ctx context.Context) *xxx_QuerySOperation {
+func (o *QuerySRequest) xxx_ToOp(ctx context.Context, op *xxx_QuerySOperation) *xxx_QuerySOperation {
+	if op == nil {
+		op = &xxx_QuerySOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySOperation{}
+		return op
 	}
-	return &xxx_QuerySOperation{
-		This:          o.This,
-		ProgID:        o.ProgID,
-		QueryCriteria: o.QueryCriteria,
-	}
+	o.This = op.This
+	o.ProgID = op.ProgID
+	o.QueryCriteria = op.QueryCriteria
+	return op
 }
 
 func (o *QuerySRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySOperation) {
@@ -1841,7 +1859,7 @@ func (o *QuerySRequest) xxx_FromOp(ctx context.Context, op *xxx_QuerySOperation)
 	o.QueryCriteria = op.QueryCriteria
 }
 func (o *QuerySRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *QuerySRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySOperation{}
@@ -1864,15 +1882,17 @@ type QuerySResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *QuerySResponse) xxx_ToOp(ctx context.Context) *xxx_QuerySOperation {
+func (o *QuerySResponse) xxx_ToOp(ctx context.Context, op *xxx_QuerySOperation) *xxx_QuerySOperation {
+	if op == nil {
+		op = &xxx_QuerySOperation{}
+	}
 	if o == nil {
-		return &xxx_QuerySOperation{}
+		return op
 	}
-	return &xxx_QuerySOperation{
-		That:      o.That,
-		Interface: o.Interface,
-		Return:    o.Return,
-	}
+	o.That = op.That
+	o.Interface = op.Interface
+	o.Return = op.Return
+	return op
 }
 
 func (o *QuerySResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySOperation) {
@@ -1884,7 +1904,7 @@ func (o *QuerySResponse) xxx_FromOp(ctx context.Context, op *xxx_QuerySOperation
 	o.Return = op.Return
 }
 func (o *QuerySResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *QuerySResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_QuerySOperation{}
@@ -2129,15 +2149,17 @@ type RemoveSRequest struct {
 	QueryCriteria *oaut.String `idl:"name:queryCriteria" json:"query_criteria"`
 }
 
-func (o *RemoveSRequest) xxx_ToOp(ctx context.Context) *xxx_RemoveSOperation {
+func (o *RemoveSRequest) xxx_ToOp(ctx context.Context, op *xxx_RemoveSOperation) *xxx_RemoveSOperation {
+	if op == nil {
+		op = &xxx_RemoveSOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveSOperation{}
+		return op
 	}
-	return &xxx_RemoveSOperation{
-		This:          o.This,
-		ProgID:        o.ProgID,
-		QueryCriteria: o.QueryCriteria,
-	}
+	o.This = op.This
+	o.ProgID = op.ProgID
+	o.QueryCriteria = op.QueryCriteria
+	return op
 }
 
 func (o *RemoveSRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveSOperation) {
@@ -2149,7 +2171,7 @@ func (o *RemoveSRequest) xxx_FromOp(ctx context.Context, op *xxx_RemoveSOperatio
 	o.QueryCriteria = op.QueryCriteria
 }
 func (o *RemoveSRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *RemoveSRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveSOperation{}
@@ -2168,14 +2190,16 @@ type RemoveSResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *RemoveSResponse) xxx_ToOp(ctx context.Context) *xxx_RemoveSOperation {
+func (o *RemoveSResponse) xxx_ToOp(ctx context.Context, op *xxx_RemoveSOperation) *xxx_RemoveSOperation {
+	if op == nil {
+		op = &xxx_RemoveSOperation{}
+	}
 	if o == nil {
-		return &xxx_RemoveSOperation{}
+		return op
 	}
-	return &xxx_RemoveSOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	o.That = op.That
+	o.Return = op.Return
+	return op
 }
 
 func (o *RemoveSResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveSOperation) {
@@ -2186,7 +2210,7 @@ func (o *RemoveSResponse) xxx_FromOp(ctx context.Context, op *xxx_RemoveSOperati
 	o.Return = op.Return
 }
 func (o *RemoveSResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *RemoveSResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_RemoveSOperation{}

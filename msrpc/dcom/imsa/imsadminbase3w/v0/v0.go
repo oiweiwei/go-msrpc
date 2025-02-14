@@ -113,7 +113,7 @@ func (o *xxx_DefaultIMSAdminBase3WClient) IMSAdminBase2W() imsadminbase2w.IMSAdm
 }
 
 func (o *xxx_DefaultIMSAdminBase3WClient) GetChildPaths(ctx context.Context, in *GetChildPathsRequest, opts ...dcerpc.CallOption) (*GetChildPathsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -595,18 +595,20 @@ type GetChildPathsRequest struct {
 	RequiredBufferSize uint32 `idl:"name:pcchMDRequiredBufferSize;pointer:unique" json:"required_buffer_size"`
 }
 
-func (o *GetChildPathsRequest) xxx_ToOp(ctx context.Context) *xxx_GetChildPathsOperation {
+func (o *GetChildPathsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetChildPathsOperation) *xxx_GetChildPathsOperation {
+	if op == nil {
+		op = &xxx_GetChildPathsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetChildPathsOperation{}
+		return op
 	}
-	return &xxx_GetChildPathsOperation{
-		This:               o.This,
-		Handle:             o.Handle,
-		Path:               o.Path,
-		BufferSize:         o.BufferSize,
-		Buffer:             o.Buffer,
-		RequiredBufferSize: o.RequiredBufferSize,
-	}
+	o.This = op.This
+	o.Handle = op.Handle
+	o.Path = op.Path
+	o.BufferSize = op.BufferSize
+	o.Buffer = op.Buffer
+	o.RequiredBufferSize = op.RequiredBufferSize
+	return op
 }
 
 func (o *GetChildPathsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetChildPathsOperation) {
@@ -621,7 +623,7 @@ func (o *GetChildPathsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetChildP
 	o.RequiredBufferSize = op.RequiredBufferSize
 }
 func (o *GetChildPathsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetChildPathsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetChildPathsOperation{}
@@ -648,16 +650,18 @@ type GetChildPathsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetChildPathsResponse) xxx_ToOp(ctx context.Context) *xxx_GetChildPathsOperation {
+func (o *GetChildPathsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetChildPathsOperation) *xxx_GetChildPathsOperation {
+	if op == nil {
+		op = &xxx_GetChildPathsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetChildPathsOperation{}
+		return op
 	}
-	return &xxx_GetChildPathsOperation{
-		That:               o.That,
-		Buffer:             o.Buffer,
-		RequiredBufferSize: o.RequiredBufferSize,
-		Return:             o.Return,
-	}
+	o.That = op.That
+	o.Buffer = op.Buffer
+	o.RequiredBufferSize = op.RequiredBufferSize
+	o.Return = op.Return
+	return op
 }
 
 func (o *GetChildPathsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetChildPathsOperation) {
@@ -670,7 +674,7 @@ func (o *GetChildPathsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetChild
 	o.Return = op.Return
 }
 func (o *GetChildPathsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetChildPathsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetChildPathsOperation{}

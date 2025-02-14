@@ -61,33 +61,61 @@ func AppHostMethodSchemaServerHandle(ctx context.Context, o AppHostMethodSchemaS
 	}
 	switch opNum {
 	case 3: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // InputSchema
-		in := &GetInputSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetInputSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetInputSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetInputSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetInputSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // OutputSchema
-		in := &GetOutputSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOutputSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOutputSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOutputSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOutputSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // GetMetadata
-		in := &GetMetadataRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMetadataOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMetadata(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMetadataRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMetadata(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAppHostMethodSchema
+type UnimplementedAppHostMethodSchemaServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedAppHostMethodSchemaServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodSchemaServer) GetInputSchema(context.Context, *GetInputSchemaRequest) (*GetInputSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodSchemaServer) GetOutputSchema(context.Context, *GetOutputSchemaRequest) (*GetOutputSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAppHostMethodSchemaServer) GetMetadata(context.Context, *GetMetadataRequest) (*GetMetadataResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AppHostMethodSchemaServer = (*UnimplementedAppHostMethodSchemaServer)(nil)

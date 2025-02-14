@@ -76,26 +76,49 @@ func VolumeMF3ServerHandle(ctx context.Context, o VolumeMF3Server, opNum int, r 
 	}
 	switch opNum {
 	case 3: // QueryVolumeGuidPathnames
-		in := &QueryVolumeGUIDPathnamesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryVolumeGUIDPathnamesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.QueryVolumeGUIDPathnames(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryVolumeGUIDPathnamesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.QueryVolumeGUIDPathnames(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // FormatEx2
-		in := &FormatEx2Request{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_FormatEx2Operation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.FormatEx2(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &FormatEx2Request{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.FormatEx2(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // OfflineVolume
-		in := &OfflineVolumeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_OfflineVolumeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.OfflineVolume(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &OfflineVolumeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.OfflineVolume(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IVdsVolumeMF3
+type UnimplementedVolumeMF3Server struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedVolumeMF3Server) QueryVolumeGUIDPathnames(context.Context, *QueryVolumeGUIDPathnamesRequest) (*QueryVolumeGUIDPathnamesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMF3Server) FormatEx2(context.Context, *FormatEx2Request) (*FormatEx2Response, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedVolumeMF3Server) OfflineVolume(context.Context, *OfflineVolumeRequest) (*OfflineVolumeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ VolumeMF3Server = (*UnimplementedVolumeMF3Server)(nil)
