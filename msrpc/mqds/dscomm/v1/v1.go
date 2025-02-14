@@ -2205,6 +2205,7 @@ func (o *GetPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 type GetPropertiesResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
 	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
+
 	// apVar: On input, each element MUST be initialized to the appropriate VARTYPE ([MS-MQMQ]
 	// section 2.2.12.1) for the associated property specified by the same element in aProp,
 	// or VT_NULL. On success, the server MUST populate the elements of this array with
@@ -2959,6 +2960,7 @@ func (o *GetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type GetObjectSecurityResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
 	Length uint32 `idl:"name:nLength" json:"length"`
+
 	// pSecurityDescriptor: If the SecurityInformation parameter is MQDS_SIGN_PUBLIC_KEY
 	// or MQDS_KEYX_PUBLIC_KEY, it SHOULD<55> contain a pointer to a BLOBHEADER (section
 	// 2.2.19) structure followed by an RSAPUBKEY (section 2.2.18) structure. Otherwise,
@@ -4034,6 +4036,7 @@ func (o *LookupNextRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 type LookupNextResponse struct {
 	// XXX: dwSize is an implicit input depedency for output parameters
 	Size uint32 `idl:"name:dwSize" json:"size"`
+
 	// dwOutSize: A pointer to an unsigned LONG that the server MUST set to the number of
 	// properties returned in pbBuffer for the set of objects being returned from this invocation
 	// of the S_DSLookupNext method. The server MUST return as many completed sets of properties
@@ -4946,6 +4949,7 @@ func (o *GetPropertiesGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type GetPropertiesGUIDResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
 	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
+
 	// apVar: On input, each element MUST be initialized to the appropriate VARTYPE ([MS-MQMQ]
 	// section 2.2.12.1) for the associated property specified by the same element in aProp,
 	// or VT_NULL. On success, the server MUST populate the elements of this array with
@@ -5682,6 +5686,7 @@ func (o *GetObjectSecurityGUIDRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type GetObjectSecurityGUIDResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
 	Length uint32 `idl:"name:nLength" json:"length"`
+
 	// pSecurityDescriptor: If the SecurityInformation parameter is MQDS_SIGN_PUBLIC_KEY
 	// or MQDS_KEYX_PUBLIC_KEY, it SHOULD<59> contain a pointer to a BLOBHEADER structure
 	// followed by an RSAPUBKEY (section 2.2.18) structure. Otherwise, this parameter contains
@@ -7172,6 +7177,7 @@ func (o *QMSetMachinePropertiesSignProcRequest) UnmarshalNDR(ctx context.Context
 type QMSetMachinePropertiesSignProcResponse struct {
 	// XXX: dwSignatureMaxSize is an implicit input depedency for output parameters
 	SignatureMaxSize uint32 `idl:"name:dwSignatureMaxSize" json:"signature_max_size"`
+
 	// abSignature: MUST be set by the caller to a pointer to a buffer to contain the returned
 	// signature. MUST be set by the receiver to a signature over the challenge in abChallenge.
 	// The algorithm for creating this signature is specified by the following pseudocode.
@@ -7598,6 +7604,7 @@ func (o *QMGetObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type QMGetObjectSecurityResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
 	Length uint32 `idl:"name:nLength" json:"length"`
+
 	// pSecurityDescriptor: If the SecurityInformation parameter is MQDS_SIGN_PUBLIC_KEY
 	// or MQDS_KEYX_PUBLIC_KEY, it SHOULD <73> contain a pointer to a BLOBHEADER structure
 	// followed by an RSAPUBKEY (section 2.2.18) structure. Otherwise, this parameter contains
@@ -8057,6 +8064,7 @@ func (o *QMGetObjectSecurityChallengeResponseProcRequest) UnmarshalNDR(ctx conte
 type QMGetObjectSecurityChallengeResponseProcResponse struct {
 	// XXX: dwCallengeResponceMaxSize is an implicit input depedency for output parameters
 	ChallengeResponseMaxSize uint32 `idl:"name:dwCallengeResponceMaxSize" json:"challenge_response_max_size"`
+
 	// abCallengeResponce:  MUST be set by the caller to a pointer to a buffer to contain
 	// the returned signature. MUST be set by the receiver to a signature over the challenge
 	// in abChallenge. The algorithm for creating this signature is specified by the following
@@ -8405,6 +8413,7 @@ func (o *InitSecurityContextRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type InitSecurityContextResponse struct {
 	// XXX: dwClientBuffMaxSize is an implicit input depedency for output parameters
 	ClientBufferMaxSize uint32 `idl:"name:dwClientBuffMaxSize" json:"client_buffer_max_size"`
+
 	// pClientBuff:  MUST be set by the caller to point to a buffer to hold the returned
 	// token. MUST be set by the receiver to the output_token from a call to GSS_Init_sec_context.
 	// The buffer length MUST NOT exceed the value specified by dwClientBuffMaxSize. If

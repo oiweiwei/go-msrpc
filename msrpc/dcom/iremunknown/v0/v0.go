@@ -546,6 +546,7 @@ func (o *RemoteQueryInterfaceRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 type RemoteQueryInterfaceResponse struct {
 	// XXX: cIids is an implicit input depedency for output parameters
 	IIDsCount uint16 `idl:"name:cIids" json:"iids_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// ppQIResults: This MUST contain an array of REMQIRESULT structures containing the
@@ -880,6 +881,7 @@ func (o *RemoteAddReferenceRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 type RemoteAddReferenceResponse struct {
 	// XXX: cInterfaceRefs is an implicit input depedency for output parameters
 	InterfaceReferencesCount uint16 `idl:"name:cInterfaceRefs" json:"interface_references_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pResults:  This MUST contain an array of HRESULTs specifying the respective success

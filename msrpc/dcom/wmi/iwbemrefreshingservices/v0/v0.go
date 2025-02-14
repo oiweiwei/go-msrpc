@@ -2581,6 +2581,7 @@ func (o *ReconnectRemoteRefresherRequest) UnmarshalNDR(ctx context.Context, r nd
 type ReconnectRemoteRefresherResponse struct {
 	// XXX: lNumObjects is an implicit input depedency for output parameters
 	ObjectsLength int32 `idl:"name:lNumObjects" json:"objects_length"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// apReconnectResults: MUST be a pointer to the _WBEM_RECONNECT_RESULTS structure array,

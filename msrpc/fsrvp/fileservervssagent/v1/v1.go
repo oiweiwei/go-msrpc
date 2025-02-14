@@ -2804,6 +2804,7 @@ func (o *GetShareMappingRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type GetShareMappingResponse struct {
 	// XXX: Level is an implicit input depedency for output parameters
 	Level uint32 `idl:"name:Level" json:"level"`
+
 	// ShareMapping: A pointer to an FSSAGENT_SHARE_MAPPING structure, as specified in section
 	// 2.2.3.1.
 	ShareMapping *ShareMapping `idl:"name:ShareMapping;switch_is:Level" json:"share_mapping"`

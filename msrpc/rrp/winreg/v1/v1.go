@@ -9280,6 +9280,7 @@ func (o *BaseRegQueryMultipleValuesRequest) UnmarshalNDR(ctx context.Context, r 
 type BaseRegQueryMultipleValuesResponse struct {
 	// XXX: num_vals is an implicit input depedency for output parameters
 	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
+
 	// val_listOut: A pointer to an array of RVALENT structures, one for each value to be
 	// queried.
 	ValueListOut []*ValueEntry `idl:"name:val_listOut;size_is:(num_vals);length_is:(num_vals)" json:"value_list_out"`
@@ -10579,6 +10580,7 @@ type BaseRegQueryMultipleValues2Response struct {
 	ValsLength uint32 `idl:"name:num_vals" json:"vals_length"`
 	// XXX: ldwTotsize is an implicit input depedency for output parameters
 	TotalSize uint32 `idl:"name:ldwTotsize" json:"total_size"`
+
 	// val_listOut: A pointer to an array of RVALENT structures, one for each value to be
 	// queried. This parameter is a placeholder to return the type, size, and data offset
 	// for each requested value.

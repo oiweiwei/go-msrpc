@@ -727,6 +727,7 @@ func (o *EnumerateCounterSetRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type EnumerateCounterSetResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
+
 	// pdwOutSize: On output, the number of GUIDs that are returned in the array. The server
 	// MUST set this value to zero if the value of dwInSize is less than the total number
 	// of GUIDs on the server.
@@ -1107,6 +1108,7 @@ func (o *QueryCounterSetRegistrationInfoRequest) UnmarshalNDR(ctx context.Contex
 type QueryCounterSetRegistrationInfoResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
+
 	// pdwOutSize: The size, in bytes, of the data in the buffer pointed to by lpData.
 	OutSize uint32 `idl:"name:pdwOutSize" json:"out_size"`
 	// pdwRtnSize: The necessary size, in bytes, to retrieve all the requested data.
@@ -1451,6 +1453,7 @@ func (o *EnumerateCounterSetInstancesRequest) UnmarshalNDR(ctx context.Context, 
 type EnumerateCounterSetInstancesResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
+
 	// pdwOutSize: The total size, in bytes, of the data that is returned and written to
 	// the buffer.
 	OutSize uint32 `idl:"name:pdwOutSize" json:"out_size"`
@@ -2103,6 +2106,7 @@ func (o *QueryCounterInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type QueryCounterInfoResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
+
 	// pdwOutSize: The size, in bytes, of the data that is written to the buffer.
 	OutSize uint32 `idl:"name:pdwOutSize" json:"out_size"`
 	// pdwRtnSize: The necessary size, in bytes, to retrieve all the requested data.
@@ -2397,6 +2401,7 @@ func (o *QueryCounterDataRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type QueryCounterDataResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
+
 	// pdwOutSize: The size, in bytes, of the data that is returned and written to the buffer.
 	OutSize uint32 `idl:"name:pdwOutSize" json:"out_size"`
 	// pdwRtnSize: The necessary size, in bytes, to retrieve all the requested data.
@@ -2716,6 +2721,7 @@ func (o *ValidateCountersRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type ValidateCountersResponse struct {
 	// XXX: dwInSize is an implicit input depedency for output parameters
 	InSize uint32 `idl:"name:dwInSize" json:"in_size"`
+
 	// lpData: The buffer that contains the counter information to add to, or remove from,
 	// the query. The server will return this buffer after it has attempted to add or remove
 	// the specified counters; the Status field of each _PERF_COUNTER_IDENTIFIER structure

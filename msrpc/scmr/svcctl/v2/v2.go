@@ -10168,6 +10168,7 @@ func (o *QueryServiceObjectSecurityRequest) UnmarshalNDR(ctx context.Context, r 
 type QueryServiceObjectSecurityResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpSecurityDescriptor: A pointer to a buffer that contains a copy of the SECURITY_DESCRIPTOR
 	// structure (as specified in [MS-DTYP] section 2.4.6) for the specified service object.
 	SecurityDescriptor []byte `idl:"name:lpSecurityDescriptor;size_is:(cbBufSize)" json:"security_descriptor"`
@@ -13007,6 +13008,7 @@ func (o *EnumDependentServicesWRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type EnumDependentServicesWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpServices: A pointer to an array of ENUM_SERVICE_STATUSW (section 2.2.11) structures
 	// that contain the name and service status information for each dependent service in
 	// the database.
@@ -13426,6 +13428,7 @@ func (o *EnumServicesStatusWRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type EnumServicesStatusWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to an array of ENUM_SERVICE_STATUSW (section 2.2.11) structures
 	// that contain the name and service status information for each service in the database.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -17089,6 +17092,7 @@ func (o *EnumDependentServicesARequest) UnmarshalNDR(ctx context.Context, r ndr.
 type EnumDependentServicesAResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpServices: A pointer to an array of ENUM_SERVICE_STATUSA (section 2.2.10) structures
 	// that contain the name and service status information for each dependent service record
 	// in the database.
@@ -17507,6 +17511,7 @@ func (o *EnumServicesStatusARequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type EnumServicesStatusAResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to an array of ENUM_SERVICE_STATUSA (section 2.2.10) structures
 	// that contain the name and service status information for each dependent service in
 	// the database.
@@ -19780,6 +19785,7 @@ func (o *EnumServiceGroupWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type EnumServiceGroupWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to an array of ENUM_SERVICE_STATUSW (section 2.2.11) structures
 	// that contain the name and service status information for each dependent service in
 	// the database.
@@ -20478,6 +20484,7 @@ func (o *QueryServiceConfig2ARequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 type QueryServiceConfig2AResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to the buffer that contains the service configuration information.
 	// The format of this data depends on the value of the dwInfoLevel parameter.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -20782,6 +20789,7 @@ func (o *QueryServiceConfig2WRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 type QueryServiceConfig2WResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to the buffer that contains the service configuration information.
 	// The format of this data depends on the value of the dwInfoLevel parameter.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -21058,6 +21066,7 @@ func (o *QueryServiceStatusExRequest) UnmarshalNDR(ctx context.Context, r ndr.Re
 type QueryServiceStatusExResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to the buffer that contains the status information in the form
 	// of a SERVICE_STATUS_PROCESS (section 2.2.49) structure.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -21535,6 +21544,7 @@ func (o *EnumServicesStatusExARequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type EnumServicesStatusExAResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to the buffer that contains the status information in the form
 	// of an array of ENUM_SERVICE_STATUS_PROCESSA (section 2.2.12) structures.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -22025,6 +22035,7 @@ func (o *EnumServicesStatusExWRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 type EnumServicesStatusExWResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// lpBuffer: A pointer to the buffer that contains the status information in the form
 	// of an array of ENUM_SERVICE_STATUS_PROCESSW (section 2.2.13) structures.
 	Buffer []byte `idl:"name:lpBuffer;size_is:(cbBufSize)" json:"buffer"`
@@ -24631,6 +24642,7 @@ func (o *ControlServiceExARequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type ControlServiceExAResponse struct {
 	// XXX: dwInfoLevel is an implicit input depedency for output parameters
 	InfoLevel uint32 `idl:"name:dwInfoLevel" json:"info_level"`
+
 	// pControlOutParams: A pointer to a buffer that contains a SERVICE_CONTROL_STATUS_REASON_OUT_PARAMS
 	// (section 2.2.32) structure to receive the current status on the service.
 	ControlOutParams *ServiceControlOutParamsA `idl:"name:pControlOutParams;switch_is:dwInfoLevel" json:"control_out_params"`
@@ -24959,6 +24971,7 @@ func (o *ControlServiceExWRequest) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type ControlServiceExWResponse struct {
 	// XXX: dwInfoLevel is an implicit input depedency for output parameters
 	InfoLevel uint32 `idl:"name:dwInfoLevel" json:"info_level"`
+
 	// pControlOutParams: A pointer to a buffer that contains a SERVICE_CONTROL_STATUS_REASON_OUT_PARAMS
 	// (section 2.2.32) structure to receive the current status on the service.
 	ControlOutParams *ServiceControlOutParamsW `idl:"name:pControlOutParams;switch_is:dwInfoLevel" json:"control_out_params"`

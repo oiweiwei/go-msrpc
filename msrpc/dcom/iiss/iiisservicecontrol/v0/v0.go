@@ -1363,6 +1363,7 @@ func (o *StatusRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type StatusResponse struct {
 	// XXX: dwBufferSize is an implicit input depedency for output parameters
 	BufferSize uint32 `idl:"name:dwBufferSize" json:"buffer_size"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pbBuffer: An array of unsigned chars that will be filled with information about the

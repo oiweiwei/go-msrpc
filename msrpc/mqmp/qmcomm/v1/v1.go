@@ -6651,6 +6651,7 @@ func (o *GetObjectSecurityInternalRequest) UnmarshalNDR(ctx context.Context, r n
 type GetObjectSecurityInternalResponse struct {
 	// XXX: nLength is an implicit input depedency for output parameters
 	Length uint32 `idl:"name:nLength" json:"length"`
+
 	// pSecurityDescriptor:  MUST be a pointer to an array of bytes into which the server
 	// MUST write a self-relative SECURITY_DESCRIPTOR structure. The server MUST NOT write
 	// more than nLength bytes to the buffer. If the buffer provided by the client is too
@@ -7213,6 +7214,7 @@ func (o *GetObjectPropertiesRequest) UnmarshalNDR(ctx context.Context, r ndr.Rea
 type GetObjectPropertiesResponse struct {
 	// XXX: cp is an implicit input depedency for output parameters
 	CreatePartition uint32 `idl:"name:cp" json:"create_partition"`
+
 	// apVar: MUST contain at least one element. On input, each element MUST be initialized
 	// to the appropriate VARTYPE for the associated property specified by the same element
 	// in aProp, or VT_NULL. Otherwise, the server SHOULD return the failure HRESULT MQ_ERROR_PROPERTY
@@ -7974,6 +7976,7 @@ func (o *GetTMWhereaboutsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type GetTMWhereaboutsResponse struct {
 	// XXX: cbBufSize is an implicit input depedency for output parameters
 	BufferLength uint32 `idl:"name:cbBufSize" json:"buffer_length"`
+
 	// pbWhereabouts:  On success, points to an array of bytes containing a Distributed
 	// Transaction Coordinator (DTC) SWhereabouts structure, as specified in [MS-DTCO] section
 	// 2.2.5.11.
@@ -10302,6 +10305,7 @@ func (o *HandleToFormatNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Read
 type HandleToFormatNameResponse struct {
 	// XXX: dwFormatNameRPCBufferLen is an implicit input depedency for output parameters
 	FormatNameRPCBufferLength uint32 `idl:"name:dwFormatNameRPCBufferLen" json:"format_name_rpc_buffer_length"`
+
 	// lpwcsFormatName:  Pointer to a Unicode character buffer into which the server writes
 	// the format name (as specified in [MS-MQMQ]) for the queue identified by the hQueue
 	// parameter. The character buffer MUST be null-terminated by the server prior to returning,

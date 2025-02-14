@@ -11650,6 +11650,7 @@ func (o *QueryInformationPolicyRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type QueryInformationPolicyResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
 	InformationClass PolicyInformationClass `idl:"name:InformationClass" json:"information_class"`
+
 	// PolicyInformation: A parameter that references policy information structure on return.
 	PolicyInformation *PolicyInformation `idl:"name:PolicyInformation;switch_is:InformationClass" json:"policy_information"`
 	// Return: The LsarQueryInformationPolicy return value.
@@ -14662,6 +14663,7 @@ func (o *QueryInfoTrustedDomainRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type QueryInfoTrustedDomainResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
 	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
+
 	// TrustedDomainInformation: Used to return requested information about the trusted
 	// domain object.
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
@@ -18062,6 +18064,7 @@ func (o *QueryTrustedDomainInfoRequest) UnmarshalNDR(ctx context.Context, r ndr.
 type QueryTrustedDomainInfoResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
 	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
+
 	// TrustedDomainInformation: Used to return the information on the trusted domain object
 	// to the caller.
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
@@ -19487,6 +19490,7 @@ func (o *QueryInformationPolicy2Request) UnmarshalNDR(ctx context.Context, r ndr
 type QueryInformationPolicy2Response struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
 	InformationClass PolicyInformationClass `idl:"name:InformationClass" json:"information_class"`
+
 	// PolicyInformation: A parameter that references policy information structure on return.
 	PolicyInformation *PolicyInformation `idl:"name:PolicyInformation;switch_is:InformationClass" json:"policy_information"`
 	// Return: The LsarQueryInformationPolicy2 return value.
@@ -19962,6 +19966,7 @@ func (o *QueryTrustedDomainInfoByNameRequest) UnmarshalNDR(ctx context.Context, 
 type QueryTrustedDomainInfoByNameResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
 	InformationClass TrustedInformationClass `idl:"name:InformationClass" json:"information_class"`
+
 	// TrustedDomainInformation: Used to return the information requested by the caller.
 	TrustedDomainInformation *TrustedDomainInfo `idl:"name:TrustedDomainInformation;switch_is:InformationClass" json:"trusted_domain_information"`
 	// Return: The LsarQueryTrustedDomainInfoByName return value.
@@ -20939,6 +20944,7 @@ func (o *QueryDomainInformationPolicyRequest) UnmarshalNDR(ctx context.Context, 
 type QueryDomainInformationPolicyResponse struct {
 	// XXX: InformationClass is an implicit input depedency for output parameters
 	InformationClass PolicyDomainInformationClass `idl:"name:InformationClass" json:"information_class"`
+
 	// PolicyDomainInformation: A parameter that references policy information structure
 	// on return.
 	PolicyDomainInformation *PolicyDomainInformation `idl:"name:PolicyDomainInformation;switch_is:InformationClass" json:"policy_domain_information"`

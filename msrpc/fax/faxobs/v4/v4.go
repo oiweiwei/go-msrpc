@@ -3028,6 +3028,7 @@ func (o *GetQueueFileNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 type GetQueueFileNameResponse struct {
 	// XXX: FileNameSize is an implicit input depedency for output parameters
 	FileNameSize uint32 `idl:"name:FileNameSize" json:"file_name_size"`
+
 	// FileName: A buffer that MUST be allocated by the client to hold FileNameSize characters.
 	// On successful return from this call the server MUST write to this buffer a null-terminated
 	// character string containing the path name, including file name and extension, for

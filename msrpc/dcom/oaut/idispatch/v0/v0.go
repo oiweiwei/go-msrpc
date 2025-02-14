@@ -1257,6 +1257,7 @@ func (o *GetIDsOfNamesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 type GetIDsOfNamesResponse struct {
 	// XXX: cNames is an implicit input depedency for output parameters
 	NamesCount uint32 `idl:"name:cNames" json:"names_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// rgDispId: MUST be an array of DISPIDs that are filled in by the server. Each DISPID
@@ -1938,6 +1939,7 @@ func (o *InvokeRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type InvokeResponse struct {
 	// XXX: cVarRef is an implicit input depedency for output parameters
 	VarReferenceCount uint32 `idl:"name:cVarRef" json:"var_reference_count"`
+
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That *dcom.ORPCThat `idl:"name:That" json:"that"`
 	// pVarResult: MUST point to a VARIANT that will be filled with the result of the method
