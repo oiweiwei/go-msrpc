@@ -104,6 +104,13 @@ var (
 	AttributeSessionKey = "session_key"
 	AttributeTarget     = "target"
 	AttributeRPCContext = "rpc_security_context"
+	// The SMB session key computed during session setup.
+	AttributeSMBSessionKey = "smb_session_key"
+	// The SMB application key computed during session setup
+	// for SMB3.X.X dialect.
+	AttributeSMBApplicationKey = "smb_application_key"
+	// The effective session key ie for the LSA.
+	AttributeSMBEffectiveSessionKey = "smb_effective_session_key"
 )
 
 // The GSSAPI call option.

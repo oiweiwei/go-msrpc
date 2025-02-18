@@ -251,6 +251,10 @@ func (cc *Security) SecurityTrailer() SecurityTrailer {
 	}
 }
 
+func (cc *Security) SetAttribute(name string, value any) {
+	gssapi.SetAttribute(cc.ctx, name, value)
+}
+
 // Established function returns `true` if the security context was established
 // and can be used for Wrap/Unwrap functions.
 func (cc *Security) Established() bool {

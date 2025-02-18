@@ -82,6 +82,19 @@ type NamedPipe struct {
 	NetworkDialFunc func(ctx context.Context, network, address string) (net.Conn, error)
 	ShareName       string
 	Name            string
+	Share           *smb2.Share
+}
+
+func (pipe *NamedPipe) Dialect() Dialect {
+	return Dialect(pipe.Dialer.Negotiator.SpecifiedDialect)
+}
+
+func (pipe *NamedPipe) SessionKey() []byte {
+	return pipe.Dialer.Initiator.SessionKey()
+}
+
+func (pipe *NamedPipe) ApplicationKey() []byte {
+	return pipe.Share.ApplicationKey()
 }
 
 const ErrNotActive = "An instance of a named pipe cannot be found in the listening state"
@@ -107,13 +120,13 @@ func (pipe *NamedPipe) Connect(ctx context.Context) error {
 		return fmt.Errorf("open smb session: %w", err)
 	}
 
-	share, err := session.Mount(pipe.ShareName)
+	pipe.Share, err = session.Mount(pipe.ShareName)
 	if err != nil {
 		return fmt.Errorf("mount share: %w", err)
 	}
 
 	for {
-		pipe.File, err = share.OpenFile(pipe.Name, os.O_RDWR, 0666)
+		pipe.File, err = pipe.Share.OpenFile(pipe.Name, os.O_RDWR, 0666)
 		if err != nil {
 			if strings.Contains(err.Error(), ErrNotActive) {
 				pipe.Logger.Err(err).Msgf("open share file %s", pipe.Name)
