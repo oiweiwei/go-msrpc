@@ -111,6 +111,7 @@ func (c *clientConn) Context() context.Context {
 	if c.security != nil && c.security.ctx != nil {
 		return c.security.ctx
 	}
+
 	return context.Background()
 }
 

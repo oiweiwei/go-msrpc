@@ -183,9 +183,33 @@
 //		// handle error
 //	}
 //
+//	// retrieve the negotiated session key.
 //	key, ok := gssapi.GetAttribute(epmCli.Conn().Context(), gssapi.AttributeSessionKey)
 //	if ok {
 //		fmt.Printf("Session Key: %x\n", key)
+//	}
+//
+//	// retrieve the smb session key.
+//	key, ok := gssapi.GetAttribute(epmCli.Conn().Context(), gssapi.AttributeSMBSessionKey)
+//	if ok {
+//		fmt.Printf("SMB Session Key: %x\n", key)
+//	}
+//
+//	// retrieve the smb application key. (SMB3+)
+//	key, ok := gssapi.GetAttribute(epmCli.Conn().Context(), gssapi.AttributeSMBApplicationKey)
+//	if ok {
+//		fmt.Printf("SMB Application Key: %x\n", key)
+//	}
+//
+//	// retrieve the smb key effective for LSA encryption operations.
+//	// this key depends on the dialect and RPC transport security level.
+//	// ie for any SMB dialect if RPC transport security was negotiated, the key
+//	// will be a constsant value of "SystemLibraryDTC".
+//	// For SMB3+ it will be the SMBApplicationKey, and for other cases it will be
+//	// negotiated session key.
+//	key, ok := gssapi.GetAttribute(epmCli.Conn().Context(), gssapi.AttributeSMBEffectiveSessionKey)
+//	if ok {
+//		fmt.Printf("SMB Effective Session Key: %x\n", key)
 //	}
 //
 // # Per-Client Configuration

@@ -8,10 +8,11 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/rs/zerolog"
+
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/oiweiwei/go-msrpc/smb2"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
-	"github.com/rs/zerolog"
 )
 
 // BufferedConn is a raw connection wrapper to optimize the short
@@ -32,7 +33,7 @@ func (conn *BufferedConn) Resized(sz int) *BufferedConn {
 }
 
 // NewBufferedConn function returns the new buffered connection.
-func NewBufferedConn(cc RawConn, sz int) RawConn {
+func NewBufferedConn(cc RawConn, sz int) *BufferedConn {
 	return &BufferedConn{RawConn: cc, cur: nil, total: make([]byte, sz)}
 }
 

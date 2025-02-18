@@ -8,6 +8,9 @@ import (
 	"sync/atomic"
 
 	"github.com/rs/zerolog"
+
+	"github.com/oiweiwei/go-msrpc/smb2"
+	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
 
 var (
@@ -32,7 +35,7 @@ type transport struct {
 	// queries are allowed).
 	binded bool
 	// The raw connection.
-	cc RawConn
+	cc *BufferedConn
 	// The next call identifier.
 	cid atomic.Uint32
 	// The connection settings.
@@ -126,6 +129,30 @@ func (c *transport) CallID() uint32 {
 	return c.cid.Add(1)
 }
 
+// ExportSMBSecurity exports SMB keying material for security context.
+// refs:
+//   - https://www.snia.org/sites/default/files/SDC/2016/presentations/smb/Stefan_Metzmacher_Improving_DCERPC_Security.pdf
+//   - https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/901ae284-31d3-4ea1-ae8a-766fc8bfe00e
+func (c *transport) ExportSMBSecurity(o *Security) {
+
+	if o == nil {
+		return
+	}
+
+	if pipe, ok := c.cc.RawConn.(*smb2.NamedPipe); ok {
+		o.SetAttribute(gssapi.AttributeSMBApplicationKey, pipe.ApplicationKey())
+		o.SetAttribute(gssapi.AttributeSMBSessionKey, pipe.SessionKey())
+		if o.Level > AuthLevelConnect {
+			o.SetAttribute(gssapi.AttributeSMBEffectiveSessionKey, []byte("SystemLibraryDTC"))
+		} else if pipe.Dialect() >= smb2.SMB300 {
+			o.SetAttribute(gssapi.AttributeSMBEffectiveSessionKey, pipe.ApplicationKey())
+		} else {
+			o.SetAttribute(gssapi.AttributeSMBEffectiveSessionKey, pipe.SessionKey())
+		}
+	}
+
+}
+
 // AlterContext function establishes new presentation or security (or both) context(s).
 func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, error) {
 
@@ -140,6 +167,8 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 	if err != nil {
 		return nil, fmt.Errorf("alter context: parse options: %w", err)
 	}
+
+	c.ExportSMBSecurity(o.Security)
 
 	call, err := c.makeCall(ctx, noCopy{})
 	if err != nil {
@@ -327,6 +356,8 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		return nil, fmt.Errorf("bind: parse options: %w", err)
 	}
 
+	c.ExportSMBSecurity(o.Security)
+
 	c.logger = o.Logger
 
 	call, err := c.makeCall(ctx, noCopy{})
@@ -368,7 +399,7 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 		if c.settings.MaxRecvFrag != int(pdu.MaxRecvFrag) {
 			// reset buffered connector.
-			c.cc = c.cc.(*BufferedConn).Resized(int(pdu.MaxRecvFrag))
+			c.cc = c.cc.Resized(int(pdu.MaxRecvFrag))
 		}
 
 		sz := c.settings.FragmentSize()
