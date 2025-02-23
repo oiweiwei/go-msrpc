@@ -11368,6 +11368,8 @@ func (o *xxx_AccessCheckOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err
@@ -11437,6 +11439,8 @@ func (o *xxx_AccessCheckOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err
@@ -11733,6 +11737,8 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRRequest(ctx context.Cont
 	}
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ProtocolSeq); err != nil {
 				return err
@@ -11784,6 +11790,8 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRResponse(ctx context.Con
 	}
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ProtocolSeq); err != nil {
 				return err
@@ -11935,10 +11943,10 @@ func (o *CheckServerProtocolSeqResponse) UnmarshalNDR(ctx context.Context, r ndr
 // xxx_SendDocumentExOperation structure represents the FAX_SendDocumentEx operation
 type xxx_SendDocumentExOperation struct {
 	FileName            string                `idl:"name:lpcwstrFileName;string;pointer:unique" json:"file_name"`
-	CoverPageInfoCount  *fax.CoverPageInfoExW `idl:"name:lpcCoverPageInfo" json:"cover_page_info_count"`
-	SenderProfileCount  uint8                 `idl:"name:lpcSenderProfile" json:"sender_profile_count"`
+	CoverPageInfo       *fax.CoverPageInfoExW `idl:"name:lpcCoverPageInfo" json:"cover_page_info"`
+	SenderProfile       []byte                `idl:"name:lpcSenderProfile" json:"sender_profile"`
 	RecipientsLength    uint32                `idl:"name:dwNumRecipients" json:"recipients_length"`
-	RecipientListCount  []byte                `idl:"name:lpcRecipientList;size_is:(dwNumRecipients)" json:"recipient_list_count"`
+	RecipientList       []byte                `idl:"name:lpcRecipientList;size_is:(, dwNumRecipients)" json:"recipient_list"`
 	JobParams           *fax.JobParamExW      `idl:"name:lpJobParams" json:"job_params"`
 	JobID               uint32                `idl:"name:lpdwJobId;pointer:unique" json:"job_id"`
 	MessageID           uint64                `idl:"name:lpdwlMessageId" json:"message_id"`
@@ -11951,8 +11959,8 @@ func (o *xxx_SendDocumentExOperation) OpNum() int { return 27 }
 func (o *xxx_SendDocumentExOperation) OpName() string { return "/fax/v4/FAX_SendDocumentEx" }
 
 func (o *xxx_SendDocumentExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.RecipientListCount != nil && o.RecipientsLength == 0 {
-		o.RecipientsLength = uint32(len(o.RecipientListCount))
+	if o.RecipientList != nil && o.RecipientsLength == 0 {
+		o.RecipientsLength = uint32(len(o.RecipientList))
 	}
 	if o.RecipientsLength > uint32(10000) {
 		return fmt.Errorf("RecipientsLength is out of range")
@@ -11992,8 +12000,8 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpcCoverPageInfo {in} (1:{alias=LPCFAX_COVERPAGE_INFO_EXW}*(1))(2:{alias=FAX_COVERPAGE_INFO_EXW}(struct))
 	{
-		if o.CoverPageInfoCount != nil {
-			if err := o.CoverPageInfoCount.MarshalNDR(ctx, w); err != nil {
+		if o.CoverPageInfo != nil {
+			if err := o.CoverPageInfo.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -12005,9 +12013,38 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// lpcSenderProfile {in} (1:{alias=LPBYTE}*(1))(2:{alias=BYTE}(uchar))
+	// lpcSenderProfile {in} (1:[dim:0])(2:{alias=LPBYTE}*(1))(3:{alias=BYTE}(uchar))
 	{
-		if err := w.WriteData(o.SenderProfileCount); err != nil {
+		dimSize1 := uint64(len(o.SenderProfile))
+		if err := w.WriteSize(dimSize1); err != nil {
+			return err
+		}
+		sizeInfo := []uint64{
+			dimSize1,
+		}
+		for i1 := range o.SenderProfile {
+			i1 := i1
+			if uint64(i1) >= sizeInfo[0] {
+				break
+			}
+			// XXX pointer to primitive type, default behavior is to write non-null pointer.
+			// if this behavior is not desired, use goext_null_if(cond) attribute.
+			_ptr_lpcSenderProfile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.SenderProfile[i1]); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.SenderProfile[i1], _ptr_lpcSenderProfile); err != nil {
+				return err
+			}
+		}
+		for i1 := len(o.SenderProfile); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
 			return err
 		}
 	}
@@ -12017,31 +12054,37 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 			return err
 		}
 	}
-	// lpcRecipientList {in} (1:{pointer=ref}*(1))(2:{alias=LPBYTE}[dim:0,size_is=dwNumRecipients]*(1))(3:{alias=BYTE}(uchar))
+	// lpcRecipientList {in} (1:{pointer=ref}*(2))(2:{alias=LPBYTE}*(1))(3:{alias=BYTE}[dim:0,size_is=dwNumRecipients](uchar))
 	{
-		dimSize1 := uint64(o.RecipientsLength)
-		if err := w.WriteSize(dimSize1); err != nil {
-			return err
-		}
-		sizeInfo := []uint64{
-			dimSize1,
-		}
-		for i1 := range o.RecipientListCount {
-			i1 := i1
-			if uint64(i1) >= sizeInfo[0] {
-				break
-			}
+		if o.RecipientList != nil || o.RecipientsLength > 0 {
 			_ptr_lpcRecipientList := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if err := w.WriteData(o.RecipientListCount[i1]); err != nil {
+				dimSize1 := uint64(o.RecipientsLength)
+				if err := w.WriteSize(dimSize1); err != nil {
 					return err
+				}
+				sizeInfo := []uint64{
+					dimSize1,
+				}
+				for i1 := range o.RecipientList {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if err := w.WriteData(o.RecipientList[i1]); err != nil {
+						return err
+					}
+				}
+				for i1 := len(o.RecipientList); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := w.WriteData(uint8(0)); err != nil {
+						return err
+					}
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.RecipientListCount[i1], _ptr_lpcRecipientList); err != nil {
+			if err := w.WritePointer(&o.RecipientList, _ptr_lpcRecipientList); err != nil {
 				return err
 			}
-		}
-		for i1 := len(o.RecipientListCount); uint64(i1) < sizeInfo[0]; i1++ {
+		} else {
 			if err := w.WritePointer(nil); err != nil {
 				return err
 			}
@@ -12067,6 +12110,8 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.JobID); err != nil {
 				return err
@@ -12102,29 +12147,17 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// lpcCoverPageInfo {in} (1:{alias=LPCFAX_COVERPAGE_INFO_EXW,pointer=ref}*(1))(2:{alias=FAX_COVERPAGE_INFO_EXW}(struct))
 	{
-		if o.CoverPageInfoCount == nil {
-			o.CoverPageInfoCount = &fax.CoverPageInfoExW{}
+		if o.CoverPageInfo == nil {
+			o.CoverPageInfo = &fax.CoverPageInfoExW{}
 		}
-		if err := o.CoverPageInfoCount.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.CoverPageInfo.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
 			return err
 		}
 	}
-	// lpcSenderProfile {in} (1:{alias=LPBYTE,pointer=ref}*(1))(2:{alias=BYTE}(uchar))
-	{
-		if err := w.ReadData(&o.SenderProfileCount); err != nil {
-			return err
-		}
-	}
-	// dwNumRecipients {in} (1:{range=(0,10000), alias=DWORD}(uint32))
-	{
-		if err := w.ReadData(&o.RecipientsLength); err != nil {
-			return err
-		}
-	}
-	// lpcRecipientList {in} (1:{pointer=ref}*(1))(2:{alias=LPBYTE}[dim:0,size_is=dwNumRecipients]*(1))(3:{alias=BYTE}(uchar))
+	// lpcSenderProfile {in} (1:[dim:0])(2:{alias=LPBYTE,pointer=ref}*(1))(3:{alias=BYTE}(uchar))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -12135,21 +12168,58 @@ func (o *xxx_SendDocumentExOperation) UnmarshalNDRRequest(ctx context.Context, w
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.RecipientListCount", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.SenderProfile", sizeInfo[0])
 		}
-		o.RecipientListCount = make([]byte, sizeInfo[0])
-		for i1 := range o.RecipientListCount {
+		o.SenderProfile = make([]byte, sizeInfo[0])
+		for i1 := range o.SenderProfile {
 			i1 := i1
-			_ptr_lpcRecipientList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := w.ReadData(&o.RecipientListCount[i1]); err != nil {
+			_ptr_lpcSenderProfile := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if err := w.ReadData(&o.SenderProfile[i1]); err != nil {
 					return err
 				}
 				return nil
 			})
-			_s_lpcRecipientList := func(ptr interface{}) { o.RecipientListCount[i1] = *ptr.(*uint8) }
-			if err := w.ReadPointer(&o.RecipientListCount[i1], _s_lpcRecipientList, _ptr_lpcRecipientList); err != nil {
+			_s_lpcSenderProfile := func(ptr interface{}) { o.SenderProfile[i1] = *ptr.(*uint8) }
+			if err := w.ReadPointer(&o.SenderProfile[i1], _s_lpcSenderProfile, _ptr_lpcSenderProfile); err != nil {
 				return err
 			}
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// dwNumRecipients {in} (1:{range=(0,10000), alias=DWORD}(uint32))
+	{
+		if err := w.ReadData(&o.RecipientsLength); err != nil {
+			return err
+		}
+	}
+	// lpcRecipientList {in} (1:{pointer=ref}*(2))(2:{alias=LPBYTE,pointer=ref}*(1))(3:{alias=BYTE}[dim:0,size_is=dwNumRecipients](uchar))
+	{
+		_ptr_lpcRecipientList := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
+			}
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
+			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.RecipientList", sizeInfo[0])
+			}
+			o.RecipientList = make([]byte, sizeInfo[0])
+			for i1 := range o.RecipientList {
+				i1 := i1
+				if err := w.ReadData(&o.RecipientList[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_lpcRecipientList := func(ptr interface{}) { o.RecipientList = *ptr.(*[]byte) }
+		if err := w.ReadPointer(&o.RecipientList, _s_lpcRecipientList, _ptr_lpcRecipientList); err != nil {
+			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
 			return err
@@ -12201,6 +12271,8 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.JobID); err != nil {
 				return err
@@ -12331,18 +12403,18 @@ type SendDocumentExRequest struct {
 	// that the cover page template specified by the lpwstrCoverPageFileName member has
 	// a file extension of ".cov" and the file name string contains (except for the terminating
 	// null character) only characters representing valid hexadecimal digits: "0123456789abcdefABCDEF".
-	CoverPageInfoCount *fax.CoverPageInfoExW `idl:"name:lpcCoverPageInfo" json:"cover_page_info_count"`
+	CoverPageInfo *fax.CoverPageInfoExW `idl:"name:lpcCoverPageInfo" json:"cover_page_info"`
 	// lpcSenderProfile: A pointer to a buffer containing an array of FAX_PERSONAL_PROFILEW
 	// (section 2.2.44) structures that contain the personal profile (section 3.1.1) of
 	// the fax sender. This pointer MUST NOT be NULL.
-	SenderProfileCount uint8 `idl:"name:lpcSenderProfile" json:"sender_profile_count"`
+	SenderProfile []byte `idl:"name:lpcSenderProfile" json:"sender_profile"`
 	// dwNumRecipients: A DWORD ([MS-DTYP] section 2.2.9) that contains the number of recipients
 	// of the fax.
 	RecipientsLength uint32 `idl:"name:dwNumRecipients" json:"recipients_length"`
 	// lpcRecipientList: A pointer to an array FAX_PERSONAL_PROFILEW that contains the personal
 	// profiles of the recipients of the fax. The dwNumRecipients member specifies the number
 	// of elements in this array.
-	RecipientListCount []byte `idl:"name:lpcRecipientList;size_is:(dwNumRecipients)" json:"recipient_list_count"`
+	RecipientList []byte `idl:"name:lpcRecipientList;size_is:(, dwNumRecipients)" json:"recipient_list"`
 	// lpJobParams: A pointer to a FAX_JOB_PARAM_EXW (section 2.2.14) structure that contains
 	// the information necessary for the fax server to send the fax transmission.
 	JobParams *fax.JobParamExW `idl:"name:lpJobParams" json:"job_params"`
@@ -12361,10 +12433,10 @@ func (o *SendDocumentExRequest) xxx_ToOp(ctx context.Context, op *xxx_SendDocume
 		return op
 	}
 	op.FileName = o.FileName
-	op.CoverPageInfoCount = o.CoverPageInfoCount
-	op.SenderProfileCount = o.SenderProfileCount
+	op.CoverPageInfo = o.CoverPageInfo
+	op.SenderProfile = o.SenderProfile
 	op.RecipientsLength = o.RecipientsLength
-	op.RecipientListCount = o.RecipientListCount
+	op.RecipientList = o.RecipientList
 	op.JobParams = o.JobParams
 	op.JobID = o.JobID
 	return op
@@ -12375,10 +12447,10 @@ func (o *SendDocumentExRequest) xxx_FromOp(ctx context.Context, op *xxx_SendDocu
 		return
 	}
 	o.FileName = op.FileName
-	o.CoverPageInfoCount = op.CoverPageInfoCount
-	o.SenderProfileCount = op.SenderProfileCount
+	o.CoverPageInfo = op.CoverPageInfo
+	o.SenderProfile = op.SenderProfile
 	o.RecipientsLength = op.RecipientsLength
-	o.RecipientListCount = op.RecipientListCount
+	o.RecipientList = op.RecipientList
 	o.JobParams = op.JobParams
 	o.JobID = op.JobID
 }
@@ -27946,6 +28018,8 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err
@@ -28015,6 +28089,8 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err

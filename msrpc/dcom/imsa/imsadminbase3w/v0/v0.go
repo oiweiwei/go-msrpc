@@ -299,6 +299,8 @@ func (o *xxx_GetChildPathsOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pcchMDRequiredBufferSize {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.RequiredBufferSize); err != nil {
 				return err
@@ -481,6 +483,8 @@ func (o *xxx_GetChildPathsOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// pcchMDRequiredBufferSize {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_pcchMDRequiredBufferSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.RequiredBufferSize); err != nil {
 				return err

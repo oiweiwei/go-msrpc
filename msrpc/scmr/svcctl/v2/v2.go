@@ -11355,14 +11355,20 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -11703,14 +11709,20 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -12135,14 +12147,20 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -12464,14 +12482,20 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -13131,6 +13155,8 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -13245,6 +13271,8 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -15438,14 +15466,20 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -15786,14 +15820,20 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -16217,14 +16257,20 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -16546,14 +16592,20 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -17215,6 +17267,8 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -17329,6 +17383,8 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -19448,6 +19504,8 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -19599,6 +19657,8 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRResponse(ctx context.Context,
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21197,6 +21257,8 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21354,6 +21416,8 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21688,6 +21752,8 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRRequest(ctx context.Conte
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21845,6 +21911,8 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -22259,14 +22327,20 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -22588,14 +22662,20 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -23032,14 +23112,20 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -23361,14 +23447,20 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -25385,14 +25477,20 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -25726,14 +25824,20 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.TagID); err != nil {
+		if !(o.TagID == 0) {
+			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.TagID); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.TagID, _ptr_lpdwTagId); err != nil {
-			return err
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err

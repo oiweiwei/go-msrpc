@@ -6451,6 +6451,8 @@ func (o *PortInfo255) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MonitorDataLength); err != nil {
 		return err
 	}
+	// XXX pointer to primitive type, default behavior is to write non-null pointer.
+	// if this behavior is not desired, use goext_null_if(cond) attribute.
 	_ptr_pMonitorData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.MonitorData); err != nil {
 			return err
