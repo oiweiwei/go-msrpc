@@ -104,6 +104,10 @@ typedef struct _DnssrvRpcBuffer
     [size_is(dwLength)] BYTE    Buffer[];
 }
 DNS_RPC_BUFFER, *PDNS_RPC_BUFFER;
+
+typedef struct _DnsRpcServerExtension {
+    DWORD Extension;
+} DNS_RPC_SERVER_EXTENSION, *PDNS_RPC_SERVER_EXTENSION;
  
 //
 //  Server data types
@@ -140,11 +144,11 @@ typedef struct _DnsRpcServerInfoW2K
  
     //  future extensions
  
-    PDWORD      pExtension1;
-    PDWORD      pExtension2;
-    PDWORD      pExtension3;
-    PDWORD      pExtension4;
-    PDWORD      pExtension5;
+    PDNS_RPC_SERVER_EXTENSION      pExtension1;
+    PDNS_RPC_SERVER_EXTENSION      pExtension2;
+    PDNS_RPC_SERVER_EXTENSION      pExtension3;
+    PDNS_RPC_SERVER_EXTENSION      pExtension4;
+    PDNS_RPC_SERVER_EXTENSION      pExtension5;
  
     //
     //  DWORD section
@@ -777,10 +781,10 @@ typedef struct _DnsRpcSigningKeyDescriptorStateEx
     FILETIME            ftNextKeyGenerationTime;    
     DWORD               dwRevokedOrSwappedDnskeysLength;
     [size_is(dwRevokedOrSwappedDnskeysLength)]
-    PBYTE          *    pRevokedOrSwappedDnskeysBuffer[]; /* add array declarator */
+    BYTE          *    pRevokedOrSwappedDnskeysBuffer[]; /* add array declarator */
     DWORD               dwFinalDnskeysLength;
     [size_is(dwFinalDnskeysLength)]
-    PBYTE          *    pFinalDnskeys[]; /* add array declarator */
+    BYTE          *    pFinalDnskeys[]; /* add array declarator */
     KeySignScope        eActiveKeyScope;
     KeySignScope        eStandByKeyScope;
     KeySignScope        eNextKeyScope;    
@@ -886,11 +890,11 @@ typedef struct _DnssrvRpcZoneDnssecSettings
     DWORD               dwPropagationTime;    
     DWORD               cbNSEC3CurrentSaltLength;
     [size_is(cbNSEC3CurrentSaltLength)]
-    PBYTE       *        pbNSEC3CurrentSalt[]; /* add array declarator */
+    BYTE       *        pbNSEC3CurrentSalt[]; /* add array declarator */
     GUID                CurrentRollingSKDGuid;
     DWORD               dwBufferLength;    
     [size_is(dwBufferLength)]
-    PBYTE       *        pBuffer[]; /* add array declarator */
+    BYTE       *        pBuffer[]; /* add array declarator */
     DWORD               dwCount;    
     [size_is(dwCount)]
     PDNS_RPC_ZONE_SKD   pZoneSkdArray[] ; /* add array declarator */

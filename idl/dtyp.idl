@@ -12,6 +12,7 @@ typedef wchar_t WCHAR, *PWCHAR;
 typedef char CHAR, *PCHAR;
 typedef double DOUBLE;
 typedef unsigned long DWORD, *PDWORD, *LPDWORD;
+
 typedef unsigned int DWORD32;
 typedef unsigned __int64 DWORD64, *PDWORD64;
 typedef unsigned __int64 ULONGLONG;
