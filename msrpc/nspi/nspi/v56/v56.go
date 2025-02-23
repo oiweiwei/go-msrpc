@@ -5739,7 +5739,7 @@ func (o *xxx_UpdateStatOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	// plDelta {in, out} (1:{pointer=unique}*(1)(int32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Delta); err != nil {
 				return err
@@ -5830,7 +5830,7 @@ func (o *xxx_UpdateStatOperation) MarshalNDRResponse(ctx context.Context, w ndr.
 	// plDelta {in, out} (1:{pointer=unique}*(1)(int32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_plDelta := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Delta); err != nil {
 				return err

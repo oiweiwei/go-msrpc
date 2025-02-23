@@ -1257,7 +1257,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pClass := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Class); err != nil {
 			return err
@@ -1358,7 +1358,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pSentTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SentTime); err != nil {
 			return err
@@ -1369,7 +1369,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pArrivedTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ArrivedTime); err != nil {
 			return err
@@ -1380,7 +1380,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pPriority := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Priority); err != nil {
 			return err
@@ -1391,7 +1391,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pDelivery := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Delivery); err != nil {
 			return err
@@ -1402,7 +1402,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pAcknowledge := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Acknowledge); err != nil {
 			return err
@@ -1413,7 +1413,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pAuditing := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Auditing); err != nil {
 			return err
@@ -1424,7 +1424,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pApplicationTag := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ApplicationTag); err != nil {
 			return err
@@ -1498,7 +1498,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pBodySize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.BodySize); err != nil {
 			return err
@@ -1573,7 +1573,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulTitleBufferSizeInWCHARs := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ActualTitleBufferSizeInWchars); err != nil {
 			return err
@@ -1587,7 +1587,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulRelativeTimeToQueue := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ActualRelativeTimeToQueue); err != nil {
 			return err
@@ -1601,7 +1601,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulRelativeTimeToLive := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ActualRelativeTimeToLive); err != nil {
 			return err
@@ -1612,7 +1612,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pTrace := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Trace); err != nil {
 			return err
@@ -1623,7 +1623,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulSenderIDType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SenderIDType); err != nil {
 			return err
@@ -1679,7 +1679,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulSenderIDLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SenderIDLengthProperty); err != nil {
 			return err
@@ -1690,7 +1690,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulPrivLevel := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.PrivLevel); err != nil {
 			return err
@@ -1704,7 +1704,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pAuthenticated := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Authenticated); err != nil {
 			return err
@@ -1715,7 +1715,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulHashAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.HashAlgorithm); err != nil {
 			return err
@@ -1726,7 +1726,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulEncryptAlg := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.EncryptAlgorithm); err != nil {
 			return err
@@ -1785,7 +1785,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulSenderCertLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SenderCertLengthProperty); err != nil {
 			return err
@@ -1848,7 +1848,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulAuthProvNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.AuthProvNameLengthProperty); err != nil {
 			return err
@@ -1859,7 +1859,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulProvType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ProvType); err != nil {
 			return err
@@ -1921,7 +1921,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulSymmKeysSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SymmetricKeysSizeProperty); err != nil {
 			return err
@@ -1989,7 +1989,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulSignatureSizeProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SignatureSizeProperty); err != nil {
 			return err
@@ -2114,7 +2114,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pMsgExtensionSize := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.MessageExtensionSize); err != nil {
 			return err
@@ -2158,7 +2158,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulBodyType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.BodyType); err != nil {
 			return err
@@ -2169,7 +2169,7 @@ func (o *TransferBufferV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulVersion := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Version); err != nil {
 			return err
@@ -3442,7 +3442,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulResponseFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.ResponseFormatNameLengthProperty); err != nil {
 			return err
@@ -3505,7 +3505,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulAdminFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.AdminFormatNameLengthProperty); err != nil {
 			return err
@@ -3568,7 +3568,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulDestFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.DestinationFormatNameLengthProperty); err != nil {
 			return err
@@ -3631,7 +3631,7 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) MarshalNDR(ctx context.Conte
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pulOrderingFormatNameLenProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.OrderingFormatNameLengthProperty); err != nil {
 			return err
@@ -3952,7 +3952,7 @@ func (o *TransferBufferV2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pbFirstInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.FirstInTransaction); err != nil {
 			return err
@@ -3963,7 +3963,7 @@ func (o *TransferBufferV2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 		return err
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pbLastInXact := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.LastInTransaction); err != nil {
 			return err

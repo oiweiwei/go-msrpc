@@ -11369,7 +11369,7 @@ func (o *xxx_AccessCheckOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err
@@ -11440,7 +11440,7 @@ func (o *xxx_AccessCheckOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err
@@ -11738,7 +11738,7 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRRequest(ctx context.Cont
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ProtocolSeq); err != nil {
 				return err
@@ -11791,7 +11791,7 @@ func (o *xxx_CheckServerProtocolSeqOperation) MarshalNDRResponse(ctx context.Con
 	// lpdwProtSeq {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwProtSeq := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ProtocolSeq); err != nil {
 				return err
@@ -12028,7 +12028,7 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 				break
 			}
 			// XXX pointer to primitive type, default behavior is to write non-null pointer.
-			// if this behavior is not desired, use goext_null_if(cond) attribute.
+			// if this behavior is not desired, use goext_default_null([cond]) attribute.
 			_ptr_lpcSenderProfile := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.SenderProfile[i1]); err != nil {
 					return err
@@ -12111,7 +12111,7 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRRequest(ctx context.Context, w n
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.JobID); err != nil {
 				return err
@@ -12272,7 +12272,7 @@ func (o *xxx_SendDocumentExOperation) MarshalNDRResponse(ctx context.Context, w 
 	// lpdwJobId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwJobId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.JobID); err != nil {
 				return err
@@ -28019,7 +28019,7 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRRequest(ctx context.Context, w n
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err
@@ -28090,7 +28090,7 @@ func (o *xxx_AccessCheckEx2Operation) MarshalNDRResponse(ctx context.Context, w 
 	// lpdwRights {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpdwRights := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Rights); err != nil {
 				return err

@@ -18001,7 +18001,7 @@ func (o *MessageMoveReplyV1) MarshalNDR(ctx context.Context, w ndr.Writer) error
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_pError := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.Error); err != nil {
 			return err

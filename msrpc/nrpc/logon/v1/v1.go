@@ -18509,7 +18509,7 @@ func (o *OutChainSetClientAttributesV1) MarshalNDR(ctx context.Context, w ndr.Wr
 		}
 	}
 	// XXX pointer to primitive type, default behavior is to write non-null pointer.
-	// if this behavior is not desired, use goext_null_if(cond) attribute.
+	// if this behavior is not desired, use goext_default_null([cond]) attribute.
 	_ptr_SupportedEncTypes := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 		if err := w.WriteData(o.SupportedEncTypes); err != nil {
 			return err
