@@ -1846,7 +1846,7 @@ type xxx_ImportFromBlobGetHashOperation struct {
 	Length            uint32         `idl:"name:cbSize" json:"length"`
 	BlobBinary        string         `idl:"name:pBlobBinary;size_is:(cbSize);string" json:"blob_binary"`
 	CertHashLength    uint32         `idl:"name:pcbCertHashSize" json:"cert_hash_length"`
-	CertHash          uint8          `idl:"name:pCertHash" json:"cert_hash"`
+	CertHash          []byte         `idl:"name:pCertHash;size_is:(pcbCertHashSize)" json:"cert_hash"`
 	Return            int32          `idl:"name:Return" json:"return"`
 }
 
@@ -2121,6 +2121,9 @@ func (o *xxx_ImportFromBlobGetHashOperation) UnmarshalNDRRequest(ctx context.Con
 }
 
 func (o *xxx_ImportFromBlobGetHashOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if o.CertHash != nil && o.CertHashLength == 0 {
+		o.CertHashLength = uint32(len(o.CertHash))
+	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
 			return err
@@ -2154,16 +2157,36 @@ func (o *xxx_ImportFromBlobGetHashOperation) MarshalNDRResponse(ctx context.Cont
 			return err
 		}
 	}
-	// pCertHash {out} (1:{pointer=ref}*(2)*(1))(2:{alias=CHAR}(char))
+	// pCertHash {out} (1:{pointer=ref}*(1)[dim:0,size_is=pcbCertHashSize]*(1))(2:{alias=CHAR}(char))
 	{
-		_ptr_pCertHash := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-			if err := w.WriteData(o.CertHash); err != nil {
+		dimSize1 := uint64(o.CertHashLength)
+		if err := w.WriteSize(dimSize1); err != nil {
+			return err
+		}
+		sizeInfo := []uint64{
+			dimSize1,
+		}
+		for i1 := range o.CertHash {
+			i1 := i1
+			if uint64(i1) >= sizeInfo[0] {
+				break
+			}
+			// XXX pointer to primitive type, default behavior is to write non-null pointer.
+			// if this behavior is not desired, use goext_null_if(cond) attribute.
+			_ptr_pCertHash := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if err := w.WriteData(o.CertHash[i1]); err != nil {
+					return err
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CertHash[i1], _ptr_pCertHash); err != nil {
 				return err
 			}
-			return nil
-		})
-		if err := w.WritePointer(&o.CertHash, _ptr_pCertHash); err != nil {
-			return err
+		}
+		for i1 := len(o.CertHash); uint64(i1) < sizeInfo[0]; i1++ {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
 		}
 		if err := w.WriteDeferred(); err != nil {
 			return err
@@ -2197,17 +2220,32 @@ func (o *xxx_ImportFromBlobGetHashOperation) UnmarshalNDRResponse(ctx context.Co
 			return err
 		}
 	}
-	// pCertHash {out} (1:{pointer=ref}*(2)*(1))(2:{alias=CHAR}(char))
+	// pCertHash {out} (1:{pointer=ref}*(1)[dim:0,size_is=pcbCertHashSize]*(1))(2:{alias=CHAR}(char))
 	{
-		_ptr_pCertHash := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if err := w.ReadData(&o.CertHash); err != nil {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
 				return err
 			}
-			return nil
-		})
-		_s_pCertHash := func(ptr interface{}) { o.CertHash = *ptr.(*uint8) }
-		if err := w.ReadPointer(&o.CertHash, _s_pCertHash, _ptr_pCertHash); err != nil {
-			return err
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.CertHash", sizeInfo[0])
+		}
+		o.CertHash = make([]byte, sizeInfo[0])
+		for i1 := range o.CertHash {
+			i1 := i1
+			_ptr_pCertHash := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+				if err := w.ReadData(&o.CertHash[i1]); err != nil {
+					return err
+				}
+				return nil
+			})
+			_s_pCertHash := func(ptr interface{}) { o.CertHash[i1] = *ptr.(*uint8) }
+			if err := w.ReadPointer(&o.CertHash[i1], _s_pCertHash, _ptr_pCertHash); err != nil {
+				return err
+			}
 		}
 		if err := w.ReadDeferred(); err != nil {
 			return err
@@ -2300,7 +2338,7 @@ type ImportFromBlobGetHashResponse struct {
 	// pCertHash: If the method succeeds, returns a pointer to a memory buffer containing
 	// the certificate signature hash. The client MUST free the pointer returned in pCertHash
 	// using the appropriate memory allocator as specified by the DCOM implementation.<39>
-	CertHash uint8 `idl:"name:pCertHash" json:"cert_hash"`
+	CertHash []byte `idl:"name:pCertHash;size_is:(pcbCertHashSize)" json:"cert_hash"`
 	// Return: The ImportFromBlobGetHash return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }

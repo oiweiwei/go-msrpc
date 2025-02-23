@@ -9391,6 +9391,8 @@ func (o *xxx_EnumOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Resume); err != nil {
 				return err
@@ -9500,6 +9502,8 @@ func (o *xxx_EnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Resume); err != nil {
 				return err
@@ -13079,6 +13083,8 @@ func (o *xxx_EnumExOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Resume); err != nil {
 				return err
@@ -13194,6 +13200,8 @@ func (o *xxx_EnumExOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ResumeHandle {in, out} (1:{pointer=unique}*(1))(2:{alias=DWORD}(uint32))
 	{
+		// XXX pointer to primitive type, default behavior is to write non-null pointer.
+		// if this behavior is not desired, use goext_null_if(cond) attribute.
 		_ptr_ResumeHandle := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.Resume); err != nil {
 				return err

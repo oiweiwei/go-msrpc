@@ -1006,6 +1006,41 @@ func (o *Buffer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
+// ServerExtension structure represents DNS_RPC_SERVER_EXTENSION RPC structure.
+type ServerExtension struct {
+	Extension uint32 `idl:"name:Extension" json:"extension"`
+}
+
+func (o *ServerExtension) xxx_PreparePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
+		if err := hook.AfterPreparePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+func (o *ServerExtension) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PreparePayload(ctx); err != nil {
+		return err
+	}
+	if err := w.WriteAlign(4); err != nil {
+		return err
+	}
+	if err := w.WriteData(o.Extension); err != nil {
+		return err
+	}
+	return nil
+}
+func (o *ServerExtension) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+	if err := w.ReadAlign(4); err != nil {
+		return err
+	}
+	if err := w.ReadData(&o.Extension); err != nil {
+		return err
+	}
+	return nil
+}
+
 // ServerInfoW2K structure represents DNS_RPC_SERVER_INFO_W2K RPC structure.
 //
 // The DNS_RPC_SERVER_INFO_W2K structure is used to specify general DNS server state
@@ -1052,15 +1087,15 @@ type ServerInfoW2K struct {
 	// unresolved DNS requests.
 	Forwarders *IPv4Array `idl:"name:aipForwarders" json:"forwarders"`
 	// pExtension1: Reserved for future use and MUST be ignored by receiver.
-	Extension1 uint32 `idl:"name:pExtension1" json:"extension1"`
+	Extension1 *ServerExtension `idl:"name:pExtension1" json:"extension1"`
 	// pExtension2: Reserved for future use and MUST be ignored by receiver.
-	Extension2 uint32 `idl:"name:pExtension2" json:"extension2"`
+	Extension2 *ServerExtension `idl:"name:pExtension2" json:"extension2"`
 	// pExtension3: Reserved for future use and MUST be ignored by receiver.
-	Extension3 uint32 `idl:"name:pExtension3" json:"extension3"`
+	Extension3 *ServerExtension `idl:"name:pExtension3" json:"extension3"`
 	// pExtension4: Reserved for future use and MUST be ignored by receiver.
-	Extension4 uint32 `idl:"name:pExtension4" json:"extension4"`
+	Extension4 *ServerExtension `idl:"name:pExtension4" json:"extension4"`
 	// pExtension5: Reserved for future use and MUST be ignored by receiver.
-	Extension5 uint32 `idl:"name:pExtension5" json:"extension5"`
+	Extension5 *ServerExtension `idl:"name:pExtension5" json:"extension5"`
 	// dwLogLevel: This indicates which DNS packets will be logged and how they will be
 	// logged. This field MUST be set to either zero or a combination (by bitwise OR) of
 	// the possible values as specified under DNS_LOG_LEVELS (section 2.2.9.1.1). If this
@@ -1327,50 +1362,110 @@ func (o *ServerInfoW2K) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	_ptr_pExtension1 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Extension1); err != nil {
+	if o.Extension1 != nil {
+		_ptr_pExtension1 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Extension1 != nil {
+				if err := o.Extension1.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ServerExtension{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Extension1, _ptr_pExtension1); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Extension1, _ptr_pExtension1); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	_ptr_pExtension2 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Extension2); err != nil {
+	if o.Extension2 != nil {
+		_ptr_pExtension2 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Extension2 != nil {
+				if err := o.Extension2.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ServerExtension{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Extension2, _ptr_pExtension2); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Extension2, _ptr_pExtension2); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	_ptr_pExtension3 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Extension3); err != nil {
+	if o.Extension3 != nil {
+		_ptr_pExtension3 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Extension3 != nil {
+				if err := o.Extension3.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ServerExtension{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Extension3, _ptr_pExtension3); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Extension3, _ptr_pExtension3); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	_ptr_pExtension4 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Extension4); err != nil {
+	if o.Extension4 != nil {
+		_ptr_pExtension4 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Extension4 != nil {
+				if err := o.Extension4.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ServerExtension{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Extension4, _ptr_pExtension4); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Extension4, _ptr_pExtension4); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
-	_ptr_pExtension5 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-		if err := w.WriteData(o.Extension5); err != nil {
+	if o.Extension5 != nil {
+		_ptr_pExtension5 := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			if o.Extension5 != nil {
+				if err := o.Extension5.MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			} else {
+				if err := (&ServerExtension{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Extension5, _ptr_pExtension5); err != nil {
 			return err
 		}
-		return nil
-	})
-	if err := w.WritePointer(&o.Extension5, _ptr_pExtension5); err != nil {
-		return err
+	} else {
+		if err := w.WritePointer(nil); err != nil {
+			return err
+		}
 	}
 	if err := w.WriteData(o.LogLevel); err != nil {
 		return err
@@ -1543,52 +1638,67 @@ func (o *ServerInfoW2K) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	_ptr_pExtension1 := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.Extension1); err != nil {
+		if o.Extension1 == nil {
+			o.Extension1 = &ServerExtension{}
+		}
+		if err := o.Extension1.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pExtension1 := func(ptr interface{}) { o.Extension1 = *ptr.(*uint32) }
+	_s_pExtension1 := func(ptr interface{}) { o.Extension1 = *ptr.(**ServerExtension) }
 	if err := w.ReadPointer(&o.Extension1, _s_pExtension1, _ptr_pExtension1); err != nil {
 		return err
 	}
 	_ptr_pExtension2 := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.Extension2); err != nil {
+		if o.Extension2 == nil {
+			o.Extension2 = &ServerExtension{}
+		}
+		if err := o.Extension2.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pExtension2 := func(ptr interface{}) { o.Extension2 = *ptr.(*uint32) }
+	_s_pExtension2 := func(ptr interface{}) { o.Extension2 = *ptr.(**ServerExtension) }
 	if err := w.ReadPointer(&o.Extension2, _s_pExtension2, _ptr_pExtension2); err != nil {
 		return err
 	}
 	_ptr_pExtension3 := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.Extension3); err != nil {
+		if o.Extension3 == nil {
+			o.Extension3 = &ServerExtension{}
+		}
+		if err := o.Extension3.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pExtension3 := func(ptr interface{}) { o.Extension3 = *ptr.(*uint32) }
+	_s_pExtension3 := func(ptr interface{}) { o.Extension3 = *ptr.(**ServerExtension) }
 	if err := w.ReadPointer(&o.Extension3, _s_pExtension3, _ptr_pExtension3); err != nil {
 		return err
 	}
 	_ptr_pExtension4 := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.Extension4); err != nil {
+		if o.Extension4 == nil {
+			o.Extension4 = &ServerExtension{}
+		}
+		if err := o.Extension4.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pExtension4 := func(ptr interface{}) { o.Extension4 = *ptr.(*uint32) }
+	_s_pExtension4 := func(ptr interface{}) { o.Extension4 = *ptr.(**ServerExtension) }
 	if err := w.ReadPointer(&o.Extension4, _s_pExtension4, _ptr_pExtension4); err != nil {
 		return err
 	}
 	_ptr_pExtension5 := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-		if err := w.ReadData(&o.Extension5); err != nil {
+		if o.Extension5 == nil {
+			o.Extension5 = &ServerExtension{}
+		}
+		if err := o.Extension5.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_pExtension5 := func(ptr interface{}) { o.Extension5 = *ptr.(*uint32) }
+	_s_pExtension5 := func(ptr interface{}) { o.Extension5 = *ptr.(**ServerExtension) }
 	if err := w.ReadPointer(&o.Extension5, _s_pExtension5, _ptr_pExtension5); err != nil {
 		return err
 	}
@@ -5972,18 +6082,12 @@ func (o *SKDStateEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				_ptr_pRevokedOrSwappedDnskeysBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if err := w.WriteData(o.RevokedOrSwappedDNSKeysBuffer[i1]); err != nil {
-						return err
-					}
-					return nil
-				})
-				if err := w.WritePointer(&o.RevokedOrSwappedDNSKeysBuffer[i1], _ptr_pRevokedOrSwappedDnskeysBuffer); err != nil {
+				if err := w.WriteData(o.RevokedOrSwappedDNSKeysBuffer[i1]); err != nil {
 					return err
 				}
 			}
 			for i1 := len(o.RevokedOrSwappedDNSKeysBuffer); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WritePointer(nil); err != nil {
+				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
@@ -6014,18 +6118,12 @@ func (o *SKDStateEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				_ptr_pFinalDnskeys := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if err := w.WriteData(o.FinalDNSKeys[i1]); err != nil {
-						return err
-					}
-					return nil
-				})
-				if err := w.WritePointer(&o.FinalDNSKeys[i1], _ptr_pFinalDnskeys); err != nil {
+				if err := w.WriteData(o.FinalDNSKeys[i1]); err != nil {
 					return err
 				}
 			}
 			for i1 := len(o.FinalDNSKeys); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WritePointer(nil); err != nil {
+				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
@@ -6105,14 +6203,7 @@ func (o *SKDStateEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.RevokedOrSwappedDNSKeysBuffer = make([]byte, sizeInfo[0])
 		for i1 := range o.RevokedOrSwappedDNSKeysBuffer {
 			i1 := i1
-			_ptr_pRevokedOrSwappedDnskeysBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := w.ReadData(&o.RevokedOrSwappedDNSKeysBuffer[i1]); err != nil {
-					return err
-				}
-				return nil
-			})
-			_s_pRevokedOrSwappedDnskeysBuffer := func(ptr interface{}) { o.RevokedOrSwappedDNSKeysBuffer[i1] = *ptr.(*uint8) }
-			if err := w.ReadPointer(&o.RevokedOrSwappedDNSKeysBuffer[i1], _s_pRevokedOrSwappedDnskeysBuffer, _ptr_pRevokedOrSwappedDnskeysBuffer); err != nil {
+			if err := w.ReadData(&o.RevokedOrSwappedDNSKeysBuffer[i1]); err != nil {
 				return err
 			}
 		}
@@ -6144,14 +6235,7 @@ func (o *SKDStateEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.FinalDNSKeys = make([]byte, sizeInfo[0])
 		for i1 := range o.FinalDNSKeys {
 			i1 := i1
-			_ptr_pFinalDnskeys := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := w.ReadData(&o.FinalDNSKeys[i1]); err != nil {
-					return err
-				}
-				return nil
-			})
-			_s_pFinalDnskeys := func(ptr interface{}) { o.FinalDNSKeys[i1] = *ptr.(*uint8) }
-			if err := w.ReadPointer(&o.FinalDNSKeys[i1], _s_pFinalDnskeys, _ptr_pFinalDnskeys); err != nil {
+			if err := w.ReadData(&o.FinalDNSKeys[i1]); err != nil {
 				return err
 			}
 		}
@@ -6855,18 +6939,12 @@ func (o *ZoneDNSSECSettings) MarshalNDR(ctx context.Context, w ndr.Writer) error
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				_ptr_pbNSEC3CurrentSalt := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if err := w.WriteData(o.NSEC3CurrentSalt[i1]); err != nil {
-						return err
-					}
-					return nil
-				})
-				if err := w.WritePointer(&o.NSEC3CurrentSalt[i1], _ptr_pbNSEC3CurrentSalt); err != nil {
+				if err := w.WriteData(o.NSEC3CurrentSalt[i1]); err != nil {
 					return err
 				}
 			}
 			for i1 := len(o.NSEC3CurrentSalt); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WritePointer(nil); err != nil {
+				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
@@ -6906,18 +6984,12 @@ func (o *ZoneDNSSECSettings) MarshalNDR(ctx context.Context, w ndr.Writer) error
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				_ptr_pBuffer := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if err := w.WriteData(o.Buffer[i1]); err != nil {
-						return err
-					}
-					return nil
-				})
-				if err := w.WritePointer(&o.Buffer[i1], _ptr_pBuffer); err != nil {
+				if err := w.WriteData(o.Buffer[i1]); err != nil {
 					return err
 				}
 			}
 			for i1 := len(o.Buffer); uint64(i1) < sizeInfo[0]; i1++ {
-				if err := w.WritePointer(nil); err != nil {
+				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
@@ -7067,14 +7139,7 @@ func (o *ZoneDNSSECSettings) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		o.NSEC3CurrentSalt = make([]byte, sizeInfo[0])
 		for i1 := range o.NSEC3CurrentSalt {
 			i1 := i1
-			_ptr_pbNSEC3CurrentSalt := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := w.ReadData(&o.NSEC3CurrentSalt[i1]); err != nil {
-					return err
-				}
-				return nil
-			})
-			_s_pbNSEC3CurrentSalt := func(ptr interface{}) { o.NSEC3CurrentSalt[i1] = *ptr.(*uint8) }
-			if err := w.ReadPointer(&o.NSEC3CurrentSalt[i1], _s_pbNSEC3CurrentSalt, _ptr_pbNSEC3CurrentSalt); err != nil {
+			if err := w.ReadData(&o.NSEC3CurrentSalt[i1]); err != nil {
 				return err
 			}
 		}
@@ -7112,14 +7177,7 @@ func (o *ZoneDNSSECSettings) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		o.Buffer = make([]byte, sizeInfo[0])
 		for i1 := range o.Buffer {
 			i1 := i1
-			_ptr_pBuffer := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := w.ReadData(&o.Buffer[i1]); err != nil {
-					return err
-				}
-				return nil
-			})
-			_s_pBuffer := func(ptr interface{}) { o.Buffer[i1] = *ptr.(*uint8) }
-			if err := w.ReadPointer(&o.Buffer[i1], _s_pBuffer, _ptr_pBuffer); err != nil {
+			if err := w.ReadData(&o.Buffer[i1]); err != nil {
 				return err
 			}
 		}
