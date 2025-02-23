@@ -335,7 +335,7 @@ RChangeServiceConfigW(
             wchar_t *  lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)] 
             wchar_t *  lpLoadOrderGroup,
-    [in,out,unique] LPDWORD  lpdwTagId,
+    [in,out,unique,goext_null_if(lpdwTagId==0)] LPDWORD  lpdwTagId,
     [in,unique,size_is(dwDependSize)] LPBYTE  lpDependencies,
     [in, range (0, SC_MAX_DEPEND_SIZE)] DWORD  dwDependSize,
     [in,string,unique,range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
@@ -361,7 +361,7 @@ RCreateServiceW(
                 wchar_t *  lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)] 
                 wchar_t *  lpLoadOrderGroup,
-    [in,out,unique] LPDWORD  lpdwTagId,
+    [in,out,unique,goext_null_if(lpdwTagId==0)] LPDWORD  lpdwTagId,
     [in,unique,size_is(dwDependSize)] LPBYTE  lpDependencies,
     [in, range (0, SC_MAX_DEPEND_SIZE)] DWORD  dwDependSize,
     [in,string,unique,range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
@@ -469,7 +469,7 @@ RChangeServiceConfigA(
             LPSTR  lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)] 
             LPSTR  lpLoadOrderGroup,
-    [in,out,unique] LPDWORD  lpdwTagId,
+    [in,out,unique,goext_null_if(lpdwTagId==0)] LPDWORD  lpdwTagId,
     [in,unique,size_is(dwDependSize)] LPBYTE  lpDependencies,
     [in, range (0, SC_MAX_DEPEND_SIZE)] DWORD dwDependSize,
     [in,string,unique,range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
@@ -495,7 +495,7 @@ RCreateServiceA(
                 LPSTR  lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)] 
                 LPSTR  lpLoadOrderGroup,
-    [in,out,unique] LPDWORD  lpdwTagId,
+    [in,out,unique,goext_null_if(lpdwTagId==0)] LPDWORD  lpdwTagId,
     [in,unique,size_is(dwDependSize)] LPBYTE  lpDependencies,
     [in, range (0, SC_MAX_DEPEND_SIZE)] DWORD  dwDependSize,
     [in,string,unique,range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
@@ -752,7 +752,7 @@ RCreateServiceWOW64A(
                 LPSTR  lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)] 
                 LPSTR  lpLoadOrderGroup,
-    [in,out,unique] LPDWORD  lpdwTagId,
+    [in,out,unique,goext_null_if(lpdwTagId==0)] LPDWORD  lpdwTagId,
     [in,unique,size_is(dwDependSize)] LPBYTE  lpDependencies,
     [in, range (0, SC_MAX_DEPEND_SIZE)] DWORD  dwDependSize,
     [in,string,unique,range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
@@ -777,7 +777,7 @@ RCreateServiceWOW64W(
                 wchar_t *  lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)] 
                 wchar_t *  lpLoadOrderGroup,
-    [in,out,unique] LPDWORD  lpdwTagId,
+    [in,out,unique,goext_null_if(lpdwTagId==0)] LPDWORD  lpdwTagId,
     [in,unique,size_is(dwDependSize)] LPBYTE  lpDependencies,
     [in, range (0, SC_MAX_DEPEND_SIZE)] DWORD  dwDependSize,
     [in,string,unique,range(0, SC_MAX_ACCOUNT_NAME_LENGTH)] 
@@ -976,7 +976,7 @@ RCreateWowService(
                 wchar_t *           lpBinaryPathName,
     [in,string,unique,range(0, SC_MAX_NAME_LENGTH)]
                 wchar_t *           lpLoadOrderGroup,
-    [in,out,unique]
+    [in,out,unique,goext_null_if(lpdwTagId==0)]
                 LPDWORD             lpdwTagId,
     [in,unique,size_is(dwDependSize)]
                 LPBYTE              lpDependencies,
