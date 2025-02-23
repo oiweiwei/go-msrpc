@@ -450,7 +450,7 @@ interface IIISCertObj : IDispatch
         [in] DWORD cbSize,
         [in,string,size_is(cbSize)] CHAR *pBlobBinary,
         [out] DWORD *pcbCertHashSize,
-        [out, size_is(pcbCertHashSize)] CHAR **pCertHash
+        [out, size_is(,pcbCertHashSize)] CHAR **pCertHash
         );
  
     [id(18), local] 
