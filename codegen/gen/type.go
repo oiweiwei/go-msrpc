@@ -636,7 +636,7 @@ func (p *TypeGenerator) GenFieldMarshalNDR(ctx context.Context, field *midl.Fiel
 				}))
 			} else {
 				p.P("//", "XXX", "pointer to primitive type, default behavior is to write non-null pointer.")
-				p.P("//", "if this behavior is not desired, use goext_null_if(cond) attribute.")
+				p.P("//", "if this behavior is not desired, use goext_default_null([cond]) attribute.")
 				fN := "_ptr_" + field.Name
 				p.P(fN, ":=", "ndr.MarshalNDRFunc", "(", "func(ctx context.Context, w ndr.Writer) error {")
 				p.GenFieldMarshalNDR(ctx, field, scopes.Next(), index...)

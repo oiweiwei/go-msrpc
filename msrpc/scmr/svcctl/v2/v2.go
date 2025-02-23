@@ -13156,7 +13156,7 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRRequest(ctx context.Context
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -13272,7 +13272,7 @@ func (o *xxx_EnumServicesStatusWOperation) MarshalNDRResponse(ctx context.Contex
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -17268,7 +17268,7 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRRequest(ctx context.Context
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -17384,7 +17384,7 @@ func (o *xxx_EnumServicesStatusAOperation) MarshalNDRResponse(ctx context.Contex
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -19505,7 +19505,7 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRRequest(ctx context.Context, 
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -19658,7 +19658,7 @@ func (o *xxx_EnumServiceGroupWOperation) MarshalNDRResponse(ctx context.Context,
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21258,7 +21258,7 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRRequest(ctx context.Conte
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21417,7 +21417,7 @@ func (o *xxx_EnumServicesStatusExAOperation) MarshalNDRResponse(ctx context.Cont
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21753,7 +21753,7 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRRequest(ctx context.Conte
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
@@ -21912,7 +21912,7 @@ func (o *xxx_EnumServicesStatusExWOperation) MarshalNDRResponse(ctx context.Cont
 	// lpResumeIndex {in, out} (1:{pointer=unique, alias=LPBOUNDED_DWORD_256K}*(1))(2:{range=(0,262144), alias=BOUNDED_DWORD_256K, names=DWORD}(uint32))
 	{
 		// XXX pointer to primitive type, default behavior is to write non-null pointer.
-		// if this behavior is not desired, use goext_null_if(cond) attribute.
+		// if this behavior is not desired, use goext_default_null([cond]) attribute.
 		_ptr_lpResumeIndex := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			if err := w.WriteData(o.ResumeIndex); err != nil {
 				return err
