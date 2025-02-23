@@ -609,12 +609,28 @@ func (p *TypeGenerator) GenFieldMarshalNDR(ctx context.Context, field *midl.Fiel
 		}
 
 		if next := scopes.Next(); next.Type().IsPrimitiveType() {
-			fN := "_ptr_" + field.Name
-			p.P(fN, ":=", "ndr.MarshalNDRFunc", "(", "func(ctx context.Context, w ndr.Writer) error {")
-			p.GenFieldMarshalNDR(ctx, field, scopes.Next(), index...)
-			p.P("return nil")
-			p.P("})")
-			p.CheckErr(p.B("w.WritePointer", p.Amp(name), fN))
+			if !field.Attrs.NullIf.Empty() {
+				nullChk := p.GenExpr(ctx, field.Attrs.NullIf, p.LookupExprField(ctx, field.Attrs.NullIf), "")
+				p.If("!", nullChk, func() {
+					fN := "_ptr_" + field.Name
+					p.P(fN, ":=", "ndr.MarshalNDRFunc", "(", "func(ctx context.Context, w ndr.Writer) error {")
+					p.GenFieldMarshalNDR(ctx, field, scopes.Next(), index...)
+					p.P("return nil")
+					p.P("})")
+					p.CheckErr(p.B("w.WritePointer", p.Amp(name), fN))
+				}, p.Else(func() {
+					p.GenZeroPointerFieldMarshalNDR(ctx, field, scopes, index...)
+				}))
+			} else {
+				p.P("//", "XXX", "pointer to primitive type, default behavior is to write non-null pointer.")
+				p.P("//", "if this behavior is not desired, use goext_null_if(cond) attribute.")
+				fN := "_ptr_" + field.Name
+				p.P(fN, ":=", "ndr.MarshalNDRFunc", "(", "func(ctx context.Context, w ndr.Writer) error {")
+				p.GenFieldMarshalNDR(ctx, field, scopes.Next(), index...)
+				p.P("return nil")
+				p.P("})")
+				p.CheckErr(p.B("w.WritePointer", p.Amp(name), fN))
+			}
 		} else {
 			p.If(name, "!=", p.GoTypeZeroValue(ctx, p.Scope(), field, scopes), sizeChk, func() {
 				fN := "_ptr_" + field.Name

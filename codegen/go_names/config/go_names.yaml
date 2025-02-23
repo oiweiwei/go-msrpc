@@ -32,6 +32,9 @@ rename:
   s: [String]
   PropMarshalHeader: [Context, Properties]
   dwNumExtents: [Extensions, Count]
+  lpcSenderProfile: [Sender, Profile]
+  lpcRecipientList: [Recipient, List]
+  lpcCoverPageInfo: [Cover, Page, Info]
 rotate:
   ob: Offset
   obwsz: Offset
