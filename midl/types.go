@@ -583,7 +583,7 @@ type FieldAttr struct {
 	Layout      []*Field
 	NoSizeLimit bool
 	IsLayout    bool
-	NullIf      Expr
+	DefaultNull []Expr
 }
 
 func (f *FieldAttr) SizeAttr() *SizeAttr {

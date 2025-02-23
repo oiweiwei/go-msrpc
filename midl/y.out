@@ -168,7 +168,7 @@ state 12
 state 13
 	export:  pragma_declarator.    (126)
 
-	.  reduce 126 (src line 1085)
+	.  reduce 126 (src line 1089)
 
 
 state 14
@@ -236,7 +236,7 @@ state 20
 	BOOLEAN  shift 60
 	VOID  shift 61
 	IDENT  shift 57
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	const_type_spec  goto 55
 	primitive_integer_type  goto 56
@@ -263,19 +263,19 @@ state 22
 state 23
 	tagged_declarator:  tagged_struct_declarator.    (207)
 
-	.  reduce 207 (src line 1685)
+	.  reduce 207 (src line 1689)
 
 
 state 24
 	tagged_declarator:  tagged_union_declarator.    (208)
 
-	.  reduce 208 (src line 1689)
+	.  reduce 208 (src line 1693)
 
 
 state 25
 	tagged_declarator:  tagged_enumeration_declarator.    (209)
 
-	.  reduce 209 (src line 1694)
+	.  reduce 209 (src line 1698)
 
 
 state 26
@@ -298,7 +298,7 @@ state 27
 state 28
 	tagged_struct_declarator:  tagged_struct.    (260)
 
-	.  reduce 260 (src line 2016)
+	.  reduce 260 (src line 2020)
 
 
 state 29
@@ -315,7 +315,7 @@ state 29
 state 30
 	tagged_union_declarator:  tagged_union.    (271)
 
-	.  reduce 271 (src line 2091)
+	.  reduce 271 (src line 2095)
 
 
 state 31
@@ -330,7 +330,7 @@ state 31
 state 32
 	tagged_enumeration_declarator:  tagged_enumeration.    (310)
 
-	.  reduce 310 (src line 2378)
+	.  reduce 310 (src line 2382)
 
 
 state 33
@@ -390,7 +390,7 @@ state 33
 	SAFEARRAY  shift 132
 	PAD  shift 133
 	GOEXT_LAYOUT  shift 134
-	GOEXT_NULL_IF  shift 87
+	GOEXT_DEFAULT_NULL  shift 87
 	CALL_AS  shift 129
 	ANNOTATION  shift 128
 	WIRE_MARSHAL  shift 130
@@ -454,31 +454,31 @@ state 40
 state 41
 	import_list:  import_name.    (128)
 
-	.  reduce 128 (src line 1095)
+	.  reduce 128 (src line 1099)
 
 
 state 42
 	import_name:  STRING_LITERAL.    (130)
 
-	.  reduce 130 (src line 1105)
+	.  reduce 130 (src line 1109)
 
 
 state 43
 	export:  type_declarator ';'.    (124)
 
-	.  reduce 124 (src line 1077)
+	.  reduce 124 (src line 1081)
 
 
 state 44
 	export:  const_declarator ';'.    (125)
 
-	.  reduce 125 (src line 1081)
+	.  reduce 125 (src line 1085)
 
 
 state 45
 	export:  tagged_declarator ';'.    (127)
 
-	.  reduce 127 (src line 1089)
+	.  reduce 127 (src line 1093)
 
 
 state 46
@@ -488,7 +488,7 @@ state 46
 
 	IMPORT  shift 10
 	'}'  shift 148
-	.  reduce 119 (src line 1041)
+	.  reduce 119 (src line 1045)
 
 	interface_body  goto 147
 	import  goto 149
@@ -576,13 +576,13 @@ state 55
 state 56
 	const_type_spec:  primitive_integer_type.    (134)
 
-	.  reduce 134 (src line 1158)
+	.  reduce 134 (src line 1162)
 
 
 state 57
 	const_type_spec:  IDENT.    (135)
 
-	.  reduce 135 (src line 1162)
+	.  reduce 135 (src line 1166)
 
 
 state 58
@@ -590,7 +590,7 @@ state 58
 	const_type_spec:  CHAR.'*' 
 
 	'*'  shift 168
-	.  reduce 136 (src line 1196)
+	.  reduce 136 (src line 1200)
 
 
 state 59
@@ -602,14 +602,14 @@ state 59
 	SHORT  shift 69
 	SMALL  shift 70
 	CHAR  shift 169
-	.  reduce 248 (src line 1964)
+	.  reduce 248 (src line 1968)
 
 	integer_size  goto 170
 
 state 60
 	const_type_spec:  BOOLEAN.    (138)
 
-	.  reduce 138 (src line 1204)
+	.  reduce 138 (src line 1208)
 
 
 state 61
@@ -622,19 +622,19 @@ state 61
 state 62
 	primitive_integer_type:  signed_integer.    (223)
 
-	.  reduce 223 (src line 1773)
+	.  reduce 223 (src line 1777)
 
 
 state 63
 	primitive_integer_type:  unsigned_integer.    (224)
 
-	.  reduce 224 (src line 1777)
+	.  reduce 224 (src line 1781)
 
 
 state 64
 	primitive_integer_type:  ms_integer.    (225)
 
-	.  reduce 225 (src line 1781)
+	.  reduce 225 (src line 1785)
 
 
 state 65
@@ -644,7 +644,7 @@ state 65
 	LONG  shift 68
 	SHORT  shift 69
 	SMALL  shift 70
-	.  reduce 249 (src line 1968)
+	.  reduce 249 (src line 1972)
 
 	integer_size  goto 172
 
@@ -655,7 +655,7 @@ state 66
 
 	UNSIGNED  shift 174
 	INT  shift 175
-	.  reduce 252 (src line 1978)
+	.  reduce 252 (src line 1982)
 
 	int  goto 173
 
@@ -679,19 +679,19 @@ state 67
 state 68
 	integer_size:  LONG.    (236)
 
-	.  reduce 236 (src line 1893)
+	.  reduce 236 (src line 1897)
 
 
 state 69
 	integer_size:  SHORT.    (237)
 
-	.  reduce 237 (src line 1897)
+	.  reduce 237 (src line 1901)
 
 
 state 70
 	integer_size:  SMALL.    (238)
 
-	.  reduce 238 (src line 1901)
+	.  reduce 238 (src line 1905)
 
 
 state 71
@@ -793,7 +793,7 @@ state 73
 	SAFEARRAY  shift 132
 	PAD  shift 133
 	GOEXT_LAYOUT  shift 134
-	GOEXT_NULL_IF  shift 87
+	GOEXT_DEFAULT_NULL  shift 87
 	CALL_AS  shift 129
 	ANNOTATION  shift 128
 	WIRE_MARSHAL  shift 130
@@ -814,13 +814,13 @@ state 74
 	tagged_struct:  STRUCT tag.'{' member_list '}' 
 
 	'{'  shift 213
-	.  reduce 259 (src line 2005)
+	.  reduce 259 (src line 2009)
 
 
 state 75
 	tag:  IDENT.    (263)
 
-	.  reduce 263 (src line 2044)
+	.  reduce 263 (src line 2048)
 
 
 state 76
@@ -831,7 +831,7 @@ state 76
 
 	SWITCH  shift 216
 	'{'  shift 215
-	.  reduce 270 (src line 2087)
+	.  reduce 270 (src line 2091)
 
 	union_switch  goto 214
 
@@ -840,7 +840,7 @@ state 77
 	tagged_enumeration:  ENUM tag.'{' enumeration1 comma '}' 
 
 	'{'  shift 217
-	.  reduce 309 (src line 2374)
+	.  reduce 309 (src line 2378)
 
 
 state 78
@@ -849,7 +849,7 @@ state 78
 	comma: .    (314)
 
 	','  shift 219
-	.  reduce 314 (src line 2424)
+	.  reduce 314 (src line 2428)
 
 	comma  goto 218
 
@@ -909,7 +909,7 @@ state 86
 
 
 state 87
-	attribute:  GOEXT_NULL_IF.'(' attr_var ')' 
+	attribute:  GOEXT_DEFAULT_NULL.'(' attr_var ')' 
 
 	'('  shift 226
 	.  error
@@ -918,7 +918,7 @@ state 87
 state 88
 	attribute:  usage_attribute.    (60)
 
-	.  reduce 60 (src line 740)
+	.  reduce 60 (src line 744)
 
 
 state 89
@@ -931,19 +931,19 @@ state 89
 state 90
 	attribute:  union_instance_switch_attr.    (62)
 
-	.  reduce 62 (src line 748)
+	.  reduce 62 (src line 752)
 
 
 state 91
 	attribute:  IGNORE.    (63)
 
-	.  reduce 63 (src line 752)
+	.  reduce 63 (src line 756)
 
 
 state 92
 	attribute:  directional_attribute.    (64)
 
-	.  reduce 64 (src line 756)
+	.  reduce 64 (src line 760)
 
 
 state 93
@@ -956,43 +956,43 @@ state 93
 state 94
 	attribute:  union_type_switch_attr.    (66)
 
-	.  reduce 66 (src line 764)
+	.  reduce 66 (src line 768)
 
 
 state 95
 	attribute:  HANDLE.    (67)
 
-	.  reduce 67 (src line 768)
+	.  reduce 67 (src line 772)
 
 
 state 96
 	attribute:  IDEMPOTENT.    (68)
 
-	.  reduce 68 (src line 772)
+	.  reduce 68 (src line 776)
 
 
 state 97
 	attribute:  BROADCAST.    (69)
 
-	.  reduce 69 (src line 776)
+	.  reduce 69 (src line 780)
 
 
 state 98
 	attribute:  MAYBE.    (70)
 
-	.  reduce 70 (src line 780)
+	.  reduce 70 (src line 784)
 
 
 state 99
 	attribute:  REFLECT_DELETIONS.    (71)
 
-	.  reduce 71 (src line 784)
+	.  reduce 71 (src line 788)
 
 
 state 100
 	attribute:  UUID.    (72)
 
-	.  reduce 72 (src line 788)
+	.  reduce 72 (src line 792)
 
 
 state 101
@@ -1019,7 +1019,7 @@ state 103
 state 104
 	attribute:  LOCAL.    (76)
 
-	.  reduce 76 (src line 804)
+	.  reduce 76 (src line 808)
 
 
 state 105
@@ -1032,43 +1032,43 @@ state 105
 state 106
 	attribute:  V1_ENUM.    (78)
 
-	.  reduce 78 (src line 819)
+	.  reduce 78 (src line 823)
 
 
 state 107
 	attribute:  MS_UNION.    (79)
 
-	.  reduce 79 (src line 823)
+	.  reduce 79 (src line 827)
 
 
 state 108
 	attribute:  range_attribute.    (80)
 
-	.  reduce 80 (src line 827)
+	.  reduce 80 (src line 831)
 
 
 state 109
 	attribute:  DISABLE_CONSISTENCY_CHECK.    (81)
 
-	.  reduce 81 (src line 831)
+	.  reduce 81 (src line 835)
 
 
 state 110
 	attribute:  OBJECT.    (82)
 
-	.  reduce 82 (src line 835)
+	.  reduce 82 (src line 839)
 
 
 state 111
 	attribute:  CALLBACK.    (83)
 
-	.  reduce 83 (src line 839)
+	.  reduce 83 (src line 843)
 
 
 state 112
 	attribute:  RETVAL.    (84)
 
-	.  reduce 84 (src line 843)
+	.  reduce 84 (src line 847)
 
 
 state 113
@@ -1088,25 +1088,25 @@ state 114
 state 115
 	attribute:  DUAL.    (87)
 
-	.  reduce 87 (src line 855)
+	.  reduce 87 (src line 859)
 
 
 state 116
 	attribute:  PROPGET.    (88)
 
-	.  reduce 88 (src line 859)
+	.  reduce 88 (src line 863)
 
 
 state 117
 	attribute:  PROPPUT.    (89)
 
-	.  reduce 89 (src line 863)
+	.  reduce 89 (src line 867)
 
 
 state 118
 	attribute:  PROPPUTREF.    (90)
 
-	.  reduce 90 (src line 867)
+	.  reduce 90 (src line 871)
 
 
 state 119
@@ -1119,19 +1119,19 @@ state 119
 state 120
 	attribute:  HIDDEN.    (92)
 
-	.  reduce 92 (src line 884)
+	.  reduce 92 (src line 888)
 
 
 state 121
 	attribute:  NONEXTENSIBLE.    (93)
 
-	.  reduce 93 (src line 888)
+	.  reduce 93 (src line 892)
 
 
 state 122
 	attribute:  RESTRICTED.    (94)
 
-	.  reduce 94 (src line 892)
+	.  reduce 94 (src line 896)
 
 
 state 123
@@ -1144,25 +1144,25 @@ state 123
 state 124
 	attribute:  ODL.    (96)
 
-	.  reduce 96 (src line 905)
+	.  reduce 96 (src line 909)
 
 
 state 125
 	attribute:  OLEAUTOMATION.    (97)
 
-	.  reduce 97 (src line 909)
+	.  reduce 97 (src line 913)
 
 
 state 126
 	attribute:  OPTIONAL.    (98)
 
-	.  reduce 98 (src line 913)
+	.  reduce 98 (src line 917)
 
 
 state 127
 	attribute:  APPOBJECT.    (99)
 
-	.  reduce 99 (src line 917)
+	.  reduce 99 (src line 921)
 
 
 state 128
@@ -1189,7 +1189,7 @@ state 130
 state 131
 	attribute:  PUBLIC.    (103)
 
-	.  reduce 103 (src line 933)
+	.  reduce 103 (src line 937)
 
 
 state 132
@@ -1216,31 +1216,31 @@ state 134
 state 135
 	ptr_attr:  POINTER_REF.    (344)
 
-	.  reduce 344 (src line 2627)
+	.  reduce 344 (src line 2631)
 
 
 state 136
 	ptr_attr:  POINTER_UNIQUE.    (345)
 
-	.  reduce 345 (src line 2631)
+	.  reduce 345 (src line 2635)
 
 
 state 137
 	ptr_attr:  POINTER_PTR.    (346)
 
-	.  reduce 346 (src line 2635)
+	.  reduce 346 (src line 2639)
 
 
 state 138
 	usage_attribute:  USAGE_STRING.    (326)
 
-	.  reduce 326 (src line 2516)
+	.  reduce 326 (src line 2520)
 
 
 state 139
 	usage_attribute:  USAGE_CONTEXT_HANDLE.    (327)
 
-	.  reduce 327 (src line 2520)
+	.  reduce 327 (src line 2524)
 
 
 state 140
@@ -1253,13 +1253,13 @@ state 140
 state 141
 	directional_attribute:  IN.    (353)
 
-	.  reduce 353 (src line 2691)
+	.  reduce 353 (src line 2695)
 
 
 state 142
 	directional_attribute:  OUT.    (354)
 
-	.  reduce 354 (src line 2695)
+	.  reduce 354 (src line 2699)
 
 
 state 143
@@ -1280,7 +1280,7 @@ state 144
 state 145
 	import1:  IMPORT import_list ';'.    (121)
 
-	.  reduce 121 (src line 1051)
+	.  reduce 121 (src line 1055)
 
 
 state 146
@@ -1337,7 +1337,7 @@ state 149
 state 150
 	import:  import1.    (120)
 
-	.  reduce 120 (src line 1045)
+	.  reduce 120 (src line 1049)
 
 
 state 151
@@ -1492,7 +1492,7 @@ state 166
 	UNION  shift 296
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -1537,13 +1537,13 @@ state 167
 state 168
 	const_type_spec:  CHAR '*'.    (140)
 
-	.  reduce 140 (src line 1212)
+	.  reduce 140 (src line 1216)
 
 
 state 169
 	const_type_spec:  UNSIGNED CHAR.    (137)
 
-	.  reduce 137 (src line 1200)
+	.  reduce 137 (src line 1204)
 
 
 state 170
@@ -1551,14 +1551,14 @@ state 170
 	int: .    (252)
 
 	INT  shift 175
-	.  reduce 252 (src line 1978)
+	.  reduce 252 (src line 1982)
 
 	int  goto 314
 
 state 171
 	const_type_spec:  VOID '*'.    (139)
 
-	.  reduce 139 (src line 1208)
+	.  reduce 139 (src line 1212)
 
 
 state 172
@@ -1566,14 +1566,14 @@ state 172
 	int: .    (252)
 
 	INT  shift 175
-	.  reduce 252 (src line 1978)
+	.  reduce 252 (src line 1982)
 
 	int  goto 315
 
 state 173
 	signed_integer:  integer_size int.    (227)
 
-	.  reduce 227 (src line 1798)
+	.  reduce 227 (src line 1802)
 
 
 state 174
@@ -1581,98 +1581,98 @@ state 174
 	int: .    (252)
 
 	INT  shift 175
-	.  reduce 252 (src line 1978)
+	.  reduce 252 (src line 1982)
 
 	int  goto 316
 
 state 175
 	int:  INT.    (253)
 
-	.  reduce 253 (src line 1979)
+	.  reduce 253 (src line 1983)
 
 
 state 176
 	ms_integer:  sign INT.    (230)
 
-	.  reduce 230 (src line 1836)
+	.  reduce 230 (src line 1840)
 
 
 state 177
 	ms_integer:  sign INT8.    (231)
 
-	.  reduce 231 (src line 1845)
+	.  reduce 231 (src line 1849)
 
 
 state 178
 	ms_integer:  sign INT16.    (232)
 
-	.  reduce 232 (src line 1854)
+	.  reduce 232 (src line 1858)
 
 
 state 179
 	ms_integer:  sign INT32.    (233)
 
-	.  reduce 233 (src line 1863)
+	.  reduce 233 (src line 1867)
 
 
 state 180
 	ms_integer:  sign INT3264.    (234)
 
-	.  reduce 234 (src line 1872)
+	.  reduce 234 (src line 1876)
 
 
 state 181
 	ms_integer:  sign INT64.    (235)
 
-	.  reduce 235 (src line 1881)
+	.  reduce 235 (src line 1885)
 
 
 state 182
 	pragma_declarator:  PRAGMA_DEFINE IDENT const_exp.    (132)
 
-	.  reduce 132 (src line 1122)
+	.  reduce 132 (src line 1126)
 
 
 state 183
 	const_exp:  integer_const_exp.    (141)
 
-	.  reduce 141 (src line 1218)
+	.  reduce 141 (src line 1222)
 
 
 state 184
 	const_exp:  STRING_LITERAL.    (142)
 
-	.  reduce 142 (src line 1222)
+	.  reduce 142 (src line 1226)
 
 
 state 185
 	const_exp:  CHARACTER_LITERAL.    (143)
 
-	.  reduce 143 (src line 1226)
+	.  reduce 143 (src line 1230)
 
 
 state 186
 	const_exp:  NULL.    (144)
 
-	.  reduce 144 (src line 1230)
+	.  reduce 144 (src line 1234)
 
 
 state 187
 	const_exp:  TRUE.    (145)
 
-	.  reduce 145 (src line 1234)
+	.  reduce 145 (src line 1238)
 
 
 state 188
 	const_exp:  FALSE.    (146)
 
-	.  reduce 146 (src line 1238)
+	.  reduce 146 (src line 1242)
 
 
 state 189
 	integer_const_exp:  conditional_exp.    (147)
 
-	.  reduce 147 (src line 1244)
+	.  reduce 147 (src line 1248)
 
 
 state 190
@@ -1682,7 +1682,7 @@ state 190
 
 	LOGICAL_OR  shift 318
 	'?'  shift 317
-	.  reduce 148 (src line 1250)
+	.  reduce 148 (src line 1254)
 
 
 state 191
@@ -1690,7 +1690,7 @@ state 191
 	logical_and_exp:  logical_and_exp.LOGICAL_AND inclusive_or_exp 
 
 	LOGICAL_AND  shift 319
-	.  reduce 150 (src line 1265)
+	.  reduce 150 (src line 1269)
 
 
 state 192
@@ -1698,7 +1698,7 @@ state 192
 	inclusive_or_exp:  inclusive_or_exp.OR exclusive_or_exp 
 
 	OR  shift 320
-	.  reduce 152 (src line 1280)
+	.  reduce 152 (src line 1284)
 
 
 state 193
@@ -1706,7 +1706,7 @@ state 193
 	exclusive_or_exp:  exclusive_or_exp.XOR and_exp 
 
 	XOR  shift 321
-	.  reduce 154 (src line 1295)
+	.  reduce 154 (src line 1299)
 
 
 state 194
@@ -1714,7 +1714,7 @@ state 194
 	and_exp:  and_exp.AND equality_exp 
 
 	AND  shift 322
-	.  reduce 156 (src line 1310)
+	.  reduce 156 (src line 1314)
 
 
 state 195
@@ -1724,7 +1724,7 @@ state 195
 
 	EQ  shift 323
 	NE  shift 324
-	.  reduce 158 (src line 1325)
+	.  reduce 158 (src line 1329)
 
 
 state 196
@@ -1738,7 +1738,7 @@ state 196
 	GE  shift 328
 	LT  shift 325
 	GT  shift 326
-	.  reduce 160 (src line 1340)
+	.  reduce 160 (src line 1344)
 
 
 state 197
@@ -1748,7 +1748,7 @@ state 197
 
 	LSH  shift 329
 	RSH  shift 330
-	.  reduce 163 (src line 1364)
+	.  reduce 163 (src line 1368)
 
 
 state 198
@@ -1758,7 +1758,7 @@ state 198
 
 	'+'  shift 332
 	'-'  shift 331
-	.  reduce 168 (src line 1406)
+	.  reduce 168 (src line 1410)
 
 
 state 199
@@ -1770,19 +1770,19 @@ state 199
 	'*'  shift 333
 	'/'  shift 334
 	'%'  shift 335
-	.  reduce 171 (src line 1430)
+	.  reduce 171 (src line 1434)
 
 
 state 200
 	multiplicative_exp:  unary_exp.    (174)
 
-	.  reduce 174 (src line 1454)
+	.  reduce 174 (src line 1458)
 
 
 state 201
 	unary_exp:  primary_exp.    (178)
 
-	.  reduce 178 (src line 1487)
+	.  reduce 178 (src line 1491)
 
 
 state 202
@@ -1836,7 +1836,7 @@ state 205
 state 206
 	primary_exp:  INT_LITERAL.    (183)
 
-	.  reduce 183 (src line 1529)
+	.  reduce 183 (src line 1533)
 
 
 state 207
@@ -1849,7 +1849,7 @@ state 207
 state 208
 	primary_exp:  IDENT.    (185)
 
-	.  reduce 185 (src line 1542)
+	.  reduce 185 (src line 1546)
 
 
 state 209
@@ -1907,7 +1907,7 @@ state 212
 	comma: .    (314)
 
 	','  shift 219
-	.  reduce 314 (src line 2424)
+	.  reduce 314 (src line 2428)
 
 	comma  goto 344
 
@@ -1929,7 +1929,7 @@ state 214
 	union_name: .    (284)
 
 	IDENT  shift 350
-	.  reduce 284 (src line 2203)
+	.  reduce 284 (src line 2207)
 
 	union_name  goto 349
 
@@ -2033,12 +2033,12 @@ state 219
 	SAFEARRAY  shift 132
 	PAD  shift 133
 	GOEXT_LAYOUT  shift 134
-	GOEXT_NULL_IF  shift 87
+	GOEXT_DEFAULT_NULL  shift 87
 	CALL_AS  shift 129
 	ANNOTATION  shift 128
 	WIRE_MARSHAL  shift 130
 	PUBLIC  shift 131
-	.  reduce 315 (src line 2425)
+	.  reduce 315 (src line 2429)
 
 	union_type_switch_attr  goto 94
 	attribute  goto 365
@@ -2061,7 +2061,7 @@ state 220
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2093,7 +2093,7 @@ state 221
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2125,7 +2125,7 @@ state 222
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2157,7 +2157,7 @@ state 223
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2189,7 +2189,7 @@ state 224
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2222,7 +2222,7 @@ state 225
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2242,7 +2242,7 @@ state 225
 	attr_var_list  goto 373
 
 state 226
-	attribute:  GOEXT_NULL_IF '('.attr_var ')' 
+	attribute:  GOEXT_DEFAULT_NULL '('.attr_var ')' 
 	attr_var: .    (338)
 
 	SIZEOF  shift 207
@@ -2254,7 +2254,7 @@ state 226
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2306,7 +2306,7 @@ state 228
 	ISO_UCS  shift 312
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	xmit_type  goto 382
 	simple_type_spec  goto 383
@@ -2378,7 +2378,7 @@ state 233
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2515,7 +2515,7 @@ state 240
 	UNION  shift 296
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -2581,7 +2581,7 @@ state 243
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -2611,7 +2611,7 @@ state 244
 	BOOLEAN  shift 305
 	ENUM  shift 409
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	switch_type_spec  goto 404
 	type_ident  goto 408
@@ -2627,7 +2627,7 @@ state 244
 state 245
 	range_attribute:  RANGE range_declarator.    (334)
 
-	.  reduce 334 (src line 2554)
+	.  reduce 334 (src line 2558)
 
 
 state 246
@@ -2662,7 +2662,7 @@ state 246
 state 247
 	import_list:  import_list ',' import_name.    (129)
 
-	.  reduce 129 (src line 1099)
+	.  reduce 129 (src line 1103)
 
 
 state 248
@@ -2682,7 +2682,7 @@ state 249
 	UNION  shift 29
 	PRAGMA_DEFINE  shift 21
 	PRAGMA_CPP_QUOTE  shift 22
-	'}'  reduce 116 (src line 1000)
+	'}'  reduce 116 (src line 1004)
 	'['  shift 33
 	.  reduce 46 (src line 677)
 
@@ -2705,13 +2705,13 @@ state 249
 state 250
 	interface_component1:  interface_component.    (117)
 
-	.  reduce 117 (src line 1009)
+	.  reduce 117 (src line 1013)
 
 
 state 251
 	interface_component:  export.    (122)
 
-	.  reduce 122 (src line 1063)
+	.  reduce 122 (src line 1067)
 
 
 state 252
@@ -2746,7 +2746,7 @@ state 253
 	TYPEDEF  shift 54
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	simple_type_spec  goto 414
 	type_ident  goto 278
@@ -2805,7 +2805,7 @@ state 259
 	comma: .    (314)
 
 	','  shift 417
-	.  reduce 314 (src line 2424)
+	.  reduce 314 (src line 2428)
 
 	comma  goto 416
 
@@ -2909,9 +2909,9 @@ state 272
 	pointer_opt0: .    (340)
 
 	'*'  shift 429
-	';'  reduce 199 (src line 1638)
-	','  reduce 199 (src line 1638)
-	.  reduce 340 (src line 2603)
+	';'  reduce 199 (src line 1642)
+	','  reduce 199 (src line 1642)
+	.  reduce 340 (src line 2607)
 
 	declarator  goto 426
 	declarators  goto 425
@@ -2923,7 +2923,7 @@ state 273
 	type_spec:  simple_type_spec.CONST 
 
 	CONST  shift 430
-	.  reduce 189 (src line 1583)
+	.  reduce 189 (src line 1587)
 
 
 state 274
@@ -2948,7 +2948,7 @@ state 274
 	ISO_UCS  shift 312
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	simple_type_spec  goto 431
 	type_ident  goto 278
@@ -2973,121 +2973,121 @@ state 274
 state 275
 	type_spec:  constructed_type_spec.    (192)
 
-	.  reduce 192 (src line 1595)
+	.  reduce 192 (src line 1599)
 
 
 state 276
 	simple_type_spec:  base_type_spec.    (193)
 
-	.  reduce 193 (src line 1601)
+	.  reduce 193 (src line 1605)
 
 
 state 277
 	simple_type_spec:  predefined_type_spec.    (194)
 
-	.  reduce 194 (src line 1605)
+	.  reduce 194 (src line 1609)
 
 
 state 278
 	simple_type_spec:  type_ident.    (195)
 
-	.  reduce 195 (src line 1609)
+	.  reduce 195 (src line 1613)
 
 
 state 279
 	constructed_type_spec:  struct_type.    (254)
 
-	.  reduce 254 (src line 1983)
+	.  reduce 254 (src line 1987)
 
 
 state 280
 	constructed_type_spec:  union_type.    (255)
 
-	.  reduce 255 (src line 1987)
+	.  reduce 255 (src line 1991)
 
 
 state 281
 	constructed_type_spec:  enumeration_type.    (256)
 
-	.  reduce 256 (src line 1991)
+	.  reduce 256 (src line 1995)
 
 
 state 282
 	constructed_type_spec:  tagged_declarator.    (257)
 
-	.  reduce 257 (src line 1995)
+	.  reduce 257 (src line 1999)
 
 
 state 283
 	constructed_type_spec:  pipe_type.    (258)
 
-	.  reduce 258 (src line 1999)
+	.  reduce 258 (src line 2003)
 
 
 state 284
 	base_type_spec:  floating_pt_type.    (210)
 
-	.  reduce 210 (src line 1708)
+	.  reduce 210 (src line 1712)
 
 
 state 285
 	base_type_spec:  integer_type.    (211)
 
-	.  reduce 211 (src line 1712)
+	.  reduce 211 (src line 1716)
 
 
 state 286
 	base_type_spec:  char_type.    (212)
 
-	.  reduce 212 (src line 1716)
+	.  reduce 212 (src line 1720)
 
 
 state 287
 	base_type_spec:  boolean_type.    (213)
 
-	.  reduce 213 (src line 1720)
+	.  reduce 213 (src line 1724)
 
 
 state 288
 	base_type_spec:  byte_type.    (214)
 
-	.  reduce 214 (src line 1724)
+	.  reduce 214 (src line 1728)
 
 
 state 289
 	base_type_spec:  void_type.    (215)
 
-	.  reduce 215 (src line 1728)
+	.  reduce 215 (src line 1732)
 
 
 state 290
 	base_type_spec:  handle_type.    (216)
 
-	.  reduce 216 (src line 1732)
+	.  reduce 216 (src line 1736)
 
 
 state 291
 	base_type_spec:  wchar_type.    (217)
 
-	.  reduce 217 (src line 1737)
+	.  reduce 217 (src line 1741)
 
 
 state 292
 	predefined_type_spec:  ERROR_STATUS_T.    (357)
 
-	.  reduce 357 (src line 2721)
+	.  reduce 357 (src line 2725)
 
 
 state 293
 	predefined_type_spec:  international_character_type.    (358)
 
-	.  reduce 358 (src line 2725)
+	.  reduce 358 (src line 2729)
 
 
 state 294
 	type_ident:  IDENT.    (196)
 
-	.  reduce 196 (src line 1615)
+	.  reduce 196 (src line 1619)
 
 
 state 295
@@ -3156,7 +3156,7 @@ state 298
 	UNION  shift 296
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -3194,19 +3194,19 @@ state 298
 state 299
 	floating_pt_type:  FLOAT.    (218)
 
-	.  reduce 218 (src line 1744)
+	.  reduce 218 (src line 1748)
 
 
 state 300
 	floating_pt_type:  DOUBLE.    (219)
 
-	.  reduce 219 (src line 1748)
+	.  reduce 219 (src line 1752)
 
 
 state 301
 	integer_type:  primitive_integer_type.    (220)
 
-	.  reduce 220 (src line 1754)
+	.  reduce 220 (src line 1758)
 
 
 state 302
@@ -3214,7 +3214,7 @@ state 302
 	unsigned: .    (245)
 
 	UNSIGNED  shift 438
-	.  reduce 245 (src line 1950)
+	.  reduce 245 (src line 1954)
 
 	unsigned  goto 437
 
@@ -3227,7 +3227,7 @@ state 303
 	LONG  shift 68
 	SHORT  shift 69
 	SMALL  shift 70
-	.  reduce 248 (src line 1964)
+	.  reduce 248 (src line 1968)
 
 	integer_size  goto 170
 
@@ -3253,49 +3253,49 @@ state 304
 state 305
 	boolean_type:  BOOLEAN.    (241)
 
-	.  reduce 241 (src line 1926)
+	.  reduce 241 (src line 1930)
 
 
 state 306
 	byte_type:  BYTE.    (242)
 
-	.  reduce 242 (src line 1932)
+	.  reduce 242 (src line 1936)
 
 
 state 307
 	void_type:  VOID.    (243)
 
-	.  reduce 243 (src line 1938)
+	.  reduce 243 (src line 1942)
 
 
 state 308
 	handle_type:  HANDLE_T.    (244)
 
-	.  reduce 244 (src line 1944)
+	.  reduce 244 (src line 1948)
 
 
 state 309
 	wchar_type:  WCHAR_T.    (240)
 
-	.  reduce 240 (src line 1919)
+	.  reduce 240 (src line 1923)
 
 
 state 310
 	international_character_type:  ISO_LATIN_1.    (359)
 
-	.  reduce 359 (src line 2740)
+	.  reduce 359 (src line 2744)
 
 
 state 311
 	international_character_type:  ISO_MULTILINGUAL.    (360)
 
-	.  reduce 360 (src line 2744)
+	.  reduce 360 (src line 2748)
 
 
 state 312
 	international_character_type:  ISO_UCS.    (361)
 
-	.  reduce 361 (src line 2748)
+	.  reduce 361 (src line 2752)
 
 
 state 313
@@ -3336,19 +3336,19 @@ state 313
 state 314
 	unsigned_integer:  UNSIGNED integer_size int.    (229)
 
-	.  reduce 229 (src line 1822)
+	.  reduce 229 (src line 1826)
 
 
 state 315
 	signed_integer:  SIGNED integer_size int.    (226)
 
-	.  reduce 226 (src line 1787)
+	.  reduce 226 (src line 1791)
 
 
 state 316
 	unsigned_integer:  integer_size UNSIGNED int.    (228)
 
-	.  reduce 228 (src line 1811)
+	.  reduce 228 (src line 1815)
 
 
 state 317
@@ -3750,25 +3750,25 @@ state 335
 state 336
 	unary_exp:  '+' primary_exp.    (179)
 
-	.  reduce 179 (src line 1491)
+	.  reduce 179 (src line 1495)
 
 
 state 337
 	unary_exp:  '-' primary_exp.    (180)
 
-	.  reduce 180 (src line 1500)
+	.  reduce 180 (src line 1504)
 
 
 state 338
 	unary_exp:  '~' primary_exp.    (181)
 
-	.  reduce 181 (src line 1509)
+	.  reduce 181 (src line 1513)
 
 
 state 339
 	unary_exp:  '!' primary_exp.    (182)
 
-	.  reduce 182 (src line 1518)
+	.  reduce 182 (src line 1522)
 
 
 state 340
@@ -3798,7 +3798,7 @@ state 340
 	UNION  shift 296
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -3836,7 +3836,7 @@ state 340
 state 341
 	primary_exp:  '*' IDENT.    (186)
 
-	.  reduce 186 (src line 1550)
+	.  reduce 186 (src line 1554)
 
 
 state 342
@@ -3849,7 +3849,7 @@ state 342
 state 343
 	pragma_declarator:  PRAGMA_CPP_QUOTE '(' STRING_LITERAL ')'.    (133)
 
-	.  reduce 133 (src line 1151)
+	.  reduce 133 (src line 1155)
 
 
 state 344
@@ -3876,7 +3876,7 @@ state 345
 state 346
 	member_list:  member.    (264)
 
-	.  reduce 264 (src line 2050)
+	.  reduce 264 (src line 2054)
 
 
 state 347
@@ -3913,7 +3913,7 @@ state 348
 	UNION  shift 296
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -3958,7 +3958,7 @@ state 349
 state 350
 	union_name:  IDENT.    (285)
 
-	.  reduce 285 (src line 2210)
+	.  reduce 285 (src line 2214)
 
 
 state 351
@@ -3991,13 +3991,13 @@ state 352
 state 353
 	union_body_n_e:  union_case_n_e.    (290)
 
-	.  reduce 290 (src line 2236)
+	.  reduce 290 (src line 2240)
 
 
 state 354
 	union_body_c:  union_arm.    (288)
 
-	.  reduce 288 (src line 2226)
+	.  reduce 288 (src line 2230)
 
 
 state 355
@@ -4016,13 +4016,13 @@ state 355
 state 356
 	union_case_n_e:  default_case_n_e.    (297)
 
-	.  reduce 297 (src line 2278)
+	.  reduce 297 (src line 2282)
 
 
 state 357
 	union_arm:  ';'.    (304)
 
-	.  reduce 304 (src line 2319)
+	.  reduce 304 (src line 2323)
 
 
 state 358
@@ -4093,7 +4093,7 @@ state 359
 	SAFEARRAY  shift 132
 	PAD  shift 133
 	GOEXT_LAYOUT  shift 134
-	GOEXT_NULL_IF  shift 87
+	GOEXT_DEFAULT_NULL  shift 87
 	CALL_AS  shift 129
 	ANNOTATION  shift 128
 	WIRE_MARSHAL  shift 130
@@ -4121,7 +4121,7 @@ state 360
 	BOOLEAN  shift 305
 	ENUM  shift 409
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	switch_type_spec  goto 478
 	type_ident  goto 408
@@ -4140,14 +4140,14 @@ state 361
 	comma: .    (314)
 
 	','  shift 480
-	.  reduce 314 (src line 2424)
+	.  reduce 314 (src line 2428)
 
 	comma  goto 479
 
 state 362
 	enumeration1:  identifier_tag.    (312)
 
-	.  reduce 312 (src line 2414)
+	.  reduce 312 (src line 2418)
 
 
 state 363
@@ -4155,7 +4155,7 @@ state 363
 	identifier_tag:  IDENT.'=' integer_const_exp 
 
 	'='  shift 481
-	.  reduce 316 (src line 2428)
+	.  reduce 316 (src line 2432)
 
 
 state 364
@@ -4182,13 +4182,13 @@ state 366
 state 367
 	attr_var_list:  attr_var.    (336)
 
-	.  reduce 336 (src line 2581)
+	.  reduce 336 (src line 2585)
 
 
 state 368
 	attr_var:  integer_const_exp.    (339)
 
-	.  reduce 339 (src line 2597)
+	.  reduce 339 (src line 2601)
 
 
 state 369
@@ -4246,7 +4246,7 @@ state 374
 
 
 state 375
-	attribute:  GOEXT_NULL_IF '(' attr_var.')' 
+	attribute:  GOEXT_DEFAULT_NULL '(' attr_var.')' 
 
 	')'  shift 490
 	.  error
@@ -4262,31 +4262,31 @@ state 376
 state 377
 	format_attribute:  FORMAT_UTF8.    (328)
 
-	.  reduce 328 (src line 2526)
+	.  reduce 328 (src line 2530)
 
 
 state 378
 	format_attribute:  FORMAT_NULL_TERMINATED.    (329)
 
-	.  reduce 329 (src line 2530)
+	.  reduce 329 (src line 2534)
 
 
 state 379
 	format_attribute:  FORMAT_MULTI_SIZE.    (330)
 
-	.  reduce 330 (src line 2534)
+	.  reduce 330 (src line 2538)
 
 
 state 380
 	format_attribute:  FORMAT_RUNE.    (331)
 
-	.  reduce 331 (src line 2538)
+	.  reduce 331 (src line 2542)
 
 
 state 381
 	format_attribute:  FORMAT_HEX.    (332)
 
-	.  reduce 332 (src line 2542)
+	.  reduce 332 (src line 2546)
 
 
 state 382
@@ -4299,7 +4299,7 @@ state 382
 state 383
 	xmit_type:  simple_type_spec.    (333)
 
-	.  reduce 333 (src line 2548)
+	.  reduce 333 (src line 2552)
 
 
 state 384
@@ -4314,7 +4314,7 @@ state 385
 	version:  INT_LITERAL.'.' INT_LITERAL 
 
 	'.'  shift 494
-	.  reduce 108 (src line 958)
+	.  reduce 108 (src line 962)
 
 
 state 386
@@ -4329,13 +4329,13 @@ state 386
 state 387
 	port_spec1:  port_spec.    (110)
 
-	.  reduce 110 (src line 968)
+	.  reduce 110 (src line 972)
 
 
 state 388
 	port_spec:  STRING_LITERAL.    (114)
 
-	.  reduce 114 (src line 988)
+	.  reduce 114 (src line 992)
 
 
 state 389
@@ -4350,13 +4350,13 @@ state 389
 state 390
 	excep_name1:  excep_name.    (112)
 
-	.  reduce 112 (src line 978)
+	.  reduce 112 (src line 982)
 
 
 state 391
 	excep_name:  IDENT.    (115)
 
-	.  reduce 115 (src line 994)
+	.  reduce 115 (src line 998)
 
 
 state 392
@@ -4453,25 +4453,25 @@ state 404
 state 405
 	switch_type_spec:  primitive_integer_type.    (276)
 
-	.  reduce 276 (src line 2138)
+	.  reduce 276 (src line 2142)
 
 
 state 406
 	switch_type_spec:  char_type.    (277)
 
-	.  reduce 277 (src line 2142)
+	.  reduce 277 (src line 2146)
 
 
 state 407
 	switch_type_spec:  boolean_type.    (278)
 
-	.  reduce 278 (src line 2146)
+	.  reduce 278 (src line 2150)
 
 
 state 408
 	switch_type_spec:  type_ident.    (279)
 
-	.  reduce 279 (src line 2150)
+	.  reduce 279 (src line 2154)
 
 
 state 409
@@ -4489,7 +4489,7 @@ state 410
 	LONG  shift 68
 	SHORT  shift 69
 	SMALL  shift 70
-	.  reduce 248 (src line 1964)
+	.  reduce 248 (src line 1968)
 
 	integer_size  goto 170
 
@@ -4503,13 +4503,13 @@ state 411
 state 412
 	interface_component1:  interface_component1 interface_component.    (118)
 
-	.  reduce 118 (src line 1020)
+	.  reduce 118 (src line 1024)
 
 
 state 413
 	interface_component:  op_declarator ';'.    (123)
 
-	.  reduce 123 (src line 1071)
+	.  reduce 123 (src line 1075)
 
 
 state 414
@@ -4540,7 +4540,7 @@ state 417
 
 	DEFAULT  shift 261
 	SOURCE  shift 262
-	.  reduce 315 (src line 2425)
+	.  reduce 315 (src line 2429)
 
 	coclass_attribute  goto 517
 
@@ -4611,7 +4611,7 @@ state 422
 	ISO_UCS  shift 312
 	WCHAR_T  shift 309
 	IDENT  shift 294
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	simple_type_spec  goto 414
 	type_ident  goto 278
@@ -4650,13 +4650,13 @@ state 425
 	declarators:  declarators.',' declarator 
 
 	','  shift 520
-	.  reduce 188 (src line 1565)
+	.  reduce 188 (src line 1569)
 
 
 state 426
 	declarators:  declarator.    (197)
 
-	.  reduce 197 (src line 1629)
+	.  reduce 197 (src line 1633)
 
 
 state 427
@@ -4677,25 +4677,25 @@ state 428
 	pointer_opt:  pointer_opt.'*' 
 
 	'*'  shift 528
-	.  reduce 341 (src line 2607)
+	.  reduce 341 (src line 2611)
 
 
 state 429
 	pointer_opt:  '*'.    (342)
 
-	.  reduce 342 (src line 2613)
+	.  reduce 342 (src line 2617)
 
 
 state 430
 	type_spec:  simple_type_spec CONST.    (191)
 
-	.  reduce 191 (src line 1591)
+	.  reduce 191 (src line 1595)
 
 
 state 431
 	type_spec:  CONST simple_type_spec.    (190)
 
-	.  reduce 190 (src line 1587)
+	.  reduce 190 (src line 1591)
 
 
 state 432
@@ -4716,7 +4716,7 @@ state 433
 	union_name: .    (284)
 
 	IDENT  shift 350
-	.  reduce 284 (src line 2203)
+	.  reduce 284 (src line 2207)
 
 	union_name  goto 530
 
@@ -4751,7 +4751,7 @@ state 435
 state 436
 	pipe_type:  PIPE type_spec.    (318)
 
-	.  reduce 318 (src line 2440)
+	.  reduce 318 (src line 2444)
 
 
 state 437
@@ -4759,14 +4759,14 @@ state 437
 	int: .    (252)
 
 	INT  shift 175
-	.  reduce 252 (src line 1978)
+	.  reduce 252 (src line 1982)
 
 	int  goto 534
 
 state 438
 	unsigned:  UNSIGNED.    (246)
 
-	.  reduce 246 (src line 1954)
+	.  reduce 246 (src line 1958)
 
 
 state 439
@@ -4774,20 +4774,20 @@ state 439
 	int: .    (252)
 
 	INT  shift 175
-	.  reduce 252 (src line 1978)
+	.  reduce 252 (src line 1982)
 
 	int  goto 535
 
 state 440
 	char_type:  sign CHAR.    (239)
 
-	.  reduce 239 (src line 1907)
+	.  reduce 239 (src line 1911)
 
 
 state 441
 	const_declarator:  CONST const_type_spec IDENT '=' const_exp.    (131)
 
-	.  reduce 131 (src line 1111)
+	.  reduce 131 (src line 1115)
 
 
 state 442
@@ -4802,7 +4802,7 @@ state 443
 	logical_and_exp:  logical_and_exp.LOGICAL_AND inclusive_or_exp 
 
 	LOGICAL_AND  shift 319
-	.  reduce 151 (src line 1269)
+	.  reduce 151 (src line 1273)
 
 
 state 444
@@ -4810,7 +4810,7 @@ state 444
 	inclusive_or_exp:  inclusive_or_exp.OR exclusive_or_exp 
 
 	OR  shift 320
-	.  reduce 153 (src line 1284)
+	.  reduce 153 (src line 1288)
 
 
 state 445
@@ -4818,7 +4818,7 @@ state 445
 	exclusive_or_exp:  exclusive_or_exp.XOR and_exp 
 
 	XOR  shift 321
-	.  reduce 155 (src line 1299)
+	.  reduce 155 (src line 1303)
 
 
 state 446
@@ -4826,7 +4826,7 @@ state 446
 	and_exp:  and_exp.AND equality_exp 
 
 	AND  shift 322
-	.  reduce 157 (src line 1314)
+	.  reduce 157 (src line 1318)
 
 
 state 447
@@ -4836,7 +4836,7 @@ state 447
 
 	EQ  shift 323
 	NE  shift 324
-	.  reduce 159 (src line 1329)
+	.  reduce 159 (src line 1333)
 
 
 state 448
@@ -4850,7 +4850,7 @@ state 448
 	GE  shift 328
 	LT  shift 325
 	GT  shift 326
-	.  reduce 161 (src line 1344)
+	.  reduce 161 (src line 1348)
 
 
 state 449
@@ -4864,7 +4864,7 @@ state 449
 	GE  shift 328
 	LT  shift 325
 	GT  shift 326
-	.  reduce 162 (src line 1353)
+	.  reduce 162 (src line 1357)
 
 
 state 450
@@ -4874,7 +4874,7 @@ state 450
 
 	LSH  shift 329
 	RSH  shift 330
-	.  reduce 164 (src line 1368)
+	.  reduce 164 (src line 1372)
 
 
 state 451
@@ -4884,7 +4884,7 @@ state 451
 
 	LSH  shift 329
 	RSH  shift 330
-	.  reduce 165 (src line 1377)
+	.  reduce 165 (src line 1381)
 
 
 state 452
@@ -4894,7 +4894,7 @@ state 452
 
 	LSH  shift 329
 	RSH  shift 330
-	.  reduce 166 (src line 1386)
+	.  reduce 166 (src line 1390)
 
 
 state 453
@@ -4904,7 +4904,7 @@ state 453
 
 	LSH  shift 329
 	RSH  shift 330
-	.  reduce 167 (src line 1395)
+	.  reduce 167 (src line 1399)
 
 
 state 454
@@ -4914,7 +4914,7 @@ state 454
 
 	'+'  shift 332
 	'-'  shift 331
-	.  reduce 169 (src line 1410)
+	.  reduce 169 (src line 1414)
 
 
 state 455
@@ -4924,7 +4924,7 @@ state 455
 
 	'+'  shift 332
 	'-'  shift 331
-	.  reduce 170 (src line 1419)
+	.  reduce 170 (src line 1423)
 
 
 state 456
@@ -4936,7 +4936,7 @@ state 456
 	'*'  shift 333
 	'/'  shift 334
 	'%'  shift 335
-	.  reduce 172 (src line 1434)
+	.  reduce 172 (src line 1438)
 
 
 state 457
@@ -4948,25 +4948,25 @@ state 457
 	'*'  shift 333
 	'/'  shift 334
 	'%'  shift 335
-	.  reduce 173 (src line 1443)
+	.  reduce 173 (src line 1447)
 
 
 state 458
 	multiplicative_exp:  multiplicative_exp '*' unary_exp.    (175)
 
-	.  reduce 175 (src line 1458)
+	.  reduce 175 (src line 1462)
 
 
 state 459
 	multiplicative_exp:  multiplicative_exp '/' unary_exp.    (176)
 
-	.  reduce 176 (src line 1467)
+	.  reduce 176 (src line 1471)
 
 
 state 460
 	multiplicative_exp:  multiplicative_exp '%' unary_exp.    (177)
 
-	.  reduce 177 (src line 1476)
+	.  reduce 177 (src line 1480)
 
 
 state 461
@@ -4979,7 +4979,7 @@ state 461
 state 462
 	primary_exp:  '(' const_exp ')'.    (187)
 
-	.  reduce 187 (src line 1559)
+	.  reduce 187 (src line 1563)
 
 
 state 463
@@ -4991,19 +4991,19 @@ state 463
 state 464
 	tagged_struct:  STRUCT tag '{' member_list '}'.    (262)
 
-	.  reduce 262 (src line 2033)
+	.  reduce 262 (src line 2037)
 
 
 state 465
 	member_list:  member_list member.    (265)
 
-	.  reduce 265 (src line 2054)
+	.  reduce 265 (src line 2058)
 
 
 state 466
 	member:  field_declarator ';'.    (266)
 
-	.  reduce 266 (src line 2060)
+	.  reduce 266 (src line 2064)
 
 
 state 467
@@ -5011,11 +5011,11 @@ state 467
 	declarators: .    (199)
 	pointer_opt0: .    (340)
 
-	error  reduce 340 (src line 2603)
-	IDENT  reduce 340 (src line 2603)
+	error  reduce 340 (src line 2607)
+	IDENT  reduce 340 (src line 2607)
 	'*'  shift 429
-	'('  reduce 340 (src line 2603)
-	.  reduce 199 (src line 1638)
+	'('  reduce 340 (src line 2607)
+	.  reduce 199 (src line 1642)
 
 	declarator  goto 426
 	declarators  goto 538
@@ -5038,13 +5038,13 @@ state 468
 state 469
 	tagged_union:  UNION tag '{' union_body_n_e '}'.    (282)
 
-	.  reduce 282 (src line 2179)
+	.  reduce 282 (src line 2183)
 
 
 state 470
 	union_body_n_e:  union_body_n_e union_case_n_e.    (291)
 
-	.  reduce 291 (src line 2240)
+	.  reduce 291 (src line 2244)
 
 
 state 471
@@ -5059,25 +5059,25 @@ state 471
 state 472
 	tagged_union:  UNION tag '{' union_body_c '}'.    (283)
 
-	.  reduce 283 (src line 2190)
+	.  reduce 283 (src line 2194)
 
 
 state 473
 	union_body_c:  union_body_c union_arm.    (289)
 
-	.  reduce 289 (src line 2230)
+	.  reduce 289 (src line 2234)
 
 
 state 474
 	union_case_n_e:  union_case_label_n_e union_arm.    (296)
 
-	.  reduce 296 (src line 2270)
+	.  reduce 296 (src line 2274)
 
 
 state 475
 	union_arm:  field_declarator ';'.    (305)
 
-	.  reduce 305 (src line 2323)
+	.  reduce 305 (src line 2327)
 
 
 state 476
@@ -5113,7 +5113,7 @@ state 480
 	comma:  ','.    (315)
 
 	IDENT  shift 363
-	.  reduce 315 (src line 2425)
+	.  reduce 315 (src line 2429)
 
 	identifier_tag  goto 550
 
@@ -5165,7 +5165,7 @@ state 483
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -5216,11 +5216,11 @@ state 488
 state 489
 	attribute:  SIZE_IS '(' '*' ')'.    (107)
 
-	.  reduce 107 (src line 952)
+	.  reduce 107 (src line 956)
 
 
 state 490
-	attribute:  GOEXT_NULL_IF '(' attr_var ')'.    (59)
+	attribute:  GOEXT_DEFAULT_NULL '(' attr_var ')'.    (59)
 
 	.  reduce 59 (src line 736)
 
@@ -5228,19 +5228,19 @@ state 490
 state 491
 	attribute:  FORMAT '(' format_attribute ')'.    (61)
 
-	.  reduce 61 (src line 744)
+	.  reduce 61 (src line 748)
 
 
 state 492
 	attribute:  TRANSMIT_AS '(' xmit_type ')'.    (65)
 
-	.  reduce 65 (src line 760)
+	.  reduce 65 (src line 764)
 
 
 state 493
 	attribute:  VERSION '(' version ')'.    (73)
 
-	.  reduce 73 (src line 792)
+	.  reduce 73 (src line 796)
 
 
 state 494
@@ -5253,7 +5253,7 @@ state 494
 state 495
 	attribute:  ENDPOINT '(' port_spec1 ')'.    (74)
 
-	.  reduce 74 (src line 796)
+	.  reduce 74 (src line 800)
 
 
 state 496
@@ -5267,7 +5267,7 @@ state 496
 state 497
 	attribute:  EXCEPTIONS '(' excep_name1 ')'.    (75)
 
-	.  reduce 75 (src line 800)
+	.  reduce 75 (src line 804)
 
 
 state 498
@@ -5281,85 +5281,85 @@ state 498
 state 499
 	attribute:  POINTER_DEFAULT '(' ptr_attr ')'.    (77)
 
-	.  reduce 77 (src line 808)
+	.  reduce 77 (src line 812)
 
 
 state 500
 	attribute:  IID_IS '(' attr_var ')'.    (85)
 
-	.  reduce 85 (src line 847)
+	.  reduce 85 (src line 851)
 
 
 state 501
 	attribute:  HELP_STRING '(' STRING_LITERAL ')'.    (86)
 
-	.  reduce 86 (src line 851)
+	.  reduce 86 (src line 855)
 
 
 state 502
 	attribute:  ID '(' integer_const_exp ')'.    (91)
 
-	.  reduce 91 (src line 871)
+	.  reduce 91 (src line 875)
 
 
 state 503
 	attribute:  DEFAULT_VALUE '(' const_exp ')'.    (95)
 
-	.  reduce 95 (src line 896)
+	.  reduce 95 (src line 900)
 
 
 state 504
 	attribute:  ANNOTATION '(' STRING_LITERAL ')'.    (100)
 
-	.  reduce 100 (src line 921)
+	.  reduce 100 (src line 925)
 
 
 state 505
 	attribute:  CALL_AS '(' IDENT ')'.    (101)
 
-	.  reduce 101 (src line 925)
+	.  reduce 101 (src line 929)
 
 
 state 506
 	attribute:  WIRE_MARSHAL '(' IDENT ')'.    (102)
 
-	.  reduce 102 (src line 929)
+	.  reduce 102 (src line 933)
 
 
 state 507
 	attribute:  SAFEARRAY '(' type_spec ')'.    (104)
 
-	.  reduce 104 (src line 937)
+	.  reduce 104 (src line 941)
 
 
 state 508
 	attribute:  PAD '(' INT_LITERAL ')'.    (105)
 
-	.  reduce 105 (src line 941)
+	.  reduce 105 (src line 945)
 
 
 state 509
 	attribute:  GOEXT_LAYOUT '(' field_declarator ')'.    (106)
 
-	.  reduce 106 (src line 945)
+	.  reduce 106 (src line 949)
 
 
 state 510
 	union_instance_switch_attr:  SWITCH_IS '(' attr_var ')'.    (307)
 
-	.  reduce 307 (src line 2338)
+	.  reduce 307 (src line 2342)
 
 
 state 511
 	union_type_switch_attr:  SWITCH_TYPE '(' switch_type_spec ')'.    (306)
 
-	.  reduce 306 (src line 2332)
+	.  reduce 306 (src line 2336)
 
 
 state 512
 	switch_type_spec:  ENUM tag.    (280)
 
-	.  reduce 280 (src line 2155)
+	.  reduce 280 (src line 2159)
 
 
 state 513
@@ -5435,7 +5435,7 @@ state 520
 	pointer_opt0: .    (340)
 
 	'*'  shift 429
-	.  reduce 340 (src line 2603)
+	.  reduce 340 (src line 2607)
 
 	declarator  goto 559
 	pointer_opt  goto 428
@@ -5449,13 +5449,13 @@ state 521
 
 	'['  shift 560
 	'('  shift 561
-	.  reduce 200 (src line 1644)
+	.  reduce 200 (src line 1648)
 
 
 state 522
 	direct_declarator:  ident_or_keyword.    (201)
 
-	.  reduce 201 (src line 1653)
+	.  reduce 201 (src line 1657)
 
 
 state 523
@@ -5463,7 +5463,7 @@ state 523
 	pointer_opt0: .    (340)
 
 	'*'  shift 429
-	.  reduce 340 (src line 2603)
+	.  reduce 340 (src line 2607)
 
 	declarator  goto 562
 	pointer_opt  goto 428
@@ -5472,31 +5472,31 @@ state 523
 state 524
 	direct_declarator:  array_declarator.    (203)
 
-	.  reduce 203 (src line 1661)
+	.  reduce 203 (src line 1665)
 
 
 state 525
 	direct_declarator:  function_declarator.    (204)
 
-	.  reduce 204 (src line 1665)
+	.  reduce 204 (src line 1669)
 
 
 state 526
 	ident_or_keyword:  IDENT.    (205)
 
-	.  reduce 205 (src line 1671)
+	.  reduce 205 (src line 1675)
 
 
 state 527
 	ident_or_keyword:  error.    (206)
 
-	.  reduce 206 (src line 1675)
+	.  reduce 206 (src line 1679)
 
 
 state 528
 	pointer_opt:  pointer_opt '*'.    (343)
 
-	.  reduce 343 (src line 2617)
+	.  reduce 343 (src line 2621)
 
 
 state 529
@@ -5553,20 +5553,20 @@ state 533
 	comma: .    (314)
 
 	','  shift 480
-	.  reduce 314 (src line 2424)
+	.  reduce 314 (src line 2428)
 
 	comma  goto 567
 
 state 534
 	integer_type:  HYPER unsigned int.    (221)
 
-	.  reduce 221 (src line 1758)
+	.  reduce 221 (src line 1762)
 
 
 state 535
 	integer_type:  UNSIGNED HYPER int.    (222)
 
-	.  reduce 222 (src line 1767)
+	.  reduce 222 (src line 1771)
 
 
 state 536
@@ -5600,7 +5600,7 @@ state 536
 state 537
 	primary_exp:  SIZEOF '(' type_spec ')'.    (184)
 
-	.  reduce 184 (src line 1533)
+	.  reduce 184 (src line 1537)
 
 
 state 538
@@ -5610,7 +5610,7 @@ state 538
 
 	','  shift 520
 	'='  shift 570
-	.  reduce 268 (src line 2077)
+	.  reduce 268 (src line 2081)
 
 	field_attr_var  goto 569
 
@@ -5631,7 +5631,7 @@ state 539
 state 540
 	union_body:  union_case.    (286)
 
-	.  reduce 286 (src line 2216)
+	.  reduce 286 (src line 2220)
 
 
 state 541
@@ -5653,13 +5653,13 @@ state 541
 state 542
 	union_case:  default_case.    (293)
 
-	.  reduce 293 (src line 2254)
+	.  reduce 293 (src line 2258)
 
 
 state 543
 	union_case_label1:  union_case_label.    (294)
 
-	.  reduce 294 (src line 2260)
+	.  reduce 294 (src line 2264)
 
 
 state 544
@@ -5763,43 +5763,43 @@ state 548
 state 549
 	tagged_enumeration:  ENUM tag '{' enumeration1 comma '}'.    (311)
 
-	.  reduce 311 (src line 2384)
+	.  reduce 311 (src line 2388)
 
 
 state 550
 	enumeration1:  enumeration1 ',' identifier_tag.    (313)
 
-	.  reduce 313 (src line 2418)
+	.  reduce 313 (src line 2422)
 
 
 state 551
 	identifier_tag:  IDENT '=' integer_const_exp.    (317)
 
-	.  reduce 317 (src line 2433)
+	.  reduce 317 (src line 2437)
 
 
 state 552
 	attr_var_list:  attr_var_list ',' attr_var.    (337)
 
-	.  reduce 337 (src line 2585)
+	.  reduce 337 (src line 2589)
 
 
 state 553
 	version:  INT_LITERAL '.' INT_LITERAL.    (109)
 
-	.  reduce 109 (src line 962)
+	.  reduce 109 (src line 966)
 
 
 state 554
 	port_spec1:  port_spec1 ',' port_spec.    (111)
 
-	.  reduce 111 (src line 972)
+	.  reduce 111 (src line 976)
 
 
 state 555
 	excep_name1:  excep_name1 ',' excep_name.    (113)
 
-	.  reduce 113 (src line 982)
+	.  reduce 113 (src line 986)
 
 
 state 556
@@ -5839,8 +5839,8 @@ state 557
 	WCHAR_T  shift 309
 	IDENT  shift 294
 	'['  shift 33
-	')'  reduce 250 (src line 1974)
-	.  reduce 247 (src line 1960)
+	')'  reduce 250 (src line 1978)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -5888,7 +5888,7 @@ state 558
 state 559
 	declarators:  declarators ',' declarator.    (198)
 
-	.  reduce 198 (src line 1633)
+	.  reduce 198 (src line 1637)
 
 
 state 560
@@ -5904,7 +5904,7 @@ state 560
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 320 (src line 2472)
+	.  reduce 320 (src line 2476)
 
 	integer_const_exp  goto 592
 	conditional_exp  goto 189
@@ -5954,8 +5954,8 @@ state 561
 	WCHAR_T  shift 309
 	IDENT  shift 294
 	'['  shift 33
-	')'  reduce 250 (src line 1974)
-	.  reduce 247 (src line 1960)
+	')'  reduce 250 (src line 1978)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -6004,7 +6004,7 @@ state 562
 state 563
 	struct_type:  STRUCT '{' member_list '}'.    (261)
 
-	.  reduce 261 (src line 2022)
+	.  reduce 261 (src line 2026)
 
 
 state 564
@@ -6023,13 +6023,13 @@ state 564
 state 565
 	union_type:  UNION '{' union_body_n_e '}'.    (273)
 
-	.  reduce 273 (src line 2108)
+	.  reduce 273 (src line 2112)
 
 
 state 566
 	union_type:  UNION '{' union_body_c '}'.    (274)
 
-	.  reduce 274 (src line 2119)
+	.  reduce 274 (src line 2123)
 
 
 state 567
@@ -6042,13 +6042,13 @@ state 567
 state 568
 	conditional_exp:  logical_or_exp '?' integer_const_exp ':' conditional_exp.    (149)
 
-	.  reduce 149 (src line 1254)
+	.  reduce 149 (src line 1258)
 
 
 state 569
 	field_declarator:  attributes0 type_spec declarators field_attr_var.    (267)
 
-	.  reduce 267 (src line 2066)
+	.  reduce 267 (src line 2070)
 
 
 state 570
@@ -6064,7 +6064,7 @@ state 570
 	'('  shift 210
 	'~'  shift 204
 	'!'  shift 205
-	.  reduce 338 (src line 2593)
+	.  reduce 338 (src line 2597)
 
 	integer_const_exp  goto 368
 	conditional_exp  goto 189
@@ -6085,25 +6085,25 @@ state 570
 state 571
 	tagged_union:  UNION tag union_switch union_name '{' union_body '}'.    (281)
 
-	.  reduce 281 (src line 2168)
+	.  reduce 281 (src line 2172)
 
 
 state 572
 	union_body:  union_body union_case.    (287)
 
-	.  reduce 287 (src line 2220)
+	.  reduce 287 (src line 2224)
 
 
 state 573
 	union_case:  union_case_label1 union_arm.    (292)
 
-	.  reduce 292 (src line 2246)
+	.  reduce 292 (src line 2250)
 
 
 state 574
 	union_case_label1:  union_case_label1 union_case_label.    (295)
 
-	.  reduce 295 (src line 2264)
+	.  reduce 295 (src line 2268)
 
 
 state 575
@@ -6138,25 +6138,25 @@ state 577
 state 578
 	const_exp1:  const_exp.    (300)
 
-	.  reduce 300 (src line 2296)
+	.  reduce 300 (src line 2300)
 
 
 state 579
 	default_case_n_e:  '[' DEFAULT ']' union_arm.    (303)
 
-	.  reduce 303 (src line 2313)
+	.  reduce 303 (src line 2317)
 
 
 state 580
 	union_switch:  SWITCH '(' switch_type_spec IDENT ')'.    (275)
 
-	.  reduce 275 (src line 2132)
+	.  reduce 275 (src line 2136)
 
 
 state 581
 	range_declarator:  '(' integer_const_exp ',' integer_const_exp ')'.    (335)
 
-	.  reduce 335 (src line 2560)
+	.  reduce 335 (src line 2564)
 
 
 state 582
@@ -6178,15 +6178,15 @@ state 583
 state 584
 	param_declarators1:  param_declarator.    (350)
 
-	.  reduce 350 (src line 2663)
+	.  reduce 350 (src line 2667)
 
 
 state 585
 	void_type:  VOID.    (243)
 	void:  VOID.    (251)
 
-	')'  reduce 251 (src line 1975)
-	.  reduce 243 (src line 1938)
+	')'  reduce 251 (src line 1979)
+	.  reduce 243 (src line 1942)
 
 
 state 586
@@ -6218,7 +6218,7 @@ state 586
 	WCHAR_T  shift 309
 	IDENT  shift 294
 	'['  shift 73
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -6258,7 +6258,7 @@ state 587
 	pointer_opt0: .    (340)
 
 	'*'  shift 429
-	.  reduce 340 (src line 2603)
+	.  reduce 340 (src line 2607)
 
 	declarator  goto 607
 	pointer_opt  goto 428
@@ -6276,13 +6276,13 @@ state 589
 	array_bound_pair:  array_bound.RNG array_bound 
 
 	RNG  shift 609
-	.  reduce 321 (src line 2476)
+	.  reduce 321 (src line 2480)
 
 
 state 590
 	array_bounds_declarator:  array_bound_pair.    (322)
 
-	.  reduce 322 (src line 2485)
+	.  reduce 322 (src line 2489)
 
 
 state 591
@@ -6290,13 +6290,13 @@ state 591
 	array_bound:  '*'.    (324)
 
 	IDENT  shift 341
-	.  reduce 324 (src line 2497)
+	.  reduce 324 (src line 2501)
 
 
 state 592
 	array_bound:  integer_const_exp.    (325)
 
-	.  reduce 325 (src line 2501)
+	.  reduce 325 (src line 2505)
 
 
 state 593
@@ -6318,7 +6318,7 @@ state 594
 state 595
 	direct_declarator:  '(' declarator ')'.    (202)
 
-	.  reduce 202 (src line 1657)
+	.  reduce 202 (src line 1661)
 
 
 state 596
@@ -6338,25 +6338,25 @@ state 596
 state 597
 	enumeration_type:  ENUM '{' enumeration1 comma '}'.    (308)
 
-	.  reduce 308 (src line 2344)
+	.  reduce 308 (src line 2348)
 
 
 state 598
 	field_attr_var:  '=' attr_var.    (269)
 
-	.  reduce 269 (src line 2081)
+	.  reduce 269 (src line 2085)
 
 
 state 599
 	default_case:  DEFAULT ':' union_arm.    (302)
 
-	.  reduce 302 (src line 2307)
+	.  reduce 302 (src line 2311)
 
 
 state 600
 	union_case_label:  CASE const_exp ':'.    (298)
 
-	.  reduce 298 (src line 2284)
+	.  reduce 298 (src line 2288)
 
 
 state 601
@@ -6404,7 +6404,7 @@ state 602
 state 603
 	op_declarator:  attributes0 simple_type_spec IDENT '(' param_declarators1 ')'.    (347)
 
-	.  reduce 347 (src line 2641)
+	.  reduce 347 (src line 2645)
 
 
 state 604
@@ -6435,7 +6435,7 @@ state 604
 	WCHAR_T  shift 309
 	IDENT  shift 294
 	'['  shift 33
-	.  reduce 247 (src line 1960)
+	.  reduce 247 (src line 1964)
 
 	struct_type  goto 279
 	union_type  goto 280
@@ -6475,7 +6475,7 @@ state 604
 state 605
 	op_declarator:  attributes0 simple_type_spec IDENT '(' void ')'.    (348)
 
-	.  reduce 348 (src line 2653)
+	.  reduce 348 (src line 2657)
 
 
 state 606
@@ -6483,7 +6483,7 @@ state 606
 	pointer_opt0: .    (340)
 
 	'*'  shift 429
-	.  reduce 340 (src line 2603)
+	.  reduce 340 (src line 2607)
 
 	declarator  goto 616
 	pointer_opt  goto 428
@@ -6492,13 +6492,13 @@ state 606
 state 607
 	param_declarator:  type_spec declarator.    (352)
 
-	.  reduce 352 (src line 2683)
+	.  reduce 352 (src line 2687)
 
 
 state 608
 	array_declarator:  direct_declarator '[' array_bounds_declarator ']'.    (319)
 
-	.  reduce 319 (src line 2446)
+	.  reduce 319 (src line 2450)
 
 
 state 609
@@ -6534,49 +6534,49 @@ state 609
 state 610
 	function_declarator:  direct_declarator '(' param_declarators1 ')'.    (355)
 
-	.  reduce 355 (src line 2701)
+	.  reduce 355 (src line 2705)
 
 
 state 611
 	function_declarator:  direct_declarator '(' void ')'.    (356)
 
-	.  reduce 356 (src line 2710)
+	.  reduce 356 (src line 2714)
 
 
 state 612
 	union_type:  UNION union_switch union_name '{' union_body '}'.    (272)
 
-	.  reduce 272 (src line 2097)
+	.  reduce 272 (src line 2101)
 
 
 state 613
 	union_case_label_n_e:  '[' CASE '(' const_exp1 ')' ']'.    (299)
 
-	.  reduce 299 (src line 2290)
+	.  reduce 299 (src line 2294)
 
 
 state 614
 	const_exp1:  const_exp1 ',' const_exp.    (301)
 
-	.  reduce 301 (src line 2300)
+	.  reduce 301 (src line 2304)
 
 
 state 615
 	param_declarators1:  param_declarators1 ',' param_declarator.    (349)
 
-	.  reduce 349 (src line 2659)
+	.  reduce 349 (src line 2663)
 
 
 state 616
 	param_declarator:  attributes1 type_spec declarator.    (351)
 
-	.  reduce 351 (src line 2669)
+	.  reduce 351 (src line 2673)
 
 
 state 617
 	array_bound_pair:  array_bound RNG array_bound.    (323)
 
-	.  reduce 323 (src line 2491)
+	.  reduce 323 (src line 2495)
 
 
 164 terminals, 144 nonterminals

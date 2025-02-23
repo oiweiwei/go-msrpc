@@ -11355,7 +11355,7 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -11709,7 +11709,7 @@ func (o *xxx_ChangeServiceConfigWOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12147,7 +12147,7 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -12482,7 +12482,7 @@ func (o *xxx_CreateServiceWOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -15466,7 +15466,7 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRRequest(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -15820,7 +15820,7 @@ func (o *xxx_ChangeServiceConfigAOperation) MarshalNDRResponse(ctx context.Conte
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16257,7 +16257,7 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -16592,7 +16592,7 @@ func (o *xxx_CreateServiceAOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -22327,7 +22327,7 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -22662,7 +22662,7 @@ func (o *xxx_CreateServiceWOW64AOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -23112,7 +23112,7 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -23447,7 +23447,7 @@ func (o *xxx_CreateServiceWOW64WOperation) MarshalNDRResponse(ctx context.Contex
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -25477,7 +25477,7 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err
@@ -25824,7 +25824,7 @@ func (o *xxx_CreateWOWServiceOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// lpdwTagId {in, out} (1:{pointer=unique, alias=LPDWORD}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if !(o.TagID == 0) {
+		if o.TagID != uint32(0) {
 			_ptr_lpdwTagId := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 				if err := w.WriteData(o.TagID); err != nil {
 					return err

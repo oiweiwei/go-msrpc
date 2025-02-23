@@ -312,7 +312,7 @@ var (
 %token <Token> SAFEARRAY
 %token <Token> PAD
 %token <Token> GOEXT_LAYOUT
-%token <Token> GOEXT_NULL_IF
+%token <Token> GOEXT_DEFAULT_NULL
 %token <Token> GOEXT_NO_SIZE_LIMIT
 %token <Token> CALL_AS
 %token <Token> ANNOTATION
@@ -733,9 +733,13 @@ attribute               : FIRST_IS '(' attr_var_list ')'
                             {
                                 $$ = pAttrType{$1, pAttr{}}
                             }
-                        | GOEXT_NULL_IF '(' attr_var ')'
+                        | GOEXT_DEFAULT_NULL '(' attr_var ')'
                             {
-                                $$ = pAttrType{GOEXT_NULL_IF, pAttr{NullIf: $3}}
+                                if $3.Empty() {
+                                    $$ = pAttrType{GOEXT_DEFAULT_NULL, pAttr{DefaultNull: []Expr{}}}
+                                } else {
+                                    $$ = pAttrType{GOEXT_DEFAULT_NULL, pAttr{DefaultNull: []Expr{$3}}}
+                                }
                             }
                         | usage_attribute
                             {
