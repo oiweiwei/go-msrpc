@@ -609,9 +609,22 @@ func (p *TypeGenerator) GenFieldMarshalNDR(ctx context.Context, field *midl.Fiel
 		}
 
 		if next := scopes.Next(); next.Type().IsPrimitiveType() {
-			if !field.Attrs.NullIf.Empty() {
-				nullChk := p.GenExpr(ctx, field.Attrs.NullIf, p.LookupExprField(ctx, field.Attrs.NullIf), "")
-				p.If("!", nullChk, func() {
+			if field.Attrs.DefaultNull != nil {
+				nullChk := ""
+				if len(field.Attrs.DefaultNull) > 0 {
+					for _, expr := range field.Attrs.DefaultNull {
+						chk := p.GenExpr(ctx, expr, p.LookupExprField(ctx, expr), "")
+						if nullChk == "" {
+							nullChk = fmt.Sprintf("!%s", chk)
+						} else {
+							nullChk = fmt.Sprintf("%s || !%s", nullChk, chk)
+						}
+					}
+				} else {
+					nullChk = fmt.Sprintf("%s != %v", name, p.GoTypeZeroValue(ctx, p.Scope(), field, scopes))
+				}
+
+				p.If(nullChk, func() {
 					fN := "_ptr_" + field.Name
 					p.P(fN, ":=", "ndr.MarshalNDRFunc", "(", "func(ctx context.Context, w ndr.Writer) error {")
 					p.GenFieldMarshalNDR(ctx, field, scopes.Next(), index...)

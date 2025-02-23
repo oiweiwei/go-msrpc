@@ -67,7 +67,7 @@ var (
 		SAFEARRAY:                  "safearray",
 		PAD:                        "pad",
 		GOEXT_LAYOUT:               "goext_layout",
-		GOEXT_NULL_IF:              "goext_null_if",
+		GOEXT_DEFAULT_NULL:         "goext_default_null",
 		OPTIONAL:                   "optional",
 		COCLASS:                    "coclass",
 		SWITCH_TYPE:                "switch_type",
@@ -182,7 +182,7 @@ var (
 		WIRE_MARSHAL:               {},
 		PAD:                        {},
 		GOEXT_LAYOUT:               {},
-		GOEXT_NULL_IF:              {},
+		GOEXT_DEFAULT_NULL:         {},
 		SAFEARRAY:                  {},
 	}
 
