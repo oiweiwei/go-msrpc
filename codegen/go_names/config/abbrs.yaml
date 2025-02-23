@@ -1,5 +1,6 @@
 abbr:
   #sas: SAs
+  lpdword: Uint32
   aaa: AAA
   0at: At
   0name: Name
