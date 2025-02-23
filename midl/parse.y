@@ -312,6 +312,7 @@ var (
 %token <Token> SAFEARRAY
 %token <Token> PAD
 %token <Token> GOEXT_LAYOUT
+%token <Token> GOEXT_NULL_IF
 %token <Token> GOEXT_NO_SIZE_LIMIT
 %token <Token> CALL_AS
 %token <Token> ANNOTATION
@@ -731,6 +732,10 @@ attribute               : FIRST_IS '(' attr_var_list ')'
                         | ptr_attr
                             {
                                 $$ = pAttrType{$1, pAttr{}}
+                            }
+                        | GOEXT_NULL_IF '(' attr_var ')'
+                            {
+                                $$ = pAttrType{GOEXT_NULL_IF, pAttr{NullIf: $3}}
                             }
                         | usage_attribute
                             {

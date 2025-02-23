@@ -218,6 +218,7 @@ type pAttr struct {
 	Layout                  []*Field
 	NoSizeLimit             bool
 	IsLayout                bool
+	NullIf                  Expr
 }
 
 func (a pAttr) Set(at pAttrType) pAttr {
@@ -348,6 +349,8 @@ func (a pAttr) Set(at pAttrType) pAttr {
 		a.Layout = at.Attr.Layout
 	case GOEXT_NO_SIZE_LIMIT:
 		a.NoSizeLimit = at.Attr.NoSizeLimit
+	case GOEXT_NULL_IF:
+		a.NullIf = at.Attr.NullIf
 	default:
 		panic(fmt.Sprintf("unknown attribute: %d", at.Type))
 	}
@@ -549,6 +552,10 @@ func (a pAttr) MapAttr() map[int]interface{} {
 		ret[GOEXT_NO_SIZE_LIMIT] = a.NoSizeLimit
 	}
 
+	if !a.NullIf.Empty() {
+		ret[GOEXT_NULL_IF] = a.NullIf
+	}
+
 	return ret
 }
 
@@ -743,6 +750,9 @@ func (a pAttr) Merge(ma pAttr) pAttr {
 	if ma.NoSizeLimit {
 		a.NoSizeLimit = ma.NoSizeLimit
 	}
+	if !ma.NullIf.Empty() {
+		a.NullIf = ma.NullIf
+	}
 
 	return a
 }
@@ -827,6 +837,7 @@ var pAllowedFieldAttr = []int{
 	RANGE,
 	POINTER,
 	SWITCH_TYPE,
+	GOEXT_NULL_IF,
 }
 
 var pAllowedParamAttr = []int{
@@ -855,6 +866,7 @@ var pAllowedParamAttr = []int{
 	IID_IS,
 	RETVAL,
 	OPTIONAL,
+	GOEXT_NULL_IF,
 }
 
 var pAllowedTypeAttr = []int{
@@ -913,6 +925,7 @@ func (a pAttr) Field() *FieldAttr {
 		a.Layout,
 		a.NoSizeLimit,
 		a.IsLayout,
+		a.NullIf,
 	}
 }
 
