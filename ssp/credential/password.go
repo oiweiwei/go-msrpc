@@ -20,21 +20,21 @@ type passwordCred struct {
 }
 
 // Password.
-func (p *passwordCred) Password() string {
-	if p != nil {
-		return p.password
+func (cred *passwordCred) Password() string {
+	if cred != nil {
+		return cred.password
 	}
 	return ""
 }
 
 // IsEmpty returns true if the password is empty.
-func (p *passwordCred) IsEmpty() bool {
-	return p == nil || (p.password == "" && !p.allowEmpty)
+func (cred *passwordCred) IsEmpty() bool {
+	return cred == nil || (cred.password == "" && !cred.allowEmpty)
 }
 
 // Validate the password credential.
-func (p *passwordCred) Validate() error {
-	if p != nil && p.password == "" && !p.allowEmpty {
+func (cred *passwordCred) Validate() error {
+	if cred != nil && cred.password == "" && !cred.allowEmpty {
 		return errors.New("password is empty, use credentials.Anonymous() or AllowEmptyPassword() options to allow empty password")
 	}
 

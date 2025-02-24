@@ -4,7 +4,6 @@ import (
 	"bytes"
 	"context"
 
-	"github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/flags"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
@@ -56,8 +55,7 @@ func (Mechanism) DefaultConfig(ctx context.Context) (gssapi.MechanismConfig, err
 func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 
 	var (
-		ok  bool
-		err error
+		ok bool
 	)
 
 	// extract the context.
@@ -68,25 +66,6 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 	if !ok || c == nil {
 		// config should have been populated.
 		return nil, gssapi.ContextError(ctx, gssapi.NoContext, gssapi.ErrNoContext)
-	}
-
-	if c.KRB5Config == nil && c.KRB5ConfigV8 != nil {
-		realms := make([]config.Realm, len(c.KRB5ConfigV8.Realms))
-		for i := range c.KRB5ConfigV8.Realms {
-			realms[i] = config.Realm(c.KRB5ConfigV8.Realms[i])
-		}
-		c.KRB5Config = &config.Config{
-			LibDefaults: config.LibDefaults(c.KRB5ConfigV8.LibDefaults),
-			Realms:      realms,
-			DomainRealm: (config.DomainRealm)(c.KRB5ConfigV8.DomainRealm),
-		}
-	}
-
-	if c.KRB5Config == nil {
-		// load kerberos config.
-		if c.KRB5Config, err = LoadKRB5Conf(c.KRB5ConfigPath); err != nil {
-			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
-		}
 	}
 
 	c.IsServer = cc.IsServer
