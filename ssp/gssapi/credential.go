@@ -134,8 +134,7 @@ func AddCredential(value any) {
 }
 
 func GetCredential(ctx context.Context, name string, mechanismType OID, usage CredentialUsage) Credential {
-	cc := fromContext(ctx)
-	if cc != nil && cc.CredentialStore != nil {
+	if cc := fromContext(ctx); cc != nil && cc.CredentialStore != nil {
 		// use local credential store if defined.
 		return cc.CredentialStore.GetCredential(ctx, name, mechanismType, usage)
 	}

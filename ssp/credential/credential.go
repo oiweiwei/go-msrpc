@@ -12,9 +12,13 @@ type Credential interface {
 	Workstation() string
 }
 
-func parseUser(un string, opts ...Option) user {
+func parseUser(un string, opts ...Option) userCred {
 	dn, un, wkst := parseDomainUserWorkstation(un, opts...)
-	return user{un, dn, wkst}
+	return userCred{
+		userName:    un,
+		domainName:  dn,
+		workstation: wkst,
+	}
 }
 
 // parseDomainUserWorkstation parses the username and variadic workstation argument and outputs
@@ -52,5 +56,13 @@ func DomainName(un string) string {
 
 // Anonymous function returns the anonymous password credentials.
 func Anonymous() Password {
-	return &password{}
+	return &passwordCred{allowEmpty: true}
+}
+
+func NewFromString(s string, opts ...Option) Password {
+	ss := strings.Split(s, "%")
+	if len(ss) > 1 {
+		return NewFromPassword(ss[0], ss[1], opts...)
+	}
+	return NewFromPassword(s, "", append(opts, AllowEmptyPassword())...)
 }
