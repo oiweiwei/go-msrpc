@@ -5,6 +5,10 @@ import (
 	"fmt"
 )
 
+var (
+	KRB5OID = asn1.ObjectIdentifier{1, 2, 840, 113554, 1, 2, 2}
+)
+
 // IsASN1Value function returns true if the given byte slice is an ASN.1 value
 // with application tag.
 func IsASN1Value(b []byte) bool {

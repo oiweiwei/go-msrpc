@@ -15,10 +15,6 @@ import (
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
 
-var (
-	KRB5OID = asn1.ObjectIdentifier{1, 2, 840, 113554, 1, 2, 2}
-)
-
 type RC4HMAC struct {
 	setting CipherSetting
 }

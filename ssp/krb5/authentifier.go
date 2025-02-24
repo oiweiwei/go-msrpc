@@ -6,6 +6,7 @@ import (
 	"os"
 
 	"github.com/oiweiwei/gokrb5.fork/v9/client"
+	"github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/credentials"
 	krb_crypto "github.com/oiweiwei/gokrb5.fork/v9/crypto"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
@@ -15,6 +16,7 @@ import (
 	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
 	"github.com/oiweiwei/go-msrpc/ssp/credential"
+	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 
 	"github.com/oiweiwei/go-msrpc/ssp/krb5/crypto"
 )
@@ -75,6 +77,26 @@ func (a *Authentifier) tryLoadCCache(ctx context.Context) (*credentials.CCache, 
 func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 
 	var cli *client.Client
+	var err error
+
+	if a.Config.KRB5Config == nil && a.Config.KRB5ConfigV8 != nil {
+		realms := make([]config.Realm, len(a.Config.KRB5ConfigV8.Realms))
+		for i := range a.Config.KRB5ConfigV8.Realms {
+			realms[i] = config.Realm(a.Config.KRB5ConfigV8.Realms[i])
+		}
+		a.Config.KRB5Config = &config.Config{
+			LibDefaults: config.LibDefaults(a.Config.KRB5ConfigV8.LibDefaults),
+			Realms:      realms,
+			DomainRealm: (config.DomainRealm)(a.Config.KRB5ConfigV8.DomainRealm),
+		}
+	}
+
+	if a.Config.KRB5Config == nil {
+		// load kerberos config.
+		if a.Config.KRB5Config, err = LoadKRB5Conf(a.Config.KRB5ConfigPath); err != nil {
+			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
+		}
+	}
 
 	// try load credentials cache.
 	cc, ok, err := a.tryLoadCCache(ctx)
