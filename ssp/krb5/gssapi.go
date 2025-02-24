@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 
+	"github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/flags"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
@@ -29,6 +30,12 @@ func (c *Config) Copy() gssapi.MechanismConfig {
 		// shallow copy.
 		cfg := *c.KRB5Config
 		cp.KRB5Config = &cfg
+	}
+
+	if c.KRB5ConfigV8 != nil {
+		// shallow copy.
+		cfg := *c.KRB5ConfigV8
+		cp.KRB5ConfigV8 = &cfg
 	}
 
 	cp.Flags = make([]int, len(c.Flags))
@@ -61,6 +68,18 @@ func (Mechanism) New(ctx context.Context) (gssapi.Mechanism, error) {
 	if !ok || c == nil {
 		// config should have been populated.
 		return nil, gssapi.ContextError(ctx, gssapi.NoContext, gssapi.ErrNoContext)
+	}
+
+	if c.KRB5Config == nil && c.KRB5ConfigV8 != nil {
+		realms := make([]config.Realm, len(c.KRB5ConfigV8.Realms))
+		for i := range c.KRB5ConfigV8.Realms {
+			realms[i] = config.Realm(c.KRB5ConfigV8.Realms[i])
+		}
+		c.KRB5Config = &config.Config{
+			LibDefaults: config.LibDefaults(c.KRB5ConfigV8.LibDefaults),
+			Realms:      realms,
+			DomainRealm: (config.DomainRealm)(c.KRB5ConfigV8.DomainRealm),
+		}
 	}
 
 	if c.KRB5Config == nil {

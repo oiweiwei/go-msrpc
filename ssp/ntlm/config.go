@@ -144,8 +144,32 @@ func IsValidCredential(cred any) bool {
 		return true
 	case credential.EncryptionKey:
 		return cred.KeyType() == 23
+	case credential.CCache:
+		for _, key := range cred.CCache().GetEntries() {
+			if key.Key.KeyType == 23 {
+				return true
+			}
+		}
 	}
 	return false
+}
+
+func GetCredentialNTHash(cred any) ([]byte, bool) {
+	var k []byte
+	switch cred := cred.(type) {
+	case credential.NTHash:
+		k = cred.NTHash()
+	case credential.EncryptionKey:
+		k = cred.KeyValue()
+	case credential.CCache:
+		for _, key := range cred.CCache().GetEntries() {
+			if key.Key.KeyType == 23 {
+				k = key.Key.KeyValue
+				break
+			}
+		}
+	}
+	return k, len(k) > 0
 }
 
 func (c *Config) NewNTLMVersion(ctx context.Context, cfg *Config, sess *SecurityParameters) NTLMVersion {

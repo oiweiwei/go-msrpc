@@ -5,6 +5,8 @@ import (
 	"strings"
 	"time"
 
+	v8_config "github.com/jcmturner/gokrb5/v8/config"
+
 	"github.com/oiweiwei/gokrb5.fork/v9/client"
 	"github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
@@ -26,6 +28,8 @@ type Config struct {
 	Credential Credential
 	// The kerberos config file.
 	KRB5Config *config.Config
+	// The kerberos v8 config file.
+	KRB5ConfigV8 *v8_config.Config
 	// The kerberos config file path.
 	KRB5ConfigPath string
 	// The credentials cache file path.
@@ -60,6 +64,9 @@ type Config struct {
 	// between the service and the issue time of kerberos tickets.
 	// If none is defined a duration of 5 minutes is returned.
 	MaxClockSkew time.Duration
+	// Dialer used to configure the service to use a specific
+	// dialer.
+	KDCDialer client.KDCDialer
 
 	// client settings.
 
@@ -152,6 +159,7 @@ func parseETypes(s []string, w bool) []int32 {
 }
 
 func IsValidCredential(cred any) bool {
+
 	if _, ok := cred.(credential.Keytab); ok {
 		return true
 	}
@@ -212,7 +220,7 @@ func (c *Config) ServiceSettings() []func(*service.Settings) {
 // kerberos client.
 func (c *Config) ClientSettings() []func(*client.Settings) {
 
-	o := make([]func(*client.Settings), 0, 2)
+	o := make([]func(*client.Settings), 0, 3)
 
 	if c.DisablePAFXFAST {
 		o = append(o, client.DisablePAFXFAST(c.DisablePAFXFAST))
@@ -220,6 +228,10 @@ func (c *Config) ClientSettings() []func(*client.Settings) {
 
 	if c.AssumePreAuthentication {
 		o = append(o, client.AssumePreAuthentication(c.AssumePreAuthentication))
+	}
+
+	if c.KDCDialer != nil {
+		o = append(o, client.Dialer(c.KDCDialer))
 	}
 
 	return o

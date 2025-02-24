@@ -12,3 +12,12 @@ func (wkstOpt) is_CredentialOption() {}
 func Workstation(s string) Option {
 	return wkstOpt(s)
 }
+
+type allowEmptyPassword struct{}
+
+func (allowEmptyPassword) is_CredentialOption() {}
+
+// Allow empty password option.
+func AllowEmptyPassword() Option {
+	return allowEmptyPassword{}
+}

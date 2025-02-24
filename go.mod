@@ -8,6 +8,7 @@ require (
 	github.com/PuerkitoBio/goquery v1.8.1
 	github.com/go-xmlfmt/xmlfmt v1.1.2
 	github.com/indece-official/go-ebcdic v1.2.0
+	github.com/jcmturner/gokrb5/v8 v8.4.4
 	github.com/joho/godotenv v1.5.1
 	github.com/miekg/dns v1.1.58
 	github.com/oiweiwei/go-smb2.fork v0.0.0-20241220141821-a5dd82e09d5f

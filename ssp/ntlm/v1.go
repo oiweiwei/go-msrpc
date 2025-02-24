@@ -96,12 +96,8 @@ func (v1 *V1) NTOWF(ctx context.Context, cred Credential) ([]byte, error) {
 		return nil, nil
 	}
 
-	if cred, ok := cred.(credential.NTHash); ok {
-		return cred.NTHash(), nil
-	}
-
-	if cred, ok := cred.(credential.EncryptionKey); ok {
-		return cred.KeyValue(), nil
+	if key, ok := GetCredentialNTHash(cred); ok {
+		return key, nil
 	}
 
 	if _, ok := cred.(credential.Password); !ok {

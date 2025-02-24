@@ -1,7 +1,7 @@
 package credential
 
 import (
-	"strings"
+	"errors"
 )
 
 // Password credential.
@@ -13,31 +13,46 @@ type Password interface {
 }
 
 // Password implementation.
-type password struct {
-	user
-	password string
+type passwordCred struct {
+	userCred
+	password   string
+	allowEmpty bool
 }
 
 // Password.
-func (p *password) Password() string {
+func (p *passwordCred) Password() string {
 	if p != nil {
 		return p.password
 	}
 	return ""
 }
 
-func NewFromString(s string) Password {
-	ss := strings.Split(s, "%")
-	if len(ss) > 1 {
-		return NewFromPassword(ss[0], ss[1])
+// IsEmpty returns true if the password is empty.
+func (p *passwordCred) IsEmpty() bool {
+	return p == nil || (p.password == "" && !p.allowEmpty)
+}
+
+// Validate the password credential.
+func (p *passwordCred) Validate() error {
+	if p != nil && p.password == "" && !p.allowEmpty {
+		return errors.New("password is empty, use credentials.Anonymous() or AllowEmptyPassword() options to allow empty password")
 	}
-	return NewFromPassword(s, "")
+
+	return nil
 }
 
 // NewFromPassword function returns the username/password credential.
 func NewFromPassword(un, passwd string, opts ...Option) Password {
-	return &password{
-		user:     parseUser(un, opts...),
+	cred := &passwordCred{
+		userCred: parseUser(un, opts...),
 		password: passwd,
 	}
+
+	for _, opt := range opts {
+		if _, ok := opt.(allowEmptyPassword); ok {
+			cred.allowEmpty = true
+		}
+	}
+
+	return cred
 }
