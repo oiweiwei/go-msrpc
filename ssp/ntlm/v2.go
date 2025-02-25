@@ -20,9 +20,9 @@ import (
 type LMv2Response struct {
 	// A 16-byte array of unsigned char that contains the client's
 	// LM challenge-response. This is the portion of the LmChallengeResponse
-	// field to which the HMAC_MD5 algorithm has been applied.
+	// field to which the HMACMD5 algorithm has been applied.
 	// Specifically, Response corresponds to the result of applying the
-	// HMAC_MD5 algorithm, using the key ResponseKeyLM, to a message consisting
+	// HMACMD5 algorithm, using the key ResponseKeyLM, to a message consisting
 	// of the concatenation of the ResponseKeyLM, ServerChallenge and
 	// ClientChallenge.
 	Response []byte
@@ -232,7 +232,7 @@ func (v2 *V2) NTOWF(ctx context.Context, cred Credential) ([]byte, error) {
 		return nil, fmt.Errorf("v2: ntowf: encode username: %w", err)
 	}
 
-	b, err := crypto.HMAC_MD5(k, user)
+	b, err := crypto.HMACMD5(k, user)
 	if err != nil {
 		return nil, fmt.Errorf("v2: ntowf: derive key: %w", err)
 	}
@@ -313,7 +313,7 @@ func (v2 *V2) ChallengeResponse(ctx context.Context, cred Credential, c *Challen
 		respNT.NTLMv2ClientChallenge.Timestamp = value.Timestamp
 	} else {
 		respNT.NTLMv2ClientChallenge.Timestamp = TimeToFiletime(time.Now())
-		if respLM.Response, err = crypto.HMAC_MD5(resp.KeyLM, c.ServerChallenge, nonce); err != nil {
+		if respLM.Response, err = crypto.HMACMD5(resp.KeyLM, c.ServerChallenge, nonce); err != nil {
 			return nil, fmt.Errorf("v2: compute response lm: %v", err)
 		}
 		respLM.ChallengeFromClient = nonce
@@ -325,11 +325,11 @@ func (v2 *V2) ChallengeResponse(ctx context.Context, cred Credential, c *Challen
 		return nil, fmt.Errorf("v2: marshal response nt: %v", err)
 	}
 
-	if respNT.Response, err = crypto.HMAC_MD5(resp.KeyNT, c.ServerChallenge, resp.Tmp); err != nil {
+	if respNT.Response, err = crypto.HMACMD5(resp.KeyNT, c.ServerChallenge, resp.Tmp); err != nil {
 		return nil, fmt.Errorf("v2: compute response nt: %v", err)
 	}
 
-	if resp.SessionBaseKey, err = crypto.HMAC_MD5(resp.KeyNT, respNT.Response); err != nil {
+	if resp.SessionBaseKey, err = crypto.HMACMD5(resp.KeyNT, respNT.Response); err != nil {
 		return nil, fmt.Errorf("v2: compute session base key: %v", err)
 	}
 

@@ -1,18 +1,12 @@
 package crypto
 
 import (
-	"bytes"
 	"context"
-	"crypto/hmac"
-	"crypto/md5"
 	"crypto/rand"
-	"crypto/rc4"
-	"encoding/asn1"
-	"encoding/binary"
 	"fmt"
-	"hash"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
+	"github.com/oiweiwei/go-msrpc/ssp/krb5/crypto/rfc4757"
 )
 
 type RC4HMAC struct {
@@ -33,42 +27,40 @@ func (c *RC4HMAC) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]
 
 func (c *RC4HMAC) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
 
-	hdr := c.WrapHeader(ctx, seqNum)
+	key := c.setting.Key.KeyValue
 
-	_, err := rand.Read(hdr[24:32])
+	tok := rfc4757.NewWrapToken()
+	tok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
+	tok.SetEncryption(len(forSeal) > 0)
+
+	_, err := rand.Read(tok.Confounder)
 	if err != nil {
 		return nil, err
 	}
 
-	// Ksign = HMAC(Kss, "signaturekey");
-	// Sgn_Cksum = MD5((int32)13, Token.Header, data);
-	// Sgn_Cksum = HMAC(Ksign, Sgn_Cksum);
-	cksum := c.hmac(c.hmac(c.setting.Key.KeyValue, []byte("signaturekey\x00")),
-		c.md5(int32(13), hdr[:8], hdr[24:32], forSign))
+	sgnCksum, err := rfc4757.ComputeWrapChecksum(key, tok.Header(), tok.Confounder, forSign)
+	if err != nil {
+		return nil, err
+	}
 	// memcpy(Token.SGN_CKSUM, Sgn_Cksum, 8);
-	copy(hdr[16:24], cksum[:8])
+	copy(tok.Checksum, sgnCksum[:8])
 
-	// for (i = 0; i < 16; i++) Klocal[i] = Kss[i] ^ 0xF0;
-	klocal := make([]byte, 16)
-	for i := range klocal {
-		klocal[i] = c.setting.Key.KeyValue[i] ^ 0xF0
+	if tok.UseEncryption() {
+		cipher, err := rfc4757.NewCipher(key, tok.SequenceNumber[:4])
+		if err != nil {
+			return nil, err
+		}
+		cipher.XORKeyStream(tok.Confounder, tok.Confounder)
+		for i := range forSeal {
+			cipher.XORKeyStream(forSeal[i], forSeal[i])
+		}
 	}
 
-	// Kcrypt = HMAC(Klocal, (int32)0);
-	// Kcrypt = HMAC(Kcrypt, (int32)seq);
-	// RC4(Kcrypt, Token.Confounder);
-	cipher, _ := rc4.NewCipher(c.hmac(c.hmac(klocal, int32(0)), hdr[8:12]))
-	cipher.XORKeyStream(hdr[24:32], hdr[24:32])
-	for i := range forSeal {
-		cipher.XORKeyStream(forSeal[i], forSeal[i])
+	if err := rfc4757.XORSequenceNumber(key, tok.Checksum, tok.SequenceNumber); err != nil {
+		return nil, err
 	}
 
-	// Kseq = HMAC(Kss, (int32)0);
-	// Kseq = HMAC(Kseq, Token.SGN_CKSUM);
-	// RC4(Kseq, Token.SND_SEQ);
-	c.rc4(c.hmac(c.hmac(c.setting.Key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
-
-	return EncodeASN1Value(hdr, KRB5OID, true /* always use dce-style */, forSign)
+	return EncodeASN1Value(tok.Marshal(), KRB5OID, true /* always use dce-style */, forSign)
 }
 
 func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
@@ -79,9 +71,12 @@ func (c *RC4HMAC) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal []
 	return ok, nil
 }
 
-var errDataTruncated = asn1.SyntaxError{Msg: "data truncated"}
-
 func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
+
+	key := c.setting.Key.KeyValue
+
+	expTok := rfc4757.NewWrapToken()
+	expTok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
 
 	// trim asn1 header.
 	sgn, _, err := ParseASN1Value(sgn, forSign)
@@ -89,43 +84,40 @@ func (c *RC4HMAC) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal []
 		return false, gssapi.ErrDefectiveToken
 	}
 
-	exp := c.WrapHeader(ctx, seqNum)
+	tok := rfc4757.NewWrapToken()
+	if err := tok.Unmarshal(sgn); err != nil {
+		return false, gssapi.ErrDefectiveToken
+	}
 
 	// copy confounder from received signature.
-	copy(exp[24:32], sgn[24:32])
+	copy(expTok.Confounder, tok.Confounder)
 
-	// for (i = 0; i < 16; i++) Klocal[i] = Kss[i] ^ 0xF0;
-	klocal := make([]byte, 16)
-	for i := range klocal {
-		klocal[i] = c.setting.Key.KeyValue[i] ^ 0xF0
+	if expTok.SetEncryption(tok.UseEncryption()); tok.UseEncryption() {
+		cipher, err := rfc4757.NewCipher(key, expTok.SequenceNumber[:4])
+		if err != nil {
+			return false, err
+		}
+		cipher.XORKeyStream(expTok.Confounder, expTok.Confounder)
+		for i := range forSeal {
+			cipher.XORKeyStream(forSeal[i], forSeal[i])
+		}
 	}
 
-	// Kcrypt = HMAC(Klocal, (int32)0);
-	// Kcrypt = HMAC(Kcrypt, (int32)seq);
-	// RC4(Kcrypt, Token.Confounder);
-	cipher, _ := rc4.NewCipher(c.hmac(c.hmac(klocal, int32(0)), exp[8:12]))
-	cipher.XORKeyStream(exp[24:32], exp[24:32])
-	for i := range forSeal {
-		cipher.XORKeyStream(forSeal[i], forSeal[i])
+	sgnCksum, err := rfc4757.ComputeWrapChecksum(key, expTok.Header(), expTok.Confounder, forSign)
+	if err != nil {
+		return false, err
 	}
-
-	// Ksign = HMAC(Kss, "signaturekey");
-	// Sgn_Cksum = MD5((int32)13, Token.Header, data);
-	// Sgn_Cksum = HMAC(Ksign, Sgn_Cksum);
-	cksum := c.hmac(c.hmac(c.setting.Key.KeyValue, []byte("signaturekey\x00")),
-		c.md5(int32(13), exp[:8], exp[24:32], forSign))
 	// memcpy(Token.SGN_CKSUM, Sgn_Cksum, 8);
-	copy(exp[16:24], cksum[:8])
+	copy(expTok.Checksum, sgnCksum[:8])
 
-	// Kseq = HMAC(Kss, (int32)0);
-	// Kseq = HMAC(Kseq, Token.SGN_CKSUM);
-	// RC4(Kseq, Token.SND_SEQ);
-	c.rc4(c.hmac(c.hmac(c.setting.Key.KeyValue, int32(0)), cksum[:8]), exp[8:16])
+	if err := rfc4757.XORSequenceNumber(key, expTok.Checksum, expTok.SequenceNumber); err != nil {
+		return false, err
+	}
 
 	// set decrypted confounder back.
-	copy(sgn[24:32], exp[24:32])
+	copy(tok.Confounder, expTok.Confounder)
 
-	return bytes.Equal(exp, sgn), nil
+	return tok.Equals(expTok), nil
 }
 
 func (c *RC4HMAC) Size(ctx context.Context, conf bool) int {
@@ -146,105 +138,21 @@ func (c *RC4HMAC) MakeSignature(ctx context.Context, seqNum uint64, forSign [][]
 
 func (c *RC4HMAC) makeSignature(ctx context.Context, seqNum uint64, forSign [][]byte) ([]byte, error) {
 
-	hdr := c.MICHeader(ctx, seqNum)
+	key := c.setting.Key.KeyValue
 
-	// Ksign = HMAC(Kss, "signaturekey");
-	// Sgn_Cksum = MD5((int32)15, Token.Header, data);
-	// Sgn_Cksum = HMAC(Ksign, Sgn_Cksum);
-	cksum := c.hmac(c.hmac(c.setting.Key.KeyValue, []byte("signaturekey\x00")),
-		c.md5(int32(15), hdr[:8], forSign))
+	tok := rfc4757.NewMICToken()
+	tok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
+
+	sgnCksum, err := rfc4757.ComputeMICChecksum(key, tok.Header(), forSign)
+	if err != nil {
+		return nil, err
+	}
 	// memcpy(Token.SGN_CKSUM, Sgn_Cksum, 8);
-	copy(hdr[16:24], cksum[:8])
-	// Kseq = HMAC(Kss, (int32)0);
-	// Kseq = HMAC(Kseq, Token.SGN_CKSUM);
-	// RC4(Kseq, Token.SND_SEQ);
-	c.rc4(c.hmac(c.hmac(c.setting.Key.KeyValue, int32(0)), cksum[:8]), hdr[8:16])
+	copy(tok.Checksum, sgnCksum[:8])
 
-	return EncodeASN1Value(hdr, KRB5OID, true /* always use dce-style */, forSign)
-}
-
-func (c *RC4HMAC) hmac(k []byte, data ...interface{}) []byte {
-	return c.digest(hmac.New(md5.New, k), data...)
-}
-
-func (c *RC4HMAC) md5(data ...interface{}) []byte {
-	return c.digest(md5.New(), data...)
-}
-
-func (c *RC4HMAC) rc4(key []byte, data []byte) {
-	cipher, _ := rc4.NewCipher(key)
-	cipher.XORKeyStream(data, data)
-}
-
-func (c *RC4HMAC) digest(h hash.Hash, data ...interface{}) []byte {
-	for _, d := range data {
-		switch d := d.(type) {
-		case []byte:
-			h.Write(d)
-		case [][]byte:
-			for i := range d {
-				h.Write(d[i])
-			}
-		default:
-			binary.Write(h, binary.LittleEndian, d)
-		}
-	}
-	return h.Sum(nil)
-}
-
-func (c *RC4HMAC) MICHeader(ctx context.Context, seqNum uint64) []byte {
-
-	hdr := make([]byte, 24)
-
-	// token_type 0x01 0x01
-	hdr[0] = 0x01
-	hdr[1] = 0x01
-	// HMAC
-	hdr[2] = 0x11
-	hdr[3] = 0x00
-	// filler.
-	hdr[4] = 0xff
-	hdr[5] = 0xff
-	hdr[6] = 0xff
-	hdr[7] = 0xff
-	// seq_number.
-	binary.BigEndian.PutUint32(hdr[8:12], uint32(seqNum))
-	// filler.
-	if !c.setting.IsLocal {
-		hdr[12] = 0xff
-		hdr[13] = 0xff
-		hdr[14] = 0xff
-		hdr[15] = 0xff
-	}
-	return hdr
-
-}
-
-func (c *RC4HMAC) WrapHeader(ctx context.Context, seqNum uint64) []byte {
-
-	hdr := make([]byte, 32)
-
-	// token_id.
-	hdr[0] = 0x02
-	hdr[1] = 0x01
-	// sgn_alg.
-	hdr[2] = 0x11 // hmac
-	hdr[3] = 0x00
-	// seal_alg.
-	hdr[4] = 0x10
-	hdr[5] = 0x00
-	// filler.
-	hdr[6] = 0xff
-	hdr[7] = 0xff
-	// seq_number.
-	binary.BigEndian.PutUint32(hdr[8:12], uint32(seqNum))
-	// filler.
-	if !c.setting.IsLocal {
-		hdr[12] = 0xff
-		hdr[13] = 0xff
-		hdr[14] = 0xff
-		hdr[15] = 0xff
+	if err := rfc4757.XORSequenceNumber(key, tok.Checksum, tok.SequenceNumber); err != nil {
+		return nil, err
 	}
 
-	return hdr
+	return EncodeASN1Value(tok.Marshal(), KRB5OID, true /* always use dce-style */, forSign)
 }

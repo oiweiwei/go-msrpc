@@ -4,6 +4,8 @@ import (
 	"encoding/binary"
 	"errors"
 	"fmt"
+	"hash"
+	"io"
 	"math/bits"
 
 	"crypto/aes"
@@ -12,6 +14,7 @@ import (
 	"crypto/hmac"
 	"crypto/md5"
 	"crypto/rand"
+	"crypto/rc4"
 	"crypto/sha256"
 	"hash/crc32"
 
@@ -179,40 +182,60 @@ func DESL(k []byte, d []byte) []byte {
 
 }
 
-func MD4(ms ...[]byte) ([]byte, error) {
-	h := md4.New()
-	for _, m := range ms {
-		if _, err := h.Write(m); err != nil {
-			return nil, err
-		}
-	}
-	return h.Sum(nil), nil
+func MD4(ms ...any) ([]byte, error) {
+	return MakeHash(md4.New(), ms...)
 }
 
-func HMAC_SHA256(k []byte, ms ...[]byte) []byte {
-	h := hmac.New(sha256.New, k)
-	for _, m := range ms {
-		h.Write(m)
-	}
-	return h.Sum(nil)
+func HMACSHA256(k []byte, ms ...any) ([]byte, error) {
+	return HMAC(k, sha256.New, ms...)
 }
 
-func MD5(ms ...[]byte) ([]byte, error) {
-	h := md5.New()
-	for _, m := range ms {
-		if _, err := h.Write(m); err != nil {
-			return nil, err
-		}
-	}
-	return h.Sum(nil), nil
+func MD5(ms ...any) ([]byte, error) {
+	return MakeHash(md5.New(), ms...)
 }
 
-func HMAC_MD5(k []byte, ms ...[]byte) ([]byte, error) {
-	h := hmac.New(md5.New, k)
+func HMACMD5(k []byte, ms ...any) ([]byte, error) {
+	return HMAC(k, md5.New, ms...)
+}
+
+func HMAC(k []byte, h func() hash.Hash, ms ...any) ([]byte, error) {
+	return MakeHash(hmac.New(h, k), ms...)
+}
+
+func RC4K(k []byte, m []byte) error {
+	cipher, err := rc4.NewCipher(k)
+	if err != nil {
+		return err
+	}
+	cipher.XORKeyStream(m, m)
+	return nil
+}
+
+func WriteHash(h io.Writer, ms ...any) error {
 	for _, m := range ms {
-		if _, err := h.Write(m); err != nil {
-			return nil, err
+		switch m := m.(type) {
+		case [][]byte:
+			for _, b := range m {
+				if _, err := h.Write(b); err != nil {
+					return err
+				}
+			}
+		case []byte:
+			if _, err := h.Write(m); err != nil {
+				return err
+			}
+		default:
+			if err := binary.Write(h, binary.LittleEndian, m); err != nil {
+				return err
+			}
 		}
+	}
+	return nil
+}
+
+func MakeHash(h hash.Hash, ms ...any) ([]byte, error) {
+	if err := WriteHash(h, ms...); err != nil {
+		return nil, err
 	}
 	return h.Sum(nil), nil
 }

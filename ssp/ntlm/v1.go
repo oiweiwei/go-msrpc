@@ -189,7 +189,7 @@ func (v1 *V1) KeyExchangeKey(ctx context.Context, c *ChallengeMessage, chal *Cha
 	}
 
 	if c.Negotiate.IsSet(NegotiateExtendedSessionSecurity) {
-		return crypto.HMAC_MD5(chal.SessionBaseKey, c.ServerChallenge, chal.LM[:8])
+		return crypto.HMACMD5(chal.SessionBaseKey, c.ServerChallenge, chal.LM[:8])
 	}
 
 	if len(chal.KeyLM) < 8 {

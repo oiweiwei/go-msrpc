@@ -52,7 +52,11 @@ func ComputeSessionKey(ctx context.Context, caps Cap, cred Credential, client, s
 	}
 
 	if caps.IsSet(CapAES_SHA2) {
-		return crypto.HMAC_SHA256(pwd, client, server)[:16], nil
+		k, err := crypto.HMACSHA256(pwd, client, server)
+		if err != nil {
+			return nil, fmt.Errorf("compute_session_key: aes_sha2: %v", err)
+		}
+		return k[:16], nil
 	}
 
 	if caps.IsSet(CapStrongKey) {
@@ -60,7 +64,7 @@ func ComputeSessionKey(ctx context.Context, caps Cap, cred Credential, client, s
 		if err != nil {
 			return nil, fmt.Errorf("compute_session_key: strong_key: %v", err)
 		}
-		k, err := crypto.HMAC_MD5(pwd, tmp)
+		k, err := crypto.HMACMD5(pwd, tmp)
 		if err != nil {
 			return nil, fmt.Errorf("compute_session_key: strong_key: %v", err)
 		}

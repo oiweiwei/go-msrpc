@@ -1,16 +1,12 @@
 package crypto
 
 import (
-	"bytes"
 	"context"
-	"crypto/md5"
 	"crypto/rand"
-	"encoding/binary"
 	"fmt"
 
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/etype"
-	"github.com/oiweiwei/gokrb5.fork/v9/crypto/rfc3961"
+	"github.com/oiweiwei/go-msrpc/ssp/krb5/crypto/rfc1964"
 )
 
 type DES struct {
@@ -31,52 +27,39 @@ func (c *DES) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte
 
 func (c *DES) wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte) ([]byte, error) {
 
-	hdr := c.WrapHeader(ctx, seqNum)
+	key := c.setting.Key
 
-	_, err := rand.Read(hdr[24:32])
+	tok := rfc1964.NewWrapToken()
+	tok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
+	tok.SetEncryption(len(forSeal) > 0)
+
+	_, err := rand.Read(tok.Confounder)
 	if err != nil {
 		return nil, err
 	}
 
-	cksum, err := DESMACMD5(ctx, c.setting.Key.KeyValue, c.setting.Type, hdr[:8], hdr[24:32], forSign)
+	cksum, err := rfc1964.DESMACMD5(key, tok.Header(), tok.Confounder, forSign)
 	if err != nil {
 		return nil, err
 	}
-	copy(hdr[16:24], cksum)
+	copy(tok.Checksum, cksum)
 
-	_, seq, err := rfc3961.DESEncryptData(c.setting.Key.KeyValue, hdr[8:16], cksum, c.setting.Type)
-	if err != nil {
-		return nil, err
-	}
-	copy(hdr[8:16], seq)
-
-	eB := bytes.NewBuffer(nil)
-	eB.Write(hdr[24:32])
-	for _, b := range forSeal {
-		eB.Write(b)
-	}
-
-	key := make([]byte, len(c.setting.Key.KeyValue))
-	for i := range key {
-		key[i] = c.setting.Key.KeyValue[i] ^ 0xF0
-	}
-
-	_, b, err := c.setting.Type.EncryptData(key, eB.Bytes())
-	if err != nil {
+	if err := rfc1964.EncryptSequenceNumber(key, cksum, tok.SequenceNumber); err != nil {
 		return nil, err
 	}
 
-	b = b[copy(hdr[24:32], b):]
-
-	for i := range forSeal {
-		b = b[copy(forSeal[i], b):]
+	if tok.UseEncryption() {
+		cipher := rfc1964.NewCipher(key)
+		cipher.AddBuffer(tok.Confounder)
+		for _, b := range forSeal {
+			cipher.AddBuffer(b)
+		}
+		if err := cipher.Encrypt(); err != nil {
+			return nil, err
+		}
 	}
 
-	if len(b) > 0 {
-		return nil, fmt.Errorf("unexpected data left after encryption")
-	}
-
-	return EncodeASN1Value(hdr, KRB5OID, true /* always use dce-style */, forSign)
+	return EncodeASN1Value(tok.Marshal(), KRB5OID, true /* always use dce-style */, forSign)
 }
 
 func (c *DES) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
@@ -89,98 +72,70 @@ func (c *DES) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]by
 
 func (c *DES) unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]byte, sgn []byte) (bool, error) {
 
+	key := c.setting.Key
+
+	expTok := rfc1964.NewWrapToken()
+	expTok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
+
 	// trim asn1 header.
 	sgn, _, err := ParseASN1Value(sgn, forSign)
 	if err != nil {
 		return false, gssapi.ErrDefectiveToken
 	}
 
-	hdr := c.WrapHeader(ctx, seqNum)
-
-	eB := bytes.NewBuffer(nil)
-	eB.Write(sgn[24:32])
-	for _, b := range forSeal {
-		eB.Write(b)
+	tok := rfc1964.NewWrapToken()
+	if err := tok.Unmarshal(sgn); err != nil {
+		return false, gssapi.ErrDefectiveToken
 	}
 
-	key := make([]byte, len(c.setting.Key.KeyValue))
-	for i := range key {
-		key[i] = c.setting.Key.KeyValue[i] ^ 0xF0
-	}
+	expTok.SetEncryption(tok.UseEncryption())
 
-	b, err := c.setting.Type.DecryptData(key, eB.Bytes())
-	if err != nil {
-		return false, err
-	}
-
-	b = b[copy(hdr[24:32], b):]
-
-	for i := range forSeal {
-		if len(b) < len(forSeal[i]) {
-			return false, fmt.Errorf("unexpected data left after decryption")
+	if tok.UseEncryption() {
+		cipher := rfc1964.NewCipher(key)
+		cipher.AddBuffer(tok.Confounder)
+		for _, b := range forSeal {
+			cipher.AddBuffer(b)
 		}
-		b = b[copy(forSeal[i], b):]
-	}
-
-	if len(b) > 0 {
-		return false, fmt.Errorf("unexpected data left after decryption")
+		if err := cipher.Decrypt(); err != nil {
+			return false, err
+		}
 	}
 
 	// fix confounder.
-	copy(sgn[24:32], hdr[24:32])
+	copy(expTok.Confounder, tok.Confounder)
 
 	// compute checksum.
-	cksum, err := DESMACMD5(ctx, c.setting.Key.KeyValue, c.setting.Type, hdr[:8], hdr[24:32], forSign)
+	cksum, err := rfc1964.DESMACMD5(key, tok.Header(), tok.Confounder, forSign)
 	if err != nil {
 		return false, err
 	}
-	copy(hdr[16:24], cksum)
+	copy(expTok.Checksum, cksum)
 
-	// decrypt sequence number.
-	seq, err := rfc3961.DESDecryptData(c.setting.Key.KeyValue, sgn[8:16], cksum, c.setting.Type)
-	if err != nil {
+	if err := rfc1964.DecryptSequenceNumber(key, cksum, tok.SequenceNumber); err != nil {
 		return false, err
 	}
-	copy(sgn[8:16], seq)
 
-	return bytes.Equal(sgn, hdr), nil
-}
-
-func DESMACMD5(ctx context.Context, key []byte, eType etype.EType, hdr, confounder []byte, data [][]byte) ([]byte, error) {
-
-	iH := md5.New()
-
-	iH.Write(hdr)
-	iH.Write(confounder)
-	for _, b := range data {
-		iH.Write(b)
-	}
-
-	cksum, _, err := eType.EncryptData(key, iH.Sum(nil))
-	if err != nil {
-		return nil, err
-	}
-
-	return cksum, nil
+	return expTok.Equals(tok), nil
 }
 
 func (c *DES) MakeSignature(ctx context.Context, seqNum uint64, forSign [][]byte) ([]byte, error) {
 
-	hdr := c.MICHeader(ctx, seqNum)
+	key := c.setting.Key
 
-	cksum, err := DESMACMD5(ctx, c.setting.Key.KeyValue, c.setting.Type, hdr[:8], nil, forSign)
+	tok := rfc1964.NewMICToken()
+	tok.SetSequenceNumber(uint32(seqNum), c.setting.IsLocal)
+
+	cksum, err := rfc1964.DESMACMD5(key, tok.Header(), forSign)
 	if err != nil {
 		return nil, err
 	}
-	copy(hdr[16:24], cksum)
+	copy(tok.Checksum, cksum)
 
-	_, seq, err := rfc3961.DESEncryptData(c.setting.Key.KeyValue, hdr[8:16], cksum, c.setting.Type)
-	if err != nil {
+	if err := rfc1964.EncryptSequenceNumber(key, cksum, tok.SequenceNumber); err != nil {
 		return nil, err
 	}
-	copy(hdr[8:16], seq)
 
-	return EncodeASN1Value(hdr, KRB5OID, true /* always use dce-style */, forSign)
+	return EncodeASN1Value(tok.Marshal(), KRB5OID, true /* always use dce-style */, forSign)
 }
 
 func (c *DES) Size(ctx context.Context, conf bool) int {
@@ -189,61 +144,4 @@ func (c *DES) Size(ctx context.Context, conf bool) int {
 		sz += 8 /* confounder[8] */
 	}
 	return sz
-}
-
-func (c *DES) WrapHeader(ctx context.Context, seqNum uint64) []byte {
-
-	hdr := make([]byte, 32)
-
-	// token_id.
-	hdr[0] = 0x02
-	hdr[1] = 0x01
-	// sgn_alg.
-	hdr[2] = 0x00 // des mac md5
-	hdr[3] = 0x00
-	// seal_alg.
-	hdr[4] = 0x00 // des
-	hdr[5] = 0x00
-	// filler.
-	hdr[6] = 0xff
-	hdr[7] = 0xff
-	// seq_number.
-	binary.LittleEndian.PutUint32(hdr[8:12], uint32(seqNum))
-	// filler.
-	if !c.setting.IsLocal {
-		hdr[12] = 0xff
-		hdr[13] = 0xff
-		hdr[14] = 0xff
-		hdr[15] = 0xff
-	}
-
-	return hdr
-}
-
-func (c *DES) MICHeader(ctx context.Context, seqNum uint64) []byte {
-
-	hdr := make([]byte, 24)
-
-	// token_id.
-	hdr[0] = 0x01
-	hdr[1] = 0x01
-	// sgn_alg.
-	hdr[2] = 0x00 // des mac md5
-	hdr[3] = 0x00
-	// filler.
-	hdr[4] = 0xff
-	hdr[5] = 0xff
-	hdr[6] = 0xff
-	hdr[7] = 0xff
-	// seq_number.
-	binary.LittleEndian.PutUint32(hdr[8:12], uint32(seqNum))
-	// filler.
-	if !c.setting.IsLocal {
-		hdr[12] = 0xff
-		hdr[13] = 0xff
-		hdr[14] = 0xff
-		hdr[15] = 0xff
-	}
-
-	return hdr
 }
