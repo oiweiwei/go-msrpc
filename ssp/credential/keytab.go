@@ -1,6 +1,8 @@
 package credential
 
 import (
+	"fmt"
+
 	"github.com/oiweiwei/gokrb5.fork/v9/keytab"
 	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
@@ -50,11 +52,23 @@ func NewFromKeytabFile(un string, keytabFile string, opts ...Option) Keytab {
 	if err != nil {
 		return &keytabCred{keytabErr: err}
 	}
-	return NewFromKeytab(un, keytab)
+	return NewFromKeytabV9(un, keytab)
+}
+
+func NewFromKeytab(un string, ktab any, opts ...Option) Keytab {
+	switch ktab := ktab.(type) {
+	case *keytab.Keytab:
+		return NewFromKeytabV9(un, ktab, opts...)
+	case *v8_keytab.Keytab:
+		return NewFromKeytabV8(un, ktab, opts...)
+	}
+	return &keytabCred{
+		keytabErr: fmt.Errorf("invalid type %T for keytab", ktab),
+	}
 }
 
 // NewFromKeytab function creates a new Keytab credential from a keytab.
-func NewFromKeytab(un string, keytab *keytab.Keytab, opts ...Option) Keytab {
+func NewFromKeytabV9(un string, keytab *keytab.Keytab, opts ...Option) Keytab {
 	return &keytabCred{
 		userCred: parseUser(un, opts...),
 		keytab:   keytab,

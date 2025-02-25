@@ -1,6 +1,8 @@
 package credential
 
 import (
+	"fmt"
+
 	"github.com/oiweiwei/gokrb5.fork/v9/credentials"
 	"github.com/oiweiwei/gokrb5.fork/v9/types"
 
@@ -15,7 +17,8 @@ type CCache interface {
 
 type ccacheCred struct {
 	userCred
-	ccache *credentials.CCache
+	ccache    *credentials.CCache
+	ccacheErr error
 }
 
 func (cred *ccacheCred) CCache() *credentials.CCache {
@@ -30,10 +33,25 @@ func (cred *ccacheCred) IsEmpty() bool {
 }
 
 func (cred *ccacheCred) Validate() error {
+	if cred != nil && cred.ccacheErr != nil {
+		return cred.ccacheErr
+	}
 	return nil
 }
 
-func NewFromCCache(un string, ccache *credentials.CCache, opts ...Option) CCache {
+func NewFromCCache(un string, ccache any, opts ...Option) CCache {
+	switch ccache := ccache.(type) {
+	case *credentials.CCache:
+		return NewFromCCacheV9(un, ccache, opts...)
+	case *v8_credentials.CCache:
+		return NewFromCCacheV8(un, ccache, opts...)
+	}
+	return &ccacheCred{
+		ccacheErr: fmt.Errorf("invalid type %T for ccache", ccache),
+	}
+}
+
+func NewFromCCacheV9(un string, ccache *credentials.CCache, opts ...Option) CCache {
 	return &ccacheCred{
 		userCred: parseUser(un, opts...),
 		ccache:   ccache,
