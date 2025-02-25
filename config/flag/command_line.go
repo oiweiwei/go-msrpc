@@ -28,7 +28,7 @@ func BindFlags(c *config.Config, flagSet *flag.FlagSet) {
 	flagSet.StringVar(&c.Credential.EncryptionKey.KeyValue, "encryption-key-value", c.Credential.EncryptionKey.KeyValue, "encryption key")
 
 	flagSet.StringVar(&c.Auth.Level, "auth-level", c.Auth.Level, "authentication level: none, connect, call, pkt, integrity, privacy")
-	flagSet.StringVar(&c.Auth.Type, "auth-type", c.Auth.Type, "authentication type: ntlm, krb5")
+	flagSet.Var(&c.Auth.Types, "auth-type", "authentication type: ntlm, krb5")
 	flagSet.StringVar(&c.Auth.TargetName, "target-name", c.Auth.TargetName, "target name")
 	flagSet.BoolVar(&c.Auth.SPNEGO, "auth-spnego", c.Auth.SPNEGO, "use spnego")
 	flagSet.StringVar(&c.Auth.Impersonation, "impersonation", c.Auth.Impersonation, "impersonation level: anonymous, identify, impersonate, delegate")
