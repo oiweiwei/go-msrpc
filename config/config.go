@@ -740,6 +740,8 @@ func (cfg *Config) ParseServerAddr() error {
 			case "ntlm":
 				cfg.Auth.Types = append(cfg.Auth.Types, "ntlm")
 			// auth level keywords.
+			case "none", "insecure":
+				cfg.Auth.Level = "none"
 			case "connect":
 				cfg.Auth.Level = "connect"
 			case "call":
@@ -771,6 +773,9 @@ func (cfg *Config) ParseServerAddr() error {
 				cfg.SMB.Sign = true
 			case "smb2_seal":
 				cfg.SMB.Seal = true
+			case "*", "?", "\\", "\\\\", "": // ignore.
+			default:
+				return fmt.Errorf("invalid binding extra: %s", extra)
 			}
 		}
 	}
