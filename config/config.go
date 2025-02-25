@@ -84,7 +84,7 @@ type Config struct {
 		// The impersonation level to use (anonymous, identify, impersonate, delegate). (default is impersonate)
 		Impersonation string `json:"impersonation"`
 		// The auth type to use. (ntlm, krb5)
-		Type string `json:"type"`
+		Types StringSlice `json:"type"`
 		// The target name to use.
 		TargetName string `json:"target_name"`
 		// The flag that indicates whether the SPNEGO should be used.
@@ -188,7 +188,7 @@ func New() *Config {
 
 	cfg.Timeout = 30 * time.Second
 
-	cfg.Auth.Type = "ntlm"
+	cfg.Auth.Types = []string{"ntlm"}
 	cfg.Auth.Level = "connect"
 	cfg.Auth.Impersonation = "impersonate"
 	cfg.Auth.SPNEGO = true
@@ -296,11 +296,13 @@ func (cfg *Config) Mechanisms() []gssapi.MechanismFactory {
 		mechanisms = append(mechanisms, ssp.SPNEGO)
 	}
 
-	switch cfg.Auth.Type {
-	case "ntlm":
-		mechanisms = append(mechanisms, gssapi.WithDefaultConfig(ssp.NTLM, cfg.NTLM()))
-	case "krb5":
-		mechanisms = append(mechanisms, gssapi.WithDefaultConfig(ssp.KRB5, cfg.KRB5()))
+	for _, typ := range cfg.Auth.Types {
+		switch typ {
+		case "ntlm":
+			mechanisms = append(mechanisms, gssapi.WithDefaultConfig(ssp.NTLM, cfg.NTLM()))
+		case "krb5":
+			mechanisms = append(mechanisms, gssapi.WithDefaultConfig(ssp.KRB5, cfg.KRB5()))
+		}
 	}
 
 	return mechanisms
@@ -395,11 +397,13 @@ func (cfg *Config) ClientOptions(ctx context.Context) []dcerpc.Option {
 			options = append(options, dcerpc.WithMechanism(ssp.SPNEGO))
 		}
 
-		switch cfg.Auth.Type {
-		case "ntlm":
-			options = append(options, dcerpc.WithMechanism(ssp.NTLM, cfg.NTLM()))
-		case "krb5":
-			options = append(options, dcerpc.WithMechanism(ssp.KRB5, cfg.KRB5()))
+		for _, typ := range cfg.Auth.Types {
+			switch typ {
+			case "ntlm":
+				options = append(options, dcerpc.WithMechanism(ssp.NTLM, cfg.NTLM()))
+			case "krb5":
+				options = append(options, dcerpc.WithMechanism(ssp.KRB5, cfg.KRB5()))
+			}
 		}
 
 		if cfg.useNetlogonSSP {
@@ -555,11 +559,13 @@ func (cfg *Config) SMBDialerOptions() []smb2.DialerOption {
 			gssOptions = append(gssOptions, gssapi.WithMechanismFactory(ssp.SPNEGO))
 		}
 
-		switch cfg.Auth.Type {
-		case "ntlm":
-			gssOptions = append(gssOptions, gssapi.WithMechanismFactory(ssp.NTLM, cfg.NTLM()))
-		case "krb5":
-			gssOptions = append(gssOptions, gssapi.WithMechanismFactory(ssp.KRB5, cfg.KRB5()))
+		for _, typ := range cfg.Auth.Types {
+			switch typ {
+			case "ntlm":
+				gssOptions = append(gssOptions, gssapi.WithMechanismFactory(ssp.NTLM, cfg.NTLM()))
+			case "krb5":
+				gssOptions = append(gssOptions, gssapi.WithMechanismFactory(ssp.KRB5, cfg.KRB5()))
+			}
 		}
 
 	}
@@ -716,6 +722,7 @@ func (cfg *Config) ParseServerAddr() error {
 		if extras["krb5"] || extras["ntlm"] {
 			// clear the auth type.
 			cfg.Auth.SPNEGO = false
+			cfg.Auth.Types = []string{}
 		}
 
 		for _, extra := range binding.Extra {
@@ -729,9 +736,9 @@ func (cfg *Config) ParseServerAddr() error {
 			case "spnego":
 				cfg.Auth.SPNEGO = true
 			case "krb5":
-				cfg.Auth.Type = "krb5"
+				cfg.Auth.Types = append(cfg.Auth.Types, "krb5")
 			case "ntlm":
-				cfg.Auth.Type = "ntlm"
+				cfg.Auth.Types = append(cfg.Auth.Types, "ntlm")
 			// auth level keywords.
 			case "connect":
 				cfg.Auth.Level = "connect"
@@ -782,10 +789,12 @@ func (cfg *Config) Validate() error {
 		cfg.Logger = zerolog.New(os.Stderr).With().Str("source", "config").Logger()
 	}
 
-	switch cfg.Auth.Type {
-	case "ntlm", "krb5":
-	default:
-		return fmt.Errorf("invalid auth type: %s", cfg.Auth.Type)
+	for _, typ := range cfg.Auth.Types {
+		switch typ {
+		case "ntlm", "krb5":
+		default:
+			return fmt.Errorf("invalid auth type: %s", typ)
+		}
 	}
 
 	if err := ValidateTransferEncoding(cfg.TrasnferEncoding); err != nil {
@@ -808,8 +817,10 @@ func (cfg *Config) Validate() error {
 		}
 	}
 
-	if cfg.Auth.Type == "krb5" && cfg.Auth.TargetName != "" && !strings.HasPrefix(cfg.Auth.TargetName, "host/") {
-		cfg.Auth.TargetName = "host" + "/" + cfg.Auth.TargetName
+	for _, typ := range cfg.Auth.Types {
+		if typ == "krb5" && cfg.Auth.TargetName != "" && !strings.HasPrefix(cfg.Auth.TargetName, "host/") {
+			cfg.Auth.TargetName = "host" + "/" + cfg.Auth.TargetName
+		}
 	}
 
 	if cfg.Domain == "" {
@@ -836,13 +847,15 @@ func (cfg *Config) Validate() error {
 		return fmt.Errorf("domain is required")
 	}
 
-	if cfg.Auth.Type == "krb5" {
-		if len(cfg.Auth.KRB5.EncryptionTypes) == 0 {
-			cfg.Auth.KRB5.EncryptionTypes = []string{"aes128-cts-hmac-sha1-96", "aes256-cts-hmac-sha1-96", "arcfour-hmac-md5"}
-		}
-		if cfg.Auth.KRB5.ConfigFile == "" {
-			if _, err := cfg.GenKRB5Config(); err != nil {
-				return err
+	for _, typ := range cfg.Auth.Types {
+		if typ == "krb5" {
+			if len(cfg.Auth.KRB5.EncryptionTypes) == 0 {
+				cfg.Auth.KRB5.EncryptionTypes = []string{"aes128-cts-hmac-sha1-96", "aes256-cts-hmac-sha1-96", "arcfour-hmac-md5"}
+			}
+			if cfg.Auth.KRB5.ConfigFile == "" {
+				if _, err := cfg.GenKRB5Config(); err != nil {
+					return err
+				}
 			}
 		}
 	}
