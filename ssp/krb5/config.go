@@ -20,6 +20,10 @@ import (
 // The generic credential.
 type Credential = credential.Credential
 
+type KRB5Config interface {
+	ResolveRealm(string) string
+}
+
 // The Kerberos Version 5 Configuration.
 type Config struct {
 	// IsServer.
@@ -27,9 +31,7 @@ type Config struct {
 	// The client credential.
 	Credential Credential
 	// The kerberos config file.
-	KRB5Config *config.Config
-	// The kerberos v8 config file.
-	KRB5ConfigV8 *v8_config.Config
+	KRB5Config KRB5Config
 	// The kerberos config file path.
 	KRB5ConfigPath string
 	// The credentials cache file path.
@@ -76,6 +78,26 @@ type Config struct {
 	// AssumePreAuthentication used to configure the client to
 	// assume pre-authentication is required.
 	AssumePreAuthentication bool
+}
+
+func (c *Config) GetKRB5Config() *config.Config {
+
+	switch conf := (any)(c.KRB5Config).(type) {
+	case *config.Config:
+		return conf
+	case *v8_config.Config:
+		realms := make([]config.Realm, len(conf.Realms))
+		for i := range conf.Realms {
+			realms[i] = config.Realm(conf.Realms[i])
+		}
+		return &config.Config{
+			LibDefaults: config.LibDefaults(conf.LibDefaults),
+			Realms:      realms,
+			DomainRealm: (config.DomainRealm)(conf.DomainRealm),
+		}
+	}
+
+	return nil
 }
 
 func (c *Config) FlagIsSet(f gssapi.Cap) bool {
