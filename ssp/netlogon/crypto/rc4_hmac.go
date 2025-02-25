@@ -60,13 +60,13 @@ func (c *RC4MD5) MakeSignature(ctx context.Context, seqNum uint64, forSign [][]b
 	sgn = append(sgn, ckH.Sum(nil)[:8]...)
 
 	// derive first key for sequence number encryption.
-	k1, err := crypto.HMAC_MD5(c.key, make([]byte, 4))
+	k1, err := crypto.HMACMD5(c.key, make([]byte, 4))
 	if err != nil {
 		return nil, err
 	}
 
 	// derivce sequence number encryption key.
-	snK, err := crypto.HMAC_MD5(k1, sgn[16:24])
+	snK, err := crypto.HMACMD5(k1, sgn[16:24])
 	if err != nil {
 		return nil, err
 	}
@@ -90,12 +90,12 @@ func (c *RC4MD5) EncryptionKey(ctx context.Context, seqNum uint64) ([]byte, erro
 		eK0[i] = c.key[i] ^ 0xF0
 	}
 
-	eK1, err := crypto.HMAC_MD5(eK0, make([]byte, 4))
+	eK1, err := crypto.HMACMD5(eK0, make([]byte, 4))
 	if err != nil {
 		return nil, err
 	}
 
-	eK, err := crypto.HMAC_MD5(eK1, MakeSeqNum(ctx, seqNum, c.isClient))
+	eK, err := crypto.HMACMD5(eK1, MakeSeqNum(ctx, seqNum, c.isClient))
 	if err != nil {
 		return nil, err
 	}
@@ -159,13 +159,13 @@ func (c *RC4MD5) Wrap(ctx context.Context, seqNum uint64, forSign, forSeal [][]b
 	}
 
 	// derive first key for sequence number encryption.
-	snK1, err := crypto.HMAC_MD5(c.key, make([]byte, 4))
+	snK1, err := crypto.HMACMD5(c.key, make([]byte, 4))
 	if err != nil {
 		return nil, err
 	}
 
 	// derive sequence number encryption key.
-	snK, err := crypto.HMAC_MD5(snK1, sgn[16:24])
+	snK, err := crypto.HMACMD5(snK1, sgn[16:24])
 	if err != nil {
 		return nil, err
 	}
@@ -227,13 +227,13 @@ func (c *RC4MD5) Unwrap(ctx context.Context, seqNum uint64, forSign, forSeal [][
 	ckH.Write(tmp.Sum(nil))
 
 	// derive first key for sequence number decryption.
-	snK1, err := crypto.HMAC_MD5(c.key, make([]byte, 4))
+	snK1, err := crypto.HMACMD5(c.key, make([]byte, 4))
 	if err != nil {
 		return nil, err
 	}
 
 	// derive sequence number decryption key.
-	snK, err := crypto.HMAC_MD5(snK1, sgn[16:24])
+	snK, err := crypto.HMACMD5(snK1, sgn[16:24])
 	if err != nil {
 		return nil, err
 	}

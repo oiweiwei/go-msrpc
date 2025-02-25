@@ -192,7 +192,7 @@ func (a *Authentifier) Authenticate(ctx context.Context, b []byte) ([]byte, erro
 
 	if resp.RequestMIC {
 		// calculate mic.
-		if am.MIC, err = crypto.HMAC_MD5(exportedKey, a.mic.Bytes()); err != nil {
+		if am.MIC, err = crypto.HMACMD5(exportedKey, a.mic.Bytes()); err != nil {
 			return nil, fmt.Errorf("ntlm: init: authenticate: compute mic: %w", err)
 		}
 		// copy mic value.
