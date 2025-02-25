@@ -102,14 +102,29 @@ The library contains the `ssp` package which has an implementation for the
 various security service providers, like Kerberos, NTLM, Netlogon (Secure Channel),
 SPNEGO.
 
- * GSSAPI interface implementation including Ex-methods defined in Microsoft
+The kerberos implementation is based on the [jcmturner/gokrb5 fork](https://github.com/oiweiwei/gokrb5.fork/tree/master/v9).
+Any changes or feature requests should be addressed there.
+
+ * GSSAPI interface implementation including Wrap/GetMic-Ex-methods defined in Microsoft
    documentation
 
  * Kerberos:
 
-    * Supported Enc Types: RC4-HMAC, AES128-CTS-HMAC-SHA1, AES256-CTS-HMAC-SHA1
+    * Supported Encryption Types:
 
-    * DCE and non-DCE APReq/APRep style
+        * RC4-HMAC
+
+        * DES-CBC-MD5
+
+        * DES-CBC-CRC
+
+        * AES128-CTS-HMAC-SHA1
+
+        * AES256-CTS-HMAC-SHA1
+
+    * DCE Style AP Request and AP Reply
+
+    * Mutual and Non-mutual Authn
 
  * NTLM
 
@@ -117,13 +132,32 @@ SPNEGO.
 
  * Netlogon:
 
-    * Supported Encryption Types: RC4-HMAC, AES-SHA2
+    * Supported Encryption Types:
+
+        * RC4-HMAC
+
+        * AES-SHA2
 
  * SPNEGO:
 
     * Supported Mech List MIC
 
     * Supported NegTokenInit2
+
+### SMB2 Client
+
+The SMB2 client implementation is based on the [hirochachacha/go-smb2 fork](https://github.com/oiweiwei/go-smb2.fork).
+Any changes or feature requests should be addressed there.
+
+The set of changes includes:
+
+  * SMB2 Force-Encryption Support
+
+  * Integration with ssp/gssapi for Kerberos/NTLM authentication.
+
+  * Fix for `NT_STATUS_PENDING` error
+
+  * Keying material export (Application Key, Session Key)
 
 ## Generated Stubs
 
