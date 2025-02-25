@@ -11,7 +11,7 @@ require (
 	github.com/jcmturner/gokrb5/v8 v8.4.4
 	github.com/joho/godotenv v1.5.1
 	github.com/miekg/dns v1.1.58
-	github.com/oiweiwei/go-smb2.fork v0.0.0-20241220141821-a5dd82e09d5f
+	github.com/oiweiwei/go-smb2.fork v1.0.0
 	github.com/oiweiwei/gokrb5.fork/v9 v9.0.2
 	github.com/rs/zerolog v1.32.0
 	github.com/sirupsen/logrus v1.9.3

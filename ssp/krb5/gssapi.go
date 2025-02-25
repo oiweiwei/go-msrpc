@@ -25,16 +25,10 @@ func (c *Config) Copy() gssapi.MechanismConfig {
 
 	cp := *c
 
-	if c.KRB5Config != nil {
+	if conf := c.GetKRB5Config(); conf != nil {
 		// shallow copy.
-		cfg := *c.KRB5Config
+		cfg := *conf
 		cp.KRB5Config = &cfg
-	}
-
-	if c.KRB5ConfigV8 != nil {
-		// shallow copy.
-		cfg := *c.KRB5ConfigV8
-		cp.KRB5ConfigV8 = &cfg
 	}
 
 	cp.Flags = make([]int, len(c.Flags))

@@ -6,7 +6,6 @@ import (
 	"os"
 
 	"github.com/oiweiwei/gokrb5.fork/v9/client"
-	"github.com/oiweiwei/gokrb5.fork/v9/config"
 	"github.com/oiweiwei/gokrb5.fork/v9/credentials"
 	krb_crypto "github.com/oiweiwei/gokrb5.fork/v9/crypto"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
@@ -79,19 +78,7 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 	var cli *client.Client
 	var err error
 
-	if a.Config.KRB5Config == nil && a.Config.KRB5ConfigV8 != nil {
-		realms := make([]config.Realm, len(a.Config.KRB5ConfigV8.Realms))
-		for i := range a.Config.KRB5ConfigV8.Realms {
-			realms[i] = config.Realm(a.Config.KRB5ConfigV8.Realms[i])
-		}
-		a.Config.KRB5Config = &config.Config{
-			LibDefaults: config.LibDefaults(a.Config.KRB5ConfigV8.LibDefaults),
-			Realms:      realms,
-			DomainRealm: (config.DomainRealm)(a.Config.KRB5ConfigV8.DomainRealm),
-		}
-	}
-
-	if a.Config.KRB5Config == nil {
+	if a.Config.GetKRB5Config() == nil {
 		// load kerberos config.
 		if a.Config.KRB5Config, err = LoadKRB5Conf(a.Config.KRB5ConfigPath); err != nil {
 			return nil, gssapi.ContextError(ctx, gssapi.Failure, err)
@@ -108,7 +95,7 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 	creds := credentials.New(a.Config.Credential.UserName(), a.Config.Credential.DomainName())
 	if ok {
 		// ccache is present.
-		cli, err = client.NewFromCCacheOptionalTGT(cc, a.Config.KRB5Config, a.Config.ClientSettings()...)
+		cli, err = client.NewFromCCacheOptionalTGT(cc, a.Config.GetKRB5Config(), a.Config.ClientSettings()...)
 		if err != nil {
 			return nil, fmt.Errorf("client from ccache: %w", err)
 		}
@@ -116,7 +103,7 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 
 	if cli == nil {
 		cli = client.NewWithPassword(creds.UserName(), creds.Realm(), "",
-			a.Config.KRB5Config, a.Config.ClientSettings()...)
+			a.Config.GetKRB5Config(), a.Config.ClientSettings()...)
 	}
 
 	switch cred := a.Config.Credential.(type) {
@@ -137,7 +124,7 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		})
 		setEnctype(cli, int32(cred.KeyType()))
 	case credential.CCache:
-		cli, err = client.NewFromCCacheOptionalTGT(cred.CCache(), a.Config.KRB5Config, a.Config.ClientSettings()...)
+		cli, err = client.NewFromCCacheOptionalTGT(cred.CCache(), a.Config.GetKRB5Config(), a.Config.ClientSettings()...)
 		if err != nil {
 			return nil, fmt.Errorf("client from ccache credential: %w", err)
 		}
