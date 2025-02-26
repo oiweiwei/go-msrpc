@@ -182,6 +182,10 @@ func parseETypes(s []string, w bool) []int32 {
 
 func IsValidCredential(cred any) bool {
 
+	if genericCred, ok := cred.(credential.Credential); ok {
+		cred = credential.V8ToV9(genericCred)
+	}
+
 	if _, ok := cred.(credential.Keytab); ok {
 		return true
 	}

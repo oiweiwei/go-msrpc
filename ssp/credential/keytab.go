@@ -9,6 +9,12 @@ import (
 	v8_keytab "github.com/jcmturner/gokrb5/v8/keytab"
 )
 
+type KeytabV8 interface {
+	Credential
+	// Keytab.
+	Keytab() *v8_keytab.Keytab
+}
+
 // Keytab interface defines the Kerberos 5 Keytab credential.
 type Keytab interface {
 	Credential

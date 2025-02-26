@@ -21,3 +21,11 @@ func (allowEmptyPassword) is_CredentialOption() {}
 func AllowEmptyPassword() Option {
 	return allowEmptyPassword{}
 }
+
+type domainOpt string
+
+func (domainOpt) is_CredentialOption() {}
+
+func Domain(s string) Option {
+	return domainOpt(s)
+}

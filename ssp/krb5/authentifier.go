@@ -49,7 +49,10 @@ type SecurityService struct {
 }
 
 func (a *Authentifier) makeService(ctx context.Context) (*service.Settings, error) {
-	kt, _ := a.Config.Credential.(credential.Keytab)
+	kt, ok := credential.V8ToV9(a.Config.Credential).(credential.Keytab)
+	if !ok {
+		return nil, fmt.Errorf("krb5: make service: invalid credential type: %T", a.Config.Credential)
+	}
 	return service.NewSettings(kt.Keytab(), a.Config.ServiceSettings()...), nil
 }
 
@@ -106,7 +109,7 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 			a.Config.GetKRB5Config(), a.Config.ClientSettings()...)
 	}
 
-	switch cred := a.Config.Credential.(type) {
+	switch cred := credential.V8ToV9(a.Config.Credential).(type) {
 	case credential.Password:
 		cli.Credentials = creds.WithPassword(cred.Password())
 	case credential.Keytab:
