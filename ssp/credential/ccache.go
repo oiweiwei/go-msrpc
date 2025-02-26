@@ -9,6 +9,12 @@ import (
 	v8_credentials "github.com/jcmturner/gokrb5/v8/credentials"
 )
 
+type CCacheV8 interface {
+	Credential
+	// CCache V8.
+	CCache() *v8_credentials.CCache
+}
+
 type CCache interface {
 	Credential
 	// CCache.
