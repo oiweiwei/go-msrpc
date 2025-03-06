@@ -2536,6 +2536,9 @@ func (o *QueryServiceLockStatusW) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	if err := w.WriteData(o.LockDuration); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *QueryServiceLockStatusW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2556,6 +2559,9 @@ func (o *QueryServiceLockStatusW) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if err := w.ReadData(&o.LockDuration); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2903,6 +2909,9 @@ func (o *QueryServiceLockStatusA) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	if err := w.WriteData(o.LockDuration); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *QueryServiceLockStatusA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2923,6 +2932,9 @@ func (o *QueryServiceLockStatusA) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if err := w.ReadData(&o.LockDuration); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3787,6 +3799,9 @@ func (o *ServicePreferredNodeInfo) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.Delete); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(2); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServicePreferredNodeInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3797,6 +3812,9 @@ func (o *ServicePreferredNodeInfo) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if err := w.ReadData(&o.Delete); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(2); err != nil {
 		return err
 	}
 	return nil
@@ -4421,6 +4439,9 @@ func (o *EnumServiceStatusA) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *EnumServiceStatusA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4451,6 +4472,9 @@ func (o *EnumServiceStatusA) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		o.ServiceStatus = &ServiceStatus{}
 	}
 	if err := o.ServiceStatus.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4527,6 +4551,9 @@ func (o *EnumServiceStatusW) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *EnumServiceStatusW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4557,6 +4584,9 @@ func (o *EnumServiceStatusW) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		o.ServiceStatus = &ServiceStatus{}
 	}
 	if err := o.ServiceStatus.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4633,6 +4663,9 @@ func (o *EnumServiceStatusProcessA) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *EnumServiceStatusProcessA) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4663,6 +4696,9 @@ func (o *EnumServiceStatusProcessA) UnmarshalNDR(ctx context.Context, w ndr.Read
 		o.ServiceStatusProcess = &ServiceStatusProcess{}
 	}
 	if err := o.ServiceStatusProcess.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4739,6 +4775,9 @@ func (o *EnumServiceStatusProcessW) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *EnumServiceStatusProcessW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4769,6 +4808,9 @@ func (o *EnumServiceStatusProcessW) UnmarshalNDR(ctx context.Context, w ndr.Read
 		o.ServiceStatusProcess = &ServiceStatusProcess{}
 	}
 	if err := o.ServiceStatusProcess.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -6771,6 +6813,9 @@ func (o *ServiceNotifyStatusChangeParams1) MarshalNDR(ctx context.Context, w ndr
 	if err := w.WriteData(o.Sequence); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServiceNotifyStatusChangeParams1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6807,6 +6852,9 @@ func (o *ServiceNotifyStatusChangeParams1) UnmarshalNDR(ctx context.Context, w n
 		return err
 	}
 	if err := w.ReadData(&o.Sequence); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -6962,6 +7010,9 @@ func (o *ServiceNotifyStatusChangeParams2) MarshalNDR(ctx context.Context, w ndr
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServiceNotifyStatusChangeParams2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7011,6 +7062,9 @@ func (o *ServiceNotifyStatusChangeParams2) UnmarshalNDR(ctx context.Context, w n
 	})
 	_s_pszServiceNames := func(ptr interface{}) { o.ServiceNames = *ptr.(*string) }
 	if err := w.ReadPointer(&o.ServiceNames, _s_pszServiceNames, _ptr_pszServiceNames); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -7108,6 +7162,9 @@ func (o *ServiceNotifyStatusChangeParams) MarshalNDR(ctx context.Context, w ndr.
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServiceNotifyStatusChangeParams) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7157,6 +7214,9 @@ func (o *ServiceNotifyStatusChangeParams) UnmarshalNDR(ctx context.Context, w nd
 	})
 	_s_pszServiceNames := func(ptr interface{}) { o.ServiceNames = *ptr.(*string) }
 	if err := w.ReadPointer(&o.ServiceNames, _s_pszServiceNames, _ptr_pszServiceNames); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -7489,6 +7549,9 @@ func (o *NotifyParamsList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ElementsCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.NotifyParamsArray {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -7526,6 +7589,9 @@ func (o *NotifyParamsList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.ElementsCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling

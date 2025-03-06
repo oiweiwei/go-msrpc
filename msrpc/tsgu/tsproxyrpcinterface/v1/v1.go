@@ -893,6 +893,9 @@ func (o *EndpointInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Port); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *EndpointInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -978,6 +981,9 @@ func (o *EndpointInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.Port); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1433,6 +1439,9 @@ func (o *PacketVersionCaps) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.QuarantineCapabilities); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PacketVersionCaps) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1487,6 +1496,9 @@ func (o *PacketVersionCaps) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if err := w.ReadData(&o.QuarantineCapabilities); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1680,6 +1692,9 @@ func (o *PacketQuarantineRequest) MarshalNDR(ctx context.Context, w ndr.Writer) 
 	if err := w.WriteData(o.DataLength); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PacketQuarantineRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1757,6 +1772,9 @@ func (o *PacketQuarantineRequest) UnmarshalNDR(ctx context.Context, w ndr.Reader
 		return err
 	}
 	if err := w.ReadData(&o.DataLength); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2124,6 +2142,9 @@ func (o *PacketResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PacketResponse) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2174,6 +2195,9 @@ func (o *PacketResponse) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.RedirectionFlags = &RedirectionFlags{}
 	}
 	if err := o.RedirectionFlags.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3452,6 +3476,9 @@ func (o *PacketReauth) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PacketReauth) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3469,6 +3496,9 @@ func (o *PacketReauth) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	_swInitialPacket := uint32(o.PacketID)
 	if err := o.InitialPacket.UnmarshalUnionNDR(ctx, w, _swInitialPacket); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil

@@ -1472,6 +1472,9 @@ func (o *SyncVolume) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SyncVolume) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1515,6 +1518,9 @@ func (o *SyncVolume) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.Machine = &dltw.MachineID{}
 	}
 	if err := o.Machine.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil

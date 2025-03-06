@@ -2921,6 +2921,9 @@ func (o *SessionInfo1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.UserFlags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SessionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2957,6 +2960,9 @@ func (o *SessionInfo1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.UserFlags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3419,6 +3425,9 @@ func (o *SessionInfo10) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.IdleTime); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SessionInfo10) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3449,6 +3458,9 @@ func (o *SessionInfo10) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.IdleTime); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5904,6 +5916,9 @@ func (o *ShareInfo501) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ShareInfo501) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5934,6 +5949,9 @@ func (o *ShareInfo501) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -8132,6 +8150,9 @@ func (o *ServerInfo103) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Capabilities); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServerInfo103) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -8201,6 +8222,9 @@ func (o *ServerInfo103) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.Capabilities); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -8567,6 +8591,9 @@ func (o *ServerInfo503) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MaxFreeConnections); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServerInfo503) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -8704,6 +8731,9 @@ func (o *ServerInfo503) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.MaxFreeConnections); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -9163,6 +9193,9 @@ func (o *ServerInfo599) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MaxWorkItemIdleTime); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServerInfo599) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -9344,6 +9377,9 @@ func (o *ServerInfo599) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.MaxWorkItemIdleTime); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -15911,6 +15947,9 @@ func (o *ServerTransportInfo2) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServerTransportInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -15983,6 +16022,9 @@ func (o *ServerTransportInfo2) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -16280,6 +16322,9 @@ func (o *ServerTransportInfo3) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServerTransportInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -16363,6 +16408,9 @@ func (o *ServerTransportInfo3) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		if err := w.ReadData(&o.Password[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
 	}
 	return nil
 }
@@ -18029,6 +18077,9 @@ func (o *SiteListInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SitesCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Site {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -18066,6 +18117,9 @@ func (o *SiteListInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.SitesCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -18165,6 +18219,9 @@ func (o *ServerAliasInfo0) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServerAliasInfo0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -18197,6 +18254,9 @@ func (o *ServerAliasInfo0) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	// reserved srvai0_reserved
 	var _srvai0_reserved uint32
 	if err := w.ReadData(&_srvai0_reserved); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

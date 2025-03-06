@@ -167,6 +167,11 @@ func (w *ndr20) WriteUnionAlign(sz int) error {
 	return w.err
 }
 
+func (w *ndr20) WriteTrailingGap(sz int) error {
+	// not used.
+	return w.err
+}
+
 // ReadAlign function read the alignment required for the data
 // of size `sz`.
 func (w *ndr20) ReadAlign(sz int) error {
@@ -183,6 +188,11 @@ func (w *ndr20) ReadAlign(sz int) error {
 }
 
 func (w *ndr20) ReadUnionAlign(sz int) error {
+	// not used.
+	return w.err
+}
+
+func (w *ndr20) ReadTrailingGap(sz int) error {
 	// not used.
 	return w.err
 }

@@ -781,7 +781,7 @@ func PrimitiveTypeSize(kind Kind) int {
 	case TypeFloat64, TypeUint64, TypeInt64:
 		ret = 8
 	case TypeInt32_64, TypeUint32_64:
-		return 5
+		return 4
 	}
 
 	return ret

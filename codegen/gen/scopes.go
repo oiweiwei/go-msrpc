@@ -227,6 +227,7 @@ func (i *Scopes) Alignment() int {
 	if a != 5 {
 		return a
 	}
+
 	return a + i.alignment(true)
 }
 

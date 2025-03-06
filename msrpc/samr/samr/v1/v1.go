@@ -1011,6 +1011,9 @@ func (o *KerberosKeyData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.KeyOffset); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1039,6 +1042,9 @@ func (o *KerberosKeyData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	if err := w.ReadData(&o.KeyOffset); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -1552,6 +1558,9 @@ func (o *KerberosKeyDataNew) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.KeyOffset); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1583,6 +1592,9 @@ func (o *KerberosKeyDataNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.KeyOffset); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -3229,6 +3241,9 @@ func (o *UserProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint8(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3344,6 +3359,9 @@ func (o *UserProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved Reserved5
 	var _Reserved5 uint8
 	if err := w.ReadData(&_Reserved5); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5781,6 +5799,9 @@ func (o *DomainGeneralInformation) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.AliasCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DomainGeneralInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5833,6 +5854,9 @@ func (o *DomainGeneralInformation) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if err := w.ReadData(&o.AliasCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5896,6 +5920,9 @@ func (o *DomainGeneralInformation2) MarshalNDR(ctx context.Context, w ndr.Writer
 	if err := w.WriteData(o.LockoutThreshold); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DomainGeneralInformation2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5921,6 +5948,9 @@ func (o *DomainGeneralInformation2) UnmarshalNDR(ctx context.Context, w ndr.Read
 		return err
 	}
 	if err := w.ReadData(&o.LockoutThreshold); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -6117,6 +6147,9 @@ func (o *DomainLockoutInformation) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.LockoutThreshold); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DomainLockoutInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6136,6 +6169,9 @@ func (o *DomainLockoutInformation) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if err := w.ReadData(&o.LockoutThreshold); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -10020,6 +10056,9 @@ func (o *UserAllInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.PrivateDataSensitive); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserAllInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10188,6 +10227,9 @@ func (o *UserAllInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	if err := w.ReadData(&o.PrivateDataSensitive); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -10342,6 +10384,9 @@ func (o *UserPreferencesInformation) MarshalNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteData(o.CodePage); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(7); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserPreferencesInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10366,6 +10411,9 @@ func (o *UserPreferencesInformation) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if err := w.ReadData(&o.CodePage); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(7); err != nil {
 		return err
 	}
 	return nil
@@ -10592,6 +10640,9 @@ func (o *UserLogonInformation) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.UserAccountControl); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserLogonInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10689,6 +10740,9 @@ func (o *UserLogonInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if err := w.ReadData(&o.UserAccountControl); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -10867,6 +10921,9 @@ func (o *UserAccountInformation) MarshalNDR(ctx context.Context, w ndr.Writer) e
 	if err := w.WriteData(o.UserAccountControl); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserAccountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10964,6 +11021,9 @@ func (o *UserAccountInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		return err
 	}
 	if err := w.ReadData(&o.UserAccountControl); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -11564,6 +11624,9 @@ func (o *UserInternal4Information) MarshalNDR(ctx context.Context, w ndr.Writer)
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserInternal4Information) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -11580,6 +11643,9 @@ func (o *UserInternal4Information) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		o.UserPassword = &EncryptedUserPassword{}
 	}
 	if err := o.UserPassword.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -11631,6 +11697,9 @@ func (o *UserInternal4InformationNew) MarshalNDR(ctx context.Context, w ndr.Writ
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UserInternal4InformationNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -11647,6 +11716,9 @@ func (o *UserInternal4InformationNew) UnmarshalNDR(ctx context.Context, w ndr.Re
 		o.UserPassword = &EncryptedUserPasswordNew{}
 	}
 	if err := o.UserPassword.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -13489,6 +13561,9 @@ func (o *SAMValidatePersistedFields) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SAMValidatePersistedFields) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -13552,6 +13627,9 @@ func (o *SAMValidatePersistedFields) UnmarshalNDR(ctx context.Context, w ndr.Rea
 	})
 	_s_PasswordHistory := func(ptr interface{}) { o.PasswordHistory = *ptr.(*[]*SAMValidatePasswordHash) }
 	if err := w.ReadPointer(&o.PasswordHistory, _s_PasswordHistory, _ptr_PasswordHistory); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -13655,6 +13733,9 @@ func (o *SAMValidateStandardOutputArg) MarshalNDR(ctx context.Context, w ndr.Wri
 	if err := w.WriteEnum(uint16(o.ValidationStatus)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SAMValidateStandardOutputArg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -13668,6 +13749,9 @@ func (o *SAMValidateStandardOutputArg) UnmarshalNDR(ctx context.Context, w ndr.R
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.ValidationStatus)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -13712,6 +13796,9 @@ func (o *SAMValidateAuthenticationInputArg) MarshalNDR(ctx context.Context, w nd
 	if err := w.WriteData(o.PasswordMatched); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SAMValidateAuthenticationInputArg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -13725,6 +13812,9 @@ func (o *SAMValidateAuthenticationInputArg) UnmarshalNDR(ctx context.Context, w 
 		return err
 	}
 	if err := w.ReadData(&o.PasswordMatched); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -13811,6 +13901,9 @@ func (o *SAMValidatePasswordChangeInputArg) MarshalNDR(ctx context.Context, w nd
 	if err := w.WriteData(o.PasswordMatch); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SAMValidatePasswordChangeInputArg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -13842,6 +13935,9 @@ func (o *SAMValidatePasswordChangeInputArg) UnmarshalNDR(ctx context.Context, w 
 		return err
 	}
 	if err := w.ReadData(&o.PasswordMatch); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -13926,6 +14022,9 @@ func (o *SAMValidatePasswordResetInputArg) MarshalNDR(ctx context.Context, w ndr
 	if err := w.WriteData(o.ClearLockout); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SAMValidatePasswordResetInputArg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -13960,6 +14059,9 @@ func (o *SAMValidatePasswordResetInputArg) UnmarshalNDR(ctx context.Context, w n
 		return err
 	}
 	if err := w.ReadData(&o.ClearLockout); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil

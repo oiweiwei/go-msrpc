@@ -894,6 +894,9 @@ func (o *RefreshInfoRemote) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RefreshInfoRemote) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -930,6 +933,9 @@ func (o *RefreshInfoRemote) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		o.GUID = &dtyp.GUID{}
 	}
 	if err := o.GUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1316,6 +1322,9 @@ func (o *RefreshInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CancelID); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RefreshInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1333,6 +1342,9 @@ func (o *RefreshInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.CancelID); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1387,6 +1399,9 @@ func (o *RefresherID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RefresherID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1410,6 +1425,9 @@ func (o *RefresherID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.RefresherID = &dtyp.GUID{}
 	}
 	if err := o.RefresherID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

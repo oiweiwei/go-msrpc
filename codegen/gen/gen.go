@@ -288,6 +288,12 @@ func (p *Generator) GenType(ctx context.Context, t *midl.Type) {
 	}
 }
 
+func (p *Generator) GenDoTrailingGapMarshalNDR(ctx context.Context, gap int) {
+	if gap > 1 {
+		p.CheckErr(p.B("w.WriteTrailingGap", gap))
+	}
+}
+
 func (p *Generator) GenDoAlignmentMarshalNDR(ctx context.Context, alignment int) {
 	if alignment > 1 {
 		p.CheckErr(p.B("w.WriteAlign", alignment))
@@ -297,6 +303,12 @@ func (p *Generator) GenDoAlignmentMarshalNDR(ctx context.Context, alignment int)
 func (p *Generator) GenDoUnionAlignemntMarshalNDR(ctx context.Context, alignment int) {
 	if alignment > 1 {
 		p.CheckErr(p.B("w.WriteUnionAlign", alignment))
+	}
+}
+
+func (p *Generator) GenDoTrailingGapUnmarshalNDR(ctx context.Context, gap int) {
+	if gap > 1 {
+		p.CheckErr(p.B("w.ReadTrailingGap", gap))
 	}
 }
 

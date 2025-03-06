@@ -1035,6 +1035,9 @@ func (o *VolumeInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.VolumeFlags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *VolumeInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1069,6 +1072,9 @@ func (o *VolumeInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.VolumeFlags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -1612,6 +1618,9 @@ func (o *DiskInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1838,6 +1847,9 @@ func (o *DiskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_dgName := func(ptr interface{}) { o.DiskGroupName = *ptr.(*string) }
 	if err := w.ReadPointer(&o.DiskGroupName, _s_dgName, _ptr_dgName); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2073,6 +2085,9 @@ func (o *RegionInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CurrentPartitionNumber); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RegionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2119,6 +2134,9 @@ func (o *RegionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.CurrentPartitionNumber); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2201,6 +2219,9 @@ func (o *DriveLetterInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DriveLetterFlags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DriveLetterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2223,6 +2244,9 @@ func (o *DriveLetterInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	if err := w.ReadData(&o.DriveLetterFlags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2380,6 +2404,9 @@ func (o *FileSystemInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *FileSystemInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2445,6 +2472,9 @@ func (o *FileSystemInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_label := func(ptr interface{}) { o.Label = *ptr.(*string) }
 	if err := w.ReadPointer(&o.Label, _s_label, _ptr_label); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2790,6 +2820,9 @@ func (o *TaskInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.TaskFlag); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *TaskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2821,6 +2854,9 @@ func (o *TaskInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.TaskFlag); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2906,6 +2942,9 @@ func (o *CountedString) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *CountedString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2950,6 +2989,9 @@ func (o *CountedString) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_sstring := func(ptr interface{}) { o.String = *ptr.(*string) }
 	if err := w.ReadPointer(&o.String, _s_sstring, _ptr_sstring); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -3609,6 +3651,9 @@ func (o *DiskInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3885,6 +3930,9 @@ func (o *DiskInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_devInstId := func(ptr interface{}) { o.DevInstanceID = *ptr.(*string) }
 	if err := w.ReadPointer(&o.DevInstanceID, _s_devInstId, _ptr_devInstId); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4317,6 +4365,9 @@ func (o *RegionInfoEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4401,6 +4452,9 @@ func (o *RegionInfoEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_name := func(ptr interface{}) { o.Name = *ptr.(*string) }
 	if err := w.ReadPointer(&o.Name, _s_name, _ptr_name); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4620,6 +4674,9 @@ func (o *RegionInfoEx_RegionInfoEx_MBR) MarshalNDR(ctx context.Context, w ndr.Wr
 	if err := w.WriteData(o.IsActive); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RegionInfoEx_RegionInfoEx_MBR) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4630,6 +4687,9 @@ func (o *RegionInfoEx_RegionInfoEx_MBR) UnmarshalNDR(ctx context.Context, w ndr.
 		return err
 	}
 	if err := w.ReadData(&o.IsActive); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil

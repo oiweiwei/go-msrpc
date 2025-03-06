@@ -495,6 +495,11 @@ func (p *TypeGenerator) GenStructMarshalNDRSizePreamble(ctx context.Context, fie
 
 func (p *TypeGenerator) GenStructMarshalNDR(ctx context.Context) {
 
+	trailingField := len(p.Struct().Fields) - 1
+	if p.IsConformant() || p.IsVarying() {
+		trailingField--
+	}
+
 	p.Block("func", "(o *"+p.GoTypeName+")", "MarshalNDR(ctx context.Context, w ndr.Writer)", "error", func() {
 		// prepare payload.
 		p.CheckErr("o." + p.XXX() + "PreparePayload(ctx)")
@@ -503,9 +508,15 @@ func (p *TypeGenerator) GenStructMarshalNDR(ctx context.Context) {
 		// align the structure.
 		p.GenDoAlignmentMarshalNDR(ctx, p.Alignment())
 		// marshal fields.
-		for _, field := range p.Struct().Fields {
+		for i, field := range p.Struct().Fields {
 			// marshal field.
 			p.GenFieldMarshalNDR(ctx, field, NewScopes(field.Scopes()))
+			// add trailing gap.
+			if i == trailingField {
+				if f := NewScopes(field.Scopes()); f.alignment(false) != p.alignment(false) {
+					p.GenDoTrailingGapMarshalNDR(ctx, p.Alignment())
+				}
+			}
 		}
 		if p.Scope().Pad != 0 {
 			p.P("//", "pad", p.Scope().Pad)

@@ -865,6 +865,9 @@ func (o *SecurityDescriptor) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.OutSecurityDescriptorLength); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -908,6 +911,9 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.OutSecurityDescriptorLength); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -963,6 +969,9 @@ func (o *SecurityAttributes) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.InheritHandle); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SecurityAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -979,6 +988,9 @@ func (o *SecurityAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.InheritHandle); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1450,6 +1462,9 @@ func (o *EnumList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.EntryCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Entry {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -1487,6 +1502,9 @@ func (o *EnumList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.EntryCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling

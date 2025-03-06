@@ -2595,6 +2595,9 @@ func (o *DeltaUser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaUser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2818,6 +2821,9 @@ func (o *DeltaUser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&_DummyLong4); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -3009,6 +3015,9 @@ func (o *DeltaGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3118,6 +3127,9 @@ func (o *DeltaGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3255,6 +3267,9 @@ func (o *DeltaGroupMember) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaGroupMember) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3340,6 +3355,9 @@ func (o *DeltaGroupMember) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3492,6 +3510,9 @@ func (o *DeltaAlias) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaAlias) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3592,6 +3613,9 @@ func (o *DeltaAlias) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&_DummyLong4); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -3655,6 +3679,9 @@ func (o *DeltaAliasMember) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaAliasMember) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3685,6 +3712,9 @@ func (o *DeltaAliasMember) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3906,6 +3936,9 @@ func (o *DeltaDomain) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaDomain) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4043,6 +4076,9 @@ func (o *DeltaDomain) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&_DummyLong4); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -4143,6 +4179,9 @@ func (o *RenameGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RenameGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4211,6 +4250,9 @@ func (o *RenameGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4313,6 +4355,9 @@ func (o *RenameUser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RenameUser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4381,6 +4426,9 @@ func (o *RenameUser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4483,6 +4531,9 @@ func (o *RenameAlias) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RenameAlias) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4551,6 +4602,9 @@ func (o *RenameAlias) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4829,6 +4883,9 @@ func (o *DeltaPolicy) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaPolicy) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5001,6 +5058,9 @@ func (o *DeltaPolicy) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5197,6 +5257,9 @@ func (o *DeltaTrustedDomains) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaTrustedDomains) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5327,6 +5390,9 @@ func (o *DeltaTrustedDomains) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5620,6 +5686,9 @@ func (o *DeltaAccounts) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaAccounts) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5787,6 +5856,9 @@ func (o *DeltaAccounts) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5966,6 +6038,9 @@ func (o *DeltaSecret) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaSecret) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6083,6 +6158,9 @@ func (o *DeltaSecret) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&_DummyLong4); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -6179,6 +6257,9 @@ func (o *DeltaDeleteGroup) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaDeleteGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6245,6 +6326,9 @@ func (o *DeltaDeleteGroup) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -6342,6 +6426,9 @@ func (o *DeltaDeleteUser) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DeltaDeleteUser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6408,6 +6495,9 @@ func (o *DeltaDeleteUser) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -8542,6 +8632,9 @@ func (o *InteractiveInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *InteractiveInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -8564,6 +8657,9 @@ func (o *InteractiveInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		o.NTOWFPassword = &NTOWFPassword{}
 	}
 	if err := o.NTOWFPassword.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -8686,6 +8782,9 @@ func (o *ServiceInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServiceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -8708,6 +8807,9 @@ func (o *ServiceInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.NTOWFPassword = &NTOWFPassword{}
 	}
 	if err := o.NTOWFPassword.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -9882,6 +9984,9 @@ func (o *SIDAndAttributes) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Attributes); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -9902,6 +10007,9 @@ func (o *SIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.Attributes); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -10195,6 +10303,9 @@ func (o *ValidationSAMInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ValidationSAMInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10360,6 +10471,9 @@ func (o *ValidationSAMInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		if err := w.ReadData(&o.ExpansionRoom[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
 	}
 	return nil
 }
@@ -12651,6 +12765,9 @@ func (o *Info2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.TCConnectionStatus); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *Info2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -12674,6 +12791,9 @@ func (o *Info2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.TCConnectionStatus); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -13702,6 +13822,9 @@ func (o *OneDomainInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *OneDomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -13793,6 +13916,9 @@ func (o *OneDomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -13978,6 +14104,9 @@ func (o *DomainInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -14075,6 +14204,9 @@ func (o *DomainInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -14486,6 +14618,9 @@ func (o *WorkstationInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *WorkstationInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -14608,6 +14743,9 @@ func (o *WorkstationInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	// reserved DummyLong4
 	var _DummyLong4 uint32
 	if err := w.ReadData(&_DummyLong4); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -14897,6 +15035,9 @@ func (o *SocketAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SockaddrLength); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SocketAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -14933,6 +15074,9 @@ func (o *SocketAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.SockaddrLength); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -15266,6 +15410,9 @@ func (o *DSDomainTrustsw) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DSDomainTrustsw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -15321,6 +15468,9 @@ func (o *DSDomainTrustsw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		o.DomainGUID = &dtyp.GUID{}
 	}
 	if err := o.DomainGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -15963,6 +16113,9 @@ func (o *ValidationUASInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ValidationUASInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -16047,6 +16200,9 @@ func (o *ValidationUASInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	if err := w.ReadData(&_usrlog1_reserved1); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -16077,6 +16233,9 @@ func (o *LogoffUASInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.LogonCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *LogoffUASInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -16087,6 +16246,9 @@ func (o *LogoffUASInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.LogonCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -17318,6 +17480,9 @@ func (o *ForestTrustRecord) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ForestTrustRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -17341,6 +17506,9 @@ func (o *ForestTrustRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	}
 	_swForestTrustData := uint16(o.ForestTrustType)
 	if err := o.ForestTrustData.UnmarshalUnionNDR(ctx, w, _swForestTrustData); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -17843,6 +18011,9 @@ func (o *DNSNameInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Status); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DNSNameInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -17878,6 +18049,9 @@ func (o *DNSNameInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.Status); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -18111,6 +18285,9 @@ func (o *OSVersionInfoV1) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint8(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *OSVersionInfoV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -18154,6 +18331,9 @@ func (o *OSVersionInfoV1) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	// reserved wReserved
 	var _wReserved uint8
 	if err := w.ReadData(&_wReserved); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil

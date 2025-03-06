@@ -246,6 +246,9 @@ func (o *UpgradeStatusInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteEnum(uint16(o.PreviousServerState)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UpgradeStatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -256,6 +259,9 @@ func (o *UpgradeStatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.PreviousServerState)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -455,6 +461,9 @@ func (o *PrimaryDomainInfoBasic) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PrimaryDomainInfoBasic) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -501,6 +510,9 @@ func (o *PrimaryDomainInfoBasic) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 		o.DomainGUID = &dtyp.GUID{}
 	}
 	if err := o.DomainGUID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

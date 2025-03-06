@@ -8,14 +8,24 @@ import (
 
 func (p *TypeGenerator) GenStructUnmarshalNDR(ctx context.Context) {
 
+	trailingField := len(p.Struct().Fields) - 1
+	if p.IsConformant() || p.IsVarying() {
+		trailingField--
+	}
+
 	p.Block("func", "(o *"+p.GoTypeName+")", "UnmarshalNDR(ctx context.Context, w ndr.Reader)", "error", func() {
 		// write size information.
 		p.GenStructUnmarshalNDRSizePreamble(ctx, p.StructLastField())
 		// align the structure.
 		p.GenDoAlignmentUnmarshalNDR(ctx, p.Alignment())
 		// unmarshal fields.
-		for _, field := range p.Struct().Fields {
+		for i, field := range p.Struct().Fields {
 			p.GenFieldUnmarshalNDR(ctx, field, NewScopes(field.Scopes()))
+			if i == trailingField {
+				if f := NewScopes(field.Scopes()); f.alignment(false) != p.alignment(false) {
+					p.GenDoTrailingGapUnmarshalNDR(ctx, p.Alignment())
+				}
+			}
 		}
 		if p.Scope().Pad != 0 {
 			p.P("//", "pad", p.Scope().Pad)

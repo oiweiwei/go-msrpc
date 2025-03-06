@@ -97,6 +97,9 @@ func (o *ClassID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ClassID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -118,6 +121,9 @@ func (o *ClassID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -165,6 +171,9 @@ func (o *IID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *IID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -186,6 +195,9 @@ func (o *IID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -233,6 +245,9 @@ func (o *IPID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *IPID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -254,6 +269,9 @@ func (o *IPID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -301,6 +319,9 @@ func (o *CID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *CID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -322,6 +343,9 @@ func (o *CID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2142,6 +2166,9 @@ func (o *StdObjectReference) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *StdObjectReference) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2164,6 +2191,9 @@ func (o *StdObjectReference) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		o.IPID = &IPID{}
 	}
 	if err := o.IPID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2267,6 +2297,9 @@ func (o *ObjectReferenceStandard) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ObjectReferenceStandard) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2290,6 +2323,9 @@ func (o *ObjectReferenceStandard) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	})
 	_s_saResAddr := func(ptr interface{}) { o.ResolverAddr = *ptr.(**DualStringArray) }
 	if err := w.ReadPointer(&o.ResolverAddr, _s_saResAddr, _ptr_saResAddr); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2387,6 +2423,9 @@ func (o *ObjectReferenceHandler) MarshalNDR(ctx context.Context, w ndr.Writer) e
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ObjectReferenceHandler) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2416,6 +2455,9 @@ func (o *ObjectReferenceHandler) UnmarshalNDR(ctx context.Context, w ndr.Reader)
 	})
 	_s_saResAddr := func(ptr interface{}) { o.ResolverAddr = *ptr.(**DualStringArray) }
 	if err := w.ReadPointer(&o.ResolverAddr, _s_saResAddr, _ptr_saResAddr); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2714,6 +2756,9 @@ func (o *ObjectReferenceExtended) MarshalNDR(ctx context.Context, w ndr.Writer) 
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ObjectReferenceExtended) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2786,6 +2831,9 @@ func (o *ObjectReferenceExtended) UnmarshalNDR(ctx context.Context, w ndr.Reader
 	})
 	_s_ElmArray := func(ptr interface{}) { o.ElementArray = *ptr.(*[]*DataElement) }
 	if err := w.ReadPointer(&o.ElementArray, _s_ElmArray, _ptr_ElmArray); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4204,6 +4252,9 @@ func (o *COMServerInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(uint32(0)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *COMServerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4240,6 +4291,9 @@ func (o *COMServerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	// reserved dwReserved2
 	var _dwReserved2 uint32
 	if err := w.ReadData(&_dwReserved2); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -4448,6 +4502,9 @@ func (o *CustomRemoteReplySCMInfo) MarshalNDR(ctx context.Context, w ndr.Writer)
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *CustomRemoteReplySCMInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4483,6 +4540,9 @@ func (o *CustomRemoteReplySCMInfo) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		o.ServerVersion = &COMVersion{}
 	}
 	if err := o.ServerVersion.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4658,6 +4718,9 @@ func (o *InstantiationInfoData) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *InstantiationInfoData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4726,6 +4789,9 @@ func (o *InstantiationInfoData) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := o.ClientCOMVersion.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -4786,6 +4852,9 @@ func (o *LocationInfoData) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ContextID); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *LocationInfoData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4809,6 +4878,9 @@ func (o *LocationInfoData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.ContextID); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -6081,6 +6153,9 @@ func (o *SpecialPropertiesData) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SpecialPropertiesData) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6135,6 +6210,9 @@ func (o *SpecialPropertiesData) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		if err := w.ReadData(&_Reserved3[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
 	}
 	return nil
 }
