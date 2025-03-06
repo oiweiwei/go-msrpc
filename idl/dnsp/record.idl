@@ -289,9 +289,9 @@ typedef struct _DnssrvRecordNaptr
 {
     WORD wOrder;
     WORD wPreference;
-    PDNS_NODE_TEXT nameFlags;
-    PDNS_NODE_TEXT nameService;
-    PDNS_NODE_TEXT nameSubstitution;
+    PDNS_NODE_NAME nameFlags;
+    PDNS_NODE_NAME nameService;
+    PDNS_NODE_NAME nameSubstitution;
     PDNS_NODE_NAME nameReplacement;
 } DNS_RPC_RECORD_NAPTR, *PDNS_RPC_RECORD_NAPTR;
 

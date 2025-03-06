@@ -6822,15 +6822,15 @@ type RecordNAPTR struct {
 	Preference uint16 `idl:"name:wPreference" json:"preference"`
 	// nameFlags (variable): Pointer to a structure of type DNS_RPC_NAME (section 2.2.2.2.1)
 	// containing the string flags value as specified in section 4.1 in [RFC3403].
-	Flags *NodeText `idl:"name:nameFlags" json:"flags"`
+	Flags *NodeName `idl:"name:nameFlags" json:"flags"`
 	// nameService (variable): Pointer to a structure of type DNS_RPC_NAME (section 2.2.2.2.1)
 	// containing service parameters value for NAPTR to control the rewriting and interpretation
 	// of the field in the record, as specified in section 4.1 in [RFC3403].
-	Service *NodeText `idl:"name:nameService" json:"service"`
+	Service *NodeName `idl:"name:nameService" json:"service"`
 	// nameSubstitution (variable): Pointer to a structure of type DNS_RPC_NAME (section
 	// 2.2.2.2.1) containing a substitution expression value for the NAPTR record, as specified
 	// in section 4.1 in [RFC3403].
-	Substitution *NodeText `idl:"name:nameSubstitution" json:"substitution"`
+	Substitution *NodeName `idl:"name:nameSubstitution" json:"substitution"`
 	// nameReplacement (variable): Pointer to a structure of type DNS_RPC_NAME (section
 	// 2.2.2.2.1) containing a replacement expression value for the NAPTR record, as specified
 	// in section 4.1 in [RFC3403].
@@ -6865,7 +6865,7 @@ func (o *RecordNAPTR) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&NodeText{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&NodeName{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -6886,7 +6886,7 @@ func (o *RecordNAPTR) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&NodeText{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&NodeName{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -6907,7 +6907,7 @@ func (o *RecordNAPTR) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 					return err
 				}
 			} else {
-				if err := (&NodeText{}).MarshalNDR(ctx, w); err != nil {
+				if err := (&NodeName{}).MarshalNDR(ctx, w); err != nil {
 					return err
 				}
 			}
@@ -6956,40 +6956,40 @@ func (o *RecordNAPTR) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	}
 	_ptr_nameFlags := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Flags == nil {
-			o.Flags = &NodeText{}
+			o.Flags = &NodeName{}
 		}
 		if err := o.Flags.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_nameFlags := func(ptr interface{}) { o.Flags = *ptr.(**NodeText) }
+	_s_nameFlags := func(ptr interface{}) { o.Flags = *ptr.(**NodeName) }
 	if err := w.ReadPointer(&o.Flags, _s_nameFlags, _ptr_nameFlags); err != nil {
 		return err
 	}
 	_ptr_nameService := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Service == nil {
-			o.Service = &NodeText{}
+			o.Service = &NodeName{}
 		}
 		if err := o.Service.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_nameService := func(ptr interface{}) { o.Service = *ptr.(**NodeText) }
+	_s_nameService := func(ptr interface{}) { o.Service = *ptr.(**NodeName) }
 	if err := w.ReadPointer(&o.Service, _s_nameService, _ptr_nameService); err != nil {
 		return err
 	}
 	_ptr_nameSubstitution := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
 		if o.Substitution == nil {
-			o.Substitution = &NodeText{}
+			o.Substitution = &NodeName{}
 		}
 		if err := o.Substitution.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		return nil
 	})
-	_s_nameSubstitution := func(ptr interface{}) { o.Substitution = *ptr.(**NodeText) }
+	_s_nameSubstitution := func(ptr interface{}) { o.Substitution = *ptr.(**NodeName) }
 	if err := w.ReadPointer(&o.Substitution, _s_nameSubstitution, _ptr_nameSubstitution); err != nil {
 		return err
 	}
