@@ -829,6 +829,9 @@ func (o *CertViewRestriction) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteData(o.ValueLength); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *CertViewRestriction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -874,6 +877,9 @@ func (o *CertViewRestriction) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		return err
 	}
 	if err := w.ReadData(&o.ValueLength); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

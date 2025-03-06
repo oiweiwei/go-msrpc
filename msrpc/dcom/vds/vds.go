@@ -176,6 +176,9 @@ func (o *ObjectID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ObjectID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -197,6 +200,9 @@ func (o *ObjectID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2009,6 +2015,9 @@ func (o *ServiceNotification) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteEnum(uint16(o.Action)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServiceNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2019,6 +2028,9 @@ func (o *ServiceNotification) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.Action)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -2902,6 +2914,9 @@ func (o *AsyncOutput_AsyncOutput_CreatePartition) MarshalNDR(ctx context.Context
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *AsyncOutput_AsyncOutput_CreatePartition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2915,6 +2930,9 @@ func (o *AsyncOutput_AsyncOutput_CreatePartition) UnmarshalNDR(ctx context.Conte
 		o.VolumeID = &ObjectID{}
 	}
 	if err := o.VolumeID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -3438,6 +3456,9 @@ func (o *PartitionInfoGPT) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PartitionInfoGPT) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3465,6 +3486,9 @@ func (o *PartitionInfoGPT) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		if err := w.ReadData(&o.Name[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4294,6 +4318,9 @@ func (o *FileSystemProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *FileSystemProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4329,6 +4356,9 @@ func (o *FileSystemProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 	})
 	_s_pwszLabel := func(ptr interface{}) { o.Label = *ptr.(*string) }
 	if err := w.ReadPointer(&o.Label, _s_pwszLabel, _ptr_pwszLabel); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4415,6 +4445,9 @@ func (o *FileSystemFormatSupportProperty) MarshalNDR(ctx context.Context, w ndr.
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *FileSystemFormatSupportProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4443,6 +4476,9 @@ func (o *FileSystemFormatSupportProperty) UnmarshalNDR(ctx context.Context, w nd
 		if err := w.ReadData(&o.Name[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4525,6 +4561,9 @@ func (o *DiskExtent) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MemberIndex); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DiskExtent) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4559,6 +4598,9 @@ func (o *DiskExtent) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.MemberIndex); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4955,6 +4997,9 @@ func (o *InputDisk) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.MemberIndex); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *InputDisk) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4977,6 +5022,9 @@ func (o *InputDisk) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.MemberIndex); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -5339,6 +5387,9 @@ func (o *CreatePartitionParameters_CreatePartitionParameters_GPTPartitionInfo) M
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *CreatePartitionParameters_CreatePartitionParameters_GPTPartitionInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5366,6 +5417,9 @@ func (o *CreatePartitionParameters_CreatePartitionParameters_GPTPartitionInfo) U
 		if err := w.ReadData(&o.Name[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
+		return err
 	}
 	return nil
 }
@@ -7356,6 +7410,9 @@ func (o *ISCSISharedSecret) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.SharedSecretSize); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ISCSISharedSecret) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7392,6 +7449,9 @@ func (o *ISCSISharedSecret) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if err := w.ReadData(&o.SharedSecretSize); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -7442,6 +7502,9 @@ func (o *ServiceProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ServiceProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7459,6 +7522,9 @@ func (o *ServiceProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -7838,6 +7904,9 @@ func (o *ProviderProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RebuildPriority); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7886,6 +7955,9 @@ func (o *ProviderProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.RebuildPriority); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -7954,6 +8026,9 @@ func (o *PackProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PackProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7980,6 +8055,9 @@ func (o *PackProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -8223,6 +8301,9 @@ func (o *DiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -8326,6 +8407,9 @@ func (o *DiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_pwszDevicePath := func(ptr interface{}) { o.DevicePath = *ptr.(*string) }
 	if err := w.ReadPointer(&o.DevicePath, _s_pwszDevicePath, _ptr_pwszDevicePath); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -8768,6 +8852,9 @@ func (o *DiskProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DiskProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -8881,6 +8968,9 @@ func (o *DiskProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_pwszLocationPath := func(ptr interface{}) { o.LocationPath = *ptr.(*string) }
 	if err := w.ReadPointer(&o.LocationPath, _s_pwszLocationPath, _ptr_pwszLocationPath); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -9278,6 +9368,9 @@ func (o *AdvancedDiskProperty) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.DeviceType); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *AdvancedDiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -9418,6 +9511,9 @@ func (o *AdvancedDiskProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if err := w.ReadData(&o.DeviceType); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -9676,6 +9772,9 @@ func (o *VolumeProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -9717,6 +9816,9 @@ func (o *VolumeProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_pwszName := func(ptr interface{}) { o.Name = *ptr.(*string) }
 	if err := w.ReadPointer(&o.Name, _s_pwszName, _ptr_pwszName); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -9856,6 +9958,9 @@ func (o *VolumeProperty2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *VolumeProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -9929,6 +10034,9 @@ func (o *VolumeProperty2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	})
 	_s_pUniqueId := func(ptr interface{}) { o.UniqueID = *ptr.(*[]byte) }
 	if err := w.ReadPointer(&o.UniqueID, _s_pUniqueId, _ptr_pUniqueId); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -10017,6 +10125,9 @@ func (o *VolumePlexProperty) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.NumberOfMembers); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *VolumePlexProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10048,6 +10159,9 @@ func (o *VolumePlexProperty) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.NumberOfMembers); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -10217,6 +10331,9 @@ func (o *CreateVDiskParameters) MarshalNDR(ctx context.Context, w ndr.Writer) er
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *CreateVDiskParameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10256,6 +10373,9 @@ func (o *CreateVDiskParameters) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	})
 	_s_pSourcePath := func(ptr interface{}) { o.SourcePath = *ptr.(*string) }
 	if err := w.ReadPointer(&o.SourcePath, _s_pSourcePath, _ptr_pSourcePath); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -10684,6 +10804,9 @@ func (o *VDiskProperties) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *VDiskProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -10747,6 +10870,9 @@ func (o *VDiskProperties) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	})
 	_s_pParentPath := func(ptr interface{}) { o.ParentPath = *ptr.(*string) }
 	if err := w.ReadPointer(&o.ParentPath, _s_pParentPath, _ptr_pParentPath); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil

@@ -2246,6 +2246,9 @@ func (o *QueryChannelInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Status); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *QueryChannelInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2263,6 +2266,9 @@ func (o *QueryChannelInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.Status); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

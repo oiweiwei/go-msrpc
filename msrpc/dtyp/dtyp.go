@@ -554,6 +554,9 @@ func (o *GUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *GUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -575,6 +578,9 @@ func (o *GUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -625,6 +631,9 @@ func (o *UUID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *UUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -646,6 +655,9 @@ func (o *UUID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -693,6 +705,9 @@ func (o *ClassID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ClassID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -714,6 +729,9 @@ func (o *ClassID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1009,6 +1027,9 @@ func (o *EventHeader) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *EventHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1056,6 +1077,9 @@ func (o *EventHeader) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.ActivityID = &GUID{}
 	}
 	if err := o.ActivityID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -1210,6 +1234,9 @@ func (o *Multistring) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.CharCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *Multistring) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1227,6 +1254,9 @@ func (o *Multistring) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.CharCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -6711,6 +6741,9 @@ func (o *SID) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	for i1 := range o.SubAuthority {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -6751,6 +6784,9 @@ func (o *SID) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.IDAuthority = &SIDIDAuthority{}
 	}
 	if err := o.IDAuthority.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -6931,6 +6967,9 @@ func (o *ACL) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.SBZ2); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(7); err != nil {
+		return err
+	}
 	for i1 := range o.ACEEntries {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -6992,6 +7031,9 @@ func (o *ACL) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.SBZ2); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(7); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling

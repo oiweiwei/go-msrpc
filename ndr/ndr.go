@@ -91,6 +91,11 @@ type Reader interface {
 	// buffer.
 	ReadUnionAlign(int) error
 
+	// ReadTrailingGap function reads the trailing gap to align
+	// the last non-conformant and non-varying member to structure
+	// alignment.
+	ReadTrailingGap(int) error
+
 	// here go ReadX interface methods required to
 	// fullfill unmarshaling requirements.
 
@@ -140,6 +145,9 @@ type Writer interface {
 	// WriteUnionAlign function performs alignment of the union
 	// output buffer.
 	WriteUnionAlign(int) error
+
+	// WriteTrailingGap function writes the trailing gap.
+	WriteTrailingGap(int) error
 
 	// here go WriteX interface methods required to
 	// fullfill marshaling requirements.

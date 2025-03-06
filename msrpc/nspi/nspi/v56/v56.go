@@ -405,6 +405,9 @@ func (o *PropertyTagArray) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ValuesCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	dimLength1 := uint64(o.ValuesCount)
 	if dimLength1 > sizeInfo[0] {
 		dimLength1 = sizeInfo[0]
@@ -448,6 +451,9 @@ func (o *PropertyTagArray) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.ValuesCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	for sz1 := range sizeInfo {
@@ -1695,6 +1701,9 @@ func (o *PropertyRowSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RowsCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Row {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -1732,6 +1741,9 @@ func (o *PropertyRowSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.RowsCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -3276,6 +3288,9 @@ func (o *PropertyName) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.ID); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PropertyName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3301,6 +3316,9 @@ func (o *PropertyName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.ID); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3359,6 +3377,9 @@ func (o *PropertyNameSet) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.NamesCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Names {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -3396,6 +3417,9 @@ func (o *PropertyNameSet) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	if err := w.ReadData(&o.NamesCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling

@@ -48,6 +48,10 @@ func (w *ndr64) WriteAlign(sz int) error {
 	return w.buf.FillMod(sz)
 }
 
+func (w *ndr64) WriteTrailingGap(sz int) error {
+	return w.WriteAlign(sz)
+}
+
 // WriteUnionAlign function writes the union alignment to the buffer.
 func (w *ndr64) WriteUnionAlign(sz int) error {
 	return w.WriteAlign(sz)
@@ -66,6 +70,10 @@ func (w *ndr64) ReadAlign(sz int) error {
 	}
 
 	return w.buf.SkipMod(sz)
+}
+
+func (w *ndr64) ReadTrailingGap(sz int) error {
+	return w.ReadAlign(sz)
 }
 
 // ReadUnionAlign function reads the union alignment from the buffer.

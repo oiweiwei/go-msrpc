@@ -1025,6 +1025,9 @@ func (o *SecurityQualityOfService) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.EffectiveOnly); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1041,6 +1044,9 @@ func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if err := w.ReadData(&o.EffectiveOnly); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -1419,6 +1425,9 @@ func (o *ReferencedDomainList) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.MaxEntries); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ReferencedDomainList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1461,6 +1470,9 @@ func (o *ReferencedDomainList) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if err := w.ReadData(&o.MaxEntries); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2040,6 +2052,9 @@ func (o *TranslatedName) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.DomainIndex); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *TranslatedName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2056,6 +2071,9 @@ func (o *TranslatedName) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.DomainIndex); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2251,6 +2269,9 @@ func (o *TranslatedNameEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *TranslatedNameEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2270,6 +2291,9 @@ func (o *TranslatedNameEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2685,6 +2709,9 @@ func (o *TranslatedSIDEx2) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *TranslatedSIDEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2711,6 +2738,9 @@ func (o *TranslatedSIDEx2) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.Flags); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

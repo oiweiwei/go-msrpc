@@ -1935,6 +1935,9 @@ func (o *SecurityDescriptor) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.OutSecurityDescriptorLength); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1978,6 +1981,9 @@ func (o *SecurityDescriptor) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.OutSecurityDescriptorLength); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2033,6 +2039,9 @@ func (o *SecurityAttributes) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.InheritHandle); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SecurityAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2049,6 +2058,9 @@ func (o *SecurityAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.InheritHandle); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2647,6 +2659,9 @@ func (o *EnumList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.EntryCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Entry {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -2684,6 +2699,9 @@ func (o *EnumList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.EntryCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -3327,6 +3345,9 @@ func (o *GroupEnumList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.EntryCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Entry {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -3364,6 +3385,9 @@ func (o *GroupEnumList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.EntryCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -3437,6 +3461,9 @@ func (o *ResourceEnumList) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.EntryCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Entry {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -3474,6 +3501,9 @@ func (o *ResourceEnumList) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.EntryCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -3752,6 +3782,9 @@ func (o *NotificationDataRPC) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3834,6 +3867,9 @@ func (o *NotificationDataRPC) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 	})
 	_s_Type := func(ptr interface{}) { o.Type = *ptr.(*string) }
 	if err := w.ReadPointer(&o.Type, _s_Type, _ptr_Type); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil

@@ -1230,6 +1230,9 @@ func (o *ExtendedErrorInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.Length); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	for i1 := range o.Params {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -1304,6 +1307,9 @@ func (o *ExtendedErrorInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if err := w.ReadData(&o.Length); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling

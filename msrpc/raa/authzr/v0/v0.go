@@ -761,6 +761,9 @@ func (o *SIDAndAttributes) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Attributes); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -781,6 +784,9 @@ func (o *SIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		return err
 	}
 	if err := w.ReadData(&o.Attributes); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -884,6 +890,9 @@ func (o *TokenGroups) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.GroupCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Groups {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -921,6 +930,9 @@ func (o *TokenGroups) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.GroupCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling

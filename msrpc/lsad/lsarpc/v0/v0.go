@@ -1979,6 +1979,9 @@ func (o *SecurityQualityOfService) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.EffectiveOnly); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1995,6 +1998,9 @@ func (o *SecurityQualityOfService) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if err := w.ReadData(&o.EffectiveOnly); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -2654,6 +2660,9 @@ func (o *PolicyAuditLogInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.NextAuditRecordID); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PolicyAuditLogInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2682,6 +2691,9 @@ func (o *PolicyAuditLogInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.NextAuditRecordID); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -3512,6 +3524,9 @@ func (o *ForestTrustRecord) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ForestTrustRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3535,6 +3550,9 @@ func (o *ForestTrustRecord) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 	}
 	_swForestTrustData := uint16(o.ForestTrustType)
 	if err := o.ForestTrustData.UnmarshalUnionNDR(ctx, w, _swForestTrustData); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -4695,6 +4713,9 @@ func (o *PolicyPrivilegeDefinition) MarshalNDR(ctx context.Context, w ndr.Writer
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PolicyPrivilegeDefinition) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4711,6 +4732,9 @@ func (o *PolicyPrivilegeDefinition) UnmarshalNDR(ctx context.Context, w ndr.Read
 		o.LocalValue = &dtyp.LUID{}
 	}
 	if err := o.LocalValue.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -5624,6 +5648,9 @@ func (o *PolicyAuditEventsInfo) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.MaximumAuditEventCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *PolicyAuditEventsInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5663,6 +5690,9 @@ func (o *PolicyAuditEventsInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if err := w.ReadData(&o.MaximumAuditEventCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -7383,6 +7413,9 @@ func (o *TrustedDomainInformationEx) MarshalNDR(ctx context.Context, w ndr.Write
 	if err := w.WriteData(o.TrustAttributes); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *TrustedDomainInformationEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7421,6 +7454,9 @@ func (o *TrustedDomainInformationEx) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		return err
 	}
 	if err := w.ReadData(&o.TrustAttributes); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -7551,6 +7587,9 @@ func (o *AuthInformation) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *AuthInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -7596,6 +7635,9 @@ func (o *AuthInformation) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 	})
 	_s_AuthInfo := func(ptr interface{}) { o.AuthInfo = *ptr.(*[]byte) }
 	if err := w.ReadPointer(&o.AuthInfo, _s_AuthInfo, _ptr_AuthInfo); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil

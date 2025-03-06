@@ -696,7 +696,7 @@ func (o *JobParamW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(10); err != nil {
+	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.StructureSize); err != nil {
@@ -861,10 +861,13 @@ func (o *JobParamW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *JobParamW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(10); err != nil {
+	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.StructureSize); err != nil {
@@ -983,6 +986,9 @@ func (o *JobParamW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData((*ndr.Uint3264)(&_Reserved[i1])); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1482,6 +1488,9 @@ func (o *ReceiptsConfigW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ReceiptsConfigW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1557,6 +1566,9 @@ func (o *ReceiptsConfigW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error 
 		return err
 	}
 	o.IsToUseForMsRouteThroughEmailMethod = _bIsToUseForMsRouteThroughEmailMethod != 0
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -2156,7 +2168,7 @@ func (o *JobParamExW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	if err := w.WriteAlign(10); err != nil {
+	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.StructureSize); err != nil {
@@ -2222,10 +2234,13 @@ func (o *JobParamExW) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.PageCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *JobParamExW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	if err := w.ReadAlign(10); err != nil {
+	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.StructureSize); err != nil {
@@ -2279,6 +2294,9 @@ func (o *JobParamExW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.PageCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2421,6 +2439,9 @@ func (o *OutboundRoutingGroupw) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *OutboundRoutingGroupw) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2473,6 +2494,9 @@ func (o *OutboundRoutingGroupw) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -3145,6 +3169,9 @@ func (o *OutboundRoutingRuleW) MarshalNDR(ctx context.Context, w ndr.Writer) err
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *OutboundRoutingRuleW) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3188,6 +3215,9 @@ func (o *OutboundRoutingRuleW) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	o.UseGroup = _bUseGroup != 0
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 
@@ -4176,6 +4206,9 @@ func (o *ReassignInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ReassignInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4227,6 +4260,9 @@ func (o *ReassignInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	o.HasCoverPage = _bHasCoverPage != 0
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 

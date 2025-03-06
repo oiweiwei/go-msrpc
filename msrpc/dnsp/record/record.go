@@ -4632,6 +4632,9 @@ func (o *RecordRRSIG) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordRRSIG) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4678,6 +4681,9 @@ func (o *RecordRRSIG) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.SignatureInfo[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4801,6 +4807,9 @@ func (o *RecordSIG) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordSIG) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4847,6 +4856,9 @@ func (o *RecordSIG) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.SignatureInfo[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4911,6 +4923,9 @@ func (o *RecordKEY) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(2); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordKEY) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -4932,6 +4947,9 @@ func (o *RecordKEY) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Key[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(2); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4996,6 +5014,9 @@ func (o *RecordDNSKEY) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(2); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordDNSKEY) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5017,6 +5038,9 @@ func (o *RecordDNSKEY) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Key[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(2); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5312,6 +5336,9 @@ func (o *RecordNSEC) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(7); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordNSEC) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5337,6 +5364,9 @@ func (o *RecordNSEC) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.NSECBitmap[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(7); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5549,6 +5579,9 @@ func (o *RecordNSEC3) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(7); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordNSEC3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -5634,6 +5667,9 @@ func (o *RecordNSEC3) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Bitmaps[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(7); err != nil {
+		return err
 	}
 	return nil
 }
@@ -6206,6 +6242,9 @@ func (o *RecordDS) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(2); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordDS) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -6227,6 +6266,9 @@ func (o *RecordDS) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.Digest[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(2); err != nil {
+		return err
 	}
 	return nil
 }

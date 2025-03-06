@@ -586,6 +586,9 @@ func (o *NotificationType) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *NotificationType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -607,6 +610,9 @@ func (o *NotificationType) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		if err := w.ReadData(&o.Data4[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }

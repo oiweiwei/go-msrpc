@@ -251,6 +251,9 @@ func (o *KerberosSIDAndAttributes) MarshalNDR(ctx context.Context, w ndr.Writer)
 	if err := w.WriteData(o.Attributes); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *KerberosSIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -271,6 +274,9 @@ func (o *KerberosSIDAndAttributes) UnmarshalNDR(ctx context.Context, w ndr.Reade
 		return err
 	}
 	if err := w.ReadData(&o.Attributes); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1907,6 +1913,9 @@ func (o *PACCredentialData) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteData(o.CredentialCount); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	for i1 := range o.Credentials {
 		i1 := i1
 		if uint64(i1) >= sizeInfo[0] {
@@ -1944,6 +1953,9 @@ func (o *PACCredentialData) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if err := w.ReadData(&o.CredentialCount); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	// XXX: for opaque unmarshaling
@@ -2192,6 +2204,9 @@ func (o *NTLMSupplementalCredential) MarshalNDR(ctx context.Context, w ndr.Write
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *NTLMSupplementalCredential) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2217,6 +2232,9 @@ func (o *NTLMSupplementalCredential) UnmarshalNDR(ctx context.Context, w ndr.Rea
 		if err := w.ReadData(&o.NTPassword[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }

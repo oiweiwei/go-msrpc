@@ -504,6 +504,9 @@ func (o *ClusterSCSIAddress) MarshalNDR(ctx context.Context, w ndr.Writer) error
 	if err := w.WriteData(o.LUN); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ClusterSCSIAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -523,6 +526,9 @@ func (o *ClusterSCSIAddress) UnmarshalNDR(ctx context.Context, w ndr.Reader) err
 		return err
 	}
 	if err := w.ReadData(&o.LUN); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -1119,6 +1125,9 @@ func (o *DiskPropertiesEx) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *DiskPropertiesEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1211,6 +1220,9 @@ func (o *DiskPropertiesEx) UnmarshalNDR(ctx context.Context, w ndr.Reader) error
 		o.PoolID = &dtyp.GUID{}
 	}
 	if err := o.PoolID.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -1609,6 +1621,9 @@ func (o *RouteLossAndState) MarshalNDR(ctx context.Context, w ndr.Writer) error 
 	if err := w.WriteEnum(uint16(o.Status)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RouteLossAndState) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1619,6 +1634,9 @@ func (o *RouteLossAndState) UnmarshalNDR(ctx context.Context, w ndr.Reader) erro
 		return err
 	}
 	if err := w.ReadEnum((*uint16)(&o.Status)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
 		return err
 	}
 	return nil
@@ -1701,6 +1719,9 @@ func (o *AddRoutesReply) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.RouteUnavailable); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(6); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *AddRoutesReply) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1734,6 +1755,9 @@ func (o *AddRoutesReply) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.RouteUnavailable); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(6); err != nil {
 		return err
 	}
 	return nil
@@ -1888,6 +1912,9 @@ func (o *ClusterCert) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(4); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ClusterCert) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1920,6 +1947,9 @@ func (o *ClusterCert) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		if err := w.ReadData(&o.ClusterSecret[i1]); err != nil {
 			return err
 		}
+	}
+	if err := w.ReadTrailingGap(4); err != nil {
+		return err
 	}
 	return nil
 }

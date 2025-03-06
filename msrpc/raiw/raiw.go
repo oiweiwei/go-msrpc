@@ -491,6 +491,9 @@ func (o *RecordAction) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(ndr.Uint3264(o.Timestamp)); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *RecordAction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -595,6 +598,9 @@ func (o *RecordAction) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData((*ndr.Uint3264)(&o.Timestamp)); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -1378,6 +1384,9 @@ func (o *Results) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *Results) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1425,6 +1434,9 @@ func (o *Results) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.WINSStat = &Stat{}
 	}
 	if err := o.WINSStat.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -1575,6 +1587,9 @@ func (o *ResultsNew) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ResultsNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1644,6 +1659,9 @@ func (o *ResultsNew) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		o.WINSStat = &Stat{}
 	}
 	if err := o.WINSStat.UnmarshalNDR(ctx, w); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -1765,6 +1783,9 @@ func (o *Records) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.TotalNumberOfRecords); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *Records) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -1810,6 +1831,9 @@ func (o *Records) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.TotalNumberOfRecords); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil

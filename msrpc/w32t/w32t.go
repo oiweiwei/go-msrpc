@@ -163,6 +163,9 @@ func (o *NTPPeerInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.HostPollInterval); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *NTPPeerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -216,6 +219,9 @@ func (o *NTPPeerInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		return err
 	}
 	if err := w.ReadData(&o.HostPollInterval); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
@@ -2245,6 +2251,9 @@ func (o *ConfigurationDefault) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.FileLogFlagsFlag); err != nil {
 		return err
 	}
+	if err := w.WriteTrailingGap(9); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *ConfigurationDefault) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -2290,6 +2299,9 @@ func (o *ConfigurationDefault) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 		return err
 	}
 	if err := w.ReadData(&o.FileLogFlagsFlag); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(9); err != nil {
 		return err
 	}
 	return nil
@@ -2964,6 +2976,9 @@ func (o *StatusInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
+	if err := w.WriteTrailingGap(8); err != nil {
+		return err
+	}
 	return nil
 }
 func (o *StatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
@@ -3061,6 +3076,9 @@ func (o *StatusInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	})
 	_s_pEntries := func(ptr interface{}) { o.Entries = *ptr.(*[]*Entry) }
 	if err := w.ReadPointer(&o.Entries, _s_pEntries, _ptr_pEntries); err != nil {
+		return err
+	}
+	if err := w.ReadTrailingGap(8); err != nil {
 		return err
 	}
 	return nil
