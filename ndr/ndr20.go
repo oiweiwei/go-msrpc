@@ -496,6 +496,11 @@ func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 		return nil
 	}
 
+	if pptr == 0x72657355 /* 'User' */ {
+		w.rdeferred = append(w.rdeferred, mrs...)
+		return nil
+	}
+
 	if ptr, ok := w.ptrs[uint64(pptr)]; ok {
 		setter(interface{}(ptr))
 		return nil

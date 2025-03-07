@@ -364,8 +364,14 @@ func (c *WaitChunk) Float() math.FloatFormat {
 }
 
 // Bytes function returns the bytes written/not-yet-read for the
-// chunk.
-func (c *WaitChunk) Bytes() []byte { return nil /* panic("wait_chunk: bytes not supported") */ }
+// chunk. (unsafe, use for debug only)
+func (c *WaitChunk) Bytes() []byte {
+	if c.bAndFormat != nil {
+		return c.bAndFormat.b
+	}
+	return nil
+	/* panic("wait_chunk: bytes not supported") */
+}
 
 func (c *WaitChunk) ReadRepresentation(drep *DataRepresentation) error {
 	panic("wait_chunk: read_representation not supported")
