@@ -345,7 +345,11 @@ func NewRecordFromRR(rr dns.RR) (*Record, error) {
 	case *ms_dns.WINS:
 		ips := make([][]byte, len(rr.WINSServers))
 		for i := range ips {
-			ips[i] = rr.WINSServers[i]
+			ip := rr.WINSServers[i]
+			if ip4 := ip.To4(); ip4 != nil {
+				ip = ip4
+			}
+			ips[i] = ip
 		}
 		val.Value = &Record_WINS{RecordWINS: &RecordWINS{
 			MappingFlag:   rr.MappingFlag,
@@ -680,7 +684,7 @@ func (r *Record) RR() dns.RR {
 		for i := range ips {
 			ips[i] = rr.WINSServers[i]
 			if ip4 := ips[i].To4(); ip4 != nil {
-				ips[i] = ips[i].To4()
+				ips[i] = ip4
 			}
 		}
 		return &ms_dns.WINS{
