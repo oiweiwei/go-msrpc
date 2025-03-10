@@ -15753,11 +15753,11 @@ func (o *xxx_AuditLogGetParamsOperation) MarshalNDRResponse(ctx context.Context,
 	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
 		return err
 	}
-	// AuditLogDir {out} (1:{pointer=ref}*(2))(2:{string, alias=LPWSTR_RPC_STRING, names=LPWSTR}*(1)[dim:0,string](wchar))
+	// AuditLogDir {out} (1:{pointer=ref}*(2))(2:{string, alias=LPWSTR_RPC_STRING, names=LPWSTR}*(1)[dim:0,string,null](wchar))
 	{
 		if o.AuditLogDir != "" {
 			_ptr_AuditLogDir := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if err := ndr.WriteUTF16String(ctx, w, o.AuditLogDir); err != nil {
+				if err := ndr.WriteUTF16NString(ctx, w, o.AuditLogDir); err != nil {
 					return err
 				}
 				return nil
@@ -15802,10 +15802,10 @@ func (o *xxx_AuditLogGetParamsOperation) MarshalNDRResponse(ctx context.Context,
 }
 
 func (o *xxx_AuditLogGetParamsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
-	// AuditLogDir {out} (1:{pointer=ref}*(2))(2:{string, alias=LPWSTR_RPC_STRING, names=LPWSTR,pointer=ref}*(1)[dim:0,string](wchar))
+	// AuditLogDir {out} (1:{pointer=ref}*(2))(2:{string, alias=LPWSTR_RPC_STRING, names=LPWSTR,pointer=ref}*(1)[dim:0,string,null](wchar))
 	{
 		_ptr_AuditLogDir := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if err := ndr.ReadUTF16String(ctx, w, &o.AuditLogDir); err != nil {
+			if err := ndr.ReadUTF16NString(ctx, w, &o.AuditLogDir); err != nil {
 				return err
 			}
 			return nil

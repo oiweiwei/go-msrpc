@@ -972,7 +972,7 @@ func (o *xxx_GetIDsOfNamesOperation) MarshalNDRRequest(ctx context.Context, w nd
 			}
 		}
 	}
-	// rgszNames {in} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=cNames]*(1)[dim:0,string](wchar))
+	// rgszNames {in} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=cNames]*(1)[dim:0,string,null](wchar))
 	{
 		dimSize1 := uint64(o.NamesCount)
 		if err := w.WriteSize(dimSize1); err != nil {
@@ -988,7 +988,7 @@ func (o *xxx_GetIDsOfNamesOperation) MarshalNDRRequest(ctx context.Context, w nd
 			}
 			if o.Names[i1] != "" {
 				_ptr_rgszNames := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if err := ndr.WriteUTF16String(ctx, w, o.Names[i1]); err != nil {
+					if err := ndr.WriteUTF16NString(ctx, w, o.Names[i1]); err != nil {
 						return err
 					}
 					return nil
@@ -1048,7 +1048,7 @@ func (o *xxx_GetIDsOfNamesOperation) UnmarshalNDRRequest(ctx context.Context, w 
 			return err
 		}
 	}
-	// rgszNames {in} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=cNames]*(1)[dim:0,string](wchar))
+	// rgszNames {in} (1:{pointer=ref}*(1))(2:{string, alias=LPOLESTR}[dim:0,size_is=cNames]*(1)[dim:0,string,null](wchar))
 	{
 		sizeInfo := []uint64{
 			0,
@@ -1065,7 +1065,7 @@ func (o *xxx_GetIDsOfNamesOperation) UnmarshalNDRRequest(ctx context.Context, w 
 		for i1 := range o.Names {
 			i1 := i1
 			_ptr_rgszNames := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := ndr.ReadUTF16String(ctx, w, &o.Names[i1]); err != nil {
+				if err := ndr.ReadUTF16NString(ctx, w, &o.Names[i1]); err != nil {
 					return err
 				}
 				return nil

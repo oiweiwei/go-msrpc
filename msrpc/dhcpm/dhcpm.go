@@ -9381,7 +9381,7 @@ func (o *MScopeTable) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				}
 				if o.MScopeNames[i1] != "" {
 					_ptr_pMScopeNames := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-						if err := ndr.WriteUTF16String(ctx, w, o.MScopeNames[i1]); err != nil {
+						if err := ndr.WriteUTF16NString(ctx, w, o.MScopeNames[i1]); err != nil {
 							return err
 						}
 						return nil
@@ -9439,7 +9439,7 @@ func (o *MScopeTable) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		for i1 := range o.MScopeNames {
 			i1 := i1
 			_ptr_pMScopeNames := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := ndr.ReadUTF16String(ctx, w, &o.MScopeNames[i1]); err != nil {
+				if err := ndr.ReadUTF16NString(ctx, w, &o.MScopeNames[i1]); err != nil {
 					return err
 				}
 				return nil
