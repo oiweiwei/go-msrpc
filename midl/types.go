@@ -179,7 +179,7 @@ type Field struct {
 }
 
 func (f *Field) IsString() bool {
-	return f.Attrs.Usage.IsString || (f.Type.Attrs != nil && f.Type.Attrs.Usage.IsString)
+	return f.Attrs.Usage.IsString || f.Type.IsString()
 }
 
 func (f *Field) IsHandle() bool {
@@ -258,6 +258,15 @@ type Type struct {
 	Attrs     *TypeAttr  `json:"attrs,omitempty"`
 	Alias     string     `json:"alias,omitempty"`
 	Elem      *Type      `json:"elem,omitempty"`
+}
+
+func (t *Type) IsString() bool {
+	for _, t := range t.flat() {
+		if t.Attrs != nil && t.Attrs.Usage.IsString {
+			return true
+		}
+	}
+	return false
 }
 
 func (t *Type) flat() []*Type {

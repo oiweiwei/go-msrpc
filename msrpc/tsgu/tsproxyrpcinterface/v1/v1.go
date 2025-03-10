@@ -810,7 +810,7 @@ func (o *EndpointInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				}
 				if o.ResourceName[i1] != "" {
 					_ptr_resourceName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-						if err := ndr.WriteUTF16String(ctx, w, o.ResourceName[i1]); err != nil {
+						if err := ndr.WriteUTF16NString(ctx, w, o.ResourceName[i1]); err != nil {
 							return err
 						}
 						return nil
@@ -858,7 +858,7 @@ func (o *EndpointInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 				}
 				if o.AlternateResourceNames[i1] != "" {
 					_ptr_alternateResourceNames := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-						if err := ndr.WriteUTF16String(ctx, w, o.AlternateResourceNames[i1]); err != nil {
+						if err := ndr.WriteUTF16NString(ctx, w, o.AlternateResourceNames[i1]); err != nil {
 							return err
 						}
 						return nil
@@ -922,7 +922,7 @@ func (o *EndpointInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		for i1 := range o.ResourceName {
 			i1 := i1
 			_ptr_resourceName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := ndr.ReadUTF16String(ctx, w, &o.ResourceName[i1]); err != nil {
+				if err := ndr.ReadUTF16NString(ctx, w, &o.ResourceName[i1]); err != nil {
 					return err
 				}
 				return nil
@@ -961,7 +961,7 @@ func (o *EndpointInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 		for i1 := range o.AlternateResourceNames {
 			i1 := i1
 			_ptr_alternateResourceNames := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := ndr.ReadUTF16String(ctx, w, &o.AlternateResourceNames[i1]); err != nil {
+				if err := ndr.ReadUTF16NString(ctx, w, &o.AlternateResourceNames[i1]); err != nil {
 					return err
 				}
 				return nil
