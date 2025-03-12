@@ -208,9 +208,9 @@ func (v2 *V2) NTOWF(ctx context.Context, cred Credential) ([]byte, error) {
 		err error
 	)
 
-	if cred, ok := cred.(credential.Password); ok {
+	if pw, ok := cred.(credential.Password); ok {
 
-		pass, err := utf16le.Encode(cred.Password())
+		pass, err := utf16le.Encode(pw.Password())
 		if err != nil {
 			return nil, fmt.Errorf("v2: ntowf: encode password: %w", err)
 		}
