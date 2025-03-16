@@ -156,7 +156,7 @@ type Result struct {
 	TransferSyntax *SyntaxID
 }
 
-func (result *Result) HasError() bool {
+func (result *Result) IsError() bool {
 	return result.DefResult != Acceptance && result.DefResult != NegotiateAck
 }
 

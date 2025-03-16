@@ -37,7 +37,7 @@ func PresentationFromContextList(ps []*Presentation, results []*Result) *Feature
 		// continue
 		//}
 
-		if results[i].HasError() {
+		if results[i].IsError() {
 			ps[i].Error = results[i]
 			continue
 		}
