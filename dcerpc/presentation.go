@@ -28,7 +28,7 @@ func (c *Presentation) TransferEncoding() func([]byte, ...any) ndr.NDR {
 	return ndr.NDR20
 }
 
-func (c *transport) PresentationFromContextList(ps []*Presentation, results []*Result) *Feature {
+func PresentationFromContextList(ps []*Presentation, results []*Result) *Feature {
 
 	for i := 0; i < len(ps) && i < len(results); i++ {
 
@@ -45,7 +45,7 @@ func (c *transport) PresentationFromContextList(ps []*Presentation, results []*R
 		ps[i].TransferSyntax, ps[i].Error = results[i].TransferSyntax, nil
 	}
 
-	if !c.IsBinded() && len(results) > len(ps) {
+	if len(results) > len(ps) {
 		if feature := results[len(results)-1]; feature.DefResult == NegotiateAck {
 			// bind negotiate features.
 			return (*Feature)(feature)
@@ -55,7 +55,7 @@ func (c *transport) PresentationFromContextList(ps []*Presentation, results []*R
 	return nil
 }
 
-func (c *transport) PresentationsToContextList(ps []*Presentation, transferSyntaxes []*SyntaxID) []*Context {
+func PresentationsToContextList(ps []*Presentation, transferSyntaxes []*SyntaxID) []*Context {
 
 	ret := []*Context{}
 
@@ -70,13 +70,6 @@ func (c *transport) PresentationsToContextList(ps []*Presentation, transferSynta
 			ContextID:        p.id,
 			AbstractSyntax:   p.AbstractSyntax,
 			TransferSyntaxes: transferSyntaxes,
-		})
-	}
-
-	if !c.IsBinded() && len(ret) > 0 {
-		ret = append(ret, &Context{
-			AbstractSyntax:   ret[len(ret)-1].AbstractSyntax,
-			TransferSyntaxes: []*SyntaxID{BindFeatureSyntaxV1_0},
 		})
 	}
 

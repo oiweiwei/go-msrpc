@@ -175,13 +175,13 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 		return nil, fmt.Errorf("alter context: allocate call: %w", err)
 	}
 
+	contexts := PresentationsToContextList(o.Presentations, o.TransferSyntaxes)
+
 	pkt := &Packet{
 		Header: Header{
 			PacketFlags: PacketFlagFirstFrag | PacketFlagLastFrag | o.Security.RequestHeaderSign,
 		},
-		PDU: &AlterContext{
-			ContextList: c.PresentationsToContextList(o.Presentations, o.TransferSyntaxes),
-		},
+		PDU:             &AlterContext{ContextList: contexts},
 		SecurityTrailer: o.Security.SecurityTrailer(),
 	}
 
@@ -209,60 +209,11 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 
 	o.Security.SignHeader = pkt.Header.PacketFlags.IsSet(PacketFlagSupportHeaderSign)
 
-	c.PresentationFromContextList(o.Presentations, pdu.ResultList)
+	PresentationFromContextList(o.Presentations, pdu.ResultList)
 
 	// alter context until the security context is established.
-	for !o.Security.Established() {
-
-		pkt = &Packet{
-			Header: Header{
-				PacketFlags: PacketFlagFirstFrag | PacketFlagLastFrag | o.Security.RequestHeaderSign,
-			},
-			PDU: &AlterContext{
-				ContextList: c.PresentationsToContextList(o.Presentations, o.TransferSyntaxes),
-			},
-			SecurityTrailer: o.Security.SecurityTrailer(),
-			AuthData:        pkt.AuthData,
-		}
-		// intitialize the context.
-		if pkt.AuthData, err = o.Security.Init(ctx, pkt.AuthData); err != nil {
-			return nil, fmt.Errorf("alter context: %w", err)
-		}
-		// context has been successfully established.
-		if len(pkt.AuthData) == 0 && o.Security.Established() {
-			break
-		}
-
-		// make new call.
-		call, err := c.makeCall(ctx, noCopy{})
-		if err != nil {
-			return nil, fmt.Errorf("alter context: allocate channel: %w", err)
-		}
-
-		if o.Security.Type.Legs() == LegsOdd {
-			// replace type with auth3.
-			pkt.PDU = &Auth3{}
-			// write auth3 pdu.
-			if err = c.WritePacket(ctx, call, pkt); err != nil {
-				return nil, fmt.Errorf("alter context: auth3: write packet: %w", err)
-			}
-			// no response is assumed.
-			break
-		}
-		// write alter_context request.
-		if err = c.WritePacket(ctx, call, pkt); err != nil {
-			return nil, fmt.Errorf("alter context: write packet: %w", err)
-		}
-		// read alter_context response.
-		if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
-			return nil, fmt.Errorf("alter context: read packet: %w", err)
-		}
-		// check response.
-		if _, ok := pkt.PDU.(*AlterContextResponse); !ok {
-			return nil, fmt.Errorf("alter context: unexpected response: %s", pkt.Header.PacketType)
-		}
-
-		o.Security.SignHeader = pkt.Header.PacketFlags.IsSet(PacketFlagSupportHeaderSign)
+	if err := c.CompleteContext(ctx, contexts, o.Security, pkt.AuthData); err != nil {
+		return nil, err
 	}
 
 	if o.IsNewSecurity && o.Security.Level >= AuthLevelConnect {
@@ -334,6 +285,66 @@ func (c *transport) makeConn(o *option) *clientConn {
 	return conns[0]
 }
 
+// alter context until the security context is established.
+func (c *transport) CompleteContext(ctx context.Context, p []*Context, o *Security, authData []byte) error {
+
+	var err error
+
+	pkt := &Packet{AuthData: authData}
+
+	for !o.Established() {
+		// alter context until the security context is established.
+		pkt = &Packet{
+			Header: Header{
+				PacketFlags: PacketFlagFirstFrag | PacketFlagLastFrag | o.RequestHeaderSign,
+			},
+			PDU:             &AlterContext{ContextList: p},
+			SecurityTrailer: o.SecurityTrailer(),
+			AuthData:        pkt.AuthData,
+		}
+		// intitialize the context.
+		if pkt.AuthData, err = o.Init(ctx, pkt.AuthData); err != nil {
+			return fmt.Errorf("alter context: init security context: %w", err)
+		}
+		// context has been successfully established.
+		if len(pkt.AuthData) == 0 && o.Established() {
+			break
+		}
+
+		call, err := c.makeCall(ctx, noCopy{})
+		if err != nil {
+			return fmt.Errorf("alter context: allocate channel: %w", err)
+		}
+
+		if o.Type.Legs() == LegsOdd {
+			// replace type with auth3.
+			pkt.PDU = &Auth3{}
+			// write auth3 pdu.
+			if err = c.WritePacket(ctx, call, pkt); err != nil {
+				return fmt.Errorf("alter context: auth3: write packet: %w", err)
+			}
+			// no response is assumed.
+			break
+		}
+		// write alter_context request.
+		if err = c.WritePacket(ctx, call, pkt); err != nil {
+			return fmt.Errorf("alter context: write packet: %w", err)
+		}
+		// read alter_context response.
+		if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
+			return fmt.Errorf("alter context: read packet: %w", err)
+		}
+		// check response.
+		if _, ok := pkt.PDU.(*AlterContextResponse); !ok {
+			return fmt.Errorf("alter context: unexpected response: %s", pkt.Header.PacketType)
+		}
+
+		o.SignHeader = pkt.Header.PacketFlags.IsSet(PacketFlagSupportHeaderSign)
+	}
+
+	return nil
+}
+
 func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 	if err := c.HasErr(); err != nil {
@@ -368,6 +379,14 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 	// set/override the settings group id if association is non-zero.
 	c.settings.GroupID = o.Group.SetID(c.settings.GroupID)
 
+	contexts := PresentationsToContextList(o.Presentations, o.TransferSyntaxes)
+	if len(contexts) > 0 {
+		contexts = append(contexts, &Context{
+			AbstractSyntax:   contexts[len(contexts)-1].AbstractSyntax,
+			TransferSyntaxes: []*SyntaxID{BindFeatureSyntaxV1_0},
+		})
+	}
+
 	pkt := &Packet{
 		Header: Header{
 			PacketFlags: PacketFlagFirstFrag | PacketFlagLastFrag | PacketFlagConcMPX | o.Security.RequestHeaderSign,
@@ -376,7 +395,7 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 			MaxXmitFrag:  uint16(c.settings.MaxXmitFrag),
 			MaxRecvFrag:  uint16(c.settings.MaxRecvFrag),
 			AssocGroupID: uint32(c.settings.GroupID),
-			ContextList:  c.PresentationsToContextList(o.Presentations, o.TransferSyntaxes),
+			ContextList:  contexts,
 		},
 		SecurityTrailer: o.Security.SecurityTrailer(),
 	}
@@ -421,7 +440,7 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		o.Security.SignHeader = pkt.Header.PacketFlags.IsSet(PacketFlagSupportHeaderSign)
 		c.settings.Multiplexing = pkt.Header.PacketFlags.IsSet(PacketFlagConcMPX)
 
-		feature := c.PresentationFromContextList(o.Presentations, pdu.ResultList)
+		feature := PresentationFromContextList(o.Presentations, pdu.ResultList)
 		c.settings.KeepConnOpenOnOrphaned = feature.KeepConnOpenOnOrphaned()
 		c.settings.SecurityContextMultiplexing = feature.SecurityContextMultiplexing()
 
@@ -433,57 +452,11 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		return nil, c.asyncClose(ctx, fmt.Errorf("bind: unexpected response: %s", pkt.Header.PacketType))
 	}
 
-	for !o.Security.Established() {
-		// alter context until the security context is established.
-		pkt = &Packet{
-			Header: Header{
-				PacketFlags: PacketFlagFirstFrag | PacketFlagLastFrag | o.Security.RequestHeaderSign,
-			},
-			PDU: &AlterContext{
-				ContextList: c.PresentationsToContextList(o.Presentations, o.TransferSyntaxes),
-			},
-			SecurityTrailer: o.Security.SecurityTrailer(),
-			AuthData:        pkt.AuthData,
-		}
-		// intitialize the context.
-		if pkt.AuthData, err = o.Security.Init(ctx, pkt.AuthData); err != nil {
-			return nil, c.asyncClose(ctx, err)
-		}
-		// context has been successfully established.
-		if len(pkt.AuthData) == 0 && o.Security.Established() {
-			break
-		}
-
-		call, err := c.makeCall(ctx, noCopy{})
-		if err != nil {
-			return nil, c.asyncClose(ctx, fmt.Errorf("bind: alter context: allocate channel: %w", err))
-		}
-
-		if o.Security.Type.Legs() == LegsOdd {
-			// replace type with auth3.
-			pkt.PDU = &Auth3{}
-			// write auth3 pdu.
-			if err = c.WritePacket(ctx, call, pkt); err != nil {
-				return nil, fmt.Errorf("bind: alter context: auth3: write packet: %w", err)
-			}
-			// no response is assumed.
-			break
-		}
-		// write alter_context request.
-		if err = c.WritePacket(ctx, call, pkt); err != nil {
-			return nil, fmt.Errorf("bind: alter context: write packet: %w", err)
-		}
-		// read alter_context response.
-		if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
-			return nil, fmt.Errorf("bind: alter context: read packet: %w", err)
-		}
-		// check response.
-		if _, ok := pkt.PDU.(*AlterContextResponse); !ok {
-			return nil, c.asyncClose(ctx, fmt.Errorf("bind: alter context: unexpected response: %s", pkt.Header.PacketType))
-		}
-
-		o.Security.SignHeader = pkt.Header.PacketFlags.IsSet(PacketFlagSupportHeaderSign)
+	if err := c.CompleteContext(ctx, contexts, o.Security, pkt.AuthData); err != nil {
+		return nil, c.asyncClose(ctx, fmt.Errorf("bind: %w", err))
 	}
+
+	c.Binded()
 
 	if o.IsNewSecurity && o.Security.Level >= AuthLevelConnect {
 		// increment security context count for multiplexing.
@@ -492,8 +465,6 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 	ctx, c.close = context.WithCancel(ctx)
 	c.closeWait = new(sync.WaitGroup)
-
-	c.Binded()
 
 	// run receiver.
 	c.closeWait.Add(1)
