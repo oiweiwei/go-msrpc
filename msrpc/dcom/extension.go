@@ -276,7 +276,7 @@ func (o *ContextExtension) Data(opts ...any) ([]byte, error) {
 		})
 
 		// padded to 16 bytes.
-		ctx.Length += uint32(len(o.Entries[i1].Data)) & (^uint32(15))
+		ctx.Length += uint32(len(o.Entries[i1].Data)+15) & (^uint32(15))
 		// write entry data to buffer.
 		if _, err := buf.Write(o.Entries[i1].Data); err != nil {
 			return nil, err
