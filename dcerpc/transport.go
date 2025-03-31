@@ -86,16 +86,16 @@ func (t *transport) WithErr(err error) error {
 // do not copy data to the buffer.
 type noCopy struct{}
 
-func (t *transport) MakeCall(ctx context.Context, opts ...any) (Call, error) {
-
+func (t *transport) CallLock() {
 	t.callMu.RLock()
-	defer t.callMu.RUnlock()
-
-	return t.makeCall(ctx, opts...)
 }
 
-// makeCall function acquires the read/write access for the transport.
-func (t *transport) makeCall(ctx context.Context, opts ...any) (Call, error) {
+func (t *transport) CallUnlock() {
+	t.callMu.RUnlock()
+}
+
+// MakeCall function acquires the read/write access for the transport.
+func (t *transport) MakeCall(ctx context.Context, opts ...any) (Call, error) {
 
 	if err := t.HasErr(); err != nil {
 		return nil, err
@@ -160,9 +160,6 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 		return nil, fmt.Errorf("alter context: %w", err)
 	}
 
-	c.callMu.Lock()
-	defer c.callMu.Unlock()
-
 	o, err := ParseOptions(ctx, opts...)
 	if err != nil {
 		return nil, fmt.Errorf("alter context: parse options: %w", err)
@@ -170,7 +167,10 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 
 	c.ExportSMBSecurity(o.Security)
 
-	call, err := c.makeCall(ctx, noCopy{})
+	c.callMu.Lock()
+	defer c.callMu.Unlock()
+
+	call, err := c.MakeCall(ctx, noCopy{})
 	if err != nil {
 		return nil, fmt.Errorf("alter context: allocate call: %w", err)
 	}
@@ -311,7 +311,7 @@ func (c *transport) CompleteContext(ctx context.Context, p []*Context, o *Securi
 			break
 		}
 
-		call, err := c.makeCall(ctx, noCopy{})
+		call, err := c.MakeCall(ctx, noCopy{})
 		if err != nil {
 			return fmt.Errorf("alter context: allocate channel: %w", err)
 		}
@@ -359,9 +359,6 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 		return c.AlterContext(ctx, opts...)
 	}
 
-	c.callMu.Lock()
-	defer c.callMu.Unlock()
-
 	o, err := ParseOptions(ctx, opts...)
 	if err != nil {
 		return nil, fmt.Errorf("bind: parse options: %w", err)
@@ -371,7 +368,10 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 	c.logger = o.Logger
 
-	call, err := c.makeCall(ctx, noCopy{})
+	c.callMu.Lock()
+	defer c.callMu.Unlock()
+
+	call, err := c.MakeCall(ctx, noCopy{})
 	if err != nil {
 		return nil, fmt.Errorf("bind: allocate channel: %w", err)
 	}

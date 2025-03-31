@@ -200,7 +200,7 @@ func (t *transport) recvLoop(ctx context.Context) error {
 // recv.
 func (t *transport) recv(ctx context.Context, call *call) error {
 
-	if t.settings.Multiplexing {
+	if !t.settings.Multiplexing {
 		defer close(call.done)
 	}
 
@@ -329,7 +329,7 @@ func (t *transport) send(ctx context.Context, call *call) error {
 	}
 
 	// wait for receive completes.
-	if t.settings.Multiplexing {
+	if !t.settings.Multiplexing {
 		select {
 		case <-call.done:
 		case <-ctx.Done():
