@@ -171,6 +171,10 @@ func (c *clientConn) invoke(ctx context.Context, op Operation, opts ...CallOptio
 
 	obj, _ := HasObjectUUID(opts)
 
+	// lock transport for call.
+	c.transport.CallLock()
+	defer c.transport.CallUnlock()
+
 	call, err := c.transport.MakeCall(ctx)
 	if err != nil {
 		return err
