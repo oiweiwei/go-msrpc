@@ -9,6 +9,7 @@ import (
 
 	"github.com/rs/zerolog"
 
+	"github.com/oiweiwei/go-msrpc/dcerpc/internal"
 	"github.com/oiweiwei/go-msrpc/smb2"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
@@ -35,7 +36,7 @@ type transport struct {
 	// queries are allowed).
 	binded bool
 	// The raw connection.
-	cc *BufferedConn
+	cc *internal.BufferedConn
 	// The next call identifier.
 	cid atomic.Uint32
 	// The connection settings.
@@ -86,14 +87,6 @@ func (t *transport) WithErr(err error) error {
 // do not copy data to the buffer.
 type noCopy struct{}
 
-func (t *transport) CallLock() {
-	t.callMu.RLock()
-}
-
-func (t *transport) CallUnlock() {
-	t.callMu.RUnlock()
-}
-
 // MakeCall function acquires the read/write access for the transport.
 func (t *transport) MakeCall(ctx context.Context, opts ...any) (Call, error) {
 
@@ -108,7 +101,6 @@ func (t *transport) MakeCall(ctx context.Context, opts ...any) (Call, error) {
 		recv: t.rx,
 		inQ:  make(chan error),
 		outQ: make(chan Header),
-		done: make(chan struct{}),
 	}
 
 	for _, opt := range opts {
@@ -118,11 +110,25 @@ func (t *transport) MakeCall(ctx context.Context, opts ...any) (Call, error) {
 		}
 	}
 
+	if !call.noCopy && t.settings.Multiplexing {
+		call.locker = t.callMu.RLocker()
+	} else {
+		call.locker = &t.callMu
+	}
+
 	if t.IsBinded() {
 		t.txQ <- call
 	}
 
 	return call, nil
+}
+
+func (c *call) Lock() {
+	c.locker.Lock()
+}
+
+func (c *call) Unlock() {
+	c.locker.Unlock()
 }
 
 func (c *transport) CallID() uint32 {
@@ -167,13 +173,13 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 
 	c.ExportSMBSecurity(o.Security)
 
-	c.callMu.Lock()
-	defer c.callMu.Unlock()
-
 	call, err := c.MakeCall(ctx, noCopy{})
 	if err != nil {
 		return nil, fmt.Errorf("alter context: allocate call: %w", err)
 	}
+
+	call.Lock()
+	defer call.Unlock()
 
 	contexts := PresentationsToContextList(o.Presentations, o.TransferSyntaxes)
 
@@ -197,7 +203,7 @@ func (c *transport) AlterContext(ctx context.Context, opts ...Option) (Conn, err
 	if err = c.WritePacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("alter context: write packet: %w", err)
 	}
-	// read bind response (bind-ack, bind-nak).
+	// read alter-context-resp (or fault).
 	if pkt, err = c.ReadPacket(ctx, call, pkt); err != nil {
 		return nil, fmt.Errorf("alter context: read packet: %w", err)
 	}
@@ -368,13 +374,13 @@ func (c *transport) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 	c.logger = o.Logger
 
-	c.callMu.Lock()
-	defer c.callMu.Unlock()
-
 	call, err := c.MakeCall(ctx, noCopy{})
 	if err != nil {
 		return nil, fmt.Errorf("bind: allocate channel: %w", err)
 	}
+
+	call.Lock()
+	defer call.Unlock()
 
 	// set/override the settings group id if association is non-zero.
 	c.settings.GroupID = o.Group.SetID(c.settings.GroupID)

@@ -171,14 +171,13 @@ func (c *clientConn) invoke(ctx context.Context, op Operation, opts ...CallOptio
 
 	obj, _ := HasObjectUUID(opts)
 
-	// lock transport for call.
-	c.transport.CallLock()
-	defer c.transport.CallUnlock()
-
 	call, err := c.transport.MakeCall(ctx)
 	if err != nil {
 		return err
 	}
+
+	call.Lock()
+	defer call.Unlock()
 
 	c.logger.Debug().Uint32("call_id", call.ID()).Interface("in", op).Msg("operation input")
 

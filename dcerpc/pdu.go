@@ -201,7 +201,11 @@ type Bind struct {
 	ContextList  []*Context
 }
 
-func (pdu *Bind) MarshalZerologObject(e *zerolog.Event) {}
+func (pdu *Bind) MarshalZerologObject(e *zerolog.Event) {
+	e.Uint16("max_xmit_frag", pdu.MaxXmitFrag)
+	e.Uint16("max_recv_frag", pdu.MaxRecvFrag)
+	e.Uint32("assoc_group_id", pdu.AssocGroupID)
+}
 
 func (pdu *Bind) WriteTo(ctx context.Context, w ndr.Writer) error {
 	w.WriteData(pdu.MaxXmitFrag)

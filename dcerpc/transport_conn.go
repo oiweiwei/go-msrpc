@@ -5,7 +5,9 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"time"
+	"sync"
+
+	"github.com/oiweiwei/go-msrpc/dcerpc/internal"
 )
 
 var (
@@ -17,6 +19,7 @@ var (
 
 // Call interface provides the exclusive access to the transport.
 type Call interface {
+	sync.Locker
 	// The call identifier.
 	ID() uint32
 	// The function must be called to indicate that transport
@@ -43,7 +46,7 @@ type call struct {
 	// The flag that indicates whether to perform copy
 	// from xmit/recv buffers to connection buffer.
 	noCopy bool
-	done   chan struct{}
+	locker sync.Locker
 }
 
 // ID returns the call identifier.
@@ -117,16 +120,7 @@ func (c *transport) WriteBuffer(ctx context.Context, hdr Header, p []byte) error
 
 	p = p[:hdr.FragLength]
 
-	return doWithTimeout(ctx, c.settings.Timeout, func() error {
-		for n := 0; n < int(hdr.FragLength); {
-			actual, err := c.cc.Write(p[n:])
-			if err != nil {
-				return err
-			}
-			n += actual
-		}
-		return nil
-	})
+	return c.cc.MustWithin(ctx, p[:hdr.FragLength], c.cc.Write, c.settings.Timeout)
 }
 
 // ReadBuffer function reads the bytes from the wire into the buffer `p`.
@@ -140,38 +134,20 @@ func (c *transport) ReadBuffer(ctx context.Context, p []byte) (Header, error) {
 
 	p = p[:c.settings.MaxRecvFrag]
 
-	// read header.
-	if err := doWithTimeout(ctx, c.settings.Timeout, func() error {
-		for n := 0; n < HeaderSize; {
-			actual, err := c.cc.Read(p[n:HeaderSize])
-			if err != nil {
-				return err
-			}
-			n += actual
-		}
-		return nil
-	}); err != nil {
+	if err := c.cc.MustWithin(ctx, p[:HeaderSize], c.cc.Read, c.settings.Timeout); err != nil {
 		return hdr, err
 	}
+
 	// unmarshal header.
-	if err := (&hdr).ReadFrom(ctx, c.Codec(p[:HeaderSize], c.settings.DataRepresentation)); err != nil {
+	if err := hdr.ReadFrom(ctx, c.Codec(p[:HeaderSize], c.settings.DataRepresentation)); err != nil {
 		return hdr, err
 	}
 	// check fragment length.
 	if int(hdr.FragLength) > len(p) {
 		return hdr, ErrPacketTooLong
 	}
-	// read remaining fragment.
-	if err := doWithTimeout(ctx, c.settings.Timeout, func() error {
-		for n := HeaderSize; n < int(hdr.FragLength); {
-			actual, err := c.cc.Read(p[n:hdr.FragLength])
-			if err != nil {
-				return err
-			}
-			n += actual
-		}
-		return nil
-	}); err != nil {
+
+	if err := c.cc.MustWithin(ctx, p[HeaderSize:hdr.FragLength], c.cc.Read, c.settings.Timeout); err != nil {
 		return hdr, err
 	}
 
@@ -200,10 +176,6 @@ func (t *transport) recvLoop(ctx context.Context) error {
 // recv.
 func (t *transport) recv(ctx context.Context, call *call) error {
 
-	if !t.settings.Multiplexing {
-		defer close(call.done)
-	}
-
 	// close output query for preventing the deadlock.
 	defer close(call.outQ)
 
@@ -211,8 +183,7 @@ func (t *transport) recv(ctx context.Context, call *call) error {
 		return err
 	}
 
-	var deadline *time.Timer
-	defer clearTimer(&deadline)
+	deadline := internal.NewTimer()
 
 	for {
 		// read packet from buffer.
@@ -230,20 +201,20 @@ func (t *transport) recv(ctx context.Context, call *call) error {
 		}
 
 		// indicate ready to copy the buffer.
-		newTimer(&deadline, t.settings.Deadline)
 		select {
 		case call.outQ <- hdr:
-		case <-deadline.C:
+		case <-deadline.After(t.settings.Deadline):
+			deadline.Clear()
 			return t.WithErr(fmt.Errorf("caller-receiver timer expired"))
 		case <-ctx.Done():
 			return nil
 		}
 
 		// wait for buffer copy.
-		newTimer(&deadline, t.settings.Deadline)
 		select {
 		case <-call.inQ:
-		case <-deadline.C:
+		case <-deadline.After(t.settings.Deadline):
+			deadline.Clear()
 			return t.WithErr(fmt.Errorf("caller-ready timer expired"))
 		case <-ctx.Done():
 			return nil
@@ -280,8 +251,8 @@ func (t *transport) sendLoop(ctx context.Context) error {
 // send.
 func (t *transport) send(ctx context.Context, call *call) error {
 
-	var deadline *time.Timer
-	defer clearTimer(&deadline)
+	deadline := internal.NewTimer()
+	defer deadline.Stop()
 
 	if err := t.HasErr(); err != nil {
 		return err
@@ -298,11 +269,10 @@ func (t *transport) send(ctx context.Context, call *call) error {
 		// write buffer.
 		err := t.WriteBuffer(ctx, hdr, t.tx)
 
-		// report status back.
-		newTimer(&deadline, t.settings.Deadline)
 		select {
 		case call.inQ <- err:
-		case <-deadline.C:
+		case <-deadline.After(t.settings.Deadline):
+			deadline.Clear()
 			err = fmt.Errorf("client-ack timer expired")
 		case <-ctx.Done():
 			return nil
@@ -328,59 +298,5 @@ func (t *transport) send(ctx context.Context, call *call) error {
 	case <-ctx.Done():
 	}
 
-	// wait for receive completes.
-	if !t.settings.Multiplexing {
-		select {
-		case <-call.done:
-		case <-ctx.Done():
-		}
-	}
-
 	return nil
-}
-
-// newTimer.
-func newTimer(t **time.Timer, dur time.Duration) {
-	if *t == nil {
-		*t = time.NewTimer(dur)
-		return
-	}
-	if !(*t).Stop() {
-		<-((*t).C)
-	}
-	(*t).Reset(dur)
-}
-
-// clearTimer.
-func clearTimer(t **time.Timer) {
-	if *t != nil && !(*t).Stop() {
-		<-((*t).C)
-	}
-}
-
-// doWithTimeout.
-func doWithTimeout(ctx context.Context, timeout time.Duration, f func() error) error {
-
-	done := make(chan error, 1)
-	go func() {
-		done <- f()
-	}()
-
-	timer := time.NewTimer(timeout)
-
-	var err error
-
-	select {
-	case err = <-done:
-	case <-timer.C:
-		return context.DeadlineExceeded
-	case <-ctx.Done():
-		err = ctx.Err()
-	}
-
-	if !timer.Stop() {
-		<-timer.C
-	}
-
-	return err
 }
