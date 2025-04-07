@@ -10,70 +10,11 @@ import (
 
 	"github.com/rs/zerolog"
 
+	"github.com/oiweiwei/go-msrpc/dcerpc/internal"
 	"github.com/oiweiwei/go-msrpc/midl/uuid"
 	"github.com/oiweiwei/go-msrpc/smb2"
 	"github.com/oiweiwei/go-msrpc/ssp/gssapi"
 )
-
-// BufferedConn is a raw connection wrapper to optimize the short
-// read header operations.
-type BufferedConn struct {
-	// The wrapped raw connection.
-	RawConn
-	// cur for current position, total is buffer start position.
-	cur, total []byte
-}
-
-func (conn *BufferedConn) Resized(sz int) *BufferedConn {
-	if sz > len(conn.total) {
-		conn.total = make([]byte, sz)
-	}
-	conn.cur, conn.total = nil, conn.total[:sz]
-	return conn
-}
-
-// NewBufferedConn function returns the new buffered connection.
-func NewBufferedConn(cc RawConn, sz int) *BufferedConn {
-	return &BufferedConn{RawConn: cc, cur: nil, total: make([]byte, sz)}
-}
-
-// Read function reads the data into buffer `b` and optionally fetches
-// the next data block.
-func (conn *BufferedConn) Read(b []byte) (int, error) {
-
-	want := len(b)
-
-	if len(b) <= len(conn.cur) {
-		// copy current to bytes and advance conn.cur to b lenght.
-		conn.cur = conn.cur[copy(b, conn.cur):]
-		return want, nil
-	}
-
-	if len(conn.cur) > 0 {
-		// copy all bytes to b.
-		b = b[copy(b, conn.cur):]
-	}
-
-	for len(b) > 0 {
-		// reset current buffer.
-		conn.cur = conn.total
-
-		// read available data.
-		n, err := conn.RawConn.Read(conn.cur)
-		if err != nil {
-			return n, err
-		}
-
-		// limit current buffer to read chunk.
-		conn.cur = conn.cur[:n]
-		// copy data to buffer.
-		n = copy(b, conn.cur)
-		// advance the buffer.
-		conn.cur, b = conn.cur[n:], b[n:]
-	}
-
-	return want, nil
-}
 
 // conn represents the client's set of transports
 // per binding.
@@ -314,7 +255,7 @@ func (t *conn) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 				// check if connections are alive.
 				active := false
 				for j := range selected {
-					if selected[j].err == nil {
+					if selected[j].HasErr() == nil {
 						active = true
 						break
 					}
@@ -347,7 +288,7 @@ func (t *conn) Bind(ctx context.Context, opts ...Option) (Conn, error) {
 
 	for i := range selected {
 		// skip dead connections.
-		if selected[i].err != nil {
+		if selected[i].HasErr() != nil {
 			continue
 		}
 		t.logger.Debug().Msgf("binding the selected transport")
@@ -377,7 +318,7 @@ func (t *conn) dial(ctx context.Context, binding StringBinding) ([]*transport, e
 
 	return []*transport{{
 		id:       rand.Int(),
-		cc:       NewBufferedConn(conn, t.settings.MaxRecvFrag),
+		cc:       internal.NewBufferedConn(conn, t.settings.MaxRecvFrag),
 		settings: &settings,
 		tx:       make([]byte, t.settings.MaxXmitFrag),
 		rx:       make([]byte, t.settings.MaxRecvFrag),
