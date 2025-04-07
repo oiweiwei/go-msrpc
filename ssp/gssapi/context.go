@@ -220,9 +220,11 @@ func InitSecurityContext(ctx context.Context, tok *Token, opts ...Option) (*Toke
 		cc.Credential = GetCredential(ctx, cfg.TargetName, f.Type(), InitiateOnly)
 
 		// optionally validate credential.
-		if validator, ok := (any)(cc.Credential.Value()).(interface{ Validate() error }); ok {
-			if err = validator.Validate(); err != nil {
-				return nil, ContextError(ctx, Failure, err)
+		if cc.Credential != nil {
+			if validator, ok := (any)(cc.Credential.Value()).(interface{ Validate() error }); ok {
+				if err = validator.Validate(); err != nil {
+					return nil, ContextError(ctx, Failure, err)
+				}
 			}
 		}
 
