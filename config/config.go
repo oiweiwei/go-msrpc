@@ -115,6 +115,9 @@ type Config struct {
 			// The flag that indicates whether the mutual authentication
 			// is required.
 			MutualAuthn bool `json:"mutual_authn"`
+			// The flag that indicates whether the Any Service Class SPN
+			// should be used. (default true)
+			AnyServiceClassSPN bool `json:"any_service_class_spn,omitempty"`
 		} `json:"auth_krb5_config"`
 
 		// The auth configuration for NTLM.
@@ -198,6 +201,7 @@ func New() *Config {
 
 	cfg.Auth.KRB5.DCEStyle = true
 	cfg.Auth.KRB5.DisablePAFXFAST = true
+	cfg.Auth.KRB5.AnyServiceClassSPN = true
 
 	cfg.TrasnferEncoding = "ndr20"
 

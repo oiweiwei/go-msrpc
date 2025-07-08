@@ -42,6 +42,7 @@ func BindFlags(c *config.Config, flagSet *flag.FlagSet) {
 	flagSet.BoolVar(&c.Auth.KRB5.DCEStyle, "krb5-dce-style", c.Auth.KRB5.DCEStyle, "use DCE style")
 	flagSet.BoolVar(&c.Auth.KRB5.DisablePAFXFAST, "krb5-disable-pafx-fast", c.Auth.KRB5.DisablePAFXFAST, "disable PA-FX-FAST")
 	flagSet.BoolVar(&c.Auth.KRB5.MutualAuthn, "krb5-mutual-authn", c.Auth.KRB5.MutualAuthn, "use mutual authentication")
+	flagSet.BoolVar(&c.Auth.KRB5.AnyServiceClassSPN, "krb5-any-service-class-spn", c.Auth.KRB5.AnyServiceClassSPN, "use any service class SPN")
 
 	flagSet.BoolVar(&c.Auth.NTLM.NTLMv1, "ntlm-v1", c.Auth.NTLM.NTLMv1, "use NTLMv1")
 	flagSet.BoolVar(&c.Auth.NTLM.NoESS, "ntlm-no-ess", c.Auth.NTLM.NoESS, "use no extended session security")

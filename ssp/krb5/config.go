@@ -78,6 +78,9 @@ type Config struct {
 	// AssumePreAuthentication used to configure the client to
 	// assume pre-authentication is required.
 	AssumePreAuthentication bool
+	// AnyServiceClassSPN used to match service tickets only
+	// by hostname.
+	AnyServiceClassSPN bool
 }
 
 func (c *Config) GetKRB5Config() *config.Config {
@@ -122,12 +125,22 @@ func NewConfig() *Config {
 	}
 
 	if c, _ := config.Load(p); c != nil {
-		return &Config{KRB5Config: ParsedLibDefaults(c), DCEStyle: true, DisablePAFXFAST: true}
+		return &Config{
+			KRB5Config:         ParsedLibDefaults(c),
+			DCEStyle:           true,
+			DisablePAFXFAST:    true,
+			AnyServiceClassSPN: true,
+		}
 	}
 
 	c := config.New()
 
-	return &Config{KRB5Config: ParsedLibDefaults(c), DCEStyle: true, DisablePAFXFAST: true}
+	return &Config{
+		KRB5Config:         ParsedLibDefaults(c),
+		DCEStyle:           true,
+		DisablePAFXFAST:    true,
+		AnyServiceClassSPN: true,
+	}
 }
 
 func LoadKRB5Conf(p string) (*config.Config, error) {
@@ -258,6 +271,10 @@ func (c *Config) ClientSettings() []func(*client.Settings) {
 
 	if c.KDCDialer != nil {
 		o = append(o, client.Dialer(c.KDCDialer))
+	}
+
+	if c.AnyServiceClassSPN {
+		o = append(o, client.AnyServiceClassSPN(c.AnyServiceClassSPN))
 	}
 
 	return o
