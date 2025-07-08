@@ -9,6 +9,7 @@ import (
 	"github.com/oiweiwei/gokrb5.fork/v9/credentials"
 	krb_crypto "github.com/oiweiwei/gokrb5.fork/v9/crypto"
 	"github.com/oiweiwei/gokrb5.fork/v9/iana/etypeID"
+	"github.com/oiweiwei/gokrb5.fork/v9/iana/nametype"
 	"github.com/oiweiwei/gokrb5.fork/v9/messages"
 	"github.com/oiweiwei/gokrb5.fork/v9/service"
 	"github.com/oiweiwei/gokrb5.fork/v9/spnego"
@@ -48,7 +49,7 @@ type SecurityService struct {
 	InboundCipher          crypto.Cipher
 }
 
-func (a *Authentifier) makeService(ctx context.Context) (*service.Settings, error) {
+func (a *Authentifier) makeService(context.Context) (*service.Settings, error) {
 	kt, ok := credential.V8ToV9(a.Config.Credential).(credential.Keytab)
 	if !ok {
 		return nil, fmt.Errorf("krb5: make service: invalid credential type: %T", a.Config.Credential)
@@ -56,7 +57,7 @@ func (a *Authentifier) makeService(ctx context.Context) (*service.Settings, erro
 	return service.NewSettings(kt.Keytab(), a.Config.ServiceSettings()...), nil
 }
 
-func (a *Authentifier) tryLoadCCache(ctx context.Context) (*credentials.CCache, bool, error) {
+func (a *Authentifier) tryLoadCCache(context.Context) (*credentials.CCache, bool, error) {
 	p := a.Config.CCachePath
 	if p != "" {
 		cc, err := credentials.LoadCCache(p)
@@ -131,10 +132,16 @@ func (a *Authentifier) makeClient(ctx context.Context) (*client.Client, error) {
 		if err != nil {
 			return nil, fmt.Errorf("client from ccache credential: %w", err)
 		}
+		if c := cred.CCache(); !c.Contains(types.PrincipalName{
+			NameType:   nametype.KRB_NT_SRV_INST,
+			NameString: []string{"krbtgt", c.DefaultPrincipal.Realm},
+		}) {
+			// XXX: if ccache does not containt tgt, skip the IsConfigured check.
+			return cli, nil
+		}
 	}
 
-	_, err = cli.IsConfigured()
-	if err != nil {
+	if _, err = cli.IsConfigured(); err != nil {
 		return nil, fmt.Errorf("client configuration: %w", err)
 	}
 
