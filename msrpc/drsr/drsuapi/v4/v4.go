@@ -25934,13 +25934,13 @@ type MessageAddSIDHistoryRequestV1 struct {
 
 func (o *MessageAddSIDHistoryRequestV1) xxx_PreparePayload(ctx context.Context) error {
 	if o.SourceCredsUser != "" && o.SourceCredsUserLength == 0 {
-		o.SourceCredsUserLength = uint32(len(o.SourceCredsUser))
+		o.SourceCredsUserLength = uint32(ndr.UTF16Len(o.SourceCredsUser))
 	}
 	if o.SourceCredsDomain != "" && o.SourceCredsDomainLength == 0 {
-		o.SourceCredsDomainLength = uint32(len(o.SourceCredsDomain))
+		o.SourceCredsDomainLength = uint32(ndr.UTF16Len(o.SourceCredsDomain))
 	}
 	if o.SourceCredsPassword != "" && o.SourceCredsPasswordLength == 0 {
-		o.SourceCredsPasswordLength = uint32(len(o.SourceCredsPassword))
+		o.SourceCredsPasswordLength = uint32(ndr.UTF16Len(o.SourceCredsPassword))
 	}
 	if o.SourceCredsUserLength > uint32(256) {
 		return fmt.Errorf("SourceCredsUserLength is out of range")
@@ -29814,7 +29814,7 @@ type MessageAddCloneDCReplyV1 struct {
 
 func (o *MessageAddCloneDCReplyV1) xxx_PreparePayload(ctx context.Context) error {
 	if o.NewDCAccountPassword != "" && o.PasswordLengthCount == 0 {
-		o.PasswordLengthCount = uint32(len(o.NewDCAccountPassword))
+		o.PasswordLengthCount = uint32(ndr.UTF16Len(o.NewDCAccountPassword))
 	}
 	if o.PasswordLengthCount > uint32(1024) {
 		return fmt.Errorf("PasswordLengthCount is out of range")

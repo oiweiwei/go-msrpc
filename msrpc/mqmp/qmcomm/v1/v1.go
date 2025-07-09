@@ -1200,10 +1200,10 @@ func (o *TransferBufferV1) xxx_PreparePayload(ctx context.Context) error {
 		o.BodyBufferSizeInBytes = uint32(len(o.Body))
 	}
 	if o.Title != "" && o.TitleBufferSizeInWchars == 0 {
-		o.TitleBufferSizeInWchars = uint32(len(o.Title))
+		o.TitleBufferSizeInWchars = uint32(ndr.UTF16Len(o.Title))
 	}
 	if o.Title != "" && o.TitleBufferSizeInWchars == 0 {
-		o.TitleBufferSizeInWchars = uint32(len(o.Title))
+		o.TitleBufferSizeInWchars = uint32(ndr.UTF16Len(o.Title))
 	}
 	if o.SenderID != nil && o.SenderIDLength == 0 {
 		o.SenderIDLength = uint16(len(o.SenderID))
@@ -1212,7 +1212,7 @@ func (o *TransferBufferV1) xxx_PreparePayload(ctx context.Context) error {
 		o.SenderCertLength = uint32(len(o.SenderCert))
 	}
 	if o.ProvName != "" && o.ProvNameLength == 0 {
-		o.ProvNameLength = uint32(len(o.ProvName))
+		o.ProvNameLength = uint32(ndr.UTF16Len(o.ProvName))
 	}
 	if o.SymmetricKeys != nil && o.SymmetricKeysSize == 0 {
 		o.SymmetricKeysSize = uint32(len(o.SymmetricKeys))
@@ -3340,16 +3340,16 @@ type TransferBufferV1_TransferBufferV1_Receive struct {
 
 func (o *TransferBufferV1_TransferBufferV1_Receive) xxx_PreparePayload(ctx context.Context) error {
 	if o.ResponseFormatName != "" && o.ResponseFormatNameLength == 0 {
-		o.ResponseFormatNameLength = uint32(len(o.ResponseFormatName))
+		o.ResponseFormatNameLength = uint32(ndr.UTF16Len(o.ResponseFormatName))
 	}
 	if o.AdminFormatName != "" && o.AdminFormatNameLength == 0 {
-		o.AdminFormatNameLength = uint32(len(o.AdminFormatName))
+		o.AdminFormatNameLength = uint32(ndr.UTF16Len(o.AdminFormatName))
 	}
 	if o.DestinationFormatName != "" && o.DestinationFormatNameLength == 0 {
-		o.DestinationFormatNameLength = uint32(len(o.DestinationFormatName))
+		o.DestinationFormatNameLength = uint32(ndr.UTF16Len(o.DestinationFormatName))
 	}
 	if o.OrderingFormatName != "" && o.OrderingFormatNameLength == 0 {
-		o.OrderingFormatNameLength = uint32(len(o.OrderingFormatName))
+		o.OrderingFormatNameLength = uint32(ndr.UTF16Len(o.OrderingFormatName))
 	}
 	if o.ResponseFormatNameLength > uint32(1024) {
 		return fmt.Errorf("ResponseFormatNameLength is out of range")
@@ -9999,10 +9999,10 @@ func (o *xxx_HandleToFormatNameOperation) OpName() string {
 
 func (o *xxx_HandleToFormatNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.FormatName != "" && o.FormatNameRPCBufferLength == 0 {
-		o.FormatNameRPCBufferLength = uint32(len(o.FormatName))
+		o.FormatNameRPCBufferLength = uint32(ndr.UTF16Len(o.FormatName))
 	}
 	if o.FormatName != "" && o.FormatNameRPCBufferLength == 0 {
-		o.FormatNameRPCBufferLength = uint32(len(o.FormatName))
+		o.FormatNameRPCBufferLength = uint32(ndr.UTF16Len(o.FormatName))
 	}
 	if o.FormatNameRPCBufferLength > uint32(524288) {
 		return fmt.Errorf("FormatNameRPCBufferLength is out of range")

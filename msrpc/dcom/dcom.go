@@ -1550,7 +1550,7 @@ type ErrorInfoString struct {
 
 func (o *ErrorInfoString) xxx_PreparePayload(ctx context.Context) error {
 	if o.Name != "" && o.Max == 0 {
-		o.Max = uint32(len(o.Name))
+		o.Max = uint32(ndr.UTF16NLen(o.Name))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {

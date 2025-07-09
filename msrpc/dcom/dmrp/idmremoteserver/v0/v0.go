@@ -160,8 +160,8 @@ func (o *xxx_CreateRemoteObjectOperation) OpName() string {
 
 func (o *xxx_CreateRemoteObjectOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.RemoteComputerName != "" && o.MaxCount == 0 {
-		o.MaxCount = uint32((len(o.RemoteComputerName) - 1))
-		if len(o.RemoteComputerName) < 1 {
+		o.MaxCount = uint32((ndr.UTF16Len(o.RemoteComputerName) - 1))
+		if ndr.UTF16Len(o.RemoteComputerName) < 1 {
 			o.MaxCount = uint32(0)
 		}
 	}

@@ -483,7 +483,7 @@ func (o *xxx_GetFQDNFromServerDNOperation) OpName() string { return "/rfri/v1/Rf
 
 func (o *xxx_GetFQDNFromServerDNOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.MailboxServerDN != "" && o.MailboxServerDNLength == 0 {
-		o.MailboxServerDNLength = uint32(len(o.MailboxServerDN))
+		o.MailboxServerDNLength = uint32(ndr.CharNLen(o.MailboxServerDN))
 	}
 	if o.MailboxServerDNLength < uint32(10) || o.MailboxServerDNLength > uint32(1024) {
 		return fmt.Errorf("MailboxServerDNLength is out of range")

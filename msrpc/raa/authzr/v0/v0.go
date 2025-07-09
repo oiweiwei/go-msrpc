@@ -968,7 +968,7 @@ type SecurityAttributeStringValue struct {
 
 func (o *SecurityAttributeStringValue) xxx_PreparePayload(ctx context.Context) error {
 	if o.Value != "" && o.Length == 0 {
-		o.Length = uint32(len(o.Value))
+		o.Length = uint32(ndr.UTF16NLen(o.Value))
 	}
 	if o.Length < uint32(2) || o.Length > uint32(32768) {
 		return fmt.Errorf("Length is out of range")
@@ -1421,7 +1421,7 @@ type SecurityAttributeV1 struct {
 
 func (o *SecurityAttributeV1) xxx_PreparePayload(ctx context.Context) error {
 	if o.Value != "" && o.Length == 0 {
-		o.Length = uint32(len(o.Value))
+		o.Length = uint32(ndr.UTF16NLen(o.Value))
 	}
 	if o.Values != nil && o.ValueCount == 0 {
 		o.ValueCount = uint32(len(o.Values))

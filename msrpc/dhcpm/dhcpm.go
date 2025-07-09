@@ -6778,7 +6778,7 @@ type ServerConfigInfoV4 struct {
 
 func (o *ServerConfigInfoV4) xxx_PreparePayload(ctx context.Context) error {
 	if o.BootTableString != "" && o.BootTableStringLength == 0 {
-		o.BootTableStringLength = uint32(len(o.BootTableString))
+		o.BootTableStringLength = uint32(ndr.UTF16Len(o.BootTableString))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -7194,7 +7194,7 @@ type ServerConfigInfoVQ struct {
 
 func (o *ServerConfigInfoVQ) xxx_PreparePayload(ctx context.Context) error {
 	if o.BootTableString != "" && o.BootTableStringLength == 0 {
-		o.BootTableStringLength = uint32(len(o.BootTableString))
+		o.BootTableStringLength = uint32(ndr.UTF16Len(o.BootTableString))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {

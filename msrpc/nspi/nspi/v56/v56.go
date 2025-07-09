@@ -3457,7 +3457,7 @@ type CharStringsArray struct {
 
 func (o *CharStringsArray) xxx_PreparePayload(ctx context.Context) error {
 	if o.Strings != "" && o.Count == 0 {
-		o.Count = uint32(len(o.Strings))
+		o.Count = uint32(ndr.CharNLen(o.Strings))
 	}
 	if o.Count > uint32(100000) {
 		return fmt.Errorf("Count is out of range")
@@ -3593,7 +3593,7 @@ type StringsArray struct {
 
 func (o *StringsArray) xxx_PreparePayload(ctx context.Context) error {
 	if o.Strings != "" && o.Count == 0 {
-		o.Count = uint32(len(o.Strings))
+		o.Count = uint32(ndr.CharNLen(o.Strings))
 	}
 	if o.Count > uint32(100000) {
 		return fmt.Errorf("Count is out of range")

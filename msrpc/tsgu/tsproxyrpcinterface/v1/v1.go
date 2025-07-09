@@ -1573,7 +1573,7 @@ type PacketQuarantineRequest struct {
 
 func (o *PacketQuarantineRequest) xxx_PreparePayload(ctx context.Context) error {
 	if o.MachineName != "" && o.NameLength == 0 {
-		o.NameLength = uint32(len(o.MachineName))
+		o.NameLength = uint32(ndr.UTF16NLen(o.MachineName))
 	}
 	if o.Data != nil && o.DataLength == 0 {
 		o.DataLength = uint32(len(o.Data))
@@ -2233,7 +2233,7 @@ type PacketQuarantineEncResponse struct {
 
 func (o *PacketQuarantineEncResponse) xxx_PreparePayload(ctx context.Context) error {
 	if o.CertChainData != "" && o.CertChainLength == 0 {
-		o.CertChainLength = uint32(len(o.CertChainData))
+		o.CertChainLength = uint32(ndr.UTF16NLen(o.CertChainData))
 	}
 	if o.CertChainLength > uint32(24000) {
 		return fmt.Errorf("CertChainLength is out of range")
@@ -2476,7 +2476,7 @@ type PacketStringMessage struct {
 
 func (o *PacketStringMessage) xxx_PreparePayload(ctx context.Context) error {
 	if o.MessageBuffer != "" && o.MessageBytes == 0 {
-		o.MessageBytes = uint32(len(o.MessageBuffer))
+		o.MessageBytes = uint32(ndr.UTF16Len(o.MessageBuffer))
 	}
 	if o.MessageBytes > uint32(65536) {
 		return fmt.Errorf("MessageBytes is out of range")

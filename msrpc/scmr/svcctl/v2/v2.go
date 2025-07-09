@@ -14884,7 +14884,7 @@ func (o *xxx_GetServiceDisplayNameWOperation) UnmarshalNDRRequest(ctx context.Co
 
 func (o *xxx_GetServiceDisplayNameWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.DisplayName != "" && o.BufferLength == 0 {
-		o.BufferLength = uint32(len(o.DisplayName))
+		o.BufferLength = uint32(ndr.UTF16NLen(o.DisplayName))
 	}
 	if len(o.DisplayName) > int(4097) {
 		return fmt.Errorf("DisplayName is out of range")
@@ -15182,7 +15182,7 @@ func (o *xxx_GetServiceKeyNameWOperation) UnmarshalNDRRequest(ctx context.Contex
 
 func (o *xxx_GetServiceKeyNameWOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.ServiceName != "" && o.BufferLength == 0 {
-		o.BufferLength = uint32(len(o.ServiceName))
+		o.BufferLength = uint32(ndr.UTF16NLen(o.ServiceName))
 	}
 	if len(o.ServiceName) > int(4097) {
 		return fmt.Errorf("ServiceName is out of range")
@@ -18992,7 +18992,7 @@ func (o *xxx_GetServiceDisplayNameAOperation) UnmarshalNDRRequest(ctx context.Co
 
 func (o *xxx_GetServiceDisplayNameAOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.DisplayName != "" && o.BufferLength == 0 {
-		o.BufferLength = uint32(len(o.DisplayName))
+		o.BufferLength = uint32(ndr.CharNLen(o.DisplayName))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
@@ -19288,7 +19288,7 @@ func (o *xxx_GetServiceKeyNameAOperation) UnmarshalNDRRequest(ctx context.Contex
 
 func (o *xxx_GetServiceKeyNameAOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.KeyName != "" && o.BufferLength == 0 {
-		o.BufferLength = uint32(len(o.KeyName))
+		o.BufferLength = uint32(ndr.CharNLen(o.KeyName))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
