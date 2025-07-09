@@ -22,11 +22,7 @@ func (o *NodeName) MarshalJSON() ([]byte, error) {
 }
 
 func (o *NodeName) String() string {
-	n := string(o.DNSName)
-	if n == "" {
-		return "."
-	}
-	return n
+	return string(o.DNSName)
 }
 
 func (o *NodeText) MarshalJSON() ([]byte, error) {
