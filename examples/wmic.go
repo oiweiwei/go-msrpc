@@ -258,11 +258,11 @@ func main() {
 		return
 	}
 
-	var classes = make(map[string]*wmio.Class)
-
 	if limit > 0 && limit < page {
 		page = limit
 	}
+
+	var classes = make(map[string]*wmio.Class)
 
 	for i := 0; limit == 0 || i < limit; i += page {
 
