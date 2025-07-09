@@ -2452,7 +2452,7 @@ type DriverInfo3 struct {
 
 func (o *DriverInfo3) xxx_PreparePayload(ctx context.Context) error {
 	if o.DependentFiles != "" && o.DependentFilesLength == 0 {
-		o.DependentFilesLength = uint32(len(o.DependentFiles))
+		o.DependentFilesLength = uint32(ndr.UTF16Len(o.DependentFiles))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -2780,10 +2780,10 @@ type DriverInfo4 struct {
 
 func (o *DriverInfo4) xxx_PreparePayload(ctx context.Context) error {
 	if o.DependentFiles != "" && o.DependentFilesLength == 0 {
-		o.DependentFilesLength = uint32(len(o.DependentFiles))
+		o.DependentFilesLength = uint32(ndr.UTF16Len(o.DependentFiles))
 	}
 	if o.PreviousNames != "" && o.PreviousNamesLength == 0 {
-		o.PreviousNamesLength = uint32(len(o.PreviousNames))
+		o.PreviousNamesLength = uint32(ndr.UTF16Len(o.PreviousNames))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -3191,10 +3191,10 @@ type DriverInfo6 struct {
 
 func (o *DriverInfo6) xxx_PreparePayload(ctx context.Context) error {
 	if o.DependentFiles != "" && o.DependentFilesLength == 0 {
-		o.DependentFilesLength = uint32(len(o.DependentFiles))
+		o.DependentFilesLength = uint32(ndr.UTF16Len(o.DependentFiles))
 	}
 	if o.PreviousNames != "" && o.PreviousNamesLength == 0 {
-		o.PreviousNamesLength = uint32(len(o.PreviousNames))
+		o.PreviousNamesLength = uint32(ndr.UTF16Len(o.PreviousNames))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -3803,16 +3803,16 @@ type DriverInfo8 struct {
 
 func (o *DriverInfo8) xxx_PreparePayload(ctx context.Context) error {
 	if o.DependentFiles != "" && o.DependentFilesLength == 0 {
-		o.DependentFilesLength = uint32(len(o.DependentFiles))
+		o.DependentFilesLength = uint32(ndr.UTF16Len(o.DependentFiles))
 	}
 	if o.PreviousNames != "" && o.PreviousNamesLength == 0 {
-		o.PreviousNamesLength = uint32(len(o.PreviousNames))
+		o.PreviousNamesLength = uint32(ndr.UTF16Len(o.PreviousNames))
 	}
 	if o.ColorProfiles != "" && o.ColorProfilesLength == 0 {
-		o.ColorProfilesLength = uint32(len(o.ColorProfiles))
+		o.ColorProfilesLength = uint32(ndr.UTF16Len(o.ColorProfiles))
 	}
 	if o.CoreDriverDependencies != "" && o.CoreDependenciesLength == 0 {
-		o.CoreDependenciesLength = uint32(len(o.CoreDriverDependencies))
+		o.CoreDependenciesLength = uint32(ndr.UTF16Len(o.CoreDriverDependencies))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -13360,7 +13360,7 @@ type StringContainer struct {
 
 func (o *StringContainer) xxx_PreparePayload(ctx context.Context) error {
 	if o.String != "" && o.BufferLength == 0 {
-		o.BufferLength = uint32((len(o.String) * 2))
+		o.BufferLength = uint32((ndr.UTF16Len(o.String) * 2))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -39129,7 +39129,7 @@ func (o *xxx_GetCorePrinterDriversOperation) OpName() string {
 
 func (o *xxx_GetCorePrinterDriversOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.CoreDriverDependencies != "" && o.CoreDriversLength == 0 {
-		o.CoreDriversLength = uint32(len(o.CoreDriverDependencies))
+		o.CoreDriversLength = uint32(ndr.UTF16Len(o.CoreDriverDependencies))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -39505,7 +39505,7 @@ func (o *xxx_GetPrinterDriverPackagePathOperation) OpName() string {
 
 func (o *xxx_GetPrinterDriverPackagePathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.DriverPackageCab != "" && o.DriverPackageCabLength == 0 {
-		o.DriverPackageCabLength = uint32(len(o.DriverPackageCab))
+		o.DriverPackageCabLength = uint32(ndr.UTF16Len(o.DriverPackageCab))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {

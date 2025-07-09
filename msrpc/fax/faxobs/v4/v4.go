@@ -2764,7 +2764,7 @@ func (o *xxx_GetQueueFileNameOperation) OpName() string { return "/faxobs/v4/Fax
 
 func (o *xxx_GetQueueFileNameOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.FileName != "" && o.FileNameSize == 0 {
-		o.FileNameSize = uint32(len(o.FileName))
+		o.FileNameSize = uint32(ndr.UTF16Len(o.FileName))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {

@@ -1281,10 +1281,10 @@ type UnicodeString struct {
 
 func (o *UnicodeString) xxx_PreparePayload(ctx context.Context) error {
 	if o.Buffer != "" && o.MaximumLength == 0 {
-		o.MaximumLength = uint16((len(o.Buffer) * 2))
+		o.MaximumLength = uint16((ndr.UTF16Len(o.Buffer) * 2))
 	}
 	if o.Buffer != "" && o.Length == 0 {
-		o.Length = uint16((len(o.Buffer) * 2))
+		o.Length = uint16((ndr.UTF16Len(o.Buffer) * 2))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {

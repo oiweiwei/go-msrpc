@@ -42,6 +42,10 @@ func (p *Generator) DataLen(ctx context.Context, field *midl.Field, scopes *Scop
 		return p.B(MultiSzLenFunc, n)
 	}
 
+	for scopes.Kind() == midl.TypePointer {
+		scopes = scopes.Next()
+	}
+
 	if dim := scopes.Dim(); dim.IsString {
 
 		switch scopes.Next().Kind() {

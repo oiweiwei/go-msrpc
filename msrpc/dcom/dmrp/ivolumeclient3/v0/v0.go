@@ -2930,7 +2930,7 @@ func (o *xxx_CreatePartitionAssignAndFormatExOperation) OpName() string {
 
 func (o *xxx_CreatePartitionAssignAndFormatExOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.AccessPath != "" && o.AccessPathLength == 0 {
-		o.AccessPathLength = int32(len(o.AccessPath))
+		o.AccessPathLength = int32(ndr.UTF16Len(o.AccessPath))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -9830,7 +9830,7 @@ func (o *xxx_CreateVolumeAssignAndFormatExOperation) xxx_PrepareRequestPayload(c
 		o.DiskCount = uint32(len(o.DiskList))
 	}
 	if o.AccessPath != "" && o.AccessPathLength == 0 {
-		o.AccessPathLength = int32(len(o.AccessPath))
+		o.AccessPathLength = int32(ndr.UTF16Len(o.AccessPath))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -10367,7 +10367,7 @@ func (o *xxx_GetVolumeMountNameOperation) UnmarshalNDRRequest(ctx context.Contex
 
 func (o *xxx_GetVolumeMountNameOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.MountName != "" && o.MountNameLength == 0 {
-		o.MountNameLength = uint32(len(o.MountName))
+		o.MountNameLength = uint32(ndr.UTF16Len(o.MountName))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
@@ -21130,7 +21130,7 @@ func (o *xxx_AddAccessPathOperation) OpName() string { return "/IVolumeClient3/v
 
 func (o *xxx_AddAccessPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.Path != "" && o.PathLength == 0 {
-		o.PathLength = int32(len(o.Path))
+		o.PathLength = int32(ndr.UTF16Len(o.Path))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -21411,7 +21411,7 @@ func (o *xxx_DeleteAccessPathOperation) OpName() string { return "/IVolumeClient
 
 func (o *xxx_DeleteAccessPathOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.Path != "" && o.PathLength == 0 {
-		o.PathLength = int32(len(o.Path))
+		o.PathLength = int32(ndr.UTF16Len(o.Path))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {

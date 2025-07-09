@@ -2281,7 +2281,7 @@ type PACClientInfo struct {
 
 func (o *PACClientInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.Name != "" && o.NameLength == 0 {
-		o.NameLength = uint16((len(o.Name) * 2))
+		o.NameLength = uint16((ndr.UTF16Len(o.Name) * 2))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {

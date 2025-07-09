@@ -192,7 +192,7 @@ func (o *xxx_GetChildPathsOperation) OpName() string { return "/IMSAdminBase3W/v
 
 func (o *xxx_GetChildPathsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.Buffer != "" && o.BufferSize == 0 {
-		o.BufferSize = uint32(len(o.Buffer))
+		o.BufferSize = uint32(ndr.UTF16Len(o.Buffer))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {

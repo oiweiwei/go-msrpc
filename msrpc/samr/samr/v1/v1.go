@@ -2293,7 +2293,7 @@ type UserProperty struct {
 
 func (o *UserProperty) xxx_PreparePayload(ctx context.Context) error {
 	if o.PropertyName != "" && o.NameLength == 0 {
-		o.NameLength = uint16((len(o.PropertyName) * 2))
+		o.NameLength = uint16((ndr.UTF16Len(o.PropertyName) * 2))
 	}
 	if o.PropertyValueRaw != nil && o.ValueLength == 0 {
 		o.ValueLength = uint16(len(o.PropertyValueRaw))

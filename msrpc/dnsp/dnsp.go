@@ -14435,7 +14435,7 @@ type UTF8StringList struct {
 
 func (o *UTF8StringList) xxx_PreparePayload(ctx context.Context) error {
 	if o.Strings != "" && o.Count == 0 {
-		o.Count = uint32(len(o.Strings))
+		o.Count = uint32(ndr.CharNLen(o.Strings))
 	}
 	if o.Count > uint32(10000) {
 		return fmt.Errorf("Count is out of range")
@@ -14571,7 +14571,7 @@ type UnicodeStringList struct {
 
 func (o *UnicodeStringList) xxx_PreparePayload(ctx context.Context) error {
 	if o.Strings != "" && o.Count == 0 {
-		o.Count = uint32(len(o.Strings))
+		o.Count = uint32(ndr.UTF16NLen(o.Strings))
 	}
 	if o.Count > uint32(10000) {
 		return fmt.Errorf("Count is out of range")

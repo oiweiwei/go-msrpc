@@ -1340,19 +1340,19 @@ type DiskInfo struct {
 
 func (o *DiskInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.Name != "" && o.NameLength == 0 {
-		o.NameLength = int32(len(o.Name))
+		o.NameLength = int32(ndr.UTF16Len(o.Name))
 	}
 	if o.Vendor != "" && o.VendorLength == 0 {
-		o.VendorLength = int32(len(o.Vendor))
+		o.VendorLength = int32(ndr.UTF16Len(o.Vendor))
 	}
 	if o.DiskGroupID != nil && o.DiskGroupIDLength == 0 {
 		o.DiskGroupIDLength = int32(len(o.DiskGroupID))
 	}
 	if o.AdapterName != "" && o.AdapterNameLength == 0 {
-		o.AdapterNameLength = int32(len(o.AdapterName))
+		o.AdapterNameLength = int32(ndr.UTF16Len(o.AdapterName))
 	}
 	if o.DiskGroupName != "" && o.DiskGroupNameLength == 0 {
-		o.DiskGroupNameLength = int32(len(o.DiskGroupName))
+		o.DiskGroupNameLength = int32(ndr.UTF16Len(o.DiskGroupName))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -2321,7 +2321,7 @@ type FileSystemInfo struct {
 
 func (o *FileSystemInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.Label != "" && o.LabelLength == 0 {
-		o.LabelLength = int32(len(o.Label))
+		o.LabelLength = int32(ndr.UTF16Len(o.Label))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -2600,7 +2600,7 @@ type InstalledFileSystemInfo struct {
 
 func (o *InstalledFileSystemInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.LabelCharSet != "" && o.LabelLength == 0 {
-		o.LabelLength = int32(len(o.LabelCharSet))
+		o.LabelLength = int32(ndr.UTF16Len(o.LabelCharSet))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -2880,7 +2880,7 @@ type CountedString struct {
 
 func (o *CountedString) xxx_PreparePayload(ctx context.Context) error {
 	if o.String != "" && o.StringLength == 0 {
-		o.StringLength = int32(len(o.String))
+		o.StringLength = int32(ndr.UTF16Len(o.String))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -3311,22 +3311,22 @@ type DiskInfoEx struct {
 
 func (o *DiskInfoEx) xxx_PreparePayload(ctx context.Context) error {
 	if o.Name != "" && o.NameLength == 0 {
-		o.NameLength = int32(len(o.Name))
+		o.NameLength = int32(ndr.UTF16Len(o.Name))
 	}
 	if o.Vendor != "" && o.VendorLength == 0 {
-		o.VendorLength = int32(len(o.Vendor))
+		o.VendorLength = int32(ndr.UTF16Len(o.Vendor))
 	}
 	if o.DiskGroupID != nil && o.DiskGroupIDLength == 0 {
 		o.DiskGroupIDLength = int32(len(o.DiskGroupID))
 	}
 	if o.AdapterName != "" && o.AdapterNameLength == 0 {
-		o.AdapterNameLength = int32(len(o.AdapterName))
+		o.AdapterNameLength = int32(ndr.UTF16Len(o.AdapterName))
 	}
 	if o.DiskGroupName != "" && o.DiskGroupNameLength == 0 {
-		o.DiskGroupNameLength = int32(len(o.DiskGroupName))
+		o.DiskGroupNameLength = int32(ndr.UTF16Len(o.DiskGroupName))
 	}
 	if o.DevInstanceID != "" && o.DevInstanceIDLength == 0 {
-		o.DevInstanceIDLength = int32(len(o.DevInstanceID))
+		o.DevInstanceIDLength = int32(ndr.UTF16Len(o.DevInstanceID))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {
@@ -4260,7 +4260,7 @@ type RegionInfoEx struct {
 
 func (o *RegionInfoEx) xxx_PreparePayload(ctx context.Context) error {
 	if o.Name != "" && o.NameLength == 0 {
-		o.NameLength = int32(len(o.Name))
+		o.NameLength = int32(ndr.UTF16Len(o.Name))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
 		if err := hook.AfterPreparePayload(ctx); err != nil {

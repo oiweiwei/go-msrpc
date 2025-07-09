@@ -1406,7 +1406,7 @@ func (o *xxx_ImportFromBlobOperation) OpName() string { return "/IIISCertObj/v0/
 
 func (o *xxx_ImportFromBlobOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.BlobBinary != "" && o.Length == 0 {
-		o.Length = uint32(len(o.BlobBinary))
+		o.Length = uint32(ndr.CharNLen(o.BlobBinary))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -1858,7 +1858,7 @@ func (o *xxx_ImportFromBlobGetHashOperation) OpName() string {
 
 func (o *xxx_ImportFromBlobGetHashOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
 	if o.BlobBinary != "" && o.Length == 0 {
-		o.Length = uint32(len(o.BlobBinary))
+		o.Length = uint32(ndr.CharNLen(o.BlobBinary))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {

@@ -446,7 +446,7 @@ func (o *xxx_GetVolumeDeviceNameOperation) UnmarshalNDRRequest(ctx context.Conte
 
 func (o *xxx_GetVolumeDeviceNameOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
 	if o.VolumeDevice != "" && o.VolumeDeviceLength == 0 {
-		o.VolumeDeviceLength = uint32(len(o.VolumeDevice))
+		o.VolumeDeviceLength = uint32(ndr.UTF16Len(o.VolumeDevice))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
