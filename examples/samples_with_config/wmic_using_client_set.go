@@ -205,13 +205,14 @@ func main() {
 		return
 	}
 
-	var cls wmio.Class
-
 	now := time.Now()
 
 	if limit > 0 && limit < page {
 		page = limit
 	}
+
+	// classes should store the class definitions across the calls.
+	var classes = make(map[string]*wmio.Class)
 
 	for i := 0; limit == 0 || i < limit; i += page {
 
@@ -231,7 +232,7 @@ func main() {
 			break
 		}
 
-		oa, err := wmi.UnmarshalObjectArrayWithClass(ret.Buffer, cls)
+		oa, err := wmi.UnmarshalObjectArrayWithClasses(ret.Buffer, classes)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, "unmarshal_object_array_with_class", err)
 			return
@@ -241,7 +242,6 @@ func main() {
 			if po.Object.Class != nil {
 				fmt.Println(J(po.Object.Properties()))
 			} else {
-				cls = po.Object.Instance.CurrentClass
 				fmt.Println(J(po.Object.Values()))
 			}
 		}
