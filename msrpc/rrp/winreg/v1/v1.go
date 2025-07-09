@@ -822,6 +822,21 @@ const DACLSecurityInformation = 0x00000004
 // SACLSecurityInformation represents the SACL_SECURITY_INFORMATION RPC constant
 const SACLSecurityInformation = 0x00000008
 
+// KeyLocalMachine represents the HKEY_LOCAL_MACHINE RPC constant
+var KeyLocalMachine = "HKEY_LOCAL_MACHINE"
+
+// KeyClassesRoot represents the HKEY_CLASSES_ROOT RPC constant
+var KeyClassesRoot = "HKEY_CLASSES_ROOT"
+
+// KeyCurrentUser represents the HKEY_CURRENT_USER RPC constant
+var KeyCurrentUser = "HKEY_CURRENT_USER"
+
+// KeyUsers represents the HKEY_USERS RPC constant
+var KeyUsers = "HKEY_USERS"
+
+// KeyCurrentConfig represents the HKEY_CURRENT_CONFIG RPC constant
+var KeyCurrentConfig = "HKEY_CURRENT_CONFIG"
+
 // RegBinary represents the REG_BINARY RPC constant
 const RegBinary = 0x00000003
 
