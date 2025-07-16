@@ -34,7 +34,7 @@ func (o *NodeText) String() string {
 }
 
 func (o *RecordString) StringAt(i int) string {
-	if len(o.Data) < i {
+	if len(o.Data) <= i {
 		return ""
 	}
 	return strings.Trim(string(o.Data[i].Text), "\u0000")
