@@ -1,11 +1,90 @@
 package drsuapi
 
 import (
+	"bytes"
 	"encoding/asn1"
 	"fmt"
+	"sort"
 )
 
 type PrefixTable map[uint32][]byte
+
+func (o PrefixTable) SchemaPrefixTable() *SchemaPrefixTable {
+
+	ret := SchemaPrefixTable{
+		PrefixEntry: make([]*PrefixTableEntry, 0, len(o)),
+	}
+
+	for i, prefix := range o {
+		entry := &PrefixTableEntry{
+			Index: uint32(i),
+			Prefix: &OID{
+				Elements: prefix,
+			},
+		}
+		ret.PrefixEntry = append(ret.PrefixEntry, entry)
+	}
+
+	sort.Slice(ret.PrefixEntry, func(i, j int) bool {
+		return ret.PrefixEntry[i].Index < ret.PrefixEntry[j].Index
+	})
+
+	return &ret
+}
+
+func (o PrefixTable) OIDToAttribute(oid asn1.ObjectIdentifier) (uint32, error) {
+
+	if o == nil {
+		return 0, fmt.Errorf("prefix table is nil")
+	}
+
+	if len(oid) < 1 {
+		return 0, fmt.Errorf("oid is too short: %d elements", len(oid))
+	}
+
+	last := oid[len(oid)-1]
+
+	raw, err := OIDToRawPrefix(oid)
+	if err != nil {
+		return 0, fmt.Errorf("failed to convert oid to raw prefix: %w", err)
+	}
+
+	if last < 128 {
+		if len(raw) < 1 {
+			return 0, fmt.Errorf("raw prefix is too short: %d bytes", len(raw))
+		}
+		raw = raw[:len(raw)-1]
+	} else {
+		if len(raw) < 2 {
+			return 0, fmt.Errorf("raw prefix is too short: %d bytes", len(raw))
+		}
+		raw = raw[:len(raw)-2]
+	}
+
+	lower := last % 16384
+	if last > 16384 {
+		lower += 32768
+	}
+
+	upper, found := uint32(0), false
+
+	for i, prefix := range o {
+		if bytes.Equal(prefix, raw) {
+			upper, found = i, true
+			break
+		}
+		if i > upper {
+			upper = i
+		}
+	}
+
+	if !found {
+		upper++ // use the next available index. (in case if table does not contain monotonically increasing indices)
+		o[upper] = raw
+	}
+
+	return upper<<16 | uint32(lower), nil
+}
 
 func (o *SchemaPrefixTable) Build() PrefixTable {
 	table := PrefixTable{}
@@ -65,4 +144,23 @@ func RawPrefixToOID(b []byte) (asn1.ObjectIdentifier, error) {
 	}
 
 	return oid, nil
+}
+
+func OIDToRawPrefix(oid asn1.ObjectIdentifier) ([]byte, error) {
+
+	b, err := asn1.Marshal(oid)
+	if err != nil {
+		return nil, err
+	}
+
+	raw := asn1.RawValue{}
+	if _, err := asn1.Unmarshal(b, &raw); err != nil {
+		return nil, err
+	}
+
+	if raw.Tag != asn1.TagOID {
+		return nil, fmt.Errorf("object identifier does not have OID tag")
+	}
+
+	return raw.Bytes, nil
 }
