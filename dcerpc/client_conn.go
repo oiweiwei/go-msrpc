@@ -176,6 +176,9 @@ func (c *clientConn) invoke(ctx context.Context, op Operation, opts ...CallOptio
 		return err
 	}
 
+	call.Lock()
+	defer call.Unlock()
+
 	c.logger.Debug().Uint32("call_id", call.ID()).Interface("in", op).Msg("operation input")
 
 	pkt := &Packet{
