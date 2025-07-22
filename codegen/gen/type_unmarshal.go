@@ -298,6 +298,15 @@ func (p *TypeGenerator) GenFieldUnmarshalNDR(ctx context.Context, field *midl.Fi
 					p.If(tmpName, "=", p.B("strings.TrimRight", tmpName, "ndr.ZeroString"), ";", tmpName, "!=", `""`, func() {
 						p.P(origName, "=", p.B("strings.Split", tmpName, "ndr.ZeroString"))
 					})
+					break
+				}
+
+				// convert utf16/byte array back to string.
+				switch scopes := scopes.Next(); scopes.Kind() {
+				case midl.TypeWChar, midl.TypeUint16, midl.TypeInt16:
+					p.P(origName, "=", p.B("strings.TrimRight", p.B("string", p.B("utf16.Decode", name)), "ndr.ZeroString"))
+				case midl.TypeChar, midl.TypeUChar, midl.TypeInt8, midl.TypeUint8:
+					p.P(origName, "=", p.B("strings.TrimRight", p.B("string", name), "ndr.ZeroString"))
 				}
 			}
 			break
