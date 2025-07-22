@@ -73,13 +73,13 @@ func (o PrefixTable) OIDToAttribute(oid asn1.ObjectIdentifier) (uint32, error) {
 			upper, found = i, true
 			break
 		}
-		if i > upper {
-			upper = i
+		if i >= upper {
+			// use the next available index. (in case if table does not contain monotonically increasing indices)
+			upper = i + 1
 		}
 	}
 
 	if !found {
-		upper++ // use the next available index. (in case if table does not contain monotonically increasing indices)
 		o[upper] = raw
 	}
 
