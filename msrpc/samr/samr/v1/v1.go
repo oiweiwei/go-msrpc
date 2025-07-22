@@ -455,6 +455,7 @@ func (o *CleartextCredentials) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 				return err
 			}
 		}
+		o.CleartextCredentials = strings.TrimRight(string(utf16.Decode(_CleartextCredentials_buf)), ndr.ZeroString)
 		return nil
 	})
 	_s_CleartextCredentials := func(ptr interface{}) { o.CleartextCredentials = *ptr.(*string) }
