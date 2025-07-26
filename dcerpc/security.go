@@ -336,6 +336,40 @@ func (cc *Security) CanWrap(ctx context.Context, pkt *Packet) bool {
 	return cc.Established() && (pkt.Header.PacketType == PacketTypeRequest || pkt.Header.PacketType == PacketTypeResponse)
 }
 
+func (cc *Security) BuildMessageTokenEx(ctx context.Context, pkt *Packet, conf bool, sgn []byte) *gssapi.MessageTokenEx {
+
+	tokEx := &gssapi.MessageTokenEx{
+		Signature: sgn,
+	}
+
+	capHdr := gssapi.Cap(0)
+	if cc.SignHeader {
+		capHdr |= gssapi.Integrity
+	}
+
+	capStub := gssapi.Integrity
+	if conf {
+		capStub |= gssapi.Confidentiality
+	}
+
+	tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
+		Payload:      pkt.HeaderBytes(),
+		Capabilities: capHdr,
+	})
+
+	tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
+		Payload:      pkt.StubDataBytes(),
+		Capabilities: capStub,
+	})
+
+	tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
+		Payload:      pkt.SecurityTrailerBytes(),
+		Capabilities: capHdr,
+	})
+
+	return tokEx
+}
+
 // Wrap function depending on the security level encrypts and computes the
 // checksum for the packet.
 func (cc *Security) Wrap(ctx context.Context, pkt *Packet) error {
@@ -356,27 +390,7 @@ func (cc *Security) Wrap(ctx context.Context, pkt *Packet) error {
 
 	case AuthLevelPktIntegrity, AuthLevelPkt:
 
-		tokEx := &gssapi.MessageTokenEx{}
-
-		caps := gssapi.Cap(0)
-		if cc.SignHeader {
-			caps |= gssapi.Integrity
-		}
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.HeaderBytes(),
-			Capabilities: caps,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.StubDataBytes(),
-			Capabilities: caps | gssapi.Integrity,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.SecurityTrailerBytes(),
-			Capabilities: caps,
-		})
+		tokEx := cc.BuildMessageTokenEx(ctx, pkt, false, nil)
 
 		tokEx, err := gssapi.MakeSignatureEx(cc.ctx, tokEx, cc.options(SkipSealOpt|SkipSignOpt)...)
 		if err != nil {
@@ -387,27 +401,7 @@ func (cc *Security) Wrap(ctx context.Context, pkt *Packet) error {
 
 	case AuthLevelPktPrivacy:
 
-		tokEx := &gssapi.MessageTokenEx{}
-
-		caps := gssapi.Cap(0)
-		if cc.SignHeader {
-			caps |= gssapi.Integrity
-		}
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.HeaderBytes(),
-			Capabilities: caps,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.StubDataBytes(),
-			Capabilities: caps | gssapi.Integrity | gssapi.Confidentiality,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.SecurityTrailerBytes(),
-			Capabilities: caps,
-		})
+		tokEx := cc.BuildMessageTokenEx(ctx, pkt, true, nil)
 
 		tokEx, err := gssapi.WrapEx(cc.ctx, tokEx, cc.options(SkipSealOpt|SkipSignOpt)...)
 		if err != nil {
@@ -443,29 +437,7 @@ func (cc *Security) Unwrap(ctx context.Context, pkt *Packet, afterLock func(cont
 
 	case AuthLevelPktIntegrity, AuthLevelPkt:
 
-		tokEx := &gssapi.MessageTokenEx{}
-
-		caps := gssapi.Cap(0)
-		if cc.SignHeader {
-			caps |= gssapi.Integrity
-		}
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.HeaderBytes(),
-			Capabilities: caps,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.StubDataBytes(),
-			Capabilities: caps | gssapi.Integrity | gssapi.Confidentiality,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.SecurityTrailerBytes(),
-			Capabilities: caps,
-		})
-
-		tokEx.Signature = pkt.AuthDataBytes()
+		tokEx := cc.BuildMessageTokenEx(ctx, pkt, false, pkt.AuthDataBytes())
 
 		err := gssapi.VerifySignatureEx(cc.ctx, tokEx, cc.options(SkipSealOpt|SkipSignOpt)...)
 		if err != nil {
@@ -474,29 +446,7 @@ func (cc *Security) Unwrap(ctx context.Context, pkt *Packet, afterLock func(cont
 
 	case AuthLevelPktPrivacy:
 
-		tokEx := &gssapi.MessageTokenEx{}
-
-		caps := gssapi.Cap(0)
-		if cc.SignHeader {
-			caps |= gssapi.Integrity
-		}
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.HeaderBytes(),
-			Capabilities: caps,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.StubDataBytes(),
-			Capabilities: caps | gssapi.Integrity | gssapi.Confidentiality,
-		})
-
-		tokEx.Payloads = append(tokEx.Payloads, &gssapi.PayloadEx{
-			Payload:      pkt.SecurityTrailerBytes(),
-			Capabilities: caps,
-		})
-
-		tokEx.Signature = pkt.AuthDataBytes()
+		tokEx := cc.BuildMessageTokenEx(ctx, pkt, true, pkt.AuthDataBytes())
 
 		_, err := gssapi.UnwrapEx(cc.ctx, tokEx, cc.options(SkipSealOpt|SkipSignOpt)...)
 		if err != nil {
