@@ -1546,10 +1546,11 @@ type Handle dcetypes.ContextHandle
 func (o *Handle) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Handle) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1596,10 +1597,11 @@ type Lock dcetypes.ContextHandle
 func (o *Lock) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Lock) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1646,10 +1648,11 @@ type Notify dcetypes.ContextHandle
 func (o *Notify) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Notify) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1699,13 +1702,14 @@ type String struct {
 }
 
 func (o *String) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.StringPointer) > int(1024) {
 		return fmt.Errorf("StringPointer is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1759,13 +1763,14 @@ type UnicodeString struct {
 }
 
 func (o *UnicodeString) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.StringPointer) > int(1024) {
 		return fmt.Errorf("StringPointer is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1930,10 +1935,11 @@ type ServiceStatus struct {
 }
 
 func (o *ServiceStatus) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2118,10 +2124,11 @@ type ServiceStatusProcess struct {
 }
 
 func (o *ServiceStatusProcess) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2295,6 +2302,9 @@ type QueryServiceConfigW struct {
 }
 
 func (o *QueryServiceConfigW) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.BinaryPathName) > int(8192) {
 		return fmt.Errorf("BinaryPathName is out of range")
 	}
@@ -2310,10 +2320,8 @@ func (o *QueryServiceConfigW) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.DisplayName) > int(8192) {
 		return fmt.Errorf("DisplayName is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2498,13 +2506,14 @@ type QueryServiceLockStatusW struct {
 }
 
 func (o *QueryServiceLockStatusW) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.LockOwner) > int(8192) {
 		return fmt.Errorf("LockOwner is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2668,6 +2677,9 @@ type QueryServiceConfigA struct {
 }
 
 func (o *QueryServiceConfigA) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.BinaryPathName) > int(8192) {
 		return fmt.Errorf("BinaryPathName is out of range")
 	}
@@ -2683,10 +2695,8 @@ func (o *QueryServiceConfigA) xxx_PreparePayload(ctx context.Context) error {
 	if len(o.DisplayName) > int(8192) {
 		return fmt.Errorf("DisplayName is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2871,13 +2881,14 @@ type QueryServiceLockStatusA struct {
 }
 
 func (o *QueryServiceLockStatusA) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.LockOwner) > int(8192) {
 		return fmt.Errorf("LockOwner is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2951,13 +2962,14 @@ type ServiceDescriptionA struct {
 }
 
 func (o *ServiceDescriptionA) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.Description) > int(8192) {
 		return fmt.Errorf("Description is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3045,10 +3057,11 @@ type Action struct {
 }
 
 func (o *Action) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3102,6 +3115,9 @@ type ServiceFailureActionsA struct {
 }
 
 func (o *ServiceFailureActionsA) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Actions != nil && o.ActionsCount == 0 {
 		o.ActionsCount = uint32(len(o.Actions))
 	}
@@ -3114,10 +3130,8 @@ func (o *ServiceFailureActionsA) xxx_PreparePayload(ctx context.Context) error {
 	if o.ActionsCount > uint32(1024) {
 		return fmt.Errorf("ActionsCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3288,10 +3302,11 @@ type ServiceDelayedAutoStartInfo struct {
 }
 
 func (o *ServiceDelayedAutoStartInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3342,10 +3357,11 @@ type ServiceFailureActionsFlag struct {
 }
 
 func (o *ServiceFailureActionsFlag) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3410,10 +3426,11 @@ type ServiceSIDInfo struct {
 }
 
 func (o *ServiceSIDInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3450,10 +3467,11 @@ type ServicePreshutdownInfo struct {
 }
 
 func (o *ServicePreshutdownInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3490,13 +3508,14 @@ type ServiceDescriptionW struct {
 }
 
 func (o *ServiceDescriptionW) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.Description) > int(8192) {
 		return fmt.Errorf("Description is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3563,6 +3582,9 @@ type ServiceFailureActionsW struct {
 }
 
 func (o *ServiceFailureActionsW) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Actions != nil && o.ActionsCount == 0 {
 		o.ActionsCount = uint32(len(o.Actions))
 	}
@@ -3575,10 +3597,8 @@ func (o *ServiceFailureActionsW) xxx_PreparePayload(ctx context.Context) error {
 	if o.ActionsCount > uint32(1024) {
 		return fmt.Errorf("ActionsCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3779,10 +3799,11 @@ type ServicePreferredNodeInfo struct {
 }
 
 func (o *ServicePreferredNodeInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3848,16 +3869,17 @@ type ServiceTriggerSpecificDataItem struct {
 }
 
 func (o *ServiceTriggerSpecificDataItem) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataLength == 0 {
 		o.DataLength = uint32(len(o.Data))
 	}
 	if o.DataLength > uint32(1024) {
 		return fmt.Errorf("DataLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4081,16 +4103,17 @@ type ServiceTrigger struct {
 }
 
 func (o *ServiceTrigger) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.DataItems != nil && o.DataItemsCount == 0 {
 		o.DataItemsCount = uint32(len(o.DataItems))
 	}
 	if o.DataItemsCount > uint32(64) {
 		return fmt.Errorf("DataItemsCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4246,16 +4269,17 @@ type ServiceTriggerInfo struct {
 }
 
 func (o *ServiceTriggerInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Triggers != nil && o.TriggersCount == 0 {
 		o.TriggersCount = uint32(len(o.Triggers))
 	}
 	if o.TriggersCount > uint32(64) {
 		return fmt.Errorf("TriggersCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4386,10 +4410,11 @@ type EnumServiceStatusA struct {
 }
 
 func (o *EnumServiceStatusA) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4498,10 +4523,11 @@ type EnumServiceStatusW struct {
 }
 
 func (o *EnumServiceStatusW) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4610,10 +4636,11 @@ type EnumServiceStatusProcessA struct {
 }
 
 func (o *EnumServiceStatusProcessA) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4722,10 +4749,11 @@ type EnumServiceStatusProcessW struct {
 }
 
 func (o *EnumServiceStatusProcessW) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4827,10 +4855,11 @@ type ServiceDescriptionWOW64 struct {
 }
 
 func (o *ServiceDescriptionWOW64) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4881,10 +4910,11 @@ type ServiceFailureActionsWOW64 struct {
 }
 
 func (o *ServiceFailureActionsWOW64) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4944,10 +4974,11 @@ type ServiceRequiredPrivilegesInfoWOW64 struct {
 }
 
 func (o *ServiceRequiredPrivilegesInfoWOW64) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4987,16 +5018,17 @@ type RequiredPrivilegesInfo struct {
 }
 
 func (o *RequiredPrivilegesInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.RequiredPrivileges != nil && o.RequiredPrivilegesLength == 0 {
 		o.RequiredPrivilegesLength = uint32(len(o.RequiredPrivileges))
 	}
 	if o.RequiredPrivilegesLength > uint32(4096) {
 		return fmt.Errorf("RequiredPrivilegesLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5096,10 +5128,11 @@ type ConfigInfoA struct {
 }
 
 func (o *ConfigInfoA) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5902,10 +5935,11 @@ type ConfigInfoW struct {
 }
 
 func (o *ConfigInfoW) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -6750,10 +6784,11 @@ type ServiceNotifyStatusChangeParams1 struct {
 }
 
 func (o *ServiceNotifyStatusChangeParams1) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -6926,13 +6961,14 @@ type ServiceNotifyStatusChangeParams2 struct {
 }
 
 func (o *ServiceNotifyStatusChangeParams2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.ServiceNames) > int(65536) {
 		return fmt.Errorf("ServiceNames is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -7078,13 +7114,14 @@ func (o *ServiceNotifyStatusChangeParams) ServiceNotifyStatusChangeParams2() *Se
 }
 
 func (o *ServiceNotifyStatusChangeParams) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.ServiceNames) > int(65536) {
 		return fmt.Errorf("ServiceNames is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -7234,10 +7271,11 @@ type NotifyParams struct {
 }
 
 func (o *NotifyParams) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -7512,13 +7550,14 @@ type NotifyParamsList struct {
 }
 
 func (o *NotifyParamsList) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.NotifyParamsArray != nil && o.ElementsCount == 0 {
 		o.ElementsCount = uint32(len(o.NotifyParamsArray))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -7726,13 +7765,14 @@ type ServiceControlStatusReasonInParamsA struct {
 }
 
 func (o *ServiceControlStatusReasonInParamsA) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.Comment) > int(128) {
 		return fmt.Errorf("Comment is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -7794,10 +7834,11 @@ type ServiceControlStatusReasonOutParams struct {
 }
 
 func (o *ServiceControlStatusReasonOutParams) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -8224,13 +8265,14 @@ type ServiceControlStatusReasonInParamsW struct {
 }
 
 func (o *ServiceControlStatusReasonInParamsW) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if len(o.Comment) > int(128) {
 		return fmt.Errorf("Comment is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

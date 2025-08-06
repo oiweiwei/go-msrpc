@@ -96,10 +96,11 @@ type VolumeSecret struct {
 }
 
 func (o *VolumeSecret) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -147,10 +148,11 @@ type OldFileTrackingInformation struct {
 }
 
 func (o *OldFileTrackingInformation) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -253,10 +255,11 @@ type FileTrackingInformation struct {
 }
 
 func (o *FileTrackingInformation) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -337,13 +340,14 @@ type OldCallSearch struct {
 }
 
 func (o *OldCallSearch) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Searches != nil && o.SearchCount == 0 {
 		o.SearchCount = uint32(len(o.Searches))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -455,13 +459,14 @@ type CallSearch struct {
 }
 
 func (o *CallSearch) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Searches != nil && o.SearchCount == 0 {
 		o.SearchCount = uint32(len(o.Searches))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -603,6 +608,9 @@ type CallMoveNotification struct {
 }
 
 func (o *CallMoveNotification) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Current != nil && o.NotificationsCount == 0 {
 		o.NotificationsCount = uint32(len(o.Current))
 	}
@@ -612,10 +620,8 @@ func (o *CallMoveNotification) xxx_PreparePayload(ctx context.Context) error {
 	if o.New != nil && o.NotificationsCount == 0 {
 		o.NotificationsCount = uint32(len(o.New))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -933,16 +939,17 @@ type CallRefresh struct {
 }
 
 func (o *CallRefresh) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Birth != nil && o.SourcesCount == 0 {
 		o.SourcesCount = uint32(len(o.Birth))
 	}
 	if o.Volumes != nil && o.VolumesCount == 0 {
 		o.VolumesCount = uint32(len(o.Volumes))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1134,16 +1141,17 @@ type CallDelete struct {
 }
 
 func (o *CallDelete) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Birth != nil && o.BirthCount == 0 {
 		o.BirthCount = uint32(len(o.Birth))
 	}
 	if o.Volumes != nil && o.VolumesCount == 0 {
 		o.VolumesCount = uint32(len(o.Volumes))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1404,10 +1412,11 @@ type SyncVolume struct {
 }
 
 func (o *SyncVolume) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1547,13 +1556,14 @@ type CallSyncVolumes struct {
 }
 
 func (o *CallSyncVolumes) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Volumes != nil && o.VolumesCount == 0 {
 		o.VolumesCount = uint32(len(o.Volumes))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1706,10 +1716,11 @@ type Statistics struct {
 }
 
 func (o *Statistics) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2063,10 +2074,11 @@ type Statistics_Version struct {
 }
 
 func (o *Statistics_Version) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2114,10 +2126,11 @@ type Config struct {
 }
 
 func (o *Config) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2305,10 +2318,11 @@ type MessageUnion struct {
 }
 
 func (o *MessageUnion) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

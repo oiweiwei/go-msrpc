@@ -113,10 +113,11 @@ type ClusterDiskID struct {
 }
 
 func (o *ClusterDiskID) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -475,10 +476,11 @@ type ClusterSCSIAddress struct {
 }
 
 func (o *ClusterSCSIAddress) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -684,10 +686,11 @@ type DiskProperties struct {
 }
 
 func (o *DiskProperties) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -983,10 +986,11 @@ type DiskPropertiesEx struct {
 }
 
 func (o *DiskPropertiesEx) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1286,10 +1290,11 @@ type NodeRouteInfo struct {
 }
 
 func (o *NodeRouteInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1464,10 +1469,11 @@ type AddRoutesRequest struct {
 }
 
 func (o *AddRoutesRequest) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1601,10 +1607,11 @@ type RouteLossAndState struct {
 }
 
 func (o *RouteLossAndState) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1660,10 +1667,11 @@ type AddRoutesReply struct {
 }
 
 func (o *AddRoutesReply) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1850,10 +1858,11 @@ type ClusterCert struct {
 }
 
 func (o *ClusterCert) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1960,13 +1969,14 @@ type ClusterLogEx dcom.InterfacePointer
 func (o *ClusterLogEx) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *ClusterLogEx) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2055,13 +2065,14 @@ func (o *ClusterStorage3) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ClusterStorage3) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2148,13 +2159,14 @@ type ClusterLog dcom.InterfacePointer
 func (o *ClusterLog) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *ClusterLog) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2243,13 +2255,14 @@ func (o *ClusterStorage2) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ClusterStorage2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2336,13 +2349,14 @@ type ClusterSetup dcom.InterfacePointer
 func (o *ClusterSetup) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *ClusterSetup) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2431,13 +2445,14 @@ func (o *ClusterFirewall) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ClusterFirewall) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2526,13 +2541,14 @@ func (o *ClusterCleanup) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ClusterCleanup) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2621,13 +2637,14 @@ func (o *ClusterNetwork2) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *ClusterNetwork2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2714,13 +2731,14 @@ type ClusterUpdate dcom.InterfacePointer
 func (o *ClusterUpdate) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *ClusterUpdate) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

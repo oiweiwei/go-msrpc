@@ -80,10 +80,11 @@ type VersNo dtyp.LargeInteger
 func (o *VersNo) LargeInteger() *dtyp.LargeInteger { return (*dtyp.LargeInteger)(o) }
 
 func (o *VersNo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -117,10 +118,11 @@ type Addr struct {
 }
 
 func (o *Addr) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -351,6 +353,9 @@ type RecordAction struct {
 }
 
 func (o *RecordAction) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Name != nil && o.NameLength == 0 {
 		o.NameLength = uint32((len(o.Name) - 1))
 		if len(o.Name) < 1 {
@@ -360,10 +365,8 @@ func (o *RecordAction) xxx_PreparePayload(ctx context.Context) error {
 	if o.Addrs != nil && o.NumberOfAddrs == 0 {
 		o.NumberOfAddrs = uint32(len(o.Addrs))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -623,10 +626,11 @@ type ReplicationCounters struct {
 }
 
 func (o *ReplicationCounters) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -696,13 +700,14 @@ type Stat struct {
 }
 
 func (o *Stat) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.PeriodicReplicationPullPartners != nil && o.NumberOfPullPartners == 0 {
 		o.NumberOfPullPartners = uint32(len(o.PeriodicReplicationPullPartners))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -879,10 +884,11 @@ type Stat_Counters struct {
 }
 
 func (o *Stat_Counters) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1014,10 +1020,11 @@ type Stat_Timestamps struct {
 }
 
 func (o *Stat_Timestamps) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1209,10 +1216,11 @@ type AddrVersMap struct {
 }
 
 func (o *AddrVersMap) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1311,10 +1319,11 @@ type Results struct {
 }
 
 func (o *Results) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1492,13 +1501,14 @@ type ResultsNew struct {
 }
 
 func (o *ResultsNew) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.AddrVersMaps != nil && o.NumberOfOwners == 0 {
 		o.NumberOfOwners = uint32(len(o.AddrVersMaps))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1718,13 +1728,14 @@ type Records struct {
 }
 
 func (o *Records) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Row != nil && o.NumberOfRecords == 0 {
 		o.NumberOfRecords = uint32(len(o.Row))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1848,10 +1859,11 @@ type PullRangeInfo struct {
 }
 
 func (o *PullRangeInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1950,10 +1962,11 @@ type BrowserInfo struct {
 }
 
 func (o *BrowserInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2017,13 +2030,14 @@ type BrowserNames struct {
 }
 
 func (o *BrowserNames) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Info != nil && o.EntriesRead == 0 {
 		o.EntriesRead = uint32(len(o.Info))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2172,10 +2186,11 @@ type ScavengingRequest struct {
 }
 
 func (o *ScavengingRequest) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2228,10 +2243,11 @@ type BindData struct {
 }
 
 func (o *BindData) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

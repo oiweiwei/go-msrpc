@@ -165,10 +165,11 @@ type ClaimEntry struct {
 }
 
 func (o *ClaimEntry) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -791,13 +792,14 @@ type ClaimsArray struct {
 }
 
 func (o *ClaimsArray) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ClaimEntries != nil && o.ClaimsCount == 0 {
 		o.ClaimsCount = uint32(len(o.ClaimEntries))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -919,13 +921,14 @@ type ClaimsSet struct {
 }
 
 func (o *ClaimsSet) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ClaimsArrays != nil && o.ClaimsArrayCount == 0 {
 		o.ClaimsArrayCount = uint32(len(o.ClaimsArrays))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1098,13 +1101,14 @@ type ClaimsSetMetadata struct {
 }
 
 func (o *ClaimsSetMetadata) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ClaimsSet != nil && o.ClaimsSetSize == 0 {
 		o.ClaimsSetSize = uint32(len(o.ClaimsSet))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

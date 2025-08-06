@@ -876,10 +876,11 @@ type VolumeSpec struct {
 }
 
 func (o *VolumeSpec) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -991,10 +992,11 @@ type VolumeInfo struct {
 }
 
 func (o *VolumeInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1108,10 +1110,11 @@ type DiskSpec struct {
 }
 
 func (o *DiskSpec) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1339,6 +1342,9 @@ type DiskInfo struct {
 }
 
 func (o *DiskInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Name != "" && o.NameLength == 0 {
 		o.NameLength = int32(ndr.UTF16Len(o.Name))
 	}
@@ -1354,10 +1360,8 @@ func (o *DiskInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.DiskGroupName != "" && o.DiskGroupNameLength == 0 {
 		o.DiskGroupNameLength = int32(ndr.UTF16Len(o.DiskGroupName))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1874,10 +1878,11 @@ type RegionSpec struct {
 }
 
 func (o *RegionSpec) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2029,10 +2034,11 @@ type RegionInfo struct {
 }
 
 func (o *RegionInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2187,10 +2193,11 @@ type DriveLetterInfo struct {
 }
 
 func (o *DriveLetterInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2320,13 +2327,14 @@ type FileSystemInfo struct {
 }
 
 func (o *FileSystemInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Label != "" && o.LabelLength == 0 {
 		o.LabelLength = int32(ndr.UTF16Len(o.Label))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2599,13 +2607,14 @@ type InstalledFileSystemInfo struct {
 }
 
 func (o *InstalledFileSystemInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.LabelCharSet != "" && o.LabelLength == 0 {
 		o.LabelLength = int32(ndr.UTF16Len(o.LabelCharSet))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2779,10 +2788,11 @@ type TaskInfo struct {
 }
 
 func (o *TaskInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2879,13 +2889,14 @@ type CountedString struct {
 }
 
 func (o *CountedString) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.String != "" && o.StringLength == 0 {
 		o.StringLength = int32(ndr.UTF16Len(o.String))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3029,10 +3040,11 @@ type MergeObjectInfo struct {
 }
 
 func (o *MergeObjectInfo) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3310,6 +3322,9 @@ type DiskInfoEx struct {
 }
 
 func (o *DiskInfoEx) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Name != "" && o.NameLength == 0 {
 		o.NameLength = int32(ndr.UTF16Len(o.Name))
 	}
@@ -3328,10 +3343,8 @@ func (o *DiskInfoEx) xxx_PreparePayload(ctx context.Context) error {
 	if o.DevInstanceID != "" && o.DevInstanceIDLength == 0 {
 		o.DevInstanceIDLength = int32(ndr.UTF16Len(o.DevInstanceID))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4090,10 +4103,11 @@ type DiskInfoEx_DiskInfoEx_MBR struct {
 }
 
 func (o *DiskInfoEx_DiskInfoEx_MBR) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4159,10 +4173,11 @@ type DiskInfoEx_DiskInfoEx_GPT struct {
 }
 
 func (o *DiskInfoEx_DiskInfoEx_GPT) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4259,13 +4274,14 @@ type RegionInfoEx struct {
 }
 
 func (o *RegionInfoEx) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Name != "" && o.NameLength == 0 {
 		o.NameLength = int32(ndr.UTF16Len(o.Name))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4654,10 +4670,11 @@ type RegionInfoEx_RegionInfoEx_MBR struct {
 }
 
 func (o *RegionInfoEx_RegionInfoEx_MBR) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4767,10 +4784,11 @@ type RegionInfoEx_RegionInfoEx_GPT struct {
 }
 
 func (o *RegionInfoEx_RegionInfoEx_GPT) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4832,13 +4850,14 @@ type VolumeClient4 dcom.InterfacePointer
 func (o *VolumeClient4) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *VolumeClient4) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4925,13 +4944,14 @@ type VolumeClient3 dcom.InterfacePointer
 func (o *VolumeClient3) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *VolumeClient3) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5018,13 +5038,14 @@ type VolumeClient2 dcom.InterfacePointer
 func (o *VolumeClient2) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *VolumeClient2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5113,13 +5134,14 @@ func (o *IDMRemoteServer) InterfacePointer() *dcom.InterfacePointer {
 }
 
 func (o *IDMRemoteServer) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5206,13 +5228,14 @@ type VolumeClient dcom.InterfacePointer
 func (o *VolumeClient) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *VolumeClient) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -5299,13 +5322,14 @@ type IDMNotify dcom.InterfacePointer
 func (o *IDMNotify) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *IDMNotify) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

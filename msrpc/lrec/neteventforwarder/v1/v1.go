@@ -64,10 +64,11 @@ type Session dcetypes.ContextHandle
 func (o *Session) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Session) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -123,13 +124,14 @@ type EventBuffer struct {
 }
 
 func (o *EventBuffer) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Buffer != nil && o.BufferLength == 0 {
 		o.BufferLength = uint32(len(o.Buffer))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

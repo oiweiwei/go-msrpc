@@ -549,10 +549,11 @@ type NotificationType dtyp.GUID
 func (o *NotificationType) GUID() *dtyp.GUID { return (*dtyp.GUID)(o) }
 
 func (o *NotificationType) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -623,10 +624,11 @@ type NotifyObject dcetypes.ContextHandle
 func (o *NotifyObject) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *NotifyObject) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

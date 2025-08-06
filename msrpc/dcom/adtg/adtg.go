@@ -77,13 +77,14 @@ type DataFactory2 dcom.InterfacePointer
 func (o *DataFactory2) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *DataFactory2) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -170,13 +171,14 @@ type DataFactory3 dcom.InterfacePointer
 func (o *DataFactory3) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *DataFactory3) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -263,13 +265,14 @@ type DataFactory dcom.InterfacePointer
 func (o *DataFactory) InterfacePointer() *dcom.InterfacePointer { return (*dcom.InterfacePointer)(o) }
 
 func (o *DataFactory) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Data != nil && o.DataCount == 0 {
 		o.DataCount = uint32(len(o.Data))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

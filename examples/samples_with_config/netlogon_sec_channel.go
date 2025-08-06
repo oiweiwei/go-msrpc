@@ -32,6 +32,7 @@ import (
 	"github.com/oiweiwei/go-msrpc/msrpc/dtyp"
 	"github.com/oiweiwei/go-msrpc/msrpc/nrpc/logon/v1"
 
+	_ "github.com/oiweiwei/go-msrpc/msrpc/erref/hresult"
 	_ "github.com/oiweiwei/go-msrpc/msrpc/erref/ntstatus"
 	_ "github.com/oiweiwei/go-msrpc/msrpc/erref/win32"
 
@@ -84,17 +85,6 @@ func main() {
 		return
 	}
 
-	dcs, err := cli.GetDCName(ctx, &logon.GetDCNameRequest{
-		ComputerName: maCred.Workstation(),
-		Flags:        logon.DSReturnDNSName | logon.DSIPRequired,
-	})
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "get_dc_name", err)
-		return
-	}
-
-	fmt.Println(J(dcs))
-
 	uCred := credential.NewFromString(uCred)
 
 	ntlmV2 := &ntlm.V2{Config: ntlm.NewConfig()}
@@ -110,7 +100,7 @@ func main() {
 	}, nonce)
 
 	samLogon, err := cli.SAMLogon(ctx, &logon.SAMLogonRequest{
-		LogonServer:  dcs.DomainControllerInfo.DomainControllerName,
+		LogonServer:  cli.DomainControllerInfo().DomainControllerName,
 		ComputerName: maCred.Workstation(),
 		LogonLevel:   logon.LogonInfoClassNetworkTransitiveInformation,
 		LogonInformation: &logon.Level{
@@ -140,13 +130,18 @@ func main() {
 
 	key := append(cbKey.Data[0].Data, cbKey.Data[1].Data...)
 	fmt.Println(" ----------------------- ")
-	fmt.Println("SAM_SESSION_KEY:", hex.EncodeToString(key))
+	fmt.Println("SAM_SESSION_KEY:\t", hex.EncodeToString(key))
 	fmt.Println(" ----------------------- ")
-	fmt.Println("NTLM_SESSION_BASE_KEY:", hex.EncodeToString(resp.SessionBaseKey))
+	fmt.Println("NTLM_SESSION_BASE_KEY:\t", hex.EncodeToString(resp.SessionBaseKey))
 	fmt.Println(" ----------------------- ")
 
+	if hex.EncodeToString(key) != hex.EncodeToString(resp.SessionBaseKey) {
+		fmt.Fprintln(os.Stderr, "SAM_SESSION_KEY does not match NTLM_SESSION_BASE_KEY")
+		return
+	}
+
 	domain, err := cli.GetDomainInfo(ctx, &logon.GetDomainInfoRequest{
-		ServerName:   dcs.DomainControllerInfo.DomainControllerName,
+		ServerName:   cli.DomainControllerInfo().DomainControllerName,
 		ComputerName: maCred.Workstation(),
 		Level:        1,
 		WorkstationBuffer: &logon.WorkstationInformation{Value: &logon.WorkstationInformation_WorkstationInfo{

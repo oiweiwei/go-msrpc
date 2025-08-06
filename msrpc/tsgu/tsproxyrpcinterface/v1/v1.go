@@ -539,10 +539,11 @@ func (o *TunnelNoSerialize) ContextHandle() *dcetypes.ContextHandle {
 }
 
 func (o *TunnelNoSerialize) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -591,10 +592,11 @@ func (o *ChannelNoSerialize) ContextHandle() *dcetypes.ContextHandle {
 }
 
 func (o *ChannelNoSerialize) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -643,10 +645,11 @@ func (o *TunnelSerialize) ContextHandle() *dcetypes.ContextHandle {
 }
 
 func (o *TunnelSerialize) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -695,10 +698,11 @@ func (o *ChannelSerialize) ContextHandle() *dcetypes.ContextHandle {
 }
 
 func (o *ChannelSerialize) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -768,6 +772,9 @@ type EndpointInfo struct {
 }
 
 func (o *EndpointInfo) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ResourceName != nil && o.ResourceNamesLength == 0 {
 		o.ResourceNamesLength = uint32(len(o.ResourceName))
 	}
@@ -780,10 +787,8 @@ func (o *EndpointInfo) xxx_PreparePayload(ctx context.Context) error {
 	if o.AlternateResourceNamesLength > uint16(3) {
 		return fmt.Errorf("AlternateResourceNamesLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1015,10 +1020,11 @@ type PacketHeader struct {
 }
 
 func (o *PacketHeader) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1080,10 +1086,11 @@ type CapabilityNap struct {
 }
 
 func (o *CapabilityNap) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1258,10 +1265,11 @@ type PacketCapabilities struct {
 }
 
 func (o *PacketCapabilities) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1359,16 +1367,17 @@ type PacketVersionCaps struct {
 }
 
 func (o *PacketVersionCaps) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Caps != nil && o.CapabilitiesLength == 0 {
 		o.CapabilitiesLength = uint32(len(o.Caps))
 	}
 	if o.CapabilitiesLength > uint32(32) {
 		return fmt.Errorf("CapabilitiesLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1516,10 +1525,11 @@ type PacketQuarantineConfigRequest struct {
 }
 
 func (o *PacketQuarantineConfigRequest) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1572,6 +1582,9 @@ type PacketQuarantineRequest struct {
 }
 
 func (o *PacketQuarantineRequest) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.MachineName != "" && o.NameLength == 0 {
 		o.NameLength = uint32(ndr.UTF16NLen(o.MachineName))
 	}
@@ -1584,10 +1597,8 @@ func (o *PacketQuarantineRequest) xxx_PreparePayload(ctx context.Context) error 
 	if o.DataLength > uint32(8000) {
 		return fmt.Errorf("DataLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1903,10 +1914,11 @@ type RedirectionFlags struct {
 }
 
 func (o *RedirectionFlags) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2070,16 +2082,17 @@ type PacketResponse struct {
 }
 
 func (o *PacketResponse) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ResponseData != nil && o.ResponseDataLength == 0 {
 		o.ResponseDataLength = uint32(len(o.ResponseData))
 	}
 	if o.ResponseDataLength > uint32(24000) {
 		return fmt.Errorf("ResponseDataLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2232,16 +2245,17 @@ type PacketQuarantineEncResponse struct {
 }
 
 func (o *PacketQuarantineEncResponse) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.CertChainData != "" && o.CertChainLength == 0 {
 		o.CertChainLength = uint32(ndr.UTF16NLen(o.CertChainData))
 	}
 	if o.CertChainLength > uint32(24000) {
 		return fmt.Errorf("CertChainLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2421,10 +2435,11 @@ type PacketMessageRequest struct {
 }
 
 func (o *PacketMessageRequest) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2475,16 +2490,17 @@ type PacketStringMessage struct {
 }
 
 func (o *PacketStringMessage) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.MessageBuffer != "" && o.MessageBytes == 0 {
 		o.MessageBytes = uint32(ndr.UTF16Len(o.MessageBuffer))
 	}
 	if o.MessageBytes > uint32(65536) {
 		return fmt.Errorf("MessageBytes is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2602,10 +2618,11 @@ type PacketReauthMessage struct {
 }
 
 func (o *PacketReauthMessage) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -2948,10 +2965,11 @@ type PacketMessageResponse struct {
 }
 
 func (o *PacketMessageResponse) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3022,10 +3040,11 @@ type PacketCapsResponse struct {
 }
 
 func (o *PacketCapsResponse) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3093,16 +3112,17 @@ type PacketAuth struct {
 }
 
 func (o *PacketAuth) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Cookie != nil && o.CookieLength == 0 {
 		o.CookieLength = uint32(len(o.Cookie))
 	}
 	if o.CookieLength > uint32(65536) {
 		return fmt.Errorf("CookieLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3446,10 +3466,11 @@ type PacketReauth struct {
 }
 
 func (o *PacketReauth) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4404,10 +4425,11 @@ type Packet struct {
 }
 
 func (o *Packet) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

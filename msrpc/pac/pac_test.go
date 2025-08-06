@@ -43,6 +43,9 @@ func TestPAC(t *testing.T) {
 			t.Fatal(err)
 		}
 
+		fmt.Println("PAC unmarshaled:")
+		fmt.Println(j(pac))
+
 		b, err = pac.Marshal()
 		if err != nil {
 			t.Fatal(err)
@@ -54,6 +57,7 @@ func TestPAC(t *testing.T) {
 			t.Fatal(err)
 		}
 
+		fmt.Println("PAC re-unmarshaled:")
 		fmt.Println(j(pac))
 	}
 }

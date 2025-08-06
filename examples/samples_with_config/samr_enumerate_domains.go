@@ -20,6 +20,8 @@ import (
 	"github.com/oiweiwei/go-msrpc/msrpc/samr/samr/v1"
 
 	"github.com/oiweiwei/go-msrpc/msrpc/erref/ntstatus"
+
+	. "github.com/oiweiwei/go-msrpc/examples/common"
 )
 
 var (
@@ -28,6 +30,19 @@ var (
 
 func init() {
 	config_flag.BindFlags(cfg, flag.CommandLine)
+}
+
+type Domain struct {
+	Name    string   `json:"name"`
+	SID     string   `json:"sid"`
+	Users   []*Entry `json:"users,omitempty"`
+	Groups  []*Entry `json:"groups,omitempty"`
+	Aliases []*Entry `json:"aliases,omitempty"`
+}
+
+type Entry struct {
+	Name string `json:"name"`
+	SID  string `json:"sid"`
 }
 
 func main() {
@@ -65,6 +80,8 @@ func main() {
 		return
 	}
 
+	ret := make([]*Domain, 0, len(domains))
+
 	for _, domainName := range domains {
 
 		domain, err := cli.LookupDomainInSAMServer(ctx, &samr.LookupDomainInSAMServerRequest{
@@ -77,7 +94,10 @@ func main() {
 			return
 		}
 
-		fmt.Println(domainName, domain.DomainID)
+		d := &Domain{
+			Name: domainName,
+			SID:  domain.DomainID.String(),
+		}
 
 		domainH, err := cli.OpenDomain(ctx, &samr.OpenDomainRequest{
 			Server:        serverH.Server,
@@ -95,11 +115,11 @@ func main() {
 			return
 		}
 
-		fmt.Println("----------------------------------------")
-		fmt.Println("GROUPS:")
-		fmt.Println("----------------------------------------")
 		for _, group := range groups {
-			fmt.Println("\t", group.Name.Buffer, "|", domain.DomainID.AddRelativeID(group.RelativeID))
+			d.Groups = append(d.Groups, &Entry{
+				Name: group.Name.Buffer,
+				SID:  domain.DomainID.AddRelativeID(group.RelativeID).String(),
+			})
 		}
 
 		aliases, err := ListAliases(ctx, cli, domainH.Domain)
@@ -108,11 +128,11 @@ func main() {
 			return
 		}
 
-		fmt.Println("----------------------------------------")
-		fmt.Println("ALIASES:")
-		fmt.Println("----------------------------------------")
 		for _, alias := range aliases {
-			fmt.Println("\t", alias.Name.Buffer, "|", domain.DomainID.AddRelativeID(alias.RelativeID))
+			d.Aliases = append(d.Aliases, &Entry{
+				Name: alias.Name.Buffer,
+				SID:  domain.DomainID.AddRelativeID(alias.RelativeID).String(),
+			})
 		}
 
 		users, err := ListUsers(ctx, cli, domainH.Domain)
@@ -120,16 +140,17 @@ func main() {
 			fmt.Fprintln(os.Stderr, "list users:", err)
 			return
 		}
-		fmt.Println("----------------------------------------")
-		fmt.Println("USERS:")
-		fmt.Println("----------------------------------------")
 		for _, user := range users {
-			fmt.Println("\t", user.Name.Buffer, "|", domain.DomainID.AddRelativeID(user.RelativeID))
+			d.Users = append(d.Users, &Entry{
+				Name: user.Name.Buffer,
+				SID:  domain.DomainID.AddRelativeID(user.RelativeID).String(),
+			})
 		}
 
-		fmt.Println("========================================")
+		ret = append(ret, d)
 	}
 
+	fmt.Println(J(ret))
 }
 
 func OldLargeIntegerToFiletime(li *samr.OldLargeInteger) *dtyp.Filetime {

@@ -195,10 +195,11 @@ type PropertyRestriction struct {
 }
 
 func (o *PropertyRestriction) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -262,16 +263,17 @@ type Restriction struct {
 }
 
 func (o *Restriction) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.PropertyRestriction != nil && o.RestrictionCount == 0 {
 		o.RestrictionCount = uint32(len(o.PropertyRestriction))
 	}
 	if o.RestrictionCount > uint32(128) {
 		return fmt.Errorf("RestrictionCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -383,16 +385,17 @@ type ColumnSet struct {
 }
 
 func (o *ColumnSet) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Columns != nil && o.ColumnCount == 0 {
 		o.ColumnCount = uint32(len(o.Columns))
 	}
 	if o.ColumnCount > uint32(128) {
 		return fmt.Errorf("ColumnCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -506,10 +509,11 @@ type SortKey struct {
 }
 
 func (o *SortKey) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -554,16 +558,17 @@ type SortSet struct {
 }
 
 func (o *SortSet) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Columns != nil && o.ColumnCount == 0 {
 		o.ColumnCount = uint32(len(o.Columns))
 	}
 	if o.ColumnCount > uint32(128) {
 		return fmt.Errorf("ColumnCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
