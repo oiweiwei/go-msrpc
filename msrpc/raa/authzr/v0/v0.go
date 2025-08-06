@@ -130,10 +130,11 @@ type Handle dcetypes.ContextHandle
 func (o *Handle) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Handle) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -192,16 +193,17 @@ type AccessRequest struct {
 }
 
 func (o *AccessRequest) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ObjectTypeList != nil && o.ObjectTypeListLength == 0 {
 		o.ObjectTypeListLength = uint32(len(o.ObjectTypeList))
 	}
 	if o.ObjectTypeListLength > uint32(256) {
 		return fmt.Errorf("ObjectTypeListLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -351,16 +353,17 @@ type SelfRelativeSecurityDescriptor struct {
 }
 
 func (o *SelfRelativeSecurityDescriptor) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.SelfRelativeSecurityDescriptor != nil && o.Length == 0 {
 		o.Length = uint32(len(o.SelfRelativeSecurityDescriptor))
 	}
 	if o.Length < uint32(20) || o.Length > uint32(131228) {
 		return fmt.Errorf("Length is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -465,6 +468,9 @@ type AccessReply struct {
 }
 
 func (o *AccessReply) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.GrantedAccessMask != nil && o.ResultListLength == 0 {
 		o.ResultListLength = uint32(len(o.GrantedAccessMask))
 	}
@@ -474,10 +480,8 @@ func (o *AccessReply) xxx_PreparePayload(ctx context.Context) error {
 	if o.ResultListLength > uint32(256) {
 		return fmt.Errorf("ResultListLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -723,10 +727,11 @@ type SIDAndAttributes struct {
 }
 
 func (o *SIDAndAttributes) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -802,10 +807,11 @@ type TokenUser struct {
 }
 
 func (o *TokenUser) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -853,13 +859,14 @@ type TokenGroups struct {
 }
 
 func (o *TokenGroups) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Groups != nil && o.GroupCount == 0 {
 		o.GroupCount = uint32(len(o.Groups))
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -967,16 +974,17 @@ type SecurityAttributeStringValue struct {
 }
 
 func (o *SecurityAttributeStringValue) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Value != "" && o.Length == 0 {
 		o.Length = uint32(ndr.UTF16NLen(o.Value))
 	}
 	if o.Length < uint32(2) || o.Length > uint32(32768) {
 		return fmt.Errorf("Length is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1115,10 +1123,11 @@ type SecurityAttributeV1Value struct {
 }
 
 func (o *SecurityAttributeV1Value) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1420,6 +1429,9 @@ type SecurityAttributeV1 struct {
 }
 
 func (o *SecurityAttributeV1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Value != "" && o.Length == 0 {
 		o.Length = uint32(ndr.UTF16NLen(o.Value))
 	}
@@ -1432,10 +1444,8 @@ func (o *SecurityAttributeV1) xxx_PreparePayload(ctx context.Context) error {
 	if o.ValueCount > uint32(1024) {
 		return fmt.Errorf("ValueCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1665,16 +1675,17 @@ type SecurityAttributesInformation struct {
 }
 
 func (o *SecurityAttributesInformation) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Attributes != nil && o.AttributeCount == 0 {
 		o.AttributeCount = uint32(len(o.Attributes))
 	}
 	if o.AttributeCount > uint32(1024) {
 		return fmt.Errorf("AttributeCount is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1814,10 +1825,11 @@ type ContextInformation struct {
 }
 
 func (o *ContextInformation) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

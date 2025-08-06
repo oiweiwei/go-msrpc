@@ -17,11 +17,13 @@ import (
 type LogonSecureChannelClient interface {
 	LogonClient
 	Encrypt(context.Context, []byte) ([]byte, error)
+	DomainControllerInfo() *DomainControllerInfoW
 }
 
 type xxx_SecureChannelClient struct {
 	LogonClient
-	sCred *netlogon.SecureCredential
+	sCred                 *netlogon.SecureCredential
+	domainControllerInfoW *DomainControllerInfoW
 }
 
 var SecureChannel_T = &xxx_SecureChannelClient{}
@@ -113,13 +115,18 @@ func NewSecureChannelClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.
 	}
 
 	return &xxx_SecureChannelClient{
-		LogonClient: cli,
-		sCred:       sCred,
+		LogonClient:           cli,
+		sCred:                 sCred,
+		domainControllerInfoW: dc.DomainControllerInfo,
 	}, nil
 }
 
 func (o *xxx_SecureChannelClient) Encrypt(ctx context.Context, b []byte) ([]byte, error) {
 	return o.sCred.Encrypt(ctx, b)
+}
+
+func (o *xxx_SecureChannelClient) DomainControllerInfo() *DomainControllerInfoW {
+	return o.domainControllerInfoW
 }
 
 func (o *xxx_SecureChannelClient) VerifyAuthenticator(ctx context.Context, ra *Authenticator) error {

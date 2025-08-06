@@ -496,7 +496,7 @@ func (w *ndr20) ReadPointer(ptr Pointer, setter func(interface{}), mrs ...Unmars
 		return nil
 	}
 
-	if pptr == 0x72657355 /* 'User' */ {
+	if pptr == 0x72657355 || pptr == 0x55736572 /* 'User' */ {
 		w.rdeferred = append(w.rdeferred, mrs...)
 		return nil
 	}

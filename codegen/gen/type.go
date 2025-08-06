@@ -145,9 +145,11 @@ func (p *TypeGenerator) GenStructFieldComment(ctx context.Context, field *midl.F
 }
 
 func (p *TypeGenerator) GenStructPreparePayloadAfterHook(ctx context.Context) {
-	p.If("hook, ok := (interface{})(o).(interface { AfterPreparePayload(context.Context) error }); ok", func() {
-		p.CheckErr(p.B("hook.AfterPreparePayload", "ctx"))
-	})
+	p.CheckErr(p.B("ndr.AfterPreparePayload", "ctx", "o"))
+}
+
+func (p *TypeGenerator) GenStructPreparePayloadBeforeHook(ctx context.Context) {
+	p.CheckErr(p.B("ndr.BeforePreparePayload", "ctx", "o"))
 }
 
 func (p *TypeGenerator) GenStructPreparePayloadFields(ctx context.Context, fields []*midl.Field) {
@@ -324,6 +326,7 @@ func (p *TypeGenerator) GenStructPreparePayload(ctx context.Context) {
 	p.P("")
 	p.P("func", "(o *"+p.GoTypeName+")", p.XXX()+"PreparePayload(ctx context.Context)", "error", "{")
 
+	p.GenStructPreparePayloadBeforeHook(ctx)
 	p.GenStructPreparePayloadFields(ctx, p.Struct().Fields)
 	p.GenStructPreparePayloadAfterHook(ctx)
 

@@ -586,10 +586,11 @@ type CreateRemoteCursor struct {
 }
 
 func (o *CreateRemoteCursor) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -1191,6 +1192,9 @@ type TransferBufferV1 struct {
 }
 
 func (o *TransferBufferV1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	// cannot evaluate expression 20
 	// cannot evaluate expression 20
 	if o.Body != nil && o.AllocBodyBufferInBytes == 0 {
@@ -1229,10 +1233,8 @@ func (o *TransferBufferV1) xxx_PreparePayload(ctx context.Context) error {
 	if o.TransferType > uint32(2) {
 		return fmt.Errorf("TransferType is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3123,10 +3125,11 @@ type TransferBufferV1_TransferBufferV1_Send struct {
 }
 
 func (o *TransferBufferV1_TransferBufferV1_Send) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3339,6 +3342,9 @@ type TransferBufferV1_TransferBufferV1_Receive struct {
 }
 
 func (o *TransferBufferV1_TransferBufferV1_Receive) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ResponseFormatName != "" && o.ResponseFormatNameLength == 0 {
 		o.ResponseFormatNameLength = uint32(ndr.UTF16Len(o.ResponseFormatName))
 	}
@@ -3363,10 +3369,8 @@ func (o *TransferBufferV1_TransferBufferV1_Receive) xxx_PreparePayload(ctx conte
 	if o.OrderingFormatNameLength > uint32(1024) {
 		return fmt.Errorf("OrderingFormatNameLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -3928,10 +3932,11 @@ type TransferBufferV2 struct {
 }
 
 func (o *TransferBufferV2) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4068,13 +4073,14 @@ type ObjectFormat struct {
 }
 
 func (o *ObjectFormat) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.ObjectType < uint32(1) || o.ObjectType > uint32(2) {
 		return fmt.Errorf("ObjectType is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4261,10 +4267,11 @@ type Context dcetypes.ContextHandle
 func (o *Context) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Context) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4311,10 +4318,11 @@ type Queue dcetypes.ContextHandle
 func (o *Queue) ContextHandle() *dcetypes.ContextHandle { return (*dcetypes.ContextHandle)(o) }
 
 func (o *Queue) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -4363,10 +4371,11 @@ func (o *InternalTransaction) ContextHandle() *dcetypes.ContextHandle {
 }
 
 func (o *InternalTransaction) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }

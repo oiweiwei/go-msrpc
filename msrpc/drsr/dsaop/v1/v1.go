@@ -69,16 +69,17 @@ type MessageExecuteScriptRequestV1 struct {
 }
 
 func (o *MessageExecuteScriptRequestV1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Password != nil && o.PasswordLength == 0 {
 		o.PasswordLength = uint32(len(o.Password))
 	}
 	if o.PasswordLength < uint32(1) || o.PasswordLength > uint32(1024) {
 		return fmt.Errorf("PasswordLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -308,10 +309,11 @@ type MessageExecuteScriptReplyV1 struct {
 }
 
 func (o *MessageExecuteScriptReplyV1) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -495,10 +497,11 @@ type MessagePrepareScriptRequestV1 struct {
 }
 
 func (o *MessagePrepareScriptRequestV1) xxx_PreparePayload(ctx context.Context) error {
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
@@ -675,6 +678,9 @@ type MessagePrepareScriptReplyV1 struct {
 }
 
 func (o *MessagePrepareScriptReplyV1) xxx_PreparePayload(ctx context.Context) error {
+	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
+		return err
+	}
 	if o.Password != nil && o.PasswordLength == 0 {
 		o.PasswordLength = uint32(len(o.Password))
 	}
@@ -693,10 +699,8 @@ func (o *MessagePrepareScriptReplyV1) xxx_PreparePayload(ctx context.Context) er
 	if o.HashSignatureLength > uint32(10485760) {
 		return fmt.Errorf("HashSignatureLength is out of range")
 	}
-	if hook, ok := (interface{})(o).(interface{ AfterPreparePayload(context.Context) error }); ok {
-		if err := hook.AfterPreparePayload(ctx); err != nil {
-			return err
-		}
+	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
+		return err
 	}
 	return nil
 }
