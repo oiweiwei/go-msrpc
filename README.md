@@ -7,6 +7,12 @@ The client stub generator for many [MSRPC](./msrpc) / [DCOM](./msrpc/dcom) servi
 
 ## Usage
 
+### Codegen
+
+For codegeneration, run `make all` to regenerate all sources, or `make nrpc.go` to regenerate specific IDL.
+
+To onboard new file (example.idl), add it to corresponding folder (`idl/`, or for DCOM `idl/dcom/`), update Makefile `all` target with `all.go` file.
+
 ### Examples
 
 See [examples/samples_with_config](./examples/samples_with_config) and [msrpc](./msrpc/doc.go) package documentation.
@@ -49,8 +55,6 @@ Examples rely on following environment variables:
 | **SAM_WORKSTATION** | The machine account workstation name | `"COMPUTER"` |
 | **TARGET** | The target name (SPN) for kerberos. | `"host/my-server.win2019.com"` |
 | **KRB5_CONFIG** | The kerberos config path. | `"/path/to/krb5.conf"` |
-
-For codegeneration, run `make all` to regenerate all sources, or `make nrpc.go`.
 
 ## Features
 
