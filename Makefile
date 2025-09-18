@@ -78,6 +78,7 @@ all:
 		dcom/rai.go \
 		dcom/rdpesc.go \
 		dcom/oaut.go \
+		dcom/urlmon.go \
 		dcom/vds.go \
 		dcom/wmi.go \
 		dcom/wcce.go \

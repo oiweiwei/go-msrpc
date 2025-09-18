@@ -370,7 +370,7 @@ func NewStreamClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option)
 type xxx_ReadOperation struct {
 	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Pv         []byte         `idl:"name:pv;size_is:(cb)" json:"pv"`
+	Value      []byte         `idl:"name:pv;size_is:(cb)" json:"value"`
 	Length     uint32         `idl:"name:cb" json:"length"`
 	ReadLength uint32         `idl:"name:pcbRead" json:"read_length"`
 	Return     int32          `idl:"name:Return" json:"return"`
@@ -476,16 +476,16 @@ func (o *xxx_ReadOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		for i1 := range o.Pv {
+		for i1 := range o.Value {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if err := w.WriteData(o.Pv[i1]); err != nil {
+			if err := w.WriteData(o.Value[i1]); err != nil {
 				return err
 			}
 		}
-		for i1 := len(o.Pv); uint64(i1) < sizeInfo[0]; i1++ {
+		for i1 := len(o.Value); uint64(i1) < sizeInfo[0]; i1++ {
 			if err := w.WriteData(uint8(0)); err != nil {
 				return err
 			}
@@ -530,12 +530,12 @@ func (o *xxx_ReadOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Pv", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.Value", sizeInfo[0])
 		}
-		o.Pv = make([]byte, sizeInfo[0])
-		for i1 := range o.Pv {
+		o.Value = make([]byte, sizeInfo[0])
+		for i1 := range o.Value {
 			i1 := i1
-			if err := w.ReadData(&o.Pv[i1]); err != nil {
+			if err := w.ReadData(&o.Value[i1]); err != nil {
 				return err
 			}
 		}
@@ -600,7 +600,7 @@ type ReadResponse struct {
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Pv         []byte         `idl:"name:pv;size_is:(cb)" json:"pv"`
+	Value      []byte         `idl:"name:pv;size_is:(cb)" json:"value"`
 	ReadLength uint32         `idl:"name:pcbRead" json:"read_length"`
 	// Return: The Read return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -619,7 +619,7 @@ func (o *ReadResponse) xxx_ToOp(ctx context.Context, op *xxx_ReadOperation) *xxx
 	}
 
 	op.That = o.That
-	op.Pv = o.Pv
+	op.Value = o.Value
 	op.ReadLength = o.ReadLength
 	op.Return = o.Return
 	return op
@@ -633,7 +633,7 @@ func (o *ReadResponse) xxx_FromOp(ctx context.Context, op *xxx_ReadOperation) {
 	o.Length = op.Length
 
 	o.That = op.That
-	o.Pv = op.Pv
+	o.Value = op.Value
 	o.ReadLength = op.ReadLength
 	o.Return = op.Return
 }
@@ -653,7 +653,7 @@ func (o *ReadResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type xxx_WriteOperation struct {
 	This          *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That          *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Pv            []byte         `idl:"name:pv;size_is:(cb)" json:"pv"`
+	Value         []byte         `idl:"name:pv;size_is:(cb)" json:"value"`
 	Length        uint32         `idl:"name:cb" json:"length"`
 	WrittenLength uint32         `idl:"name:pcbWritten" json:"written_length"`
 	Return        int32          `idl:"name:Return" json:"return"`
@@ -664,8 +664,8 @@ func (o *xxx_WriteOperation) OpNum() int { return 4 }
 func (o *xxx_WriteOperation) OpName() string { return "/IStream/v0/Write" }
 
 func (o *xxx_WriteOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
-	if o.Pv != nil && o.Length == 0 {
-		o.Length = uint32(len(o.Pv))
+	if o.Value != nil && o.Length == 0 {
+		o.Length = uint32(len(o.Value))
 	}
 	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
 		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
@@ -703,16 +703,16 @@ func (o *xxx_WriteOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		for i1 := range o.Pv {
+		for i1 := range o.Value {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if err := w.WriteData(o.Pv[i1]); err != nil {
+			if err := w.WriteData(o.Value[i1]); err != nil {
 				return err
 			}
 		}
-		for i1 := len(o.Pv); uint64(i1) < sizeInfo[0]; i1++ {
+		for i1 := len(o.Value); uint64(i1) < sizeInfo[0]; i1++ {
 			if err := w.WriteData(uint8(0)); err != nil {
 				return err
 			}
@@ -751,12 +751,12 @@ func (o *xxx_WriteOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Read
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Pv", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.Value", sizeInfo[0])
 		}
-		o.Pv = make([]byte, sizeInfo[0])
-		for i1 := range o.Pv {
+		o.Value = make([]byte, sizeInfo[0])
+		for i1 := range o.Value {
 			i1 := i1
-			if err := w.ReadData(&o.Pv[i1]); err != nil {
+			if err := w.ReadData(&o.Value[i1]); err != nil {
 				return err
 			}
 		}
@@ -845,7 +845,7 @@ func (o *xxx_WriteOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 type WriteRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Pv     []byte         `idl:"name:pv;size_is:(cb)" json:"pv"`
+	Value  []byte         `idl:"name:pv;size_is:(cb)" json:"value"`
 	Length uint32         `idl:"name:cb" json:"length"`
 }
 
@@ -857,7 +857,7 @@ func (o *WriteRequest) xxx_ToOp(ctx context.Context, op *xxx_WriteOperation) *xx
 		return op
 	}
 	op.This = o.This
-	op.Pv = o.Pv
+	op.Value = o.Value
 	op.Length = o.Length
 	return op
 }
@@ -867,7 +867,7 @@ func (o *WriteRequest) xxx_FromOp(ctx context.Context, op *xxx_WriteOperation) {
 		return
 	}
 	o.This = op.This
-	o.Pv = op.Pv
+	o.Value = op.Value
 	o.Length = op.Length
 }
 func (o *WriteRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -926,12 +926,12 @@ func (o *WriteResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_SeekOperation structure represents the Seek operation
 type xxx_SeekOperation struct {
-	This            *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	DlibMove        *dtyp.LargeInteger  `idl:"name:dlibMove" json:"dlib_move"`
-	Origin          uint32              `idl:"name:dwOrigin" json:"origin"`
-	PlibNewPosition *dtyp.UlargeInteger `idl:"name:plibNewPosition" json:"plib_new_position"`
-	Return          int32               `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Move        *dtyp.LargeInteger  `idl:"name:dlibMove" json:"move"`
+	Origin      uint32              `idl:"name:dwOrigin" json:"origin"`
+	NewPosition *dtyp.UlargeInteger `idl:"name:plibNewPosition" json:"new_position"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SeekOperation) OpNum() int { return 5 }
@@ -968,8 +968,8 @@ func (o *xxx_SeekOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// dlibMove {in} (1:{alias=LARGE_INTEGER}(struct))
 	{
-		if o.DlibMove != nil {
-			if err := o.DlibMove.MarshalNDR(ctx, w); err != nil {
+		if o.Move != nil {
+			if err := o.Move.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -1002,10 +1002,10 @@ func (o *xxx_SeekOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	}
 	// dlibMove {in} (1:{alias=LARGE_INTEGER}(struct))
 	{
-		if o.DlibMove == nil {
-			o.DlibMove = &dtyp.LargeInteger{}
+		if o.Move == nil {
+			o.Move = &dtyp.LargeInteger{}
 		}
-		if err := o.DlibMove.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Move.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1048,8 +1048,8 @@ func (o *xxx_SeekOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// plibNewPosition {out} (1:{pointer=ref}*(1))(2:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.PlibNewPosition != nil {
-			if err := o.PlibNewPosition.MarshalNDR(ctx, w); err != nil {
+		if o.NewPosition != nil {
+			if err := o.NewPosition.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -1082,10 +1082,10 @@ func (o *xxx_SeekOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	}
 	// plibNewPosition {out} (1:{pointer=ref}*(1))(2:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.PlibNewPosition == nil {
-			o.PlibNewPosition = &dtyp.UlargeInteger{}
+		if o.NewPosition == nil {
+			o.NewPosition = &dtyp.UlargeInteger{}
 		}
-		if err := o.PlibNewPosition.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.NewPosition.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1101,9 +1101,9 @@ func (o *xxx_SeekOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // SeekRequest structure represents the Seek operation request
 type SeekRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis     `idl:"name:This" json:"this"`
-	DlibMove *dtyp.LargeInteger `idl:"name:dlibMove" json:"dlib_move"`
-	Origin   uint32             `idl:"name:dwOrigin" json:"origin"`
+	This   *dcom.ORPCThis     `idl:"name:This" json:"this"`
+	Move   *dtyp.LargeInteger `idl:"name:dlibMove" json:"move"`
+	Origin uint32             `idl:"name:dwOrigin" json:"origin"`
 }
 
 func (o *SeekRequest) xxx_ToOp(ctx context.Context, op *xxx_SeekOperation) *xxx_SeekOperation {
@@ -1114,7 +1114,7 @@ func (o *SeekRequest) xxx_ToOp(ctx context.Context, op *xxx_SeekOperation) *xxx_
 		return op
 	}
 	op.This = o.This
-	op.DlibMove = o.DlibMove
+	op.Move = o.Move
 	op.Origin = o.Origin
 	return op
 }
@@ -1124,7 +1124,7 @@ func (o *SeekRequest) xxx_FromOp(ctx context.Context, op *xxx_SeekOperation) {
 		return
 	}
 	o.This = op.This
-	o.DlibMove = op.DlibMove
+	o.Move = op.Move
 	o.Origin = op.Origin
 }
 func (o *SeekRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1142,8 +1142,8 @@ func (o *SeekRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // SeekResponse structure represents the Seek operation response
 type SeekResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That            *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	PlibNewPosition *dtyp.UlargeInteger `idl:"name:plibNewPosition" json:"plib_new_position"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	NewPosition *dtyp.UlargeInteger `idl:"name:plibNewPosition" json:"new_position"`
 	// Return: The Seek return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1156,7 +1156,7 @@ func (o *SeekResponse) xxx_ToOp(ctx context.Context, op *xxx_SeekOperation) *xxx
 		return op
 	}
 	op.That = o.That
-	op.PlibNewPosition = o.PlibNewPosition
+	op.NewPosition = o.NewPosition
 	op.Return = o.Return
 	return op
 }
@@ -1166,7 +1166,7 @@ func (o *SeekResponse) xxx_FromOp(ctx context.Context, op *xxx_SeekOperation) {
 		return
 	}
 	o.That = op.That
-	o.PlibNewPosition = op.PlibNewPosition
+	o.NewPosition = op.NewPosition
 	o.Return = op.Return
 }
 func (o *SeekResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1183,10 +1183,10 @@ func (o *SeekResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_SetSizeOperation structure represents the SetSize operation
 type xxx_SetSizeOperation struct {
-	This       *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LibNewSize *dtyp.UlargeInteger `idl:"name:libNewSize" json:"lib_new_size"`
-	Return     int32               `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	NewSize *dtyp.UlargeInteger `idl:"name:libNewSize" json:"new_size"`
+	Return  int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetSizeOperation) OpNum() int { return 6 }
@@ -1223,8 +1223,8 @@ func (o *xxx_SetSizeOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// libNewSize {in} (1:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.LibNewSize != nil {
-			if err := o.LibNewSize.MarshalNDR(ctx, w); err != nil {
+		if o.NewSize != nil {
+			if err := o.NewSize.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -1251,10 +1251,10 @@ func (o *xxx_SetSizeOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	}
 	// libNewSize {in} (1:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.LibNewSize == nil {
-			o.LibNewSize = &dtyp.UlargeInteger{}
+		if o.NewSize == nil {
+			o.NewSize = &dtyp.UlargeInteger{}
 		}
-		if err := o.LibNewSize.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.NewSize.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1323,8 +1323,8 @@ func (o *xxx_SetSizeOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // SetSizeRequest structure represents the SetSize operation request
 type SetSizeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This       *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	LibNewSize *dtyp.UlargeInteger `idl:"name:libNewSize" json:"lib_new_size"`
+	This    *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	NewSize *dtyp.UlargeInteger `idl:"name:libNewSize" json:"new_size"`
 }
 
 func (o *SetSizeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSizeOperation) *xxx_SetSizeOperation {
@@ -1335,7 +1335,7 @@ func (o *SetSizeRequest) xxx_ToOp(ctx context.Context, op *xxx_SetSizeOperation)
 		return op
 	}
 	op.This = o.This
-	op.LibNewSize = o.LibNewSize
+	op.NewSize = o.NewSize
 	return op
 }
 
@@ -1344,7 +1344,7 @@ func (o *SetSizeRequest) xxx_FromOp(ctx context.Context, op *xxx_SetSizeOperatio
 		return
 	}
 	o.This = op.This
-	o.LibNewSize = op.LibNewSize
+	o.NewSize = op.NewSize
 }
 func (o *SetSizeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1401,7 +1401,7 @@ func (o *SetSizeResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 type xxx_CopyToOperation struct {
 	This          *dcom.ORPCThis      `idl:"name:This" json:"this"`
 	That          *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pstm          *urlmon.Stream      `idl:"name:pstm" json:"pstm"`
+	Stream        *urlmon.Stream      `idl:"name:pstm" json:"stream"`
 	Length        *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
 	ReadLength    *dtyp.UlargeInteger `idl:"name:pcbRead" json:"read_length"`
 	WrittenLength *dtyp.UlargeInteger `idl:"name:pcbWritten" json:"written_length"`
@@ -1442,10 +1442,10 @@ func (o *xxx_CopyToOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// pstm {in} (1:{pointer=ref}*(1))(2:{alias=IStream}(interface))
 	{
-		if o.Pstm != nil {
+		if o.Stream != nil {
 			_ptr_pstm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pstm != nil {
-					if err := o.Pstm.MarshalNDR(ctx, w); err != nil {
+				if o.Stream != nil {
+					if err := o.Stream.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1455,7 +1455,7 @@ func (o *xxx_CopyToOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pstm, _ptr_pstm); err != nil {
+			if err := w.WritePointer(&o.Stream, _ptr_pstm); err != nil {
 				return err
 			}
 		} else {
@@ -1498,16 +1498,16 @@ func (o *xxx_CopyToOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	// pstm {in} (1:{pointer=ref}*(1))(2:{alias=IStream}(interface))
 	{
 		_ptr_pstm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pstm == nil {
-				o.Pstm = &urlmon.Stream{}
+			if o.Stream == nil {
+				o.Stream = &urlmon.Stream{}
 			}
-			if err := o.Pstm.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Stream.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pstm := func(ptr interface{}) { o.Pstm = *ptr.(**urlmon.Stream) }
-		if err := w.ReadPointer(&o.Pstm, _s_pstm, _ptr_pstm); err != nil {
+		_s_pstm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		if err := w.ReadPointer(&o.Stream, _s_pstm, _ptr_pstm); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1631,7 +1631,7 @@ func (o *xxx_CopyToOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 type CopyToRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This   *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pstm   *urlmon.Stream      `idl:"name:pstm" json:"pstm"`
+	Stream *urlmon.Stream      `idl:"name:pstm" json:"stream"`
 	Length *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
 }
 
@@ -1643,7 +1643,7 @@ func (o *CopyToRequest) xxx_ToOp(ctx context.Context, op *xxx_CopyToOperation) *
 		return op
 	}
 	op.This = o.This
-	op.Pstm = o.Pstm
+	op.Stream = o.Stream
 	op.Length = o.Length
 	return op
 }
@@ -1653,7 +1653,7 @@ func (o *CopyToRequest) xxx_FromOp(ctx context.Context, op *xxx_CopyToOperation)
 		return
 	}
 	o.This = op.This
-	o.Pstm = op.Pstm
+	o.Stream = op.Stream
 	o.Length = op.Length
 }
 func (o *CopyToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1715,10 +1715,10 @@ func (o *CopyToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_CommitOperation structure represents the Commit operation
 type xxx_CommitOperation struct {
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That           *dcom.ORPCThat `idl:"name:That" json:"that"`
-	GrfCommitFlags uint32         `idl:"name:grfCommitFlags" json:"grf_commit_flags"`
-	Return         int32          `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	CommitFlags uint32         `idl:"name:grfCommitFlags" json:"commit_flags"`
+	Return      int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_CommitOperation) OpNum() int { return 8 }
@@ -1755,7 +1755,7 @@ func (o *xxx_CommitOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// grfCommitFlags {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.GrfCommitFlags); err != nil {
+		if err := w.WriteData(o.CommitFlags); err != nil {
 			return err
 		}
 	}
@@ -1777,7 +1777,7 @@ func (o *xxx_CommitOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	}
 	// grfCommitFlags {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.GrfCommitFlags); err != nil {
+		if err := w.ReadData(&o.CommitFlags); err != nil {
 			return err
 		}
 	}
@@ -1846,8 +1846,8 @@ func (o *xxx_CommitOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 // CommitRequest structure represents the Commit operation request
 type CommitRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This           *dcom.ORPCThis `idl:"name:This" json:"this"`
-	GrfCommitFlags uint32         `idl:"name:grfCommitFlags" json:"grf_commit_flags"`
+	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
+	CommitFlags uint32         `idl:"name:grfCommitFlags" json:"commit_flags"`
 }
 
 func (o *CommitRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) *xxx_CommitOperation {
@@ -1858,7 +1858,7 @@ func (o *CommitRequest) xxx_ToOp(ctx context.Context, op *xxx_CommitOperation) *
 		return op
 	}
 	op.This = o.This
-	op.GrfCommitFlags = o.GrfCommitFlags
+	op.CommitFlags = o.CommitFlags
 	return op
 }
 
@@ -1867,7 +1867,7 @@ func (o *CommitRequest) xxx_FromOp(ctx context.Context, op *xxx_CommitOperation)
 		return
 	}
 	o.This = op.This
-	o.GrfCommitFlags = op.GrfCommitFlags
+	o.CommitFlags = op.CommitFlags
 }
 func (o *CommitRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -2113,12 +2113,12 @@ func (o *RevertResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_LockRegionOperation structure represents the LockRegion operation
 type xxx_LockRegionOperation struct {
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LibOffset *dtyp.UlargeInteger `idl:"name:libOffset" json:"lib_offset"`
-	Length    *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
-	LockType  uint32              `idl:"name:dwLockType" json:"lock_type"`
-	Return    int32               `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Offset   *dtyp.UlargeInteger `idl:"name:libOffset" json:"offset"`
+	Length   *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
+	LockType uint32              `idl:"name:dwLockType" json:"lock_type"`
+	Return   int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_LockRegionOperation) OpNum() int { return 10 }
@@ -2155,8 +2155,8 @@ func (o *xxx_LockRegionOperation) MarshalNDRRequest(ctx context.Context, w ndr.W
 	}
 	// libOffset {in} (1:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.LibOffset != nil {
-			if err := o.LibOffset.MarshalNDR(ctx, w); err != nil {
+		if o.Offset != nil {
+			if err := o.Offset.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -2201,10 +2201,10 @@ func (o *xxx_LockRegionOperation) UnmarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// libOffset {in} (1:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.LibOffset == nil {
-			o.LibOffset = &dtyp.UlargeInteger{}
+		if o.Offset == nil {
+			o.Offset = &dtyp.UlargeInteger{}
 		}
-		if err := o.LibOffset.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Offset.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2288,10 +2288,10 @@ func (o *xxx_LockRegionOperation) UnmarshalNDRResponse(ctx context.Context, w nd
 // LockRegionRequest structure represents the LockRegion operation request
 type LockRegionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	LibOffset *dtyp.UlargeInteger `idl:"name:libOffset" json:"lib_offset"`
-	Length    *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
-	LockType  uint32              `idl:"name:dwLockType" json:"lock_type"`
+	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	Offset   *dtyp.UlargeInteger `idl:"name:libOffset" json:"offset"`
+	Length   *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
+	LockType uint32              `idl:"name:dwLockType" json:"lock_type"`
 }
 
 func (o *LockRegionRequest) xxx_ToOp(ctx context.Context, op *xxx_LockRegionOperation) *xxx_LockRegionOperation {
@@ -2302,7 +2302,7 @@ func (o *LockRegionRequest) xxx_ToOp(ctx context.Context, op *xxx_LockRegionOper
 		return op
 	}
 	op.This = o.This
-	op.LibOffset = o.LibOffset
+	op.Offset = o.Offset
 	op.Length = o.Length
 	op.LockType = o.LockType
 	return op
@@ -2313,7 +2313,7 @@ func (o *LockRegionRequest) xxx_FromOp(ctx context.Context, op *xxx_LockRegionOp
 		return
 	}
 	o.This = op.This
-	o.LibOffset = op.LibOffset
+	o.Offset = op.Offset
 	o.Length = op.Length
 	o.LockType = op.LockType
 }
@@ -2370,12 +2370,12 @@ func (o *LockRegionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // xxx_UnlockRegionOperation structure represents the UnlockRegion operation
 type xxx_UnlockRegionOperation struct {
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	LibOffset *dtyp.UlargeInteger `idl:"name:libOffset" json:"lib_offset"`
-	Length    *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
-	LockType  uint32              `idl:"name:dwLockType" json:"lock_type"`
-	Return    int32               `idl:"name:Return" json:"return"`
+	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That     *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Offset   *dtyp.UlargeInteger `idl:"name:libOffset" json:"offset"`
+	Length   *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
+	LockType uint32              `idl:"name:dwLockType" json:"lock_type"`
+	Return   int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_UnlockRegionOperation) OpNum() int { return 11 }
@@ -2412,8 +2412,8 @@ func (o *xxx_UnlockRegionOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// libOffset {in} (1:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.LibOffset != nil {
-			if err := o.LibOffset.MarshalNDR(ctx, w); err != nil {
+		if o.Offset != nil {
+			if err := o.Offset.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
@@ -2458,10 +2458,10 @@ func (o *xxx_UnlockRegionOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	}
 	// libOffset {in} (1:{alias=ULARGE_INTEGER}(struct))
 	{
-		if o.LibOffset == nil {
-			o.LibOffset = &dtyp.UlargeInteger{}
+		if o.Offset == nil {
+			o.Offset = &dtyp.UlargeInteger{}
 		}
-		if err := o.LibOffset.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.Offset.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -2545,10 +2545,10 @@ func (o *xxx_UnlockRegionOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // UnlockRegionRequest structure represents the UnlockRegion operation request
 type UnlockRegionRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	LibOffset *dtyp.UlargeInteger `idl:"name:libOffset" json:"lib_offset"`
-	Length    *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
-	LockType  uint32              `idl:"name:dwLockType" json:"lock_type"`
+	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	Offset   *dtyp.UlargeInteger `idl:"name:libOffset" json:"offset"`
+	Length   *dtyp.UlargeInteger `idl:"name:cb" json:"length"`
+	LockType uint32              `idl:"name:dwLockType" json:"lock_type"`
 }
 
 func (o *UnlockRegionRequest) xxx_ToOp(ctx context.Context, op *xxx_UnlockRegionOperation) *xxx_UnlockRegionOperation {
@@ -2559,7 +2559,7 @@ func (o *UnlockRegionRequest) xxx_ToOp(ctx context.Context, op *xxx_UnlockRegion
 		return op
 	}
 	op.This = o.This
-	op.LibOffset = o.LibOffset
+	op.Offset = o.Offset
 	op.Length = o.Length
 	op.LockType = o.LockType
 	return op
@@ -2570,7 +2570,7 @@ func (o *UnlockRegionRequest) xxx_FromOp(ctx context.Context, op *xxx_UnlockRegi
 		return
 	}
 	o.This = op.This
-	o.LibOffset = op.LibOffset
+	o.Offset = op.Offset
 	o.Length = op.Length
 	o.LockType = op.LockType
 }
@@ -2627,11 +2627,11 @@ func (o *UnlockRegionResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // xxx_StatOperation structure represents the Stat operation
 type xxx_StatOperation struct {
-	This        *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	That        *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	Pstatstg    *urlmon.Statstg `idl:"name:pstatstg" json:"pstatstg"`
-	GrfStatFlag uint32          `idl:"name:grfStatFlag" json:"grf_stat_flag"`
-	Return      int32           `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	StorageStat *urlmon.StorageStat `idl:"name:pstatstg" json:"storage_stat"`
+	StatFlag    uint32              `idl:"name:grfStatFlag" json:"stat_flag"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_StatOperation) OpNum() int { return 12 }
@@ -2668,7 +2668,7 @@ func (o *xxx_StatOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// grfStatFlag {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.GrfStatFlag); err != nil {
+		if err := w.WriteData(o.StatFlag); err != nil {
 			return err
 		}
 	}
@@ -2690,7 +2690,7 @@ func (o *xxx_StatOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	}
 	// grfStatFlag {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.GrfStatFlag); err != nil {
+		if err := w.ReadData(&o.StatFlag); err != nil {
 			return err
 		}
 	}
@@ -2727,12 +2727,12 @@ func (o *xxx_StatOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// pstatstg {out} (1:{pointer=ref}*(1))(2:{alias=STATSTG}(struct))
 	{
-		if o.Pstatstg != nil {
-			if err := o.Pstatstg.MarshalNDR(ctx, w); err != nil {
+		if o.StorageStat != nil {
+			if err := o.StorageStat.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&urlmon.Statstg{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&urlmon.StorageStat{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -2764,10 +2764,10 @@ func (o *xxx_StatOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	}
 	// pstatstg {out} (1:{pointer=ref}*(1))(2:{alias=STATSTG}(struct))
 	{
-		if o.Pstatstg == nil {
-			o.Pstatstg = &urlmon.Statstg{}
+		if o.StorageStat == nil {
+			o.StorageStat = &urlmon.StorageStat{}
 		}
-		if err := o.Pstatstg.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.StorageStat.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2786,8 +2786,8 @@ func (o *xxx_StatOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // StatRequest structure represents the Stat operation request
 type StatRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
-	GrfStatFlag uint32         `idl:"name:grfStatFlag" json:"grf_stat_flag"`
+	This     *dcom.ORPCThis `idl:"name:This" json:"this"`
+	StatFlag uint32         `idl:"name:grfStatFlag" json:"stat_flag"`
 }
 
 func (o *StatRequest) xxx_ToOp(ctx context.Context, op *xxx_StatOperation) *xxx_StatOperation {
@@ -2798,7 +2798,7 @@ func (o *StatRequest) xxx_ToOp(ctx context.Context, op *xxx_StatOperation) *xxx_
 		return op
 	}
 	op.This = o.This
-	op.GrfStatFlag = o.GrfStatFlag
+	op.StatFlag = o.StatFlag
 	return op
 }
 
@@ -2807,7 +2807,7 @@ func (o *StatRequest) xxx_FromOp(ctx context.Context, op *xxx_StatOperation) {
 		return
 	}
 	o.This = op.This
-	o.GrfStatFlag = op.GrfStatFlag
+	o.StatFlag = op.StatFlag
 }
 func (o *StatRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -2824,8 +2824,8 @@ func (o *StatRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // StatResponse structure represents the Stat operation response
 type StatResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That     *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	Pstatstg *urlmon.Statstg `idl:"name:pstatstg" json:"pstatstg"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	StorageStat *urlmon.StorageStat `idl:"name:pstatstg" json:"storage_stat"`
 	// Return: The Stat return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2838,7 +2838,7 @@ func (o *StatResponse) xxx_ToOp(ctx context.Context, op *xxx_StatOperation) *xxx
 		return op
 	}
 	op.That = o.That
-	op.Pstatstg = o.Pstatstg
+	op.StorageStat = o.StorageStat
 	op.Return = o.Return
 	return op
 }
@@ -2848,7 +2848,7 @@ func (o *StatResponse) xxx_FromOp(ctx context.Context, op *xxx_StatOperation) {
 		return
 	}
 	o.That = op.That
-	o.Pstatstg = op.Pstatstg
+	o.StorageStat = op.StorageStat
 	o.Return = op.Return
 }
 func (o *StatResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2867,7 +2867,7 @@ func (o *StatResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type xxx_CloneOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Ppstm  *urlmon.Stream `idl:"name:ppstm" json:"ppstm"`
+	Stream *urlmon.Stream `idl:"name:ppstm" json:"stream"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
@@ -2952,10 +2952,10 @@ func (o *xxx_CloneOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 	}
 	// ppstm {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IStream}(interface))
 	{
-		if o.Ppstm != nil {
+		if o.Stream != nil {
 			_ptr_ppstm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppstm != nil {
-					if err := o.Ppstm.MarshalNDR(ctx, w); err != nil {
+				if o.Stream != nil {
+					if err := o.Stream.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2965,7 +2965,7 @@ func (o *xxx_CloneOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppstm, _ptr_ppstm); err != nil {
+			if err := w.WritePointer(&o.Stream, _ptr_ppstm); err != nil {
 				return err
 			}
 		} else {
@@ -3002,16 +3002,16 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 	// ppstm {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IStream}(interface))
 	{
 		_ptr_ppstm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppstm == nil {
-				o.Ppstm = &urlmon.Stream{}
+			if o.Stream == nil {
+				o.Stream = &urlmon.Stream{}
 			}
-			if err := o.Ppstm.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Stream.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppstm := func(ptr interface{}) { o.Ppstm = *ptr.(**urlmon.Stream) }
-		if err := w.ReadPointer(&o.Ppstm, _s_ppstm, _ptr_ppstm); err != nil {
+		_s_ppstm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		if err := w.ReadPointer(&o.Stream, _s_ppstm, _ptr_ppstm); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3065,8 +3065,8 @@ func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // CloneResponse structure represents the Clone operation response
 type CloneResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Ppstm *urlmon.Stream `idl:"name:ppstm" json:"ppstm"`
+	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Stream *urlmon.Stream `idl:"name:ppstm" json:"stream"`
 	// Return: The Clone return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3079,7 +3079,7 @@ func (o *CloneResponse) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *x
 		return op
 	}
 	op.That = o.That
-	op.Ppstm = o.Ppstm
+	op.Stream = o.Stream
 	op.Return = o.Return
 	return op
 }
@@ -3089,7 +3089,7 @@ func (o *CloneResponse) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) 
 		return
 	}
 	o.That = op.That
-	o.Ppstm = op.Ppstm
+	o.Stream = op.Stream
 	o.Return = op.Return
 }
 func (o *CloneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

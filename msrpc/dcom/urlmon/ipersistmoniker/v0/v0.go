@@ -663,9 +663,9 @@ type xxx_LoadOperation struct {
 	This           *dcom.ORPCThis      `idl:"name:This" json:"this"`
 	That           *dcom.ORPCThat      `idl:"name:That" json:"that"`
 	FullyAvailable bool                `idl:"name:fFullyAvailable" json:"fully_available"`
-	PimkName       *urlmon.Moniker     `idl:"name:pimkName" json:"pimk_name"`
-	Pibc           *urlmon.BindContext `idl:"name:pibc" json:"pibc"`
-	GrfMode        uint32              `idl:"name:grfMode" json:"grf_mode"`
+	Name           *urlmon.Moniker     `idl:"name:pimkName" json:"name"`
+	BindContext    *urlmon.BindContext `idl:"name:pibc" json:"bind_context"`
+	Mode           uint32              `idl:"name:grfMode" json:"mode"`
 	Return         int32               `idl:"name:Return" json:"return"`
 }
 
@@ -715,10 +715,10 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// pimkName {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PimkName != nil {
+		if o.Name != nil {
 			_ptr_pimkName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PimkName != nil {
-					if err := o.PimkName.MarshalNDR(ctx, w); err != nil {
+				if o.Name != nil {
+					if err := o.Name.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -728,7 +728,7 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PimkName, _ptr_pimkName); err != nil {
+			if err := w.WritePointer(&o.Name, _ptr_pimkName); err != nil {
 				return err
 			}
 		} else {
@@ -742,10 +742,10 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// pibc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pibc != nil {
+		if o.BindContext != nil {
 			_ptr_pibc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pibc != nil {
-					if err := o.Pibc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -755,7 +755,7 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pibc, _ptr_pibc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pibc); err != nil {
 				return err
 			}
 		} else {
@@ -769,7 +769,7 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// grfMode {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.GrfMode); err != nil {
+		if err := w.WriteData(o.Mode); err != nil {
 			return err
 		}
 	}
@@ -800,16 +800,16 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// pimkName {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pimkName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PimkName == nil {
-				o.PimkName = &urlmon.Moniker{}
+			if o.Name == nil {
+				o.Name = &urlmon.Moniker{}
 			}
-			if err := o.PimkName.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Name.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pimkName := func(ptr interface{}) { o.PimkName = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PimkName, _s_pimkName, _ptr_pimkName); err != nil {
+		_s_pimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Name, _s_pimkName, _ptr_pimkName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -819,16 +819,16 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// pibc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pibc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pibc == nil {
-				o.Pibc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pibc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pibc := func(ptr interface{}) { o.Pibc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pibc, _s_pibc, _ptr_pibc); err != nil {
+		_s_pibc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pibc, _ptr_pibc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -837,7 +837,7 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	}
 	// grfMode {in} (1:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.GrfMode); err != nil {
+		if err := w.ReadData(&o.Mode); err != nil {
 			return err
 		}
 	}
@@ -908,9 +908,9 @@ type LoadRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This           *dcom.ORPCThis      `idl:"name:This" json:"this"`
 	FullyAvailable bool                `idl:"name:fFullyAvailable" json:"fully_available"`
-	PimkName       *urlmon.Moniker     `idl:"name:pimkName" json:"pimk_name"`
-	Pibc           *urlmon.BindContext `idl:"name:pibc" json:"pibc"`
-	GrfMode        uint32              `idl:"name:grfMode" json:"grf_mode"`
+	Name           *urlmon.Moniker     `idl:"name:pimkName" json:"name"`
+	BindContext    *urlmon.BindContext `idl:"name:pibc" json:"bind_context"`
+	Mode           uint32              `idl:"name:grfMode" json:"mode"`
 }
 
 func (o *LoadRequest) xxx_ToOp(ctx context.Context, op *xxx_LoadOperation) *xxx_LoadOperation {
@@ -922,9 +922,9 @@ func (o *LoadRequest) xxx_ToOp(ctx context.Context, op *xxx_LoadOperation) *xxx_
 	}
 	op.This = o.This
 	op.FullyAvailable = o.FullyAvailable
-	op.PimkName = o.PimkName
-	op.Pibc = o.Pibc
-	op.GrfMode = o.GrfMode
+	op.Name = o.Name
+	op.BindContext = o.BindContext
+	op.Mode = o.Mode
 	return op
 }
 
@@ -934,9 +934,9 @@ func (o *LoadRequest) xxx_FromOp(ctx context.Context, op *xxx_LoadOperation) {
 	}
 	o.This = op.This
 	o.FullyAvailable = op.FullyAvailable
-	o.PimkName = op.PimkName
-	o.Pibc = op.Pibc
-	o.GrfMode = op.GrfMode
+	o.Name = op.Name
+	o.BindContext = op.BindContext
+	o.Mode = op.Mode
 }
 func (o *LoadRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -991,12 +991,12 @@ func (o *LoadResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_SaveOperation structure represents the Save operation
 type xxx_SaveOperation struct {
-	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	PimkName *urlmon.Moniker     `idl:"name:pimkName" json:"pimk_name"`
-	Pbc      *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	Remember bool                `idl:"name:fRemember" json:"remember"`
-	Return   int32               `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Name        *urlmon.Moniker     `idl:"name:pimkName" json:"name"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	Remember    bool                `idl:"name:fRemember" json:"remember"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SaveOperation) OpNum() int { return 6 }
@@ -1033,10 +1033,10 @@ func (o *xxx_SaveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// pimkName {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PimkName != nil {
+		if o.Name != nil {
 			_ptr_pimkName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PimkName != nil {
-					if err := o.PimkName.MarshalNDR(ctx, w); err != nil {
+				if o.Name != nil {
+					if err := o.Name.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1046,7 +1046,7 @@ func (o *xxx_SaveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PimkName, _ptr_pimkName); err != nil {
+			if err := w.WritePointer(&o.Name, _ptr_pimkName); err != nil {
 				return err
 			}
 		} else {
@@ -1060,10 +1060,10 @@ func (o *xxx_SaveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1073,7 +1073,7 @@ func (o *xxx_SaveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -1116,16 +1116,16 @@ func (o *xxx_SaveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// pimkName {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pimkName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PimkName == nil {
-				o.PimkName = &urlmon.Moniker{}
+			if o.Name == nil {
+				o.Name = &urlmon.Moniker{}
 			}
-			if err := o.PimkName.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Name.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pimkName := func(ptr interface{}) { o.PimkName = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PimkName, _s_pimkName, _ptr_pimkName); err != nil {
+		_s_pimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Name, _s_pimkName, _ptr_pimkName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1135,16 +1135,16 @@ func (o *xxx_SaveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1224,10 +1224,10 @@ func (o *xxx_SaveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // SaveRequest structure represents the Save operation request
 type SaveRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	PimkName *urlmon.Moniker     `idl:"name:pimkName" json:"pimk_name"`
-	Pbc      *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	Remember bool                `idl:"name:fRemember" json:"remember"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	Name        *urlmon.Moniker     `idl:"name:pimkName" json:"name"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	Remember    bool                `idl:"name:fRemember" json:"remember"`
 }
 
 func (o *SaveRequest) xxx_ToOp(ctx context.Context, op *xxx_SaveOperation) *xxx_SaveOperation {
@@ -1238,8 +1238,8 @@ func (o *SaveRequest) xxx_ToOp(ctx context.Context, op *xxx_SaveOperation) *xxx_
 		return op
 	}
 	op.This = o.This
-	op.PimkName = o.PimkName
-	op.Pbc = o.Pbc
+	op.Name = o.Name
+	op.BindContext = o.BindContext
 	op.Remember = o.Remember
 	return op
 }
@@ -1249,8 +1249,8 @@ func (o *SaveRequest) xxx_FromOp(ctx context.Context, op *xxx_SaveOperation) {
 		return
 	}
 	o.This = op.This
-	o.PimkName = op.PimkName
-	o.Pbc = op.Pbc
+	o.Name = op.Name
+	o.BindContext = op.BindContext
 	o.Remember = op.Remember
 }
 func (o *SaveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1306,11 +1306,11 @@ func (o *SaveResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_SaveCompletedOperation structure represents the SaveCompleted operation
 type xxx_SaveCompletedOperation struct {
-	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That     *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	PimkName *urlmon.Moniker     `idl:"name:pimkName" json:"pimk_name"`
-	Pibc     *urlmon.BindContext `idl:"name:pibc" json:"pibc"`
-	Return   int32               `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Name        *urlmon.Moniker     `idl:"name:pimkName" json:"name"`
+	BindContext *urlmon.BindContext `idl:"name:pibc" json:"bind_context"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SaveCompletedOperation) OpNum() int { return 7 }
@@ -1347,10 +1347,10 @@ func (o *xxx_SaveCompletedOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pimkName {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PimkName != nil {
+		if o.Name != nil {
 			_ptr_pimkName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PimkName != nil {
-					if err := o.PimkName.MarshalNDR(ctx, w); err != nil {
+				if o.Name != nil {
+					if err := o.Name.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1360,7 +1360,7 @@ func (o *xxx_SaveCompletedOperation) MarshalNDRRequest(ctx context.Context, w nd
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PimkName, _ptr_pimkName); err != nil {
+			if err := w.WritePointer(&o.Name, _ptr_pimkName); err != nil {
 				return err
 			}
 		} else {
@@ -1374,10 +1374,10 @@ func (o *xxx_SaveCompletedOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pibc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pibc != nil {
+		if o.BindContext != nil {
 			_ptr_pibc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pibc != nil {
-					if err := o.Pibc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1387,7 +1387,7 @@ func (o *xxx_SaveCompletedOperation) MarshalNDRRequest(ctx context.Context, w nd
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pibc, _ptr_pibc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pibc); err != nil {
 				return err
 			}
 		} else {
@@ -1418,16 +1418,16 @@ func (o *xxx_SaveCompletedOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	// pimkName {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pimkName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PimkName == nil {
-				o.PimkName = &urlmon.Moniker{}
+			if o.Name == nil {
+				o.Name = &urlmon.Moniker{}
 			}
-			if err := o.PimkName.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Name.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pimkName := func(ptr interface{}) { o.PimkName = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PimkName, _s_pimkName, _ptr_pimkName); err != nil {
+		_s_pimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Name, _s_pimkName, _ptr_pimkName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1437,16 +1437,16 @@ func (o *xxx_SaveCompletedOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	// pibc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pibc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pibc == nil {
-				o.Pibc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pibc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pibc := func(ptr interface{}) { o.Pibc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pibc, _s_pibc, _ptr_pibc); err != nil {
+		_s_pibc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pibc, _ptr_pibc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1518,9 +1518,9 @@ func (o *xxx_SaveCompletedOperation) UnmarshalNDRResponse(ctx context.Context, w
 // SaveCompletedRequest structure represents the SaveCompleted operation request
 type SaveCompletedRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	PimkName *urlmon.Moniker     `idl:"name:pimkName" json:"pimk_name"`
-	Pibc     *urlmon.BindContext `idl:"name:pibc" json:"pibc"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	Name        *urlmon.Moniker     `idl:"name:pimkName" json:"name"`
+	BindContext *urlmon.BindContext `idl:"name:pibc" json:"bind_context"`
 }
 
 func (o *SaveCompletedRequest) xxx_ToOp(ctx context.Context, op *xxx_SaveCompletedOperation) *xxx_SaveCompletedOperation {
@@ -1531,8 +1531,8 @@ func (o *SaveCompletedRequest) xxx_ToOp(ctx context.Context, op *xxx_SaveComplet
 		return op
 	}
 	op.This = o.This
-	op.PimkName = o.PimkName
-	op.Pibc = o.Pibc
+	op.Name = o.Name
+	op.BindContext = o.BindContext
 	return op
 }
 
@@ -1541,8 +1541,8 @@ func (o *SaveCompletedRequest) xxx_FromOp(ctx context.Context, op *xxx_SaveCompl
 		return
 	}
 	o.This = op.This
-	o.PimkName = op.PimkName
-	o.Pibc = op.Pibc
+	o.Name = op.Name
+	o.BindContext = op.BindContext
 }
 func (o *SaveCompletedRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1597,10 +1597,10 @@ func (o *SaveCompletedResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 
 // xxx_GetCurMonikerOperation structure represents the GetCurMoniker operation
 type xxx_GetCurMonikerOperation struct {
-	This      *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PpimkName *urlmon.Moniker `idl:"name:ppimkName" json:"ppimk_name"`
-	Return    int32           `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Name   *urlmon.Moniker `idl:"name:ppimkName" json:"name"`
+	Return int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetCurMonikerOperation) OpNum() int { return 8 }
@@ -1684,10 +1684,10 @@ func (o *xxx_GetCurMonikerOperation) MarshalNDRResponse(ctx context.Context, w n
 	}
 	// ppimkName {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpimkName != nil {
+		if o.Name != nil {
 			_ptr_ppimkName := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpimkName != nil {
-					if err := o.PpimkName.MarshalNDR(ctx, w); err != nil {
+				if o.Name != nil {
+					if err := o.Name.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1697,7 +1697,7 @@ func (o *xxx_GetCurMonikerOperation) MarshalNDRResponse(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpimkName, _ptr_ppimkName); err != nil {
+			if err := w.WritePointer(&o.Name, _ptr_ppimkName); err != nil {
 				return err
 			}
 		} else {
@@ -1734,16 +1734,16 @@ func (o *xxx_GetCurMonikerOperation) UnmarshalNDRResponse(ctx context.Context, w
 	// ppimkName {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppimkName := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpimkName == nil {
-				o.PpimkName = &urlmon.Moniker{}
+			if o.Name == nil {
+				o.Name = &urlmon.Moniker{}
 			}
-			if err := o.PpimkName.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Name.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppimkName := func(ptr interface{}) { o.PpimkName = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpimkName, _s_ppimkName, _ptr_ppimkName); err != nil {
+		_s_ppimkName := func(ptr interface{}) { o.Name = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Name, _s_ppimkName, _ptr_ppimkName); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1797,8 +1797,8 @@ func (o *GetCurMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 // GetCurMonikerResponse structure represents the GetCurMoniker operation response
 type GetCurMonikerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PpimkName *urlmon.Moniker `idl:"name:ppimkName" json:"ppimk_name"`
+	That *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Name *urlmon.Moniker `idl:"name:ppimkName" json:"name"`
 	// Return: The GetCurMoniker return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1811,7 +1811,7 @@ func (o *GetCurMonikerResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCurMoni
 		return op
 	}
 	op.That = o.That
-	op.PpimkName = o.PpimkName
+	op.Name = o.Name
 	op.Return = o.Return
 	return op
 }
@@ -1821,7 +1821,7 @@ func (o *GetCurMonikerResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCurMo
 		return
 	}
 	o.That = op.That
-	o.PpimkName = op.PpimkName
+	o.Name = op.Name
 	o.Return = op.Return
 }
 func (o *GetCurMonikerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

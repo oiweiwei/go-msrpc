@@ -208,7 +208,7 @@ type xxx_NextOperation struct {
 	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
 	Count   uint32         `idl:"name:celt" json:"count"`
-	Rgelt   []string       `idl:"name:rgelt;size_is:(celt)" json:"rgelt"`
+	Entries []string       `idl:"name:rgelt;size_is:(celt)" json:"entries"`
 	Fetched uint32         `idl:"name:pceltFetched" json:"fetched"`
 	Return  int32          `idl:"name:Return" json:"return"`
 }
@@ -313,19 +313,19 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 		sizeInfo := []uint64{
 			dimSize1,
 		}
-		for i1 := range o.Rgelt {
+		for i1 := range o.Entries {
 			i1 := i1
 			if uint64(i1) >= sizeInfo[0] {
 				break
 			}
-			if o.Rgelt[i1] != "" {
+			if o.Entries[i1] != "" {
 				_ptr_rgelt := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-					if err := ndr.WriteUTF16NString(ctx, w, o.Rgelt[i1]); err != nil {
+					if err := ndr.WriteUTF16NString(ctx, w, o.Entries[i1]); err != nil {
 						return err
 					}
 					return nil
 				})
-				if err := w.WritePointer(&o.Rgelt[i1], _ptr_rgelt); err != nil {
+				if err := w.WritePointer(&o.Entries[i1], _ptr_rgelt); err != nil {
 					return err
 				}
 			} else {
@@ -334,7 +334,7 @@ func (o *xxx_NextOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 				}
 			}
 		}
-		for i1 := len(o.Rgelt); uint64(i1) < sizeInfo[0]; i1++ {
+		for i1 := len(o.Entries); uint64(i1) < sizeInfo[0]; i1++ {
 			if err := w.WritePointer(nil); err != nil {
 				return err
 			}
@@ -382,19 +382,19 @@ func (o *xxx_NextOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 			}
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Rgelt", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.Entries", sizeInfo[0])
 		}
-		o.Rgelt = make([]string, sizeInfo[0])
-		for i1 := range o.Rgelt {
+		o.Entries = make([]string, sizeInfo[0])
+		for i1 := range o.Entries {
 			i1 := i1
 			_ptr_rgelt := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-				if err := ndr.ReadUTF16NString(ctx, w, &o.Rgelt[i1]); err != nil {
+				if err := ndr.ReadUTF16NString(ctx, w, &o.Entries[i1]); err != nil {
 					return err
 				}
 				return nil
 			})
-			_s_rgelt := func(ptr interface{}) { o.Rgelt[i1] = *ptr.(*string) }
-			if err := w.ReadPointer(&o.Rgelt[i1], _s_rgelt, _ptr_rgelt); err != nil {
+			_s_rgelt := func(ptr interface{}) { o.Entries[i1] = *ptr.(*string) }
+			if err := w.ReadPointer(&o.Entries[i1], _s_rgelt, _ptr_rgelt); err != nil {
 				return err
 			}
 		}
@@ -462,7 +462,7 @@ type NextResponse struct {
 
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Rgelt   []string       `idl:"name:rgelt;size_is:(celt)" json:"rgelt"`
+	Entries []string       `idl:"name:rgelt;size_is:(celt)" json:"entries"`
 	Fetched uint32         `idl:"name:pceltFetched" json:"fetched"`
 	// Return: The Next return value.
 	Return int32 `idl:"name:Return" json:"return"`
@@ -481,7 +481,7 @@ func (o *NextResponse) xxx_ToOp(ctx context.Context, op *xxx_NextOperation) *xxx
 	}
 
 	op.That = o.That
-	op.Rgelt = o.Rgelt
+	op.Entries = o.Entries
 	op.Fetched = o.Fetched
 	op.Return = o.Return
 	return op
@@ -495,7 +495,7 @@ func (o *NextResponse) xxx_FromOp(ctx context.Context, op *xxx_NextOperation) {
 	o.Count = op.Count
 
 	o.That = op.That
-	o.Rgelt = op.Rgelt
+	o.Entries = op.Entries
 	o.Fetched = op.Fetched
 	o.Return = op.Return
 }
@@ -913,7 +913,7 @@ func (o *ResetResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type xxx_CloneOperation struct {
 	This   *dcom.ORPCThis     `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppenum *urlmon.EnumString `idl:"name:ppenum" json:"ppenum"`
+	Enum   *urlmon.EnumString `idl:"name:ppenum" json:"enum"`
 	Return int32              `idl:"name:Return" json:"return"`
 }
 
@@ -998,10 +998,10 @@ func (o *xxx_CloneOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 	}
 	// ppenum {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IEnumString}(interface))
 	{
-		if o.Ppenum != nil {
+		if o.Enum != nil {
 			_ptr_ppenum := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppenum != nil {
-					if err := o.Ppenum.MarshalNDR(ctx, w); err != nil {
+				if o.Enum != nil {
+					if err := o.Enum.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1011,7 +1011,7 @@ func (o *xxx_CloneOperation) MarshalNDRResponse(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppenum, _ptr_ppenum); err != nil {
+			if err := w.WritePointer(&o.Enum, _ptr_ppenum); err != nil {
 				return err
 			}
 		} else {
@@ -1048,16 +1048,16 @@ func (o *xxx_CloneOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Rea
 	// ppenum {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IEnumString}(interface))
 	{
 		_ptr_ppenum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppenum == nil {
-				o.Ppenum = &urlmon.EnumString{}
+			if o.Enum == nil {
+				o.Enum = &urlmon.EnumString{}
 			}
-			if err := o.Ppenum.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Ppenum = *ptr.(**urlmon.EnumString) }
-		if err := w.ReadPointer(&o.Ppenum, _s_ppenum, _ptr_ppenum); err != nil {
+		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**urlmon.EnumString) }
+		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1111,8 +1111,8 @@ func (o *CloneRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // CloneResponse structure represents the Clone operation response
 type CloneResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppenum *urlmon.EnumString `idl:"name:ppenum" json:"ppenum"`
+	That *dcom.ORPCThat     `idl:"name:That" json:"that"`
+	Enum *urlmon.EnumString `idl:"name:ppenum" json:"enum"`
 	// Return: The Clone return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1125,7 +1125,7 @@ func (o *CloneResponse) xxx_ToOp(ctx context.Context, op *xxx_CloneOperation) *x
 		return op
 	}
 	op.That = o.That
-	op.Ppenum = o.Ppenum
+	op.Enum = o.Enum
 	op.Return = o.Return
 	return op
 }
@@ -1135,7 +1135,7 @@ func (o *CloneResponse) xxx_FromOp(ctx context.Context, op *xxx_CloneOperation) 
 		return
 	}
 	o.That = op.That
-	o.Ppenum = op.Ppenum
+	o.Enum = op.Enum
 	o.Return = op.Return
 }
 func (o *CloneResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

@@ -343,10 +343,10 @@ func NewBindContextClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Op
 
 // xxx_RegisterObjectBoundOperation structure represents the RegisterObjectBound operation
 type xxx_RegisterObjectBoundOperation struct {
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Punk   *dcom.Unknown  `idl:"name:punk" json:"punk"`
-	Return int32          `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Unknown *dcom.Unknown  `idl:"name:punk" json:"unknown"`
+	Return  int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RegisterObjectBoundOperation) OpNum() int { return 3 }
@@ -383,10 +383,10 @@ func (o *xxx_RegisterObjectBoundOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// punk {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.Punk != nil {
+		if o.Unknown != nil {
 			_ptr_punk := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Punk != nil {
-					if err := o.Punk.MarshalNDR(ctx, w); err != nil {
+				if o.Unknown != nil {
+					if err := o.Unknown.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -396,7 +396,7 @@ func (o *xxx_RegisterObjectBoundOperation) MarshalNDRRequest(ctx context.Context
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Punk, _ptr_punk); err != nil {
+			if err := w.WritePointer(&o.Unknown, _ptr_punk); err != nil {
 				return err
 			}
 		} else {
@@ -427,16 +427,16 @@ func (o *xxx_RegisterObjectBoundOperation) UnmarshalNDRRequest(ctx context.Conte
 	// punk {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_punk := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Punk == nil {
-				o.Punk = &dcom.Unknown{}
+			if o.Unknown == nil {
+				o.Unknown = &dcom.Unknown{}
 			}
-			if err := o.Punk.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Unknown.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_punk := func(ptr interface{}) { o.Punk = *ptr.(**dcom.Unknown) }
-		if err := w.ReadPointer(&o.Punk, _s_punk, _ptr_punk); err != nil {
+		_s_punk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		if err := w.ReadPointer(&o.Unknown, _s_punk, _ptr_punk); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -508,8 +508,8 @@ func (o *xxx_RegisterObjectBoundOperation) UnmarshalNDRResponse(ctx context.Cont
 // RegisterObjectBoundRequest structure represents the RegisterObjectBound operation request
 type RegisterObjectBoundRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Punk *dcom.Unknown  `idl:"name:punk" json:"punk"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Unknown *dcom.Unknown  `idl:"name:punk" json:"unknown"`
 }
 
 func (o *RegisterObjectBoundRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterObjectBoundOperation) *xxx_RegisterObjectBoundOperation {
@@ -520,7 +520,7 @@ func (o *RegisterObjectBoundRequest) xxx_ToOp(ctx context.Context, op *xxx_Regis
 		return op
 	}
 	op.This = o.This
-	op.Punk = o.Punk
+	op.Unknown = o.Unknown
 	return op
 }
 
@@ -529,7 +529,7 @@ func (o *RegisterObjectBoundRequest) xxx_FromOp(ctx context.Context, op *xxx_Reg
 		return
 	}
 	o.This = op.This
-	o.Punk = op.Punk
+	o.Unknown = op.Unknown
 }
 func (o *RegisterObjectBoundRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -584,10 +584,10 @@ func (o *RegisterObjectBoundResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_RevokeObjectBoundOperation structure represents the RevokeObjectBound operation
 type xxx_RevokeObjectBoundOperation struct {
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Punk   *dcom.Unknown  `idl:"name:punk" json:"punk"`
-	Return int32          `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Unknown *dcom.Unknown  `idl:"name:punk" json:"unknown"`
+	Return  int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RevokeObjectBoundOperation) OpNum() int { return 4 }
@@ -624,10 +624,10 @@ func (o *xxx_RevokeObjectBoundOperation) MarshalNDRRequest(ctx context.Context, 
 	}
 	// punk {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.Punk != nil {
+		if o.Unknown != nil {
 			_ptr_punk := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Punk != nil {
-					if err := o.Punk.MarshalNDR(ctx, w); err != nil {
+				if o.Unknown != nil {
+					if err := o.Unknown.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -637,7 +637,7 @@ func (o *xxx_RevokeObjectBoundOperation) MarshalNDRRequest(ctx context.Context, 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Punk, _ptr_punk); err != nil {
+			if err := w.WritePointer(&o.Unknown, _ptr_punk); err != nil {
 				return err
 			}
 		} else {
@@ -668,16 +668,16 @@ func (o *xxx_RevokeObjectBoundOperation) UnmarshalNDRRequest(ctx context.Context
 	// punk {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_punk := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Punk == nil {
-				o.Punk = &dcom.Unknown{}
+			if o.Unknown == nil {
+				o.Unknown = &dcom.Unknown{}
 			}
-			if err := o.Punk.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Unknown.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_punk := func(ptr interface{}) { o.Punk = *ptr.(**dcom.Unknown) }
-		if err := w.ReadPointer(&o.Punk, _s_punk, _ptr_punk); err != nil {
+		_s_punk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		if err := w.ReadPointer(&o.Unknown, _s_punk, _ptr_punk); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -749,8 +749,8 @@ func (o *xxx_RevokeObjectBoundOperation) UnmarshalNDRResponse(ctx context.Contex
 // RevokeObjectBoundRequest structure represents the RevokeObjectBound operation request
 type RevokeObjectBoundRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Punk *dcom.Unknown  `idl:"name:punk" json:"punk"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Unknown *dcom.Unknown  `idl:"name:punk" json:"unknown"`
 }
 
 func (o *RevokeObjectBoundRequest) xxx_ToOp(ctx context.Context, op *xxx_RevokeObjectBoundOperation) *xxx_RevokeObjectBoundOperation {
@@ -761,7 +761,7 @@ func (o *RevokeObjectBoundRequest) xxx_ToOp(ctx context.Context, op *xxx_RevokeO
 		return op
 	}
 	op.This = o.This
-	op.Punk = o.Punk
+	op.Unknown = o.Unknown
 	return op
 }
 
@@ -770,7 +770,7 @@ func (o *RevokeObjectBoundRequest) xxx_FromOp(ctx context.Context, op *xxx_Revok
 		return
 	}
 	o.This = op.This
-	o.Punk = op.Punk
+	o.Unknown = op.Unknown
 }
 func (o *RevokeObjectBoundRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1016,10 +1016,10 @@ func (o *ReleaseBoundObjectsResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_SetBindOptionsOperation structure represents the SetBindOptions operation
 type xxx_SetBindOptionsOperation struct {
-	This      *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat   `idl:"name:That" json:"that"`
-	Pbindopts *urlmon.BindOpts `idl:"name:pbindopts" json:"pbindopts"`
-	Return    int32            `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindOptions *urlmon.BindOptions `idl:"name:pbindopts" json:"bind_options"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_SetBindOptionsOperation) OpNum() int { return 6 }
@@ -1056,12 +1056,12 @@ func (o *xxx_SetBindOptionsOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// pbindopts {in} (1:{pointer=ref}*(1))(2:{alias=BIND_OPTS}(struct))
 	{
-		if o.Pbindopts != nil {
-			if err := o.Pbindopts.MarshalNDR(ctx, w); err != nil {
+		if o.BindOptions != nil {
+			if err := o.BindOptions.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&urlmon.BindOpts{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&urlmon.BindOptions{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1084,10 +1084,10 @@ func (o *xxx_SetBindOptionsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// pbindopts {in} (1:{pointer=ref}*(1))(2:{alias=BIND_OPTS}(struct))
 	{
-		if o.Pbindopts == nil {
-			o.Pbindopts = &urlmon.BindOpts{}
+		if o.BindOptions == nil {
+			o.BindOptions = &urlmon.BindOptions{}
 		}
-		if err := o.Pbindopts.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.BindOptions.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1156,8 +1156,8 @@ func (o *xxx_SetBindOptionsOperation) UnmarshalNDRResponse(ctx context.Context, 
 // SetBindOptionsRequest structure represents the SetBindOptions operation request
 type SetBindOptionsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	Pbindopts *urlmon.BindOpts `idl:"name:pbindopts" json:"pbindopts"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindOptions *urlmon.BindOptions `idl:"name:pbindopts" json:"bind_options"`
 }
 
 func (o *SetBindOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetBindOptionsOperation) *xxx_SetBindOptionsOperation {
@@ -1168,7 +1168,7 @@ func (o *SetBindOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetBindOpt
 		return op
 	}
 	op.This = o.This
-	op.Pbindopts = o.Pbindopts
+	op.BindOptions = o.BindOptions
 	return op
 }
 
@@ -1177,7 +1177,7 @@ func (o *SetBindOptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetBindO
 		return
 	}
 	o.This = op.This
-	o.Pbindopts = op.Pbindopts
+	o.BindOptions = op.BindOptions
 }
 func (o *SetBindOptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1232,10 +1232,10 @@ func (o *SetBindOptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_GetBindOptionsOperation structure represents the GetBindOptions operation
 type xxx_GetBindOptionsOperation struct {
-	This      *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat   `idl:"name:That" json:"that"`
-	Pbindopts *urlmon.BindOpts `idl:"name:pbindopts" json:"pbindopts"`
-	Return    int32            `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindOptions *urlmon.BindOptions `idl:"name:pbindopts" json:"bind_options"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetBindOptionsOperation) OpNum() int { return 7 }
@@ -1272,12 +1272,12 @@ func (o *xxx_GetBindOptionsOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// pbindopts {in, out} (1:{pointer=ref}*(1))(2:{alias=BIND_OPTS}(struct))
 	{
-		if o.Pbindopts != nil {
-			if err := o.Pbindopts.MarshalNDR(ctx, w); err != nil {
+		if o.BindOptions != nil {
+			if err := o.BindOptions.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&urlmon.BindOpts{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&urlmon.BindOptions{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1300,10 +1300,10 @@ func (o *xxx_GetBindOptionsOperation) UnmarshalNDRRequest(ctx context.Context, w
 	}
 	// pbindopts {in, out} (1:{pointer=ref}*(1))(2:{alias=BIND_OPTS}(struct))
 	{
-		if o.Pbindopts == nil {
-			o.Pbindopts = &urlmon.BindOpts{}
+		if o.BindOptions == nil {
+			o.BindOptions = &urlmon.BindOptions{}
 		}
-		if err := o.Pbindopts.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.BindOptions.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1340,12 +1340,12 @@ func (o *xxx_GetBindOptionsOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// pbindopts {in, out} (1:{pointer=ref}*(1))(2:{alias=BIND_OPTS}(struct))
 	{
-		if o.Pbindopts != nil {
-			if err := o.Pbindopts.MarshalNDR(ctx, w); err != nil {
+		if o.BindOptions != nil {
+			if err := o.BindOptions.MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		} else {
-			if err := (&urlmon.BindOpts{}).MarshalNDR(ctx, w); err != nil {
+			if err := (&urlmon.BindOptions{}).MarshalNDR(ctx, w); err != nil {
 				return err
 			}
 		}
@@ -1374,10 +1374,10 @@ func (o *xxx_GetBindOptionsOperation) UnmarshalNDRResponse(ctx context.Context, 
 	}
 	// pbindopts {in, out} (1:{pointer=ref}*(1))(2:{alias=BIND_OPTS}(struct))
 	{
-		if o.Pbindopts == nil {
-			o.Pbindopts = &urlmon.BindOpts{}
+		if o.BindOptions == nil {
+			o.BindOptions = &urlmon.BindOptions{}
 		}
-		if err := o.Pbindopts.UnmarshalNDR(ctx, w); err != nil {
+		if err := o.BindOptions.UnmarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	}
@@ -1393,8 +1393,8 @@ func (o *xxx_GetBindOptionsOperation) UnmarshalNDRResponse(ctx context.Context, 
 // GetBindOptionsRequest structure represents the GetBindOptions operation request
 type GetBindOptionsRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis   `idl:"name:This" json:"this"`
-	Pbindopts *urlmon.BindOpts `idl:"name:pbindopts" json:"pbindopts"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindOptions *urlmon.BindOptions `idl:"name:pbindopts" json:"bind_options"`
 }
 
 func (o *GetBindOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetBindOptionsOperation) *xxx_GetBindOptionsOperation {
@@ -1405,7 +1405,7 @@ func (o *GetBindOptionsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetBindOpt
 		return op
 	}
 	op.This = o.This
-	op.Pbindopts = o.Pbindopts
+	op.BindOptions = o.BindOptions
 	return op
 }
 
@@ -1414,7 +1414,7 @@ func (o *GetBindOptionsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetBindO
 		return
 	}
 	o.This = op.This
-	o.Pbindopts = op.Pbindopts
+	o.BindOptions = op.BindOptions
 }
 func (o *GetBindOptionsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1431,8 +1431,8 @@ func (o *GetBindOptionsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetBindOptionsResponse structure represents the GetBindOptions operation response
 type GetBindOptionsResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That      *dcom.ORPCThat   `idl:"name:That" json:"that"`
-	Pbindopts *urlmon.BindOpts `idl:"name:pbindopts" json:"pbindopts"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindOptions *urlmon.BindOptions `idl:"name:pbindopts" json:"bind_options"`
 	// Return: The GetBindOptions return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1445,7 +1445,7 @@ func (o *GetBindOptionsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetBindOp
 		return op
 	}
 	op.That = o.That
-	op.Pbindopts = o.Pbindopts
+	op.BindOptions = o.BindOptions
 	op.Return = o.Return
 	return op
 }
@@ -1455,7 +1455,7 @@ func (o *GetBindOptionsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetBind
 		return
 	}
 	o.That = op.That
-	o.Pbindopts = op.Pbindopts
+	o.BindOptions = op.BindOptions
 	o.Return = op.Return
 }
 func (o *GetBindOptionsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1472,10 +1472,10 @@ func (o *GetBindOptionsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 
 // xxx_GetRunningObjectTableOperation structure represents the GetRunningObjectTable operation
 type xxx_GetRunningObjectTableOperation struct {
-	This   *dcom.ORPCThis             `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat             `idl:"name:That" json:"that"`
-	Pprot  *urlmon.RunningObjectTable `idl:"name:pprot" json:"pprot"`
-	Return int32                      `idl:"name:Return" json:"return"`
+	This               *dcom.ORPCThis             `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	RunningObjectTable *urlmon.RunningObjectTable `idl:"name:pprot" json:"running_object_table"`
+	Return             int32                      `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetRunningObjectTableOperation) OpNum() int { return 8 }
@@ -1561,10 +1561,10 @@ func (o *xxx_GetRunningObjectTableOperation) MarshalNDRResponse(ctx context.Cont
 	}
 	// pprot {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IRunningObjectTable}(interface))
 	{
-		if o.Pprot != nil {
+		if o.RunningObjectTable != nil {
 			_ptr_pprot := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pprot != nil {
-					if err := o.Pprot.MarshalNDR(ctx, w); err != nil {
+				if o.RunningObjectTable != nil {
+					if err := o.RunningObjectTable.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1574,7 +1574,7 @@ func (o *xxx_GetRunningObjectTableOperation) MarshalNDRResponse(ctx context.Cont
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pprot, _ptr_pprot); err != nil {
+			if err := w.WritePointer(&o.RunningObjectTable, _ptr_pprot); err != nil {
 				return err
 			}
 		} else {
@@ -1611,16 +1611,16 @@ func (o *xxx_GetRunningObjectTableOperation) UnmarshalNDRResponse(ctx context.Co
 	// pprot {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IRunningObjectTable}(interface))
 	{
 		_ptr_pprot := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pprot == nil {
-				o.Pprot = &urlmon.RunningObjectTable{}
+			if o.RunningObjectTable == nil {
+				o.RunningObjectTable = &urlmon.RunningObjectTable{}
 			}
-			if err := o.Pprot.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.RunningObjectTable.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pprot := func(ptr interface{}) { o.Pprot = *ptr.(**urlmon.RunningObjectTable) }
-		if err := w.ReadPointer(&o.Pprot, _s_pprot, _ptr_pprot); err != nil {
+		_s_pprot := func(ptr interface{}) { o.RunningObjectTable = *ptr.(**urlmon.RunningObjectTable) }
+		if err := w.ReadPointer(&o.RunningObjectTable, _s_pprot, _ptr_pprot); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1674,8 +1674,8 @@ func (o *GetRunningObjectTableRequest) UnmarshalNDR(ctx context.Context, r ndr.R
 // GetRunningObjectTableResponse structure represents the GetRunningObjectTable operation response
 type GetRunningObjectTableResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat             `idl:"name:That" json:"that"`
-	Pprot *urlmon.RunningObjectTable `idl:"name:pprot" json:"pprot"`
+	That               *dcom.ORPCThat             `idl:"name:That" json:"that"`
+	RunningObjectTable *urlmon.RunningObjectTable `idl:"name:pprot" json:"running_object_table"`
 	// Return: The GetRunningObjectTable return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -1688,7 +1688,7 @@ func (o *GetRunningObjectTableResponse) xxx_ToOp(ctx context.Context, op *xxx_Ge
 		return op
 	}
 	op.That = o.That
-	op.Pprot = o.Pprot
+	op.RunningObjectTable = o.RunningObjectTable
 	op.Return = o.Return
 	return op
 }
@@ -1698,7 +1698,7 @@ func (o *GetRunningObjectTableResponse) xxx_FromOp(ctx context.Context, op *xxx_
 		return
 	}
 	o.That = op.That
-	o.Pprot = op.Pprot
+	o.RunningObjectTable = op.RunningObjectTable
 	o.Return = op.Return
 }
 func (o *GetRunningObjectTableResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1715,11 +1715,11 @@ func (o *GetRunningObjectTableResponse) UnmarshalNDR(ctx context.Context, r ndr.
 
 // xxx_RegisterObjectParamOperation structure represents the RegisterObjectParam operation
 type xxx_RegisterObjectParamOperation struct {
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Key    string         `idl:"name:pszKey" json:"key"`
-	Punk   *dcom.Unknown  `idl:"name:punk" json:"punk"`
-	Return int32          `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Key     string         `idl:"name:pszKey" json:"key"`
+	Unknown *dcom.Unknown  `idl:"name:punk" json:"unknown"`
+	Return  int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RegisterObjectParamOperation) OpNum() int { return 9 }
@@ -1762,10 +1762,10 @@ func (o *xxx_RegisterObjectParamOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// punk {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.Punk != nil {
+		if o.Unknown != nil {
 			_ptr_punk := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Punk != nil {
-					if err := o.Punk.MarshalNDR(ctx, w); err != nil {
+				if o.Unknown != nil {
+					if err := o.Unknown.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1775,7 +1775,7 @@ func (o *xxx_RegisterObjectParamOperation) MarshalNDRRequest(ctx context.Context
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Punk, _ptr_punk); err != nil {
+			if err := w.WritePointer(&o.Unknown, _ptr_punk); err != nil {
 				return err
 			}
 		} else {
@@ -1812,16 +1812,16 @@ func (o *xxx_RegisterObjectParamOperation) UnmarshalNDRRequest(ctx context.Conte
 	// punk {in} (1:{pointer=ref}*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_punk := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Punk == nil {
-				o.Punk = &dcom.Unknown{}
+			if o.Unknown == nil {
+				o.Unknown = &dcom.Unknown{}
 			}
-			if err := o.Punk.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Unknown.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_punk := func(ptr interface{}) { o.Punk = *ptr.(**dcom.Unknown) }
-		if err := w.ReadPointer(&o.Punk, _s_punk, _ptr_punk); err != nil {
+		_s_punk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		if err := w.ReadPointer(&o.Unknown, _s_punk, _ptr_punk); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1893,9 +1893,9 @@ func (o *xxx_RegisterObjectParamOperation) UnmarshalNDRResponse(ctx context.Cont
 // RegisterObjectParamRequest structure represents the RegisterObjectParam operation request
 type RegisterObjectParamRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Key  string         `idl:"name:pszKey" json:"key"`
-	Punk *dcom.Unknown  `idl:"name:punk" json:"punk"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Key     string         `idl:"name:pszKey" json:"key"`
+	Unknown *dcom.Unknown  `idl:"name:punk" json:"unknown"`
 }
 
 func (o *RegisterObjectParamRequest) xxx_ToOp(ctx context.Context, op *xxx_RegisterObjectParamOperation) *xxx_RegisterObjectParamOperation {
@@ -1907,7 +1907,7 @@ func (o *RegisterObjectParamRequest) xxx_ToOp(ctx context.Context, op *xxx_Regis
 	}
 	op.This = o.This
 	op.Key = o.Key
-	op.Punk = o.Punk
+	op.Unknown = o.Unknown
 	return op
 }
 
@@ -1917,7 +1917,7 @@ func (o *RegisterObjectParamRequest) xxx_FromOp(ctx context.Context, op *xxx_Reg
 	}
 	o.This = op.This
 	o.Key = op.Key
-	o.Punk = op.Punk
+	o.Unknown = op.Unknown
 }
 func (o *RegisterObjectParamRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1972,11 +1972,11 @@ func (o *RegisterObjectParamResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_GetObjectParamOperation structure represents the GetObjectParam operation
 type xxx_GetObjectParamOperation struct {
-	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Key    string         `idl:"name:pszKey" json:"key"`
-	Ppunk  *dcom.Unknown  `idl:"name:ppunk" json:"ppunk"`
-	Return int32          `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Key     string         `idl:"name:pszKey" json:"key"`
+	Unknown *dcom.Unknown  `idl:"name:ppunk" json:"unknown"`
+	Return  int32          `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetObjectParamOperation) OpNum() int { return 10 }
@@ -2072,10 +2072,10 @@ func (o *xxx_GetObjectParamOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// ppunk {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IUnknown}(interface))
 	{
-		if o.Ppunk != nil {
+		if o.Unknown != nil {
 			_ptr_ppunk := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppunk != nil {
-					if err := o.Ppunk.MarshalNDR(ctx, w); err != nil {
+				if o.Unknown != nil {
+					if err := o.Unknown.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2085,7 +2085,7 @@ func (o *xxx_GetObjectParamOperation) MarshalNDRResponse(ctx context.Context, w 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppunk, _ptr_ppunk); err != nil {
+			if err := w.WritePointer(&o.Unknown, _ptr_ppunk); err != nil {
 				return err
 			}
 		} else {
@@ -2122,16 +2122,16 @@ func (o *xxx_GetObjectParamOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// ppunk {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IUnknown}(interface))
 	{
 		_ptr_ppunk := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppunk == nil {
-				o.Ppunk = &dcom.Unknown{}
+			if o.Unknown == nil {
+				o.Unknown = &dcom.Unknown{}
 			}
-			if err := o.Ppunk.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Unknown.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppunk := func(ptr interface{}) { o.Ppunk = *ptr.(**dcom.Unknown) }
-		if err := w.ReadPointer(&o.Ppunk, _s_ppunk, _ptr_ppunk); err != nil {
+		_s_ppunk := func(ptr interface{}) { o.Unknown = *ptr.(**dcom.Unknown) }
+		if err := w.ReadPointer(&o.Unknown, _s_ppunk, _ptr_ppunk); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2188,8 +2188,8 @@ func (o *GetObjectParamRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // GetObjectParamResponse structure represents the GetObjectParam operation response
 type GetObjectParamResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Ppunk *dcom.Unknown  `idl:"name:ppunk" json:"ppunk"`
+	That    *dcom.ORPCThat `idl:"name:That" json:"that"`
+	Unknown *dcom.Unknown  `idl:"name:ppunk" json:"unknown"`
 	// Return: The GetObjectParam return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2202,7 +2202,7 @@ func (o *GetObjectParamResponse) xxx_ToOp(ctx context.Context, op *xxx_GetObject
 		return op
 	}
 	op.That = o.That
-	op.Ppunk = o.Ppunk
+	op.Unknown = o.Unknown
 	op.Return = o.Return
 	return op
 }
@@ -2212,7 +2212,7 @@ func (o *GetObjectParamResponse) xxx_FromOp(ctx context.Context, op *xxx_GetObje
 		return
 	}
 	o.That = op.That
-	o.Ppunk = op.Ppunk
+	o.Unknown = op.Unknown
 	o.Return = op.Return
 }
 func (o *GetObjectParamResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2231,7 +2231,7 @@ func (o *GetObjectParamResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type xxx_EnumObjectParamOperation struct {
 	This   *dcom.ORPCThis     `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppenum *urlmon.EnumString `idl:"name:ppenum" json:"ppenum"`
+	Enum   *urlmon.EnumString `idl:"name:ppenum" json:"enum"`
 	Return int32              `idl:"name:Return" json:"return"`
 }
 
@@ -2316,10 +2316,10 @@ func (o *xxx_EnumObjectParamOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// ppenum {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IEnumString}(interface))
 	{
-		if o.Ppenum != nil {
+		if o.Enum != nil {
 			_ptr_ppenum := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppenum != nil {
-					if err := o.Ppenum.MarshalNDR(ctx, w); err != nil {
+				if o.Enum != nil {
+					if err := o.Enum.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2329,7 +2329,7 @@ func (o *xxx_EnumObjectParamOperation) MarshalNDRResponse(ctx context.Context, w
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppenum, _ptr_ppenum); err != nil {
+			if err := w.WritePointer(&o.Enum, _ptr_ppenum); err != nil {
 				return err
 			}
 		} else {
@@ -2366,16 +2366,16 @@ func (o *xxx_EnumObjectParamOperation) UnmarshalNDRResponse(ctx context.Context,
 	// ppenum {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IEnumString}(interface))
 	{
 		_ptr_ppenum := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppenum == nil {
-				o.Ppenum = &urlmon.EnumString{}
+			if o.Enum == nil {
+				o.Enum = &urlmon.EnumString{}
 			}
-			if err := o.Ppenum.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Enum.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppenum := func(ptr interface{}) { o.Ppenum = *ptr.(**urlmon.EnumString) }
-		if err := w.ReadPointer(&o.Ppenum, _s_ppenum, _ptr_ppenum); err != nil {
+		_s_ppenum := func(ptr interface{}) { o.Enum = *ptr.(**urlmon.EnumString) }
+		if err := w.ReadPointer(&o.Enum, _s_ppenum, _ptr_ppenum); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2429,8 +2429,8 @@ func (o *EnumObjectParamRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 // EnumObjectParamResponse structure represents the EnumObjectParam operation response
 type EnumObjectParamResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That   *dcom.ORPCThat     `idl:"name:That" json:"that"`
-	Ppenum *urlmon.EnumString `idl:"name:ppenum" json:"ppenum"`
+	That *dcom.ORPCThat     `idl:"name:That" json:"that"`
+	Enum *urlmon.EnumString `idl:"name:ppenum" json:"enum"`
 	// Return: The EnumObjectParam return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2443,7 +2443,7 @@ func (o *EnumObjectParamResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumObje
 		return op
 	}
 	op.That = o.That
-	op.Ppenum = o.Ppenum
+	op.Enum = o.Enum
 	op.Return = o.Return
 	return op
 }
@@ -2453,7 +2453,7 @@ func (o *EnumObjectParamResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumOb
 		return
 	}
 	o.That = op.That
-	o.Ppenum = op.Ppenum
+	o.Enum = op.Enum
 	o.Return = op.Return
 }
 func (o *EnumObjectParamResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

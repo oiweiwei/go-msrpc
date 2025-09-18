@@ -69,6 +69,7 @@ abbr:
   cdp: CDP
   cdrom: CDROM
   celt: Count
+  rgelt: Entries
   cfg: Config
   cgi: CGI
   cid: CID
@@ -663,3 +664,15 @@ abbr:
   nbstat: NBSTAT
   skwansec: SKWANSEC
   mshl: Marshal
+  opts: Options
+  mksys: MKSYS
+  stm: Stream
+  ppmk: Moniker
+  pmk: Moniker
+  punk: Unknown
+  ppunk: Unknown
+  penum: Enum
+  ppenum: Enum
+  ppstm: Stream
+  pstm: Stream
+  pv: Value

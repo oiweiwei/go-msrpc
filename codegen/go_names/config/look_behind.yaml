@@ -159,7 +159,7 @@ lookBehind:
   targeted: {at: [targeted, 0At]}
   thd: {upd: [thread, update]}
   this: {struct: [this, structure]}
-  time: {out: [timeout], stamp: [timestamp], stamps: [timestamps]}
+  time: {out: [timeout], stamp: [timestamp], stamps: [timestamps], file: [filetime]}
   transaction: {handle: [transaction]}
   ts: {flags: [ts, flags]}
   type: {cactb: [type], sf: [type], ipt: [type], vf: [type], ia: [type], attribute: [type]}
@@ -183,3 +183,4 @@ lookBehind:
   writ: {rep: [writable, replica]}
   per: {sync: [periodical, sync]}
   mail: {rep: [mail, replication]}
+  lib: {new: [new], offset: [offset]}
