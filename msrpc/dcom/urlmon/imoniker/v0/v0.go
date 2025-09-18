@@ -984,7 +984,7 @@ func (o *IsDirtyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 type xxx_LoadOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Stm    *urlmon.Stream `idl:"name:pStm" json:"stm"`
+	Stream *urlmon.Stream `idl:"name:pStm" json:"stream"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
@@ -1022,10 +1022,10 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// pStm {in} (1:{pointer=ref}*(1))(2:{alias=IStream}(interface))
 	{
-		if o.Stm != nil {
+		if o.Stream != nil {
 			_ptr_pStm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Stm != nil {
-					if err := o.Stm.MarshalNDR(ctx, w); err != nil {
+				if o.Stream != nil {
+					if err := o.Stream.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1035,7 +1035,7 @@ func (o *xxx_LoadOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Stm, _ptr_pStm); err != nil {
+			if err := w.WritePointer(&o.Stream, _ptr_pStm); err != nil {
 				return err
 			}
 		} else {
@@ -1066,16 +1066,16 @@ func (o *xxx_LoadOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// pStm {in} (1:{pointer=ref}*(1))(2:{alias=IStream}(interface))
 	{
 		_ptr_pStm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Stm == nil {
-				o.Stm = &urlmon.Stream{}
+			if o.Stream == nil {
+				o.Stream = &urlmon.Stream{}
 			}
-			if err := o.Stm.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Stream.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pStm := func(ptr interface{}) { o.Stm = *ptr.(**urlmon.Stream) }
-		if err := w.ReadPointer(&o.Stm, _s_pStm, _ptr_pStm); err != nil {
+		_s_pStm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		if err := w.ReadPointer(&o.Stream, _s_pStm, _ptr_pStm); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1147,8 +1147,8 @@ func (o *xxx_LoadOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 // LoadRequest structure represents the Load operation request
 type LoadRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Stm  *urlmon.Stream `idl:"name:pStm" json:"stm"`
+	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
+	Stream *urlmon.Stream `idl:"name:pStm" json:"stream"`
 }
 
 func (o *LoadRequest) xxx_ToOp(ctx context.Context, op *xxx_LoadOperation) *xxx_LoadOperation {
@@ -1159,7 +1159,7 @@ func (o *LoadRequest) xxx_ToOp(ctx context.Context, op *xxx_LoadOperation) *xxx_
 		return op
 	}
 	op.This = o.This
-	op.Stm = o.Stm
+	op.Stream = o.Stream
 	return op
 }
 
@@ -1168,7 +1168,7 @@ func (o *LoadRequest) xxx_FromOp(ctx context.Context, op *xxx_LoadOperation) {
 		return
 	}
 	o.This = op.This
-	o.Stm = op.Stm
+	o.Stream = op.Stream
 }
 func (o *LoadRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -1225,7 +1225,7 @@ func (o *LoadResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type xxx_SaveOperation struct {
 	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That       *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Stm        *urlmon.Stream `idl:"name:pStm" json:"stm"`
+	Stream     *urlmon.Stream `idl:"name:pStm" json:"stream"`
 	ClearDirty bool           `idl:"name:fClearDirty" json:"clear_dirty"`
 	Return     int32          `idl:"name:Return" json:"return"`
 }
@@ -1264,10 +1264,10 @@ func (o *xxx_SaveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 	}
 	// pStm {in} (1:{pointer=ref}*(1))(2:{alias=IStream}(interface))
 	{
-		if o.Stm != nil {
+		if o.Stream != nil {
 			_ptr_pStm := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Stm != nil {
-					if err := o.Stm.MarshalNDR(ctx, w); err != nil {
+				if o.Stream != nil {
+					if err := o.Stream.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1277,7 +1277,7 @@ func (o *xxx_SaveOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer)
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Stm, _ptr_pStm); err != nil {
+			if err := w.WritePointer(&o.Stream, _ptr_pStm); err != nil {
 				return err
 			}
 		} else {
@@ -1320,16 +1320,16 @@ func (o *xxx_SaveOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reade
 	// pStm {in} (1:{pointer=ref}*(1))(2:{alias=IStream}(interface))
 	{
 		_ptr_pStm := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Stm == nil {
-				o.Stm = &urlmon.Stream{}
+			if o.Stream == nil {
+				o.Stream = &urlmon.Stream{}
 			}
-			if err := o.Stm.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Stream.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pStm := func(ptr interface{}) { o.Stm = *ptr.(**urlmon.Stream) }
-		if err := w.ReadPointer(&o.Stm, _s_pStm, _ptr_pStm); err != nil {
+		_s_pStm := func(ptr interface{}) { o.Stream = *ptr.(**urlmon.Stream) }
+		if err := w.ReadPointer(&o.Stream, _s_pStm, _ptr_pStm); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1410,7 +1410,7 @@ func (o *xxx_SaveOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 type SaveRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This       *dcom.ORPCThis `idl:"name:This" json:"this"`
-	Stm        *urlmon.Stream `idl:"name:pStm" json:"stm"`
+	Stream     *urlmon.Stream `idl:"name:pStm" json:"stream"`
 	ClearDirty bool           `idl:"name:fClearDirty" json:"clear_dirty"`
 }
 
@@ -1422,7 +1422,7 @@ func (o *SaveRequest) xxx_ToOp(ctx context.Context, op *xxx_SaveOperation) *xxx_
 		return op
 	}
 	op.This = o.This
-	op.Stm = o.Stm
+	op.Stream = o.Stream
 	op.ClearDirty = o.ClearDirty
 	return op
 }
@@ -1432,7 +1432,7 @@ func (o *SaveRequest) xxx_FromOp(ctx context.Context, op *xxx_SaveOperation) {
 		return
 	}
 	o.This = op.This
-	o.Stm = op.Stm
+	o.Stream = op.Stream
 	o.ClearDirty = op.ClearDirty
 }
 func (o *SaveRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -1704,13 +1704,13 @@ func (o *GetSizeMaxResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 
 // xxx_BindToObjectOperation structure represents the BindToObject operation
 type xxx_BindToObjectOperation struct {
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	IIDResult *dcom.IID           `idl:"name:riidResult" json:"iid_result"`
-	Result    []byte              `idl:"name:ppvResult" json:"result"`
-	Return    int32               `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	IIDResult   *dcom.IID           `idl:"name:riidResult" json:"iid_result"`
+	Result      []byte              `idl:"name:ppvResult" json:"result"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_BindToObjectOperation) OpNum() int { return 8 }
@@ -1747,10 +1747,10 @@ func (o *xxx_BindToObjectOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1760,7 +1760,7 @@ func (o *xxx_BindToObjectOperation) MarshalNDRRequest(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -1774,10 +1774,10 @@ func (o *xxx_BindToObjectOperation) MarshalNDRRequest(ctx context.Context, w ndr
 	}
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_pmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkToLeft != nil {
-					if err := o.PmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -1787,7 +1787,7 @@ func (o *xxx_BindToObjectOperation) MarshalNDRRequest(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkToLeft, _ptr_pmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_pmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -1830,16 +1830,16 @@ func (o *xxx_BindToObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1849,16 +1849,16 @@ func (o *xxx_BindToObjectOperation) UnmarshalNDRRequest(ctx context.Context, w n
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkToLeft == nil {
-				o.PmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.PmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
+		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -1972,10 +1972,10 @@ func (o *xxx_BindToObjectOperation) UnmarshalNDRResponse(ctx context.Context, w 
 // BindToObjectRequest structure represents the BindToObject operation request
 type BindToObjectRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	IIDResult *dcom.IID           `idl:"name:riidResult" json:"iid_result"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	IIDResult   *dcom.IID           `idl:"name:riidResult" json:"iid_result"`
 }
 
 func (o *BindToObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_BindToObjectOperation) *xxx_BindToObjectOperation {
@@ -1986,8 +1986,8 @@ func (o *BindToObjectRequest) xxx_ToOp(ctx context.Context, op *xxx_BindToObject
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
-	op.PmkToLeft = o.PmkToLeft
+	op.BindContext = o.BindContext
+	op.ToLeft = o.ToLeft
 	op.IIDResult = o.IIDResult
 	return op
 }
@@ -1997,8 +1997,8 @@ func (o *BindToObjectRequest) xxx_FromOp(ctx context.Context, op *xxx_BindToObje
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
-	o.PmkToLeft = op.PmkToLeft
+	o.BindContext = op.BindContext
+	o.ToLeft = op.ToLeft
 	o.IIDResult = op.IIDResult
 }
 func (o *BindToObjectRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2057,13 +2057,13 @@ func (o *BindToObjectResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) e
 
 // xxx_BindToStorageOperation structure represents the BindToStorage operation
 type xxx_BindToStorageOperation struct {
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	IID       *dcom.IID           `idl:"name:riid" json:"iid"`
-	Object    []byte              `idl:"name:ppvObj" json:"object"`
-	Return    int32               `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	IID         *dcom.IID           `idl:"name:riid" json:"iid"`
+	Object      []byte              `idl:"name:ppvObj" json:"object"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_BindToStorageOperation) OpNum() int { return 9 }
@@ -2100,10 +2100,10 @@ func (o *xxx_BindToStorageOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2113,7 +2113,7 @@ func (o *xxx_BindToStorageOperation) MarshalNDRRequest(ctx context.Context, w nd
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -2127,10 +2127,10 @@ func (o *xxx_BindToStorageOperation) MarshalNDRRequest(ctx context.Context, w nd
 	}
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_pmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkToLeft != nil {
-					if err := o.PmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2140,7 +2140,7 @@ func (o *xxx_BindToStorageOperation) MarshalNDRRequest(ctx context.Context, w nd
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkToLeft, _ptr_pmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_pmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -2183,16 +2183,16 @@ func (o *xxx_BindToStorageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2202,16 +2202,16 @@ func (o *xxx_BindToStorageOperation) UnmarshalNDRRequest(ctx context.Context, w 
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkToLeft == nil {
-				o.PmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.PmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
+		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2325,10 +2325,10 @@ func (o *xxx_BindToStorageOperation) UnmarshalNDRResponse(ctx context.Context, w
 // BindToStorageRequest structure represents the BindToStorage operation request
 type BindToStorageRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	IID       *dcom.IID           `idl:"name:riid" json:"iid"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	IID         *dcom.IID           `idl:"name:riid" json:"iid"`
 }
 
 func (o *BindToStorageRequest) xxx_ToOp(ctx context.Context, op *xxx_BindToStorageOperation) *xxx_BindToStorageOperation {
@@ -2339,8 +2339,8 @@ func (o *BindToStorageRequest) xxx_ToOp(ctx context.Context, op *xxx_BindToStora
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
-	op.PmkToLeft = o.PmkToLeft
+	op.BindContext = o.BindContext
+	op.ToLeft = o.ToLeft
 	op.IID = o.IID
 	return op
 }
@@ -2350,8 +2350,8 @@ func (o *BindToStorageRequest) xxx_FromOp(ctx context.Context, op *xxx_BindToSto
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
-	o.PmkToLeft = op.PmkToLeft
+	o.BindContext = op.BindContext
+	o.ToLeft = op.ToLeft
 	o.IID = op.IID
 }
 func (o *BindToStorageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2412,10 +2412,10 @@ func (o *BindToStorageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 type xxx_ReduceOperation struct {
 	This         *dcom.ORPCThis      `idl:"name:This" json:"this"`
 	That         *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc          *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
+	BindContext  *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
 	ReduceHowFar uint32              `idl:"name:dwReduceHowFar" json:"reduce_how_far"`
-	PpmkToLeft   *urlmon.Moniker     `idl:"name:ppmkToLeft" json:"ppmk_to_left"`
-	PpmkReduced  *urlmon.Moniker     `idl:"name:ppmkReduced" json:"ppmk_reduced"`
+	ToLeft       *urlmon.Moniker     `idl:"name:ppmkToLeft" json:"to_left"`
+	Reduced      *urlmon.Moniker     `idl:"name:ppmkReduced" json:"reduced"`
 	Return       int32               `idl:"name:Return" json:"return"`
 }
 
@@ -2453,10 +2453,10 @@ func (o *xxx_ReduceOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2466,7 +2466,7 @@ func (o *xxx_ReduceOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -2486,10 +2486,10 @@ func (o *xxx_ReduceOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 	}
 	// ppmkToLeft {in, out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_ppmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkToLeft != nil {
-					if err := o.PpmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2499,7 +2499,7 @@ func (o *xxx_ReduceOperation) MarshalNDRRequest(ctx context.Context, w ndr.Write
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkToLeft, _ptr_ppmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_ppmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -2530,16 +2530,16 @@ func (o *xxx_ReduceOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2555,16 +2555,16 @@ func (o *xxx_ReduceOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Rea
 	// ppmkToLeft {in, out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkToLeft == nil {
-				o.PpmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PpmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkToLeft := func(ptr interface{}) { o.PpmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkToLeft, _s_ppmkToLeft, _ptr_ppmkToLeft); err != nil {
+		_s_ppmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_ppmkToLeft, _ptr_ppmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2604,10 +2604,10 @@ func (o *xxx_ReduceOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ppmkToLeft {in, out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_ppmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkToLeft != nil {
-					if err := o.PpmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2617,7 +2617,7 @@ func (o *xxx_ReduceOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkToLeft, _ptr_ppmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_ppmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -2631,10 +2631,10 @@ func (o *xxx_ReduceOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 	}
 	// ppmkReduced {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkReduced != nil {
+		if o.Reduced != nil {
 			_ptr_ppmkReduced := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkReduced != nil {
-					if err := o.PpmkReduced.MarshalNDR(ctx, w); err != nil {
+				if o.Reduced != nil {
+					if err := o.Reduced.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2644,7 +2644,7 @@ func (o *xxx_ReduceOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writ
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkReduced, _ptr_ppmkReduced); err != nil {
+			if err := w.WritePointer(&o.Reduced, _ptr_ppmkReduced); err != nil {
 				return err
 			}
 		} else {
@@ -2681,16 +2681,16 @@ func (o *xxx_ReduceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 	// ppmkToLeft {in, out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkToLeft == nil {
-				o.PpmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PpmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkToLeft := func(ptr interface{}) { o.PpmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkToLeft, _s_ppmkToLeft, _ptr_ppmkToLeft); err != nil {
+		_s_ppmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_ppmkToLeft, _ptr_ppmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2700,16 +2700,16 @@ func (o *xxx_ReduceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 	// ppmkReduced {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkReduced := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkReduced == nil {
-				o.PpmkReduced = &urlmon.Moniker{}
+			if o.Reduced == nil {
+				o.Reduced = &urlmon.Moniker{}
 			}
-			if err := o.PpmkReduced.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Reduced.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkReduced := func(ptr interface{}) { o.PpmkReduced = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkReduced, _s_ppmkReduced, _ptr_ppmkReduced); err != nil {
+		_s_ppmkReduced := func(ptr interface{}) { o.Reduced = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Reduced, _s_ppmkReduced, _ptr_ppmkReduced); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2729,9 +2729,9 @@ func (o *xxx_ReduceOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Re
 type ReduceRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This         *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc          *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
+	BindContext  *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
 	ReduceHowFar uint32              `idl:"name:dwReduceHowFar" json:"reduce_how_far"`
-	PpmkToLeft   *urlmon.Moniker     `idl:"name:ppmkToLeft" json:"ppmk_to_left"`
+	ToLeft       *urlmon.Moniker     `idl:"name:ppmkToLeft" json:"to_left"`
 }
 
 func (o *ReduceRequest) xxx_ToOp(ctx context.Context, op *xxx_ReduceOperation) *xxx_ReduceOperation {
@@ -2742,9 +2742,9 @@ func (o *ReduceRequest) xxx_ToOp(ctx context.Context, op *xxx_ReduceOperation) *
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
+	op.BindContext = o.BindContext
 	op.ReduceHowFar = o.ReduceHowFar
-	op.PpmkToLeft = o.PpmkToLeft
+	op.ToLeft = o.ToLeft
 	return op
 }
 
@@ -2753,9 +2753,9 @@ func (o *ReduceRequest) xxx_FromOp(ctx context.Context, op *xxx_ReduceOperation)
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
+	o.BindContext = op.BindContext
 	o.ReduceHowFar = op.ReduceHowFar
-	o.PpmkToLeft = op.PpmkToLeft
+	o.ToLeft = op.ToLeft
 }
 func (o *ReduceRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -2772,9 +2772,9 @@ func (o *ReduceRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // ReduceResponse structure represents the Reduce operation response
 type ReduceResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That        *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PpmkToLeft  *urlmon.Moniker `idl:"name:ppmkToLeft" json:"ppmk_to_left"`
-	PpmkReduced *urlmon.Moniker `idl:"name:ppmkReduced" json:"ppmk_reduced"`
+	That    *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	ToLeft  *urlmon.Moniker `idl:"name:ppmkToLeft" json:"to_left"`
+	Reduced *urlmon.Moniker `idl:"name:ppmkReduced" json:"reduced"`
 	// Return: The Reduce return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -2787,8 +2787,8 @@ func (o *ReduceResponse) xxx_ToOp(ctx context.Context, op *xxx_ReduceOperation) 
 		return op
 	}
 	op.That = o.That
-	op.PpmkToLeft = o.PpmkToLeft
-	op.PpmkReduced = o.PpmkReduced
+	op.ToLeft = o.ToLeft
+	op.Reduced = o.Reduced
 	op.Return = o.Return
 	return op
 }
@@ -2798,8 +2798,8 @@ func (o *ReduceResponse) xxx_FromOp(ctx context.Context, op *xxx_ReduceOperation
 		return
 	}
 	o.That = op.That
-	o.PpmkToLeft = op.PpmkToLeft
-	o.PpmkReduced = op.PpmkReduced
+	o.ToLeft = op.ToLeft
+	o.Reduced = op.Reduced
 	o.Return = op.Return
 }
 func (o *ReduceResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -2818,9 +2818,9 @@ func (o *ReduceResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 type xxx_ComposeWithOperation struct {
 	This                    *dcom.ORPCThis  `idl:"name:This" json:"this"`
 	That                    *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PmkRight                *urlmon.Moniker `idl:"name:pmkRight" json:"pmk_right"`
+	Right                   *urlmon.Moniker `idl:"name:pmkRight" json:"right"`
 	OnlyInterfaceNotGeneric bool            `idl:"name:fOnlyIfNotGeneric" json:"only_interface_not_generic"`
-	PpmkComposite           *urlmon.Moniker `idl:"name:ppmkComposite" json:"ppmk_composite"`
+	Composite               *urlmon.Moniker `idl:"name:ppmkComposite" json:"composite"`
 	Return                  int32           `idl:"name:Return" json:"return"`
 }
 
@@ -2858,10 +2858,10 @@ func (o *xxx_ComposeWithOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 	}
 	// pmkRight {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkRight != nil {
+		if o.Right != nil {
 			_ptr_pmkRight := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkRight != nil {
-					if err := o.PmkRight.MarshalNDR(ctx, w); err != nil {
+				if o.Right != nil {
+					if err := o.Right.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2871,7 +2871,7 @@ func (o *xxx_ComposeWithOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkRight, _ptr_pmkRight); err != nil {
+			if err := w.WritePointer(&o.Right, _ptr_pmkRight); err != nil {
 				return err
 			}
 		} else {
@@ -2914,16 +2914,16 @@ func (o *xxx_ComposeWithOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 	// pmkRight {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkRight := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkRight == nil {
-				o.PmkRight = &urlmon.Moniker{}
+			if o.Right == nil {
+				o.Right = &urlmon.Moniker{}
 			}
-			if err := o.PmkRight.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Right.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkRight := func(ptr interface{}) { o.PmkRight = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkRight, _s_pmkRight, _ptr_pmkRight); err != nil {
+		_s_pmkRight := func(ptr interface{}) { o.Right = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Right, _s_pmkRight, _ptr_pmkRight); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -2971,10 +2971,10 @@ func (o *xxx_ComposeWithOperation) MarshalNDRResponse(ctx context.Context, w ndr
 	}
 	// ppmkComposite {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkComposite != nil {
+		if o.Composite != nil {
 			_ptr_ppmkComposite := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkComposite != nil {
-					if err := o.PpmkComposite.MarshalNDR(ctx, w); err != nil {
+				if o.Composite != nil {
+					if err := o.Composite.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -2984,7 +2984,7 @@ func (o *xxx_ComposeWithOperation) MarshalNDRResponse(ctx context.Context, w ndr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkComposite, _ptr_ppmkComposite); err != nil {
+			if err := w.WritePointer(&o.Composite, _ptr_ppmkComposite); err != nil {
 				return err
 			}
 		} else {
@@ -3021,16 +3021,16 @@ func (o *xxx_ComposeWithOperation) UnmarshalNDRResponse(ctx context.Context, w n
 	// ppmkComposite {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkComposite := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkComposite == nil {
-				o.PpmkComposite = &urlmon.Moniker{}
+			if o.Composite == nil {
+				o.Composite = &urlmon.Moniker{}
 			}
-			if err := o.PpmkComposite.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Composite.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkComposite := func(ptr interface{}) { o.PpmkComposite = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkComposite, _s_ppmkComposite, _ptr_ppmkComposite); err != nil {
+		_s_ppmkComposite := func(ptr interface{}) { o.Composite = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Composite, _s_ppmkComposite, _ptr_ppmkComposite); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3050,7 +3050,7 @@ func (o *xxx_ComposeWithOperation) UnmarshalNDRResponse(ctx context.Context, w n
 type ComposeWithRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This                    *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	PmkRight                *urlmon.Moniker `idl:"name:pmkRight" json:"pmk_right"`
+	Right                   *urlmon.Moniker `idl:"name:pmkRight" json:"right"`
 	OnlyInterfaceNotGeneric bool            `idl:"name:fOnlyIfNotGeneric" json:"only_interface_not_generic"`
 }
 
@@ -3062,7 +3062,7 @@ func (o *ComposeWithRequest) xxx_ToOp(ctx context.Context, op *xxx_ComposeWithOp
 		return op
 	}
 	op.This = o.This
-	op.PmkRight = o.PmkRight
+	op.Right = o.Right
 	op.OnlyInterfaceNotGeneric = o.OnlyInterfaceNotGeneric
 	return op
 }
@@ -3072,7 +3072,7 @@ func (o *ComposeWithRequest) xxx_FromOp(ctx context.Context, op *xxx_ComposeWith
 		return
 	}
 	o.This = op.This
-	o.PmkRight = op.PmkRight
+	o.Right = op.Right
 	o.OnlyInterfaceNotGeneric = op.OnlyInterfaceNotGeneric
 }
 func (o *ComposeWithRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -3090,8 +3090,8 @@ func (o *ComposeWithRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) err
 // ComposeWithResponse structure represents the ComposeWith operation response
 type ComposeWithResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PpmkComposite *urlmon.Moniker `idl:"name:ppmkComposite" json:"ppmk_composite"`
+	That      *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Composite *urlmon.Moniker `idl:"name:ppmkComposite" json:"composite"`
 	// Return: The ComposeWith return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3104,7 +3104,7 @@ func (o *ComposeWithResponse) xxx_ToOp(ctx context.Context, op *xxx_ComposeWithO
 		return op
 	}
 	op.That = o.That
-	op.PpmkComposite = o.PpmkComposite
+	op.Composite = o.Composite
 	op.Return = o.Return
 	return op
 }
@@ -3114,7 +3114,7 @@ func (o *ComposeWithResponse) xxx_FromOp(ctx context.Context, op *xxx_ComposeWit
 		return
 	}
 	o.That = op.That
-	o.PpmkComposite = op.PpmkComposite
+	o.Composite = op.Composite
 	o.Return = op.Return
 }
 func (o *ComposeWithResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -3131,11 +3131,11 @@ func (o *ComposeWithResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) er
 
 // xxx_EnumOperation structure represents the Enum operation
 type xxx_EnumOperation struct {
-	This          *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That          *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Forward       bool                `idl:"name:fForward" json:"forward"`
-	PpenumMoniker *urlmon.EnumMoniker `idl:"name:ppenumMoniker" json:"ppenum_moniker"`
-	Return        int32               `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Forward bool                `idl:"name:fForward" json:"forward"`
+	Moniker *urlmon.EnumMoniker `idl:"name:ppenumMoniker" json:"moniker"`
+	Return  int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_EnumOperation) OpNum() int { return 12 }
@@ -3239,10 +3239,10 @@ func (o *xxx_EnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 	}
 	// ppenumMoniker {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IEnumMoniker}(interface))
 	{
-		if o.PpenumMoniker != nil {
+		if o.Moniker != nil {
 			_ptr_ppenumMoniker := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpenumMoniker != nil {
-					if err := o.PpenumMoniker.MarshalNDR(ctx, w); err != nil {
+				if o.Moniker != nil {
+					if err := o.Moniker.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -3252,7 +3252,7 @@ func (o *xxx_EnumOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpenumMoniker, _ptr_ppenumMoniker); err != nil {
+			if err := w.WritePointer(&o.Moniker, _ptr_ppenumMoniker); err != nil {
 				return err
 			}
 		} else {
@@ -3289,16 +3289,16 @@ func (o *xxx_EnumOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Read
 	// ppenumMoniker {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IEnumMoniker}(interface))
 	{
 		_ptr_ppenumMoniker := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpenumMoniker == nil {
-				o.PpenumMoniker = &urlmon.EnumMoniker{}
+			if o.Moniker == nil {
+				o.Moniker = &urlmon.EnumMoniker{}
 			}
-			if err := o.PpenumMoniker.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Moniker.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppenumMoniker := func(ptr interface{}) { o.PpenumMoniker = *ptr.(**urlmon.EnumMoniker) }
-		if err := w.ReadPointer(&o.PpenumMoniker, _s_ppenumMoniker, _ptr_ppenumMoniker); err != nil {
+		_s_ppenumMoniker := func(ptr interface{}) { o.Moniker = *ptr.(**urlmon.EnumMoniker) }
+		if err := w.ReadPointer(&o.Moniker, _s_ppenumMoniker, _ptr_ppenumMoniker); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3355,8 +3355,8 @@ func (o *EnumRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // EnumResponse structure represents the Enum operation response
 type EnumResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That          *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	PpenumMoniker *urlmon.EnumMoniker `idl:"name:ppenumMoniker" json:"ppenum_moniker"`
+	That    *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	Moniker *urlmon.EnumMoniker `idl:"name:ppenumMoniker" json:"moniker"`
 	// Return: The Enum return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -3369,7 +3369,7 @@ func (o *EnumResponse) xxx_ToOp(ctx context.Context, op *xxx_EnumOperation) *xxx
 		return op
 	}
 	op.That = o.That
-	op.PpenumMoniker = o.PpenumMoniker
+	op.Moniker = o.Moniker
 	op.Return = o.Return
 	return op
 }
@@ -3379,7 +3379,7 @@ func (o *EnumResponse) xxx_FromOp(ctx context.Context, op *xxx_EnumOperation) {
 		return
 	}
 	o.That = op.That
-	o.PpenumMoniker = op.PpenumMoniker
+	o.Moniker = op.Moniker
 	o.Return = op.Return
 }
 func (o *EnumResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -3396,10 +3396,10 @@ func (o *EnumResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_IsEqualOperation structure represents the IsEqual operation
 type xxx_IsEqualOperation struct {
-	This            *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PmkOtherMoniker *urlmon.Moniker `idl:"name:pmkOtherMoniker" json:"pmk_other_moniker"`
-	Return          int32           `idl:"name:Return" json:"return"`
+	This         *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	OtherMoniker *urlmon.Moniker `idl:"name:pmkOtherMoniker" json:"other_moniker"`
+	Return       int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_IsEqualOperation) OpNum() int { return 13 }
@@ -3436,10 +3436,10 @@ func (o *xxx_IsEqualOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 	}
 	// pmkOtherMoniker {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkOtherMoniker != nil {
+		if o.OtherMoniker != nil {
 			_ptr_pmkOtherMoniker := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkOtherMoniker != nil {
-					if err := o.PmkOtherMoniker.MarshalNDR(ctx, w); err != nil {
+				if o.OtherMoniker != nil {
+					if err := o.OtherMoniker.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -3449,7 +3449,7 @@ func (o *xxx_IsEqualOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writ
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkOtherMoniker, _ptr_pmkOtherMoniker); err != nil {
+			if err := w.WritePointer(&o.OtherMoniker, _ptr_pmkOtherMoniker); err != nil {
 				return err
 			}
 		} else {
@@ -3480,16 +3480,16 @@ func (o *xxx_IsEqualOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Re
 	// pmkOtherMoniker {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkOtherMoniker := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkOtherMoniker == nil {
-				o.PmkOtherMoniker = &urlmon.Moniker{}
+			if o.OtherMoniker == nil {
+				o.OtherMoniker = &urlmon.Moniker{}
 			}
-			if err := o.PmkOtherMoniker.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.OtherMoniker.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkOtherMoniker := func(ptr interface{}) { o.PmkOtherMoniker = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkOtherMoniker, _s_pmkOtherMoniker, _ptr_pmkOtherMoniker); err != nil {
+		_s_pmkOtherMoniker := func(ptr interface{}) { o.OtherMoniker = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.OtherMoniker, _s_pmkOtherMoniker, _ptr_pmkOtherMoniker); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -3561,8 +3561,8 @@ func (o *xxx_IsEqualOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 // IsEqualRequest structure represents the IsEqual operation request
 type IsEqualRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	PmkOtherMoniker *urlmon.Moniker `idl:"name:pmkOtherMoniker" json:"pmk_other_moniker"`
+	This         *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	OtherMoniker *urlmon.Moniker `idl:"name:pmkOtherMoniker" json:"other_moniker"`
 }
 
 func (o *IsEqualRequest) xxx_ToOp(ctx context.Context, op *xxx_IsEqualOperation) *xxx_IsEqualOperation {
@@ -3573,7 +3573,7 @@ func (o *IsEqualRequest) xxx_ToOp(ctx context.Context, op *xxx_IsEqualOperation)
 		return op
 	}
 	op.This = o.This
-	op.PmkOtherMoniker = o.PmkOtherMoniker
+	op.OtherMoniker = o.OtherMoniker
 	return op
 }
 
@@ -3582,7 +3582,7 @@ func (o *IsEqualRequest) xxx_FromOp(ctx context.Context, op *xxx_IsEqualOperatio
 		return
 	}
 	o.This = op.This
-	o.PmkOtherMoniker = op.PmkOtherMoniker
+	o.OtherMoniker = op.OtherMoniker
 }
 func (o *IsEqualRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -3844,12 +3844,12 @@ func (o *HashResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 
 // xxx_IsRunningOperation structure represents the IsRunning operation
 type xxx_IsRunningOperation struct {
-	This            *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That            *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc             *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft       *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	PmkNewlyRunning *urlmon.Moniker     `idl:"name:pmkNewlyRunning" json:"pmk_newly_running"`
-	Return          int32               `idl:"name:Return" json:"return"`
+	This         *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindContext  *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft       *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	NewlyRunning *urlmon.Moniker     `idl:"name:pmkNewlyRunning" json:"newly_running"`
+	Return       int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_IsRunningOperation) OpNum() int { return 15 }
@@ -3886,10 +3886,10 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -3899,7 +3899,7 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -3913,10 +3913,10 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_pmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkToLeft != nil {
-					if err := o.PmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -3926,7 +3926,7 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkToLeft, _ptr_pmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_pmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -3940,10 +3940,10 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 	}
 	// pmkNewlyRunning {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkNewlyRunning != nil {
+		if o.NewlyRunning != nil {
 			_ptr_pmkNewlyRunning := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkNewlyRunning != nil {
-					if err := o.PmkNewlyRunning.MarshalNDR(ctx, w); err != nil {
+				if o.NewlyRunning != nil {
+					if err := o.NewlyRunning.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -3953,7 +3953,7 @@ func (o *xxx_IsRunningOperation) MarshalNDRRequest(ctx context.Context, w ndr.Wr
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkNewlyRunning, _ptr_pmkNewlyRunning); err != nil {
+			if err := w.WritePointer(&o.NewlyRunning, _ptr_pmkNewlyRunning); err != nil {
 				return err
 			}
 		} else {
@@ -3984,16 +3984,16 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4003,16 +4003,16 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkToLeft == nil {
-				o.PmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.PmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
+		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4022,16 +4022,16 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.
 	// pmkNewlyRunning {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkNewlyRunning := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkNewlyRunning == nil {
-				o.PmkNewlyRunning = &urlmon.Moniker{}
+			if o.NewlyRunning == nil {
+				o.NewlyRunning = &urlmon.Moniker{}
 			}
-			if err := o.PmkNewlyRunning.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.NewlyRunning.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkNewlyRunning := func(ptr interface{}) { o.PmkNewlyRunning = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkNewlyRunning, _s_pmkNewlyRunning, _ptr_pmkNewlyRunning); err != nil {
+		_s_pmkNewlyRunning := func(ptr interface{}) { o.NewlyRunning = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.NewlyRunning, _s_pmkNewlyRunning, _ptr_pmkNewlyRunning); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4103,10 +4103,10 @@ func (o *xxx_IsRunningOperation) UnmarshalNDRResponse(ctx context.Context, w ndr
 // IsRunningRequest structure represents the IsRunning operation request
 type IsRunningRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This            *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc             *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft       *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	PmkNewlyRunning *urlmon.Moniker     `idl:"name:pmkNewlyRunning" json:"pmk_newly_running"`
+	This         *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindContext  *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft       *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	NewlyRunning *urlmon.Moniker     `idl:"name:pmkNewlyRunning" json:"newly_running"`
 }
 
 func (o *IsRunningRequest) xxx_ToOp(ctx context.Context, op *xxx_IsRunningOperation) *xxx_IsRunningOperation {
@@ -4117,9 +4117,9 @@ func (o *IsRunningRequest) xxx_ToOp(ctx context.Context, op *xxx_IsRunningOperat
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
-	op.PmkToLeft = o.PmkToLeft
-	op.PmkNewlyRunning = o.PmkNewlyRunning
+	op.BindContext = o.BindContext
+	op.ToLeft = o.ToLeft
+	op.NewlyRunning = o.NewlyRunning
 	return op
 }
 
@@ -4128,9 +4128,9 @@ func (o *IsRunningRequest) xxx_FromOp(ctx context.Context, op *xxx_IsRunningOper
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
-	o.PmkToLeft = op.PmkToLeft
-	o.PmkNewlyRunning = op.PmkNewlyRunning
+	o.BindContext = op.BindContext
+	o.ToLeft = op.ToLeft
+	o.NewlyRunning = op.NewlyRunning
 }
 func (o *IsRunningRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -4185,12 +4185,12 @@ func (o *IsRunningResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) erro
 
 // xxx_GetTimeOfLastChangeOperation structure represents the GetTimeOfLastChange operation
 type xxx_GetTimeOfLastChangeOperation struct {
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	That      *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
-	FileTime  *dtyp.Filetime      `idl:"name:pFileTime" json:"file_time"`
-	Return    int32               `idl:"name:Return" json:"return"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
+	FileTime    *dtyp.Filetime      `idl:"name:pFileTime" json:"file_time"`
+	Return      int32               `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_GetTimeOfLastChangeOperation) OpNum() int { return 16 }
@@ -4227,10 +4227,10 @@ func (o *xxx_GetTimeOfLastChangeOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -4240,7 +4240,7 @@ func (o *xxx_GetTimeOfLastChangeOperation) MarshalNDRRequest(ctx context.Context
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -4254,10 +4254,10 @@ func (o *xxx_GetTimeOfLastChangeOperation) MarshalNDRRequest(ctx context.Context
 	}
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_pmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkToLeft != nil {
-					if err := o.PmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -4267,7 +4267,7 @@ func (o *xxx_GetTimeOfLastChangeOperation) MarshalNDRRequest(ctx context.Context
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkToLeft, _ptr_pmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_pmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -4298,16 +4298,16 @@ func (o *xxx_GetTimeOfLastChangeOperation) UnmarshalNDRRequest(ctx context.Conte
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4317,16 +4317,16 @@ func (o *xxx_GetTimeOfLastChangeOperation) UnmarshalNDRRequest(ctx context.Conte
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkToLeft == nil {
-				o.PmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.PmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
+		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4419,9 +4419,9 @@ func (o *xxx_GetTimeOfLastChangeOperation) UnmarshalNDRResponse(ctx context.Cont
 // GetTimeOfLastChangeRequest structure represents the GetTimeOfLastChange operation request
 type GetTimeOfLastChangeRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
 }
 
 func (o *GetTimeOfLastChangeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTimeOfLastChangeOperation) *xxx_GetTimeOfLastChangeOperation {
@@ -4432,8 +4432,8 @@ func (o *GetTimeOfLastChangeRequest) xxx_ToOp(ctx context.Context, op *xxx_GetTi
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
-	op.PmkToLeft = o.PmkToLeft
+	op.BindContext = o.BindContext
+	op.ToLeft = o.ToLeft
 	return op
 }
 
@@ -4442,8 +4442,8 @@ func (o *GetTimeOfLastChangeRequest) xxx_FromOp(ctx context.Context, op *xxx_Get
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
-	o.PmkToLeft = op.PmkToLeft
+	o.BindContext = op.BindContext
+	o.ToLeft = op.ToLeft
 }
 func (o *GetTimeOfLastChangeRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -4501,10 +4501,10 @@ func (o *GetTimeOfLastChangeResponse) UnmarshalNDR(ctx context.Context, r ndr.Re
 
 // xxx_InverseOperation structure represents the Inverse operation
 type xxx_InverseOperation struct {
-	This   *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	That   *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	Ppmk   *urlmon.Moniker `idl:"name:ppmk" json:"ppmk"`
-	Return int32           `idl:"name:Return" json:"return"`
+	This    *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That    *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Moniker *urlmon.Moniker `idl:"name:ppmk" json:"moniker"`
+	Return  int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_InverseOperation) OpNum() int { return 17 }
@@ -4588,10 +4588,10 @@ func (o *xxx_InverseOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 	}
 	// ppmk {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.Ppmk != nil {
+		if o.Moniker != nil {
 			_ptr_ppmk := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Ppmk != nil {
-					if err := o.Ppmk.MarshalNDR(ctx, w); err != nil {
+				if o.Moniker != nil {
+					if err := o.Moniker.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -4601,7 +4601,7 @@ func (o *xxx_InverseOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Ppmk, _ptr_ppmk); err != nil {
+			if err := w.WritePointer(&o.Moniker, _ptr_ppmk); err != nil {
 				return err
 			}
 		} else {
@@ -4638,16 +4638,16 @@ func (o *xxx_InverseOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 	// ppmk {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmk := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Ppmk == nil {
-				o.Ppmk = &urlmon.Moniker{}
+			if o.Moniker == nil {
+				o.Moniker = &urlmon.Moniker{}
 			}
-			if err := o.Ppmk.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Moniker.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmk := func(ptr interface{}) { o.Ppmk = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.Ppmk, _s_ppmk, _ptr_ppmk); err != nil {
+		_s_ppmk := func(ptr interface{}) { o.Moniker = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Moniker, _s_ppmk, _ptr_ppmk); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4701,8 +4701,8 @@ func (o *InverseRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 // InverseResponse structure represents the Inverse operation response
 type InverseResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	Ppmk *urlmon.Moniker `idl:"name:ppmk" json:"ppmk"`
+	That    *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Moniker *urlmon.Moniker `idl:"name:ppmk" json:"moniker"`
 	// Return: The Inverse return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -4715,7 +4715,7 @@ func (o *InverseResponse) xxx_ToOp(ctx context.Context, op *xxx_InverseOperation
 		return op
 	}
 	op.That = o.That
-	op.Ppmk = o.Ppmk
+	op.Moniker = o.Moniker
 	op.Return = o.Return
 	return op
 }
@@ -4725,7 +4725,7 @@ func (o *InverseResponse) xxx_FromOp(ctx context.Context, op *xxx_InverseOperati
 		return
 	}
 	o.That = op.That
-	o.Ppmk = op.Ppmk
+	o.Moniker = op.Moniker
 	o.Return = op.Return
 }
 func (o *InverseResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -4742,11 +4742,11 @@ func (o *InverseResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error 
 
 // xxx_CommonPrefixWithOperation structure represents the CommonPrefixWith operation
 type xxx_CommonPrefixWithOperation struct {
-	This       *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	That       *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PmkOther   *urlmon.Moniker `idl:"name:pmkOther" json:"pmk_other"`
-	PpmkPrefix *urlmon.Moniker `idl:"name:ppmkPrefix" json:"ppmk_prefix"`
-	Return     int32           `idl:"name:Return" json:"return"`
+	This   *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That   *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Other  *urlmon.Moniker `idl:"name:pmkOther" json:"other"`
+	Prefix *urlmon.Moniker `idl:"name:ppmkPrefix" json:"prefix"`
+	Return int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_CommonPrefixWithOperation) OpNum() int { return 18 }
@@ -4783,10 +4783,10 @@ func (o *xxx_CommonPrefixWithOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// pmkOther {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkOther != nil {
+		if o.Other != nil {
 			_ptr_pmkOther := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkOther != nil {
-					if err := o.PmkOther.MarshalNDR(ctx, w); err != nil {
+				if o.Other != nil {
+					if err := o.Other.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -4796,7 +4796,7 @@ func (o *xxx_CommonPrefixWithOperation) MarshalNDRRequest(ctx context.Context, w
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkOther, _ptr_pmkOther); err != nil {
+			if err := w.WritePointer(&o.Other, _ptr_pmkOther); err != nil {
 				return err
 			}
 		} else {
@@ -4827,16 +4827,16 @@ func (o *xxx_CommonPrefixWithOperation) UnmarshalNDRRequest(ctx context.Context,
 	// pmkOther {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkOther := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkOther == nil {
-				o.PmkOther = &urlmon.Moniker{}
+			if o.Other == nil {
+				o.Other = &urlmon.Moniker{}
 			}
-			if err := o.PmkOther.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Other.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkOther := func(ptr interface{}) { o.PmkOther = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkOther, _s_pmkOther, _ptr_pmkOther); err != nil {
+		_s_pmkOther := func(ptr interface{}) { o.Other = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Other, _s_pmkOther, _ptr_pmkOther); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4876,10 +4876,10 @@ func (o *xxx_CommonPrefixWithOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// ppmkPrefix {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkPrefix != nil {
+		if o.Prefix != nil {
 			_ptr_ppmkPrefix := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkPrefix != nil {
-					if err := o.PpmkPrefix.MarshalNDR(ctx, w); err != nil {
+				if o.Prefix != nil {
+					if err := o.Prefix.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -4889,7 +4889,7 @@ func (o *xxx_CommonPrefixWithOperation) MarshalNDRResponse(ctx context.Context, 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkPrefix, _ptr_ppmkPrefix); err != nil {
+			if err := w.WritePointer(&o.Prefix, _ptr_ppmkPrefix); err != nil {
 				return err
 			}
 		} else {
@@ -4926,16 +4926,16 @@ func (o *xxx_CommonPrefixWithOperation) UnmarshalNDRResponse(ctx context.Context
 	// ppmkPrefix {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkPrefix := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkPrefix == nil {
-				o.PpmkPrefix = &urlmon.Moniker{}
+			if o.Prefix == nil {
+				o.Prefix = &urlmon.Moniker{}
 			}
-			if err := o.PpmkPrefix.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Prefix.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkPrefix := func(ptr interface{}) { o.PpmkPrefix = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkPrefix, _s_ppmkPrefix, _ptr_ppmkPrefix); err != nil {
+		_s_ppmkPrefix := func(ptr interface{}) { o.Prefix = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Prefix, _s_ppmkPrefix, _ptr_ppmkPrefix); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -4954,8 +4954,8 @@ func (o *xxx_CommonPrefixWithOperation) UnmarshalNDRResponse(ctx context.Context
 // CommonPrefixWithRequest structure represents the CommonPrefixWith operation request
 type CommonPrefixWithRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	PmkOther *urlmon.Moniker `idl:"name:pmkOther" json:"pmk_other"`
+	This  *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	Other *urlmon.Moniker `idl:"name:pmkOther" json:"other"`
 }
 
 func (o *CommonPrefixWithRequest) xxx_ToOp(ctx context.Context, op *xxx_CommonPrefixWithOperation) *xxx_CommonPrefixWithOperation {
@@ -4966,7 +4966,7 @@ func (o *CommonPrefixWithRequest) xxx_ToOp(ctx context.Context, op *xxx_CommonPr
 		return op
 	}
 	op.This = o.This
-	op.PmkOther = o.PmkOther
+	op.Other = o.Other
 	return op
 }
 
@@ -4975,7 +4975,7 @@ func (o *CommonPrefixWithRequest) xxx_FromOp(ctx context.Context, op *xxx_Common
 		return
 	}
 	o.This = op.This
-	o.PmkOther = op.PmkOther
+	o.Other = op.Other
 }
 func (o *CommonPrefixWithRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -4992,8 +4992,8 @@ func (o *CommonPrefixWithRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // CommonPrefixWithResponse structure represents the CommonPrefixWith operation response
 type CommonPrefixWithResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That       *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PpmkPrefix *urlmon.Moniker `idl:"name:ppmkPrefix" json:"ppmk_prefix"`
+	That   *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Prefix *urlmon.Moniker `idl:"name:ppmkPrefix" json:"prefix"`
 	// Return: The CommonPrefixWith return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5006,7 +5006,7 @@ func (o *CommonPrefixWithResponse) xxx_ToOp(ctx context.Context, op *xxx_CommonP
 		return op
 	}
 	op.That = o.That
-	op.PpmkPrefix = o.PpmkPrefix
+	op.Prefix = o.Prefix
 	op.Return = o.Return
 	return op
 }
@@ -5016,7 +5016,7 @@ func (o *CommonPrefixWithResponse) xxx_FromOp(ctx context.Context, op *xxx_Commo
 		return
 	}
 	o.That = op.That
-	o.PpmkPrefix = op.PpmkPrefix
+	o.Prefix = op.Prefix
 	o.Return = op.Return
 }
 func (o *CommonPrefixWithResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5033,11 +5033,11 @@ func (o *CommonPrefixWithResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 
 // xxx_RelativePathToOperation structure represents the RelativePathTo operation
 type xxx_RelativePathToOperation struct {
-	This             *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	That             *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PmkOther         *urlmon.Moniker `idl:"name:pmkOther" json:"pmk_other"`
-	PpmkRelationPath *urlmon.Moniker `idl:"name:ppmkRelPath" json:"ppmk_relation_path"`
-	Return           int32           `idl:"name:Return" json:"return"`
+	This         *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That         *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Other        *urlmon.Moniker `idl:"name:pmkOther" json:"other"`
+	RelationPath *urlmon.Moniker `idl:"name:ppmkRelPath" json:"relation_path"`
+	Return       int32           `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_RelativePathToOperation) OpNum() int { return 19 }
@@ -5074,10 +5074,10 @@ func (o *xxx_RelativePathToOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// pmkOther {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkOther != nil {
+		if o.Other != nil {
 			_ptr_pmkOther := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkOther != nil {
-					if err := o.PmkOther.MarshalNDR(ctx, w); err != nil {
+				if o.Other != nil {
+					if err := o.Other.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5087,7 +5087,7 @@ func (o *xxx_RelativePathToOperation) MarshalNDRRequest(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkOther, _ptr_pmkOther); err != nil {
+			if err := w.WritePointer(&o.Other, _ptr_pmkOther); err != nil {
 				return err
 			}
 		} else {
@@ -5118,16 +5118,16 @@ func (o *xxx_RelativePathToOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// pmkOther {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkOther := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkOther == nil {
-				o.PmkOther = &urlmon.Moniker{}
+			if o.Other == nil {
+				o.Other = &urlmon.Moniker{}
 			}
-			if err := o.PmkOther.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Other.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkOther := func(ptr interface{}) { o.PmkOther = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkOther, _s_pmkOther, _ptr_pmkOther); err != nil {
+		_s_pmkOther := func(ptr interface{}) { o.Other = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Other, _s_pmkOther, _ptr_pmkOther); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5167,10 +5167,10 @@ func (o *xxx_RelativePathToOperation) MarshalNDRResponse(ctx context.Context, w 
 	}
 	// ppmkRelPath {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkRelationPath != nil {
+		if o.RelationPath != nil {
 			_ptr_ppmkRelPath := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkRelationPath != nil {
-					if err := o.PpmkRelationPath.MarshalNDR(ctx, w); err != nil {
+				if o.RelationPath != nil {
+					if err := o.RelationPath.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5180,7 +5180,7 @@ func (o *xxx_RelativePathToOperation) MarshalNDRResponse(ctx context.Context, w 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkRelationPath, _ptr_ppmkRelPath); err != nil {
+			if err := w.WritePointer(&o.RelationPath, _ptr_ppmkRelPath); err != nil {
 				return err
 			}
 		} else {
@@ -5217,16 +5217,16 @@ func (o *xxx_RelativePathToOperation) UnmarshalNDRResponse(ctx context.Context, 
 	// ppmkRelPath {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkRelPath := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkRelationPath == nil {
-				o.PpmkRelationPath = &urlmon.Moniker{}
+			if o.RelationPath == nil {
+				o.RelationPath = &urlmon.Moniker{}
 			}
-			if err := o.PpmkRelationPath.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.RelationPath.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkRelPath := func(ptr interface{}) { o.PpmkRelationPath = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkRelationPath, _s_ppmkRelPath, _ptr_ppmkRelPath); err != nil {
+		_s_ppmkRelPath := func(ptr interface{}) { o.RelationPath = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.RelationPath, _s_ppmkRelPath, _ptr_ppmkRelPath); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5245,8 +5245,8 @@ func (o *xxx_RelativePathToOperation) UnmarshalNDRResponse(ctx context.Context, 
 // RelativePathToRequest structure represents the RelativePathTo operation request
 type RelativePathToRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This     *dcom.ORPCThis  `idl:"name:This" json:"this"`
-	PmkOther *urlmon.Moniker `idl:"name:pmkOther" json:"pmk_other"`
+	This  *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	Other *urlmon.Moniker `idl:"name:pmkOther" json:"other"`
 }
 
 func (o *RelativePathToRequest) xxx_ToOp(ctx context.Context, op *xxx_RelativePathToOperation) *xxx_RelativePathToOperation {
@@ -5257,7 +5257,7 @@ func (o *RelativePathToRequest) xxx_ToOp(ctx context.Context, op *xxx_RelativePa
 		return op
 	}
 	op.This = o.This
-	op.PmkOther = o.PmkOther
+	op.Other = o.Other
 	return op
 }
 
@@ -5266,7 +5266,7 @@ func (o *RelativePathToRequest) xxx_FromOp(ctx context.Context, op *xxx_Relative
 		return
 	}
 	o.This = op.This
-	o.PmkOther = op.PmkOther
+	o.Other = op.Other
 }
 func (o *RelativePathToRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5283,8 +5283,8 @@ func (o *RelativePathToRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) 
 // RelativePathToResponse structure represents the RelativePathTo operation response
 type RelativePathToResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That             *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	PpmkRelationPath *urlmon.Moniker `idl:"name:ppmkRelPath" json:"ppmk_relation_path"`
+	That         *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	RelationPath *urlmon.Moniker `idl:"name:ppmkRelPath" json:"relation_path"`
 	// Return: The RelativePathTo return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -5297,7 +5297,7 @@ func (o *RelativePathToResponse) xxx_ToOp(ctx context.Context, op *xxx_RelativeP
 		return op
 	}
 	op.That = o.That
-	op.PpmkRelationPath = o.PpmkRelationPath
+	op.RelationPath = o.RelationPath
 	op.Return = o.Return
 	return op
 }
@@ -5307,7 +5307,7 @@ func (o *RelativePathToResponse) xxx_FromOp(ctx context.Context, op *xxx_Relativ
 		return
 	}
 	o.That = op.That
-	o.PpmkRelationPath = op.PpmkRelationPath
+	o.RelationPath = op.RelationPath
 	o.Return = op.Return
 }
 func (o *RelativePathToResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5326,8 +5326,8 @@ func (o *RelativePathToResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type xxx_GetDisplayNameOperation struct {
 	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
 	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc         *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft   *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
 	DisplayName string              `idl:"name:ppszDisplayName" json:"display_name"`
 	Return      int32               `idl:"name:Return" json:"return"`
 }
@@ -5366,10 +5366,10 @@ func (o *xxx_GetDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5379,7 +5379,7 @@ func (o *xxx_GetDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -5393,10 +5393,10 @@ func (o *xxx_GetDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w n
 	}
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_pmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkToLeft != nil {
-					if err := o.PmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5406,7 +5406,7 @@ func (o *xxx_GetDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w n
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkToLeft, _ptr_pmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_pmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -5437,16 +5437,16 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5456,16 +5456,16 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context, w
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkToLeft == nil {
-				o.PmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.PmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
+		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5574,9 +5574,9 @@ func (o *xxx_GetDisplayNameOperation) UnmarshalNDRResponse(ctx context.Context, 
 // GetDisplayNameRequest structure represents the GetDisplayName operation request
 type GetDisplayNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
-	This      *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc       *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
+	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
 }
 
 func (o *GetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDisplayNameOperation) *xxx_GetDisplayNameOperation {
@@ -5587,8 +5587,8 @@ func (o *GetDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_GetDisplay
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
-	op.PmkToLeft = o.PmkToLeft
+	op.BindContext = o.BindContext
+	op.ToLeft = o.ToLeft
 	return op
 }
 
@@ -5597,8 +5597,8 @@ func (o *GetDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_GetDispl
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
-	o.PmkToLeft = op.PmkToLeft
+	o.BindContext = op.BindContext
+	o.ToLeft = op.ToLeft
 }
 func (o *GetDisplayNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
@@ -5658,11 +5658,11 @@ func (o *GetDisplayNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type xxx_ParseDisplayNameOperation struct {
 	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
 	That        *dcom.ORPCThat      `idl:"name:That" json:"that"`
-	Pbc         *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft   *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
 	DisplayName string              `idl:"name:pszDisplayName" json:"display_name"`
 	Eaten       uint32              `idl:"name:pchEaten" json:"eaten"`
-	PpmkOut     *urlmon.Moniker     `idl:"name:ppmkOut" json:"ppmk_out"`
+	Out         *urlmon.Moniker     `idl:"name:ppmkOut" json:"out"`
 	Return      int32               `idl:"name:Return" json:"return"`
 }
 
@@ -5700,10 +5700,10 @@ func (o *xxx_ParseDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
-		if o.Pbc != nil {
+		if o.BindContext != nil {
 			_ptr_pbc := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.Pbc != nil {
-					if err := o.Pbc.MarshalNDR(ctx, w); err != nil {
+				if o.BindContext != nil {
+					if err := o.BindContext.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5713,7 +5713,7 @@ func (o *xxx_ParseDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.Pbc, _ptr_pbc); err != nil {
+			if err := w.WritePointer(&o.BindContext, _ptr_pbc); err != nil {
 				return err
 			}
 		} else {
@@ -5727,10 +5727,10 @@ func (o *xxx_ParseDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w
 	}
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PmkToLeft != nil {
+		if o.ToLeft != nil {
 			_ptr_pmkToLeft := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PmkToLeft != nil {
-					if err := o.PmkToLeft.MarshalNDR(ctx, w); err != nil {
+				if o.ToLeft != nil {
+					if err := o.ToLeft.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5740,7 +5740,7 @@ func (o *xxx_ParseDisplayNameOperation) MarshalNDRRequest(ctx context.Context, w
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PmkToLeft, _ptr_pmkToLeft); err != nil {
+			if err := w.WritePointer(&o.ToLeft, _ptr_pmkToLeft); err != nil {
 				return err
 			}
 		} else {
@@ -5777,16 +5777,16 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context,
 	// pbc {in} (1:{pointer=ref}*(1))(2:{alias=IBindCtx}(interface))
 	{
 		_ptr_pbc := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.Pbc == nil {
-				o.Pbc = &urlmon.BindContext{}
+			if o.BindContext == nil {
+				o.BindContext = &urlmon.BindContext{}
 			}
-			if err := o.Pbc.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.BindContext.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pbc := func(ptr interface{}) { o.Pbc = *ptr.(**urlmon.BindContext) }
-		if err := w.ReadPointer(&o.Pbc, _s_pbc, _ptr_pbc); err != nil {
+		_s_pbc := func(ptr interface{}) { o.BindContext = *ptr.(**urlmon.BindContext) }
+		if err := w.ReadPointer(&o.BindContext, _s_pbc, _ptr_pbc); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5796,16 +5796,16 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRRequest(ctx context.Context,
 	// pmkToLeft {in} (1:{pointer=ref}*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_pmkToLeft := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PmkToLeft == nil {
-				o.PmkToLeft = &urlmon.Moniker{}
+			if o.ToLeft == nil {
+				o.ToLeft = &urlmon.Moniker{}
 			}
-			if err := o.PmkToLeft.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.ToLeft.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_pmkToLeft := func(ptr interface{}) { o.PmkToLeft = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PmkToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
+		_s_pmkToLeft := func(ptr interface{}) { o.ToLeft = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.ToLeft, _s_pmkToLeft, _ptr_pmkToLeft); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5857,10 +5857,10 @@ func (o *xxx_ParseDisplayNameOperation) MarshalNDRResponse(ctx context.Context, 
 	}
 	// ppmkOut {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
-		if o.PpmkOut != nil {
+		if o.Out != nil {
 			_ptr_ppmkOut := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
-				if o.PpmkOut != nil {
-					if err := o.PpmkOut.MarshalNDR(ctx, w); err != nil {
+				if o.Out != nil {
+					if err := o.Out.MarshalNDR(ctx, w); err != nil {
 						return err
 					}
 				} else {
@@ -5870,7 +5870,7 @@ func (o *xxx_ParseDisplayNameOperation) MarshalNDRResponse(ctx context.Context, 
 				}
 				return nil
 			})
-			if err := w.WritePointer(&o.PpmkOut, _ptr_ppmkOut); err != nil {
+			if err := w.WritePointer(&o.Out, _ptr_ppmkOut); err != nil {
 				return err
 			}
 		} else {
@@ -5913,16 +5913,16 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRResponse(ctx context.Context
 	// ppmkOut {out} (1:{pointer=ref}*(2)*(1))(2:{alias=IMoniker}(interface))
 	{
 		_ptr_ppmkOut := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
-			if o.PpmkOut == nil {
-				o.PpmkOut = &urlmon.Moniker{}
+			if o.Out == nil {
+				o.Out = &urlmon.Moniker{}
 			}
-			if err := o.PpmkOut.UnmarshalNDR(ctx, w); err != nil {
+			if err := o.Out.UnmarshalNDR(ctx, w); err != nil {
 				return err
 			}
 			return nil
 		})
-		_s_ppmkOut := func(ptr interface{}) { o.PpmkOut = *ptr.(**urlmon.Moniker) }
-		if err := w.ReadPointer(&o.PpmkOut, _s_ppmkOut, _ptr_ppmkOut); err != nil {
+		_s_ppmkOut := func(ptr interface{}) { o.Out = *ptr.(**urlmon.Moniker) }
+		if err := w.ReadPointer(&o.Out, _s_ppmkOut, _ptr_ppmkOut); err != nil {
 			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
@@ -5942,8 +5942,8 @@ func (o *xxx_ParseDisplayNameOperation) UnmarshalNDRResponse(ctx context.Context
 type ParseDisplayNameRequest struct {
 	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
 	This        *dcom.ORPCThis      `idl:"name:This" json:"this"`
-	Pbc         *urlmon.BindContext `idl:"name:pbc" json:"pbc"`
-	PmkToLeft   *urlmon.Moniker     `idl:"name:pmkToLeft" json:"pmk_to_left"`
+	BindContext *urlmon.BindContext `idl:"name:pbc" json:"bind_context"`
+	ToLeft      *urlmon.Moniker     `idl:"name:pmkToLeft" json:"to_left"`
 	DisplayName string              `idl:"name:pszDisplayName" json:"display_name"`
 }
 
@@ -5955,8 +5955,8 @@ func (o *ParseDisplayNameRequest) xxx_ToOp(ctx context.Context, op *xxx_ParseDis
 		return op
 	}
 	op.This = o.This
-	op.Pbc = o.Pbc
-	op.PmkToLeft = o.PmkToLeft
+	op.BindContext = o.BindContext
+	op.ToLeft = o.ToLeft
 	op.DisplayName = o.DisplayName
 	return op
 }
@@ -5966,8 +5966,8 @@ func (o *ParseDisplayNameRequest) xxx_FromOp(ctx context.Context, op *xxx_ParseD
 		return
 	}
 	o.This = op.This
-	o.Pbc = op.Pbc
-	o.PmkToLeft = op.PmkToLeft
+	o.BindContext = op.BindContext
+	o.ToLeft = op.ToLeft
 	o.DisplayName = op.DisplayName
 }
 func (o *ParseDisplayNameRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -5985,9 +5985,9 @@ func (o *ParseDisplayNameRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader
 // ParseDisplayNameResponse structure represents the ParseDisplayName operation response
 type ParseDisplayNameResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
-	That    *dcom.ORPCThat  `idl:"name:That" json:"that"`
-	Eaten   uint32          `idl:"name:pchEaten" json:"eaten"`
-	PpmkOut *urlmon.Moniker `idl:"name:ppmkOut" json:"ppmk_out"`
+	That  *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	Eaten uint32          `idl:"name:pchEaten" json:"eaten"`
+	Out   *urlmon.Moniker `idl:"name:ppmkOut" json:"out"`
 	// Return: The ParseDisplayName return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6001,7 +6001,7 @@ func (o *ParseDisplayNameResponse) xxx_ToOp(ctx context.Context, op *xxx_ParseDi
 	}
 	op.That = o.That
 	op.Eaten = o.Eaten
-	op.PpmkOut = o.PpmkOut
+	op.Out = o.Out
 	op.Return = o.Return
 	return op
 }
@@ -6012,7 +6012,7 @@ func (o *ParseDisplayNameResponse) xxx_FromOp(ctx context.Context, op *xxx_Parse
 	}
 	o.That = op.That
 	o.Eaten = op.Eaten
-	o.PpmkOut = op.PpmkOut
+	o.Out = op.Out
 	o.Return = op.Return
 }
 func (o *ParseDisplayNameResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
@@ -6031,7 +6031,7 @@ func (o *ParseDisplayNameResponse) UnmarshalNDR(ctx context.Context, r ndr.Reade
 type xxx_IsSystemMonikerOperation struct {
 	This   *dcom.ORPCThis `idl:"name:This" json:"this"`
 	That   *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Mksys  uint32         `idl:"name:pdwMksys" json:"mksys"`
+	MKSYS  uint32         `idl:"name:pdwMksys" json:"mksys"`
 	Return int32          `idl:"name:Return" json:"return"`
 }
 
@@ -6116,7 +6116,7 @@ func (o *xxx_IsSystemMonikerOperation) MarshalNDRResponse(ctx context.Context, w
 	}
 	// pdwMksys {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if err := w.WriteData(o.Mksys); err != nil {
+		if err := w.WriteData(o.MKSYS); err != nil {
 			return err
 		}
 	}
@@ -6144,7 +6144,7 @@ func (o *xxx_IsSystemMonikerOperation) UnmarshalNDRResponse(ctx context.Context,
 	}
 	// pdwMksys {out} (1:{pointer=ref}*(1))(2:{alias=DWORD}(uint32))
 	{
-		if err := w.ReadData(&o.Mksys); err != nil {
+		if err := w.ReadData(&o.MKSYS); err != nil {
 			return err
 		}
 	}
@@ -6196,7 +6196,7 @@ func (o *IsSystemMonikerRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader)
 type IsSystemMonikerResponse struct {
 	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
 	That  *dcom.ORPCThat `idl:"name:That" json:"that"`
-	Mksys uint32         `idl:"name:pdwMksys" json:"mksys"`
+	MKSYS uint32         `idl:"name:pdwMksys" json:"mksys"`
 	// Return: The IsSystemMoniker return value.
 	Return int32 `idl:"name:Return" json:"return"`
 }
@@ -6209,7 +6209,7 @@ func (o *IsSystemMonikerResponse) xxx_ToOp(ctx context.Context, op *xxx_IsSystem
 		return op
 	}
 	op.That = o.That
-	op.Mksys = o.Mksys
+	op.MKSYS = o.MKSYS
 	op.Return = o.Return
 	return op
 }
@@ -6219,7 +6219,7 @@ func (o *IsSystemMonikerResponse) xxx_FromOp(ctx context.Context, op *xxx_IsSyst
 		return
 	}
 	o.That = op.That
-	o.Mksys = op.Mksys
+	o.MKSYS = op.MKSYS
 	o.Return = op.Return
 }
 func (o *IsSystemMonikerResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {

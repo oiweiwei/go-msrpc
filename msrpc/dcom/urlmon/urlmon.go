@@ -33,15 +33,15 @@ var (
 	GoPackage = "dcom/urlmon"
 )
 
-// BindOpts structure represents BIND_OPTS RPC structure.
-type BindOpts struct {
+// BindOptions structure represents BIND_OPTS RPC structure.
+type BindOptions struct {
 	Length            uint32 `idl:"name:cbStruct" json:"length"`
-	GrfFlags          uint32 `idl:"name:grfFlags" json:"grf_flags"`
-	GrfMode           uint32 `idl:"name:grfMode" json:"grf_mode"`
+	Flags             uint32 `idl:"name:grfFlags" json:"flags"`
+	Mode              uint32 `idl:"name:grfMode" json:"mode"`
 	TickCountDeadline uint32 `idl:"name:dwTickCountDeadline" json:"tick_count_deadline"`
 }
 
-func (o *BindOpts) xxx_PreparePayload(ctx context.Context) error {
+func (o *BindOptions) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -50,7 +50,7 @@ func (o *BindOpts) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *BindOpts) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *BindOptions) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -60,10 +60,10 @@ func (o *BindOpts) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Length); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GrfFlags); err != nil {
+	if err := w.WriteData(o.Flags); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GrfMode); err != nil {
+	if err := w.WriteData(o.Mode); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.TickCountDeadline); err != nil {
@@ -71,17 +71,17 @@ func (o *BindOpts) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *BindOpts) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *BindOptions) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(4); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.Length); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GrfFlags); err != nil {
+	if err := w.ReadData(&o.Flags); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GrfMode); err != nil {
+	if err := w.ReadData(&o.Mode); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.TickCountDeadline); err != nil {
@@ -90,22 +90,22 @@ func (o *BindOpts) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	return nil
 }
 
-// Statstg structure represents STATSTG RPC structure.
-type Statstg struct {
-	Name              string              `idl:"name:pwcsName" json:"name"`
-	Type              uint32              `idl:"name:type" json:"type"`
-	Length            *dtyp.UlargeInteger `idl:"name:cbSize" json:"length"`
-	Mtime             *dtyp.Filetime      `idl:"name:mtime" json:"mtime"`
-	Ctime             *dtyp.Filetime      `idl:"name:ctime" json:"ctime"`
-	Atime             *dtyp.Filetime      `idl:"name:atime" json:"atime"`
-	GrfMode           uint32              `idl:"name:grfMode" json:"grf_mode"`
-	GrfLocksSupported uint32              `idl:"name:grfLocksSupported" json:"grf_locks_supported"`
-	ClassID           *dcom.ClassID       `idl:"name:clsid" json:"class_id"`
-	GrfStateBits      uint32              `idl:"name:grfStateBits" json:"grf_state_bits"`
-	_                 uint32              `idl:"name:reserved"`
+// StorageStat structure represents STATSTG RPC structure.
+type StorageStat struct {
+	Name           string              `idl:"name:pwcsName" json:"name"`
+	Type           uint32              `idl:"name:type" json:"type"`
+	Length         *dtyp.UlargeInteger `idl:"name:cbSize" json:"length"`
+	ModifyTime     *dtyp.Filetime      `idl:"name:mtime" json:"modify_time"`
+	CreateTime     *dtyp.Filetime      `idl:"name:ctime" json:"create_time"`
+	AccessTime     *dtyp.Filetime      `idl:"name:atime" json:"access_time"`
+	Mode           uint32              `idl:"name:grfMode" json:"mode"`
+	LocksSupported uint32              `idl:"name:grfLocksSupported" json:"locks_supported"`
+	ClassID        *dcom.ClassID       `idl:"name:clsid" json:"class_id"`
+	StateBits      uint32              `idl:"name:grfStateBits" json:"state_bits"`
+	_              uint32              `idl:"name:reserved"`
 }
 
-func (o *Statstg) xxx_PreparePayload(ctx context.Context) error {
+func (o *StorageStat) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
@@ -114,7 +114,7 @@ func (o *Statstg) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+func (o *StorageStat) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
@@ -148,8 +148,8 @@ func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.Mtime != nil {
-		if err := o.Mtime.MarshalNDR(ctx, w); err != nil {
+	if o.ModifyTime != nil {
+		if err := o.ModifyTime.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -157,8 +157,8 @@ func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.Ctime != nil {
-		if err := o.Ctime.MarshalNDR(ctx, w); err != nil {
+	if o.CreateTime != nil {
+		if err := o.CreateTime.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -166,8 +166,8 @@ func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if o.Atime != nil {
-		if err := o.Atime.MarshalNDR(ctx, w); err != nil {
+	if o.AccessTime != nil {
+		if err := o.AccessTime.MarshalNDR(ctx, w); err != nil {
 			return err
 		}
 	} else {
@@ -175,10 +175,10 @@ func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.GrfMode); err != nil {
+	if err := w.WriteData(o.Mode); err != nil {
 		return err
 	}
-	if err := w.WriteData(o.GrfLocksSupported); err != nil {
+	if err := w.WriteData(o.LocksSupported); err != nil {
 		return err
 	}
 	if o.ClassID != nil {
@@ -190,7 +190,7 @@ func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 			return err
 		}
 	}
-	if err := w.WriteData(o.GrfStateBits); err != nil {
+	if err := w.WriteData(o.StateBits); err != nil {
 		return err
 	}
 	// reserved reserved
@@ -202,7 +202,7 @@ func (o *Statstg) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	}
 	return nil
 }
-func (o *Statstg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
+func (o *StorageStat) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadAlign(8); err != nil {
 		return err
 	}
@@ -225,28 +225,28 @@ func (o *Statstg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.Length.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Mtime == nil {
-		o.Mtime = &dtyp.Filetime{}
+	if o.ModifyTime == nil {
+		o.ModifyTime = &dtyp.Filetime{}
 	}
-	if err := o.Mtime.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.ModifyTime.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Ctime == nil {
-		o.Ctime = &dtyp.Filetime{}
+	if o.CreateTime == nil {
+		o.CreateTime = &dtyp.Filetime{}
 	}
-	if err := o.Ctime.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.CreateTime.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if o.Atime == nil {
-		o.Atime = &dtyp.Filetime{}
+	if o.AccessTime == nil {
+		o.AccessTime = &dtyp.Filetime{}
 	}
-	if err := o.Atime.UnmarshalNDR(ctx, w); err != nil {
+	if err := o.AccessTime.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GrfMode); err != nil {
+	if err := w.ReadData(&o.Mode); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GrfLocksSupported); err != nil {
+	if err := w.ReadData(&o.LocksSupported); err != nil {
 		return err
 	}
 	if o.ClassID == nil {
@@ -255,7 +255,7 @@ func (o *Statstg) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := o.ClassID.UnmarshalNDR(ctx, w); err != nil {
 		return err
 	}
-	if err := w.ReadData(&o.GrfStateBits); err != nil {
+	if err := w.ReadData(&o.StateBits); err != nil {
 		return err
 	}
 	// reserved reserved

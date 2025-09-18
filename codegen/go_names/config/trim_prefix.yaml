@@ -312,3 +312,18 @@ trim:
   - sz
   - io
   - pio
+  - grf
+  - ppmk
+  - pmk
+  - ppunk
+  - punk
+  - ppenum
+  - penum
+  - ppimk
+  - pimk
+  - pibc
+  - pmk
+  - ppstm
+  - pstm
+  - dlib
+  - plib
