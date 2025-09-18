@@ -1,0 +1,303 @@
+import "ms-dtyp.idl";
+import "ms-oaut.idl";
+
+typedef struct tagSTATSTG {
+  LPOLESTR       pwcsName;
+  DWORD          type;
+  ULARGE_INTEGER cbSize;
+  FILETIME       mtime;
+  FILETIME       ctime;
+  FILETIME       atime;
+  DWORD          grfMode;
+  DWORD          grfLocksSupported;
+  CLSID          clsid;
+  DWORD          grfStateBits;
+  DWORD          reserved;
+} STATSTG;
+
+typedef struct tagBIND_OPTS {
+    DWORD cbStruct;
+    DWORD grfFlags;
+    DWORD grfMode;
+    DWORD dwTickCountDeadline;
+} BIND_OPTS;
+
+typedef [unique] BIND_OPTS *LPBIND_OPTS;
+
+typedef struct tagSTATSTG STATSTG;
+
+[
+    object,
+    uuid(0000000C-0000-0000-C000-000000000046),
+    helpstring("IStream interface"),
+    pointer_default(unique)
+]
+interface IStream : IUnknown
+{
+    HRESULT Read(
+        [out, size_is(cb)] BYTE *pv,
+        [in]  ULONG cb,
+        [out] ULONG *pcbRead
+    );
+
+    HRESULT Write(
+        [in, size_is(cb)] const BYTE *pv,
+        [in]  ULONG cb,
+        [out] ULONG *pcbWritten
+    );
+
+    HRESULT Seek(
+        [in]  LARGE_INTEGER  dlibMove,
+        [in]  DWORD          dwOrigin,
+        [out] ULARGE_INTEGER *plibNewPosition
+    );
+
+    HRESULT SetSize(
+        [in] ULARGE_INTEGER libNewSize
+    );
+
+    HRESULT CopyTo(
+        [in]  IStream        *pstm,
+        [in]  ULARGE_INTEGER cb,
+        [out] ULARGE_INTEGER *pcbRead,
+        [out] ULARGE_INTEGER *pcbWritten
+    );
+
+    HRESULT Commit(
+        [in] DWORD grfCommitFlags
+    );
+
+    HRESULT Revert();
+
+    HRESULT LockRegion(
+        [in] ULARGE_INTEGER libOffset,
+        [in] ULARGE_INTEGER cb,
+        [in] DWORD          dwLockType
+    );
+
+    HRESULT UnlockRegion(
+        [in] ULARGE_INTEGER libOffset,
+        [in] ULARGE_INTEGER cb,
+        [in] DWORD          dwLockType
+    );
+
+    HRESULT Stat(
+        [out] STATSTG *pstatstg,
+        [in]  DWORD    grfStatFlag
+    );
+
+    HRESULT Clone(
+        [out] IStream **ppstm
+    );
+}
+
+[
+    object,
+    uuid(00000010-0000-0000-C000-000000000046),
+    helpstring("IRunningObjectTable interface"),
+    pointer_default(unique)
+]
+interface IRunningObjectTable : IUnknown
+{
+    HRESULT Register([in] DWORD grfFlags,
+                     [in] IUnknown *punkObject,
+                     [in] IMoniker *pmkObjectName,
+                     [out] DWORD *pdwRegister);
+
+    HRESULT Revoke([in] DWORD dwRegister);
+
+    HRESULT IsRunning([in] IMoniker *pmkObjectName);
+
+    HRESULT GetObject([in] IMoniker *pmkObjectName,
+                      [out] IUnknown **ppunkObject);
+
+    HRESULT NoteChangeTime([in] DWORD dwRegister,
+                           [in] FILETIME *pfiletime);
+
+    HRESULT GetTimeOfLastChange([in] IMoniker *pmkObjectName,
+                                [out] FILETIME *pfiletime);
+
+    HRESULT EnumRunning([out] IEnumMoniker **ppenumMoniker);
+}
+
+[
+    object,
+    uuid(00000101-0000-0000-C000-000000000046),
+    helpstring("IEnumString interface"),
+    pointer_default(unique)
+]
+interface IEnumString : IUnknown
+{
+    HRESULT Next([in] ULONG celt,
+                 [out, size_is(celt)] LPOLESTR *rgelt,
+                 [out] ULONG *pceltFetched);
+
+    HRESULT Skip([in] ULONG celt);
+
+    HRESULT Reset();
+
+    HRESULT Clone([out] IEnumString **ppenum);
+}
+
+[
+    object,
+    uuid(0000000E-0000-0000-C000-000000000046),
+    helpstring("IBindCtx interface"),
+    pointer_default(unique)
+]
+interface IBindCtx : IUnknown
+{
+    HRESULT RegisterObjectBound([in] IUnknown *punk);
+
+    HRESULT RevokeObjectBound([in] IUnknown *punk);
+
+    HRESULT ReleaseBoundObjects();
+
+    HRESULT SetBindOptions([in] BIND_OPTS *pbindopts);
+
+    HRESULT GetBindOptions([in, out] BIND_OPTS *pbindopts);
+
+    HRESULT GetRunningObjectTable([out] IRunningObjectTable **pprot);
+
+    HRESULT RegisterObjectParam([in] LPOLESTR pszKey,
+                                [in] IUnknown *punk);
+
+    HRESULT GetObjectParam([in] LPOLESTR pszKey,
+                           [out] IUnknown **ppunk);
+
+    HRESULT EnumObjectParam([out] IEnumString **ppenum);
+
+    HRESULT RevokeObjectParam([in] LPOLESTR pszKey);
+}
+
+[
+    object,
+    uuid(0000000F-0000-0000-C000-000000000046),
+    helpstring("IMoniker interface"),
+    pointer_default(unique)
+]
+interface IMoniker : IUnknown
+{
+    // IPersist-like methods (kept here to match your shape)
+    HRESULT GetClassID([out] GUID *pClassID);
+
+    HRESULT IsDirty();
+
+    HRESULT Load([in] IStream *pStm);
+
+    HRESULT Save([in] IStream *pStm,
+                 [in] BOOL fClearDirty);
+
+    HRESULT GetSizeMax([out] ULARGE_INTEGER *pcbSize);
+
+    HRESULT BindToObject([in] IBindCtx *pbc,
+                         [in] IMoniker *pmkToLeft,
+                         [in] REFIID riidResult,
+                         [out, iid_is(riidResult)] void **ppvResult);
+
+    HRESULT BindToStorage([in] IBindCtx *pbc,
+                          [in] IMoniker *pmkToLeft,
+                          [in] REFIID riid,
+                          [out, iid_is(riid)] void **ppvObj);
+
+    HRESULT Reduce([in] IBindCtx *pbc,
+                   [in] DWORD dwReduceHowFar,
+                   [in, out] IMoniker **ppmkToLeft,
+                   [out] IMoniker **ppmkReduced);
+
+    HRESULT ComposeWith([in] IMoniker *pmkRight,
+                        [in] BOOL fOnlyIfNotGeneric,
+                        [out] IMoniker **ppmkComposite);
+
+    HRESULT Enum([in] BOOL fForward,
+                 [out] IEnumMoniker **ppenumMoniker);
+
+    HRESULT IsEqual([in] IMoniker *pmkOtherMoniker);
+
+    HRESULT Hash([out] DWORD *pdwHash);
+
+    HRESULT IsRunning([in] IBindCtx *pbc,
+                      [in] IMoniker *pmkToLeft,
+                      [in] IMoniker *pmkNewlyRunning);
+
+    HRESULT GetTimeOfLastChange([in] IBindCtx *pbc,
+                                [in] IMoniker *pmkToLeft,
+                                [out] FILETIME *pFileTime);
+
+    HRESULT Inverse([out] IMoniker **ppmk);
+
+    HRESULT CommonPrefixWith([in] IMoniker *pmkOther,
+                             [out] IMoniker **ppmkPrefix);
+
+    HRESULT RelativePathTo([in] IMoniker *pmkOther,
+                           [out] IMoniker **ppmkRelPath);
+
+    HRESULT GetDisplayName([in] IBindCtx *pbc,
+                           [in] IMoniker *pmkToLeft,
+                           [out] LPOLESTR *ppszDisplayName);
+
+    HRESULT ParseDisplayName([in] IBindCtx *pbc,
+                             [in] IMoniker *pmkToLeft,
+                             [in] LPOLESTR pszDisplayName,
+                             [out] ULONG *pchEaten,
+                             [out] IMoniker **ppmkOut);
+
+    HRESULT IsSystemMoniker([out] DWORD *pdwMksys);
+}
+
+[
+    object,
+    uuid(00000102-0000-0000-C000-000000000046),
+    helpstring("IEnumMoniker interface"),
+    pointer_default(unique)
+]
+interface IEnumMoniker : IUnknown
+{
+    HRESULT Next([in] ULONG celt,
+                 [out, size_is(celt)] IMoniker **rgelt,
+                 [out] ULONG *pceltFetched);
+
+    HRESULT Skip([in] ULONG celt);
+
+    HRESULT Reset();
+
+    HRESULT Clone([out] IEnumMoniker **ppenum);
+}
+
+[
+    object,
+    uuid(0000010C-0000-0000-C000-000000000046),
+    helpstring("IPersist interface"),
+    pointer_default(unique)
+]
+interface IPersist : IUnknown
+{
+    HRESULT GetClassID([out] GUID *pClassID);
+}
+
+[
+    object,
+    uuid(79EAC9C9-BAF9-11CE-8C82-00AA004BA90B),
+    helpstring("IPersistMoniker interface"),
+    pointer_default(unique)
+]
+interface IPersistMoniker : IUnknown
+{
+    HRESULT GetClassID([out] GUID *pClassID);
+
+    HRESULT IsDirty();
+
+    HRESULT Load([in] BOOL fFullyAvailable,
+                 [in] IMoniker *pimkName,
+                 [in] IBindCtx *pibc,
+                 [in] DWORD grfMode);
+
+    HRESULT Save([in] IMoniker *pimkName,
+                 [in] IBindCtx *pbc,
+                 [in] BOOL fRemember);
+
+    HRESULT SaveCompleted([in] IMoniker *pimkName,
+                          [in] IBindCtx *pibc);
+
+    HRESULT GetCurMoniker([out] IMoniker **ppimkName);
+}
