@@ -1017,10 +1017,12 @@ var (
 	StatusVirusInfected                                         = &Error{0xC0000906, "STATUS_VIRUS_INFECTED", "The operation did not complete successfully because the file contains a virus."}
 	StatusVirusDeleted                                          = &Error{0xC0000907, "STATUS_VIRUS_DELETED", "This file contains a virus and cannot be opened. Due to the nature of this virus, the file has been removed from this location."}
 	StatusBadMcfgTable                                          = &Error{0xC0000908, "STATUS_BAD_MCFG_TABLE", "The resources required for this device conflict with the MCFG table."}
+	StatusBadData                                               = &Error{0xC000090B, "STATUS_BAD_DATA", "Bad data."}
 	StatusCannotBreakOplock                                     = &Error{0xC0000909, "STATUS_CANNOT_BREAK_OPLOCK", "The operation did not complete successfully because it would cause an oplock to be broken. The caller has requested that existing oplocks not be broken."}
 	StatusWowAssertion                                          = &Error{0xC0009898, "STATUS_WOW_ASSERTION", "WOW Assertion Error."}
 	StatusInvalidSignature                                      = &Error{0xC000A000, "STATUS_INVALID_SIGNATURE", "The cryptographic signature is invalid."}
 	StatusHmacNotSupported                                      = &Error{0xC000A001, "STATUS_HMAC_NOT_SUPPORTED", "The cryptographic provider does not support HMAC."}
+	StatusAuthTagMismatch                                       = &Error{0xC000A002, "STATUS_AUTH_TAG_MISMATCH", "The computed authentication tag did not match the input authentication tag."}
 	StatusIpsecQueueOverflow                                    = &Error{0xC000A010, "STATUS_IPSEC_QUEUE_OVERFLOW", "The IPsec queue overflowed."}
 	StatusNdQueueOverflow                                       = &Error{0xC000A011, "STATUS_ND_QUEUE_OVERFLOW", "The neighbor discovery queue overflowed."}
 	StatusHoplimitExceeded                                      = &Error{0xC000A012, "STATUS_HOPLIMIT_EXCEEDED", "An Internet Control Message Protocol (ICMP) hop limit exceeded error was received."}
@@ -1796,6 +1798,8 @@ var (
 	StatusVhdChildParentSizeMismatch                            = &Error{0xC03A0017, "STATUS_VHD_CHILD_PARENT_SIZE_MISMATCH", "The chain of virtual hard disks is corrupted. There is a mismatch in the virtual sizes of the parent virtual hard disk and differencing disk."}
 	StatusVhdDifferencingChainCycleDetected                     = &Error{0xC03A0018, "STATUS_VHD_DIFFERENCING_CHAIN_CYCLE_DETECTED", "The chain of virtual hard disks is corrupted. A differencing disk is indicated in its own parent chain."}
 	StatusVhdDifferencingChainErrorInParent                     = &Error{0xC03A0019, "STATUS_VHD_DIFFERENCING_CHAIN_ERROR_IN_PARENT", "The chain of virtual hard disks is inaccessible. There was an error opening a virtual hard disk further up the chain."}
+	StatusSmbNoPreauthIntegrityHashOverlap                      = &Error{0xC05D0000, "STATUS_SMB_NO_PREAUTH_INTEGRITY_HASH_OVERLAP", "Returned in response to a client negotiate request when the server does not support any of the hash algorithms in the request."}
+	StatusSmbBadClusterDialect                                  = &Error{0xC05D0001, "STATUS_SMB_BAD_CLUSTER_DIALECT", "The current cluster functional level does not support this SMB dialect."}
 )
 
 func FromCode(code uint32) error {
@@ -3833,6 +3837,8 @@ func FromCode(code uint32) error {
 		return StatusVirusDeleted
 	case 0xC0000908:
 		return StatusBadMcfgTable
+	case 0xC000090B:
+		return StatusBadData
 	case 0xC0000909:
 		return StatusCannotBreakOplock
 	case 0xC0009898:
@@ -3841,6 +3847,8 @@ func FromCode(code uint32) error {
 		return StatusInvalidSignature
 	case 0xC000A001:
 		return StatusHmacNotSupported
+	case 0xC000A002:
+		return StatusAuthTagMismatch
 	case 0xC000A010:
 		return StatusIpsecQueueOverflow
 	case 0xC000A011:
@@ -5389,6 +5397,10 @@ func FromCode(code uint32) error {
 		return StatusVhdDifferencingChainCycleDetected
 	case 0xC03A0019:
 		return StatusVhdDifferencingChainErrorInParent
+	case 0xC05D0000:
+		return StatusSmbNoPreauthIntegrityHashOverlap
+	case 0xC05D0001:
+		return StatusSmbBadClusterDialect
 	}
 	return nil
 }

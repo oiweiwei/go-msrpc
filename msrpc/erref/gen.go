@@ -7,7 +7,10 @@ import (
 	"flag"
 	"fmt"
 	"go/format"
+	"io"
+	"net/http"
 	"os"
+	"regexp"
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
@@ -16,13 +19,24 @@ import (
 var (
 	out string
 	pkg string
-	url string
+	url StringSlice
 )
+
+type StringSlice []string
+
+func (s *StringSlice) String() string {
+	return strings.Join(*s, ",")
+}
+
+func (s *StringSlice) Set(v string) error {
+	*s = append(*s, v)
+	return nil
+}
 
 func init() {
 	flag.StringVar(&out, "o", "-", "output file")
-	flag.StringVar(&pkg, "pkg", "", "output file")
-	flag.StringVar(&url, "url", "", "target url")
+	flag.StringVar(&pkg, "pkg", "", "output package")
+	flag.Var(&url, "url", "target url")
 	flag.Parse()
 }
 
@@ -30,6 +44,10 @@ type Err struct {
 	Code    string
 	Name    string
 	Details string
+}
+
+func (e *Err) IsValid() bool {
+	return e.Code != "" && e.Name != "" && strings.Contains(e.Code, "0x") && !strings.Contains(e.Name, " ")
 }
 
 func Text(p *goquery.Selection) string {
@@ -42,12 +60,39 @@ func Text(p *goquery.Selection) string {
 	return strings.TrimSpace(strings.Join(s, " "))
 }
 
-func main() {
+// regexp to work around the ie-developer docs.
+var re = regexp.MustCompile(`<strong>(.*)</strong>\s*(0x[0-9A-Fa-f]+)`)
 
-	doc, err := goquery.NewDocument(url)
+func collect(url string) ([]*Err, error) {
+
+	req, err := http.NewRequest(http.MethodGet, url, nil)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, err)
-		os.Exit(1)
+		return nil, err
+	}
+
+	req.Header = make(http.Header)
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	defer resp.Body.Close()
+
+	if resp.StatusCode != 200 {
+		return nil, fmt.Errorf("http: %s: %s", url, resp.Status)
+	}
+
+	b, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, fmt.Errorf("read http body: %w", err)
+	}
+
+	b = re.ReplaceAll(b, []byte("<p>$2</p><p>$1</p>"))
+
+	doc, err := goquery.NewDocumentFromReader(bytes.NewReader(b))
+	if err != nil {
+		return nil, err
 	}
 
 	first := true
@@ -60,7 +105,9 @@ func main() {
 			switch txt := Text(p); i {
 			case 0:
 				if !first {
-					ret, e = append(ret, e), &Err{}
+					if e.IsValid() {
+						ret, e = append(ret, e), &Err{}
+					}
 				}
 				first = false
 				e.Code = txt
@@ -86,7 +133,25 @@ func main() {
 		})
 	})
 
-	ret = append(ret, e)
+	if e.IsValid() {
+		ret = append(ret, e)
+	}
+
+	return ret, nil
+}
+
+func main() {
+
+	var ret []*Err
+
+	for _, u := range url {
+		r, err := collect(u)
+		if err != nil {
+			fmt.Fprintln(os.Stderr, err)
+			os.Exit(1)
+		}
+		ret = append(ret, r...)
+	}
 
 	pp := &P{}
 	p := pp.P
@@ -129,6 +194,7 @@ func main() {
 	b, err := format.Source(pp.Bytes())
 	if err != nil {
 		fmt.Fprintln(os.Stderr, err)
+		fmt.Fprintln(os.Stderr, pp.String())
 		os.Exit(1)
 	}
 
