@@ -1,4 +1,4 @@
-//go:generate go run ../gen.go -o hresult_errors.go -pkg hresult -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8
+//go:generate go run ../gen.go -o hresult_errors.go -pkg hresult -url https://learn.microsoft.com/en-us/openspecs/windows_protocols/ms-erref/705fb797-2175-4a90-b5a3-3918024b10b8 -url https://learn.microsoft.com/en-us/previous-versions/windows/internet-explorer/ie-developer/platform-apis/ms775145(v=vs.85)
 package hresult
 
 import (
