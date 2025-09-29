@@ -986,6 +986,38 @@ var (
 	CertEUntrustedca                                             = &Error{0x800B0112, "CERT_E_UNTRUSTEDCA", "A certification chain processed correctly, but one of the CA certificates is not trusted by the policy provider."}
 	CertEInvalidPolicy                                           = &Error{0x800B0113, "CERT_E_INVALID_POLICY", "The certificate has invalid policy."}
 	CertEInvalidName                                             = &Error{0x800B0114, "CERT_E_INVALID_NAME", "The certificate has an invalid name. The name is not included in the permitted list or is explicitly excluded."}
+	InetEInvalidUrl                                              = &Error{0x800C0002, "INET_E_INVALID_URL", "The URL could not be parsed."}
+	InetENoSession                                               = &Error{0x800C0003, "INET_E_NO_SESSION", "No Internet session was established."}
+	InetECannotConnect                                           = &Error{0x800C0004, "INET_E_CANNOT_CONNECT", "The attempt to connect to the Internet has failed."}
+	InetEResourceNotFound                                        = &Error{0x800C0005, "INET_E_RESOURCE_NOT_FOUND", "The server or proxy was not found."}
+	InetEObjectNotFound                                          = &Error{0x800C0006, "INET_E_OBJECT_NOT_FOUND", "The object was not found."}
+	InetEDataNotAvailable                                        = &Error{0x800C0007, "INET_E_DATA_NOT_AVAILABLE", "An Internet connection was established, but the data cannot be retrieved."}
+	InetEDownloadFailure                                         = &Error{0x800C0008, "INET_E_DOWNLOAD_FAILURE", "The download has failed (the connection was interrupted)."}
+	InetEAuthenticationRequired                                  = &Error{0x800C0009, "INET_E_AUTHENTICATION_REQUIRED", "Authentication is needed to access the object."}
+	InetENoValidMedia                                            = &Error{0x800C000A, "INET_E_NO_VALID_MEDIA", "The object is not in one of the acceptable MIME types."}
+	InetEConnectionTimeout                                       = &Error{0x800C000B, "INET_E_CONNECTION_TIMEOUT", "The Internet connection has timed out."}
+	InetEInvalidRequest                                          = &Error{0x800C000C, "INET_E_INVALID_REQUEST", "The request was invalid."}
+	InetEUnknownProtocol                                         = &Error{0x800C000D, "INET_E_UNKNOWN_PROTOCOL", "The protocol is not known and no pluggable protocols have been entered that match."}
+	InetESecurityProblem                                         = &Error{0x800C000E, "INET_E_SECURITY_PROBLEM", "A security problem was encountered."}
+	InetECannotLoadData                                          = &Error{0x800C000F, "INET_E_CANNOT_LOAD_DATA", "The object could not be loaded."}
+	InetECannotInstantiateObject                                 = &Error{0x800C0010, "INET_E_CANNOT_INSTANTIATE_OBJECT", "CoCreateInstance failed."}
+	InetEDefaultAction                                           = &Error{0x800C0011, "INET_E_DEFAULT_ACTION", "Use the default security manager for this action."}
+	InetEUseDefaultSetting                                       = &Error{0x800C0012, "INET_E_USE_DEFAULT_SETTING", "Use the default settings."}
+	InetEQueryoptionUnknown                                      = &Error{0x800C0013, "INET_E_QUERYOPTION_UNKNOWN", "The requested option is unknown."}
+	InetERedirectFailed                                          = &Error{0x800C0014, "INET_E_REDIRECT_FAILED", "WinInet cannot redirect."}
+	InetERedirectToDir                                           = &Error{0x800C0015, "INET_E_REDIRECT_TO_DIR", "The request is being redirected to a directory."}
+	InetECannotLockRequest                                       = &Error{0x800C0016, "INET_E_CANNOT_LOCK_REQUEST", "The requested resource could not be locked."}
+	InetEUseExtendBinding                                        = &Error{0x800C0017, "INET_E_USE_EXTEND_BINDING", "(Microsoft internal.) Reissue request with extended binding."}
+	InetETerminatedBind                                          = &Error{0x800C0018, "INET_E_TERMINATED_BIND", "Binding was terminated."}
+	InetEInvalidCertificate                                      = &Error{0x800C0019, "INET_E_INVALID_CERTIFICATE", "The SSL certificate is invalid."}
+	InetEReserved1                                               = &Error{0x800C001A, "INET_E_RESERVED_1", "Reserved. Do not use."}
+	InetEBlockedRedirectXsecurityid                              = &Error{0x800C001B, "INET_E_BLOCKED_REDIRECT_XSECURITYID", "A redirect request was blocked because SIDs do not match and BINDF2_DISABLE_HTTP_REDIRECT_XSECURITYID is set in bind options."}
+	InetECodeDownloadDeclined                                    = &Error{0x800C0100, "INET_E_CODE_DOWNLOAD_DECLINED", "The component download was declined by the user."}
+	InetEResultDispatched                                        = &Error{0x800C0200, "INET_E_RESULT_DISPATCHED", "The binding has already been completed and the result has been dispatched, so your abort call has been canceled."}
+	InetECannotReplaceSfpFile                                    = &Error{0x800C0300, "INET_E_CANNOT_REPLACE_SFP_FILE", "Cannot replace a file that is protected by SFP."}
+	InetECodeInstallSuppressed                                   = &Error{0x800C0400, "INET_E_CODE_INSTALL_SUPPRESSED", "The Authenticode prompt was suppressed by policy."}
+	InetECodeInstallBlockedByHashPolicy                          = &Error{0x800C0500, "INET_E_CODE_INSTALL_BLOCKED_BY_HASH_POLICY", "Installation of ActiveX control (as identified by cryptographic file hash) has been disallowed by registry key policy."}
+	InetEDownloadBlockedByInprivate                              = &Error{0x800C0501, "INET_E_DOWNLOAD_BLOCKED_BY_INPRIVATE", "The download was not permitted due to a private browsing session."}
 	NsWServerBandwidthLimit                                      = &Error{0x800D0003, "NS_W_SERVER_BANDWIDTH_LIMIT", "The maximum filebitrate value specified is greater than the server's configured maximum bandwidth."}
 	NsWFileBandwidthLimit                                        = &Error{0x800D0004, "NS_W_FILE_BANDWIDTH_LIMIT", "The maximum bandwidth value specified is less than the maximum filebitrate."}
 	NsWUnknownEvent                                              = &Error{0x800D0060, "NS_W_UNKNOWN_EVENT", "Unknown %1 event encountered."}
@@ -4908,6 +4940,70 @@ func FromCode(code uint32) error {
 		return CertEInvalidPolicy
 	case 0x800B0114:
 		return CertEInvalidName
+	case 0x800C0002:
+		return InetEInvalidUrl
+	case 0x800C0003:
+		return InetENoSession
+	case 0x800C0004:
+		return InetECannotConnect
+	case 0x800C0005:
+		return InetEResourceNotFound
+	case 0x800C0006:
+		return InetEObjectNotFound
+	case 0x800C0007:
+		return InetEDataNotAvailable
+	case 0x800C0008:
+		return InetEDownloadFailure
+	case 0x800C0009:
+		return InetEAuthenticationRequired
+	case 0x800C000A:
+		return InetENoValidMedia
+	case 0x800C000B:
+		return InetEConnectionTimeout
+	case 0x800C000C:
+		return InetEInvalidRequest
+	case 0x800C000D:
+		return InetEUnknownProtocol
+	case 0x800C000E:
+		return InetESecurityProblem
+	case 0x800C000F:
+		return InetECannotLoadData
+	case 0x800C0010:
+		return InetECannotInstantiateObject
+	case 0x800C0011:
+		return InetEDefaultAction
+	case 0x800C0012:
+		return InetEUseDefaultSetting
+	case 0x800C0013:
+		return InetEQueryoptionUnknown
+	case 0x800C0014:
+		return InetERedirectFailed
+	case 0x800C0015:
+		return InetERedirectToDir
+	case 0x800C0016:
+		return InetECannotLockRequest
+	case 0x800C0017:
+		return InetEUseExtendBinding
+	case 0x800C0018:
+		return InetETerminatedBind
+	case 0x800C0019:
+		return InetEInvalidCertificate
+	case 0x800C001A:
+		return InetEReserved1
+	case 0x800C001B:
+		return InetEBlockedRedirectXsecurityid
+	case 0x800C0100:
+		return InetECodeDownloadDeclined
+	case 0x800C0200:
+		return InetEResultDispatched
+	case 0x800C0300:
+		return InetECannotReplaceSfpFile
+	case 0x800C0400:
+		return InetECodeInstallSuppressed
+	case 0x800C0500:
+		return InetECodeInstallBlockedByHashPolicy
+	case 0x800C0501:
+		return InetEDownloadBlockedByInprivate
 	case 0x800D0003:
 		return NsWServerBandwidthLimit
 	case 0x800D0004:
@@ -8797,4 +8893,3 @@ func FromCode(code uint32) error {
 	}
 	return nil
 }
-
