@@ -219,18 +219,28 @@ string_loop:
 		}
 	}
 
+	ptrCount = 0
 	// put proper pointer dereference number.
 	// (go in reverse order).
 	// so that pointer(**ptr) -> 2, pointer(*ptr) -> 1
 	for i, pointer := len(scopes)-1, 1; i >= 0; i-- {
 		for j := len(scopes[i].Types) - 1; j >= 0; j-- {
 			if scopes[i].Types[j].Is(TypePointer) {
+				ptrCount++
 				scopes[i].Types[j].Pointer = pointer
 				pointer++
 			} else {
 				pointer = 1
 			}
 		}
+	}
+
+	if ptrCount == 0 && (f.Attrs.Pointer == PointerTypeUnique || f.Attrs.Pointer == PointerTypePtr) {
+		scopes[0].Types = append([]*ScopedType{{
+			Type:    &Type{Kind: TypePointer, Elem: scopes[0].Types[0].Type},
+			Pointer: 1,
+		}}, scopes[0].Types...)
+
 	}
 
 	return scopes

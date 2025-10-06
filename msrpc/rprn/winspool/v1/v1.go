@@ -12699,26 +12699,9 @@ func (o *BIDIRequestContainer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-
-func (o *BIDIRequestContainer) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.Count)
-	return []uint64{
-		dimSize1,
-	}
-}
 func (o *BIDIRequestContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
-	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
 	}
 	if err := w.WriteAlign(9); err != nil {
 		return err
@@ -12732,42 +12715,48 @@ func (o *BIDIRequestContainer) MarshalNDR(ctx context.Context, w ndr.Writer) err
 	if err := w.WriteData(o.Count); err != nil {
 		return err
 	}
-	if err := w.WriteTrailingGap(9); err != nil {
-		return err
-	}
-	for i1 := range o.Data {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if o.Data[i1] != nil {
-			if err := o.Data[i1].MarshalNDR(ctx, w); err != nil {
+	if o.Data != nil || o.Count > 0 {
+		_ptr_aData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Count)
+			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
-		} else {
-			if err := (&BIDIRequestData{}).MarshalNDR(ctx, w); err != nil {
-				return err
+			sizeInfo := []uint64{
+				dimSize1,
 			}
+			for i1 := range o.Data {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Data[i1] != nil {
+					if err := o.Data[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&BIDIRequestData{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&BIDIRequestData{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Data, _ptr_aData); err != nil {
+			return err
 		}
-	}
-	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := (&BIDIRequestData{}).MarshalNDR(ctx, w); err != nil {
+	} else {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *BIDIRequestContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -12780,25 +12769,37 @@ func (o *BIDIRequestContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) e
 	if err := w.ReadData(&o.Count); err != nil {
 		return err
 	}
-	if err := w.ReadTrailingGap(9); err != nil {
+	_ptr_aData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Count > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.Count)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+		}
+		o.Data = make([]*BIDIRequestData, sizeInfo[0])
+		for i1 := range o.Data {
+			i1 := i1
+			if o.Data[i1] == nil {
+				o.Data[i1] = &BIDIRequestData{}
+			}
+			if err := o.Data[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_aData := func(ptr interface{}) { o.Data = *ptr.(*[]*BIDIRequestData) }
+	if err := w.ReadPointer(&o.Data, _s_aData, _ptr_aData); err != nil {
 		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.Count > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.Count)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
-	}
-	o.Data = make([]*BIDIRequestData, sizeInfo[0])
-	for i1 := range o.Data {
-		i1 := i1
-		if o.Data[i1] == nil {
-			o.Data[i1] = &BIDIRequestData{}
-		}
-		if err := o.Data[i1].UnmarshalNDR(ctx, w); err != nil {
-			return err
-		}
 	}
 	return nil
 }
@@ -12834,26 +12835,9 @@ func (o *BIDIResponseContainer) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-
-func (o *BIDIResponseContainer) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.Count)
-	return []uint64{
-		dimSize1,
-	}
-}
 func (o *BIDIResponseContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
-	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
 	}
 	if err := w.WriteAlign(9); err != nil {
 		return err
@@ -12867,42 +12851,48 @@ func (o *BIDIResponseContainer) MarshalNDR(ctx context.Context, w ndr.Writer) er
 	if err := w.WriteData(o.Count); err != nil {
 		return err
 	}
-	if err := w.WriteTrailingGap(9); err != nil {
-		return err
-	}
-	for i1 := range o.Data {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if o.Data[i1] != nil {
-			if err := o.Data[i1].MarshalNDR(ctx, w); err != nil {
+	if o.Data != nil || o.Count > 0 {
+		_ptr_aData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Count)
+			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
-		} else {
-			if err := (&BIDIResponseData{}).MarshalNDR(ctx, w); err != nil {
-				return err
+			sizeInfo := []uint64{
+				dimSize1,
 			}
+			for i1 := range o.Data {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Data[i1] != nil {
+					if err := o.Data[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&BIDIResponseData{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&BIDIResponseData{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Data, _ptr_aData); err != nil {
+			return err
 		}
-	}
-	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := (&BIDIResponseData{}).MarshalNDR(ctx, w); err != nil {
+	} else {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *BIDIResponseContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -12915,25 +12905,37 @@ func (o *BIDIResponseContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) 
 	if err := w.ReadData(&o.Count); err != nil {
 		return err
 	}
-	if err := w.ReadTrailingGap(9); err != nil {
+	_ptr_aData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Count > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.Count)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+		}
+		o.Data = make([]*BIDIResponseData, sizeInfo[0])
+		for i1 := range o.Data {
+			i1 := i1
+			if o.Data[i1] == nil {
+				o.Data[i1] = &BIDIResponseData{}
+			}
+			if err := o.Data[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_aData := func(ptr interface{}) { o.Data = *ptr.(*[]*BIDIResponseData) }
+	if err := w.ReadPointer(&o.Data, _s_aData, _ptr_aData); err != nil {
 		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.Count > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.Count)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
-	}
-	o.Data = make([]*BIDIResponseData, sizeInfo[0])
-	for i1 := range o.Data {
-		i1 := i1
-		if o.Data[i1] == nil {
-			o.Data[i1] = &BIDIResponseData{}
-		}
-		if err := o.Data[i1].UnmarshalNDR(ctx, w); err != nil {
-			return err
-		}
 	}
 	return nil
 }
@@ -14392,26 +14394,9 @@ func (o *V2NotifyInfo) xxx_PreparePayload(ctx context.Context) error {
 	}
 	return nil
 }
-
-func (o *V2NotifyInfo) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.Count)
-	return []uint64{
-		dimSize1,
-	}
-}
 func (o *V2NotifyInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
-	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
 	}
 	if err := w.WriteAlign(9); err != nil {
 		return err
@@ -14425,42 +14410,48 @@ func (o *V2NotifyInfo) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := w.WriteData(o.Count); err != nil {
 		return err
 	}
-	if err := w.WriteTrailingGap(9); err != nil {
-		return err
-	}
-	for i1 := range o.Data {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if o.Data[i1] != nil {
-			if err := o.Data[i1].MarshalNDR(ctx, w); err != nil {
+	if o.Data != nil || o.Count > 0 {
+		_ptr_aData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.Count)
+			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
-		} else {
-			if err := (&V2NotifyInfoData{}).MarshalNDR(ctx, w); err != nil {
-				return err
+			sizeInfo := []uint64{
+				dimSize1,
 			}
+			for i1 := range o.Data {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.Data[i1] != nil {
+					if err := o.Data[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&V2NotifyInfoData{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&V2NotifyInfoData{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.Data, _ptr_aData); err != nil {
+			return err
 		}
-	}
-	for i1 := len(o.Data); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := (&V2NotifyInfoData{}).MarshalNDR(ctx, w); err != nil {
+	} else {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *V2NotifyInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
 	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
@@ -14473,25 +14464,37 @@ func (o *V2NotifyInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
 	if err := w.ReadData(&o.Count); err != nil {
 		return err
 	}
-	if err := w.ReadTrailingGap(9); err != nil {
+	_ptr_aData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.Count > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.Count)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
+		}
+		o.Data = make([]*V2NotifyInfoData, sizeInfo[0])
+		for i1 := range o.Data {
+			i1 := i1
+			if o.Data[i1] == nil {
+				o.Data[i1] = &V2NotifyInfoData{}
+			}
+			if err := o.Data[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_aData := func(ptr interface{}) { o.Data = *ptr.(*[]*V2NotifyInfoData) }
+	if err := w.ReadPointer(&o.Data, _s_aData, _ptr_aData); err != nil {
 		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.Count > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.Count)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.Data", sizeInfo[0])
-	}
-	o.Data = make([]*V2NotifyInfoData, sizeInfo[0])
-	for i1 := range o.Data {
-		i1 := i1
-		if o.Data[i1] == nil {
-			o.Data[i1] = &V2NotifyInfoData{}
-		}
-		if err := o.Data[i1].UnmarshalNDR(ctx, w); err != nil {
-			return err
-		}
 	}
 	return nil
 }
@@ -16623,94 +16626,95 @@ func (o *BranchOfficeJobDataContainer) xxx_PreparePayload(ctx context.Context) e
 	}
 	return nil
 }
-
-func (o *BranchOfficeJobDataContainer) NDRSizeInfo() []uint64 {
-	dimSize1 := uint64(o.JobDataEntriesCount)
-	return []uint64{
-		dimSize1,
-	}
-}
 func (o *BranchOfficeJobDataContainer) MarshalNDR(ctx context.Context, w ndr.Writer) error {
 	if err := o.xxx_PreparePayload(ctx); err != nil {
 		return err
 	}
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for sz1 := range sizeInfo {
-			if err := w.WriteSize(sizeInfo[sz1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.WriteAlign(8); err != nil {
+	if err := w.WriteAlign(9); err != nil {
 		return err
 	}
 	if err := w.WriteData(o.JobDataEntriesCount); err != nil {
 		return err
 	}
-	if err := w.WriteTrailingGap(8); err != nil {
-		return err
-	}
-	for i1 := range o.JobData {
-		i1 := i1
-		if uint64(i1) >= sizeInfo[0] {
-			break
-		}
-		if o.JobData[i1] != nil {
-			if err := o.JobData[i1].MarshalNDR(ctx, w); err != nil {
+	if o.JobData != nil || o.JobDataEntriesCount > 0 {
+		_ptr_JobData := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+			dimSize1 := uint64(o.JobDataEntriesCount)
+			if err := w.WriteSize(dimSize1); err != nil {
 				return err
 			}
-		} else {
-			if err := (&BranchOfficeJobData{}).MarshalNDR(ctx, w); err != nil {
-				return err
+			sizeInfo := []uint64{
+				dimSize1,
 			}
+			for i1 := range o.JobData {
+				i1 := i1
+				if uint64(i1) >= sizeInfo[0] {
+					break
+				}
+				if o.JobData[i1] != nil {
+					if err := o.JobData[i1].MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&BranchOfficeJobData{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+			}
+			for i1 := len(o.JobData); uint64(i1) < sizeInfo[0]; i1++ {
+				if err := (&BranchOfficeJobData{}).MarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		if err := w.WritePointer(&o.JobData, _ptr_JobData); err != nil {
+			return err
 		}
-	}
-	for i1 := len(o.JobData); uint64(i1) < sizeInfo[0]; i1++ {
-		if err := (&BranchOfficeJobData{}).MarshalNDR(ctx, w); err != nil {
+	} else {
+		if err := w.WritePointer(nil); err != nil {
 			return err
 		}
 	}
 	return nil
 }
 func (o *BranchOfficeJobDataContainer) UnmarshalNDR(ctx context.Context, w ndr.Reader) error {
-	sizeInfo, ok := ctx.Value(ndr.SizeInfo).([]uint64)
-	if !ok {
-		sizeInfo = o.NDRSizeInfo()
-		for i1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[i1]); err != nil {
-				return err
-			}
-		}
-		ctx = context.WithValue(ctx, ndr.SizeInfo, sizeInfo)
-	}
-	if err := w.ReadAlign(8); err != nil {
+	if err := w.ReadAlign(9); err != nil {
 		return err
 	}
 	if err := w.ReadData(&o.JobDataEntriesCount); err != nil {
 		return err
 	}
-	if err := w.ReadTrailingGap(8); err != nil {
+	_ptr_JobData := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+		sizeInfo := []uint64{
+			0,
+		}
+		for sz1 := range sizeInfo {
+			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+				return err
+			}
+		}
+		// XXX: for opaque unmarshaling
+		if o.JobDataEntriesCount > 0 && sizeInfo[0] == 0 {
+			sizeInfo[0] = uint64(o.JobDataEntriesCount)
+		}
+		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+			return fmt.Errorf("buffer overflow for size %d of array o.JobData", sizeInfo[0])
+		}
+		o.JobData = make([]*BranchOfficeJobData, sizeInfo[0])
+		for i1 := range o.JobData {
+			i1 := i1
+			if o.JobData[i1] == nil {
+				o.JobData[i1] = &BranchOfficeJobData{}
+			}
+			if err := o.JobData[i1].UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		return nil
+	})
+	_s_JobData := func(ptr interface{}) { o.JobData = *ptr.(*[]*BranchOfficeJobData) }
+	if err := w.ReadPointer(&o.JobData, _s_JobData, _ptr_JobData); err != nil {
 		return err
-	}
-	// XXX: for opaque unmarshaling
-	if o.JobDataEntriesCount > 0 && sizeInfo[0] == 0 {
-		sizeInfo[0] = uint64(o.JobDataEntriesCount)
-	}
-	if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-		return fmt.Errorf("buffer overflow for size %d of array o.JobData", sizeInfo[0])
-	}
-	o.JobData = make([]*BranchOfficeJobData, sizeInfo[0])
-	for i1 := range o.JobData {
-		i1 := i1
-		if o.JobData[i1] == nil {
-			o.JobData[i1] = &BranchOfficeJobData{}
-		}
-		if err := o.JobData[i1].UnmarshalNDR(ctx, w); err != nil {
-			return err
-		}
 	}
 	return nil
 }
