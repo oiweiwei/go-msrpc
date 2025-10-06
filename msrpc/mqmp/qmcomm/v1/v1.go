@@ -7398,56 +7398,83 @@ func (o *xxx_SetObjectPropertiesOperation) MarshalNDRRequest(ctx context.Context
 			return err
 		}
 	}
-	// aProp {in} (1:{pointer=unique}[dim:0,size_is=cp])(2:{alias=DWORD}(uint32))
+	// aProp {in} (1:{pointer=unique}*(1)[dim:0,size_is=cp])(2:{alias=DWORD}(uint32))
 	{
-		dimSize1 := uint64(o.CreatePartition)
-		if err := w.WriteSize(dimSize1); err != nil {
+		if o.Property != nil || o.CreatePartition > 0 {
+			_ptr_aProp := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				dimSize1 := uint64(o.CreatePartition)
+				if err := w.WriteSize(dimSize1); err != nil {
+					return err
+				}
+				sizeInfo := []uint64{
+					dimSize1,
+				}
+				for i1 := range o.Property {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if err := w.WriteData(o.Property[i1]); err != nil {
+						return err
+					}
+				}
+				for i1 := len(o.Property); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := w.WriteData(uint32(0)); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Property, _ptr_aProp); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
 			return err
-		}
-		sizeInfo := []uint64{
-			dimSize1,
-		}
-		for i1 := range o.Property {
-			i1 := i1
-			if uint64(i1) >= sizeInfo[0] {
-				break
-			}
-			if err := w.WriteData(o.Property[i1]); err != nil {
-				return err
-			}
-		}
-		for i1 := len(o.Property); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := w.WriteData(uint32(0)); err != nil {
-				return err
-			}
 		}
 	}
-	// apVar {in} (1:{pointer=unique}[dim:0,size_is=cp])(2:{alias=PROPVARIANT}(struct))
+	// apVar {in} (1:{pointer=unique}*(1)[dim:0,size_is=cp])(2:{alias=PROPVARIANT}(struct))
 	{
-		dimSize1 := uint64(o.CreatePartition)
-		if err := w.WriteSize(dimSize1); err != nil {
-			return err
-		}
-		sizeInfo := []uint64{
-			dimSize1,
-		}
-		for i1 := range o.Var {
-			i1 := i1
-			if uint64(i1) >= sizeInfo[0] {
-				break
-			}
-			if o.Var[i1] != nil {
-				if err := o.Var[i1].MarshalNDR(ctx, w); err != nil {
+		if o.Var != nil || o.CreatePartition > 0 {
+			_ptr_apVar := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				dimSize1 := uint64(o.CreatePartition)
+				if err := w.WriteSize(dimSize1); err != nil {
 					return err
 				}
-			} else {
-				if err := (&mqmq.PropertyVariant{}).MarshalNDR(ctx, w); err != nil {
-					return err
+				sizeInfo := []uint64{
+					dimSize1,
 				}
+				for i1 := range o.Var {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if o.Var[i1] != nil {
+						if err := o.Var[i1].MarshalNDR(ctx, w); err != nil {
+							return err
+						}
+					} else {
+						if err := (&mqmq.PropertyVariant{}).MarshalNDR(ctx, w); err != nil {
+							return err
+						}
+					}
+				}
+				for i1 := len(o.Var); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := (&mqmq.PropertyVariant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Var, _ptr_apVar); err != nil {
+				return err
 			}
-		}
-		for i1 := len(o.Var); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := (&mqmq.PropertyVariant{}).MarshalNDR(ctx, w); err != nil {
+		} else {
+			if err := w.WritePointer(nil); err != nil {
 				return err
 			}
 		}
@@ -7477,49 +7504,66 @@ func (o *xxx_SetObjectPropertiesOperation) UnmarshalNDRRequest(ctx context.Conte
 			return err
 		}
 	}
-	// aProp {in} (1:{pointer=unique}[dim:0,size_is=cp])(2:{alias=DWORD}(uint32))
+	// aProp {in} (1:{pointer=unique}*(1)[dim:0,size_is=cp])(2:{alias=DWORD}(uint32))
 	{
-		sizeInfo := []uint64{
-			0,
-		}
-		for sz1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
-				return err
+		_ptr_aProp := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
 			}
-		}
-		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Property", sizeInfo[0])
-		}
-		o.Property = make([]uint32, sizeInfo[0])
-		for i1 := range o.Property {
-			i1 := i1
-			if err := w.ReadData(&o.Property[i1]); err != nil {
-				return err
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
 			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.Property", sizeInfo[0])
+			}
+			o.Property = make([]uint32, sizeInfo[0])
+			for i1 := range o.Property {
+				i1 := i1
+				if err := w.ReadData(&o.Property[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_aProp := func(ptr interface{}) { o.Property = *ptr.(*[]uint32) }
+		if err := w.ReadPointer(&o.Property, _s_aProp, _ptr_aProp); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
 		}
 	}
-	// apVar {in} (1:{pointer=unique}[dim:0,size_is=cp])(2:{alias=PROPVARIANT}(struct))
+	// apVar {in} (1:{pointer=unique}*(1)[dim:0,size_is=cp])(2:{alias=PROPVARIANT}(struct))
 	{
-		sizeInfo := []uint64{
-			0,
-		}
-		for sz1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
-				return err
+		_ptr_apVar := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
 			}
-		}
-		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.Var", sizeInfo[0])
-		}
-		o.Var = make([]*mqmq.PropertyVariant, sizeInfo[0])
-		for i1 := range o.Var {
-			i1 := i1
-			if o.Var[i1] == nil {
-				o.Var[i1] = &mqmq.PropertyVariant{}
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
 			}
-			if err := o.Var[i1].UnmarshalNDR(ctx, w); err != nil {
-				return err
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.Var", sizeInfo[0])
 			}
+			o.Var = make([]*mqmq.PropertyVariant, sizeInfo[0])
+			for i1 := range o.Var {
+				i1 := i1
+				if o.Var[i1] == nil {
+					o.Var[i1] = &mqmq.PropertyVariant{}
+				}
+				if err := o.Var[i1].UnmarshalNDR(ctx, w); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_apVar := func(ptr interface{}) { o.Var = *ptr.(*[]*mqmq.PropertyVariant) }
+		if err := w.ReadPointer(&o.Var, _s_apVar, _ptr_apVar); err != nil {
+			return err
 		}
 		if err := w.ReadDeferred(); err != nil {
 			return err

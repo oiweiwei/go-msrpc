@@ -692,52 +692,82 @@ func (o *xxx_ComplexPingOperation) MarshalNDRRequest(ctx context.Context, w ndr.
 			return err
 		}
 	}
-	// AddToSet {in} (1:{pointer=unique}[dim:0,size_is=cAddToSet])(2:{alias=OID}(uint64))
+	// AddToSet {in} (1:{pointer=unique}*(1)[dim:0,size_is=cAddToSet])(2:{alias=OID}(uint64))
 	{
-		dimSize1 := uint64(o.AddToSetCount)
-		if err := w.WriteSize(dimSize1); err != nil {
+		if o.AddToSet != nil || o.AddToSetCount > 0 {
+			_ptr_AddToSet := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				dimSize1 := uint64(o.AddToSetCount)
+				if err := w.WriteSize(dimSize1); err != nil {
+					return err
+				}
+				sizeInfo := []uint64{
+					dimSize1,
+				}
+				for i1 := range o.AddToSet {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if err := w.WriteData(o.AddToSet[i1]); err != nil {
+						return err
+					}
+				}
+				for i1 := len(o.AddToSet); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := w.WriteData(uint64(0)); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.AddToSet, _ptr_AddToSet); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
 			return err
-		}
-		sizeInfo := []uint64{
-			dimSize1,
-		}
-		for i1 := range o.AddToSet {
-			i1 := i1
-			if uint64(i1) >= sizeInfo[0] {
-				break
-			}
-			if err := w.WriteData(o.AddToSet[i1]); err != nil {
-				return err
-			}
-		}
-		for i1 := len(o.AddToSet); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := w.WriteData(uint64(0)); err != nil {
-				return err
-			}
 		}
 	}
-	// DelFromSet {in} (1:{pointer=unique}[dim:0,size_is=cDelFromSet])(2:{alias=OID}(uint64))
+	// DelFromSet {in} (1:{pointer=unique}*(1)[dim:0,size_is=cDelFromSet])(2:{alias=OID}(uint64))
 	{
-		dimSize1 := uint64(o.DeleteFromSetCount)
-		if err := w.WriteSize(dimSize1); err != nil {
+		if o.DeleteFromSet != nil || o.DeleteFromSetCount > 0 {
+			_ptr_DelFromSet := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				dimSize1 := uint64(o.DeleteFromSetCount)
+				if err := w.WriteSize(dimSize1); err != nil {
+					return err
+				}
+				sizeInfo := []uint64{
+					dimSize1,
+				}
+				for i1 := range o.DeleteFromSet {
+					i1 := i1
+					if uint64(i1) >= sizeInfo[0] {
+						break
+					}
+					if err := w.WriteData(o.DeleteFromSet[i1]); err != nil {
+						return err
+					}
+				}
+				for i1 := len(o.DeleteFromSet); uint64(i1) < sizeInfo[0]; i1++ {
+					if err := w.WriteData(uint64(0)); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.DeleteFromSet, _ptr_DelFromSet); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
 			return err
-		}
-		sizeInfo := []uint64{
-			dimSize1,
-		}
-		for i1 := range o.DeleteFromSet {
-			i1 := i1
-			if uint64(i1) >= sizeInfo[0] {
-				break
-			}
-			if err := w.WriteData(o.DeleteFromSet[i1]); err != nil {
-				return err
-			}
-		}
-		for i1 := len(o.DeleteFromSet); uint64(i1) < sizeInfo[0]; i1++ {
-			if err := w.WriteData(uint64(0)); err != nil {
-				return err
-			}
 		}
 	}
 	return nil
@@ -768,46 +798,66 @@ func (o *xxx_ComplexPingOperation) UnmarshalNDRRequest(ctx context.Context, w nd
 			return err
 		}
 	}
-	// AddToSet {in} (1:{pointer=unique}[dim:0,size_is=cAddToSet])(2:{alias=OID}(uint64))
+	// AddToSet {in} (1:{pointer=unique}*(1)[dim:0,size_is=cAddToSet])(2:{alias=OID}(uint64))
 	{
-		sizeInfo := []uint64{
-			0,
-		}
-		for sz1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
-				return err
+		_ptr_AddToSet := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
 			}
-		}
-		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.AddToSet", sizeInfo[0])
-		}
-		o.AddToSet = make([]uint64, sizeInfo[0])
-		for i1 := range o.AddToSet {
-			i1 := i1
-			if err := w.ReadData(&o.AddToSet[i1]); err != nil {
-				return err
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
 			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.AddToSet", sizeInfo[0])
+			}
+			o.AddToSet = make([]uint64, sizeInfo[0])
+			for i1 := range o.AddToSet {
+				i1 := i1
+				if err := w.ReadData(&o.AddToSet[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_AddToSet := func(ptr interface{}) { o.AddToSet = *ptr.(*[]uint64) }
+		if err := w.ReadPointer(&o.AddToSet, _s_AddToSet, _ptr_AddToSet); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
 		}
 	}
-	// DelFromSet {in} (1:{pointer=unique}[dim:0,size_is=cDelFromSet])(2:{alias=OID}(uint64))
+	// DelFromSet {in} (1:{pointer=unique}*(1)[dim:0,size_is=cDelFromSet])(2:{alias=OID}(uint64))
 	{
-		sizeInfo := []uint64{
-			0,
-		}
-		for sz1 := range sizeInfo {
-			if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
-				return err
+		_ptr_DelFromSet := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			sizeInfo := []uint64{
+				0,
 			}
-		}
-		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.DeleteFromSet", sizeInfo[0])
-		}
-		o.DeleteFromSet = make([]uint64, sizeInfo[0])
-		for i1 := range o.DeleteFromSet {
-			i1 := i1
-			if err := w.ReadData(&o.DeleteFromSet[i1]); err != nil {
-				return err
+			for sz1 := range sizeInfo {
+				if err := w.ReadSize(&sizeInfo[sz1]); err != nil {
+					return err
+				}
 			}
+			if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
+				return fmt.Errorf("buffer overflow for size %d of array o.DeleteFromSet", sizeInfo[0])
+			}
+			o.DeleteFromSet = make([]uint64, sizeInfo[0])
+			for i1 := range o.DeleteFromSet {
+				i1 := i1
+				if err := w.ReadData(&o.DeleteFromSet[i1]); err != nil {
+					return err
+				}
+			}
+			return nil
+		})
+		_s_DelFromSet := func(ptr interface{}) { o.DeleteFromSet = *ptr.(*[]uint64) }
+		if err := w.ReadPointer(&o.DeleteFromSet, _s_DelFromSet, _ptr_DelFromSet); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
 		}
 	}
 	return nil
