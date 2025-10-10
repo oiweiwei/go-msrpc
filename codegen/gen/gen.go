@@ -285,6 +285,8 @@ func (p *Generator) GenType(ctx context.Context, t *midl.Type) {
 		pp.GenEnum(ctx)
 	case pp.Is(midl.TypeInterface):
 		pp.GenInterface(ctx)
+	case pp.Is(midl.TypePipe):
+		pp.GenPipe(ctx)
 	}
 }
 

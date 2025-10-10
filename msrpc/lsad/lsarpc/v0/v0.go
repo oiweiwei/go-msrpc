@@ -6678,15 +6678,15 @@ type PolicyDomainEFSInfo struct {
 	// EfsBlob:  An array of bytes, of size InfoLength bytes. If the value of InfoLength
 	// is other than 0, this field MUST NOT be NULL. The syntax of this blob SHOULD<24>
 	// conform to the layout specified in [MS-GPEF] section 2.2.1.2.1.
-	EFSBlob []byte `idl:"name:EfsBlob;size_is:(InfoLength)" json:"efs_blob"`
+	Blob []byte `idl:"name:EfsBlob;size_is:(InfoLength)" json:"blob"`
 }
 
 func (o *PolicyDomainEFSInfo) xxx_PreparePayload(ctx context.Context) error {
 	if err := ndr.BeforePreparePayload(ctx, o); err != nil {
 		return err
 	}
-	if o.EFSBlob != nil && o.InfoLength == 0 {
-		o.InfoLength = uint32(len(o.EFSBlob))
+	if o.Blob != nil && o.InfoLength == 0 {
+		o.InfoLength = uint32(len(o.Blob))
 	}
 	if err := ndr.AfterPreparePayload(ctx, o); err != nil {
 		return err
@@ -6703,7 +6703,7 @@ func (o *PolicyDomainEFSInfo) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 	if err := w.WriteData(o.InfoLength); err != nil {
 		return err
 	}
-	if o.EFSBlob != nil || o.InfoLength > 0 {
+	if o.Blob != nil || o.InfoLength > 0 {
 		_ptr_EfsBlob := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
 			dimSize1 := uint64(o.InfoLength)
 			if err := w.WriteSize(dimSize1); err != nil {
@@ -6712,23 +6712,23 @@ func (o *PolicyDomainEFSInfo) MarshalNDR(ctx context.Context, w ndr.Writer) erro
 			sizeInfo := []uint64{
 				dimSize1,
 			}
-			for i1 := range o.EFSBlob {
+			for i1 := range o.Blob {
 				i1 := i1
 				if uint64(i1) >= sizeInfo[0] {
 					break
 				}
-				if err := w.WriteData(o.EFSBlob[i1]); err != nil {
+				if err := w.WriteData(o.Blob[i1]); err != nil {
 					return err
 				}
 			}
-			for i1 := len(o.EFSBlob); uint64(i1) < sizeInfo[0]; i1++ {
+			for i1 := len(o.Blob); uint64(i1) < sizeInfo[0]; i1++ {
 				if err := w.WriteData(uint8(0)); err != nil {
 					return err
 				}
 			}
 			return nil
 		})
-		if err := w.WritePointer(&o.EFSBlob, _ptr_EfsBlob); err != nil {
+		if err := w.WritePointer(&o.Blob, _ptr_EfsBlob); err != nil {
 			return err
 		}
 	} else {
@@ -6759,19 +6759,19 @@ func (o *PolicyDomainEFSInfo) UnmarshalNDR(ctx context.Context, w ndr.Reader) er
 			sizeInfo[0] = uint64(o.InfoLength)
 		}
 		if sizeInfo[0] > uint64(w.Len()) /* sanity-check */ {
-			return fmt.Errorf("buffer overflow for size %d of array o.EFSBlob", sizeInfo[0])
+			return fmt.Errorf("buffer overflow for size %d of array o.Blob", sizeInfo[0])
 		}
-		o.EFSBlob = make([]byte, sizeInfo[0])
-		for i1 := range o.EFSBlob {
+		o.Blob = make([]byte, sizeInfo[0])
+		for i1 := range o.Blob {
 			i1 := i1
-			if err := w.ReadData(&o.EFSBlob[i1]); err != nil {
+			if err := w.ReadData(&o.Blob[i1]); err != nil {
 				return err
 			}
 		}
 		return nil
 	})
-	_s_EfsBlob := func(ptr interface{}) { o.EFSBlob = *ptr.(*[]byte) }
-	if err := w.ReadPointer(&o.EFSBlob, _s_EfsBlob, _ptr_EfsBlob); err != nil {
+	_s_EfsBlob := func(ptr interface{}) { o.Blob = *ptr.(*[]byte) }
+	if err := w.ReadPointer(&o.Blob, _s_EfsBlob, _ptr_EfsBlob); err != nil {
 		return err
 	}
 	return nil

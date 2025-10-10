@@ -84,68 +84,121 @@ func DataCollectorCollectionServerHandle(ctx context.Context, o DataCollectorCol
 	}
 	switch opNum {
 	case 7: // Count
-		in := &GetCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Item
-		in := &GetItemRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetItemOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetItem(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetItemRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetItem(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // _NewEnum
-		in := &Get_NewEnumRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_Get_NewEnumOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Get_NewEnum(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &Get_NewEnumRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Get_NewEnum(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Add
-		in := &AddRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Add(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Add(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Remove
-		in := &RemoveRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RemoveOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Remove(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RemoveRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Remove(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Clear
-		in := &ClearRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ClearOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Clear(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ClearRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Clear(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // AddRange
-		in := &AddRangeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_AddRangeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.AddRange(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &AddRangeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.AddRange(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // CreateDataCollectorFromXml
-		in := &CreateDataCollectorFromXMLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateDataCollectorFromXMLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateDataCollectorFromXML(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateDataCollectorFromXMLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateDataCollectorFromXML(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // CreateDataCollector
-		in := &CreateDataCollectorRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CreateDataCollectorOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.CreateDataCollector(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CreateDataCollectorRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.CreateDataCollector(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataCollectorCollection
+type UnimplementedDataCollectorCollectionServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedDataCollectorCollectionServer) GetCount(context.Context, *GetCountRequest) (*GetCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) GetItem(context.Context, *GetItemRequest) (*GetItemResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) Get_NewEnum(context.Context, *Get_NewEnumRequest) (*Get_NewEnumResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) Add(context.Context, *AddRequest) (*AddResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) Remove(context.Context, *RemoveRequest) (*RemoveResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) Clear(context.Context, *ClearRequest) (*ClearResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) AddRange(context.Context, *AddRangeRequest) (*AddRangeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) CreateDataCollectorFromXML(context.Context, *CreateDataCollectorFromXMLRequest) (*CreateDataCollectorFromXMLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorCollectionServer) CreateDataCollector(context.Context, *CreateDataCollectorRequest) (*CreateDataCollectorResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataCollectorCollectionServer = (*UnimplementedDataCollectorCollectionServer)(nil)

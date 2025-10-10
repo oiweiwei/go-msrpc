@@ -1,0 +1,2050 @@
+package iresourcemanager2
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
+	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
+	idispatch "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut/idispatch/v0"
+	wsrm "github.com/oiweiwei/go-msrpc/msrpc/dcom/wsrm"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = (*errors.Error)(nil)
+	_ = dcom.GoPackage
+	_ = idispatch.GoPackage
+	_ = oaut.GoPackage
+	_ = wsrm.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "dcom/wsrm"
+)
+
+var (
+	// IResourceManager2 interface identifier 2a3eb639-d134-422d-90d8-aaa1b5216202
+	ResourceManager2IID = &dcom.IID{Data1: 0x2a3eb639, Data2: 0xd134, Data3: 0x422d, Data4: []byte{0x90, 0xd8, 0xaa, 0xa1, 0xb5, 0x21, 0x62, 0x02}}
+	// Syntax UUID
+	ResourceManager2SyntaxUUID = &uuid.UUID{TimeLow: 0x2a3eb639, TimeMid: 0xd134, TimeHiAndVersion: 0x422d, ClockSeqHiAndReserved: 0x90, ClockSeqLow: 0xd8, Node: [6]uint8{0xaa, 0xa1, 0xb5, 0x21, 0x62, 0x2}}
+	// Syntax ID
+	ResourceManager2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ResourceManager2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+)
+
+// IResourceManager2 interface.
+type ResourceManager2Client interface {
+
+	// IDispatch retrieval method.
+	Dispatch() idispatch.DispatchClient
+
+	ExportObjects(context.Context, *ExportObjectsRequest, ...dcerpc.CallOption) (*ExportObjectsResponse, error)
+
+	GetImportConflicts(context.Context, *GetImportConflictsRequest, ...dcerpc.CallOption) (*GetImportConflictsResponse, error)
+
+	ImportXML(context.Context, *ImportXMLRequest, ...dcerpc.CallOption) (*ImportXMLResponse, error)
+
+	ExportXML(context.Context, *ExportXMLRequest, ...dcerpc.CallOption) (*ExportXMLResponse, error)
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
+	// IPID sets the object interface identifier.
+	IPID(context.Context, *dcom.IPID) ResourceManager2Client
+}
+
+type xxx_DefaultResourceManager2Client struct {
+	idispatch.DispatchClient
+	cc   dcerpc.Conn
+	ipid *dcom.IPID
+}
+
+func (o *xxx_DefaultResourceManager2Client) Dispatch() idispatch.DispatchClient {
+	return o.DispatchClient
+}
+
+func (o *xxx_DefaultResourceManager2Client) ExportObjects(ctx context.Context, in *ExportObjectsRequest, opts ...dcerpc.CallOption) (*ExportObjectsResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ExportObjectsResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultResourceManager2Client) GetImportConflicts(ctx context.Context, in *GetImportConflictsRequest, opts ...dcerpc.CallOption) (*GetImportConflictsResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetImportConflictsResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultResourceManager2Client) ImportXML(ctx context.Context, in *ImportXMLRequest, opts ...dcerpc.CallOption) (*ImportXMLResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ImportXMLResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultResourceManager2Client) ExportXML(ctx context.Context, in *ExportXMLRequest, opts ...dcerpc.CallOption) (*ExportXMLResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &ExportXMLResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultResourceManager2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultResourceManager2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func (o *xxx_DefaultResourceManager2Client) IPID(ctx context.Context, ipid *dcom.IPID) ResourceManager2Client {
+	if ipid == nil {
+		ipid = &dcom.IPID{}
+	}
+	return &xxx_DefaultResourceManager2Client{
+		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
+		cc:             o.cc,
+		ipid:           ipid,
+	}
+}
+
+func NewResourceManager2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ResourceManager2Client, error) {
+	var err error
+	if !dcom.IsSuperclass(opts) {
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ResourceManager2SyntaxV0_0))...)
+		if err != nil {
+			return nil, err
+		}
+	}
+	base, err := idispatch.NewDispatchClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	if err != nil {
+		return nil, err
+	}
+	ipid, ok := dcom.HasIPID(opts)
+	if ok {
+		base = base.IPID(ctx, ipid)
+	}
+	return &xxx_DefaultResourceManager2Client{
+		DispatchClient: base,
+		cc:             cc,
+		ipid:           ipid,
+	}, nil
+}
+
+// xxx_ExportObjectsOperation structure represents the ExportObjects operation
+type xxx_ExportObjectsOperation struct {
+	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That           *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	ObjectIDs      *oaut.String    `idl:"name:bstrObjectIds" json:"object_ids"`
+	EnumObjectType wsrm.ObjectType `idl:"name:enumObjectType" json:"enum_object_type"`
+	ObjectXML      *oaut.String    `idl:"name:pbstrObjectXml" json:"object_xml"`
+	Return         int32           `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_ExportObjectsOperation) OpNum() int { return 7 }
+
+func (o *xxx_ExportObjectsOperation) OpName() string { return "/IResourceManager2/v0/ExportObjects" }
+
+func (o *xxx_ExportObjectsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportObjectsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrObjectIds {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ObjectIDs != nil {
+			_ptr_bstrObjectIds := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ObjectIDs != nil {
+					if err := o.ObjectIDs.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ObjectIDs, _ptr_bstrObjectIds); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// enumObjectType {in} (1:{v1_enum, alias=OBJECT_TYPE}(enum))
+	{
+		if err := w.WriteEnum(uint32(o.EnumObjectType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportObjectsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrObjectIds {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrObjectIds := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ObjectIDs == nil {
+				o.ObjectIDs = &oaut.String{}
+			}
+			if err := o.ObjectIDs.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrObjectIds := func(ptr interface{}) { o.ObjectIDs = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ObjectIDs, _s_bstrObjectIds, _ptr_bstrObjectIds); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// enumObjectType {in} (1:{v1_enum, alias=OBJECT_TYPE}(enum))
+	{
+		if err := w.ReadEnum((*uint32)(&o.EnumObjectType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportObjectsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportObjectsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrObjectXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ObjectXML != nil {
+			_ptr_pbstrObjectXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ObjectXML != nil {
+					if err := o.ObjectXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ObjectXML, _ptr_pbstrObjectXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportObjectsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrObjectXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrObjectXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ObjectXML == nil {
+				o.ObjectXML = &oaut.String{}
+			}
+			if err := o.ObjectXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrObjectXml := func(ptr interface{}) { o.ObjectXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ObjectXML, _s_pbstrObjectXml, _ptr_pbstrObjectXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ExportObjectsRequest structure represents the ExportObjects operation request
+type ExportObjectsRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This           *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	ObjectIDs      *oaut.String    `idl:"name:bstrObjectIds" json:"object_ids"`
+	EnumObjectType wsrm.ObjectType `idl:"name:enumObjectType" json:"enum_object_type"`
+}
+
+func (o *ExportObjectsRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportObjectsOperation) *xxx_ExportObjectsOperation {
+	if op == nil {
+		op = &xxx_ExportObjectsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.ObjectIDs = o.ObjectIDs
+	op.EnumObjectType = o.EnumObjectType
+	return op
+}
+
+func (o *ExportObjectsRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportObjectsOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.ObjectIDs = op.ObjectIDs
+	o.EnumObjectType = op.EnumObjectType
+}
+func (o *ExportObjectsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ExportObjectsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ExportObjectsOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// ExportObjectsResponse structure represents the ExportObjects operation response
+type ExportObjectsResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That      *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ObjectXML *oaut.String   `idl:"name:pbstrObjectXml" json:"object_xml"`
+	// Return: The ExportObjects return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ExportObjectsResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportObjectsOperation) *xxx_ExportObjectsOperation {
+	if op == nil {
+		op = &xxx_ExportObjectsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.ObjectXML = o.ObjectXML
+	op.Return = o.Return
+	return op
+}
+
+func (o *ExportObjectsResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportObjectsOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.ObjectXML = op.ObjectXML
+	o.Return = op.Return
+}
+func (o *ExportObjectsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ExportObjectsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ExportObjectsOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetImportConflictsOperation structure represents the GetImportConflicts operation
+type xxx_GetImportConflictsOperation struct {
+	This               *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
+	PmcXML             *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PolicyXML          *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	CalendarXML        *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	ConditionalXML     *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	MachineGroupXML    *oaut.String   `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
+	ConfigurationXmls  *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	ConflictingObjects *oaut.String   `idl:"name:pbstrConflictingObjects" json:"conflicting_objects"`
+	Return             int32          `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetImportConflictsOperation) OpNum() int { return 8 }
+
+func (o *xxx_GetImportConflictsOperation) OpName() string {
+	return "/IResourceManager2/v0/GetImportConflicts"
+}
+
+func (o *xxx_GetImportConflictsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetImportConflictsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.PmcXML != nil {
+			_ptr_bstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.PmcXML != nil {
+					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PmcXML, _ptr_bstrPMCXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPolicyXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.PolicyXML != nil {
+			_ptr_bstrPolicyXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.PolicyXML != nil {
+					if err := o.PolicyXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PolicyXML, _ptr_bstrPolicyXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrCalendarXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.CalendarXML != nil {
+			_ptr_bstrCalendarXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CalendarXML != nil {
+					if err := o.CalendarXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CalendarXML, _ptr_bstrCalendarXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConditionalXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConditionalXML != nil {
+			_ptr_bstrConditionalXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConditionalXML != nil {
+					if err := o.ConditionalXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConditionalXML, _ptr_bstrConditionalXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrMachineGroupXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.MachineGroupXML != nil {
+			_ptr_bstrMachineGroupXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.MachineGroupXML != nil {
+					if err := o.MachineGroupXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.MachineGroupXML, _ptr_bstrMachineGroupXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConfigurationXmls != nil {
+			_ptr_bstrConfigurationXmls := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConfigurationXmls != nil {
+					if err := o.ConfigurationXmls.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetImportConflictsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PmcXML == nil {
+				o.PmcXML = &oaut.String{}
+			}
+			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PmcXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPolicyXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrPolicyXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PolicyXML == nil {
+				o.PolicyXML = &oaut.String{}
+			}
+			if err := o.PolicyXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrPolicyXml := func(ptr interface{}) { o.PolicyXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PolicyXML, _s_bstrPolicyXml, _ptr_bstrPolicyXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrCalendarXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrCalendarXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CalendarXML == nil {
+				o.CalendarXML = &oaut.String{}
+			}
+			if err := o.CalendarXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrCalendarXml := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.CalendarXML, _s_bstrCalendarXml, _ptr_bstrCalendarXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConditionalXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrConditionalXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConditionalXML == nil {
+				o.ConditionalXML = &oaut.String{}
+			}
+			if err := o.ConditionalXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrConditionalXml := func(ptr interface{}) { o.ConditionalXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConditionalXML, _s_bstrConditionalXml, _ptr_bstrConditionalXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrMachineGroupXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrMachineGroupXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.MachineGroupXML == nil {
+				o.MachineGroupXML = &oaut.String{}
+			}
+			if err := o.MachineGroupXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrMachineGroupXml := func(ptr interface{}) { o.MachineGroupXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.MachineGroupXML, _s_bstrMachineGroupXml, _ptr_bstrMachineGroupXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrConfigurationXmls := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConfigurationXmls == nil {
+				o.ConfigurationXmls = &oaut.String{}
+			}
+			if err := o.ConfigurationXmls.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXmls = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConfigurationXmls, _s_bstrConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetImportConflictsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetImportConflictsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrConflictingObjects {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConflictingObjects != nil {
+			_ptr_pbstrConflictingObjects := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConflictingObjects != nil {
+					if err := o.ConflictingObjects.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConflictingObjects, _ptr_pbstrConflictingObjects); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetImportConflictsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrConflictingObjects {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrConflictingObjects := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConflictingObjects == nil {
+				o.ConflictingObjects = &oaut.String{}
+			}
+			if err := o.ConflictingObjects.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrConflictingObjects := func(ptr interface{}) { o.ConflictingObjects = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConflictingObjects, _s_pbstrConflictingObjects, _ptr_pbstrConflictingObjects); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetImportConflictsRequest structure represents the GetImportConflicts operation request
+type GetImportConflictsRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
+	PmcXML            *oaut.String   `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PolicyXML         *oaut.String   `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	CalendarXML       *oaut.String   `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	ConditionalXML    *oaut.String   `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	MachineGroupXML   *oaut.String   `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
+	ConfigurationXmls *oaut.String   `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+}
+
+func (o *GetImportConflictsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetImportConflictsOperation) *xxx_GetImportConflictsOperation {
+	if op == nil {
+		op = &xxx_GetImportConflictsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.PmcXML = o.PmcXML
+	op.PolicyXML = o.PolicyXML
+	op.CalendarXML = o.CalendarXML
+	op.ConditionalXML = o.ConditionalXML
+	op.MachineGroupXML = o.MachineGroupXML
+	op.ConfigurationXmls = o.ConfigurationXmls
+	return op
+}
+
+func (o *GetImportConflictsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetImportConflictsOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.PmcXML = op.PmcXML
+	o.PolicyXML = op.PolicyXML
+	o.CalendarXML = op.CalendarXML
+	o.ConditionalXML = op.ConditionalXML
+	o.MachineGroupXML = op.MachineGroupXML
+	o.ConfigurationXmls = op.ConfigurationXmls
+}
+func (o *GetImportConflictsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetImportConflictsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetImportConflictsOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetImportConflictsResponse structure represents the GetImportConflicts operation response
+type GetImportConflictsResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That               *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ConflictingObjects *oaut.String   `idl:"name:pbstrConflictingObjects" json:"conflicting_objects"`
+	// Return: The GetImportConflicts return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetImportConflictsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetImportConflictsOperation) *xxx_GetImportConflictsOperation {
+	if op == nil {
+		op = &xxx_GetImportConflictsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.ConflictingObjects = o.ConflictingObjects
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetImportConflictsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetImportConflictsOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.ConflictingObjects = op.ConflictingObjects
+	o.Return = op.Return
+}
+func (o *GetImportConflictsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetImportConflictsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetImportConflictsOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ImportXMLOperation structure represents the ImportXml operation
+type xxx_ImportXMLOperation struct {
+	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	That              *dcom.ORPCThat  `idl:"name:That" json:"that"`
+	PmcXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PolicyXML         *oaut.String    `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	CalendarXML       *oaut.String    `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	ConditionalXML    *oaut.String    `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	MachineGroupXML   *oaut.String    `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
+	ConfigurationXmls *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	EnumImportType    wsrm.ImportType `idl:"name:enumImportType" json:"enum_import_type"`
+	Return            int32           `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_ImportXMLOperation) OpNum() int { return 9 }
+
+func (o *xxx_ImportXMLOperation) OpName() string { return "/IResourceManager2/v0/ImportXml" }
+
+func (o *xxx_ImportXMLOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ImportXMLOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.PmcXML != nil {
+			_ptr_bstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.PmcXML != nil {
+					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PmcXML, _ptr_bstrPMCXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPolicyXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.PolicyXML != nil {
+			_ptr_bstrPolicyXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.PolicyXML != nil {
+					if err := o.PolicyXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PolicyXML, _ptr_bstrPolicyXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrCalendarXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.CalendarXML != nil {
+			_ptr_bstrCalendarXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CalendarXML != nil {
+					if err := o.CalendarXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CalendarXML, _ptr_bstrCalendarXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConditionalXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConditionalXML != nil {
+			_ptr_bstrConditionalXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConditionalXML != nil {
+					if err := o.ConditionalXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConditionalXML, _ptr_bstrConditionalXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrMachineGroupXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.MachineGroupXML != nil {
+			_ptr_bstrMachineGroupXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.MachineGroupXML != nil {
+					if err := o.MachineGroupXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.MachineGroupXML, _ptr_bstrMachineGroupXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConfigurationXmls != nil {
+			_ptr_bstrConfigurationXmls := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConfigurationXmls != nil {
+					if err := o.ConfigurationXmls.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// enumImportType {in} (1:{v1_enum, alias=IMPORT_TYPE}(enum))
+	{
+		if err := w.WriteEnum(uint32(o.EnumImportType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ImportXMLOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPMCXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PmcXML == nil {
+				o.PmcXML = &oaut.String{}
+			}
+			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PmcXML, _s_bstrPMCXml, _ptr_bstrPMCXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrPolicyXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrPolicyXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PolicyXML == nil {
+				o.PolicyXML = &oaut.String{}
+			}
+			if err := o.PolicyXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrPolicyXml := func(ptr interface{}) { o.PolicyXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PolicyXML, _s_bstrPolicyXml, _ptr_bstrPolicyXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrCalendarXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrCalendarXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CalendarXML == nil {
+				o.CalendarXML = &oaut.String{}
+			}
+			if err := o.CalendarXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrCalendarXml := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.CalendarXML, _s_bstrCalendarXml, _ptr_bstrCalendarXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConditionalXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrConditionalXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConditionalXML == nil {
+				o.ConditionalXML = &oaut.String{}
+			}
+			if err := o.ConditionalXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrConditionalXml := func(ptr interface{}) { o.ConditionalXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConditionalXML, _s_bstrConditionalXml, _ptr_bstrConditionalXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrMachineGroupXml {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrMachineGroupXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.MachineGroupXML == nil {
+				o.MachineGroupXML = &oaut.String{}
+			}
+			if err := o.MachineGroupXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrMachineGroupXml := func(ptr interface{}) { o.MachineGroupXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.MachineGroupXML, _s_bstrMachineGroupXml, _ptr_bstrMachineGroupXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// bstrConfigurationXmls {in} (1:{pointer=unique, alias=BSTR}*(1))(2:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_bstrConfigurationXmls := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConfigurationXmls == nil {
+				o.ConfigurationXmls = &oaut.String{}
+			}
+			if err := o.ConfigurationXmls.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_bstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXmls = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConfigurationXmls, _s_bstrConfigurationXmls, _ptr_bstrConfigurationXmls); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// enumImportType {in} (1:{v1_enum, alias=IMPORT_TYPE}(enum))
+	{
+		if err := w.ReadEnum((*uint32)(&o.EnumImportType)); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ImportXMLOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ImportXMLOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ImportXMLOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ImportXMLRequest structure represents the ImportXml operation request
+type ImportXMLRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This              *dcom.ORPCThis  `idl:"name:This" json:"this"`
+	PmcXML            *oaut.String    `idl:"name:bstrPMCXml" json:"pmc_xml"`
+	PolicyXML         *oaut.String    `idl:"name:bstrPolicyXml" json:"policy_xml"`
+	CalendarXML       *oaut.String    `idl:"name:bstrCalendarXml" json:"calendar_xml"`
+	ConditionalXML    *oaut.String    `idl:"name:bstrConditionalXml" json:"conditional_xml"`
+	MachineGroupXML   *oaut.String    `idl:"name:bstrMachineGroupXml" json:"machine_group_xml"`
+	ConfigurationXmls *oaut.String    `idl:"name:bstrConfigurationXmls" json:"configuration_xmls"`
+	EnumImportType    wsrm.ImportType `idl:"name:enumImportType" json:"enum_import_type"`
+}
+
+func (o *ImportXMLRequest) xxx_ToOp(ctx context.Context, op *xxx_ImportXMLOperation) *xxx_ImportXMLOperation {
+	if op == nil {
+		op = &xxx_ImportXMLOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.PmcXML = o.PmcXML
+	op.PolicyXML = o.PolicyXML
+	op.CalendarXML = o.CalendarXML
+	op.ConditionalXML = o.ConditionalXML
+	op.MachineGroupXML = o.MachineGroupXML
+	op.ConfigurationXmls = o.ConfigurationXmls
+	op.EnumImportType = o.EnumImportType
+	return op
+}
+
+func (o *ImportXMLRequest) xxx_FromOp(ctx context.Context, op *xxx_ImportXMLOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.PmcXML = op.PmcXML
+	o.PolicyXML = op.PolicyXML
+	o.CalendarXML = op.CalendarXML
+	o.ConditionalXML = op.ConditionalXML
+	o.MachineGroupXML = op.MachineGroupXML
+	o.ConfigurationXmls = op.ConfigurationXmls
+	o.EnumImportType = op.EnumImportType
+}
+func (o *ImportXMLRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ImportXMLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ImportXMLOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// ImportXMLResponse structure represents the ImportXml operation response
+type ImportXMLResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That *dcom.ORPCThat `idl:"name:That" json:"that"`
+	// Return: The ImportXml return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ImportXMLResponse) xxx_ToOp(ctx context.Context, op *xxx_ImportXMLOperation) *xxx_ImportXMLOperation {
+	if op == nil {
+		op = &xxx_ImportXMLOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
+}
+
+func (o *ImportXMLResponse) xxx_FromOp(ctx context.Context, op *xxx_ImportXMLOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.Return = op.Return
+}
+func (o *ImportXMLResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ImportXMLResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ImportXMLOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_ExportXMLOperation structure represents the ExportXml operation
+type xxx_ExportXMLOperation struct {
+	This              *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
+	PmcXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	PolicyXML         *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
+	CalendarXML       *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
+	ConditionalXML    *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
+	MachineGroupXML   *oaut.String   `idl:"name:pbstrMachineGroupXml" json:"machine_group_xml"`
+	ConfigurationXmls *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
+	Return            int32          `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_ExportXMLOperation) OpNum() int { return 10 }
+
+func (o *xxx_ExportXMLOperation) OpName() string { return "/IResourceManager2/v0/ExportXml" }
+
+func (o *xxx_ExportXMLOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportXMLOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportXMLOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportXMLOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportXMLOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrPMCXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.PmcXML != nil {
+			_ptr_pbstrPMCXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.PmcXML != nil {
+					if err := o.PmcXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PmcXML, _ptr_pbstrPMCXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrPolicyXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.PolicyXML != nil {
+			_ptr_pbstrPolicyXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.PolicyXML != nil {
+					if err := o.PolicyXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.PolicyXML, _ptr_pbstrPolicyXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrCalendarXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.CalendarXML != nil {
+			_ptr_pbstrCalendarXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CalendarXML != nil {
+					if err := o.CalendarXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CalendarXML, _ptr_pbstrCalendarXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrConditionalXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConditionalXML != nil {
+			_ptr_pbstrConditionalXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConditionalXML != nil {
+					if err := o.ConditionalXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConditionalXML, _ptr_pbstrConditionalXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrMachineGroupXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.MachineGroupXML != nil {
+			_ptr_pbstrMachineGroupXml := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.MachineGroupXML != nil {
+					if err := o.MachineGroupXML.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.MachineGroupXML, _ptr_pbstrMachineGroupXml); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrConfigurationXmls {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		if o.ConfigurationXmls != nil {
+			_ptr_pbstrConfigurationXmls := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ConfigurationXmls != nil {
+					if err := o.ConfigurationXmls.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.String{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ConfigurationXmls, _ptr_pbstrConfigurationXmls); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_ExportXMLOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrPMCXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrPMCXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PmcXML == nil {
+				o.PmcXML = &oaut.String{}
+			}
+			if err := o.PmcXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrPMCXml := func(ptr interface{}) { o.PmcXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PmcXML, _s_pbstrPMCXml, _ptr_pbstrPMCXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrPolicyXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrPolicyXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.PolicyXML == nil {
+				o.PolicyXML = &oaut.String{}
+			}
+			if err := o.PolicyXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrPolicyXml := func(ptr interface{}) { o.PolicyXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.PolicyXML, _s_pbstrPolicyXml, _ptr_pbstrPolicyXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrCalendarXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrCalendarXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CalendarXML == nil {
+				o.CalendarXML = &oaut.String{}
+			}
+			if err := o.CalendarXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrCalendarXml := func(ptr interface{}) { o.CalendarXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.CalendarXML, _s_pbstrCalendarXml, _ptr_pbstrCalendarXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrConditionalXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrConditionalXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConditionalXML == nil {
+				o.ConditionalXML = &oaut.String{}
+			}
+			if err := o.ConditionalXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrConditionalXml := func(ptr interface{}) { o.ConditionalXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConditionalXML, _s_pbstrConditionalXml, _ptr_pbstrConditionalXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrMachineGroupXml {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrMachineGroupXml := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.MachineGroupXML == nil {
+				o.MachineGroupXML = &oaut.String{}
+			}
+			if err := o.MachineGroupXML.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrMachineGroupXml := func(ptr interface{}) { o.MachineGroupXML = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.MachineGroupXML, _s_pbstrMachineGroupXml, _ptr_pbstrMachineGroupXml); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// pbstrConfigurationXmls {out} (1:{pointer=ref}*(2))(2:{pointer=unique, alias=BSTR}*(1))(3:{pointer=unique, alias=_BSTR, names=FLAGGED_WORD_BLOB}(struct))
+	{
+		_ptr_pbstrConfigurationXmls := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ConfigurationXmls == nil {
+				o.ConfigurationXmls = &oaut.String{}
+			}
+			if err := o.ConfigurationXmls.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_pbstrConfigurationXmls := func(ptr interface{}) { o.ConfigurationXmls = *ptr.(**oaut.String) }
+		if err := w.ReadPointer(&o.ConfigurationXmls, _s_pbstrConfigurationXmls, _ptr_pbstrConfigurationXmls); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// ExportXMLRequest structure represents the ExportXml operation request
+type ExportXMLRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+}
+
+func (o *ExportXMLRequest) xxx_ToOp(ctx context.Context, op *xxx_ExportXMLOperation) *xxx_ExportXMLOperation {
+	if op == nil {
+		op = &xxx_ExportXMLOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	return op
+}
+
+func (o *ExportXMLRequest) xxx_FromOp(ctx context.Context, op *xxx_ExportXMLOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+}
+func (o *ExportXMLRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *ExportXMLRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ExportXMLOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// ExportXMLResponse structure represents the ExportXml operation response
+type ExportXMLResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That              *dcom.ORPCThat `idl:"name:That" json:"that"`
+	PmcXML            *oaut.String   `idl:"name:pbstrPMCXml" json:"pmc_xml"`
+	PolicyXML         *oaut.String   `idl:"name:pbstrPolicyXml" json:"policy_xml"`
+	CalendarXML       *oaut.String   `idl:"name:pbstrCalendarXml" json:"calendar_xml"`
+	ConditionalXML    *oaut.String   `idl:"name:pbstrConditionalXml" json:"conditional_xml"`
+	MachineGroupXML   *oaut.String   `idl:"name:pbstrMachineGroupXml" json:"machine_group_xml"`
+	ConfigurationXmls *oaut.String   `idl:"name:pbstrConfigurationXmls" json:"configuration_xmls"`
+	// Return: The ExportXml return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *ExportXMLResponse) xxx_ToOp(ctx context.Context, op *xxx_ExportXMLOperation) *xxx_ExportXMLOperation {
+	if op == nil {
+		op = &xxx_ExportXMLOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.PmcXML = o.PmcXML
+	op.PolicyXML = o.PolicyXML
+	op.CalendarXML = o.CalendarXML
+	op.ConditionalXML = o.ConditionalXML
+	op.MachineGroupXML = o.MachineGroupXML
+	op.ConfigurationXmls = o.ConfigurationXmls
+	op.Return = o.Return
+	return op
+}
+
+func (o *ExportXMLResponse) xxx_FromOp(ctx context.Context, op *xxx_ExportXMLOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.PmcXML = op.PmcXML
+	o.PolicyXML = op.PolicyXML
+	o.CalendarXML = op.CalendarXML
+	o.ConditionalXML = op.ConditionalXML
+	o.MachineGroupXML = op.MachineGroupXML
+	o.ConfigurationXmls = op.ConfigurationXmls
+	o.Return = op.Return
+}
+func (o *ExportXMLResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *ExportXMLResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_ExportXMLOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}

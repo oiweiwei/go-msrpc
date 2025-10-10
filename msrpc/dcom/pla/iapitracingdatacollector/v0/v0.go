@@ -94,6 +94,9 @@ type APITracingDataCollectorClient interface {
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
 
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
 	// IPID sets the object interface identifier.
 	IPID(context.Context, *dcom.IPID) APITracingDataCollectorClient
 }
@@ -109,7 +112,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) DataCollector() idatacollecto
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogAPINamesOnly(ctx context.Context, in *GetLogAPINamesOnlyRequest, opts ...dcerpc.CallOption) (*GetLogAPINamesOnlyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -129,7 +132,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogAPINamesOnly(ctx contex
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogAPINamesOnly(ctx context.Context, in *SetLogAPINamesOnlyRequest, opts ...dcerpc.CallOption) (*SetLogAPINamesOnlyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -149,7 +152,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogAPINamesOnly(ctx contex
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogAPIsRecursively(ctx context.Context, in *GetLogAPIsRecursivelyRequest, opts ...dcerpc.CallOption) (*GetLogAPIsRecursivelyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -169,7 +172,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogAPIsRecursively(ctx con
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogAPIsRecursively(ctx context.Context, in *SetLogAPIsRecursivelyRequest, opts ...dcerpc.CallOption) (*SetLogAPIsRecursivelyResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -189,7 +192,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogAPIsRecursively(ctx con
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetExePath(ctx context.Context, in *GetExePathRequest, opts ...dcerpc.CallOption) (*GetExePathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -209,7 +212,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetExePath(ctx context.Contex
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetExePath(ctx context.Context, in *SetExePathRequest, opts ...dcerpc.CallOption) (*SetExePathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -229,7 +232,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetExePath(ctx context.Contex
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogFilePath(ctx context.Context, in *GetLogFilePathRequest, opts ...dcerpc.CallOption) (*GetLogFilePathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -249,7 +252,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetLogFilePath(ctx context.Co
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogFilePath(ctx context.Context, in *SetLogFilePathRequest, opts ...dcerpc.CallOption) (*SetLogFilePathResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -269,7 +272,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetLogFilePath(ctx context.Co
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetIncludeModules(ctx context.Context, in *GetIncludeModulesRequest, opts ...dcerpc.CallOption) (*GetIncludeModulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -289,7 +292,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetIncludeModules(ctx context
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetIncludeModules(ctx context.Context, in *SetIncludeModulesRequest, opts ...dcerpc.CallOption) (*SetIncludeModulesResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -309,7 +312,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetIncludeModules(ctx context
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetIncludeAPIs(ctx context.Context, in *GetIncludeAPIsRequest, opts ...dcerpc.CallOption) (*GetIncludeAPIsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -329,7 +332,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetIncludeAPIs(ctx context.Co
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetIncludeAPIs(ctx context.Context, in *SetIncludeAPIsRequest, opts ...dcerpc.CallOption) (*SetIncludeAPIsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -349,7 +352,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) SetIncludeAPIs(ctx context.Co
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) GetExcludeAPIs(ctx context.Context, in *GetExcludeAPIsRequest, opts ...dcerpc.CallOption) (*GetExcludeAPIsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -369,7 +372,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) GetExcludeAPIs(ctx context.Co
 }
 
 func (o *xxx_DefaultAPITracingDataCollectorClient) SetExcludeAPIs(ctx context.Context, in *SetExcludeAPIsRequest, opts ...dcerpc.CallOption) (*SetExcludeAPIsResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if _, ok := dcom.HasIPID(opts); !ok {
 		if o.ipid != nil {
 			opts = append(opts, dcom.WithIPID(o.ipid))
@@ -392,6 +395,10 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) AlterContext(ctx context.Cont
 	return o.cc.AlterContext(ctx, opts...)
 }
 
+func (o *xxx_DefaultAPITracingDataCollectorClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func (o *xxx_DefaultAPITracingDataCollectorClient) IPID(ctx context.Context, ipid *dcom.IPID) APITracingDataCollectorClient {
 	if ipid == nil {
 		ipid = &dcom.IPID{}
@@ -402,6 +409,7 @@ func (o *xxx_DefaultAPITracingDataCollectorClient) IPID(ctx context.Context, ipi
 		ipid:                ipid,
 	}
 }
+
 func NewAPITracingDataCollectorClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (APITracingDataCollectorClient, error) {
 	var err error
 	if !dcom.IsSuperclass(opts) {
@@ -563,13 +571,15 @@ type GetLogAPINamesOnlyRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetLogAPINamesOnlyRequest) xxx_ToOp(ctx context.Context) *xxx_GetLogAPINamesOnlyOperation {
+func (o *GetLogAPINamesOnlyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogAPINamesOnlyOperation) *xxx_GetLogAPINamesOnlyOperation {
+	if op == nil {
+		op = &xxx_GetLogAPINamesOnlyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogAPINamesOnlyOperation{}
+		return op
 	}
-	return &xxx_GetLogAPINamesOnlyOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetLogAPINamesOnlyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLogAPINamesOnlyOperation) {
@@ -579,7 +589,7 @@ func (o *GetLogAPINamesOnlyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetL
 	o.This = op.This
 }
 func (o *GetLogAPINamesOnlyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetLogAPINamesOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogAPINamesOnlyOperation{}
@@ -599,15 +609,17 @@ type GetLogAPINamesOnlyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetLogAPINamesOnlyResponse) xxx_ToOp(ctx context.Context) *xxx_GetLogAPINamesOnlyOperation {
+func (o *GetLogAPINamesOnlyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogAPINamesOnlyOperation) *xxx_GetLogAPINamesOnlyOperation {
+	if op == nil {
+		op = &xxx_GetLogAPINamesOnlyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogAPINamesOnlyOperation{}
+		return op
 	}
-	return &xxx_GetLogAPINamesOnlyOperation{
-		That:        o.That,
-		LogAPINames: o.LogAPINames,
-		Return:      o.Return,
-	}
+	op.That = o.That
+	op.LogAPINames = o.LogAPINames
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetLogAPINamesOnlyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogAPINamesOnlyOperation) {
@@ -619,7 +631,7 @@ func (o *GetLogAPINamesOnlyResponse) xxx_FromOp(ctx context.Context, op *xxx_Get
 	o.Return = op.Return
 }
 func (o *GetLogAPINamesOnlyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetLogAPINamesOnlyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogAPINamesOnlyOperation{}
@@ -769,14 +781,16 @@ type SetLogAPINamesOnlyRequest struct {
 	LogAPINames int16          `idl:"name:logapinames" json:"log_api_names"`
 }
 
-func (o *SetLogAPINamesOnlyRequest) xxx_ToOp(ctx context.Context) *xxx_SetLogAPINamesOnlyOperation {
+func (o *SetLogAPINamesOnlyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLogAPINamesOnlyOperation) *xxx_SetLogAPINamesOnlyOperation {
+	if op == nil {
+		op = &xxx_SetLogAPINamesOnlyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogAPINamesOnlyOperation{}
+		return op
 	}
-	return &xxx_SetLogAPINamesOnlyOperation{
-		This:        o.This,
-		LogAPINames: o.LogAPINames,
-	}
+	op.This = o.This
+	op.LogAPINames = o.LogAPINames
+	return op
 }
 
 func (o *SetLogAPINamesOnlyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLogAPINamesOnlyOperation) {
@@ -787,7 +801,7 @@ func (o *SetLogAPINamesOnlyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetL
 	o.LogAPINames = op.LogAPINames
 }
 func (o *SetLogAPINamesOnlyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetLogAPINamesOnlyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogAPINamesOnlyOperation{}
@@ -806,14 +820,16 @@ type SetLogAPINamesOnlyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetLogAPINamesOnlyResponse) xxx_ToOp(ctx context.Context) *xxx_SetLogAPINamesOnlyOperation {
+func (o *SetLogAPINamesOnlyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLogAPINamesOnlyOperation) *xxx_SetLogAPINamesOnlyOperation {
+	if op == nil {
+		op = &xxx_SetLogAPINamesOnlyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogAPINamesOnlyOperation{}
+		return op
 	}
-	return &xxx_SetLogAPINamesOnlyOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetLogAPINamesOnlyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLogAPINamesOnlyOperation) {
@@ -824,7 +840,7 @@ func (o *SetLogAPINamesOnlyResponse) xxx_FromOp(ctx context.Context, op *xxx_Set
 	o.Return = op.Return
 }
 func (o *SetLogAPINamesOnlyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetLogAPINamesOnlyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogAPINamesOnlyOperation{}
@@ -973,13 +989,15 @@ type GetLogAPIsRecursivelyRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetLogAPIsRecursivelyRequest) xxx_ToOp(ctx context.Context) *xxx_GetLogAPIsRecursivelyOperation {
+func (o *GetLogAPIsRecursivelyRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogAPIsRecursivelyOperation) *xxx_GetLogAPIsRecursivelyOperation {
+	if op == nil {
+		op = &xxx_GetLogAPIsRecursivelyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogAPIsRecursivelyOperation{}
+		return op
 	}
-	return &xxx_GetLogAPIsRecursivelyOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetLogAPIsRecursivelyRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLogAPIsRecursivelyOperation) {
@@ -989,7 +1007,7 @@ func (o *GetLogAPIsRecursivelyRequest) xxx_FromOp(ctx context.Context, op *xxx_G
 	o.This = op.This
 }
 func (o *GetLogAPIsRecursivelyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetLogAPIsRecursivelyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogAPIsRecursivelyOperation{}
@@ -1009,15 +1027,17 @@ type GetLogAPIsRecursivelyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetLogAPIsRecursivelyResponse) xxx_ToOp(ctx context.Context) *xxx_GetLogAPIsRecursivelyOperation {
+func (o *GetLogAPIsRecursivelyResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogAPIsRecursivelyOperation) *xxx_GetLogAPIsRecursivelyOperation {
+	if op == nil {
+		op = &xxx_GetLogAPIsRecursivelyOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogAPIsRecursivelyOperation{}
+		return op
 	}
-	return &xxx_GetLogAPIsRecursivelyOperation{
-		That:           o.That,
-		LogRecursively: o.LogRecursively,
-		Return:         o.Return,
-	}
+	op.That = o.That
+	op.LogRecursively = o.LogRecursively
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetLogAPIsRecursivelyResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogAPIsRecursivelyOperation) {
@@ -1029,7 +1049,7 @@ func (o *GetLogAPIsRecursivelyResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *GetLogAPIsRecursivelyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetLogAPIsRecursivelyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogAPIsRecursivelyOperation{}
@@ -1179,14 +1199,16 @@ type SetLogAPIsRecursivelyRequest struct {
 	LogRecursively int16          `idl:"name:logrecursively" json:"log_recursively"`
 }
 
-func (o *SetLogAPIsRecursivelyRequest) xxx_ToOp(ctx context.Context) *xxx_SetLogAPIsRecursivelyOperation {
+func (o *SetLogAPIsRecursivelyRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLogAPIsRecursivelyOperation) *xxx_SetLogAPIsRecursivelyOperation {
+	if op == nil {
+		op = &xxx_SetLogAPIsRecursivelyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogAPIsRecursivelyOperation{}
+		return op
 	}
-	return &xxx_SetLogAPIsRecursivelyOperation{
-		This:           o.This,
-		LogRecursively: o.LogRecursively,
-	}
+	op.This = o.This
+	op.LogRecursively = o.LogRecursively
+	return op
 }
 
 func (o *SetLogAPIsRecursivelyRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLogAPIsRecursivelyOperation) {
@@ -1197,7 +1219,7 @@ func (o *SetLogAPIsRecursivelyRequest) xxx_FromOp(ctx context.Context, op *xxx_S
 	o.LogRecursively = op.LogRecursively
 }
 func (o *SetLogAPIsRecursivelyRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetLogAPIsRecursivelyRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogAPIsRecursivelyOperation{}
@@ -1216,14 +1238,16 @@ type SetLogAPIsRecursivelyResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetLogAPIsRecursivelyResponse) xxx_ToOp(ctx context.Context) *xxx_SetLogAPIsRecursivelyOperation {
+func (o *SetLogAPIsRecursivelyResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLogAPIsRecursivelyOperation) *xxx_SetLogAPIsRecursivelyOperation {
+	if op == nil {
+		op = &xxx_SetLogAPIsRecursivelyOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogAPIsRecursivelyOperation{}
+		return op
 	}
-	return &xxx_SetLogAPIsRecursivelyOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetLogAPIsRecursivelyResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLogAPIsRecursivelyOperation) {
@@ -1234,7 +1258,7 @@ func (o *SetLogAPIsRecursivelyResponse) xxx_FromOp(ctx context.Context, op *xxx_
 	o.Return = op.Return
 }
 func (o *SetLogAPIsRecursivelyResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetLogAPIsRecursivelyResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogAPIsRecursivelyOperation{}
@@ -1415,13 +1439,15 @@ type GetExePathRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetExePathRequest) xxx_ToOp(ctx context.Context) *xxx_GetExePathOperation {
+func (o *GetExePathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExePathOperation) *xxx_GetExePathOperation {
+	if op == nil {
+		op = &xxx_GetExePathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetExePathOperation{}
+		return op
 	}
-	return &xxx_GetExePathOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetExePathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetExePathOperation) {
@@ -1431,7 +1457,7 @@ func (o *GetExePathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetExePathOp
 	o.This = op.This
 }
 func (o *GetExePathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetExePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetExePathOperation{}
@@ -1451,15 +1477,17 @@ type GetExePathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetExePathResponse) xxx_ToOp(ctx context.Context) *xxx_GetExePathOperation {
+func (o *GetExePathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExePathOperation) *xxx_GetExePathOperation {
+	if op == nil {
+		op = &xxx_GetExePathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetExePathOperation{}
+		return op
 	}
-	return &xxx_GetExePathOperation{
-		That:    o.That,
-		ExePath: o.ExePath,
-		Return:  o.Return,
-	}
+	op.That = o.That
+	op.ExePath = o.ExePath
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetExePathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetExePathOperation) {
@@ -1471,7 +1499,7 @@ func (o *GetExePathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetExePathO
 	o.Return = op.Return
 }
 func (o *GetExePathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetExePathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetExePathOperation{}
@@ -1653,14 +1681,16 @@ type SetExePathRequest struct {
 	ExePath *oaut.String   `idl:"name:exepath" json:"exe_path"`
 }
 
-func (o *SetExePathRequest) xxx_ToOp(ctx context.Context) *xxx_SetExePathOperation {
+func (o *SetExePathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExePathOperation) *xxx_SetExePathOperation {
+	if op == nil {
+		op = &xxx_SetExePathOperation{}
+	}
 	if o == nil {
-		return &xxx_SetExePathOperation{}
+		return op
 	}
-	return &xxx_SetExePathOperation{
-		This:    o.This,
-		ExePath: o.ExePath,
-	}
+	op.This = o.This
+	op.ExePath = o.ExePath
+	return op
 }
 
 func (o *SetExePathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetExePathOperation) {
@@ -1671,7 +1701,7 @@ func (o *SetExePathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetExePathOp
 	o.ExePath = op.ExePath
 }
 func (o *SetExePathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetExePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetExePathOperation{}
@@ -1690,14 +1720,16 @@ type SetExePathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetExePathResponse) xxx_ToOp(ctx context.Context) *xxx_SetExePathOperation {
+func (o *SetExePathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExePathOperation) *xxx_SetExePathOperation {
+	if op == nil {
+		op = &xxx_SetExePathOperation{}
+	}
 	if o == nil {
-		return &xxx_SetExePathOperation{}
+		return op
 	}
-	return &xxx_SetExePathOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetExePathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetExePathOperation) {
@@ -1708,7 +1740,7 @@ func (o *SetExePathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetExePathO
 	o.Return = op.Return
 }
 func (o *SetExePathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetExePathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetExePathOperation{}
@@ -1891,13 +1923,15 @@ type GetLogFilePathRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetLogFilePathRequest) xxx_ToOp(ctx context.Context) *xxx_GetLogFilePathOperation {
+func (o *GetLogFilePathRequest) xxx_ToOp(ctx context.Context, op *xxx_GetLogFilePathOperation) *xxx_GetLogFilePathOperation {
+	if op == nil {
+		op = &xxx_GetLogFilePathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogFilePathOperation{}
+		return op
 	}
-	return &xxx_GetLogFilePathOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetLogFilePathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLogFilePathOperation) {
@@ -1907,7 +1941,7 @@ func (o *GetLogFilePathRequest) xxx_FromOp(ctx context.Context, op *xxx_GetLogFi
 	o.This = op.This
 }
 func (o *GetLogFilePathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetLogFilePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogFilePathOperation{}
@@ -1927,15 +1961,17 @@ type GetLogFilePathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetLogFilePathResponse) xxx_ToOp(ctx context.Context) *xxx_GetLogFilePathOperation {
+func (o *GetLogFilePathResponse) xxx_ToOp(ctx context.Context, op *xxx_GetLogFilePathOperation) *xxx_GetLogFilePathOperation {
+	if op == nil {
+		op = &xxx_GetLogFilePathOperation{}
+	}
 	if o == nil {
-		return &xxx_GetLogFilePathOperation{}
+		return op
 	}
-	return &xxx_GetLogFilePathOperation{
-		That:        o.That,
-		Logfilepath: o.Logfilepath,
-		Return:      o.Return,
-	}
+	op.That = o.That
+	op.Logfilepath = o.Logfilepath
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetLogFilePathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogFilePathOperation) {
@@ -1947,7 +1983,7 @@ func (o *GetLogFilePathResponse) xxx_FromOp(ctx context.Context, op *xxx_GetLogF
 	o.Return = op.Return
 }
 func (o *GetLogFilePathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetLogFilePathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetLogFilePathOperation{}
@@ -2131,14 +2167,16 @@ type SetLogFilePathRequest struct {
 	Logfilepath *oaut.String   `idl:"name:logfilepath" json:"logfilepath"`
 }
 
-func (o *SetLogFilePathRequest) xxx_ToOp(ctx context.Context) *xxx_SetLogFilePathOperation {
+func (o *SetLogFilePathRequest) xxx_ToOp(ctx context.Context, op *xxx_SetLogFilePathOperation) *xxx_SetLogFilePathOperation {
+	if op == nil {
+		op = &xxx_SetLogFilePathOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogFilePathOperation{}
+		return op
 	}
-	return &xxx_SetLogFilePathOperation{
-		This:        o.This,
-		Logfilepath: o.Logfilepath,
-	}
+	op.This = o.This
+	op.Logfilepath = o.Logfilepath
+	return op
 }
 
 func (o *SetLogFilePathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLogFilePathOperation) {
@@ -2149,7 +2187,7 @@ func (o *SetLogFilePathRequest) xxx_FromOp(ctx context.Context, op *xxx_SetLogFi
 	o.Logfilepath = op.Logfilepath
 }
 func (o *SetLogFilePathRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetLogFilePathRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogFilePathOperation{}
@@ -2168,14 +2206,16 @@ type SetLogFilePathResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetLogFilePathResponse) xxx_ToOp(ctx context.Context) *xxx_SetLogFilePathOperation {
+func (o *SetLogFilePathResponse) xxx_ToOp(ctx context.Context, op *xxx_SetLogFilePathOperation) *xxx_SetLogFilePathOperation {
+	if op == nil {
+		op = &xxx_SetLogFilePathOperation{}
+	}
 	if o == nil {
-		return &xxx_SetLogFilePathOperation{}
+		return op
 	}
-	return &xxx_SetLogFilePathOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetLogFilePathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLogFilePathOperation) {
@@ -2186,7 +2226,7 @@ func (o *SetLogFilePathResponse) xxx_FromOp(ctx context.Context, op *xxx_SetLogF
 	o.Return = op.Return
 }
 func (o *SetLogFilePathResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetLogFilePathResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetLogFilePathOperation{}
@@ -2369,13 +2409,15 @@ type GetIncludeModulesRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIncludeModulesRequest) xxx_ToOp(ctx context.Context) *xxx_GetIncludeModulesOperation {
+func (o *GetIncludeModulesRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIncludeModulesOperation) *xxx_GetIncludeModulesOperation {
+	if op == nil {
+		op = &xxx_GetIncludeModulesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIncludeModulesOperation{}
+		return op
 	}
-	return &xxx_GetIncludeModulesOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetIncludeModulesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIncludeModulesOperation) {
@@ -2385,7 +2427,7 @@ func (o *GetIncludeModulesRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIn
 	o.This = op.This
 }
 func (o *GetIncludeModulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIncludeModulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIncludeModulesOperation{}
@@ -2405,15 +2447,17 @@ type GetIncludeModulesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIncludeModulesResponse) xxx_ToOp(ctx context.Context) *xxx_GetIncludeModulesOperation {
+func (o *GetIncludeModulesResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIncludeModulesOperation) *xxx_GetIncludeModulesOperation {
+	if op == nil {
+		op = &xxx_GetIncludeModulesOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIncludeModulesOperation{}
+		return op
 	}
-	return &xxx_GetIncludeModulesOperation{
-		That:           o.That,
-		IncludeModules: o.IncludeModules,
-		Return:         o.Return,
-	}
+	op.That = o.That
+	op.IncludeModules = o.IncludeModules
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetIncludeModulesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIncludeModulesOperation) {
@@ -2425,7 +2469,7 @@ func (o *GetIncludeModulesResponse) xxx_FromOp(ctx context.Context, op *xxx_GetI
 	o.Return = op.Return
 }
 func (o *GetIncludeModulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIncludeModulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIncludeModulesOperation{}
@@ -2609,14 +2653,16 @@ type SetIncludeModulesRequest struct {
 	IncludeModules *oaut.SafeArray `idl:"name:includemodules" json:"include_modules"`
 }
 
-func (o *SetIncludeModulesRequest) xxx_ToOp(ctx context.Context) *xxx_SetIncludeModulesOperation {
+func (o *SetIncludeModulesRequest) xxx_ToOp(ctx context.Context, op *xxx_SetIncludeModulesOperation) *xxx_SetIncludeModulesOperation {
+	if op == nil {
+		op = &xxx_SetIncludeModulesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetIncludeModulesOperation{}
+		return op
 	}
-	return &xxx_SetIncludeModulesOperation{
-		This:           o.This,
-		IncludeModules: o.IncludeModules,
-	}
+	op.This = o.This
+	op.IncludeModules = o.IncludeModules
+	return op
 }
 
 func (o *SetIncludeModulesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetIncludeModulesOperation) {
@@ -2627,7 +2673,7 @@ func (o *SetIncludeModulesRequest) xxx_FromOp(ctx context.Context, op *xxx_SetIn
 	o.IncludeModules = op.IncludeModules
 }
 func (o *SetIncludeModulesRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetIncludeModulesRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetIncludeModulesOperation{}
@@ -2646,14 +2692,16 @@ type SetIncludeModulesResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetIncludeModulesResponse) xxx_ToOp(ctx context.Context) *xxx_SetIncludeModulesOperation {
+func (o *SetIncludeModulesResponse) xxx_ToOp(ctx context.Context, op *xxx_SetIncludeModulesOperation) *xxx_SetIncludeModulesOperation {
+	if op == nil {
+		op = &xxx_SetIncludeModulesOperation{}
+	}
 	if o == nil {
-		return &xxx_SetIncludeModulesOperation{}
+		return op
 	}
-	return &xxx_SetIncludeModulesOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetIncludeModulesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetIncludeModulesOperation) {
@@ -2664,7 +2712,7 @@ func (o *SetIncludeModulesResponse) xxx_FromOp(ctx context.Context, op *xxx_SetI
 	o.Return = op.Return
 }
 func (o *SetIncludeModulesResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetIncludeModulesResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetIncludeModulesOperation{}
@@ -2847,13 +2895,15 @@ type GetIncludeAPIsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetIncludeAPIsRequest) xxx_ToOp(ctx context.Context) *xxx_GetIncludeAPIsOperation {
+func (o *GetIncludeAPIsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIncludeAPIsOperation) *xxx_GetIncludeAPIsOperation {
+	if op == nil {
+		op = &xxx_GetIncludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIncludeAPIsOperation{}
+		return op
 	}
-	return &xxx_GetIncludeAPIsOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetIncludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIncludeAPIsOperation) {
@@ -2863,7 +2913,7 @@ func (o *GetIncludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetInclu
 	o.This = op.This
 }
 func (o *GetIncludeAPIsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetIncludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIncludeAPIsOperation{}
@@ -2883,15 +2933,17 @@ type GetIncludeAPIsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetIncludeAPIsResponse) xxx_ToOp(ctx context.Context) *xxx_GetIncludeAPIsOperation {
+func (o *GetIncludeAPIsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIncludeAPIsOperation) *xxx_GetIncludeAPIsOperation {
+	if op == nil {
+		op = &xxx_GetIncludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetIncludeAPIsOperation{}
+		return op
 	}
-	return &xxx_GetIncludeAPIsOperation{
-		That:        o.That,
-		IncludeAPIs: o.IncludeAPIs,
-		Return:      o.Return,
-	}
+	op.That = o.That
+	op.IncludeAPIs = o.IncludeAPIs
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetIncludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIncludeAPIsOperation) {
@@ -2903,7 +2955,7 @@ func (o *GetIncludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIncl
 	o.Return = op.Return
 }
 func (o *GetIncludeAPIsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetIncludeAPIsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetIncludeAPIsOperation{}
@@ -3087,14 +3139,16 @@ type SetIncludeAPIsRequest struct {
 	IncludeAPIs *oaut.SafeArray `idl:"name:includeapis" json:"include_apis"`
 }
 
-func (o *SetIncludeAPIsRequest) xxx_ToOp(ctx context.Context) *xxx_SetIncludeAPIsOperation {
+func (o *SetIncludeAPIsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetIncludeAPIsOperation) *xxx_SetIncludeAPIsOperation {
+	if op == nil {
+		op = &xxx_SetIncludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetIncludeAPIsOperation{}
+		return op
 	}
-	return &xxx_SetIncludeAPIsOperation{
-		This:        o.This,
-		IncludeAPIs: o.IncludeAPIs,
-	}
+	op.This = o.This
+	op.IncludeAPIs = o.IncludeAPIs
+	return op
 }
 
 func (o *SetIncludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetIncludeAPIsOperation) {
@@ -3105,7 +3159,7 @@ func (o *SetIncludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetInclu
 	o.IncludeAPIs = op.IncludeAPIs
 }
 func (o *SetIncludeAPIsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetIncludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetIncludeAPIsOperation{}
@@ -3124,14 +3178,16 @@ type SetIncludeAPIsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetIncludeAPIsResponse) xxx_ToOp(ctx context.Context) *xxx_SetIncludeAPIsOperation {
+func (o *SetIncludeAPIsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetIncludeAPIsOperation) *xxx_SetIncludeAPIsOperation {
+	if op == nil {
+		op = &xxx_SetIncludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetIncludeAPIsOperation{}
+		return op
 	}
-	return &xxx_SetIncludeAPIsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetIncludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetIncludeAPIsOperation) {
@@ -3142,7 +3198,7 @@ func (o *SetIncludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetIncl
 	o.Return = op.Return
 }
 func (o *SetIncludeAPIsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetIncludeAPIsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetIncludeAPIsOperation{}
@@ -3325,13 +3381,15 @@ type GetExcludeAPIsRequest struct {
 	This *dcom.ORPCThis `idl:"name:This" json:"this"`
 }
 
-func (o *GetExcludeAPIsRequest) xxx_ToOp(ctx context.Context) *xxx_GetExcludeAPIsOperation {
+func (o *GetExcludeAPIsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetExcludeAPIsOperation) *xxx_GetExcludeAPIsOperation {
+	if op == nil {
+		op = &xxx_GetExcludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetExcludeAPIsOperation{}
+		return op
 	}
-	return &xxx_GetExcludeAPIsOperation{
-		This: o.This,
-	}
+	op.This = o.This
+	return op
 }
 
 func (o *GetExcludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetExcludeAPIsOperation) {
@@ -3341,7 +3399,7 @@ func (o *GetExcludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetExclu
 	o.This = op.This
 }
 func (o *GetExcludeAPIsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *GetExcludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetExcludeAPIsOperation{}
@@ -3361,15 +3419,17 @@ type GetExcludeAPIsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *GetExcludeAPIsResponse) xxx_ToOp(ctx context.Context) *xxx_GetExcludeAPIsOperation {
+func (o *GetExcludeAPIsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetExcludeAPIsOperation) *xxx_GetExcludeAPIsOperation {
+	if op == nil {
+		op = &xxx_GetExcludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_GetExcludeAPIsOperation{}
+		return op
 	}
-	return &xxx_GetExcludeAPIsOperation{
-		That:        o.That,
-		ExcludeAPIs: o.ExcludeAPIs,
-		Return:      o.Return,
-	}
+	op.That = o.That
+	op.ExcludeAPIs = o.ExcludeAPIs
+	op.Return = o.Return
+	return op
 }
 
 func (o *GetExcludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetExcludeAPIsOperation) {
@@ -3381,7 +3441,7 @@ func (o *GetExcludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetExcl
 	o.Return = op.Return
 }
 func (o *GetExcludeAPIsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *GetExcludeAPIsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_GetExcludeAPIsOperation{}
@@ -3565,14 +3625,16 @@ type SetExcludeAPIsRequest struct {
 	ExcludeAPIs *oaut.SafeArray `idl:"name:excludeapis" json:"exclude_apis"`
 }
 
-func (o *SetExcludeAPIsRequest) xxx_ToOp(ctx context.Context) *xxx_SetExcludeAPIsOperation {
+func (o *SetExcludeAPIsRequest) xxx_ToOp(ctx context.Context, op *xxx_SetExcludeAPIsOperation) *xxx_SetExcludeAPIsOperation {
+	if op == nil {
+		op = &xxx_SetExcludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetExcludeAPIsOperation{}
+		return op
 	}
-	return &xxx_SetExcludeAPIsOperation{
-		This:        o.This,
-		ExcludeAPIs: o.ExcludeAPIs,
-	}
+	op.This = o.This
+	op.ExcludeAPIs = o.ExcludeAPIs
+	return op
 }
 
 func (o *SetExcludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetExcludeAPIsOperation) {
@@ -3583,7 +3645,7 @@ func (o *SetExcludeAPIsRequest) xxx_FromOp(ctx context.Context, op *xxx_SetExclu
 	o.ExcludeAPIs = op.ExcludeAPIs
 }
 func (o *SetExcludeAPIsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *SetExcludeAPIsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetExcludeAPIsOperation{}
@@ -3602,14 +3664,16 @@ type SetExcludeAPIsResponse struct {
 	Return int32 `idl:"name:Return" json:"return"`
 }
 
-func (o *SetExcludeAPIsResponse) xxx_ToOp(ctx context.Context) *xxx_SetExcludeAPIsOperation {
+func (o *SetExcludeAPIsResponse) xxx_ToOp(ctx context.Context, op *xxx_SetExcludeAPIsOperation) *xxx_SetExcludeAPIsOperation {
+	if op == nil {
+		op = &xxx_SetExcludeAPIsOperation{}
+	}
 	if o == nil {
-		return &xxx_SetExcludeAPIsOperation{}
+		return op
 	}
-	return &xxx_SetExcludeAPIsOperation{
-		That:   o.That,
-		Return: o.Return,
-	}
+	op.That = o.That
+	op.Return = o.Return
+	return op
 }
 
 func (o *SetExcludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetExcludeAPIsOperation) {
@@ -3620,7 +3684,7 @@ func (o *SetExcludeAPIsResponse) xxx_FromOp(ctx context.Context, op *xxx_SetExcl
 	o.Return = op.Return
 }
 func (o *SetExcludeAPIsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *SetExcludeAPIsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_SetExcludeAPIsOperation{}

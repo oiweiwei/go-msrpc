@@ -318,425 +318,733 @@ func DataCollectorSetServerHandle(ctx context.Context, o DataCollectorSetServer,
 	}
 	switch opNum {
 	case 7: // DataCollectors
-		in := &GetDataCollectorsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataCollectorsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataCollectors(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataCollectorsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataCollectors(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Duration
-		in := &GetDurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDuration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDuration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // Duration
-		in := &SetDurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDuration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDuration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // Description
-		in := &GetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // Description
-		in := &SetDescriptionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDescriptionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDescription(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDescriptionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDescription(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // DescriptionUnresolved
-		in := &GetDescriptionUnresolvedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDescriptionUnresolvedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDescriptionUnresolved(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDescriptionUnresolvedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDescriptionUnresolved(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // DisplayName
-		in := &GetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // DisplayName
-		in := &SetDisplayNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDisplayNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDisplayName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDisplayNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDisplayName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // DisplayNameUnresolved
-		in := &GetDisplayNameUnresolvedRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDisplayNameUnresolvedOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDisplayNameUnresolved(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDisplayNameUnresolvedRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDisplayNameUnresolved(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // Keywords
-		in := &GetKeywordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetKeywordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetKeywords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetKeywordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetKeywords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // Keywords
-		in := &SetKeywordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetKeywordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetKeywords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetKeywordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetKeywords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // LatestOutputLocation
-		in := &GetLatestOutputLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLatestOutputLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLatestOutputLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLatestOutputLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLatestOutputLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // LatestOutputLocation
-		in := &SetLatestOutputLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLatestOutputLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLatestOutputLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLatestOutputLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLatestOutputLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // Name
-		in := &GetNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // OutputLocation
-		in := &GetOutputLocationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOutputLocationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOutputLocation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOutputLocationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOutputLocation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // RootPath
-		in := &GetRootPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRootPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRootPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRootPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRootPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // RootPath
-		in := &SetRootPathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRootPathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRootPath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRootPathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRootPath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // Segment
-		in := &GetSegmentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSegmentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSegment(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSegmentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSegment(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // Segment
-		in := &SetSegmentRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSegmentOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSegment(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSegmentRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSegment(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // SegmentMaxDuration
-		in := &GetSegmentMaxDurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSegmentMaxDurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSegmentMaxDuration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSegmentMaxDurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSegmentMaxDuration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // SegmentMaxDuration
-		in := &SetSegmentMaxDurationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSegmentMaxDurationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSegmentMaxDuration(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSegmentMaxDurationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSegmentMaxDuration(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // SegmentMaxSize
-		in := &GetSegmentMaxSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSegmentMaxSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSegmentMaxSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSegmentMaxSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSegmentMaxSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // SegmentMaxSize
-		in := &SetSegmentMaxSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSegmentMaxSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSegmentMaxSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSegmentMaxSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSegmentMaxSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // SerialNumber
-		in := &GetSerialNumberRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSerialNumberOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSerialNumber(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSerialNumberRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSerialNumber(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // SerialNumber
-		in := &SetSerialNumberRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSerialNumberOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSerialNumber(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSerialNumberRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSerialNumber(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 32: // Server
-		in := &GetServerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetServerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetServer(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetServerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetServer(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // Status
-		in := &GetStatusRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStatusOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStatus(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStatusRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStatus(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // Subdirectory
-		in := &GetSubdirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubdirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubdirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubdirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubdirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // Subdirectory
-		in := &SetSubdirectoryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubdirectoryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubdirectory(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubdirectoryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubdirectory(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // SubdirectoryFormat
-		in := &GetSubdirectoryFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubdirectoryFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubdirectoryFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubdirectoryFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubdirectoryFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // SubdirectoryFormat
-		in := &SetSubdirectoryFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubdirectoryFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubdirectoryFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubdirectoryFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubdirectoryFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // SubdirectoryFormatPattern
-		in := &GetSubdirectoryFormatPatternRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSubdirectoryFormatPatternOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSubdirectoryFormatPattern(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSubdirectoryFormatPatternRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSubdirectoryFormatPattern(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // SubdirectoryFormatPattern
-		in := &SetSubdirectoryFormatPatternRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSubdirectoryFormatPatternOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSubdirectoryFormatPattern(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSubdirectoryFormatPatternRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSubdirectoryFormatPattern(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // Task
-		in := &GetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // Task
-		in := &SetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // TaskRunAsSelf
-		in := &GetTaskRunAsSelfRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskRunAsSelfOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskRunAsSelf(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskRunAsSelfRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskRunAsSelf(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // TaskRunAsSelf
-		in := &SetTaskRunAsSelfRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskRunAsSelfOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTaskRunAsSelf(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskRunAsSelfRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTaskRunAsSelf(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // TaskArguments
-		in := &GetTaskArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // TaskArguments
-		in := &SetTaskArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTaskArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTaskArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // TaskUserTextArguments
-		in := &GetTaskUserTextArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskUserTextArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskUserTextArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskUserTextArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskUserTextArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // TaskUserTextArguments
-		in := &SetTaskUserTextArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskUserTextArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTaskUserTextArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskUserTextArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTaskUserTextArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // Schedules
-		in := &GetSchedulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSchedulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSchedules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSchedulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSchedules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // SchedulesEnabled
-		in := &GetSchedulesEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSchedulesEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSchedulesEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSchedulesEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSchedulesEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 50: // SchedulesEnabled
-		in := &SetSchedulesEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSchedulesEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSchedulesEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSchedulesEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSchedulesEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 51: // UserAccount
-		in := &GetUserAccountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetUserAccountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetUserAccount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetUserAccountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetUserAccount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 52: // Xml
-		in := &GetXMLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetXMLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetXML(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetXMLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetXML(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 53: // Security
-		in := &GetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 54: // Security
-		in := &SetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 55: // StopOnCompletion
-		in := &GetStopOnCompletionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetStopOnCompletionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetStopOnCompletion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetStopOnCompletionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetStopOnCompletion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 56: // StopOnCompletion
-		in := &SetStopOnCompletionRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetStopOnCompletionOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetStopOnCompletion(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetStopOnCompletionRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetStopOnCompletion(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 57: // DataManager
-		in := &GetDataManagerRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataManagerOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataManager(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataManagerRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataManager(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 58: // SetCredentials
-		in := &SetCredentialsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCredentialsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCredentials(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCredentialsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCredentials(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 59: // Query
-		in := &QueryRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_QueryOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Query(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &QueryRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Query(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 60: // Commit
-		in := &CommitRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_CommitOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Commit(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &CommitRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Commit(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 61: // Delete
-		in := &DeleteRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_DeleteOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Delete(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &DeleteRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Delete(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 62: // Start
-		in := &StartRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StartOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Start(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StartRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Start(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 63: // Stop
-		in := &StopRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_StopOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Stop(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &StopRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Stop(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 64: // SetXml
-		in := &SetXMLRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetXMLOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetXML(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetXMLRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetXML(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 65: // SetValue
-		in := &SetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 66: // GetValue
-		in := &GetValueRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetValueOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetValue(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetValueRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetValue(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataCollectorSet
+type UnimplementedDataCollectorSetServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedDataCollectorSetServer) GetDataCollectors(context.Context, *GetDataCollectorsRequest) (*GetDataCollectorsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetDuration(context.Context, *GetDurationRequest) (*GetDurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetDuration(context.Context, *SetDurationRequest) (*SetDurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetDescription(context.Context, *GetDescriptionRequest) (*GetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetDescription(context.Context, *SetDescriptionRequest) (*SetDescriptionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetDescriptionUnresolved(context.Context, *GetDescriptionUnresolvedRequest) (*GetDescriptionUnresolvedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetDisplayName(context.Context, *GetDisplayNameRequest) (*GetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetDisplayName(context.Context, *SetDisplayNameRequest) (*SetDisplayNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetDisplayNameUnresolved(context.Context, *GetDisplayNameUnresolvedRequest) (*GetDisplayNameUnresolvedResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetKeywords(context.Context, *GetKeywordsRequest) (*GetKeywordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetKeywords(context.Context, *SetKeywordsRequest) (*SetKeywordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetLatestOutputLocation(context.Context, *GetLatestOutputLocationRequest) (*GetLatestOutputLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetLatestOutputLocation(context.Context, *SetLatestOutputLocationRequest) (*SetLatestOutputLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetName(context.Context, *GetNameRequest) (*GetNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetOutputLocation(context.Context, *GetOutputLocationRequest) (*GetOutputLocationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetRootPath(context.Context, *GetRootPathRequest) (*GetRootPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetRootPath(context.Context, *SetRootPathRequest) (*SetRootPathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSegment(context.Context, *GetSegmentRequest) (*GetSegmentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSegment(context.Context, *SetSegmentRequest) (*SetSegmentResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSegmentMaxDuration(context.Context, *GetSegmentMaxDurationRequest) (*GetSegmentMaxDurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSegmentMaxDuration(context.Context, *SetSegmentMaxDurationRequest) (*SetSegmentMaxDurationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSegmentMaxSize(context.Context, *GetSegmentMaxSizeRequest) (*GetSegmentMaxSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSegmentMaxSize(context.Context, *SetSegmentMaxSizeRequest) (*SetSegmentMaxSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSerialNumber(context.Context, *GetSerialNumberRequest) (*GetSerialNumberResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSerialNumber(context.Context, *SetSerialNumberRequest) (*SetSerialNumberResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetServer(context.Context, *GetServerRequest) (*GetServerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetStatus(context.Context, *GetStatusRequest) (*GetStatusResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSubdirectory(context.Context, *GetSubdirectoryRequest) (*GetSubdirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSubdirectory(context.Context, *SetSubdirectoryRequest) (*SetSubdirectoryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSubdirectoryFormat(context.Context, *GetSubdirectoryFormatRequest) (*GetSubdirectoryFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSubdirectoryFormat(context.Context, *SetSubdirectoryFormatRequest) (*SetSubdirectoryFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSubdirectoryFormatPattern(context.Context, *GetSubdirectoryFormatPatternRequest) (*GetSubdirectoryFormatPatternResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSubdirectoryFormatPattern(context.Context, *SetSubdirectoryFormatPatternRequest) (*SetSubdirectoryFormatPatternResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetTask(context.Context, *SetTaskRequest) (*SetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetTaskRunAsSelf(context.Context, *GetTaskRunAsSelfRequest) (*GetTaskRunAsSelfResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetTaskRunAsSelf(context.Context, *SetTaskRunAsSelfRequest) (*SetTaskRunAsSelfResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetTaskArguments(context.Context, *GetTaskArgumentsRequest) (*GetTaskArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetTaskArguments(context.Context, *SetTaskArgumentsRequest) (*SetTaskArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetTaskUserTextArguments(context.Context, *GetTaskUserTextArgumentsRequest) (*GetTaskUserTextArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetTaskUserTextArguments(context.Context, *SetTaskUserTextArgumentsRequest) (*SetTaskUserTextArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSchedules(context.Context, *GetSchedulesRequest) (*GetSchedulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSchedulesEnabled(context.Context, *GetSchedulesEnabledRequest) (*GetSchedulesEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSchedulesEnabled(context.Context, *SetSchedulesEnabledRequest) (*SetSchedulesEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetUserAccount(context.Context, *GetUserAccountRequest) (*GetUserAccountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetXML(context.Context, *GetXMLRequest) (*GetXMLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetStopOnCompletion(context.Context, *GetStopOnCompletionRequest) (*GetStopOnCompletionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetStopOnCompletion(context.Context, *SetStopOnCompletionRequest) (*SetStopOnCompletionResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetDataManager(context.Context, *GetDataManagerRequest) (*GetDataManagerResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetCredentials(context.Context, *SetCredentialsRequest) (*SetCredentialsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) Query(context.Context, *QueryRequest) (*QueryResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) Commit(context.Context, *CommitRequest) (*CommitResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) Delete(context.Context, *DeleteRequest) (*DeleteResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) Start(context.Context, *StartRequest) (*StartResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) Stop(context.Context, *StopRequest) (*StopResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetXML(context.Context, *SetXMLRequest) (*SetXMLResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) SetValue(context.Context, *SetValueRequest) (*SetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataCollectorSetServer) GetValue(context.Context, *GetValueRequest) (*GetValueResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataCollectorSetServer = (*UnimplementedDataCollectorSetServer)(nil)

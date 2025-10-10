@@ -145,180 +145,313 @@ func DataManagerServerHandle(ctx context.Context, o DataManagerServer, opNum int
 	}
 	switch opNum {
 	case 7: // Enabled
-		in := &GetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // Enabled
-		in := &SetEnabledRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEnabledOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEnabled(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEnabledRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEnabled(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // CheckBeforeRunning
-		in := &GetCheckBeforeRunningRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCheckBeforeRunningOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCheckBeforeRunning(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCheckBeforeRunningRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCheckBeforeRunning(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // CheckBeforeRunning
-		in := &SetCheckBeforeRunningRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCheckBeforeRunningOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCheckBeforeRunning(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCheckBeforeRunningRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCheckBeforeRunning(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // MinFreeDisk
-		in := &GetMinFreeDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMinFreeDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMinFreeDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMinFreeDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMinFreeDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // MinFreeDisk
-		in := &SetMinFreeDiskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMinFreeDiskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMinFreeDisk(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMinFreeDiskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMinFreeDisk(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 13: // MaxSize
-		in := &GetMaxSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMaxSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMaxSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMaxSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMaxSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 14: // MaxSize
-		in := &SetMaxSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMaxSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMaxSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMaxSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMaxSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 15: // MaxFolderCount
-		in := &GetMaxFolderCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMaxFolderCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMaxFolderCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMaxFolderCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMaxFolderCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 16: // MaxFolderCount
-		in := &SetMaxFolderCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetMaxFolderCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetMaxFolderCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetMaxFolderCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetMaxFolderCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 17: // ResourcePolicy
-		in := &GetResourcePolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetResourcePolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetResourcePolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetResourcePolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetResourcePolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 18: // ResourcePolicy
-		in := &SetResourcePolicyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetResourcePolicyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetResourcePolicy(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetResourcePolicyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetResourcePolicy(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 19: // FolderActions
-		in := &GetFolderActionsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFolderActionsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFolderActions(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFolderActionsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFolderActions(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 20: // ReportSchema
-		in := &GetReportSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReportSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReportSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 21: // ReportSchema
-		in := &SetReportSchemaRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetReportSchemaOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetReportSchema(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetReportSchemaRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetReportSchema(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 22: // ReportFileName
-		in := &GetReportFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetReportFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetReportFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetReportFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetReportFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 23: // ReportFileName
-		in := &SetReportFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetReportFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetReportFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetReportFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetReportFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 24: // RuleTargetFileName
-		in := &GetRuleTargetFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRuleTargetFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRuleTargetFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRuleTargetFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRuleTargetFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 25: // RuleTargetFileName
-		in := &SetRuleTargetFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRuleTargetFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRuleTargetFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRuleTargetFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRuleTargetFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 26: // EventsFileName
-		in := &GetEventsFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventsFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventsFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventsFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventsFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 27: // EventsFileName
-		in := &SetEventsFileNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventsFileNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventsFileName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventsFileNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventsFileName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 28: // Rules
-		in := &GetRulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 29: // Rules
-		in := &SetRulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 30: // Run
-		in := &RunRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_RunOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Run(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &RunRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Run(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 31: // Extract
-		in := &ExtractRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_ExtractOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Extract(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &ExtractRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Extract(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IDataManager
+type UnimplementedDataManagerServer struct {
+	idispatch.UnimplementedDispatchServer
+}
+
+func (UnimplementedDataManagerServer) GetEnabled(context.Context, *GetEnabledRequest) (*GetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetEnabled(context.Context, *SetEnabledRequest) (*SetEnabledResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetCheckBeforeRunning(context.Context, *GetCheckBeforeRunningRequest) (*GetCheckBeforeRunningResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetCheckBeforeRunning(context.Context, *SetCheckBeforeRunningRequest) (*SetCheckBeforeRunningResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetMinFreeDisk(context.Context, *GetMinFreeDiskRequest) (*GetMinFreeDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetMinFreeDisk(context.Context, *SetMinFreeDiskRequest) (*SetMinFreeDiskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetMaxSize(context.Context, *GetMaxSizeRequest) (*GetMaxSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetMaxSize(context.Context, *SetMaxSizeRequest) (*SetMaxSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetMaxFolderCount(context.Context, *GetMaxFolderCountRequest) (*GetMaxFolderCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetMaxFolderCount(context.Context, *SetMaxFolderCountRequest) (*SetMaxFolderCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetResourcePolicy(context.Context, *GetResourcePolicyRequest) (*GetResourcePolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetResourcePolicy(context.Context, *SetResourcePolicyRequest) (*SetResourcePolicyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetFolderActions(context.Context, *GetFolderActionsRequest) (*GetFolderActionsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetReportSchema(context.Context, *GetReportSchemaRequest) (*GetReportSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetReportSchema(context.Context, *SetReportSchemaRequest) (*SetReportSchemaResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetReportFileName(context.Context, *GetReportFileNameRequest) (*GetReportFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetReportFileName(context.Context, *SetReportFileNameRequest) (*SetReportFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetRuleTargetFileName(context.Context, *GetRuleTargetFileNameRequest) (*GetRuleTargetFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetRuleTargetFileName(context.Context, *SetRuleTargetFileNameRequest) (*SetRuleTargetFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetEventsFileName(context.Context, *GetEventsFileNameRequest) (*GetEventsFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetEventsFileName(context.Context, *SetEventsFileNameRequest) (*SetEventsFileNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) GetRules(context.Context, *GetRulesRequest) (*GetRulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) SetRules(context.Context, *SetRulesRequest) (*SetRulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) Run(context.Context, *RunRequest) (*RunResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedDataManagerServer) Extract(context.Context, *ExtractRequest) (*ExtractResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ DataManagerServer = (*UnimplementedDataManagerServer)(nil)

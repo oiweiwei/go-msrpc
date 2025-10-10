@@ -103,131 +103,229 @@ func ConfigurationDataCollectorServerHandle(ctx context.Context, o Configuration
 	}
 	switch opNum {
 	case 32: // FileMaxCount
-		in := &GetFileMaxCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileMaxCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileMaxCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileMaxCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileMaxCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // FileMaxCount
-		in := &SetFileMaxCountRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileMaxCountOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileMaxCount(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileMaxCountRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileMaxCount(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // FileMaxRecursiveDepth
-		in := &GetFileMaxRecursiveDepthRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileMaxRecursiveDepthOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileMaxRecursiveDepth(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileMaxRecursiveDepthRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileMaxRecursiveDepth(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // FileMaxRecursiveDepth
-		in := &SetFileMaxRecursiveDepthRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileMaxRecursiveDepthOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileMaxRecursiveDepth(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileMaxRecursiveDepthRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileMaxRecursiveDepth(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // FileMaxTotalSize
-		in := &GetFileMaxTotalSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFileMaxTotalSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFileMaxTotalSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFileMaxTotalSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFileMaxTotalSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // FileMaxTotalSize
-		in := &SetFileMaxTotalSizeRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFileMaxTotalSizeOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFileMaxTotalSize(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFileMaxTotalSizeRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFileMaxTotalSize(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // Files
-		in := &GetFilesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetFilesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetFiles(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetFilesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetFiles(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // Files
-		in := &SetFilesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetFilesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetFiles(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetFilesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetFiles(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // ManagementQueries
-		in := &GetManagementQueriesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetManagementQueriesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetManagementQueries(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetManagementQueriesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetManagementQueries(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // ManagementQueries
-		in := &SetManagementQueriesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetManagementQueriesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetManagementQueries(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetManagementQueriesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetManagementQueries(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // QueryNetworkAdapters
-		in := &GetQueryNetworkAdaptersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetQueryNetworkAdaptersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetQueryNetworkAdapters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetQueryNetworkAdaptersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetQueryNetworkAdapters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // QueryNetworkAdapters
-		in := &SetQueryNetworkAdaptersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetQueryNetworkAdaptersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetQueryNetworkAdapters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetQueryNetworkAdaptersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetQueryNetworkAdapters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // RegistryKeys
-		in := &GetRegistryKeysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRegistryKeysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRegistryKeys(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRegistryKeysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRegistryKeys(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // RegistryKeys
-		in := &SetRegistryKeysRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRegistryKeysOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRegistryKeys(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRegistryKeysRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRegistryKeys(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // RegistryMaxRecursiveDepth
-		in := &GetRegistryMaxRecursiveDepthRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetRegistryMaxRecursiveDepthOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetRegistryMaxRecursiveDepth(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetRegistryMaxRecursiveDepthRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetRegistryMaxRecursiveDepth(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // RegistryMaxRecursiveDepth
-		in := &SetRegistryMaxRecursiveDepthRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetRegistryMaxRecursiveDepthOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetRegistryMaxRecursiveDepth(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetRegistryMaxRecursiveDepthRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetRegistryMaxRecursiveDepth(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 48: // SystemStateFile
-		in := &GetSystemStateFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSystemStateFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSystemStateFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSystemStateFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSystemStateFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 49: // SystemStateFile
-		in := &SetSystemStateFileRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSystemStateFileOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSystemStateFile(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSystemStateFileRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSystemStateFile(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IConfigurationDataCollector
+type UnimplementedConfigurationDataCollectorServer struct {
+	idatacollector.UnimplementedDataCollectorServer
+}
+
+func (UnimplementedConfigurationDataCollectorServer) GetFileMaxCount(context.Context, *GetFileMaxCountRequest) (*GetFileMaxCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetFileMaxCount(context.Context, *SetFileMaxCountRequest) (*SetFileMaxCountResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetFileMaxRecursiveDepth(context.Context, *GetFileMaxRecursiveDepthRequest) (*GetFileMaxRecursiveDepthResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetFileMaxRecursiveDepth(context.Context, *SetFileMaxRecursiveDepthRequest) (*SetFileMaxRecursiveDepthResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetFileMaxTotalSize(context.Context, *GetFileMaxTotalSizeRequest) (*GetFileMaxTotalSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetFileMaxTotalSize(context.Context, *SetFileMaxTotalSizeRequest) (*SetFileMaxTotalSizeResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetFiles(context.Context, *GetFilesRequest) (*GetFilesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetFiles(context.Context, *SetFilesRequest) (*SetFilesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetManagementQueries(context.Context, *GetManagementQueriesRequest) (*GetManagementQueriesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetManagementQueries(context.Context, *SetManagementQueriesRequest) (*SetManagementQueriesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetQueryNetworkAdapters(context.Context, *GetQueryNetworkAdaptersRequest) (*GetQueryNetworkAdaptersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetQueryNetworkAdapters(context.Context, *SetQueryNetworkAdaptersRequest) (*SetQueryNetworkAdaptersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetRegistryKeys(context.Context, *GetRegistryKeysRequest) (*GetRegistryKeysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetRegistryKeys(context.Context, *SetRegistryKeysRequest) (*SetRegistryKeysResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetRegistryMaxRecursiveDepth(context.Context, *GetRegistryMaxRecursiveDepthRequest) (*GetRegistryMaxRecursiveDepthResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetRegistryMaxRecursiveDepth(context.Context, *SetRegistryMaxRecursiveDepthRequest) (*SetRegistryMaxRecursiveDepthResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) GetSystemStateFile(context.Context, *GetSystemStateFileRequest) (*GetSystemStateFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedConfigurationDataCollectorServer) SetSystemStateFile(context.Context, *SetSystemStateFileRequest) (*SetSystemStateFileResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ ConfigurationDataCollectorServer = (*UnimplementedConfigurationDataCollectorServer)(nil)

@@ -93,75 +93,133 @@ func OCSPAdminDServerHandle(ctx context.Context, o OCSPAdminDServer, opNum int, 
 	}
 	switch opNum {
 	case 3: // GetOCSPProperty
-		in := &GetOCSPPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetOCSPPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetOCSPProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetOCSPPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetOCSPProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 4: // SetOCSPProperty
-		in := &SetOCSPPropertyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetOCSPPropertyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetOCSPProperty(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetOCSPPropertyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetOCSPProperty(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 5: // GetCAConfigInformation
-		in := &GetCAConfigInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetCAConfigInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetCAConfigInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetCAConfigInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetCAConfigInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 6: // SetCAConfigInformation
-		in := &SetCAConfigInformationRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetCAConfigInformationOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetCAConfigInformation(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetCAConfigInformationRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetCAConfigInformation(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 7: // GetSecurity
-		in := &GetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 8: // SetSecurity
-		in := &SetSecurityRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSecurityOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSecurity(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSecurityRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSecurity(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 9: // GetSigningCertificates
-		in := &GetSigningCertificatesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSigningCertificatesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSigningCertificates(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSigningCertificatesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSigningCertificates(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 10: // GetHashAlgorithms
-		in := &GetHashAlgorithmsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetHashAlgorithmsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetHashAlgorithms(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetHashAlgorithmsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetHashAlgorithms(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 11: // GetMyRoles
-		in := &GetMyRolesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetMyRolesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetMyRoles(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetMyRolesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetMyRoles(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 12: // Ping
-		in := &PingRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_PingOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.Ping(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &PingRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.Ping(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IOCSPAdminD
+type UnimplementedOCSPAdminDServer struct {
+	iunknown.UnimplementedUnknownServer
+}
+
+func (UnimplementedOCSPAdminDServer) GetOCSPProperty(context.Context, *GetOCSPPropertyRequest) (*GetOCSPPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) SetOCSPProperty(context.Context, *SetOCSPPropertyRequest) (*SetOCSPPropertyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) GetCAConfigInformation(context.Context, *GetCAConfigInformationRequest) (*GetCAConfigInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) SetCAConfigInformation(context.Context, *SetCAConfigInformationRequest) (*SetCAConfigInformationResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) GetSecurity(context.Context, *GetSecurityRequest) (*GetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) SetSecurity(context.Context, *SetSecurityRequest) (*SetSecurityResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) GetSigningCertificates(context.Context, *GetSigningCertificatesRequest) (*GetSigningCertificatesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) GetHashAlgorithms(context.Context, *GetHashAlgorithmsRequest) (*GetHashAlgorithmsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) GetMyRoles(context.Context, *GetMyRolesRequest) (*GetMyRolesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedOCSPAdminDServer) Ping(context.Context, *PingRequest) (*PingResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ OCSPAdminDServer = (*UnimplementedOCSPAdminDServer)(nil)

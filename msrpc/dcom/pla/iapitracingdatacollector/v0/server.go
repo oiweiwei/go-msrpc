@@ -91,103 +91,181 @@ func APITracingDataCollectorServerHandle(ctx context.Context, o APITracingDataCo
 	}
 	switch opNum {
 	case 32: // LogApiNamesOnly
-		in := &GetLogAPINamesOnlyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogAPINamesOnlyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogAPINamesOnly(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogAPINamesOnlyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogAPINamesOnly(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // LogApiNamesOnly
-		in := &SetLogAPINamesOnlyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogAPINamesOnlyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogAPINamesOnly(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogAPINamesOnlyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogAPINamesOnly(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // LogApisRecursively
-		in := &GetLogAPIsRecursivelyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogAPIsRecursivelyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogAPIsRecursively(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogAPIsRecursivelyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogAPIsRecursively(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // LogApisRecursively
-		in := &SetLogAPIsRecursivelyRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogAPIsRecursivelyOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogAPIsRecursively(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogAPIsRecursivelyRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogAPIsRecursively(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // ExePath
-		in := &GetExePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // ExePath
-		in := &SetExePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // LogFilePath
-		in := &GetLogFilePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogFilePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogFilePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogFilePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogFilePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // LogFilePath
-		in := &SetLogFilePathRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogFilePathOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogFilePath(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogFilePathRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogFilePath(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // IncludeModules
-		in := &GetIncludeModulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIncludeModulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIncludeModules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIncludeModulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIncludeModules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // IncludeModules
-		in := &SetIncludeModulesRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetIncludeModulesOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetIncludeModules(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetIncludeModulesRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetIncludeModules(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // IncludeApis
-		in := &GetIncludeAPIsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetIncludeAPIsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetIncludeAPIs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetIncludeAPIsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetIncludeAPIs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // IncludeApis
-		in := &SetIncludeAPIsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetIncludeAPIsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetIncludeAPIs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetIncludeAPIsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetIncludeAPIs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // ExcludeApis
-		in := &GetExcludeAPIsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetExcludeAPIsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetExcludeAPIs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetExcludeAPIsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetExcludeAPIs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // ExcludeApis
-		in := &SetExcludeAPIsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetExcludeAPIsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetExcludeAPIs(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetExcludeAPIsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetExcludeAPIs(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IApiTracingDataCollector
+type UnimplementedAPITracingDataCollectorServer struct {
+	idatacollector.UnimplementedDataCollectorServer
+}
+
+func (UnimplementedAPITracingDataCollectorServer) GetLogAPINamesOnly(context.Context, *GetLogAPINamesOnlyRequest) (*GetLogAPINamesOnlyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetLogAPINamesOnly(context.Context, *SetLogAPINamesOnlyRequest) (*SetLogAPINamesOnlyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) GetLogAPIsRecursively(context.Context, *GetLogAPIsRecursivelyRequest) (*GetLogAPIsRecursivelyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetLogAPIsRecursively(context.Context, *SetLogAPIsRecursivelyRequest) (*SetLogAPIsRecursivelyResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) GetExePath(context.Context, *GetExePathRequest) (*GetExePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetExePath(context.Context, *SetExePathRequest) (*SetExePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) GetLogFilePath(context.Context, *GetLogFilePathRequest) (*GetLogFilePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetLogFilePath(context.Context, *SetLogFilePathRequest) (*SetLogFilePathResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) GetIncludeModules(context.Context, *GetIncludeModulesRequest) (*GetIncludeModulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetIncludeModules(context.Context, *SetIncludeModulesRequest) (*SetIncludeModulesResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) GetIncludeAPIs(context.Context, *GetIncludeAPIsRequest) (*GetIncludeAPIsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetIncludeAPIs(context.Context, *SetIncludeAPIsRequest) (*SetIncludeAPIsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) GetExcludeAPIs(context.Context, *GetExcludeAPIsRequest) (*GetExcludeAPIsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAPITracingDataCollectorServer) SetExcludeAPIs(context.Context, *SetExcludeAPIsRequest) (*SetExcludeAPIsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ APITracingDataCollectorServer = (*UnimplementedAPITracingDataCollectorServer)(nil)

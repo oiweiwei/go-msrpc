@@ -97,117 +97,205 @@ func AlertDataCollectorServerHandle(ctx context.Context, o AlertDataCollectorSer
 	}
 	switch opNum {
 	case 32: // AlertThresholds
-		in := &GetAlertThresholdsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetAlertThresholdsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetAlertThresholds(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetAlertThresholdsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetAlertThresholds(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // AlertThresholds
-		in := &SetAlertThresholdsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetAlertThresholdsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetAlertThresholds(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetAlertThresholdsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetAlertThresholds(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // EventLog
-		in := &GetEventLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetEventLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetEventLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetEventLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetEventLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // EventLog
-		in := &SetEventLogRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetEventLogOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetEventLog(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetEventLogRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetEventLog(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // SampleInterval
-		in := &GetSampleIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSampleIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSampleInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSampleIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSampleInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // SampleInterval
-		in := &SetSampleIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSampleIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSampleInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSampleIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSampleInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // Task
-		in := &GetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // Task
-		in := &SetTaskRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTask(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTask(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // TaskRunAsSelf
-		in := &GetTaskRunAsSelfRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskRunAsSelfOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskRunAsSelf(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskRunAsSelfRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskRunAsSelf(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // TaskRunAsSelf
-		in := &SetTaskRunAsSelfRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskRunAsSelfOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTaskRunAsSelf(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskRunAsSelfRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTaskRunAsSelf(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 42: // TaskArguments
-		in := &GetTaskArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 43: // TaskArguments
-		in := &SetTaskArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTaskArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTaskArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 44: // TaskUserTextArguments
-		in := &GetTaskUserTextArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTaskUserTextArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTaskUserTextArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTaskUserTextArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTaskUserTextArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 45: // TaskUserTextArguments
-		in := &SetTaskUserTextArgumentsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTaskUserTextArgumentsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTaskUserTextArguments(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTaskUserTextArgumentsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTaskUserTextArguments(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 46: // TriggerDataCollectorSet
-		in := &GetTriggerDataCollectorSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetTriggerDataCollectorSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetTriggerDataCollectorSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetTriggerDataCollectorSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetTriggerDataCollectorSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 47: // TriggerDataCollectorSet
-		in := &SetTriggerDataCollectorSetRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetTriggerDataCollectorSetOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetTriggerDataCollectorSet(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetTriggerDataCollectorSetRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetTriggerDataCollectorSet(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IAlertDataCollector
+type UnimplementedAlertDataCollectorServer struct {
+	idatacollector.UnimplementedDataCollectorServer
+}
+
+func (UnimplementedAlertDataCollectorServer) GetAlertThresholds(context.Context, *GetAlertThresholdsRequest) (*GetAlertThresholdsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetAlertThresholds(context.Context, *SetAlertThresholdsRequest) (*SetAlertThresholdsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetEventLog(context.Context, *GetEventLogRequest) (*GetEventLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetEventLog(context.Context, *SetEventLogRequest) (*SetEventLogResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetSampleInterval(context.Context, *GetSampleIntervalRequest) (*GetSampleIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetSampleInterval(context.Context, *SetSampleIntervalRequest) (*SetSampleIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetTask(context.Context, *GetTaskRequest) (*GetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetTask(context.Context, *SetTaskRequest) (*SetTaskResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetTaskRunAsSelf(context.Context, *GetTaskRunAsSelfRequest) (*GetTaskRunAsSelfResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetTaskRunAsSelf(context.Context, *SetTaskRunAsSelfRequest) (*SetTaskRunAsSelfResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetTaskArguments(context.Context, *GetTaskArgumentsRequest) (*GetTaskArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetTaskArguments(context.Context, *SetTaskArgumentsRequest) (*SetTaskArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetTaskUserTextArguments(context.Context, *GetTaskUserTextArgumentsRequest) (*GetTaskUserTextArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetTaskUserTextArguments(context.Context, *SetTaskUserTextArgumentsRequest) (*SetTaskUserTextArgumentsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) GetTriggerDataCollectorSet(context.Context, *GetTriggerDataCollectorSetRequest) (*GetTriggerDataCollectorSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedAlertDataCollectorServer) SetTriggerDataCollectorSet(context.Context, *SetTriggerDataCollectorSetRequest) (*SetTriggerDataCollectorSetResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ AlertDataCollectorServer = (*UnimplementedAlertDataCollectorServer)(nil)

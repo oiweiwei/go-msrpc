@@ -61,6 +61,14 @@ func (p *Generator) GoInterfaceTypeName(ctx context.Context, iff *midl.Interface
 	return n
 }
 
+func (p *Generator) GoScopeTypeNameWithN(ctx context.Context, attr *midl.TypeAttr, field *midl.Field, scopes *Scopes, trim bool, n ...string) string {
+	t := p.GoTypeName(ctx, attr, field, scopes, n...)
+	if trim {
+		return strings.TrimLeft(t, "*")
+	}
+	return t
+}
+
 func (p *Generator) GoScopeTypeName(ctx context.Context, attr *midl.TypeAttr, field *midl.Field, scopes *Scopes, trim ...bool) string {
 	n := p.GoTypeName(ctx, attr, field, scopes)
 	if len(trim) > 0 {
@@ -69,15 +77,15 @@ func (p *Generator) GoScopeTypeName(ctx context.Context, attr *midl.TypeAttr, fi
 	return n
 }
 
-func (p *Generator) GoFieldTypeName(ctx context.Context, attr *midl.TypeAttr, field *midl.Field) string {
-	return p.GoTypeName(ctx, attr, field, NewScopes(field.Scopes()))
+func (p *Generator) GoFieldTypeName(ctx context.Context, attr *midl.TypeAttr, field *midl.Field, n ...string) string {
+	return p.GoTypeName(ctx, attr, field, NewScopes(field.Scopes()), n...)
 }
 
 func (p *Generator) EmbeddedTypeName(ctx context.Context, attrs *midl.TypeAttr, field *midl.Field) string {
 	return GoName(attrs.Alias) + "_" + GoFieldName(field)
 }
 
-func (p *Generator) GoTypeName(ctx context.Context, attrs *midl.TypeAttr, field *midl.Field, scopes *Scopes) string {
+func (p *Generator) GoTypeName(ctx context.Context, attrs *midl.TypeAttr, field *midl.Field, scopes *Scopes, n ...string) string {
 
 	var ret string
 
@@ -130,7 +138,7 @@ go_type_name_loop:
 
 		// constructed (exported type) type.
 
-		if !scopes.Is(midl.TypeEnum) {
+		if !scopes.Is(midl.TypeEnum) && !scopes.Is(midl.TypePipe) {
 			// always with pointer.
 			ret += "*"
 		}
@@ -154,7 +162,11 @@ go_type_name_loop:
 		ret = strings.ReplaceAll(ret, "uint8", "byte")
 	}
 
-	return ret
+	if strings.Contains(ret, ".") {
+		return strings.ReplaceAll(ret, ".", "."+strings.Join(n, ""))
+	}
+
+	return strings.Join(n, "") + ret
 }
 
 func (p *Generator) GoPackageName(ctx context.Context, scopes *Scopes) string {

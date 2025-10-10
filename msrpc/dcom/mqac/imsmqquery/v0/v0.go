@@ -1,0 +1,828 @@
+package imsmqquery
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
+	mqac "github.com/oiweiwei/go-msrpc/msrpc/dcom/mqac"
+	oaut "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut"
+	idispatch "github.com/oiweiwei/go-msrpc/msrpc/dcom/oaut/idispatch/v0"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = (*errors.Error)(nil)
+	_ = dcom.GoPackage
+	_ = idispatch.GoPackage
+	_ = oaut.GoPackage
+	_ = mqac.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "dcom/mqac"
+)
+
+var (
+	// IMSMQQuery interface identifier d7d6e072-dccd-11d0-aa4b-0060970debae
+	ImsmqQueryIID = &dcom.IID{Data1: 0xd7d6e072, Data2: 0xdccd, Data3: 0x11d0, Data4: []byte{0xaa, 0x4b, 0x00, 0x60, 0x97, 0x0d, 0xeb, 0xae}}
+	// Syntax UUID
+	ImsmqQuerySyntaxUUID = &uuid.UUID{TimeLow: 0xd7d6e072, TimeMid: 0xdccd, TimeHiAndVersion: 0x11d0, ClockSeqHiAndReserved: 0xaa, ClockSeqLow: 0x4b, Node: [6]uint8{0x0, 0x60, 0x97, 0xd, 0xeb, 0xae}}
+	// Syntax ID
+	ImsmqQuerySyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: ImsmqQuerySyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+)
+
+// IMSMQQuery interface.
+type ImsmqQueryClient interface {
+
+	// IDispatch retrieval method.
+	Dispatch() idispatch.DispatchClient
+
+	// LookupQueue operation.
+	LookupQueue(context.Context, *LookupQueueRequest, ...dcerpc.CallOption) (*LookupQueueResponse, error)
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
+	// IPID sets the object interface identifier.
+	IPID(context.Context, *dcom.IPID) ImsmqQueryClient
+}
+
+type xxx_DefaultImsmqQueryClient struct {
+	idispatch.DispatchClient
+	cc   dcerpc.Conn
+	ipid *dcom.IPID
+}
+
+func (o *xxx_DefaultImsmqQueryClient) Dispatch() idispatch.DispatchClient {
+	return o.DispatchClient
+}
+
+func (o *xxx_DefaultImsmqQueryClient) LookupQueue(ctx context.Context, in *LookupQueueRequest, opts ...dcerpc.CallOption) (*LookupQueueResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &LookupQueueResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultImsmqQueryClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultImsmqQueryClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func (o *xxx_DefaultImsmqQueryClient) IPID(ctx context.Context, ipid *dcom.IPID) ImsmqQueryClient {
+	if ipid == nil {
+		ipid = &dcom.IPID{}
+	}
+	return &xxx_DefaultImsmqQueryClient{
+		DispatchClient: o.DispatchClient.IPID(ctx, ipid),
+		cc:             o.cc,
+		ipid:           ipid,
+	}
+}
+
+func NewImsmqQueryClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (ImsmqQueryClient, error) {
+	var err error
+	if !dcom.IsSuperclass(opts) {
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(ImsmqQuerySyntaxV0_0))...)
+		if err != nil {
+			return nil, err
+		}
+	}
+	base, err := idispatch.NewDispatchClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	if err != nil {
+		return nil, err
+	}
+	ipid, ok := dcom.HasIPID(opts)
+	if ok {
+		base = base.IPID(ctx, ipid)
+	}
+	return &xxx_DefaultImsmqQueryClient{
+		DispatchClient: base,
+		cc:             cc,
+		ipid:           ipid,
+	}, nil
+}
+
+// xxx_LookupQueueOperation structure represents the LookupQueue operation
+type xxx_LookupQueueOperation struct {
+	This                *dcom.ORPCThis        `idl:"name:This" json:"this"`
+	That                *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	QueueGUID           *oaut.Variant         `idl:"name:QueueGuid" json:"queue_guid"`
+	ServiceTypeGUID     *oaut.Variant         `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
+	Label               *oaut.Variant         `idl:"name:Label" json:"label"`
+	CreateTime          *oaut.Variant         `idl:"name:CreateTime" json:"create_time"`
+	ModifyTime          *oaut.Variant         `idl:"name:ModifyTime" json:"modify_time"`
+	RelationServiceType *oaut.Variant         `idl:"name:RelServiceType" json:"relation_service_type"`
+	RelationLabel       *oaut.Variant         `idl:"name:RelLabel" json:"relation_label"`
+	RelationCreateTime  *oaut.Variant         `idl:"name:RelCreateTime" json:"relation_create_time"`
+	RelationModifyTime  *oaut.Variant         `idl:"name:RelModifyTime" json:"relation_modify_time"`
+	Ppqinfos            *mqac.ImsmqQueueInfos `idl:"name:ppqinfos" json:"ppqinfos"`
+	Return              int32                 `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_LookupQueueOperation) OpNum() int { return 7 }
+
+func (o *xxx_LookupQueueOperation) OpName() string { return "/IMSMQQuery/v0/LookupQueue" }
+
+func (o *xxx_LookupQueueOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LookupQueueOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// QueueGuid {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.QueueGUID != nil {
+			_ptr_QueueGuid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.QueueGUID != nil {
+					if err := o.QueueGUID.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.QueueGUID, _ptr_QueueGuid); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// ServiceTypeGuid {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.ServiceTypeGUID != nil {
+			_ptr_ServiceTypeGuid := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ServiceTypeGUID != nil {
+					if err := o.ServiceTypeGUID.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ServiceTypeGUID, _ptr_ServiceTypeGuid); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Label {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.Label != nil {
+			_ptr_Label := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Label != nil {
+					if err := o.Label.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Label, _ptr_Label); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// CreateTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.CreateTime != nil {
+			_ptr_CreateTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.CreateTime != nil {
+					if err := o.CreateTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.CreateTime, _ptr_CreateTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// ModifyTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.ModifyTime != nil {
+			_ptr_ModifyTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ModifyTime != nil {
+					if err := o.ModifyTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ModifyTime, _ptr_ModifyTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelServiceType {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.RelationServiceType != nil {
+			_ptr_RelServiceType := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.RelationServiceType != nil {
+					if err := o.RelationServiceType.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RelationServiceType, _ptr_RelServiceType); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelLabel {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.RelationLabel != nil {
+			_ptr_RelLabel := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.RelationLabel != nil {
+					if err := o.RelationLabel.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RelationLabel, _ptr_RelLabel); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelCreateTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.RelationCreateTime != nil {
+			_ptr_RelCreateTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.RelationCreateTime != nil {
+					if err := o.RelationCreateTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RelationCreateTime, _ptr_RelCreateTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelModifyTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		if o.RelationModifyTime != nil {
+			_ptr_RelModifyTime := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.RelationModifyTime != nil {
+					if err := o.RelationModifyTime.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&oaut.Variant{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.RelationModifyTime, _ptr_RelModifyTime); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LookupQueueOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// QueueGuid {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_QueueGuid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.QueueGUID == nil {
+				o.QueueGUID = &oaut.Variant{}
+			}
+			if err := o.QueueGUID.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_QueueGuid := func(ptr interface{}) { o.QueueGUID = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.QueueGUID, _s_QueueGuid, _ptr_QueueGuid); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// ServiceTypeGuid {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_ServiceTypeGuid := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ServiceTypeGUID == nil {
+				o.ServiceTypeGUID = &oaut.Variant{}
+			}
+			if err := o.ServiceTypeGUID.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ServiceTypeGuid := func(ptr interface{}) { o.ServiceTypeGUID = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.ServiceTypeGUID, _s_ServiceTypeGuid, _ptr_ServiceTypeGuid); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Label {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_Label := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Label == nil {
+				o.Label = &oaut.Variant{}
+			}
+			if err := o.Label.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_Label := func(ptr interface{}) { o.Label = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.Label, _s_Label, _ptr_Label); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// CreateTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_CreateTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.CreateTime == nil {
+				o.CreateTime = &oaut.Variant{}
+			}
+			if err := o.CreateTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_CreateTime := func(ptr interface{}) { o.CreateTime = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.CreateTime, _s_CreateTime, _ptr_CreateTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// ModifyTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_ModifyTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ModifyTime == nil {
+				o.ModifyTime = &oaut.Variant{}
+			}
+			if err := o.ModifyTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ModifyTime := func(ptr interface{}) { o.ModifyTime = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.ModifyTime, _s_ModifyTime, _ptr_ModifyTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelServiceType {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_RelServiceType := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.RelationServiceType == nil {
+				o.RelationServiceType = &oaut.Variant{}
+			}
+			if err := o.RelationServiceType.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_RelServiceType := func(ptr interface{}) { o.RelationServiceType = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.RelationServiceType, _s_RelServiceType, _ptr_RelServiceType); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelLabel {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_RelLabel := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.RelationLabel == nil {
+				o.RelationLabel = &oaut.Variant{}
+			}
+			if err := o.RelationLabel.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_RelLabel := func(ptr interface{}) { o.RelationLabel = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.RelationLabel, _s_RelLabel, _ptr_RelLabel); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelCreateTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_RelCreateTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.RelationCreateTime == nil {
+				o.RelationCreateTime = &oaut.Variant{}
+			}
+			if err := o.RelationCreateTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_RelCreateTime := func(ptr interface{}) { o.RelationCreateTime = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.RelationCreateTime, _s_RelCreateTime, _ptr_RelCreateTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// RelModifyTime {in, optional} (1:{pointer=ref}*(2))(2:{alias=VARIANT,pointer=ref}*(1))(3:{alias=_VARIANT}(struct))
+	{
+		_ptr_RelModifyTime := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.RelationModifyTime == nil {
+				o.RelationModifyTime = &oaut.Variant{}
+			}
+			if err := o.RelationModifyTime.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_RelModifyTime := func(ptr interface{}) { o.RelationModifyTime = *ptr.(**oaut.Variant) }
+		if err := w.ReadPointer(&o.RelationModifyTime, _s_RelModifyTime, _ptr_RelModifyTime); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LookupQueueOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LookupQueueOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// ppqinfos {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfos}(interface))
+	{
+		if o.Ppqinfos != nil {
+			_ptr_ppqinfos := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.Ppqinfos != nil {
+					if err := o.Ppqinfos.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&mqac.ImsmqQueueInfos{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.Ppqinfos, _ptr_ppqinfos); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_LookupQueueOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// ppqinfos {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IMSMQQueueInfos}(interface))
+	{
+		_ptr_ppqinfos := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.Ppqinfos == nil {
+				o.Ppqinfos = &mqac.ImsmqQueueInfos{}
+			}
+			if err := o.Ppqinfos.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_ppqinfos := func(ptr interface{}) { o.Ppqinfos = *ptr.(**mqac.ImsmqQueueInfos) }
+		if err := w.ReadPointer(&o.Ppqinfos, _s_ppqinfos, _ptr_ppqinfos); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// LookupQueueRequest structure represents the LookupQueue operation request
+type LookupQueueRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This                *dcom.ORPCThis `idl:"name:This" json:"this"`
+	QueueGUID           *oaut.Variant  `idl:"name:QueueGuid" json:"queue_guid"`
+	ServiceTypeGUID     *oaut.Variant  `idl:"name:ServiceTypeGuid" json:"service_type_guid"`
+	Label               *oaut.Variant  `idl:"name:Label" json:"label"`
+	CreateTime          *oaut.Variant  `idl:"name:CreateTime" json:"create_time"`
+	ModifyTime          *oaut.Variant  `idl:"name:ModifyTime" json:"modify_time"`
+	RelationServiceType *oaut.Variant  `idl:"name:RelServiceType" json:"relation_service_type"`
+	RelationLabel       *oaut.Variant  `idl:"name:RelLabel" json:"relation_label"`
+	RelationCreateTime  *oaut.Variant  `idl:"name:RelCreateTime" json:"relation_create_time"`
+	RelationModifyTime  *oaut.Variant  `idl:"name:RelModifyTime" json:"relation_modify_time"`
+}
+
+func (o *LookupQueueRequest) xxx_ToOp(ctx context.Context, op *xxx_LookupQueueOperation) *xxx_LookupQueueOperation {
+	if op == nil {
+		op = &xxx_LookupQueueOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	op.QueueGUID = o.QueueGUID
+	op.ServiceTypeGUID = o.ServiceTypeGUID
+	op.Label = o.Label
+	op.CreateTime = o.CreateTime
+	op.ModifyTime = o.ModifyTime
+	op.RelationServiceType = o.RelationServiceType
+	op.RelationLabel = o.RelationLabel
+	op.RelationCreateTime = o.RelationCreateTime
+	op.RelationModifyTime = o.RelationModifyTime
+	return op
+}
+
+func (o *LookupQueueRequest) xxx_FromOp(ctx context.Context, op *xxx_LookupQueueOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+	o.QueueGUID = op.QueueGUID
+	o.ServiceTypeGUID = op.ServiceTypeGUID
+	o.Label = op.Label
+	o.CreateTime = op.CreateTime
+	o.ModifyTime = op.ModifyTime
+	o.RelationServiceType = op.RelationServiceType
+	o.RelationLabel = op.RelationLabel
+	o.RelationCreateTime = op.RelationCreateTime
+	o.RelationModifyTime = op.RelationModifyTime
+}
+func (o *LookupQueueRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *LookupQueueRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_LookupQueueOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// LookupQueueResponse structure represents the LookupQueue operation response
+type LookupQueueResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That     *dcom.ORPCThat        `idl:"name:That" json:"that"`
+	Ppqinfos *mqac.ImsmqQueueInfos `idl:"name:ppqinfos" json:"ppqinfos"`
+	// Return: The LookupQueue return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *LookupQueueResponse) xxx_ToOp(ctx context.Context, op *xxx_LookupQueueOperation) *xxx_LookupQueueOperation {
+	if op == nil {
+		op = &xxx_LookupQueueOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.Ppqinfos = o.Ppqinfos
+	op.Return = o.Return
+	return op
+}
+
+func (o *LookupQueueResponse) xxx_FromOp(ctx context.Context, op *xxx_LookupQueueOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.Ppqinfos = op.Ppqinfos
+	o.Return = op.Return
+}
+func (o *LookupQueueResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *LookupQueueResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_LookupQueueOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}

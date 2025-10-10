@@ -1,0 +1,836 @@
+package iupdate2
+
+import (
+	"context"
+	"fmt"
+	"strings"
+	"unicode/utf16"
+
+	dcerpc "github.com/oiweiwei/go-msrpc/dcerpc"
+	errors "github.com/oiweiwei/go-msrpc/dcerpc/errors"
+	uuid "github.com/oiweiwei/go-msrpc/midl/uuid"
+	dcom "github.com/oiweiwei/go-msrpc/msrpc/dcom"
+	uamg "github.com/oiweiwei/go-msrpc/msrpc/dcom/uamg"
+	iupdate "github.com/oiweiwei/go-msrpc/msrpc/dcom/uamg/iupdate/v0"
+	ndr "github.com/oiweiwei/go-msrpc/ndr"
+)
+
+var (
+	_ = context.Background
+	_ = fmt.Errorf
+	_ = utf16.Encode
+	_ = strings.TrimPrefix
+	_ = ndr.ZeroString
+	_ = (*uuid.UUID)(nil)
+	_ = (*dcerpc.SyntaxID)(nil)
+	_ = (*errors.Error)(nil)
+	_ = dcom.GoPackage
+	_ = iupdate.GoPackage
+	_ = uamg.GoPackage
+)
+
+var (
+	// import guard
+	GoPackage = "dcom/uamg"
+)
+
+var (
+	// IUpdate2 interface identifier 144fe9b0-d23d-4a8b-8634-fb4457533b7a
+	Update2IID = &dcom.IID{Data1: 0x144fe9b0, Data2: 0xd23d, Data3: 0x4a8b, Data4: []byte{0x86, 0x34, 0xfb, 0x44, 0x57, 0x53, 0x3b, 0x7a}}
+	// Syntax UUID
+	Update2SyntaxUUID = &uuid.UUID{TimeLow: 0x144fe9b0, TimeMid: 0xd23d, TimeHiAndVersion: 0x4a8b, ClockSeqHiAndReserved: 0x86, ClockSeqLow: 0x34, Node: [6]uint8{0xfb, 0x44, 0x57, 0x53, 0x3b, 0x7a}}
+	// Syntax ID
+	Update2SyntaxV0_0 = &dcerpc.SyntaxID{IfUUID: Update2SyntaxUUID, IfVersionMajor: 0, IfVersionMinor: 0}
+)
+
+// IUpdate2 interface.
+type Update2Client interface {
+
+	// IUpdate retrieval method.
+	Update() iupdate.UpdateClient
+
+	GetRebootRequired(context.Context, *GetRebootRequiredRequest, ...dcerpc.CallOption) (*GetRebootRequiredResponse, error)
+
+	GetIsPresent(context.Context, *GetIsPresentRequest, ...dcerpc.CallOption) (*GetIsPresentResponse, error)
+
+	GetCveIDs(context.Context, *GetCveIDsRequest, ...dcerpc.CallOption) (*GetCveIDsResponse, error)
+
+	// Opnum56NotUsedOnWire operation.
+	// Opnum56NotUsedOnWire
+
+	// AlterContext alters the client context.
+	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
+
+	// IPID sets the object interface identifier.
+	IPID(context.Context, *dcom.IPID) Update2Client
+}
+
+type xxx_DefaultUpdate2Client struct {
+	iupdate.UpdateClient
+	cc   dcerpc.Conn
+	ipid *dcom.IPID
+}
+
+func (o *xxx_DefaultUpdate2Client) Update() iupdate.UpdateClient {
+	return o.UpdateClient
+}
+
+func (o *xxx_DefaultUpdate2Client) GetRebootRequired(ctx context.Context, in *GetRebootRequiredRequest, opts ...dcerpc.CallOption) (*GetRebootRequiredResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetRebootRequiredResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultUpdate2Client) GetIsPresent(ctx context.Context, in *GetIsPresentRequest, opts ...dcerpc.CallOption) (*GetIsPresentResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetIsPresentResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultUpdate2Client) GetCveIDs(ctx context.Context, in *GetCveIDsRequest, opts ...dcerpc.CallOption) (*GetCveIDsResponse, error) {
+	op := in.xxx_ToOp(ctx, nil)
+	if _, ok := dcom.HasIPID(opts); !ok {
+		if o.ipid != nil {
+			opts = append(opts, dcom.WithIPID(o.ipid))
+		} else {
+			return nil, fmt.Errorf("%s: ipid is missing", op.OpName())
+		}
+	}
+	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
+		return nil, err
+	}
+	out := &GetCveIDsResponse{}
+	out.xxx_FromOp(ctx, op)
+	if op.Return != int32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
+	}
+	return out, nil
+}
+
+func (o *xxx_DefaultUpdate2Client) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
+	return o.cc.AlterContext(ctx, opts...)
+}
+
+func (o *xxx_DefaultUpdate2Client) Conn() dcerpc.Conn {
+	return o.cc
+}
+
+func (o *xxx_DefaultUpdate2Client) IPID(ctx context.Context, ipid *dcom.IPID) Update2Client {
+	if ipid == nil {
+		ipid = &dcom.IPID{}
+	}
+	return &xxx_DefaultUpdate2Client{
+		UpdateClient: o.UpdateClient.IPID(ctx, ipid),
+		cc:           o.cc,
+		ipid:         ipid,
+	}
+}
+
+func NewUpdate2Client(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (Update2Client, error) {
+	var err error
+	if !dcom.IsSuperclass(opts) {
+		cc, err = cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(Update2SyntaxV0_0))...)
+		if err != nil {
+			return nil, err
+		}
+	}
+	base, err := iupdate.NewUpdateClient(ctx, cc, append(opts, dcom.Superclass(cc))...)
+	if err != nil {
+		return nil, err
+	}
+	ipid, ok := dcom.HasIPID(opts)
+	if ok {
+		base = base.IPID(ctx, ipid)
+	}
+	return &xxx_DefaultUpdate2Client{
+		UpdateClient: base,
+		cc:           cc,
+		ipid:         ipid,
+	}, nil
+}
+
+// xxx_GetRebootRequiredOperation structure represents the RebootRequired operation
+type xxx_GetRebootRequiredOperation struct {
+	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	Return      int32          `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetRebootRequiredOperation) OpNum() int { return 52 }
+
+func (o *xxx_GetRebootRequiredOperation) OpName() string { return "/IUpdate2/v0/RebootRequired" }
+
+func (o *xxx_GetRebootRequiredOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetRebootRequiredOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetRebootRequiredOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetRebootRequiredOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetRebootRequiredOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// retval {out, retval} (1:{pointer=ref}*(1))(2:{alias=VARIANT_BOOL}(int16))
+	{
+		if err := w.WriteData(o.ReturnValue); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetRebootRequiredOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// retval {out, retval} (1:{pointer=ref}*(1))(2:{alias=VARIANT_BOOL}(int16))
+	{
+		if err := w.ReadData(&o.ReturnValue); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetRebootRequiredRequest structure represents the RebootRequired operation request
+type GetRebootRequiredRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+}
+
+func (o *GetRebootRequiredRequest) xxx_ToOp(ctx context.Context, op *xxx_GetRebootRequiredOperation) *xxx_GetRebootRequiredOperation {
+	if op == nil {
+		op = &xxx_GetRebootRequiredOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	return op
+}
+
+func (o *GetRebootRequiredRequest) xxx_FromOp(ctx context.Context, op *xxx_GetRebootRequiredOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+}
+func (o *GetRebootRequiredRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetRebootRequiredRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetRebootRequiredOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetRebootRequiredResponse structure represents the RebootRequired operation response
+type GetRebootRequiredResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	// Return: The RebootRequired return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetRebootRequiredResponse) xxx_ToOp(ctx context.Context, op *xxx_GetRebootRequiredOperation) *xxx_GetRebootRequiredOperation {
+	if op == nil {
+		op = &xxx_GetRebootRequiredOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetRebootRequiredResponse) xxx_FromOp(ctx context.Context, op *xxx_GetRebootRequiredOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+}
+func (o *GetRebootRequiredResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetRebootRequiredResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetRebootRequiredOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetIsPresentOperation structure represents the IsPresent operation
+type xxx_GetIsPresentOperation struct {
+	This        *dcom.ORPCThis `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	Return      int32          `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetIsPresentOperation) OpNum() int { return 53 }
+
+func (o *xxx_GetIsPresentOperation) OpName() string { return "/IUpdate2/v0/IsPresent" }
+
+func (o *xxx_GetIsPresentOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetIsPresentOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetIsPresentOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetIsPresentOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetIsPresentOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// retval {out, retval} (1:{pointer=ref}*(1))(2:{alias=VARIANT_BOOL}(int16))
+	{
+		if err := w.WriteData(o.ReturnValue); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetIsPresentOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// retval {out, retval} (1:{pointer=ref}*(1))(2:{alias=VARIANT_BOOL}(int16))
+	{
+		if err := w.ReadData(&o.ReturnValue); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetIsPresentRequest structure represents the IsPresent operation request
+type GetIsPresentRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+}
+
+func (o *GetIsPresentRequest) xxx_ToOp(ctx context.Context, op *xxx_GetIsPresentOperation) *xxx_GetIsPresentOperation {
+	if op == nil {
+		op = &xxx_GetIsPresentOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	return op
+}
+
+func (o *GetIsPresentRequest) xxx_FromOp(ctx context.Context, op *xxx_GetIsPresentOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+}
+func (o *GetIsPresentRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetIsPresentRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIsPresentOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetIsPresentResponse structure represents the IsPresent operation response
+type GetIsPresentResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That        *dcom.ORPCThat `idl:"name:That" json:"that"`
+	ReturnValue int16          `idl:"name:retval" json:"return_value"`
+	// Return: The IsPresent return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetIsPresentResponse) xxx_ToOp(ctx context.Context, op *xxx_GetIsPresentOperation) *xxx_GetIsPresentOperation {
+	if op == nil {
+		op = &xxx_GetIsPresentOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetIsPresentResponse) xxx_FromOp(ctx context.Context, op *xxx_GetIsPresentOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+}
+func (o *GetIsPresentResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetIsPresentResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetIsPresentOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// xxx_GetCveIDsOperation structure represents the CveIDs operation
+type xxx_GetCveIDsOperation struct {
+	This        *dcom.ORPCThis         `idl:"name:This" json:"this"`
+	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
+	Return      int32                  `idl:"name:Return" json:"return"`
+}
+
+func (o *xxx_GetCveIDsOperation) OpNum() int { return 54 }
+
+func (o *xxx_GetCveIDsOperation) OpName() string { return "/IUpdate2/v0/CveIDs" }
+
+func (o *xxx_GetCveIDsOperation) xxx_PrepareRequestPayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareRequestPayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareRequestPayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetCveIDsOperation) MarshalNDRRequest(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareRequestPayload(ctx); err != nil {
+		return err
+	}
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This != nil {
+			if err := o.This.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThis{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetCveIDsOperation) UnmarshalNDRRequest(ctx context.Context, w ndr.Reader) error {
+	// This {in} (1:{alias=ORPCTHIS}(struct))
+	{
+		if o.This == nil {
+			o.This = &dcom.ORPCThis{}
+		}
+		if err := o.This.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetCveIDsOperation) xxx_PrepareResponsePayload(ctx context.Context) error {
+	if hook, ok := (interface{})(o).(interface{ AfterPrepareResponsePayload(context.Context) error }); ok {
+		if err := hook.AfterPrepareResponsePayload(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetCveIDsOperation) MarshalNDRResponse(ctx context.Context, w ndr.Writer) error {
+	if err := o.xxx_PrepareResponsePayload(ctx); err != nil {
+		return err
+	}
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That != nil {
+			if err := o.That.MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		} else {
+			if err := (&dcom.ORPCThat{}).MarshalNDR(ctx, w); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// retval {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IStringCollection}(interface))
+	{
+		if o.ReturnValue != nil {
+			_ptr_retval := ndr.MarshalNDRFunc(func(ctx context.Context, w ndr.Writer) error {
+				if o.ReturnValue != nil {
+					if err := o.ReturnValue.MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				} else {
+					if err := (&uamg.StringCollection{}).MarshalNDR(ctx, w); err != nil {
+						return err
+					}
+				}
+				return nil
+			})
+			if err := w.WritePointer(&o.ReturnValue, _ptr_retval); err != nil {
+				return err
+			}
+		} else {
+			if err := w.WritePointer(nil); err != nil {
+				return err
+			}
+		}
+		if err := w.WriteDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.WriteData(o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+func (o *xxx_GetCveIDsOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.Reader) error {
+	// That {out} (1:{alias=ORPCTHAT}(struct))
+	{
+		if o.That == nil {
+			o.That = &dcom.ORPCThat{}
+		}
+		if err := o.That.UnmarshalNDR(ctx, w); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// retval {out, retval} (1:{pointer=ref}*(2)*(1))(2:{alias=IStringCollection}(interface))
+	{
+		_ptr_retval := ndr.UnmarshalNDRFunc(func(ctx context.Context, w ndr.Reader) error {
+			if o.ReturnValue == nil {
+				o.ReturnValue = &uamg.StringCollection{}
+			}
+			if err := o.ReturnValue.UnmarshalNDR(ctx, w); err != nil {
+				return err
+			}
+			return nil
+		})
+		_s_retval := func(ptr interface{}) { o.ReturnValue = *ptr.(**uamg.StringCollection) }
+		if err := w.ReadPointer(&o.ReturnValue, _s_retval, _ptr_retval); err != nil {
+			return err
+		}
+		if err := w.ReadDeferred(); err != nil {
+			return err
+		}
+	}
+	// Return {out} (1:{alias=HRESULT, names=LONG}(int32))
+	{
+		if err := w.ReadData(&o.Return); err != nil {
+			return err
+		}
+	}
+	return nil
+}
+
+// GetCveIDsRequest structure represents the CveIDs operation request
+type GetCveIDsRequest struct {
+	// This: ORPCTHIS structure that is used to send ORPC extension data to the server.
+	This *dcom.ORPCThis `idl:"name:This" json:"this"`
+}
+
+func (o *GetCveIDsRequest) xxx_ToOp(ctx context.Context, op *xxx_GetCveIDsOperation) *xxx_GetCveIDsOperation {
+	if op == nil {
+		op = &xxx_GetCveIDsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.This = o.This
+	return op
+}
+
+func (o *GetCveIDsRequest) xxx_FromOp(ctx context.Context, op *xxx_GetCveIDsOperation) {
+	if o == nil {
+		return
+	}
+	o.This = op.This
+}
+func (o *GetCveIDsRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
+}
+func (o *GetCveIDsRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetCveIDsOperation{}
+	if err := _o.UnmarshalNDRRequest(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}
+
+// GetCveIDsResponse structure represents the CveIDs operation response
+type GetCveIDsResponse struct {
+	// That: ORPCTHAT structure that is used to return ORPC extension data to the client.
+	That        *dcom.ORPCThat         `idl:"name:That" json:"that"`
+	ReturnValue *uamg.StringCollection `idl:"name:retval" json:"return_value"`
+	// Return: The CveIDs return value.
+	Return int32 `idl:"name:Return" json:"return"`
+}
+
+func (o *GetCveIDsResponse) xxx_ToOp(ctx context.Context, op *xxx_GetCveIDsOperation) *xxx_GetCveIDsOperation {
+	if op == nil {
+		op = &xxx_GetCveIDsOperation{}
+	}
+	if o == nil {
+		return op
+	}
+	op.That = o.That
+	op.ReturnValue = o.ReturnValue
+	op.Return = o.Return
+	return op
+}
+
+func (o *GetCveIDsResponse) xxx_FromOp(ctx context.Context, op *xxx_GetCveIDsOperation) {
+	if o == nil {
+		return
+	}
+	o.That = op.That
+	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
+}
+func (o *GetCveIDsResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
+}
+func (o *GetCveIDsResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
+	_o := &xxx_GetCveIDsOperation{}
+	if err := _o.UnmarshalNDRResponse(ctx, r); err != nil {
+		return err
+	}
+	o.xxx_FromOp(ctx, _o)
+	return nil
+}

@@ -79,75 +79,133 @@ func PerformanceCounterDataCollectorServerHandle(ctx context.Context, o Performa
 	}
 	switch opNum {
 	case 32: // DataSourceName
-		in := &GetDataSourceNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetDataSourceNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetDataSourceName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetDataSourceNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetDataSourceName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 33: // DataSourceName
-		in := &SetDataSourceNameRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetDataSourceNameOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetDataSourceName(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetDataSourceNameRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetDataSourceName(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 34: // PerformanceCounters
-		in := &GetPerformanceCountersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetPerformanceCountersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetPerformanceCounters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetPerformanceCountersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetPerformanceCounters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 35: // PerformanceCounters
-		in := &SetPerformanceCountersRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetPerformanceCountersOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetPerformanceCounters(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetPerformanceCountersRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetPerformanceCounters(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 36: // LogFileFormat
-		in := &GetLogFileFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetLogFileFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetLogFileFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetLogFileFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetLogFileFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 37: // LogFileFormat
-		in := &SetLogFileFormatRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetLogFileFormatOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetLogFileFormat(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetLogFileFormatRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetLogFileFormat(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 38: // SampleInterval
-		in := &GetSampleIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSampleIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSampleInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSampleIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSampleInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 39: // SampleInterval
-		in := &SetSampleIntervalRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSampleIntervalOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSampleInterval(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSampleIntervalRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSampleInterval(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 40: // SegmentMaxRecords
-		in := &GetSegmentMaxRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_GetSegmentMaxRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.GetSegmentMaxRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &GetSegmentMaxRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.GetSegmentMaxRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	case 41: // SegmentMaxRecords
-		in := &SetSegmentMaxRecordsRequest{}
-		if err := in.UnmarshalNDR(ctx, r); err != nil {
+		op := &xxx_SetSegmentMaxRecordsOperation{}
+		if err := op.UnmarshalNDRRequest(ctx, r); err != nil {
 			return nil, err
 		}
-		resp, err := o.SetSegmentMaxRecords(ctx, in)
-		return resp.xxx_ToOp(ctx), err
+		req := &SetSegmentMaxRecordsRequest{}
+		req.xxx_FromOp(ctx, op)
+		resp, err := o.SetSegmentMaxRecords(ctx, req)
+		return resp.xxx_ToOp(ctx, op), err
 	}
 	return nil, nil
 }
+
+// Unimplemented IPerformanceCounterDataCollector
+type UnimplementedPerformanceCounterDataCollectorServer struct {
+	idatacollector.UnimplementedDataCollectorServer
+}
+
+func (UnimplementedPerformanceCounterDataCollectorServer) GetDataSourceName(context.Context, *GetDataSourceNameRequest) (*GetDataSourceNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) SetDataSourceName(context.Context, *SetDataSourceNameRequest) (*SetDataSourceNameResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) GetPerformanceCounters(context.Context, *GetPerformanceCountersRequest) (*GetPerformanceCountersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) SetPerformanceCounters(context.Context, *SetPerformanceCountersRequest) (*SetPerformanceCountersResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) GetLogFileFormat(context.Context, *GetLogFileFormatRequest) (*GetLogFileFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) SetLogFileFormat(context.Context, *SetLogFileFormatRequest) (*SetLogFileFormatResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) GetSampleInterval(context.Context, *GetSampleIntervalRequest) (*GetSampleIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) SetSampleInterval(context.Context, *SetSampleIntervalRequest) (*SetSampleIntervalResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) GetSegmentMaxRecords(context.Context, *GetSegmentMaxRecordsRequest) (*GetSegmentMaxRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+func (UnimplementedPerformanceCounterDataCollectorServer) SetSegmentMaxRecords(context.Context, *SetSegmentMaxRecordsRequest) (*SetSegmentMaxRecordsResponse, error) {
+	return nil, dcerpc.ErrNotImplemented
+}
+
+var _ PerformanceCounterDataCollectorServer = (*UnimplementedPerformanceCounterDataCollectorServer)(nil)

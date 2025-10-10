@@ -1,4 +1,5 @@
 import "ms-dtyp.idl";
+import "ms-dcom.idl";
  
  
 // typedefs
@@ -16,7 +17,9 @@ typedef GUID NTMS_GUID;
 typedef byte * PSECURITY_DESCRIPTOR_NTMS;
  
 typedef ULONG_PTR NTMS_HANDLE;
- 
+
+interface IUnknown;
+
 // enumerations
  
  
@@ -289,21 +292,25 @@ typedef struct _NTMS_ASYNC_IO {
     DWORD       dwOperationType;            // reserved - do not use
     DWORD       dwResult;                   // reserved - do not use
     DWORD       dwAsyncState;               // reserved - do not use
-#ifdef __midl
+// #ifdef __midl
     NTMS_HANDLE hEvent;                     // reserved - do not use
+/*
 #else
     PVOID      hEvent;                     // reserved - do not use
 #endif                                      
+*/
     BOOL        bOnStateChange;             // indicate to signal on every status change or not; false will signal only completion
 } NTMS_ASYNC_IO, *LPNTMS_ASYNC_IO;
  
 typedef struct _NTMS_MOUNT_INFORMATION {
     DWORD              dwSize;        
-#ifdef __midl
+// #ifdef __midl
     [ptr]  LPNTMS_ASYNC_IO lpReserved;
+/*
 #else
     LPVOID lpReserved;
 #endif
+*/
 } NTMS_MOUNT_INFORMATION, *LPNTMS_MOUNT_INFORMATION;
  
 typedef struct _NTMS_CHANGERINFORMATIONA {

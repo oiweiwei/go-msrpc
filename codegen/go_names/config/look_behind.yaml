@@ -90,7 +90,7 @@ lookBehind:
   ns: {handle: [context]}
   o: {us: [ous]}
   s: {card: [smart, card]}
-  n: {char: [char, count]}
+  n: {char: [char, count], users: [users, count], protectors: [protectors, count]}
   multi: {sz: [multistring]}
   alloc: {sz: [alloc, size]}
   object: {handle: [object]}

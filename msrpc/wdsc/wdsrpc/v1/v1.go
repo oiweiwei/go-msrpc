@@ -47,6 +47,9 @@ type WdsRPCClient interface {
 
 	// AlterContext alters the client context.
 	AlterContext(context.Context, ...dcerpc.Option) error
+
+	// Conn returns the client connection (unsafe)
+	Conn() dcerpc.Conn
 }
 
 type xxx_DefaultWdsRPCClient struct {
@@ -54,14 +57,14 @@ type xxx_DefaultWdsRPCClient struct {
 }
 
 func (o *xxx_DefaultWdsRPCClient) Message(ctx context.Context, in *MessageRequest, opts ...dcerpc.CallOption) (*MessageResponse, error) {
-	op := in.xxx_ToOp(ctx)
+	op := in.xxx_ToOp(ctx, nil)
 	if err := o.cc.Invoke(ctx, op, opts...); err != nil {
 		return nil, err
 	}
 	out := &MessageResponse{}
 	out.xxx_FromOp(ctx, op)
-	if op.ReturnValue != uint32(0) {
-		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.ReturnValue))
+	if op.Return != uint32(0) {
+		return out, fmt.Errorf("%s: %w", op.OpName(), errors.New(ctx, op.Return))
 	}
 	return out, nil
 }
@@ -69,6 +72,11 @@ func (o *xxx_DefaultWdsRPCClient) Message(ctx context.Context, in *MessageReques
 func (o *xxx_DefaultWdsRPCClient) AlterContext(ctx context.Context, opts ...dcerpc.Option) error {
 	return o.cc.AlterContext(ctx, opts...)
 }
+
+func (o *xxx_DefaultWdsRPCClient) Conn() dcerpc.Conn {
+	return o.cc
+}
+
 func NewWdsRPCClient(ctx context.Context, cc dcerpc.Conn, opts ...dcerpc.Option) (WdsRPCClient, error) {
 	cc, err := cc.Bind(ctx, append(opts, dcerpc.WithAbstractSyntax(WdsRPCSyntaxV1_0))...)
 	if err != nil {
@@ -83,7 +91,7 @@ type xxx_MessageOperation struct {
 	RequestPacket     []byte `idl:"name:bRequestPacket;size_is:(uRequestPacketSize)" json:"request_packet"`
 	ReplyPacketSize   uint32 `idl:"name:puReplyPacketSize" json:"reply_packet_size"`
 	ReplyPacket       []byte `idl:"name:pbReplyPacket;size_is:(, puReplyPacketSize)" json:"reply_packet"`
-	ReturnValue       uint32 `idl:"name:ReturnValue" json:"return_value"`
+	Return            uint32 `idl:"name:Return" json:"return"`
 }
 
 func (o *xxx_MessageOperation) OpNum() int { return 0 }
@@ -231,9 +239,9 @@ func (o *xxx_MessageOperation) MarshalNDRResponse(ctx context.Context, w ndr.Wri
 			return err
 		}
 	}
-	// ReturnValue {out} (1:(uint32))
+	// Return {out} (1:(uint32))
 	{
-		if err := w.WriteData(o.ReturnValue); err != nil {
+		if err := w.WriteData(o.Return); err != nil {
 			return err
 		}
 	}
@@ -278,9 +286,9 @@ func (o *xxx_MessageOperation) UnmarshalNDRResponse(ctx context.Context, w ndr.R
 			return err
 		}
 	}
-	// ReturnValue {out} (1:(uint32))
+	// Return {out} (1:(uint32))
 	{
-		if err := w.ReadData(&o.ReturnValue); err != nil {
+		if err := w.ReadData(&o.Return); err != nil {
 			return err
 		}
 	}
@@ -296,14 +304,16 @@ type MessageRequest struct {
 	RequestPacket []byte `idl:"name:bRequestPacket;size_is:(uRequestPacketSize)" json:"request_packet"`
 }
 
-func (o *MessageRequest) xxx_ToOp(ctx context.Context) *xxx_MessageOperation {
+func (o *MessageRequest) xxx_ToOp(ctx context.Context, op *xxx_MessageOperation) *xxx_MessageOperation {
+	if op == nil {
+		op = &xxx_MessageOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageOperation{}
+		return op
 	}
-	return &xxx_MessageOperation{
-		RequestPacketSize: o.RequestPacketSize,
-		RequestPacket:     o.RequestPacket,
-	}
+	op.RequestPacketSize = o.RequestPacketSize
+	op.RequestPacket = o.RequestPacket
+	return op
 }
 
 func (o *MessageRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageOperation) {
@@ -314,7 +324,7 @@ func (o *MessageRequest) xxx_FromOp(ctx context.Context, op *xxx_MessageOperatio
 	o.RequestPacket = op.RequestPacket
 }
 func (o *MessageRequest) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRRequest(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRRequest(ctx, w)
 }
 func (o *MessageRequest) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageOperation{}
@@ -333,20 +343,21 @@ type MessageResponse struct {
 	// pbReplyPacket: The WDS Server MUST set this to the reply packet. The reply packet
 	// MUST be constructed as specified in section 2.2.1.
 	ReplyPacket []byte `idl:"name:pbReplyPacket;size_is:(, puReplyPacketSize)" json:"reply_packet"`
-	// Return Values: The method MUST return ERROR_SUCCESS (0x00000000) on success or a
-	// non-zero Win32 error code value if an error occurred.
-	ReturnValue uint32 `idl:"name:ReturnValue" json:"return_value"`
+	// Return: The WdsRpcMessage return value.
+	Return uint32 `idl:"name:Return" json:"return"`
 }
 
-func (o *MessageResponse) xxx_ToOp(ctx context.Context) *xxx_MessageOperation {
+func (o *MessageResponse) xxx_ToOp(ctx context.Context, op *xxx_MessageOperation) *xxx_MessageOperation {
+	if op == nil {
+		op = &xxx_MessageOperation{}
+	}
 	if o == nil {
-		return &xxx_MessageOperation{}
+		return op
 	}
-	return &xxx_MessageOperation{
-		ReplyPacketSize: o.ReplyPacketSize,
-		ReplyPacket:     o.ReplyPacket,
-		ReturnValue:     o.ReturnValue,
-	}
+	op.ReplyPacketSize = o.ReplyPacketSize
+	op.ReplyPacket = o.ReplyPacket
+	op.Return = o.Return
+	return op
 }
 
 func (o *MessageResponse) xxx_FromOp(ctx context.Context, op *xxx_MessageOperation) {
@@ -355,10 +366,10 @@ func (o *MessageResponse) xxx_FromOp(ctx context.Context, op *xxx_MessageOperati
 	}
 	o.ReplyPacketSize = op.ReplyPacketSize
 	o.ReplyPacket = op.ReplyPacket
-	o.ReturnValue = op.ReturnValue
+	o.Return = op.Return
 }
 func (o *MessageResponse) MarshalNDR(ctx context.Context, w ndr.Writer) error {
-	return o.xxx_ToOp(ctx).MarshalNDRResponse(ctx, w)
+	return o.xxx_ToOp(ctx, nil).MarshalNDRResponse(ctx, w)
 }
 func (o *MessageResponse) UnmarshalNDR(ctx context.Context, r ndr.Reader) error {
 	_o := &xxx_MessageOperation{}
